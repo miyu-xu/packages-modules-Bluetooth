@@ -66,6 +66,7 @@ public class VolumeControlServiceTest {
     private BluetoothDevice mDevice;
     private HashMap<BluetoothDevice, LinkedBlockingQueue<Intent>> mDeviceQueueMap;
     private static final int TIMEOUT_MS = 1000;
+    private static final int BT_LE_AUDIO_MAX_VOL = 255;
 
     private BroadcastReceiver mVolumeControlIntentReceiver;
 
@@ -91,6 +92,11 @@ public class VolumeControlServiceTest {
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        doReturn(0).when(mAudioManager).getStreamMinVolume(eq(AudioManager.STREAM_MUSIC));
+        doReturn(25).when(mAudioManager).getStreamMaxVolume(eq(AudioManager.STREAM_MUSIC));
+        doReturn(1).when(mAudioManager).getStreamMinVolume(eq(AudioManager.STREAM_VOICE_CALL));
+        doReturn(8).when(mAudioManager).getStreamMaxVolume(eq(AudioManager.STREAM_VOICE_CALL));
 
         startService();
         mService.mVolumeControlNativeInterface = mNativeInterface;
@@ -512,6 +518,88 @@ public class VolumeControlServiceTest {
         stackEvent.valueInt2 = volume;
         stackEvent.valueBool1 = mute;
         mService.messageFromNative(stackEvent);
+    }
+
+    int getLeAudioVolume(int index, int minIndex, int maxIndex, int streamType) {
+        // Note: This has to be the same as mBtHelper.setLeAudioVolume()
+        return (int) Math.round((double) index * BT_LE_AUDIO_MAX_VOL / maxIndex);
+    }
+
+    void testVolumeArray(int streamType, int[][] volumeIndexPairs) {
+        // Send a message to trigger volume state changed broadcast
+        VolumeControlStackEvent stackEvent = new VolumeControlStackEvent(
+                VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED);
+        stackEvent.device = null;
+        stackEvent.valueInt1 = 1;       // groupId
+        stackEvent.valueBool1 = false;  // isMuted
+        stackEvent.valueBool2 = true;   // isAutonomous
+
+        for(int[] arr: volumeIndexPairs) {
+            // Set Le Audio Volume value
+            stackEvent.valueInt2 = arr[0];
+            mService.messageFromNative(stackEvent);
+
+            // Verify the volume index set to Audio FW
+            int expectedIndex = arr[1];
+            verify(mAudioManager, times(1))
+                    .setStreamVolume(eq(streamType), eq(expectedIndex), anyInt());
+
+            // Recalculate back from index to Le Audio Volume
+            // Note: This will abviously fail if volumeIndexPairs contains values, which
+            //       are not multiple of the volume step ((double) BT_LE_AUDIO_MAX_VOL / maxIndex)
+            Assert.assertEquals(stackEvent.valueInt2,
+                    getLeAudioVolume(expectedIndex, mAudioManager.getStreamMinVolume(streamType),
+                            mAudioManager.getStreamMaxVolume(streamType), streamType));
+        }
+    }
+
+    @Test
+    public void testAutonomousVolumeStateChange() {
+        int[][] callVolumeIndexValuePairs = {
+            // LE | Index
+            {255, 8},   // MAX
+            {223, 7},
+            {191, 6},
+            {159, 5},
+            {128, 4},
+            {96, 3},
+            {64, 2},
+            {32, 1},    // MIN
+        };
+        doReturn(AudioManager.MODE_IN_CALL).when(mAudioManager).getMode();
+        testVolumeArray(AudioManager.STREAM_VOICE_CALL, callVolumeIndexValuePairs);
+
+        int[][] mediaVolumeIndexValuePairs = {
+            // LE | Index
+            {255, 25},   // MAX
+            {245, 24},
+            {235, 23},
+            {224, 22},
+            {214, 21},
+            {204, 20},
+            {194, 19},
+            {184, 18},
+            {173, 17},
+            {163, 16},
+            {153, 15},
+            {143, 14},
+            {133, 13},
+            {122, 12},
+            {112, 11},
+            {102, 10},
+            {92, 9},
+            {82, 8},
+            {71, 7},
+            {61, 6},
+            {51, 5},
+            {41, 4},
+            {31, 3},
+            {20, 2},
+            {10, 1},
+            {0, 0},     // MIN
+        };
+        doReturn(AudioManager.MODE_NORMAL).when(mAudioManager).getMode();
+        testVolumeArray(AudioManager.STREAM_MUSIC, mediaVolumeIndexValuePairs);
     }
 
     /**
