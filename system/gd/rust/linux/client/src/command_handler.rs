@@ -703,7 +703,7 @@ impl CommandHandler {
                 );
             }
             "client-connect" => {
-                if args.len() < 3 {
+                if args.len() < 2 {
                     println!("usage: gatt client-connect <addr>");
                     return;
                 }
@@ -725,7 +725,7 @@ impl CommandHandler {
                 );
             }
             "client-disconnect" => {
-                if args.len() < 3 {
+                if args.len() < 2 {
                     println!("usage: gatt client-disconnect <addr>");
                     return;
                 }
@@ -746,7 +746,7 @@ impl CommandHandler {
                     .client_disconnect(client_id.unwrap(), addr);
             }
             "client-read-phy" => {
-                if args.len() < 3 {
+                if args.len() < 2 {
                     println!("usage: gatt client-read-phy <addr>");
                     return;
                 }
@@ -767,7 +767,7 @@ impl CommandHandler {
                     .client_read_phy(client_id.unwrap(), addr);
             }
             "client-discover-services" => {
-                if args.len() < 3 {
+                if args.len() < 2 {
                     println!("usage: gatt client-discover-services <addr>");
                     return;
                 }
@@ -788,7 +788,7 @@ impl CommandHandler {
                     .discover_services(client_id.unwrap(), addr);
             }
             "configure-mtu" => {
-                if args.len() < 4 {
+                if args.len() < 3 {
                     println!("usage: gatt configure-mtu <addr> <mtu>");
                     return;
                 }
