@@ -215,9 +215,9 @@ int HfpIntf::connect(RustRawAddress bt_addr) {
   return intf_->Connect(&addr);
 }
 
-int HfpIntf::connect_audio(RustRawAddress bt_addr) {
+int HfpIntf::connect_audio(RustRawAddress bt_addr, bool force_cvsd) {
   RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
-  return intf_->ConnectAudio(&addr);
+  return intf_->ConnectAudio(&addr, force_cvsd);
 }
 
 int HfpIntf::set_volume(int8_t volume, RustRawAddress bt_addr) {

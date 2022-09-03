@@ -76,7 +76,8 @@ pub mod ffi {
 
         fn init(self: Pin<&mut HfpIntf>) -> i32;
         fn connect(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
-        fn connect_audio(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
+        fn connect_audio(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress, force_cvsd: bool)
+            -> i32;
         fn set_volume(self: Pin<&mut HfpIntf>, volume: i8, bt_addr: RustRawAddress) -> i32;
         fn disconnect(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
         fn disconnect_audio(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
@@ -179,8 +180,8 @@ impl Hfp {
         self.internal.pin_mut().connect(addr.into());
     }
 
-    pub fn connect_audio(&mut self, addr: RawAddress) -> i32 {
-        self.internal.pin_mut().connect_audio(addr.into())
+    pub fn connect_audio(&mut self, addr: RawAddress, force_cvsd: bool) -> i32 {
+        self.internal.pin_mut().connect_audio(addr.into(), force_cvsd)
     }
 
     pub fn set_volume(&mut self, volume: i8, addr: RawAddress) -> i32 {
