@@ -231,3 +231,28 @@ fun Connection.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
   adapter.getRemoteDevice(this.cookie.toByteArray().decodeToString())
 
 fun BluetoothDevice.toByteArray(): ByteArray = MacAddress.fromString(this.address).toByteArray()
+
+class HandleManager<T> {
+  private var nextHandle = 1
+  private val handleMap = mutableMapOf<Int, T>()
+
+  private fun parseHandle(handle: ByteString) = Integer.parseInt(handle.toString())
+  private fun deparseHandle(handle: Int) = ByteString.copyFromUtf8(handle.toString())
+
+  fun register(x: T): ByteString = registerWithHandle { x }.first
+
+  fun registerWithHandle(f: (ByteString) -> T): Pair<ByteString, T> {
+    nextHandle += 1
+    val out = f(deparseHandle(nextHandle))
+    handleMap[nextHandle] = out
+    return Pair(deparseHandle(nextHandle), out)
+  }
+
+  fun get(handle: ByteString): T? {
+    return handleMap[parseHandle(handle)]
+  }
+
+  fun remove(handle: ByteString) {
+    handleMap.remove(parseHandle(handle))
+  }
+}
