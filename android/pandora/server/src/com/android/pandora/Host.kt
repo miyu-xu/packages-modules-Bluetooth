@@ -17,7 +17,10 @@
 package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothAssignedNumbers
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC
+import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_RANDOM
 import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
 import android.bluetooth.BluetoothManager
@@ -32,6 +35,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.MacAddress
+import android.os.ParcelUuid
 import android.util.Log
 import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
@@ -56,6 +60,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.suspendCancellableCoroutine
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
 
@@ -68,6 +73,8 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
+
+  private val advertisers = HandleManager<AdvertiseCallback>()
 
   init {
     scope = CoroutineScope(Dispatchers.Default)
@@ -346,8 +353,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     grpcUnary<GetLEConnectionResponse>(scope, responseObserver) {
       val address = request.address.decodeAsMacAddressToString()
       Log.i(TAG, "getLEConnection: $address")
-      val device =
-        bluetoothAdapter.getRemoteLeDevice(address, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+      val device = bluetoothAdapter.getRemoteLeDevice(address, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
       if (device.isConnected) {
         GetLEConnectionResponse.newBuilder()
           .setConnection(
@@ -406,6 +412,68 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothDevice = flow.first()
     }
     return bluetoothDevice
+  }
+
+  override fun startAdvertising(
+    request: StartAdvertisingRequest,
+    responseObserver: StreamObserver<StartAdvertisingResponse>
+  ) {
+    Log.d(TAG, "startAdvertising")
+    grpcUnary(scope, responseObserver) {
+      callbackFlow {
+          val (_, callback) =
+            advertisers.registerWithHandle { handle ->
+              object : AdvertiseCallback() {
+                override fun onStartSuccess(settingsInEffect: AdvertiseSettings) {
+                  trySendBlocking(
+                    StartAdvertisingResponse.newBuilder()
+                      .setHandle(
+                        AdvertisingHandle.newBuilder()
+                          .setCookie(ByteString.copyFromUtf8(handle.toString()))
+                      )
+                      .build()
+                  )
+                }
+                override fun onStartFailure(errorCode: Int) {
+                  error("failed to start advertising")
+                }
+              }
+            }
+
+          val advertisingDataBuilder = AdvertiseData.Builder()
+
+          for (service_uuid in request.advertisingData.serviceUuidsList) {
+            advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
+          }
+
+          advertisingDataBuilder
+            .setIncludeDeviceName(request.advertisingData.includeLocalName)
+            .setIncludeTxPowerLevel(request.advertisingData.includeTxPowerLevel)
+            .addManufacturerData(
+              BluetoothAssignedNumbers.GOOGLE,
+              request.advertisingData.manufacturerSpecificData.toByteArray()
+            )
+
+          bluetoothAdapter.bluetoothLeAdvertiser.startAdvertising(
+            AdvertiseSettings.Builder()
+              .setConnectable(request.connectable)
+              .setOwnAddressType(
+                when (request.ownAddressType!!) {
+                  AddressType.PUBLIC -> ADDRESS_TYPE_PUBLIC
+                  AddressType.RANDOM -> ADDRESS_TYPE_RANDOM
+                  AddressType.UNRECOGNIZED ->
+                    error("unrecognized address type ${request.ownAddressType}")
+                }
+              )
+              .build(),
+            advertisingDataBuilder.build(),
+            callback,
+          )
+
+          awaitClose { /* no-op */}
+        }
+        .first()
+    }
   }
 
   override fun runInquiry(
