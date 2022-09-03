@@ -16,6 +16,92 @@
       "message": "Hi:\n\nI pushed a patch to fix a deadlock bug in Bluetooth framework. Could you\nplease spare some time to have a look at it?\n\nThanks!",
       "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0608ae56_fa8eb91b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1294,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-03T21:20:18Z",
+      "side": 1,
+      "message": "See below comment and if we removing the callback, this need to be deleted ?",
+      "range": {
+        "startLine": 1286,
+        "startChar": 4,
+        "endLine": 1294,
+        "endChar": 5
+      },
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85dcb11a_bf516856",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1297,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-03T21:20:18Z",
+      "side": 1,
+      "message": "getDefaultAdapter is deprecated and it suggest to use `BluetoothManager.getAdapter()`.\nSo this call will become something like:\n`\u003ccontext\u003e.getSystemService(BluetoothManager.class).getBluetoothService();`\n\nIs this something that can be done here too ? (We need to have a context here)",
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0ed3d9_5dab955e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-03T21:20:18Z",
+      "side": 1,
+      "message": "With this change the whole BluetoothManagerCallback is for logging purpose.\nShouldn\u0027t it be deleted then ?",
+      "range": {
+        "startLine": 1300,
+        "startChar": 4,
+        "endLine": 1319,
+        "endChar": 6
+      },
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0468d10f_81b87340",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1511,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-03T21:20:18Z",
+      "side": 1,
+      "message": "replace by `getService()`",
+      "range": {
+        "startLine": 1511,
+        "startChar": 35,
+        "endLine": 1511,
+        "endChar": 93
+      },
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
