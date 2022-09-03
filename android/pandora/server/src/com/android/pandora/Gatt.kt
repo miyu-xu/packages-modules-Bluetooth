@@ -19,7 +19,9 @@ package com.android.pandora
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothGattDescriptor
+import android.bluetooth.BluetoothGattServer
 import android.bluetooth.BluetoothGattService
+import android.bluetooth.BluetoothGattService.SERVICE_TYPE_PRIMARY
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
@@ -31,7 +33,9 @@ import io.grpc.stub.StreamObserver
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
@@ -50,6 +54,8 @@ class Gatt(private val context: Context) : GATTImplBase() {
 
   private val mBluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val mBluetoothAdapter = mBluetoothManager.adapter
+
+  private val gattServers = HandleManager<BluetoothGattServer>()
 
   init {
     mScope = CoroutineScope(Dispatchers.Default)
@@ -233,6 +239,47 @@ class Gatt(private val context: Context) : GATTImplBase() {
             .setValue(readValue.value)
         )
         .setStatus(readValue.status)
+        .build()
+    }
+  }
+
+  override fun startService(
+    request: StartServiceRequest,
+    responseObserver: StreamObserver<StartServiceResponse>
+  ) {
+    grpcUnary(mScope, responseObserver) {
+      val service =
+        BluetoothGattService(UUID.fromString(request.service.uuid), SERVICE_TYPE_PRIMARY)
+      for (characteristic in request.service.characteristicsList) {
+        service.addCharacteristic(
+          BluetoothGattCharacteristic(
+            UUID.fromString(characteristic.uuid),
+            characteristic.properties,
+            characteristic.permissions
+          )
+        )
+      }
+      val serverInstance = GattServerInstance(mBluetoothManager, context)
+
+      val fullService = coroutineScope {
+        val firstService = mScope.async { serverInstance.newServiceFlow.first() }
+        serverInstance.server.addService(service)
+        firstService.await()
+      }
+
+      StartServiceResponse.newBuilder()
+        .setHandle(ServiceHandle.newBuilder().setHandle(serverInstance.handle))
+        .setService(
+          // TODO: remove this code duplication after aosp/2199266 lands, to avoid merge
+          // conflicts
+          GattService.newBuilder()
+            .setHandle(fullService.instanceId)
+            .setType(fullService.type)
+            .setUuid(fullService.uuid.toString())
+            .addAllIncludedServices(generateServicesList(service.includedServices, 1))
+            .addAllCharacteristics(generateCharacteristicsList(service.characteristics))
+            .build()
+        )
         .build()
     }
   }
