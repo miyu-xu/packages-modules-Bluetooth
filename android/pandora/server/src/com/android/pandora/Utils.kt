@@ -144,21 +144,22 @@ fun <T, U> grpcBidirectionalStream(
 ): StreamObserver<T> {
 
   val inputFlow = MutableSharedFlow<T>(extraBufferCapacity = 8)
-  val outputFlow = scope.block(inputFlow.asSharedFlow())
 
   val job =
-    outputFlow
-      .onEach { responseObserver.onNext(it) }
-      .onCompletion { error ->
-        if (error == null) {
-          responseObserver.onCompleted()
+    scope.launch {
+      block(inputFlow.asSharedFlow())
+        .onEach { responseObserver.onNext(it) }
+        .onCompletion { error ->
+          if (error == null) {
+            responseObserver.onCompleted()
+          }
         }
-      }
-      .catch {
-        it.printStackTrace()
-        responseObserver.onError(it)
-      }
-      .launchIn(scope)
+        .catch {
+          it.printStackTrace()
+          responseObserver.onError(it)
+        }
+        .launchIn(this)
+    }
 
   return object : StreamObserver<T> {
     override fun onNext(req: T) {
