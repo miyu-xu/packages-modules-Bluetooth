@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_outer_classname = "GapProto";
+
+package pandora;
+
+import "pandora/host.proto";
+
+service GAP {
+}
