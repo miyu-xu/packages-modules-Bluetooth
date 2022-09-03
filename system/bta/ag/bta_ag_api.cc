@@ -165,10 +165,11 @@ void BTA_AgClose(uint16_t handle) {
  * Returns          void
  *
  ******************************************************************************/
-void BTA_AgAudioOpen(uint16_t handle) {
-  do_in_main_thread(
-      FROM_HERE, base::Bind(&bta_ag_sm_execute_by_handle, handle,
-                            BTA_AG_API_AUDIO_OPEN_EVT, tBTA_AG_DATA::kEmpty));
+void BTA_AgAudioOpen(uint16_t handle, bool force_fallback) {
+  tBTA_AG_DATA data = {};
+  data.api_audio_open.force_fallback = force_fallback;
+  do_in_main_thread(FROM_HERE, base::Bind(&bta_ag_sm_execute_by_handle, handle,
+                                          BTA_AG_API_AUDIO_OPEN_EVT, data));
 }
 
 /*******************************************************************************

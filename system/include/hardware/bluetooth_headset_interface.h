@@ -62,9 +62,11 @@ class Interface {
    * Create an audio connection
    *
    * @param bd_addr remote device address
+   * @param fallback_fallback whether force to use fallback CVSD codec
    * @return BT_STATUS_SUCCESS on success
    */
-  virtual bt_status_t ConnectAudio(RawAddress* bd_addr) = 0;
+  virtual bt_status_t ConnectAudio(RawAddress* bd_addr,
+                                   bool force_fallback) = 0;
 
   /**
    * Close the audio connection

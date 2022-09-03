@@ -568,13 +568,13 @@ void BTA_AgClose(uint16_t handle);
  * Function         BTA_AgAudioOpen
  *
  * Description      Opens an audio connection to the currently connected
- *                  headset or hnadsfree
+ *                  headset or handsfree
  *
  *
  * Returns          void
  *
  ******************************************************************************/
-void BTA_AgAudioOpen(uint16_t handle);
+void BTA_AgAudioOpen(uint16_t handle, bool force_fallback);
 
 /*******************************************************************************
  *
