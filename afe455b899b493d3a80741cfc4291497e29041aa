@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b82a77_8415d184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-03T00:09:18Z",
+      "side": 1,
+      "message": "org.mockito.exceptions.misusing.WrongTypeOfReturnValue: \nBoolean cannot be returned by getHeadsetPhoneState()\ngetHeadsetPhoneState() should return HeadsetPhoneState\n***\nIf you\u0027re unsure why you\u0027re getting above error read on.\nDue to the nature of the syntax above problem might occur because:\n1. This exception *might* occur in wrongly written multi-threaded tests.\n   Please refer to Mockito FAQ on limitations of concurrency testing.\n2. A spy is stubbed using when(spy.foo()).then() syntax. It is safer to stub spies - \n   - with doReturn|Throw() family of methods. More in javadocs for Mockito.spy() method.\n\n\tat com.android.bluetooth.hfp.HeadsetServiceAndStateMachineTest.testVoiceRecognition_SingleHfInitiatedFailedToActivate(HeadsetServiceAndStateMachineTest.java:715)",
+      "revId": "afe455b899b493d3a80741cfc4291497e29041aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
