@@ -37,6 +37,9 @@ service GATT {
 
   // Reads characteristic with given descriptor handle.
   rpc ReadCharacteristicDescriptorFromHandle(ReadCharacteristicDescriptorRequest) returns (ReadCharacteristicDescriptorResponse);
+
+  // Start a GATT service
+  rpc StartService(StartServiceRequest) returns (StartServiceResponse);
 }
 
 enum AttStatusCode {
@@ -175,4 +178,17 @@ message ReadCharacteristicDescriptorRequest {
 // Response for the `ReadCharacteristicDescriptorFromHandle` rpc.
 message ReadCharacteristicDescriptorResponse {
   GattReadValue readValue = 1;
+}
+
+message StartServiceRequest {
+  GattService service = 1;
+}
+
+message StartServiceResponse {
+  ServiceHandle handle = 1;
+  GattService service = 2;
+}
+
+message ServiceHandle {
+  bytes handle = 1;
 }
