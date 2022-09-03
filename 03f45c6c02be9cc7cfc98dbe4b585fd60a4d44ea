@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e22abec_a6083ec7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-03T21:25:16Z",
+      "side": 1,
+      "message": "The errorprone error you are having are:\n```\nframeworks/base/packages/SettingsLib/src/com/android/settingslib/bluetooth/A2dpProfile.java:254: Error: Call requires API level 34 (current min is 33): android.bluetooth.BluetoothA2dp#getCodecStatus [NewApi]\n        if (mService.getCodecStatus(bluetoothDevice) !\u003d null) {\n                     ~~~~~~~~~~~~~~\nframeworks/base/packages/SettingsLib/src/com/android/settingslib/bluetooth/A2dpProfile.java:255: Error: Call requires API level 34 (current min is 33): android.bluetooth.BluetoothA2dp#getCodecStatus [NewApi]\n            codecConfig \u003d mService.getCodecStatus(bluetoothDevice).getCodecConfig();\n                                   ~~~~~~~~~~~~~~\nframeworks/base/packages/SettingsLib/src/com/android/settingslib/bluetooth/A2dpProfile.java:300: Error: Call requires API level 34 (current min is 33): android.bluetooth.BluetoothA2dp#getCodecStatus [NewApi]\n        if (mService.getCodecStatus(device) !\u003d null) {\n                     ~~~~~~~~~~~~~~\nframeworks/base/packages/SettingsLib/src/com/android/settingslib/bluetooth/A2dpProfile.java:301: Error: Call requires API level 34 (current min is 33): android.bluetooth.BluetoothA2dp#getCodecStatus [NewApi]\n            selectable \u003d mService.getCodecStatus(device).getCodecsSelectableCapabilities();\n                                  ~~~~~~~~~~~~~~\n\n```",
+      "revId": "03f45c6c02be9cc7cfc98dbe4b585fd60a4d44ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
