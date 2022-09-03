@@ -18,9 +18,14 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC
+import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_RANDOM
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
+import android.bluetooth.le.AdvertiseCallback
+import android.bluetooth.le.AdvertiseData
+import android.bluetooth.le.AdvertiseSettings
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.content.Context
@@ -36,6 +41,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -47,6 +53,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.suspendCancellableCoroutine
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
 
@@ -59,6 +66,8 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
+
+  private val advertisers = HandleManager<AdvertiseCallback>()
 
   init {
     scope = CoroutineScope(Dispatchers.Default)
@@ -308,5 +317,51 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothDevice = flow.first()
     }
     return bluetoothDevice
+  }
+
+  override fun startAdvertising(
+    request: StartAdvertisingRequest,
+    responseObserver: StreamObserver<StartAdvertisingResponse>
+  ) {
+    grpcUnary(scope, responseObserver) {
+      suspendCancellableCoroutine { continuation ->
+        val (_, callback) =
+          advertisers.registerWithHandle { handle ->
+            object : AdvertiseCallback() {
+              override fun onStartSuccess(settingsInEffect: AdvertiseSettings) {
+                continuation.resume(
+                  StartAdvertisingResponse.newBuilder()
+                    .setHandle(
+                      AdvertisingHandle.newBuilder()
+                        .setCookie(ByteString.copyFromUtf8(handle.toString()))
+                    )
+                    .build()
+                ) {}
+              }
+              override fun onStartFailure(errorCode: Int) {
+                error("failed to start advertising")
+              }
+            }
+          }
+
+        bluetoothAdapter.bluetoothLeAdvertiser.startAdvertising(
+          AdvertiseSettings.Builder()
+            .setConnectable(request.connectable)
+            .setOwnAddressType(
+              when (request.ownAddressType!!) {
+                AddressType.PUBLIC -> ADDRESS_TYPE_PUBLIC
+                AddressType.RANDOM -> ADDRESS_TYPE_RANDOM
+                AddressType.UNRECOGNIZED ->
+                  error("unrecognized address type ${request.ownAddressType}")
+              }
+            )
+            .build(),
+          AdvertiseData.Builder().build(),
+          callback,
+        )
+
+        continuation.invokeOnCancellation { /* no-op */}
+      }
+    }
   }
 }
