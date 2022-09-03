@@ -58,6 +58,8 @@ service Host {
   rpc SetDiscoverabilityMode(SetDiscoverabilityModeRequest) returns (SetDiscoverabilityModeResponse);
   // Get device name from connection
   rpc GetDeviceName(GetDeviceNameRequest) returns (GetDeviceNameResponse);
+  // Log text (for utility only)
+  rpc Log(LogRequest) returns (LogResponse);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -275,7 +277,7 @@ enum DiscoverabilityMode {
 enum ConnectabilityMode {
   CONNECTABILITY_UNSPECIFIED = 0;
   CONNECTABILITY_NOT_CONNECTABLE = 1;
-  CONECTABILITY_CONNECTABLE = 2;
+  CONNECTABILITY_CONNECTABLE = 2;
 }
 
 message SetConnectabilityModeRequest {
@@ -297,3 +299,9 @@ message GetDeviceNameRequest {
 message GetDeviceNameResponse {
   string name = 1;
 }
+
+message LogRequest {
+  string text = 1;
+}
+
+message LogResponse {}

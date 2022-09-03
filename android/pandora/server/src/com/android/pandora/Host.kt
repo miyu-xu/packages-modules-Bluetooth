@@ -323,13 +323,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       val address = request.address.decodeAsMacAddressToString()
       Log.i(TAG, "connect LE: $address")
       val device = scanLeDevice(address)!!
-      GattInstance(device, TRANSPORT_LE, context)
-
-      flow
-        .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
-        .filter { it.getBluetoothDeviceExtra() == device }
-        .first()
-
+      GattInstance(device!!, TRANSPORT_LE, context).waitForState(BluetoothProfile.STATE_CONNECTED)
       ConnectLEResponse.newBuilder()
         .setConnection(newConnection(device, Transport.TRANSPORT_LE))
         .build()
@@ -414,7 +408,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
           val callback =
             object : AdvertiseCallback() {
               override fun onStartSuccess(settingsInEffect: AdvertiseSettings) {
-                sendBlocking(
+                trySendBlocking(
                   StartAdvertisingResponse.newBuilder()
                     .setHandle(
                       AdvertisingHandle.newBuilder()
@@ -447,7 +441,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
           bluetoothAdapter.bluetoothLeAdvertiser.startAdvertising(
             AdvertiseSettings.Builder()
               .setConnectable(
-                request.connectabilityMode == ConnectabilityMode.CONECTABILITY_CONNECTABLE
+                request.connectabilityMode == ConnectabilityMode.CONNECTABILITY_CONNECTABLE
               )
               .setOwnAddressType(
                 when (request.ownAddressType!!) {
@@ -513,7 +507,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
           ConnectabilityMode.CONNECTABILITY_NOT_CONNECTABLE -> {
             BluetoothAdapter.SCAN_MODE_NONE
           }
-          ConnectabilityMode.CONECTABILITY_CONNECTABLE -> {
+          ConnectabilityMode.CONNECTABILITY_CONNECTABLE -> {
             if (
               discoverability == DiscoverabilityMode.DISCOVERABILITY_LIMITED ||
                 discoverability == DiscoverabilityMode.DISCOVERABILITY_GENERAL
@@ -545,7 +539,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
           DiscoverabilityMode.DISCOVERABILITY_UNSPECIFIED,
           DiscoverabilityMode.UNRECOGNIZED -> null
           DiscoverabilityMode.DISCOVERABILITY_NONE ->
-            if (connectability == ConnectabilityMode.CONECTABILITY_CONNECTABLE) {
+            if (connectability == ConnectabilityMode.CONNECTABILITY_CONNECTABLE) {
               BluetoothAdapter.SCAN_MODE_CONNECTABLE
             } else {
               BluetoothAdapter.SCAN_MODE_NONE
@@ -612,6 +606,13 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     grpcUnary(scope, responseObserver) {
       val device = request.connection.toBluetoothDevice(bluetoothAdapter)
       GetDeviceNameResponse.newBuilder().setName(device.name).build()
+    }
+  }
+
+  override fun log(request: LogRequest, responseObserver: StreamObserver<LogResponse>) {
+    grpcUnary(scope, responseObserver) {
+      Log.i(TAG, request.text)
+      LogResponse.getDefaultInstance()
     }
   }
 }

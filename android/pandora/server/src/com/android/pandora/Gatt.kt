@@ -232,6 +232,7 @@ class Gatt(private val context: Context) : GATTImplBase() {
       responseObserver: StreamObserver<RegisterServiceResponse>
   ) {
     grpcUnary(mScope, responseObserver) {
+      Log.i(TAG, "registerService")
       val service =
           BluetoothGattService(UUID.fromString(request.service.uuid), SERVICE_TYPE_PRIMARY)
       for (characteristic in request.service.characteristicsList) {
