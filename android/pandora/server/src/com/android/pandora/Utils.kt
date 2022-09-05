@@ -221,15 +221,44 @@ fun <T> getProfileProxy(context: Context, profile: Int): T {
 fun Intent.getBluetoothDeviceExtra(): BluetoothDevice =
   this.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
 
-fun ByteString.decodeToString(): String =
+fun ByteString.decodeAsMacAddressToString(): String =
   MacAddress.fromBytes(this.toByteArray()).toString().uppercase()
 
 fun ByteString.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
-  adapter.getRemoteDevice(this.decodeToString())
+  adapter.getRemoteDevice(this.decodeAsMacAddressToString())
 
 fun Connection.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
   adapter.getRemoteDevice(this.cookie.toByteArray().decodeToString())
 
+<<<<<<< PATCH SET (74727f [Pandora] Fixes for OnPairing implementation)
+fun BluetoothDevice.toByteArray(): ByteArray = MacAddress.fromString(this.address).toByteArray()
+
+class HandleManager<T> {
+  private var nextHandle = 1
+  private val handleMap = mutableMapOf<Int, T>()
+
+  private fun parseHandle(handle: ByteString) = Integer.parseInt(handle.toString())
+  private fun deparseHandle(handle: Int) = ByteString.copyFromUtf8(handle.toString())
+
+  fun register(x: T): ByteString = registerWithHandle { x }.first
+
+  fun registerWithHandle(f: (ByteString) -> T): Pair<ByteString, T> {
+    nextHandle += 1
+    val out = f(deparseHandle(nextHandle))
+    handleMap[nextHandle] = out
+    return Pair(deparseHandle(nextHandle), out)
+  }
+
+  fun get(handle: ByteString): T? {
+    return handleMap[parseHandle(handle)]
+  }
+
+  fun remove(handle: ByteString) {
+    handleMap.remove(parseHandle(handle))
+  }
+}
+=======
 fun String.toByteArray(): ByteArray = MacAddress.fromString(this).toByteArray()
 
 fun BluetoothDevice.toByteArray(): ByteArray = this.address.toByteArray()
+>>>>>>> BASE      (adf5ea Merge "LeAudio: Notify Hal after reconfiguration")
