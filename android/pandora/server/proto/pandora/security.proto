@@ -55,6 +55,8 @@ message PairingEvent {
       // user to type it
       bytes pin_code_notification = 7;
     }
+    // The transport on which pairing is taking place
+    Transport transport = 8;
 }
 
 message PairingEventAnswer {
@@ -82,3 +84,9 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+enum Transport {
+  TRANSPORT_UNSPECIFIED = 0;
+  TRANSPORT_BREDR = 1;
+  TRANSPORT_LE = 2;
+}
