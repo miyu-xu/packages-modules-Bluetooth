@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "873e02d1_52b88e3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-05T14:20:00Z",
+      "side": 1,
+      "message": "I don\u0027t understand this part. \nAre you saying bluetooth_media should proactively use a `set_active_device(nil)` call, otherwise the pending_cmd won\u0027t get cleared?",
+      "range": {
+        "startLine": 24,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 0
+      },
+      "revId": "ba15fae9cbbd4d77a99b6fb2df1058d239830c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
