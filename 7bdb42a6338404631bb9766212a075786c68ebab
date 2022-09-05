@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b9518e1_f74fa27c",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-05T18:13:37Z",
+      "side": 1,
+      "message": "If the scope is available to the `block`, then it can launch tasks that live past when the block returns (but timeout after 1000ms) which doesn\u0027t really make sense.",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2395d6_43578345",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-05T18:13:37Z",
+      "side": 1,
+      "message": "We want to make this Flow completing, so we use a sentinel combined with `takeWhile`. The filter is needed for type-safety",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed73b2b6_b9355488",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-05T18:13:37Z",
+      "side": 1,
+      "message": "Previously we let the block launch tasks in the global scope, that wouldn\u0027t be killed with the rest of the job. Now we do everything inside the job, so we can kill the whole thing at the appropriate point.",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c2fe3c_f898cd37",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-05T18:13:37Z",
+      "side": 1,
+      "message": "We only kill the job on cancellation, not completion of input events (since more output events could still be possible).\n\nThere are two ways for clients to cancel: either cancel just sending (when we get onCompleted()) or cancel the whole thing (when we get onError()) and we need to handle both cases.",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
