@@ -51,6 +51,24 @@
       "message": "Could some unit tests be added to this CL to verify the new methods added? ",
       "revId": "057a755b5173633af13183d1e1dd0eee98347943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6588550_268a592b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-05T06:13:41Z",
+      "side": 1,
+      "message": "le_scanning_manager_test.cc is disabled now, my next plan is enable it.\nHow about we add tests in the patch of enable le_scanning_manager_test.cc?",
+      "parentUuid": "eaaf0c8d_3d50fcbf",
+      "revId": "057a755b5173633af13183d1e1dd0eee98347943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
