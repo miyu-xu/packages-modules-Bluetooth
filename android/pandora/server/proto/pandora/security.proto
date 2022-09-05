@@ -55,6 +55,8 @@ message PairingEvent {
       // user to type it
       bytes pin_code_notification = 7;
     }
+    // The transport on which pairing is taking place
+    Transport transport = 8;
 }
 
 message PairingEventAnswer {

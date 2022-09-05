@@ -205,3 +205,9 @@ message StopAdvertisingRequest {
 }
 
 message StopAdvertisingResponse {}
+
+enum Transport {
+  TRANSPORT_UNSPECIFIED = 0;
+  TRANSPORT_BREDR = 1;
+  TRANSPORT_LE = 2;
+}
