@@ -58,6 +58,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f57aca1c_a3ab6183",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1297,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-06T21:12:12Z",
+      "side": 1,
+      "message": "Infeasible because context is not accessible",
+      "parentUuid": "85dcb11a_bf516856",
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc0ed3d9_5dab955e",
