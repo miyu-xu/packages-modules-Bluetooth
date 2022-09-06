@@ -3102,8 +3102,12 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if ((available_contexts &
          AudioContexts(static_cast<T>(LeAudioContextType::RINGTONE)))
-            .any())
+            .any()) {
+      if (!in_call_) {
+        return LeAudioContextType::MEDIA;
+      }
       return LeAudioContextType::RINGTONE;
+    }
 
     if ((available_contexts &
          AudioContexts(static_cast<T>(LeAudioContextType::MEDIA)))
