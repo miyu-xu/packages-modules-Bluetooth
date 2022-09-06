@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7cec8730_b7b1ffe0",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T17:15:19Z",
+      "side": 1,
+      "message": "Interesting, nice link that you got there !\nThen I\u0027m all for it ! Thanks Rahul !",
+      "parentUuid": "efc1cfe4_2b17ddb5",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9e2395d6_43578345",
         "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
         "patchSetId": 2
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "I\u0027m using Flows to mimic the Kotlin-native gRPC bidi stream interface: http://go/kotlin/reading/grpc#server-stubs\n\nSo if/when we switch to that codegen, rather than just the Java one, we don\u0027t need to change anything fundamental in the actual server, just the calls to these utility methods.",
       "parentUuid": "1e4b473b_50877628",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8d21775_e8b6af25",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T17:15:19Z",
+      "side": 1,
+      "message": "A channel can be converted to a flow with [receiveAsFlow](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/receive-as-flow.html).\n\nI totally agree with the usage of Flow as input and output of `grpcBidirectionalStream`. I\u0027m only suggesting to switch the `MutableSharedFlow` to a `Channel` inside the implementation as a `Channel` have a \"builtin\" support for closing.",
+      "parentUuid": "8d82ac83_ce0bd7a6",
       "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
