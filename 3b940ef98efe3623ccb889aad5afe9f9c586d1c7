@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d88f90_ea9f19c6",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T10:25:16Z",
+      "side": 1,
+      "message": "I don\u0027t think an `HandleManager` is needed as we don\u0027t really need handles.\nWe could replace it by putting UUIDs inside cookies and doing a Map\u003cCookie, T\u003e (Map\u003cByteString, T\u003e, Map\u003cString, T\u003e or Map\u003cUUID, T\u003e whichever is more convenient)",
+      "revId": "3b940ef98efe3623ccb889aad5afe9f9c586d1c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
