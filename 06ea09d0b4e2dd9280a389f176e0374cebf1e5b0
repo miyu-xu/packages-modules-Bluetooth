@@ -41,6 +41,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbe03b6_ae1d3791",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-06T22:29:49Z",
+      "side": 1,
+      "message": "IMO",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43b8353b_d0003efa",
@@ -60,6 +77,57 @@
         "endLine": 145,
         "endChar": 3
       },
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9e64109_c9683ec3",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-06T22:29:49Z",
+      "side": 1,
+      "message": "Macro to check if the profile has been initialized",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc4feba6_2b1d4247",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-06T22:29:49Z",
+      "side": 1,
+      "message": "Naming isn\u0027t right for what it\u0027s doing.\n\nA few alternatives options I think are better:\n* `profile_enabled_or`: Either the profile is enabled or you get this default value.\n* `guard_profile_or`: Guard profile or provide this default value.\n* `enabled_or`: Shorter version of the above. This is enabled or you get this value.\n\nThis macro should behave similarly to and be named like `unwrap_or` in my opinion. You may also want a version that\u0027s just `enabled_or_default` which always replaces the `ret_stmt` with `default::Default()`.",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5026e57_8cda5d8f",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-06T22:29:49Z",
+      "side": 1,
+      "message": "nit: `i32::from(BtStatus::NotReady)` or `BtStatus::NotReady.into()` should work here. Prefer not to use raw numbers.",
       "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
