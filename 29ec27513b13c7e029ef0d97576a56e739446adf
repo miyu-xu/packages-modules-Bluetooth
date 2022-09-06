@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac93e082_3fa3899c",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-06T22:38:43Z",
+      "side": 1,
+      "message": "Empty on purpose?",
+      "revId": "29ec27513b13c7e029ef0d97576a56e739446adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
