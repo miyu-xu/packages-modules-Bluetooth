@@ -22,6 +22,30 @@
       },
       "revId": "ba15fae9cbbd4d77a99b6fb2df1058d239830c37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f74f7a19_2bacd5db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-06T02:19:51Z",
+      "side": 1,
+      "message": "If we align with the other implementations, we will be relying on `set_active_device(nil)` to ensure that `end_session` is invoked and `pending_cmd_` is cleared.\n\nHowever, the bug being consistently reproducible is when headset initiates disconnection: `stop_request` -\u003e `end_session` -\u003e (notifies the audio stack). From here, if the audio stack calls `stop_request`, the command gets hung, but even if we called another `end_session` it will not solve the issue because it had been called previously and will be skipped.\n\nThus it seems best to block `stop_request` right away if we know that there is no active device to stop.",
+      "parentUuid": "873e02d1_52b88e3e",
+      "range": {
+        "startLine": 24,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 0
+      },
+      "revId": "ba15fae9cbbd4d77a99b6fb2df1058d239830c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
