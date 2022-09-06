@@ -50,6 +50,29 @@
       "message": "Thanks for the fix!",
       "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65f36a43_91d9556c",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-06T20:59:43Z",
+      "side": 1,
+      "message": "nit: `to_string()` is not necessary for `split()`.\n\nYou can also rewrite this to be more rust idiomatic way:\n\n```\nlet start \u003d slice\n  .split(\" \")\n  .fold(0, |acc, s| if acc + s.len() + 1 \u003e pos { acc } else { acc + s.len() + 1 });\n\n```",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
