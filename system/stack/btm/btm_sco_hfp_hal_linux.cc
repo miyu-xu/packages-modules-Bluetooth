@@ -297,13 +297,18 @@ void init() {
   close(fd);
 }
 
-// Check if wideband speech is supported on local device
+// Check if wideband speech is supported.
 bool get_wbs_supported() {
+  if (!get_offload_enabled()) {
+    return true;
+  }
+
   for (cached_codec_info c : cached_codecs) {
     if (c.inner.codec == MSBC || c.inner.codec == MSBC_TRANSPARENT) {
       return true;
     }
   }
+
   return false;
 }
 
