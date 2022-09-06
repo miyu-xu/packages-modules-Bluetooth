@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0299ecf_54fd2fce",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-06T04:12:53Z",
+      "side": 1,
+      "message": "remove\nhttps://source.android.com/docs/setup/contribute/code-style#use-javadoc-standard-comments",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "b85407038803c8975503bc65fca19c00f5d017bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b406ca6f_f71ae3dd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-06T04:12:53Z",
+      "side": 1,
+      "message": "I prefer to call the constructor in the test method. not in the set-up since it is testing the constructor.\nWhat do you think?",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "b85407038803c8975503bc65fca19c00f5d017bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8352a7b_de883d99",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-06T04:12:53Z",
+      "side": 1,
+      "message": "assert would be better located in the test method for readability.",
+      "range": {
+        "startLine": 95,
+        "startChar": 12,
+        "endLine": 95,
+        "endChar": 22
+      },
+      "revId": "b85407038803c8975503bc65fca19c00f5d017bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
