@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f69282_f697366e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-09-06T14:21:52Z",
+      "side": 0,
+      "message": "can you explain why this is removed? \nIs this code path used by both LE and A2DP? \nHow is the absolute volume behavior implemented for LE Audio?",
+      "range": {
+        "startLine": 885,
+        "startChar": 0,
+        "endLine": 885,
+        "endChar": 50
+      },
+      "revId": "1b1f4b9ef22fa689445397ab4572f982ac2dbe2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
