@@ -20,14 +20,14 @@
 namespace bluetooth {
 namespace metrics {
 
-// ENUM definitaion for Bluetooth Bond State in sync with topshim::btif::BtBondState
+// ENUM definition for Bluetooth Bond State in sync with topshim::btif::BtBondState
 enum class BtBondState {
   NotBonded = 0,
   Bonding,
   Bonded,
 };
 
-// ENUM definitaion for Bluetooth action status in sync with topshim::btif::BtStatus
+// ENUM definition for Bluetooth action status in sync with topshim::btif::BtStatus
 enum class BtStatus {
   Success = 0,
   Fail,
@@ -47,6 +47,45 @@ enum class BtStatus {
 
   // Any statuses that couldn't be cleanly converted
   Unknown = 0xff,
+};
+
+// ENUM definition for profile connection intent in sync with topshim::metrics::MetricsProfileConnectionIntent
+enum class ProfileConnectionIntent {
+  Unknown = 0,
+  Connect,
+  Disconnect,
+};
+
+// ENUM definition for Bluetooth profiles in sync with ::uuid::Profiles
+enum class ProfilesFloss {
+  A2dpSink = 0,
+  A2dpSource,
+  AdvAudioDist,
+  Hsp,
+  HspAg,
+  Hfp,
+  HfpAg,
+  AvrcpController,
+  AvrcpTarget,
+  ObexObjectPush,
+  Hid,
+  Hogp,
+  Panu,
+  Nap,
+  Bnep,
+  PbapPce,
+  PbapPse,
+  Map,
+  Mns,
+  Mas,
+  Sap,
+  HearingAid,
+  LeAudio,
+  Dip,
+  VolumeControl,
+  GenericMediaControl,
+  MediaControl,
+  CoordinatedSet,
 };
 
 static PairingState StatusToPairingState(uint32_t status) {
@@ -188,6 +227,81 @@ PairingState ToPairingState(uint32_t status, uint32_t bond_state, int32_t fail_r
   if (fail_reason) pairing_state = FailReasonToPairingState(status);
 
   return pairing_state;
+}
+
+static ProfileConnectionState StatusToProfileConnectionState(uint32_t status, uint32_t intent) {
+  switch ((BtStatus)status) {
+    case BtStatus::Success:
+      return ProfileConnectionState::PROFILE_CONN_STATE_SUCCEED;
+    case BtStatus::Busy:
+      return ProfileConnectionState::PROFILE_CONN_STATE_BUSY_CONNECTING;
+    case BtStatus::Done:
+      return ProfileConnectionState::PROFILE_CONN_STATE_SUCCEED;
+    case BtStatus::Unsupported:
+      if (ProfileConnectionIntent::Connect == (ProfileConnectionIntent)intent) {
+        return ProfileConnectionState::PROFILE_CONN_STATE_PROFILE_NOT_SUPPORTED;
+      } else {
+        return ProfileConnectionState::PROFILE_CONN_STATE_UNKNOWN_ERROR;
+      }
+    case BtStatus::InvalidParam:
+      if (ProfileConnectionIntent::Disconnect == (ProfileConnectionIntent)intent) {
+        return ProfileConnectionState::PROFILE_CONN_STATE_INVALID_PARAMS;
+      } else {
+        return ProfileConnectionState::PROFILE_CONN_STATE_UNKNOWN_ERROR;
+      }
+    case BtStatus::AuthFailure:
+      return ProfileConnectionState::PROFILE_CONN_STATE_CONNECTION_REFUSED;
+    case BtStatus::RemoteDeviceDown:
+      if (ProfileConnectionIntent::Connect == (ProfileConnectionIntent)intent) {
+        return ProfileConnectionState::PROFILE_CONN_STATE_REMOTE_UNAVAILABLE;
+      } else {
+        return ProfileConnectionState::PROFILE_CONN_STATE_UNKNOWN_ERROR;
+      }
+    case BtStatus::AuthRejected:
+      return ProfileConnectionState::PROFILE_CONN_STATE_CONNECTION_REFUSED;
+    case BtStatus::Fail:
+    case BtStatus::NotReady:
+    case BtStatus::NoMemory:
+    case BtStatus::Unhandled:
+    default:
+      return ProfileConnectionState::PROFILE_CONN_STATE_UNKNOWN_ERROR;
+  }
+}
+
+ProfileConnectionEvent ToProfileConnectionEvent(
+    std::string addr, uint32_t intent, uint32_t profile, uint32_t status, uint32_t state) {
+  switch ((ProfilesFloss)profile) {
+    // case ProfilesFloss::A2dpSink:
+    // case ProfilesFloss::A2dpSource:
+    // case ProfilesFloss::AdvAudioDist:
+    // case ProfilesFloss::Hsp:
+    // case ProfilesFloss::HspAg:
+    // case ProfilesFloss::Hfp:
+    // case ProfilesFloss::HfpAg:
+    // case ProfilesFloss::AvrcpController:
+    // case ProfilesFloss::AvrcpTarget:
+    // case ProfilesFloss::ObexObjectPush:
+    // case ProfilesFloss::Hid:
+    // case ProfilesFloss::Hogp:
+    // case ProfilesFloss::Panu:
+    // case ProfilesFloss::Nap:
+    // case ProfilesFloss::Bnep:
+    // case ProfilesFloss::PbapPce:
+    // case ProfilesFloss::PbapPse:
+    // case ProfilesFloss::Map:
+    // case ProfilesFloss::Mns:
+    // case ProfilesFloss::Mas:
+    // case ProfilesFloss::Sap:
+    // case ProfilesFloss::HearingAid:
+    // case ProfilesFloss::LeAudio:
+    // case ProfilesFloss::Dip:
+    // case ProfilesFloss::VolumeControl:
+    // case ProfilesFloss::GenericMediaControl:
+    // case ProfilesFloss::MediaControl:
+    // case ProfilesFloss::CoordinatedSet:
+    default:
+      return ProfileConnectionEvent();
+  }
 }
 
 }  // namespace metrics
