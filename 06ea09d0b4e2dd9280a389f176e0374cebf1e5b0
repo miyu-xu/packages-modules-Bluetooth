@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe0fefb_2e5acfa5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-06T19:41:04Z",
+      "side": 1,
+      "message": "nit: wrap to 72 chars.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 74
+      },
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42ae6403_d9142ae3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-06T19:41:04Z",
+      "side": 1,
+      "message": "Adding Abhishek for topshim review",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b8353b_d0003efa",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-06T19:41:04Z",
+      "side": 1,
+      "message": "Use Rust doc comment style `///`.",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 3
+      },
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
