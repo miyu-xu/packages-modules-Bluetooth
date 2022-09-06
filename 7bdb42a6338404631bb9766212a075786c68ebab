@@ -103,6 +103,24 @@
       "message": "We only kill the job on cancellation, not completion of input events (since more output events could still be possible).\n\nThere are two ways for clients to cancel: either cancel just sending (when we get onCompleted()) or cancel the whole thing (when we get onError()) and we need to handle both cases.",
       "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e06d14_a7e36de2",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T10:28:37Z",
+      "side": 1,
+      "message": "Could you add the explanation to the comment so it\u0027s not lost ?",
+      "parentUuid": "00c2fe3c_f898cd37",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
