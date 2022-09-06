@@ -16,6 +16,40 @@
       "message": "For reviewers:\n\nThis is the places missing the implementation of cleanup:\n\n[system/gd/rust/topshim/hfp/hfp_shim.cc](https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/local/system/gd/rust/topshim/hfp/hfp_shim.cc;l\u003d238?q\u003dsystem%2Fgd%2Frust%2Ftopshim%2Fhfp%2Fhfp_shim.cc\u0026ss\u003dpiper%2FGoogle%2Fchromeos_public:src%2Faosp%2Fpackages%2Fmodules%2FBluetooth%2Flocal%2F)\n[system/gd/rust/topshim/btav/btav_shim.cc](https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/local/system/gd/rust/topshim/btav/btav_shim.cc;l\u003d226?q\u003dsystem%2Fgd%2Frust%2Ftopshim%2Fbtav%2Fbtav_shim.cc\u0026ss\u003dpiper%2FGoogle%2Fchromeos_public:src%2Faosp%2Fpackages%2Fmodules%2FBluetooth%2Flocal%2F)\n\nI tried to implement a simple line like intf_-\u003ecleanup() but the problem becomes that a2dp won\u0027t work anymore even after re-enabling and I have to restart btadapterd to bring it back. Will need to investigate more.",
       "revId": "27b2e85d516ce6a7e0fd54abbbd72c7b481681ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed9f8ff9_cd4e167c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-06T19:50:35Z",
+      "side": 1,
+      "message": "Adding En-Shuo to review Audio-related changes",
+      "revId": "27b2e85d516ce6a7e0fd54abbbd72c7b481681ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ebb113d_0f79e877",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-06T19:50:35Z",
+      "side": 1,
+      "message": "nit: to avoid naked unwrap of Option, use `if let Some(adapter) \u003d \u0026self.adapter {` and then inside the if body you can use `adapter` without unwrapping the Option.",
+      "revId": "27b2e85d516ce6a7e0fd54abbbd72c7b481681ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
