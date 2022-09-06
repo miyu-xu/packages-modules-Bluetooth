@@ -261,6 +261,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fec739c_20edd05f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-06T10:37:35Z",
+      "side": 1,
+      "message": "Re Enshuo:\n\nI\u0027ve actually tried to look if we can move this up to `Bluetooth.rs`.\n\nHowever, I haven\u0027t found a good way to pass the knowledge of available media-specific profiles down to here (adding a `MediaAction` to pass that will make the logic very complicated considering they are different objects plus the threading...).\n\nAnother thing is that, when the connection is initiated by the headset, it seems the direct `connect` here is called (as opposed to the `connect_all_enabled_profiles` in `Bluetooth.rs`), and with that I think leaving this at it is will save a lot of trouble.\n\nI agree that we may want to reuse that `uuidHelper` from upwards, but I had quite a hard time finding a good way to do so. Please let me know if this can be done better, thanks!",
+      "parentUuid": "d6ed5531_f61b7ae1",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -16,6 +16,24 @@
       "message": "should this be guarded by checking `missing_profiles.is_empty()`?",
       "revId": "bcc8ccd4957643c1056c9a7645ef3d98b49a2c36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1baad54_22d75150",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-06T10:37:35Z",
+      "side": 1,
+      "message": "It\u0027s actually fine not to guard, since it will be dropped in the state machine if it\u0027s redundant.",
+      "parentUuid": "eb268f33_f1b6f897",
+      "revId": "bcc8ccd4957643c1056c9a7645ef3d98b49a2c36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
