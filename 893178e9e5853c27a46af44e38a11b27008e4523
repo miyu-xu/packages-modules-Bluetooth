@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afb8f2fb_864d5248",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapRequest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-06T04:37:23Z",
+      "side": 0,
+      "message": "Do you know why was it protected?\nIf it is intended, adding package private setter and getter methods would be safer.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 13
+      },
+      "revId": "893178e9e5853c27a46af44e38a11b27008e4523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
