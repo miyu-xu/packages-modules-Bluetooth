@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc1cfe4_2b17ddb5",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-06T16:55:40Z",
+      "side": 1,
+      "message": "You\u0027re right - testing it in https://pl.kotl.in/wld4_ibfx confirms that we block until all the tasks complete.\n\nHowever, go/kotlin/practices/coroutines#api-design suggests that we should avoid what the stdlib does here. The implementor can always wrap their code in a `coroutineScope { }` if they really want to launch tasks and stuff before the scope completes.\n\nWhat do you think?",
+      "parentUuid": "27457af6_fdc5c4a5",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9e2395d6_43578345",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "A [channel](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/) might be more appropriate as it already handle closing",
       "parentUuid": "9e2395d6_43578345",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d82ac83_ce0bd7a6",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-06T16:55:40Z",
+      "side": 1,
+      "message": "I\u0027m using Flows to mimic the Kotlin-native gRPC bidi stream interface: http://go/kotlin/reading/grpc#server-stubs\n\nSo if/when we switch to that codegen, rather than just the Java one, we don\u0027t need to change anything fundamental in the actual server, just the calls to these utility methods.",
+      "parentUuid": "1e4b473b_50877628",
       "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
