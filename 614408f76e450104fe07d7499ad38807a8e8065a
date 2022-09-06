@@ -16,6 +16,23 @@
       "message": "Howard, would you please take a look at this CL?",
       "revId": "614408f76e450104fe07d7499ad38807a8e8065a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bc5d9ff_71746508",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-06T02:49:15Z",
+      "side": 1,
+      "message": "LGTM, thanks!",
+      "revId": "614408f76e450104fe07d7499ad38807a8e8065a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
