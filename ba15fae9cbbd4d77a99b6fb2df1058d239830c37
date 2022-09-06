@@ -46,6 +46,30 @@
       },
       "revId": "ba15fae9cbbd4d77a99b6fb2df1058d239830c37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db38cb9a_94051549",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-06T02:48:20Z",
+      "side": 1,
+      "message": "Ah I see, thanks for providing the full context.\nBy \"headset initiates disconnection\" is it something controllable by user, e.g power-off headset?",
+      "parentUuid": "f74f7a19_2bacd5db",
+      "range": {
+        "startLine": 24,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 0
+      },
+      "revId": "ba15fae9cbbd4d77a99b6fb2df1058d239830c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
