@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b805fef_c4224bc2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-06T15:23:08Z",
+      "side": 1,
+      "message": "No, probably fwk will be able to close Bluetooth Hal first, but this should not be a problem.",
+      "parentUuid": "db5b1cf6_a3640b0f",
+      "range": {
+        "startLine": 10,
+        "startChar": 38,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "dbd6c8dc9b3a7c3c11267eb5bdf1a0b28bf86a59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cff6478c_534b1a85",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-06T07:32:03Z",
       "side": 1,
       "message": "As discussed offline, this should be `currentlyActiveGroupId`",
+      "range": {
+        "startLine": 1004,
+        "startChar": 12,
+        "endLine": 1004,
+        "endChar": 50
+      },
+      "revId": "dbd6c8dc9b3a7c3c11267eb5bdf1a0b28bf86a59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3456377b_00634bf4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-06T15:23:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cff6478c_534b1a85",
       "range": {
         "startLine": 1004,
         "startChar": 12,
