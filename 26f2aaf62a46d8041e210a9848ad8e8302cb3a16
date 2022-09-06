@@ -1,6 +1,57 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "19bb4092_ded1b823",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T10:16:57Z",
+      "side": 1,
+      "message": "I think we should move that to `security.proto` as it\u0027s used only here for now and move it if we use it in `host.proto` as well",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d94c348c_6431723d",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T10:16:57Z",
+      "side": 1,
+      "message": "I know that this is a protobuf recommendation to always define an `UNSPECIFIED` so that servers will be able to handle a newer value set by the client and not take it as the 0 value.\n\nHowever here I don\u0027t think it makes sense to have an `UNSPECIFIED` value as I don\u0027t see what a client can give as meaning to it.\nAlso we are less subject to have clients and server out of sync as the version of the two should be in our control.\nAnd furthermore it\u0027s very unlikely that we would need to change this enum one day (And if we do I think we will have a lot more changes to make :) ).",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "131a5f2d_8077ab4a",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T10:16:57Z",
+      "side": 1,
+      "message": "I think we should `error` here instead of doing it afterwards",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fc463721_73274074",
@@ -14,6 +65,24 @@
       "writtenOn": "2022-09-05T18:17:31Z",
       "side": 1,
       "message": "I\u0027m open to killing this method altogether, since we only use it in one place (normally we should use `toBluetoothDevice()`).\n\nI don\u0027t like the old `decodeToString()` and `toByteArray()` methods on primitive types since they overrode the actual encode/decode extension functions in stdlib.",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05d8ebf3_6b2c5f4d",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T10:16:57Z",
+      "side": 1,
+      "message": "My 2 cents on this, I don\u0027t like that we define functions on types that we don\u0027t control so I would be all for killing everything that we added to ByteString",
+      "parentUuid": "fc463721_73274074",
       "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
