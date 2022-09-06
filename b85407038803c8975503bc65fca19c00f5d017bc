@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dafc974_36b7e6dd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-06T05:37:22Z",
+      "side": 1,
+      "message": "I think mocking will help the test just focus on the exact class we need to test. (i.e. if there is a bug in `BluetoothOppShareInfo()`, we don\u0027t have to worry about it here). Is that a good practice?",
+      "parentUuid": "fd9dd8b5_a88f397b",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 9
+      },
+      "revId": "b85407038803c8975503bc65fca19c00f5d017bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b406ca6f_f71ae3dd",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
         "patchSetId": 2
