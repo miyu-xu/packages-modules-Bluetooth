@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd9dd8b5_a88f397b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-09-06T04:31:40Z",
+      "side": 1,
+      "message": "Q) Why do we mock this?\nCan\u0027t we just `BluetoothOppShareInfo oppShareInfo \u003d new BluetoothOppShareInfo()` ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 9
+      },
+      "revId": "b85407038803c8975503bc65fca19c00f5d017bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b406ca6f_f71ae3dd",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
         "patchSetId": 2
