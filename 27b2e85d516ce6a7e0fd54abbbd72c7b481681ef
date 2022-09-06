@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d68bcbc4_47897eda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-06T23:49:21Z",
+      "side": 1,
+      "message": "Hi Howard,\n\nIs it possible for bluetooth_media to query the allow list when the device connect instead of having the bluetooth_media to pass and digest the enable/disable information?\n\nAlso, may you help check https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2192368 and work with Jeremy for this change? I\u0027d prefer this to be after Jeremy\u0027s change as we\u0027re adding another layer of logic regarding profile connection after this.",
+      "revId": "27b2e85d516ce6a7e0fd54abbbd72c7b481681ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ebb113d_0f79e877",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
         "patchSetId": 5
