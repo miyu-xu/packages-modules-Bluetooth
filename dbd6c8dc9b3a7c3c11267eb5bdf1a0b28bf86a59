@@ -22,6 +22,29 @@
       },
       "revId": "dbd6c8dc9b3a7c3c11267eb5bdf1a0b28bf86a59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cff6478c_534b1a85",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-06T07:32:03Z",
+      "side": 1,
+      "message": "As discussed offline, this should be `currentlyActiveGroupId`",
+      "range": {
+        "startLine": 1004,
+        "startChar": 12,
+        "endLine": 1004,
+        "endChar": 50
+      },
+      "revId": "dbd6c8dc9b3a7c3c11267eb5bdf1a0b28bf86a59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
