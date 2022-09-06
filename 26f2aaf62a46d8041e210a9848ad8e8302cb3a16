@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1367e38d_56e42bc7",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-06T16:31:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19bb4092_ded1b823",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d94c348c_6431723d",
         "filename": "android/pandora/server/proto/pandora/host.proto",
         "patchSetId": 1
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6322e8c7_585beb53",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-06T16:31:59Z",
+      "side": 1,
+      "message": "The reason I want UNSPECIFIED is so that, if the caller fails to pass it in, we can distinguish it from BREDR (or whatever we assign to value 0). We could also do that by testing for whether the field is set, but if (and when) we forget to do that I don\u0027t want to silently get wrong data.\n\nWe can\u0027t just skip the 0 value since it is required to be defined (as per https://developers.google.com/protocol-buffers/docs/proto3#default)",
+      "parentUuid": "d94c348c_6431723d",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "131a5f2d_8077ab4a",
         "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
         "patchSetId": 1
@@ -48,6 +84,24 @@
       "writtenOn": "2022-09-06T10:16:57Z",
       "side": 1,
       "message": "I think we should `error` here instead of doing it afterwards",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33df226e_32bd2082",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-06T16:31:59Z",
+      "side": 1,
+      "message": "I don\u0027t want to error here, since it is still possible in most cases to figure out the right pairing variant. So we just leave the transport unset, as most of the time the user only cares about the variant.\n\nErroring here means we break OnPair() for TYPE_DUAL devices entirely, rather than only breaking it for dual mode devices when using an ambiguous pairing variant.",
+      "parentUuid": "131a5f2d_8077ab4a",
       "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
