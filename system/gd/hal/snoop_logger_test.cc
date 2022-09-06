@@ -19,7 +19,12 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include "os/fake_timer/fake_timerfd.h"
+
 namespace testing {
+
+using bluetooth::os::fake_timer::fake_timerfd_advance;
+using bluetooth::os::fake_timer::fake_timerfd_reset;
 
 namespace {
 std::vector<uint8_t> kInformationRequest = {
@@ -108,6 +113,7 @@ class SnoopLoggerModuleTest : public Test {
   void TearDown() override {
     DeleteSnoopLogFiles();
     delete builder_;
+    fake_timerfd_reset();
   }
 
   void DeleteSnoopLogFiles() {
@@ -317,10 +323,14 @@ TEST_F(SnoopLoggerModuleTest, delete_old_snooz_log_files) {
 
   std::filesystem::create_directories(temp_snooz_log_);
 
+  auto* handler = test_registry.GetTestModuleHandler(&SnoopLogger::Factory);
   ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
-  std::this_thread::sleep_for(10ms);
+  handler->Post(bluetooth::common::BindOnce(fake_timerfd_advance, 10));
   ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
-  std::this_thread::sleep_for(15ms);
+  handler->Post(bluetooth::common::BindOnce(fake_timerfd_advance, 15));
+  // Removing file is a synchronous operation, so we need to wait for some
+  // time
+  std::this_thread::sleep_for(5ms);
   ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
   test_registry.StopAll();
 }
