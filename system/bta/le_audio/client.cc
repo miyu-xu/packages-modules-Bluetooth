@@ -2427,41 +2427,33 @@ class LeAudioClientImpl : public LeAudioClient {
                          std::vector<int16_t>* right) {
     uint16_t to_write = 0;
     uint16_t written = 0;
-    if (!bt_got_stereo && !af_is_stereo) {
-      std::vector<int16_t>* mono = left ? left : right;
-      /* mono audio over bluetooth, audio framework expects mono */
-      to_write = sizeof(int16_t) * mono->size();
-      written =
-          leAudioClientAudioSink->SendData((uint8_t*)mono->data(), to_write);
-    } else if (bt_got_stereo && af_is_stereo) {
-      /* stero audio over bluetooth, audio framework expects stereo */
-      std::vector<uint16_t> mixed(left->size() * 2);
+    if (!af_is_stereo) {
+      if (!bt_got_stereo) {
+        std::vector<int16_t>* mono = left ? left : right;
+        /* mono audio over bluetooth, audio framework expects mono */
+        to_write = sizeof(int16_t) * mono->size();
+        written =
+            leAudioClientAudioSink->SendData((uint8_t*)mono->data(), to_write);
+      } else {
+        /* stereo audio over bluetooth, audio framework expects stereo */
+        std::vector<uint16_t> mixed(left->size() * 2);
 
-      for (size_t i = 0; i < left->size(); i++) {
-        mixed[2 * i] = (*right)[i];
-        mixed[2 * i + 1] = (*left)[i];
+        for (size_t i = 0; i < left->size(); i++) {
+          mixed[2 * i] = (*right)[i];
+          mixed[2 * i + 1] = (*left)[i];
+        }
+        to_write = sizeof(int16_t) * mixed.size();
+        written =
+            leAudioClientAudioSink->SendData((uint8_t*)mixed.data(), to_write);
       }
-      to_write = sizeof(int16_t) * mixed.size();
-      written =
-          leAudioClientAudioSink->SendData((uint8_t*)mixed.data(), to_write);
-    } else if (bt_got_stereo && !af_is_stereo) {
-      /* stero audio over bluetooth, audio framework expects mono */
-      std::vector<uint16_t> mixed(left->size() * 2);
-
-      for (size_t i = 0; i < left->size(); i++) {
-        (*left)[i] = ((*left)[i] + (*right)[i]) / 2;
-      }
-      to_write = sizeof(int16_t) * left->size();
-      written =
-          leAudioClientAudioSink->SendData((uint8_t*)left->data(), to_write);
-    } else if (!bt_got_stereo && af_is_stereo) {
+    } else {
       /* mono audio over bluetooth, audio framework expects stereo */
       const size_t mono_size = left ? left->size() : right->size();
       std::vector<uint16_t> mixed(mono_size * 2);
 
       for (size_t i = 0; i < mono_size; i++) {
-        mixed[2 * i] = right ? (*right)[i] : 0;
-        mixed[2 * i + 1] = left ? (*left)[i] : 0;
+        mixed[2 * i] = right ? (*right)[i] : (*left)[i];
+        mixed[2 * i + 1] = left ? (*left)[i] : (*right)[i];
       }
       to_write = sizeof(int16_t) * mixed.size();
       written =
