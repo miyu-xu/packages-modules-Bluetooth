@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78ca26cf_427a7841",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-06T22:07:59Z",
+      "side": 1,
+      "message": "Add docstring here. Usage of rust analyzer seems like it should also be included here in docs.",
+      "revId": "006a1d8cad7f9596a9fee6fa657b18d7f8159c87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
