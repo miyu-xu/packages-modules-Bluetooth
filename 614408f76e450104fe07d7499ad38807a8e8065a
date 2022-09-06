@@ -33,6 +33,23 @@
       "message": "LGTM, thanks!",
       "revId": "614408f76e450104fe07d7499ad38807a8e8065a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c0816da_fb7cdfd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-09-06T03:08:57Z",
+      "side": 1,
+      "message": "Hsin-yu, need a owner review on this patch. Thank you.",
+      "revId": "614408f76e450104fe07d7499ad38807a8e8065a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
