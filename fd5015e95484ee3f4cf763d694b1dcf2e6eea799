@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a6ea970_4c3b0104",
+        "filename": "system/gd/rust/linux/stack/build.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-06T19:38:03Z",
+      "side": 1,
+      "message": "Ack. Okay as it is for now.",
+      "parentUuid": "0de23b9e_2d98310a",
+      "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c10236be_37269153",
