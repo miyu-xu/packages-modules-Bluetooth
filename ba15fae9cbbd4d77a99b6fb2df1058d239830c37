@@ -70,6 +70,30 @@
       },
       "revId": "ba15fae9cbbd4d77a99b6fb2df1058d239830c37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae43846b_7cb01f01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-06T03:16:40Z",
+      "side": 1,
+      "message": "Yeah, at the current state when the user restarts the headset by poweroff, it is likely that A2DP can\u0027t be run.",
+      "parentUuid": "db38cb9a_94051549",
+      "range": {
+        "startLine": 24,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 0
+      },
+      "revId": "ba15fae9cbbd4d77a99b6fb2df1058d239830c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
