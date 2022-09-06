@@ -104,6 +104,23 @@
       "parentUuid": "c10236be_37269153",
       "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4b8915_8d5f72d4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-06T22:11:27Z",
+      "side": 1,
+      "message": "Anything that is pub must have docstrings (///)",
+      "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
