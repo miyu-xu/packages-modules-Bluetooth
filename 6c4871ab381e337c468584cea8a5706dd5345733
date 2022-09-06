@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f783475_eec677de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952866
+      },
+      "writtenOn": "2022-09-06T07:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3e101a1_5a3db817",
+      "revId": "6c4871ab381e337c468584cea8a5706dd5345733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f212c0b_b0a4c1d5",
@@ -54,6 +72,54 @@
       "writtenOn": "2022-07-28T10:09:51Z",
       "side": 1,
       "message": "I think this can also be removed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "6c4871ab381e337c468584cea8a5706dd5345733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0edafae_9ccdbfae",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1952866
+      },
+      "writtenOn": "2022-09-06T07:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ba26237_e706944d",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "6c4871ab381e337c468584cea8a5706dd5345733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "875f7fe9_70766bef",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1952866
+      },
+      "writtenOn": "2022-09-06T07:53:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f212c0b_b0a4c1d5",
       "range": {
         "startLine": 41,
         "startChar": 28,
