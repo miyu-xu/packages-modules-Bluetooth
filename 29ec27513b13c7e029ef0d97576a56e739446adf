@@ -16,6 +16,24 @@
       "message": "Empty on purpose?",
       "revId": "29ec27513b13c7e029ef0d97576a56e739446adf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf0714a_fec0d5d0",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-06T22:43:15Z",
+      "side": 1,
+      "message": "Yes, coming soon. \nBreaking a big CL down to smaller ones.",
+      "parentUuid": "ac93e082_3fa3899c",
+      "revId": "29ec27513b13c7e029ef0d97576a56e739446adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
