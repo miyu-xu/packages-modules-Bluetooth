@@ -46,6 +46,30 @@
       },
       "revId": "1b1f4b9ef22fa689445397ab4572f982ac2dbe2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a20655a2_bc5f242f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-09-06T15:54:42Z",
+      "side": 0,
+      "message": "But do you confirm that this code path (and VolumeControlService) is only used for LE and not for A2DP AVRCP?",
+      "parentUuid": "3d51864f_2b88f695",
+      "range": {
+        "startLine": 885,
+        "startChar": 0,
+        "endLine": 885,
+        "endChar": 50
+      },
+      "revId": "1b1f4b9ef22fa689445397ab4572f982ac2dbe2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
