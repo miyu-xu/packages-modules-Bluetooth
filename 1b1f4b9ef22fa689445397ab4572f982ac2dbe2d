@@ -22,6 +22,30 @@
       },
       "revId": "1b1f4b9ef22fa689445397ab4572f982ac2dbe2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d51864f_2b88f695",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-06T15:12:29Z",
+      "side": 0,
+      "message": "To my understanding this was originally used for AVRCP since A2dp earbuds optionally support absolute volume and there was a need to let the AudioService know which AVRCP device supports it. But for Le Audio devices, absolute volume is the only way the volume control works and there\u0027s no need to report that for every LeAudio device. Therefore `boolean isLeAudioVolumeDevice(int deviceType)` that was added to `AudioService.java` does not check for any flag which has to be set at runtime by a call like this, but instead it just checks the device type.\n\nI\u0027m not sure why this was here, but this call even used `TYPE_BLUETOOTH_A2DP`, since AudioService would throw an exception otherwise. For A2dp devices this sets the runtime flag `mAvrcpAbsVolSupported` which then is checked by `isA2dpAbsoluteVolumeDevice()`. `isA2dpAbsoluteVolumeDevice()` is the equivalent to our newly introduced `isLeAudioVolumeDevice()`, which does not depend on any runtime flag.\n\nI think the key to absolute volume working as expected for LeAudio is in the frameworks patch, where `isLeAudioVolumeDevice()` was added.",
+      "parentUuid": "50f69282_f697366e",
+      "range": {
+        "startLine": 885,
+        "startChar": 0,
+        "endLine": 885,
+        "endChar": 50
+      },
+      "revId": "1b1f4b9ef22fa689445397ab4572f982ac2dbe2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
