@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "27457af6_fdc5c4a5",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T09:57:40Z",
+      "side": 1,
+      "message": "The `CoroutineScope` passed to `block` is not the one that is given in `scope` argument, this `CoroutineScope` directly comes from the [withTimeout](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout.html) function.\n\nBy [looking at the source of withTimeout](https://github.com/Kotlin/kotlinx.coroutines/blob/d88a8c227a295f91251960c8fe6b21a02ddf704b/kotlinx-coroutines-core/common/src/Timeout.kt#L44) this scope is created for the `withTimeout` call.\n\nI\u0027m not sure why however, but since this comes directly from the signature and implementation of `withTimeout`, I was thinking that it applies to us as well.",
+      "parentUuid": "4b9518e1_f74fa27c",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9e2395d6_43578345",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-05T18:13:37Z",
       "side": 1,
       "message": "We want to make this Flow completing, so we use a sentinel combined with `takeWhile`. The filter is needed for type-safety",
+      "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e4b473b_50877628",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-06T09:57:40Z",
+      "side": 1,
+      "message": "A [channel](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/) might be more appropriate as it already handle closing",
+      "parentUuid": "9e2395d6_43578345",
       "revId": "7bdb42a6338404631bb9766212a075786c68ebab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
