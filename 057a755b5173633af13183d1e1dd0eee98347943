@@ -69,6 +69,24 @@
       "parentUuid": "eaaf0c8d_3d50fcbf",
       "revId": "057a755b5173633af13183d1e1dd0eee98347943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58ae59d6_f20167d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-06T07:37:31Z",
+      "side": 1,
+      "message": "We can do it in a follow-up patch. However, could we do it before internal cherry-pick?",
+      "parentUuid": "d6588550_268a592b",
+      "revId": "057a755b5173633af13183d1e1dd0eee98347943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
