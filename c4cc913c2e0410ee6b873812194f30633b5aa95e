@@ -285,6 +285,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de7d9f6_255b1b9b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-06T23:33:26Z",
+      "side": 1,
+      "message": "I see. May you verify and add comments as record of the findings \"when the connection is initiated by the headset, it seems the direct `connect` here is called (as opposed to the  `connect_all_enabled_profiles` in `Bluetooth.rs`)\". If that\u0027s the case, it makes more sense to have the query profile codes here. This might also explain why I could get the HFP only device connected even when we didn\u0027t have the HFP sink profile in the `connect_all_enabled_profiles`.",
+      "parentUuid": "3fec739c_20edd05f",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
