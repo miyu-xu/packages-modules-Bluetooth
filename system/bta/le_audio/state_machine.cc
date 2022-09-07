@@ -1660,6 +1660,18 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
             return;
           }
 
+          if (group->GetTargetState() ==
+              AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
+            /* Remote device has cache and in configured state after reconnect.
+             * Therefore, we assume this is a target state requested by the
+             * remote device.
+             */
+            group->SetTargetState(group->GetState());
+            state_machine_callbacks_->StatusReportCb(
+                group->group_id_, GroupStreamStatus::CONFIGURED_AUTONOMOUS);
+            return;
+          }
+
           LOG_ERROR(", Autonomouse change, from: %s to %s",
                     ToString(group->GetState()).c_str(),
                     ToString(group->GetTargetState()).c_str());
