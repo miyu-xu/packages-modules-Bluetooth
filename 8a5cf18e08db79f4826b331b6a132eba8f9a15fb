@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ee7709c_6041c87f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-07T17:11:29Z",
+      "side": 1,
+      "message": "Note: For now the `StreamWrapper` doesn\u0027t work in avatar, this will be resolved in a later CL",
+      "revId": "8a5cf18e08db79f4826b331b6a132eba8f9a15fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
