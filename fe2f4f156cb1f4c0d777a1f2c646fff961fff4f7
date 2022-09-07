@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1601c90f_7e067b0e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-07T02:17:43Z",
+      "side": 1,
+      "message": "Even though we have (A) mSBC encode/decode in software, it still needs (B) controller to support certain link layer settings.  \nAdding up (A) and (B) so we can say WBS is supported.\n\nWe usually get the controller information from kernel driver. I think on a \"offloading capable\" board, it should report \"MSBC_TRANSPARENT\" for WBS in non-offloading mode, and \"MSBC\" for WBS in offloading mode.\nIs that not the case you\u0027re seeing?",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "fe2f4f156cb1f4c0d777a1f2c646fff961fff4f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
