@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "751e9b65_fa38dbc8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T22:22:47Z",
+      "side": 1,
+      "message": "As discussed, if the need for 2 confirmations is due to the fact that we have one accept connection popup and one pairing popup on Android, then this is Android specific and should be hidden behind the gRPC interfaces.\n\nShould we have a single `waitLeConnection` which accept the first accept connection request popup automatically? In this case, `EnableConnectableMode` may not be necessary since it can also be included in the `waitLeConnection`.",
+      "parentUuid": "4d4256a9_6fd182d1",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b57b54f9_7676f42a",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
         "patchSetId": 2
