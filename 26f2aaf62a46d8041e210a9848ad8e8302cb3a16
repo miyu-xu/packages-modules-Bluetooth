@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ee42d2d_7c652e5e",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T02:23:16Z",
+      "side": 1,
+      "message": "If we allow `TRANSPORT_UNSPECIFIED`, we are basically saying that the `Tranport` field is optional. If this is intended I\u0027m fine with this modification (but we should indicate it in its description), if it\u0027s not I agree with David.",
+      "parentUuid": "6322e8c7_585beb53",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "131a5f2d_8077ab4a",
         "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
         "patchSetId": 1
@@ -120,6 +138,24 @@
       "side": 1,
       "message": "I don\u0027t want to error here, since it is still possible in most cases to figure out the right pairing variant. So we just leave the transport unset, as most of the time the user only cares about the variant.\n\nErroring here means we break OnPair() for TYPE_DUAL devices entirely, rather than only breaking it for dual mode devices when using an ambiguous pairing variant.",
       "parentUuid": "131a5f2d_8077ab4a",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58fc03e6_72814aaf",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T02:23:16Z",
+      "side": 1,
+      "message": "Is there any case where this happens? If we don\u0027t know any, I would indeed raise an error so at least we can catch it the first time it happens to understand why.",
+      "parentUuid": "33df226e_32bd2082",
       "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
