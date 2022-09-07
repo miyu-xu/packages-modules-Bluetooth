@@ -3,6 +3,29 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1e8da945_361ffdc7",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-07T15:02:24Z",
+      "side": 1,
+      "message": "ASSERT_TRUE/ASSERT_EQ can not be use in not void method.",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 15
+      },
+      "revId": "fcdbcbaf07403ec579319c9bd255cefaf3e4e858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "74e4f9f9_d8af3e2b",
         "filename": "system/gd/hci/le_scanning_manager_test.cc",
         "patchSetId": 2
