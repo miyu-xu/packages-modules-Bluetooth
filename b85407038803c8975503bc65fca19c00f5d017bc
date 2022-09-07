@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18f66541_b7ac3e81",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-07T06:35:23Z",
+      "side": 1,
+      "message": "Ack, please reopen it if you think it is necessary",
+      "parentUuid": "ce950767_f9077414",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "b85407038803c8975503bc65fca19c00f5d017bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8352a7b_de883d99",
