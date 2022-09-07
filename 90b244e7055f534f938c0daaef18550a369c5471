@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "640732d2_be3a9607",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-07T07:58:05Z",
+      "side": 1,
+      "message": "I don\u0027t seems to see this field being used in this CL.\nIs it an oversight or on purpose ?",
+      "revId": "90b244e7055f534f938c0daaef18550a369c5471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8fa58d3_03c2cc2b",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 2

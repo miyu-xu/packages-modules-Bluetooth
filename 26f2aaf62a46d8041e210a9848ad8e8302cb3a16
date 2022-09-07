@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2fd37a6_1b6dc79f",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-07T07:58:05Z",
+      "side": 1,
+      "message": "\u003e if the caller fails to pass it in, we can distinguish it from BREDR\n\nAh I didn\u0027t took into account that it will take the default value if it\u0027s not set.\nWe maybe could use `required` here. But as the thing that will pas this value is the server, I think that defaulting to BREDR (by using it as the 0 value) if not specified is not a bad behavior here.",
+      "parentUuid": "0ee42d2d_7c652e5e",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "131a5f2d_8077ab4a",
         "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
         "patchSetId": 1
