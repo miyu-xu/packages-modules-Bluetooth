@@ -27,6 +27,7 @@ from mmi2grpc.hfp import HFPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
 from mmi2grpc._helpers import format_proxy
+from mmi2grpc.l2cap import L2CAPProxy
 
 from pandora.host_grpc import Host
 
@@ -58,6 +59,7 @@ class IUT:
         self._hfp = None
         self._sdp = None
         self._sm = None
+        self._l2cap=None
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
@@ -72,6 +74,7 @@ class IUT:
         self._hfp = None
         self._sdp = None
         self._sm = None
+        self._l2cap = None
 
     def _retry(self, func):
 
@@ -125,6 +128,11 @@ class IUT:
             if not self._hfp:
                 self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._hfp.interact(test, interaction, description, pts_address)
+        # Instantiates L2CAP proxy and reroutes corresponding MMIs to it.
+        if profile in ('L2CAP'):
+            if not self._l2cap:
+                self._l2cap = L2CAPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._l2cap.interact(test, interaction, description, pts_address)
         # Handles SDP MMIs.
         if profile in ('SDP'):
             if not self._sdp:

@@ -287,6 +287,33 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
+  override fun getLEConnection(
+    request: GetLEConnectionRequest,
+    responseObserver: StreamObserver<GetLEConnectionResponse>  ) {
+      grpcUnary<GetLEConnectionResponse>(scope, responseObserver) {
+        Log.d(TAG,"before getLEConnection get address")
+        val address = request.address.decodeToString()
+        Log.d(TAG,"before getLEConnection getRemoteLeDevice")
+        // val device = bluetoothAdapter.getRemoteLeDevice(address) // not working, PandoraHost: Device: DA:4C:10:DE:17:1B is not connected
+        val device = bluetoothAdapter.getRemoteLeDevice(address,BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+        Log.d(TAG,"Device: $device after getRemoteLeDevice")
+        if(device.isConnected){
+            Log.i(TAG,"Device: $device is connected")
+            GetLEConnectionResponse.newBuilder()
+            .setConnection(
+              Connection.newBuilder()
+                .setCookie(ByteString.copyFromUtf8(device.address))
+                .build()
+            )
+            .build()
+        }else{
+          Log.e(TAG,"Device: $device is not connected")
+          throw Status.UNKNOWN.asException()
+        }
+      }
+  }
+
+
   override fun disconnectLE(request: DisconnectLERequest, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
       val ptsAddress = request.connection.cookie.toByteArray().decodeToString()

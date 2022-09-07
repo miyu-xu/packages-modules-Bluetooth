@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Python" name="Python">
+      <configuration sdkName="" />
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/server/AndroidManifest.xml" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/server/proto" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/server/src" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 33 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="jetbrains.kotlinx.coroutines.core1" level="project" />
+    <orderEntry type="library" name="io.grpc.protobuf" level="project" />
+    <orderEntry type="library" name="io.grpc.stub" level="project" />
+    <orderEntry type="library" name="jetbrains.kotlinx.coroutines.android" level="project" />
+
+    <orderEntry type="library" name="google.protobuf.gradle.plugin" level="project" />
+  </component>
+</module>

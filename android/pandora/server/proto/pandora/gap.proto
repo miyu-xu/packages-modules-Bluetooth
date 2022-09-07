@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "GapProto";
+
+import "google/protobuf/empty.proto";
+
+service GAP {
+  // Make the IUT general Discoverable
+  // Format: rpc <func>(<request>) returns (<response>)
+  rpc MakeDiscoverable(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+

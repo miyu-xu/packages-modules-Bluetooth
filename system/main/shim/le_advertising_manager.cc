@@ -400,8 +400,10 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
         static_cast<bluetooth::hci::Enable>(
             params.scan_request_notification_enable);
 
-    // TODO set own_address_type based on address policy
     config.own_address_type = OwnAddressType::RANDOM_DEVICE_ADDRESS;
+    if (params.own_address_type == 0) {
+      config.own_address_type = OwnAddressType::PUBLIC_DEVICE_ADDRESS;
+    }
   }
   std::map<uint8_t, GetAddressCallback> address_callbacks_;
 };
