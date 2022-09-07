@@ -70,6 +70,30 @@
       },
       "revId": "1b1f4b9ef22fa689445397ab4572f982ac2dbe2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9318d47_09819b77",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-07T09:16:17Z",
+      "side": 0,
+      "message": "Yes. VolumeConrolService is used only for Le Audio devices.",
+      "parentUuid": "a20655a2_bc5f242f",
+      "range": {
+        "startLine": 885,
+        "startChar": 0,
+        "endLine": 885,
+        "endChar": 50
+      },
+      "revId": "1b1f4b9ef22fa689445397ab4572f982ac2dbe2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
