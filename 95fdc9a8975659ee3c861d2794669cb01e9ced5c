@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "790a9270_1b5ae2c0",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T01:56:04Z",
+      "side": 1,
+      "message": "Can we name it `WriteAttFromHandle`?",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "95fdc9a8975659ee3c861d2794669cb01e9ced5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c31b8f_ce72dfae",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T01:56:04Z",
+      "side": 1,
+      "message": "Just `value` to match `WriteRequest` terminology?",
+      "range": {
+        "startLine": 155,
+        "startChar": 11,
+        "endLine": 155,
+        "endChar": 21
+      },
+      "revId": "95fdc9a8975659ee3c861d2794669cb01e9ced5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "782be218_a0fca1bb",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T01:56:04Z",
+      "side": 1,
+      "message": "How do you know to which characteristic is associated with each response? It may be worth adding the `handle` as part of the response.",
+      "range": {
+        "startLine": 161,
+        "startChar": 38,
+        "endLine": 161,
+        "endChar": 58
+      },
+      "revId": "95fdc9a8975659ee3c861d2794669cb01e9ced5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc53053_658ee5f6",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T01:56:04Z",
+      "side": 1,
+      "message": "Just `value`?",
+      "range": {
+        "startLine": 172,
+        "startChar": 11,
+        "endLine": 172,
+        "endChar": 21
+      },
+      "revId": "95fdc9a8975659ee3c861d2794669cb01e9ced5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
