@@ -97,6 +97,30 @@
       },
       "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eebafad_b0149af7",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-07T08:50:29Z",
+      "side": 1,
+      "message": "Isn\u0027t that case not possible because `slice` is already capped at `pos` characters long due to `slice \u003d \u0026line[..pos]`? So let\u0027s say `line` \u003d `\"hahahaha hihihi hu\"` and `pos` \u003d 15, so `slice` would be `\"hahahaha hihihi\"`. So the rewrite should behave the same if this assumption is true.\n\nAlternatively, Rust\u0027s facility for \"breaking when folding\" is to use `try_fold`, like:\n```\nlet (ControlFlow::Continue(start) | ControlFlow::Break(start)) \u003d\n    slice.split(\" \").try_fold(0, |acc, s| match acc + s.len() + 1 {\n        x if x \u003c\u003d pos \u003d\u003e ControlFlow::Continue(x),\n        _ \u003d\u003e ControlFlow::Break(acc),\n    });\n```\n\nIf that\u0027s more confusing, okay to leave the code as it is.",
+      "parentUuid": "24b1b352_58dc9805",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
