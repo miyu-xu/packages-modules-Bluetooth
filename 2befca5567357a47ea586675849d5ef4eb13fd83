@@ -16,6 +16,24 @@
       "message": "not needed. rebase issue",
       "revId": "2befca5567357a47ea586675849d5ef4eb13fd83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e11cd6b_2794e6b4",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T10:46:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0d71c63_27071690",
+      "revId": "2befca5567357a47ea586675849d5ef4eb13fd83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
