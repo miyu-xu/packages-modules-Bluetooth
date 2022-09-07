@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39ccabf7_584e96be",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_admin.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-07T18:55:38Z",
+      "side": 1,
+      "message": "nit: this warning suppression is not needed nowadays.",
+      "revId": "bf00f96aeed7ae4a6eccc13c6661c5bddae510a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
