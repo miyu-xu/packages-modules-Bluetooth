@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74dd14e_5c537ee7",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-09-07T01:57:18Z",
+      "side": 1,
+      "message": "Maybe we can add a comment to describe this field, such as: \"HCI error code associated with the event\"",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
