@@ -145,6 +145,30 @@
       },
       "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74b27c15_532e36c7",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-07T09:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54254a26_e66938cc",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
