@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b3738fa_5956ae40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T02:04:40Z",
+      "side": 1,
+      "message": "Can we merge this CL later, at the same time as L2CAP/LE/CFC/BV-01-C is implemented? Right now, this test is not implemented so the `Test:` is not valid.",
+      "revId": "3c6232bf9b0559311046aa9d7a69cd3b2fbd2fdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
