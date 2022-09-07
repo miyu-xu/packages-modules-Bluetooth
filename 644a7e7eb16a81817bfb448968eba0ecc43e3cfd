@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b820c7b_d072fa46",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppShareInfoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-07T07:09:15Z",
+      "side": 1,
+      "message": "small test?\n\nhttps://g3doc.corp.google.com/company/teams/androidx/testing.md?cl\u003dhead#annotations",
+      "revId": "644a7e7eb16a81817bfb448968eba0ecc43e3cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b56ffa6b_576540d9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppShareInfoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-07T07:09:15Z",
+      "side": 1,
+      "message": "please add an empty line",
+      "revId": "644a7e7eb16a81817bfb448968eba0ecc43e3cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
