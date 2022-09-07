@@ -178,6 +178,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "939532e2_36100bf3",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-07T18:04:58Z",
+      "side": 1,
+      "message": "This will happen if we pair with a dual-mode device, since then we can\u0027t tell what transport we are using for the pairing.",
+      "parentUuid": "58fc03e6_72814aaf",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fc463721_73274074",
