@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e4f9f9_d8af3e2b",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-07T14:58:57Z",
+      "side": 1,
+      "message": "Test for AD type filter",
+      "range": {
+        "startLine": 579,
+        "startChar": 40,
+        "endLine": 579,
+        "endChar": 68
+      },
+      "revId": "fcdbcbaf07403ec579319c9bd255cefaf3e4e858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
