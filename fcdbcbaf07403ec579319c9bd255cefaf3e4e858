@@ -71,6 +71,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dda8812_ec2cd68f",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-07T19:26:18Z",
+      "side": 1,
+      "message": "use ASSERT_TRUE from GTEST\n\ninstead of ASSERT from log.h\n\nSame as below",
+      "range": {
+        "startLine": 490,
+        "startChar": 2,
+        "endLine": 490,
+        "endChar": 8
+      },
+      "revId": "fcdbcbaf07403ec579319c9bd255cefaf3e4e858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "74e4f9f9_d8af3e2b",
