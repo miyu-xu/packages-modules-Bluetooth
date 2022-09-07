@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a1702e_d7ad5aa8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-07T11:54:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6996917_bd91866e",
+      "range": {
+        "startLine": 537,
+        "startChar": 10,
+        "endLine": 537,
+        "endChar": 12
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "032b8fc7_dabbe8dc",
@@ -70,6 +94,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7ad8a3b_b8a46176",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-07T11:54:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "032b8fc7_dabbe8dc",
+      "range": {
+        "startLine": 558,
+        "startChar": 8,
+        "endLine": 558,
+        "endChar": 11
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a05018a2_06aab1cb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-07T11:54:55Z",
+      "side": 1,
+      "message": "Yeap",
+      "parentUuid": "2055530c_5778c852",
+      "range": {
+        "startLine": 558,
+        "startChar": 16,
+        "endLine": 558,
+        "endChar": 41
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71b1e5cf_29fc000b",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-09-07T10:05:25Z",
       "side": 1,
       "message": "final ?",
+      "range": {
+        "startLine": 572,
+        "startChar": 8,
+        "endLine": 572,
+        "endChar": 11
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7446c4_483c0bfc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-07T11:54:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "71b1e5cf_29fc000b",
       "range": {
         "startLine": 572,
         "startChar": 8,
