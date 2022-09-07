@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "149ed6ff_becd6a04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T21:23:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49360ba8_bde22105",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "470641fa4c45289b1678ea249c0d238efa4536ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d70b40fc_90a8b39a",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d98025f4_f4f70c26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T21:23:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d70b40fc_90a8b39a",
+      "range": {
+        "startLine": 12,
+        "startChar": 48,
+        "endLine": 12,
+        "endChar": 50
+      },
+      "revId": "470641fa4c45289b1678ea249c0d238efa4536ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1248a2b_dadbaa0c",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-07T14:52:11Z",
       "side": 1,
       "message": "What if the in_call_ status changes while we play the ringtone ?",
+      "range": {
+        "startLine": 3114,
+        "startChar": 4,
+        "endLine": 3114,
+        "endChar": 22
+      },
+      "revId": "470641fa4c45289b1678ea249c0d238efa4536ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38fc56ae_a60aa4b6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3114,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T21:23:30Z",
+      "side": 1,
+      "message": "Nothing, unless new metadata update will come with ringtone.\nFor the moment the idea is that setting in_call does not trigger any actions. It just helps when update metadata arrives.",
+      "parentUuid": "e1248a2b_dadbaa0c",
       "range": {
         "startLine": 3114,
         "startChar": 4,
