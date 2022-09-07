@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf93ad2_3709a0d4",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-07T23:32:07Z",
+      "side": 1,
+      "message": "Unfortunately, EXPECT_TRUE keeps running, so GetLastCommand will still run on line 125.  That could be OK.  I don\u0027t remember if that will crash.  The other way to do this would be to return an empty command_packet_view if the queue is empty.",
+      "parentUuid": "b469ebdc_47384b91",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 14
+      },
+      "revId": "fcdbcbaf07403ec579319c9bd255cefaf3e4e858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1e8da945_361ffdc7",
