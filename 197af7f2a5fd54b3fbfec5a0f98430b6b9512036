@@ -169,6 +169,30 @@
       },
       "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f25c7237_e7d3e66b",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-07T18:15:32Z",
+      "side": 1,
+      "message": "Yes, that\u0027s even better!",
+      "parentUuid": "74b27c15_532e36c7",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
