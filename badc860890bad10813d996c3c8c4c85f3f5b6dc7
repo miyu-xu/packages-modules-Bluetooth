@@ -26,6 +26,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d4256a9_6fd182d1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-07T08:04:53Z",
+      "side": 1,
+      "message": "I don\u0027t think we should put that in `WaitConnection`.\n\nI\u0027m not sure that this is very Android specific, but we shouldn\u0027t need to know the number of confirmations here.\n\nWhat we should do for me is just listen for pairing events in an async loop on the side and accept every numeric_comparaison PairingEvent.\n\nWe don\u0027t need to wait for the task to end as well.",
+      "parentUuid": "97395fa1_9ffe7d6a",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b57b54f9_7676f42a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-07T08:04:53Z",
+      "side": 1,
+      "message": "We should not need to really wait here, as I expect the PTS to only inform us that it will not do anything for 30 seconds",
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b27ef82_6381b8da",
         "filename": "android/pandora/server/proto/pandora/host.proto",
         "patchSetId": 2
