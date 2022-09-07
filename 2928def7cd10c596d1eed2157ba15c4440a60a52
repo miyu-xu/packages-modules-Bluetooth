@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34da7bc1_69453065",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-07T16:36:35Z",
+      "side": 1,
+      "message": "I would prefer to understand why there is a KeyError (since this looks like either a parsing bug, RootCanal returning unexpected output, or some issue with the connection) but approving due to the test breakage.\n\nI will need to re-submit these changes later, though, since aosp/2192146 relies on disconnecting/reconnecting at the link layer, and we need to recover if that test is interrupted halfway through.",
+      "revId": "2928def7cd10c596d1eed2157ba15c4440a60a52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
