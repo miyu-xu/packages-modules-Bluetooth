@@ -195,7 +195,12 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         group->CigGenerateCisIds(context_type);
         /* All ASEs should aim to achieve target state */
         SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
-        PrepareAndSendCodecConfigure(group, group->GetFirstActiveDevice());
+        if (group->GetState() !=
+            AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED) {
+          PrepareAndSendCodecConfigure(group, group->GetFirstActiveDevice());
+        } else {
+          CigCreate(group);
+        }
         break;
 
       case AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED: {
@@ -1726,6 +1731,18 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
             /* No more transition for group */
             alarm_cancel(watchdog_);
+            return;
+          }
+
+          if (group->GetTargetState() ==
+              AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
+            /* Remote device has cache and in configured state after reconnect.
+             * Therefore, we assume this is a target state requested by the
+             * remote device.
+             */
+            group->SetTargetState(group->GetState());
+            state_machine_callbacks_->StatusReportCb(
+                group->group_id_, GroupStreamStatus::CONFIGURED_AUTONOMOUS);
             return;
           }
 
