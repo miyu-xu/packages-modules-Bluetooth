@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38dd5be4_6f735c66",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-07T18:05:48Z",
+      "side": 1,
+      "message": "Whoops, let me populate it. I thought it would make sense to provide it if possible, as otherwise we can\u0027t distinguish between SSP and LE pairing.",
+      "parentUuid": "640732d2_be3a9607",
+      "revId": "90b244e7055f534f938c0daaef18550a369c5471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8fa58d3_03c2cc2b",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 2
