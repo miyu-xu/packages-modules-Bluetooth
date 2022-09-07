@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6996917_bd91866e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-09-07T10:05:25Z",
+      "side": 1,
+      "message": "missing space",
+      "range": {
+        "startLine": 537,
+        "startChar": 10,
+        "endLine": 537,
+        "endChar": 12
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032b8fc7_dabbe8dc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-09-07T10:05:25Z",
+      "side": 1,
+      "message": "final if assigned statically",
+      "range": {
+        "startLine": 558,
+        "startChar": 8,
+        "endLine": 558,
+        "endChar": 11
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2055530c_5778c852",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-09-07T10:05:25Z",
+      "side": 1,
+      "message": "should these arrays be populated by the getLeAudioVolume() method to has a single source of truth?",
+      "range": {
+        "startLine": 558,
+        "startChar": 16,
+        "endLine": 558,
+        "endChar": 41
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71b1e5cf_29fc000b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-09-07T10:05:25Z",
+      "side": 1,
+      "message": "final ?",
+      "range": {
+        "startLine": 572,
+        "startChar": 8,
+        "endLine": 572,
+        "endChar": 11
+      },
+      "revId": "9b072018f25d8683cf24ce5ec9f66851af440cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
