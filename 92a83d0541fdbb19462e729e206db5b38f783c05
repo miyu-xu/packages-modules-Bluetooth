@@ -22,6 +22,30 @@
       },
       "revId": "92a83d0541fdbb19462e729e206db5b38f783c05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b9d5cc2_c0712ae7",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T21:21:02Z",
+      "side": 1,
+      "message": "THanks - rebase issue :)",
+      "parentUuid": "03e86943_58720c31",
+      "range": {
+        "startLine": 206,
+        "startChar": 31,
+        "endLine": 206,
+        "endChar": 37
+      },
+      "revId": "92a83d0541fdbb19462e729e206db5b38f783c05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
