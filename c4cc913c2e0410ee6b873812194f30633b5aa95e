@@ -309,6 +309,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcf46e37_68fbc41f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-07T01:00:17Z",
+      "side": 1,
+      "message": "I was a bit far from accurate when I mentioned the \"direct `connect`\": when the headset initiates connection, say HFP, it is `rfc_open` steering the connection event `BTA_AG_OPEN_EVT` and at the end notifying this layer via the connection state callback. \n\nNeither `connect_all_enabled_profiles` nor `connect` will be called in this case. However, the argument should not change.\n\nI\u0027ll update annotations to record the findings accordingly in the next patch, thanks!",
+      "parentUuid": "0de7d9f6_255b1b9b",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
