@@ -287,17 +287,6 @@ public class LeAudioNativeInterface {
         setCcidInformationNative(ccid, contextType);
     }
 
-    /**
-     * Set in call call flag.
-     * @param inCall true when device in call (any state), false otherwise
-     */
-    public void setInCall(boolean inCall) {
-        if (DBG) {
-            Log.d(TAG, "setInCall inCall: " + inCall);
-        }
-        setInCallNative(inCall);
-    }
-
     // Native methods that call into the JNI interface
     private static native void classInitNative();
     private native void initNative(BluetoothLeAudioCodecConfig[] codecConfigOffloading);
@@ -311,5 +300,4 @@ public class LeAudioNativeInterface {
             BluetoothLeAudioCodecConfig inputCodecConfig,
             BluetoothLeAudioCodecConfig outputCodecConfig);
     private native void setCcidInformationNative(int ccid, int contextType);
-    private native void setInCallNative(boolean inCall);
 }

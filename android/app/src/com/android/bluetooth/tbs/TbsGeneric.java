@@ -32,9 +32,7 @@ import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.le_audio.ContentControlIdKeeper;
-import com.android.bluetooth.le_audio.LeAudioService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -124,8 +122,6 @@ public class TbsGeneric {
     private List<String> mUriSchemes = new ArrayList<>(Arrays.asList("tel"));
     private Receiver mReceiver = null;
     private int mStoredRingerMode = -1;
-    private final ServiceFactory mFactory = new ServiceFactory();
-    private LeAudioService mLeAudioService;
 
     private final class Receiver extends BroadcastReceiver {
         @Override
@@ -1009,33 +1005,10 @@ public class TbsGeneric {
         mForegroundBearer = bearer;
     }
 
-    private boolean isLeAudioServiceAvailable() {
-        if (mLeAudioService != null) {
-            return true;
-        }
-
-        mLeAudioService = mFactory.getLeAudioService();
-        if (mLeAudioService == null) {
-            Log.e(TAG, "leAudioService not available");
-            return false;
-        }
-
-        return true;
-    }
-
     private synchronized void notifyCclc() {
         if (DBG) {
             Log.d(TAG, "notifyCclc");
         }
-
-        if (isLeAudioServiceAvailable()) {
-            if (mCurrentCallsList.size() > 0) {
-                mLeAudioService.setInCall(true);
-            } else {
-                mLeAudioService.setInCall(false);
-            }
-        }
-
         mTbsGatt.setCallState(mCurrentCallsList);
         mTbsGatt.setBearerListCurrentCalls(mCurrentCallsList);
     }
