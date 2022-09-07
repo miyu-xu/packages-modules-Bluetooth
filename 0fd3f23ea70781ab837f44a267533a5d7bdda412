@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "203632e0_67e9abe4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2438,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T10:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dc6105d_fc8154b7",
+      "range": {
+        "startLine": 2438,
+        "startChar": 64,
+        "endLine": 2438,
+        "endChar": 70
+      },
+      "revId": "0fd3f23ea70781ab837f44a267533a5d7bdda412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d8ffc7c_32b98079",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "391d6907_5852dbba",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2439,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T10:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d8ffc7c_32b98079",
+      "revId": "0fd3f23ea70781ab837f44a267533a5d7bdda412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b0b21b0_18d463a4",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-09-07T09:03:22Z",
       "side": 1,
       "message": "This shouldn\u0027t pack left sample right after the right sample. It should put a single mixed value (left+right)/2",
+      "revId": "0fd3f23ea70781ab837f44a267533a5d7bdda412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8eb3e29_b95c01ce",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2443,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-07T10:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b0b21b0_18d463a4",
       "revId": "0fd3f23ea70781ab837f44a267533a5d7bdda412",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
