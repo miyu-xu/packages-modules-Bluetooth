@@ -15,17 +15,21 @@
  */
 #include "gd/metrics/chromeos/metrics_event.h"
 
+#include <map>
+
 #include "hci/hci_packets.h"
 #include "include/hardware/bluetooth.h"
+#include "include/hardware/bt_hh.h"
 
 namespace bluetooth {
 namespace metrics {
 
-// topshim::btif::BtBondState is a copy of hardware/bluetooth.h/bt_bond_state_t
+// topshim::btif::BtBondState is a copy of hardware/bluetooth.h:bt_bond_state_t
 typedef bt_bond_state_t BtBondState;
-
-// topshim::btif::BtStatus is a copy of hardware/bluetooth.h/bt_bond_state_t
+// topshim::btif::BtStatus is a copy of hardware/bluetooth.h:bt_status_t
 typedef bt_status_t BtStatus;
+// topshim::profile::hid_host::BthhConnectionState is a copy of hardware/bluetooth.h:bthh_connection_state_t
+typedef bthh_connection_state_t BthhConnectionState;
 
 // ENUM definition for profile connection intent in sync with topshim::metrics::MetricsProfileConnectionIntent
 enum class ProfileConnectionIntent {
@@ -280,6 +284,53 @@ int64_t StatusToProfileConnectionState(uint32_t status, uint32_t intent) {
   return state;
 }
 
+static ProfileConnectionEvent ToProfileHidHogConnectionEvent(
+    std::string addr, uint32_t intent, uint32_t profile, uint32_t status, uint32_t state) {
+  ProfileConnectionEvent event;
+  static std::map<std::string, uint32_t> pending_intent;
+
+  if (ProfilesFloss::Hid == (ProfilesFloss)profile) {
+    event.profile = (int64_t)Profile::HID;
+  } else {
+    event.profile = (int64_t)Profile::HOG;
+  }
+
+  switch ((BthhConnectionState)state) {
+    case BthhConnectionState::BTHH_CONN_STATE_CONNECTED:
+      event.type = (int64_t)StateChangeType::STATE_CHANGE_TYPE_CONNECT;
+      event.state = (int64_t)ProfileConnectionState::PROFILE_CONN_STATE_SUCCEED;
+      pending_intent.erase(addr);
+      break;
+    case BthhConnectionState::BTHH_CONN_STATE_CONNECTING:
+      event.type = (int64_t)StateChangeType::STATE_CHANGE_TYPE_CONNECT;
+      event.state = (int64_t)ProfileConnectionState::PROFILE_CONN_STATE_STARTING;
+      pending_intent[addr] = intent;
+      break;
+    case BthhConnectionState::BTHH_CONN_STATE_DISCONNECTED:
+      if (pending_intent.find(addr) != pending_intent.end()) {
+        if (ProfileConnectionIntent::Unknown == (ProfileConnectionIntent)intent) {
+          intent = pending_intent[addr];
+        }
+        pending_intent.erase(addr);
+      }
+      event.type = ProfileConnectionIntent::Connect == (ProfileConnectionIntent)intent
+                       ? (int64_t)StateChangeType::STATE_CHANGE_TYPE_CONNECT
+                       : (int64_t)StateChangeType::STATE_CHANGE_TYPE_DISCONNECT;
+      event.state = StatusToProfileConnectionState(status, intent);
+      break;
+    case BthhConnectionState::BTHH_CONN_STATE_DISCONNECTING:
+      event.type = (int64_t)StateChangeType::STATE_CHANGE_TYPE_DISCONNECT;
+      event.state = (int64_t)ProfileConnectionState::PROFILE_CONN_STATE_STARTING;
+      pending_intent[addr] = intent;
+      break;
+    default:
+      event.profile = (int64_t)Profile::UNKNOWN;
+      break;
+  }
+
+  return event;
+}
+
 ProfileConnectionEvent ToProfileConnectionEvent(
     std::string addr, uint32_t intent, uint32_t profile, uint32_t status, uint32_t state) {
   switch ((ProfilesFloss)profile) {
@@ -293,8 +344,9 @@ ProfileConnectionEvent ToProfileConnectionEvent(
     // case ProfilesFloss::AvrcpController:
     // case ProfilesFloss::AvrcpTarget:
     // case ProfilesFloss::ObexObjectPush:
-    // case ProfilesFloss::Hid:
-    // case ProfilesFloss::Hogp:
+    case ProfilesFloss::Hid:
+    case ProfilesFloss::Hogp:
+      return ToProfileHidHogConnectionEvent(addr, intent, profile, status, state);
     // case ProfilesFloss::Panu:
     // case ProfilesFloss::Nap:
     // case ProfilesFloss::Bnep:
