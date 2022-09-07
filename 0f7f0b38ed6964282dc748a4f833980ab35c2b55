@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51e13718_752a4cb3",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-07T23:27:29Z",
+      "side": 1,
+      "message": "nit: move if out of #ifdef",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "0f7f0b38ed6964282dc748a4f833980ab35c2b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "179135e7_6272cd33",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-07T23:27:29Z",
+      "side": 1,
+      "message": "Can we post the check to the handler instead of sleeping?",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 35
+      },
+      "revId": "0f7f0b38ed6964282dc748a4f833980ab35c2b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
