@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaa0922e_1f446aeb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-07T06:58:54Z",
+      "side": 1,
+      "message": "Other than the build warning, LGTM\n\nI\u0027m letting this comment unresolved for the build warning, feel free to resolve it when it is fixed !",
+      "revId": "f3ff2509aef1793c717045fbe2100f3fd2a23b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
