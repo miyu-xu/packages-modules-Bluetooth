@@ -54,6 +54,8 @@ class BtmInterface {
   virtual void AclDisconnectFromHandle(uint16_t handle, tHCI_STATUS reason) = 0;
   virtual void ConfigureDataPath(uint8_t direction, uint8_t path_id,
                                  std::vector<uint8_t> vendor_config) = 0;
+  virtual bool BleIsResolveBda(RawAddress const& bd_addr) = 0;
+  virtual tBTM_SEC_DEV_REC* ResolveRandomAddr(RawAddress const& bd_addr) = 0;
   virtual ~BtmInterface() = default;
 };
 
@@ -96,6 +98,9 @@ class MockBtmInterface : public BtmInterface {
               (uint8_t direction, uint8_t path_id,
                std::vector<uint8_t> vendor_config),
               (override));
+  MOCK_METHOD((bool), BleIsResolveBda, (RawAddress const& bd_addr), (override));
+  MOCK_METHOD((tBTM_SEC_DEV_REC*), ResolveRandomAddr,
+              (RawAddress const& bd_addr), (override));
 };
 
 /**

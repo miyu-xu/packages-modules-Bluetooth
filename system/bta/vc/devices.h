@@ -22,9 +22,12 @@
 #include <unordered_set>
 #include <vector>
 
+#include "acl_api.h"
 #include "bta/include/bta_gatt_api.h"
 #include "bta/vc/types.h"
 #include "include/hardware/bt_vc.h"
+#include "osi/include/log.h"
+#include "stack/btm/btm_ble_int.h"
 #include "types/raw_address.h"
 
 namespace bluetooth {
@@ -172,9 +175,18 @@ class VolumeControlDevices {
   }
 
   VolumeControlDevice* FindByAddress(const RawAddress& address) {
+    RawAddress pseudo_addr = address;
+    if (BTM_BLE_IS_RESOLVE_BDA(address)) {
+      tBTM_SEC_DEV_REC* match_rec = btm_ble_resolve_random_addr(address);
+      if (match_rec) {
+        LOG_INFO("Found pseudo address %s for device %s",
+                 pseudo_addr.ToString().c_str(), address.ToString().c_str());
+        pseudo_addr = match_rec->ble.pseudo_addr;
+      }
+    }
     auto iter = std::find_if(devices_.begin(), devices_.end(),
-                             [&address](const VolumeControlDevice& device) {
-                               return device.address == address;
+                             [&pseudo_addr](const VolumeControlDevice& device) {
+                               return device.address == pseudo_addr;
                              });
 
     return (iter == devices_.end()) ? nullptr : &(*iter);

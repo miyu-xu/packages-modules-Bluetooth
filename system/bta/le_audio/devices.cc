@@ -32,6 +32,7 @@
 #include "le_audio_set_configuration_provider.h"
 #include "metrics_collector.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/include/acl_api.h"
 
 using bluetooth::hci::kIsoCigFramingFramed;
@@ -2532,9 +2533,19 @@ void LeAudioDevices::Remove(const RawAddress& address) {
 }
 
 LeAudioDevice* LeAudioDevices::FindByAddress(const RawAddress& address) {
+  RawAddress pseudo_addr = address;
+  if (BTM_BLE_IS_RESOLVE_BDA(address)) {
+    tBTM_SEC_DEV_REC* match_rec = btm_ble_resolve_random_addr(address);
+    if (match_rec) {
+      LOG_INFO("Found pseudo address %s for device %s",
+               pseudo_addr.ToString().c_str(), address.ToString().c_str());
+      pseudo_addr = match_rec->ble.pseudo_addr;
+    }
+  }
+
   auto iter = std::find_if(leAudioDevices_.begin(), leAudioDevices_.end(),
-                           [&address](auto const& leAudioDevice) {
-                             return leAudioDevice->address_ == address;
+                           [&pseudo_addr](auto const& leAudioDevice) {
+                             return leAudioDevice->address_ == pseudo_addr;
                            });
 
   return (iter == leAudioDevices_.end()) ? nullptr : iter->get();

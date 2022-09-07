@@ -26,6 +26,16 @@ void bluetooth::manager::SetMockBtmInterface(
   btm_interface = mock_btm_interface;
 }
 
+bool BTM_BLE_IS_RESOLVE_BDA(const RawAddress& bd_addr) {
+  LOG_ASSERT(btm_interface) << "Mock btm interface not set!";
+  return btm_interface->BleIsResolveBda(bd_addr);
+}
+
+tBTM_SEC_DEV_REC* btm_ble_resolve_random_addr(const RawAddress& random_bda) {
+  LOG_ASSERT(btm_interface) << "Mock btm interface not set!";
+  return btm_interface->ResolveRandomAddr(random_bda);
+}
+
 bool BTM_GetSecurityFlagsByTransport(const RawAddress& bd_addr,
                                      uint8_t* p_sec_flags,
                                      tBT_TRANSPORT transport) {

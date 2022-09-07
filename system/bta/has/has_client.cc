@@ -27,6 +27,7 @@
 #include <string>
 #include <vector>
 
+#include "acl_api.h"
 #include "bta_csis_api.h"
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
@@ -42,6 +43,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
+#include "stack/btm/btm_ble_int.h"
 
 using base::Closure;
 using bluetooth::Uuid;
@@ -162,8 +164,7 @@ class HasClientImpl : public HasClient {
     }
 
     for (auto const& addr : addresses) {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(addr));
+      auto device = FindDeviceByAddress(addr);
       if (device == devices_.end()) {
         devices_.emplace_back(addr, true);
         BTA_GATTC_Open(gatt_if_, addr, true, false);
@@ -184,8 +185,7 @@ class HasClientImpl : public HasClient {
     /* Notify upper layer about the device */
     callbacks_->OnDeviceAvailable(address, features);
     if (is_acceptlisted) {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(address));
+      auto device = FindDeviceByAddress(address);
       if (device == devices_.end())
         devices_.push_back(HasDevice(address, features));
 
@@ -212,8 +212,7 @@ class HasClientImpl : public HasClient {
     }
 
     for (auto const& addr : addresses) {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(addr));
+      auto device = FindDeviceByAddress(addr);
       if (device == devices_.end()) {
         LOG(WARNING) << "Device not connected to profile" << addr;
         return;
@@ -424,9 +423,8 @@ class HasClientImpl : public HasClient {
       return;
     }
 
-    auto device = std::find_if(
-        devices_.begin(), devices_.end(),
-        HasDevice::MatchAddress(std::get<RawAddress>(operation.addr_or_group)));
+    auto device =
+        FindDeviceByAddress(std::get<RawAddress>(operation.addr_or_group));
     if (device == devices_.end()) {
       LOG(WARNING) << __func__ << " Device not connected to profile addr: "
                    << std::get<RawAddress>(operation.addr_or_group);
@@ -496,8 +494,7 @@ class HasClientImpl : public HasClient {
 
   bool AreAllDevicesAvailable(const std::vector<RawAddress>& addresses) {
     for (auto& addr : addresses) {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(addr));
+      auto device = FindDeviceByAddress(addr);
       if (device == devices_.end() || !device->IsConnected()) {
         return false;
       }
@@ -541,8 +538,7 @@ class HasClientImpl : public HasClient {
             /* Clear the error if we find device to forward the operation */
             bool was_sent = false;
             for (auto& addr : addresses) {
-              auto device = std::find_if(devices_.begin(), devices_.end(),
-                                         HasDevice::MatchAddress(addr));
+              auto device = FindDeviceByAddress(addr);
               if (device != devices_.end()) {
                 status = write_cb(*device, operation);
                 if (status == ErrorCode::NO_ERROR) {
@@ -557,8 +553,7 @@ class HasClientImpl : public HasClient {
             status = ErrorCode::GROUP_OPERATION_NOT_SUPPORTED;
 
             for (auto& addr : addresses) {
-              auto device = std::find_if(devices_.begin(), devices_.end(),
-                                         HasDevice::MatchAddress(addr));
+              auto device = FindDeviceByAddress(addr);
               if (device != devices_.end()) {
                 status = write_cb(*device, operation);
                 if (status != ErrorCode::NO_ERROR) break;
@@ -574,9 +569,8 @@ class HasClientImpl : public HasClient {
       }
 
     } else {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(std::get<RawAddress>(
-                                     operation.addr_or_group)));
+      auto device =
+          FindDeviceByAddress(std::get<RawAddress>(operation.addr_or_group));
       status = ErrorCode::OPERATION_NOT_POSSIBLE;
       if (device != devices_.end()) status = write_cb(*device, operation);
     }
@@ -732,8 +726,7 @@ class HasClientImpl : public HasClient {
     }
 
     for (auto& addr : addresses) {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(addr));
+      auto device = FindDeviceByAddress(addr);
       if (device != devices_.end()) {
         status = CpWritePresetNameOperationWriteReq(*device, operation);
         if (status != ErrorCode::NO_ERROR) {
@@ -768,8 +761,7 @@ class HasClientImpl : public HasClient {
     if (addresses.empty()) return false;
 
     for (auto& addr : addresses) {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(addr));
+      auto device = FindDeviceByAddress(addr);
       if (device != devices_.end()) {
         if (device->SupportsOperation(opcode)) return true;
       }
@@ -815,8 +807,7 @@ class HasClientImpl : public HasClient {
   }
 
   void GetPresetInfo(const RawAddress& address, uint8_t preset_index) override {
-    auto device = std::find_if(devices_.begin(), devices_.end(),
-                               HasDevice::MatchAddress(address));
+    auto device = FindDeviceByAddress(address);
     if (device == devices_.end()) {
       LOG(WARNING) << "Device not connected to profile" << address;
       return;
@@ -1776,12 +1767,27 @@ class HasClientImpl : public HasClient {
     }
   }
 
+  std::list<HasDevice>::iterator FindDeviceByAddress(
+      const RawAddress& address) {
+    RawAddress pseudo_addr = address;
+    if (BTM_BLE_IS_RESOLVE_BDA(address)) {
+      tBTM_SEC_DEV_REC* match_rec = btm_ble_resolve_random_addr(address);
+      if (match_rec) {
+        LOG_INFO("Found pseudo address %s for device %s",
+                 pseudo_addr.ToString().c_str(), address.ToString().c_str());
+        pseudo_addr = match_rec->ble.pseudo_addr;
+      }
+    }
+
+    return std::find_if(devices_.begin(), devices_.end(),
+                        HasDevice::MatchAddress(pseudo_addr));
+  }
+
   void OnGattConnected(const tBTA_GATTC_OPEN& evt) {
     DLOG(INFO) << __func__ << ": address=" << evt.remote_bda
                << ", conn_id=" << evt.conn_id;
 
-    auto device = std::find_if(devices_.begin(), devices_.end(),
-                               HasDevice::MatchAddress(evt.remote_bda));
+    auto device = FindDeviceByAddress(evt.remote_bda);
     if (device == devices_.end()) {
       LOG(WARNING) << "Skipping unknown device, address=" << evt.remote_bda;
       BTA_GATTC_Close(evt.conn_id);
@@ -1835,8 +1841,7 @@ class HasClientImpl : public HasClient {
   }
 
   void OnGattDisconnected(const tBTA_GATTC_CLOSE& evt) {
-    auto device = std::find_if(devices_.begin(), devices_.end(),
-                               HasDevice::MatchAddress(evt.remote_bda));
+    auto device = FindDeviceByAddress(evt.remote_bda);
     if (device == devices_.end()) {
       LOG(WARNING) << "Skipping unknown device disconnect, conn_id="
                    << loghex(evt.conn_id);
@@ -1915,8 +1920,7 @@ class HasClientImpl : public HasClient {
   void OnLeEncryptionComplete(const RawAddress& address, bool success) {
     DLOG(INFO) << __func__ << ": " << address;
 
-    auto device = std::find_if(devices_.begin(), devices_.end(),
-                               HasDevice::MatchAddress(address));
+    auto device = FindDeviceByAddress(address);
     if (device == devices_.end()) {
       LOG(WARNING) << "Skipping unknown device" << address;
       return;
@@ -1938,8 +1942,7 @@ class HasClientImpl : public HasClient {
   }
 
   void OnGattServiceChangeEvent(const RawAddress& address) {
-    auto device = std::find_if(devices_.begin(), devices_.end(),
-                               HasDevice::MatchAddress(address));
+    auto device = FindDeviceByAddress(address);
     if (device == devices_.end()) {
       LOG(WARNING) << "Skipping unknown device" << address;
       return;
@@ -1953,8 +1956,7 @@ class HasClientImpl : public HasClient {
   }
 
   void OnGattServiceDiscoveryDoneEvent(const RawAddress& address) {
-    auto device = std::find_if(devices_.begin(), devices_.end(),
-                               HasDevice::MatchAddress(address));
+    auto device = FindDeviceByAddress(address);
     if (device == devices_.end()) {
       LOG(WARNING) << "Skipping unknown device" << address;
       return;

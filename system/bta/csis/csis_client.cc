@@ -40,6 +40,7 @@
 #include "main/shim/shim.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/crypto_toolbox/crypto_toolbox.h"
@@ -743,8 +744,18 @@ class CsisClientImpl : public CsisClient {
 
   std::shared_ptr<CsisDevice> FindDeviceByAddress(
       const RawAddress& addr) const {
+    RawAddress pseudo_addr = addr;
+    if (BTM_BLE_IS_RESOLVE_BDA(addr)) {
+      tBTM_SEC_DEV_REC* match_rec = btm_ble_resolve_random_addr(addr);
+      if (match_rec) {
+        LOG_INFO("Found pseudo address %s for device %s",
+                 pseudo_addr.ToString().c_str(), addr.ToString().c_str());
+        pseudo_addr = match_rec->ble.pseudo_addr;
+      }
+    }
+
     auto it = find_if(devices_.cbegin(), devices_.cend(),
-                      CsisDevice::MatchAddress(addr));
+                      CsisDevice::MatchAddress(pseudo_addr));
     if (it != devices_.end()) return (*it);
 
     return nullptr;
