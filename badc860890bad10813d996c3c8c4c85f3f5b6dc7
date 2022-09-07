@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97395fa1_9ffe7d6a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T02:32:23Z",
+      "side": 1,
+      "message": "This is very Android specific, and makes this code hard to understand and reuse elsewere. Can we find a workflow that is more generic? I assume that 2 confirmations are required when the connection request is incoming from PTS-bot (and not outgoing), right?\n\nIf yes, can we hide this behavior in the `WaitConnection` method?",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b27ef82_6381b8da",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T02:32:23Z",
+      "side": 1,
+      "message": "This should be refactor in a future CL when the advertising interfaces are merged: aosp/2205525.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 90
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43354d30_85050950",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-07T02:32:23Z",
+      "side": 1,
+      "message": "This method is already implemented in `Security.kt` and it should also be handled using a `PairingEventAnswer` event.",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 67
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
