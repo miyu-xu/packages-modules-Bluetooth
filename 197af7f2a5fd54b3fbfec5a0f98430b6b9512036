@@ -73,6 +73,30 @@
       },
       "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b1b352_58dc9805",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-07T06:29:49Z",
+      "side": 1,
+      "message": "The rewrite behaves differently on this example\nslice \u003d \"hahahaha hihihi hu\"\npos \u003d 15\n\nThe original code break when processing \"hihihi\" (returning 9), but we don\u0027t break when using fold, therefore we keep accumulating the len of \"hu\" (returning 12).\n\nThat being said, probably in most cases we will have pos \u003d 18, since we only press tab when the cursor is on the end of the string. However just to keep within the spec, I guess we should still support pos \u003c 18 in case the user moves the cursor before tabbing.\n\nto_string() is removed.",
+      "parentUuid": "65f36a43_91d9556c",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
