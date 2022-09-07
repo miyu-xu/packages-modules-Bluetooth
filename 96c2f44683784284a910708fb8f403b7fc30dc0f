@@ -16,6 +16,24 @@
       "message": "Prefer not to have naked unwraps if you can avoid. If we ever figure out how to do this for the lock().unwrap(), we will replace those too.\n\nSuggestion:\n```\nlet callback_id \u003d match self.context.lock().unwrap().socket_manager_callback_id {\n  Some(id) \u003d\u003e id,\n  None \u003d\u003e { return; }\n};\n```",
       "revId": "96c2f44683784284a910708fb8f403b7fc30dc0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88ec5ab6_5fe462db",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-09-07T03:47:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8aea40bb_b9d86121",
+      "revId": "96c2f44683784284a910708fb8f403b7fc30dc0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
