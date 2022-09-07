@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb6c24b4_a54de421",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-07T18:47:06Z",
+      "side": 1,
+      "message": "Actually I\u0027ll just remove it altogether since we only need it in the server for now - it can be added to the proto if it\u0027s ever needed in the future.",
+      "parentUuid": "38dd5be4_6f735c66",
+      "revId": "90b244e7055f534f938c0daaef18550a369c5471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8fa58d3_03c2cc2b",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-09-07T02:23:16Z",
       "side": 1,
       "message": "nit: rename to just `address`",
+      "range": {
+        "startLine": 270,
+        "startChar": 10,
+        "endLine": 270,
+        "endChar": 20
+      },
+      "revId": "90b244e7055f534f938c0daaef18550a369c5471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfd9e63a_409cd66e",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-07T18:47:06Z",
+      "side": 1,
+      "message": "Future CL? I\u0027m just changing the method name as part of a refactor, not actually editing this code more than that.",
+      "parentUuid": "b8fa58d3_03c2cc2b",
       "range": {
         "startLine": 270,
         "startChar": 10,

@@ -125,6 +125,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ba1981_7a29d008",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-07T18:47:06Z",
+      "side": 1,
+      "message": "Enum removed so no longer relevant.",
+      "parentUuid": "f2fd37a6_1b6dc79f",
+      "revId": "26f2aaf62a46d8041e210a9848ad8e8302cb3a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "131a5f2d_8077ab4a",
