@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9defb2_d4d62492",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-07T23:41:32Z",
+      "side": 1,
+      "message": "see comments below, the getter function can return std::optional and we can assert on its return values",
+      "parentUuid": "8cf93ad2_3709a0d4",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 14
+      },
+      "revId": "fcdbcbaf07403ec579319c9bd255cefaf3e4e858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1e8da945_361ffdc7",
