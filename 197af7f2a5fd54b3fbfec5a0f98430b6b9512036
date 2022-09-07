@@ -121,6 +121,30 @@
       },
       "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54254a26_e66938cc",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-07T09:13:02Z",
+      "side": 1,
+      "message": "Sorry, you are correct, that case is not possible.\nIn that case, I will use [1] instead, because this boils down to \"finding the latest occurence of space\"\n\n[1] https://doc.rust-lang.org/stable/std/primitive.str.html#method.rfind",
+      "parentUuid": "1eebafad_b0149af7",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
