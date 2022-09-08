@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1eeef2e_f1c006cc",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-08T21:23:59Z",
+      "side": 1,
+      "message": "Personal preference:\n\n```\n// Floss expects that EIR uuids are immediately reported when the device is\n// found and doesn\u0027t wait for the pairing intent.\n//\n// If a subsequent SDP is completed, the new UUIDs should replace the existing\n// UUIDs.\n#if TARGET_FLOSS \n        bool report_eir_uuids \u003d true;\n#else\n        bool report_eir_uuids \u003d false;\n#endif\n```",
+      "range": {
+        "startLine": 1335,
+        "startChar": 8,
+        "endLine": 1339,
+        "endChar": 30
+      },
+      "revId": "99c4d63408be514df95476dd74009e53d0cc6712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
