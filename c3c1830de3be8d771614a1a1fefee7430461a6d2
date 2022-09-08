@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84365d04_d5485e89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-09-08T18:41:13Z",
+      "side": 1,
+      "message": "It looks ACTION_CONNECTION_STATE_CHANGED intent is widely used to track the connection state change. Is it better to split two CLs - add connecting_API and call connecting_API?",
+      "parentUuid": "b14d28b0_513d36f3",
+      "revId": "c3c1830de3be8d771614a1a1fefee7430461a6d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10cb1949_7fadf5de",
         "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
         "patchSetId": 1
