@@ -22,6 +22,30 @@
       },
       "revId": "ced158d7cc3112c5a35b68b5fdc74cf1b876e75b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ad38cb7_5a501f21",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-08T07:10:52Z",
+      "side": 1,
+      "message": "We need to check opcode for the return command\n\nauto command_view \u003d test_hci_layer_-\u003eGetCommand();\nASSERT_TRUE(command_view.has_value());\nASSERT_EQ(opcode, command_view.GetOpCode()));\n\nI would like shorten this by return a empty_view with OpCode::NONE\nASSERT_EQ(enable_opcode_, test_hci_layer_-\u003eGetCommand().GetOpCode());\n\nThanks!",
+      "parentUuid": "d35171d6_6391d22f",
+      "range": {
+        "startLine": 112,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 13
+      },
+      "revId": "ced158d7cc3112c5a35b68b5fdc74cf1b876e75b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

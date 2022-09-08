@@ -122,6 +122,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6f25e129_f009f135",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-08T07:10:52Z",
+      "side": 1,
+      "message": "Moved EXPECT_TRUE true to outside and replaced by ASSERT_TRUE\nThanks!",
+      "parentUuid": "8e9defb2_d4d62492",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 14
+      },
+      "revId": "fcdbcbaf07403ec579319c9bd255cefaf3e4e858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1e8da945_361ffdc7",
         "filename": "system/gd/hci/le_scanning_manager_test.cc",
         "patchSetId": 2
