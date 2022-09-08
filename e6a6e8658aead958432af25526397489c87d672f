@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34c43dda_03782b07",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-08T16:35:04Z",
+      "side": 1,
+      "message": "MatchAddress functor was suppose act as this kind of function.\nIts constructor could check if the given address is pseudo addr and fetch the identity address and then use it internally in `operator()`. You wouldn\u0027t have to change all these lines but just the MatchAddress implementation.",
+      "range": {
+        "startLine": 167,
+        "startChar": 20,
+        "endLine": 167,
+        "endChar": 39
+      },
+      "revId": "e6a6e8658aead958432af25526397489c87d672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
