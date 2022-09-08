@@ -50,6 +50,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "315003ec_273abee0",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-08T17:50:59Z",
+      "side": 1,
+      "message": "Btw, topshim::btif::BtBondState is just a duplicate of bt_bond_state_t from include/hardware/bluetooth.h... maybe just use that directly....",
+      "revId": "03c604c7fd54dfb509d5554d3a222d58874a0d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bded46a_4e9c9bab",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-08T17:50:59Z",
+      "side": 1,
+      "message": "bt_status_t from include/hardware/bluetooth.h",
+      "revId": "03c604c7fd54dfb509d5554d3a222d58874a0d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3831c89_ce5fd640",
         "filename": "system/gd/metrics/chromeos/metrics_event.cc",
         "patchSetId": 2
