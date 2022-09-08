@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "L2capProto";
+
+import "google/protobuf/empty.proto";
+import "pandora/host.proto";
+
+service L2CAP {
+  rpc CreateLECreditBasedChannel(CreateLECreditBasedChannelRequest) returns (CreateLECreditBasedChannelResponse);
+  rpc SendLEDataPacket(SendLEDataPacketRequest) returns (SendLEDataPacketResponse);
+  rpc ReceiveData(ReceiveDataRequest) returns (ReceiveDataResponse);
+  rpc StartBluetoothServerSocket(StartBluetoothServerSocketRequest)
+    returns(StartBluetoothServerSocketResponse);
+}
+
+// Request for the `OpenSource` method.
+message CreateLECreditBasedChannelRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+  int32 psm = 0x25;
+  bool secure = 2;
+}
+
+// Request for the `OpenSource` method.
+message CreateLECreditBasedChannelResponse {}
+
+message SendLEDataPacketRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+  bytes data = 2;
+}
+
+message SendLEDataPacketResponse {}
+
+message ReceiveDataRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+}
+
+message ReceiveDataResponse {
+  bytes data = 1;
+}
+
+message StartBluetoothServerSocketRequest{
+  Connection connection = 1;
+  bool secure = 2;
+}
+
+message StartBluetoothServerSocketResponse {}
