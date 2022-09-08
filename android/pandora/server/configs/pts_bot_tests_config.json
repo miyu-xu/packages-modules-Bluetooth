@@ -282,7 +282,12 @@
     "HFP/AG/TCA/BV-02-I",
     "HFP/AG/TCA/BV-03-I",
     "HFP/AG/TCA/BV-04-I",
-    "HFP/AG/TCA/BV-05-I"
+    "HFP/AG/TCA/BV-05-I",
+    "L2CAP/LE/CFC/BI-01-C",
+    "L2CAP/LE/CFC/BV-07-C",
+    "L2CAP/LE/CFC/BV-11-C",
+    "L2CAP/LE/CFC/BV-13-C",
+    "L2CAP/LE/CFC/BV-15-C"
   ],
   "ics": {
     "TSPC_4.0HCI_1a_2": true,
@@ -1292,7 +1297,11 @@
     "HOGP": {},
     "HSP": {},
     "IOP": {},
-    "L2CAP": {},
+    "L2CAP": {
+      "TSPX_spsm": "0080",
+      "TSPX_psm_authentication_required": "0080",
+      "TSPX_psm_authorization_required": "0080"
+    },
     "MAP": {},
     "MCAP": {},
     "OPP": {},
