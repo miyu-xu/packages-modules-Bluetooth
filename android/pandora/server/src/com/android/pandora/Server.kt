@@ -33,12 +33,14 @@ class Server(context: Context) {
   private var gatt: Gatt
   private var hfp: Hfp
   private var security: Security
+  private var l2cap: L2cap
   private var grpcServer: GrpcServer
 
   init {
     host = Host(context, this)
     a2dp = A2dp(context)
     avrcp = Avrcp(context)
+    l2cap=L2cap(context)
     gatt = Gatt(context)
     hfp = Hfp(context)
     security = Security(context)
@@ -49,6 +51,7 @@ class Server(context: Context) {
         .addService(avrcp)
         .addService(gatt)
         .addService(hfp)
+        .addService(l2cap)
         .addService(security)
         .build()
 
@@ -68,5 +71,7 @@ class Server(context: Context) {
     gatt.deinit()
     hfp.deinit()
     security.deinit()
+    l2cap.deinit()
+    grpcServer.shutdownNow()
   }
 }

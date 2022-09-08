@@ -35,6 +35,7 @@
         <option name="profile" value="SDP/SR" />
         <option name="profile" value="SM/CEN/EKS" />
         <option name="profile" value="SM/CEN/JW" />
+        <option name="profile" value="L2CAP/LE" />
         <option name="profile" value="SM/CEN/KDU" />
         <option name="profile" value="HOGP/RH" />
     </test>

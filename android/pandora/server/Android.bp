@@ -139,6 +139,7 @@ genrule {
         "proto/pandora/hfp.proto",
         "proto/pandora/host.proto",
         "proto/pandora/security.proto",
+        "proto/pandora/l2cap.proto",
     ],
     out: [
         "pandora/a2dp_grpc.py",
@@ -151,6 +152,8 @@ genrule {
         "pandora/hfp_pb2.py",
         "pandora/host_grpc.py",
         "pandora/host_pb2.py",
+        "pandora/l2cap_pb2.py",
+        "pandora/l2cap_grpc.py",
         "pandora/security_grpc.py",
         "pandora/security_pb2.py",
     ]
