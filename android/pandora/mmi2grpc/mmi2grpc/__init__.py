@@ -27,6 +27,7 @@ from mmi2grpc.avrcp import AVRCPProxy
 from mmi2grpc.gatt import GATTProxy
 from mmi2grpc.hfp import HFPProxy
 from mmi2grpc.hogp import HOGPProxy
+from mmi2grpc.l2cap import L2CAPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
 from mmi2grpc._helpers import format_proxy
@@ -61,6 +62,7 @@ class IUT:
         self._avrcp = None
         self._gatt = None
         self._hfp = None
+        self._l2cap = None
         self._sdp = None
         self._sm = None
         self._hogp = None
@@ -77,6 +79,7 @@ class IUT:
         self._avrcp = None
         self._gatt = None
         self._hfp = None
+        self._l2cap = None
         self._sdp = None
         self._sm = None
         self._hogp = None
@@ -154,6 +157,11 @@ class IUT:
             if not self._hfp:
                 self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._hfp.interact(test, interaction, description, pts_address)
+        # Instantiates L2CAP proxy and reroutes corresponding MMIs to it.
+        if profile in ('L2CAP'):
+            if not self._l2cap:
+                self._l2cap = L2CAPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._l2cap.interact(test, interaction, description, pts_address)
         # Handles SDP MMIs.
         if profile in ('SDP'):
             if not self._sdp:
