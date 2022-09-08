@@ -16,6 +16,52 @@
       "message": "Hello, Archie:\n\nCan you help with the first-round review so abps@ can do the owner reviewer a little easier. Thanks!",
       "revId": "7a565b42fc706ef60e9e90f1712ba31307423a88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c5dc32a_b97eb40c",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-08T07:43:54Z",
+      "side": 1,
+      "message": "we can just `pending_intent.erase(addr);` even when the key is nonexistent, it will just do nothing.\nBut it\u0027s OK if you think this is cleaner",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 7
+      },
+      "revId": "7a565b42fc706ef60e9e90f1712ba31307423a88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca14f6f9_423f0177",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-08T07:43:54Z",
+      "side": 1,
+      "message": "nit: IIUC we can just `pending_intent[addr] \u003d intent;` even when the element doesn\u0027t exist in the map since the value of the map is a primitive type.",
+      "range": {
+        "startLine": 306,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 7
+      },
+      "revId": "7a565b42fc706ef60e9e90f1712ba31307423a88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
