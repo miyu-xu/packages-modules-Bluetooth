@@ -70,6 +70,30 @@
       },
       "revId": "8c9815aef93fac4a61ade5ce82db733b651f9360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05ca30e2_d11c2258",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T23:37:58Z",
+      "side": 1,
+      "message": "b/245820940",
+      "parentUuid": "3f055f87_6c16846d",
+      "range": {
+        "startLine": 232,
+        "startChar": 10,
+        "endLine": 232,
+        "endChar": 47
+      },
+      "revId": "8c9815aef93fac4a61ade5ce82db733b651f9360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
