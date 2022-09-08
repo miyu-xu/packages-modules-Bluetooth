@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3f2b44d_263e89c2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-08T17:47:24Z",
+      "side": 1,
+      "message": "@optedoblivion: Since this is new behavior, how should this be tested?",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e74dd14e_5c537ee7",
         "filename": "system/bta/include/bta_api.h",
         "patchSetId": 2
@@ -14,6 +31,23 @@
       "writtenOn": "2022-09-07T01:57:18Z",
       "side": 1,
       "message": "Maybe we can add a comment to describe this field, such as: \"HCI error code associated with the event\"",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1b8cec9_1ad31574",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1828,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-08T17:47:24Z",
+      "side": 1,
+      "message": "If link up failed, shouldn\u0027t this be sending BT_ACL_STATE_DISCONNECTED?",
       "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
