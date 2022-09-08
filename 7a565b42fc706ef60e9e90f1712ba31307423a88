@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d46d667_0588f979",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-08T23:50:01Z",
+      "side": 1,
+      "message": "Done. \nYou are right, just not writing C++ for a while.",
+      "parentUuid": "8c5dc32a_b97eb40c",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 7
+      },
+      "revId": "7a565b42fc706ef60e9e90f1712ba31307423a88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca14f6f9_423f0177",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-08T07:43:54Z",
       "side": 1,
       "message": "nit: IIUC we can just `pending_intent[addr] \u003d intent;` even when the element doesn\u0027t exist in the map since the value of the map is a primitive type.",
+      "range": {
+        "startLine": 306,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 7
+      },
+      "revId": "7a565b42fc706ef60e9e90f1712ba31307423a88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd17bca7_ec5d1995",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-08T23:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca14f6f9_423f0177",
       "range": {
         "startLine": 306,
         "startChar": 0,
