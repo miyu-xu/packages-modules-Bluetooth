@@ -2550,10 +2550,14 @@ TEST_F(StateMachineTest, testStreamConfigurationAdsp) {
   ASSERT_EQ(group->GetState(),
             types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
 
-  ASSERT_EQ(static_cast<int>(group->stream_conf.sink_offloader_streams.size()),
-            2);
   ASSERT_EQ(
-      static_cast<int>(group->stream_conf.source_offloader_streams.size()), 2);
+      static_cast<int>(
+          group->stream_conf.sink_offloader_streams_audio_allocation.size()),
+      2);
+  ASSERT_EQ(
+      static_cast<int>(
+          group->stream_conf.source_offloader_streams_audio_allocation.size()),
+      2);
 
   testing::Mock::VerifyAndClearExpectations(&mock_codec_manager_);
 }
@@ -2600,24 +2604,30 @@ TEST_F(StateMachineTest, testStreamConfigurationAdspNoDownMix) {
       group, static_cast<types::LeAudioContextType>(context_type),
       context_type));
 
-  ASSERT_EQ(static_cast<int>(group->stream_conf.sink_offloader_streams.size()),
-            2);
   ASSERT_EQ(
-      static_cast<int>(group->stream_conf.source_offloader_streams.size()), 2);
+      static_cast<int>(
+          group->stream_conf.sink_offloader_streams_audio_allocation.size()),
+      2);
+  ASSERT_EQ(
+      static_cast<int>(
+          group->stream_conf.source_offloader_streams_audio_allocation.size()),
+      2);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(),
             types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
 
   uint32_t allocation = 0;
-  for (const auto& s : group->stream_conf.sink_offloader_streams) {
+  for (const auto& s :
+       group->stream_conf.sink_offloader_streams_audio_allocation) {
     allocation |= s.second;
     ASSERT_FALSE(allocation == 0);
   }
   ASSERT_TRUE(allocation == codec_spec_conf::kLeAudioLocationStereo);
 
   allocation = 0;
-  for (const auto& s : group->stream_conf.source_offloader_streams) {
+  for (const auto& s :
+       group->stream_conf.source_offloader_streams_audio_allocation) {
     allocation |= s.second;
     ASSERT_FALSE(allocation == 0);
   }
@@ -2662,21 +2672,48 @@ TEST_F(StateMachineTest, testStreamConfigurationAdspDownMix) {
       group, static_cast<types::LeAudioContextType>(context_type),
       context_type));
 
-  ASSERT_EQ(static_cast<int>(group->stream_conf.sink_offloader_streams.size()),
-            2);
   ASSERT_EQ(
-      static_cast<int>(group->stream_conf.source_offloader_streams.size()), 2);
+      static_cast<int>(
+          group->stream_conf.sink_offloader_streams_audio_allocation.size()),
+      2);
+  ASSERT_EQ(
+      static_cast<int>(
+          group->stream_conf.source_offloader_streams_audio_allocation.size()),
+      2);
+
+  ASSERT_EQ(static_cast<int>(
+                group->stream_conf.sink_offloader_streams_connection.size()),
+            2);
+  ASSERT_EQ(static_cast<int>(
+                group->stream_conf.source_offloader_streams_connection.size()),
+            2);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(),
             types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
 
-  for (const auto& s : group->stream_conf.sink_offloader_streams) {
+  uint32_t allocation = 0;
+  for (const auto& s :
+       group->stream_conf.sink_offloader_streams_audio_allocation) {
+    allocation |= s.second;
+    ASSERT_FALSE(allocation == 0);
+  }
+  ASSERT_TRUE(allocation == codec_spec_conf::kLeAudioLocationStereo);
+
+  allocation = 0;
+  for (const auto& s :
+       group->stream_conf.source_offloader_streams_audio_allocation) {
+    allocation |= s.second;
+    ASSERT_FALSE(allocation == 0);
+  }
+  ASSERT_TRUE(allocation == codec_spec_conf::kLeAudioLocationStereo);
+
+  for (const auto& s : group->stream_conf.sink_offloader_streams_connection) {
     ASSERT_TRUE((s.second == 0) ||
                 (s.second == codec_spec_conf::kLeAudioLocationStereo));
   }
 
-  for (const auto& s : group->stream_conf.source_offloader_streams) {
+  for (const auto& s : group->stream_conf.source_offloader_streams_connection) {
     ASSERT_TRUE((s.second == 0) ||
                 (s.second == codec_spec_conf::kLeAudioLocationStereo));
   }

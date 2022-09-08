@@ -89,7 +89,12 @@ struct codec_manager_impl {
           update_receiver) {
     if (stream_conf.sink_streams.empty()) return;
 
-    sink_config.stream_map = std::move(stream_conf.sink_offloader_streams);
+    if (stream_conf.sink_is_initialed) {
+      sink_config.stream_map =
+          stream_conf.sink_offloader_streams_audio_allocation;
+    } else {
+      sink_config.stream_map = stream_conf.sink_offloader_streams_connection;
+    }
     // TODO: set the default value 16 for now, would change it if we support
     // mode bits_per_sample
     sink_config.bits_per_sample = 16;
@@ -107,7 +112,13 @@ struct codec_manager_impl {
           update_receiver) {
     if (stream_conf.source_streams.empty()) return;
 
-    source_config.stream_map = std::move(stream_conf.source_offloader_streams);
+    if (stream_conf.source_is_initialed) {
+      source_config.stream_map =
+          stream_conf.source_offloader_streams_audio_allocation;
+    } else {
+      source_config.stream_map =
+          stream_conf.source_offloader_streams_connection;
+    }
     // TODO: set the default value 16 for now, would change it if we support
     // mode bits_per_sample
     source_config.bits_per_sample = 16;

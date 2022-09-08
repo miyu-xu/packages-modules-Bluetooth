@@ -2520,6 +2520,7 @@ class LeAudioClientImpl : public LeAudioClient {
     leAudioClientAudioSource->UpdateRemoteDelay(remote_delay_ms);
     leAudioClientAudioSource->ConfirmStreamingRequest();
     audio_sender_state_ = AudioState::STARTED;
+    updateOffloaderIfNeeded(group);
 
     return true;
   }
@@ -2578,6 +2579,7 @@ class LeAudioClientImpl : public LeAudioClient {
     leAudioClientAudioSink->UpdateRemoteDelay(remote_delay_ms);
     leAudioClientAudioSink->ConfirmStreamingRequest();
     audio_receiver_state_ = AudioState::STARTED;
+    updateOffloaderIfNeeded(group);
   }
 
   void SuspendAudio(void) {
@@ -3504,7 +3506,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
     const auto* stream_conf = &group->stream_conf;
 
-    if (stream_conf->sink_offloader_changed) {
+    if (stream_conf->sink_offloader_changed ||
+        stream_conf->sink_not_all_cises_connected) {
       LOG_INFO("Update sink offloader streams");
       uint16_t remote_delay_ms =
           group->GetRemoteDelay(le_audio::types::kLeAudioDirectionSink);
@@ -3515,7 +3518,8 @@ class LeAudioClientImpl : public LeAudioClient {
       group->StreamOffloaderUpdated(le_audio::types::kLeAudioDirectionSink);
     }
 
-    if (stream_conf->source_offloader_changed) {
+    if (stream_conf->source_offloader_changed ||
+        stream_conf->source_not_all_cises_connected) {
       LOG_INFO("Update source offloader streams");
       uint16_t remote_delay_ms =
           group->GetRemoteDelay(le_audio::types::kLeAudioDirectionSource);
