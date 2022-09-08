@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "456b84c6_1dae9a66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-09-08T23:40:14Z",
+      "side": 1,
+      "message": "ACK. I think it is OK to keep onConnectingState().\n\nIf manual test is done, should we mention that in CL description? No need to mention SASS audio switching, simply say BT connection",
+      "parentUuid": "84365d04_d5485e89",
+      "revId": "c3c1830de3be8d771614a1a1fefee7430461a6d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10cb1949_7fadf5de",
