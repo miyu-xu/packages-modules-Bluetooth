@@ -16,6 +16,29 @@
       "message": "Hi, all:\n\nI have updated the patch and most of the presubmit tests have passed.\n\nCould you please have a look at the patch again?\nThanks!\n",
       "revId": "b5b20e9a63eedfba7a1b9de69adf40aaa69e5e5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "983bde73_3c978071",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4241,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-08T02:59:00Z",
+      "side": 1,
+      "message": "Do we still want this to be thrown ?\nI think this should be removed but a second opinion is more than welcome.\n\nI suppose it now can happen since we are asking for the `getBluetoothService()` in any `BluetoothDevice` method and we no longer use any lifecycle callback.",
+      "range": {
+        "startLine": 4238,
+        "startChar": 11,
+        "endLine": 4241,
+        "endChar": 13
+      },
+      "revId": "b5b20e9a63eedfba7a1b9de69adf40aaa69e5e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
