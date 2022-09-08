@@ -1292,7 +1292,11 @@
     "HOGP": {},
     "HSP": {},
     "IOP": {},
-    "L2CAP": {},
+    "L2CAP": {
+      "TSPX_spsm": "0080",
+      "TSPX_psm_authentication_required": "0080",
+      "TSPX_psm_authorization_required": "0080"
+    },
     "MAP": {},
     "MCAP": {},
     "OPP": {},

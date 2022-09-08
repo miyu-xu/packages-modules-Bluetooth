@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "L2capProto";
+
+import "google/protobuf/empty.proto";
+import "pandora_experimental/host.proto";
+
+service L2CAP {
+  rpc CreateLECreditBasedChannel(CreateLECreditBasedChannelRequest) returns (CreateLECreditBasedChannelResponse);
+  rpc SendDataPacket(SendDataPacketRequest) returns (SendDataPacketResponse);
+  rpc ReceiveData(ReceiveDataRequest) returns (ReceiveDataResponse);
+  rpc ListenL2CAPChannel(ListenL2CAPChannelRequest)
+    returns (ListenL2CAPChannelResponse);
+  rpc AcceptL2CAPChannel(AcceptL2CAPChannelRequest) returns (AcceptL2CAPChannelResponse);
+}
+
+// Request for the `OpenSource` method.
+message CreateLECreditBasedChannelRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+  int32 psm = 2;
+  bool secure = 3;
+}
+
+// Request for the `OpenSource` method.
+message CreateLECreditBasedChannelResponse {}
+
+message SendDataPacketRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+  bytes data = 2;
+}
+
+message SendDataPacketResponse {}
+
+message ReceiveDataRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+}
+
+message ReceiveDataResponse {
+  bytes data = 1;
+}
+
+message ListenL2CAPChannelRequest{
+  Connection connection = 1;
+  bool secure = 2;
+}
+
+message ListenL2CAPChannelResponse {}
+
+message AcceptL2CAPChannelRequest{
+  Connection connection = 1;
+}
+
+message AcceptL2CAPChannelResponse {}
