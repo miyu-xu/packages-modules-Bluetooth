@@ -151,19 +151,15 @@ class L2cap(val context: Context) : L2CAPImplBase() {
       Log.i(TAG, "MakeConnection: device=$device")
 
 
-      val psm=0x0025; // try 0x01 for psm
-      // Log.i(TAG, "devices size: "+ devices.size.toString())
-      // // val bluetoothSocket=devices.elementAt(0).createL2capChannel(25);
+      val psm=0x0025; // based on IXIT
 
-      // var bluetoothServerSocket:BluetoothServerSocket?=null
       try{
-        // bluetoothGatt = device.connectGatt(localContext, false, bluetoothGattCallback)
-        // bluetoothSocket=device.createL2capChannel(psm);
         bluetoothSocket=device.createInsecureL2capChannel(psm);
+        bluetoothSocket.connect()
 
       }catch( e:IOException){
         Log.d(TAG, "bluetoothSocket: "+e.toString())
-        throw e;
+        throw e
       }
 
       // Get the BluetoothSocket input and output streams
@@ -173,8 +169,6 @@ class L2cap(val context: Context) : L2CAPImplBase() {
       } catch (e: IOException) {
         Log.e(TAG, "bluetooth sockets not created", e)
       }
-
-
 
       // Response sent to client
       // Empty.getDefaultInstance()

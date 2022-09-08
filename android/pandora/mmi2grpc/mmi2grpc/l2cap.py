@@ -6,9 +6,11 @@ from pandora.l2cap_grpc import L2CAP
 from pandora.host_grpc import Host
 from pandora.host_pb2 import Connection
 
+import sys
+
 
 class L2CAPProxy(ProfileProxy):
-
+    test_status_map = {}
     connection: Optional[Connection] = None
 
     def __init__(self, channel):
@@ -17,7 +19,7 @@ class L2CAPProxy(ProfileProxy):
         self.host = Host(channel)
 
     @assert_description
-    def MMI_IUT_SEND_LE_CREDIT_BASED_CONNECTION_REQUEST(self, pts_addr: bytes, **kwargs):
+    def MMI_IUT_SEND_LE_CREDIT_BASED_CONNECTION_REQUEST(self, test: str, pts_addr: bytes, **kwargs):
         """
         Using the Implementation Under Test (IUT), send a LE Credit based
         connection request to PTS.
@@ -27,9 +29,16 @@ class L2CAPProxy(ProfileProxy):
         """
         if self.connection is None:
             self.connection = self.host.GetLEConnection(address=pts_addr).connection
-        self.l2cap.MakeConnection(connection=self.connection)
 
-    
+        try:
+            self.l2cap.MakeConnection(connection=self.connection)
+        except:
+            if test == 'L2CAP/LE/CFC/BV-01-C':
+                self.test_status_map[test] = 'OK'
+                return "OK"
+            else:
+                raise Exception("Unexpected disconnection")
+
         return "OK"
 
     @assert_description
@@ -49,7 +58,6 @@ class L2CAPProxy(ProfileProxy):
         """
         self.l2cap.SendLEDataPacket(data=b"this is a large data package: MMI_UPPER_TESTER_SEND_LE_DATA_PACKET_LARGE")
         return "OK"
-
 
     @assert_description
     def MMI_UPPER_TESTER_CONFIRM_LE_DATA(self, **kwargs):
@@ -71,21 +79,30 @@ class L2CAPProxy(ProfileProxy):
         Upper Tester command IUT to send at least 4 frames of LE data packets to
         the PTS.
         """
-        self.l2cap.SendLEDataPacket(data=b"this is a large data package with at least 4 frames: MMI_UPPER_TESTER_SEND_LE_DATA_PACKET_LARGE")
+        self.l2cap.SendLEDataPacket(
+            data=b"this is a large data package with at least 4 frames: MMI_UPPER_TESTER_SEND_LE_DATA_PACKET_LARGE")
         return "OK"
-
 
     @assert_description
     def MMI_UPPER_TESTER_SEND_LE_DATA_PACKET_CONTINUE(self, **kwargs):
         """
         IUT continue to send LE data packet(s) to the PTS.
         """
-        self.l2cap.SendLEDataPacket(data=b"this is a large data package with at least 4 frames: MMI_UPPER_TESTER_SEND_LE_DATA_PACKET_LARGE")
+        self.l2cap.SendLEDataPacket(
+            data=b"this is a large data package with at least 4 frames: MMI_UPPER_TESTER_SEND_LE_DATA_PACKET_LARGE")
         return "OK"
 
-
-
-
-
-    
-
+    @assert_description
+    def MMI_UPPER_TESTER_CONFIRM_RECEIVE_COMMAND_NOT_UNDERSTAOOD(self, test: str, **kwargs):
+        """
+        Did Implementation Under Test(IUT) receive L2CAP Reject with 'command
+        not understood' error?
+        Click Yes if it is, otherwise click No.
+        Description : Verify that after receiving the Command Reject from the
+        Lower Tester, the IUT inform the Upper Tester.
+        """
+        if self.test_status_map[test] == "OK":
+            return "OK"
+        else:
+            print('error in MMI_UPPER_TESTER_CONFIRM_RECEIVE_COMMAND_NOT_UNDERSTAOOD', file=sys.stderr)
+            raise Exception("Unexpected RECEIVE_COMMAND")

@@ -59,7 +59,7 @@ class IUT:
         self._hfp = None
         self._sdp = None
         self._sm = None
-        self._l2cap=None
+        self._l2cap = None
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
