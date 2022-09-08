@@ -24,6 +24,7 @@ filegroup {
         "le_address_manager.cc",
         "le_advertising_manager.cc",
         "le_scanning_manager.cc",
+        "le_scanning_utils.cc",
         "link_key.cc",
         "uuid.cc",
         "vendor_specific_event_manager.cc",
