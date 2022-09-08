@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "778f37b1_f40d5fcb",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-08T16:46:48Z",
+      "side": 1,
+      "message": "Would prefer type safety for production code. Here we are comparing uint64_t types, the condition in \"#else\" compares std::chrono::milliseconds.",
+      "parentUuid": "51e13718_752a4cb3",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "0f7f0b38ed6964282dc748a4f833980ab35c2b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "179135e7_6272cd33",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-07T23:27:29Z",
       "side": 1,
       "message": "Can we post the check to the handler instead of sleeping?",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 35
+      },
+      "revId": "0f7f0b38ed6964282dc748a4f833980ab35c2b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33f7a56b_0e5ebab9",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-08T16:46:48Z",
+      "side": 1,
+      "message": "Good point, thanks, done.",
+      "parentUuid": "179135e7_6272cd33",
       "range": {
         "startLine": 331,
         "startChar": 0,
