@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "L2capProto";
+
+import "google/protobuf/empty.proto";
+import "pandora/host.proto";
+
+service L2CAP {
+  rpc StartAdvertisement(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc MakeConnection(MakeConnectionRequest) returns (MakeConnectionResponse);
+  rpc SendLEDataPacket(SendLEDataPacketRequest) returns (SendLEDataPacketResponse);
+}
+
+// Request for the `OpenSource` method.
+message MakeConnectionRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+}
+
+// Request for the `OpenSource` method.
+message MakeConnectionResponse {}
+
+message SendLEDataPacketRequest {
+  // The connection that will open the stream.
+  Connection connection = 1;
+  bytes data=2;
+}
+
+message SendLEDataPacketResponse {}

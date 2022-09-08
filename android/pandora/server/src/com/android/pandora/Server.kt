@@ -32,11 +32,13 @@ class Server(context: Context) {
   private var gatt: Gatt
   private var hfp: Hfp
   private var sm: Sm
+  private var l2cap: L2cap
   private var grpcServer: GrpcServer
 
   init {
     host = Host(context, this)
     a2dp = A2dp(context)
+    l2cap=L2cap(context)
     gatt = Gatt(context)
     hfp = Hfp(context)
     sm = Sm(context)
@@ -47,6 +49,7 @@ class Server(context: Context) {
         .addService(gatt)
         .addService(hfp)
         .addService(sm)
+        .addService(l2cap)
         .build()
 
     Log.d(TAG, "Starting Pandora Server")
@@ -60,6 +63,7 @@ class Server(context: Context) {
     gatt.deinit()
     hfp.deinit()
     sm.deinit()
+    l2cap.deinit()
     grpcServer.shutdownNow()
   }
 
