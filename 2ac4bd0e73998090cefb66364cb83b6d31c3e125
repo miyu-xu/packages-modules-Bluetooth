@@ -22,6 +22,29 @@
       },
       "revId": "2ac4bd0e73998090cefb66364cb83b6d31c3e125",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac8261c4_cd9bd6ad",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4112,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-08T12:21:31Z",
+      "side": 1,
+      "message": "Could we ASSERT here ?",
+      "range": {
+        "startLine": 4110,
+        "startChar": 0,
+        "endLine": 4112,
+        "endChar": 3
+      },
+      "revId": "2ac4bd0e73998090cefb66364cb83b6d31c3e125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
