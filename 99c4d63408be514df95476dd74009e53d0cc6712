@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d0770c55_ab7d73e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-08T21:32:12Z",
+      "side": 1,
+      "message": "Verified locally that this patch fix the UUID corruption. ",
+      "revId": "99c4d63408be514df95476dd74009e53d0cc6712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a1eeef2e_f1c006cc",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
