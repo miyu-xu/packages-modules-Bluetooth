@@ -57,6 +57,11 @@ enum GapDataType : 8 {
   MANUFACTURER_SPECIFIC_DATA = 0xFF,
 }
 
+struct LengthAndData {
+  _size_(data) : 8,
+  data: 8[],
+}
+
 struct GapData {
   _size_(data) : 8, // Including one byte for data_type
   data_type : GapDataType,
@@ -5512,7 +5517,7 @@ struct LeAdvertisingResponse {
   address_type : AddressType,
   address : Address,
   _size_(advertising_data) : 8,
-  advertising_data : GapData[],
+  advertising_data : LengthAndData[],
   rssi : 8,
 }
 
@@ -5666,7 +5671,7 @@ struct LeExtendedAdvertisingResponse {
   direct_address_type : DirectAdvertisingAddressType,
   direct_address : Address,
   _size_(advertising_data) : 8,
-  advertising_data : 8[],
+  advertising_data: LengthAndData[],
 }
 
 packet LeExtendedAdvertisingReport : LeMetaEvent (subevent_code = EXTENDED_ADVERTISING_REPORT) {
@@ -5700,7 +5705,7 @@ packet LePeriodicAdvertisingReport : LeMetaEvent (subevent_code = PERIODIC_ADVER
   cte_type : CteType,
   data_status : PeriodicAdvertisingDataStatus,
   _size_(data) : 8,
-  data : 8[],
+  data: LengthAndData[]
 }
 
 packet LePeriodicAdvertisingSyncLost : LeMetaEvent (subevent_code = PERIODIC_ADVERTISING_SYNC_LOST) {
