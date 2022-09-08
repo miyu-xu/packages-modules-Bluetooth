@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b14d28b0_513d36f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-09-08T18:32:16Z",
+      "side": 1,
+      "message": "Yes, I\u0027ve manually tested this change in SASS audio switching scenario.\ni.e., turning on screen -\u003e play music: then SASS initiates connection to Earbud\n\nWithout this change, low latency scan is executed for 6 seconds while SASS is initiating connection.\nWith this change, balanced scan is executed while SASS is initiating connection.",
+      "parentUuid": "18b0df24_edd04ab7",
+      "revId": "c3c1830de3be8d771614a1a1fefee7430461a6d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10cb1949_7fadf5de",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-08T18:16:05Z",
       "side": 1,
       "message": "Just to check, should we handle other states (e.g., connected) or simply rely on the internal 6 seconds timeout?",
+      "range": {
+        "startLine": 1797,
+        "startChar": 32,
+        "endLine": 1797,
+        "endChar": 74
+      },
+      "revId": "c3c1830de3be8d771614a1a1fefee7430461a6d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de72a0fe_ffe1902e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-09-08T18:32:16Z",
+      "side": 1,
+      "message": "The source to report connecting state could be multiple like different remote devices or profiles. Instead of tracking the connecting/connected process from multiple sources, current logic simply refresh the 6 second timer whenever connecting state is reported.",
+      "parentUuid": "10cb1949_7fadf5de",
       "range": {
         "startLine": 1797,
         "startChar": 32,
