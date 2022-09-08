@@ -22,6 +22,30 @@
       },
       "revId": "76291f959a890b806850ba0fee051e636466fe7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "539b27c6_355e84a5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-09-08T15:31:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a34aca06_9388b656",
+      "range": {
+        "startLine": 237,
+        "startChar": 7,
+        "endLine": 240,
+        "endChar": 25
+      },
+      "revId": "76291f959a890b806850ba0fee051e636466fe7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
