@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4122555_85514fa4",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-08T07:24:20Z",
+      "side": 1,
+      "message": "Probably out of the scope of this CL, but what is status and state?\nIn BlueZ we just have one of them.",
+      "range": {
+        "startLine": 176,
+        "startChar": 57,
+        "endLine": 176,
+        "endChar": 88
+      },
+      "revId": "03c604c7fd54dfb509d5554d3a222d58874a0d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3831c89_ce5fd640",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-08T07:24:20Z",
+      "side": 1,
+      "message": "PROFILE_CONN_STATE_ALREADY_CONNECTED",
+      "range": {
+        "startLine": 239,
+        "startChar": 37,
+        "endLine": 239,
+        "endChar": 63
+      },
+      "revId": "03c604c7fd54dfb509d5554d3a222d58874a0d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff57809f_5bd946cf",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-08T07:24:20Z",
+      "side": 1,
+      "message": "For AuthFailure and AuthRejected, maybe it falls into UNKNOWN_ERROR in disconnecting case.",
+      "revId": "03c604c7fd54dfb509d5554d3a222d58874a0d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef893f92_75568d50",
+        "filename": "system/gd/metrics/chromeos/metrics_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-08T07:24:20Z",
+      "side": 1,
+      "message": "Any reason why you have only one enum, instead of two like BlueZ?",
+      "revId": "03c604c7fd54dfb509d5554d3a222d58874a0d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
