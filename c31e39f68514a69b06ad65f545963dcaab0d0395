@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd4242a_779301dd",
+        "filename": "tools/rootcanal/model/controller/acl_connection.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "I think the idea is to use this as the LSTO, except with a slight spec violation of using 1s rather than 20s just to make testing less painful.\n\nIn the future, if needed, we can add the relevant commands to change this timeout for each connection without significant refactoring, so I\u0027d prefer to keep this as an instance variable rathe than a constant.",
+      "parentUuid": "b991d042_34d6b2fe",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 39
+      },
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bbb5de2_5d54202f",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "572f2bfe_e9a5f469",
+        "filename": "tools/rootcanal/model/controller/acl_connection.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbb3d3f3_197e9d84",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 63,
+        "endChar": 36
+      },
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5eed1c4d_d4594f78",
@@ -84,6 +132,30 @@
       "writtenOn": "2022-09-07T13:50:13Z",
       "side": 1,
       "message": "last_packet_timestamp_ ?",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ff3faac_a86020a9",
+        "filename": "tools/rootcanal/model/controller/acl_connection.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5eed1c4d_d4594f78",
       "range": {
         "startLine": 64,
         "startChar": 2,
@@ -111,6 +183,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da82fff3_7b0365d7",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4110,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdbbf6ad_6e2e4b4f",
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3774e25_d968f7ca",
@@ -124,6 +214,30 @@
       "writtenOn": "2022-09-07T10:10:08Z",
       "side": 1,
       "message": "`CONNECTION_TIMEOUT` is more appropriate here",
+      "range": {
+        "startLine": 4122,
+        "startChar": 27,
+        "endLine": 4122,
+        "endChar": 60
+      },
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71c0318_127b0652",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4122,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b3774e25_d968f7ca",
       "range": {
         "startLine": 4122,
         "startChar": 27,
@@ -151,6 +265,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70396809_4cd9b5d4",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4128,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c940aaa_25255179",
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb1d5b59_d6744d79",
@@ -168,6 +300,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a8604a_51a7e7f8",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4137,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb1d5b59_d6744d79",
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec400db6_ae642567",
@@ -181,6 +331,24 @@
       "writtenOn": "2022-09-07T10:10:08Z",
       "side": 1,
       "message": "We can use `source` directly",
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "659ad903_74e3346c",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4138,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec400db6_ae642567",
       "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -208,6 +376,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db4f509f_47f36a37",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f729ab89_0e4d3e57",
+      "range": {
+        "startLine": 490,
+        "startChar": 0,
+        "endLine": 491,
+        "endChar": 21
+      },
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13d5ac05_9a83d719",
@@ -225,6 +417,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21f9721c_188fcfbb",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 4
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13d5ac05_9a83d719",
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3095cd2_30910b07",
@@ -238,6 +448,24 @@
       "writtenOn": "2022-09-07T10:10:08Z",
       "side": 1,
       "message": "nit: Remove newline to keep the same style as the others",
+      "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cba33bb_d5e00553",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 4
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-08T00:25:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3095cd2_30910b07",
       "revId": "c31e39f68514a69b06ad65f545963dcaab0d0395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
