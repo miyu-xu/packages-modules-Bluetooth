@@ -16,15 +16,16 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
 
 namespace bluetooth {
 namespace metrics {
 
-// ENUM definitaion for adapter state that in sync with ChromeOS strcutured metrics
+// ENUM definition for adapter state that in sync with ChromeOS structured metrics
 // BluetoothAdapterStateChanged/AdapterState.
 enum class AdapterState : int64_t { OFF = 0, ON = 1 };
 
-// ENUM definitaion for pairing state that in sync with ChromeOS strcutured metrics
+// ENUM definition for pairing state that in sync with ChromeOS structured metrics
 // BluetoothPairingStateChanged/PairingState and BlueZ metrics_pair_result.
 enum class PairingState : int64_t {
   PAIR_STARTING = 0,
@@ -68,11 +69,64 @@ enum class PairingState : int64_t {
   PAIR_FAIL_END = 19,
 };
 
+// ENUM definition for pairing state that in sync with ChromeOS structured metrics
+// BluetoothProfileConnectionStateChanged/Profile and BlueZ metrics_bluetooth_profile.
+enum class Profile : int64_t {
+  UNKNOWN = 0,
+  HSP = 1,
+  HFP = 2,
+  A2DP = 3,
+  AVRCP = 4,
+  HID = 5,
+  HOG = 6,
+  GATT = 7,
+  GAP = 8,
+  DEVICE_INFO = 9,
+  BATTERY = 10,
+  NEARBY = 11,
+  PHONEHUB = 12,
+};
+
+// ENUM definition for profile connection state that in sync with ChromeOS structured metrics
+// BluetoothPairingStateChanged/ProfileConnectionState and BlueZ's metrics_profile_conn_state and
+// metrics_profile_disconn_state. ChromeOS BlueZ profile connection metrics have two sets of ENUMs that help define the
+// connection status: one for connecting the attempt and the other for disconnecting.
+enum class ProfileConnectionState : int64_t {
+  // Common states for connecting and disconnecting a profile
+  PROFILE_CONN_STATE_STARTING = 0,
+  PROFILE_CONN_STATE_SUCCEED = 1,
+  PROFILE_CONN_STATE_ALREADY_CONNECTED = 2,
+  PROFILE_CONN_STATE_BUSY_CONNECTING = 3,
+  PROFILE_CONN_STATE_CONNECTION_REFUSED = 4,
+  PROFILE_CONN_STATE_CONNECTION_CANCELED = 5,
+  PROFILE_CONN_STATE_UNKNOWN_ERROR = 8,
+  // Profile connection states that unique to connecting.
+  PROFILE_CONN_STATE_REMOTE_UNAVAILABLE = 6,
+  PROFILE_CONN_STATE_PROFILE_NOT_SUPPORTED = 7,
+  // Profile connection states that unique to disconnecting.
+  PROFILE_CONN_STATE_BT_IO_CONNECT_ERROR = 6,
+  PROFILE_CONN_STATE_INVALID_PARAMS = 7,
+};
+
+// A binary ENUM defines the metrics event is logged for: either for an attempt to connect or to disconnect.
+enum class StateChangeType : int64_t { STATE_CHANGE_TYPE_DISCONNECT = 0, STATE_CHANGE_TYPE_CONNECT = 1 };
+
+// A struct holds the parsed profile connection event.
+struct ProfileConnectionEvent {
+  StateChangeType type;
+  Profile profile;
+  ProfileConnectionState state;
+};
+
 // Convert topshim::btif::BtState to AdapterState.
 AdapterState ToAdapterState(uint32_t state);
 
 // Convert topshim::btif::bond_state info (status, addr, bond_state, and fail_reason) to PairingState
 PairingState ToPairingState(uint32_t status, uint32_t bond_state, int32_t fail_reason);
+
+// Convert Floss profile connection info to ProfileConnectionEvent
+ProfileConnectionEvent ToProfileConnectionEvent(
+    std::string addr, uint32_t intent, uint32_t profile, uint32_t status, uint32_t state);
 
 }  // namespace metrics
 }  // namespace bluetooth
