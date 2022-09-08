@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "436ba0a1_95ba4c95",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-08T07:27:30Z",
+      "side": 1,
+      "message": "ah, so status is like the errorcode, and state is CONNECT|CONNECTING|DISCONNECT|DISCONNECTING?",
+      "parentUuid": "b4122555_85514fa4",
+      "range": {
+        "startLine": 176,
+        "startChar": 57,
+        "endLine": 176,
+        "endChar": 88
+      },
+      "revId": "03c604c7fd54dfb509d5554d3a222d58874a0d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3831c89_ce5fd640",
         "filename": "system/gd/metrics/chromeos/metrics_event.cc",
         "patchSetId": 2
