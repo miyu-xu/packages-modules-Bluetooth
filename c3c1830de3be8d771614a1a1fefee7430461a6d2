@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b0df24_edd04ab7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-09-08T18:16:05Z",
+      "side": 1,
+      "message": "Have we done any manual tests?\n\nThe onConnectingState() is internal to BT stack. Maybe we shouldn\u0027t call it API in the CL description. Just say adding the support of downgrading ....",
+      "revId": "c3c1830de3be8d771614a1a1fefee7430461a6d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10cb1949_7fadf5de",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-09-08T18:16:05Z",
+      "side": 1,
+      "message": "Just to check, should we handle other states (e.g., connected) or simply rely on the internal 6 seconds timeout?",
+      "range": {
+        "startLine": 1797,
+        "startChar": 32,
+        "endLine": 1797,
+        "endChar": 74
+      },
+      "revId": "c3c1830de3be8d771614a1a1fefee7430461a6d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
