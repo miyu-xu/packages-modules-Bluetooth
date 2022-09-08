@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3252ff7_a9eba9bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-09-08T01:24:08Z",
+      "side": 1,
+      "message": "Hi, all:\n\nI have updated the patch and most of the presubmit tests have passed.\n\nCould you please have a look at the patch again?\nThanks!\n",
+      "revId": "b5b20e9a63eedfba7a1b9de69adf40aaa69e5e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
