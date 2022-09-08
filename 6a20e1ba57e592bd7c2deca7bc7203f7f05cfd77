@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1b8dbf5_f6fb419f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-08T12:26:14Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nAdded few more test cases for AVRCP.\nPlease provide inputs at your feasibility.\n\nThanks and Regards,\nSnehal",
+      "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
