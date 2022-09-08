@@ -219,8 +219,8 @@ packet Packet_Struct_Field {
 // The parser must be able to handle padding fields.
 // The parser should generate a static size guard.
 packet Packet_Padding_Field {
-    a: 8,
-    _padding_ [1],
+    array: UnsizedStruct[],
+    _padding_ [16],
     b: 8,
 }
 
@@ -513,8 +513,8 @@ packet Struct_Struct_Field {
 // The parser must be able to handle padding fields.
 // The parser should generate a static size guard.
 struct Struct_Padding_Field_ {
-    a: 8,
-    _padding_ [1],
+    array: UnsizedStruct[],
+    _padding_ [16],
     b: 8,
 }
 packet Struct_Padding_Field {
