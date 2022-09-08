@@ -412,15 +412,17 @@ TEST_F(LeScanningManagerTest, start_scan_test) {
   report.event_type_ = AdvertisingEventType::ADV_DIRECT_IND;
   report.address_type_ = AddressType::PUBLIC_DEVICE_ADDRESS;
   Address::FromString("12:34:56:78:9a:bc", report.address_);
-  std::vector<GapData> gap_data{};
-  GapData data_item{};
-  data_item.data_type_ = GapDataType::FLAGS;
-  data_item.data_ = {0x34};
-  gap_data.push_back(data_item);
-  data_item.data_type_ = GapDataType::COMPLETE_LOCAL_NAME;
-  data_item.data_ = {'r', 'a', 'n', 'd', 'o', 'm', ' ', 'd', 'e', 'v', 'i', 'c', 'e'};
-  gap_data.push_back(data_item);
-  report.advertising_data_ = gap_data;
+  std::vector<LengthAndData> adv_data{};
+  LengthAndData data_item{};
+  data_item.data_.push_back(static_cast<uint8_t>(GapDataType::FLAGS));
+  data_item.data_.push_back(0x34);
+  adv_data.push_back(data_item);
+  data_item.data_.push_back(static_cast<uint8_t>(GapDataType::COMPLETE_LOCAL_NAME));
+  for (auto octet : {'r', 'a', 'n', 'd', 'o', 'm', ' ', 'd', 'e', 'v', 'i', 'c', 'e'}) {
+    data_item.data_.push_back(octet);
+  }
+  adv_data.push_back(data_item);
+  report.advertising_data_ = adv_data;
 
   EXPECT_CALL(mock_callbacks_, OnScanResult);
 
@@ -442,15 +444,17 @@ TEST_F(LeAndroidHciScanningManagerTest, start_scan_test) {
   report.event_type_ = AdvertisingEventType::ADV_DIRECT_IND;
   report.address_type_ = AddressType::PUBLIC_DEVICE_ADDRESS;
   Address::FromString("12:34:56:78:9a:bc", report.address_);
-  std::vector<GapData> gap_data{};
-  GapData data_item{};
-  data_item.data_type_ = GapDataType::FLAGS;
-  data_item.data_ = {0x34};
-  gap_data.push_back(data_item);
-  data_item.data_type_ = GapDataType::COMPLETE_LOCAL_NAME;
-  data_item.data_ = {'r', 'a', 'n', 'd', 'o', 'm', ' ', 'd', 'e', 'v', 'i', 'c', 'e'};
-  gap_data.push_back(data_item);
-  report.advertising_data_ = gap_data;
+  std::vector<LengthAndData> adv_data{};
+  LengthAndData data_item{};
+  data_item.data_.push_back(static_cast<uint8_t>(GapDataType::FLAGS));
+  data_item.data_.push_back(0x34);
+  adv_data.push_back(data_item);
+  data_item.data_.push_back(static_cast<uint8_t>(GapDataType::COMPLETE_LOCAL_NAME));
+  for (auto octet : {'r', 'a', 'n', 'd', 'o', 'm', ' ', 'd', 'e', 'v', 'i', 'c', 'e'}) {
+    data_item.data_.push_back(octet);
+  }
+  adv_data.push_back(data_item);
+  report.advertising_data_ = adv_data;
 
   EXPECT_CALL(mock_callbacks_, OnScanResult);
 
@@ -667,22 +671,18 @@ TEST_F(LeExtendedScanningManagerTest, start_scan_test) {
   report.scannable_ = 0;
   report.address_type_ = DirectAdvertisingAddressType::PUBLIC_DEVICE_ADDRESS;
   Address::FromString("12:34:56:78:9a:bc", report.address_);
-  std::vector<GapData> gap_data{};
-  GapData data_item{};
-  data_item.data_type_ = GapDataType::FLAGS;
-  data_item.data_ = {0x34};
-  gap_data.push_back(data_item);
-  data_item.data_type_ = GapDataType::COMPLETE_LOCAL_NAME;
-  data_item.data_ = {'r', 'a', 'n', 'd', 'o', 'm', ' ', 'd', 'e', 'v', 'i', 'c', 'e'};
-  gap_data.push_back(data_item);
-  std::vector<uint8_t> advertising_data = {};
-  for (auto data : gap_data) {
-    advertising_data.push_back((uint8_t)data.size() - 1);
-    advertising_data.push_back((uint8_t)data.data_type_);
-    advertising_data.insert(advertising_data.end(), data.data_.begin(), data.data_.end());
+  std::vector<LengthAndData> adv_data{};
+  LengthAndData data_item{};
+  data_item.data_.push_back(static_cast<uint8_t>(GapDataType::FLAGS));
+  data_item.data_.push_back(0x34);
+  adv_data.push_back(data_item);
+  data_item.data_.push_back(static_cast<uint8_t>(GapDataType::COMPLETE_LOCAL_NAME));
+  for (auto octet : {'r', 'a', 'n', 'd', 'o', 'm', ' ', 'd', 'e', 'v', 'i', 'c', 'e'}) {
+    data_item.data_.push_back(octet);
   }
+  adv_data.push_back(data_item);
 
-  report.advertising_data_ = advertising_data;
+  report.advertising_data_ = adv_data;
 
   EXPECT_CALL(mock_callbacks_, OnScanResult);
 
