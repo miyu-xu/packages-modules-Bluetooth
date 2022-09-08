@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0855b2e3_147f504c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1294,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-09-08T01:16:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0608ae56_fa8eb91b",
+      "range": {
+        "startLine": 1286,
+        "startChar": 4,
+        "endLine": 1294,
+        "endChar": 5
+      },
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85dcb11a_bf516856",
@@ -99,6 +123,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "721a31c5_438cb349",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-09-08T01:16:38Z",
+      "side": 1,
+      "message": "With this patch, the callbacks only take logs, for sure.\nIf you feel like logging is not needed at all, we can remove it.",
+      "parentUuid": "bc0ed3d9_5dab955e",
+      "range": {
+        "startLine": 1300,
+        "startChar": 4,
+        "endLine": 1319,
+        "endChar": 6
+      },
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0468d10f_81b87340",
@@ -112,6 +160,30 @@
       "writtenOn": "2022-09-03T21:20:18Z",
       "side": 1,
       "message": "replace by `getService()`",
+      "range": {
+        "startLine": 1511,
+        "startChar": 35,
+        "endLine": 1511,
+        "endChar": 93
+      },
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "214b550e_751d90d9",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1511,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-09-08T01:16:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0468d10f_81b87340",
       "range": {
         "startLine": 1511,
         "startChar": 35,
