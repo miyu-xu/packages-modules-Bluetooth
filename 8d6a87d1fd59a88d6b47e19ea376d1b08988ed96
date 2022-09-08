@@ -16,6 +16,24 @@
       "message": "[FATAL:btm_ble_gap.cc(634)] Check failed: p_vcs_cplt_params-\u003eparam_len \u003e\u003d BTM_VSC_CHIP_CAPABILITY_RSP_LEN.\n\nsignal 6 (SIGABRT)\n../libbluetooth_jni.so (base::debug::BreakDebugger)\n../libbluetooth_jni.so (logging::LogMessage::~LogMessage)\n../libbluetooth_jni.so (btm_ble_vendor_capability_vsc_cmpl_cback)\n../libbluetooth_jni.so (btm_vsc_complete)\n\nWe changed what we\u0027re returning by default for VSC capabilities.  It looks like the code returns early for unknown commands, though.",
       "revId": "8d6a87d1fd59a88d6b47e19ea376d1b08988ed96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b4e51e6_be51c0b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-08T14:38:16Z",
+      "side": 1,
+      "message": "Found the issue: `std::vector a{{}}` initializes the vector with one element, so I accidentally added a vendor capability.\nThanks for the investigation 😊",
+      "parentUuid": "cd3d8fe0_d3949b6c",
+      "revId": "8d6a87d1fd59a88d6b47e19ea376d1b08988ed96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
