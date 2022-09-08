@@ -26,6 +26,7 @@
 #include "hci/le_scanning_callback.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/uuid.h"
+#include "le_scanning_utils.h"
 #include "module.h"
 #include "os/alarm.h"
 #include "os/log.h"
@@ -330,7 +331,7 @@ class PeriodicSyncManager {
         event_view.GetTxPower(),
         event_view.GetRssi(),
         (uint16_t)event_view.GetDataStatus(),
-        event_view.GetData());
+        FilterSignificantData(event_view.GetData()));
   }
 
   void HandleLePeriodicAdvertisingSyncLost(LePeriodicAdvertisingSyncLostView event_view) {
