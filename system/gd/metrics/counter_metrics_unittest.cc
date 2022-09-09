@@ -33,7 +33,7 @@ class CounterMetricsTest : public ::testing::Test {
     }
     std::unordered_map<int32_t, int64_t> test_counters_;
    private:
-    void WriteCounter(int32_t key, int64_t count) override {
+    void Count(int32_t key, int64_t count) override {
       test_counters_[key] = count;
     }
     bool IsInitialized() override {
@@ -44,26 +44,26 @@ class CounterMetricsTest : public ::testing::Test {
 };
 
 TEST_F(CounterMetricsTest, normal_case) {
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, 2));
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, 3));
-  ASSERT_TRUE(testable_counter_metrics_.Count(2, 4));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, 2));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, 3));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(2, 4));
   testable_counter_metrics_.DrainBuffer();
   ASSERT_EQ(testable_counter_metrics_.test_counters_[1], 5);
   ASSERT_EQ(testable_counter_metrics_.test_counters_[2], 4);
 }
 
 TEST_F(CounterMetricsTest, multiple_drain) {
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, 2));
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, 3));
-  ASSERT_TRUE(testable_counter_metrics_.Count(2, 4));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, 2));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, 3));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(2, 4));
   testable_counter_metrics_.DrainBuffer();
   ASSERT_EQ(testable_counter_metrics_.test_counters_[1], 5);
   ASSERT_EQ(testable_counter_metrics_.test_counters_[2], 4);
   testable_counter_metrics_.test_counters_.clear();
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, 20));
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, 30));
-  ASSERT_TRUE(testable_counter_metrics_.Count(2, 40));
-  ASSERT_TRUE(testable_counter_metrics_.Count(3, 100));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, 20));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, 30));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(2, 40));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(3, 100));
   testable_counter_metrics_.DrainBuffer();
   ASSERT_EQ(testable_counter_metrics_.test_counters_[1], 50);
   ASSERT_EQ(testable_counter_metrics_.test_counters_[2], 40);
@@ -71,17 +71,17 @@ TEST_F(CounterMetricsTest, multiple_drain) {
 }
 
 TEST_F(CounterMetricsTest, overflow) {
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, LLONG_MAX));
-  ASSERT_FALSE(testable_counter_metrics_.Count(1, 1));
-  ASSERT_FALSE(testable_counter_metrics_.Count(1, 2));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, LLONG_MAX));
+  ASSERT_FALSE(testable_counter_metrics_.CacheCount(1, 1));
+  ASSERT_FALSE(testable_counter_metrics_.CacheCount(1, 2));
   testable_counter_metrics_.DrainBuffer();
   ASSERT_EQ(testable_counter_metrics_.test_counters_[1], LLONG_MAX);
 }
 
 TEST_F(CounterMetricsTest, non_positive) {
-  ASSERT_TRUE(testable_counter_metrics_.Count(1, 5));
-  ASSERT_FALSE(testable_counter_metrics_.Count(1, 0));
-  ASSERT_FALSE(testable_counter_metrics_.Count(1, -1));
+  ASSERT_TRUE(testable_counter_metrics_.CacheCount(1, 5));
+  ASSERT_FALSE(testable_counter_metrics_.CacheCount(1, 0));
+  ASSERT_FALSE(testable_counter_metrics_.CacheCount(1, -1));
   testable_counter_metrics_.DrainBuffer();
   ASSERT_EQ(testable_counter_metrics_.test_counters_[1], 5);
 }
