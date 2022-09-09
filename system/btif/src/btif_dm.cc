@@ -726,6 +726,10 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                        static_cast<tBT_DEVICE_TYPE>(device_type));
   }
 
+  if (addr_type == BLE_ADDR_PUBLIC) {
+    transport = BTM_UseLeLink(bd_addr) ? BT_TRANSPORT_LE : BT_TRANSPORT_BR_EDR;
+  }
+
   if (is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
     const bt_status_t status = btif_hh_connect(&bd_addr);
     if (status != BT_STATUS_SUCCESS)
