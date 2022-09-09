@@ -429,14 +429,14 @@ void AddLinkQualityEventToQueue(uint8_t length,
   p_bqr_event->ParseBqrLinkQualityEvt(length, p_link_quality_event);
 
   LOG(WARNING) << *p_bqr_event;
-  invoke_link_quality_report_cb(
-      bluetooth::common::time_get_os_boottime_ms(),
-      p_bqr_event->bqr_link_quality_event_.quality_report_id,
-      p_bqr_event->bqr_link_quality_event_.rssi,
-      p_bqr_event->bqr_link_quality_event_.snr,
-      p_bqr_event->bqr_link_quality_event_.retransmission_count,
-      p_bqr_event->bqr_link_quality_event_.no_rx_count,
-      p_bqr_event->bqr_link_quality_event_.nak_count);
+  // invoke_link_quality_report_cb(
+  //     bluetooth::common::time_get_os_boottime_ms(),
+  //     p_bqr_event->bqr_link_quality_event_.quality_report_id,
+  //     p_bqr_event->bqr_link_quality_event_.rssi,
+  //     p_bqr_event->bqr_link_quality_event_.snr,
+  //     p_bqr_event->bqr_link_quality_event_.retransmission_count,
+  //     p_bqr_event->bqr_link_quality_event_.no_rx_count,
+  //     p_bqr_event->bqr_link_quality_event_.nak_count);
 
 #ifdef OS_ANDROID
   int ret = stats_write(

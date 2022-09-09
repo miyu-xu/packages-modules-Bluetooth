@@ -1165,7 +1165,7 @@ using Record = common::TimestampedEntry<std::string>;
 const std::string kTimeFormat("%Y-%m-%d %H:%M:%S");
 
 #define DUMPSYS_TAG "shim::legacy::hid"
-extern btif_hh_cb_t btif_hh_cb;
+btif_hh_cb_t btif_hh_cb;
 
 void DumpsysHid(int fd) {
   LOG_DUMPSYS_TITLE(fd, DUMPSYS_TAG);
@@ -1231,7 +1231,7 @@ void DumpsysRecord(int fd) {
 #undef DUMPSYS_TAG
 
 void shim::legacy::Acl::Dump(int fd) const {
-  PAN_Dumpsys(fd);
+  // PAN_Dumpsys(fd);
   DumpsysHid(fd);
   DumpsysRecord(fd);
   DumpsysAcl(fd);

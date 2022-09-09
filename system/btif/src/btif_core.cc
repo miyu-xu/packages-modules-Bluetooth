@@ -248,7 +248,7 @@ bt_status_t btif_init_bluetooth() {
   LOG_INFO("%s entered", __func__);
   exit_manager = new base::AtExitManager();
   jni_thread.StartUp();
-  invoke_thread_evt_cb(ASSOCIATE_JVM);
+  // invoke_thread_evt_cb(ASSOCIATE_JVM);
   LOG_INFO("%s finished", __func__);
   return BT_STATUS_SUCCESS;
 }
@@ -300,7 +300,7 @@ void btif_enable_bluetooth_evt() {
     prop.type = BT_PROPERTY_BDADDR;
     prop.val = (void*)&local_bd_addr;
     prop.len = sizeof(RawAddress);
-    invoke_adapter_properties_cb(BT_STATUS_SUCCESS, 1, &prop);
+    // invoke_adapter_properties_cb(BT_STATUS_SUCCESS, 1, &prop);
   }
 
   /* callback to HAL */
@@ -312,7 +312,7 @@ void btif_enable_bluetooth_evt() {
   btif_sock_init(uid_set);
 
   /* init pan */
-  btif_pan_init();
+  // btif_pan_init();
 
   /* load did configuration */
   bte_load_did_conf(BTE_DID_CONF_FILE);
@@ -338,7 +338,7 @@ void btif_enable_bluetooth_evt() {
 bt_status_t btif_cleanup_bluetooth() {
   LOG_INFO("%s entered", __func__);
   btif_dm_cleanup();
-  invoke_thread_evt_cb(DISASSOCIATE_JVM);
+  // invoke_thread_evt_cb(DISASSOCIATE_JVM);
   btif_queue_release();
   jni_thread.ShutDown();
   delete exit_manager;
@@ -470,7 +470,7 @@ static bt_status_t btif_in_get_adapter_properties(void) {
   btif_storage_get_adapter_property(&properties[num_props]);
   num_props++;
 
-  invoke_adapter_properties_cb(BT_STATUS_SUCCESS, num_props, properties);
+  // invoke_adapter_properties_cb(BT_STATUS_SUCCESS, num_props, properties);
   return BT_STATUS_SUCCESS;
 }
 
@@ -515,29 +515,29 @@ static bt_status_t btif_in_get_remote_device_properties(RawAddress* bd_addr) {
                                           &remote_properties[num_props]);
   num_props++;
 
-  invoke_remote_device_properties_cb(BT_STATUS_SUCCESS, *bd_addr, num_props,
-                                     remote_properties);
+  // invoke_remote_device_properties_cb(BT_STATUS_SUCCESS, *bd_addr, num_props,
+  //                                    remote_properties);
 
   return BT_STATUS_SUCCESS;
 }
 
 static void btif_core_storage_adapter_notify_empty_success() {
-  invoke_adapter_properties_cb(BT_STATUS_SUCCESS, 0, NULL);
+  // invoke_adapter_properties_cb(BT_STATUS_SUCCESS, 0, NULL);
 }
 
 static void btif_core_storage_adapter_write(bt_property_t* prop) {
   BTIF_TRACE_EVENT("type: %d, len %d, 0x%x", prop->type, prop->len, prop->val);
-  bt_status_t status = btif_storage_set_adapter_property(prop);
-  invoke_adapter_properties_cb(status, 1, prop);
+  // bt_status_t status = btif_storage_set_adapter_property(prop);
+  // invoke_adapter_properties_cb(status, 1, prop);
 }
 
 void btif_adapter_properties_evt(bt_status_t status, uint32_t num_props,
                                  bt_property_t* p_props) {
-  invoke_adapter_properties_cb(status, num_props, p_props);
+  // invoke_adapter_properties_cb(status, num_props, p_props);
 }
 void btif_remote_properties_evt(bt_status_t status, RawAddress* remote_addr,
                                 uint32_t num_props, bt_property_t* p_props) {
-  invoke_remote_device_properties_cb(status, *remote_addr, num_props, p_props);
+  // invoke_remote_device_properties_cb(status, *remote_addr, num_props, p_props);
 }
 
 /*******************************************************************************
@@ -670,7 +670,7 @@ void btif_get_adapter_property(bt_property_type_t type) {
   } else {
     status = btif_storage_get_adapter_property(&prop);
   }
-  invoke_adapter_properties_cb(status, 1, &prop);
+  // invoke_adapter_properties_cb(status, 1, &prop);
 }
 
 bt_property_t* property_deep_copy(const bt_property_t* prop) {
@@ -765,9 +765,9 @@ void btif_get_remote_device_property(RawAddress remote_addr,
   prop.val = (void*)buf;
   prop.len = sizeof(buf);
 
-  bt_status_t status =
+  // bt_status_t status =
       btif_storage_get_remote_device_property(&remote_addr, &prop);
-  invoke_remote_device_properties_cb(status, remote_addr, 1, &prop);
+  // invoke_remote_device_properties_cb(status, remote_addr, 1, &prop);
 }
 
 /*******************************************************************************
@@ -896,10 +896,13 @@ bt_status_t btif_set_dynamic_audio_buffer_size(int codec, int size) {
   tBTM_BLE_VSC_CB cmn_vsc_cb;
   BTM_BleGetVendorCapabilities(&cmn_vsc_cb);
 
-  if (!btif_av_is_a2dp_offload_enabled()) {
+  if (
+    1 == 2
+    // !btif_av_is_a2dp_offload_enabled()
+    ) {
     BTIF_TRACE_DEBUG("%s Set buffer size (%d) for A2DP software encoding",
                      __func__, size);
-    btif_av_set_dynamic_audio_buffer_size((uint8_t(size)));
+    // btif_av_set_dynamic_audio_buffer_size((uint8_t(size)));
   } else {
     if (cmn_vsc_cb.dynamic_audio_buffer_support != 0) {
       BTIF_TRACE_DEBUG("%s Set buffer size (%d) for A2DP offload", __func__,
