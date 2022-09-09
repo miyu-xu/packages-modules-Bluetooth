@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7785f58_4a39803e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-09-09T00:01:10Z",
+      "side": 1,
+      "message": "@William:\n\nThe code is updated with the check on lifecycle callbacks removed.\nCould you please have another look at it?\n\nThanks!",
+      "revId": "83c6281b616f597ceacdcf84e20d14368e190875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
