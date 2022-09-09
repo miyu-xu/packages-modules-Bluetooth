@@ -40,13 +40,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 
-import pandora.SecurityGrpc.SecurityImplBase
+import pandora.SMGrpc.SMImplBase
 import pandora.HostProto.*
-import pandora.SecurityProto.*
+import pandora.SmProto.*
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
-class Security(private val context: Context) : SecurityImplBase() {
-  private val TAG = "PandoraSecurity"
+class Sm(private val context: Context) : SMImplBase() {
+  private val TAG = "PandoraSm"
 
   private val scope: CoroutineScope
   private val flow: Flow<Intent>
@@ -68,9 +68,9 @@ class Security(private val context: Context) : SecurityImplBase() {
   }
 
   override fun pair(request: PairRequest, responseObserver: StreamObserver<Empty>) {
-    grpcUnary(scope, responseObserver) {
+    grpcUnary<Empty>(scope, responseObserver) {
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
-      Log.i(TAG, "pair: ${bluetoothDevice.address}")
+      Log.i(TAG, "pair: ${bluetoothDevice.getAddress()}")
       bluetoothDevice.createBond()
       Empty.getDefaultInstance()
     }
@@ -89,35 +89,6 @@ class Security(private val context: Context) : SecurityImplBase() {
         .first()
       bluetoothDevice.setPairingConfirmation(request.pairingConfirmationValue)
       Empty.getDefaultInstance()
-    }
-  }
-
-  override fun deletePairing(
-    request: DeletePairingRequest,
-    responseObserver: StreamObserver<DeletePairingResponse>
-  ) {
-    grpcUnary<DeletePairingResponse>(scope, responseObserver) {
-      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
-      Log.i(TAG, "DeletePairing: device=$bluetoothDevice")
-
-      if (bluetoothDevice.removeBond()) {
-        Log.i(TAG, "DeletePairing: device=$bluetoothDevice - wait BOND_NONE intent")
-        flow
-          .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
-          .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
-          .filter {
-            it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) ==
-              BluetoothDevice.BOND_NONE
-          }
-          .filter {
-            it.getIntExtra(BluetoothDevice.EXTRA_REASON, BluetoothAdapter.ERROR) ==
-              BluetoothDevice.BOND_SUCCESS
-          }
-          .first()
-      } else {
-        Log.i(TAG, "DeletePairing: device=$bluetoothDevice - Already unpaired")
-      }
-      DeletePairingResponse.getDefaultInstance()
     }
   }
 }
