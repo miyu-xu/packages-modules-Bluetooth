@@ -32,6 +32,9 @@ cc_defaults {
         "packages/modules/Bluetooth/system/gd/rust/shim",
     ],
     header_libs: ["libbluetooth_headers"],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+    ],
     cflags: ["-DBUILDCFG"],
 }
 

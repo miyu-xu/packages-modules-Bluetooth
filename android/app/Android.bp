@@ -78,7 +78,7 @@ cc_library_shared {
     min_sdk_version: "Tiramisu",
 }
 
-cc_library_shared {
+cc_library {
     name: "libbluetooth-core",
     defaults: ["fluoride_basic_defaults"],
     header_libs: [
@@ -119,6 +119,7 @@ cc_library_shared {
     apex_available: [
         "com.android.btservices",
     ],
+    host_supported: true,
     min_sdk_version: "Tiramisu",
 }
 
