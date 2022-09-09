@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "382083e2_e393c401",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T08:39:33Z",
+      "side": 1,
+      "message": "I will try to find more generic solution before going with this.\nIf problem become more urgent and will not be able to find better solution we can still merge it.",
+      "revId": "e6a6e8658aead958432af25526397489c87d672f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "34c43dda_03782b07",
         "filename": "system/bta/has/has_client.cc",
         "patchSetId": 1
