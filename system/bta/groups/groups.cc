@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+#include <base/bind.h>
+#include <base/location.h>
 #include <base/logging.h>
 
 #include <algorithm>
@@ -24,6 +26,7 @@
 
 #include "bta_groups.h"
 #include "btif_storage.h"
+#include "groups_storage.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -75,7 +78,7 @@ class DeviceGroupsImpl : public DeviceGroups {
  public:
   DeviceGroupsImpl(DeviceGroupsCallbacks* callbacks) {
     AddCallbacks(callbacks);
-    btif_storage_load_bonded_groups();
+    storage::LoadBondedGroups();
   }
 
   int GetGroupId(const RawAddress& addr, Uuid uuid) const override {
@@ -123,7 +126,7 @@ class DeviceGroupsImpl : public DeviceGroups {
 
     add_to_group(addr, group);
 
-    btif_storage_add_groups(addr);
+    storage::AddGroups(addr);
     return group->GetGroupId();
   }
 
@@ -162,9 +165,9 @@ class DeviceGroupsImpl : public DeviceGroups {
       }
     }
 
-    btif_storage_remove_groups(addr);
+    storage::RemoveGroups(addr);
     if (num_of_groups_dev_belongs > 0) {
-      btif_storage_add_groups(addr);
+      storage::AddGroups(addr);
     }
   }
 
