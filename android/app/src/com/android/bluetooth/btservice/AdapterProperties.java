@@ -697,6 +697,9 @@ class AdapterProperties {
             BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_DEVICE_NAME_REPORTED,
                     mService.getMetricId(device), device.getName());
         }
+        Log.i(TAG,
+                "Counter Metrics: profile=" + profile + ", device=" + device + ", "
+                        + prevState + " -> " + state);
         Log.d(TAG,
                 "PROFILE_CONNECTION_STATE_CHANGE: profile=" + profile + ", device=" + device + ", "
                         + prevState + " -> " + state);
