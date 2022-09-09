@@ -35,6 +35,7 @@
 
 #include "bta_hh_co.h"
 #include "btif/include/btif_common.h"
+#include "btif/include/btif_config.h"
 #include "btif/include/btif_storage.h"
 #include "btif/include/btif_util.h"
 #include "include/hardware/bt_hh.h"
@@ -1742,6 +1743,159 @@ static bt_status_t send_data(RawAddress* bd_addr, char* data) {
     osi_free(hexbuf);
     return BT_STATUS_FAIL;
   }
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_add_hid_device_info
+ *
+ * Description      BTIF storage API - Adds the hid information of bonded hid
+ *                  devices-to NVRAM
+ *
+ * Returns          BT_STATUS_SUCCESS if the store was successful,
+ *                  BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+
+bt_status_t btif_storage_add_hid_device_info(
+    RawAddress* remote_bd_addr, uint16_t attr_mask, uint8_t sub_class,
+    uint8_t app_id, uint16_t vendor_id, uint16_t product_id, uint16_t version,
+    uint8_t ctry_code, uint16_t ssr_max_latency, uint16_t ssr_min_tout,
+    uint16_t dl_len, uint8_t* dsc_list) {
+  BTIF_TRACE_DEBUG("btif_storage_add_hid_device_info:");
+  std::string bdstr = remote_bd_addr->ToString();
+  btif_config_set_int(bdstr, "HidAttrMask", attr_mask);
+  btif_config_set_int(bdstr, "HidSubClass", sub_class);
+  btif_config_set_int(bdstr, "HidAppId", app_id);
+  btif_config_set_int(bdstr, "HidVendorId", vendor_id);
+  btif_config_set_int(bdstr, "HidProductId", product_id);
+  btif_config_set_int(bdstr, "HidVersion", version);
+  btif_config_set_int(bdstr, "HidCountryCode", ctry_code);
+  btif_config_set_int(bdstr, "HidSSRMaxLatency", ssr_max_latency);
+  btif_config_set_int(bdstr, "HidSSRMinTimeout", ssr_min_tout);
+  if (dl_len > 0) btif_config_set_bin(bdstr, "HidDescriptor", dsc_list, dl_len);
+  btif_config_save();
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_load_bonded_hid_info
+ *
+ * Description      BTIF storage API - Loads hid info for all the bonded devices
+ *                  from NVRAM and adds those devices  to the BTA_HH.
+ *
+ * Returns          BT_STATUS_SUCCESS if successful, BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_load_bonded_hid_info(void) {
+  for (const auto& bd_addr : btif_config_get_paired_devices()) {
+    auto name = bd_addr.ToString();
+
+    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
+
+    int value;
+    if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
+    uint16_t attr_mask = (uint16_t)value;
+
+    if (btif_in_fetch_bonded_device(name) != BT_STATUS_SUCCESS) {
+      btif_storage_remove_hid_info(bd_addr);
+      continue;
+    }
+
+    tBTA_HH_DEV_DSCP_INFO dscp_info;
+    memset(&dscp_info, 0, sizeof(dscp_info));
+
+    btif_config_get_int(name, "HidSubClass", &value);
+    uint8_t sub_class = (uint8_t)value;
+
+    btif_config_get_int(name, "HidAppId", &value);
+    uint8_t app_id = (uint8_t)value;
+
+    btif_config_get_int(name, "HidVendorId", &value);
+    dscp_info.vendor_id = (uint16_t)value;
+
+    btif_config_get_int(name, "HidProductId", &value);
+    dscp_info.product_id = (uint16_t)value;
+
+    btif_config_get_int(name, "HidVersion", &value);
+    dscp_info.version = (uint8_t)value;
+
+    btif_config_get_int(name, "HidCountryCode", &value);
+    dscp_info.ctry_code = (uint8_t)value;
+
+    value = 0;
+    btif_config_get_int(name, "HidSSRMaxLatency", &value);
+    dscp_info.ssr_max_latency = (uint16_t)value;
+
+    value = 0;
+    btif_config_get_int(name, "HidSSRMinTimeout", &value);
+    dscp_info.ssr_min_tout = (uint16_t)value;
+
+    size_t len = btif_config_get_bin_length(name, "HidDescriptor");
+    if (len > 0) {
+      dscp_info.descriptor.dl_len = (uint16_t)len;
+      dscp_info.descriptor.dsc_list = (uint8_t*)alloca(len);
+      btif_config_get_bin(name, "HidDescriptor",
+                          (uint8_t*)dscp_info.descriptor.dsc_list, &len);
+    }
+
+    // add extracted information to BTA HH
+    if (btif_hh_add_added_dev(bd_addr, attr_mask)) {
+      BTA_HhAddDev(bd_addr, attr_mask, sub_class, app_id, dscp_info);
+    }
+  }
+
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_remove_hid_info
+ *
+ * Description      BTIF storage API - Deletes the bonded hid device info from
+ *                  NVRAM
+ *
+ * Returns          BT_STATUS_SUCCESS if the deletion was successful,
+ *                  BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr) {
+  std::string bdstr = remote_bd_addr.ToString();
+
+  btif_config_remove(bdstr, "HidAttrMask");
+  btif_config_remove(bdstr, "HidSubClass");
+  btif_config_remove(bdstr, "HidAppId");
+  btif_config_remove(bdstr, "HidVendorId");
+  btif_config_remove(bdstr, "HidProductId");
+  btif_config_remove(bdstr, "HidVersion");
+  btif_config_remove(bdstr, "HidCountryCode");
+  btif_config_remove(bdstr, "HidSSRMaxLatency");
+  btif_config_remove(bdstr, "HidSSRMinTimeout");
+  btif_config_remove(bdstr, "HidDescriptor");
+  btif_config_save();
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_get_hid_device_addresses
+ *
+ * Description      BTIF storage API - Finds all bonded HID devices
+ *
+ * Returns          std::vector of RawAddress
+ *
+ ******************************************************************************/
+std::vector<RawAddress> btif_storage_get_hid_device_addresses(void) {
+  std::vector<RawAddress> hid_addresses;
+  for (const auto& bd_addr : btif_config_get_paired_devices()) {
+    auto name = bd_addr.ToString();
+    int value;
+    if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
+    hid_addresses.push_back(bd_addr);
+    LOG_DEBUG("Remote device: %s", PRIVATE_ADDRESS(bd_addr));
+  }
+  return hid_addresses;
 }
 
 /*******************************************************************************

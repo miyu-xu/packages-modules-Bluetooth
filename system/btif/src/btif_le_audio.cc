@@ -21,9 +21,9 @@
 
 #include <vector>
 
+#include "bta/le_audio/storage.h"
 #include "bta_le_audio_api.h"
 #include "btif_common.h"
-#include "btif_storage.h"
 #include "stack/include/btu.h"
 
 using base::Bind;
@@ -116,13 +116,14 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
 
     LeAudioClient::InitializeAudioSetConfigurationProvider();
     do_in_main_thread(
-        FROM_HERE, Bind(&LeAudioClient::Initialize, this,
-                        jni_thread_wrapper(
-                            FROM_HERE, Bind(&btif_storage_load_bonded_leaudio)),
-                        base::Bind([]() -> bool {
-                          return LeAudioHalVerifier::SupportsLeAudio();
-                        }),
-                        offloading_preference));
+        FROM_HERE,
+        Bind(&LeAudioClient::Initialize, this,
+             jni_thread_wrapper(FROM_HERE,
+                                Bind(&le_audio::storage::AddBondedDevices)),
+             base::Bind([]() -> bool {
+               return LeAudioHalVerifier::SupportsLeAudio();
+             }),
+             offloading_preference));
   }
 
   void Cleanup(void) override {
@@ -141,7 +142,8 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
                       Bind(&LeAudioClient::RemoveDevice,
                            Unretained(LeAudioClient::Get()), address));
 
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_leaudio, address));
+    do_in_jni_thread(FROM_HERE,
+                     Bind(&le_audio::storage::RemoveDevice, address));
   }
 
   void Connect(const RawAddress& address) override {
