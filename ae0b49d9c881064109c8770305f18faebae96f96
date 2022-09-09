@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b8a5ac7_a6257cd6",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-09-09T13:34:55Z",
+      "side": 1,
+      "message": "Does this block of change needs to be here or can it be at the top (start of the function)? Also should it have additional check (transport \u003d\u003d AUTO) only then try deriving?",
+      "revId": "ae0b49d9c881064109c8770305f18faebae96f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
