@@ -121,57 +121,66 @@ static const char* const bt_layer_tags[] = {
     "bt_ndef",
     "bt_nfa",
 };
-static uint8_t BTAPP_SetTraceLevel(uint8_t new_level);
-static uint8_t BTIF_SetTraceLevel(uint8_t new_level);
-static uint8_t BTU_SetTraceLevel(uint8_t new_level);
+// static uint8_t BTAPP_SetTraceLevel(uint8_t new_level);
+// static uint8_t BTIF_SetTraceLevel(uint8_t new_level);
+// static uint8_t BTU_SetTraceLevel(uint8_t new_level);
 
 /* make sure list is order by increasing layer id!!! */
 static tBTTRC_FUNC_MAP bttrc_set_level_map[] = {
-    {BTTRC_ID_STK_BTU, BTTRC_ID_STK_HCI, BTU_SetTraceLevel, "TRC_HCI",
-     DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_STK_L2CAP, BTTRC_ID_STK_L2CAP, L2CA_SetTraceLevel, "TRC_L2CAP",
-     DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_STK_RFCOMM, BTTRC_ID_STK_RFCOMM_DATA, PORT_SetTraceLevel,
-     "TRC_RFCOMM", DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_STK_AVCT, BTTRC_ID_STK_AVCT, AVCT_SetTraceLevel, "TRC_AVCT",
-     DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_STK_AVDT, BTTRC_ID_STK_AVDT, AVDT_SetTraceLevel, "TRC_AVDT",
-     DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_STK_AVRC, BTTRC_ID_STK_AVRC, AVRC_SetTraceLevel, "TRC_AVRC",
-     DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_STK_A2DP, BTTRC_ID_STK_A2DP, A2DP_SetTraceLevel, "TRC_A2D",
-     DEFAULT_CONF_TRACE_LEVEL},
-#if (BNEP_INCLUDED == TRUE)
-    {BTTRC_ID_STK_BNEP, BTTRC_ID_STK_BNEP, BNEP_SetTraceLevel, "TRC_BNEP",
-     DEFAULT_CONF_TRACE_LEVEL},
-#endif
-    {BTTRC_ID_STK_BTM_ACL, BTTRC_ID_STK_BTM_SEC, BTM_SetTraceLevel, "TRC_BTM",
-     DEFAULT_CONF_TRACE_LEVEL},
-#if (HID_HOST_INCLUDED == TRUE)
-    {BTTRC_ID_STK_HID, BTTRC_ID_STK_HID, HID_HostSetTraceLevel, "TRC_HID_HOST",
-     DEFAULT_CONF_TRACE_LEVEL},
-#endif
-#if (PAN_INCLUDED == TRUE)
-    {BTTRC_ID_STK_PAN, BTTRC_ID_STK_PAN, PAN_SetTraceLevel, "TRC_PAN",
-     DEFAULT_CONF_TRACE_LEVEL},
-#endif
-    {BTTRC_ID_STK_SDP, BTTRC_ID_STK_SDP, SDP_SetTraceLevel, "TRC_SDP",
-     DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_STK_SMP, BTTRC_ID_STK_SMP, SMP_SetTraceLevel, "TRC_SMP",
-     DEFAULT_CONF_TRACE_LEVEL},
-#if (HID_DEV_INCLUDED == TRUE)
-    {BTTRC_ID_STK_HIDD, BTTRC_ID_STK_HIDD, HID_DevSetTraceLevel, "TRC_HID_DEV",
-     DEFAULT_CONF_TRACE_LEVEL},
-#endif
+    //     {BTTRC_ID_STK_BTU, BTTRC_ID_STK_HCI, BTU_SetTraceLevel, "TRC_HCI",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_STK_L2CAP, BTTRC_ID_STK_L2CAP, L2CA_SetTraceLevel,
+    //     "TRC_L2CAP",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_STK_RFCOMM, BTTRC_ID_STK_RFCOMM_DATA, PORT_SetTraceLevel,
+    //      "TRC_RFCOMM", DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_STK_AVCT, BTTRC_ID_STK_AVCT, AVCT_SetTraceLevel,
+    //     "TRC_AVCT",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_STK_AVDT, BTTRC_ID_STK_AVDT, AVDT_SetTraceLevel,
+    //     "TRC_AVDT",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_STK_AVRC, BTTRC_ID_STK_AVRC, AVRC_SetTraceLevel,
+    //     "TRC_AVRC",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_STK_A2DP, BTTRC_ID_STK_A2DP, A2DP_SetTraceLevel, "TRC_A2D",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    // #if (BNEP_INCLUDED == TRUE)
+    //     {BTTRC_ID_STK_BNEP, BTTRC_ID_STK_BNEP, BNEP_SetTraceLevel,
+    //     "TRC_BNEP",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    // #endif
+    //     {BTTRC_ID_STK_BTM_ACL, BTTRC_ID_STK_BTM_SEC, BTM_SetTraceLevel,
+    //     "TRC_BTM",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    // #if (HID_HOST_INCLUDED == TRUE)
+    //     {BTTRC_ID_STK_HID, BTTRC_ID_STK_HID, HID_HostSetTraceLevel,
+    //     "TRC_HID_HOST",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    // #endif
+    // #if (PAN_INCLUDED == TRUE)
+    //     {BTTRC_ID_STK_PAN, BTTRC_ID_STK_PAN, PAN_SetTraceLevel, "TRC_PAN",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    // #endif
+    //     {BTTRC_ID_STK_SDP, BTTRC_ID_STK_SDP, SDP_SetTraceLevel, "TRC_SDP",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_STK_SMP, BTTRC_ID_STK_SMP, SMP_SetTraceLevel, "TRC_SMP",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    // #if (HID_DEV_INCLUDED == TRUE)
+    //     {BTTRC_ID_STK_HIDD, BTTRC_ID_STK_HIDD, HID_DevSetTraceLevel,
+    //     "TRC_HID_DEV",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    // #endif
 
-    /* LayerIDs for BTA, currently everything maps onto appl_trace_level.
-     */
-    {BTTRC_ID_BTA_ACC, BTTRC_ID_BTAPP, BTAPP_SetTraceLevel, "TRC_BTAPP",
-     DEFAULT_CONF_TRACE_LEVEL},
-    {BTTRC_ID_BTA_ACC, BTTRC_ID_BTAPP, BTIF_SetTraceLevel, "TRC_BTIF",
-     DEFAULT_CONF_TRACE_LEVEL},
+    //     /* LayerIDs for BTA, currently everything maps onto appl_trace_level.
+    //      */
+    //     {BTTRC_ID_BTA_ACC, BTTRC_ID_BTAPP, BTAPP_SetTraceLevel, "TRC_BTAPP",
+    //      DEFAULT_CONF_TRACE_LEVEL},
+    //     {BTTRC_ID_BTA_ACC, BTTRC_ID_BTAPP, BTIF_SetTraceLevel, "TRC_BTIF",
+    //      DEFAULT_CONF_TRACE_LEVEL},
 
-    {0, 0, NULL, NULL, DEFAULT_CONF_TRACE_LEVEL}};
+    //     {0, 0, NULL, NULL, DEFAULT_CONF_TRACE_LEVEL}
+};
 
 void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {
   char buffer[BTE_LOG_BUF_SIZE];
@@ -210,24 +219,24 @@ void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {
 #define LOG_TAG "bt_bte"
 }
 
-/* this function should go into BTAPP_DM for example */
-static uint8_t BTAPP_SetTraceLevel(uint8_t new_level) {
-  if (new_level != 0xFF) appl_trace_level = new_level;
+// /* this function should go into BTAPP_DM for example */
+// static uint8_t BTAPP_SetTraceLevel(uint8_t new_level) {
+//   if (new_level != 0xFF) appl_trace_level = new_level;
 
-  return appl_trace_level;
-}
+//   return appl_trace_level;
+// }
 
-static uint8_t BTIF_SetTraceLevel(uint8_t new_level) {
-  if (new_level != 0xFF) btif_trace_level = new_level;
+// static uint8_t BTIF_SetTraceLevel(uint8_t new_level) {
+//   if (new_level != 0xFF) btif_trace_level = new_level;
 
-  return btif_trace_level;
-}
+//   return btif_trace_level;
+// }
 
-static uint8_t BTU_SetTraceLevel(uint8_t new_level) {
-  if (new_level != 0xFF) btu_trace_level = new_level;
+// static uint8_t BTU_SetTraceLevel(uint8_t new_level) {
+//   if (new_level != 0xFF) btu_trace_level = new_level;
 
-  return btu_trace_level;
-}
+//   return btu_trace_level;
+// }
 
 static void load_levels_from_config(const config_t* config) {
   CHECK(config != NULL);
