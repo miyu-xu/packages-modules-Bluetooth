@@ -49,7 +49,7 @@ void CounterMetrics::Stop() {
   LOG_INFO("Counter metrics canceled");
 }
 
-bool CounterMetrics::Count(int32_t key, int64_t count) {
+bool CounterMetrics::CacheCount(int32_t key, int64_t count) {
   if (!IsInitialized()) {
     LOG_WARN("Counter metrics isn't initialized");
     return false;
@@ -73,7 +73,16 @@ bool CounterMetrics::Count(int32_t key, int64_t count) {
   return true;
 }
 
-void CounterMetrics::WriteCounter(int32_t key, int64_t count) {
+void CounterMetrics::Count(int32_t key, int64_t count) {
+  LOG_INFO("Counter metrics cpp %d %s", key, std::to_string(count).c_str());
+  if (!IsInitialized()) {
+    LOG_WARN("Counter metrics isn't initialized");
+    return false;
+  }
+  if (count <= 0) {
+    LOG_WARN("count is not larger than 0. count: %s, key: %d", std::to_string(count).c_str(), key);
+    return false;
+  }
   os::LogMetricBluetoothCodePathCounterMetrics(key, count);
 }
 
