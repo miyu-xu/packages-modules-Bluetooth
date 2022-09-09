@@ -44,9 +44,10 @@ bool btif_has_ble_keys(const std::string& bdstr) {
   mock_function_count_map[__func__]++;
   return false;
 }
-bool btif_storage_get_hearing_aid_prop(
-    const RawAddress& address, uint8_t* capabilities, uint64_t* hi_sync_id,
-    uint16_t* render_delay, uint16_t* preparation_delay, uint16_t* codecs) {
+bool GetHearingDeviceProperties(const RawAddress& address,
+                                uint8_t* capabilities, uint64_t* hi_sync_id,
+                                uint16_t* render_delay,
+                                uint16_t* preparation_delay, uint16_t* codecs) {
   mock_function_count_map[__func__]++;
   return false;
 }
@@ -169,7 +170,7 @@ bt_status_t btif_storage_set_remote_device_property(
   mock_function_count_map[__func__]++;
   return BT_STATUS_SUCCESS;
 }
-void btif_storage_add_hearing_aid(const HearingDevice& dev_info) {
+void AddHearingDeviceToStorage(const HearingDevice& dev_info) {
   mock_function_count_map[__func__]++;
 }
 int btif_storage_get_num_bonded_devices(void) {
@@ -193,16 +194,14 @@ uint8_t btif_storage_get_local_io_caps_ble() {
   mock_function_count_map[__func__]++;
   return 0;
 }
-void btif_storage_load_bonded_hearing_aids() {
-  mock_function_count_map[__func__]++;
-}
+void LoadBondedHearingAidsFromStorage() { mock_function_count_map[__func__]++; }
 void btif_storage_remove_gatt_cl_db_hash(const RawAddress& bd_addr) {
   mock_function_count_map[__func__]++;
 }
 void btif_storage_remove_gatt_cl_supp_feat(const RawAddress& bd_addr) {
   mock_function_count_map[__func__]++;
 }
-void btif_storage_remove_hearing_aid(const RawAddress& address) {
+void RemoveHearingDeviceFromStorage(const RawAddress& address) {
   mock_function_count_map[__func__]++;
 }
 void btif_storage_set_gatt_cl_db_hash(const RawAddress& bd_addr, Octet16 hash) {
@@ -212,8 +211,8 @@ void btif_storage_set_gatt_cl_supp_feat(const RawAddress& bd_addr,
                                         uint8_t feat) {
   mock_function_count_map[__func__]++;
 }
-void btif_storage_set_hearing_aid_acceptlist(const RawAddress& address,
-                                             bool add_to_acceptlist) {
+void SetHearingDeviceAcceptlist(const RawAddress& address,
+                                bool add_to_acceptlist) {
   mock_function_count_map[__func__]++;
 }
 void btif_storage_set_gatt_sr_supp_feat(const RawAddress& addr, uint8_t feat) {
@@ -229,7 +228,7 @@ void btif_storage_add_groups(RawAddress const&) {
 void btif_storage_remove_groups(RawAddress const&) {
   mock_function_count_map[__func__]++;
 }
-void btif_storage_load_bonded_groups() { mock_function_count_map[__func__]++; }
+void LoadBondedGroups() { mock_function_count_map[__func__]++; }
 void btif_storage_set_csis_autoconnect(const RawAddress& addr,
                                        bool autoconnect) {
   mock_function_count_map[__func__]++;

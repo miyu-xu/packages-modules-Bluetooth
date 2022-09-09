@@ -78,9 +78,8 @@ void btif_storage_add_leaudio_has_device(const RawAddress& address,
                                               active_preset);
 };
 
-bool btif_storage_get_leaudio_has_presets(const RawAddress& address,
-                                          std::vector<uint8_t>& presets_bin,
-                                          uint8_t& active_preset) {
+bool GetHasPresets(const RawAddress& address, std::vector<uint8_t>& presets_bin,
+                   uint8_t& active_preset) {
   if (btif_storage_interface)
     return btif_storage_interface->GetLeaudioHasPresets(address, presets_bin,
                                                         active_preset);
@@ -88,8 +87,8 @@ bool btif_storage_get_leaudio_has_presets(const RawAddress& address,
   return false;
 };
 
-void btif_storage_set_leaudio_has_presets(const RawAddress& address,
-                                          std::vector<uint8_t> presets_bin) {
+void SetHasPresets(const RawAddress& address,
+                   std::vector<uint8_t> presets_bin) {
   LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
   btif_storage_interface->SetLeaudioHasPresets(address, presets_bin);
 }
@@ -100,8 +99,7 @@ bool btif_storage_get_leaudio_has_features(const RawAddress& address,
   return btif_storage_interface->GetLeaudioHasFeatures(address, features);
 }
 
-void btif_storage_set_leaudio_has_features(const RawAddress& address,
-                                           uint8_t features) {
+void SetHasFeatures(const RawAddress& address, uint8_t features) {
   LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
   btif_storage_interface->SetLeaudioHasFeatures(address, features);
 }

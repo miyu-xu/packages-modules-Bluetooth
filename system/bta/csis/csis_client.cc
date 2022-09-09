@@ -32,7 +32,7 @@
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
 #include "bta_groups.h"
-#include "btif_storage.h"
+#include "csis_storage.h"
 #include "csis_types.h"
 #include "gap_api.h"
 #include "gatt_api.h"
@@ -242,7 +242,7 @@ class CsisClientImpl : public CsisClient {
   void Disconnect(const RawAddress& addr) override {
     DLOG(INFO) << __func__ << ": " << addr;
 
-    btif_storage_set_csis_autoconnect(addr, false);
+    bluetooth::csis::storage::SetAutoconnect(addr, false);
 
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {
@@ -268,7 +268,7 @@ class CsisClientImpl : public CsisClient {
     Disconnect(addr);
 
     dev_groups_->RemoveDevice(addr);
-    btif_storage_remove_csis_device(addr);
+    bluetooth::csis::storage::RemoveDevice(addr);
   }
 
   int GetGroupId(const RawAddress& addr, Uuid uuid) override {
@@ -815,7 +815,7 @@ class CsisClientImpl : public CsisClient {
 
     if (device->first_connection) {
       device->first_connection = false;
-      btif_storage_set_csis_autoconnect(device->addr, true);
+      bluetooth::csis::storage::SetAutoconnect(device->addr, true);
     }
   }
 
@@ -1376,7 +1376,7 @@ class CsisClientImpl : public CsisClient {
 
     csis_group->SetSirk(received_sirk);
     device->is_gatt_service_valid = true;
-    btif_storage_update_csis_info(device->addr);
+    bluetooth::csis::storage::UpdateInfo(device->addr);
 
     if (notify_valid_services) NotifyCsisDeviceValidAndStoreIfNeeded(device);
 
