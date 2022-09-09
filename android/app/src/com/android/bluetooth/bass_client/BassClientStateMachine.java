@@ -592,8 +592,26 @@ public class BassClientStateMachine extends StateMachine {
                     mPeriodicAdvManager.transferSync(mDevice, serviceData, syncHandle);
                 }
             } else {
-                Log.e(TAG, "There is no valid sync handle for this Source");
-                if (mAutoAssist) {
+                Log.w(TAG, "There is no valid sync handle for this Source. "
+                        + "Trying local broadcast.");
+
+                if (mService.isLocalBroadcast(mPendingMetadata)) {
+                    int advHandle = mPendingMetadata.getSourceAdvertisingSid();
+                    serviceData = 0x000000FF & recvState.getSourceId();
+                    serviceData = serviceData << 8;
+                    // TODO: Sort these out
+                    //advA matches EXT_ADV_ADDRESS
+                    //also matches source address (as we would have written)
+                    // serviceData = serviceData
+                    //         & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_EXT_ADV_ADDRESS);
+                    // serviceData = serviceData
+                    //         & (~BassConstants.ADV_ADDRESS_DONT_MATCHES_SOURCE_ADV_ADDRESS);
+                    log("Initiate local broadcast PAST for: " + mDevice
+                            + ", advSID: " +  mPendingMetadata.getSourceAdvertisingSid()
+                            + ", serviceData: " + serviceData);
+                    mPeriodicAdvManager.transferSetInfo(mDevice, serviceData,
+                            mPendingMetadata.getSourceAdvertisingSid(), mPeriodicAdvCallback);
+                } else if (mAutoAssist) {
                     //initiate Auto Assist procedure for this device
                     mService.getBassUtils().triggerAutoAssist(recvState);
                 }
