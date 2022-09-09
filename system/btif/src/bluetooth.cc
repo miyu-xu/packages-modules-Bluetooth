@@ -50,6 +50,8 @@
 
 #include "audio_hal_interface/a2dp_encoding.h"
 #include "bt_utils.h"
+#include "bta/hh/bta_hh_int.h"  // for HID HACK profile methods
+#include "bta/include/bta_ar_api.h"
 #include "bta/include/bta_csis_api.h"
 #include "bta/include/bta_has_api.h"
 #include "bta/include/bta_hearing_aid_api.h"
@@ -66,14 +68,20 @@
 #include "btif_bqr.h"
 #include "btif_config.h"
 #include "btif_debug_conn.h"
+#include "btif_dm.h"
+#include "btif_hd.h"
 #include "btif_hf.h"
+#include "btif_hh.h"
 #include "btif_keystore.h"
 #include "btif_metrics_logging.h"
+#include "btif_pan.h"
+#include "btif_sock.h"
 #include "btif_storage.h"
 #include "common/address_obfuscator.h"
 #include "common/metric_id_allocator.h"
 #include "common/metrics.h"
 #include "common/os_utils.h"
+#include "core_callbacks.h"
 #include "device/include/interop.h"
 #include "gd/common/init_flags.h"
 #include "gd/os/parameter_provider.h"
@@ -87,9 +95,14 @@
 #include "osi/include/wakelock.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/gatt/connection_manager.h"
+#include "stack/include/a2dp_api.h"
 #include "stack/include/avdt_api.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btu.h"
+#include "stack/include/hfp_msbc_decoder.h"
+#include "stack/include/hfp_msbc_encoder.h"
+#include "stack/include/hidh_api.h"
+#include "stack/include/pan_api.h"
 #include "types/raw_address.h"
 
 using bluetooth::csis::CsisClientInterface;
@@ -153,6 +166,138 @@ extern LeAudioBroadcasterInterface* btif_le_audio_broadcaster_get_interface();
 extern CsisClientInterface* btif_csis_client_get_interface();
 /* Volume Control client */
 extern VolumeControlInterface* btif_volume_control_get_interface();
+
+extern bt_status_t btif_av_sink_execute_service(bool b_enable);
+extern bt_status_t btif_hh_execute_service(bool b_enable);
+extern bt_status_t btif_hf_client_execute_service(bool b_enable);
+extern bt_status_t btif_sdp_execute_service(bool b_enable);
+extern bt_status_t btif_hh_connect(const RawAddress* bd_addr);
+extern bt_status_t btif_hd_execute_service(bool b_enable);
+
+/*******************************************************************************
+ *  Callbacks from bluetooth::core (see go/invisalign-bt)
+ ******************************************************************************/
+
+struct ConfigInterfaceImpl : bluetooth::core::ConfigInterface {
+  ConfigInterfaceImpl() : bluetooth::core::ConfigInterface(){};
+
+  bool isA2DPOffloadEnabled() override {
+    char value_sup[PROPERTY_VALUE_MAX] = {'\0'};
+    char value_dis[PROPERTY_VALUE_MAX] = {'\0'};
+
+    osi_property_get("ro.bluetooth.a2dp_offload.supported", value_sup, "false");
+    osi_property_get("persist.bluetooth.a2dp_offload.disabled", value_dis,
+                     "false");
+    auto a2dp_offload_enabled =
+        (strcmp(value_sup, "true") == 0) && (strcmp(value_dis, "false") == 0);
+    BTIF_TRACE_DEBUG("a2dp_offload.enable = %d", a2dp_offload_enabled);
+
+    return a2dp_offload_enabled;
+  }
+
+  bool isAndroidTVDevice() override { return is_atv_device(); }
+};
+
+struct CodecInterfaceImpl : bluetooth::core::CodecInterface {
+  CodecInterfaceImpl() : bluetooth::core::CodecInterface(){};
+
+  void initializeCodecs() override {
+    hfp_msbc_decoder_init();
+    hfp_msbc_encoder_init();
+  }
+
+  void cleanupCodecs() override {
+    hfp_msbc_decoder_cleanup();
+    hfp_msbc_encoder_cleanup();
+  }
+};
+
+struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
+  using bluetooth::core::CoreInterface::CoreInterface;
+
+  void toggleProfile(tBTA_SERVICE_ID service_id, bool enable) override {
+    switch (service_id) {
+      case BTA_HFP_SERVICE_ID:
+      case BTA_HSP_SERVICE_ID: {
+        bluetooth::headset::ExecuteService(enable);
+      } break;
+      case BTA_A2DP_SOURCE_SERVICE_ID: {
+        btif_av_source_execute_service(enable);
+      } break;
+      case BTA_A2DP_SINK_SERVICE_ID: {
+        btif_av_sink_execute_service(enable);
+      } break;
+      case BTA_HID_SERVICE_ID: {
+        btif_hh_execute_service(enable);
+      } break;
+      case BTA_HFP_HS_SERVICE_ID: {
+        btif_hf_client_execute_service(enable);
+      } break;
+      case BTA_HIDD_SERVICE_ID: {
+        btif_hd_execute_service(enable);
+      } break;
+      default:
+        // ignore, not all services need to be toggled
+        break;
+    }
+  }
+
+  void removeDeviceFromProfiles(const RawAddress& bd_addr) {
+/*special handling for HID devices */
+#if (defined(BTA_HH_INCLUDED) && (BTA_HH_INCLUDED == TRUE))
+    btif_hh_remove_device(bd_addr);
+#endif
+#if (defined(BTA_HD_INCLUDED) && (BTA_HD_INCLUDED == TRUE))
+    btif_hd_remove_device(bd_addr);
+#endif
+    btif_hearing_aid_get_interface()->RemoveDevice(bd_addr);
+
+    if (bluetooth::csis::CsisClient::IsCsisClientRunning())
+      btif_csis_client_get_interface()->RemoveDevice(bd_addr);
+
+    if (LeAudioClient::IsLeAudioClientRunning())
+      btif_le_audio_get_interface()->RemoveDevice(bd_addr);
+
+    if (VolumeControl::IsVolumeControlRunning()) {
+      btif_volume_control_get_interface()->RemoveDevice(bd_addr);
+    }
+  }
+
+  void onLinkDown(const RawAddress& bd_addr) {
+    btif_av_acl_disconnected(bd_addr);
+  }
+};
+
+static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
+  static auto eventCallbacks = bluetooth::core::EventCallbacks{
+      .invoke_adapter_state_changed_cb = invoke_adapter_state_changed_cb,
+      .invoke_adapter_properties_cb = invoke_adapter_properties_cb,
+      .invoke_remote_device_properties_cb = invoke_remote_device_properties_cb,
+      .invoke_device_found_cb = invoke_device_found_cb,
+      .invoke_discovery_state_changed_cb = invoke_discovery_state_changed_cb,
+      .invoke_pin_request_cb = invoke_pin_request_cb,
+      .invoke_ssp_request_cb = invoke_ssp_request_cb,
+      .invoke_oob_data_request_cb = invoke_oob_data_request_cb,
+      .invoke_bond_state_changed_cb = invoke_bond_state_changed_cb,
+      .invoke_address_consolidate_cb = invoke_address_consolidate_cb,
+      .invoke_le_address_associate_cb = invoke_le_address_associate_cb,
+      .invoke_acl_state_changed_cb = invoke_acl_state_changed_cb,
+      .invoke_thread_evt_cb = invoke_thread_evt_cb,
+      .invoke_le_test_mode_cb = invoke_le_test_mode_cb,
+      .invoke_energy_info_cb = invoke_energy_info_cb,
+      .invoke_link_quality_report_cb = invoke_link_quality_report_cb};
+  static auto configInterface = ConfigInterfaceImpl();
+  static auto codecInterface = CodecInterfaceImpl();
+  static auto profileInterface = bluetooth::core::HACK_ProfileInterface{
+      .btif_hh_connect = btif_hh_connect,
+      .btif_hh_virtual_unplug = btif_hh_virtual_unplug,
+      .bta_hh_read_ssr_param = bta_hh_read_ssr_param,
+      .bta_hh_le_is_hh_gatt_if = bta_hh_le_is_hh_gatt_if,
+      .bta_hh_cleanup_disable = bta_hh_cleanup_disable};
+  static auto interfaceForCore = CoreInterfaceImpl(
+      &eventCallbacks, &configInterface, &codecInterface, &profileInterface);
+  return &interfaceForCore;
+}
 
 /*******************************************************************************
  *  Functions
@@ -222,21 +367,42 @@ static int init(bt_callbacks_t* callbacks, bool start_restricted,
 
   is_local_device_atv = is_atv;
 
-  stack_manager_get_interface()->init_stack();
+  stack_manager_get_interface()->init_stack(CreateInterfaceToProfiles());
   return BT_STATUS_SUCCESS;
+}
+
+static void start_profiles() {
+#if (BNEP_INCLUDED == TRUE)
+  BNEP_Init();
+#if (PAN_INCLUDED == TRUE)
+  PAN_Init();
+#endif /* PAN */
+#endif /* BNEP Included */
+  A2DP_Init();
+  AVRC_Init();
+#if (HID_HOST_INCLUDED == TRUE)
+  HID_HostInit();
+#endif
+  bta_ar_init();
+}
+
+static void stop_profiles() {
+  btif_sock_cleanup();
+  btif_pan_cleanup();
 }
 
 static int enable() {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
-  stack_manager_get_interface()->start_up_stack_async();
+  stack_manager_get_interface()->start_up_stack_async(
+      CreateInterfaceToProfiles(), &start_profiles, &stop_profiles);
   return BT_STATUS_SUCCESS;
 }
 
 static int disable(void) {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
-  stack_manager_get_interface()->shut_down_stack_async();
+  stack_manager_get_interface()->shut_down_stack_async(&stop_profiles);
   return BT_STATUS_SUCCESS;
 }
 
@@ -546,6 +712,8 @@ static void dump(int fd, const char** arguments) {
   connection_manager::dump(fd);
   bluetooth::bqr::DebugDump(fd);
   bluetooth::shim::Dump(fd, arguments);
+  PAN_Dumpsys(fd);
+  DumpsysHid(fd);
 }
 
 static void dumpMetrics(std::string* output) {

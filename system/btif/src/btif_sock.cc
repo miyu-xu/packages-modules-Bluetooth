@@ -97,14 +97,14 @@ bt_status_t btif_sock_init(uid_set_t* uid_set) {
   thread = thread_new("btif_sock");
   if (!thread) {
     LOG_ERROR("%s error creating new thread.", __func__);
-    btsock_rfc_cleanup();
+    // btsock_rfc_cleanup();
     goto error;
   }
 
   status = btsock_sco_init(thread);
   if (status != BT_STATUS_SUCCESS) {
     LOG_ERROR("%s error initializing SCO sockets: %d", __func__, status);
-    btsock_rfc_cleanup();
+    // btsock_rfc_cleanup();
     goto error;
   }
 
@@ -124,7 +124,7 @@ void btif_sock_cleanup(void) {
   if (std::atomic_exchange(&thread_handle, -1) == -1) return;
 
   btsock_thread_exit(saved_handle);
-  btsock_rfc_cleanup();
+  // btsock_rfc_cleanup();
   btsock_sco_cleanup();
   btsock_l2cap_cleanup();
   thread_free(thread);

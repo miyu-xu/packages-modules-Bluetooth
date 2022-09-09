@@ -1635,13 +1635,13 @@ void L2CA_AdjustConnectionIntervals(uint16_t* min_interval,
                                     uint16_t floor_interval) {
   uint16_t phone_min_interval = floor_interval;
 
-  if (HearingAid::GetDeviceCount() > 0) {
-    // When there are bonded Hearing Aid devices, we will constrained this
-    // minimum interval.
-    phone_min_interval = BTM_BLE_CONN_INT_MIN_HEARINGAID;
-    L2CAP_TRACE_DEBUG("%s: Have Hearing Aids. Min. interval is set to %d",
-                      __func__, phone_min_interval);
-  }
+  // if (HearingAid::GetDeviceCount() > 0) {
+  //   // When there are bonded Hearing Aid devices, we will constrained this
+  //   // minimum interval.
+  //   phone_min_interval = BTM_BLE_CONN_INT_MIN_HEARINGAID;
+  //   L2CAP_TRACE_DEBUG("%s: Have Hearing Aids. Min. interval is set to %d",
+  //                     __func__, phone_min_interval);
+  // }
 
   if (*min_interval < phone_min_interval) {
     L2CAP_TRACE_DEBUG("%s: requested min_interval=%d too small. Set to %d",

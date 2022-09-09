@@ -1358,7 +1358,8 @@ void smp_decide_association_model(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         smp_int_data.status = SMP_PAIR_AUTH_FAIL;
         int_evt = SMP_AUTH_CMPL_EVT;
       } else {
-        if (!is_atv_device() &&
+        if (
+            // !is_atv_device() &&
             (p_cb->local_io_capability == SMP_IO_CAP_IO ||
              p_cb->local_io_capability == SMP_IO_CAP_KBDISP)) {
           /* display consent dialog if this device has a display */
@@ -1749,7 +1750,8 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
       }
 
       if (p_cb->selected_association_model == SMP_MODEL_SEC_CONN_JUSTWORKS) {
-        if (!is_atv_device() &&
+        if (
+            // !is_atv_device() &&
             (p_cb->local_io_capability == SMP_IO_CAP_IO ||
              p_cb->local_io_capability == SMP_IO_CAP_KBDISP)) {
           /* display consent dialog */
