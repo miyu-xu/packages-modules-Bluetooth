@@ -1,0 +1,169 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a168c2e_b1be08d6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2523,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "3:59 PM\nLet\u0027s add here a comment, why we call it here since it was already called in 3545",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f97fc0d8_df923e6a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2582,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "Let\u0027s add here a comment, why we call it here since it was already called in 3545",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb4bb50a_b3256bb8",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1704,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "maybe we should remove downmix_fallback_ at all and just use the way it is implemented now?\n\nIt loos here bit complicated now.",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bdb14cc_d5bfd4b2",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1735,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "we could change that to target_allocation",
+      "range": {
+        "startLine": 1735,
+        "startChar": 15,
+        "endLine": 1735,
+        "endChar": 25
+      },
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942ac442_bd636476",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1736,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "current_allocation (above comment could be updated on what does it mean)",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7aeb6105_17210d22",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "this keeps target allocation correct? Maybe lets put this in the comment.\nor change the name  sink_offloader_streams_audio_allocation -\u003e  sink_offloader_streams_target_allocation\n\nsink_offloader_streams_connection -\u003e sink_offloader_streams_current_allocation",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "915d8029_57ae3007",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "-\u003e sink_current_allocation_changed?",
+      "range": {
+        "startLine": 712,
+        "startChar": 7,
+        "endLine": 712,
+        "endChar": 35
+      },
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70398eab_d6da63e9",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2c9727f_84e9d611",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-09T14:11:06Z",
+      "side": 1,
+      "message": "-\u003esource_current_allocation_changed ?",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
