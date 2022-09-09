@@ -690,6 +690,9 @@ class AdapterProperties {
 
     @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
     private void sendConnectionStateChange(int profile, Intent connIntent) {
+        Log.i(TAG,
+                "Counter Metrics: profile=" + profile + ", device=" + device + ", "
+                        + prevState + " -> " + state);
         BluetoothDevice device = connIntent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
         int prevState = connIntent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, -1);
         int state = connIntent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1);
