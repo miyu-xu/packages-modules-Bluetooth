@@ -701,6 +701,7 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
   std::string addrstr = bd_addr.ToString();
   const char* bdstr = addrstr.c_str();
+
   if (transport == BT_TRANSPORT_LE) {
     if (!btif_config_get_int(bdstr, "DevType", &device_type)) {
       btif_config_set_int(bdstr, "DevType", BT_DEVICE_TYPE_BLE);
@@ -724,6 +725,16 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
       (transport == BT_TRANSPORT_LE)) {
     BTA_DmAddBleDevice(bd_addr, addr_type,
                        static_cast<tBT_DEVICE_TYPE>(device_type));
+  }
+
+  if (transport == BT_TRANSPORT_AUTO) {
+    if (addr_type == BLE_ADDR_PUBLIC) {
+      transport =
+          BTM_UseLeLink(bd_addr) ? BT_TRANSPORT_LE : BT_TRANSPORT_BR_EDR;
+    } else {
+      LOG_INFO("Forcing transport LE (was auto) because of the address type");
+      transport = BT_TRANSPORT_LE;
+    }
   }
 
   if (is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
