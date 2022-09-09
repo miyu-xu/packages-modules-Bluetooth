@@ -144,9 +144,9 @@ void bta_gattc_disable() {
     bta_gattc_cb.state = BTA_GATTC_STATE_DISABLING;
 /* don't deregister HH GATT IF */
 /* HH GATT IF will be deregistered by bta_hh_le_deregister when disable HH */
-    if (!bta_hh_le_is_hh_gatt_if(bta_gattc_cb.cl_rcb[i].client_if)) {
-      bta_gattc_deregister(&bta_gattc_cb.cl_rcb[i]);
-    }
+    // if (!bta_hh_le_is_hh_gatt_if(bta_gattc_cb.cl_rcb[i].client_if)) {
+    //   bta_gattc_deregister(&bta_gattc_cb.cl_rcb[i]);
+    // }
   }
 
   /* no registered apps, indicate disable completed */
@@ -224,7 +224,7 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback,
 void bta_gattc_deregister(tBTA_GATTC_RCB* p_clreg) {
   if (!p_clreg) {
     LOG(ERROR) << __func__ << ": Deregister Failed unknown client cif";
-    bta_hh_cleanup_disable(BTA_HH_OK);
+    // bta_hh_cleanup_disable(BTA_HH_OK);
     return;
   }
 

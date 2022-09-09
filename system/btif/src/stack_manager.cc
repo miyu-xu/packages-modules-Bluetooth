@@ -280,62 +280,62 @@ static void event_start_up_stack(UNUSED_ATTR void* context) {
 
   ensure_stack_is_initialized();
 
-  LOG_INFO("%s is bringing up the stack", __func__);
-  future_t* local_hack_future = future_new();
-  hack_future = local_hack_future;
+//   LOG_INFO("%s is bringing up the stack", __func__);
+//   future_t* local_hack_future = future_new();
+//   hack_future = local_hack_future;
 
-  LOG_INFO("%s Gd shim module enabled", __func__);
-  module_shut_down(get_local_module(GD_IDLE_MODULE));
-  get_btm_client_interface().lifecycle.btm_init();
-  module_start_up(get_local_module(GD_SHIM_MODULE));
-  module_start_up(get_local_module(BTIF_CONFIG_MODULE));
+//   LOG_INFO("%s Gd shim module enabled", __func__);
+//   module_shut_down(get_local_module(GD_IDLE_MODULE));
+//   get_btm_client_interface().lifecycle.btm_init();
+//   module_start_up(get_local_module(GD_SHIM_MODULE));
+//   module_start_up(get_local_module(BTIF_CONFIG_MODULE));
 
-  l2c_init();
-  sdp_init();
-  gatt_init();
-  SMP_Init();
-  get_btm_client_interface().lifecycle.btm_ble_init();
+//   l2c_init();
+//   sdp_init();
+//   gatt_init();
+//   SMP_Init();
+//   get_btm_client_interface().lifecycle.btm_ble_init();
 
-  RFCOMM_Init();
-#if (BNEP_INCLUDED == TRUE)
-  BNEP_Init();
-#if (PAN_INCLUDED == TRUE)
-  PAN_Init();
-#endif /* PAN */
-#endif /* BNEP Included */
-  A2DP_Init();
-  AVRC_Init();
-  GAP_Init();
-#if (HID_HOST_INCLUDED == TRUE)
-  HID_HostInit();
-#endif
+//   RFCOMM_Init();
+// #if (BNEP_INCLUDED == TRUE)
+//   BNEP_Init();
+// #if (PAN_INCLUDED == TRUE)
+//   PAN_Init();
+// #endif /* PAN */
+// #endif /* BNEP Included */
+//   A2DP_Init();
+//   AVRC_Init();
+//   GAP_Init();
+// #if (HID_HOST_INCLUDED == TRUE)
+//   HID_HostInit();
+// #endif
 
-  bta_sys_init();
-  bta_ar_init();
-  module_init(get_local_module(BTE_LOGMSG_MODULE));
+//   bta_sys_init();
+//   bta_ar_init();
+//   module_init(get_local_module(BTE_LOGMSG_MODULE));
 
-  main_thread_start_up();
+//   main_thread_start_up();
 
-  btif_init_ok();
-  BTA_dm_init();
-  bta_dm_enable(bte_dm_evt);
+//   btif_init_ok();
+//   BTA_dm_init();
+//   bta_dm_enable(bte_dm_evt);
 
-  bta_set_forward_hw_failures(true);
-  btm_acl_device_down();
-  CHECK(module_start_up(get_local_module(GD_CONTROLLER_MODULE)));
-  BTM_reset_complete();
+//   bta_set_forward_hw_failures(true);
+//   btm_acl_device_down();
+//   CHECK(module_start_up(get_local_module(GD_CONTROLLER_MODULE)));
+//   BTM_reset_complete();
 
-  BTA_dm_on_hw_on();
+//   BTA_dm_on_hw_on();
 
-  if (future_await(local_hack_future) != FUTURE_SUCCESS) {
-    LOG_ERROR("%s failed to start up the stack", __func__);
-    stack_is_running = true;  // So stack shutdown actually happens
-    event_shut_down_stack(nullptr);
-    return;
-  }
+//   if (future_await(local_hack_future) != FUTURE_SUCCESS) {
+//     LOG_ERROR("%s failed to start up the stack", __func__);
+//     stack_is_running = true;  // So stack shutdown actually happens
+//     event_shut_down_stack(nullptr);
+//     return;
+//   }
 
-  stack_is_running = true;
-  LOG_INFO("%s finished", __func__);
+//   stack_is_running = true;
+//   LOG_INFO("%s finished", __func__);
   do_in_jni_thread(FROM_HERE, base::Bind(event_signal_stack_up, nullptr));
 }
 
@@ -346,51 +346,51 @@ static void event_shut_down_stack(UNUSED_ATTR void* context) {
     return;
   }
 
-  LOG_INFO("%s is bringing down the stack", __func__);
-  future_t* local_hack_future = future_new();
-  hack_future = local_hack_future;
-  stack_is_running = false;
+  // LOG_INFO("%s is bringing down the stack", __func__);
+  // future_t* local_hack_future = future_new();
+  // hack_future = local_hack_future;
+  // stack_is_running = false;
 
-  do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
+  // do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
 
-  do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_scanner_cleanup));
+  // do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_scanner_cleanup));
 
-  btif_dm_on_disable();
-  btif_sock_cleanup();
-  btif_pan_cleanup();
+  // btif_dm_on_disable();
+  // btif_sock_cleanup();
+  // btif_pan_cleanup();
 
-  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_disable));
+  // do_in_main_thread(FROM_HERE, base::Bind(bta_dm_disable));
 
-  future_await(local_hack_future);
-  local_hack_future = future_new();
-  hack_future = local_hack_future;
+  // future_await(local_hack_future);
+  // local_hack_future = future_new();
+  // hack_future = local_hack_future;
 
-  bta_sys_disable();
-  bta_set_forward_hw_failures(false);
-  BTA_dm_on_hw_off();
+  // bta_sys_disable();
+  // bta_set_forward_hw_failures(false);
+  // BTA_dm_on_hw_off();
 
-  module_shut_down(get_local_module(BTIF_CONFIG_MODULE));
+  // module_shut_down(get_local_module(BTIF_CONFIG_MODULE));
 
-  future_await(local_hack_future);
+  // future_await(local_hack_future);
 
-  main_thread_shut_down();
+  // main_thread_shut_down();
 
-  module_clean_up(get_local_module(BTE_LOGMSG_MODULE));
+  // module_clean_up(get_local_module(BTE_LOGMSG_MODULE));
 
-  gatt_free();
-  l2c_free();
-  sdp_free();
-  get_btm_client_interface().lifecycle.btm_ble_free();
+  // gatt_free();
+  // l2c_free();
+  // sdp_free();
+  // get_btm_client_interface().lifecycle.btm_ble_free();
 
-  LOG_INFO("%s Gd shim module disabled", __func__);
-  module_shut_down(get_local_module(GD_SHIM_MODULE));
-  get_btm_client_interface().lifecycle.btm_free();
-  module_start_up(get_local_module(GD_IDLE_MODULE));
+  // LOG_INFO("%s Gd shim module disabled", __func__);
+  // module_shut_down(get_local_module(GD_SHIM_MODULE));
+  // get_btm_client_interface().lifecycle.btm_free();
+  // module_start_up(get_local_module(GD_IDLE_MODULE));
 
-  hack_future = future_new();
+  // hack_future = future_new();
   do_in_jni_thread(FROM_HERE, base::Bind(event_signal_stack_down, nullptr));
-  future_await(hack_future);
-  LOG_INFO("%s finished", __func__);
+  // future_await(hack_future);
+  // LOG_INFO("%s finished", __func__);
 }
 
 static void ensure_stack_is_not_running() {
@@ -433,11 +433,11 @@ static void event_signal_stack_up(UNUSED_ATTR void* context) {
   // Notify BTIF connect queue that we've brought up the stack. It's
   // now time to dispatch all the pending profile connect requests.
   btif_queue_connect_next();
-  invoke_adapter_state_changed_cb(BT_STATE_ON);
+  // invoke_adapter_state_changed_cb(BT_STATE_ON);
 }
 
 static void event_signal_stack_down(UNUSED_ATTR void* context) {
-  invoke_adapter_state_changed_cb(BT_STATE_OFF);
+  // invoke_adapter_state_changed_cb(BT_STATE_OFF);
   future_ready(stack_manager_get_hack_future(), FUTURE_SUCCESS);
 }
 

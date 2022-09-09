@@ -293,8 +293,8 @@ struct tBTM_MSBC_INFO {
 static tBTM_MSBC_INFO* msbc_info = nullptr;
 
 void init(size_t pkt_size) {
-  hfp_msbc_decoder_init();
-  hfp_msbc_encoder_init();
+  // hfp_msbc_decoder_init();
+  // hfp_msbc_encoder_init();
 
   if (msbc_info) {
     LOG_WARN("Re-initiating mSBC buffer that is active or not cleaned");
@@ -307,8 +307,8 @@ void init(size_t pkt_size) {
 }
 
 void cleanup() {
-  hfp_msbc_decoder_cleanup();
-  hfp_msbc_encoder_cleanup();
+  // hfp_msbc_decoder_cleanup();
+  // hfp_msbc_encoder_cleanup();
 
   if (msbc_info == nullptr) return;
 
@@ -371,11 +371,11 @@ size_t decode(const uint8_t** out_data) {
     goto packet_loss;
   }
 
-  if (!hfp_msbc_decoder_decode_packet(frame_head, msbc_info->decoded_pcm_buf,
-                                      sizeof(msbc_info->decoded_pcm_buf))) {
-    LOG_DEBUG("Decoding mSBC packet failed");
-    goto packet_loss;
-  }
+  // if (!hfp_msbc_decoder_decode_packet(frame_head, msbc_info->decoded_pcm_buf,
+  //                                     sizeof(msbc_info->decoded_pcm_buf))) {
+  //   LOG_DEBUG("Decoding mSBC packet failed");
+  //   goto packet_loss;
+  // }
 
   *out_data = (const uint8_t*)msbc_info->decoded_pcm_buf;
   msbc_info->mark_pkt_decoded();
@@ -409,7 +409,8 @@ size_t encode(int16_t* data, size_t len) {
     return 0;
   }
 
-  encoded_size = hfp_msbc_encode_frames(data, pkt_body);
+  encoded_size = 4;
+ // hfp_msbc_encode_frames(data, pkt_body);
   if (encoded_size != BTM_MSBC_PKT_FRAME_LEN) {
     LOG_WARN("Encoding invalid packet size: %lu", (unsigned long)encoded_size);
     std::copy(std::begin(btm_msbc_zero_packet), std::end(btm_msbc_zero_packet),

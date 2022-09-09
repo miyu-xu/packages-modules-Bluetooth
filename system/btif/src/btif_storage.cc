@@ -909,11 +909,11 @@ bt_status_t btif_storage_add_bonded_device(RawAddress* remote_bd_addr,
   ret &=
       btif_config_set_bin(bdstr, "LinkKey", link_key.data(), link_key.size());
 
-  if (is_restricted_mode()) {
-    BTIF_TRACE_WARNING("%s: '%s' pairing will be removed if unrestricted",
-                       __func__, bdstr.c_str());
-    btif_config_set_int(bdstr, "Restricted", 1);
-  }
+  // if (is_restricted_mode()) {
+  //   BTIF_TRACE_WARNING("%s: '%s' pairing will be removed if unrestricted",
+  //                      __func__, bdstr.c_str());
+  //   btif_config_set_int(bdstr, "Restricted", 1);
+  // }
 
   /* write bonded info immediately */
   btif_config_flush();
@@ -1057,10 +1057,10 @@ void btif_storage_load_le_devices(void) {
   for (const auto& device : consolidated_devices) {
     if (bonded_addresses.find(device.second) != bonded_addresses.end()) {
       // Invokes address consolidation for DuMo devices
-      invoke_address_consolidate_cb(device.first, device.second);
+      // invoke_address_consolidate_cb(device.first, device.second);
     } else {
       // Associates RPA & identity address for LE-only devices
-      invoke_le_address_associate_cb(device.first, device.second);
+      // invoke_le_address_associate_cb(device.first, device.second);
     }
   }
 }
@@ -1595,7 +1595,7 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
 
     int value;
     if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
-    uint16_t attr_mask = (uint16_t)value;
+    // uint16_t attr_mask = (uint16_t)value;
 
     if (btif_in_fetch_bonded_device(name) != BT_STATUS_SUCCESS) {
       btif_storage_remove_hid_info(bd_addr);
@@ -1606,10 +1606,10 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
     memset(&dscp_info, 0, sizeof(dscp_info));
 
     btif_config_get_int(name, "HidSubClass", &value);
-    uint8_t sub_class = (uint8_t)value;
+    // uint8_t sub_class = (uint8_t)value;
 
     btif_config_get_int(name, "HidAppId", &value);
-    uint8_t app_id = (uint8_t)value;
+    // uint8_t app_id = (uint8_t)value;
 
     btif_config_get_int(name, "HidVendorId", &value);
     dscp_info.vendor_id = (uint16_t)value;
@@ -1640,9 +1640,9 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
     }
 
     // add extracted information to BTA HH
-    if (btif_hh_add_added_dev(bd_addr, attr_mask)) {
-      BTA_HhAddDev(bd_addr, attr_mask, sub_class, app_id, dscp_info);
-    }
+    // if (btif_hh_add_added_dev(bd_addr, attr_mask)) {
+      // BTA_HhAddDev(bd_addr, attr_mask, sub_class, app_id, dscp_info);
+    // }
   }
 
   return BT_STATUS_SUCCESS;
@@ -1830,15 +1830,15 @@ void btif_storage_load_bonded_hearing_aids() {
       is_acceptlisted = value;
 
     // add extracted information to BTA Hearing Aid
-    do_in_main_thread(
-        FROM_HERE,
-        Bind(&HearingAid::AddFromStorage,
-             HearingDevice(bd_addr, capabilities, codecs,
-                           audio_control_point_handle, audio_status_handle,
-                           audio_status_ccc_handle, service_changed_ccc_handle,
-                           volume_handle, read_psm_handle, hi_sync_id,
-                           render_delay, preparation_delay),
-             is_acceptlisted));
+    // do_in_main_thread(
+    //     FROM_HERE,
+    //     Bind(&HearingAid::AddFromStorage,
+    //          HearingDevice(bd_addr, capabilities, codecs,
+    //                        audio_control_point_handle, audio_status_handle,
+    //                        audio_status_ccc_handle, service_changed_ccc_handle,
+    //                        volume_handle, read_psm_handle, hi_sync_id,
+    //                        render_delay, preparation_delay),
+    //          is_acceptlisted));
   }
 }
 
@@ -1985,8 +1985,8 @@ void btif_storage_load_bonded_leaudio() {
     if (btif_config_get_int(name, BTIF_STORAGE_LEAUDIO_AUTOCONNECT, &value))
       autoconnect = !!value;
 
-    do_in_main_thread(
-        FROM_HERE, Bind(&LeAudioClient::AddFromStorage, bd_addr, autoconnect));
+    // do_in_main_thread(
+  //       FROM_HERE, Bind(&LeAudioClient::AddFromStorage, bd_addr, autoconnect));
   }
 }
 
@@ -2078,8 +2078,8 @@ void btif_storage_load_bonded_leaudio_has_devices() {
     uint8_t features = 0;
     if (btif_config_get_int(name, HAS_FEATURES, &value)) features = value;
 
-    do_in_main_thread(FROM_HERE, Bind(&le_audio::has::HasClient::AddFromStorage,
-                                      bd_addr, features, is_acceptlisted));
+    // do_in_main_thread(FROM_HERE, Bind(&le_audio::has::HasClient::AddFromStorage,
+    //                                   bd_addr, features, is_acceptlisted));
 #else
     ASSERT_LOG(false, "TODO - Fix LE audio build.");
 #endif
@@ -2172,11 +2172,11 @@ void btif_storage_load_bonded_groups(void) {
     BTIF_TRACE_DEBUG("Grouped device:%s", name.c_str());
 
     std::vector<uint8_t> in(buffer_size);
-    if (btif_config_get_bin(name, BTIF_STORAGE_DEVICE_GROUP_BIN, in.data(),
-                            &buffer_size)) {
-      do_in_main_thread(FROM_HERE, Bind(&DeviceGroups::AddFromStorage, bd_addr,
-                                        std::move(in)));
-    }
+    // if (btif_config_get_bin(name, BTIF_STORAGE_DEVICE_GROUP_BIN, in.data(),
+    //                         &buffer_size)) {
+    //   do_in_main_thread(FROM_HERE, Bind(&DeviceGroups::AddFromStorage, bd_addr,
+    //                                     std::move(in)));
+    // }
   }
 }
 
@@ -2197,7 +2197,8 @@ void btif_storage_set_csis_autoconnect(const RawAddress& addr,
 /** Stores information about the bonded CSIS device */
 void btif_storage_update_csis_info(const RawAddress& addr) {
   std::vector<uint8_t> set_info;
-  auto not_empty = CsisClient::GetForStorage(addr, set_info);
+  auto not_empty = true;
+  // auto not_empty = CsisClient::GetForStorage(addr, set_info);
 
   if (not_empty)
     do_in_jni_thread(
@@ -2231,9 +2232,9 @@ void btif_storage_load_bonded_csis_devices(void) {
       btif_config_get_bin(name, BTIF_STORAGE_CSIS_SET_INFO_BIN, in.data(),
                           &buffer_size);
 
-    if (buffer_size != 0 || autoconnect)
-      do_in_main_thread(FROM_HERE, Bind(&CsisClient::AddFromStorage, bd_addr,
-                                        std::move(in), autoconnect));
+    // if (buffer_size != 0 || autoconnect)
+      // do_in_main_thread(FROM_HERE, Bind(&CsisClient::AddFromStorage, bd_addr,
+      //                                   std::move(in), autoconnect));
   }
 }
 
@@ -2282,7 +2283,7 @@ bt_status_t btif_storage_load_hidd(void) {
     int value;
     if (btif_in_fetch_bonded_device(name) == BT_STATUS_SUCCESS) {
       if (btif_config_get_int(name, "HidDeviceCabled", &value)) {
-        BTA_HdAddDevice(bd_addr);
+        // BTA_HdAddDevice(bd_addr);
         break;
       }
     }
