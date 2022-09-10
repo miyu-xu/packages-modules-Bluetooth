@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937c7d2d_62430803",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:46:52Z",
+      "side": 1,
+      "message": "Remove?  The git history is necessary to understand the comment.  This make sense in the commit message, but I don\u0027t think it adds value in the code.",
+      "range": {
+        "startLine": 1432,
+        "startChar": 0,
+        "endLine": 1433,
+        "endChar": 76
+      },
+      "revId": "6f38e5015babaf64ccb0029c72001536d307b7f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
