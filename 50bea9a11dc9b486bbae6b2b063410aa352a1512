@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0806992f_b8c21d41",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:24:18Z",
+      "side": 0,
+      "message": "I think the changes to hci_packets.pdl should be separated from the RootCanal changes.  They will make cherry-picking significantly harder.",
+      "revId": "50bea9a11dc9b486bbae6b2b063410aa352a1512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcbec751_e5a08ea1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:24:18Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec241e3a_8f42ee43",
+        "filename": "tools/rootcanal/model/controller/controller_properties.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:24:18Z",
+      "side": 1,
+      "message": "8 instead of 7 :)",
+      "range": {
+        "startLine": 100,
+        "startChar": 44,
+        "endLine": 100,
+        "endChar": 45
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ff49834_3a5c97ec",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:24:18Z",
+      "side": 1,
+      "message": "This isn\u0027t really a handle anymore.",
+      "range": {
+        "startLine": 550,
+        "startChar": 7,
+        "endLine": 550,
+        "endChar": 24
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b329551_dec33410",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:24:18Z",
+      "side": 1,
+      "message": "I wonder if we should make this specific to each packet type.  We could encapsulate it in a function and let each packet type specify which ones they would accept.  It doesn\u0027t make sense to receive page commands to our random address, for example.  Not really related to this CL, but as long as I had the thought...",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 3
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1ebe96b_d54b2a6d",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:24:18Z",
+      "side": 1,
+      "message": "This seems unrelated to this CL.",
+      "range": {
+        "startLine": 1761,
+        "startChar": 0,
+        "endLine": 1768,
+        "endChar": 3
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79eb0a96_fad7c857",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:24:18Z",
+      "side": 1,
+      "message": "unordered_map ?",
+      "range": {
+        "startLine": 720,
+        "startChar": 7,
+        "endLine": 720,
+        "endChar": 10
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
