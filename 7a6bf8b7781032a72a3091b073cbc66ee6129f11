@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e281179b_9d70901a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-10T10:13:28Z",
+      "side": 1,
+      "message": "Added prevState checks. Do I understand correctly that failure (connecting-\u003edisconnected) reason is not available here?\n\nAlso, I considered logging it from HCI level as discussed, but IIUC device address is not available in EventCode::DISCONNECTION_COMPLETE, so I decided to leave it here and log events for profiles. WDYT?",
+      "parentUuid": "b0352af6_8ae7a5a8",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ee4eb6e_932f4f72",
@@ -67,6 +85,24 @@
       "writtenOn": "2022-09-01T17:23:09Z",
       "side": 1,
       "message": "Instead of SIMPLE_PAIRING_COMPLETE, we should use Authentication_complete",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5da622_6d1e2ce3",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-10T10:13:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee4eb6e_932f4f72",
       "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +156,24 @@
       "side": 1,
       "message": "At least it\u0027s better to collect connection start points. If Bluetooth crashes during the connection, it should count as a failure. If only connection results are logged, we\u0027ll never know such failures.",
       "parentUuid": "61a9c940_5c5465fb",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2098c411_668768d8",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-10T10:13:28Z",
+      "side": 1,
+      "message": "I think it won\u0027t be bulletproof either - what if Bluetooth crashes prior to emitting the log...\n\nChanged from \"switch\" to ErrorCodeText.",
+      "parentUuid": "9a4cccf5_80f8f62b",
       "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -70,6 +70,24 @@
       "parentUuid": "5949aa5b_f72847c5",
       "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7612e59a_06758fd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-10T10:13:28Z",
+      "side": 1,
+      "message": "Yes, our audit logging is in AOSP and should work on all devices.",
+      "parentUuid": "be3bc05a_c85cdf2d",
+      "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
