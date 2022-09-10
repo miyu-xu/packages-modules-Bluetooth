@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7732013_40c424e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:54:45Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd64c6b_f3a4eeae",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:54:45Z",
+      "side": 1,
+      "message": "split?",
+      "range": {
+        "startLine": 1343,
+        "startChar": 4,
+        "endLine": 1346,
+        "endChar": 60
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16325d94_0ebac5bc",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:54:45Z",
+      "side": 1,
+      "message": "Not ready makes sense when we\u0027re trying to connect, but if it\u0027s being disconnected is there something better?",
+      "range": {
+        "startLine": 1372,
+        "startChar": 11,
+        "endLine": 1372,
+        "endChar": 30
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505591b1_9996df05",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:54:45Z",
+      "side": 1,
+      "message": "This one seems odd.  If we can\u0027t find the device, we say the remote is down?",
+      "range": {
+        "startLine": 1379,
+        "startChar": 21,
+        "endLine": 1379,
+        "endChar": 33
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11cbc51b_e9178bc3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1391,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-10T13:54:45Z",
+      "side": 1,
+      "message": "I think we should split this case into two.  If it\u0027s busy doing what we want to do (we want to disconnect and it\u0027s already disconnecting), it seems like a different case than if we want to disconnect and it\u0027s connecting.",
+      "range": {
+        "startLine": 1386,
+        "startChar": 4,
+        "endLine": 1391,
+        "endChar": 3
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
