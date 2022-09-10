@@ -82,9 +82,6 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
           bta_dm_close_gatt_conn(message);
           break;
-        default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
       }
       break;
     case BTA_DM_SEARCH_ACTIVE:

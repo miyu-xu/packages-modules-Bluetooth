@@ -2983,34 +2983,18 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                 newState = PackageManager.COMPONENT_ENABLED_STATE_DEFAULT;
             }
 
-            // Bluetooth OPP activities that should always be enabled,
-            // even when Bluetooth is turned OFF.
-            ArrayList<String> baseBluetoothOppActivities = new ArrayList<String>() {
-                {
-                    // Base sharing activity
-                    add("com.android.bluetooth.opp.BluetoothOppLauncherActivity");
-                    // BT enable activities
-                    add("com.android.bluetooth.opp.BluetoothOppBtEnableActivity");
-                    add("com.android.bluetooth.opp.BluetoothOppBtEnablingActivity");
-                    add("com.android.bluetooth.opp.BluetoothOppBtErrorActivity");
-                }
-            };
+            String launcherActivity = "com.android.bluetooth.opp.BluetoothOppLauncherActivity";
 
-            PackageManager systemPackageManager = mContext.getPackageManager();
-            PackageManager userPackageManager = mContext.createContextAsUser(userHandle, 0)
+            PackageManager packageManager = mContext.createContextAsUser(userHandle, 0)
                                                         .getPackageManager();
-            var allPackages = systemPackageManager.getPackagesForUid(Process.BLUETOOTH_UID);
+            var allPackages = packageManager.getPackagesForUid(Process.BLUETOOTH_UID);
             for (String candidatePackage : allPackages) {
-                Log.v(TAG, "Searching package " + candidatePackage);
                 PackageInfo packageInfo;
                 try {
-                    packageInfo = systemPackageManager.getPackageInfo(
+                    // note: we need the package manager for the SYSTEM user, not our userHandle
+                    packageInfo = mContext.getPackageManager().getPackageInfo(
                         candidatePackage,
-                        PackageManager.PackageInfoFlags.of(
-                            PackageManager.GET_ACTIVITIES
-                            | PackageManager.MATCH_ANY_USER
-                            | PackageManager.MATCH_UNINSTALLED_PACKAGES
-                            | PackageManager.MATCH_DISABLED_COMPONENTS));
+                        PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES));
                 } catch (PackageManager.NameNotFoundException e) {
                     // ignore, try next package
                     Log.e(TAG, "Could not find package " + candidatePackage);
@@ -3023,22 +3007,20 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                     continue;
                 }
                 for (var activity : packageInfo.activities) {
-                    Log.v(TAG, "Checking activity " + activity.name);
-                    if (baseBluetoothOppActivities.contains(activity.name)) {
-                        for (String activityName : baseBluetoothOppActivities) {
-                            userPackageManager.setComponentEnabledSetting(
-                                    new ComponentName(candidatePackage, activityName),
-                                    newState,
-                                    PackageManager.DONT_KILL_APP
-                            );
-                        }
+                    if (launcherActivity.equals(activity.name)) {
+                        final ComponentName oppLauncherComponent = new ComponentName(
+                                candidatePackage, launcherActivity
+                        );
+                        packageManager.setComponentEnabledSetting(
+                                oppLauncherComponent, newState, PackageManager.DONT_KILL_APP
+                        );
                         return;
                     }
                 }
             }
 
             Log.e(TAG,
-                    "Cannot toggle Bluetooth OPP activities, could not find them in any package");
+                    "Cannot toggle BluetoothOppLauncherActivity, could not find it in any package");
         } catch (Exception e) {
             Log.e(TAG, "updateOppLauncherComponentState failed: " + e);
         }
