@@ -386,6 +386,24 @@ tCONN_CB* sdpu_allocate_ccb(void) {
 
 /*******************************************************************************
  *
+ * Function         sdpu_callback_release_ccb
+ *
+ * Description      Tell the user if they have a callback then releases the CCB.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void sdpu_callback_release_ccb(tCONN_CB* p_ccb, tSDP_REASON reason) {
+  if (p_ccb->p_cb) {
+    (*p_ccb->p_cb)(reason);
+  } else if (p_ccb->p_cb2) {
+    (*p_ccb->p_cb2)(reason, p_ccb->user_data);
+  }
+  sdpu_release_ccb(p_ccb);
+}
+
+/*******************************************************************************
+ *
  * Function         sdpu_release_ccb
  *
  * Description      This function releases a CCB.
@@ -484,12 +502,7 @@ bool sdpu_process_pend_ccb(uint16_t cid, bool use_cur_chnl) {
       if (new_cid != 0) {
         p_ccb->connection_id = new_cid;
       } else {
-        // Tell the user if he has a callback
-        if (p_ccb->p_cb)
-          (*p_ccb->p_cb)(SDP_CONN_FAILED);
-        else if (p_ccb->p_cb2)
-          (*p_ccb->p_cb2)(SDP_CONN_FAILED, p_ccb->user_data);
-        sdpu_release_ccb(p_ccb);
+        sdpu_callback_release_ccb(p_ccb, SDP_CONN_FAILED);
       }
     }
   }
@@ -516,12 +529,7 @@ void sdpu_clear_pend_ccb(uint16_t cid) {
     if ((p_ccb->con_state == SDP_STATE_CONN_PEND) &&
         (p_ccb->connection_id == cid) &&
         (p_ccb->con_flags & SDP_FLAGS_IS_ORIG)) {
-      // Tell the user if he has a callback
-      if (p_ccb->p_cb)
-        (*p_ccb->p_cb)(SDP_CONN_FAILED);
-      else if (p_ccb->p_cb2)
-        (*p_ccb->p_cb2)(SDP_CONN_FAILED, p_ccb->user_data);
-      sdpu_release_ccb(p_ccb);
+      sdpu_callback_release_ccb(p_ccb, SDP_CONN_FAILED);
     }
   }
   return;
