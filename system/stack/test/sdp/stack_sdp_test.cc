@@ -143,3 +143,39 @@ TEST_F(StackSdpMainTest, sdp_service_search_request) {
 
   ASSERT_EQ(p_ccb->con_state, SDP_STATE_IDLE);
 }
+
+TEST_F(StackSdpMainTest, sdp_service_search_request_queuing) {
+  RawAddress addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
+
+  tSDP_DISCOVERY_DB* db =
+      (tSDP_DISCOVERY_DB*)osi_malloc(BT_DEFAULT_BUFFER_SIZE);
+  ASSERT_TRUE(SDP_ServiceSearchRequest(addr, db, nullptr));
+  int cid = L2CA_ConnectReq2_cid;
+  tCONN_CB* p_ccb1 = find_ccb(cid, SDP_STATE_CONN_SETUP);
+  ASSERT_NE(p_ccb1, nullptr);
+  ASSERT_EQ(p_ccb1->con_state, SDP_STATE_CONN_SETUP);
+
+  ASSERT_TRUE(SDP_ServiceSearchRequest(addr, db, nullptr));
+  tCONN_CB* p_ccb2 = find_ccb(cid, SDP_STATE_CONN_PEND);
+  ASSERT_NE(p_ccb2, nullptr);
+  ASSERT_NE(p_ccb2, p_ccb1);
+  ASSERT_EQ(p_ccb2->con_state, SDP_STATE_CONN_PEND);
+
+  tL2CAP_CFG_INFO cfg;
+  sdp_cb.reg_info.pL2CA_ConfigCfm_Cb(p_ccb1->connection_id, 0, &cfg);
+
+  ASSERT_EQ(p_ccb1->con_state, SDP_STATE_CONNECTED);
+  ASSERT_EQ(p_ccb2->con_state, SDP_STATE_CONN_PEND);
+
+  p_ccb1->disconnect_reason = SDP_SUCCESS;
+  sdp_disconnect(p_ccb1, SDP_SUCCESS);
+
+  ASSERT_EQ(p_ccb1->con_state, SDP_STATE_IDLE);
+  ASSERT_EQ(p_ccb2->con_state, SDP_STATE_CONNECTED);
+
+  sdp_disconnect(p_ccb2, SDP_SUCCESS);
+  sdp_cb.reg_info.pL2CA_DisconnectCfm_Cb(p_ccb2->connection_id, 0);
+
+  ASSERT_EQ(p_ccb1->con_state, SDP_STATE_IDLE);
+  ASSERT_EQ(p_ccb2->con_state, SDP_STATE_IDLE);
+}
