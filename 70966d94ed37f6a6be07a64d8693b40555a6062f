@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14bc27a9_b6ea760e",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5735,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-12T20:39:17Z",
+      "side": 1,
+      "message": "Unrelated change?",
+      "range": {
+        "startLine": 5735,
+        "startChar": 0,
+        "endLine": 5735,
+        "endChar": 11
+      },
+      "revId": "70966d94ed37f6a6be07a64d8693b40555a6062f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
