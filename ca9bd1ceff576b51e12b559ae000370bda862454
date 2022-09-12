@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d293096_5c790606",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-12T06:02:37Z",
+      "side": 1,
+      "message": "This deviates from our desired behavior. It is telling CRAS to remove addr when `connectet_profiles.is_empty()`.\n\nWhat we want instead is to ask CRAS to remove addr when \"any of HFP/A2DP\" is dropped.(AVRCP wasn\u0027t taken into consideration in the removal logic though)\nThe background is that, for example, when HFP is removed the headset is very likely in a bad state that even A2DP is unstable to stream. Therefore we need to ask CRAS to stop showing this headset in the settings to user.",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 27
+      },
+      "revId": "ca9bd1ceff576b51e12b559ae000370bda862454",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
