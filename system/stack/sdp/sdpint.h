@@ -200,7 +200,7 @@ extern void sdpu_log_attribute_metrics(const RawAddress& bda,
 extern tCONN_CB* sdpu_find_ccb_by_cid(uint16_t cid);
 extern tCONN_CB* sdpu_find_ccb_by_db(const tSDP_DISCOVERY_DB* p_db);
 extern tCONN_CB* sdpu_allocate_ccb(void);
-extern void sdpu_release_ccb(tCONN_CB* p_ccb);
+extern void sdpu_release_ccb(tCONN_CB& ccb);
 
 extern uint8_t* sdpu_build_attrib_seq(uint8_t* p_out, uint16_t* p_attr,
                                       uint16_t num_attrs);
@@ -238,9 +238,9 @@ extern bool spdu_is_avrcp_version_valid(const uint16_t version);
 extern void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
                                          const RawAddress* bdaddr);
 extern uint16_t sdpu_get_active_ccb_cid(const RawAddress& remote_bd_addr);
-extern bool sdpu_process_pend_ccb(uin16_t cid, bool use_cur_chnl);
-extern void sdpu_clear_pend_ccb(uin16_t cid);
-extern void sdpu_callback_release_ccb(tCONN_CB* p_ccb, tSDP_REASON reason);
+extern bool sdpu_process_pend_ccb(tCONN_CB& ccb, bool use_cur_chnl);
+extern void sdpu_clear_pend_ccb(tCONN_CB& ccb);
+extern void sdpu_callback_release_ccb(tCONN_CB& ccb, tSDP_REASON reason);
 
 /* Functions provided by sdp_db.cc
  */
