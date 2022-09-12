@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74bc2fa7_52e43467",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T04:08:51Z",
+      "side": 1,
+      "message": "Maybe return pair\u003cint,int\u003e instead?\nhttps://g3doc.corp.google.com/devtools/library_club/g3doc/totw/176.md?cl\u003dhead\n\nAlso, rename the function to FlossProfileStateToMetricsEnum or something.",
+      "range": {
+        "startLine": 285,
+        "startChar": 37,
+        "endLine": 285,
+        "endChar": 46
+      },
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a93a466_fdd4594b",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T04:08:51Z",
+      "side": 1,
+      "message": "Let\u0027s return invalid value here instead of just breaking?",
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "930e345d_66d0aac3",
+        "filename": "system/gd/metrics/chromeos/metrics_event.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T04:08:51Z",
+      "side": 1,
+      "message": "Maybe just rename it to ProfileConnectionStatus?\nOn this context we use state for (dis)connect(ing), and use status for success|error.\n\nMaybe even MetricProfileConnectionStatus is better, since we also have ProfilesConnectionState which is very similar and potentially causes confusion.",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f0253fa_42cef8b2",
+        "filename": "system/gd/metrics/chromeos/metrics_event.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T04:08:51Z",
+      "side": 1,
+      "message": "nit: DISCONNECTED, also for entries below",
+      "range": {
+        "startLine": 112,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 38
+      },
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
