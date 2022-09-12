@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92a3419c_14ec702a",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T06:58:46Z",
+      "side": 1,
+      "message": "I put connected and connecting into the same bucket and respond with DONE, which means request already been handled.\n\nAnd for disconnecting when we try to connect, we will response BUSY.",
+      "parentUuid": "4dd64c6b_f3a4eeae",
+      "range": {
+        "startLine": 1343,
+        "startChar": 4,
+        "endLine": 1346,
+        "endChar": 60
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16325d94_0ebac5bc",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-10T13:54:45Z",
       "side": 1,
       "message": "Not ready makes sense when we\u0027re trying to connect, but if it\u0027s being disconnected is there something better?",
+      "range": {
+        "startLine": 1372,
+        "startChar": 11,
+        "endLine": 1372,
+        "endChar": 30
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caccb568_c6822623",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T06:58:46Z",
+      "side": 1,
+      "message": "I agree, not ready seems not accurate.\nBut there is not really good fit from bt_status_t. I picked BT_STATUS_UNHANDLED, which is more or less better than BT_STATUS_FAIL, which provides nothing more.\n\nWhat do you think?",
+      "parentUuid": "16325d94_0ebac5bc",
       "range": {
         "startLine": 1372,
         "startChar": 11,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "178f141b_c93398c3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T06:58:46Z",
+      "side": 1,
+      "message": "Agree BT_STATUS_RMT_DEV_DOWN is bad. \nI vote for BT_STATUS_UNHANDLED to express that the request was not handled. Or shall we just use BT_STATUS_FAIL here? \nWhat do you think?",
+      "parentUuid": "505591b1_9996df05",
+      "range": {
+        "startLine": 1379,
+        "startChar": 21,
+        "endLine": 1379,
+        "endChar": 33
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11cbc51b_e9178bc3",
         "filename": "system/btif/src/btif_hh.cc",
         "patchSetId": 1
@@ -100,6 +172,30 @@
       "writtenOn": "2022-09-10T13:54:45Z",
       "side": 1,
       "message": "I think we should split this case into two.  If it\u0027s busy doing what we want to do (we want to disconnect and it\u0027s already disconnecting), it seems like a different case than if we want to disconnect and it\u0027s connecting.",
+      "range": {
+        "startLine": 1386,
+        "startChar": 4,
+        "endLine": 1391,
+        "endChar": 3
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "828f7b3a_15168b6e",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1391,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T06:58:46Z",
+      "side": 1,
+      "message": "Similar to the change above, I bucket the disconnecting with disconnected to reply a DONE means the request is being processed, and BUSY for connecting.",
+      "parentUuid": "11cbc51b_e9178bc3",
       "range": {
         "startLine": 1386,
         "startChar": 4,
