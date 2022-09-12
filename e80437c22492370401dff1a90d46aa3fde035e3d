@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "177518d3_0ec1d64c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-12T15:49:05Z",
+      "side": 1,
+      "message": "This would likely require passing CTS tests, and existing SL4A style tests.  \n\nAdditionally, it would need a test to cover the case being fixed.  i.e. a verification test that isn\u0027t manual.  Something to be placed in the `Test:` line.\n\ne.g. system/gd/cert/run --clean --sl4a_sl4a AclTest\n\nThis coupled with sending it off for a general regression test to the QA team.\n\nWith the return short circuiting the logic, I\u0027m unsure if there would be an issue in another system component not receiving a broadcast.  I\u0027d have to dig through the logic below in more detail to know further.",
+      "parentUuid": "b3f2b44d_263e89c2",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e74dd14e_5c537ee7",
         "filename": "system/bta/include/bta_api.h",
         "patchSetId": 2
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "I want to indicate connection failure, therefore sending BT_STATUS_FAIL and BT_ACL_STATE_CONNECTED.\nWe could also send BT_ACL_STATE_DISCONNECTED, but that risks confusing this situation with a disconnection failure. \n\nHowever, currently it is impossible to send BT_STATUS_FAIL and BT_ACL_STATE_DISCONNECTED, because apparently libbluetooth doesn\u0027t check the status on disconnection - it just clean up the connection. I think that is incorrect though, but perhaps is not trivial to fix.\n\nWDYT?",
       "parentUuid": "d1b8cec9_1ad31574",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a738c120_0d766f37",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1828,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-12T15:49:05Z",
+      "side": 1,
+      "message": "I think passing the current state is the proper thing to do.  Is there a control block in this file that maintains the current state?  We do have a lot of state machines.  this function could be called in either scenario, so how are you certain it is connected and failed vs disconnected and attempting to connect but failed?\n\nAs for cleaning up disconnect failures...  We clean up the connections and we will invoke a state change callback which will handle telling the application it disconnected.  Doesn\u0027t matter if it was successful or not really.  Because its a disconnection.  Just tell the app \"its done\" and tear down the connection regardless.  Because what can you really do in the event of a disconnection failure?  disconnect harder? exponential backoff disconnect? :-D",
+      "parentUuid": "bf69edba_23f71bb5",
       "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
