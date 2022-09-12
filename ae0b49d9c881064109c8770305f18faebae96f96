@@ -16,6 +16,24 @@
       "message": "Does this block of change needs to be here or can it be at the top (start of the function)? Also should it have additional check (transport \u003d\u003d AUTO) only then try deriving?",
       "revId": "ae0b49d9c881064109c8770305f18faebae96f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd4cd87a_d3c6e9bb",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-09-12T10:02:27Z",
+      "side": 1,
+      "message": "Thanks Manoj for the review comments. Yes, (transport \u003d\u003d BT_TRANSPORT_AUTO) check added now. The block needs to be here only as above addr_type is obtained.",
+      "parentUuid": "1b8a5ac7_a6257cd6",
+      "revId": "ae0b49d9c881064109c8770305f18faebae96f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
