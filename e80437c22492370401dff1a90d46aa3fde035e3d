@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14642c2a_d59be86a",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T11:58:50Z",
+      "side": 1,
+      "message": "Sure, no problem",
+      "parentUuid": "e74dd14e_5c537ee7",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1b8cec9_1ad31574",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2022-09-08T17:47:24Z",
       "side": 1,
       "message": "If link up failed, shouldn\u0027t this be sending BT_ACL_STATE_DISCONNECTED?",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf69edba_23f71bb5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1828,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T11:58:50Z",
+      "side": 1,
+      "message": "I want to indicate connection failure, therefore sending BT_STATUS_FAIL and BT_ACL_STATE_CONNECTED.\nWe could also send BT_ACL_STATE_DISCONNECTED, but that risks confusing this situation with a disconnection failure. \n\nHowever, currently it is impossible to send BT_STATUS_FAIL and BT_ACL_STATE_DISCONNECTED, because apparently libbluetooth doesn\u0027t check the status on disconnection - it just clean up the connection. I think that is incorrect though, but perhaps is not trivial to fix.\n\nWDYT?",
+      "parentUuid": "d1b8cec9_1ad31574",
       "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
