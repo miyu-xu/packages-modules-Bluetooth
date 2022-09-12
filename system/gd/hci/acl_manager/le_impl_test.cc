@@ -365,7 +365,7 @@ class LeImplTest : public ::testing::Test {
         OnLeConnectSuccess,
         (AddressWithType address_with_type, std::unique_ptr<LeAclConnection> connection),
         (override));
-    MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason), (override));
+    MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason, bool locally_initiated), (override));
   } mock_le_connection_callbacks_;
 
  protected:

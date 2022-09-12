@@ -1264,24 +1264,30 @@ struct hci_btm_set_link_supervision_timeout {
 extern struct hci_btm_set_link_supervision_timeout
     hci_btm_set_link_supervision_timeout;
 // Name: on_acl_br_edr_connected
-// Params: const RawAddress& bda, uint16_t handle, uint8_t enc_mode
-// Returns: void
+// Params: const RawAddress& bda, uint16_t handle, uint8_t enc_mode, bool
+// locally_initiated Returns: void
 struct on_acl_br_edr_connected {
-  std::function<void(const RawAddress& bda, uint16_t handle, uint8_t enc_mode)>
-      body{[](const RawAddress& bda, uint16_t handle, uint8_t enc_mode) { ; }};
-  void operator()(const RawAddress& bda, uint16_t handle, uint8_t enc_mode) {
-    body(bda, handle, enc_mode);
+  std::function<void(const RawAddress& bda, uint16_t handle, uint8_t enc_mode,
+                     bool locally_initiated)>
+      body{[](const RawAddress& bda, uint16_t handle, uint8_t enc_mode,
+              bool locally_initiated) { ; }};
+  void operator()(const RawAddress& bda, uint16_t handle, uint8_t enc_mode,
+                  bool locally_initiated) {
+    body(bda, handle, enc_mode, locally_initiated);
   };
 };
 extern struct on_acl_br_edr_connected on_acl_br_edr_connected;
 // Name: on_acl_br_edr_failed
-// Params: const RawAddress& bda, tHCI_STATUS status
+// Params: const RawAddress& bda, tHCI_STATUS status, bool locally_initiated
 // Returns: void
 struct on_acl_br_edr_failed {
-  std::function<void(const RawAddress& bda, tHCI_STATUS status)> body{
-      [](const RawAddress& bda, tHCI_STATUS status) { ; }};
-  void operator()(const RawAddress& bda, tHCI_STATUS status) {
-    body(bda, status);
+  std::function<void(const RawAddress& bda, tHCI_STATUS status,
+                     bool locally_initiated)>
+      body{[](const RawAddress& bda, tHCI_STATUS status,
+              bool locally_initiated) { ; }};
+  void operator()(const RawAddress& bda, tHCI_STATUS status,
+                  bool locally_initiated) {
+    body(bda, status, locally_initiated);
   };
 };
 extern struct on_acl_br_edr_failed on_acl_br_edr_failed;
