@@ -426,7 +426,7 @@ class AclManagerNoCallbacksTest : public ::testing::Test {
         le_connection_promise_.reset();
       }
     }
-    MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason), (override));
+    MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason, bool locally_initiated), (override));
 
     std::list<std::shared_ptr<LeAclConnection>> le_connections_;
     std::unique_ptr<std::promise<void>> le_connection_promise_;
@@ -705,8 +705,9 @@ TEST_F(AclManagerTest, invoke_registered_callback_le_connection_complete_fail) {
 
   test_hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
 
-  EXPECT_CALL(mock_le_connection_callbacks_,
-              OnLeConnectFail(remote_with_type, ErrorCode::CONNECTION_REJECTED_LIMITED_RESOURCES));
+  EXPECT_CALL(
+      mock_le_connection_callbacks_,
+      OnLeConnectFail(remote_with_type, ErrorCode::CONNECTION_REJECTED_LIMITED_RESOURCES, true));
   test_hci_layer_->IncomingLeMetaEvent(LeConnectionCompleteBuilder::Create(
       ErrorCode::CONNECTION_REJECTED_LIMITED_RESOURCES,
       0x123,

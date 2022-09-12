@@ -700,13 +700,15 @@ void hci_btm_set_link_supervision_timeout(tACL_CONN& link, uint16_t timeout) {
   test::mock::stack_acl::hci_btm_set_link_supervision_timeout(link, timeout);
 }
 void on_acl_br_edr_connected(const RawAddress& bda, uint16_t handle,
-                             uint8_t enc_mode) {
+                             uint8_t enc_mode, bool locally_initiated) {
   mock_function_count_map[__func__]++;
-  test::mock::stack_acl::on_acl_br_edr_connected(bda, handle, enc_mode);
+  test::mock::stack_acl::on_acl_br_edr_connected(bda, handle, enc_mode,
+                                                 locally_initiated);
 }
-void on_acl_br_edr_failed(const RawAddress& bda, tHCI_STATUS status) {
+void on_acl_br_edr_failed(const RawAddress& bda, tHCI_STATUS status,
+                          bool locally_initiated) {
   mock_function_count_map[__func__]++;
-  test::mock::stack_acl::on_acl_br_edr_failed(bda, status);
+  test::mock::stack_acl::on_acl_br_edr_failed(bda, status, locally_initiated);
 }
 
 // END mockcify generation
