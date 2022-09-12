@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0615c2d_6737376d",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-12T21:09:18Z",
+      "side": 1,
+      "message": "Did you consider adding a test here?",
+      "revId": "16bd3aa4f0090c16a8a92739f581dd20da9d28db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
