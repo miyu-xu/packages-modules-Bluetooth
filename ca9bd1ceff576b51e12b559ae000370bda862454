@@ -22,6 +22,30 @@
       },
       "revId": "ca9bd1ceff576b51e12b559ae000370bda862454",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9ba30e5_7a6bff41",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-12T09:46:24Z",
+      "side": 1,
+      "message": "Thanks for pointing that out.\n\nWhen I started poking around this, I was worried about the undefined-chaos that could happen with various (bad state) cases of permutation of profile insert/delete.\n\nI ended up going with the assumption that we can treat the 3 profiles equally fairly and be passive about the disconnected profiles and remove it when there is a moment of 0 connected profile (at least the logic is clear).\n\nI wasn\u0027t aware of that asymmetric constraint and now I see why we had to have repeated patterns.\n\nAt this point I\u0027m thinking to go with:\n1. Insert to a `denylist` if the address has one of HFP/A2DP disconnected (and notify audio stack of removal if added).\n2. Everything is kept the same way in this patch, but we don\u0027t notify the audio stack that device is added when it is in the `denylist`.\n3. The address is removed from the `denylist` when its `connected_profiles` has been empty for once.\n\nIf this is adding too much complexity or still missing something, we can also revert most of the logic back to the base.",
+      "parentUuid": "3d293096_5c790606",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 27
+      },
+      "revId": "ca9bd1ceff576b51e12b559ae000370bda862454",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
