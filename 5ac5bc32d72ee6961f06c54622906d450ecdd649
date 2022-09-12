@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb83bf3_6fea234f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2523,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T02:48:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a168c2e_b1be08d6",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f97fc0d8_df923e6a",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb5364d_e6f7bc6b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2582,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T02:48:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f97fc0d8_df923e6a",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb4bb50a_b3256bb8",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-09-09T14:11:06Z",
       "side": 1,
       "message": "maybe we should remove downmix_fallback_ at all and just use the way it is implemented now?\n\nIt loos here bit complicated now.",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "943c3c23_bf529020",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1704,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T02:48:25Z",
+      "side": 1,
+      "message": "You\u0027re right. If audio HAL couldn\u0027t handle downmix, it could just ignore soft_audio_configuration_cb_.\n\nThanks for the suggestion.",
+      "parentUuid": "fb4bb50a_b3256bb8",
       "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
