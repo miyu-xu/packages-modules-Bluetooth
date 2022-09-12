@@ -129,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9037bef_4c2ac97e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1735,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T16:04:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bdb14cc_d5bfd4b2",
+      "range": {
+        "startLine": 1735,
+        "startChar": 15,
+        "endLine": 1735,
+        "endChar": 25
+      },
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "942ac442_bd636476",
@@ -146,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aab7defe_a9205649",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1736,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T16:04:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "942ac442_bd636476",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7aeb6105_17210d22",
@@ -159,6 +201,24 @@
       "writtenOn": "2022-09-09T14:11:06Z",
       "side": 1,
       "message": "this keeps target allocation correct? Maybe lets put this in the comment.\nor change the name  sink_offloader_streams_audio_allocation -\u003e  sink_offloader_streams_target_allocation\n\nsink_offloader_streams_connection -\u003e sink_offloader_streams_current_allocation",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebd3b148_4fe4acb4",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T16:04:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aeb6105_17210d22",
       "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -186,6 +246,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bf0ff6e_bfcdb3b7",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T16:04:31Z",
+      "side": 1,
+      "message": "Remove it to reduce the complexity.",
+      "parentUuid": "915d8029_57ae3007",
+      "range": {
+        "startLine": 712,
+        "startChar": 7,
+        "endLine": 712,
+        "endChar": 35
+      },
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70398eab_d6da63e9",
@@ -203,6 +287,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61804ac1_edcb4ff3",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T16:04:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70398eab_d6da63e9",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2c9727f_84e9d611",
@@ -216,6 +318,24 @@
       "writtenOn": "2022-09-09T14:11:06Z",
       "side": 1,
       "message": "-\u003esource_current_allocation_changed ?",
+      "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77597633_9bb856ca",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-12T16:04:31Z",
+      "side": 1,
+      "message": "Remove it to reduce the complexity.",
+      "parentUuid": "a2c9727f_84e9d611",
       "revId": "5ac5bc32d72ee6961f06c54622906d450ecdd649",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
