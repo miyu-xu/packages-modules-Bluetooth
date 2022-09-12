@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9720c199_e8646212",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5735,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-12T20:57:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14bc27a9_b6ea760e",
+      "range": {
+        "startLine": 5735,
+        "startChar": 0,
+        "endLine": 5735,
+        "endChar": 11
+      },
+      "revId": "70966d94ed37f6a6be07a64d8693b40555a6062f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaa4af87_00040418",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-12T20:45:55Z",
       "side": 1,
       "message": "const reference?\n\nconst std::vector\u003cbluetooth::hci::LengthAndData\u003e\u0026 data",
+      "range": {
+        "startLine": 3,
+        "startChar": 43,
+        "endLine": 3,
+        "endChar": 90
+      },
+      "revId": "70966d94ed37f6a6be07a64d8693b40555a6062f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35591945_126bcf1d",
+        "filename": "system/gd/hci/le_scanning_utils.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-12T20:57:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aaa4af87_00040418",
       "range": {
         "startLine": 3,
         "startChar": 43,
