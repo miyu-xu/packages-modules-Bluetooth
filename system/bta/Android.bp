@@ -862,6 +862,12 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
     ],
+    cflags: [
+        // b/241963581, has_client_test.cc test_load_from_storage_and_connect
+        // will fail with -fsanitize-address-use-after-return=always
+        // or when the stack-use-after-return check is enabled by default.
+        "-fsanitize-address-use-after-return=never",
+    ],
     sanitize: {
         cfi: true,
         scs: true,
