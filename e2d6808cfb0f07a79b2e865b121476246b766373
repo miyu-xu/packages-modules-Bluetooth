@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f44b84c_f451ddc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T07:46:11Z",
+      "side": 1,
+      "message": "Does it compile?\nThere is a mistake in addressing the key of the map, otherwise LGTM.",
+      "revId": "e2d6808cfb0f07a79b2e865b121476246b766373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50fc2845_d00c8737",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T07:46:11Z",
+      "side": 1,
+      "message": "key",
+      "range": {
+        "startLine": 371,
+        "startChar": 37,
+        "endLine": 371,
+        "endChar": 41
+      },
+      "revId": "e2d6808cfb0f07a79b2e865b121476246b766373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d91fea8_af33a6aa",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T07:46:11Z",
+      "side": 1,
+      "message": "key",
+      "range": {
+        "startLine": 372,
+        "startChar": 47,
+        "endLine": 372,
+        "endChar": 51
+      },
+      "revId": "e2d6808cfb0f07a79b2e865b121476246b766373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
