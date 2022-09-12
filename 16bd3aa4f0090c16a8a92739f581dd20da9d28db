@@ -16,6 +16,24 @@
       "message": "Did you consider adding a test here?",
       "revId": "16bd3aa4f0090c16a8a92739f581dd20da9d28db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a514d33_1d9276f5",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-12T22:27:15Z",
+      "side": 1,
+      "message": "Working on it!",
+      "parentUuid": "a0615c2d_6737376d",
+      "revId": "16bd3aa4f0090c16a8a92739f581dd20da9d28db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
