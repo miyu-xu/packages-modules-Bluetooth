@@ -371,7 +371,14 @@ ProfileConnectionEvent ToProfileConnectionEvent(std::string addr, uint32_t profi
       event.type = pending_type.find(key) != pending_type.end()
                        ? (int64_t)pending_type[key]
                        : (int64_t)StateChangeType::STATE_CHANGE_TYPE_DISCONNECT;
-      event.state = StatusToProfileConnectionState(status, (StateChangeType)event.type);
+      // If the profile successfully disconnected for a connect intent, i.e., a connection is attempted but received a
+      // disconnection state update. Report this as an unknown error.
+      if (StateChangeType::STATE_CHANGE_TYPE_CONNECT == (StateChangeType)event.type &&
+          BtStatus::BT_STATUS_SUCCESS == (BtStatus)status) {
+        event.state = (int64_t)MetricProfileConnectionStatus::PROFILE_CONN_STATE_UNKNOWN_ERROR;
+      } else {
+        event.state = StatusToProfileConnectionState(status, (StateChangeType)event.type);
+      }
       pending_type.erase(key);
       break;
     case ProfilesConnectionState::DISCONNECTING:
