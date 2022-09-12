@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c796380c_866fa98c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T12:11:22Z",
+      "side": 1,
+      "message": "Hi, I want to pass the \"(dis)connection initiator\" to the higher layer for metrics. However the code is not as straightforward as I expected, many components are interconnected and I don\u0027t even know which one is actually called. In the end I can make it work but am not sure whether this is acceptable.\n\nPlease kindly review this CL, thanks!",
+      "revId": "a51c8913833133bd6aab4cf48c1ea3d8c931128d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
