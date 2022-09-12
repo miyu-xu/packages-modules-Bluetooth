@@ -81,6 +81,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6179852b_14d5f92c",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-12T02:50:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43b8353b_d0003efa",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 3
+      },
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9e64109_c9683ec3",
@@ -94,6 +118,24 @@
       "writtenOn": "2022-09-06T22:29:49Z",
       "side": 1,
       "message": "Macro to check if the profile has been initialized",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "797efca6_33922c46",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-12T02:50:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9e64109_c9683ec3",
       "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -115,6 +157,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f26e51c_2fffdc15",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-12T02:50:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc4feba6_2b1d4247",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5026e57_8cda5d8f",
@@ -128,6 +188,24 @@
       "writtenOn": "2022-09-06T22:29:49Z",
       "side": 1,
       "message": "nit: `i32::from(BtStatus::NotReady)` or `BtStatus::NotReady.into()` should work here. Prefer not to use raw numbers.",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c6985fd_4a5e61a4",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-12T02:50:26Z",
+      "side": 1,
+      "message": "rust isn\u0027t happy with coercing u32 into i32 with the above methods. I used `as` instead.",
+      "parentUuid": "f5026e57_8cda5d8f",
       "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
