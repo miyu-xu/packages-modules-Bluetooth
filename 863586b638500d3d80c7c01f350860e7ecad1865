@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a75542_f8d13469",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-09-12T18:09:34Z",
+      "side": 1,
+      "message": "Hi Pavel, Please check the 2 new comments I added. Pichi told me that your timeoff + my timeoff may exceed the qpr deadline, and those 2 comments may not be blocking, so I\u0027ll +2 for now.\n\nBy +2 I confirm that everything you logged is correct but please make sure that you have logged everything you need by checking the 2 comments.",
+      "revId": "863586b638500d3d80c7c01f350860e7ecad1865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01489b3f_5b4b23fd",
