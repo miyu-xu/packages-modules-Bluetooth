@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cfc5363_27a30898",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T07:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74bc2fa7_52e43467",
+      "range": {
+        "startLine": 285,
+        "startChar": 37,
+        "endLine": 285,
+        "endChar": 46
+      },
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a93a466_fdd4594b",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-09-12T04:08:51Z",
       "side": 1,
       "message": "Let\u0027s return invalid value here instead of just breaking?",
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1919a9c5_27a8c64a",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T07:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a93a466_fdd4594b",
       "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03418bc5_8f4fd620",
+        "filename": "system/gd/metrics/chromeos/metrics_event.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T07:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "930e345d_66d0aac3",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f0253fa_42cef8b2",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-09-12T04:08:51Z",
       "side": 1,
       "message": "nit: DISCONNECTED, also for entries below",
+      "range": {
+        "startLine": 112,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 38
+      },
+      "revId": "d13f2f27d84be0dd1a4ba46e083f64a676cf9cf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad879766_bdd8a63f",
+        "filename": "system/gd/metrics/chromeos/metrics_event.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-12T07:00:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f0253fa_42cef8b2",
       "range": {
         "startLine": 112,
         "startChar": 2,
