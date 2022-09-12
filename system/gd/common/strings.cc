@@ -27,13 +27,20 @@
 
 namespace {
 
-struct IsSpace : std::unary_function<std::string::value_type, bool> {
+// std::unary_function is deprecated in C++17.
+#if __cplusplus >= 201703L
+struct UnaryBoolAbstraction {};
+#else
+struct UnaryBoolAbstraction : std::unary_function<std::string : value_type, bool> {};
+#endif
+
+struct IsSpace : UnaryBoolAbstraction {
   bool operator()(std::string::value_type v) {
     return isspace(static_cast<int>(v));
   }
 };
 
-struct IsHexDigit : std::unary_function<std::string::value_type, bool> {
+struct IsHexDigit : UnaryBoolAbstraction {
   bool operator()(std::string::value_type v) {
     return isxdigit(static_cast<int>(v));
   }
