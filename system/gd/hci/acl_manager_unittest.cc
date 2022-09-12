@@ -419,7 +419,7 @@ class AclManagerNoCallbacksTest : public ::testing::Test {
         connection_promise_.reset();
       }
     }
-    MOCK_METHOD(void, OnConnectFail, (Address, ErrorCode reason), (override));
+    MOCK_METHOD(void, OnConnectFail, (Address, ErrorCode reason, bool locally_initiated), (override));
 
     MOCK_METHOD(void, HACK_OnEscoConnectRequest, (Address, ClassOfDevice), (override));
     MOCK_METHOD(void, HACK_OnScoConnectRequest, (Address, ClassOfDevice), (override));
@@ -437,7 +437,7 @@ class AclManagerNoCallbacksTest : public ::testing::Test {
         le_connection_promise_.reset();
       }
     }
-    MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason), (override));
+    MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason, bool locally_initiated), (override));
 
     std::list<std::shared_ptr<LeAclConnection>> le_connections_;
     std::unique_ptr<std::promise<void>> le_connection_promise_;

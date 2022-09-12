@@ -202,6 +202,20 @@ pub enum BtStatus {
     Unknown = 0xff,
 }
 
+#[derive(Clone, Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
+#[repr(u32)]
+pub enum BtConnectionDirection {
+    Unknown = 0,
+    Incoming,
+    Outgoing,
+}
+
+impl From<u32> for BtConnectionDirection {
+    fn from(item: u32) -> Self {
+        BtConnectionDirection::from_u32(item).unwrap_or_else(|| BtConnectionDirection::Unknown)
+    }
+}
+
 pub fn ascii_to_string(data: &[u8], length: usize) -> String {
     // We need to reslice data because from_utf8 tries to interpret the
     // whole slice and not just what is before the null terminated portion
@@ -807,7 +821,7 @@ pub enum BaseCallbacks {
     BondState(BtStatus, RawAddress, BtBondState, i32),
     AddressConsolidate(RawAddress, RawAddress),
     LeAddressAssociate(RawAddress, RawAddress),
-    AclState(BtStatus, RawAddress, BtAclState, BtTransport, BtHciErrorCode),
+    AclState(BtStatus, RawAddress, BtAclState, BtTransport, BtHciErrorCode, BtConnectionDirection),
     // Unimplemented so far:
     // thread_evt_cb
     // dut_mode_recv_cb
@@ -870,7 +884,7 @@ cb_variant!(BaseCb, le_address_associate_cb -> BaseCallbacks::LeAddressAssociate
 });
 
 cb_variant!(BaseCb, acl_state_cb -> BaseCallbacks::AclState,
-u32 -> BtStatus, *mut FfiAddress, bindings::bt_acl_state_t -> BtAclState, i32 -> BtTransport, bindings::bt_hci_error_code_t -> BtHciErrorCode, {
+u32 -> BtStatus, *mut FfiAddress, bindings::bt_acl_state_t -> BtAclState, i32 -> BtTransport, bindings::bt_hci_error_code_t -> BtHciErrorCode, bindings::bt_conn_direction_t -> BtConnectionDirection, {
     let _1 = unsafe { *(_1 as *const RawAddress) };
 });
 

@@ -327,8 +327,12 @@ struct classic_impl : public security::ISecurityManagerListener {
       locally_initiated = false;
     }
     if (status != ErrorCode::SUCCESS) {
-      client_handler_->Post(common::BindOnce(&ConnectionCallbacks::OnConnectFail, common::Unretained(client_callbacks_),
-                                             address, status));
+      client_handler_->Post(common::BindOnce(
+          &ConnectionCallbacks::OnConnectFail,
+          common::Unretained(client_callbacks_),
+          address,
+          status,
+          locally_initiated));
     } else {
       uint16_t handle = connection_complete.GetConnectionHandle();
       auto queue = std::make_shared<AclConnection::Queue>(10);
