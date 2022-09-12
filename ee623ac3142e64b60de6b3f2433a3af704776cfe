@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5af56608_88918e9d",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T04:09:12Z",
+      "side": 1,
+      "message": "How do we distinguish the state of different profiles? maybe we need a nested map or a map with pair\u003caddr, profile\u003e as the key?",
+      "revId": "ee623ac3142e64b60de6b3f2433a3af704776cfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
