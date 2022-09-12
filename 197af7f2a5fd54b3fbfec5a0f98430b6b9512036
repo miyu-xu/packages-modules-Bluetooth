@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32895396_797c1e6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-12T04:44:43Z",
+      "side": 1,
+      "message": "I did, otherwise the bot would be upset :(",
+      "parentUuid": "d0ece5f0_0a21caea",
+      "revId": "197af7f2a5fd54b3fbfec5a0f98430b6b9512036",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65f36a43_91d9556c",
