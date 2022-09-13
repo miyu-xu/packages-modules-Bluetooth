@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fdef4a3_756d2643",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-13T01:52:19Z",
+      "side": 1,
+      "message": "Why do you use btree specifically for this map?",
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "87564967_18d7b2f4",
