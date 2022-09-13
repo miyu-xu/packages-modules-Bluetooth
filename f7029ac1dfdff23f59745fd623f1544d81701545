@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d734ebbf_bcadcdb9",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1966930
+      },
+      "writtenOn": "2022-09-13T09:33:34Z",
+      "side": 1,
+      "message": "Why is the behavior different for HIDL vs. AIDL ?",
+      "revId": "f7029ac1dfdff23f59745fd623f1544d81701545",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
