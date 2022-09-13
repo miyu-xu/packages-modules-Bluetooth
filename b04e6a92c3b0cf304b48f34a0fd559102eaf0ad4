@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbe38e25_cb489a88",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-13T18:54:58Z",
+      "side": 1,
+      "message": "Yes. In case reset does nothing, the adapter will be put into the `stopped` state and not attempt to retry starting unless the dbus `Start` is called.",
+      "parentUuid": "57821019_ff6425cd",
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9872370f_fd777af9",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-09-13T00:18:57Z",
       "side": 1,
       "message": "I was really confused by this naming. Can we consider update name to make a little more sense? Maybe in another CL.",
+      "range": {
+        "startLine": 868,
+        "startChar": 14,
+        "endLine": 868,
+        "endChar": 28
+      },
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "642bf119_ee34f9a0",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-13T18:54:58Z",
+      "side": 1,
+      "message": "Is this docstring sufficient? https://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/mgmt/src/state_machine.rs;l\u003d773?q\u003dstate_machine.rs",
+      "parentUuid": "9872370f_fd777af9",
       "range": {
         "startLine": 868,
         "startChar": 14,
@@ -75,6 +117,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "458e56ce_eae93603",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-13T18:54:58Z",
+      "side": 1,
+      "message": "Nack. This basically exits the state machine and requires external input to continue. This should be done regardless of whether the reset is successful.\n\nIf the reset succeeds, the hci presence will kick-start a new enable because it is `config_enabled`. If the reset fails, it will be in a stopped state and will require external input to restart the state machine.\n\nSpecifically, I want to avoid a scenario of infinite retries that accomplish nothing.",
+      "parentUuid": "23f5ac42_cade28b7",
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc06e40b_690d6113",
@@ -88,6 +148,30 @@
       "writtenOn": "2022-09-13T00:53:20Z",
       "side": 1,
       "message": "nit: rather than `collect`-ing, how about `count` it since we only need to assert that it\u0027s empty?",
+      "range": {
+        "startLine": 1183,
+        "startChar": 0,
+        "endLine": 1184,
+        "endChar": 32
+      },
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67ec4389_052ee8c6",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-13T18:54:58Z",
+      "side": 1,
+      "message": "Nack.\n\nPrinting out the failed expectations helps with debugging. You get output like the following instead of just a single assert failed.\n\n```\nassert failed!\nleft: [\"Got [Start], Expected: [Stop]\"],\nright: []\n```",
+      "parentUuid": "bc06e40b_690d6113",
       "range": {
         "startLine": 1183,
         "startChar": 0,
