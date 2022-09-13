@@ -16,6 +16,75 @@
       "message": "Hi Thomas,\n\nAdded few more test cases for AVRCP.\nPlease provide inputs at your feasibility.\n\nThanks and Regards,\nSnehal",
       "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eeebe52_1cd66265",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-13T22:35:52Z",
+      "side": 1,
+      "message": "I believe this won\u0027t work in all cases.\n\nTG test + Android DUT Sink and TG test + Android DUT Source are both possible (same for CT test + Android DUT Sink and CT test + Android DUT Source).\n\n\nWe should probably have a list of AVRCP tests that requires the Android DUT as Source (or a list of tests that requires the Android DUT as Sink), and decide which gRPC function to call here.\n\nFor instance:\n\n```\n@assert_description\ndef TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):\n    ...\n    \n    avrcp_sink_tests \u003d [\u0027AVRCP/XX\u0027, \u0027AVRCP/YY\u0027] # Replace with the tests that \n requires the DUT to be sink.\n \n    self.connection \u003d self.host.WaitConnection(address\u003dpts_addr).connection\n    if test not in avrcp_sink_tests:\n        try:\n            self.source \u003d self.a2dp.WaitSource(connection\u003dself.connection).source\n        except RpcError:\n            pass\n    else:\n        try:\n            self.sink \u003d self.a2dp.WaitSink(connection\u003dself.connection).sink\n        except RpcError:\n             pass\n```",
+      "range": {
+        "startLine": 62,
+        "startChar": 7,
+        "endLine": 62,
+        "endChar": 24
+      },
+      "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4749d18_f7c169e1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-13T22:35:52Z",
+      "side": 1,
+      "message": "In all those MMIs, shouldn\u0027t we verify that the Android DUT correctly plays or stops playing music?",
+      "range": {
+        "startLine": 370,
+        "startChar": 3,
+        "endLine": 452,
+        "endChar": 19
+      },
+      "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87bc7803_45a95d81",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-13T22:35:52Z",
+      "side": 1,
+      "message": "Here we should verify that the Android DUT is playing music.",
+      "range": {
+        "startLine": 455,
+        "startChar": 0,
+        "endLine": 464,
+        "endChar": 0
+      },
+      "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
