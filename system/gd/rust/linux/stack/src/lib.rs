@@ -78,6 +78,37 @@ pub enum Message {
     SocketManagerCallbackDisconnected(u32),
 }
 
+/// Represents an error reason that is generic in all API surfaces.
+#[derive(FromPrimitive, ToPrimitive)]
+pub enum GenericError {
+    /// Request is accepted successfully.
+    Success = 0,
+
+    /// The request cannot be fulfilled and there is no generic indication of the reason.
+    ///
+    /// The failure reason may be provided by the specific API module.
+    Fail = 1,
+
+    /// Cannot fulfill the request at the moment, but may be available at later time.
+    ///
+    /// This indicates a retryable error, so clients can retry again later. An example of such
+    /// condition is when the system is preparing for suspend and cannot take any more request
+    /// until the system is fully resumed.
+    Busy = 2,
+}
+
+/// Represents suspend mode of a module.
+///
+/// Being in suspend mode means that the module pauses some activities if required for suspend and
+/// some subsequent API calls will be blocked with a retryable error.
+#[derive(FromPrimitive, ToPrimitive)]
+pub enum SuspendMode {
+    Normal = 0,
+    Suspending = 1,
+    Suspended = 2,
+    Resuming = 3,
+}
+
 /// Umbrella class for the Bluetooth stack.
 pub struct Stack {}
 
