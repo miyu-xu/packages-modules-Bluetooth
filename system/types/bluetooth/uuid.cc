@@ -155,8 +155,6 @@ Uuid Uuid::GetRandom() {
 
 bool Uuid::IsEmpty() const { return *this == kEmpty; }
 
-bool Uuid::IsBase() const { return *this == kBase; }
-
 void Uuid::UpdateUuid(const Uuid& uuid) {
   uu = uuid.uu;
 }

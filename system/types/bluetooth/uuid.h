@@ -106,9 +106,6 @@ class Uuid final {
   // Returns true if this UUID is equal to kEmpty
   bool IsEmpty() const;
 
-  // Returns true if this UUID is equal to kBase
-  bool IsBase() const;
-
   // Update UUID with new value
   void UpdateUuid(const Uuid& uuid);
 
