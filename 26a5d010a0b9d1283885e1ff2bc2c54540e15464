@@ -53,6 +53,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a19cb8_828642bd",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-13T17:43:17Z",
+      "side": 1,
+      "message": "I got this in my linux build:\n```\nerror[E0658]: destructuring assignments are unstable\n   --\u003e system/gd/rust/linux/mgmt/src/state_machine.rs:604:61\n    |\n604 |                         (next_state, adapter_change_action) \u003d\n    |                         ----------------------------------- ^\n    |                         |\n    |                         cannot assign to this expression\n    |\n    \u003d note: see issue #71126 \u003chttps://github.com/rust-lang/rust/issues/71126\u003e for more information\n```\n\nDoes this need a newer Rust version?",
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "87564967_18d7b2f4",
