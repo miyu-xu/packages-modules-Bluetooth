@@ -21,7 +21,7 @@ from blueberry.tests.topshim.lib.adapter_client import AdapterClient
 from mobly import test_runner
 
 
-class SecurityTest(TopshimBaseTest):
+class ClassicSecurityTest(TopshimBaseTest):
 
     DEFAULT_ADDRESS = "01:02:03:04:05:06"
 
@@ -31,6 +31,15 @@ class SecurityTest(TopshimBaseTest):
 
     def test_remove_bond_with_no_bonded_devices(self):
         self.post(self.__test_remove_bond(self.DEFAULT_ADDRESS))
+
+    async def __test_numeric_comparison(self):
+        await self.cert.become_discoverable()
+        await self.dut.become_discoverable()
+        cert_address = self.cert.get_identity_address()
+        await self.dut.bond_with(cert_address)
+
+    def test_numeric_comparison(self):
+        self.post(self.__test_numeric_comparison)
 
 
 if __name__ == "__main__":
