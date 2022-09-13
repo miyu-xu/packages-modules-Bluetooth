@@ -8,7 +8,9 @@ use crate::{console_red, console_yellow, print_error, print_info};
 use bt_topshim::btif::{BtConnectionState, BtStatus, BtTransport};
 use btstack::bluetooth::{BluetoothDevice, IBluetooth, IBluetoothQA};
 use btstack::bluetooth_adv::{AdvertiseData, AdvertisingSetParameters};
-use btstack::bluetooth_gatt::{IBluetoothGatt, RSSISettings, ScanSettings, ScanType};
+use btstack::bluetooth_gatt::{
+    IBluetoothGatt, ScanFilter, ScanFilterCondition, ScanSettings, ScanType,
+};
 use btstack::socket_manager::{IBluetoothSocketManager, SocketResult};
 use btstack::uuid::{Profile, UuidHelper, UuidWrapper};
 use manager_service::iface_bluetooth_manager::IBluetoothManager;
@@ -865,13 +867,14 @@ impl CommandHandler {
                     self.context.lock().unwrap().gatt_dbus.as_mut().unwrap().start_scan(
                         id,
                         // TODO(b/217274432): Construct real settings and filters.
-                        ScanSettings {
-                            interval: 0,
-                            window: 0,
-                            rssi_settings: RSSISettings { high_threshold: 0, low_threshold: 0 },
-                            scan_type: ScanType::Active,
+                        ScanSettings { interval: 0, window: 0, scan_type: ScanType::Active },
+                        ScanFilter {
+                            condition: ScanFilterCondition::Patterns(vec![]),
+                            rssi_low_threshold: 0,
+                            rssi_low_timeout: 0,
+                            rssi_high_threshold: 0,
+                            rssi_sampling_period: 0,
                         },
-                        vec![],
                     );
                     self.context.lock().unwrap().active_scanner_ids.insert(id);
                 } else {
