@@ -22,6 +22,30 @@
       },
       "revId": "8f16a2cae42dee8a20e606b790a0b9dcd2d1ae98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24c1c71b_91bd2bcb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/BluetoothPbapObexAuthenticatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-13T05:09:16Z",
+      "side": 1,
+      "message": "Removed unreachable code.",
+      "parentUuid": "b5e916a0_e6c408ff",
+      "range": {
+        "startLine": 52,
+        "startChar": 71,
+        "endLine": 52,
+        "endChar": 96
+      },
+      "revId": "8f16a2cae42dee8a20e606b790a0b9dcd2d1ae98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

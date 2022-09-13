@@ -22,6 +22,30 @@
       },
       "revId": "893178e9e5853c27a46af44e38a11b27008e4523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57e175d1_fa568077",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapRequest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-13T05:09:16Z",
+      "side": 0,
+      "message": "It is for being used in subclasses.\n\nMy previous code was wrong. We don\u0027t need to add @VisibleForTesting since \u0027protected\u0027 has wider access than \u0027package private\u0027.\n\nhttps://stackoverflow.com/a/26894151",
+      "parentUuid": "afb8f2fb_864d5248",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 13
+      },
+      "revId": "893178e9e5853c27a46af44e38a11b27008e4523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
