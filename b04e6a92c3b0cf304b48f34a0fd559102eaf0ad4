@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57821019_ff6425cd",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-13T00:53:20Z",
+      "side": 1,
+      "message": "This assumes that the lower layer supports resetting (Chrome OS). What happens when this gets executed on Linux? Will it ignore the reset attempt gracefully?",
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9872370f_fd777af9",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 2
@@ -54,6 +71,29 @@
       "writtenOn": "2022-09-13T00:18:57Z",
       "side": 1,
       "message": "May want to have this return success or fail and set ProcessState based on it. \ne.g., adapter still presented but stopped and reset through HCI failed.",
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc06e40b_690d6113",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-13T00:53:20Z",
+      "side": 1,
+      "message": "nit: rather than `collect`-ing, how about `count` it since we only need to assert that it\u0027s empty?",
+      "range": {
+        "startLine": 1183,
+        "startChar": 0,
+        "endLine": 1184,
+        "endChar": 32
+      },
       "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
