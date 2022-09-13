@@ -16,6 +16,24 @@
       "message": "@chh: Do we perhaps want to just roll this into the total build/soong rules for Android entirely? It\u0027s already off by default on Android targets, and thus only affects host builds. It also is known to have false positives, which seems detrimental to add by default, especially to such a large codebase as AOSP.\n\n@eugenis: Any thoughts?",
       "revId": "9cfb25ced7a664668c01550dc0ce16903e619ef5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c4e5ed3_f20402e2",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2022-09-13T22:29:22Z",
+      "side": 1,
+      "message": "Are you sure this is a false positive? UAR has false positive if there is some manual stack unwinding, I\u0027m not aware of that taking place in android.",
+      "parentUuid": "d18eb8d6_0d83eb57",
+      "revId": "9cfb25ced7a664668c01550dc0ce16903e619ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
