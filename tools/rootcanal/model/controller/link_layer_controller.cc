@@ -4214,8 +4214,7 @@ void LinkLayerController::CheckExpiringConnection(uint16_t handle) {
   }
 
   if (connections_.HasLinkExpired(handle)) {
-    connections_.Disconnect(handle);
-    SendDisconnectionCompleteEvent(handle, ErrorCode::CONNECTION_TIMEOUT);
+    Disconnect(handle, ErrorCode::CONNECTION_TIMEOUT);
     return;
   }
 
