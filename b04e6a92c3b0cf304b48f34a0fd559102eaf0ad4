@@ -100,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00a3953b_60fea866",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-13T20:35:54Z",
+      "side": 1,
+      "message": "`configured to be enabled` configured and ready to be enabled?\nSuper nit anyway, not blocking from this CL to land.",
+      "parentUuid": "642bf119_ee34f9a0",
+      "range": {
+        "startLine": 868,
+        "startChar": 14,
+        "endLine": 868,
+        "endChar": 28
+      },
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23f5ac42_cade28b7",
@@ -131,6 +155,24 @@
       "side": 1,
       "message": "Nack. This basically exits the state machine and requires external input to continue. This should be done regardless of whether the reset is successful.\n\nIf the reset succeeds, the hci presence will kick-start a new enable because it is `config_enabled`. If the reset fails, it will be in a stopped state and will require external input to restart the state machine.\n\nSpecifically, I want to avoid a scenario of infinite retries that accomplish nothing.",
       "parentUuid": "23f5ac42_cade28b7",
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0137013_35dd4356",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-13T20:35:54Z",
+      "side": 1,
+      "message": "Ack. SG.",
+      "parentUuid": "458e56ce_eae93603",
       "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
