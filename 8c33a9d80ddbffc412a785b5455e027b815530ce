@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f90dc04f_e61a3143",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-09-13T16:20:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9fb558d_8eec9413",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "8c33a9d80ddbffc412a785b5455e027b815530ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62893f2b_408dbc0d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-13T03:30:49Z",
       "side": 1,
       "message": "Rahul suggested posting things onto the same handler that we pass to le_impl_ to avoid sync calls, promises, etc.\n\nIt seems like that would work here, too.  Have you tried it?",
+      "range": {
+        "startLine": 601,
+        "startChar": 0,
+        "endLine": 601,
+        "endChar": 14
+      },
+      "revId": "8c33a9d80ddbffc412a785b5455e027b815530ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f92eedb8_de73d820",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-09-13T16:20:37Z",
+      "side": 1,
+      "message": "I have not tried it.  I will step back and re-examine this implementation",
+      "parentUuid": "62893f2b_408dbc0d",
       "range": {
         "startLine": 601,
         "startChar": 0,
