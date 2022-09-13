@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc12267b_6b369b6a",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1646,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-13T20:53:03Z",
+      "side": 1,
+      "message": "FYI, this breaks the topshim facade. Please remember to update that as well.",
+      "revId": "6e5797a31032096b310408b2c12368483791245a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
