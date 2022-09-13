@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f52e49_893f985d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-13T20:24:55Z",
+      "side": 1,
+      "message": "IMHO, this looks like a reasonable fix, but I\u0027m worried that introducing the CLOCK_MONOTONIC_RAW without chaning the `time_get_os_boottime_us()` used for event, metrics and debug dump may backfire us in the future. So, I\u0027d suggest to have a follow up CL to also address that if possible.\nWould really love Android team\u0027s input on this. ",
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3db06ab_928b79fe",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-13T20:24:55Z",
+      "side": 1,
+      "message": "Update the comment",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 91,
+        "endChar": 34
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "509e0102_6eb128c9",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-13T20:24:55Z",
+      "side": 1,
+      "message": "Please help add comment to this helper fn to describe the expected input for now_us.",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 61
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647be070_6c339543",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-13T20:24:55Z",
+      "side": 1,
+      "message": "Maybe we should be more conservative to start with using time_get_os_monotonic_raw_us only for TARGET_FLOSS.",
+      "range": {
+        "startLine": 901,
+        "startChar": 1,
+        "endLine": 901,
+        "endChar": 5
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4db043b1_e2bec8ab",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-13T20:24:55Z",
+      "side": 1,
+      "message": "Should we also update this?",
+      "range": {
+        "startLine": 1069,
+        "startChar": 39,
+        "endLine": 1069,
+        "endChar": 62
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
