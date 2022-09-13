@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc87ee00_9d5e42b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-09-13T09:44:58Z",
+      "side": 1,
+      "message": "This change (preferring LE transport for pairing to a DUMO device) can be problematic if a device says DUMO but does not active connectable LE Advs emitting. It will lead to LE connection timeout during pairing (pairing will fail eventually). Need an additional check if \"connectable\" LE Adv is also received in same time frame before choosing LE transport for pairing?\n\nAlso, I presume the motivation for this change is to decide best transport for pairing for DUMO device given the high chance CTKD would happen. As the DUMO device may support CTKD only over select transport (BR/EDR or LE or both), this CTKD transport support also needs to be factored in to arrive at the choice of transport for pairing.",
+      "revId": "7c54ff470d7c69f272eeb49933f2f5c1950af40c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
