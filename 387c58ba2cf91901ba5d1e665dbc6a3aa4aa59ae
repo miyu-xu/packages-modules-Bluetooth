@@ -22,6 +22,30 @@
       },
       "revId": "387c58ba2cf91901ba5d1e665dbc6a3aa4aa59ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "893ccd56_6be4b788",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapObexAuthenticator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-13T08:41:33Z",
+      "side": 1,
+      "message": "The mSessionKey value is always \"0000\" and it is private. No code will change the value, so the previous code always returned non-null too. (See L39)",
+      "parentUuid": "97c110bf_96548965",
+      "range": {
+        "startLine": 48,
+        "startChar": 34,
+        "endLine": 48,
+        "endChar": 59
+      },
+      "revId": "387c58ba2cf91901ba5d1e665dbc6a3aa4aa59ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
