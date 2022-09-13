@@ -34,6 +34,24 @@
       "parentUuid": "d18eb8d6_0d83eb57",
       "revId": "9cfb25ced7a664668c01550dc0ce16903e619ef5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d9314a9_8cabfbfd",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1052399
+      },
+      "writtenOn": "2022-09-13T23:07:11Z",
+      "side": 1,
+      "message": "No, I don\u0027t know if it is false positive or not. Please see more info in b/241963581. Because I have only found this case, so my first choice is to disable it here even if it is false positive.  If there are more cases or if we prefer avoiding revert of the next compiler upgrade, we can also disable this globally first, upgrade the compiler, and then try to enable it after that.",
+      "parentUuid": "9c4e5ed3_f20402e2",
+      "revId": "9cfb25ced7a664668c01550dc0ce16903e619ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
