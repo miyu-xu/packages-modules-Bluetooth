@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ab14ab4_cf4c9ff7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-13T00:18:57Z",
+      "side": 1,
+      "message": "Mostly LGTM. ",
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9872370f_fd777af9",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-13T00:18:57Z",
+      "side": 1,
+      "message": "I was really confused by this naming. Can we consider update name to make a little more sense? Maybe in another CL.",
+      "range": {
+        "startLine": 868,
+        "startChar": 14,
+        "endLine": 868,
+        "endChar": 28
+      },
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f5ac42_cade28b7",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-13T00:18:57Z",
+      "side": 1,
+      "message": "May want to have this return success or fail and set ProcessState based on it. \ne.g., adapter still presented but stopped and reset through HCI failed.",
+      "revId": "b04e6a92c3b0cf304b48f34a0fd559102eaf0ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
