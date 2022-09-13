@@ -16,6 +16,24 @@
       "message": "Add docstring here. Usage of rust analyzer seems like it should also be included here in docs.",
       "revId": "006a1d8cad7f9596a9fee6fa657b18d7f8159c87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf3953a2_dedb6a4e",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-13T18:22:41Z",
+      "side": 1,
+      "message": "docstring added. However I think usage of rust analyzer should be covered separately because there are many different ways of using it depending on the IDE, the vim plugin manager, etc.",
+      "parentUuid": "78ca26cf_427a7841",
+      "revId": "006a1d8cad7f9596a9fee6fa657b18d7f8159c87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
