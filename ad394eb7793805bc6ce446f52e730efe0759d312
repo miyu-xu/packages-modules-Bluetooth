@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f48af0_b647e123",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-13T00:34:47Z",
+      "side": 1,
+      "message": "looks much cleaner. ",
+      "revId": "ad394eb7793805bc6ce446f52e730efe0759d312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8bfdfe2_cb430282",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1662,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-13T00:34:47Z",
+      "side": 1,
+      "message": "maybe `is_initialized` ?\n\nAlso we could put here comment, that this flag is true, just for the first time when stream is created.",
+      "range": {
+        "startLine": 1662,
+        "startChar": 8,
+        "endLine": 1662,
+        "endChar": 20
+      },
+      "revId": "ad394eb7793805bc6ce446f52e730efe0759d312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d12d0d3_9a90292b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1698,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-13T00:34:47Z",
+      "side": 1,
+      "message": "maybe we don\u0027t have to clear() this if `is_initialized` is false ? Meaning, there are valid data.\n\nThen we could skip line 1751 `if (is_initialized \u003d\u003d false)`",
+      "revId": "ad394eb7793805bc6ce446f52e730efe0759d312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c120016e_8921eff7",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-13T00:34:47Z",
+      "side": 1,
+      "message": "`sink_is_initialized` ?",
+      "range": {
+        "startLine": 713,
+        "startChar": 7,
+        "endLine": 713,
+        "endChar": 24
+      },
+      "revId": "ad394eb7793805bc6ce446f52e730efe0759d312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
