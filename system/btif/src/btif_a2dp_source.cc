@@ -895,7 +895,13 @@ static void btif_a2dp_source_audio_tx_stop_event(void) {
 static void btif_a2dp_source_audio_handle_timer(void) {
   if (btif_av_is_a2dp_offload_running()) return;
 
-  uint64_t timestamp_us = bluetooth::common::time_get_os_boottime_us();
+  uint64_t timestamp_us =
+#ifdef OS_ANDROID
+      bluetooth::common::time_get_os_boottime_us();
+#else
+      bluetooth::common::time_get_os_monotonic_raw_us();
+#endif
+
   log_tstamps_us("A2DP Source tx timer", timestamp_us);
 
   if (!btif_a2dp_source_cb.media_alarm.IsScheduled()) {
