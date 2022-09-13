@@ -7,8 +7,9 @@ use btstack::bluetooth_gatt::{
     BluetoothGattCharacteristic, BluetoothGattDescriptor, BluetoothGattService,
     GattWriteRequestStatus, GattWriteType, IBluetoothGatt, IBluetoothGattCallback,
     IScannerCallback, LePhy, RSSISettings, ScanFilter, ScanResult, ScanSettings, ScanType,
+    SuspendMode,
 };
-use btstack::RPCProxy;
+use btstack::{GenericError, RPCProxy};
 
 use dbus::arg::RefArg;
 
@@ -165,6 +166,11 @@ impl IScannerCallback for ScannerCallbackDBus {
     fn on_scan_result(&self, scan_result: ScanResult) {
         dbus_generated!()
     }
+
+    #[dbus_method("OnSuspendModeChange")]
+    fn on_suspend_mode_change(&self, suspend_mode: SuspendMode) {
+        dbus_generated!()
+    }
 }
 
 #[dbus_propmap(BluetoothGattDescriptor)]
@@ -225,8 +231,10 @@ struct ScanResultDBus {
 impl_dbus_arg_enum!(GattStatus);
 impl_dbus_arg_enum!(GattWriteRequestStatus);
 impl_dbus_arg_enum!(GattWriteType);
+impl_dbus_arg_enum!(GenericError);
 impl_dbus_arg_enum!(LePhy);
 impl_dbus_arg_enum!(ScanType);
+impl_dbus_arg_enum!(SuspendMode);
 
 #[dbus_propmap(ScanFilter)]
 struct ScanFilterDBus {}
@@ -362,12 +370,22 @@ impl IBluetoothGatt for IBluetoothGattDBus {
     }
 
     #[dbus_method("StartScan")]
-    fn start_scan(&mut self, scanner_id: u8, settings: ScanSettings, filters: Vec<ScanFilter>) {
+    fn start_scan(
+        &mut self,
+        scanner_id: u8,
+        settings: ScanSettings,
+        filters: Vec<ScanFilter>,
+    ) -> GenericError {
         dbus_generated!()
     }
 
     #[dbus_method("StopScan")]
-    fn stop_scan(&mut self, scanner_id: u8) {
+    fn stop_scan(&mut self, scanner_id: u8) -> GenericError {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetScanSuspendMode")]
+    fn get_scan_suspend_mode(&self) -> SuspendMode {
         dbus_generated!()
     }
 

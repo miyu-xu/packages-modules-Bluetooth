@@ -13,7 +13,7 @@ use btstack::bluetooth::{
 };
 use btstack::bluetooth_adv::IAdvertisingSetCallback;
 use btstack::bluetooth_gatt::{
-    BluetoothGattService, IBluetoothGattCallback, IScannerCallback, LePhy, ScanResult,
+    BluetoothGattService, IBluetoothGattCallback, IScannerCallback, LePhy, ScanResult, SuspendMode,
 };
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, IBluetoothSocketManager,
@@ -322,6 +322,10 @@ impl IScannerCallback for ScannerCallback {
         if self.context.lock().unwrap().active_scanner_ids.len() > 0 {
             print_info!("Scan result: {:#?}", scan_result);
         }
+    }
+
+    fn on_suspend_mode_change(&self, _suspend_mode: SuspendMode) {
+        // No-op, not interesting for btclient.
     }
 }
 

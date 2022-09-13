@@ -17,12 +17,13 @@ use btstack::bluetooth_gatt::{
     BluetoothGattCharacteristic, BluetoothGattDescriptor, BluetoothGattService,
     GattWriteRequestStatus, GattWriteType, IBluetoothGatt, IBluetoothGattCallback,
     IScannerCallback, LePhy, RSSISettings, ScanFilter, ScanResult, ScanSettings, ScanType,
+    SuspendMode,
 };
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, CallbackId, IBluetoothSocketManager,
     IBluetoothSocketManagerCallbacks, SocketId, SocketResult,
 };
-use btstack::RPCProxy;
+use btstack::{GenericError, RPCProxy};
 
 use btstack::suspend::{ISuspend, ISuspendCallback, SuspendType};
 
@@ -64,10 +65,12 @@ impl_dbus_arg_enum!(BtTransport);
 impl_dbus_arg_enum!(GattStatus);
 impl_dbus_arg_enum!(GattWriteRequestStatus);
 impl_dbus_arg_enum!(GattWriteType);
+impl_dbus_arg_enum!(GenericError);
 impl_dbus_arg_enum!(LePhy);
 impl_dbus_arg_enum!(Profile);
 impl_dbus_arg_enum!(ScanType);
 impl_dbus_arg_enum!(SocketType);
+impl_dbus_arg_enum!(SuspendMode);
 impl_dbus_arg_enum!(SuspendType);
 impl_dbus_arg_from_into!(Uuid, Vec<u8>);
 
@@ -240,6 +243,11 @@ impl IScannerCallback for IScannerCallbackDBus {
 
     #[dbus_method("OnScanResult")]
     fn on_scan_result(&self, scan_result: ScanResult) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnSuspendModeChange")]
+    fn on_suspend_mode_change(&self, suspend_mode: SuspendMode) {
         dbus_generated!()
     }
 }
@@ -758,12 +766,22 @@ impl IBluetoothGatt for BluetoothGattDBus {
     }
 
     #[dbus_method("StartScan")]
-    fn start_scan(&mut self, _scanner_id: u8, _settings: ScanSettings, _filters: Vec<ScanFilter>) {
+    fn start_scan(
+        &mut self,
+        _scanner_id: u8,
+        _settings: ScanSettings,
+        _filters: Vec<ScanFilter>,
+    ) -> GenericError {
         dbus_generated!()
     }
 
     #[dbus_method("StopScan")]
-    fn stop_scan(&mut self, _scanner_id: u8) {
+    fn stop_scan(&mut self, _scanner_id: u8) -> GenericError {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetScanSuspendMode")]
+    fn get_scan_suspend_mode(&self) -> SuspendMode {
         dbus_generated!()
     }
 
