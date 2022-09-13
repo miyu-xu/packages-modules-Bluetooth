@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aeaf7f88_780b86e8",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-13T18:56:25Z",
+      "side": 1,
+      "message": "I depend on the ordering of hci in order to choose the lowest numbered hci that is enabled in `get_lowest_available_adapter`. I will add docstrings here documenting why.",
+      "parentUuid": "8b05f9fe_6d7b0ea7",
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6a19cb8_828642bd",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 2
@@ -66,6 +84,24 @@
       "writtenOn": "2022-09-13T17:43:17Z",
       "side": 1,
       "message": "I got this in my linux build:\n```\nerror[E0658]: destructuring assignments are unstable\n   --\u003e system/gd/rust/linux/mgmt/src/state_machine.rs:604:61\n    |\n604 |                         (next_state, adapter_change_action) \u003d\n    |                         ----------------------------------- ^\n    |                         |\n    |                         cannot assign to this expression\n    |\n    \u003d note: see issue #71126 \u003chttps://github.com/rust-lang/rust/issues/71126\u003e for more information\n```\n\nDoes this need a newer Rust version?",
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc5a08f4_c9ed7c64",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-13T18:56:25Z",
+      "side": 1,
+      "message": "I\u0027m using Rust 1.59 and it builds fine. This build correctly on both ChromeOS and local Rust.",
+      "parentUuid": "a6a19cb8_828642bd",
       "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
