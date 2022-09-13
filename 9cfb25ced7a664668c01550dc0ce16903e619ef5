@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d18eb8d6_0d83eb57",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2022-09-13T22:09:35Z",
+      "side": 1,
+      "message": "@chh: Do we perhaps want to just roll this into the total build/soong rules for Android entirely? It\u0027s already off by default on Android targets, and thus only affects host builds. It also is known to have false positives, which seems detrimental to add by default, especially to such a large codebase as AOSP.\n\n@eugenis: Any thoughts?",
+      "revId": "9cfb25ced7a664668c01550dc0ce16903e619ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
