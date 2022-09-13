@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52724179_711a3f3a",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-13T02:04:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ff49834_3a5c97ec",
+      "range": {
+        "startLine": 550,
+        "startChar": 7,
+        "endLine": 550,
+        "endChar": 24
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b329551_dec33410",
@@ -110,6 +134,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7fa2ba5_11222e51",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-13T02:04:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1ebe96b_d54b2a6d",
+      "range": {
+        "startLine": 1761,
+        "startChar": 0,
+        "endLine": 1768,
+        "endChar": 3
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79eb0a96_fad7c857",
@@ -123,6 +171,30 @@
       "writtenOn": "2022-09-10T13:24:18Z",
       "side": 1,
       "message": "unordered_map ?",
+      "range": {
+        "startLine": 720,
+        "startChar": 7,
+        "endLine": 720,
+        "endChar": 10
+      },
+      "revId": "1d1275e4e3c9d4b26f5ebfb118ed676712c686d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27dd87b8_490317ad",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-13T02:04:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79eb0a96_fad7c857",
       "range": {
         "startLine": 720,
         "startChar": 7,
