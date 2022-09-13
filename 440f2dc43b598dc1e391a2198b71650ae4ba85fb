@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41862a8d_efa02ea2",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 25
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-13T20:43:05Z",
+      "side": 1,
+      "message": "nit: restore alphabetical order.",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 49
+      },
+      "revId": "440f2dc43b598dc1e391a2198b71650ae4ba85fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22b8a4c2_7bcd2904",
         "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
         "patchSetId": 25
