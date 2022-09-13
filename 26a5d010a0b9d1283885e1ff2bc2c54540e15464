@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19198caf_955df0d3",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-13T20:27:00Z",
+      "side": 1,
+      "message": "Ack, a comment will be helpful since we depend on btree for the correctness of `get_lowest_available_adapter`.",
+      "parentUuid": "aeaf7f88_780b86e8",
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6a19cb8_828642bd",
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "I\u0027m using Rust 1.59 and it builds fine. This build correctly on both ChromeOS and local Rust.",
       "parentUuid": "a6a19cb8_828642bd",
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "693e00ec_1e20083a",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-13T20:27:00Z",
+      "side": 1,
+      "message": "Ack. Verified builds after switching to 1.59 from 1.58.",
+      "parentUuid": "cc5a08f4_c9ed7c64",
       "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
