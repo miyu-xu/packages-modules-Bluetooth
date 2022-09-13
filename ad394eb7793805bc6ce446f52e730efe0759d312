@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b354cf2_54dde265",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1662,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-13T05:14:15Z",
+      "side": 1,
+      "message": "Thanks. Change to is_initial. In the condition, the stream is not really is_initialized.",
+      "parentUuid": "f8bfdfe2_cb430282",
+      "range": {
+        "startLine": 1662,
+        "startChar": 8,
+        "endLine": 1662,
+        "endChar": 20
+      },
+      "revId": "ad394eb7793805bc6ce446f52e730efe0759d312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d12d0d3_9a90292b",
@@ -58,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d926512c_4dd67ec5",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1698,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-13T05:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d12d0d3_9a90292b",
+      "revId": "ad394eb7793805bc6ce446f52e730efe0759d312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c120016e_8921eff7",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-09-13T00:34:47Z",
       "side": 1,
       "message": "`sink_is_initialized` ?",
+      "range": {
+        "startLine": 713,
+        "startChar": 7,
+        "endLine": 713,
+        "endChar": 24
+      },
+      "revId": "ad394eb7793805bc6ce446f52e730efe0759d312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d596b2f9_f01b7d3c",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-09-13T05:14:15Z",
+      "side": 1,
+      "message": "Thanks. Change to sink_is_initial.",
+      "parentUuid": "c120016e_8921eff7",
       "range": {
         "startLine": 713,
         "startChar": 7,
