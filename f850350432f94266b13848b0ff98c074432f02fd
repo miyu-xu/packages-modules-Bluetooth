@@ -22,6 +22,29 @@
       },
       "revId": "f850350432f94266b13848b0ff98c074432f02fd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "253ed203_4c9224fa",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-13T03:50:16Z",
+      "side": 1,
+      "message": "Should this still be a warning?",
+      "range": {
+        "startLine": 788,
+        "startChar": 17,
+        "endLine": 788,
+        "endChar": 24
+      },
+      "revId": "f850350432f94266b13848b0ff98c074432f02fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
