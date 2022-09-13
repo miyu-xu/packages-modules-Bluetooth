@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffd2a10_5b5451fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-13T01:29:55Z",
+      "side": 1,
+      "message": "Please add a Tag.",
+      "revId": "b5618977e87b63f58dcf78d52c789648111cdd1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d599d43_c48e39a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-13T01:29:55Z",
+      "side": 1,
+      "message": "It is a typo. Please fix the method name.",
+      "range": {
+        "startLine": 12,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "b5618977e87b63f58dcf78d52c789648111cdd1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
