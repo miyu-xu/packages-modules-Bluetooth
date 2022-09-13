@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faf4b809_b4e385bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-13T00:50:38Z",
+      "side": 1,
+      "message": "LGTM. Need a second pair of eyes. ",
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87564967_18d7b2f4",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-13T00:50:38Z",
+      "side": 1,
+      "message": "super nit: AdapterChangedActions?\nBut I noticed the two enums above have a little inconsistency anyway. Up to you.",
+      "range": {
+        "startLine": 885,
+        "startChar": 5,
+        "endLine": 885,
+        "endChar": 24
+      },
+      "revId": "26a5d010a0b9d1283885e1ff2bc2c54540e15464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
