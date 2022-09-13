@@ -72,6 +72,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ebd47a61_d0de99e9",
+        "filename": "android/pandora/server/proto/pandora/l2cap.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-13T23:08:04Z",
+      "side": 1,
+      "message": "This should probably better if located in `host.proto` and renamed into something like `SetLEConnectable` which can enable or disable LE connectable mode.",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a8c833_ab201643",
+        "filename": "android/pandora/server/proto/pandora/l2cap.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-13T23:08:04Z",
+      "side": 1,
+      "message": "Should be rename into something like `CreateLECreditBasedChannel`, since it\u0027s actually what this method is doing 😊",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7e758cc_502c8d1c",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 2
