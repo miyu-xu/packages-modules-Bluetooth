@@ -16,6 +16,46 @@
       "message": "Archie, please help with the first round review, thanks!",
       "revId": "a6768bc23826a146f6c9ec83f9fd62752f090723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8853fb56_b72ade24",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-13T07:12:03Z",
+      "side": 1,
+      "message": "In case the peer device reject the profile connection, will we have callback to connectionState? \nIf yes, can we obtain the error status?",
+      "range": {
+        "startLine": 200,
+        "startChar": 20,
+        "endLine": 200,
+        "endChar": 37
+      },
+      "revId": "a6768bc23826a146f6c9ec83f9fd62752f090723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62665bf8_d4c57400",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-13T07:12:03Z",
+      "side": 1,
+      "message": "Add BtavConnectionState::disconnecting here to preserve symmetry with connecting case?",
+      "revId": "a6768bc23826a146f6c9ec83f9fd62752f090723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
