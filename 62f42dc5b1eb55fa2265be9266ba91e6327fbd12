@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1820ac2_4928c5de",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-13T02:28:38Z",
+      "side": 1,
+      "message": "switch to LOG_INFO if this log does not appear too often (i.e. w/ every packet) ?\n\nthis will help field debugging\n\nsame as below, as long as the log doesn\u0027t appear more often than device connection/disconnection, I think we can use LOG_INFO",
+      "range": {
+        "startLine": 177,
+        "startChar": 4,
+        "endLine": 177,
+        "endChar": 13
+      },
+      "revId": "62f42dc5b1eb55fa2265be9266ba91e6327fbd12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
