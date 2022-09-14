@@ -16,6 +16,24 @@
       "message": "The reason why they had this `-1` is because in Floss they have defined:\n\n```\nnamespace hfp_hal_interface {\nenum codec : uint64_t {\n  CVSD \u003d 1 \u003c\u003c 0,\n  MSBC_TRANSPARENT \u003d 1 \u003c\u003c 1,\n  MSBC \u003d 1 \u003c\u003c 2,\n};\n```\n\nand the specs (0x2, 0x3, 0x5) would align to (0x1, 0x2, 0x4)...",
       "revId": "adf5ea847ffdbfed14430e743bdcfd6c335f9c0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae09ac73_d3790efb",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T08:15:06Z",
+      "side": 0,
+      "message": "Thanks for pointing this out. \n\nPer offline discussion, we\u0027ve found out the root cause is in a kernel patch\nhttps://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/3736033/comments/3a184c04_17bc358d\n\nand in HFP HAL here we shall revert to the previous mapping `1 \u003c\u003c (mc-\u003ecodec -1)`",
+      "parentUuid": "ec5e71c0_8bcf2d0f",
+      "revId": "adf5ea847ffdbfed14430e743bdcfd6c335f9c0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

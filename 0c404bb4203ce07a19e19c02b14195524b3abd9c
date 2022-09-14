@@ -22,6 +22,30 @@
       },
       "revId": "0c404bb4203ce07a19e19c02b14195524b3abd9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64f1b838_3b667863",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T08:15:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dee416b0_674badbd",
+      "range": {
+        "startLine": 303,
+        "startChar": 25,
+        "endLine": 303,
+        "endChar": 29
+      },
+      "revId": "0c404bb4203ce07a19e19c02b14195524b3abd9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
