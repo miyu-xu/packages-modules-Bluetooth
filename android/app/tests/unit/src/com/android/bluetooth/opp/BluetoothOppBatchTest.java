@@ -22,7 +22,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.opp.BluetoothOppBatch;
 import com.android.bluetooth.opp.BluetoothOppShareInfo;
 import com.android.bluetooth.opp.BluetoothShare;
 import com.android.bluetooth.opp.Constants;
@@ -30,8 +29,6 @@ import com.android.bluetooth.opp.Constants;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -79,7 +76,7 @@ public class BluetoothOppBatchTest {
             public void onBatchCanceled() {
             }
         }
-        mBluetoothOppBatch.registerListern(new BluetoothOppBatchListenerTest());
+        mBluetoothOppBatch.registerListener(new BluetoothOppBatchListenerTest());
         assertThat(mBluetoothOppBatch.isEmpty()).isFalse();
         assertThat(mBluetoothOppBatch.getNumShares()).isEqualTo(1);
         assertThat(mBluetoothOppBatch.hasShare(mMockBluetoothOppShareInfo)).isTrue();
@@ -109,7 +106,7 @@ public class BluetoothOppBatchTest {
                 batchCancelCalled[0] = true;
             }
         }
-        mBluetoothOppBatch.registerListern(new BluetoothOppBatchListenerTest());
+        mBluetoothOppBatch.registerListener(new BluetoothOppBatchListenerTest());
         assertThat(mBluetoothOppBatch.getPendingShare()).isEqualTo(mMockBluetoothOppShareInfo);
         try {
             mBluetoothOppBatch.cancelBatch();
