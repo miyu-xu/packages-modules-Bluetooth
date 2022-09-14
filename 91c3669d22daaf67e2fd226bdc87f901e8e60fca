@@ -87,6 +87,24 @@
       "parentUuid": "30a78ba9_aea1226c",
       "revId": "91c3669d22daaf67e2fd226bdc87f901e8e60fca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25c461a2_267b041b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-14T08:43:02Z",
+      "side": 1,
+      "message": "It seems to be some known flaky tests. I think that your fix worked and that PTS-bot test execution will return to normal during the day 👍",
+      "parentUuid": "fe64acec_7f85341c",
+      "revId": "91c3669d22daaf67e2fd226bdc87f901e8e60fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
