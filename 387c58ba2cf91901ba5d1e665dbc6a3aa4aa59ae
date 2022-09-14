@@ -70,6 +70,30 @@
       },
       "revId": "387c58ba2cf91901ba5d1e665dbc6a3aa4aa59ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2605224a_dcc9b334",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapObexAuthenticator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-14T08:02:04Z",
+      "side": 1,
+      "message": "Okay, reverted to original code.",
+      "parentUuid": "a8151892_b1dafa38",
+      "range": {
+        "startLine": 48,
+        "startChar": 34,
+        "endLine": 48,
+        "endChar": 59
+      },
+      "revId": "387c58ba2cf91901ba5d1e665dbc6a3aa4aa59ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

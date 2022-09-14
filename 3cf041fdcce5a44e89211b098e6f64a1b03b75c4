@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0ffa23_302a1252",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-14T08:02:04Z",
+      "side": 1,
+      "message": "Jack, could you check whether it is safe to remove an unused class BluetoothPbapObexTransport?",
+      "revId": "3cf041fdcce5a44e89211b098e6f64a1b03b75c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
