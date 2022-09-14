@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c798f10_4505ba58",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3116,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-14T10:01:30Z",
+      "side": 1,
+      "message": "Why checking this if after line #3091 we are sure that we are not in call?",
+      "range": {
+        "startLine": 3114,
+        "startChar": 6,
+        "endLine": 3116,
+        "endChar": 7
+      },
+      "revId": "a548f216ff8731a10bddec24a02d74de1aa5f5ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
