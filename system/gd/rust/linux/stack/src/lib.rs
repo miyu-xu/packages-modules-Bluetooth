@@ -27,6 +27,7 @@ use tokio::sync::mpsc::{Receiver, Sender};
 use crate::battery_manager::BatteryManager;
 use crate::battery_service::{BatteryService, GattBatteryCallbacks};
 use crate::bluetooth::{Bluetooth, IBluetooth};
+use crate::bluetooth_admin::{BluetoothAdmin, IBluetoothAdmin};
 use crate::bluetooth_gatt::BluetoothGatt;
 use crate::bluetooth_media::{BluetoothMedia, MediaActions};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
@@ -90,6 +91,9 @@ pub enum Message {
     BatteryManagerCallbackDisconnected(u32),
 
     GattClientCallbackDisconnected(u32),
+
+    // Admin policy related
+    AdminCallbackDisconnected(u32),
 }
 
 /// Represents suspend mode of a module.
@@ -123,6 +127,7 @@ impl Stack {
         bluetooth_media: Arc<Mutex<Box<BluetoothMedia>>>,
         suspend: Arc<Mutex<Box<Suspend>>>,
         bluetooth_socketmgr: Arc<Mutex<Box<BluetoothSocketManager>>>,
+        bluetooth_admin: Arc<Mutex<Box<BluetoothAdmin>>>,
     ) {
         loop {
             let m = rx.recv().await;
@@ -239,6 +244,9 @@ impl Stack {
                 }
                 Message::GattClientCallbackDisconnected(id) => {
                     bluetooth_gatt.lock().unwrap().remove_client_callback(id);
+                }
+                Message::AdminCallbackDisconnected(id) => {
+                    bluetooth_admin.lock().unwrap().unregister_admin_policy_callback(id);
                 }
             }
         }
