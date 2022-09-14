@@ -16,6 +16,24 @@
       "message": "Would it make more sense to use `BtStatus::BusyWithSuspend` or something similar? Imposing `GenericError` on these apis makes them less portable across different interfaces.",
       "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "906dacb1_2d3177a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-14T01:04:24Z",
+      "side": 1,
+      "message": "Yes we could use `BtStatus`. How about reuse `BtStatus::Busy` as we don\u0027t need to be specific that it\u0027s due to suspend. We can adopt the convention that `BtStatus::Busy` is retryable.",
+      "parentUuid": "8df3320a_010aff54",
+      "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
