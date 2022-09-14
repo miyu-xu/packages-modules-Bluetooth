@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a6ba8c_4496b343",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-14T17:09:35Z",
+      "side": 0,
+      "message": "Might be a good idea to convert this into an enum (which serializes as u32 anyway).\n\nI know that Gatt also has other phy callbacks -- can we unify all of them to use an enum?",
+      "revId": "d89f5e0975b0948d0e2219ba960e79ab66bd3763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
