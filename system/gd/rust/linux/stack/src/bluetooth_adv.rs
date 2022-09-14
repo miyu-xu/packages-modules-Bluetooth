@@ -30,9 +30,9 @@ pub struct AdvertisingSetParameters {
     /// Whether the TX Power will be included.
     pub include_tx_power: bool,
     /// Primary advertising phy. Valid values are: 1 (1M), 2 (2M), 3 (Coded).
-    pub primary_phy: i32,
+    pub primary_phy: u32,
     /// Secondary advertising phy. Valid values are: 1 (1M), 2 (2M), 3 (Coded).
-    pub secondary_phy: i32,
+    pub secondary_phy: u32,
     /// The advertising interval. Bluetooth LE Advertising interval, in 0.625 ms unit.
     /// The valid range is from 160 (100 ms) to 16777215 (10485.759375 sec).
     /// Recommended values are: 160 (100 ms), 400 (250 ms), 1600 (1 sec).
@@ -146,8 +146,8 @@ const PERIODIC_INTERVAL_MIN: i32 = 80; // 100 ms
 const PERIODIC_INTERVAL_DELTA: i32 = 16; // 20 ms gap between min and max
 
 // PHY range.
-const PHY_MIN: i32 = 1;
-const PHY_MAX: i32 = 3;
+const PHY_MIN: u32 = 1;
+const PHY_MAX: u32 = 3;
 
 // Device name length.
 const DEVICE_NAME_MAX: usize = 26;
