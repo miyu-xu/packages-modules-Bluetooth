@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be0e83e_f5d8683c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T10:07:06Z",
+      "side": 1,
+      "message": "TARGET_FLOSS.\n\nAlso add a few lines to explain that we intentionally to leave the timestamps in A2DP metrics/stats untouched.",
+      "range": {
+        "startLine": 16,
+        "startChar": 58,
+        "endLine": 16,
+        "endChar": 69
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "04f52e49_893f985d",
@@ -14,6 +37,24 @@
       "writtenOn": "2022-09-13T20:24:55Z",
       "side": 1,
       "message": "IMHO, this looks like a reasonable fix, but I\u0027m worried that introducing the CLOCK_MONOTONIC_RAW without chaning the `time_get_os_boottime_us()` used for event, metrics and debug dump may backfire us in the future. So, I\u0027d suggest to have a follow up CL to also address that if possible.\nWould really love Android team\u0027s input on this. ",
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43481c0f_f000f547",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T10:07:06Z",
+      "side": 1,
+      "message": "In offline discussion I suggested leaving all other \"times\" untouched and only change the \"data sensitive\" one to MONOTONIC_RAW. (i.e the encoder timer consumes data from CRAS)\n\nAll other timestamps in this file are for A2DP stats/metrics. And that is something to look into post dogfood.\nLeaving them untouched is safer and makes more sense because we might use the timestamps in stats/metrics to correlate to other timestamps in system, which are mostly MONOTONIC.",
+      "parentUuid": "04f52e49_893f985d",
       "revId": "20edf157a55a7fe501f279432168c368514c9251",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1a4690_1950ef85",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T10:07:06Z",
+      "side": 1,
+      "message": "Leave them alone as we don\u0027t understand how these stats are used.\nA2DP metrics/stats is something to study post-dogfood.",
+      "parentUuid": "509e0102_6eb128c9",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 61
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "647be070_6c339543",
@@ -89,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0955a52d_11d93e5d",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T10:07:06Z",
+      "side": 1,
+      "message": "good point. Let\u0027s do TARGET_FLOSS.",
+      "parentUuid": "647be070_6c339543",
+      "range": {
+        "startLine": 901,
+        "startChar": 1,
+        "endLine": 901,
+        "endChar": 5
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4db043b1_e2bec8ab",
         "filename": "system/btif/src/btif_a2dp_source.cc",
         "patchSetId": 3
@@ -100,6 +189,30 @@
       "writtenOn": "2022-09-13T20:24:55Z",
       "side": 1,
       "message": "Should we also update this?",
+      "range": {
+        "startLine": 1069,
+        "startChar": 39,
+        "endLine": 1069,
+        "endChar": 62
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4182aec4_df5cc02b",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T10:07:06Z",
+      "side": 1,
+      "message": "per my comment, don\u0027t change those timestamps in stats/metrics which we\u0027re not sure how to interpret at this moment.",
+      "parentUuid": "4db043b1_e2bec8ab",
       "range": {
         "startLine": 1069,
         "startChar": 39,
