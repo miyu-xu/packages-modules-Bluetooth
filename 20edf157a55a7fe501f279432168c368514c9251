@@ -221,6 +221,29 @@
       },
       "revId": "20edf157a55a7fe501f279432168c368514c9251",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c32115_d541bdef",
+        "filename": "system/common/time_util.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-14T13:39:26Z",
+      "side": 1,
+      "message": "I think I would rather have the single ifdef here.\n\n#infdef TARGET_FLOSS\n  clock_gettime(CLOCK_BOOTTIME, \u0026ts_now);\n#else\n  clock_gettime(CLOCK_MONOTONIC_RAW, \u0026ts_now);\n#endif",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 41
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
