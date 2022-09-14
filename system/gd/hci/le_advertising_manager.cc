@@ -24,6 +24,7 @@
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/le_advertising_interface.h"
+#include "hci/vendor_specific_event_manager.h"
 #include "module.h"
 #include "os/handler.h"
 #include "os/log.h"
@@ -104,7 +105,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   }
 
   void start(os::Handler* handler, hci::HciLayer* hci_layer, hci::Controller* controller,
-             hci::AclManager* acl_manager) {
+             hci::AclManager* acl_manager, hci::VendorSpecificEventManager* vendor_specific_event_manager) {
     module_handler_ = handler;
     hci_layer_ = hci_layer;
     controller_ = controller;
@@ -114,6 +115,9 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     le_advertising_interface_ =
         hci_layer_->GetLeAdvertisingInterface(module_handler_->BindOn(this, &LeAdvertisingManager::impl::handle_event));
     num_instances_ = controller_->GetLeNumberOfSupportedAdverisingSets();
+    vendor_specific_event_manager->RegisterEventHandler(
+    hci::VseSubeventCode::BLE_STCHANGE, handler->BindOn(this, &LeAdvertisingManager::impl::multi_advertising_state_change));
+
     enabled_sets_ = std::vector<EnabledSet>(num_instances_);
     for (size_t i = 0; i < enabled_sets_.size(); i++) {
       enabled_sets_[i].advertising_handle_ = kInvalidHandle;
@@ -150,6 +154,18 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
 
   void register_advertising_callback(AdvertisingCallback* advertising_callback) {
     advertising_callbacks_ = advertising_callback;
+  }
+
+  void multi_advertising_state_change(hci::VendorSpecificEventView event) {
+    auto view = hci::LEAdvertiseStateChangeEventView::Create(event);
+    ASSERT(view.IsValid());
+    LOG_ERROR("Instance: 0x%x StateChangeReason: 0x%x Handle: 0x%x Address: %s", view.GetAdvertisingInstance(),
+        view.GetStateChangeReason(), view.GetConnectionHandle(),
+        advertising_sets_[view.GetAdvertisingInstance()].current_address.ToString().c_str());
+    // view.GetStateChangeReason() 0x00: Connection received
+    if(view.GetStateChangeReason() == 0x00)
+      acl_manager_->OnAdvertisingSetTerminated(ErrorCode::SUCCESS, view.GetConnectionHandle(),
+                                               advertising_sets_[view.GetAdvertisingInstance()].current_address);
   }
 
   void handle_event(LeMetaEventView event) {
@@ -1344,11 +1360,12 @@ void LeAdvertisingManager::ListDependencies(ModuleList* list) const {
   list->add<hci::HciLayer>();
   list->add<hci::Controller>();
   list->add<hci::AclManager>();
+  list->add<hci::VendorSpecificEventManager>();
 }
 
 void LeAdvertisingManager::Start() {
   pimpl_->start(GetHandler(), GetDependency<hci::HciLayer>(), GetDependency<hci::Controller>(),
-                GetDependency<AclManager>());
+                GetDependency<AclManager>(), GetDependency<VendorSpecificEventManager>());
 }
 
 void LeAdvertisingManager::Stop() {
