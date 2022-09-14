@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5e71c0_8bcf2d0f",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-14T04:06:32Z",
+      "side": 0,
+      "message": "The reason why they had this `-1` is because in Floss they have defined:\n\n```\nnamespace hfp_hal_interface {\nenum codec : uint64_t {\n  CVSD \u003d 1 \u003c\u003c 0,\n  MSBC_TRANSPARENT \u003d 1 \u003c\u003c 1,\n  MSBC \u003d 1 \u003c\u003c 2,\n};\n```\n\nand the specs (0x2, 0x3, 0x5) would align to (0x1, 0x2, 0x4)...",
+      "revId": "adf5ea847ffdbfed14430e743bdcfd6c335f9c0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
