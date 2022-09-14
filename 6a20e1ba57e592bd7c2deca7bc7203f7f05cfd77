@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f846c89_63d3b51c",
+        "filename": "/MERGE_LIST",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-14T09:27:53Z",
+      "side": 1,
+      "message": "This Merge list shouldn\u0027t be here, this shouldn\u0027t be a merge commit",
+      "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a1b8dbf5_f6fb419f",
