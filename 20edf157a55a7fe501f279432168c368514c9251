@@ -244,6 +244,30 @@
       },
       "revId": "20edf157a55a7fe501f279432168c368514c9251",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7c6905_89e5b471",
+        "filename": "system/common/time_util.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-14T14:06:32Z",
+      "side": 1,
+      "message": "This would make all caller to use MONOTONIC_RAW, which might not be optimal in Floss case.\n\nIn CrAS we have usage of both clock types:\n (a) REALTIME/BOOTTIME (affected by NTP) to track events like device open, stream starts. Allowing us to look up timestamp in logs from other processes(e.g Chrome)\n (b) MONOTONIC_RAW to run the main timer scheduling data Tx/Rx, which must NOT be affected by NTP.\n \nIn btif_a2dp_source, we identified the a2dp encoder timer should move to MONOTONIC_RAW so it stays sync with the feeding side(CrAS).\nWhile many other caller to `time_get_os_boottime_us` are associate to metrics/stats, I suspect they fall to the use case (a) above and deserves stay using BOOTTIME.\n\nHowever this decision is based on prior experience in CrAS development.\n\nMyles - if you think we don\u0027t really need this complexity and fine to move all caller to MONOTONIC_RAW, we can do that for sure. (we can revisit this if we find any case requiring BOOTTIME in future)",
+      "parentUuid": "e0c32115_d541bdef",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 41
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
