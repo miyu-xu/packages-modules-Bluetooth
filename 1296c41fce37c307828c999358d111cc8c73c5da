@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f82ca50_06a5ce0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-14T09:23:00Z",
+      "side": 1,
+      "message": "Verified on Brya and Kukui that WBS is supported when offloaded.\n\nThanks for finding the root cause and getting it back on track!",
+      "revId": "1296c41fce37c307828c999358d111cc8c73c5da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
