@@ -1,5 +1,4 @@
 //! Anything related to the adapter API (IBluetooth).
-
 use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
     BtBondState, BtConnectionState, BtDeviceType, BtDiscoveryState, BtHciErrorCode, BtPinCode,
@@ -22,6 +21,7 @@ use log::{debug, error, warn};
 use num_traits::cast::ToPrimitive;
 use std::collections::HashMap;
 use std::collections::VecDeque;
+use std::hash::Hash;
 use std::sync::Arc;
 use std::sync::Mutex;
 use std::time::Duration;
@@ -31,6 +31,7 @@ use tokio::sync::oneshot::Sender as OneShotSender;
 use tokio::task::JoinHandle;
 use tokio::time;
 
+use crate::bluetooth_admin::BluetoothAdmin;
 use crate::bluetooth_media::{BluetoothMedia, IBluetoothMedia, MediaActions};
 use crate::callbacks::Callbacks;
 use crate::uuid::{Profile, UuidHelper};
@@ -198,7 +199,7 @@ pub trait IBluetoothQA {
 }
 
 /// Serializable device used in various apis.
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Hash)]
 pub struct BluetoothDevice {
     pub address: String,
     pub name: String,
@@ -315,6 +316,22 @@ pub trait IBluetoothCallback: RPCProxy {
     fn on_bond_state_changed(&self, status: u32, device_address: String, state: u32);
 }
 
+/// An interface for other modules to track found remote devices.
+pub trait IBluetoothDeviceCallback {
+    /// When a device is found via discovery.
+    fn on_device_found(&mut self, remote_device: BluetoothDevice);
+
+    /// When a device is cleared from discovered devices cache.
+    fn on_device_cleared(&mut self, remote_device: BluetoothDevice);
+
+    /// When a device property is changed.
+    fn on_remote_device_properties_changed(
+        &mut self,
+        remote_device: BluetoothDevice,
+        properties: Vec<BluetoothProperty>,
+    );
+}
+
 pub trait IBluetoothConnectionCallback: RPCProxy {
     /// Notification sent when a remote device completes HCI connection.
     fn on_device_connected(&self, remote_device: BluetoothDevice);
@@ -329,6 +346,7 @@ pub struct Bluetooth {
 
     bonded_devices: HashMap<String, BluetoothDeviceContext>,
     bluetooth_media: Arc<Mutex<Box<BluetoothMedia>>>,
+    bluetooth_admin: Arc<Mutex<Box<BluetoothAdmin>>>,
     callbacks: Callbacks<dyn IBluetoothCallback + Send>,
     connection_callbacks: Callbacks<dyn IBluetoothConnectionCallback + Send>,
     discovering_started: Instant,
@@ -357,6 +375,7 @@ impl Bluetooth {
         tx: Sender<Message>,
         intf: Arc<Mutex<BluetoothInterface>>,
         bluetooth_media: Arc<Mutex<Box<BluetoothMedia>>>,
+        bluetooth_admin: Arc<Mutex<Box<BluetoothAdmin>>>,
     ) -> Bluetooth {
         Bluetooth {
             bonded_devices: HashMap::new(),
@@ -367,6 +386,7 @@ impl Bluetooth {
             ),
             hh: None,
             bluetooth_media,
+            bluetooth_admin,
             discovering_started: Instant::now(),
             intf,
             is_connectable: false,
@@ -444,6 +464,13 @@ impl Bluetooth {
 
             Profile::Hfp => Some(self.bluetooth_media.lock().unwrap().is_hfp_enabled()),
             _ => None,
+        }
+    }
+
+    pub fn is_uuid_supported(&self, uuid: &Uuid128Bit) -> bool {
+        match self.uuid_helper.is_known_profile(uuid) {
+            Some(profile) => self.uuid_helper.is_profile_supported(profile),
+            None => false,
         }
     }
 
@@ -590,6 +617,8 @@ impl Bluetooth {
             self.callbacks.for_all_callbacks(|callback| {
                 callback.on_device_cleared(d.clone());
             });
+
+            self.bluetooth_admin.lock().unwrap().on_device_cleared(d.clone());
         }
 
         // If we have any fresh devices remaining, re-queue a freshness check.
@@ -866,6 +895,8 @@ impl BtifBluetoothCallbacks for Bluetooth {
         self.callbacks.for_all_callbacks(|callback| {
             callback.on_device_found(device.info.clone());
         });
+
+        self.bluetooth_admin.lock().unwrap().on_device_found(device.info.clone());
     }
 
     fn discovery_state(&mut self, state: BtDiscoveryState) {
@@ -1010,7 +1041,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
 
         match device {
             Some(d) => {
-                d.update_properties(properties);
+                d.update_properties(properties.clone());
                 d.seen();
 
                 Bluetooth::send_metrics_remote_device_info(d);
@@ -1018,8 +1049,13 @@ impl BtifBluetoothCallbacks for Bluetooth {
                 let info = d.info.clone();
                 let uuids = self.get_remote_uuids(info.clone());
                 if self.wait_to_connect && uuids.len() > 0 {
-                    self.connect_all_enabled_profiles(info);
+                    self.connect_all_enabled_profiles(info.clone());
                 }
+
+                self.bluetooth_admin
+                    .lock()
+                    .unwrap()
+                    .on_remote_device_properties_changed(info.clone(), properties.clone());
             }
             None => (),
         };
