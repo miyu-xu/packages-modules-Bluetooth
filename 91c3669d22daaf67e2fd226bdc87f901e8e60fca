@@ -69,6 +69,24 @@
       "parentUuid": "ad1207d5_a5255c49",
       "revId": "91c3669d22daaf67e2fd226bdc87f901e8e60fca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe64acec_7f85341c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-14T08:31:23Z",
+      "side": 1,
+      "message": "pts-bot still failing: https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI13300010090076041\u0026testResultId\u003dTR35728263742958179\u0026redirect\u003dhttp://sponge2/fde97a76-7437-40ab-b090-e011b14e147a\n\nThere are actually more tests failing (2 \u003e 1) after the revert compared to before, so I don\u0027t think these failures are related to this particular change. (but I could be wrong?)\n\nEither way, not going to revert for now",
+      "parentUuid": "30a78ba9_aea1226c",
+      "revId": "91c3669d22daaf67e2fd226bdc87f901e8e60fca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
