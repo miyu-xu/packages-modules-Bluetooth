@@ -33,6 +33,24 @@
       "message": "SocketManager doesn’t export unregister_callback for D-Bus clients. If we want to keep consistency on all Floss API, we\u0027d better add this to Socket Manager as well. Otherwise, we shall remove the unregister_callback exported by other interfaces if there\u0027s no valid use case for them.",
       "revId": "7987d1d4b8b51ab8504ba2f05439ce0b17386179",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab525bd_6ae8c1ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-14T17:08:20Z",
+      "side": 1,
+      "message": "Whoops -- there should definitely be an unregister api in socket_manager as well. I\u0027ll push up a commit adding it today.",
+      "parentUuid": "f65590ff_3393f1c7",
+      "revId": "7987d1d4b8b51ab8504ba2f05439ce0b17386179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
