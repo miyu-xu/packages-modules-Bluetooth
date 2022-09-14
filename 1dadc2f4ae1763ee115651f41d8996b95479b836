@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12152d88_e63fb0fe",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-14T22:08:34Z",
+      "side": 1,
+      "message": "use InitFlags::SetAllForTesting() instead?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 2
+      },
+      "revId": "1dadc2f4ae1763ee115651f41d8996b95479b836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3d29669_a71e0295",
         "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
         "patchSetId": 27
