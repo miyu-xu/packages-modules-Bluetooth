@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886ef111_35bb8af2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppShareInfoTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-14T07:30:12Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "b53b91007159a790e8ce2bbdc2e29c155ae4e893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ae287d_1dbdb285",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppShareInfoTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-14T07:30:12Z",
+      "side": 1,
+      "message": "It is not a mock instance. Please rename it without mock.",
+      "range": {
+        "startLine": 39,
+        "startChar": 34,
+        "endLine": 39,
+        "endChar": 60
+      },
+      "revId": "b53b91007159a790e8ce2bbdc2e29c155ae4e893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
