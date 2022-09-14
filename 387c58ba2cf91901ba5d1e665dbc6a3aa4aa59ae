@@ -46,6 +46,30 @@
       },
       "revId": "387c58ba2cf91901ba5d1e665dbc6a3aa4aa59ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8151892_b1dafa38",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapObexAuthenticator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-14T07:43:40Z",
+      "side": 1,
+      "message": "It is very interesting code. Please make it a static constant if it is not changed, or if you are not sure, please do not make any behavioral changes.",
+      "parentUuid": "893ccd56_6be4b788",
+      "range": {
+        "startLine": 48,
+        "startChar": 34,
+        "endLine": 48,
+        "endChar": 59
+      },
+      "revId": "387c58ba2cf91901ba5d1e665dbc6a3aa4aa59ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
