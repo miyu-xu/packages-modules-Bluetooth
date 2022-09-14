@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba4299fd_c0e322b0",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-14T13:23:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "caccb568_c6822623",
+      "range": {
+        "startLine": 1372,
+        "startChar": 11,
+        "endLine": 1372,
+        "endChar": 30
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "505591b1_9996df05",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "Agree BT_STATUS_RMT_DEV_DOWN is bad. \nI vote for BT_STATUS_UNHANDLED to express that the request was not handled. Or shall we just use BT_STATUS_FAIL here? \nWhat do you think?",
       "parentUuid": "505591b1_9996df05",
+      "range": {
+        "startLine": 1379,
+        "startChar": 21,
+        "endLine": 1379,
+        "endChar": 33
+      },
+      "revId": "335b30c85d88744ed6d9c3de64bf8b9adcae0b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "100b3547_54dddac3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-14T13:23:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "178f141b_c93398c3",
       "range": {
         "startLine": 1379,
         "startChar": 21,
