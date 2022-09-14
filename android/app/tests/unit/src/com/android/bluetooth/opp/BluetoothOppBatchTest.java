@@ -60,7 +60,7 @@ public class BluetoothOppBatchTest {
                 null, null, 0, "AA:BB:22:CD:E0:55", 0, 0, BluetoothShare.STATUS_PENDING, 0, 0, 0,
                 false);
 
-        mBluetoothOppBatch.registerListern(new BluetoothOppBatch.BluetoothOppBatchListener() {
+        mBluetoothOppBatch.registerListener(new BluetoothOppBatch.BluetoothOppBatchListener() {
             @Override
             public void onShareAdded(int id) {
                 assertThat(id).isEqualTo(newBluetoothOppShareInfo.mId);
@@ -88,7 +88,7 @@ public class BluetoothOppBatchTest {
     public void cancelBatch_throwUnknownUri() {
         // Array can be access and edit by the inner class
         final boolean[] batchCancelCalled = {false};
-        mBluetoothOppBatch.registerListern(new BluetoothOppBatch.BluetoothOppBatchListener() {
+        mBluetoothOppBatch.registerListener(new BluetoothOppBatch.BluetoothOppBatchListener() {
             @Override
             public void onShareAdded(int id) {
             }
