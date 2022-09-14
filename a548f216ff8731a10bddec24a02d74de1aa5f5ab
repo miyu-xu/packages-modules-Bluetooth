@@ -22,6 +22,30 @@
       },
       "revId": "a548f216ff8731a10bddec24a02d74de1aa5f5ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58a99fa1_ab2465f4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3116,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-14T10:18:54Z",
+      "side": 1,
+      "message": "BTW: This will force MEDIA even if the remote does not have it available right now.",
+      "parentUuid": "1c798f10_4505ba58",
+      "range": {
+        "startLine": 3114,
+        "startChar": 6,
+        "endLine": 3116,
+        "endChar": 7
+      },
+      "revId": "a548f216ff8731a10bddec24a02d74de1aa5f5ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
