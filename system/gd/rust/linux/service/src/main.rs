@@ -122,13 +122,16 @@ fn main() -> Result<(), Box<dyn Error>> {
         Arc::new(Mutex::new(Box::new(BatteryService::new(bluetooth_gatt.clone(), tx.clone()))));
     let battery_manager =
         Arc::new(Mutex::new(Box::new(BatteryManager::new(battery_service.clone(), tx.clone()))));
-    let bluetooth_admin =
-        Arc::new(Mutex::new(Box::new(BluetoothAdmin::new(String::from(ADMIN_SETTINGS_FILE_PATH)))));
+    let bluetooth_admin = Arc::new(Mutex::new(Box::new(BluetoothAdmin::new(
+        String::from(ADMIN_SETTINGS_FILE_PATH),
+        tx.clone(),
+    ))));
     let bluetooth = Arc::new(Mutex::new(Box::new(Bluetooth::new(
         tx.clone(),
         intf.clone(),
         bluetooth_media.clone(),
         sig_notifier.clone(),
+        bluetooth_admin.clone(),
     ))));
     let suspend = Arc::new(Mutex::new(Box::new(Suspend::new(
         bluetooth.clone(),
@@ -178,6 +181,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             bluetooth_media.clone(),
             suspend.clone(),
             bt_sock_mgr.clone(),
+            bluetooth_admin.clone(),
         ));
 
         // Set up the disconnect watcher to monitor client disconnects.
