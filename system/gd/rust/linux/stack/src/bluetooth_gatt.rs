@@ -8,7 +8,7 @@ use bt_topshim::profiles::gatt::{
     BtGattDbElement, BtGattNotifyParams, BtGattReadParams, Gatt, GattAdvCallbacks,
     GattAdvCallbacksDispatcher, GattAdvInbandCallbacksDispatcher, GattClientCallbacks,
     GattClientCallbacksDispatcher, GattScannerCallbacks, GattScannerCallbacksDispatcher,
-    GattServerCallbacksDispatcher, GattStatus,
+    GattServerCallbacksDispatcher, GattStatus, LePhy,
 };
 use bt_topshim::topstack;
 
@@ -650,22 +650,6 @@ pub enum GattWriteType {
 impl Default for GattWriteType {
     fn default() -> Self {
         GattWriteType::Write
-    }
-}
-
-#[derive(Debug, FromPrimitive, ToPrimitive)]
-#[repr(u8)]
-/// Represents LE PHY.
-pub enum LePhy {
-    Invalid = 0,
-    Phy1m = 1,
-    Phy2m = 2,
-    PhyCoded = 3,
-}
-
-impl From<LePhy> for i32 {
-    fn from(item: LePhy) -> Self {
-        item.to_i32().unwrap_or(0)
     }
 }
 
