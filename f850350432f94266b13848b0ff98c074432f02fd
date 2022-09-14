@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ba2f304_076cf610",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-14T04:17:46Z",
+      "side": 1,
+      "message": "Did gd/cert/run --topshim.",
+      "parentUuid": "7c50a636_e5fb307f",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "f850350432f94266b13848b0ff98c074432f02fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "253ed203_4c9224fa",
         "filename": "system/btif/src/btif_hh.cc",
         "patchSetId": 1
