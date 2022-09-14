@@ -16,6 +16,23 @@
       "message": "For consistency in apis, this should always be exposed. b/246474368 needs further investigation to see why it\u0027s happening.\n\nIt\u0027s possible for a d-bus client to want multiple callback targets for each api (exposing a different d-bus object for each) and we need to them to be able to unregister without having to close the connection.",
       "revId": "7987d1d4b8b51ab8504ba2f05439ce0b17386179",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f65590ff_3393f1c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-09-14T17:06:19Z",
+      "side": 1,
+      "message": "SocketManager doesn’t export unregister_callback for D-Bus clients. If we want to keep consistency on all Floss API, we\u0027d better add this to Socket Manager as well. Otherwise, we shall remove the unregister_callback exported by other interfaces if there\u0027s no valid use case for them.",
+      "revId": "7987d1d4b8b51ab8504ba2f05439ce0b17386179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
