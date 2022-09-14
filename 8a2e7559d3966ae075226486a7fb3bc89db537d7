@@ -16,6 +16,24 @@
       "message": "Could you explain in your commit message why is this needed ?",
       "revId": "8a2e7559d3966ae075226486a7fb3bc89db537d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a76162c_69eb32c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-14T18:27:49Z",
+      "side": 1,
+      "message": "commit message modified",
+      "parentUuid": "c2f70d34_4063972f",
+      "revId": "8a2e7559d3966ae075226486a7fb3bc89db537d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
