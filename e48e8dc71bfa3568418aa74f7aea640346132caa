@@ -34,6 +34,24 @@
       "parentUuid": "8df3320a_010aff54",
       "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dec804ac_a5762ed6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-14T16:37:07Z",
+      "side": 1,
+      "message": "We would want to audit how Android is currently using `BtStatus::Busy` first. Otherwise, adding `BtStatus::TryLater` might work.",
+      "parentUuid": "906dacb1_2d3177a4",
+      "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
