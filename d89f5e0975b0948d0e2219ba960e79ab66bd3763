@@ -34,6 +34,24 @@
       "parentUuid": "d3a6ba8c_4496b343",
       "revId": "d89f5e0975b0948d0e2219ba960e79ab66bd3763",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e263b4c_18352c8b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-15T01:19:56Z",
+      "side": 0,
+      "message": "I would move it into `topshim/profiles/gatt.rs`.",
+      "parentUuid": "64d5599c_9a7ef6bd",
+      "revId": "d89f5e0975b0948d0e2219ba960e79ab66bd3763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
