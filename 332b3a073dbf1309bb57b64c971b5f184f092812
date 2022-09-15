@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5267e84_66b111ad",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2da4c2e0_346258a8",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "050f9333_ba4ec2fe",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-13T23:00:57Z",
       "side": 1,
       "message": "nit: respect alphabetical order of profiles.",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 36
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbe57774_3161abc2",
+        "filename": "android/pandora/server/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "050f9333_ba4ec2fe",
       "range": {
         "startLine": 142,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "977b9822_fd6a3ef4",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "73431d31_5045b7da",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 50
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebd47a61_d0de99e9",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-09-13T23:08:04Z",
       "side": 1,
       "message": "This should probably better if located in `host.proto` and renamed into something like `SetLEConnectable` which can enable or disable LE connectable mode.",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e61890cd_b2910a64",
+        "filename": "android/pandora/server/proto/pandora/l2cap.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ebd47a61_d0de99e9",
       "range": {
         "startLine": 11,
         "startChar": 6,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f473998c_e5cb3000",
+        "filename": "android/pandora/server/proto/pandora/l2cap.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f3a8c833_ab201643",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7e758cc_502c8d1c",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-09-13T23:00:57Z",
       "side": 1,
       "message": "To remove",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 55
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de319147_564b8706",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7e758cc_502c8d1c",
       "range": {
         "startLine": 278,
         "startChar": 8,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb69c9a7_da482be4",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c5a09895_3bd8898e",
+      "range": {
+        "startLine": 280,
+        "startChar": 8,
+        "endLine": 280,
+        "endChar": 61
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "841313e8_c7d06762",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-09-13T23:00:57Z",
       "side": 1,
       "message": "To remove",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 139
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd86014_e17d6a01",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "841313e8_c7d06762",
       "range": {
         "startLine": 281,
         "startChar": 0,
@@ -208,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03161f8f_41776096",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "33c17c2c_7dd68c3d",
+      "range": {
+        "startLine": 283,
+        "startChar": 8,
+        "endLine": 283,
+        "endChar": 60
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbd485b1_7b350fba",
@@ -221,6 +437,30 @@
       "writtenOn": "2022-09-13T23:00:57Z",
       "side": 1,
       "message": "To remove",
+      "range": {
+        "startLine": 285,
+        "startChar": 12,
+        "endLine": 285,
+        "endChar": 53
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cf35216_ae5faece",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bbd485b1_7b350fba",
       "range": {
         "startLine": 285,
         "startChar": 12,
@@ -254,6 +494,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84e4c7fb_c316cd4e",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ddcaedac_bf693b59",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0404ba0_d4225f63",
@@ -267,6 +531,30 @@
       "writtenOn": "2022-09-13T23:00:57Z",
       "side": 1,
       "message": "Correct spacing. You should use ktfmt to make sure that your file is correctly formated",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 18
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a52b22f2_48c37bf1",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b0404ba0_d4225f63",
       "range": {
         "startLine": 58,
         "startChar": 6,
@@ -300,6 +588,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a8b89cd_a2cae867",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2438a1a7_6ae3aa19",
+      "range": {
+        "startLine": 83,
+        "startChar": 6,
+        "endLine": 83,
+        "endChar": 46
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7699b60a_938f54c1",
@@ -323,6 +635,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "471f7848_36d3fd14",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7699b60a_938f54c1",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 7
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56630f7f_f65cd31d",
@@ -336,6 +672,30 @@
       "writtenOn": "2022-09-13T23:00:57Z",
       "side": 1,
       "message": "Correct spacing. Also respect alphabetical order of profiles (for all this file).",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "332b3a073dbf1309bb57b64c971b5f184f092812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8510395_668b6abe",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-15T00:36:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "56630f7f_f65cd31d",
       "range": {
         "startLine": 43,
         "startChar": 4,
