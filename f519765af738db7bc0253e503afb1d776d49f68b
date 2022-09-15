@@ -1,0 +1,543 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18a8d082_5c62043a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "nit: remove `\u0027`",
+      "range": {
+        "startLine": 11,
+        "startChar": 40,
+        "endLine": 11,
+        "endChar": 41
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "452f86a8_b8aad5a6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "Could we not look if `self.connection` is not None instead of having a counter ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dcac03e_96c5cd2d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "We should `assert` that instead of silently not doing anything.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45d3e3cb_c0fbe7c7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "`secure_connection \u003d test in tests_require_secure_connection`",
+      "range": {
+        "startLine": 69,
+        "startChar": 1,
+        "endLine": 71,
+        "endChar": 36
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4d0948_980927f3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "I think we can remove this log line.",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8480f568_4e539c77",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "We should reraise the exception got on `except` or at least provide it as cause.",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a036b1e_1a2b7d34",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "`secure_connection \u003d test in tests_require_secure_connection`",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07383a55_e4d2d2b6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "This seems to be the value for `this is a large data package: MMI_UPPER_TESTER_SEND_LE_DATA_PACKET_LARGE`.\nI think we should capture the value from the description, decode it, and verify that it\u0027s the value that this is the last value that we sent.",
+      "range": {
+        "startLine": 125,
+        "startChar": 43,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de60c326_6d7fa154",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "The `connection` argument seems to be missing.",
+      "range": {
+        "startLine": 142,
+        "startChar": 19,
+        "endLine": 142,
+        "endChar": 35
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ada6b8_5664c257",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "I think we should see if we are able to get that information from the Android Java API and include it as error in the grpc answer.\nBecause we should look that we got this error in particular instead of just looking that we had an error here.",
+      "range": {
+        "startLine": 158,
+        "startChar": 70,
+        "endLine": 159,
+        "endChar": 22
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a557aa1_4d86daac",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "The `connection` argument seems to be missing.",
+      "range": {
+        "startLine": 174,
+        "startChar": 38,
+        "endLine": 174,
+        "endChar": 39
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deae2ec4_af814112",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "`assert data`",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 45
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e5c3e85_666bd813",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "I think this should be more a `WaitLEConnection` than a `GetLEConnection` that we need here",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9473a94a_917d1f29",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "We should maybe do like we do for BR/EDR, so specify that an Host must be connectable at startup.\n\nWhat do you think @girardier ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25074b71_5d268c86",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "The naming of `SendLEDataPacket` and `ReceiveData` should be more consistent. \nFor example we should name them:\n- `SendLEDataPacket` and `ReceiveLEDataPacket`\n- `SendData` and `ReceiveData`",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81c8b965_9f06d11b",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "This is an android specific name, we should look at the specification to come up with a better name.",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24f42c71_84989c65",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "nit: space after returns",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 11
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97509373_54fcce3f",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "This is not a default value, but the position of the field, so this one should be `2` and `secure` should be `3`",
+      "range": {
+        "startLine": 22,
+        "startChar": 14,
+        "endLine": 22,
+        "endChar": 18
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9c3dc9_d0160fd6",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "We should wait for the callback before returning from this grpc call.\nYou can use [suspendCoroutine](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/suspend-coroutine.html) for that",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 68
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c900d139_20eaac65",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "This means that we are only able to have one channel open at the same time for one connection.\nYour interface currently doesn\u0027t allow to open multiple channels for one Connection.\nHowever we should be able to do one channel on multiple connections, so we should associates those streams with a Connection, maybe with a `map` ?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 48
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a662e3f8_ac9c51b9",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "I think that by using `withContext(Dispatchers.IO)` you are already moving the blocking calls to the IO Thread Pool, so you shouldn\u0027t need to have another scope.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 25
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292e4fc3_439008ea",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "Starting the server and accepting a connection should be two different grpc calls.",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 87
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14387019_cdcc875e",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "`receive` is already doing that, I think this should be removed.",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d41bfa3_82e04670",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "nit: Add spaces before and after `\u003d`.\n\nYou should run `kfmt` to automatically fix the styling issues.",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e8ac455_033e8b57",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:54:01Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be here.",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
