@@ -186,6 +186,7 @@ init_flags!(
         logging_debug_enabled_for_all,
         pass_phy_update_callback = true,
         sdp_serialization = true,
+        btm_dm_flush_discovery_queue_on_search_cancel = false,
     }
     // extra_fields are not a 1 to 1 match with "INIT_*" flags
     extra_fields: {

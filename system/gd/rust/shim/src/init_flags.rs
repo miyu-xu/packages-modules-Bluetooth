@@ -20,6 +20,7 @@ mod ffi {
         fn logging_debug_enabled_for_all_is_enabled() -> bool;
         fn pass_phy_update_callback_is_enabled() -> bool;
         fn sdp_serialization_is_enabled() -> bool;
+        fn btm_dm_flush_discovery_queue_on_search_cancel_is_enabled() -> bool;
     }
 }
 
