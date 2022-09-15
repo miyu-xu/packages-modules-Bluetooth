@@ -340,6 +340,30 @@
       },
       "revId": "20edf157a55a7fe501f279432168c368514c9251",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb6e88e_85e6fa08",
+        "filename": "system/common/time_util.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-15T13:51:26Z",
+      "side": 1,
+      "message": "That makes sense.  In general, I would prefer to minimize the use of #ifdef, but I don\u0027t see a great way to do it here.",
+      "parentUuid": "7c7c6905_89e5b471",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 41
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
