@@ -1,6 +1,8 @@
 use log::LevelFilter;
 use serde_json::{Map, Value};
 use std::convert::TryInto;
+use std::fs::OpenOptions;
+use std::io::Write;
 use std::path::Path;
 
 // Directory for Bluetooth hci devices
@@ -11,6 +13,9 @@ const BLUETOOTH_DAEMON_CURRENT: &str = "/var/lib/bluetooth/bluetooth-daemon.curr
 
 // File to store the config for BluetoothManager
 const BTMANAGERD_CONF: &str = "/var/lib/bluetooth/btmanagerd.json";
+
+/// File to store LL privacy status to floss
+const FLOSS_LL_PRIVACY_CONF: &str = "/var/lib/bluetooth/sysprops.conf.d/privacy_override.conf";
 
 /// Key used for default adapter entry.
 const DEFAULT_ADAPTER_KEY: &str = "default_adapter";
@@ -176,6 +181,29 @@ pub fn list_pid_files(pid_dir: &str) -> Vec<String> {
 pub fn reset_hci_device(hci: i32) -> bool {
     let path = format!("/sys/class/bluetooth/hci{}/reset", hci);
     std::fs::write(path, "1").is_ok()
+}
+
+pub fn write_floss_ll_privacy_enabled(enabled: bool) -> bool {
+    let path = Path::new(FLOSS_LL_PRIVACY_CONF);
+    let parent = path.parent().unwrap();
+    if !parent.is_dir() {
+        std::fs::create_dir_all(parent).expect("Fail to create directory.");
+    };
+
+    let data = "[Sysprops]\nbluetooth.core.gap.le.privacy.enabled=";
+    std::fs::write(FLOSS_LL_PRIVACY_CONF, data).expect("Unable to open file.");
+
+    let mut file = OpenOptions::new().write(true).append(true).open(FLOSS_LL_PRIVACY_CONF).unwrap();
+
+    write!(
+        file,
+        "{}",
+        match enabled {
+            true => "true\n",
+            _ => "false\n",
+        }
+    )
+    .is_ok()
 }
 
 #[cfg(test)]
