@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc3653eb_b252bba5",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-09-15T22:16:11Z",
+      "side": 1,
+      "message": "Resuming here can be dangerous as the callback can be called twice, causing a `CancellableContinuationImpl.alreadyResumedError`",
+      "range": {
+        "startLine": 350,
+        "startChar": 29,
+        "endLine": 350,
+        "endChar": 35
+      },
+      "revId": "d5882ec1df9222639a6afc97d47a510d352e8746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
