@@ -123,6 +123,18 @@ size_t LogCapture::Size() const {
   return size;
 }
 
+void LogCapture::WaitUntilLogContains(std::promise<void>* promise, std::string text) {
+  std::async([this, promise, text]() {
+    bool found = false;
+    do {
+      found = this->Rewind()->Find(text);
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    } while (!found);
+    promise->set_value();
+  });
+  promise->get_future().wait();
+}
+
 int LogCapture::create_backing_store() const {
   char backing_store_filename[kTempFilenameMaxSize];
   strncpy(backing_store_filename, kTempFilename, kTempFilenameMaxSize);
