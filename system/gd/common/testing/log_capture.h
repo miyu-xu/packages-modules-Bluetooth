@@ -15,6 +15,7 @@
  */
 
 #include <cstddef>
+#include <future>
 #include <string>
 
 namespace bluetooth {
@@ -39,6 +40,8 @@ class LogCapture {
   size_t Size() const;
   // Truncates and resets the file pointer discarding all logs up to this point
   void Reset();
+  // Wait until the provided string shows up in the logs
+  void WaitUntilLogContains(std::promise<void>* promise, std::string text);
 
  private:
   int create_backing_store() const;
