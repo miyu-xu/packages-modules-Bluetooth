@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d4134f_84616e45",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-15T22:42:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39fc4026_0cb9881a",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 24
+      },
+      "revId": "440f2dc43b598dc1e391a2198b71650ae4ba85fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41862a8d_efa02ea2",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d998143f_4fc63598",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 25
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-15T22:42:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41862a8d_efa02ea2",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 49
+      },
+      "revId": "440f2dc43b598dc1e391a2198b71650ae4ba85fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22b8a4c2_7bcd2904",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-13T20:25:09Z",
       "side": 1,
       "message": "nit: Keep alphabetical order of profiles in this entire file.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 22
+      },
+      "revId": "440f2dc43b598dc1e391a2198b71650ae4ba85fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fcd6ded_ce7a68ec",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 25
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-15T22:42:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22b8a4c2_7bcd2904",
       "range": {
         "startLine": 36,
         "startChar": 0,
