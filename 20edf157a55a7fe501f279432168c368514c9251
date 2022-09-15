@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2fe60dfc_0563cb69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-15T07:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0be0e83e_f5d8683c",
+      "range": {
+        "startLine": 16,
+        "startChar": 58,
+        "endLine": 16,
+        "endChar": 69
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "04f52e49_893f985d",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -72,6 +96,30 @@
       "writtenOn": "2022-09-13T20:24:55Z",
       "side": 1,
       "message": "Update the comment",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 91,
+        "endChar": 34
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52cf6d0b_888e2f61",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-15T07:04:51Z",
+      "side": 1,
+      "message": "Thanks for noticing this, we\u0027ll leave this untouched (feed boottime as it was).",
+      "parentUuid": "d3db06ab_928b79fe",
       "range": {
         "startLine": 91,
         "startChar": 2,
@@ -166,6 +214,30 @@
       "side": 1,
       "message": "good point. Let\u0027s do TARGET_FLOSS.",
       "parentUuid": "647be070_6c339543",
+      "range": {
+        "startLine": 901,
+        "startChar": 1,
+        "endLine": 901,
+        "endChar": 5
+      },
+      "revId": "20edf157a55a7fe501f279432168c368514c9251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9fed1ce_933360a6",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-15T07:04:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0955a52d_11d93e5d",
       "range": {
         "startLine": 901,
         "startChar": 1,
