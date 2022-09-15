@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d05aa261_772f41c3",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-15T18:12:59Z",
+      "side": 1,
+      "message": "Does modifying this fd_ affect other log sources\u0027s write to STDERR and STDOUT?\n\nAfter Rewind(), don\u0027t we need to fast forward it towards the end to restore its state?\n\nAlso, if this affects other log sources, what if another thread is writing to the fd_ while we Rewind(), would there be chances for race conditions? (maybe not a case if this fd_ does not affect others since this is read only)",
+      "range": {
+        "startLine": 130,
+        "startChar": 20,
+        "endLine": 130,
+        "endChar": 26
+      },
+      "revId": "9751586a528090ea5713b9c2bfa4b4b4b611974d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da58f57_b54b7484",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-15T18:12:59Z",
+      "side": 1,
+      "message": "sleeping for 10ms sounds expensive for unit tests if we want to do this often. \n\nIs there a way that this can be done synchronously?\n\ne.g. could we monitor the fd_ for incoming streaming and fulfill a std::promise when the incoming string matches our expectation so that we can exit this wait state faster?",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 65
+      },
+      "revId": "9751586a528090ea5713b9c2bfa4b4b4b611974d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
