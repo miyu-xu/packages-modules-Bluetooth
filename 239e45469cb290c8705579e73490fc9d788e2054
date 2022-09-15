@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7312d0f_d45fae7a",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-15T21:05:37Z",
+      "side": 1,
+      "message": "This seems too low.  Until we have it working in a reasonable way, let\u0027s not put -80.  I understand not having 0, though.  -10?  4?",
+      "range": {
+        "startLine": 717,
+        "startChar": 34,
+        "endLine": 717,
+        "endChar": 38
+      },
+      "revId": "239e45469cb290c8705579e73490fc9d788e2054",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
