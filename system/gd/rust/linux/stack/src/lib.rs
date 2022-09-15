@@ -74,6 +74,8 @@ pub enum Message {
 
     SocketManagerActions(SocketActions),
     SocketManagerCallbackDisconnected(u32),
+
+    GattClientCallbackDisconnected(u32),
 }
 
 /// Umbrella class for the Bluetooth stack.
@@ -189,6 +191,9 @@ impl Stack {
                 }
                 Message::SocketManagerCallbackDisconnected(id) => {
                     bluetooth_socketmgr.lock().unwrap().remove_callback(id);
+                }
+                Message::GattClientCallbackDisconnected(id) => {
+                    bluetooth_gatt.lock().unwrap().remove_client_callback(id);
                 }
             }
         }
