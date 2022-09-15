@@ -16,6 +16,24 @@
       "message": "Will add PhonebookEntryTest too.",
       "revId": "b3f8e9c353721cebad1ad9c613dcbeb1e43b5497",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0783010d_cf7e8052",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-15T08:51:40Z",
+      "side": 1,
+      "message": "PhonebookEntry is an unused class. Ready to be reviewed.",
+      "parentUuid": "f91a6da0_61d13c37",
+      "revId": "b3f8e9c353721cebad1ad9c613dcbeb1e43b5497",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
