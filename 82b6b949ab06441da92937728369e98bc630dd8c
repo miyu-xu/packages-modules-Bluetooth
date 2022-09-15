@@ -367,6 +367,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdd86c2d_650d8c96",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-15T12:55:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a95e7844_52cae633",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "324ce214_ef7e00db",
@@ -425,6 +443,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "def15102_4524c7dc",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-15T12:55:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6e62ace_ad839388",
+      "range": {
+        "startLine": 221,
+        "startChar": 49,
+        "endLine": 221,
+        "endChar": 73
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04bc82d3_4f9ef098",
@@ -462,6 +504,30 @@
       "side": 1,
       "message": "I see, thanks! I\u0027ll have to add more tests for this.",
       "parentUuid": "04bc82d3_4f9ef098",
+      "range": {
+        "startLine": 234,
+        "startChar": 82,
+        "endLine": 234,
+        "endChar": 94
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20151fa1_e16a7a05",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-15T12:55:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1fe1588_c292d392",
       "range": {
         "startLine": 234,
         "startChar": 82,
