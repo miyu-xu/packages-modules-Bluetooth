@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00c045f8_f4b2814b",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-15T21:54:23Z",
+      "side": 1,
+      "message": "let me do some experiments to check if this is happening or not.",
+      "parentUuid": "d05aa261_772f41c3",
+      "range": {
+        "startLine": 130,
+        "startChar": 20,
+        "endLine": 130,
+        "endChar": 26
+      },
+      "revId": "9751586a528090ea5713b9c2bfa4b4b4b611974d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9da58f57_b54b7484",
         "filename": "system/gd/common/testing/log_capture.cc",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-15T18:12:59Z",
       "side": 1,
       "message": "sleeping for 10ms sounds expensive for unit tests if we want to do this often. \n\nIs there a way that this can be done synchronously?\n\ne.g. could we monitor the fd_ for incoming streaming and fulfill a std::promise when the incoming string matches our expectation so that we can exit this wait state faster?",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 65
+      },
+      "revId": "9751586a528090ea5713b9c2bfa4b4b4b611974d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "228d847b_c492d986",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-15T21:54:23Z",
+      "side": 1,
+      "message": "Thats exactly what I wanted to do originally.\n\nI tried using poll/epoll but they can\u0027t be used with fds for regular files (they return EPERM error).\n\nI would argue that 10ms is still way better than arbitrarily putting 1s and 2s timeouts in the unit test code.\n\nAlso, there are two scenarios:\n\n1. log line was printed before we started checking\n2. log line is printed after we start checking\n\nWe need to handle both.",
+      "parentUuid": "9da58f57_b54b7484",
       "range": {
         "startLine": 131,
         "startChar": 0,
