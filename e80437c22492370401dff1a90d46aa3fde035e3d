@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a71f088_43c1af87",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-15T10:55:13Z",
+      "side": 1,
+      "message": "Do you have an instruction on how to use the --sl4a_sl4a flag?\nHelp just says \n```\n    Run SL combination tests using the default sl4a_sl4a config.\n    Please install the correct SL4A build to DUT and cert manually before running tests.\n```\n\nAlso, does that mean we need two physical Android phones (i.e. no emulators)?\n\nCurrently I\u0027m running out of disk space so my aosp repo is on cloudtop... meaning no physical devices. Gotta figure out how to make more space then.",
+      "parentUuid": "f165bfeb_ed2f8a7a",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e74dd14e_5c537ee7",
         "filename": "system/bta/include/bta_api.h",
         "patchSetId": 2
