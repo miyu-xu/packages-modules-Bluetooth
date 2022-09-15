@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e5bfd57_303c4d56",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1700,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T11:14:59Z",
+      "side": 1,
+      "message": "nit: I think we should remove it (and the packet definition) and introduce that when we will implement it",
+      "range": {
+        "startLine": 1694,
+        "startChar": 0,
+        "endLine": 1700,
+        "endChar": 1
+      },
+      "revId": "439293fd79a66e141de4bc8c0ec230ee8b1b59f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11a57bf5_0b2cd9b0",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
         "patchSetId": 1
