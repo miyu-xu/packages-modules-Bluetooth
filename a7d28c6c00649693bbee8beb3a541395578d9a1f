@@ -1,0 +1,485 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "028c855b_4b4d152a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "This seems to not be needed: the `.cookie.id` part.",
+      "range": {
+        "startLine": 45,
+        "startChar": 49,
+        "endLine": 45,
+        "endChar": 59
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c53eca2b_912b88a0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "Can we rethrow the exception that we got from the connect or at least provide it as cause for this exception ?",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d31ecc9_5d407ce9",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "We are storing the answer to AcceptConnection here not the cookie, so we should either rename the variable or store the cookie into this variable.",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f0ba27_8dea2054",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "This is reusing the `ConnectRequest` from `host.proto`, I think we should not do that and define another message.\n\nAlso I think that this rpc should take a `Connection` instead of an address (you will be able to get back an address from the connection in the server, so you could re create a connection like you are doing)",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf2df4f2_de89a1da",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: `ConnectResponse`\n\nFor the `Rfcomm` prefix, we should try to drop it.\nIf I understand correctly this is entering into conflict with the messages defined in `host.proto` right ?\nWe might want to change the package to `pandora.rfcomm` then to avoid name conflicts",
+      "range": {
+        "startLine": 11,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 55
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d411fcff_b711cc26",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "Could we create a `StartServerRequest` that contains the options so we can add new parameters in the future (as grpc only allows one rpc parameter) ?",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "139c9c92_f81c784c",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: `StartServerResponse`",
+      "range": {
+        "startLine": 12,
+        "startChar": 48,
+        "endLine": 12,
+        "endChar": 68
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f04696e_892b51fc",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: `AcceptConnectionResponse`",
+      "range": {
+        "startLine": 13,
+        "startChar": 52,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4156fa44_e8982c57",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "Create a `AcceptConnectionRequest`, see comment on `StartServer` for the reason.",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d0f9d0_63d43d0e",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: `DisconnectRequest`",
+      "range": {
+        "startLine": 14,
+        "startChar": 17,
+        "endLine": 14,
+        "endChar": 33
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d599a9d_13a7d1cf",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: `DisconnectResponse`",
+      "range": {
+        "startLine": 14,
+        "startChar": 44,
+        "endLine": 14,
+        "endChar": 63
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48ce3aae_6e47178d",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "I think we should remove the `Cookie` as part of the type name and rename the field to `cookie`, as this message being a Token containing a \"cookie\" should not be exposed to the messages using this type.\nThe goal for this message is to be opaque so the server can put what it wants here to track connections.",
+      "range": {
+        "startLine": 17,
+        "startChar": 14,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8153cb0b_accf2c52",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "I think this should use a `byte` to give more freedom to the server to put what it wants.\nAnd this also make it more obvious to the client that this is something that it is not able to craft.",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3c3dacf_4c901c85",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "I think we should redefine the `cookie` instead of using the RfcommCookie, because this means that a client can craft a RfcommServerCookie using a RfcommCookie obtained with `Connect`.",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7773072_5eb7e6a7",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "`connection` or `channel` instead of `cookie` ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 21
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9655628a_5f9ae3f6",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: `const val` ?",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6eb08f9_97044618",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "I think this should be defined in `mmi2grpc` the PandoraServer shouldn\u0027t have knowledge of the PTS.",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d640a85_005b21d8",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "This mean that we will only be able to have one server, one clientSocket and one acceptedSocket.\nThis works for the PTS but this is not great, the client should be able to handle multiple server and clients at the same time (for example in context of avatar tests).\nTo do that we should associate the Clients and the servers with their cookie, maybe with a map ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 51
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2255f60_1d941c25",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: Use error level.",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 13
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3333938e_f540be7a",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: Add a value after the `:` or drop the `:`.",
+      "range": {
+        "startLine": 121,
+        "startChar": 18,
+        "endLine": 121,
+        "endChar": 30
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56980896_c70bb02a",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "Could we take the service name and the uuid as argument of the `startServer` rpc call ?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 35
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30e1458b_e7bbb859",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "nit: Use error level.",
+      "range": {
+        "startLine": 148,
+        "startChar": 12,
+        "endLine": 148,
+        "endChar": 13
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3fbe83_484175c6",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-15T09:20:03Z",
+      "side": 1,
+      "message": "We should maybe return an error here instead of giving the client an invalid cookie ?",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
