@@ -3,6 +3,7 @@ use log::{error, info, warn};
 use std::collections::HashMap;
 use std::process::Command;
 
+use crate::iface_bluetooth_experimental::IBluetoothExperimental;
 use crate::iface_bluetooth_manager::{
     AdapterWithEnabled, IBluetoothManager, IBluetoothManagerCallback,
 };
@@ -161,5 +162,12 @@ impl IBluetoothManager for BluetoothManager {
 
     fn set_desired_default_adapter(&mut self, adapter_index: i32) {
         self.proxy.set_desired_default_adapter(adapter_index);
+    }
+}
+
+/// Implementation of IBluetoothExperimental
+impl IBluetoothExperimental for BluetoothManager {
+    fn set_ll_privacy(&self, enabled: bool) {
+        config_util::write_floss_ll_privacy_enabled(enabled);
     }
 }
