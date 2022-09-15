@@ -52,6 +52,24 @@
       "parentUuid": "9c4e5ed3_f20402e2",
       "revId": "9cfb25ced7a664668c01550dc0ce16903e619ef5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6866046b_421c86e8",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2022-09-15T06:39:13Z",
+      "side": 1,
+      "message": "I was right about the invalid access. https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2215768 is a more correct fix for this.",
+      "parentUuid": "7d9314a9_8cabfbfd",
+      "revId": "9cfb25ced7a664668c01550dc0ce16903e619ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
