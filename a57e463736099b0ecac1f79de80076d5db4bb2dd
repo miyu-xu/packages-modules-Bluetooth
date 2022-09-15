@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d462d3f_439bbe96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2022-09-15T06:41:24Z",
+      "side": 1,
+      "message": "+2-ing around this lint convention, which makes links more inaccessible to users. Having the full `http://b/` bug link creates links that are more accessible in terminals and screen readers (rather than just being useful in gerrit).",
+      "revId": "a57e463736099b0ecac1f79de80076d5db4bb2dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
