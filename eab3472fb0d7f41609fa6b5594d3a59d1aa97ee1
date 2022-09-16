@@ -246,6 +246,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d944b97b_fa520193",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T22:00:37Z",
+      "side": 1,
+      "message": "BAS alone doesn\u0027t give context about what it is. uuid::BAS does.",
+      "parentUuid": "138d5171_fad99bd2",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d60a64a4_b5c4f171",
@@ -475,6 +493,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81db3ec2_1f280589",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T22:00:37Z",
+      "side": 1,
+      "message": "Hmm, so BAS will check the gatt response of all newly connected devices and check whether it has BAS service. I think we only need to send a callback on affirmative statuses (i.e. hey, I found a device with BAS).\n\nYou would be better off logging everything else with `debug!`.",
+      "parentUuid": "6f174b47_0e136886",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a45ba3b_f7a99916",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
         "patchSetId": 7
@@ -521,6 +557,24 @@
       "side": 1,
       "message": "Is there a good component for general cleanup bugs?",
       "parentUuid": "3d653800_767ef25c",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eda706c0_51823edb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T22:00:37Z",
+      "side": 1,
+      "message": "https://taskflow.corp.google.com/workspaces/457903/work_item/b/178529365?q\u003ddebt\u0026workspace\u003d457903\u0026edit\u003db%2F178529365",
+      "parentUuid": "5316a24c_8c39d01b",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -626,6 +680,24 @@
       "side": 1,
       "message": "It could, is it better to be consistent and consolidate error messages within the status callback?",
       "parentUuid": "6a5f8575_b3913658",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5780dee_41ac23ce",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T22:00:37Z",
+      "side": 1,
+      "message": "It\u0027s probably better to do request validation when requested and return failure right away if you can assert that the request will fail.",
+      "parentUuid": "0d5addad_0dc63931",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
