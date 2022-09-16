@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d53231b_e9384d80",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "18a8d082_5c62043a",
+      "range": {
+        "startLine": 11,
+        "startChar": 40,
+        "endLine": 11,
+        "endChar": 41
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "452f86a8_b8aad5a6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "Could we not look if `self.connection` is not None instead of having a counter ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1700b21d_59d50b62",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Do you mean I use this to check?\n```\n        if self.connection:\n            return \"OK\"\n```",
+      "parentUuid": "452f86a8_b8aad5a6",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "166b516a_f3829f31",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "I run the test, the `self.connection` is always initially None. It is because the IUT will be reset for each test, at least for the LE part. So I guess there is no need to `assert`?\nI add the `if` check just in case there is already a connection",
+      "parentUuid": "0dcac03e_96c5cd2d",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "45d3e3cb_c0fbe7c7",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
         "patchSetId": 5
@@ -83,6 +155,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "`secure_connection \u003d test in tests_require_secure_connection`",
+      "range": {
+        "startLine": 69,
+        "startChar": 1,
+        "endLine": 71,
+        "endChar": 36
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c41f306e_27d56191",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "45d3e3cb_c0fbe7c7",
       "range": {
         "startLine": 69,
         "startChar": 1,
@@ -110,6 +206,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4be6f421_2bc8319b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fc4d0948_980927f3",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8480f568_4e539c77",
@@ -129,6 +243,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "513ac0b8_1e34f77e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Will this work?\n```\nprint(test, \u0027CreateLECreditBasedChannel failed\u0027, file\u003dsys.stderr)\nraise sys.exc_info()\n```",
+      "parentUuid": "8480f568_4e539c77",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a036b1e_1a2b7d34",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
         "patchSetId": 5
@@ -140,6 +272,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "`secure_connection \u003d test in tests_require_secure_connection`",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "792f1ea6_fb7050d6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8a036b1e_1a2b7d34",
       "range": {
         "startLine": 106,
         "startChar": 0,
@@ -175,6 +331,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ebf44063_78e4f0ef",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "I will try to find a way to see how to compare with the value that we send",
+      "parentUuid": "07383a55_e4d2d2b6",
+      "range": {
+        "startLine": 125,
+        "startChar": 43,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de60c326_6d7fa154",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
         "patchSetId": 5
@@ -186,6 +366,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "The `connection` argument seems to be missing.",
+      "range": {
+        "startLine": 142,
+        "startChar": 19,
+        "endLine": 142,
+        "endChar": 35
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a446ad67_c8cab6b4",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "de60c326_6d7fa154",
       "range": {
         "startLine": 142,
         "startChar": 19,
@@ -221,6 +425,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33705012_66f97106",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "I will try to find a way to retrieve this error",
+      "parentUuid": "79ada6b8_5664c257",
+      "range": {
+        "startLine": 158,
+        "startChar": 70,
+        "endLine": 159,
+        "endChar": 22
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a557aa1_4d86daac",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
         "patchSetId": 5
@@ -232,6 +460,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "The `connection` argument seems to be missing.",
+      "range": {
+        "startLine": 174,
+        "startChar": 38,
+        "endLine": 174,
+        "endChar": 39
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fac2104f_90373eb4",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9a557aa1_4d86daac",
       "range": {
         "startLine": 174,
         "startChar": 38,
@@ -265,6 +517,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a4bdc48_4d1b6434",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "deae2ec4_af814112",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 45
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e5c3e85_666bd813",
@@ -278,6 +554,24 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "I think this should be more a `WaitLEConnection` than a `GetLEConnection` that we need here",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7f4f6b_1291ef9c",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "I think maybe `GetLEConnection` is more suitable? Because two devices are already connected based on the spec. \n`WaitLEConnection` is waiting for other devices to connect (I am not very sure)? For current test methods that use `GetLEConnection `, the connection is already established. The test asks to create a l2cap channel.",
+      "parentUuid": "4e5c3e85_666bd813",
       "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -328,6 +622,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc1f533c_5a6bbf4f",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "25074b71_5d268c86",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81c8b965_9f06d11b",
@@ -341,6 +659,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "This is an android specific name, we should look at the specification to come up with a better name.",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd5b08c2_985ab7ea",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "This grpc mainly do `listenUsingL2capChannel`, so maybe a new name as `AcceptL2CAPChannel`, or `ListenL2CAPChannel`?",
+      "parentUuid": "81c8b965_9f06d11b",
       "range": {
         "startLine": 14,
         "startChar": 11,
@@ -374,6 +716,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85beb8cf_fd9085f3",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "24f42c71_84989c65",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 11
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97509373_54fcce3f",
@@ -397,6 +763,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fbc69ca_101dda7f",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97509373_54fcce3f",
+      "range": {
+        "startLine": 22,
+        "startChar": 14,
+        "endLine": 22,
+        "endChar": 18
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c9c3dc9_d0160fd6",
@@ -410,6 +800,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "We should wait for the callback before returning from this grpc call.\nYou can use [suspendCoroutine](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/suspend-coroutine.html) for that",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 68
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b14b311_b54ba61b",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9c9c3dc9_d0160fd6",
       "range": {
         "startLine": 245,
         "startChar": 0,
@@ -445,6 +859,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "213d7e57_84d69ff2",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "\u003e This means that we are only able to have one channel open at the same time for one connection.\nThat\u0027s true. I am not sure whether PTS has multiple connection tests, but I can do that.",
+      "parentUuid": "c900d139_20eaac65",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 48
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a662e3f8_ac9c51b9",
         "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
         "patchSetId": 5
@@ -456,6 +894,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "I think that by using `withContext(Dispatchers.IO)` you are already moving the blocking calls to the IO Thread Pool, so you shouldn\u0027t need to have another scope.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 25
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3472c315_6fe4dade",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a662e3f8_ac9c51b9",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -491,6 +953,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce8cf53d_2aad30e4",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Sure, will `AcceptL2CAPConnection` be a good name for the new grpc?",
+      "parentUuid": "292e4fc3_439008ea",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 87
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14387019_cdcc875e",
         "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
         "patchSetId": 5
@@ -502,6 +988,24 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "`receive` is already doing that, I think this should be removed.",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fe0f7d1_9b78f20b",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14387019_cdcc875e",
       "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -523,6 +1027,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b552348_cadf1594",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d41bfa3_82e04670",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e8ac455_033e8b57",
@@ -536,6 +1058,24 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "This shouldn\u0027t be here.",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "255d4106_b8afeb7d",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T01:28:36Z",
+      "side": 1,
+      "message": "I guess I made an error during merge, will be removed",
+      "parentUuid": "2e8ac455_033e8b57",
       "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
