@@ -64,6 +64,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f94ad9fc_8d6c3483",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/AtPhonebookTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-16T09:44:53Z",
+      "side": 1,
+      "message": "Thanks for pointing this out :) Fixed!",
+      "parentUuid": "a1cae79c_0f319471",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 66
+      },
+      "revId": "3503af2c45ee8a63e1c2a61e094ae39aae3edcb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71674a23_425e677a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/AtPhonebookTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-16T09:44:53Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "4832925b_3fca92dd",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "3503af2c45ee8a63e1c2a61e094ae39aae3edcb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "937434b3_29fb0075",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-09-16T09:29:39Z",
       "side": 1,
       "message": "Q) Will there be more tests added (handledIncorrectly)?\n\nIf not, let\u0027s remove this (also in below method too)",
+      "range": {
+        "startLine": 85,
+        "startChar": 33,
+        "endLine": 85,
+        "endChar": 50
+      },
+      "revId": "3503af2c45ee8a63e1c2a61e094ae39aae3edcb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd91ebee_ae3bfb90",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/AtPhonebookTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-16T09:44:53Z",
+      "side": 1,
+      "message": "No more tests will be added for this function, so I\u0027ll remove this part. Fixed.",
+      "parentUuid": "937434b3_29fb0075",
       "range": {
         "startLine": 85,
         "startChar": 33,
