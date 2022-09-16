@@ -34,5 +34,7 @@ constexpr hci::SubeventCode LeScanningEvents[] = {
 };
 
 typedef CommandInterface<LeScanningCommandBuilder> LeScanningInterface;
+
+typedef CommandInterface<MsftCommandBuilder> MsftInterface;
 }  // namespace hci
 }  // namespace bluetooth

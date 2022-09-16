@@ -98,6 +98,8 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
 
   virtual LeScanningInterface* GetLeScanningInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
+  virtual MsftInterface* GetMsftInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
+
   virtual LeIsoInterface* GetLeIsoInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
   std::string ToString() const override {
@@ -161,6 +163,7 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
   CommandInterfaceImpl<LeSecurityCommandBuilder> le_security_interface{*this};
   CommandInterfaceImpl<LeAdvertisingCommandBuilder> le_advertising_interface{*this};
   CommandInterfaceImpl<LeScanningCommandBuilder> le_scanning_interface{*this};
+  // CommandInterfaceImpl<MsftCommandBuilder> msft_interface{*this};
   CommandInterfaceImpl<LeIsoCommandBuilder> le_iso_interface{*this};
 };
 }  // namespace hci

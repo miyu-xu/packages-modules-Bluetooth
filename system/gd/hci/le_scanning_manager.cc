@@ -803,6 +803,14 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
     }
   }
 
+  void scan_msft_filter_add() {
+    /*
+      msft_interface_->EnqueueCommand(
+          MsftReadSupportedFeaturesBuilder::Create(0xfc1e),
+          module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
+          */
+  }
+
   void update_address_filter(
       ApcfAction action,
       uint8_t filter_index,
@@ -1486,6 +1494,7 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
   hci::AclManager* acl_manager_;
   hci::VendorSpecificEventManager* vendor_specific_event_manager_;
   hci::LeScanningInterface* le_scanning_interface_;
+  hci::MsftInterface* msft_interface_;
   hci::LeAddressManager* le_address_manager_;
   bool address_manager_registered_ = false;
   NullScanningCallback null_scanning_callback_;

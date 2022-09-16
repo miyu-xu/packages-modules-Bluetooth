@@ -650,6 +650,10 @@ LeScanningInterface* HciLayer::GetLeScanningInterface(ContextualCallback<void(Le
   return &le_scanning_interface;
 }
 
+MsftInterface* HciLayer::GetMsftInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
+  // return &msft_interface;
+}
+
 LeIsoInterface* HciLayer::GetLeIsoInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
   for (const auto subevent : LeIsoEvents) {
     RegisterLeEventHandler(subevent, event_handler);
