@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a7abd6_dc9664ad",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2097,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-16T17:46:20Z",
+      "side": 1,
+      "message": "Do we want to use unwrap_or() instead in the spirit of removing unwraps?",
+      "revId": "e0340eeaabd852a2b2f25a379eebcee9ffcdcb28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c04ee2_55b791ac",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2128,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-16T17:46:20Z",
+      "side": 1,
+      "message": "Same here?",
+      "revId": "e0340eeaabd852a2b2f25a379eebcee9ffcdcb28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
