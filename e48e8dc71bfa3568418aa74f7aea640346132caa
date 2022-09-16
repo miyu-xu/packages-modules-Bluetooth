@@ -70,6 +70,24 @@
       "parentUuid": "dec804ac_a5762ed6",
       "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18e4da80_35fdd788",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T16:42:28Z",
+      "side": 1,
+      "message": "SGTM. Let\u0027s fix those places and also document in `bluetooth.h` that BT_STATUS_BUSY is retry-able and send a PSA to android-bluetooth about this change.",
+      "parentUuid": "1725ca57_792c5671",
+      "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
