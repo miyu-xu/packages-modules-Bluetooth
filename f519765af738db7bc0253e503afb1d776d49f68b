@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35e957f0_7e7d37b4",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T08:34:09Z",
+      "side": 1,
+      "message": "Yes or\n```\n        if self.connection and test \u003d\u003d \u0027L2CAP/LE/CFC/BV-02-C\u0027:\n            return \"OK\"\n```",
+      "parentUuid": "1700b21d_59d50b62",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0dcac03e_96c5cd2d",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
         "patchSetId": 5
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "I run the test, the `self.connection` is always initially None. It is because the IUT will be reset for each test, at least for the LE part. So I guess there is no need to `assert`?\nI add the `if` check just in case there is already a connection",
       "parentUuid": "0dcac03e_96c5cd2d",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e60edef_ee9b413e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T08:34:09Z",
+      "side": 1,
+      "message": "Yes, I expect it to be always `None` as well.\nMy issue is with the `if` \"just in case\", this means that if `self.connection` is not `None` we will do nothing here. \nThe `assert` would also be here \"just in case\", but when we will encounter a call to this MMI with a `self.connection` that is not `None` instead of silently ignoring it, this will warn the next developper of this new behavior.\nHe will be able to choose what is the correct thing to do here at that time with more context.",
+      "parentUuid": "166b516a_f3829f31",
       "range": {
         "startLine": 58,
         "startChar": 0,
@@ -255,6 +303,24 @@
       "side": 1,
       "message": "Will this work?\n```\nprint(test, \u0027CreateLECreditBasedChannel failed\u0027, file\u003dsys.stderr)\nraise sys.exc_info()\n```",
       "parentUuid": "8480f568_4e539c77",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a918834_8ff9ee96",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T08:34:09Z",
+      "side": 1,
+      "message": "It will but I would prefer either\n```\nprint(test, \u0027CreateLECreditBasedChannel failed\u0027, file\u003dsys.stderr)\nraise # raise without nothing will raise the current exception\n```\nor, if we need to access the exception as well (for example to log it)\n```\nexcept Exception as e:\n   ...\n   print(test, \u0027CreateLECreditBasedChannel failed\u0027, e, file\u003dsys.stderr)\n   raise e\n```",
+      "parentUuid": "513ac0b8_1e34f77e",
       "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
