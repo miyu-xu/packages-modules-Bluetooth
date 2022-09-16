@@ -9,6 +9,7 @@
 #![allow(clippy::format_push_string)]
 
 use crate::ast;
+use crate::types;
 use quote::{format_ident, quote};
 use std::collections::HashMap;
 use std::path::Path;
@@ -27,32 +28,11 @@ macro_rules! quote_block {
     }
 }
 
-/// Get the Rust integer type for the given bit width.
-///
-/// This will round up the size to the nearest Rust integer size. PDL
-/// supports integers up to 64 bit, so it is an error to call this
-/// with a width larger than 64.
-fn rust_integer_type(width: usize) -> usize {
-    for integer_width in [8, 16, 32, 64] {
-        if width <= integer_width {
-            return integer_width;
-        }
-    }
-    panic!("unsupported field width: {width}")
-}
-
-/// Generate a Rust unsigned integer type large enough to hold
-/// integers of the given bit width.
-fn type_for_width(width: usize) -> syn::Type {
-    let integer_width = rust_integer_type(width);
-    syn::parse_str(&format!("u{integer_width}")).unwrap()
-}
-
 fn generate_field(field: &ast::Field, visibility: syn::Visibility) -> proc_macro2::TokenStream {
     match field {
         ast::Field::Scalar { id, width, .. } => {
             let field_name = format_ident!("{id}");
-            let field_type = type_for_width(*width);
+            let field_type = types::Integer::new(*width);
             quote! {
                 #visibility #field_name: #field_type
             }
@@ -67,7 +47,7 @@ fn generate_field_getter(packet_name: &syn::Ident, field: &ast::Field) -> proc_m
             // TODO(mgeisler): refactor with generate_field above.
             let getter_name = format_ident!("get_{id}");
             let field_name = format_ident!("{id}");
-            let field_type = type_for_width(*width);
+            let field_type = types::Integer::new(*width);
             quote! {
                 pub fn #getter_name(&self) -> #field_type {
                     self.#packet_name.as_ref().#field_name
@@ -83,8 +63,8 @@ fn mask_field_value(
     field_name: &proc_macro2::Ident,
     width: usize,
 ) -> Option<proc_macro2::TokenStream> {
-    let type_width = rust_integer_type(width);
-    if width == type_width {
+    let rust_int = types::Integer::new(width);
+    if width == rust_int.width {
         return None;
     }
 
@@ -134,8 +114,7 @@ fn generate_chunk_read(
     };
 
     let chunk_width = get_chunk_width(chunk);
-    let chunk_type = type_for_width(chunk_width);
-    let chunk_type_width = rust_integer_type(chunk_width);
+    let chunk_type = types::Integer::new(chunk_width);
     assert!(chunk_width % 8 == 0, "Chunks must have a byte size, got width: {chunk_width}");
 
     let range = get_field_range(offset, chunk_width);
@@ -167,10 +146,10 @@ fn generate_chunk_read(
         _ => todo!("unsupported field: {:?}", field),
     });
 
-    // When the chunk_type_width is larger than chunk_width (e.g.
-    // chunk_width is 24 but chunk_type_width is 32), then we need
+    // When the chunk_type.width is larger than chunk_width (e.g.
+    // chunk_width is 24 but chunk_type.width is 32), then we need
     // zero padding.
-    let zero_padding_len = (chunk_type_width - chunk_width) / 8;
+    let zero_padding_len = (chunk_type.width - chunk_width) / 8;
     // We need the padding on the MSB side of the payload, so for
     // big-endian, we need to padding on the left, for little-endian
     // we need it on the right.
@@ -195,7 +174,7 @@ fn generate_chunk_field_adjustments(fields: &[ast::Field]) -> proc_macro2::Token
     }
 
     let chunk_width = get_chunk_width(fields);
-    let chunk_type_width = rust_integer_type(chunk_width);
+    let chunk_type = types::Integer::new(chunk_width);
 
     let mut field_parsers = Vec::new();
     let mut field_offset = 0;
@@ -203,8 +182,7 @@ fn generate_chunk_field_adjustments(fields: &[ast::Field]) -> proc_macro2::Token
         match field {
             ast::Field::Scalar { id, width, .. } => {
                 let field_name = format_ident!("{id}");
-                let field_type = type_for_width(*width);
-                let field_type_width = rust_integer_type(*width);
+                let field_type = types::Integer::new(*width);
 
                 let mut field = quote! {
                     chunk
@@ -217,14 +195,14 @@ fn generate_chunk_field_adjustments(fields: &[ast::Field]) -> proc_macro2::Token
                     };
                 }
 
-                if *width < field_type_width {
+                if *width < field_type.width {
                     let bit_mask = mask_bits(*width);
                     field = quote! {
                         (#field & #bit_mask)
                     };
                 }
 
-                if field_type_width < chunk_type_width {
+                if field_type.width < chunk_type.width {
                     field = quote! {
                         #field as #field_type;
                     };
@@ -265,7 +243,7 @@ fn generate_field_writer(
             let mask = mask_field_value(&field_name, *width);
             let byte_boundary_offset = syn::Index::from(get_field_shift(offset));
             let shift = (byte_boundary_offset.index > 0).then(|| {
-                let field_type = type_for_width(*width);
+                let field_type = types::Integer::new(*width);
                 let bit_mask = mask_bits(byte_boundary_offset.index as usize);
                 // TODO(mgeisler): does the use of << here assume
                 // little-endian encoding?
@@ -712,20 +690,6 @@ mod tests {
             "tests/generated/packet_decl_complex_big_endian.rs",
             &rustfmt(&actual_code),
         );
-    }
-
-    #[test]
-    fn test_rust_integer_type() {
-        assert_eq!(rust_integer_type(0), 8);
-        assert_eq!(rust_integer_type(8), 8);
-        assert_eq!(rust_integer_type(9), 16);
-        assert_eq!(rust_integer_type(64), 64);
-    }
-
-    #[test]
-    #[should_panic]
-    fn test_rust_integer_type_panics_on_large_width() {
-        rust_integer_type(65);
     }
 
     #[test]
