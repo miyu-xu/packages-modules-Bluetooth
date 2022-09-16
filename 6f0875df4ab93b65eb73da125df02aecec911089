@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cafc1e8e_fb76d6ec",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/CallLogPullRequest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-16T01:00:27Z",
+      "side": 1,
+      "message": "can\u0027t it be package private?",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 10
+      },
+      "revId": "6f0875df4ab93b65eb73da125df02aecec911089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
