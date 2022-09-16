@@ -383,7 +383,6 @@ class AVRCPProxy(ProfileProxy):
         assert result
         return "No" if result else "Yes"
 
-
     @assert_description
     def _mmi_691(self, **kwargs):
         """
