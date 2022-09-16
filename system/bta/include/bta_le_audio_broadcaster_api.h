@@ -23,7 +23,9 @@
 
 #include "bta/include/bta_le_audio_api.h"
 
-class LeAudioBroadcastClientAudioSource;
+namespace le_audio {
+class AudioHalClient;
+}  // namespace le_audio
 
 /* Interface class */
 class LeAudioBroadcaster {
@@ -39,8 +41,8 @@ class LeAudioBroadcaster {
   static void Cleanup(void);
   static LeAudioBroadcaster* Get(void);
   static bool IsLeAudioBroadcasterRunning(void);
-  static void InitializeAudioClient(
-      LeAudioBroadcastClientAudioSource* clientAudioSource);
+  static void SetAudioHalClientForTesting(
+      le_audio::AudioHalClient* clientAudioSource);
   static void DebugDump(int fd);
 
   virtual void CreateAudioBroadcast(

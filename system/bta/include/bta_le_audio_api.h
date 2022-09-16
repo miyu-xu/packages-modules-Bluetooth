@@ -24,8 +24,9 @@
 
 #include <vector>
 
-class LeAudioUnicastClientAudioSource;
-class LeAudioUnicastClientAudioSink;
+namespace le_audio {
+class AudioHalClient;
+}  // namespace le_audio
 
 class LeAudioHalVerifier {
  public:
@@ -46,9 +47,8 @@ class LeAudioClient {
           offloading_preference);
   static void Cleanup(base::Callback<void()> cleanupCb);
   static LeAudioClient* Get(void);
-  static void InitializeAudioClients(
-      LeAudioUnicastClientAudioSource* clientAudioSource,
-      LeAudioUnicastClientAudioSink* clientAudioSink);
+  static void SetAudioHalClientForTesting(
+      le_audio::AudioHalClient* audioHalClient);
   static void DebugDump(int fd);
 
   virtual void RemoveDevice(const RawAddress& address) = 0;
