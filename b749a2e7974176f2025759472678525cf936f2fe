@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0378fd40_8a100758",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-16T08:14:32Z",
+      "side": 1,
+      "message": "That sounds like a valid case.\n\nMaking a call to `disconnect` all profiles the same way we are adding the `connect` here would probably be an easy fix.\n\nHowever, if it\u0027s for research purpose we should be able to identify this since we have the logs for every connection/disconnection event of each profile.",
+      "parentUuid": "52d03e3f_8c0add48",
+      "revId": "b749a2e7974176f2025759472678525cf936f2fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0de6f9eb_f3aece79",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 22
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-16T07:12:43Z",
       "side": 1,
       "message": "This logic pattern repeats in all match cases:  None, Some(None), Some((_, _))\n\nCan we pull this out to before L490 so it\u0027s simpler to read the flow?\ne.g\n```\nlet reset_cap \u003d connected_profiles.is_empty();\nif reset_cap {\n  self.connected_profiles.remove(\u0026addr);\n  self.disconnecting_devices.remove(\u0026addr);\n}\n```\nand in later\n```\nmatch guard.get(\u0026addr) {\n   Some(task) \u003d\u003e match task {\n    ...\n    if reset_cap {\n      ...\n```",
+      "range": {
+        "startLine": 514,
+        "startChar": 21,
+        "endLine": 519,
+        "endChar": 21
+      },
+      "revId": "b749a2e7974176f2025759472678525cf936f2fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c5aaa60_e19291bb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-09-16T08:14:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0de6f9eb_f3aece79",
       "range": {
         "startLine": 514,
         "startChar": 21,
