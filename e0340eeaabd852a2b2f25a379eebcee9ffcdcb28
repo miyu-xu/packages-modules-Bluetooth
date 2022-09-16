@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f17bf6_9562fd6a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2097,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T17:48:26Z",
+      "side": 1,
+      "message": "Actually, this should be replaced with rx_phy.into() and have an `impl From\u003cu8\u003e for LePhy`. Let me add this as a new CL on top of this series.",
+      "parentUuid": "b3a7abd6_dc9664ad",
+      "revId": "e0340eeaabd852a2b2f25a379eebcee9ffcdcb28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87c04ee2_55b791ac",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-16T17:46:20Z",
       "side": 1,
       "message": "Same here?",
+      "revId": "e0340eeaabd852a2b2f25a379eebcee9ffcdcb28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e356ddcd_5a7eaeca",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2128,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T17:48:26Z",
+      "side": 1,
+      "message": "Actually, this should be replaced with rx_phy.into() and have an `impl From\u003cu8\u003e for LePhy`. Let me add this as a new CL on top of this series.",
+      "parentUuid": "87c04ee2_55b791ac",
       "revId": "e0340eeaabd852a2b2f25a379eebcee9ffcdcb28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
