@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bb66add_e24d0b84",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-16T17:50:35Z",
+      "side": 1,
+      "message": "If rejected it will get a call back but no error code. \n\nError code needs more plumbing, and I will drive that in a separate effort.",
+      "parentUuid": "8853fb56_b72ade24",
+      "range": {
+        "startLine": 200,
+        "startChar": 20,
+        "endLine": 200,
+        "endChar": 37
+      },
+      "revId": "a6768bc23826a146f6c9ec83f9fd62752f090723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62665bf8_d4c57400",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-09-13T07:12:03Z",
       "side": 1,
       "message": "Add BtavConnectionState::disconnecting here to preserve symmetry with connecting case?",
+      "revId": "a6768bc23826a146f6c9ec83f9fd62752f090723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c88ca7e4_1698fcd5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-16T17:50:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62665bf8_d4c57400",
       "revId": "a6768bc23826a146f6c9ec83f9fd62752f090723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
