@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0972be4_c56582ba",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T16:26:19Z",
+      "side": 1,
+      "message": "I thought it would be the safer option. If the MMI instructs us to make a connection, a precondition is to ensure that we are in range (i.e. on the same PHY) as the PTS. This is also why I reconnect \"if needed\" everywhere when a connection is being initiated / prepared.\n\nI guess I could look at the exact tests where the relevant MMIs are being executed to see if disconnection ever happens beforehand, but it seemed simpler to just always do a reconnection to the PHY (since if we\u0027re already connected on the PHY, it\u0027s a no-op). If you\u0027d like me to go back and do that, I can, but maybe in a separate CL? (since it will take a long time to rerun everything and check nothing broke)",
+      "parentUuid": "92c8400b_c6d6efa3",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e240b9f_e5ad7479",
@@ -66,6 +84,24 @@
       "writtenOn": "2022-09-16T09:19:20Z",
       "side": 1,
       "message": "In what case (tests ?) does this happens ?\nCould you document them ?",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7197f5e_93bec5ca",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T16:26:19Z",
+      "side": 1,
+      "message": "None, since `GetConnection` doesn\u0027t work. Will remove. IIRC I was copying the pattern from other profiles, where this case also never happens.",
+      "parentUuid": "6e240b9f_e5ad7479",
       "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -121,6 +157,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37c5e05d_b6007ff2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T16:26:19Z",
+      "side": 1,
+      "message": "We don\u0027t disconnect. We are reconnecting. It doesn\u0027t like it if I attempt connection _before_ returning \"OK\", so I do it on a delay.",
+      "parentUuid": "0dc4e97d_c8ef41af",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6cc55a9_bb426e85",
@@ -146,6 +200,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6390bc82_248a8070",
+        "filename": "android/pandora/server/proto/pandora_experimental/hid.proto",
+        "patchSetId": 29
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T16:26:19Z",
+      "side": 1,
+      "message": "We don\u0027t, I meant to say the enum \"entries\" are the same",
+      "parentUuid": "a6cc55a9_bb426e85",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 51
+      },
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ed659e32_2964859f",
         "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
         "patchSetId": 29
@@ -157,6 +235,24 @@
       "writtenOn": "2022-09-16T09:20:36Z",
       "side": 1,
       "message": "This should not be here",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "591ff3ff_7ef52ed5",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 29
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T16:26:19Z",
+      "side": 1,
+      "message": "Good catch - introduced by merge resolution, I think. Will fix.",
+      "parentUuid": "ed659e32_2964859f",
       "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
