@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52d03e3f_8c0add48",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-16T07:12:43Z",
+      "side": 1,
+      "message": "I find there\u0027s another thing missing in what we had in CRAS-BlueZ.\n\n1. Dev connectes HFP + A2DP (just forget AVRCP for simplicity now)\n2. Dev disconnects HFP\n3. notify CRAS to stop this headset because of (2)\n4. This headset doesn\u0027t disconnects A2DP (stuck for some reason we don\u0027t know)\n5. at this point, user is seeing headset shows up in BT settings, but not Audio settings, and they file feedback to complain this annoying state :/ \n\nWhat CRAS did in legacy path is to \"disconnect\" all other profiles.\nHowever I suggest we don\u0027t implement the same thing now, but try to add logs that is useful to prove it\u0027s the same problem afterwards.\n\nDo you think that\u0027s something we can add/log here?",
+      "revId": "b749a2e7974176f2025759472678525cf936f2fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de6f9eb_f3aece79",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-16T07:12:43Z",
+      "side": 1,
+      "message": "This logic pattern repeats in all match cases:  None, Some(None), Some((_, _))\n\nCan we pull this out to before L490 so it\u0027s simpler to read the flow?\ne.g\n```\nlet reset_cap \u003d connected_profiles.is_empty();\nif reset_cap {\n  self.connected_profiles.remove(\u0026addr);\n  self.disconnecting_devices.remove(\u0026addr);\n}\n```\nand in later\n```\nmatch guard.get(\u0026addr) {\n   Some(task) \u003d\u003e match task {\n    ...\n    if reset_cap {\n      ...\n```",
+      "range": {
+        "startLine": 514,
+        "startChar": 21,
+        "endLine": 519,
+        "endChar": 21
+      },
+      "revId": "b749a2e7974176f2025759472678525cf936f2fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
