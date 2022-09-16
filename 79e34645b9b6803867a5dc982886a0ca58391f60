@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb411f0a_4cf6baaf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppShareInfoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-16T04:51:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba56f3a5_9365cdab",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "79e34645b9b6803867a5dc982886a0ca58391f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9d12032_f025d196",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-14T11:36:12Z",
       "side": 1,
       "message": "minor) Could you separate condition/asserts by breaking the line? Something like:\n\n        assertThat(mBluetoothOppShareInfo.isReadyToStart()).isTrue();\n        \n        mBluetoothOppShareInfo.mDirection \u003d BluetoothShare.DIRECTION_OUTBOUND;\n        assertThat(mBluetoothOppShareInfo.isReadyToStart()).isTrue();\n        \n        mBluetoothOppShareInfo.mStatus \u003d BluetoothShare.STATUS_RUNNING;\n        assertThat(mBluetoothOppShareInfo.isReadyToStart()).isFalse();\n        \nThen the condition/assertion pair can be seen more clearly.\nSame for other test methods.",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 69
+      },
+      "revId": "79e34645b9b6803867a5dc982886a0ca58391f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e77f23a0_4448a019",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppShareInfoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-16T04:51:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9d12032_f025d196",
       "range": {
         "startLine": 77,
         "startChar": 8,
