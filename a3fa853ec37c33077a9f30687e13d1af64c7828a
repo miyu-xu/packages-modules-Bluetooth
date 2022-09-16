@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c8400b_c6d6efa3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:19:20Z",
+      "side": 1,
+      "message": "Looking at the MMI description, this should not be needed here.",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e240b9f_e5ad7479",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:19:20Z",
+      "side": 1,
+      "message": "In what case (tests ?) does this happens ?\nCould you document them ?",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6b90e21_7f7c3b38",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:19:20Z",
+      "side": 1,
+      "message": "Looking at the description of the MMI, we should be able to do nothing here.",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79834619_c5dcdf95",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:19:20Z",
+      "side": 1,
+      "message": "Looking at the description of the MMI, we should be able to do nothing here.",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dc4e97d_c8ef41af",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:19:20Z",
+      "side": 1,
+      "message": "Reading the description of the MMI, we don\u0027t seems to need to disconnect here, could you describe what is happening here ?",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
