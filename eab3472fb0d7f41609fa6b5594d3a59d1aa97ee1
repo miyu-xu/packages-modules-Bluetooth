@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa9e9a8_33c358ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "I originally had a lot of logic inside the callback which necessitated sharing, but now that all of that got moved I can clean up.",
+      "parentUuid": "d9cc8309_978db846",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc89f543_ea98f8f9",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "Please add bug with TODO (i.e. TODO(b/123456789) and describe problem:\n```\nTODO(b/foo): Gatt topshim api is only usable some time after init. Investigate\n             why this delay is needed and make it a blocking part of init before\n             removing this.\n```",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "228bc871_e00a7d1c",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc89f543_ea98f8f9",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6041a8_593e12f6",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29e100a1_9cf888ea",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5fecf9b_451ef760",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "mind replacing these with `todo!()` or adding //TODO(b/foo) - Implement since I\u0027m pretty sure these are only empty for now.",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9224dd7d_cb27c956",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done. There\u0027s a chance we\u0027ll only end up implementing the update notification but that will come in the next patch and we can decide there.",
+      "parentUuid": "c5fecf9b_451ef760",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "050ce603_e82790f3",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "We specifically don\u0027t have any use for the callback\u0027s value other than knowing it exists and we want to go ahead and quit if it doesn\u0027t so `is_none()` is probably best here.",
+      "parentUuid": "8621cedd_4ea7da20",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2d385cb_a8f7f897",
@@ -103,6 +193,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec4b13dc_c790c626",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2d385cb_a8f7f897",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac212ce9_44d452e7",
@@ -116,6 +224,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "Note... this may be too deep of an import... prefer `use crate::uuid` and then use `uuid::BAS`.",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "138d5171_fad99bd2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done. Is there some reasoning here?",
+      "parentUuid": "ac212ce9_44d452e7",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +280,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43277478_b68da498",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Note other comment reply, leftover from before I moved processing out of the callbacks.",
+      "parentUuid": "1d55045c_eec0badb",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b8d9902_80beba74",
@@ -167,6 +311,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "nit: TODO(b/foobar)",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a974e07_10ee7917",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b8d9902_80beba74",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -188,6 +350,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85bc2292_b08afda2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "I\u0027m actually ignoring the provided value as its not really all that useful to us. I changed the ignoring to be explicit",
+      "parentUuid": "9f7da5e2_f245d7e3",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5396e766_0ecabf2b",
@@ -201,6 +381,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "Prefer:\n\n```\nlet (bas_uuid, battery_level_uuid) \u003d match (parse_uuid_string(uuid::BAS), parse_uuid_string(CHARACTERISTIC_BATTERY_LEVEL)) {\n  (Some(bas_uuid), Some(battery_level_uuid)) \u003d\u003e (bas_uuid, battery_level_uuid),\n  _ \u003d\u003e {\n    return;\n  }\n};\n```",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5504bb3f_b690d7f6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Nice.",
+      "parentUuid": "5396e766_0ecabf2b",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -222,6 +420,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e88fd246_7d7ee88f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82a497fc_e983204b",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "909f10fd_b29f3174",
@@ -235,6 +451,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "No callback to say BatteryLevel is missing?",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f174b47_0e136886",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Yeah, so I think this and the next comment warrant discussing how to handle errors of various types here. I think its worth just relying on `on_battery_service_status_updated` to convey information about what level of support a device has. I don\u0027t know that we need details, its probably sufficient to just say not supported for most errors. This differs somewhat from how GATT does it, which is mostly either failing silently or invoking the success callback with a failure status. Do we have a preference here?",
+      "parentUuid": "909f10fd_b29f3174",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -275,6 +509,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5316a24c_8c39d01b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Is there a good component for general cleanup bugs?",
+      "parentUuid": "3d653800_767ef25c",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f31412f7_ec94d231",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
         "patchSetId": 7
@@ -286,6 +538,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "Let\u0027s put all traits above any `impls`. Makes it easier to track what traits a module implements and needs.",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67887aaa_7b6e95e9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f31412f7_ec94d231",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -303,6 +573,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "This gets split up in gerrit -- is this \u003c120 columns? Maybe reduce to 80.",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b0b5836_e2ff2ad2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "I\u0027m surprised rust-fmt didn\u0027t shorten that.",
+      "parentUuid": "03a892b8_d7c3fbcf",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -326,6 +614,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d5addad_0dc63931",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "It could, is it better to be consistent and consolidate error messages within the status callback?",
+      "parentUuid": "6a5f8575_b3913658",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01d40b09_620293a8",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
         "patchSetId": 7
@@ -337,6 +643,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "Can callback registration fail? Looks like not based on the previous call.\n\nShould this instead just return u32 instead of Option\u003cu32\u003e?",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f05a85a_30ba81d8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Left over from when I was trying to do the client_id init here as well.",
+      "parentUuid": "01d40b09_620293a8",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -358,6 +682,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc665512_6e2b14fe",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d63f505b_15a74184",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfbfe11b_eabc0bb2",
@@ -371,6 +713,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "You should document why these spawn + send messages. Something like:\n\n```\n// We serialize all gatt callbacks through the stack receiver so BAS can operate on\n// these serially.\n```",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d83ea1d3_7d92efb0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfbfe11b_eabc0bb2",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -392,6 +752,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c027be78_444dfc98",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Seems to not have. Fixed.",
+      "parentUuid": "80d9bed7_5daa4d0e",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6104492_b69223c5",
@@ -405,6 +783,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "nit: Log that the uuid is malformed before returning here.",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9978776b_8ae380d2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6104492_b69223c5",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -426,6 +822,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e166d4b_377be820",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8860508c_b9a41d7b",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "551cab07_79342057",
@@ -443,6 +857,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a30f243f_94e5605b",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "551cab07_79342057",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4947481_7fa6fa94",
@@ -456,6 +888,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "Let\u0027s try to reduce unwraps. The `ok()` below converts the error into an Option and swallows the error. The `?` is a common convention to return on error (and it will return None).\n\n```\nraw[i] \u003d u8::from_str_radix(\u0026uuid[i*2..i*2+2], 16).ok()?;\n```",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0c1e23_c3c92e0c",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-16T18:52:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4947481_7fa6fa94",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
