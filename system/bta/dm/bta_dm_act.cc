@@ -3680,8 +3680,7 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
             static_cast<tHCI_STATUS>(BTA_DM_AUTH_CONVERT_SMP_CODE(
                 (static_cast<uint8_t>(p_data->complt.reason))));
 
-        if (btm_sec_is_a_bonded_dev(bda) &&
-            p_data->complt.reason == SMP_CONN_TOUT) {
+        if (btm_sec_is_a_bonded_dev(bda) && !p_data->complt.smp_over_br) {
           // Bonded device failed to encrypt - to test this remove battery from
           // HID device right after connection, but before encryption is
           // established
