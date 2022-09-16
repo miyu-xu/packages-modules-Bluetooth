@@ -141,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fcf6705_c632b864",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T17:38:54Z",
+      "side": 1,
+      "message": "Same as reply to comment for TSC_MMI_iut_enable_connection",
+      "parentUuid": "e6b90e21_7f7c3b38",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79834619_c5dcdf95",
@@ -154,6 +172,24 @@
       "writtenOn": "2022-09-16T09:19:20Z",
       "side": 1,
       "message": "Looking at the description of the MMI, we should be able to do nothing here.",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37b33150_859518c0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T17:38:54Z",
+      "side": 1,
+      "message": "Same as reply to comment for TSC_MMI_iut_enable_connection",
+      "parentUuid": "79834619_c5dcdf95",
       "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
