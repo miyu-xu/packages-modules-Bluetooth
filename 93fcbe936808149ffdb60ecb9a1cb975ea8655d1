@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f1386f_9e401172",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-16T17:38:48Z",
+      "side": 1,
+      "message": "Hi Thomas, Hi David,\nThere were issues while performing commit in previous CL, so have resubmitted the files in this CL for review.\nI had fixed issue in repo upload in first commit. Its showing as relation change as the change-id was different. Request you to consider 2nd avrcp.py file for review.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "93fcbe936808149ffdb60ecb9a1cb975ea8655d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
