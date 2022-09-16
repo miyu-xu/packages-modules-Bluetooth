@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d94ee69_9b9a3c8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:38:10Z",
+      "side": 1,
+      "message": "Ignore my comment it\u0027s in a MMI description 😅",
+      "parentUuid": "4d9bbcca_39edee9f",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92c8400b_c6d6efa3",
