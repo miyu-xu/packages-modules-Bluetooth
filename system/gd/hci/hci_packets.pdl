@@ -6131,3 +6131,52 @@ packet IsoWithoutTimestamp : Iso (ts_flag = NOT_PRESENT) {
   packet_status_flag : IsoPacketStatusFlag,
   _payload_,
 }
+
+// MSFT packets
+
+packet MsftCommand {
+  op_code: 16,
+  subcommand_opcode: 8,
+  __payload__,
+}
+
+packet MsftReadSupportedFeatures : MsftCommand (subcommand_opcode = 0x00) {
+}
+
+packet MsftLeMonitorAdv : MsftCommand (subcommand_opcode = 0x03) {
+  rssi_threshold_high : 8,
+  rssi_threshold_low : 8,
+  rssi_threshold_low_time_interval : 8,
+  rssi_sampling_period : 8,
+  condition_type: 8,
+  __payload__,
+}
+
+packet MsftLeMonitorAdvConditionUuid : MsftLeMonitorAdv (condition_type = 2) {
+  uuid_type: 8,
+  _payload_,
+}
+
+packet MsftLeMonitorAdvConditionUuid2 : MsftLeMonitorAdvConditionUuid (uuid_type = 1) {
+  uuid2: 8[2],
+}
+
+packet MsftLeMonitorAdvConditionUuid4 : MsftLeMonitorAdvConditionUuid (uuid_type = 2) {
+  uuid4: 8[4],
+}
+
+packet MsftLeMonitorAdvConditionUuid16 : MsftLeMonitorAdvConditionUuid (uuid_type = 3) {
+  uuid16: 8[16],
+}
+
+struct MsftLeMonitorAdvConditionPattern {
+  _size_(pattern) : 8,
+  ad_type: 8,
+  start_of_pattern: 8,
+  pattern: 8[-2],
+}
+
+packet MsftLeMonitorAdvConditionPatterns : MsftLeMonitorAdv (condition_type = 1) {
+  _count_(patterns): 8,
+  patterns: MsftLeMonitorAdvConditionPattern[],
+}
