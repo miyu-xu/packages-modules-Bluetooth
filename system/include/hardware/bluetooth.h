@@ -22,6 +22,8 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 
+#include <optional>
+
 #include "avrcp/avrcp.h"
 #include "base/callback.h"
 #include "bluetooth/uuid.h"
@@ -104,6 +106,12 @@ typedef enum {
   BT_STATUS_JNI_THREAD_ATTACH_ERROR,
   BT_STATUS_WAKELOCK_ERROR
 } bt_status_t;
+
+typedef struct {
+  bt_status_t status;
+  uint8_t error_code;
+  std::optional<std::string> error_msg;
+} bt_error_t;
 
 inline std::string bt_status_text(const bt_status_t& status) {
   switch (status) {

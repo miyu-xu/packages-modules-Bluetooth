@@ -252,7 +252,8 @@ typedef struct {
  *  state will have one of the values from btav_connection_state_t
  */
 typedef void (*btav_connection_state_callback)(const RawAddress& bd_addr,
-                                               btav_connection_state_t state);
+                                               btav_connection_state_t state,
+                                               bt_error_t error);
 
 /** Callback for audiopath state change.
  *  state will have one of the values from btav_audio_state_t
