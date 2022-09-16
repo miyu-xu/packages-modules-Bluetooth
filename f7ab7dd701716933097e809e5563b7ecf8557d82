@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5386912_3d119006",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-16T08:53:51Z",
+      "side": 1,
+      "message": "wrong spelling?",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "f7ab7dd701716933097e809e5563b7ecf8557d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71a240df_c6940806",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-16T08:53:51Z",
+      "side": 1,
+      "message": "Is this bug correct? seems not related to what commit message says",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "f7ab7dd701716933097e809e5563b7ecf8557d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1438ec2_8f9a9d1d",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-16T08:53:51Z",
+      "side": 1,
+      "message": "Suggest use a comment to expand the features behind this value.\n\nAlso why is this flag name \"HTIF_HF\" since Floss/CRAS is the AG role?",
+      "revId": "f7ab7dd701716933097e809e5563b7ecf8557d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
