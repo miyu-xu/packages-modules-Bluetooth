@@ -16,6 +16,23 @@
       "message": "Hi Thomas and David,\n\nI have fixed the comments on avrcp.py. But git issue of checkin I will be working on it. \n\nThanks and Regards,\nSnehal",
       "revId": "d63d0e6823658648c20778ab3d05f5d046cfb4b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e03269aa_77f6c70a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-16T08:59:44Z",
+      "side": 1,
+      "message": "Hi, may I ask why this CL shows me as author?",
+      "revId": "d63d0e6823658648c20778ab3d05f5d046cfb4b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
