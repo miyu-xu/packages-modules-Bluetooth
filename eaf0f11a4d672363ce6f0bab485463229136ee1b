@@ -16,6 +16,24 @@
       "message": "Ying, I have some new changes in gatt. When you move `LePhy` out of BluetoothGatt, please update the new code too (you can do it in this CL, you don\u0027t need a new one). I just want to make sure we don\u0027t have a conflict later.",
       "revId": "eaf0f11a4d672363ce6f0bab485463229136ee1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de48fe06_cd16f4bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-09-16T12:43:07Z",
+      "side": 1,
+      "message": "Got it. I\u0027ve rebased onto your CL.",
+      "parentUuid": "4ee79856_06ad1ecd",
+      "revId": "eaf0f11a4d672363ce6f0bab485463229136ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
