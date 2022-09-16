@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ba96c4e_9059c60d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3686,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-16T20:45:01Z",
+      "side": 1,
+      "message": "This comment should be updated",
+      "range": {
+        "startLine": 3684,
+        "startChar": 11,
+        "endLine": 3686,
+        "endChar": 24
+      },
+      "revId": "a3486ef44b472199a1e7d5a6a21736d1b6e60b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

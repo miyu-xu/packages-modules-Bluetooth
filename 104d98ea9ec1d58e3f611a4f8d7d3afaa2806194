@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e633b47_919fce00",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3684,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-16T20:45:01Z",
+      "side": 0,
+      "message": "So check for connection timeout is no longer needed ? According to comment below, I think it is valid.",
+      "range": {
+        "startLine": 3684,
+        "startChar": 12,
+        "endLine": 3684,
+        "endChar": 50
+      },
+      "revId": "104d98ea9ec1d58e3f611a4f8d7d3afaa2806194",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
