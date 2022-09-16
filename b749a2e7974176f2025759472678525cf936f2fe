@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e61b5b55_a7777c95",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-09-16T08:47:25Z",
+      "side": 1,
+      "message": "Got it, the `info!(\"[{}]: hfp...` lines are suffice for us to figure this out in log.\n\nYeah my thought is that we should first observe and do research on this behavior since migrate from BlueZ to Floss.\nLet\u0027s keep our eye on this weird case in dogfood.",
+      "parentUuid": "0378fd40_8a100758",
+      "revId": "b749a2e7974176f2025759472678525cf936f2fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0de6f9eb_f3aece79",
