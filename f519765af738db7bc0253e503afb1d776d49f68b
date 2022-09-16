@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c8018d_4047cc1f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T21:35:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "35e957f0_7e7d37b4",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dcac03e_96c5cd2d",
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Yes, I expect it to be always `None` as well.\nMy issue is with the `if` \"just in case\", this means that if `self.connection` is not `None` we will do nothing here. \nThe `assert` would also be here \"just in case\", but when we will encounter a call to this MMI with a `self.connection` that is not `None` instead of silently ignoring it, this will warn the next developper of this new behavior.\nHe will be able to choose what is the correct thing to do here at that time with more context.",
       "parentUuid": "166b516a_f3829f31",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15bd1fb6_ea349ff2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T21:35:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e60edef_ee9b413e",
       "range": {
         "startLine": 58,
         "startChar": 0,
@@ -325,6 +373,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbdfa8a1_5d24c9ba",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T21:35:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8a918834_8ff9ee96",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a036b1e_1a2b7d34",
@@ -419,6 +485,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e0a869_7a8705df",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T21:35:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ebf44063_78e4f0ef",
+      "range": {
+        "startLine": 125,
+        "startChar": 43,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de60c326_6d7fa154",
@@ -503,6 +593,30 @@
       "side": 1,
       "message": "I will try to find a way to retrieve this error",
       "parentUuid": "79ada6b8_5664c257",
+      "range": {
+        "startLine": 158,
+        "startChar": 70,
+        "endLine": 159,
+        "endChar": 22
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a821430_fc35fb4b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-16T21:35:42Z",
+      "side": 1,
+      "message": "Based on Android API, I guess there is no direct way to retrieve error code received by the IUT?\nMy current implementation is in `createLECreditBasedChannel` method, when the `createL2capChannel` tries to create `bluetoothSocket` ,it failed by intent, and I record it down in `test_status_map` that this test targeted to fail, and passes its status to here. But I cannot see the error code with Android Socket API.",
+      "parentUuid": "33705012_66f97106",
       "range": {
         "startLine": 158,
         "startChar": 70,
