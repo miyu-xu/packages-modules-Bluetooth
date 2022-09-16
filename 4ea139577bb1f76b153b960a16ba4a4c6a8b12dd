@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca228f96_43d10e63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-09-16T02:12:03Z",
+      "side": 1,
+      "message": "Hi Jack,\nChienyuan reviewed the change. Please review it.\nThanks in advance",
+      "revId": "4ea139577bb1f76b153b960a16ba4a4c6a8b12dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
