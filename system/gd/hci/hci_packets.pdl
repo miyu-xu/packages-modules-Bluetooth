@@ -6131,3 +6131,99 @@ packet IsoWithoutTimestamp : Iso (ts_flag = NOT_PRESENT) {
   packet_status_flag : IsoPacketStatusFlag,
   _payload_,
 }
+
+// MSFT packets
+
+// MSFT Commands don't have a constant opcode. So we don't inherit `Command`
+// but define the packets with `op_code` being a 16-bit number that can be
+// populated by the stack code with the value given by the device driver.
+// Reference: https://learn.microsoft.com/en-us/windows-hardware/drivers/bluetooth/microsoft-defined-bluetooth-hci-commands-and-events
+packet MsftCommand {
+  op_code: 16,
+  subcommand_opcode: 8,
+  _payload_,
+}
+
+packet MsftReadSupportedFeatures : MsftCommand (subcommand_opcode = 0x00) {}
+
+packet MsftLeMonitorAdv : MsftCommand (subcommand_opcode = 0x03) {
+  rssi_threshold_high : 8,
+  rssi_threshold_low : 8,
+  rssi_threshold_low_time_interval : 8,
+  rssi_sampling_period : 8,
+  condition_type: 8,
+  _payload_,
+}
+
+struct MsftLeMonitorAdvConditionPattern {
+  _size_(pattern) : 8,
+  ad_type: 8,
+  start_of_pattern: 8,
+  pattern: 8[-2],
+}
+
+packet MsftLeMonitorAdvConditionPatterns : MsftLeMonitorAdv (condition_type = 0x01) {
+  _count_(patterns): 8,
+  patterns: MsftLeMonitorAdvConditionPattern[],
+}
+
+packet MsftLeMonitorAdvConditionUuid : MsftLeMonitorAdv (condition_type = 0x02) {
+  uuid_type: 8,
+  _payload_,
+}
+
+packet MsftLeMonitorAdvConditionUuid2 : MsftLeMonitorAdvConditionUuid (uuid_type = 0x01) {
+  uuid2: 8[2],
+}
+
+packet MsftLeMonitorAdvConditionUuid4 : MsftLeMonitorAdvConditionUuid (uuid_type = 0x02) {
+  uuid4: 8[4],
+}
+
+packet MsftLeMonitorAdvConditionUuid16 : MsftLeMonitorAdvConditionUuid (uuid_type = 0x03) {
+  uuid16: 8[16],
+}
+
+packet MsftLeSetAdvFilterEnable : MsftCommand (subcommand_opcode = 0x05) {
+  enable: 8,
+}
+
+packet MsftCommandComplete : Event (event_code = COMMAND_COMPLETE) {
+  num_hci_command_packets : 8,
+  command_op_code : 16,
+  status: 8,
+  subcommand_opcode: 8,
+  _payload_,
+}
+
+packet MsftReadSupportedFeaturesCommandComplete : MsftCommandComplete (subcommand_opcode = 0x00) {
+  supported_features: 64,
+}
+
+packet MsftLeMonitorAdvCommandComplete : MsftCommandComplete (subcommand_opcode = 0x03) {
+  monitor_handle: 8,
+}
+
+packet MsftLeSetAdvFilterEnableCommandComplete : MsftCommandComplete (subcommand_opcode = 0x03) {}
+
+// It is not possible to define MSFT Event packet by deriving `Event` packet
+// because it starts with variable-length event prefix which can only be determined
+// at run-time (after receiving return of MSFT Read Supported Features).
+// Therefore we only define the payload which is located after the event prefix.
+packet MsftEventPayload {
+  msft_event_code : 8,
+  _payload_,
+}
+
+packet MsftRssiEventPayload : MsftEventPayload (msft_event_code = 0x01) {
+  status: 8,
+  connection_handle: 16,
+  rssi: 8,
+}
+
+packet MsftLeMonitorDeviceEventPayload : MsftEventPayload (msft_event_code = 0x02) {
+  address_type: 8,
+  bd_addr: 48,
+  monitor_handle: 8,
+  monitor_state: 8,
+}
