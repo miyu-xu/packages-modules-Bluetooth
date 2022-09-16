@@ -2440,11 +2440,11 @@ static void btif_report_connection_state(const RawAddress& peer_address,
   if (btif_av_source.Enabled()) {
     do_in_jni_thread(FROM_HERE,
                      base::Bind(btif_av_source.Callbacks()->connection_state_cb,
-                                peer_address, state));
+                                peer_address, state, btav_error_t()));
   } else if (btif_av_sink.Enabled()) {
     do_in_jni_thread(FROM_HERE,
                      base::Bind(btif_av_sink.Callbacks()->connection_state_cb,
-                                peer_address, state));
+                                peer_address, state, btav_error_t()));
   }
 }
 
