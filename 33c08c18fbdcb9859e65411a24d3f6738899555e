@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32272a73_23bbb2cf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2591,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T16:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67bcbcaf_fc824070",
+      "range": {
+        "startLine": 2591,
+        "startChar": 0,
+        "endLine": 2591,
+        "endChar": 40
+      },
+      "revId": "33c08c18fbdcb9859e65411a24d3f6738899555e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "402566a7_a1e80026",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-16T12:36:37Z",
       "side": 1,
       "message": "assert_eq!(\"Callback 1\", map.get_callback_from_callback_id(found.unwrap().cbid).unwrap().get_object_id());",
+      "range": {
+        "startLine": 2599,
+        "startChar": 48,
+        "endLine": 2599,
+        "endChar": 56
+      },
+      "revId": "33c08c18fbdcb9859e65411a24d3f6738899555e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d042ae2_80ea18c7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2599,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T16:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "402566a7_a1e80026",
       "range": {
         "startLine": 2599,
         "startChar": 48,
