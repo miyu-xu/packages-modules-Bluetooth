@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41adacbf_aeedb218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-16T16:03:26Z",
+      "side": 1,
+      "message": "LGTM but I can\u0027t +2 because I rebased on my patch 😊\n\nAlso adding Katherine here for that reason",
+      "revId": "2ac210fd8497acd5d1f3f291cf8d83bf7c923683",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
