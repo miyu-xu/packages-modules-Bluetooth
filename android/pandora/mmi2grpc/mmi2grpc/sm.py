@@ -179,5 +179,27 @@ class SMProxy(ProfileProxy):
         """
         Please enter 6 digit passkey code.
         """
+        return "OK"
 
+    @assert_description
+    def MMI_IUT_ACCEPT_CONNECTION_BR_EDR(self, pts_addr, **kwargs):
+        """
+        Please prepare IUT into a connectable mode in BR/EDR.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can accept a connect
+        request from PTS.
+        """
+        self.pairing_stream = self.security.OnPairing()
+        event = get_event(pairing_stream=self.pairing_stream, addr=pts_addr)
+        debug(f"Accept br edr event: {event}")
+        self.pairing_stream.send(event=event, confirm=True)
+        self.pairing_stream.close()
+        return "OK"
+
+    @assert_description
+    def _mmi_2001(self, **kwargs):
+        """
+        Please verify the passKey is correct: 000000
+        """
         return "OK"

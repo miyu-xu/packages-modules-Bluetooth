@@ -43,6 +43,8 @@ service Host {
   rpc EnableConnectableMode(EnableConnectableModeRequest) returns (google.protobuf.Empty);
   // Enter displayed Passkey
   rpc EnterPasskey(PasskeyRequest) returns (google.protobuf.Empty);
+  // Set IO Capability
+  rpc SetIoCapability(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
 // Response of the `ReadLocalAddress` method.

@@ -359,4 +359,13 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       Empty.getDefaultInstance()
     }
   }
+
+  override fun setIoCapability(request: Empty, responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      bluetoothAdapter.setIoCapability(BluetoothAdapter.IO_CAPABILITY_OUT)
+      Log.i(TAG, "softReset")
+      rebootBluetooth()
+      Empty.getDefaultInstance()
+    }
+  }
 }
