@@ -286,15 +286,49 @@ struct classic_impl : public security::ISecurityManagerListener {
     dequeue_next_connection();
   }
 
-  void on_connection_complete(EventView packet) {
-    ConnectionCompleteView connection_complete = ConnectionCompleteView::Create(packet);
-    ASSERT(connection_complete.IsValid());
+  void create_and_announce_connection(ConnectionCompleteView connection_complete, Role role, bool locally_initiated) {
     auto status = connection_complete.GetStatus();
     auto address = connection_complete.GetBdAddr();
     if (client_callbacks_ == nullptr) {
       LOG_WARN("No client callbacks registered for connection");
       return;
     }
+    if (status != ErrorCode::SUCCESS) {
+      client_handler_->Post(common::BindOnce(
+          &ConnectionCallbacks::OnConnectFail, common::Unretained(client_callbacks_), address, status));
+      return;
+    }
+    uint16_t handle = connection_complete.GetConnectionHandle();
+    auto queue = std::make_shared<AclConnection::Queue>(10);
+    auto queue_down_end = queue->GetDownEnd();
+    round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::CLASSIC, handle, queue);
+    std::unique_ptr<ClassicAclConnection> connection(
+        new ClassicAclConnection(std::move(queue), acl_connection_interface_, handle, address));
+    connection->locally_initiated_ = locally_initiated;
+    connections.add(
+        handle,
+        AddressWithType{address, AddressType::PUBLIC_DEVICE_ADDRESS},
+        queue_down_end,
+        handler_,
+        connection->GetEventCallbacks([this](uint16_t handle) { this->connections.invalidate(handle); }));
+    connections.execute(address, [=](ConnectionManagementCallbacks* callbacks) {
+      if (delayed_role_change_ == nullptr) {
+        callbacks->OnRoleChange(hci::ErrorCode::SUCCESS, current_role);
+      } else if (delayed_role_change_->GetBdAddr() == address) {
+        LOG_INFO("Sending delayed role change for %s", delayed_role_change_->GetBdAddr().ToString().c_str());
+        callbacks->OnRoleChange(delayed_role_change_->GetStatus(), delayed_role_change_->GetNewRole());
+        delayed_role_change_.reset();
+      }
+    });
+    client_handler_->Post(common::BindOnce(
+        &ConnectionCallbacks::OnConnectSuccess, common::Unretained(client_callbacks_), std::move(connection)));
+  }
+
+  void on_connection_complete(EventView packet) {
+    ConnectionCompleteView connection_complete = ConnectionCompleteView::Create(packet);
+    ASSERT(connection_complete.IsValid());
+    auto status = connection_complete.GetStatus();
+    auto address = connection_complete.GetBdAddr();
     Role current_role = Role::CENTRAL;
     bool locally_initiated = true;
     if (outgoing_connecting_address_ == address) {
@@ -315,35 +349,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       current_role = Role::PERIPHERAL;
       locally_initiated = false;
     }
-    if (status != ErrorCode::SUCCESS) {
-      client_handler_->Post(common::BindOnce(&ConnectionCallbacks::OnConnectFail, common::Unretained(client_callbacks_),
-                                             address, status));
-    } else {
-      uint16_t handle = connection_complete.GetConnectionHandle();
-      auto queue = std::make_shared<AclConnection::Queue>(10);
-      auto queue_down_end = queue->GetDownEnd();
-      round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::CLASSIC, handle, queue);
-      std::unique_ptr<ClassicAclConnection> connection(
-          new ClassicAclConnection(std::move(queue), acl_connection_interface_, handle, address));
-      connection->locally_initiated_ = locally_initiated;
-      connections.add(
-          handle,
-          AddressWithType{address, AddressType::PUBLIC_DEVICE_ADDRESS},
-          queue_down_end,
-          handler_,
-          connection->GetEventCallbacks([this](uint16_t handle) { this->connections.invalidate(handle); }));
-      connections.execute(address, [=](ConnectionManagementCallbacks* callbacks) {
-        if (delayed_role_change_ == nullptr) {
-          callbacks->OnRoleChange(hci::ErrorCode::SUCCESS, current_role);
-        } else if (delayed_role_change_->GetBdAddr() == address) {
-          LOG_INFO("Sending delayed role change for %s", delayed_role_change_->GetBdAddr().ToString().c_str());
-          callbacks->OnRoleChange(delayed_role_change_->GetStatus(), delayed_role_change_->GetNewRole());
-          delayed_role_change_.reset();
-        }
-      });
-      client_handler_->Post(common::BindOnce(
-          &ConnectionCallbacks::OnConnectSuccess, common::Unretained(client_callbacks_), std::move(connection)));
-    }
+    create_and_announce_connection(connection_complete, current_role, locally_initiated);
     dequeue_next_connection();
   }
 
