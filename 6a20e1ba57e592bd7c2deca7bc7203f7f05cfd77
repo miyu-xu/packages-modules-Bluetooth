@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52f5e4c5_d8fc0a39",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-16T07:09:21Z",
+      "side": 1,
+      "message": "Hi Thomas,\nYes I was able to get the list of test cases with respective roles. As you mentioned there are few CT Test cases where Android DUT will be Source. \nBelow are the test cases that need source in CT \u003call volume change test cases required role swap\u003e, and I am planning to put the condition mentioned below as there are approx 215 TC in AVRCP:\nRequest your inputs on below condition if its ok to go ahead.\n\nif ((\"TG\" in test) and (\"TG/VLH\" not in test)) or (\"CT/VLH\" in test):\n\n            self.connection \u003d self.host.WaitConnection(address\u003dpts_addr).connection\n            try:\n                self.source \u003d self.a2dp.WaitSource(connection\u003dself.connection).source\n            except RpcError:\n                pass\n        else:\n            self.connection \u003d self.host.WaitConnection(address\u003dpts_addr).connection\n            try:\n                self.sink \u003d self.a2dp.WaitSink(connection\u003dself.connection).sink\n            except RpcError:\n                pass\n        return \"OK\"",
+      "parentUuid": "9eeebe52_1cd66265",
+      "range": {
+        "startLine": 62,
+        "startChar": 7,
+        "endLine": 62,
+        "endChar": 24
+      },
+      "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4749d18_f7c169e1",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
         "patchSetId": 1
@@ -94,6 +118,30 @@
       "writtenOn": "2022-09-13T22:35:52Z",
       "side": 1,
       "message": "Here we should verify that the Android DUT is playing music.",
+      "range": {
+        "startLine": 455,
+        "startChar": 0,
+        "endLine": 464,
+        "endChar": 0
+      },
+      "revId": "6a20e1ba57e592bd7c2deca7bc7203f7f05cfd77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2234ae75_2072e2b2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-16T07:09:21Z",
+      "side": 1,
+      "message": "Hi Thomas,\nI have verified streaming or not using IsSuspended GRPC call available in A2DP.\neg:\n        result \u003d self.a2dp.IsSuspended(source\u003dself.source)\n        assert result\n        return \"Yes\" if result else \"No\"",
+      "parentUuid": "87bc7803_45a95d81",
       "range": {
         "startLine": 455,
         "startChar": 0,

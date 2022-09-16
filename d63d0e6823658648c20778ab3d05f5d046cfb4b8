@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec6bdb66_5e6cfaed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-16T07:09:21Z",
+      "side": 1,
+      "message": "Hi Thomas and David,\n\nI have fixed the comments on avrcp.py. But git issue of checkin I will be working on it. \n\nThanks and Regards,\nSnehal",
+      "revId": "d63d0e6823658648c20778ab3d05f5d046cfb4b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
