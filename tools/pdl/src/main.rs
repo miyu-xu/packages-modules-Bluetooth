@@ -9,6 +9,7 @@ mod lint;
 mod parser;
 #[cfg(test)]
 mod test_utils;
+mod types;
 
 use crate::lint::Lintable;
 
