@@ -52,6 +52,24 @@
       "parentUuid": "906dacb1_2d3177a4",
       "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1725ca57_792c5671",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-16T16:40:11Z",
+      "side": 1,
+      "message": "Looked at all usages of BT_STATUS_BUSY, all look retryable except 2 places:\n\n* http://osscs/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_hd.cc;l\u003d396;drc\u003d6bf723485473ac53ba78aac3fd12482d4457c3cd\n* http://osscs/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_hf.cc;l\u003d661;drc\u003d6bf723485473ac53ba78aac3fd12482d4457c3cd\n\nBoth of which should be BT_STATUS_DONE, can be interpreted generally as: I can\u0027t do the request because it\u0027s already done, so you can assume success unless you really need to redo the request.\n\nHow about I file a bug to fix those 2 error messages. I see that the call path in Android is that nothing depends on the error code of that code path except to check against SUCCESS, so it should not be invasive.",
+      "parentUuid": "dec804ac_a5762ed6",
+      "revId": "e48e8dc71bfa3568418aa74f7aea640346132caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
