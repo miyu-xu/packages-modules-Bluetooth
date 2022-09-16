@@ -84,6 +84,46 @@
       "message": "Reading the description of the MMI, we don\u0027t seems to need to disconnect here, could you describe what is happening here ?",
       "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6cc55a9_bb426e85",
+        "filename": "android/pandora/server/proto/pandora_experimental/hid.proto",
+        "patchSetId": 29
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:20:36Z",
+      "side": 1,
+      "message": "We should not depend on that",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 51
+      },
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed659e32_2964859f",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 29
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:20:36Z",
+      "side": 1,
+      "message": "This should not be here",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
