@@ -25,7 +25,6 @@
 #include "packet/raw_builder.h"
 
 using bluetooth::packet::BitInserter;
-using bluetooth::packet::RawBuilder;
 using std::vector;
 
 namespace bluetooth {

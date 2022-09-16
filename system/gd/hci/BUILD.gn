@@ -42,3 +42,32 @@ source_set("BluetoothHciSources") {
 
   configs += [ "//bt/system:target_defaults" ]
 }
+
+#if (use.test) {
+  executable("unit_test") {
+    sources = [
+      "hci_packets_test.cc",
+    ]
+
+    include_dirs = [ "//bt/system/gd" ]
+
+    deps = [
+      "//bt/system/gd:gd_default_deps",
+    ]
+
+    configs += [
+      "//bt/system:target_defaults",
+      "//bt/system:external_gtest_main",
+    ]
+
+    libs = [
+      "pthread",
+      "rt",
+      "dl",
+    ]
+
+    ldflags = [
+      "-lpthread"
+    ]
+  }
+#}

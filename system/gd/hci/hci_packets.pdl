@@ -670,6 +670,7 @@ packet LeConnectionManagementCommand : AclCommand { _payload_, }
 packet LeSecurityCommand : Command { _payload_, }
 packet LeIsoCommand : Command { _payload_, }
 packet VendorCommand : Command { _payload_, }
+packet MsftCommand : Command { _payload_, }
 
 // HCI Event Packets
 
@@ -6130,4 +6131,49 @@ packet IsoWithoutTimestamp : Iso (ts_flag = NOT_PRESENT) {
   _reserved_ : 2,
   packet_status_flag : IsoPacketStatusFlag,
   _payload_,
+}
+
+// MSFT packets
+
+packet MsftReadSupportedFeatures : MsftCommand {
+  subcommand_opcode : 8,
+}
+
+packet MsftLeMonitorAdv : MsftCommand {
+  subcommand_opcode : 8,
+  rssi_threshold_high : 8,
+  rssi_threshold_low : 8,
+  rssi_threshold_low_time_interval : 8,
+  rssi_sampling_period : 8,
+  condition_type: 8,
+  __payload__,
+}
+
+packet MsftLeMonitorAdvConditionUuid : MsftLeMonitorAdv (condition_type = 2) {
+  uuid_type: 8,
+  _payload_,
+}
+
+packet MsftLeMonitorAdvConditionUuid2 : MsftLeMonitorAdvConditionUuid (uuid_type = 1) {
+  uuid2: 8[2],
+}
+
+packet MsftLeMonitorAdvConditionUuid4 : MsftLeMonitorAdvConditionUuid (uuid_type = 2) {
+  uuid4: 8[4],
+}
+
+packet MsftLeMonitorAdvConditionUuid16 : MsftLeMonitorAdvConditionUuid (uuid_type = 3) {
+  uuid16: 8[16],
+}
+
+struct MsftLeMonitorAdvConditionPattern {
+  _size_(pattern) : 8,
+  ad_type: 8,
+  start_of_pattern: 8,
+  pattern: 8[-2],
+}
+
+packet MsftLeMonitorAdvConditionPatterns : MsftLeMonitorAdv (condition_type = 1) {
+  _count_(patterns): 8,
+  patterns: MsftLeMonitorAdvConditionPattern[],
 }
