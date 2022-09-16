@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0db7544_3638a607",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-16T20:11:10Z",
+      "side": 1,
+      "message": "According to the dup man page:\n\n       After a successful return, the old and new file descriptors may\n       be used interchangeably.  Since the two file descriptors refer to\n       the same open file description, they share file offset and file\n       status flags; for example, if the file offset is modified by\n       using lseek(2) on one of the file descriptors, the offset is also\n       changed for the other file descriptor.\n       \nI tried writing a \"toy\" program separately and indeed for dup()\u0027ed file descriptors lseek changes the offset for all of them.\n\nThis means the problem was there even before my change. I will try to see how this can be resolved. One way is to open a new separate file descriptor that opens the same file. Since the file descriptor (and its corresponding kernel data structure) will be separate, we should be able to change the offset independently.",
+      "parentUuid": "00c045f8_f4b2814b",
+      "range": {
+        "startLine": 130,
+        "startChar": 20,
+        "endLine": 130,
+        "endChar": 26
+      },
+      "revId": "9751586a528090ea5713b9c2bfa4b4b4b611974d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9da58f57_b54b7484",
         "filename": "system/gd/common/testing/log_capture.cc",
         "patchSetId": 3
