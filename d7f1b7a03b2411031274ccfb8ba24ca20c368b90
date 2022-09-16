@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bce2687_5cabdc55",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-16T07:09:28Z",
+      "side": 1,
+      "message": "remove \"(C)\"",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64e9fd0c_b74b7e04",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-16T07:09:28Z",
+      "side": 1,
+      "message": "Please use truth for the new files.",
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29882472_f8eeb1d8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-16T07:09:28Z",
+      "side": 1,
+      "message": "You can remove this.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d71c9d2e_96358709",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-16T07:09:28Z",
+      "side": 1,
+      "message": "Please do not use \"test\" prefix for new files, and follow this.\nhttps://engdoc.corp.google.com/eng/doc/devguide/testing/unit/best-practices.md?cl\u003dhead\u0026polyglot\u003djava#naming",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd6b6d7b_0b18c260",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-16T07:09:28Z",
+      "side": 1,
+      "message": "Could you add more info such as ManufacturerSpecificData and so on, so the this can test more lines?",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe2ccbd_92fef780",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-16T07:09:28Z",
+      "side": 1,
+      "message": "checkLengh_withGT255_throwsException",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 32
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
