@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05db4e15_ee07613c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-16T12:25:05Z",
+      "side": 1,
+      "message": "I think here should be \"enable\"? otherwise, we will never enter line 171 and enable is not used by this function.",
+      "range": {
+        "startLine": 168,
+        "startChar": 12,
+        "endLine": 168,
+        "endChar": 31
+      },
+      "revId": "838552b3263106c7b43aef14880dde0e628aea68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0cb8a9f_ab378c7e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-16T12:25:05Z",
+      "side": 1,
+      "message": "If the advertising is disabled due to duration timeout, the stopTime will not be assigned. Maybe we need to call this function in AdvertiseManager.onAdvertisingEnabled() to update stopTime",
+      "range": {
+        "startLine": 170,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 39
+      },
+      "revId": "838552b3263106c7b43aef14880dde0e628aea68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
