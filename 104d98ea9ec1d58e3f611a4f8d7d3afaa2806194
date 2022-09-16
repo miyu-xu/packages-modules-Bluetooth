@@ -22,6 +22,30 @@
       },
       "revId": "104d98ea9ec1d58e3f611a4f8d7d3afaa2806194",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64e7b687_ceded54a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3684,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-09-16T21:48:51Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "4e633b47_919fce00",
+      "range": {
+        "startLine": 3684,
+        "startChar": 12,
+        "endLine": 3684,
+        "endChar": 50
+      },
+      "revId": "104d98ea9ec1d58e3f611a4f8d7d3afaa2806194",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
