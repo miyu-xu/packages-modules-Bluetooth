@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c6c4b3_6d9d6107",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:13:43Z",
+      "side": 1,
+      "message": "nit: `LeClearResolvingList`",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "babcc07f0aa7acb80ebc6c98f721fdd15d345edc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "88f99a66_c28b9341",
@@ -14,6 +37,29 @@
       "writtenOn": "2022-09-15T20:04:43Z",
       "side": 1,
       "message": "Note: I will be adding unit tests for this",
+      "revId": "babcc07f0aa7acb80ebc6c98f721fdd15d345edc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1234cb01_63cc1b67",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-16T09:13:43Z",
+      "side": 1,
+      "message": "nit: Use a range-based for loop",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 12
+      },
       "revId": "babcc07f0aa7acb80ebc6c98f721fdd15d345edc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
