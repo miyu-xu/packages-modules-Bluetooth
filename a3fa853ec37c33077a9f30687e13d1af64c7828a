@@ -106,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8196147_29aba47d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T17:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7197f5e_93bec5ca",
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6b90e21_7f7c3b38",
@@ -236,6 +254,30 @@
       "side": 1,
       "message": "Oh, ok, so only the names ?\nIf yes you can resolve 😊",
       "parentUuid": "6390bc82_248a8070",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 51
+      },
+      "revId": "a3fa853ec37c33077a9f30687e13d1af64c7828a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "234bfcee_8c3405fd",
+        "filename": "android/pandora/server/proto/pandora_experimental/hid.proto",
+        "patchSetId": 29
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-16T17:26:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e72e227d_b1de5863",
       "range": {
         "startLine": 12,
         "startChar": 0,
