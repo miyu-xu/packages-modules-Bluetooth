@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a55a308_29e5d2ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-16T17:27:52Z",
+      "side": 1,
+      "message": "LGTM but I don\u0027t know too much about AdvMon and how those interfaces should look. Moving Manish to reviewer to confirm.",
+      "revId": "2b70b2aa4dea5c2d67002b462a566e85fb69420e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
