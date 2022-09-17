@@ -131,8 +131,6 @@ class LinkLayerController {
 
   void TimerTick();
 
-  void Close();
-
   AsyncTaskId ScheduleTask(std::chrono::milliseconds delay_ms,
                            const TaskCallback& task);
 
@@ -395,8 +393,6 @@ class LinkLayerController {
       uint16_t max_latency, uint16_t voice_setting,
       uint8_t retransmission_effort, uint16_t packet_types);
   ErrorCode RejectSynchronousConnection(Address bd_addr, uint16_t reason);
-
-  bool HasAclConnection();
 
   void HandleIso(bluetooth::hci::IsoView iso);
 
