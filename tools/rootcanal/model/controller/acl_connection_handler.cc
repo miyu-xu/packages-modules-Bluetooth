@@ -511,6 +511,10 @@ bool AclConnectionHandler::AcceptPendingScoConnection(
   return false;
 }
 
+bool AclConnectionHandler::HasConnectedAcl() {
+  return !acl_connections_.empty();
+}
+
 bool AclConnectionHandler::AcceptPendingScoConnection(
     bluetooth::hci::Address addr, ScoConnectionParameters const& parameters) {
   for (auto& pair : sco_connections_) {
@@ -553,15 +557,6 @@ ScoLinkParameters AclConnectionHandler::GetScoLinkParameters(
     }
   }
   return {};
-}
-
-std::vector<uint16_t> AclConnectionHandler::GetAclHandles() const {
-  std::vector<uint16_t> keys;
-
-  for (const auto& pair : acl_connections_) {
-    keys.push_back(pair.first);
-  }
-  return keys;
 }
 
 void AclConnectionHandler::ResetLinkTimer(uint16_t handle) {
