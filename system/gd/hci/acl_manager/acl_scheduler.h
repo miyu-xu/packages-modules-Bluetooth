@@ -63,6 +63,20 @@ class AclScheduler : public bluetooth::Module {
       common::ContextualOnceCallback<void()> cancel_connection,
       common::ContextualOnceCallback<void()> cancel_connection_completed);
 
+  // Schedule a Remote Name Request
+  void EnqueueRemoteNameRequest(Address address, common::ContextualOnceCallback<void()> start_request);
+
+  // Report that a Remote Name Request connection has completed, so we can resume popping from the queue.
+  void ReportRemoteNameRequestCompletion(Address address);
+
+  // Cancel an Remote Name Request. If the request is already outgoing, we will invoke cancel_connection, without
+  // clearing the outgoing request. Otherwise, we will remove the request from the queue, invoke
+  // cancel_connection_completed, and execute the next request in the queue.
+  void CancelRemoteNameRequest(
+      Address address,
+      common::ContextualOnceCallback<void()> cancel_request,
+      common::ContextualOnceCallback<void()> cancel_request_completed);
+
  private:
   struct impl;
   std::unique_ptr<impl> pimpl_;
