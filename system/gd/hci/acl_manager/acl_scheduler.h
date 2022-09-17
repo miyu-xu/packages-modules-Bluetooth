@@ -22,6 +22,7 @@
 
 #include "common/contextual_callback.h"
 #include "hci/hci_packets.h"
+#include "module.h"
 
 namespace bluetooth {
 namespace hci {
@@ -39,7 +40,7 @@ struct AclConnectionMessage {
 //
 // However, it does not perform any actual HCI operations itself - it simply takes in callbacks, and executes them
 // at the appropriate time.
-class AclScheduler {
+class AclScheduler : public bluetooth::Module {
  public:
   // Schedule an ACL Create Connection request
   void EnqueueOutgoingAclConnection(
@@ -68,14 +69,20 @@ class AclScheduler {
       common::ContextualOnceCallback<void(Address)> cancel_connection,
       common::ContextualOnceCallback<void(Address)> cancel_connection_completed);
 
-  // Stop all queue execution. Used only prior to destruction.
-  void Stop();
-
  private:
   struct impl;
   std::unique_ptr<impl> pimpl_;
 
+ protected:
+  void ListDependencies(ModuleList* list) const override;
+  void Start() override;
+  void Stop() override;
+  std::string ToString() const override {
+    return std::string("AclSchedulerModule");
+  }
+
  public:
+  static const ModuleFactory Factory;
   AclScheduler();
   ~AclScheduler();
 };
