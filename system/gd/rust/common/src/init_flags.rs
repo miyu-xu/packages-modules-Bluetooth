@@ -105,6 +105,7 @@ init_flags!(
         gd_core,
         gd_l2cap,
         gd_link_policy,
+        gd_remote_name_request,
         gd_rust,
         gd_security,
         irk_rotation,
