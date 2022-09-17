@@ -555,13 +555,8 @@ ScoLinkParameters AclConnectionHandler::GetScoLinkParameters(
   return {};
 }
 
-std::vector<uint16_t> AclConnectionHandler::GetAclHandles() const {
-  std::vector<uint16_t> keys;
-
-  for (const auto& pair : acl_connections_) {
-    keys.push_back(pair.first);
-  }
-  return keys;
+bool AclConnectionHandler::HasConnectedAcl() {
+  return !acl_connections_.empty();
 }
 
 void AclConnectionHandler::ResetLinkTimer(uint16_t handle) {

@@ -94,7 +94,7 @@ ErrorCode LinkLayerController::LeSetHostFeature(uint8_t bit_number,
   // If the Host issues this command while the Controller has a connection to
   // another device, the Controller shall return the error code
   // Command Disallowed (0x0C).
-  if (HasAclConnection()) {
+  if (connections_.HasConnectedAcl()) {
     return ErrorCode::COMMAND_DISALLOWED;
   }
 
@@ -2364,12 +2364,6 @@ void LinkLayerController::TimerTick() {
 #endif /* ROOTCANAL_LMP */
 }
 
-void LinkLayerController::Close() {
-  for (auto handle : connections_.GetAclHandles()) {
-    Disconnect(handle, ErrorCode::CONNECTION_TIMEOUT);
-  }
-}
-
 void LinkLayerController::LeAdvertising() {
   steady_clock::time_point now = steady_clock::now();
   for (auto& advertiser : advertisers_) {
@@ -3577,10 +3571,6 @@ ErrorCode LinkLayerController::LeResolvingListAddDevice(
   le_resolving_list_.emplace_back(
       ResolvingListEntry{addr, addr_type, peerIrk, localIrk});
   return ErrorCode::SUCCESS;
-}
-
-bool LinkLayerController::HasAclConnection() {
-  return (connections_.GetAclHandles().size() > 0);
 }
 
 void LinkLayerController::LeSetPrivacyMode(AddressType address_type,

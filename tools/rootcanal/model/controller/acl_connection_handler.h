@@ -128,7 +128,7 @@ class AclConnectionHandler {
   StreamParameters GetStreamParameters(uint16_t handle) const;
   GroupParameters GetGroupParameters(uint8_t id) const;
 
-  std::vector<uint16_t> GetAclHandles() const;
+  bool HasConnectedAcl();
 
   void ResetLinkTimer(uint16_t handle);
   std::chrono::steady_clock::duration TimeUntilLinkNearExpiring(
