@@ -1077,10 +1077,13 @@ void LinkLayerController::IncomingRemoteNameRequestResponse(
 
 void LinkLayerController::IncomingReadRemoteLmpFeatures(
     model::packets::LinkLayerPacketView packet) {
+  std::array<uint8_t, 8> features{};
+  for (int i = 0; i != 8; ++i) {
+    features[i] = (host_supported_features_ >> (8 * i)) & ((1 << 8) - 1);
+  }
   SendLinkLayerPacket(
       model::packets::ReadRemoteLmpFeaturesResponseBuilder::Create(
-          packet.GetDestinationAddress(), packet.GetSourceAddress(),
-          host_supported_features_));
+          packet.GetDestinationAddress(), packet.GetSourceAddress(), features));
 }
 
 void LinkLayerController::IncomingReadRemoteLmpFeaturesResponse(
