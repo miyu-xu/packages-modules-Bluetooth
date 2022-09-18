@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fec53a7_bbf856df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-18T14:07:06Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI performed repo sync and updated my changes. Executed repo upload. \n\nRequest you to review at your feasibility.\n\nRegards,\nSnehal",
+      "revId": "c5cde175950e4b76d3736ae1e7f3123a8159266e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
