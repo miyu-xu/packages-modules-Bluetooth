@@ -217,7 +217,7 @@ packet ReadRemoteLmpFeatures : LinkLayerPacket (type = READ_REMOTE_LMP_FEATURES)
 }
 
 packet ReadRemoteLmpFeaturesResponse : LinkLayerPacket (type = READ_REMOTE_LMP_FEATURES_RESPONSE) {
-  features : 64,
+  features : 8[8],
 }
 
 packet ReadRemoteExtendedFeatures : LinkLayerPacket (type = READ_REMOTE_EXTENDED_FEATURES) {
