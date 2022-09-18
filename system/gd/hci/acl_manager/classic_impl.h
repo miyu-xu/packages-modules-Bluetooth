@@ -390,6 +390,9 @@ struct classic_impl : public security::ISecurityManagerListener {
                   valid_incoming_addresses.c_str());
               LOG_WARN("No matching connection to %s (%s)", address.ToString().c_str(), ErrorCodeText(status).c_str());
               LOG_WARN("Firmware error after RemoteNameRequestCancel?");
+              if (bluetooth::common::init_flags::gd_remote_name_request_is_enabled()) {
+                scheduler->ReportRemoteNameRequestCompletion(address);
+              }
             },
             common::Unretained(acl_scheduler_),
             address,
