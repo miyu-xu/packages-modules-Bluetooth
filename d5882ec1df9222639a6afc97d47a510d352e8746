@@ -22,6 +22,23 @@
       },
       "revId": "d5882ec1df9222639a6afc97d47a510d352e8746",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2e64121_9d7288eb",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-09-19T17:55:19Z",
+      "side": 1,
+      "message": "ByteString#toString() returns a String describing the object itself, not its content as String.\nByteString#toStringUtf8() works here",
+      "revId": "d5882ec1df9222639a6afc97d47a510d352e8746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
