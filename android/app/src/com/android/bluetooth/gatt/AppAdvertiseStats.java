@@ -113,6 +113,10 @@ import java.util.Map;
         record.duration = duration;
         record.maxExtendedAdvertisingEvents = maxExtAdvEvents;
         mAdvertiserRecords.add(record);
+        if (mAdvertiserRecords.size() > 5) {
+            mAdvertiserRecords.removeFirst();
+        }
+
         if (parameters != null) {
             mPrimaryPhy = parameters.getPrimaryPhy();
             mSecondaryPhy = parameters.getSecondaryPhy();
@@ -156,6 +160,10 @@ import java.util.Map;
         }
     }
 
+    void recordAdvertiseStart(int duration, int maxExtAdvEvents) {
+        recordAdvertiseStart(null, null, null, null, null, duration, maxExtAdvEvents);
+    }
+
     void recordAdvertiseStop() {
         mAdvertisingEnabled = false;
         mPeriodicAdvertisingEnabled = false;
@@ -165,20 +173,15 @@ import java.util.Map;
 
     void enableAdvertisingSet(boolean enable, int duration, int maxExtAdvEvents) {
         AppAdvertiserRecord lastRecord = mAdvertiserRecords.getLast();
-        if (mAdvertisingEnabled) {
+        if (enable) {
             //if the advertisingSet have not been disabled, skip enabling.
-            if (lastRecord.stopTime != 0) {
-                AppAdvertiserRecord record = new AppAdvertiserRecord(SystemClock.elapsedRealtime());
-                record.duration = duration;
-                record.maxExtendedAdvertisingEvents = maxExtAdvEvents;
-                mAdvertiserRecords.add(record);
-                if (mAdvertiserRecords.size() > 5) {
-                    mAdvertiserRecords.removeFirst();
-                }
+            if (!mAdvertisingEnabled) {
+                recordAdvertiseStart(duration, maxExtAdvEvents);
             }
         } else {
-            if (lastRecord.stopTime == 0) {
-                lastRecord.stopTime = SystemClock.elapsedRealtime();
+            //if the advertisingSet have not been enabled, skip disabling.
+            if (mAdvertisingEnabled) {
+                recordAdvertiseStop();
             }
         }
     }
