@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23ccf46e_dd231504",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2443,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-19T20:58:34Z",
+      "side": 1,
+      "message": "switch to {} initializer",
+      "range": {
+        "startLine": 2443,
+        "startChar": 65,
+        "endLine": 2443,
+        "endChar": 67
+      },
+      "revId": "53a297bf2ceaa2a544b739739bd26f28a200d76f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
