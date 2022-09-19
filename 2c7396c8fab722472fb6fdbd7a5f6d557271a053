@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4523e34_d3423e60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-19T20:40:03Z",
+      "side": 1,
+      "message": "Please update documentation, rebase and re-run `./build.py \u0026\u0026 ./build.py --target test` before submitting.",
+      "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db37ed7a_78285f28",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-19T20:40:03Z",
+      "side": 1,
+      "message": "Seems to be missing `-\u003e bool`",
+      "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6224b5_6fe56323",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-19T20:40:03Z",
+      "side": 1,
+      "message": "Public struct should also docstring (though sparingly is ok).\n\nSpecifically, what does the `u32` here represent?",
+      "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "304ea927_d8012793",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-19T20:40:03Z",
+      "side": 1,
+      "message": "I would also document params here briefly....\n\ni.e.\n```\n/// Params: Status, client id \nOnClientRegistered(GattStatus, i32),\n```",
+      "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
