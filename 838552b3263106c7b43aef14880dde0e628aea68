@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d2fba0_a635ecf9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-09-19T05:04:30Z",
+      "side": 1,
+      "message": "Hi Chienyuan,\n\nThanks for your review. That is good point. I fix it in another CL, because current CL is cherry-picked CL from wear branch. Would you please review https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2220841?",
+      "parentUuid": "05db4e15_ee07613c",
+      "range": {
+        "startLine": 168,
+        "startChar": 12,
+        "endLine": 168,
+        "endChar": 31
+      },
+      "revId": "838552b3263106c7b43aef14880dde0e628aea68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0cb8a9f_ab378c7e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-16T12:25:05Z",
       "side": 1,
       "message": "If the advertising is disabled due to duration timeout, the stopTime will not be assigned. Maybe we need to call this function in AdvertiseManager.onAdvertisingEnabled() to update stopTime",
+      "range": {
+        "startLine": 170,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 39
+      },
+      "revId": "838552b3263106c7b43aef14880dde0e628aea68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37fbf1dd_63a22a60",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-09-19T05:04:30Z",
+      "side": 1,
+      "message": "Hi Chienyuan,\n\nThat is really good point. The duration timeout returns status 60 (Advertising Timeout (0x3C)), but I call recordAdvertiseStop() if (!enable \u0026\u0026 status !\u003d 0) in onAdvertisingEnabled(). Would you please review https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2220841?\nThe generated Advertiser log was also posted in the new CL.",
+      "parentUuid": "b0cb8a9f_ab378c7e",
       "range": {
         "startLine": 170,
         "startChar": 16,
