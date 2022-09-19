@@ -3289,6 +3289,14 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
   if (status == HCI_SUCCESS) {
     if (encr_enable) {
       if (p_dev_rec->hci_handle == handle) {  // classic
+        if ((p_dev_rec->sec_flags & BTM_SEC_AUTHENTICATED) &&
+            (p_dev_rec->sec_flags & BTM_SEC_ENCRYPTED)) {
+          LOG(INFO) << "Link is authenticated & encrypted, ignoring this enc "
+                       "change event";
+          return;
+        }
+        LOG(INFO) << "btm_sec_encrypt_change updating security flags and "
+                     "processing further";
         p_dev_rec->sec_flags |= (BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED);
         if (p_dev_rec->pin_code_length >= 16 ||
             p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
