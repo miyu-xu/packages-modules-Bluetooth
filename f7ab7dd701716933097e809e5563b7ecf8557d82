@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38630a23_3e7dc8d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-19T22:55:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5386912_3d119006",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "f7ab7dd701716933097e809e5563b7ecf8557d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71a240df_c6940806",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6a6702c_3e82abec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-19T22:55:14Z",
+      "side": 1,
+      "message": "Yes, it is. Please check https://b.corp.google.com/issues/246003679#comment2.\n\nIt is the feedback report I observed the symptom. Do you prefer to file a separate bug?",
+      "parentUuid": "71a240df_c6940806",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "f7ab7dd701716933097e809e5563b7ecf8557d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1438ec2_8f9a9d1d",
         "filename": "system/BUILD.gn",
         "patchSetId": 3
@@ -60,6 +108,24 @@
       "writtenOn": "2022-09-16T08:53:51Z",
       "side": 1,
       "message": "Suggest use a comment to expand the features behind this value.\n\nAlso why is this flag name \"HTIF_HF\" since Floss/CRAS is the AG role?",
+      "revId": "f7ab7dd701716933097e809e5563b7ecf8557d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cac87ed_c3f5c038",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-19T22:55:14Z",
+      "side": 1,
+      "message": "Added.\n\nThis is the existing flag Android used. The HF meants for the HF profile instead of the AG/HF role. BTIF_HF_FEATURES is used for the AG role, for the HF role that Android also supports, it refers to the BTIF_HF_CLIENT_FEATURES.",
+      "parentUuid": "e1438ec2_8f9a9d1d",
       "revId": "f7ab7dd701716933097e809e5563b7ecf8557d82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
