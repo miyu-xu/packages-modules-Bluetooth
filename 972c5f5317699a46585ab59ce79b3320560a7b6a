@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "403e9740_111a7e1c",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-19T22:47:16Z",
+      "side": 1,
+      "message": "can you remove the copy ctor from tCONN_CB? To avoid mistakes if we accidentally forget the \u0026 somewhere (e.g. if you use auto)",
+      "revId": "972c5f5317699a46585ab59ce79b3320560a7b6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
