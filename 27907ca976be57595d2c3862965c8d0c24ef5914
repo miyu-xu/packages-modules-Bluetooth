@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6049f57_5cb4b02b",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T20:57:31Z",
+      "side": 1,
+      "message": "nit:\nDespite remote name request needing a \"connection\" I feel the naming is wrong.\nCan we change it ?",
+      "range": {
+        "startLine": 126,
+        "startChar": 7,
+        "endLine": 126,
+        "endChar": 34
+      },
+      "revId": "27907ca976be57595d2c3862965c8d0c24ef5914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
