@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33963270_c03f7dc4",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-19T09:51:19Z",
+      "side": 1,
+      "message": "What would the future usage be ? I fought it\u0027s used for same purpose set_empty_filter is used now, so would not be used in future",
+      "parentUuid": "373f0729_7fc6c950",
+      "range": {
+        "startLine": 731,
+        "startChar": 22,
+        "endLine": 731,
+        "endChar": 44
+      },
+      "revId": "9583404f02229575f300845c17acfcf708a36dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8fc4564a_bb4dc95b",
         "filename": "system/main/shim/le_scanning_manager.h",
         "patchSetId": 2
