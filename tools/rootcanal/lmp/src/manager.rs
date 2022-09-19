@@ -111,8 +111,9 @@ impl LinkManager {
         from: hci::Address,
         packet: lmp::PacketPacket,
     ) -> Result<(), LinkManagerError> {
-        let link = self.get_link(from).ok_or(LinkManagerError::UnknownPeer)?;
-        link.ingest_lmp(packet);
+        if let Some(link) = self.get_link(from) {
+            link.ingest_lmp(packet);
+        };
         Ok(())
     }
 
