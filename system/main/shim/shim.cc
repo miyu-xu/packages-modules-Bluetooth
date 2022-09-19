@@ -81,3 +81,7 @@ bool bluetooth::shim::is_gd_dumpsys_module_started() {
 bool bluetooth::shim::is_gd_btaa_enabled() {
   return bluetooth::common::init_flags::btaa_hci_is_enabled();
 }
+
+bool bluetooth::shim::is_gd_remote_name_request_enabled() {
+  return bluetooth::common::init_flags::gd_remote_name_request_is_enabled();
+}
