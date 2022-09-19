@@ -189,6 +189,14 @@ class AdvertiseManager {
 
         IAdvertisingSetCallback callback = entry.getValue().callback;
         callback.onAdvertisingEnabled(advertiserId, enable, status);
+
+        if (!enable && status != 0) {
+            AppAdvertiseStats stats = mService.mAdvertiserMap
+                    .getAppAdvertiseStatsById(advertiserId);
+            if (stats != null) {
+                stats.recordAdvertiseStop();
+            }
+        }
     }
 
     void startAdvertisingSet(AdvertisingSetParameters parameters, AdvertiseData advertiseData,
