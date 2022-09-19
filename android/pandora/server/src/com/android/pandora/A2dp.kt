@@ -332,5 +332,4 @@ class A2dp(val context: Context) : A2DPImplBase() {
         .build()
     }
   }
-
 }

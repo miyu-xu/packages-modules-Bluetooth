@@ -43,7 +43,7 @@ import pandora.HostProto.*
 import pandora.SecurityGrpc.SecurityImplBase
 import pandora.SecurityProto.*
 
-const val TAG = "PandoraSecurity"
+private const val TAG = "PandoraSecurity"
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Security(private val context: Context) : SecurityImplBase() {

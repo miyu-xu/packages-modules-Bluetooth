@@ -20,9 +20,10 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Debug
 import android.util.Log
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.MonitoringInstrumentation
+import kotlinx.coroutines.runBlocking
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Main : MonitoringInstrumentation() {
@@ -50,6 +51,9 @@ class Main : MonitoringInstrumentation() {
     val uiAutomation = InstrumentationRegistry.getInstrumentation().getUiAutomation()
     // Adopt all the permissions of the shell
     uiAutomation.adoptShellPermissionIdentity()
+
+    // Reboot Bluetooth to enable profile activated by properties
+    runBlocking { rebootBluetooth(context) }
 
     while (true) {
       val server = Server(context)
