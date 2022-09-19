@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "961a71a5_0da63014",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T20:21:40Z",
+      "side": 1,
+      "message": "I didn\u0027t see the remove from the queue nor the execute of the next request in the queue",
+      "range": {
+        "startLine": 58,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "bd88b066253feb935b250475adfdb0979942ca79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa154077_1292f21c",
         "filename": "system/gd/hci/acl_manager/classic_impl.h",
         "patchSetId": 9
