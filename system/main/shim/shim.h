@@ -50,6 +50,7 @@ bool is_gd_link_policy_enabled();
 bool is_gd_l2cap_enabled();
 bool is_gd_shim_enabled();
 bool is_gd_btaa_enabled();
+bool is_gd_remote_name_request_enabled();
 
 /**
  * Checks if the bluetooth gd stack has been started up.
