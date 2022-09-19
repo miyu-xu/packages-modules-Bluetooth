@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa154077_1292f21c",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T20:06:17Z",
+      "side": 1,
+      "message": "Can we remove completely this variable from classic_impl ?",
+      "range": {
+        "startLine": 326,
+        "startChar": 4,
+        "endLine": 326,
+        "endChar": 32
+      },
+      "revId": "bd88b066253feb935b250475adfdb0979942ca79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
