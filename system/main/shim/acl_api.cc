@@ -19,13 +19,19 @@
 #include <cstddef>
 #include <cstdint>
 #include <future>
+#include <optional>
 
 #include "gd/hci/acl_manager.h"
+#include "gd/hci/remote_name_request.h"
 #include "main/shim/dumpsys.h"
+#include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "main/shim/stack.h"
 #include "osi/include/allocator.h"
+#include "stack/btm/btm_sec.h"
+#include "stack/btm/security_device_record.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/inq_hci_link_interface.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
@@ -130,4 +136,52 @@ void bluetooth::shim::ACL_ClearAddressResolution() {
 
 void bluetooth::shim::ACL_ClearFilterAcceptList() {
   Stack::GetInstance()->GetAcl()->ClearFilterAcceptList();
+}
+
+void bluetooth::shim::ACL_RemoteNameRequest(const RawAddress& addr,
+                                            uint8_t page_scan_rep_mode,
+                                            uint8_t page_scan_mode,
+                                            uint16_t clock_offset) {
+  bluetooth::shim::GetRemoteNameRequest()->StartRemoteNameRequest(
+      ToGdAddress(addr),
+      hci::RemoteNameRequestBuilder::Create(
+          ToGdAddress(addr), hci::PageScanRepetitionMode(page_scan_rep_mode),
+          clock_offset & (~BTM_CLOCK_OFFSET_VALID),
+          (clock_offset & BTM_CLOCK_OFFSET_VALID)
+              ? hci::ClockOffsetValid::VALID
+              : hci::ClockOffsetValid::INVALID),
+      GetGdShimHandler()->BindOnce([](hci::ErrorCode status) {
+        if (status != hci::ErrorCode::SUCCESS) {
+          btm_process_remote_name(nullptr, nullptr, 0,
+                                  static_cast<tHCI_STATUS>(status));
+          btm_sec_rmt_name_request_complete(nullptr, nullptr,
+                                            static_cast<tHCI_STATUS>(status));
+        }
+      }),
+      GetGdShimHandler()->BindOnce(
+          [](hci::RemoteHostSupportedFeaturesNotificationView features) {
+            auto offset = 2;  //  event code + event length
+            auto p = (uint8_t*)osi_malloc(features.size() - offset);
+            std::copy(features.begin() + offset, features.end(), p);
+            btm_sec_rmt_host_support_feat_evt(p);
+          }),
+      GetGdShimHandler()->BindOnce(
+          [](hci::RemoteNameRequestCompleteView remote_name) {
+            auto addr = ToRawAddress(remote_name.GetBdAddr());
+            auto status = remote_name.GetStatus();
+
+            auto offset =
+                9;  // event code + event length + status + 6 byte addr
+            auto p = (uint8_t*)osi_malloc(remote_name.size() - offset);
+            std::copy(remote_name.begin() + offset, remote_name.end(), p);
+
+            btm_process_remote_name(&addr, p, remote_name.size() - offset,
+                                    static_cast<tHCI_STATUS>(status));
+            btm_sec_rmt_name_request_complete(&addr, p,
+                                              static_cast<tHCI_STATUS>(status));
+          }));
+}
+void bluetooth::shim::ACL_CancelRemoteNameRequest(const RawAddress& addr) {
+  bluetooth::shim::GetRemoteNameRequest()->CancelRemoteNameRequest(
+      ToGdAddress(addr));
 }
