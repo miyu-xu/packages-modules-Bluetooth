@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae5451a2_3e0e9ac9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-19T16:42:24Z",
+      "side": 1,
+      "message": "Failures are due to emulator-windows_x64 on aosp-emu-master-dev, which is not affected by this code (Floss is only built on Linux and ChromeOS).",
+      "revId": "f961902aba20aba2d21c88569a65b293893501ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
