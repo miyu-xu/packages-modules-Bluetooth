@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d84b53_d3b17be5",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-19T12:14:53Z",
+      "side": 1,
+      "message": "kLowestRssiValue is (uint8_t) 129 \u003d\u003d  (int8_t) -128 , so the filter wasn\u0027t effectively cutting anything. I guess it was left here for tuning.",
+      "parentUuid": "6a5ea86c_0fa5bb92",
+      "range": {
+        "startLine": 731,
+        "startChar": 22,
+        "endLine": 731,
+        "endChar": 44
+      },
+      "revId": "9583404f02229575f300845c17acfcf708a36dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fc4564a_bb4dc95b",
