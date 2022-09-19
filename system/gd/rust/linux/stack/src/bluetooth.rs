@@ -1017,6 +1017,14 @@ impl BtifBluetoothCallbacks for Bluetooth {
             }
             None => (),
         };
+
+        let bonded_device_list: Vec<_> = self.bonded_devices.keys().cloned().collect();
+        let found_device_list: Vec<_> = self.found_devices.keys().cloned().collect();
+        let tx = self.tx.clone();
+        tokio::spawn(async move {
+            let _ =
+                tx.send(Message::UpdatedDeviceLists(bonded_device_list, found_device_list)).await;
+        });
     }
 
     fn le_rand_cb(&mut self, random: u64) {
