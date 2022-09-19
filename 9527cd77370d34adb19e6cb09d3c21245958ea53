@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e265cb_cd981549",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T20:26:09Z",
+      "side": 1,
+      "message": "Can you squash this CL with `Pull out ACL scheduling into a separate class`  ?",
+      "revId": "9527cd77370d34adb19e6cb09d3c21245958ea53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
