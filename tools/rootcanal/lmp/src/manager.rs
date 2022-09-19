@@ -123,8 +123,10 @@ impl LinkManager {
             .or_else(|| hci::command_remote_device_address(&command));
 
         if let Some(peer) = peer {
-            let link = self.get_link(peer).ok_or(LinkManagerError::UnknownPeer)?;
-            link.ingest_hci(command);
+            let link = self.get_link(peer);
+            if let Some(link) = self.get_link(peer) {
+                link.ingest_hci(command)?;
+            };
             Ok(())
         } else {
             Err(LinkManagerError::UnhandledHciPacket)
