@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74f4ed9c_3b59f18d",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T20:26:43Z",
+      "side": 1,
+      "message": "Found it in the follow-up CL aosp/2218413\nI think both CL should be squashed together",
+      "parentUuid": "961a71a5_0da63014",
+      "range": {
+        "startLine": 58,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "bd88b066253feb935b250475adfdb0979942ca79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa154077_1292f21c",
         "filename": "system/gd/hci/acl_manager/classic_impl.h",
         "patchSetId": 9
