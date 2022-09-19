@@ -1,3 +1,7 @@
+use crate::battery_manager::Battery;
+use crate::battery_provider_manager::{
+    BatteryProviderManager, IBatteryProviderCallback, IBatteryProviderManager,
+};
 use crate::bluetooth_gatt::{
     BluetoothGatt, BluetoothGattService, IBluetoothGatt, IBluetoothGattCallback,
 };
@@ -15,13 +19,15 @@ use std::iter;
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
-/// The UUID corresponding to the BatteryLevel characteristic defined
-/// by the BatteryService specification.
+/// The UUID corresponding to the BatteryLevel characteristic defined by the
+/// BatteryService specification.
 pub const CHARACTERISTIC_BATTERY_LEVEL: &str = "00002A1900001000800000805F9B34FB";
 
 /// Represents the Floss BatteryService implementation.
 pub struct BatteryService {
     gatt: Arc<Mutex<Box<BluetoothGatt>>>,
+    battery_provider_manager: Arc<Mutex<Box<BatteryProviderManager>>>,
+    battery_provider_id: u32,
     /// Sender for callback communication with the main thread.
     tx: Sender<Message>,
     callbacks: Callbacks<dyn IBatteryServiceCallback + Send>,
@@ -29,16 +35,13 @@ pub struct BatteryService {
     client_id: Option<i32>,
     /// Cached battery levels keyed by remote device.
     battery_levels: HashMap<String, u32>,
-    /// Callback IDs that have enabled notifications.
-    notifications_enabled: HashSet<u32>,
     /// Found handles for battery levels. Required for faster
     /// refreshes than initiating another search.
     handles: HashMap<String, i32>,
 }
 
 /// Enum for GATT callbacks to relay messages to the main processing
-/// thread. Newly supported callbacks should add a corresponding entry
-/// here.
+/// thread. Newly supported callbacks should add a corresponding entry here.
 pub enum GattBatteryCallbacks {
     /// Params: status, client_id
     OnClientRegistered(GattStatus, i32),
@@ -52,10 +55,9 @@ pub enum GattBatteryCallbacks {
     OnNotify(String, i32, Vec<u8>),
 }
 
-/// API for Floss implementation of the Bluetooth Battery Service
-/// (BAS). BAS is built on GATT and this implementation wraps all of
-/// the GATT calls and handles tracking battery information for the
-/// client.
+/// API for Floss implementation of the Bluetooth Battery Service (BAS). BAS is
+/// built on GATT and this implementation wraps all of the GATT calls and
+/// handles tracking battery information for the client.
 pub trait IBatteryService {
     /// Registers a callback for interacting with BatteryService.
     fn register_callback(&mut self, callback: Box<dyn IBatteryServiceCallback + Send>) -> u32;
@@ -63,26 +65,21 @@ pub trait IBatteryService {
     /// Unregisters a callback.
     fn unregister_callback(&mut self, callback_id: u32);
 
-    /// Enables notifications for a given callback.
-    fn enable_notifications(&mut self, callback_id: u32, enable: bool);
-
     /// Returns the battery level of the remove device if available in
-    /// BatteryService's cache. Call refresh_battery_level at least
-    /// once to ensure that BatteryService is tracking the device's
-    /// battery information.
+    /// BatteryService's cache. Call refresh_battery_level at least once to
+    /// ensure that BatteryService is tracking the device's battery information.
     fn get_battery_level(&self, remote_address: String) -> Option<u32>;
 
-    /// Forces an explicit read of the device's battery level,
-    /// including initiating battery level tracking if not yet
-    /// performed.
+    /// Forces an explicit read of the device's battery level, including
+    /// initiating battery level tracking if not yet performed.
     fn refresh_battery_level(&self, remote_address: String) -> bool;
 }
 
 /// Callback for interacting with BAS.
 pub trait IBatteryServiceCallback: RPCProxy {
-    /// Called when the status of BatteryService has changed. Trying
-    /// to read from devices that do not support BAS will result in
-    /// this method being called with BatteryServiceNotSupported.
+    /// Called when the status of BatteryService has changed. Trying to read
+    /// from devices that do not support BAS will result in this method being
+    /// called with BatteryServiceNotSupported.
     fn on_battery_service_status_updated(
         &self,
         remote_address: String,
@@ -91,21 +88,34 @@ pub trait IBatteryServiceCallback: RPCProxy {
 
     /// Invoked when battery level for a device has been changed due to notification.
     fn on_battery_level_updated(&self, remote_address: String, battery_level: u32);
-
-    /// Invoked whenever an explicit read of a devices battery level completes.
-    fn on_battery_level_read(&self, remote_address: String, battery_level: u32);
 }
 
 impl BatteryService {
     /// Construct a new BatteryService with callbacks relaying messages through tx.
-    pub fn new(gatt: Arc<Mutex<Box<BluetoothGatt>>>, tx: Sender<Message>) -> BatteryService {
+    pub fn new(
+        gatt: Arc<Mutex<Box<BluetoothGatt>>>,
+        battery_provider_manager: Arc<Mutex<Box<BatteryProviderManager>>>,
+        tx: Sender<Message>,
+    ) -> BatteryService {
         let tx = tx.clone();
         let callbacks = Callbacks::new(tx.clone(), Message::BatteryServiceCallbackDisconnected);
         let client_id = None;
         let battery_levels = HashMap::new();
-        let notifications_enabled = HashSet::new();
         let handles = HashMap::new();
-        Self { gatt, tx, callbacks, client_id, battery_levels, notifications_enabled, handles }
+        let battery_provider_id = battery_provider_manager
+            .lock()
+            .unwrap()
+            .register_battery_provider(Box::new(BatteryProviderCallback::new(tx.clone())));
+        Self {
+            gatt,
+            battery_provider_manager,
+            battery_provider_id,
+            tx,
+            callbacks,
+            client_id,
+            battery_levels,
+            handles,
+        }
     }
 
     /// Must be called after BluetoothGatt's init_profiles method has completed.
@@ -202,27 +212,60 @@ impl BatteryService {
                 }
                 let level = self.set_battery_level(addr.clone(), value.clone());
                 self.callbacks.for_all_callbacks(|callback| {
-                    callback.on_battery_level_read(addr.clone(), level);
+                    callback.on_battery_level_updated(addr.clone(), level);
                 });
             }
 
             GattBatteryCallbacks::OnNotify(addr, _handle, value) => {
                 let level = self.set_battery_level(addr.clone(), value);
-                // TODO(b/247551256): expand Callbacks to allow direct
-                // filtering/exposing the underlying iter
-                let to_notify = self.notifications_enabled.clone();
-                to_notify.iter().for_each(|id| match self.callbacks.get_by_id(*id) {
-                    Some(callback) => callback.on_battery_level_updated(addr.clone(), level),
-                    None => (),
+                self.callbacks.for_all_callbacks(|callback| {
+                    callback.on_battery_level_updated(addr.clone(), level);
                 });
             }
         }
     }
 
+    /// Make BAS take whatever actions are needed to react to a change in the
+    /// list of available devices, including pruning removed devices,
+    /// establishing connection to newly bonded devices, and reconnecting to
+    /// devices that may have disconnected.
+    pub fn update_device_list(
+        &mut self,
+        bonded_device_list: Vec<String>,
+        _found_device_list: Vec<String>,
+    ) {
+        let old: HashSet<_> = self.battery_levels.keys().cloned().collect();
+        let new: HashSet<_> = bonded_device_list.iter().cloned().collect();
+        old.difference(&new).for_each(|device| {
+            match (self.client_id, self.handles.get(device)) {
+                (Some(client_id), Some(handle)) => self
+                    .gatt
+                    .lock()
+                    .unwrap()
+                    .register_for_notification(client_id, device.to_string(), *handle, false),
+                _ => (),
+            }
+            self.battery_levels.remove(device);
+            self.handles.remove(device);
+        });
+        new.iter().for_each(|device| {
+            self.init_device(device.to_string());
+        });
+    }
+
     fn set_battery_level(&mut self, remote_address: String, value: Vec<u8>) -> u32 {
         let level: Vec<_> = value.iter().cloned().chain(iter::repeat(0 as u8)).take(4).collect();
         let level = u32::from_le_bytes(level.try_into().unwrap());
-        self.battery_levels.insert(remote_address, level);
+        self.battery_levels.insert(remote_address.clone(), level);
+        self.battery_provider_manager.lock().unwrap().set_battery_info(
+            self.battery_provider_id,
+            Battery {
+                address: remote_address,
+                percentage: level,
+                source_info: "BAS".to_string(),
+                variant: "".to_string(),
+            },
+        );
         level
     }
 
@@ -239,6 +282,29 @@ impl BatteryService {
             false,
             LePhy::Phy1m,
         );
+    }
+
+    /// Perform an explicit read on all devices BAS knows about.
+    pub fn refresh_all_devices(&self) {
+        self.handles.keys().for_each(|device| {
+            self.refresh_device(device.to_string());
+        });
+    }
+
+    fn refresh_device(&self, remote_address: String) -> bool {
+        let client_id = match self.client_id {
+            Some(id) => id,
+            None => return false,
+        };
+        let handle = match self.handles.get(&remote_address) {
+            Some(id) => *id,
+            None => {
+                self.init_device(remote_address);
+                return true;
+            }
+        };
+        self.gatt.lock().unwrap().read_characteristic(client_id, remote_address.clone(), handle, 0);
+        true
     }
 
     /// Remove a callback due to disconnection or unregistration.
@@ -262,40 +328,37 @@ impl IBatteryService for BatteryService {
         self.remove_callback(callback_id);
     }
 
-    fn enable_notifications(&mut self, callback_id: u32, enable: bool) {
-        if self.callbacks.get_by_id(callback_id).is_none() {
-            return;
-        }
-        self.notifications_enabled.remove(&callback_id);
-        if enable {
-            self.notifications_enabled.insert(callback_id);
-        }
-    }
-
     fn get_battery_level(&self, remote_address: String) -> Option<u32> {
         self.battery_levels.get(&remote_address).cloned()
     }
 
     fn refresh_battery_level(&self, remote_address: String) -> bool {
-        let client_id = match self.client_id {
-            Some(id) => id,
-            None => return false,
-        };
-        let handle = match self.handles.get(&remote_address) {
-            Some(id) => *id,
-            None => {
-                self.init_device(remote_address);
-                return true;
-            }
-        };
-        self.gatt.lock().unwrap().read_characteristic(client_id, remote_address.clone(), handle, 0);
-        self.gatt.lock().unwrap().register_for_notification(
-            client_id,
-            remote_address,
-            handle,
-            true,
-        );
-        true
+        self.refresh_device(remote_address)
+    }
+}
+
+struct BatteryProviderCallback {
+    tx: Sender<Message>,
+}
+
+impl BatteryProviderCallback {
+    fn new(tx: Sender<Message>) -> Self {
+        Self { tx }
+    }
+}
+
+impl IBatteryProviderCallback for BatteryProviderCallback {
+    fn refresh_battery_info(&self) {
+        let tx = self.tx.clone();
+        tokio::spawn(async move {
+            let _ = tx.send(Message::BatteryServiceRefresh).await;
+        });
+    }
+}
+
+impl RPCProxy for BatteryProviderCallback {
+    fn get_object_id(&self) -> String {
+        "BAS BatteryProvider Callback".to_string()
     }
 }
 
@@ -388,6 +451,41 @@ impl IBluetoothGattCallback for GattCallback {
                 .await;
         });
     }
+
+    fn on_phy_update(&self, _addr: String, _tx_phy: LePhy, _rx_phy: LePhy, _status: GattStatus) {}
+
+    fn on_phy_read(&self, _addr: String, _tx_phy: LePhy, _rx_phy: LePhy, _status: GattStatus) {}
+
+    fn on_characteristic_write(&self, _addr: String, _status: GattStatus, _handle: i32) {}
+
+    fn on_execute_write(&self, _addr: String, _status: GattStatus) {}
+
+    fn on_descriptor_read(
+        &self,
+        _addr: String,
+        _status: GattStatus,
+        _handle: i32,
+        _value: Vec<u8>,
+    ) {
+    }
+
+    fn on_descriptor_write(&self, _addr: String, _status: GattStatus, _handle: i32) {}
+
+    fn on_read_remote_rssi(&self, _addr: String, _rssi: i32, _status: GattStatus) {}
+
+    fn on_configure_mtu(&self, _addr: String, _mtu: i32, _status: GattStatus) {}
+
+    fn on_connection_updated(
+        &self,
+        _addr: String,
+        _interval: i32,
+        _latency: i32,
+        _timeout: i32,
+        _status: GattStatus,
+    ) {
+    }
+
+    fn on_service_changed(&self, _addr: String) {}
 }
 
 impl RPCProxy for GattCallback {
