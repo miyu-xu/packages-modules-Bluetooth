@@ -16,6 +16,29 @@
       "message": "Tested on UPF - works fine.",
       "revId": "023d0bb9d3dab5ec553287cb1b25648eb5e0eb43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cee501a_97d9c309",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-19T08:31:31Z",
+      "side": 1,
+      "message": "Will this cause log spam ?",
+      "range": {
+        "startLine": 1279,
+        "startChar": 8,
+        "endLine": 1279,
+        "endChar": 44
+      },
+      "revId": "023d0bb9d3dab5ec553287cb1b25648eb5e0eb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
