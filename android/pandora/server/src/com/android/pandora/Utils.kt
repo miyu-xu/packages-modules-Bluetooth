@@ -25,27 +25,63 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.MacAddress
+import android.util.Log
 import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.util.concurrent.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostProto.Connection
+
+private const val TAG = "PandoraUtils"
+
+suspend fun rebootBluetooth(context: Context) {
+  Log.i(TAG, "rebootBluetooth")
+  val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
+  val bluetoothAdapter = bluetoothManager.adapter
+  val intentFilter = IntentFilter()
+  intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED)
+  val flow: Flow<Intent> =
+    intentFlow(context, intentFilter)
+      .shareIn(CoroutineScope(Dispatchers.Default), SharingStarted.Eagerly)
+
+  val stateFlow =
+    flow
+      .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
+      .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
+
+  if (bluetoothAdapter.isEnabled) {
+    bluetoothAdapter.disable()
+    stateFlow.filter { it == BluetoothAdapter.STATE_OFF }.first()
+  }
+
+  // TODO: b/234892968
+  delay(2000L)
+
+  bluetoothAdapter.enable()
+  stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
+}
 
 /**
  * Creates a cold flow of intents based on an intent filter. If used multiple times in a same class,

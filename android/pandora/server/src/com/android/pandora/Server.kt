@@ -29,6 +29,7 @@ class Server(context: Context) {
 
   private var host: Host
   private var a2dp: A2dp
+  private var a2dp_sink: A2dpSink
   private var avrcp: Avrcp
   private var gatt: Gatt
   private var hfp: Hfp
@@ -38,6 +39,7 @@ class Server(context: Context) {
   init {
     host = Host(context, this)
     a2dp = A2dp(context)
+    a2dp_sink = A2dpSink(context)
     avrcp = Avrcp(context)
     gatt = Gatt(context)
     hfp = Hfp(context)
@@ -46,6 +48,7 @@ class Server(context: Context) {
       NettyServerBuilder.forPort(GRPC_PORT)
         .addService(host)
         .addService(a2dp)
+        .addService(a2dp_sink)
         .addService(avrcp)
         .addService(gatt)
         .addService(hfp)
@@ -64,6 +67,7 @@ class Server(context: Context) {
   fun deinit() {
     host.deinit()
     a2dp.deinit()
+    a2dp_sink.deinit()
     avrcp.deinit()
     gatt.deinit()
     hfp.deinit()
