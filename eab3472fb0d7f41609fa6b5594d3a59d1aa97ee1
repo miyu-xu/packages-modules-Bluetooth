@@ -281,6 +281,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6abbadac_b4a66998",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-19T19:21:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d60a64a4_b5c4f171",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d55045c_eec0badb",
@@ -509,6 +527,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f6326c1_08ab15bf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-19T19:21:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81db3ec2_1f280589",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a45ba3b_f7a99916",
@@ -522,6 +558,24 @@
       "writtenOn": "2022-09-15T21:20:13Z",
       "side": 1,
       "message": "Shouldn\u0027t this be at the top? If the search complete ends in failure, no point in doing any of the other steps.\n\nAlso, when do we want to send the `on_battery_service_status_updated` with failures? If it\u0027s on any of these failures, we are missing a few branches.",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2612d0ac_0379ad17",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-19T19:21:50Z",
+      "side": 1,
+      "message": "The only error that seems to be worth relaying is when BAS is not supported for the device as that\u0027s a useful thing for the caller to know. Other errors are problems with the device or the stack which we log in debug logs. If I misinterpreted our conclusions please reopen.",
+      "parentUuid": "8a45ba3b_f7a99916",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -575,6 +629,24 @@
       "side": 1,
       "message": "https://taskflow.corp.google.com/workspaces/457903/work_item/b/178529365?q\u003ddebt\u0026workspace\u003d457903\u0026edit\u003db%2F178529365",
       "parentUuid": "5316a24c_8c39d01b",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2d45fd_32781956",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-19T19:21:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eda706c0_51823edb",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -698,6 +770,24 @@
       "side": 1,
       "message": "It\u0027s probably better to do request validation when requested and return failure right away if you can assert that the request will fail.",
       "parentUuid": "0d5addad_0dc63931",
+      "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cc8e40f_bb5839bd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_battery_service.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-19T19:21:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5780dee_41ac23ce",
       "revId": "eab3472fb0d7f41609fa6b5594d3a59d1aa97ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
