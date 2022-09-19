@@ -46,6 +46,30 @@
       },
       "revId": "a2c3008896692cc91d00da35f00a17ac5e127cf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "257563e0_354fea6b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-19T22:16:23Z",
+      "side": 1,
+      "message": "Jack will be out for a while. I think his comment was about formatting, but this is now properly formatted by clang-format.",
+      "parentUuid": "ce3c4a3d_0686b272",
+      "range": {
+        "startLine": 1386,
+        "startChar": 6,
+        "endLine": 1386,
+        "endChar": 32
+      },
+      "revId": "a2c3008896692cc91d00da35f00a17ac5e127cf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
