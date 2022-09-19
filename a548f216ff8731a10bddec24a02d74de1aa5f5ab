@@ -46,6 +46,30 @@
       },
       "revId": "a548f216ff8731a10bddec24a02d74de1aa5f5ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d39900_50adc267",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3116,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-19T13:33:40Z",
+      "side": 1,
+      "message": "This function returns configuration which we are going to use based on the available context type. \nThe configuration is indeed connected to context type which is indeed confusing. But anyways: Here remote have available Ringtone we are OK to choose MEDIA configuration for that.",
+      "parentUuid": "58a99fa1_ab2465f4",
+      "range": {
+        "startLine": 3114,
+        "startChar": 6,
+        "endLine": 3116,
+        "endChar": 7
+      },
+      "revId": "a548f216ff8731a10bddec24a02d74de1aa5f5ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
