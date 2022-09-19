@@ -2234,6 +2234,9 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
   int i;
   uint8_t old_sec_state;
 
+  LOG_INFO("btm_sec_rmt_name_request_complete for %s",
+           p_bd_addr->ToString().c_str());
+
   if ((!p_bd_addr &&
        !BTM_IsAclConnectionUp(btm_cb.connecting_bda, BT_TRANSPORT_BR_EDR)) ||
       (p_bd_addr && !BTM_IsAclConnectionUp(*p_bd_addr, BT_TRANSPORT_BR_EDR))) {
@@ -2467,6 +2470,9 @@ void btm_sec_rmt_host_support_feat_evt(const uint8_t* p) {
 
   STREAM_TO_BDADDR(bd_addr, p);
   p_dev_rec = btm_find_or_alloc_dev(bd_addr);
+
+  LOG_INFO("Got btm_sec_rmt_host_support_feat_evt from %s",
+           bd_addr.ToString().c_str());
 
   BTM_TRACE_EVENT("btm_sec_rmt_host_support_feat_evt  sm4: 0x%x  p[0]: 0x%x",
                   p_dev_rec->sm4, p[0]);
