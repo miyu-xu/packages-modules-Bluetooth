@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8862f78f_4b704531",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-09-19T16:30:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12152d88_e63fb0fe",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 2
+      },
+      "revId": "1dadc2f4ae1763ee115651f41d8996b95479b836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3d29669_a71e0295",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-14T20:40:37Z",
       "side": 1,
       "message": "This seems problematic to me to wait for flushing.  It\u0027s never guaranteed to come, is it?",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 17
+      },
+      "revId": "1dadc2f4ae1763ee115651f41d8996b95479b836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "436c815d_5d1d5b8b",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-09-19T16:30:40Z",
+      "side": 1,
+      "message": "Nothing is guaranteed, which is why there is a timeout for fail.\n\n`auto status \u003d future.wait_for(2s);`",
+      "parentUuid": "f3d29669_a71e0295",
       "range": {
         "startLine": 622,
         "startChar": 0,
