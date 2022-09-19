@@ -1996,6 +1996,9 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
         /* can not find AVRC on peer device. report failure */
         p_scb->use_rc = false;
         tBTA_AV_RC_OPEN rc_open;
+        /** Fix Coverity Scan Issue @{ */
+        rc_open.rc_handle = BTA_AV_RC_HANDLE_NONE;
+        /** @} */
         rc_open.peer_addr = p_scb->PeerAddress();
         rc_open.peer_features = 0;
         rc_open.cover_art_psm = 0;
@@ -2262,6 +2265,9 @@ void bta_av_dereg_comp(tBTA_AV_DATA* p_data) {
   uint8_t mask;
   BT_HDR* p_buf;
 
+  /** Fix Coverity Scan Issue @{ */
+  memset(&cod, 0, sizeof(tBTA_UTL_COD));
+  /** @} */
   /* find the stream control block */
   p_scb = bta_av_hndl_to_scb(p_data->hdr.layer_specific);
 
