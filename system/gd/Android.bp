@@ -667,6 +667,9 @@ rust_test_host {
         "libthiserror",
         "liblog_rust",
     ],
+    test_options: {
+        tags: ["no-remote"],
+    },
 }
 
 // Generate and run tests of rust pdl parser for tests packets
@@ -700,6 +703,9 @@ rust_test_host {
         "libthiserror",
         "liblog_rust",
     ],
+    test_options: {
+        tags: ["no-remote"],
+    },
 }
 
 // Generates binary schema data to be bundled and source file generated
