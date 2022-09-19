@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f709e8_c4de868b",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-09-19T23:09:53Z",
+      "side": 1,
+      "message": "Please add them to PtsBotTestMts.xml",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 52
+      },
+      "revId": "ef2e5ca7ac62ea9ab23f7af6dbd29b71e9958d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
