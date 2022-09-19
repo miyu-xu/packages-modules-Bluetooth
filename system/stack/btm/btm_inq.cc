@@ -1456,8 +1456,10 @@ void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
 
   if (bda) {
     rem_name.bd_addr = *bda;
+    LOG_INFO("btm_process_remote_name for %s", bda->ToString().c_str());
     VLOG(2) << "BDA " << *bda;
   } else {
+    LOG_INFO("btm_process_remote_name for empty remote address");
     rem_name.bd_addr = RawAddress::kEmpty;
   }
 
