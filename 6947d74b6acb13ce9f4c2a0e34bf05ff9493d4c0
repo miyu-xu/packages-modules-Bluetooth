@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "453e3a5b_4809965c",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T21:20:27Z",
+      "side": 1,
+      "message": "TODO 😊",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 28
+      },
+      "revId": "6947d74b6acb13ce9f4c2a0e34bf05ff9493d4c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
