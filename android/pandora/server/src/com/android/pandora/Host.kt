@@ -38,7 +38,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
@@ -81,33 +80,13 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     scope.cancel()
   }
 
-  private suspend fun rebootBluetooth() {
-    Log.i(TAG, "rebootBluetooth")
-
-    val stateFlow =
-      flow
-        .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
-        .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
-
-    if (bluetoothAdapter.isEnabled) {
-      bluetoothAdapter.disable()
-      stateFlow.filter { it == BluetoothAdapter.STATE_OFF }.first()
-    }
-
-    // TODO: b/234892968
-    delay(2000L)
-
-    bluetoothAdapter.enable()
-    stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
-  }
-
   override fun hardReset(request: Empty, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
-        Log.i(TAG, "hardReset")
+      Log.i(TAG, "hardReset")
 
-        bluetoothAdapter.clearBluetooth()
+      bluetoothAdapter.clearBluetooth()
 
-        rebootBluetooth()
+      rebootBluetooth(context)
 
       Log.i(TAG, "Shutdown the gRPC Server")
       server.shutdown()
@@ -121,7 +100,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     grpcUnary<Empty>(scope, responseObserver) {
       Log.i(TAG, "softReset")
 
-      rebootBluetooth()
+      rebootBluetooth(context)
 
       Empty.getDefaultInstance()
     }
