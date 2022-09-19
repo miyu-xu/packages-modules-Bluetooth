@@ -50,5 +50,10 @@ void ACL_RemoveFromAddressResolution(
 void ACL_ClearAddressResolution();
 void ACL_ClearFilterAcceptList();
 
+void ACL_RemoteNameRequest(const RawAddress& bd_addr,
+                           uint8_t page_scan_rep_mode, uint8_t page_scan_mode,
+                           uint16_t clock_offset);
+void ACL_CancelRemoteNameRequest(const RawAddress& addr);
+
 }  // namespace shim
 }  // namespace bluetooth
