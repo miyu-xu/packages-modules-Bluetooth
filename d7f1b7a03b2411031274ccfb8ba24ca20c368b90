@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "915fc60f_892b6f90",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-19T05:28:17Z",
+      "side": 1,
+      "message": "Fixed. Thank you.",
+      "parentUuid": "5bce2687_5cabdc55",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64e9fd0c_b74b7e04",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29bc21c_fb685d5a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-19T05:28:17Z",
+      "side": 1,
+      "message": "Fixed. Thank you.",
+      "parentUuid": "64e9fd0c_b74b7e04",
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29882472_f8eeb1d8",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-09-16T07:09:28Z",
       "side": 1,
       "message": "You can remove this.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "683c8670_18660eae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-19T05:28:17Z",
+      "side": 1,
+      "message": "Fixed. Thank you.",
+      "parentUuid": "29882472_f8eeb1d8",
       "range": {
         "startLine": 37,
         "startChar": 0,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6634be_f6687ece",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-19T05:28:17Z",
+      "side": 1,
+      "message": "Fixed. Thank you.",
+      "parentUuid": "d71c9d2e_96358709",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd6b6d7b_0b18c260",
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de99962d_03be3a9d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-19T05:28:17Z",
+      "side": 1,
+      "message": "Added addManufacturerData, setIncludeTxPowerLevel, and addServiceUuid. Thank you.",
+      "parentUuid": "fd6b6d7b_0b18c260",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fe2ccbd_92fef780",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-09-16T07:09:28Z",
       "side": 1,
       "message": "checkLengh_withGT255_throwsException",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 32
+      },
+      "revId": "d7f1b7a03b2411031274ccfb8ba24ca20c368b90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f52ca4_654649af",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-19T05:28:17Z",
+      "side": 1,
+      "message": "Fixed. Thank you.",
+      "parentUuid": "3fe2ccbd_92fef780",
       "range": {
         "startLine": 62,
         "startChar": 16,
