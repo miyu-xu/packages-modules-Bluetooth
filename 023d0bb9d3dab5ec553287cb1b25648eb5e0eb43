@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "294fa3f8_5e3c1be6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-19T08:29:32Z",
+      "side": 1,
+      "message": "Tested on UPF - works fine.",
+      "revId": "023d0bb9d3dab5ec553287cb1b25648eb5e0eb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
