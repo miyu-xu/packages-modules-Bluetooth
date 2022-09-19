@@ -5519,7 +5519,7 @@ packet KeypressNotification : Event (event_code = KEYPRESS_NOTIFICATION) {
 
 packet RemoteHostSupportedFeaturesNotification : Event (event_code = REMOTE_HOST_SUPPORTED_FEATURES_NOTIFICATION) {
   bd_addr : Address,
-  host_supported_features : 64,
+  host_supported_features : 8[8],
 }
 
 packet LeMetaEvent : Event (event_code = LE_META_EVENT) {
