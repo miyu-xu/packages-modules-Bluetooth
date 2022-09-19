@@ -39,6 +39,30 @@
       },
       "revId": "023d0bb9d3dab5ec553287cb1b25648eb5e0eb43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f89b10f_df21d90e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-19T13:45:29Z",
+      "side": 1,
+      "message": "We will not get it for each scan result, just in cases where we try to add a broadcast which did not come from scan results. I expect this will happen only when we try to pass our own broadcast.... or if we try to add some fake broadcast data, which is unlikely.",
+      "parentUuid": "2cee501a_97d9c309",
+      "range": {
+        "startLine": 1279,
+        "startChar": 8,
+        "endLine": 1279,
+        "endChar": 44
+      },
+      "revId": "023d0bb9d3dab5ec553287cb1b25648eb5e0eb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
