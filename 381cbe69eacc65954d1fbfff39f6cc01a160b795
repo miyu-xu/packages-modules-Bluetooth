@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8039df1_18392a5c",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-19T18:41:15Z",
+      "side": 1,
+      "message": "nit: We usually return early on failure.\n\nI\u0027d rather reverse the check.",
+      "range": {
+        "startLine": 370,
+        "startChar": 0,
+        "endLine": 373,
+        "endChar": 5
+      },
+      "revId": "381cbe69eacc65954d1fbfff39f6cc01a160b795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d78c9df8_3d07f4fd",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-19T18:41:15Z",
+      "side": 1,
+      "message": "This should probably be an ASSERT.  I can\u0027t think of a time when we can continue without callbacks.",
+      "range": {
+        "startLine": 378,
+        "startChar": 4,
+        "endLine": 378,
+        "endChar": 39
+      },
+      "revId": "381cbe69eacc65954d1fbfff39f6cc01a160b795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
