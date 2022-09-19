@@ -32,6 +32,8 @@
 #include "device/include/esco_parameters.h"
 #include "hcidefs.h"
 #include "hcimsgs.h"
+#include "main/shim/acl_api.h"
+#include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/bt_hdr.h"
@@ -765,6 +767,12 @@ void btsnd_hcic_set_conn_encrypt(uint16_t handle, bool enable) {
 void btsnd_hcic_rmt_name_req(const RawAddress& bd_addr,
                              uint8_t page_scan_rep_mode, uint8_t page_scan_mode,
                              uint16_t clock_offset) {
+  if (bluetooth::shim::is_gd_remote_name_request_enabled()) {
+    bluetooth::shim::ACL_RemoteNameRequest(bd_addr, page_scan_rep_mode,
+                                           page_scan_mode, clock_offset);
+    return;
+  }
+
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
 
@@ -783,6 +791,11 @@ void btsnd_hcic_rmt_name_req(const RawAddress& bd_addr,
 }
 
 void btsnd_hcic_rmt_name_req_cancel(const RawAddress& bd_addr) {
+  if (bluetooth::shim::is_gd_remote_name_request_enabled()) {
+    bluetooth::shim::ACL_CancelRemoteNameRequest(bd_addr);
+    return;
+  }
+
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
 
