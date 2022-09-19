@@ -455,7 +455,8 @@ bool bta_gattc_mark_bg_conn(tGATT_IF client_if,
 
         p_cif_mask = &p_bg_tck->cif_mask;
 
-        *p_cif_mask = (1 << (client_if - 1));
+        /** Fix Coverity Scan Issue tBTA_GATTC_CIF_MASK cast */
+        *p_cif_mask = ((tBTA_GATTC_CIF_MASK)1 << (client_if - 1));
         return true;
       }
     }
@@ -482,7 +483,8 @@ bool bta_gattc_check_bg_conn(tGATT_IF client_if, const RawAddress& remote_bda,
   for (i = 0; i < ble_acceptlist_size() && !is_bg_conn; i++, p_bg_tck++) {
     if (p_bg_tck->in_use && (p_bg_tck->remote_bda == remote_bda ||
                              p_bg_tck->remote_bda.IsEmpty())) {
-      if (((p_bg_tck->cif_mask & (1 << (client_if - 1))) != 0) &&
+      /** Fix Coverity Scan Issue tBTA_GATTC_CIF_MASK cast */
+      if (((p_bg_tck->cif_mask & ((tBTA_GATTC_CIF_MASK)1 << (client_if - 1))) != 0) &&
           role == HCI_ROLE_CENTRAL)
         is_bg_conn = true;
     }

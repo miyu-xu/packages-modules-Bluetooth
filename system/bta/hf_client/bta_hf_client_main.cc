@@ -438,6 +438,10 @@ tBTA_STATUS bta_hf_client_api_enable(tBTA_HF_CLIENT_CBACK* p_cback,
 
   /* Set the Audio service class bit */
   tBTA_UTL_COD cod;
+  /** Fix Coverity Scan Issue @{ */
+  cod.minor = BTM_COD_MAJOR_UNCLASSIFIED;
+  cod.major = BTM_COD_MAJOR_UNCLASSIFIED;
+  /** @} */
   cod.service = BTM_COD_SERVICE_AUDIO;
   utl_set_device_class(&cod, BTA_UTL_SET_COD_SERVICE_CLASS);
 

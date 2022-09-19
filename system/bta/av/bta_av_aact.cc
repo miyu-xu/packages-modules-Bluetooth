@@ -652,6 +652,9 @@ void bta_av_role_res(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
         start.status = BTA_AV_FAIL_ROLE;
         start.hndl = p_scb->hndl;
         start.initiator = initiator;
+        /** Fix Coverity Scan Issue @{ */
+        start.suspending = false;
+        /** @} */
         tBTA_AV bta_av_data;
         bta_av_data.start = start;
         (*bta_av_cb.p_cback)(BTA_AV_START_EVT, &bta_av_data);
@@ -672,6 +675,11 @@ void bta_av_role_res(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
         av_open.chnl = p_scb->chnl;
         av_open.hndl = p_scb->hndl;
         av_open.status = BTA_AV_FAIL_ROLE;
+        /** Fix Coverity Scan Issue @{ */
+        av_open.starting = false;
+        av_open.edr = 0;
+        av_open.sep = AVDT_TSEP_INVALID;
+        /** @} */
         if (p_scb->seps[p_scb->sep_idx].tsep == AVDT_TSEP_SRC) {
           av_open.sep = AVDT_TSEP_SNK;
         } else if (p_scb->seps[p_scb->sep_idx].tsep == AVDT_TSEP_SNK) {
@@ -1210,6 +1218,9 @@ void bta_av_str_opened(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     open.hndl = p_scb->hndl;
     open.status = BTA_AV_SUCCESS;
     open.edr = 0;
+    /** Fix Coverity Scan Issue @{ */
+    open.sep = AVDT_TSEP_INVALID;
+    /** @} */
     p = BTM_ReadRemoteFeatures(p_scb->PeerAddress());
     if (p != NULL) {
       if (HCI_EDR_ACL_2MPS_SUPPORTED(p)) open.edr |= BTA_AV_EDR_2MBPS;
@@ -1617,6 +1628,9 @@ void bta_av_open_failed(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     open.status = BTA_AV_FAIL_GET_CAP;
     open.starting = bta_av_chk_start(p_scb);
     open.edr = 0;
+    /** Fix Coverity Scan Issue @{ */
+    open.sep = AVDT_TSEP_INVALID;
+    /** @} */
     /* set the state back to initial state */
     bta_av_set_scb_sst_init(p_scb);
 

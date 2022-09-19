@@ -1661,6 +1661,9 @@ int BtaAvCo::GetSourceEncoderEffectiveFrameSize() {
 
 bool BtaAvCo::ReportSourceCodecState(BtaAvCoPeer* p_peer) {
   btav_a2dp_codec_config_t codec_config;
+  /** Fix Coverity Scan Issue @{ */
+  memset(&codec_config, 0, sizeof(codec_config));
+  /** @} */
   std::vector<btav_a2dp_codec_config_t> codecs_local_capabilities;
   std::vector<btav_a2dp_codec_config_t> codecs_selectable_capabilities;
 
