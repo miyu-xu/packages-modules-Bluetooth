@@ -1,4 +1,4 @@
-use quote::format_ident;
+use quote::{format_ident, quote};
 
 use crate::ast;
 use crate::backends::rust::types::Integer;
@@ -21,6 +21,14 @@ impl ScalarField {
 
     fn get_ident(&self) -> proc_macro2::Ident {
         format_ident!("{}", self.id)
+    }
+
+    fn generate(&self, visibility: syn::Visibility) -> proc_macro2::TokenStream {
+        let field_name = self.get_ident();
+        let field_type = Integer::new(self.width);
+        quote! {
+            #visibility #field_name: #field_type
+        }
     }
 }
 
@@ -50,6 +58,12 @@ impl Field {
     pub fn get_ident(&self) -> proc_macro2::Ident {
         match self {
             Field::Scalar(field) => field.get_ident(),
+        }
+    }
+
+    pub fn generate(&self, visibility: syn::Visibility) -> proc_macro2::TokenStream {
+        match self {
+            Field::Scalar(field) => field.generate(visibility),
         }
     }
 }
