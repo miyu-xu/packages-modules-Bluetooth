@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f406ccc_b978b3c8",
+        "filename": "system/main/shim/shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T21:27:25Z",
+      "side": 1,
+      "message": "Maybe we can add a flag and enable the remote_name_request with it ?",
+      "range": {
+        "startLine": 85,
+        "startChar": 67,
+        "endLine": 85,
+        "endChar": 71
+      },
+      "revId": "57664eea9fa1c3f6f6c435c45ff8bc41c757e40e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12b2e31b_0853273f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2238,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-19T21:27:25Z",
+      "side": 1,
+      "message": "p_bd_addr can be null and this will crash",
+      "range": {
+        "startLine": 2238,
+        "startChar": 11,
+        "endLine": 2238,
+        "endChar": 20
+      },
+      "revId": "57664eea9fa1c3f6f6c435c45ff8bc41c757e40e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
