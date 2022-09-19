@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c160614_205acc8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-09-19T14:44:39Z",
+      "side": 1,
+      "message": "Hi Sonny, this bug blocks a new other bugs. Hence, I prioritize on it. Could you please help review it? THanks!",
+      "revId": "7305e59cd3f937486c679d91dd99d72d52dc70e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
