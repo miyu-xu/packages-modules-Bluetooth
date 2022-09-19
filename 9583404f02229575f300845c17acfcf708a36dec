@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "373f0729_7fc6c950",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-19T09:29:21Z",
+      "side": 1,
+      "message": "I would like to keep to for future usage",
+      "parentUuid": "61df4e07_67a47ca8",
+      "range": {
+        "startLine": 731,
+        "startChar": 22,
+        "endLine": 731,
+        "endChar": 44
+      },
+      "revId": "9583404f02229575f300845c17acfcf708a36dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8fc4564a_bb4dc95b",
         "filename": "system/main/shim/le_scanning_manager.h",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-19T09:03:22Z",
       "side": 1,
       "message": "This is no longer used, delete",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "9583404f02229575f300845c17acfcf708a36dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6ce433a_3250d4d2",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-19T09:29:21Z",
+      "side": 1,
+      "message": "I would like to keep to for future usage",
+      "parentUuid": "8fc4564a_bb4dc95b",
       "range": {
         "startLine": 29,
         "startChar": 5,
