@@ -34,6 +34,24 @@
       "parentUuid": "3c57e31e_e844eefb",
       "revId": "f630c4ddd3b3d70be9d7373894e264067f0167c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "499b9ea0_826692af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-20T13:19:52Z",
+      "side": 1,
+      "message": "In fact, TbsGeneric is the place where we should assure leAudioDevice is active, when the call is accepted by the headset.",
+      "parentUuid": "7c13f645_290cf701",
+      "revId": "f630c4ddd3b3d70be9d7373894e264067f0167c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
