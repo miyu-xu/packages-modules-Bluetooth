@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99abc7ff_11fde434",
+        "filename": "tools/pdl/src/types.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-20T08:16:56Z",
+      "side": 1,
+      "message": "I would move this module to `backends/rust/types.rs` as this is tied to the rust generation.",
+      "revId": "637ec68676f640b79ace550603bf285a869e1813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
