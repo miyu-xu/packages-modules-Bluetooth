@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51ff7bce_9298f1c4",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-20T18:35:59Z",
+      "side": 1,
+      "message": "Created a separate fd to the same underlying file by using open(). The separate fd does not share the offset with the dup()\u0027ed fds.",
+      "parentUuid": "d0db7544_3638a607",
+      "range": {
+        "startLine": 130,
+        "startChar": 20,
+        "endLine": 130,
+        "endChar": 26
+      },
+      "revId": "9751586a528090ea5713b9c2bfa4b4b4b611974d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9da58f57_b54b7484",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Thats exactly what I wanted to do originally.\n\nI tried using poll/epoll but they can\u0027t be used with fds for regular files (they return EPERM error).\n\nI would argue that 10ms is still way better than arbitrarily putting 1s and 2s timeouts in the unit test code.\n\nAlso, there are two scenarios:\n\n1. log line was printed before we started checking\n2. log line is printed after we start checking\n\nWe need to handle both.",
       "parentUuid": "9da58f57_b54b7484",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 65
+      },
+      "revId": "9751586a528090ea5713b9c2bfa4b4b4b611974d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f531afd_b5ccc01c",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-20T18:35:59Z",
+      "side": 1,
+      "message": "the new fd I added is now blocking. So, no need to use thread sleep. The \"wait_until_log_contains\" test that i added to LogCaptureTest was previously taking about 11ms to complete, now it takes 2ms.",
+      "parentUuid": "228d847b_c492d986",
       "range": {
         "startLine": 131,
         "startChar": 0,
