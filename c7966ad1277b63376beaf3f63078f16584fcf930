@@ -22,6 +22,30 @@
       },
       "revId": "c7966ad1277b63376beaf3f63078f16584fcf930",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5569b2d3_ae53a2ef",
+        "filename": "system/gd/hci/hci_layer_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-09-20T21:49:12Z",
+      "side": 1,
+      "message": "Will fix that in a follow-up CL I am working on.",
+      "parentUuid": "b37ecb7e_d91de106",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 14
+      },
+      "revId": "c7966ad1277b63376beaf3f63078f16584fcf930",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
