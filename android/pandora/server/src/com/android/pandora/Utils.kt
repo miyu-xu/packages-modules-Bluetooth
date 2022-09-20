@@ -25,6 +25,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.MacAddress
+import android.util.Log
 import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.util.concurrent.CancellationException
@@ -215,7 +216,10 @@ fun <T> getProfileProxy(context: Context, profile: Int): T {
     }
     proxy = withTimeoutOrNull(5_000) { flow.first() }
   }
-  return proxy!! as T
+  if (proxy == null) {
+    Log.w(TAG, "profile proxy $profile is null")
+  }
+  return proxy as T
 }
 
 fun Intent.getBluetoothDeviceExtra(): BluetoothDevice =
