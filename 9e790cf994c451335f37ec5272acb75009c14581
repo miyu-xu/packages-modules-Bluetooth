@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34c65029_dd58b086",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-20T23:37:06Z",
+      "side": 1,
+      "message": "nit: capitalize WBS",
+      "range": {
+        "startLine": 187,
+        "startChar": 24,
+        "endLine": 187,
+        "endChar": 27
+      },
+      "revId": "9e790cf994c451335f37ec5272acb75009c14581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
