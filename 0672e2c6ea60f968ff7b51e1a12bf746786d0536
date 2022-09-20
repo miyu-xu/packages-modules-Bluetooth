@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31ae46ae_c998b304",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-20T23:28:41Z",
+      "side": 1,
+      "message": "nit: wrap to 100 chars",
+      "revId": "0672e2c6ea60f968ff7b51e1a12bf746786d0536",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ca2b22_c21b54e6",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-20T23:28:41Z",
+      "side": 1,
+      "message": "the function is named `profile_enabled_or` but the doc `check_internal_enabled`, is the doc outdated?",
+      "range": {
+        "startLine": 172,
+        "startChar": 10,
+        "endLine": 172,
+        "endChar": 32
+      },
+      "revId": "0672e2c6ea60f968ff7b51e1a12bf746786d0536",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
