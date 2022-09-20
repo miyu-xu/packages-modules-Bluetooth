@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21c6b963_7e970317",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 6137,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-20T17:10:17Z",
+      "side": 1,
+      "message": "Yes I was experimenting with both. The problem with not inheriting Command is that it\u0027s hard to make it work with HciLayer. So I tried inheriting Command but then I end up having to abuse OpCode enum to be any number. So I don\u0027t know yet what\u0027s the best way to go about this.",
+      "parentUuid": "8220a58f_dfc8ae44",
+      "range": {
+        "startLine": 6136,
+        "startChar": 0,
+        "endLine": 6137,
+        "endChar": 76
+      },
+      "revId": "b7d5e292f68c5ebd990e03046fbb1c3dd38f4e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a18e195_826ee0b5",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-20T16:23:10Z",
       "side": 1,
       "message": "ErrorCode?",
+      "range": {
+        "startLine": 6193,
+        "startChar": 10,
+        "endLine": 6193,
+        "endChar": 11
+      },
+      "revId": "b7d5e292f68c5ebd990e03046fbb1c3dd38f4e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b495791_d0995d11",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 6193,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-20T17:10:17Z",
+      "side": 1,
+      "message": "right this should reuse ErrorCode",
+      "parentUuid": "1a18e195_826ee0b5",
       "range": {
         "startLine": 6193,
         "startChar": 10,
