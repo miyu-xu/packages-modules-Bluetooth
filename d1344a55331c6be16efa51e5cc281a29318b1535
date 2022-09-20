@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a13e1885_7bc5b046",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T04:05:16Z",
+      "side": 1,
+      "message": "nit: Not sure I see how this is better than a well-named bool...",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 331,
+        "endChar": 4
+      },
+      "revId": "d1344a55331c6be16efa51e5cc281a29318b1535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
