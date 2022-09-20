@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "345dbbab_2e665852",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-20T22:51:35Z",
+      "side": 1,
+      "message": "Tenative ok on this. I feel like this belongs in the dbus_projection library with a macro to generate like `impl_dbus_arg_enum_variant!`. The serialization itself looks good, it\u0027s just not satisfying to have two implementations doing the same thing (in client and service).",
+      "revId": "82768d74fe3f33eebaf4ef26cf42d77980043b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdb10ba6_5ad3f62a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-20T22:51:35Z",
+      "side": 1,
+      "message": "Even ones that don\u0027t support APCF or MSFT? I would be more explicit about what is required to support this.",
+      "revId": "82768d74fe3f33eebaf4ef26cf42d77980043b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7073a53c_8ce7be45",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-20T22:51:35Z",
+      "side": 1,
+      "message": "Maybe add a link to the MSFT hardware offload filter definition",
+      "revId": "82768d74fe3f33eebaf4ef26cf42d77980043b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
