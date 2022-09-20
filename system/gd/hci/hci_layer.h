@@ -36,6 +36,7 @@
 #include "hci/le_iso_interface.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/le_security_interface.h"
+#include "hci/msft_interface.h"
 #include "hci/security_interface.h"
 #include "module.h"
 #include "os/utils.h"
@@ -97,6 +98,8 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
       common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
   virtual LeScanningInterface* GetLeScanningInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
+
+  virtual MsftInterface* GetMsftInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
   virtual LeIsoInterface* GetLeIsoInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
@@ -161,6 +164,7 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
   CommandInterfaceImpl<LeSecurityCommandBuilder> le_security_interface{*this};
   CommandInterfaceImpl<LeAdvertisingCommandBuilder> le_advertising_interface{*this};
   CommandInterfaceImpl<LeScanningCommandBuilder> le_scanning_interface{*this};
+  CommandInterfaceImpl<MsftCommandBuilder> msft_interface{*this};
   CommandInterfaceImpl<LeIsoCommandBuilder> le_iso_interface{*this};
 };
 }  // namespace hci
