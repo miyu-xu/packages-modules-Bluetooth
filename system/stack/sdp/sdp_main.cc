@@ -259,7 +259,7 @@ static void sdp_disconnect_ind(uint16_t l2cap_cid, bool ack_needed) {
   tCONN_CB& ccb = *p_ccb;
 
   if (ack_needed) {
-    sdpu_process_pend_ccb(ccb, false);
+    sdpu_process_pend_ccb_new_cid(ccb);
   } else {
     SDP_TRACE_WARNING(
         "SDP - Rcvd L2CAP disc, "
@@ -386,7 +386,7 @@ void sdp_disconnect(tCONN_CB* p_ccb, tSDP_REASON reason) {
   /* Check if we have a connection ID */
   if (p_ccb->connection_id != 0) {
     p_ccb->disconnect_reason = reason;
-    if (SDP_SUCCESS == reason && sdpu_process_pend_ccb(*p_ccb, true)) {
+    if (SDP_SUCCESS == reason && sdpu_process_pend_ccb_same_cid(*p_ccb)) {
       sdpu_callback_release_ccb(*p_ccb, reason);
       return;
     } else {
@@ -425,7 +425,7 @@ static void sdp_disconnect_cfm(uint16_t l2cap_cid,
 
   SDP_TRACE_EVENT("SDP - Rcvd L2CAP disc cfm, CID: 0x%x", l2cap_cid);
 
-  sdpu_process_pend_ccb(ccb, false);
+  sdpu_process_pend_ccb_new_cid(ccb);
 
   const tSDP_REASON reason = static_cast<tSDP_STATUS>(ccb.disconnect_reason);
   sdpu_callback_release_ccb(ccb, reason);
