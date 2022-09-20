@@ -24,6 +24,7 @@
 #include "hci/hci_packets.h"
 #include "hci/le_periodic_sync_manager.h"
 #include "hci/le_scanning_interface.h"
+#include "hci/msft.h"
 #include "hci/vendor_specific_event_manager.h"
 #include "module.h"
 #include "os/handler.h"
@@ -235,11 +236,13 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
       hci::HciLayer* hci_layer,
       hci::Controller* controller,
       hci::AclManager* acl_manager,
+      hci::MsftExtensionManager* msft_manager,
       hci::VendorSpecificEventManager* vendor_specific_event_manager) {
     module_handler_ = handler;
     hci_layer_ = hci_layer;
     controller_ = controller;
     acl_manager_ = acl_manager;
+    msft_manager_ = msft_manager;
     vendor_specific_event_manager_ = vendor_specific_event_manager;
     le_address_manager_ = acl_manager->GetLeAddressManager();
     le_scanning_interface_ = hci_layer_->GetLeScanningInterface(
@@ -1484,6 +1487,7 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
   hci::HciLayer* hci_layer_;
   hci::Controller* controller_;
   hci::AclManager* acl_manager_;
+  hci::MsftExtensionManager* msft_manager_;
   hci::VendorSpecificEventManager* vendor_specific_event_manager_;
   hci::LeScanningInterface* le_scanning_interface_;
   hci::LeAddressManager* le_address_manager_;
@@ -1543,6 +1547,7 @@ void LeScanningManager::ListDependencies(ModuleList* list) const {
   list->add<hci::VendorSpecificEventManager>();
   list->add<hci::Controller>();
   list->add<hci::AclManager>();
+  list->add<hci::MsftExtensionManager>();
 }
 
 void LeScanningManager::Start() {
@@ -1551,6 +1556,7 @@ void LeScanningManager::Start() {
       GetDependency<hci::HciLayer>(),
       GetDependency<hci::Controller>(),
       GetDependency<AclManager>(),
+      GetDependency<MsftExtensionManager>(),
       GetDependency<VendorSpecificEventManager>());
 }
 
