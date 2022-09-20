@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b65f48_076f8bb6",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T04:45:20Z",
+      "side": 1,
+      "message": "Can we use:\nauto name \u003d remote_name.GetRemoteName();\nauto p \u003d (uint8_t*) osi_malloc(name.size());\nstd::copy(name.begin(), name.end(), p);\n\nI guess I wouldn\u0027t mind pushing std::vector a little farther...",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 74
+      },
+      "revId": "fd99b5ce40b16f9dfab0b9b6707bb7e5af580003",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
