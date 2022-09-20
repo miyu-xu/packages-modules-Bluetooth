@@ -39,6 +39,30 @@
       },
       "revId": "6b0375667693dae26bf23459d3aec6080dc2e9c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522ea7c1_267d7126",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothNotificationManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-09-20T21:10:29Z",
+      "side": 1,
+      "message": "This is a cherry-pick from master, issue may be addressed later in another patch if necessary",
+      "parentUuid": "f4a1077c_f7d6bfa7",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 58
+      },
+      "revId": "6b0375667693dae26bf23459d3aec6080dc2e9c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
