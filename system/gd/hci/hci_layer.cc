@@ -650,6 +650,12 @@ LeScanningInterface* HciLayer::GetLeScanningInterface(ContextualCallback<void(Le
   return &le_scanning_interface;
 }
 
+MsftInterface* HciLayer::GetMsftInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
+  // TODO(b/246398494): event_handler should be registered to receive MSFT Events. MSFT events are Vendor Specific
+  // events with a certain event prefix which is retrieved from MSFT Read Supported Features command.
+  return &msft_interface;
+}
+
 LeIsoInterface* HciLayer::GetLeIsoInterface(ContextualCallback<void(LeMetaEventView)> event_handler) {
   for (const auto subevent : LeIsoEvents) {
     RegisterLeEventHandler(subevent, event_handler);
