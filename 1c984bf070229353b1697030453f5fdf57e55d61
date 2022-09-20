@@ -16,6 +16,24 @@
       "message": "nit: This is not a strict rule but I usually use following order.\n\nBug -\u003e Tag -\u003e Test -\u003e Change-Id -\u003e Merged-In",
       "revId": "1c984bf070229353b1697030453f5fdf57e55d61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c895e30_d9829d8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-20T01:21:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "299fce79_b2ed55cd",
+      "revId": "1c984bf070229353b1697030453f5fdf57e55d61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
