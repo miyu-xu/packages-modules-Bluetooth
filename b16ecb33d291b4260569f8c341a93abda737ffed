@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c53f02e4_a8c66234",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-20T09:25:20Z",
+      "side": 1,
+      "message": "Speculative test fixing, while my aosp repo is crunching to build oriole",
+      "revId": "b16ecb33d291b4260569f8c341a93abda737ffed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
