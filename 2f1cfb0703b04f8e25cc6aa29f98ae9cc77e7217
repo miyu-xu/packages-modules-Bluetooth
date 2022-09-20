@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "069fb5fe_20f66fe3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-20T06:42:19Z",
+      "side": 1,
+      "message": "also print the UUID?",
+      "range": {
+        "startLine": 775,
+        "startChar": 36,
+        "endLine": 775,
+        "endChar": 43
+      },
+      "revId": "2f1cfb0703b04f8e25cc6aa29f98ae9cc77e7217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01cede63_67f3f808",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-20T06:42:19Z",
+      "side": 1,
+      "message": "Add BtavConnectionState::Disconnecting before match?",
+      "revId": "2f1cfb0703b04f8e25cc6aa29f98ae9cc77e7217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72c33a7a_77ceb9a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-20T06:42:19Z",
+      "side": 1,
+      "message": "also print the uuid?",
+      "range": {
+        "startLine": 842,
+        "startChar": 36,
+        "endLine": 842,
+        "endChar": 43
+      },
+      "revId": "2f1cfb0703b04f8e25cc6aa29f98ae9cc77e7217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
