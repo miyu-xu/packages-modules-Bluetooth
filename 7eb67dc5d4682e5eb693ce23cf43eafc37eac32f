@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9efab0a0_f797e588",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Hi Thomas, Hi David,\n\nHave updated the avrcp.py file. Request you to review at your feasibility.\n\nRegards,\nSnehal",
+      "revId": "7eb67dc5d4682e5eb693ce23cf43eafc37eac32f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

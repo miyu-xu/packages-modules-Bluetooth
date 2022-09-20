@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc1a0196_a1e04d18",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Have updated the condition.",
+      "parentUuid": "30485006_d4e55884",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "358985b9_7f3de0af",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-20T00:15:26Z",
       "side": 1,
       "message": "Why are you checking that A2DP is suspended here while we are just supposed to receive Play command? I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 382,
+        "startChar": 8,
+        "endLine": 382,
+        "endChar": 58
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b399877_25dc03de",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Update: have verified the streaming state and returned \"Yes\". \nIn previous CL the comment mentioned \"In all those MMIs, shouldn\u0027t we verify that the Android DUT correctly plays or stops playing music?\" So have added verification part.",
+      "parentUuid": "358985b9_7f3de0af",
       "range": {
         "startLine": 382,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d83150d_586d826d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Update: have verified the streaming state and returned \"Yes\". No assert",
+      "parentUuid": "c41e7039_4cf00f66",
+      "range": {
+        "startLine": 399,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 21
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "037b2b7f_b69aaa74",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-09-20T00:15:26Z",
       "side": 1,
       "message": "I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 415,
+        "startChar": 8,
+        "endLine": 416,
+        "endChar": 21
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4425e980_834551a5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Update: have verified the streaming state and returned \"Yes\". No assert",
+      "parentUuid": "037b2b7f_b69aaa74",
       "range": {
         "startLine": 415,
         "startChar": 8,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2869b6e0_aec486f6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Update: have verified the streaming state and returned \"Yes\". No assert",
+      "parentUuid": "d0e4b8b7_213ee8ab",
+      "range": {
+        "startLine": 430,
+        "startChar": 8,
+        "endLine": 432,
+        "endChar": 40
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bc9d02a_a09c6d48",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-09-20T00:15:26Z",
       "side": 1,
       "message": "I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 448,
+        "endChar": 39
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a251199f_57d8a3f3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Update: have verified the streaming state and returned \"Yes\". No assert",
+      "parentUuid": "6bc9d02a_a09c6d48",
       "range": {
         "startLine": 446,
         "startChar": 0,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "156b25e0_5a6dada0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Update: have verified the streaming state and returned \"Yes\". No assert",
+      "parentUuid": "6c8764cf_cab2d3bd",
+      "range": {
+        "startLine": 460,
+        "startChar": 8,
+        "endLine": 462,
+        "endChar": 40
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbd3ea0a_b131ea5a",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-09-20T00:15:26Z",
       "side": 1,
       "message": "Why are you checking that A2DP is suspended here while we are just supposed to receive Play command?\n\nThis is the only MMI where we indeed need an assert.",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 40
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83b5c41f_75332b14",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-20T11:32:35Z",
+      "side": 1,
+      "message": "Have Checked for streaming with assert, and return \"OK\"",
+      "parentUuid": "bbd3ea0a_b131ea5a",
       "range": {
         "startLine": 472,
         "startChar": 0,
