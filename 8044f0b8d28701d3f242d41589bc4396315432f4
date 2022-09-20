@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a673575_bdc715b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-20T13:20:41Z",
+      "side": 1,
+      "message": "I created this patch out of the previous Kyunglyul patch - as this is seperate thing.",
+      "revId": "8044f0b8d28701d3f242d41589bc4396315432f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
