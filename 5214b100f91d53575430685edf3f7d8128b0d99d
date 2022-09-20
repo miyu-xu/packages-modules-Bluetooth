@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83bf1fcb_a327b420",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-09-20T17:37:53Z",
+      "side": 1,
+      "message": "Hi, The DBus interface can be tested from command line by \"dbus-send --system --print-reply --dest\u003dorg.chromium.bluetooth.Manager /org/chromium/bluetooth/Manager org.chromium.bluetooth.Experimental.SetLLPrivacy boolean:true\".",
+      "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
