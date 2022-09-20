@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c74671ad_7c586d11",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 6137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T18:01:13Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s abuse.  I agree it would be better not to have to do this, but I like the alternatives even less.\n\nFor instance, we could list all the unused opcodes that start with 0xfc and give them an enum.",
+      "parentUuid": "21c6b963_7e970317",
+      "range": {
+        "startLine": 6136,
+        "startChar": 0,
+        "endLine": 6137,
+        "endChar": 76
+      },
+      "revId": "b7d5e292f68c5ebd990e03046fbb1c3dd38f4e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a18e195_826ee0b5",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 5
