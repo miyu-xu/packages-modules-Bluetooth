@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fa6036b_7c0c03bf",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-20T08:54:59Z",
+      "side": 1,
+      "message": "Per talked, let\u0027s do it by another patch, thanks!",
+      "parentUuid": "cf2ec287_fb7b51c7",
+      "revId": "9583404f02229575f300845c17acfcf708a36dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61df4e07_67a47ca8",
