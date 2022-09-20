@@ -39,6 +39,48 @@
       "message": "nit: add a brief comment describing the difference between status and error",
       "revId": "08d4df6011e11730aa8239f90130092a48403cde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b29479de_1ef17c2a",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-20T21:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dae5ecf4_6d49e935",
+      "revId": "08d4df6011e11730aa8239f90130092a48403cde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45559b9a_095cf587",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-20T21:25:05Z",
+      "side": 1,
+      "message": "Nack. \n\nMost metrics state/status are passing as i32. Use i32 to avoid multi-step conversion. See line:255 below for where we convert CXX passed i nuint8_t to i32.",
+      "parentUuid": "5c9fe18c_0b51003b",
+      "range": {
+        "startLine": 83,
+        "startChar": 15,
+        "endLine": 83,
+        "endChar": 18
+      },
+      "revId": "08d4df6011e11730aa8239f90130092a48403cde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
