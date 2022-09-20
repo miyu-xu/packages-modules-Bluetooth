@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a62975_c85ba50a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3294,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T21:38:49Z",
+      "side": 1,
+      "message": "nit: The logging style doesn\u0027t match this file, and the line didn\u0027t need to be split.",
+      "range": {
+        "startLine": 3294,
+        "startChar": 10,
+        "endLine": 3294,
+        "endChar": 19
+      },
+      "revId": "88ba368d955ab83ce86b0f7b5a0dc5778d8ff8e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8db26691_32c46b0c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3298,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T21:38:49Z",
+      "side": 1,
+      "message": "If we need this log, it should probably be DEBUG.  We already logged it on line 3281",
+      "range": {
+        "startLine": 3298,
+        "startChar": 12,
+        "endLine": 3298,
+        "endChar": 16
+      },
+      "revId": "88ba368d955ab83ce86b0f7b5a0dc5778d8ff8e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
