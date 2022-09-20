@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30485006_d4e55884",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "Can be simplified by `if (\"TG\" in test and \"TG/VLH\" not in test) or \"CT/VLH\" in test:`.",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 77
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "358985b9_7f3de0af",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "Why are you checking that A2DP is suspended here while we are just supposed to receive Play command? I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 382,
+        "startChar": 8,
+        "endLine": 382,
+        "endChar": 58
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41e7039_4cf00f66",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 399,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 21
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "037b2b7f_b69aaa74",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 415,
+        "startChar": 8,
+        "endLine": 416,
+        "endChar": 21
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e4b8b7_213ee8ab",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 430,
+        "startChar": 8,
+        "endLine": 432,
+        "endChar": 40
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc9d02a_a09c6d48",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 448,
+        "endChar": 39
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8764cf_cab2d3bd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "I think there is no need for any assert here and just return \"Yes\".",
+      "range": {
+        "startLine": 460,
+        "startChar": 8,
+        "endLine": 462,
+        "endChar": 40
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbd3ea0a_b131ea5a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-20T00:15:26Z",
+      "side": 1,
+      "message": "Why are you checking that A2DP is suspended here while we are just supposed to receive Play command?\n\nThis is the only MMI where we indeed need an assert.",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 40
+      },
+      "revId": "f24a60ad45f520a9f1bbcfadcab48ea7943d09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
