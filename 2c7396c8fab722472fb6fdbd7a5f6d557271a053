@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6418657_c1cf664e",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-20T22:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db37ed7a_78285f28",
+      "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be6224b5_6fe56323",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73cf003f_615dfc64",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-20T22:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be6224b5_6fe56323",
+      "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "304ea927_d8012793",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-09-19T20:40:03Z",
       "side": 1,
       "message": "I would also document params here briefly....\n\ni.e.\n```\n/// Params: Status, client id \nOnClientRegistered(GattStatus, i32),\n```",
+      "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d6b9441_6bdfe63c",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-20T22:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "304ea927_d8012793",
       "revId": "2c7396c8fab722472fb6fdbd7a5f6d557271a053",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
