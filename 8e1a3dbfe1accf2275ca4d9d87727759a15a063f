@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a094e6cc_f28afcaf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-20T01:04:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5627ca3f_ae652a79",
+      "range": {
+        "startLine": 37,
+        "startChar": 34,
+        "endLine": 37,
+        "endChar": 56
+      },
+      "revId": "8e1a3dbfe1accf2275ca4d9d87727759a15a063f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4440f5ae_fc3d8c03",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-19T04:21:39Z",
       "side": 1,
       "message": "This could be local variable for addShare_shareInfoStoredCorrectly, instead.",
+      "range": {
+        "startLine": 38,
+        "startChar": 34,
+        "endLine": 38,
+        "endChar": 57
+      },
+      "revId": "8e1a3dbfe1accf2275ca4d9d87727759a15a063f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87a89401_2a7e8e3e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-20T01:04:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4440f5ae_fc3d8c03",
       "range": {
         "startLine": 38,
         "startChar": 34,
