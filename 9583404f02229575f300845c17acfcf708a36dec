@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf2ec287_fb7b51c7",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-20T07:42:59Z",
+      "side": 1,
+      "message": "why not to use a prop instead and make use on filter on some devices? This will help testing feature.",
+      "revId": "9583404f02229575f300845c17acfcf708a36dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61df4e07_67a47ca8",
         "filename": "system/main/shim/le_scanning_manager.cc",
         "patchSetId": 2
