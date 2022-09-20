@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d92189_43b90aee",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T04:19:47Z",
+      "side": 1,
+      "message": "update?",
+      "range": {
+        "startLine": 76,
+        "startChar": 87,
+        "endLine": 76,
+        "endChar": 104
+      },
+      "revId": "ddd542de5daa98c3f973a4f4a66e3b0d92d8543c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
