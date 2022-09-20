@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6585c5a_be539af9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-20T17:53:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01489b3f_5b4b23fd",
+      "revId": "863586b638500d3d80c7c01f350860e7ecad1865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3eb40e7_112b6a39",
@@ -65,6 +83,24 @@
       "writtenOn": "2022-09-12T17:42:12Z",
       "side": 1,
       "message": "This means complete of outgoing pairing (both successful and failed). It doesn\u0027t cover incomeing pairing. Is it ok for you?",
+      "revId": "863586b638500d3d80c7c01f350860e7ecad1865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85db46a2_0e3d0b7b",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-20T17:53:47Z",
+      "side": 1,
+      "message": "I reverted it to SIMPLE_PAIRING_COMPLETE since it is invoked for both incoming and outgoing pairing in my experiments with two Pixels attempting to pair one with the other.",
+      "parentUuid": "e3eb40e7_112b6a39",
       "revId": "863586b638500d3d80c7c01f350860e7ecad1865",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

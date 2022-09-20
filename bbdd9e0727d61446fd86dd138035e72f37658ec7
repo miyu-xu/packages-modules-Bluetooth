@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a8294c0_e21ccecb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-20T17:53:47Z",
+      "side": 1,
+      "message": "Alan, can you PTAL as the owner of APEX permissions file.\nJakub, can you PTAL as the owner of BT code. \n\nThanks!",
+      "revId": "bbdd9e0727d61446fd86dd138035e72f37658ec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
