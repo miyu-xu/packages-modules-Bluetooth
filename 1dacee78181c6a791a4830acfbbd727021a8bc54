@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17dd040b_2fbe3702",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-20T01:05:36Z",
+      "side": 1,
+      "message": "advertiseDataToBytes or you can make it multiple tests with different AdvertiseData.\n\nadvertaseDataToBytes_withServiceUuids, ...",
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ba5a30c_a383ba20",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-20T01:05:36Z",
+      "side": 1,
+      "message": "Does it include all the info to pass the if-statements of AdvertiseHelver.java?\n\ne.g.  if (!data.getServiceData().isEmpty()) (L147)\n  if (data.getServiceSolicitationUuids() !\u003d null) (L183), and so on.",
+      "range": {
+        "startLine": 52,
+        "startChar": 22,
+        "endLine": 52,
+        "endChar": 35
+      },
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "200cf176_8f956b75",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-20T01:05:36Z",
+      "side": 1,
+      "message": "What about TestDeviceName?\n\nAnd you may want to test long name as well.\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/AdvertiseHelper.java;l\u003d67?q\u003dAdvertiseHelper\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "range": {
+        "startLine": 58,
+        "startChar": 29,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d70bc4b_32ab4db8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-20T01:05:36Z",
+      "side": 1,
+      "message": "Could you calculate this instead?",
+      "range": {
+        "startLine": 62,
+        "startChar": 50,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
