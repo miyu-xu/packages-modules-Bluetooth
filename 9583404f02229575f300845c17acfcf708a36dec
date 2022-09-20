@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "684c0b14_79da1101",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-20T02:17:45Z",
+      "side": 1,
+      "message": "The rssi range for advertising report is -127 ~ 20.\nWe set -128 here due to we don\u0027t want to ignore any advertising by rssi.\nThis filter filter advertising by it contains Resolvable Set Identifier or not.\nThanks!",
+      "parentUuid": "a8d84b53_d3b17be5",
+      "range": {
+        "startLine": 731,
+        "startChar": 22,
+        "endLine": 731,
+        "endChar": 44
+      },
+      "revId": "9583404f02229575f300845c17acfcf708a36dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fc4564a_bb4dc95b",
