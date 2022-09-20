@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c9fe18c_0b51003b",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-20T06:32:03Z",
+      "side": 1,
+      "message": "u8?",
+      "range": {
+        "startLine": 83,
+        "startChar": 15,
+        "endLine": 83,
+        "endChar": 18
+      },
+      "revId": "08d4df6011e11730aa8239f90130092a48403cde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dae5ecf4_6d49e935",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-20T06:32:03Z",
+      "side": 1,
+      "message": "nit: add a brief comment describing the difference between status and error",
+      "revId": "08d4df6011e11730aa8239f90130092a48403cde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
