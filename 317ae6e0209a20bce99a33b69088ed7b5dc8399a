@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb68c6b8_d053be34",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-20T08:12:39Z",
+      "side": 1,
+      "message": "You could generate only one range check for the full chunk.",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 7
+      },
+      "revId": "317ae6e0209a20bce99a33b69088ed7b5dc8399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1da2a91d_17916b61",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-20T08:12:39Z",
+      "side": 1,
+      "message": "Incorrect wrt endianness. You need to know the size of the field chunks in order to find the proper offset where to place the field under consideration.\nYou should proceed like chunk read, first constructing the chunk value then serializing the value to the output buffer:\n```\nlet chunk \u003d (a \u0026 0x..) | ((b \u0026 0x..) \u003c\u003c ..) | (c \u0026 0x..) \u003c\u003c ..;\nbuffer[#start..#end].copy_from_slice(\u0026chunk.#writer()[0..#byte_width]);\n```\nDon\u0027t forget to skip the left padding when in big endian format:\n```\n// Big endian\n\u0026chunk.to_be_bytes()[#rust_integer_type - #chunk_type..]\n// Little endian\n\u0026chunk.to_le_bytes()[0..#chunk_type]\n```",
+      "range": {
+        "startLine": 312,
+        "startChar": 12,
+        "endLine": 323,
+        "endChar": 15
+      },
+      "revId": "317ae6e0209a20bce99a33b69088ed7b5dc8399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20af7d5_693e992a",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-20T08:12:39Z",
+      "side": 1,
+      "message": "TODO : the offset will get reset when you have to parse scalar fields after a variable size field",
+      "range": {
+        "startLine": 446,
+        "startChar": 12,
+        "endLine": 446,
+        "endChar": 18
+      },
+      "revId": "317ae6e0209a20bce99a33b69088ed7b5dc8399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
