@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8220a58f_dfc8ae44",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 6137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T16:23:10Z",
+      "side": 1,
+      "message": "This looks like it\u0027s out of date.  It looks like you do inherit from Command.",
+      "range": {
+        "startLine": 6136,
+        "startChar": 0,
+        "endLine": 6137,
+        "endChar": 76
+      },
+      "revId": "b7d5e292f68c5ebd990e03046fbb1c3dd38f4e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a18e195_826ee0b5",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 6193,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T16:23:10Z",
+      "side": 1,
+      "message": "ErrorCode?",
+      "range": {
+        "startLine": 6193,
+        "startChar": 10,
+        "endLine": 6193,
+        "endChar": 11
+      },
+      "revId": "b7d5e292f68c5ebd990e03046fbb1c3dd38f4e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
