@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62a2c82b_f3b00c99",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-20T21:27:14Z",
+      "side": 1,
+      "message": "Yes!",
+      "parentUuid": "348adce2_e2ff5c4c",
+      "range": {
+        "startLine": 359,
+        "startChar": 20,
+        "endLine": 359,
+        "endChar": 37
+      },
+      "revId": "4288d22290b8a863cb067f70c5eee23dfd7b954b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9067597e_d1a3e756",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-20T06:42:11Z",
       "side": 1,
       "message": "nit: wrong CL, should be on 2216223 instead",
+      "range": {
+        "startLine": 876,
+        "startChar": 0,
+        "endLine": 881,
+        "endChar": 22
+      },
+      "revId": "4288d22290b8a863cb067f70c5eee23dfd7b954b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bf36cd1_c494b995",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-20T21:27:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9067597e_d1a3e756",
       "range": {
         "startLine": 876,
         "startChar": 0,
