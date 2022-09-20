@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df8f485c_6b172b42",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-20T21:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "069fb5fe_20f66fe3",
+      "range": {
+        "startLine": 775,
+        "startChar": 36,
+        "endLine": 775,
+        "endChar": 43
+      },
+      "revId": "2f1cfb0703b04f8e25cc6aa29f98ae9cc77e7217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01cede63_67f3f808",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e483413_a2a9e200",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-20T21:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01cede63_67f3f808",
+      "revId": "2f1cfb0703b04f8e25cc6aa29f98ae9cc77e7217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72c33a7a_77ceb9a3",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-09-20T06:42:19Z",
       "side": 1,
       "message": "also print the uuid?",
+      "range": {
+        "startLine": 842,
+        "startChar": 36,
+        "endLine": 842,
+        "endChar": 43
+      },
+      "revId": "2f1cfb0703b04f8e25cc6aa29f98ae9cc77e7217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e14bba26_20abddf7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-20T21:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72c33a7a_77ceb9a3",
       "range": {
         "startLine": 842,
         "startChar": 36,
