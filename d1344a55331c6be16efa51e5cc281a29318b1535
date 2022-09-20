@@ -22,6 +22,30 @@
       },
       "revId": "d1344a55331c6be16efa51e5cc281a29318b1535",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c135271_951c1dea",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-20T19:40:34Z",
+      "side": 1,
+      "message": "https://g3doc.corp.google.com/devtools/library_club/g3doc/totw/94.md?cl\u003dhead\n\n(especially after the next CL)",
+      "parentUuid": "a13e1885_7bc5b046",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 331,
+        "endChar": 4
+      },
+      "revId": "d1344a55331c6be16efa51e5cc281a29318b1535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
