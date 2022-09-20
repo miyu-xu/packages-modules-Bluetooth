@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55f59d26_f1414268",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-20T01:27:48Z",
+      "side": 1,
+      "message": "You may want to use #refactor",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 15
+      },
+      "revId": "348600dd2f2dc6f317f0407c3eb73a578ebd96f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
