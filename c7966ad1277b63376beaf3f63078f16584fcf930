@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b37ecb7e_d91de106",
+        "filename": "system/gd/hci/hci_layer_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-20T21:14:28Z",
+      "side": 1,
+      "message": "I think this is worth fixing.  It will crash instead of failing the test.",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 14
+      },
+      "revId": "c7966ad1277b63376beaf3f63078f16584fcf930",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
