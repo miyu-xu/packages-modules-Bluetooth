@@ -22,6 +22,30 @@
       },
       "revId": "066d94bc3ef5443c6abd76c73b5530aeed4c5159",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf1bee2_6c4df88c",
+        "filename": "system/main/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T20:09:43Z",
+      "side": 0,
+      "message": "This is to fix the build so that `system/gd/hci:hci_tests` can be built. I will add this info to the commit description.",
+      "parentUuid": "b4fab788_e5db633a",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 118,
+        "endChar": 16
+      },
+      "revId": "066d94bc3ef5443c6abd76c73b5530aeed4c5159",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

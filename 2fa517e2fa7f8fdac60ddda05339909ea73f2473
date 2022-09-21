@@ -16,6 +16,24 @@
       "message": "The test from the next file could be here.  Two packets that should parse and have two different opcodes.\n  \ntest MsftLeMonitorAdvConditionUuid {\n  \"\\x01\\xfc\\x09\\x03\\x10\\x11\\x12\\x13\\x02\\x01\\x71\\x72\",  // opcode \u003d fc01\n  \"\\x05\\xfc\\x09\\x03\\x10\\x11\\x12\\x13\\x02\\x01\\x71\\x72\",  // opcode \u003d fc05\n}",
       "revId": "2fa517e2fa7f8fdac60ddda05339909ea73f2473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba3d3e19_7847afc4",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 6194,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T20:09:43Z",
+      "side": 1,
+      "message": "Done, added the test in PDL.\n\nCan I still keep the test in hci_packets_test? It also serves as examples on how to use the generated Msft packets.",
+      "parentUuid": "2ad84f3c_221d90b9",
+      "revId": "2fa517e2fa7f8fdac60ddda05339909ea73f2473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
