@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4fab788_e5db633a",
+        "filename": "system/main/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-21T15:58:49Z",
+      "side": 0,
+      "message": "This seems unrelated.",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 118,
+        "endChar": 16
+      },
+      "revId": "066d94bc3ef5443c6abd76c73b5530aeed4c5159",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
