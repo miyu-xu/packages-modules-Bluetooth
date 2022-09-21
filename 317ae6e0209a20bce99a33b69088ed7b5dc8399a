@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddb548bf_14afde46",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-21T18:02:52Z",
+      "side": 1,
+      "message": "Thanks, I think that is a good idea eventually. We should remove `field` from `InvalidLengthError` variant then, and this will further decouple us from `bluetooth_packetgen`.\n\nLet me add a TODO for this until the other refactorings are done. Then we can decouple the two implementations next and remove the tests no longer needed.",
+      "parentUuid": "bb68c6b8_d053be34",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 7
+      },
+      "revId": "317ae6e0209a20bce99a33b69088ed7b5dc8399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1da2a91d_17916b61",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28808c89_5eb556df",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-21T18:02:52Z",
+      "side": 1,
+      "message": "Thanks! This should be fixed now as well.\n\nThere are a few cleanups I would like to do when we decouple `pdl` from `bluetooth_packetgen`. I\u0027ve marked them with TODO and will start fixing this in the next weeks.",
+      "parentUuid": "1da2a91d_17916b61",
+      "range": {
+        "startLine": 312,
+        "startChar": 12,
+        "endLine": 323,
+        "endChar": 15
+      },
+      "revId": "317ae6e0209a20bce99a33b69088ed7b5dc8399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c20af7d5_693e992a",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-20T08:12:39Z",
       "side": 1,
       "message": "TODO : the offset will get reset when you have to parse scalar fields after a variable size field",
+      "range": {
+        "startLine": 446,
+        "startChar": 12,
+        "endLine": 446,
+        "endChar": 18
+      },
+      "revId": "317ae6e0209a20bce99a33b69088ed7b5dc8399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6a9f45b_1dfb3adc",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-21T18:02:52Z",
+      "side": 1,
+      "message": "Okay, thanks. I look forward to dealing with that 😊",
+      "parentUuid": "c20af7d5_693e992a",
       "range": {
         "startLine": 446,
         "startChar": 12,
