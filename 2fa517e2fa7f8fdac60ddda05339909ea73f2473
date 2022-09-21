@@ -34,6 +34,24 @@
       "parentUuid": "2ad84f3c_221d90b9",
       "revId": "2fa517e2fa7f8fdac60ddda05339909ea73f2473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed2f5f77_7a616d6d",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 6194,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-21T22:05:00Z",
+      "side": 1,
+      "message": "Yes, you can have the other type of tests.  These scale better, since they can be used for any language, instead of just C++.",
+      "parentUuid": "ba3d3e19_7847afc4",
+      "revId": "2fa517e2fa7f8fdac60ddda05339909ea73f2473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

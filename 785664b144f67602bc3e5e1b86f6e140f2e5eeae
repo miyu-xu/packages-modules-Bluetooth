@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "599fc39e_fdd8b722",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-21T22:05:00Z",
+      "side": 1,
+      "message": "The approach makes sense to me.  Can you have someone on your team check the packet definitions and the tests?",
+      "revId": "785664b144f67602bc3e5e1b86f6e140f2e5eeae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1498d516_cfd0fc3e",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 6262,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-21T22:05:00Z",
+      "side": 1,
+      "message": "By convention, we put the test line right after the packet definition.\n\nThe more, the merrier.  If you have one for each of the packets, that would be great.",
+      "range": {
+        "startLine": 6259,
+        "startChar": 0,
+        "endLine": 6262,
+        "endChar": 1
+      },
+      "revId": "785664b144f67602bc3e5e1b86f6e140f2e5eeae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
