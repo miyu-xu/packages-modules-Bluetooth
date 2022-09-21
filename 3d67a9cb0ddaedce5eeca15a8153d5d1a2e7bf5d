@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09f804cc_8656489d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-21T07:30:18Z",
+      "side": 1,
+      "message": "Q) Is @Spy needed? If so, could you let me know why?",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 47,
+        "endChar": 8
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeb93cb2_53e4d08c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-21T07:30:18Z",
+      "side": 1,
+      "message": "more than 100 characters.\nplease fix.",
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a4dbe2_0c71725b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-21T07:30:18Z",
+      "side": 1,
+      "message": "Please consider readability.\nThere is no method \"shareUri\".\nworkNormally isn\u0027t helpful to guess what the test would be trying to test.",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 37
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9398aa3_b6884744",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-21T07:30:18Z",
+      "side": 1,
+      "message": "queryRecord doesn\u0027t have to return null all the time.\nPlease specify when it returns null as well.\n\nqueryRecord_withInvalidFileUril_returnsNull\n\nditto for other method names.",
+      "range": {
+        "startLine": 67,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 38
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
