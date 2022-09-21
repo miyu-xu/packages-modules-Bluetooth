@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1151f895_a85282b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-09-21T02:16:03Z",
+      "side": 1,
+      "message": "Submit new patch set to solve merge conflict.\nRefer to below\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2213340",
+      "revId": "a525b22ef57a6c8f457d6c90c64f5fcd4beeb64e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
