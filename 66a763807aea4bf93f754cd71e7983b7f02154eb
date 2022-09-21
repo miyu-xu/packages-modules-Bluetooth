@@ -22,6 +22,52 @@
       },
       "revId": "66a763807aea4bf93f754cd71e7983b7f02154eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "222175d1_842b7c4d",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2022-09-21T15:36:05Z",
+      "side": 1,
+      "message": "Can this error log be removed? It looks like not an error.",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 13
+      },
+      "revId": "66a763807aea4bf93f754cd71e7983b7f02154eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5f9b88e_ab5ebdd7",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2022-09-21T15:36:05Z",
+      "side": 1,
+      "message": "Please add one space between \"if\" and \"(\"",
+      "range": {
+        "startLine": 166,
+        "startChar": 4,
+        "endLine": 166,
+        "endChar": 7
+      },
+      "revId": "66a763807aea4bf93f754cd71e7983b7f02154eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
