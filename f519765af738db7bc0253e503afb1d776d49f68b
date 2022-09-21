@@ -1085,6 +1085,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37b31f5d_785a18b5",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-21T01:30:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "213d7e57_84d69ff2",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 48
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a662e3f8_ac9c51b9",
