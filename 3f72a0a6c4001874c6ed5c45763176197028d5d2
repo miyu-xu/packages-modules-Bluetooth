@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96757afc_59c9f9c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-09-21T21:06:29Z",
+      "side": 1,
+      "message": "Note on this: I rather let the possibility for the proxy to be null. It\u0027ll crash later than if we asserted in the `getProfileProxy` function but I don\u0027t think this is bad.\nOtherwise if I keep the assert, I\u0027ll have to load the correct a2dp proxy (sink or source) regardings the associated property but this will lead me to have a proxy nullable and then play with the kotlin builtin \"?\" and \"!\" which I feel annoying. If this is ok with you, I\u0027ll rather keep it this way",
+      "revId": "3f72a0a6c4001874c6ed5c45763176197028d5d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
