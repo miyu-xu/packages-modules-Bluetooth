@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ca67ce_f4e8961b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-21T13:44:22Z",
+      "side": 1,
+      "message": "Updated per OOB discussion to cover devices with non-standard profiles.",
+      "revId": "560d47ee3db60f3db2babb1b37ea6a5d6e351e61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

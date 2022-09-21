@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure if I got the ocntext right, but if you want to log every disconnection, you are in wrong place. \nTo log every disconnection you should have a log in native code around HCI disconnect event.",
       "revId": "f88c0c6fc9eb3988861662da7e71b09cb02f441c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "803d9acf_cbcf4129",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-21T13:44:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "73a67420_99abd255",
+      "revId": "f88c0c6fc9eb3988861662da7e71b09cb02f441c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
