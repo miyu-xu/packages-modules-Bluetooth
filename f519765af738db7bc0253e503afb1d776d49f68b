@@ -1062,6 +1062,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d3c861_a78c034d",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-21T18:52:16Z",
+      "side": 1,
+      "message": "I don\u0027t think it is, here you want to call `resume` from the `onStartSuccess` and `onStartFailure`.",
+      "parentUuid": "8f17e16a_6a21cf7c",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 68
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c900d139_20eaac65",
@@ -1123,6 +1147,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "213d7e57_84d69ff2",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 48
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c14bd605_3b7c39fa",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-21T18:52:16Z",
+      "side": 1,
+      "message": "PTS does not, but the other Pandora test tools might, like avatar.",
+      "parentUuid": "37b31f5d_785a18b5",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -1241,6 +1289,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "ce8cf53d_2aad30e4",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 87
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4392c9f_1c954167",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-21T18:52:16Z",
+      "side": 1,
+      "message": "Yep it is !",
+      "parentUuid": "0edeed2e_e4a00752",
       "range": {
         "startLine": 80,
         "startChar": 8,
