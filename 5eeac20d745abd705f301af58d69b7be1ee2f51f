@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d5e3fd4_370f3251",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-21T08:27:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b57c8a4_aa3ffc75",
+      "revId": "5eeac20d745abd705f301af58d69b7be1ee2f51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02a133df_32016570",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-09-21T06:13:54Z",
       "side": 1,
       "message": "This \"Verify: ohm\" should be \"\"Test: run the case\"",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 6
+      },
+      "revId": "5eeac20d745abd705f301af58d69b7be1ee2f51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c81bca51_3bab953f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-21T08:27:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02a133df_32016570",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -99,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9210c2f4_04ab7d1e",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-21T08:27:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aafcd82_b2cabea9",
+      "range": {
+        "startLine": 162,
+        "startChar": 67,
+        "endLine": 162,
+        "endChar": 73
+      },
+      "revId": "5eeac20d745abd705f301af58d69b7be1ee2f51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3104767_ea08d3a5",
@@ -122,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aabfff9_3b59d251",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-21T08:27:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3104767_ea08d3a5",
+      "range": {
+        "startLine": 166,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 4
+      },
+      "revId": "5eeac20d745abd705f301af58d69b7be1ee2f51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5eebb3f_8149b5c7",
@@ -135,6 +225,30 @@
       "writtenOn": "2022-09-21T06:13:54Z",
       "side": 1,
       "message": "Please add one space between \",\" and \"GetDependency\"",
+      "range": {
+        "startLine": 1366,
+        "startChar": 43,
+        "endLine": 1366,
+        "endChar": 44
+      },
+      "revId": "5eeac20d745abd705f301af58d69b7be1ee2f51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada3330e_0033c4e2",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-21T08:27:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5eebb3f_8149b5c7",
       "range": {
         "startLine": 1366,
         "startChar": 43,
