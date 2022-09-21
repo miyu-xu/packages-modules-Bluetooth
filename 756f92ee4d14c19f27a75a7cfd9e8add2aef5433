@@ -22,6 +22,30 @@
       },
       "revId": "756f92ee4d14c19f27a75a7cfd9e8add2aef5433",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d48d45_60a9e215",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-21T23:39:44Z",
+      "side": 1,
+      "message": "So it\u0027s perfectly fine as we are currently busy.\nWe don\u0027t need to do something else for HID here.",
+      "parentUuid": "7d4ac483_b3ade885",
+      "range": {
+        "startLine": 396,
+        "startChar": 17,
+        "endLine": 396,
+        "endChar": 38
+      },
+      "revId": "756f92ee4d14c19f27a75a7cfd9e8add2aef5433",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
