@@ -295,6 +295,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d9ff297_b1d4721a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-21T01:22:45Z",
+      "side": 1,
+      "message": "fillRecord will assign the value to info. So it doesn\u0027t matter if it is a mock instance or a real instance. But it is my bad to make it a mock instance",
+      "parentUuid": "ea6289c0_3e7c2ca3",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 61
+      },
+      "revId": "79f0ab58d050ec2aea577283fb0a6abad6911b18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec1e66af_f259b10f",
@@ -356,6 +380,30 @@
       "side": 1,
       "message": "Then what about using INVALID_FILE_URI or similar instead of CORRECT_FORMAT_URI?",
       "parentUuid": "2a414d7e_306909f3",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 38
+      },
+      "revId": "79f0ab58d050ec2aea577283fb0a6abad6911b18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b27d324_3c7f24ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-09-21T01:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d65f6ea_86f63ad2",
       "range": {
         "startLine": 98,
         "startChar": 16,
