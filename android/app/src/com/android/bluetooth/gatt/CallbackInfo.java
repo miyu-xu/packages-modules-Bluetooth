@@ -58,6 +58,6 @@ class CallbackInfo {
         this.address = address;
         this.status = status;
         this.handle = handle;
+        this.value = value;
     }
 }
-
