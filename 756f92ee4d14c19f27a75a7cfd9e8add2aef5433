@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d4ac483_b3ade885",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-21T23:35:54Z",
+      "side": 1,
+      "message": "This process is done before calling the callback.\nBut because we only send the callback when we start processing the new sdp, any profile that are queuing event at this point will end in the event being pending",
+      "range": {
+        "startLine": 396,
+        "startChar": 17,
+        "endLine": 396,
+        "endChar": 38
+      },
+      "revId": "756f92ee4d14c19f27a75a7cfd9e8add2aef5433",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
