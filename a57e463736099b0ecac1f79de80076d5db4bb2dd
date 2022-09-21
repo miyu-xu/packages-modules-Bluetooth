@@ -51,6 +51,23 @@
       "message": "Adding more OWNERS for review.",
       "revId": "a57e463736099b0ecac1f79de80076d5db4bb2dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f4eae6_85513954",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2022-09-21T01:20:45Z",
+      "side": 1,
+      "message": "Hmm presubmit-ready should have triggered earlier. 😞",
+      "revId": "a57e463736099b0ecac1f79de80076d5db4bb2dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
