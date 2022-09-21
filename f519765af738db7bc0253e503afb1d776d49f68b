@@ -758,6 +758,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73685ca8_08ccd3b7",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-09-21T22:42:10Z",
+      "side": 1,
+      "message": "I kinda agree with both of you.\n\nAt the first look I would have said `WaitLeConnection` as well but when looking at the implementation of `GetLEConnection` we are not waiting for anything. Which implied the connection is already done. I\u0027ll go for `GetLEConnection` if the interface should be design only for android, which is not the case.\n\nShould we wait sometimes for the LE connection to be done (other than android, in a specification point of view) ? If so we should merge both logic and go for `WaitLeConnection` or add it alongside `GetLEConnection`. If not then `GetLEConnection` is sufficient.",
+      "parentUuid": "eb7f4f6b_1291ef9c",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9473a94a_917d1f29",
         "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
         "patchSetId": 5
