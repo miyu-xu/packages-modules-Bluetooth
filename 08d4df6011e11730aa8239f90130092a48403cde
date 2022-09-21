@@ -81,6 +81,30 @@
       },
       "revId": "08d4df6011e11730aa8239f90130092a48403cde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "319cd479_c5bd2aad",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-21T01:46:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "45559b9a_095cf587",
+      "range": {
+        "startLine": 83,
+        "startChar": 15,
+        "endLine": 83,
+        "endChar": 18
+      },
+      "revId": "08d4df6011e11730aa8239f90130092a48403cde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
