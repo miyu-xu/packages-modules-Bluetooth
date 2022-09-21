@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9821576f_d634d511",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T18:31:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "345dbbab_2e665852",
+      "revId": "82768d74fe3f33eebaf4ef26cf42d77980043b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdb10ba6_5ad3f62a",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0553b42a_3a2529da",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T18:31:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdb10ba6_5ad3f62a",
+      "revId": "82768d74fe3f33eebaf4ef26cf42d77980043b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7073a53c_8ce7be45",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-09-20T22:51:35Z",
       "side": 1,
       "message": "Maybe add a link to the MSFT hardware offload filter definition",
+      "revId": "82768d74fe3f33eebaf4ef26cf42d77980043b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2c21a9f_6c5f2689",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T18:31:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7073a53c_8ce7be45",
       "revId": "82768d74fe3f33eebaf4ef26cf42d77980043b88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
