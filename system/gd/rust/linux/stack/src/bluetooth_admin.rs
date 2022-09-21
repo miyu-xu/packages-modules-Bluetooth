@@ -35,7 +35,7 @@ pub trait IBluetoothAdmin {
 }
 
 /// Information of the effects to a remote device by the admin policies
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Debug)]
 pub struct PolicyEffect {
     /// Array of services that are blocked by policy
     pub service_blocked: Vec<Uuid128Bit>,
@@ -87,10 +87,6 @@ impl BluetoothAdmin {
 
     pub fn set_adapter(&mut self, adapter: Arc<Mutex<Box<Bluetooth>>>) {
         self.adapter = Some(adapter.clone());
-
-        for device in adapter.lock().unwrap().get_bonded_devices() {
-            self.on_device_found(device);
-        }
     }
 
     fn get_blocked_services(&self, remote_uuids: &Vec<Uuid128Bit>) -> Vec<Uuid128Bit> {
