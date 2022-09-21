@@ -597,26 +597,17 @@ void LeAddressManager::OnCommandComplete(bluetooth::hci::CommandCompleteView vie
 }
 
 void LeAddressManager::check_cached_commands() {
-  LOG_ERROR("1");
   for (auto client : registered_clients_) {
-    LOG_ERROR("1.1");
     if (client.second != ClientState::PAUSED && !cached_commands_.empty()) {
-      LOG_ERROR("1.1.1");
       pause_registered_clients();
-      LOG_ERROR("1.1.2");
       return;
     }
   }
 
-  LOG_ERROR("2");
   if (cached_commands_.empty()) {
-    LOG_ERROR("2.1.1");
     resume_registered_clients();
-    LOG_ERROR("2.1.2");
   } else {
-    LOG_ERROR("2.2.1");
     handle_next_command();
-    LOG_ERROR("2.2.2");
   }
 }
 
