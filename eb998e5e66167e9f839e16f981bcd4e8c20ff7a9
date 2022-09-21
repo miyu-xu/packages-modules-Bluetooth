@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af56b1ec_09503f02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-09-21T22:15:15Z",
+      "side": 1,
+      "message": "I would like to see some additional QA testing done here to vet app impact + new automated tests before reviewing further.",
+      "revId": "eb998e5e66167e9f839e16f981bcd4e8c20ff7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
