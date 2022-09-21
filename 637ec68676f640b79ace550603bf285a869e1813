@@ -16,6 +16,24 @@
       "message": "I would move this module to `backends/rust/types.rs` as this is tied to the rust generation.",
       "revId": "637ec68676f640b79ace550603bf285a869e1813",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "046adf12_ca6a824b",
+        "filename": "tools/pdl/src/types.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-21T18:14:13Z",
+      "side": 1,
+      "message": "Good point! I somehow thought it would be more generic at first, but you\u0027re right that this is Rust specific already.",
+      "parentUuid": "99abc7ff_11fde434",
+      "revId": "637ec68676f640b79ace550603bf285a869e1813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
