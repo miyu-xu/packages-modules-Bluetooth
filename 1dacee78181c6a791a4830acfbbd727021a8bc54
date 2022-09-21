@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f942c1a_1b13c316",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-21T01:50:18Z",
+      "side": 1,
+      "message": "Fixed it with `advertiseDataToBytes`. Thank you.",
+      "parentUuid": "17dd040b_2fbe3702",
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ba5a30c_a383ba20",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-20T01:05:36Z",
       "side": 1,
       "message": "Does it include all the info to pass the if-statements of AdvertiseHelver.java?\n\ne.g.  if (!data.getServiceData().isEmpty()) (L147)\n  if (data.getServiceSolicitationUuids() !\u003d null) (L183), and so on.",
+      "range": {
+        "startLine": 52,
+        "startChar": 22,
+        "endLine": 52,
+        "endChar": 35
+      },
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df0fe328_768058b9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-21T01:50:18Z",
+      "side": 1,
+      "message": "Just added getServiceData, getServiceSolicitationUuids, and getTransportDiscoveryData. Thank you.",
+      "parentUuid": "3ba5a30c_a383ba20",
       "range": {
         "startLine": 52,
         "startChar": 22,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c83ce901_5052ba02",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-21T01:50:18Z",
+      "side": 1,
+      "message": "Testing long name as well. Thank you.",
+      "parentUuid": "200cf176_8f956b75",
+      "range": {
+        "startLine": 58,
+        "startChar": 29,
+        "endLine": 58,
+        "endChar": 43
+      },
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d70bc4b_32ab4db8",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-09-20T01:05:36Z",
       "side": 1,
       "message": "Could you calculate this instead?",
+      "range": {
+        "startLine": 62,
+        "startChar": 50,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "1dacee78181c6a791a4830acfbbd727021a8bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "609be417_8376572b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-09-21T01:50:18Z",
+      "side": 1,
+      "message": "I\u0027ve calculated this based on the input and expected output from the function including special characters. For the moment, I can\u0027t think of a way to calculate this? Please let me know if you have a good idea.",
+      "parentUuid": "6d70bc4b_32ab4db8",
       "range": {
         "startLine": 62,
         "startChar": 50,
