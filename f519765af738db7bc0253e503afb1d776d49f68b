@@ -873,6 +873,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eaa9177_7e6449c6",
+        "filename": "android/pandora/server/proto/pandora_experimental/l2cap.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-21T18:13:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fd5b08c2_985ab7ea",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24f42c71_84989c65",
@@ -1193,6 +1217,30 @@
       "side": 1,
       "message": "Sure, will `AcceptL2CAPConnection` be a good name for the new grpc?",
       "parentUuid": "292e4fc3_439008ea",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 87
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0edeed2e_e4a00752",
+        "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-21T18:13:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ce8cf53d_2aad30e4",
       "range": {
         "startLine": 80,
         "startChar": 8,
