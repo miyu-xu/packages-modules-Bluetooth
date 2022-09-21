@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5f983b_058b8fbc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2022-09-21T15:34:11Z",
+      "side": 1,
+      "message": "Please change this to\n\nTest: Test the CTS verifier cases",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 26
+      },
+      "revId": "66a763807aea4bf93f754cd71e7983b7f02154eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
