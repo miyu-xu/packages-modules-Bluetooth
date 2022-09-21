@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64482887_6c22196a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T18:04:49Z",
+      "side": 1,
+      "message": "nit: I would avoid using `*` so it\u0027s clear which function comes from where. Can we list down the imported names instead of `*`?\n\nOr if it\u0027s too many we can also import just `bt_utils::adv_parser`, and do `adv_parser::extract...` when calling.",
+      "range": {
+        "startLine": 15,
+        "startChar": 26,
+        "endLine": 15,
+        "endChar": 27
+      },
+      "revId": "f5b8d0de6330666d602ce92c2da50c96e610e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5644f066_331daa56",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T18:04:49Z",
+      "side": 1,
+      "message": "since this is public API and we encode the UUID into string, from the type it\u0027s not clear what the key of the map is. Let\u0027s add a comment explaining that the key is UUID encoded in what format.",
+      "revId": "f5b8d0de6330666d602ce92c2da50c96e610e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "636e4591_01b37b8b",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T18:04:49Z",
+      "side": 1,
+      "message": "nit: since index and length are basically information about a slice, returning a slice could look more natural:\n```\nfn get_location_by_type(bytes: \u0026[u8], data_type: u8) -\u003e \u0026[u8] {\n...\n```",
+      "range": {
+        "startLine": 101,
+        "startChar": 56,
+        "endLine": 101,
+        "endChar": 70
+      },
+      "revId": "f5b8d0de6330666d602ce92c2da50c96e610e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
