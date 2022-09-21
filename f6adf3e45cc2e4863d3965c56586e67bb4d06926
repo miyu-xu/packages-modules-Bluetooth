@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ed7cb3_f9c5e659",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-21T10:18:07Z",
+      "side": 1,
+      "message": "Why are we changing this ?",
+      "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
