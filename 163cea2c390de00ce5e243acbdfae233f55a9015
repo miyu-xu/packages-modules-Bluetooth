@@ -46,6 +46,30 @@
       },
       "revId": "163cea2c390de00ce5e243acbdfae233f55a9015",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5651f8c6_2342a4a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-09-21T09:33:38Z",
+      "side": 1,
+      "message": "Done(TEST the PTS for encrypted broadcast and unencrypted broadcast case, both got pass)",
+      "parentUuid": "bb62527f_f24bcaf5",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "163cea2c390de00ce5e243acbdfae233f55a9015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
