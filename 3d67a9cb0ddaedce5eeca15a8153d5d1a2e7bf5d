@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2abc696_55e603e7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "Break the lines for 100\u003e chars?",
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09f804cc_8656489d",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
         "patchSetId": 3
@@ -26,6 +43,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54d432c7_682af654",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "It is not needed since you are reassigning this variable in Line 56.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 8
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfbd9919_ea209ea0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 12
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eeb93cb2_53e4d08c",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
         "patchSetId": 3
@@ -37,6 +100,29 @@
       "writtenOn": "2022-09-21T07:30:18Z",
       "side": 1,
       "message": "more than 100 characters.\nplease fix.",
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39071bb5_7a805b44",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "Use spy(new ContextWrapper(InstrumentationRegistry.getInstrumentation().getTargetContext()));",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 104
+      },
       "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -82,6 +168,121 @@
         "startChar": 16,
         "endLine": 67,
         "endChar": 38
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd53722e_e09c1a94",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "What is this value? Can we assign a variable whose name explains what it is?",
+      "range": {
+        "startLine": 81,
+        "startChar": 17,
+        "endLine": 81,
+        "endChar": 21
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5eb4f5a_a98d4511",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "Reading the assertion does not seem to be intuitive. Why does the mID should have the _ID\u0027s length? Same for all others.\n\nInstead of making Cursor return the length of each key, how about creating some map something like:\n\n```\n\nMap\u003cString, BluetoothShareData\u003e nameToDataMap \u003d new HashMap\u003c\u003e();\n\nnameToDataMap.put(BluetoothShare._ID, new BluetoothShareData(0, idValue));\nnameToDataMap.put(BluetoothShare.STATUS, new BluetoothShareData(1, statusValue));\nnameToDataMap.put(BluetoothShare.DIRECTION, new BluetoothShareData(2, directionValue));\n...\n\ndoReturn(i -\u003e {\n  String name \u003d i.getArgument(0);\n  return nameToDataMap.get(name).mIndex;\n}).when(mCursor).getColumnIndexOrThrow(anyString());\n\n\ndoReturn(i -\u003e {\n  int index \u003d i.getArgument(0);\n  for (BluetoothShareData data : nameToDataMap.valueSet()) {\n    if (data.mIndex \u003d\u003d index) {\n      return data.mValue;\n    }\n  }\n}).when(mCursor).getInt(anyInt()); // Same for getLong/getString\n\n\n// Assertions. (You can also make helper functions to make code shorter)\nassertThat(info.mID).isEqualTo(nameToDataMap.get(BluetoothShare._ID).mValue);\nassertThat(info.mStatus).isEqualTo(nameToDataMap.get(BluetoothShare.STATUS).mValue);\n...\n\n\nclass BluetoothShareData {\n  int mIndex;\n  Object mValue;\n\n  BluetoothShareData(int index, Object value) {\n    // Store the values...\n  }\n}\n```",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 68
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56bfabbf_ebe32850",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "How about declaring a variable for this value?",
+      "range": {
+        "startLine": 129,
+        "startChar": 47,
+        "endLine": 129,
+        "endChar": 59
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51c5ea2c_7dd7730a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "How about using deviceHasNoSdCard()? (same for STATUS_ERROR_SDCARD_FULL)",
+      "range": {
+        "startLine": 152,
+        "startChar": 70,
+        "endLine": 152,
+        "endChar": 78
+      },
+      "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25f1a92d_49087adb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-21T07:34:43Z",
+      "side": 1,
+      "message": "How about:\n```\nUri uri \u003d Uri.parse(\"com.android.bluetooth.opp.BluetoothOppSendFileInfo@dfe15a6\");\nUri originalUri \u003d Uri.parse(\"com.android.bluetooth.opp.BluetoothOppSendFileInfo\");\n\nassertThat(BluetoothOppUtility.originalUri(uri)).isEqualTo(originalUri);\n```",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 81
       },
       "revId": "3d67a9cb0ddaedce5eeca15a8153d5d1a2e7bf5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
