@@ -69,6 +69,7 @@ def get_instances_with_configs(configs):
 class TopshimDevice(AsyncClosable):
     __adapter = None
     __gatt = None
+    __security = None
 
     async def __le_rand_wrapper(self, async_fn):
         await async_fn
@@ -79,9 +80,10 @@ class TopshimDevice(AsyncClosable):
     def __post(self, async_fn):
         asyncio.get_event_loop().run_until_complete(self.__le_rand_wrapper(async_fn))
 
-    def __init__(self, adapter, gatt):
+    def __init__(self, adapter, gatt, security):
         self.__adapter = adapter
         self.__gatt = gatt
+        self.__security = security
 
     async def close(self):
         """
@@ -89,6 +91,7 @@ class TopshimDevice(AsyncClosable):
         """
         await asyncSafeClose(self.__adapter)
         await asyncSafeClose(self.__gatt)
+        await asyncSafeClose(self.__security)
 
     def enable_page_scan(self):
         self.__post(self.__adapter.enable_page_scan())
@@ -141,3 +144,9 @@ class TopshimDevice(AsyncClosable):
 
     def le_rand(self):
         self.__post(self.__adapter.le_rand())
+
+    def remove_bonded_device(self, address):
+        """
+        Removes a bonding entry for a given address.
+        """
+        self.__post(self.__security.remove_bond(address))
