@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1f1b173_9fd0dc10",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "Why is it necessary to let clients control callback enable?",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2fcba92_15606815",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "I prefer to not expose this to clients to minimize client\u0027s responsibility. The daemon, on the other hand, may want to invoke refresh battery to external battery provider.",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598c1809_9fcda88a",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "Add a TODO to remind that battery information does not come just from BAS but can also be from other internal or external providers.",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a61a8e2c_afd4a35e",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "Components external to BatteryService better not knows about the difference between read and updated. Can we blend this into `on_battery_level_updated`?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 80
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70f1f1e6_a712953a",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "nit: For same name fields, use shorthand struct initialization:\n```\n   Self {\n     gatt,\n     ...\n   }\n```",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec937b5a_8763bf23",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "nit: could be written in more Rust idiomatic:\n```\nlet level: Vec\u003c_\u003e \u003d (0..4).zip(x.iter().cloned().chain(repeat(0))).map(|v| v.1).collect();\n\nlet level \u003d u32::from_le_bytes(level.try_into().unwrap());\n```",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 9
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dadc9ef3_418457ca",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "nit: just use `tx` for same-name field (also eliminate warning).",
+      "range": {
+        "startLine": 317,
+        "startChar": 15,
+        "endLine": 317,
+        "endChar": 21
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af86834a_7a8a0a6c",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "there are warnings about this spawn.await calls. Add `.ok()` behind or `let _ \u003d` in front.",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad184422_c719af70",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-21T22:28:51Z",
+      "side": 1,
+      "message": "Since this is a public trait for clients, let\u0027s not provide a default impl so clients have to implement.",
+      "range": {
+        "startLine": 510,
+        "startChar": 0,
+        "endLine": 511,
+        "endChar": 5
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
