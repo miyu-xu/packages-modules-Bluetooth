@@ -253,6 +253,30 @@
       },
       "revId": "babcc07f0aa7acb80ebc6c98f721fdd15d345edc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "342c25b5_42f4b5ab",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-21T16:00:30Z",
+      "side": 1,
+      "message": "How about a comment for each place it\u0027s called pointing you to the description.  Unless there are differences, it\u0027s too much.",
+      "parentUuid": "038d77d7_383045f3",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 67
+      },
+      "revId": "babcc07f0aa7acb80ebc6c98f721fdd15d345edc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
