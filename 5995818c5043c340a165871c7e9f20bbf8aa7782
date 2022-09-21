@@ -16,6 +16,24 @@
       "message": "There were some issues with base CL for sdp serialization wrt HID and HFP which we fixed with https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/system/bt/-/commit/b7807b5e919a9ce7334a740dfe70a7f3682c453a and https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/system/bt/-/commit/3d2502025d674032cc6914ebdb49cf5630ef6ad6. Can you confirm if these are also adapted in this CL.",
       "revId": "5995818c5043c340a165871c7e9f20bbf8aa7782",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1840aec3_d01e9f57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-21T20:24:45Z",
+      "side": 1,
+      "message": "Thanks you for this feedback.\nI set this comment as un-resolved and I will look at these patch",
+      "parentUuid": "1e9acf4d_5f7cc1f9",
+      "revId": "5995818c5043c340a165871c7e9f20bbf8aa7782",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
