@@ -34,6 +34,24 @@
       "parentUuid": "1e9acf4d_5f7cc1f9",
       "revId": "5995818c5043c340a165871c7e9f20bbf8aa7782",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72221b12_b2257225",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-21T23:35:39Z",
+      "side": 1,
+      "message": "The [first patch](https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/system/bt/-/commit/b7807b5e919a9ce7334a740dfe70a7f3682c453a) is now addressed with aosp/2226197 (next CL in the relation chain).\n\n---\n\nThe [second patch](https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/system/bt/-/commit/3d2502025d674032cc6914ebdb49cf5630ef6ad6) is a bit more complex to check but it looks like it\u0027s already handled due to :\n* aosp/1439953 move the error logic in another dedicated error method (sdp_on_l2cap_error)\n* aosp/1439085 replaced the internal call to the error method with callback from L2CAP (pL2CA_Error_Cb)\n* aosp/1439955 simplified the method to be a call to sdp_disconnect with SDP_CFG_FAILED\n\nThen sdp_disconnect will call L2CA_DisconnectReq, that should result in a call to sdp_disconnect_cfm that will finally process sdpu_process_pend_ccb with a new cid.\n\nI would gladly appreciate if you can double-check it.",
+      "parentUuid": "1840aec3_d01e9f57",
+      "revId": "5995818c5043c340a165871c7e9f20bbf8aa7782",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
