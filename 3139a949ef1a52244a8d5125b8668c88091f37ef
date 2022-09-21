@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e05ff48_8f51d4ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-21T20:20:58Z",
+      "side": 1,
+      "message": "code cleaned and suspend coroutine updated",
+      "revId": "3139a949ef1a52244a8d5125b8668c88091f37ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

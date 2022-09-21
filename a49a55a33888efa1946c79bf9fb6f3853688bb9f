@@ -16,6 +16,24 @@
       "message": "We can remove this condition as the assert before means that this is always true.",
       "revId": "a49a55a33888efa1946c79bf9fb6f3853688bb9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "355356e4_03580b91",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-21T20:20:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea5197b2_1072abc8",
+      "revId": "a49a55a33888efa1946c79bf9fb6f3853688bb9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
