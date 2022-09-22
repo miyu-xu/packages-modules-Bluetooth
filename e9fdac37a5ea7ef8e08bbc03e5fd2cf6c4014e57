@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93603c4d_4639a54a",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T17:57:00Z",
+      "side": 1,
+      "message": "use Iterator\u0027s `next()` function rather than a for loop if we only take the first one.",
+      "revId": "e9fdac37a5ea7ef8e08bbc03e5fd2cf6c4014e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b148831_9023f29f",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T17:57:00Z",
+      "side": 1,
+      "message": "nit: you don\u0027t have to use `for` to get items from an iterator. Because you are taking just the first one, you can use also use `iterate_adv_data(bytes, COMPLETE_LOCAL_NAME).next()`\n\nmore Rust power: you can use Iterator\u0027s `or` to chain `Option`s, something like:\n```\niterate_adv_data(bytes, COMPLETE_LOCAL_NAME).next()\n  .or(iterate_adv_data(...))\n  .map_or(\"\", |slice| ...)\n```",
+      "revId": "e9fdac37a5ea7ef8e08bbc03e5fd2cf6c4014e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be1149c9_c0e87cf4",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T17:57:00Z",
+      "side": 1,
+      "message": "You can also use more Rust power by coding this in functional way:\n```\n    return iterate_adv_data(bytes, MANUFACTURER_SPECIFIC_DATA)\n        .map(|slice| (u16::from_be_bytes(slice[0..2].try_into().unwrap()), slice[2..].to_vec()))\n        .collect()\n```\n\nCan you try this with `extract_service_data`?",
+      "revId": "e9fdac37a5ea7ef8e08bbc03e5fd2cf6c4014e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
