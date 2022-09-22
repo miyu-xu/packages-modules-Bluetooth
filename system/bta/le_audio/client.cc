@@ -3669,6 +3669,20 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
+  void NotifyUpperLayerGroupTurnedIdleDuringCall(int group_id) {
+    if (!osi_property_get_bool(kNotifyUpperLayerAboutGroupBeingInIdleWhenInCall,
+                               false)) {
+      return;
+    }
+    /* If group is inactive, phone is in call and Group is not having CIS
+     * connected, notify upper layer about it, so it can decide to create SCO if
+     * it is in the handover case
+     */
+    if (in_call_ && active_group_id_ == bluetooth::groups::kGroupUnknown) {
+      callbacks_->OnGroupStatus(group_id, GroupStatus::TURNED_IDLE_DURING_CALL);
+    }
+  }
+
   void StatusReportCb(int group_id, GroupStreamStatus status) {
     LOG_INFO("status: %d , audio_sender_state %s, audio_receiver_state %s",
              static_cast<int>(status),
@@ -3739,6 +3753,7 @@ class LeAudioClientImpl : public LeAudioClient {
         }
         CancelStreamingRequest();
         if (group) {
+          NotifyUpperLayerGroupTurnedIdleDuringCall(group->group_id_);
           HandlePendingAvailableContexts(group);
           HandlePendingDeviceDisconnection(group);
         }
@@ -3776,6 +3791,8 @@ class LeAudioClientImpl : public LeAudioClient {
   AudioState audio_sender_state_;
   /* Keep in call state. */
   bool in_call_;
+  static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleWhenInCall[] =
+      "persist.bluetooth.leaudio.notify.idle.when.in.call";
 
   /* Current stream configuration */
   LeAudioCodecConfiguration current_source_codec_config;
