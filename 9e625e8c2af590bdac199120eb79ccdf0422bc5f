@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5289822_f8b6ede6",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-22T17:21:32Z",
+      "side": 1,
+      "message": "Can you just add all your tests which are passing in this list (keep alphabetical order)?",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 7
+      },
+      "revId": "9e625e8c2af590bdac199120eb79ccdf0422bc5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
