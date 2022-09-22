@@ -675,6 +675,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de56e4a_331ade2a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-22T17:20:29Z",
+      "side": 1,
+      "message": "Got it, so let\u0027s keep it as is for now. Just create a tracking issue (P3) in go/pandora-todo.",
+      "parentUuid": "fd07401e_f932b8f0",
+      "range": {
+        "startLine": 158,
+        "startChar": 70,
+        "endLine": 159,
+        "endChar": 22
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a557aa1_4d86daac",
