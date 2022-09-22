@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002e7093_56f089d8",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1023115
+      },
+      "writtenOn": "2022-09-22T05:53:28Z",
+      "side": 1,
+      "message": "We used to earlier send L2CA_DisconnectRsp (l2cap_cid) in the https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/system/bt/-/commit/a33491c75c4caa3e1c16ece43908836ae8deaae3 earlier, but seems this API is now removed in AOSP code. How are we going to send l2cu_send_peer_disc_rsp now ?",
+      "revId": "bce6dc59843e83a925dc10e51ec14ab0e2ae31fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
