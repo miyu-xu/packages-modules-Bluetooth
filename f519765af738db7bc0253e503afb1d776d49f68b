@@ -653,6 +653,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd07401e_f932b8f0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-22T17:18:15Z",
+      "side": 1,
+      "message": "The error from java socket is \u0027java.io.IOException: read failed, socket might closed or timeout\u0027\nThis error is from [readAll](https://source.corp.google.com/android/packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;l\u003d815?q\u003d%22read%20failed,%20socket%20might%20closed%20or%20timeout%22\u0026sq\u003dp:%5Eandroid$)\nthe `readAll` function uses [read](https://source.corp.google.com/android/libcore/ojluni/src/main/java/java/io/InputStream.java;l\u003d278;rcl\u003dHEAD), which basically read some bytes from the socket. \nSo I think if we are going to add detailed error message, then we may need to change native code to give more error details",
+      "parentUuid": "eb615c1d_785e4c77",
+      "range": {
+        "startLine": 158,
+        "startChar": 70,
+        "endLine": 159,
+        "endChar": 22
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a557aa1_4d86daac",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
         "patchSetId": 5
