@@ -36,6 +36,24 @@ class AddressWithType final {
 
   explicit AddressWithType() : address_(Address::kEmpty), address_type_(AddressType::PUBLIC_DEVICE_ADDRESS) {}
 
+  static AddressWithType PeerDeviceAddress(Address address, PeerAddressType peer_address_type) {
+    switch (peer_address_type) {
+      case PeerAddressType::PUBLIC_DEVICE_OR_IDENTITY_ADDRESS:
+        return AddressWithType(address, AddressType::PUBLIC_DEVICE_ADDRESS);
+      case PeerAddressType::RANDOM_DEVICE_OR_IDENTITY_ADDRESS:
+        return AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
+    }
+  }
+
+  static AddressWithType PeerIdentityAddress(Address address, PeerAddressType peer_address_type) {
+    switch (peer_address_type) {
+      case PeerAddressType::PUBLIC_DEVICE_OR_IDENTITY_ADDRESS:
+        return AddressWithType(address, AddressType::PUBLIC_IDENTITY_ADDRESS);
+      case PeerAddressType::RANDOM_DEVICE_OR_IDENTITY_ADDRESS:
+        return AddressWithType(address, AddressType::RANDOM_IDENTITY_ADDRESS);
+    }
+  }
+
   inline Address GetAddress() const {
     return address_;
   }
