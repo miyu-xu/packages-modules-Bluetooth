@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6044bf7_041bbdb5",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T23:05:35Z",
+      "side": 1,
+      "message": "one more evolution to utilize Rust\u0027s power:\n```\nUuid::try_from(slice.get(0..16)?.to_vec())\n    .ok()\n    .map(|uuid| (uuid.to_string(), slice[16..].to_vec()))\n```\n\nUsing safe slice `.get` combined with `?` operator can make the code more concise since we don\u0027t have to explicitly check for the bound.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 13
+      },
+      "revId": "e67c98c44a7f62981c58d1a5a6605a76ffa3971a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "809e4b08_d95ba027",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T23:05:35Z",
+      "side": 1,
+      "message": "likewise, this can be more concise with safe slice `get`:\n\n```\nslice.get(0..2)?.try_into().ok().map(|be| (u16::from_be_bytes(be), slice[2..].to_vec()))\n```",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 13
+      },
+      "revId": "e67c98c44a7f62981c58d1a5a6605a76ffa3971a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
