@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16563bc2_31a31600",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-22T06:38:37Z",
+      "side": 0,
+      "message": "If advertising_api_type_ is AdvertisingApiType::ANDROID_HCI. num_instances_ increase by 1 here.",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 20
+      },
+      "revId": "41e0083e871bc40390c553fd68eb64d6f136364b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5008638_e9882aaa",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-22T06:38:37Z",
+      "side": 0,
+      "message": "number of LE_MULTI_ADVT start from 1, here cause heap-buffer-overflow when testing.",
+      "range": {
+        "startLine": 902,
+        "startChar": 6,
+        "endLine": 902,
+        "endChar": 34
+      },
+      "revId": "41e0083e871bc40390c553fd68eb64d6f136364b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
