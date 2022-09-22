@@ -27,6 +27,10 @@
 #include "types/raw_address.h"
 
 #include <base/logging.h>
+/** src and sink coexit, we can be src or sink any time. @{ */
+extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
+extern bool btif_av_both_enable(void);
+/** @} */
 
 namespace bluetooth {
 namespace avrcp {
@@ -120,7 +124,10 @@ void Device::VendorPacketHandler(uint8_t label,
         auto register_notification =
             Packet::Specialize<RegisterNotificationResponse>(pkt);
 
-        if (!register_notification->IsValid()) {
+        /** src and sink coexit, we can be src or sink any time. @{ */
+        if ((register_notification->GetEvent() == Event::VOLUME_CHANGED) &&
+              !register_notification->IsValid()) {
+        /** @} */
           DEVICE_LOG(WARNING) << __func__ << ": Request packet is not valid";
           auto response =
               RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),

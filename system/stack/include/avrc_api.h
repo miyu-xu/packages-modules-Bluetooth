@@ -474,8 +474,11 @@ extern uint16_t AVRC_CloseBrowse(uint8_t handle);
  *                  AVRC_BAD_HANDLE if handle is invalid.
  *
  *****************************************************************************/
+/** src and sink coexit, we can be src or sink any time.
+  * leagcy and new avrcp send the different packet format for VENDOR op @{ */
 extern uint16_t AVRC_MsgReq(uint8_t handle, uint8_t label, uint8_t ctype,
-                            BT_HDR* p_pkt);
+                            BT_HDR* p_pkt, bool is_new_avrcp);
+/** @} */
 
 /******************************************************************************
  *
@@ -804,5 +807,9 @@ extern bool AVRC_IsValidAvcType(uint8_t pdu_id, uint8_t avc_type);
  *
  ******************************************************************************/
 extern bool AVRC_IsValidPlayerAttr(uint8_t attr);
+
+/** src and sink coexit, we can be src or sink any time. @{ */
+extern void AVRC_UpdateCcb(RawAddress* addr, uint32_t company_id);
+/** @} */
 
 #endif /* AVRC_API_H */

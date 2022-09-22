@@ -117,7 +117,10 @@ const uint8_t bta_av_meta_caps_evt_ids_avrcp13[] = {
 
 /* This configuration to be used when we are Src + TG + CT( only for abs vol) */
 extern const tBTA_AV_CFG bta_av_cfg = {
-    BTA_AV_RC_COMP_ID, /* AVRCP Company ID */
+    /** src and sink coexit, we can be src or sink any time. @{ */
+    AVRC_CO_METADATA,       /* AVRCP Company ID */
+    /** @} */
+
     BTA_AV_RC_SUPF_CT, /* AVRCP controller categories */
     BTA_AV_RC_SUPF_TG, /* AVRCP target categories */
     6,                 /* AVDTP audio channel max data queue size */
@@ -156,7 +159,10 @@ extern const tBTA_AV_CFG bta_avk_cfg = {
 
 /* This configuration to be used when we are using AVRCP1.3 */
 extern const tBTA_AV_CFG bta_av_cfg_compatibility = {
-    BTA_AV_RC_COMP_ID, /* AVRCP Company ID */
+    /** src and sink coexit, we can be src or sink any time. @{ */
+    AVRC_CO_METADATA,       /* AVRCP Company ID */
+    /** @} */
+
     BTA_AV_RC_SUPF_CT, /* AVRCP controller categories */
     AVRC_SUPF_TG_CAT1, /* Only support CAT1 for AVRCP1.3 */
     6,                 /* AVDTP audio channel max data queue size */
