@@ -52,6 +52,24 @@
       "parentUuid": "1840aec3_d01e9f57",
       "revId": "5995818c5043c340a165871c7e9f20bbf8aa7782",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec6e441_7a986f0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1023115
+      },
+      "writtenOn": "2022-09-22T10:08:26Z",
+      "side": 1,
+      "message": "Thanks William for the details. Looks good at high level. Since we don\u0027t have way to test currently if all usecases work with the changes, if unit test results and manual results are ok, we can go ahead with the changes. If any issues seen during actual testing we can add new CL\u0027s.",
+      "parentUuid": "72221b12_b2257225",
+      "revId": "5995818c5043c340a165871c7e9f20bbf8aa7782",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
