@@ -34,6 +34,24 @@
       "parentUuid": "002e7093_56f089d8",
       "revId": "bce6dc59843e83a925dc10e51ec14ab0e2ae31fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f672cb_3fc46d7b",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1023115
+      },
+      "writtenOn": "2022-09-22T06:03:58Z",
+      "side": 1,
+      "message": "Thanks William. Still trying to understand the AOSP stack changes. Seems it was further refactored and that API itself was removed now. https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/l2cap/l2c_csm.cc;drc\u003d3f5b7b990532069aeab083024ba350ba69a82f1f;l\u003d1120",
+      "parentUuid": "bcbd7c8a_b738ed22",
+      "revId": "bce6dc59843e83a925dc10e51ec14ab0e2ae31fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
