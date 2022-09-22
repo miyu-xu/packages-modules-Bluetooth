@@ -409,7 +409,13 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
     config.min_interval = periodic_params.min_interval;
     config.properties = periodic_params.periodic_advertising_properties;
     config.enable = periodic_params.enable;
-    config.include_adi = periodic_params.include_adi;
+    if (periodic_params.include_adi &&
+        !bluetooth::shim::GetController()
+             ->SupportsBlePeriodicAdvertisingAdi()) {
+      config.include_adi = false;
+    } else {
+      config.include_adi = periodic_params.include_adi;
+    }
   }
 
   std::map<uint8_t, GetAddressCallback> address_callbacks_;

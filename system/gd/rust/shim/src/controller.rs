@@ -86,7 +86,8 @@ le_feature_getters! {
     connected_iso_stream_central,
     connected_iso_stream_peripheral,
     iso_broadcaster,
-    synchronized_receiver
+    synchronized_receiver,
+    ble_periodic_advertising_adi
 }
 
 macro_rules! opcode_getters {
