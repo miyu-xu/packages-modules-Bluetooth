@@ -16,6 +16,24 @@
       "message": "We used to earlier send L2CA_DisconnectRsp (l2cap_cid) in the https://git.codelinaro.org/clo/la/platform/vendor/qcom-opensource/system/bt/-/commit/a33491c75c4caa3e1c16ece43908836ae8deaae3 earlier, but seems this API is now removed in AOSP code. How are we going to send l2cu_send_peer_disc_rsp now ?",
       "revId": "bce6dc59843e83a925dc10e51ec14ab0e2ae31fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcbd7c8a_b738ed22",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-22T05:58:57Z",
+      "side": 1,
+      "message": "This has been refactor in [aosp/1434999](https://android-review.googlesource.com/c/platform/system/bt/+/1434999/).\nThe L2CA_DisconnectRsp is directly call from l2cap state machine",
+      "parentUuid": "002e7093_56f089d8",
+      "revId": "bce6dc59843e83a925dc10e51ec14ab0e2ae31fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
