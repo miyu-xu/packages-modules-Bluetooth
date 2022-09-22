@@ -16,6 +16,24 @@
       "message": "Need to check",
       "revId": "bf05370805b140d6bb9d3e4ee017624102c175c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a16d08f5_f9dac3af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-22T19:56:57Z",
+      "side": 1,
+      "message": "Manual testing pass.\nReady to be merged",
+      "parentUuid": "e3b1777b_21bb4e70",
+      "revId": "bf05370805b140d6bb9d3e4ee017624102c175c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
