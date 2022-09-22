@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c375024_866ee7fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-22T01:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d5f983b_058b8fbc",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 26
+      },
+      "revId": "66a763807aea4bf93f754cd71e7983b7f02154eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "222175d1_842b7c4d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a89b20c2_ef0d9c08",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-22T01:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "222175d1_842b7c4d",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 13
+      },
+      "revId": "66a763807aea4bf93f754cd71e7983b7f02154eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5f9b88e_ab5ebdd7",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-21T15:36:05Z",
       "side": 1,
       "message": "Please add one space between \"if\" and \"(\"",
+      "range": {
+        "startLine": 166,
+        "startChar": 4,
+        "endLine": 166,
+        "endChar": 7
+      },
+      "revId": "66a763807aea4bf93f754cd71e7983b7f02154eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce763d4e_16ae5223",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1591536
+      },
+      "writtenOn": "2022-09-22T01:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5f9b88e_ab5ebdd7",
       "range": {
         "startLine": 166,
         "startChar": 4,
