@@ -152,6 +152,30 @@
       },
       "revId": "f5b8d0de6330666d602ce92c2da50c96e610e447",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c92ef6_28e392d0",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-22T17:39:40Z",
+      "side": 1,
+      "message": "This makes sense and makes the code cleaner. Thanks! I forget how powerful rust can be 😊",
+      "parentUuid": "688bacde_5304c24d",
+      "range": {
+        "startLine": 101,
+        "startChar": 56,
+        "endLine": 101,
+        "endChar": 70
+      },
+      "revId": "f5b8d0de6330666d602ce92c2da50c96e610e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
