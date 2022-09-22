@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8bb8a27_5b2eda7d",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T09:33:13Z",
+      "side": 1,
+      "message": "Or we should skip it entirely, do we care about icon so much ?\nWe might want to wait for Sal to express his opinion on that too.",
+      "parentUuid": "1d845db0_ef943481",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 9
+      },
+      "revId": "6ca7dbc982bd0debd19ab6526a2e2f491497fb1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbf2e676_e564fe10",
         "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
         "patchSetId": 1
