@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6818425f_927b9541",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-22T16:56:09Z",
+      "side": 1,
+      "message": "That method doesn\u0027t seem to be invoked in my experiments with \"nRF connect\", so I propose that we stick with logging classic connections for now.",
+      "parentUuid": "47726335_d8917ad2",
+      "range": {
+        "startLine": 524,
+        "startChar": 7,
+        "endLine": 524,
+        "endChar": 76
+      },
+      "revId": "9fb75ddbadf3357a6f42e8f455034671274d8dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69e884b9_f9713daf",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-22T14:46:22Z",
       "side": 1,
       "message": "You will log just pairing that happens using numeric comparison method, not other methods.",
+      "range": {
+        "startLine": 293,
+        "startChar": 1,
+        "endLine": 293,
+        "endChar": 80
+      },
+      "revId": "9fb75ddbadf3357a6f42e8f455034671274d8dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a385c531_535d042a",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-22T16:56:09Z",
+      "side": 1,
+      "message": "It still logs pairing of headphones in my experiments.",
+      "parentUuid": "69e884b9_f9713daf",
       "range": {
         "startLine": 293,
         "startChar": 1,
