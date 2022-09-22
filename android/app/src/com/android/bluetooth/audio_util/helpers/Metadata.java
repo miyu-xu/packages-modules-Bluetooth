@@ -17,6 +17,7 @@
 package com.android.bluetooth.audio_util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.MediaDescription;
 import android.media.MediaMetadata;
 import android.media.browse.MediaBrowser.MediaItem;
@@ -57,12 +58,26 @@ public class Metadata implements Cloneable {
         if (!(o instanceof Metadata)) return false;
 
         final Metadata m = (Metadata) o;
+        if (!Objects.equals(mediaId, m.mediaId)) return false;
         if (!Objects.equals(title, m.title)) return false;
         if (!Objects.equals(artist, m.artist)) return false;
         if (!Objects.equals(album, m.album)) return false;
         if (!Objects.equals(trackNum, m.trackNum)) return false;
         if (!Objects.equals(numTracks, m.numTracks)) return false;
-        if (!Image.sameAs(image, m.image)) return false;
+        if (!Objects.equals(genre, m.genre)) return false;
+        if (!Objects.equals(duration, m.duration)) return false;
+
+        Bitmap thisImage = image.getImage();
+        Bitmap otherImage = m.image.getImage();
+        if (thisImage == otherImage) return true;
+        if (thisImage == null || otherImage == null) return false;
+        if (thisImage.getWidth() != otherImage.getWidth()) return false;
+        if (thisImage.getHeight() != otherImage.getHeight()) return false;
+        int w = thisImage.getWidth();
+        int h = thisImage.getHeight();
+        for (int i = 0; i < w && i < h; i++) {
+            if (thisImage.getPixel(i, i) != otherImage.getPixel(i, i)) return false;
+        }
         return true;
     }
 
