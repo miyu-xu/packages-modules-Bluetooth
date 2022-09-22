@@ -16,6 +16,52 @@
       "message": "jp",
       "revId": "33fead31e98e7e95259af665db4f51bf9133c28d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a23596c2_f04b05a5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T07:37:53Z",
+      "side": 1,
+      "message": "Should be final ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 12,
+        "endLine": 115,
+        "endChar": 18
+      },
+      "revId": "33fead31e98e7e95259af665db4f51bf9133c28d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e562952_cbf32f99",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T07:37:53Z",
+      "side": 1,
+      "message": "[SynchronizeOnNonFinalField] Synchronizing on non-final fields is not safe: if the field is ever updated, different threads may end up locking on different objects.\n        synchronized (mGroupLock) {\n                     ^\n    (see https://errorprone.info/bugpattern/SynchronizeOnNonFinalField)",
+      "range": {
+        "startLine": 1122,
+        "startChar": 12,
+        "endLine": 1122,
+        "endChar": 29
+      },
+      "revId": "33fead31e98e7e95259af665db4f51bf9133c28d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
