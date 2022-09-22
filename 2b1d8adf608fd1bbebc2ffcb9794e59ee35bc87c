@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d78df3f1_5e7babe5",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-22T22:12:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7b4d19a_4fab0d38",
+      "revId": "2b1d8adf608fd1bbebc2ffcb9794e59ee35bc87c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "813382ef_bcf098ab",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-22T21:58:44Z",
       "side": 1,
       "message": "filter_map and map seem redundant. You should use either filter and map or just filter_map, e.g:\n```\niterate_adv_data(...)\n  .filter_map(|slice| {\n    if slice.len() \u003c 2 { None } else {\n      Some((u16::from..., slice[2..].to_vec()))\n    }\n  }).collect()\n```\n\nSame for extract_service_data above.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 10
+      },
+      "revId": "2b1d8adf608fd1bbebc2ffcb9794e59ee35bc87c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40f50ee4_2fefe36a",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-22T22:12:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "813382ef_bcf098ab",
       "range": {
         "startLine": 90,
         "startChar": 0,
