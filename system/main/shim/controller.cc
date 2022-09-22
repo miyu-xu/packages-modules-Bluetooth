@@ -195,6 +195,8 @@ MAP_TO_GD(supports_connected_iso_stream_peripheral,
           SupportsBleConnectedIsochronousStreamPeripheral)
 MAP_TO_GD(supports_iso_broadcaster, SupportsBleIsochronousBroadcaster)
 MAP_TO_GD(supports_synchronized_receiver, SupportsBleSynchronizedReceiver)
+MAP_TO_GD(supports_ble_periodic_advertising_adi,
+          SupportsBlePeriodicAdvertisingAdi)
 
 #define FORWARD_IF_RUST(legacy, gd)                                      \
   static bool legacy(void) {                                             \
@@ -422,6 +424,8 @@ static const controller_t interface = {
         supports_connected_iso_stream_peripheral,
     .supports_ble_isochronous_broadcaster = supports_iso_broadcaster,
     .supports_ble_synchronized_receiver = supports_synchronized_receiver,
+    .supports_ble_periodic_advertising_adi =
+        supports_ble_periodic_advertising_adi,
 
     .get_acl_data_size_classic = get_acl_buffer_length,
     .get_acl_data_size_ble = get_le_buffer_length,
