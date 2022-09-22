@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6460e34_46eb2d0f",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-22T08:22:24Z",
+      "side": 1,
+      "message": "I used LOG_DEBUG on purpose, so it is not enabled by default.\n\nAnyways, Serialized happens only once per, when PACs are read, unless remote device updates its PACs, which is not happen usually.\n\nDeserialize also happens once, on BT enable when device is load from the storage.\n\nLet me move it to LOG_VERBOSE",
+      "parentUuid": "5779b282_e4297953",
+      "range": {
+        "startLine": 74,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 43
+      },
+      "revId": "8fb261a5480431a94d404d51c995856297980a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f7a07cb_936cd1bf",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26cf2d65_bd91f869",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-22T08:22:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f7a07cb_936cd1bf",
+      "range": {
+        "startLine": 122,
+        "startChar": 6,
+        "endLine": 122,
+        "endChar": 15
+      },
+      "revId": "8fb261a5480431a94d404d51c995856297980a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "280e0180_3c95db68",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-22T07:33:48Z",
       "side": 1,
       "message": "Is this necessary ?\nYou log in every if statement through this method anyway",
+      "range": {
+        "startLine": 302,
+        "startChar": 1,
+        "endLine": 302,
+        "endChar": 71
+      },
+      "revId": "8fb261a5480431a94d404d51c995856297980a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "961ea11a_60a82b85",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-22T08:22:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "280e0180_3c95db68",
       "range": {
         "startLine": 302,
         "startChar": 1,
