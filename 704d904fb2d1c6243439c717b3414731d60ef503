@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e5299c2_76312b52",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T04:43:58Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be binder.connect() to match with above comment?",
+      "range": {
+        "startLine": 341,
+        "startChar": 55,
+        "endLine": 341,
+        "endChar": 71
+      },
+      "revId": "704d904fb2d1c6243439c717b3414731d60ef503",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
