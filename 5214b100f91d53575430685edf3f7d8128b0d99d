@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4cb14a_ff8b7fef",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-09-22T23:51:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "820b3caf_6e1dd753",
+      "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0afbf339_86182399",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ad12f9_60217364",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-09-22T23:51:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0afbf339_86182399",
+      "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a37364ce_06b10bf6",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-09-22T21:12:37Z",
       "side": 1,
       "message": "Can we combine all of above into one write? Something like\n```\n    let mut data \u003d \"[Sysprops]\\nbluetooth.core.gap.le.privacy.enabled\u003d\".to_string();\n    data.push_str(if enabled {\"true\\n\"} else {\"false\\n\"});\n    \\\\ Then write to file\n```",
+      "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d175bb_525b4386",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-09-22T23:51:18Z",
+      "side": 1,
+      "message": "Thanks. Updated.",
+      "parentUuid": "a37364ce_06b10bf6",
       "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
