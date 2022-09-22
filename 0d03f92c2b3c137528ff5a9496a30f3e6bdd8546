@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae935b3_89eee6d5",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-22T22:04:34Z",
+      "side": 1,
+      "message": "It will be logged as part of failure reason, e.g. \"Connecting: TIMEOUT\".",
+      "parentUuid": "9ea12604_dcff3cbb",
+      "range": {
+        "startLine": 524,
+        "startChar": 46,
+        "endLine": 524,
+        "endChar": 56
+      },
+      "revId": "0d03f92c2b3c137528ff5a9496a30f3e6bdd8546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "217f4d4f_3534a189",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-22T20:29:05Z",
       "side": 1,
       "message": "You probably want to log success, so drop \"status !\u003d ErrorCode::SUCCESS\" from the check",
+      "range": {
+        "startLine": 604,
+        "startChar": 6,
+        "endLine": 604,
+        "endChar": 37
+      },
+      "revId": "0d03f92c2b3c137528ff5a9496a30f3e6bdd8546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1de7214_28afd518",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-22T22:04:34Z",
+      "side": 1,
+      "message": "Successful connection is logged from RemoteDevices.java, including for LE cases in my testing.",
+      "parentUuid": "217f4d4f_3534a189",
       "range": {
         "startLine": 604,
         "startChar": 6,
