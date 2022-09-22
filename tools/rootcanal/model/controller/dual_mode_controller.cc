@@ -2085,22 +2085,15 @@ void DualModeController::LeSetAdvertisingParameters(CommandView command) {
   auto command_view = gd_hci::LeSetAdvertisingParametersView::Create(
       gd_hci::LeAdvertisingCommandView::Create(command));
   ASSERT(command_view.IsValid());
-  auto peer_address = command_view.GetPeerAddress();
-  auto type = command_view.GetAdvertisingType();
-  if (type != bluetooth::hci::AdvertisingType::ADV_DIRECT_IND_HIGH &&
-      type != bluetooth::hci::AdvertisingType::ADV_DIRECT_IND_LOW) {
-    peer_address = Address::kEmpty;
-  }
-  link_layer_controller_.SetLeAdvertisingParameters(
+  ErrorCode status = link_layer_controller_.LeSetAdvertisingParameters(
       command_view.GetAdvertisingIntervalMin(),
-      command_view.GetAdvertisingIntervalMax(), type,
-      static_cast<uint8_t>(command_view.GetOwnAddressType()),
-      static_cast<uint8_t>(command_view.GetPeerAddressType()), peer_address,
+      command_view.GetAdvertisingIntervalMax(),
+      command_view.GetAdvertisingType(), command_view.GetOwnAddressType(),
+      command_view.GetPeerAddressType(), command_view.GetPeerAddress(),
       command_view.GetAdvertisingChannelMap(),
       command_view.GetAdvertisingFilterPolicy());
-
   send_event_(bluetooth::hci::LeSetAdvertisingParametersCompleteBuilder::Create(
-      kNumCommandPackets, ErrorCode::SUCCESS));
+      kNumCommandPackets, status));
 }
 
 void DualModeController::LeReadAdvertisingPhysicalChannelTxPower(
@@ -2121,11 +2114,11 @@ void DualModeController::LeSetAdvertisingData(CommandView command) {
   auto payload = command.GetPayload();
   auto data_size = *payload.begin();
   auto first_data = payload.begin() + 1;
-  std::vector<uint8_t> payload_bytes{first_data, first_data + data_size};
+  std::vector<uint8_t> advertising_data{first_data, first_data + data_size};
   ASSERT_LOG(command_view.IsValid(), "%s command.size() = %zu",
              gd_hci::OpCodeText(command.GetOpCode()).c_str(), command.size());
   ASSERT(command_view.GetPayload().size() == 32);
-  link_layer_controller_.SetLeAdvertisingData(payload_bytes);
+  link_layer_controller_.LeSetAdvertisingData(advertising_data);
   send_event_(bluetooth::hci::LeSetAdvertisingDataCompleteBuilder::Create(
       kNumCommandPackets, ErrorCode::SUCCESS));
 }
@@ -2135,7 +2128,7 @@ void DualModeController::LeSetScanResponseData(CommandView command) {
       gd_hci::LeAdvertisingCommandView::Create(command));
   ASSERT(command_view.IsValid());
   ASSERT(command_view.GetPayload().size() == 32);
-  link_layer_controller_.SetLeScanResponseData(std::vector<uint8_t>(
+  link_layer_controller_.LeSetScanResponseData(std::vector<uint8_t>(
       command_view.GetPayload().begin() + 1, command_view.GetPayload().end()));
   send_event_(bluetooth::hci::LeSetScanResponseDataCompleteBuilder::Create(
       kNumCommandPackets, ErrorCode::SUCCESS));
@@ -2149,7 +2142,7 @@ void DualModeController::LeSetAdvertisingEnable(CommandView command) {
   LOG_INFO("%s | LeSetAdvertisingEnable (%d)", GetAddress().ToString().c_str(),
            command_view.GetAdvertisingEnable() == gd_hci::Enable::ENABLED);
 
-  auto status = link_layer_controller_.SetLeAdvertisingEnable(
+  ErrorCode status = link_layer_controller_.LeSetAdvertisingEnable(
       command_view.GetAdvertisingEnable() == gd_hci::Enable::ENABLED);
   send_event_(bluetooth::hci::LeSetAdvertisingEnableCompleteBuilder::Create(
       kNumCommandPackets, status));
@@ -2899,8 +2892,6 @@ void DualModeController::LeSetExtendedScanResponseData(CommandView command) {
   auto command_view = gd_hci::LeSetExtendedScanResponseDataView::Create(
       gd_hci::LeAdvertisingCommandView::Create(command));
   ASSERT(command_view.IsValid());
-  link_layer_controller_.SetLeScanResponseData(std::vector<uint8_t>(
-      command_view.GetPayload().begin() + 1, command_view.GetPayload().end()));
   auto raw_command_view = gd_hci::LeSetExtendedScanResponseDataRawView::Create(
       gd_hci::LeAdvertisingCommandView::Create(command));
   ASSERT(raw_command_view.IsValid());
