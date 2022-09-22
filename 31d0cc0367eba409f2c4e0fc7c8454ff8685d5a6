@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6e7d3d_3f98a37e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-22T14:52:32Z",
+      "side": 1,
+      "message": "Hi Thomas, Hi David,\nThank you for helping in repo issues. I was able to commit the new files for review.\n\nThanks and Regards,\nSnehal",
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
