@@ -34,6 +34,24 @@
       "parentUuid": "c2f70d34_4063972f",
       "revId": "8a2e7559d3966ae075226486a7fb3bc89db537d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c00d7c78_a76d635f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-22T08:40:14Z",
+      "side": 1,
+      "message": "It seems that it was changed back",
+      "parentUuid": "2a76162c_69eb32c7",
+      "revId": "8a2e7559d3966ae075226486a7fb3bc89db537d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

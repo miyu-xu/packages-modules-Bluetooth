@@ -16,6 +16,24 @@
       "message": "Why do we need to set the minimum SDK requirement ?",
       "revId": "01ad99148ea63c22cfafe6909e08b67d277c6810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4b42ad_14527165",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-22T08:40:14Z",
+      "side": 1,
+      "message": "This was previously explained in the commit message.\n`Pandora: set minimum SDK requirement to avoid warnings from IDE, e.g. IntelliJ`\nBut the commit message was changed back.",
+      "parentUuid": "1c657779_ea57694d",
+      "revId": "01ad99148ea63c22cfafe6909e08b67d277c6810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
