@@ -16,6 +16,57 @@
       "message": "Hi, The DBus interface can be tested from command line by \"dbus-send --system --print-reply --dest\u003dorg.chromium.bluetooth.Manager /org/chromium/bluetooth/Manager org.chromium.bluetooth.Experimental.SetLLPrivacy boolean:true\".",
       "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820b3caf_6e1dd753",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-22T21:12:37Z",
+      "side": 1,
+      "message": "Prefer not to use raw unwrap() since it can panic. Perhaps `unwrap_or()`",
+      "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0afbf339_86182399",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-22T21:12:37Z",
+      "side": 1,
+      "message": "Same with `expect`. We should handle the error instead of panicking. Same applies below.",
+      "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a37364ce_06b10bf6",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-22T21:12:37Z",
+      "side": 1,
+      "message": "Can we combine all of above into one write? Something like\n```\n    let mut data \u003d \"[Sysprops]\\nbluetooth.core.gap.le.privacy.enabled\u003d\".to_string();\n    data.push_str(if enabled {\"true\\n\"} else {\"false\\n\"});\n    \\\\ Then write to file\n```",
+      "revId": "5214b100f91d53575430685edf3f7d8128b0d99d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
