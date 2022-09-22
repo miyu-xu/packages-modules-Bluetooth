@@ -204,6 +204,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82309eb3_74986e51",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-22T00:28:35Z",
+      "side": 1,
+      "message": "Prefer using just `address` and not `ptsAddress` since the Pandora server is not only made for PTS tests. I have a CL which actually replaces the existing `ptsAddress`.",
+      "range": {
+        "startLine": 346,
+        "startChar": 10,
+        "endLine": 346,
+        "endChar": 20
+      },
+      "revId": "3139a949ef1a52244a8d5125b8668c88091f37ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "831ba139_25ef9ee4",
         "filename": "android/pandora/server/src/com/android/pandora/L2cap.kt",
         "patchSetId": 7

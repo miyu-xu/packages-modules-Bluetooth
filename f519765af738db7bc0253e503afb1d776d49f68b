@@ -629,6 +629,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb615c1d_785e4c77",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-22T00:28:35Z",
+      "side": 1,
+      "message": "How is error raised? Would it be possible to add the error type in the corresponding exception? \n\nIf it looks too complicated, I\u0027m fine with merging it as is and we\u0027ll figure it out later.",
+      "parentUuid": "7a821430_fc35fb4b",
+      "range": {
+        "startLine": 158,
+        "startChar": 70,
+        "endLine": 159,
+        "endChar": 22
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a557aa1_4d86daac",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
         "patchSetId": 5
@@ -774,6 +798,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e680b1_24398985",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-22T00:28:35Z",
+      "side": 1,
+      "message": "The best would be to have a `WaitLEConnection` that either wait for the connection to be established, or retrieve (only once) a connection if it has already been established.\n\nBut I believe that the `GetLEConnection` is fine for now, so we can keep it as is for now 😊",
+      "parentUuid": "73685ca8_08ccd3b7",
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9473a94a_917d1f29",
@@ -787,6 +829,30 @@
       "writtenOn": "2022-09-15T09:54:01Z",
       "side": 1,
       "message": "We should maybe do like we do for BR/EDR, so specify that an Host must be connectable at startup.\n\nWhat do you think @girardier ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "f519765af738db7bc0253e503afb1d776d49f68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19989deb_afb8cf77",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-22T00:28:35Z",
+      "side": 1,
+      "message": "I am not sure about that because it implies to send advertisements by default, which may impact other tests. I\u0027m fine keeping this method for now.",
+      "parentUuid": "9473a94a_917d1f29",
       "range": {
         "startLine": 44,
         "startChar": 0,
