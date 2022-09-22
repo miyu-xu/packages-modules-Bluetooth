@@ -65,7 +65,7 @@ TEST_F(LeClearResolvingListTest, LegacyAdvertisingActive) {
             ErrorCode::SUCCESS);
 
   ASSERT_EQ(controller_.LeSetAddressResolutionEnable(true), ErrorCode::SUCCESS);
-  ASSERT_EQ(controller_.SetLeAdvertisingEnable(1), ErrorCode::SUCCESS);
+  ASSERT_EQ(controller_.LeSetAdvertisingEnable(true), ErrorCode::SUCCESS);
 
   ASSERT_EQ(controller_.LeClearResolvingList(), ErrorCode::COMMAND_DISALLOWED);
 }

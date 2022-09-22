@@ -76,6 +76,9 @@ struct ControllerProperties {
   uint8_t total_num_le_acl_data_packets{20};
   uint8_t total_num_iso_data_packets{12};
 
+  // LE Advertising Physical Channel TX Power (Vol 4, Part E § 7.8.6).
+  uint8_t le_advertising_physical_channel_tx_power{static_cast<uint8_t>(-10)};
+
   // Supported Codecs (Vol 4, Part E § 7.4.8).
   // Implements the [v1] version only.
   std::vector<uint8_t> supported_standard_codecs{0};
