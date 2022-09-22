@@ -16,6 +16,24 @@
       "message": "I would like to see some additional QA testing done here to vet app impact + new automated tests before reviewing further.",
       "revId": "eb998e5e66167e9f839e16f981bcd4e8c20ff7a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4d8bd3d_d60965a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-22T08:26:43Z",
+      "side": 1,
+      "message": "Thanks for taking a time.\nCould you help to understand how to add such test cases on this layer?\n\nI was looking into patch adding this code:\nhttps://android-review.googlesource.com/c/platform/system/bt/+/1713628\n\nAnd I could not find any new test case.",
+      "parentUuid": "af56b1ec_09503f02",
+      "revId": "eb998e5e66167e9f839e16f981bcd4e8c20ff7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
