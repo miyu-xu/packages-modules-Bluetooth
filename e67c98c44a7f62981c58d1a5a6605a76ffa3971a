@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f705dd8_808da7d3",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T23:09:21Z",
+      "side": 1,
+      "message": "maybe add a comment like:\n```\nIterates over Advertising Data\u0027s elements having the given AD type. `next()` returns the next slice of the advertising data element excluding the length and type.\n```",
+      "revId": "e67c98c44a7f62981c58d1a5a6605a76ffa3971a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6044bf7_041bbdb5",
         "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
         "patchSetId": 5
