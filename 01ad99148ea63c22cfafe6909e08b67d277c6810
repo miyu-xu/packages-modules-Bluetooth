@@ -34,6 +34,24 @@
       "parentUuid": "1c657779_ea57694d",
       "revId": "01ad99148ea63c22cfafe6909e08b67d277c6810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5753324_824db345",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-09-22T16:26:54Z",
+      "side": 1,
+      "message": "Ok, this doesn\u0027t impact anything else than a warning in an IDE then ?",
+      "parentUuid": "9b4b42ad_14527165",
+      "revId": "01ad99148ea63c22cfafe6909e08b67d277c6810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
