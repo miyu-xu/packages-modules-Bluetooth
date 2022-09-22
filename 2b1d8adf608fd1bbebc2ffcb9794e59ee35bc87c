@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7b4d19a_4fab0d38",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T21:58:44Z",
+      "side": 1,
+      "message": "Just one more rustification and then all these functions are nicely implemented in purely functional style:\n\nYou can use `flat_map` to flatten the nested iterator slice and their chunks into one iterator:\n```\n    iterate_adv_data(bytes, COMPLETE_LIST_128_BIT_SERVICE_UUIDS)\n        .flat_map(|slice| slice.chunks(16))\n        .filter_map(|chunk| Uuid::try_from(chunk.to_vec()).ok().map(|uuid| uuid.uu))\n        .collect()\n```\n\nThanks for rustifying!",
+      "revId": "2b1d8adf608fd1bbebc2ffcb9794e59ee35bc87c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813382ef_bcf098ab",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-22T21:58:44Z",
+      "side": 1,
+      "message": "filter_map and map seem redundant. You should use either filter and map or just filter_map, e.g:\n```\niterate_adv_data(...)\n  .filter_map(|slice| {\n    if slice.len() \u003c 2 { None } else {\n      Some((u16::from..., slice[2..].to_vec()))\n    }\n  }).collect()\n```\n\nSame for extract_service_data above.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 10
+      },
+      "revId": "2b1d8adf608fd1bbebc2ffcb9794e59ee35bc87c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
