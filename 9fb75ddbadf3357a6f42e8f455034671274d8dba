@@ -16,6 +16,29 @@
       "message": "Fixed rust build",
       "revId": "9fb75ddbadf3357a6f42e8f455034671274d8dba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69e884b9_f9713daf",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T14:46:22Z",
+      "side": 1,
+      "message": "You will log just pairing that happens using numeric comparison method, not other methods.",
+      "range": {
+        "startLine": 293,
+        "startChar": 1,
+        "endLine": 293,
+        "endChar": 80
+      },
+      "revId": "9fb75ddbadf3357a6f42e8f455034671274d8dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
