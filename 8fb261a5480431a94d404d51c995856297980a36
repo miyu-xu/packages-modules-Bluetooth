@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5779b282_e4297953",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T07:33:48Z",
+      "side": 1,
+      "message": "NIT: things like that should be  LOG_VERBOSE ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 43
+      },
+      "revId": "8fb261a5480431a94d404d51c995856297980a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f7a07cb_936cd1bf",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T07:33:48Z",
+      "side": 1,
+      "message": "Are all these logs really needed ? \n\nIt looks like you are making a huge logspam with this patch.\nPlease switch LOG_DEBUG to LOG_VERBOSE in this file.",
+      "range": {
+        "startLine": 122,
+        "startChar": 6,
+        "endLine": 122,
+        "endChar": 15
+      },
+      "revId": "8fb261a5480431a94d404d51c995856297980a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "280e0180_3c95db68",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T07:33:48Z",
+      "side": 1,
+      "message": "Is this necessary ?\nYou log in every if statement through this method anyway",
+      "range": {
+        "startLine": 302,
+        "startChar": 1,
+        "endLine": 302,
+        "endChar": 71
+      },
+      "revId": "8fb261a5480431a94d404d51c995856297980a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
