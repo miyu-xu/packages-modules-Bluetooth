@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07676acd_b98a9fcd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-22T07:46:01Z",
+      "side": 1,
+      "message": "accountItem",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d80c9de_11e47213",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-22T07:46:01Z",
+      "side": 1,
+      "message": "mAccountItem",
+      "range": {
+        "startLine": 91,
+        "startChar": 19,
+        "endLine": 91,
+        "endChar": 34
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f3f150a_39a79e0e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-22T07:46:01Z",
+      "side": 1,
+      "message": "mAccountItemWithoutUciData?",
+      "range": {
+        "startLine": 92,
+        "startChar": 19,
+        "endLine": 92,
+        "endChar": 34
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4c836b_6f111b95",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-22T07:46:01Z",
+      "side": 1,
+      "message": "mAccountItemWithDifferentType",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 93,
+        "endChar": 36
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
