@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a350f02d_10253778",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-22T12:21:09Z",
+      "side": 1,
+      "message": "Removed reference to private/android_logger.h and __android_log_security() since the header isn\u0027t available on some targets even with OS_ANDROID defined.",
+      "revId": "3c3009a54f931412945c6b6642aa40977260d946",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
