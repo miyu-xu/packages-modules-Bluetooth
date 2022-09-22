@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ea12604_dcff3cbb",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-22T20:55:24Z",
+      "side": 1,
+      "message": "Why do we log connecting if status !\u003d success?",
+      "range": {
+        "startLine": 524,
+        "startChar": 46,
+        "endLine": 524,
+        "endChar": 56
+      },
+      "revId": "0d03f92c2b3c137528ff5a9496a30f3e6bdd8546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "217f4d4f_3534a189",
         "filename": "system/gd/hci/hci_metrics_logging.cc",
         "patchSetId": 14
