@@ -33,6 +33,23 @@
       "message": "I trying to use chromeos-bt-codereviews and gwsq to dispatch the review, but something went wrong. Sorry for the inconvenience. Please take a look at this CL.",
       "revId": "92084495678042ebc50b28a54eac51d039aa8f3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e7f425_b509ab37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-09-22T06:42:39Z",
+      "side": 1,
+      "message": "Thanks for the quick fix and unittest!",
+      "revId": "92084495678042ebc50b28a54eac51d039aa8f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
