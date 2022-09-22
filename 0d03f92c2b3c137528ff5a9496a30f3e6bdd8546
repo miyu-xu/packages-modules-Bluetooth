@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01c96c69_b9b4f60f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131829
+      },
+      "writtenOn": "2022-09-22T20:01:19Z",
+      "side": 1,
+      "message": "Added logging of BLE connections.",
+      "revId": "0d03f92c2b3c137528ff5a9496a30f3e6bdd8546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
