@@ -3,6 +3,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "622e803f_3dde14da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "test_name",
+      "range": {
+        "startLine": 31,
+        "startChar": 45,
+        "endLine": 31,
+        "endChar": 49
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77665e8a_7fe8e3e3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "Why is it null?",
+      "range": {
+        "startLine": 36,
+        "startChar": 50,
+        "endLine": 36,
+        "endChar": 54
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e4b344c_1019b64d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "Q) Why not use some meaningful type something like EMAIL or MMS? Is there any reason?",
+      "range": {
+        "startLine": 37,
+        "startChar": 83,
+        "endLine": 37,
+        "endChar": 87
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "548c76cd_56642cc8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "What is a UCI? Is \"uci\" a valid string for UCI?",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 49
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fd85c6d_02f1a1ae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "ditto. What is UCI prefix?",
+      "range": {
+        "startLine": 39,
+        "startChar": 51,
+        "endLine": 39,
+        "endChar": 61
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9404e6f9_97d2e50c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "The variable names (one, two, three) does not explain their difference.\nDue to that, people should read assertion and the creation\n\nHow about creating instance in each test, and test all methods for the instance?\n\n```\npublic void constructor() {\n  ...\n}\n\npublic void constructor_withoutUciPrefix() {\n  ...\n  \n}\n\npublic void constructor_withoutUci() {\n  ...\n}\n```",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "07676acd_b98a9fcd",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
         "patchSetId": 1
@@ -19,6 +157,52 @@
         "startChar": 32,
         "endLine": 58,
         "endChar": 44
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0edd1ac5_71f87b52",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "local variable does not have prefix \u0027m\u0027. Same for others",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19b95115_4318316c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "If there is no implementation of hashCode(), the value is not fixed. It can vary every time.\n\nhttps://stackoverflow.com/a/63320316",
+      "range": {
+        "startLine": 86,
+        "startChar": 58,
+        "endLine": 86,
+        "endChar": 67
       },
       "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -88,6 +272,29 @@
         "startChar": 19,
         "endLine": 93,
         "endChar": 36
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c320d2c_1853d680",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-22T07:46:36Z",
+      "side": 1,
+      "message": "Create two instances in this method and compare them. It will improve readibility.\nSame as below.",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 43
       },
       "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
