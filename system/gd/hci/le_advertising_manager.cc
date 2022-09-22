@@ -431,6 +431,9 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     if (!config.periodic_data.empty()) {
       set_periodic_parameter(id, config.periodic_advertising_parameters);
       set_periodic_data(id, config.periodic_data);
+      if (config.periodic_advertising_parameters.include_adi && !controller_->SupportsBlePeriodicAdvertisingAdi()) {
+        config.periodic_advertising_parameters.include_adi = false;
+      }
       enable_periodic_advertising(
           id, config.periodic_advertising_parameters.enable, config.periodic_advertising_parameters.include_adi);
     }
