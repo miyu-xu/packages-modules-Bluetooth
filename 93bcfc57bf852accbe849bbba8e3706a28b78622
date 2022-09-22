@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d10b336e_32af565c",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-22T20:49:14Z",
+      "side": 1,
+      "message": "Can we have a meaningful failure here?",
+      "range": {
+        "startLine": 598,
+        "startChar": 21,
+        "endLine": 598,
+        "endChar": 26
+      },
+      "revId": "93bcfc57bf852accbe849bbba8e3706a28b78622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
