@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47726335_d8917ad2",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-22T14:48:12Z",
+      "side": 1,
+      "message": "I think you would log just classic connections here ,but I\u0027m not 100% sure.\nYou should probably also log in log_link_layer_connection_event_le_meta",
+      "range": {
+        "startLine": 524,
+        "startChar": 7,
+        "endLine": 524,
+        "endChar": 76
+      },
+      "revId": "9fb75ddbadf3357a6f42e8f455034671274d8dba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "69e884b9_f9713daf",
         "filename": "system/gd/os/android/metrics.cc",
         "patchSetId": 12
