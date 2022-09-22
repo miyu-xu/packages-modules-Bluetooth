@@ -219,26 +219,49 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
   tAVCT_CCB* p_ccb = &avct_cb.ccb[0];
   int i;
   bool bind = false;
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  bool is_originater = false;
 
   for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
+    if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb) && p_ccb->cc.role == AVCT_INT) {
+      AVCT_TRACE_DEBUG("%s, find int handle %d", __func__, i);
+      is_originater = true;
+    }
+  }
+
+  p_ccb = &avct_cb.ccb[0];
+  /** @} */
+  for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
     /* if ccb allocated and */
-    if (p_ccb->allocated) {
+    /** M: to avoid avctp collision, make sure the collision can be checked @{ */
+    AVCT_TRACE_DEBUG("Here open_ind, %d ccb to lcb, alloc %d, lcb %p, role %d, pid 0x%x",
+                 i, p_ccb->allocated, p_ccb->p_lcb, p_ccb->cc.role, p_ccb->cc.pid);
+    if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb)) {
       /* if bound to this lcb send connect confirm event */
-      if (p_ccb->p_lcb == p_lcb) {
+      if (p_ccb->cc.role == AVCT_INT) {
+    /** @} */
         bind = true;
         L2CA_SetTxPriority(p_lcb->ch_lcid, L2CAP_CHNL_PRIORITY_HIGH);
         p_ccb->cc.p_ctrl_cback(avct_ccb_to_idx(p_ccb), AVCT_CONNECT_CFM_EVT, 0,
                                &p_lcb->peer_addr);
       }
       /* if unbound acceptor and lcb doesn't already have a ccb for this PID */
-      else if ((p_ccb->p_lcb == NULL) && (p_ccb->cc.role == AVCT_ACP) &&
-               (avct_lcb_has_pid(p_lcb, p_ccb->cc.pid) == NULL)) {
-        /* bind ccb to lcb and send connect ind event */
-        bind = true;
-        p_ccb->p_lcb = p_lcb;
-        L2CA_SetTxPriority(p_lcb->ch_lcid, L2CAP_CHNL_PRIORITY_HIGH);
-        p_ccb->cc.p_ctrl_cback(avct_ccb_to_idx(p_ccb), AVCT_CONNECT_IND_EVT, 0,
-                               &p_lcb->peer_addr);
+      /** M: to avoid avctp collision, make sure the collision can be checked @{ */
+      else if ((p_ccb->cc.role == AVCT_ACP) &&
+               avct_lcb_has_pid(p_lcb, p_ccb->cc.pid)) {
+        /* bind ccb to lcb and send connect ind event  */
+        /** src and sink coexit, we can be src or sink any time. @{ */
+        if (is_originater) {
+          AVCT_TRACE_ERROR("%s, int exist, unbind acp handle:%d", __func__, i);
+          p_ccb->p_lcb = NULL;
+        } else {
+          bind = true;
+          p_ccb->p_lcb = p_lcb;
+          L2CA_SetTxPriority(p_lcb->ch_lcid, L2CAP_CHNL_PRIORITY_HIGH);
+          p_ccb->cc.p_ctrl_cback(avct_ccb_to_idx(p_ccb), AVCT_CONNECT_IND_EVT, 0,
+                                 &p_lcb->peer_addr);
+        }
+        /** @} */
       }
     }
   }
@@ -589,7 +612,11 @@ void avct_lcb_msg_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
   uint8_t label, type, cr_ipid;
   uint16_t pid;
   tAVCT_CCB* p_ccb;
-
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  int i = 0;
+  bool bind = false;
+  bool buf_used = false;
+  /** @} */
   /* this p_buf is to be reported through p_msg_cback. The layer_specific
    * needs to be set properly to indicate that it is received through
    * control channel */
@@ -616,15 +643,36 @@ void avct_lcb_msg_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
 
   /* parse and lookup PID */
   BE_STREAM_TO_UINT16(pid, p);
-  p_ccb = avct_lcb_has_pid(p_lcb, pid);
-  if (p_ccb) {
-    /* PID found; send msg up, adjust bt hdr and call msg callback */
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  p_ccb = &avct_cb.ccb[0];
+  int p_buf_len = AVRC_CMD_BUF_SIZE;
+  BT_HDR* p_bak_buf = NULL;
+  if (p_data->p_buf) {
     p_data->p_buf->offset += AVCT_HDR_LEN_SINGLE;
     p_data->p_buf->len -= AVCT_HDR_LEN_SINGLE;
-    (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
-                             p_data->p_buf);
-    return;
+    p_buf_len =  BT_HDR_SIZE + p_data->p_buf->offset + p_data->p_buf->len;
+    p_bak_buf = (BT_HDR*)osi_malloc(p_buf_len);
+    memcpy(p_bak_buf, p_data->p_buf, p_buf_len);
   }
+  for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
+    if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb) && (p_ccb->cc.pid == pid)) {
+      /* PID found; send msg up, adjust bt hdr and call msg callback */
+      bind = true;
+      if (p_data->p_buf && !buf_used) {
+        buf_used = true;
+        (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
+                                 p_data->p_buf);
+      } else {
+        BT_HDR* p_tmp_buf = (BT_HDR*)osi_malloc(p_buf_len);
+        memcpy(p_tmp_buf, p_bak_buf, p_buf_len);
+        (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
+                                 p_tmp_buf);
+      }
+    }
+  }
+  osi_free_and_reset((void**)&p_bak_buf);
+  if (bind)  return;
+  /** @} */
 
   /* PID not found; drop message */
   AVCT_TRACE_WARNING("No ccb for PID=%x", pid);

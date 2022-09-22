@@ -613,3 +613,16 @@ void BTA_AvMetaCmd(uint8_t rc_handle, uint8_t label, tBTA_AV_CMD cmd_code,
 
   bta_sys_sendmsg(p_buf);
 }
+/** src and sink coexit, we can be src or sink any time. @{ */
+void BTA_AvSetPeerSep(const RawAddress& bdaddr, uint8_t sep) {
+  tBTA_AV_API_PEER_SEP *p_buf =
+      (tBTA_AV_API_PEER_SEP *)osi_malloc(sizeof(tBTA_AV_API_PEER_SEP));
+
+  p_buf->hdr.event = BTA_AV_API_PEER_SEP_EVT;
+  p_buf->addr = bdaddr;
+  p_buf->sep = sep;
+
+  bta_sys_sendmsg(p_buf);
+}
+/** @} */
+
