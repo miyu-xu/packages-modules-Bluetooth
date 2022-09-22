@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c622293_ee8eae4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2022-09-22T02:23:14Z",
+      "side": 1,
+      "message": "I refined the commit message for you to meet the generic commit message request.",
+      "revId": "2709e35b63b2ba010c1944bb5fc7497fbab8e284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
