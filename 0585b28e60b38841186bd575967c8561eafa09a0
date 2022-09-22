@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f591f525_59ce2b02",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-22T19:04:07Z",
+      "side": 1,
+      "message": "Good question. Originally I think it was just because GATT does it that way. I think here it doesn\u0027t serve much purpose unless we add the address as an argument to enable filtering. I think we could remove this for now and add it back later if we think it will be of use.",
+      "parentUuid": "f1f1b173_9fd0dc10",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2fcba92_15606815",
         "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
         "patchSetId": 12
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-21T22:28:51Z",
       "side": 1,
       "message": "I prefer to not expose this to clients to minimize client\u0027s responsibility. The daemon, on the other hand, may want to invoke refresh battery to external battery provider.",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41ab664d_62fa1809",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-22T19:04:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2fcba92_15606815",
       "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8fd223_799365e2",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-22T19:04:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "598c1809_9fcda88a",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a61a8e2c_afd4a35e",
@@ -65,6 +119,30 @@
       "writtenOn": "2022-09-21T22:28:51Z",
       "side": 1,
       "message": "Components external to BatteryService better not knows about the difference between read and updated. Can we blend this into `on_battery_level_updated`?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 80
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51772976_548384fd",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-22T19:04:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a61a8e2c_afd4a35e",
       "range": {
         "startLine": 93,
         "startChar": 0,
@@ -168,6 +246,30 @@
       "writtenOn": "2022-09-21T22:28:51Z",
       "side": 1,
       "message": "Since this is a public trait for clients, let\u0027s not provide a default impl so clients have to implement.",
+      "range": {
+        "startLine": 510,
+        "startChar": 0,
+        "endLine": 511,
+        "endChar": 5
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2ca979_20589b9a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-22T19:04:07Z",
+      "side": 1,
+      "message": "Do you mean just this method (and maybe `on_client_registered` as well) or all of them? I gave them default implementations because its pretty annoying to have to implement a bunch of callbacks that aren\u0027t relevant to one\u0027s use case just to get started so I think there\u0027s some value in it, though I can see a case for making a few mandatory.",
+      "parentUuid": "ad184422_c719af70",
       "range": {
         "startLine": 510,
         "startChar": 0,
