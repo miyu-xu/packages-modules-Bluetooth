@@ -78,7 +78,7 @@ TEST_F(LeAddDeviceToResolvingListTest, ScanningActive) {
 
 TEST_F(LeAddDeviceToResolvingListTest, LegacyAdvertisingActive) {
   ASSERT_EQ(controller_.LeSetAddressResolutionEnable(true), ErrorCode::SUCCESS);
-  ASSERT_EQ(controller_.SetLeAdvertisingEnable(1), ErrorCode::SUCCESS);
+  ASSERT_EQ(controller_.LeSetAdvertisingEnable(true), ErrorCode::SUCCESS);
 
   ASSERT_EQ(controller_.LeAddDeviceToResolvingList(
                 AddressType::PUBLIC_DEVICE_ADDRESS, Address{1},
