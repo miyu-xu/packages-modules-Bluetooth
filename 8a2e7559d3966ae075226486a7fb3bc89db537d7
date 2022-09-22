@@ -52,6 +52,24 @@
       "parentUuid": "2a76162c_69eb32c7",
       "revId": "8a2e7559d3966ae075226486a7fb3bc89db537d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4aa500b_a0ad7c35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-22T16:44:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c00d7c78_a76d635f",
+      "revId": "8a2e7559d3966ae075226486a7fb3bc89db537d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

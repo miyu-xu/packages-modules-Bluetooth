@@ -52,6 +52,24 @@
       "parentUuid": "9b4b42ad_14527165",
       "revId": "01ad99148ea63c22cfafe6909e08b67d277c6810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c70233_4ea6df6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-09-22T16:44:44Z",
+      "side": 1,
+      "message": "Yes, no impact on anything else, and it can also let users know what kind of minimum API they need to have. For example, the [getRemoteLeDevice](https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#getRemoteLeDevice(java.lang.String,%20int)) is added in API level 33, and it is used in out `Host.kt`",
+      "parentUuid": "f5753324_824db345",
+      "revId": "01ad99148ea63c22cfafe6909e08b67d277c6810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
