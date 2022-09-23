@@ -22,6 +22,7 @@
 #include <algorithm>
 #include <bitset>
 #include <chrono>
+#include <optional>
 #include <sstream>
 
 #include "common/circular_buffer.h"
@@ -79,13 +80,6 @@ constexpr size_t kDefaultBtSnoozMaxPayloadBytesPerPacket =
 using namespace std::chrono_literals;
 constexpr std::chrono::hours kBtSnoozLogLifeTime = 12h;
 constexpr std::chrono::hours kBtSnoozLogDeleteRepeatingAlarmInterval = 1h;
-
-std::string get_btsnoop_log_path(std::string log_dir, bool filtered) {
-  if (filtered) {
-    log_dir.append(".filtered");
-  }
-  return log_dir;
-}
 
 std::string get_last_log_path(std::string log_file_path) {
   return log_file_path.append(".last");
@@ -225,28 +219,24 @@ SnoopLogger::SnoopLogger(
     LOG_INFO("Filtered Snoop Logs enabled");
     is_enabled_ = true;
     is_filtered_ = true;
-    // delete unfiltered logs
-    delete_btsnoop_files(get_btsnoop_log_path(snoop_log_path_, false));
+    // delete unfiltered logs because we are now using filtered logs
+    delete_btsnoop_files(snoop_log_path_);
     // delete snooz logs
     delete_btsnoop_files(snooz_log_path_);
+    snoop_log_path_.append(".filtered");
   } else if (btsnoop_mode == kBtSnoopLogModeFull) {
     LOG_INFO("Snoop Logs fully enabled");
     is_enabled_ = true;
-    is_filtered_ = false;
-    // delete filtered logs
-    delete_btsnoop_files(get_btsnoop_log_path(snoop_log_path_, true));
+    // delete filtered logs because we are now using unfiltered logs
+    delete_btsnoop_files(snoop_log_path_ + ".filtered");
     // delete snooz logs
     delete_btsnoop_files(snooz_log_path_);
   } else {
     LOG_INFO("Snoop Logs disabled");
-    is_enabled_ = false;
-    is_filtered_ = false;
     // delete both filtered and unfiltered logs
-    delete_btsnoop_files(get_btsnoop_log_path(snoop_log_path_, true));
-    delete_btsnoop_files(get_btsnoop_log_path(snoop_log_path_, false));
+    delete_btsnoop_files(snoop_log_path_);
+    delete_btsnoop_files(snoop_log_path_ + ".filtered");
   }
-  // Add ".filtered" extension if necessary
-  snoop_log_path_ = get_btsnoop_log_path(snoop_log_path_, is_filtered_);
 }
 
 void SnoopLogger::CloseCurrentSnoopLogFile() {
@@ -434,7 +424,7 @@ size_t SnoopLogger::GetMaxPacketsPerFile() {
   auto max_packets_per_file = kDefaultBtSnoopMaxPacketsPerFile;
   {
     auto max_packets_per_file_prop = os::GetSystemProperty(kBtSnoopMaxPacketsPerFileProperty);
-    if (max_packets_per_file_prop) {
+    if (max_packets_per_file_prop.has_value()) {
       auto max_packets_per_file_number = common::Uint64FromString(max_packets_per_file_prop.value());
       if (max_packets_per_file_number) {
         max_packets_per_file = max_packets_per_file_number.value();
@@ -472,7 +462,7 @@ std::string SnoopLogger::GetBtSnoopMode() {
   std::string btsnoop_mode = default_mode;
   {
     auto btsnoop_mode_prop = os::GetSystemProperty(kBtSnoopLogModeProperty);
-    if (btsnoop_mode_prop) {
+    if (btsnoop_mode_prop.has_value()) {
       btsnoop_mode = std::move(btsnoop_mode_prop.value());
     }
   }
