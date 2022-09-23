@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "997d5c3c_d9585350",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T07:41:16Z",
+      "side": 1,
+      "message": "test.package.name?",
+      "range": {
+        "startLine": 32,
+        "startChar": 53,
+        "endLine": 32,
+        "endChar": 65
+      },
+      "revId": "2b809013c8562276a54516a70d3c74950d6b2384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c56214a4_c536d4e3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T07:41:16Z",
+      "side": 1,
+      "message": "minor, not sure) test_provider_authority? or just authority?",
+      "range": {
+        "startLine": 34,
+        "startChar": 59,
+        "endLine": 34,
+        "endChar": 77
+      },
+      "revId": "2b809013c8562276a54516a70d3c74950d6b2384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ccc6ea_89101275",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T07:41:16Z",
+      "side": 1,
+      "message": "Instead of this comment, replacing `null` in L56 with `/*id\u003d*/null` would be simpler.",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "2b809013c8562276a54516a70d3c74950d6b2384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "027305ff_b4b8eb56",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T07:41:16Z",
+      "side": 1,
+      "message": "minor) equals_returnFalse_whenTypesAreDifferent",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 55
+      },
+      "revId": "2b809013c8562276a54516a70d3c74950d6b2384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "231b4c77_8f6678fb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T07:41:16Z",
+      "side": 1,
+      "message": "minor) equals_returnTrue_evenWhenUcisAreDifferent?",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 54
+      },
+      "revId": "2b809013c8562276a54516a70d3c74950d6b2384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
