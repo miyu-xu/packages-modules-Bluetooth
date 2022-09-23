@@ -472,6 +472,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ccfa073_486b6994",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T07:28:06Z",
+      "side": 1,
+      "message": "I don\u0027t know the reason, but .hashCode() is unavailable and is ending up in failing builds. I\u0027ll remove the comparing the value of hashcode() for now and look into this later :(",
+      "parentUuid": "b65bb5fe_eefe5558",
+      "range": {
+        "startLine": 86,
+        "startChar": 58,
+        "endLine": 86,
+        "endChar": 67
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d80c9de_11e47213",
