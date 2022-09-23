@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb2b8dc9_bf0084d3",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-23T00:19:31Z",
+      "side": 1,
+      "message": "I think we also need to return if path.parent() returns none. Otherwise the write below might fail if we didn\u0027t successfully get the parent. Or maybe we should just start with PATH pointing to \"/var/lib/bluetooth/sysprops.conf.d\" and build the file from there.",
+      "revId": "c2142f72382f5ff882f23d0e1d234c3072b28008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
