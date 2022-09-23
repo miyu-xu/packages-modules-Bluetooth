@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a875916_33e55044",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "622e803f_3dde14da",
+      "range": {
+        "startLine": 31,
+        "startChar": 45,
+        "endLine": 31,
+        "endChar": 49
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77665e8a_7fe8e3e3",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-22T07:46:36Z",
       "side": 1,
       "message": "Why is it null?",
+      "range": {
+        "startLine": 36,
+        "startChar": 50,
+        "endLine": 36,
+        "endChar": 54
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0136849_4cc3e38d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Fixed to actual drawable object.",
+      "parentUuid": "77665e8a_7fe8e3e3",
       "range": {
         "startLine": 36,
         "startChar": 50,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa8985d5_3d5b7739",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Changed to EMAIL.",
+      "parentUuid": "7e4b344c_1019b64d",
+      "range": {
+        "startLine": 37,
+        "startChar": 83,
+        "endLine": 37,
+        "endChar": 87
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "548c76cd_56642cc8",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6828221c_e0f02800",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Left as it is since it is not used in any logic other than getter in this test.",
+      "parentUuid": "548c76cd_56642cc8",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 49
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fd85c6d_02f1a1ae",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-09-22T07:46:36Z",
       "side": 1,
       "message": "ditto. What is UCI prefix?",
+      "range": {
+        "startLine": 39,
+        "startChar": 51,
+        "endLine": 39,
+        "endChar": 61
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "023b4895_50467f1a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Left as it is since it is not used in any logic other than getter in this test.",
+      "parentUuid": "8fd85c6d_02f1a1ae",
       "range": {
         "startLine": 39,
         "startChar": 51,
@@ -163,6 +283,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e75f10_291b94ae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Got it. Made the constructor private and only tested create.",
+      "parentUuid": "1db58be7_c41157f2",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07676acd_b98a9fcd",
@@ -199,6 +343,54 @@
       "writtenOn": "2022-09-22T07:46:36Z",
       "side": 1,
       "message": "local variable does not have prefix \u0027m\u0027. Same for others",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b92405b_51e5dc2a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "0edd1ac5_71f87b52",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d488af94_fa05eae2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "07676acd_b98a9fcd",
       "range": {
         "startLine": 58,
         "startChar": 32,
@@ -256,6 +448,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b65bb5fe_eefe5558",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Thanks for the comment. I removed the test and compared two hash codes for an equal object.",
+      "parentUuid": "b1166726_b46cf183",
+      "range": {
+        "startLine": 86,
+        "startChar": 58,
+        "endLine": 86,
+        "endChar": 67
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d80c9de_11e47213",
@@ -269,6 +485,30 @@
       "writtenOn": "2022-09-22T07:46:01Z",
       "side": 1,
       "message": "mAccountItem",
+      "range": {
+        "startLine": 91,
+        "startChar": 19,
+        "endLine": 91,
+        "endChar": 34
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0440574c_fc4604dc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "1d80c9de_11e47213",
       "range": {
         "startLine": 91,
         "startChar": 19,
@@ -302,6 +542,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "448da6b7_a485e48d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "3f3f150a_39a79e0e",
+      "range": {
+        "startLine": 92,
+        "startChar": 19,
+        "endLine": 92,
+        "endChar": 34
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce4c836b_6f111b95",
@@ -325,6 +589,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01549808_804eb213",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "ce4c836b_6f111b95",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 93,
+        "endChar": 36
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c320d2c_1853d680",
@@ -338,6 +626,30 @@
       "writtenOn": "2022-09-22T07:46:36Z",
       "side": 1,
       "message": "Create two instances in this method and compare them. It will improve readibility.\nSame as below.",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 43
+      },
+      "revId": "c27432ac900ca9b3dd5c6477f599d05914b829b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84821ff1_336476c6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAccountItemTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-23T06:33:37Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "3c320d2c_1853d680",
       "range": {
         "startLine": 97,
         "startChar": 16,
