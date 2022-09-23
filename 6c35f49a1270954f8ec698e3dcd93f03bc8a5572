@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b8c5483_3e7483bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI have updated the condition. I am sorry about the confusion, had verified streaming state in all mmi\u0027s.\n\nThanks and Regards,\nSnehal",
+      "revId": "6c35f49a1270954f8ec698e3dcd93f03bc8a5572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

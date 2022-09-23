@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51c244dd_adeca288",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4dcdfb8_01844090",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 0
+      },
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6125269c_3744688a",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-23T00:13:46Z",
       "side": 1,
       "message": "As discussed, just `return \"Yes\"` here.",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 403,
+        "endChar": 23
+      },
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cf87b42_3a6aefe6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6125269c_3744688a",
       "range": {
         "startLine": 400,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e4f76f5_a60257d8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "378f0ff3_e00faac2",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 421,
+        "endChar": 0
+      },
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfa7b7b7_4e215249",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-09-23T00:13:46Z",
       "side": 1,
       "message": "As discussed, just `return \"Yes\"` here.",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 436,
+        "endChar": 23
+      },
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "455a8c48_fad39d84",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfa7b7b7_4e215249",
       "range": {
         "startLine": 432,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5e6b1bc_cf64b2e4",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b68b624_b62533fa",
+      "range": {
+        "startLine": 449,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 23
+      },
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "276c580d_ba1e6121",
@@ -156,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f01a265_eacff2f1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "276c580d_ba1e6121",
+      "range": {
+        "startLine": 464,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 23
+      },
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fb1b83d_763db950",
@@ -169,6 +313,30 @@
       "writtenOn": "2022-09-23T00:13:46Z",
       "side": 1,
       "message": "This is always false! `IsSuspended` is not returning a string but a boolean (see its protobuf definition in `a2dp.proto`. You should simply check `if !self.a2dp.IsSuspended(source\u003dself.source).is_suspended:`",
+      "range": {
+        "startLine": 477,
+        "startChar": 8,
+        "endLine": 477,
+        "endChar": 74
+      },
+      "revId": "31d0cc0367eba409f2c4e0fc7c8454ff8685d5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22efd0b7_69d82e41",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-23T09:18:18Z",
+      "side": 1,
+      "message": "Done\n\nOne Doubt -\nIs my below understanding correct?\nin A2DP.kt \nval isSuspended \u003d bluetoothA2dp.isA2dpPlaying(device)\n\nisA2dpPlaying - Check if A2DP profile is streaming music\u003creturns True if streaming\u003e\nisSuspended\u003con naming convention\u003e  - Check if A2DP profile is Suspended",
+      "parentUuid": "2fb1b83d_763db950",
       "range": {
         "startLine": 477,
         "startChar": 8,
