@@ -170,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49f57e20_989f5251",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-23T20:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70f1f1e6_a712953a",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec937b5a_8763bf23",
@@ -183,6 +201,30 @@
       "writtenOn": "2022-09-21T22:28:51Z",
       "side": 1,
       "message": "nit: could be written in more Rust idiomatic:\n```\nlet level: Vec\u003c_\u003e \u003d (0..4).zip(x.iter().cloned().chain(repeat(0))).map(|v| v.1).collect();\n\nlet level \u003d u32::from_le_bytes(level.try_into().unwrap());\n```",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 9
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6db95163_4649bf0c",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-23T20:22:37Z",
+      "side": 1,
+      "message": "I found a way that avoids the use of zip but looks a lot better using chain.",
+      "parentUuid": "ec937b5a_8763bf23",
       "range": {
         "startLine": 228,
         "startChar": 0,
@@ -216,6 +258,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "337d780f_48b83f6d",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-23T20:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dadc9ef3_418457ca",
+      "range": {
+        "startLine": 317,
+        "startChar": 15,
+        "endLine": 317,
+        "endChar": 21
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af86834a_7a8a0a6c",
@@ -229,6 +295,24 @@
       "writtenOn": "2022-09-21T22:28:51Z",
       "side": 1,
       "message": "there are warnings about this spawn.await calls. Add `.ok()` behind or `let _ \u003d` in front.",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00bf7c82_3844db7c",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-23T20:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af86834a_7a8a0a6c",
       "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
