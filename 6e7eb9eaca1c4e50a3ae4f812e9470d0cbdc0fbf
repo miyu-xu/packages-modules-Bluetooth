@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84fd8273_eb070f1f",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-23T15:41:20Z",
+      "side": 1,
+      "message": "Maybe also add some edge cases like invalid advertising data. This can be a follow up.",
+      "revId": "6e7eb9eaca1c4e50a3ae4f812e9470d0cbdc0fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
