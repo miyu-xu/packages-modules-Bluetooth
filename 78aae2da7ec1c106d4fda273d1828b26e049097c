@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84175af9_f75d3ec1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "Not completed? Also this variable seems not to be used. How about removing this?",
+      "range": {
+        "startLine": 111,
+        "startChar": 7,
+        "endLine": 111,
+        "endChar": 18
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e29e0ff7_48217e4d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "Is there any way to merge these together?\n\nFor example, creating a static class which stores (profile, device).\n\nI think creating a dedicated stack class with necessary methods also seems good.\n```\nclass PriorityStack {\n  List\u003cData\u003e mList \u003d ...;\n  \n  boolean putToTop(int profile, Device device);\n  \n  boolean remove(int profile, Device device);\n  \n  void putBeforeHearingAid(int profile, Device device) {\n    // Iteration and checks\n    ...\n  }\n  \n  // Also other methods whose name explains what it does...\n}\n```",
+      "range": {
+        "startLine": 121,
+        "startChar": 40,
+        "endLine": 122,
+        "endChar": 62
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4565fe4_0a69b4b4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "Let\u0027s not use index variable. How about `boolean isHearingAidTopPriority`?",
+      "range": {
+        "startLine": 226,
+        "startChar": 16,
+        "endLine": 226,
+        "endChar": 21
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a480a6d0_15bdf36c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "`if (mActivatedProfilePriorityStack.isEmpty() || !isHearingAidTopPriority)`",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 228,
+        "endChar": 98
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0670c41b_42434649",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "How about using for loop with `boolean added`:\n\n```\nboolean added \u003d false;\nfor (int i \u003d mActivatedProfilePriorityStack.size() - 1; i \u003e\u003d 0; i--) {\n  ...\n}\n\nif (!added) {\n  mActivatedProfilePriorityStack.add(0, profile);\n  ...\n}\n\n```",
+      "range": {
+        "startLine": 238,
+        "startChar": 12,
+        "endLine": 238,
+        "endChar": 34
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c95b6e_f40383e1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "This means we removed the last element in the list.\n\nHow about using `boolean topPriorityDeviceDisconnected` and `if (topPriorityDeviceDisconnected)`?\n\n```\n\nint index \u003d getActivatedDeviceIndex(profile, device);\nboolean topPriorityDeviceDisconnected \u003d false;\nif (index \u003e\u003d 0) {\n  if (index \u003d\u003d mActivatedProfilePriorityStack.size() - 1) {\n    topPriorityDeviceDisconnected \u003d true;\n  }\n  mActivatedProfilePriorityStack.remove(index);\n  mActivatedDevicePriorityStack.remove(index);\n}\n\nif (topPriorityDeviceDisconnected) {\n  ...\n}\n\n```",
+      "range": {
+        "startLine": 285,
+        "startChar": 16,
+        "endLine": 285,
+        "endChar": 29
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a09399c5_7ff6625b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "hearingAidActivated?",
+      "range": {
+        "startLine": 287,
+        "startChar": 28,
+        "endLine": 287,
+        "endChar": 37
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251c4c53_bb2857f1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-23T10:11:22Z",
+      "side": 1,
+      "message": "Please add mLeAudioService case too.",
+      "range": {
+        "startLine": 430,
+        "startChar": 15,
+        "endLine": 430,
+        "endChar": 33
+      },
+      "revId": "78aae2da7ec1c106d4fda273d1828b26e049097c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
