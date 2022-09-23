@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a57c46a0_34f3c8c6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-23T12:10:50Z",
+      "side": 1,
+      "message": "Got this test to work on cloudtop with the physical devices connected to my workstation, but it just fails regardless of this patch.\n\nSL4A failed to connect for 1A061FDF6005ZE at host port 8897, device port 8897\nAttributeError: \u0027LeAdvertisingTest\u0027 object has no attribute \u0027cert\u0027",
+      "parentUuid": "2a71f088_43c1af87",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e74dd14e_5c537ee7",
         "filename": "system/bta/include/bta_api.h",
         "patchSetId": 2
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "Sure, no problem",
       "parentUuid": "e74dd14e_5c537ee7",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd9d785a_052266d7",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-23T12:10:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14642c2a_d59be86a",
       "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -174,6 +210,24 @@
       "side": 1,
       "message": "Sure, if that\u0027s proper then I\u0027ll change to BT_ACL_STATE_DISCONNECTED.\n\nThis is supposed to be called on connection failure. If something happens when we are already connected, theoretically it shouldn\u0027t call this. Right now, it will call LINK_DOWN_EVT instead, regardless of whether it is caused by failures or otherwise.\n\nI agree that it\u0027s not clear of what to do when disconnection fails. The spec underlines the possibility of disconnection failure though.\n```\nThe HCI_Disconnection_Complete event occurs when a connection is\nterminated. The status parameter indicates if the disconnection was successful\nor not. The reason parameter indicates the reason for the disconnection if the\ndisconnection was successful. If the disconnection was not successful, the\nvalue of the reason parameter shall be ignored by the Host. For example, this\ncan be the case if the Host has issued the HCI_Disconnect command and\nthere was a parameter error, or the command was not presently allowed, or a\nConnection_Handle that didn’t correspond to a connection was given.\n```\nI\u0027m not sure whether this will cause a desync between the host stack and the controller.",
       "parentUuid": "a738c120_0d766f37",
+      "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7da55e0_ee3b76fe",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1828,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-23T12:10:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a484f00_6b700e1b",
       "revId": "e80437c22492370401dff1a90d46aa3fde035e3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
