@@ -16,6 +16,23 @@
       "message": "Hi Thomas,\n\nI have updated the condition. I am sorry about the confusion, had verified streaming state in all mmi\u0027s.\n\nThanks and Regards,\nSnehal",
       "revId": "6c35f49a1270954f8ec698e3dcd93f03bc8a5572",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f29d4b40_f40d0e14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-09-23T18:47:13Z",
+      "side": 1,
+      "message": "There are some merge conflicts, please rebase your changes",
+      "revId": "6c35f49a1270954f8ec698e3dcd93f03bc8a5572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
