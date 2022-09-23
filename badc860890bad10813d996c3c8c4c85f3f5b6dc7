@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c213b94_a7dff709",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-09-23T22:16:49Z",
+      "side": 1,
+      "message": "Keeping this as it is as we need fix the stack.",
+      "parentUuid": "751e9b65_fa38dbc8",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b57b54f9_7676f42a",
@@ -89,6 +113,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d027bb8_3339dc2d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-09-23T22:16:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b57b54f9_7676f42a",
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b27ef82_6381b8da",
@@ -102,6 +144,30 @@
       "writtenOn": "2022-09-07T02:32:23Z",
       "side": 1,
       "message": "This should be refactor in a future CL when the advertising interfaces are merged: aosp/2205525.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 90
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1992a0d9_a8eb9e69",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-09-23T22:16:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9b27ef82_6381b8da",
       "range": {
         "startLine": 42,
         "startChar": 0,
