@@ -1584,9 +1584,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                   AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED &&
               group->IsPendingConfiguration()) {
             LOG_INFO(" Configured state completed ");
-            group->ClearPendingConfiguration()
-                state_machine_callbacks_->StatusReportCb(
-                    group->group_id_, GroupStreamStatus::CONFIGURED_BY_USER);
+            group->ClearPendingConfiguration();
+            state_machine_callbacks_->StatusReportCb(
+                group->group_id_, GroupStreamStatus::CONFIGURED_BY_USER);
 
             /* No more transition for group */
             alarm_cancel(watchdog_);
