@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb06d6b1_365d7af6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-23T15:26:32Z",
+      "side": 1,
+      "message": "Please leave exhaustive instruction for manual test: Make phone call, switch between classic and LE Audio headset multiple times",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 41
+      },
+      "revId": "97febba7051fa0c6f24b810f32c47e1458c9041a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bd63b690_74cc3e56",
