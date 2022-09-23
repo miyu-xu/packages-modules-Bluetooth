@@ -52,6 +52,24 @@
       "parentUuid": "0a0546c0_f7c1bb7b",
       "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65a55c0c_de7ceabc",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-23T15:12:18Z",
+      "side": 1,
+      "message": "I\u0027d rather have it non-zero unless there\u0027s a good reason.  It should make the simulation model marginally more deterministic.",
+      "parentUuid": "2ad4090b_1ec7ea3a",
+      "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
