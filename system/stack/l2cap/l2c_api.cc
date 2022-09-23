@@ -687,6 +687,13 @@ bool L2CA_ConnectCreditBasedRsp(const RawAddress& p_bd_addr, uint8_t id,
    */
   tL2C_CCB* p_ccb = l2cu_find_ccb_by_cid(p_lcb, p_lcb->pending_lead_cid);
 
+  /** Fix L2CAP PTS issue @{ */
+  if (!p_ccb) {
+    L2CAP_TRACE_ERROR("%s No CCB for CID:0x%04x", __func__, p_lcb->pending_lead_cid);
+    return false;
+  }
+  /** @} */
+
   for (uint16_t cid : accepted_lcids) {
     tL2C_CCB* temp_p_ccb = l2cu_find_ccb_by_cid(p_lcb, cid);
     if (temp_p_ccb == NULL) {
@@ -1235,6 +1242,13 @@ bool L2CA_ConnectFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
       LOG_INFO("Peer device does not support fixed_cid:0x%04x", fixed_cid);
       return false;
     }
+
+    /** Connect fail when it's conecting @{ */
+    if (p_lcb->link_state == LST_CONNECTING) {
+      L2CAP_TRACE_WARNING("%s(0x%04x) connecting, reject", __func__, fixed_cid);
+      return false;
+    }
+    /** @} */
 
     // Get a CCB and link the lcb to it
     if (!l2cu_initialize_fixed_ccb(p_lcb, fixed_cid)) {
