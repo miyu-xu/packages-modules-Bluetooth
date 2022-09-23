@@ -45,6 +45,30 @@
       },
       "revId": "ed5fe0f8d486a1641ab94bc29d266d0f10e974c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a9a8adc_9f6e3ad3",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-23T13:02:12Z",
+      "side": 1,
+      "message": "The test is currently failing, we need to fix the LMP implementation to make it pass.\nI\u0027m adding the test so that we can make them pass in latter CLs.",
+      "parentUuid": "d7f6262f_5fa61f49",
+      "range": {
+        "startLine": 932,
+        "startChar": 20,
+        "endLine": 932,
+        "endChar": 47
+      },
+      "revId": "ed5fe0f8d486a1641ab94bc29d266d0f10e974c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
