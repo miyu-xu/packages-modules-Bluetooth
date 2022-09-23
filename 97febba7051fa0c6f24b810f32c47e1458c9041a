@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e6bbe65_65128fd9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-23T12:03:26Z",
+      "side": 1,
+      "message": "Ok, thanks.",
+      "parentUuid": "99a2683f_e1663f03",
+      "range": {
+        "startLine": 1195,
+        "startChar": 12,
+        "endLine": 1195,
+        "endChar": 27
+      },
+      "revId": "97febba7051fa0c6f24b810f32c47e1458c9041a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0714444_5af8b4c7",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "If device is still active, than calling connectAudio should allow HFP to do proper action based on the current active device inside the HFP. If SCO is there, it should just ignore it.",
       "parentUuid": "f0714444_5af8b4c7",
+      "range": {
+        "startLine": 1204,
+        "startChar": 26,
+        "endLine": 1204,
+        "endChar": 42
+      },
+      "revId": "97febba7051fa0c6f24b810f32c47e1458c9041a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fafb3bd6_3ae458a5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-23T12:03:26Z",
+      "side": 1,
+      "message": "Ok, thanks.",
+      "parentUuid": "91425d97_9e6d8886",
       "range": {
         "startLine": 1204,
         "startChar": 26,
