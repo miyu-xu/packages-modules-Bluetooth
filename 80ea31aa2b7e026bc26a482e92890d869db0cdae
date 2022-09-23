@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "909454c9_fea98511",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-23T12:14:26Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 806,
+        "startChar": 20,
+        "endLine": 806,
+        "endChar": 47
+      },
+      "revId": "80ea31aa2b7e026bc26a482e92890d869db0cdae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
