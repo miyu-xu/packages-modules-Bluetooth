@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "30780c2e_a157659d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-23T17:52:02Z",
+      "side": 1,
+      "message": "minor refactor around CIG state",
+      "revId": "59c517553c3669a0a87b3979e75b090d1f01471b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5c7e69e9_0095c94b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
