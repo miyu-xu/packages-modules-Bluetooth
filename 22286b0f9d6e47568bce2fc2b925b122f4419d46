@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "211f9337_e6239821",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-09-23T00:52:59Z",
+      "side": 1,
+      "message": "nit: instead of having 2 consts pointing to the sysprops dir, you can do\n```\nstd::fs::write(format!(\"{}/{}\", FLOSS_SYSPROPS_OVERRIDE_DIR, \"privacy_override.conf\"), data).is_ok()\n```",
+      "revId": "22286b0f9d6e47568bce2fc2b925b122f4419d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
