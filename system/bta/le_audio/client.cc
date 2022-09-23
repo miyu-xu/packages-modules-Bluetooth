@@ -1458,11 +1458,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     leAudioDevice->connecting_actively_ = false;
     leAudioDevice->conn_id_ = conn_id;
-
-    if (mtu == GATT_DEF_BLE_MTU_SIZE) {
-      LOG(INFO) << __func__ << ", Configure MTU";
-      BtaGattQueue::ConfigureMtu(leAudioDevice->conn_id_, 240);
-    }
+    leAudioDevice->mtu_ = mtu;
 
     if (BTM_SecIsSecurityPending(address)) {
       /* if security collision happened, wait for encryption done
@@ -1541,6 +1537,15 @@ class LeAudioClientImpl : public LeAudioClient {
                                  leAudioDevice->address_, ase.hdls);
   }
 
+  void changeMtuIfPossible(LeAudioDevice* leAudioDevice) {
+    LOG_DEBUG("device %s", leAudioDevice->address_.ToString().c_str());
+
+    if (leAudioDevice->mtu_ == GATT_DEF_BLE_MTU_SIZE) {
+      LOG(INFO) << __func__ << ", Configure MTU";
+      BtaGattQueue::ConfigureMtu(leAudioDevice->conn_id_, 240);
+    }
+  }
+
   void OnEncryptionComplete(const RawAddress& address, uint8_t status) {
     LOG(INFO) << __func__ << " " << address << "status: " << int{status};
 
@@ -1567,6 +1572,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (leAudioDevice->known_service_handles_)
       RegisterKnownNotifications(leAudioDevice);
 
+    changeMtuIfPossible(leAudioDevice);
     if (leAudioDevice->encrypted_) {
       LOG(INFO) << __func__ << " link already encrypted, nothing to do";
       return;
@@ -1679,6 +1685,16 @@ class LeAudioClientImpl : public LeAudioClient {
     leAudioDevice->csis_member_ = false;
     BtaGattQueue::Clean(leAudioDevice->conn_id_);
     DeregisterNotifications(leAudioDevice);
+  }
+
+  void OnMtuChanged(uint16_t conn_id, uint16_t mtu) {
+    LeAudioDevice* leAudioDevice = leAudioDevices_.FindByConnId(conn_id);
+    if (!leAudioDevice) {
+      LOG_DEBUG("Unknown connectect id %d", conn_id);
+      return;
+    }
+
+    leAudioDevice->mtu_ = mtu;
   }
 
   void OnGattServiceDiscoveryDone(const RawAddress& address) {
@@ -3897,6 +3913,7 @@ void le_audio_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
       instance->OnServiceChangeEvent(p_data->remote_bda);
       break;
     case BTA_GATTC_CFG_MTU_EVT:
+      instance->OnMtuChanged(p_data->cfg_mtu.conn_id, p_data->cfg_mtu.mtu);
       break;
 
     default:
