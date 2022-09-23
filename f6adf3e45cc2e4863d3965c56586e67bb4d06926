@@ -34,6 +34,24 @@
       "parentUuid": "85ed7cb3_f9c5e659",
       "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ad4090b_1ec7ea3a",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-23T14:54:13Z",
+      "side": 1,
+      "message": "Ok, I think we still want this to be `0`",
+      "parentUuid": "0a0546c0_f7c1bb7b",
+      "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
