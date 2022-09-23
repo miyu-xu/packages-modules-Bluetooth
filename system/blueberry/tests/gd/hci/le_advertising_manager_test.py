@@ -296,7 +296,7 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
         self.set_address_policy_with_static_address()
         create_response = self.create_advertiser()
         enable_periodic_advertising_request = le_advertising_facade.EnablePeriodicAdvertisingRequest(
-            advertiser_id=create_response.advertiser_id, enable=True)
+            advertiser_id=create_response.advertiser_id, enable=True, include_adi=false)
         self.dut.hci_le_advertising_manager.EnablePeriodicAdvertising(enable_periodic_advertising_request)
 
         assertThat(self.dut.callback_event_stream).emits(
