@@ -337,6 +337,7 @@ pub mod ffi {
             self: Pin<&mut BleAdvertiserIntf>,
             adv_id: u8,
             enable: bool,
+            include_adi: bool,
         );
 
         /// Registers a C++ |AdvertisingCallbacks| implementation with the BleAdvertiser.
@@ -1605,8 +1606,8 @@ impl BleAdvertiser {
     pub fn set_periodic_advertising_data(&mut self, adv_id: u8, data: Vec<u8>) {
         mutcxxcall!(self, SetPeriodicAdvertisingData, adv_id, data);
     }
-    pub fn set_periodic_advertising_enable(&mut self, adv_id: u8, enable: bool) {
-        mutcxxcall!(self, SetPeriodicAdvertisingEnable, adv_id, enable);
+    pub fn set_periodic_advertising_enable(&mut self, adv_id: u8, enable: bool, include_adi: bool) {
+        mutcxxcall!(self, SetPeriodicAdvertisingEnable, adv_id, enable, include_adi);
     }
 }
 
