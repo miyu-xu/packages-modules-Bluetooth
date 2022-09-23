@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d524c9d4_4bb4e950",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2872,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-23T20:36:20Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 2872,
+        "startChar": 0,
+        "endLine": 2872,
+        "endChar": 40
+      },
+      "revId": "9d4db7dcbf248a52be200615b262865b2100d27b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
