@@ -33,6 +33,46 @@
       "message": "Hi Myles, Jack, Martin and William,\n\nCan you help to review this CL?\n\nThanks,\nJeff",
       "revId": "2709e35b63b2ba010c1944bb5fc7497fbab8e284",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d25d9dc9_39cdd882",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-23T12:30:31Z",
+      "side": 1,
+      "message": "Thanks!  I think this is very close.  I left a comment.",
+      "revId": "2709e35b63b2ba010c1944bb5fc7497fbab8e284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79cf568_d767019c",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 10
+      },
+      "lineNbr": 5971,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-23T12:30:31Z",
+      "side": 1,
+      "message": "According to https://source.android.com/docs/core/connect/bluetooth/hci_requirements#le-multi-advertising-state-change-sub-event this is only ever 0\n\nI\u0027d suggest that we either:\n- Define an enum for this:\n  enum VseStateChangeReason : 8 {\n    CONNECTION_RECEIVED \u003d 0x00,\n  }\n  \n  packet LEAdvertiseStateChangeEvent : VendorSpecificEvent (subevent_code \u003d BLE_STCHANGE) {\n    advertising_instance : 8,\n    state_change_reason : VseStateChangeReason,\n    connection_handle: 12,\n    _reserved_ : 4,\n  }\n  \n- Make it fixed:\n  packet LEAdvertiseStateChangeEvent : VendorSpecificEvent (subevent_code \u003d BLE_STCHANGE) {\n    advertising_instance : 8,\n    _fixed_ \u003d 0 : 8, // Connection received\n    connection_handle: 12,\n    _reserved_ : 4,\n  }\n  \n  Either way, I think the connection handle should just be 12 bits.\n  \n  Thanks!",
+      "range": {
+        "startLine": 5971,
+        "startChar": 2,
+        "endLine": 5971,
+        "endChar": 21
+      },
+      "revId": "2709e35b63b2ba010c1944bb5fc7497fbab8e284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
