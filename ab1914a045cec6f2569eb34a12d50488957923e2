@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f56260_1e023b54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-23T12:18:31Z",
+      "side": 1,
+      "message": "Hi Michael, care to be the initial reviewer? Thanks!",
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2266d7f1_1e9640be",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1550,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-23T12:18:31Z",
+      "side": 1,
+      "message": "I assume this function is only called if something outside floss calls it (e.g. not from resume). Is that a valid assumption?\nLikewise from every acl_connect_attempt in this CL.",
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
