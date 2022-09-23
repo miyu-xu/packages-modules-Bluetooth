@@ -204,9 +204,9 @@ void BleAdvertiserIntf::SetPeriodicAdvertisingData(uint8_t adv_id, ::rust::Vec<u
       adv_id, converted, base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
-void BleAdvertiserIntf::SetPeriodicAdvertisingEnable(uint8_t adv_id, bool enable) {
+void BleAdvertiserIntf::SetPeriodicAdvertisingEnable(uint8_t adv_id, bool enable, bool include_adi) {
   adv_intf_->SetPeriodicAdvertisingEnable(
-      adv_id, enable, base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
+      adv_id, enable, include_adi, base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::RegisterCallbacks() {
