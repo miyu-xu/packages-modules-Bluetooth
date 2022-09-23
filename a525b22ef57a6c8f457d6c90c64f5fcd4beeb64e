@@ -33,6 +33,24 @@
       "message": "Hi, This will not compile. But since I made the patch that caused the conflict, let me fix it.",
       "revId": "a525b22ef57a6c8f457d6c90c64f5fcd4beeb64e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce42c374_6686e957",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-23T14:43:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd165396_c349f737",
+      "revId": "a525b22ef57a6c8f457d6c90c64f5fcd4beeb64e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
