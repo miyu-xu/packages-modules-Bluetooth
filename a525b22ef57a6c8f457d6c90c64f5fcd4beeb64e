@@ -16,6 +16,23 @@
       "message": "Submit new patch set to solve merge conflict.\nRefer to below\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2213340",
       "revId": "a525b22ef57a6c8f457d6c90c64f5fcd4beeb64e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd165396_c349f737",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-23T14:37:15Z",
+      "side": 1,
+      "message": "Hi, This will not compile. But since I made the patch that caused the conflict, let me fix it.",
+      "revId": "a525b22ef57a6c8f457d6c90c64f5fcd4beeb64e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
