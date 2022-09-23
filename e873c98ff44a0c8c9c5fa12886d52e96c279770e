@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5fa673e_80995973",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-23T21:57:36Z",
+      "side": 1,
+      "message": "I think Command Disallowed is only if we want to create CIG which is already exist.",
+      "parentUuid": "6236f6ad_94ab0a46",
+      "range": {
+        "startLine": 372,
+        "startChar": 7,
+        "endLine": 374,
+        "endChar": 7
+      },
+      "revId": "e873c98ff44a0c8c9c5fa12886d52e96c279770e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2154aca_e8aeecc4",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Just get rid of this assert, make it into warning",
       "parentUuid": "f2154aca_e8aeecc4",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 16
+      },
+      "revId": "e873c98ff44a0c8c9c5fa12886d52e96c279770e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc4ab62_f94aa99d",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-23T21:57:36Z",
+      "side": 1,
+      "message": "I would keep it as it is now. We are not using yet gd/iso - if we get there we will fix it.",
+      "parentUuid": "c5158bec_d9f76ac1",
       "range": {
         "startLine": 206,
         "startChar": 6,
