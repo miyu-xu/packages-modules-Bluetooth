@@ -70,6 +70,24 @@
       "parentUuid": "2ad4090b_1ec7ea3a",
       "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26831af1_b6d865e9",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-23T15:39:55Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand why it would make it more deterministic.\nMy reason for it to be `0`, was that the `0` is used also on `test_model.cc` https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/tools/rootcanal/model/setup/test_model.cc;l\u003d168;drc\u003de469672e32baf2179fd15f7df3d3893d9ac24b6a\n\nIf would be fine with any constant as long as it\u0027s used consistently everywhere.\n\nBecause while adding the code inside `Close`, I was surprised about things scheduled **before** with `kNoDelayMs` in `link_layer_controller.cc` be executed **after** the OnConnectionClosed (OnConnectionClosed being schedule after the things in `link_layer_controller.cc`).\n\nOrder of execution (order with `kNoDelayMs \u003d 1`):\n- schedule task with kNoDelayMs in link_layer_controller.cc\n- schedule OnConnectionClosed in test_model.cc\n- OnConnectionClosed executed\n- link_layer_controller.cc task executed\n\nExpected order of execution (order with `kNoDelayMs \u003d 0`):\n- schedule task with kNoDelayMs in link_layer_controller.cc\n- schedule OnConnectionClosed in test_model.cc\n- link_layer_controller.cc task executed\n- OnConnectionClosed executed",
+      "parentUuid": "65a55c0c_de7ceabc",
+      "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
