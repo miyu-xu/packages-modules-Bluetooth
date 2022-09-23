@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e5d531e_a778d89a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-09-23T22:19:22Z",
+      "side": 1,
+      "message": "Keeping this as it is. As discussed offline, this needs a change in the stack.",
+      "parentUuid": "751e9b65_fa38dbc8",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b57b54f9_7676f42a",
@@ -212,6 +236,30 @@
         "id": 1929170
       },
       "writtenOn": "2022-09-23T22:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43354d30_85050950",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 67
+      },
+      "revId": "badc860890bad10813d996c3c8c4c85f3f5b6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42c4503a_fefb2661",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-09-23T22:19:22Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "43354d30_85050950",
