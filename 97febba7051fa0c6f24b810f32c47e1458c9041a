@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd63b690_74cc3e56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-23T10:55:27Z",
+      "side": 1,
+      "message": "LGTM, just some questions to understand the flow better...",
+      "revId": "97febba7051fa0c6f24b810f32c47e1458c9041a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "739cd41c_574dfb5d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-23T10:55:27Z",
+      "side": 1,
+      "message": "Is this a matter of timings, that sometimes the HFP device is not active and sometimes it is active and we just connectAudio()?\n\n...I\u0027m wondering if we could just notify the HFP that the LeAudio group became idle during the call, and the HFP logic would check its own state and activate the device or just the audio, instead of LeAudioService storing the HFP device, then telling the HFP what to do based on the HFP state. ...just a thought.",
+      "range": {
+        "startLine": 1195,
+        "startChar": 12,
+        "endLine": 1195,
+        "endChar": 27
+      },
+      "revId": "97febba7051fa0c6f24b810f32c47e1458c9041a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0714444_5af8b4c7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-23T10:55:27Z",
+      "side": 1,
+      "message": "If we call this from LeAudioService, do we need to block some other call that is about to be triggered by the usual HFP activation path? Or maybe it has already failed and that\u0027s why we end up in the else() branch?",
+      "range": {
+        "startLine": 1204,
+        "startChar": 26,
+        "endLine": 1204,
+        "endChar": 42
+      },
+      "revId": "97febba7051fa0c6f24b810f32c47e1458c9041a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
