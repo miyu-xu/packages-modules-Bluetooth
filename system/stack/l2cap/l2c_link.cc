@@ -41,6 +41,9 @@
 #include "stack/l2cap/l2c_int.h"
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
+/** for devices in IOT list, accept connection as specific role @{*/
+#include "device/include/interop.h"
+/** @} */
 
 extern tBTM_CB btm_cb;
 
@@ -105,6 +108,19 @@ void l2c_link_hci_conn_req(const RawAddress& bd_addr) {
         p_lcb->SetLinkRoleAsCentral();
     }
 
+    /** for devices in IOT list, accept connection as specific role @{*/
+    LOG_DEBUG("%s: p_lcb->LinkRole()=%d", __func__, p_lcb->LinkRole());
+    if ((HCI_ROLE_CENTRAL == p_lcb->LinkRole()) &&
+      interop_match_addr(INTEROP_L2CAP_ACCEPT_CONN_AS_SLAVE, &bd_addr)){
+      p_lcb->SetLinkRoleAsPeripheral();
+    } else if ((HCI_ROLE_PERIPHERAL == p_lcb->LinkRole()) &&
+      interop_match_addr(INTEROP_L2CAP_ACCEPT_CONN_AS_MASTER, &bd_addr)){
+      p_lcb->SetLinkRoleAsCentral();
+    } else {
+      LOG_ERROR("p_lcb->link_role must be HCI_ROLE_CENTRAL or HCI_ROLE_PERIPHERAL");
+    }
+    /** @} */
+
     /* Tell the other side we accept the connection */
     acl_accept_connection_request(bd_addr, p_lcb->LinkRole());
 
@@ -124,6 +140,19 @@ void l2c_link_hci_conn_req(const RawAddress& bd_addr) {
       p_lcb->SetLinkRoleAsPeripheral();
     else
       p_lcb->SetLinkRoleAsCentral();
+
+    /** for devices in IOT list, accept connection as specific role @{*/
+    LOG_DEBUG("%s: p_lcb->LinkRole()=%d", __func__, p_lcb->LinkRole());
+    if ((HCI_ROLE_CENTRAL == p_lcb->LinkRole()) &&
+      interop_match_addr(INTEROP_L2CAP_ACCEPT_CONN_AS_SLAVE, &bd_addr)){
+      p_lcb->SetLinkRoleAsPeripheral();
+    } else if ((HCI_ROLE_PERIPHERAL == p_lcb->LinkRole()) &&
+      interop_match_addr(INTEROP_L2CAP_ACCEPT_CONN_AS_MASTER, &bd_addr)){
+      p_lcb->SetLinkRoleAsCentral();
+    } else {
+      LOG_ERROR("p_lcb->link_role must be HCI_ROLE_CENTRAL or HCI_ROLE_PERIPHERAL");
+    }
+    /** @} */
 
     acl_accept_connection_request(bd_addr, p_lcb->LinkRole());
 
