@@ -22,6 +22,29 @@
       },
       "revId": "ed5fe0f8d486a1641ab94bc29d266d0f10e974c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7f6262f_5fa61f49",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-23T12:14:17Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 932,
+        "startChar": 20,
+        "endLine": 932,
+        "endChar": 47
+      },
+      "revId": "ed5fe0f8d486a1641ab94bc29d266d0f10e974c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
