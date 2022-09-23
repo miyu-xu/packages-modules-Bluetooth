@@ -124,6 +124,24 @@
       "parentUuid": "18c076f8_5b43f652",
       "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6389cb5c_be0b4489",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-23T15:48:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f50c431a_90800ee3",
+      "revId": "f6adf3e45cc2e4863d3965c56586e67bb4d06926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
