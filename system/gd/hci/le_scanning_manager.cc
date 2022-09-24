@@ -24,6 +24,7 @@
 #include "hci/hci_packets.h"
 #include "hci/le_periodic_sync_manager.h"
 #include "hci/le_scanning_interface.h"
+#include "hci/mgmt.h"
 #include "hci/vendor_specific_event_manager.h"
 #include "module.h"
 #include "os/handler.h"
@@ -221,6 +222,18 @@ struct BatchScanConfig {
   ScannerId ref_value;
 };
 
+// https://learn.microsoft.com/en-us/windows-hardware/drivers/bluetooth/
+//         microsoft-defined-bluetooth-hci-commands-and-events
+constexpr uint8_t kMsftEventPrefixLengthMax = 0x20;
+
+struct Msft {
+  // MSFT opcode needs to be configured from Bluetooth driver.
+  std::optional<uint16_t> opcode;
+  uint64_t features{0};
+  uint8_t prefix_len{0};
+  std::vector<uint8_t> prefix;
+};
+
 struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback {
   impl(Module* module) : module_(module), le_scanning_interface_(nullptr) {}
 
@@ -244,8 +257,6 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
     le_address_manager_ = acl_manager->GetLeAddressManager();
     le_scanning_interface_ = hci_layer_->GetLeScanningInterface(
         module_handler_->BindOn(this, &LeScanningManager::impl::handle_scan_results));
-    msft_interface_ =
-        hci_layer_->GetMsftInterface(module_handler_->BindOn(this, &LeScanningManager::impl::handle_msft_events));
     periodic_sync_manager_.Init(le_scanning_interface_, module_handler_);
     /* Check to see if the opcode is supported and C19 (support for extended advertising). */
     if (controller_->IsSupported(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS) &&
@@ -277,6 +288,8 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
     batch_scan_config_.current_state = BatchScanState::DISABLED_STATE;
     batch_scan_config_.ref_value = kInvalidScannerId;
     configure_scan();
+    mgmt_ = Mgmt();
+    msft_start();
   }
 
   void stop() {
@@ -809,13 +822,46 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
     }
   }
 
-  // TODO(b/246398494): Trigger this once we get information from driver about MSFT opcode.
+  bool get_msft_opcode() {
+    if (msft_.opcode.has_value()) return true;
+
+    uint16_t opcode = mgmt_.get_vs_opcode(MGMT_VS_OPCODE_MSFT);
+    if (opcode == HCI_OP_NOP) return false;
+
+    msft_.opcode = opcode;
+    LOG_INFO("MSFT opcode 0x%4.4x", msft_.opcode.value());
+    return true;
+  }
+
+  // Call this once to get information from the driver about MSFT opcode.
   void msft_read_supported_features() {
-    if (!msft_opcode_.has_value()) return;
+    if (!msft_.opcode.has_value()) return;
 
     msft_interface_->EnqueueCommand(
-        MsftReadSupportedFeaturesBuilder::Create(static_cast<OpCode>(*msft_opcode_)),
+        MsftReadSupportedFeaturesBuilder::Create(static_cast<OpCode>(*msft_.opcode)),
         module_handler_->BindOnceOn(this, &impl::on_msft_read_supported_features_complete));
+  }
+
+  void msft_start() {
+    msft_interface_ =
+        hci_layer_->GetMsftInterface(module_handler_->BindOn(this, &LeScanningManager::impl::handle_msft_events));
+
+    /*
+     * The MSFT opcode is assigned by Bluetooth controller vendors.
+     * Query the kernel/drivers to derive the MSFT opcode so that
+     * we can issue MSFT vendor specific commands.
+     */
+    if (!get_msft_opcode()) {
+      LOG_INFO("MSFT extension is not supported.");
+      return;
+    }
+
+    /*
+     * The vendor prefix is required to distinguish among the vendor events
+     * of different vendor specifications. Read the supported features to
+     * derive the vendor prefix as well as other supported features.
+     */
+    msft_read_supported_features();
   }
 
   void update_address_filter(
@@ -1370,8 +1416,44 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
     }
   }
 
+  /*
+   * Get the event prefix from the packet for configuring MSFT's
+   * Vendor Specific events. Also get the MSFT supported features.
+   */
   void on_msft_read_supported_features_complete(CommandCompleteView view) {
-    // TODO(b/246398494): Get the event prefix from the packet for configuring MSFT's Vendor Specific events.
+    ASSERT(view.IsValid());
+    auto status_view = MsftReadSupportedFeaturesCommandCompleteView::Create(MsftCommandCompleteView::Create(view));
+    ASSERT(status_view.IsValid());
+
+    if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+      LOG_WARN("MSFT Command complete status %s", ErrorCodeText(status_view.GetStatus()).c_str());
+      return;
+    }
+
+    MsftSubcommandOpcode sub_opcode = status_view.GetSubcommandOpcode();
+    if (sub_opcode != MsftSubcommandOpcode::MSFT_READ_SUPPORTED_FEATURES) {
+      LOG_WARN("Wrong MSFT subcommand opcode %hhu returned", sub_opcode);
+      return;
+    }
+
+    msft_.features = status_view.GetSupportedFeatures();
+
+    msft_.prefix_len = status_view.GetPrefixLength();
+    if (msft_.prefix_len > kMsftEventPrefixLengthMax)
+      LOG_WARN("The MSFT prefix length %hu is too large", msft_.prefix_len);
+
+    auto prefix = status_view.GetPayload();
+    if (prefix.size() != msft_.prefix_len)
+      LOG_WARN("The actual MSFT prefix length %zu is not equal to %hu", prefix.size(), msft_.prefix_len);
+
+    // Save the vendor prefix to distinguish upcoming MSFT vendor events.
+    msft_.prefix.resize(msft_.prefix_len);
+    for (size_t i = 0; i < msft_.prefix_len; i++) msft_.prefix[i] = prefix[i];
+
+    LOG_INFO(
+        "MSFT features 0x%16.16llx prefix length %hu",
+        (unsigned long long)msft_.features,
+        status_view.GetPrefixLength());
   }
 
   void on_batch_scan_complete(CommandCompleteView view) {
@@ -1529,9 +1611,8 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
   std::map<ScannerId, std::vector<uint8_t>> batch_scan_result_cache_;
   std::unordered_map<uint8_t, ScannerId> tracker_id_map_;
   uint16_t total_num_of_advt_tracked_ = 0x00;
-
-  // TODO(b/246398494): MSFT opcode needs to be configured from Bluetooth driver.
-  std::optional<uint16_t> msft_opcode_ = 0xfc1e;
+  Mgmt mgmt_;
+  Msft msft_;
 
   static void check_status(CommandCompleteView view) {
     switch (view.GetCommandOpCode()) {
