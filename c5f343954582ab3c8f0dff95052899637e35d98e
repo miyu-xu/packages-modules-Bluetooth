@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb164231_49cbe620",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-24T19:07:05Z",
+      "side": 1,
+      "message": "aosp/2230097 fixed it, it didn\u0027t work before",
+      "parentUuid": "9dccc3b6_d1a8737d",
+      "range": {
+        "startLine": 9,
+        "startChar": 44,
+        "endLine": 10,
+        "endChar": 24
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c89f602_4764e218",
