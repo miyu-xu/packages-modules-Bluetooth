@@ -170,7 +170,7 @@ class IUT:
         # Handles GAP MMIs.
         if profile in ('GAP'):
             if not self._gap:
-                self._gap = GAPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+                self._gap = GAPProxy(grpc.insecure_channel(f'localhost:{self.port}'), test)
             return self._gap.interact(test, interaction, description, pts_address)
         # Handles HFP MMIs.
         if profile in ('HFP'):
