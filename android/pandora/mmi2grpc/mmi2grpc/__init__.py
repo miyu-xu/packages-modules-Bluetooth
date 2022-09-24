@@ -76,6 +76,7 @@ class IUT:
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
         self.rootcanal = RootCanal()
+        self.rootcanal.disconnect_phy()
         self.rootcanal.reconnect_phone()
 
         # Note: we don't keep a single gRPC channel instance in the IUT class
