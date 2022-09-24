@@ -32,4 +32,4 @@ macro_rules! impl_try_from {
 }
 
 impl_try_from!(lmp::PacketPacket);
-impl_try_from!(hci::CommandPacket);
+impl_try_from!(hci::LinkHCICommandHolder);
