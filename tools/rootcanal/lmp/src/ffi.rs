@@ -2,7 +2,7 @@ use std::mem::ManuallyDrop;
 use std::rc::Rc;
 use std::slice;
 
-use crate::manager::LinkManager;
+use crate::manager::{LinkManager, LinkManagerError};
 use crate::packets::{hci, lmp};
 
 /// Link Manager callbacks
@@ -71,7 +71,7 @@ pub unsafe extern "C" fn link_manager_add_link(
     peer: *const [u8; 6],
 ) -> bool {
     let lm = ManuallyDrop::new(Rc::from_raw(lm));
-    lm.add_link(hci::Address { bytes: *peer }).is_ok()
+    lm.add_link(hci::Address { bytes: *peer }).map_err(LinkManagerError::log_or_fail).is_ok()
 }
 
 /// Unregister a link with a peer inside the link manager
@@ -89,7 +89,7 @@ pub unsafe extern "C" fn link_manager_remove_link(
     peer: *const [u8; 6],
 ) -> bool {
     let lm = ManuallyDrop::new(Rc::from_raw(lm));
-    lm.remove_link(hci::Address { bytes: *peer }).is_ok()
+    lm.remove_link(hci::Address { bytes: *peer }).map_err(LinkManagerError::log_or_fail).is_ok()
 }
 
 /// Run the Link Manager procedures
@@ -124,7 +124,7 @@ pub unsafe extern "C" fn link_manager_ingest_hci(
     let data = slice::from_raw_parts(data, len);
 
     if let Ok(packet) = hci::CommandPacket::parse(data) {
-        lm.ingest_hci(packet).is_ok()
+        lm.ingest_hci(packet).map_err(LinkManagerError::log_or_fail).is_ok()
     } else {
         false
     }
@@ -153,7 +153,9 @@ pub unsafe extern "C" fn link_manager_ingest_lmp(
     let data = slice::from_raw_parts(data, len);
 
     if let Ok(packet) = lmp::PacketPacket::parse(data) {
-        lm.ingest_lmp(hci::Address { bytes: *from }, packet).is_ok()
+        lm.ingest_lmp(hci::Address { bytes: *from }, packet)
+            .map_err(LinkManagerError::log_or_fail)
+            .is_ok()
     } else {
         false
     }
