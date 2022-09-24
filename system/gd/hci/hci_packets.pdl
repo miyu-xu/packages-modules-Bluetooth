@@ -6234,6 +6234,8 @@ packet MsftCommandComplete : CommandComplete {
 
 packet MsftReadSupportedFeaturesCommandComplete : MsftCommandComplete (subcommand_opcode = MSFT_READ_SUPPORTED_FEATURES) {
   supported_features: 64,
+  prefix_length: 8,
+  _payload_,
 }
 
 packet MsftLeMonitorAdvCommandComplete : MsftCommandComplete (subcommand_opcode = MSFT_LE_MONITOR_ADV) {
