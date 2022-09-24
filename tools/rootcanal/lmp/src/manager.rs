@@ -88,6 +88,25 @@ pub enum LinkManagerError {
     MaxNumberOfLink,
 }
 
+impl LinkManagerError {
+    fn is_fatal(&self) -> bool {
+        match self {
+            LinkManagerError::UnknownPeer => false,
+            LinkManagerError::UnhandledHciPacket => false,
+            LinkManagerError::MaxNumberOfLink => true,
+        }
+    }
+
+    pub fn log_or_fail(self) -> Result<(), Self> {
+        if self.is_fatal() {
+            Err(self)
+        } else {
+            print!("Recoverable LMP error: {self}");
+            Ok(())
+        }
+    }
+}
+
 /// Max number of Bluetooth Peers
 pub const MAX_PEER_NUMBER: usize = 7;
 
@@ -111,9 +130,8 @@ impl LinkManager {
         from: hci::Address,
         packet: lmp::PacketPacket,
     ) -> Result<(), LinkManagerError> {
-        if let Some(link) = self.get_link(from) {
-            link.ingest_lmp(packet);
-        };
+        let link = self.get_link(from).ok_or(LinkManagerError::UnknownPeer)?;
+        link.ingest_lmp(packet);
         Ok(())
     }
 
@@ -121,41 +139,37 @@ impl LinkManager {
         // Try to find the peer address from the command arguments
         let peer = hci::command_connection_handle(&command)
             .map(|handle| self.ops.get_address(handle))
-            .or_else(|| hci::command_remote_device_address(&command));
+            .or_else(|| hci::command_remote_device_address(&command))
+            .ok_or(LinkManagerError::UnhandledHciPacket)?;
 
-        if let Some(peer) = peer {
-            if let Some(link) = self.get_link(peer) {
-                link.ingest_hci(command);
-            };
-            Ok(())
-        } else {
-            Err(LinkManagerError::UnhandledHciPacket)
-        }
+        let link = self.get_link(peer).ok_or(LinkManagerError::UnknownPeer)?;
+        link.ingest_hci(command);
+        Ok(())
     }
 
     pub fn add_link(self: &Rc<Self>, peer: hci::Address) -> Result<(), LinkManagerError> {
-        let index = self.links.iter().position(|link| link.peer.get().is_empty());
+        let index = self
+            .links
+            .iter()
+            .position(|link| link.peer.get().is_empty())
+            .ok_or(LinkManagerError::UnhandledHciPacket)?;
 
-        if let Some(index) = index {
-            self.links[index].peer.set(peer);
-            let context = LinkContext { index: index as u8, manager: Rc::downgrade(self) };
-            self.procedures.borrow_mut()[index] = Some(Box::pin(procedure::run(context)));
-            Ok(())
-        } else {
-            Err(LinkManagerError::UnhandledHciPacket)
-        }
+        self.links[index].peer.set(peer);
+        let context = LinkContext { index: index as u8, manager: Rc::downgrade(self) };
+        self.procedures.borrow_mut()[index] = Some(Box::pin(procedure::run(context)));
+        Ok(())
     }
 
     pub fn remove_link(&self, peer: hci::Address) -> Result<(), LinkManagerError> {
-        let index = self.links.iter().position(|link| link.peer.get() == peer);
+        let index = self
+            .links
+            .iter()
+            .position(|link| link.peer.get() == peer)
+            .ok_or(LinkManagerError::UnknownPeer)?;
 
-        if let Some(index) = index {
-            self.links[index].reset();
-            self.procedures.borrow_mut()[index] = None;
-            Ok(())
-        } else {
-            Err(LinkManagerError::UnknownPeer)
-        }
+        self.links[index].reset();
+        self.procedures.borrow_mut()[index] = None;
+        Ok(())
     }
 
     pub fn tick(&self) {
