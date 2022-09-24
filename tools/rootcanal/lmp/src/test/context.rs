@@ -26,7 +26,7 @@ impl TestContext {
 }
 
 impl Context for TestContext {
-    fn poll_hci_command<C: TryFrom<hci::CommandPacket>>(&self) -> Poll<C> {
+    fn poll_hci_command<C: TryFrom<hci::LinkHCICommandHolder>>(&self) -> Poll<C> {
         let command =
             self.hci_commands.borrow().front().and_then(|command| command.clone().try_into().ok());
 
