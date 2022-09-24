@@ -125,7 +125,7 @@ class RootCanal:
                 classic_phy = 0
                 le_phy = 1
                 if "beacon" in name:
-                    target_phys = [le_phy]
+                    target_phys = []
                 elif "hci_device" in name:
                     target_phys = [classic_phy, le_phy]
 
@@ -134,6 +134,8 @@ class RootCanal:
                         self.channel.send_command("add_device_to_phy", [dev_i, phy])
         except Exception as e:
             print(raw_devices, e)
+
+        self.disconnected_dev_phys = None
 
     def disconnect_phy(self):
         # first, list all devices
