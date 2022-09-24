@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea48db8a_65248311",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-09-24T17:50:01Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nFixed Merge Conflict.\n\nThanks and Regards,\nSnehal",
+      "revId": "950481dafcb558dec09c19745385c4f18d8844ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
