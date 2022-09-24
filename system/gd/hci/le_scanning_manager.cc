@@ -24,6 +24,7 @@
 #include "hci/hci_packets.h"
 #include "hci/le_periodic_sync_manager.h"
 #include "hci/le_scanning_interface.h"
+#include "hci/msft.h"
 #include "hci/vendor_specific_event_manager.h"
 #include "module.h"
 #include "os/handler.h"
@@ -235,17 +236,17 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
       hci::HciLayer* hci_layer,
       hci::Controller* controller,
       hci::AclManager* acl_manager,
+      hci::MsftExtensionManager* msft_manager,
       hci::VendorSpecificEventManager* vendor_specific_event_manager) {
     module_handler_ = handler;
     hci_layer_ = hci_layer;
     controller_ = controller;
     acl_manager_ = acl_manager;
+    msft_manager_ = msft_manager;
     vendor_specific_event_manager_ = vendor_specific_event_manager;
     le_address_manager_ = acl_manager->GetLeAddressManager();
     le_scanning_interface_ = hci_layer_->GetLeScanningInterface(
         module_handler_->BindOn(this, &LeScanningManager::impl::handle_scan_results));
-    msft_interface_ =
-        hci_layer_->GetMsftInterface(module_handler_->BindOn(this, &LeScanningManager::impl::handle_msft_events));
     periodic_sync_manager_.Init(le_scanning_interface_, module_handler_);
     /* Check to see if the opcode is supported and C19 (support for extended advertising). */
     if (controller_->IsSupported(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS) &&
@@ -326,10 +327,6 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
       default:
         LOG_ALWAYS_FATAL("Unknown advertising subevent %s", hci::SubeventCodeText(event.GetSubeventCode()).c_str());
     }
-  }
-
-  void handle_msft_events(LeMetaEventView event) {
-    // TODO(b/246398494): Implement.
   }
 
   struct ExtendedEventTypeOptions {
@@ -807,15 +804,6 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
           break;
       }
     }
-  }
-
-  // TODO(b/246398494): Trigger this once we get information from driver about MSFT opcode.
-  void msft_read_supported_features() {
-    if (!msft_opcode_.has_value()) return;
-
-    msft_interface_->EnqueueCommand(
-        MsftReadSupportedFeaturesBuilder::Create(static_cast<OpCode>(*msft_opcode_)),
-        module_handler_->BindOnceOn(this, &impl::on_msft_read_supported_features_complete));
   }
 
   void update_address_filter(
@@ -1370,10 +1358,6 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
     }
   }
 
-  void on_msft_read_supported_features_complete(CommandCompleteView view) {
-    // TODO(b/246398494): Get the event prefix from the packet for configuring MSFT's Vendor Specific events.
-  }
-
   void on_batch_scan_complete(CommandCompleteView view) {
     ASSERT(view.IsValid());
     auto status_view = LeBatchScanCompleteView::Create(view);
@@ -1503,9 +1487,9 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
   hci::HciLayer* hci_layer_;
   hci::Controller* controller_;
   hci::AclManager* acl_manager_;
+  hci::MsftExtensionManager* msft_manager_;
   hci::VendorSpecificEventManager* vendor_specific_event_manager_;
   hci::LeScanningInterface* le_scanning_interface_;
-  hci::MsftInterface* msft_interface_;
   hci::LeAddressManager* le_address_manager_;
   bool address_manager_registered_ = false;
   NullScanningCallback null_scanning_callback_;
@@ -1529,9 +1513,6 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
   std::map<ScannerId, std::vector<uint8_t>> batch_scan_result_cache_;
   std::unordered_map<uint8_t, ScannerId> tracker_id_map_;
   uint16_t total_num_of_advt_tracked_ = 0x00;
-
-  // TODO(b/246398494): MSFT opcode needs to be configured from Bluetooth driver.
-  std::optional<uint16_t> msft_opcode_ = 0xfc1e;
 
   static void check_status(CommandCompleteView view) {
     switch (view.GetCommandOpCode()) {
@@ -1566,6 +1547,7 @@ void LeScanningManager::ListDependencies(ModuleList* list) const {
   list->add<hci::VendorSpecificEventManager>();
   list->add<hci::Controller>();
   list->add<hci::AclManager>();
+  list->add<hci::MsftExtensionManager>();
 }
 
 void LeScanningManager::Start() {
@@ -1574,6 +1556,7 @@ void LeScanningManager::Start() {
       GetDependency<hci::HciLayer>(),
       GetDependency<hci::Controller>(),
       GetDependency<AclManager>(),
+      GetDependency<MsftExtensionManager>(),
       GetDependency<VendorSpecificEventManager>());
 }
 
