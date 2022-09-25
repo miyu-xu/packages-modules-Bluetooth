@@ -20,10 +20,13 @@ service Security {
   rpc OnPairing(stream PairingEventAnswer) returns (stream PairingEvent);
   // Remove pairing.
   rpc DeletePairing(DeletePairingRequest) returns (DeletePairingResponse);
+  // Check what keys are available
+  rpc IsPaired(IsPairedRequest) returns (IsPairedResponse);
 }
 
 message PairRequest {
     Connection connection = 1;
+    Transport transport = 2;
 }
 
 message PairingEvent {
@@ -82,3 +85,12 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+message IsPairedRequest {
+  bytes address = 1;
+  Transport transport = 2;
+}
+
+message IsPairedResponse {
+  bool is_paired = 1;
+}
