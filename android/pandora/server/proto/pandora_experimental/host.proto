@@ -52,6 +52,14 @@ service Host {
   rpc StopAdvertising(StopAdvertisingRequest) returns (StopAdvertisingResponse);
   // Run BR/EDR inquiry and returns each device found
   rpc RunInquiry(RunInquiryRequest) returns (stream RunInquiryResponse);
+  // Run LE discovery (scanning) and return each device found
+  rpc RunDiscovery(RunDiscoveryRequest) returns (stream RunDiscoveryResponse);
+  // Set BREDR connectability mode
+  rpc SetConnectability(SetConnectabilityRequest) returns (SetConnectabilityResponse);
+  // Set BREDR discoverable mode
+  rpc SetDiscoverability(SetDiscoverabilityRequest) returns (SetDiscoverabilityResponse);
+  // Get device info from connection
+  rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -72,6 +80,7 @@ message Connection {
 message ConnectRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  Transport transport = 2;
 }
 
 // Response of the `Connect` method.
@@ -160,10 +169,11 @@ enum AddressType {
   RANDOM = 0x01;
 }
 
-enum LeDiscoveryMode {
-  NON_DISCOVERABLE = 0;
-  LIMITED_DISCOVERABLE = 1;
-  GENERAL_DISCOVERABLE = 2;
+enum DiscoverabilityMode {
+  DISCOVERABILITY_UNSPECIFIED = 0;
+  DISCOVERABILITY_NONE = 1;
+  DISCOVERABILITY_LIMITED = 2;
+  DISCOVERABILITY_GENERAL = 3;
 }
 
 // Advertising Data including one or multiple AD types.
@@ -191,7 +201,7 @@ message AdvertisingData {
 
 message StartAdvertisingRequest {
   bool legacy = 1;
-  LeDiscoveryMode discovery_mode = 2;
+  DiscoverabilityMode discovery_mode = 2;
   bool connectable = 3;
   AddressType own_address_type = 4;
   // If none, undirected.
@@ -231,7 +241,47 @@ message RunInquiryResponse {
   repeated Device device = 1;
 }
 
+message RunDiscoveryRequest {
+}
+
+message RunDiscoveryResponse {
+  Device device = 1;
+  uint32 flags = 2;
+}
+
 message Device {
   string name = 1;
   bytes address = 2;
+}
+
+enum ConnectabilityMode {
+  CONNECTABLE_MODE_UNKNOWN = 0;
+  CONNECTABILITY_MODE_NOT_CONNECTABLE = 1;
+  CONECTABILITY_MODE_CONNECTABLE = 2;
+}
+
+message SetConnectabilityRequest {
+  ConnectabilityMode connectability = 1;
+}
+
+message SetConnectabilityResponse {}
+
+message SetDiscoverabilityRequest {
+  DiscoverabilityMode discoverability = 1;
+}
+
+message SetDiscoverabilityResponse {}
+
+message GetDeviceRequest {
+  Connection connection = 1;
+}
+
+message GetDeviceResponse {
+  Device device = 1;
+}
+
+enum Transport {
+  TRANSPORT_UNSPECIFIED = 0;
+  TRANSPORT_BREDR = 1;
+  TRANSPORT_LE = 2;
 }
