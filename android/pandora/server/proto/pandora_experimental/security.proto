@@ -82,3 +82,12 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+message IsPairedRequest {
+  bytes address = 1;
+  Transport transport = 2;
+}
+
+message IsPairedResponse {
+  bool is_paired = 1;
+}

@@ -61,6 +61,8 @@ message Connection {
   // Opaque value filled by the gRPC server, must not
   // be modified nor crafted.
   bytes cookie = 1;
+  // The transport over which the connection exists
+  Transport transport = 2;
 }
 
 // Request of the `Connect` method.
@@ -164,4 +166,11 @@ message RunDiscoveryResponse {
 message Device {
   string name = 1;
   bytes address = 2;
+}
+
+// WARNING: Leaving this enum empty will default to BREDR, so make sure that this is a
+// valid default whenever used, and that we always populate this value.
+enum Transport {
+  TRANSPORT_BREDR = 0;
+  TRANSPORT_LE = 1;
 }
