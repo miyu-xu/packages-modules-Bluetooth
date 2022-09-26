@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "210b5e44_5c348661",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2640,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-26T14:19:04Z",
+      "side": 1,
+      "message": "I think VC might also need similar fix in his device_cleanup_helper()",
+      "range": {
+        "startLine": 2639,
+        "startChar": 4,
+        "endLine": 2640,
+        "endChar": 38
+      },
+      "revId": "7d97d88ff1e271ad8c7d5ce8093f01d86663786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
