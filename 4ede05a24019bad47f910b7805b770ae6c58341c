@@ -1,0 +1,429 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8ed41c_47d724f4",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think we should change the casing of those",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 56
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99fb7d19_a3e777e7",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Is it always unused right now ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 16
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee70ead8_24f195e5",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Why not use `legacy_advertiser_` directly ? I think this would make it more clear.",
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ebad6b_00d33a8d",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Why not use `legacy_advertiser_` directly ? I think this would make it more clear.",
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe26b9aa_cc4a8f48",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "I know that you didn\u0027t changed that and that it would require a change in `hci_packets.pdl` but I think we should rename this variant to `RANDOM_DEVICE_OR_STATIC_IDENTITY_ADDRESS`",
+      "range": {
+        "startLine": 147,
+        "startChar": 42,
+        "endLine": 147,
+        "endChar": 75
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37e71eb_b1398c43",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "I think it would make sense to add an explicit constructor to `AddressWithType` that take a `PeerAddressType`.\n\nOr not use the `AddressWithType` here and directly pass the peer_address and peer_address_type to `GenerateResolvablePrivateAddress`.",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f5f0119_3d433062",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "I think that we should move this check inside the `case RANDOM_DEVICE_ADDRESS` of the switch after this code.\nSo that it would simplify the condition and give more context to the reader.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eb47cfa_6a9a2e74",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "I think that we should move this check in the `RESOLVABLE_OR_RANDOM_ADDRESS` branch of the switch and change the ternary inside this case to a condition.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5bee647_b58d7e43",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "```\n      advertiser.advertising_address \u003d resolvable_address.value_or(public_address);\n```",
+      "range": {
+        "startLine": 196,
+        "startChar": 6,
+        "endLine": 197,
+        "endChar": 75
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41aaaed3_ae85bd59",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "```\n      advertiser.target_address \u003d peer_resolvable_address.value_or(peer_address);\n```",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 53
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca50d29e_8695b766",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "nit: Make a constant",
+      "range": {
+        "startLine": 239,
+        "startChar": 6,
+        "endLine": 239,
+        "endChar": 13
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eba389c_b95fe693",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Changing the `last_event` to a `next_event` instead might make this simpler\n\n`now \u003e\u003d legacy_advertiser_.next_event`\nAnd\n`legacy_advertiser_.next_event \u003d now + legacy_advertiser_.interval;`\nOr even better\n`legacy_advertiser_.next_event +\u003d legacy_advertiser_.interval;`\nBut this means that we need to initialise `legacy_advertiser_.next_event` to `now` at some point`",
+      "range": {
+        "startLine": 537,
+        "startChar": 6,
+        "endLine": 537,
+        "endChar": 74
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae557fc8_adf1c81f",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Can we not directly put the `AdvertisingType` inside the link layer packets ?",
+      "range": {
+        "startLine": 540,
+        "startChar": 0,
+        "endLine": 554,
+        "endChar": 5
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4825dd9a_66190c62",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Could we not fit the legacy advertiser into this interface ?",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 5
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9492911d_6350a52b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Why are we not storing `AddressWithType` inside the `le_resolving_list` ?",
+      "range": {
+        "startLine": 192,
+        "startChar": 13,
+        "endLine": 193,
+        "endChar": 63
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcfa7043_48d33f4a",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "Could we create an `enum` instead of using a boolean ? It makes it harder to read from the callsites.",
+      "range": {
+        "startLine": 205,
+        "startChar": 54,
+        "endLine": 205,
+        "endChar": 64
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d33c1adf_3df83ef6",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "I would prefer that we set `address_matches` to true instead of calling the handling function directly",
+      "range": {
+        "startLine": 794,
+        "startChar": 0,
+        "endLine": 802,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b3588ff_c27cf0fa",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1967,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "nit: We should use an optional here, and maybe just store the `entry` instead of the `resolved_address` and the `rpa`.\n\nPS: Feel free to close if you don\u0027t want to change that in this CL.",
+      "range": {
+        "startLine": 1965,
+        "startChar": 0,
+        "endLine": 1967,
+        "endChar": 24
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3819019c_4c8dc42b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2539,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T14:34:03Z",
+      "side": 1,
+      "message": "This doesn\u0027t seems right to me base on the comment above.\nWe should check the advertising filter policy to know if we should ignore it.\n\nThe way that I understand this code is that for example if you don\u0027t have your resolving list enabled or that the controller isn\u0027t able to resolve the address we will never send a scan response, which seems wrong.",
+      "range": {
+        "startLine": 2537,
+        "startChar": 0,
+        "endLine": 2539,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
