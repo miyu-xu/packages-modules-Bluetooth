@@ -16,6 +16,23 @@
       "message": "flossbuild failure was network failure -- trying again",
       "revId": "83c2faf4fab9f082b74bc9b9f2ea33470212104f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d128b15_eab0c224",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-26T16:33:01Z",
+      "side": 1,
+      "message": "good catch",
+      "revId": "83c2faf4fab9f082b74bc9b9f2ea33470212104f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
