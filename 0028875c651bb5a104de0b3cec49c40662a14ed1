@@ -16,6 +16,29 @@
       "message": "nit: We should not wait here too",
       "revId": "0028875c651bb5a104de0b3cec49c40662a14ed1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a43f32b7_b45ceae2",
+        "filename": "android/pandora/server/AndroidManifest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T12:57:20Z",
+      "side": 1,
+      "message": "We should not need those as we have the same permissions as the shell now",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 0
+      },
+      "revId": "0028875c651bb5a104de0b3cec49c40662a14ed1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
