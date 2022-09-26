@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4e311fa_e8a37834",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-26T05:34:34Z",
+      "side": 1,
+      "message": "Hearing, here and others",
+      "range": {
+        "startLine": 393,
+        "startChar": 24,
+        "endLine": 393,
+        "endChar": 32
+      },
+      "revId": "b3d2f458f01969d1204caf80efbaa62d50cdae2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2541779f_b2a2da8f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-26T05:34:34Z",
+      "side": 1,
+      "message": "addWithTopPriority?",
+      "range": {
+        "startLine": 433,
+        "startChar": 13,
+        "endLine": 433,
+        "endChar": 16
+      },
+      "revId": "b3d2f458f01969d1204caf80efbaa62d50cdae2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
