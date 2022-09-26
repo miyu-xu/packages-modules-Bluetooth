@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "424f2f5e_b6a6b4b2",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-26T23:54:13Z",
+      "side": 1,
+      "message": "Let\u0027s do this in a follow-up CL and let this land first.",
+      "parentUuid": "f591f525_59ce2b02",
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2fcba92_15606815",
@@ -354,6 +372,30 @@
       "side": 1,
       "message": "Do you mean just this method (and maybe `on_client_registered` as well) or all of them? I gave them default implementations because its pretty annoying to have to implement a bunch of callbacks that aren\u0027t relevant to one\u0027s use case just to get started so I think there\u0027s some value in it, though I can see a case for making a few mandatory.",
       "parentUuid": "ad184422_c719af70",
+      "range": {
+        "startLine": 510,
+        "startChar": 0,
+        "endLine": 511,
+        "endChar": 5
+      },
+      "revId": "0585b28e60b38841186bd575967c8561eafa09a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa2fce28_133d23cc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-26T23:54:13Z",
+      "side": 1,
+      "message": "Jesse, please submit a follow-up CL and remove the default implementation. I missed this in first review but we don\u0027t want callback traits to have default implementations. If a client doesn\u0027t need an impl, they should explicitly leave it empty.",
+      "parentUuid": "fc2ca979_20589b9a",
       "range": {
         "startLine": 510,
         "startChar": 0,
