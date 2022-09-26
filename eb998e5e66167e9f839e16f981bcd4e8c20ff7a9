@@ -34,6 +34,24 @@
       "parentUuid": "af56b1ec_09503f02",
       "revId": "eb998e5e66167e9f839e16f981bcd4e8c20ff7a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498b6688_591efb48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-26T19:21:48Z",
+      "side": 1,
+      "message": "I will pass this patch to QA team for verification.\nI don\u0027t think this can be easily tested taken current state of test infrastructure.",
+      "parentUuid": "e4d8bd3d_d60965a3",
+      "revId": "eb998e5e66167e9f839e16f981bcd4e8c20ff7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
