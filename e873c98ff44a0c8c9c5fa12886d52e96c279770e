@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05002e8d_2aa53b33",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-26T08:45:31Z",
+      "side": 1,
+      "message": "Neverthless, can this cause a loop ?",
+      "parentUuid": "f5fa673e_80995973",
+      "range": {
+        "startLine": 372,
+        "startChar": 7,
+        "endLine": 374,
+        "endChar": 7
+      },
+      "revId": "e873c98ff44a0c8c9c5fa12886d52e96c279770e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2154aca_e8aeecc4",
         "filename": "system/stack/btm/btm_iso_impl.h",
         "patchSetId": 2
