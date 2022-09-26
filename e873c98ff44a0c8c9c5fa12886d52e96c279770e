@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c38a94e_d8e0ca93",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T13:10:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "432b9098_c4cc9549",
+      "range": {
+        "startLine": 372,
+        "startChar": 7,
+        "endLine": 374,
+        "endChar": 7
+      },
+      "revId": "e873c98ff44a0c8c9c5fa12886d52e96c279770e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2154aca_e8aeecc4",
@@ -157,6 +181,30 @@
       "side": 1,
       "message": "I would keep it as it is now. We are not using yet gd/iso - if we get there we will fix it.",
       "parentUuid": "c5158bec_d9f76ac1",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 16
+      },
+      "revId": "e873c98ff44a0c8c9c5fa12886d52e96c279770e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9102bec_45492fe1",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T13:10:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7dc4ab62_f94aa99d",
       "range": {
         "startLine": 206,
         "startChar": 6,
