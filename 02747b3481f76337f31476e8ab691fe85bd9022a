@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d5e0157_c95fff5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T11:05:27Z",
+      "side": 1,
+      "message": "I think, that it is ignored only when it is in IDLE state.\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/gatt/bta_gattc_main.cc;l\u003d121?q\u003dbta_gattc_main\n\nIn the discovery state, MTU request is queued\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/gatt/bta_gattc_main.cc;l\u003d242?q\u003dbta_gattc_main",
+      "parentUuid": "fa73dc70_6132b9dc",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 8
+      },
+      "revId": "02747b3481f76337f31476e8ab691fe85bd9022a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a53498f_3144df5a",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-26T09:13:27Z",
       "side": 1,
       "message": "please drop this line",
+      "range": {
+        "startLine": 1541,
+        "startChar": 4,
+        "endLine": 1541,
+        "endChar": 71
+      },
+      "revId": "02747b3481f76337f31476e8ab691fe85bd9022a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa710cd_1a107ed4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T11:05:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4a53498f_3144df5a",
       "range": {
         "startLine": 1541,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa2231f_1f5b3022",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1545,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T11:05:27Z",
+      "side": 1,
+      "message": "I think we calculated max what we need from LeAudio purposes having in mind previous guidance to not make it too big. We can change it to GATT_MAX_MTU_SIZE, but do you want it in this patch?  ahh lets do that.",
+      "parentUuid": "368d87de_7c6c6822",
+      "range": {
+        "startLine": 1545,
+        "startChar": 58,
+        "endLine": 1545,
+        "endChar": 61
+      },
+      "revId": "02747b3481f76337f31476e8ab691fe85bd9022a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc55a30f_8afb69c4",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-09-26T09:13:27Z",
       "side": 1,
       "message": "connectionReady() might be better place for call to MTU change, because you trigger discovery in line 1587",
+      "range": {
+        "startLine": 1575,
+        "startChar": 4,
+        "endLine": 1575,
+        "endChar": 39
+      },
+      "revId": "02747b3481f76337f31476e8ab691fe85bd9022a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b8ba9a5_9cdf8cb5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T11:05:27Z",
+      "side": 1,
+      "message": "Not sure, because when bonding, we call connectionReady() once we read all the characteristics - and some of them like PACs can be big. I would keep it as it is.",
+      "parentUuid": "cc55a30f_8afb69c4",
       "range": {
         "startLine": 1575,
         "startChar": 4,
