@@ -258,6 +258,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb185827_0acf1a2f",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-26T16:36:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c53eedd_e0737423",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3eb47cfa_6a9a2e74",
@@ -271,6 +295,30 @@
       "writtenOn": "2022-09-26T14:34:03Z",
       "side": 1,
       "message": "I think that we should move this check in the `RESOLVABLE_OR_RANDOM_ADDRESS` branch of the switch and change the ternary inside this case to a condition.",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15c7c993_72531a4c",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-26T16:36:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3eb47cfa_6a9a2e74",
       "range": {
         "startLine": 172,
         "startChar": 0,
@@ -561,6 +609,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3afd6f70_09907282",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-26T16:36:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcfa7043_48d33f4a",
+      "range": {
+        "startLine": 205,
+        "startChar": 54,
+        "endLine": 205,
+        "endChar": 64
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d33c1adf_3df83ef6",
@@ -608,6 +680,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29abcd42_0aa55fa9",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-26T16:36:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "482ecd66_cad61d68",
+      "range": {
+        "startLine": 794,
+        "startChar": 0,
+        "endLine": 802,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b3588ff_c27cf0fa",
@@ -645,6 +741,30 @@
       "side": 1,
       "message": "Not changing this code now",
       "parentUuid": "3b3588ff_c27cf0fa",
+      "range": {
+        "startLine": 1965,
+        "startChar": 0,
+        "endLine": 1967,
+        "endChar": 24
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e32e88_6962c468",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1967,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-26T16:36:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "207c4580_4faa3e31",
       "range": {
         "startLine": 1965,
         "startChar": 0,
