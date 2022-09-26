@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5b96808_1fbdbd33",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T12:56:27Z",
+      "side": 1,
+      "message": "nit: We should not wait here too",
+      "revId": "0028875c651bb5a104de0b3cec49c40662a14ed1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
