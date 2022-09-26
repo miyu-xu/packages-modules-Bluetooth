@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db9b45d1_96962d16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-26T08:49:05Z",
+      "side": 1,
+      "message": "This is too generic, can you please describe manual reproduction strategy ? i.e.;\n\n\"Connect LE Audio device, restart BT, try to reconnect\"",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "e0e7c4f9efa7b580f95b92718097d600fc1b8fc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
