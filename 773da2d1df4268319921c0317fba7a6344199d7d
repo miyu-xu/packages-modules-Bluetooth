@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe21abb_fdbfb3e8",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T12:29:55Z",
+      "side": 1,
+      "message": "All errors are fatal, if we don\u0027t handle an hci packet, we will not increase back the number of credits of the host, resulting in the host being locked and not able to send packets. I prefer to have an assert/crash right away than letting the host be stuck.\n\nI don\u0027t think that declaring some errors to not be fatal is the solution here.\n\nWe could improve error handling in `ingest_hci`, as we should send an error on the hci level if we are unable to find the peer. But I don\u0027t think this is a priority right now as I didn\u0027t discovered yet an host that was providing an unknown bd addr or connection handle to the controller where it was not a bug.\n\nFor the bug that we have in `ingest_lmp`. For me we should try to find the root cause instead, I still find it very weird to get LMP packets after a disconnection.\nIf we want to have a nicer work around, I would prefer that we pass the error codes over the Rust/C ffi and that the caller of `ingest_lmp` filter and log the error.",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90afb2c0_74db425d",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T12:29:55Z",
+      "side": 1,
+      "message": "Nice ! Thanks for seeing this `ok_or` usage !",
+      "range": {
+        "startLine": 133,
+        "startChar": 39,
+        "endLine": 133,
+        "endChar": 44
+      },
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
