@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c0bb73d_921fb79e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-26T12:50:32Z",
+      "side": 1,
+      "message": "We might want to remove beacons from the cuttlefish RootCanal default command file instead",
+      "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
