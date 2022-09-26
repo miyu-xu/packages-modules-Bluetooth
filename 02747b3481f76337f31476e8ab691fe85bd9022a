@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d792264b_22ed537b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T20:35:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d5e0157_c95fff5f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 8
+      },
+      "revId": "02747b3481f76337f31476e8ab691fe85bd9022a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a53498f_3144df5a",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "Not sure, because when bonding, we call connectionReady() once we read all the characteristics - and some of them like PACs can be big. I would keep it as it is.",
       "parentUuid": "cc55a30f_8afb69c4",
+      "range": {
+        "startLine": 1575,
+        "startChar": 4,
+        "endLine": 1575,
+        "endChar": 39
+      },
+      "revId": "02747b3481f76337f31476e8ab691fe85bd9022a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be970c2d_69207529",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1575,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-26T20:35:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2b8ba9a5_9cdf8cb5",
       "range": {
         "startLine": 1575,
         "startChar": 4,
