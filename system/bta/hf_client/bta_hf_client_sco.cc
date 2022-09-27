@@ -24,6 +24,13 @@
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_api.h"
+/** Change for HF PTS @{ */
+#include "osi/include/properties.h"
+/** @} */
+
+/** Change for indicator to try with SCO only when eSCO fails @{ */
+static bool hf_retry_with_sco_only = false;
+/** @} */
 
 #define BTA_HF_CLIENT_NO_EDR_ESCO                                \
   (ESCO_PKT_TYPES_MASK_NO_2_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 | \
@@ -114,6 +121,11 @@ static void bta_hf_client_sco_conn_rsp(tBTA_HF_CLIENT_CB* client_cb,
     } else if (client_cb->negotiated_codec == BTM_SCO_CODEC_MSBC) {
       // eSCO mSBC
       resp = esco_parameters_for_codec(ESCO_CODEC_MSBC_T2, true);
+      /** Change for HF PTS: HFP/HF/ACC/BV-06-I @{ */
+      PTS_TEST_IS_ENABLE {
+        resp = esco_parameters_for_codec(ESCO_CODEC_MSBC_T1, true);
+      }
+      /** @} */
     } else if (bta_hf_client_cb_arr.features & BTA_HF_CLIENT_FEAT_ESCO_S4) {
       // eSCO CVSD, HFP 1.7 requires S4
       resp = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, true);
@@ -236,25 +248,65 @@ static void bta_hf_client_sco_create(tBTA_HF_CLIENT_CB* client_cb,
     return;
   }
 
-  // codec parameters
-  enh_esco_params_t params;
+  /** Change for peer AG don't support codec negotiation @{ */
+  esco_codec_t codec_index = ESCO_CODEC_CVSD_S3;
+
   // Since HF device is not expected to receive AT+BAC send +BCS command,
   // codec support of the connected AG device will be unknown,
   // so HF device will always establish only CVSD connection.
-  if ((bta_hf_client_cb_arr.features & BTA_HF_CLIENT_FEAT_ESCO_S4) &&
-      (client_cb->peer_features & BTA_HF_CLIENT_PEER_ESCO_S4)) {
+  if ((client_cb->peer_features & BTA_HF_CLIENT_PEER_CODEC)
+      && (bta_hf_client_cb_arr.features & BTA_HF_CLIENT_FEAT_CODEC)) {
+    codec_index = ESCO_CODEC_MSBC_T1;
+  } else if ((bta_hf_client_cb_arr.features & BTA_HF_CLIENT_FEAT_ESCO_S4)
+      && (client_cb->peer_features & BTA_HF_CLIENT_PEER_ESCO_S4)) {
     // eSCO CVSD, HFP 1.7 requires S4
-    params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, true);
+    codec_index = ESCO_CODEC_CVSD_S4;
   } else {
     // eSCO CVSD, S3 is preferred by default(before HFP 1.7)
-    params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, true);
+    codec_index = ESCO_CODEC_CVSD_S3;
   }
+
+  enh_esco_params_t params = esco_parameters_for_codec(codec_index, true);
+  /** @} */
+
+  /** Change for HF PTS: AAC/BV-01-I, AAC/BV-03-I and so on. @{ */
+  PTS_TEST_IS_ENABLE {
+    APPL_TRACE_DEBUG("%s: persist.bluetooth.pts.enable on", __func__ );
+    params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, true);
+    params.retransmission_effort = ESCO_RETRANSMISSION_POWER;
+  }
+  /** @} */
+
+  /** Change for indicator to try with SCO only when eSCO fails @{ */
+  /* if initiating set current scb and peer bd addr */
+  /* Attempt to use eSCO if remote host supports HFP >= 1.5 */
+  if (!hf_retry_with_sco_only) {
+    /* If ESCO or EDR ESCO, retry with SCO only in case of failure */
+    if ((params.packet_types & BTM_ESCO_LINK_ONLY_MASK)
+        || !((params.packet_types & ~(BTM_ESCO_LINK_ONLY_MASK | BTM_SCO_LINK_ONLY_MASK)) ^ BTA_HF_CLIENT_NO_EDR_ESCO)) {
+      hf_retry_with_sco_only = TRUE;
+      APPL_TRACE_API("Setting hf_retry_with_sco_only to TRUE");
+    }
+  } else {
+    /* Load defaults for SCO only */
+    params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, true);
+    params.packet_types &= BTM_SCO_LINK_ONLY_MASK;
+    params.retransmission_effort = ESCO_RETRANSMISSION_OFF;
+    params.max_latency_ms = 12;
+    APPL_TRACE_API("retrying with SCO only");
+    hf_retry_with_sco_only = FALSE;
+  }
+  /** @} */
 
   /* if initiating set current scb and peer bd addr */
   if (is_orig) {
     BTM_SetEScoMode(&params);
     /* tell sys to stop av if any */
     bta_sys_sco_use(BTA_ID_HS, 1, client_cb->peer_addr);
+  } else {
+    /** Change for indicator to try with SCO only when eSCO fails @{ */
+    hf_retry_with_sco_only = FALSE;
+    /** @} */
   }
 
   status = BTM_CreateSco(&client_cb->peer_addr, is_orig, params.packet_types,
@@ -582,6 +634,9 @@ void bta_hf_client_sco_conn_open(tBTA_HF_CLIENT_DATA* p_data) {
   } else {
     bta_hf_client_cback_sco(client_cb, BTA_HF_CLIENT_AUDIO_OPEN_EVT);
   }
+  /** Change for indicator to try with SCO only when eSCO fails @{ */
+  hf_retry_with_sco_only = FALSE;
+  /** @} */
 }
 
 /*******************************************************************************
@@ -608,19 +663,28 @@ void bta_hf_client_sco_conn_close(tBTA_HF_CLIENT_DATA* p_data) {
   /* clear current scb */
   client_cb->sco_idx = BTM_INVALID_SCO_INDEX;
 
-  bta_hf_client_sco_event(client_cb, BTA_HF_CLIENT_SCO_CONN_CLOSE_E);
+  /** Change for indicator to try with SCO only when eSCO fails @{ */
+  /* retry_with_sco_only, will be set only when initiator
+  ** and HFClient is first trying to establish an eSCO connection */
+  if (hf_retry_with_sco_only && client_cb->svc_conn) {
+    bta_hf_client_sco_create(client_cb, TRUE);
+  } else {
+    bta_hf_client_sco_event(client_cb, BTA_HF_CLIENT_SCO_CONN_CLOSE_E);
 
-  bta_sys_sco_close(BTA_ID_HS, 1, client_cb->peer_addr);
+    bta_sys_sco_close(BTA_ID_HS, 1, client_cb->peer_addr);
 
-  bta_sys_sco_unuse(BTA_ID_HS, 1, client_cb->peer_addr);
+    bta_sys_sco_unuse(BTA_ID_HS, 1, client_cb->peer_addr);
 
-  /* call app callback */
-  bta_hf_client_cback_sco(client_cb, BTA_HF_CLIENT_AUDIO_CLOSE_EVT);
+    /* call app callback */
+    bta_hf_client_cback_sco(client_cb, BTA_HF_CLIENT_AUDIO_CLOSE_EVT);
 
-  if (client_cb->sco_close_rfc) {
-    client_cb->sco_close_rfc = false;
-    bta_hf_client_rfc_do_close(p_data);
+    if (client_cb->sco_close_rfc == true) {
+      client_cb->sco_close_rfc = false;
+      bta_hf_client_rfc_do_close(p_data);
+    }
   }
+  hf_retry_with_sco_only = false;
+  /** @} */
 }
 
 /*******************************************************************************
