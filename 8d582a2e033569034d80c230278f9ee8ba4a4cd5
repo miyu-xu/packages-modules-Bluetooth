@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82ed13f8_9c1d39f6",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-09-27T15:36:12Z",
+      "side": 1,
+      "message": "This is often written as `if fields`, though you could argue that it\u0027s too terse for our own good.",
+      "range": {
+        "startLine": 53,
+        "startChar": 62,
+        "endLine": 53,
+        "endChar": 77
+      },
+      "revId": "8d582a2e033569034d80c230278f9ee8ba4a4cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
