@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fdef010_e514640f",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2360,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-27T15:42:11Z",
+      "side": 1,
+      "message": "I think this should happen whether or not we have a free handle (before the handle check)",
+      "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68aa2ca9_26b1b0fb",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 5
@@ -65,6 +82,29 @@
         "startChar": 37,
         "endLine": 3050,
         "endChar": 42
+      },
+      "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b55230b2_a60e2363",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-27T15:42:11Z",
+      "side": 1,
+      "message": "Do we only need one?  Should we add page timeout for Remote Name Request, as well?",
+      "range": {
+        "startLine": 808,
+        "startChar": 38,
+        "endLine": 808,
+        "endChar": 52
       },
       "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
