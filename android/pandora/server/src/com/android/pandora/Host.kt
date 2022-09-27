@@ -22,6 +22,8 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC
 import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_RANDOM
 import android.bluetooth.BluetoothDevice.BOND_BONDED
+import android.bluetooth.BluetoothDevice.TRANSPORT_AUTO
+import android.bluetooth.BluetoothDevice.TRANSPORT_BREDR
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
@@ -41,6 +43,8 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
+import java.io.IOException
+import java.time.Duration
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 import kotlin.coroutines.suspendCoroutine
@@ -49,6 +53,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -60,7 +65,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withTimeout
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
 
@@ -85,6 +90,8 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     intentFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
     intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
+    intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
+    intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
     intentFilter.addAction(BluetoothDevice.ACTION_FOUND)
 
     // Creates a shared flow of intents that can be used in all methods in the coroutine scope.
@@ -352,14 +359,14 @@ class Host(private val context: Context, private val server: Server) : HostImplB
         throw Status.UNKNOWN.asException()
       }
 
-      val connectionStateChangedFlow =
+      val disconnectedFlow =
         flow
-          .filter { it.getAction() == BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED }
+          .filter { it.action == BluetoothDevice.ACTION_ACL_DISCONNECTED }
           .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
-          .map { it.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR) }
 
       bluetoothDevice.disconnect()
-      connectionStateChangedFlow.filter { it == BluetoothAdapter.STATE_DISCONNECTED }.first()
+      disconnectedFlow.first()
+
       DisconnectResponse.getDefaultInstance()
     }
   }
@@ -370,9 +377,15 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   ) {
     grpcUnary<ConnectLEResponse>(scope, responseObserver) {
       val address = request.address.decodeAsMacAddressToString()
-      Log.i(TAG, "connectLE: $address")
-      val device = scanLeDevice(address)
-      GattInstance(device!!, TRANSPORT_LE, context).waitForState(BluetoothProfile.STATE_CONNECTED)
+      Log.i(TAG, "connect LE: $address")
+      val device = scanLeDevice(address)!!
+      GattInstance(device, TRANSPORT_LE, context)
+
+      flow
+        .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
+        .filter { it.getBluetoothDeviceExtra() == device }
+        .first()
+
       ConnectLEResponse.newBuilder()
         .setConnection(
           Connection.newBuilder().setCookie(ByteString.copyFromUtf8(device.address)).build()
