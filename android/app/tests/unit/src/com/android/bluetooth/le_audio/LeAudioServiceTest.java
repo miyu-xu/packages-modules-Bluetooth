@@ -285,10 +285,9 @@ public class LeAudioServiceTest {
         assertThat(intent).isNotNull();
         assertThat(intent.getAction())
                 .isEqualTo(BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED);
-        assertThat(device).isEqualTo(intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE));
-        assertThat(newState).isEqualTo(intent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
-        assertThat(prevState).isEqualTo(intent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE,
-                -1));
+        assertThat((BluetoothDevice)intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)).isEqualTo(device);
+        assertThat(intent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1)).isEqualTo(newState);
+        assertThat(intent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, -1)).isEqualTo(prevState);
     }
 
     /**
@@ -707,25 +706,29 @@ public class LeAudioServiceTest {
         // Device unbond - state machine is not removed
         mService.bondStateChanged(mLeftDevice, BluetoothDevice.BOND_NONE);
         assertThat(mService.getDevices().contains(mLeftDevice)).isTrue();
+        verifyConnectionStateIntent(TIMEOUT_MS, mLeftDevice, BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTING);
 
         // LeAudio stack event: CONNECTION_STATE_CONNECTED - state machine is not removed
         mService.bondStateChanged(mLeftDevice, BluetoothDevice.BOND_BONDED);
         generateConnectionMessageFromNative(mLeftDevice, BluetoothProfile.STATE_CONNECTED,
-                BluetoothProfile.STATE_CONNECTING);
-        assertThat(BluetoothProfile.STATE_CONNECTED)
-                .isEqualTo(mService.getConnectionState(mLeftDevice));
+                BluetoothProfile.STATE_DISCONNECTED);
+        assertThat(mService.getConnectionState(mLeftDevice))
+                .isEqualTo(BluetoothProfile.STATE_CONNECTED);
         assertThat(mService.getDevices().contains(mLeftDevice)).isTrue();
         // Device unbond - state machine is not removed
         mService.bondStateChanged(mLeftDevice, BluetoothDevice.BOND_NONE);
         assertThat(mService.getDevices().contains(mLeftDevice)).isTrue();
-
-        // LeAudio stack event: CONNECTION_STATE_DISCONNECTING - state machine is not removed
-        mService.bondStateChanged(mLeftDevice, BluetoothDevice.BOND_BONDED);
-        generateConnectionMessageFromNative(mLeftDevice, BluetoothProfile.STATE_DISCONNECTING,
+        verifyConnectionStateIntent(TIMEOUT_MS, mLeftDevice, BluetoothProfile.STATE_DISCONNECTING,
                 BluetoothProfile.STATE_CONNECTED);
         assertThat(BluetoothProfile.STATE_DISCONNECTING)
                 .isEqualTo(mService.getConnectionState(mLeftDevice));
         assertThat(mService.getDevices().contains(mLeftDevice)).isTrue();
+
+        // LeAudio stack event: CONNECTION_STATE_DISCONNECTING - state machine is not removed
+        mService.bondStateChanged(mLeftDevice, BluetoothDevice.BOND_BONDED);
+        assertThat(BluetoothProfile.STATE_DISCONNECTING)
+                .isEqualTo(mService.getConnectionState(mLeftDevice));
         // Device unbond - state machine is not removed
         mService.bondStateChanged(mLeftDevice, BluetoothDevice.BOND_NONE);
         assertThat(mService.getDevices().contains(mLeftDevice)).isTrue();
