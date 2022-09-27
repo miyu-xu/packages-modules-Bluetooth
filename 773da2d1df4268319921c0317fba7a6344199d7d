@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "78b3e1af_a55a091e",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-27T17:41:00Z",
+      "side": 1,
+      "message": "We need this for PTS GAP tests, for ingest_hci. The remote disconnects once the test finishes, but this could be in the middle of an LMP procedure.\n\nI\u0027ll add a proper failure command response, sure, as well as logging on the client side.",
+      "parentUuid": "bbe21abb_fdbfb3e8",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "90afb2c0_74db425d",
