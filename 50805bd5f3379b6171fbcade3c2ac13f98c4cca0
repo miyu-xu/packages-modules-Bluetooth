@@ -16,6 +16,24 @@
       "message": "How do you ensure this is called only once?\nShouldn\u0027t we trigger it for each CCC written ?",
       "revId": "50805bd5f3379b6171fbcade3c2ac13f98c4cca0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74cd5eb8_6a501291",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2170,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-27T18:06:20Z",
+      "side": 1,
+      "message": "because code registers only once on reconnect. Line 1612.\nIf anybody will change that - unit tests will fail.",
+      "parentUuid": "3ab3cb4b_0938b264",
+      "revId": "50805bd5f3379b6171fbcade3c2ac13f98c4cca0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
