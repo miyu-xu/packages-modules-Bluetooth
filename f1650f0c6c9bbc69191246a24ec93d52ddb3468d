@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39457b12_6031acc5",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-27T18:46:39Z",
+      "side": 0,
+      "message": "could we add a flag that is default to true?\n\nso that we can turn it off if something goes wrong",
+      "range": {
+        "startLine": 1567,
+        "startChar": 37,
+        "endLine": 1567,
+        "endChar": 60
+      },
+      "revId": "f1650f0c6c9bbc69191246a24ec93d52ddb3468d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
