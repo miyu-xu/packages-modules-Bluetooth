@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "404f60f7_7be3110b",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-27T09:23:15Z",
+      "side": 1,
+      "message": "Could you add a comment saying from where thoses values came from ?",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "a095407d1df200572816b4766b0244aefa7a9916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
