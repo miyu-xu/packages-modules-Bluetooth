@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0afba0_2f92c6df",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-27T09:29:58Z",
+      "side": 1,
+      "message": "Could you sort this by using Ctrl + Alt + O in intelliJ?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 0
+      },
+      "revId": "7bb0c166db971da0c2d6cf795861c3e4ead9185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "136ad87a_5862da94",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-27T09:29:58Z",
+      "side": 1,
+      "message": "How about renaming it as constructorWithArguments?",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 42
+      },
+      "revId": "7bb0c166db971da0c2d6cf795861c3e4ead9185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9422ba3a_0517da4a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-27T09:29:58Z",
+      "side": 1,
+      "message": "How about createFromMapContract?",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 45
+      },
+      "revId": "7bb0c166db971da0c2d6cf795861c3e4ead9185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
