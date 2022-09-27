@@ -1121,6 +1121,48 @@ TEST_F(LeImplTest, add_device_to_resolving_list__SupportsBlePrivacy) {
   ASSERT_FALSE(le_impl_->pause_connection);
 }
 
+TEST_F(LeImplTest, connectability_state_machine_text) {
+  ASSERT_STR_EQ(
+      std::string("ConnectabilityState::DISARMED", connectability_state_machine_text(ConnectabilityState::DISARMED)));
+  ASSERT_STR_EQ(
+      std::string("ConnectabilityState::ARMING", connectability_state_machine_text(ConnectabilityState::ARMING)));
+  ASSERT_STR_EQ(
+      std::string("ConnectabilityState::ARMED", connectability_state_machine_text(ConnectabilityState::ARMED)));
+  ASSERT_STR_EQ(
+      std::string("ConnectabilityState::DISARMING", connectability_state_machine_text(ConnectabilityState::DISARMING)));
+}
+
+TEST_F(LeImplTest, on_le_event__PHY_UPDATE_COMPLETE) {
+  // 1. valid packet
+  // 2. invalid packet
+}
+
+TEST_F(LeImplTest, on_le_event__DATA_LENGTH_CHANGE) {
+  // 1. valid packet
+  // 2. invalid packet
+}
+
+TEST_F(LeImplTest, on_le_event__REMOTE_CONNECTION_PARAMETER_REQUEST) {
+  // 1. valid packet
+  // 2. invalid packet
+}
+
+TEST_F(LeImplTest, on_le_event__DEFAULT) {}
+
+TEST_F(LeImplTest, HACK_get_handle) {}
+
+TEST_F(LeImplTest, on_le_connection_canceled_on_pause) {}
+
+TEST_F(LeImplTest, on_common_le_connection_complete__NoPriorConnection) {}
+
+TEST_F(LeImplTest, on_create_connection_timeout) {}
+
+TEST_F(LeImplTest, cancel_connect) {}
+
+TEST_F(LeImplTest, set_le_suggested_default_data_parameters) {}
+
+TEST_F(LeImplTest, clear_resolving_list) {}
+
 }  // namespace acl_manager
 }  // namespace hci
 }  // namespace bluetooth
