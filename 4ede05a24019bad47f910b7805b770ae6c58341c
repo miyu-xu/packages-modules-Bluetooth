@@ -796,6 +796,30 @@
       },
       "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92d03032_14fd7c54",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2539,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-27T09:40:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3819019c_4c8dc42b",
+      "range": {
+        "startLine": 2537,
+        "startChar": 0,
+        "endLine": 2539,
+        "endChar": 3
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

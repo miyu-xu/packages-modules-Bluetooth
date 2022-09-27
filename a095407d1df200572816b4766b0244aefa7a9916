@@ -22,6 +22,30 @@
       },
       "revId": "a095407d1df200572816b4766b0244aefa7a9916",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa9071a1_773e777e",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-27T09:40:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "404f60f7_7be3110b",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 37
+      },
+      "revId": "a095407d1df200572816b4766b0244aefa7a9916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
