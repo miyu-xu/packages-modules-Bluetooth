@@ -56,6 +56,30 @@
       },
       "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f586f3b_ea024b6d",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2608,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-27T21:18:46Z",
+      "side": 1,
+      "message": "```\n/* locally_initiated */ true\n```",
+      "parentUuid": "46ad5a84_d3e6f0f9",
+      "range": {
+        "startLine": 2608,
+        "startChar": 60,
+        "endLine": 2608,
+        "endChar": 64
+      },
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
