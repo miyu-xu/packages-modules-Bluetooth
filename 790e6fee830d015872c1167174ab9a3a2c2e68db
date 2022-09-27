@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e61b1b_092ce430",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-27T07:17:35Z",
+      "side": 1,
+      "message": "s/With/with",
+      "range": {
+        "startLine": 65,
+        "startChar": 21,
+        "endLine": 65,
+        "endChar": 25
+      },
+      "revId": "790e6fee830d015872c1167174ab9a3a2c2e68db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9080928_c00e61af",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-27T07:17:35Z",
+      "side": 1,
+      "message": "Please break line together with \"new\".",
+      "range": {
+        "startLine": 66,
+        "startChar": 57,
+        "endLine": 66,
+        "endChar": 60
+      },
+      "revId": "790e6fee830d015872c1167174ab9a3a2c2e68db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00528050_16a5f7fd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-27T07:17:35Z",
+      "side": 1,
+      "message": "settersAndGetters?",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 29
+      },
+      "revId": "790e6fee830d015872c1167174ab9a3a2c2e68db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "574732aa_5dea9792",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-27T07:17:35Z",
+      "side": 1,
+      "message": "equalsWithSameVlaues_returnsTrue?",
+      "range": {
+        "startLine": 161,
+        "startChar": 16,
+        "endLine": 161,
+        "endChar": 54
+      },
+      "revId": "790e6fee830d015872c1167174ab9a3a2c2e68db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a398726c_f414e37a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-27T07:17:35Z",
+      "side": 1,
+      "message": "equalsWithDifferentPrioriy_returnsFalse?",
+      "range": {
+        "startLine": 176,
+        "startChar": 16,
+        "endLine": 176,
+        "endChar": 79
+      },
+      "revId": "790e6fee830d015872c1167174ab9a3a2c2e68db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c90985_4b2e90a4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-27T07:17:35Z",
+      "side": 1,
+      "message": "compareTo_withSameValues_returnsZero?",
+      "range": {
+        "startLine": 191,
+        "startChar": 16,
+        "endLine": 191,
+        "endChar": 60
+      },
+      "revId": "790e6fee830d015872c1167174ab9a3a2c2e68db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
