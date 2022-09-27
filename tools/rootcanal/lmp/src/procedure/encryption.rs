@@ -40,7 +40,7 @@ pub async fn initiate(ctx: &impl Context) {
         hci::EncryptionChangeBuilder {
             status: hci::ErrorCode::Success,
             connection_handle: ctx.peer_handle(),
-            encryption_enabled: hci::EncryptionEnabled::On,
+            encryption_enabled: hci::EncryptionEnabled::BrEdrAesCcm,
         }
         .build(),
     );
