@@ -56,6 +56,8 @@ service Host {
   rpc SetConnectabilityMode(SetConnectabilityModeRequest) returns (SetConnectabilityModeResponse);
   // Set BREDR discoverable mode
   rpc SetDiscoverabilityMode(SetDiscoverabilityModeRequest) returns (SetDiscoverabilityModeResponse);
+  // Get device info from connection
+  rpc GetDevice(GetDeviceRequest) returns (GetDeviceResponse);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -286,3 +288,11 @@ message SetDiscoverabilityModeRequest {
 }
 
 message SetDiscoverabilityModeResponse {}
+
+message GetDeviceRequest {
+  Connection connection = 1;
+}
+
+message GetDeviceResponse {
+  Device device = 1;
+}
