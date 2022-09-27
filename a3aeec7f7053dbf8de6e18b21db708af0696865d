@@ -16,6 +16,23 @@
       "message": "Please resolve comments before submitting",
       "revId": "a3aeec7f7053dbf8de6e18b21db708af0696865d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05723d53_1c9f2f34",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-27T20:30:42Z",
+      "side": 1,
+      "message": "Looks like something in this macro fails to compile",
+      "revId": "a3aeec7f7053dbf8de6e18b21db708af0696865d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
