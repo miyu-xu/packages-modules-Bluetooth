@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ab3cb4b_0938b264",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2170,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-27T17:46:09Z",
+      "side": 1,
+      "message": "How do you ensure this is called only once?\nShouldn\u0027t we trigger it for each CCC written ?",
+      "revId": "50805bd5f3379b6171fbcade3c2ac13f98c4cca0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
