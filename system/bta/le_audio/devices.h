@@ -58,6 +58,7 @@ class LeAudioDevice {
    * This is true only during initial phase of first connection. */
   bool first_connection_;
   bool connecting_actively_;
+  bool background_connect_;
   bool closing_stream_for_disconnection_;
   uint16_t conn_id_;
   uint16_t mtu_;
@@ -92,6 +93,7 @@ class LeAudioDevice {
         removing_device_(false),
         first_connection_(first_connection),
         connecting_actively_(first_connection),
+        background_connect_(false),
         closing_stream_for_disconnection_(false),
         conn_id_(GATT_INVALID_CONN_ID),
         mtu_(0),
@@ -331,7 +333,7 @@ class LeAudioDeviceGroup {
 
   bool IsInTransition(void);
   bool IsReleasing(void);
-  void Dump(int fd);
+  void Dump(int fd, int active_group_id);
 
  private:
   uint32_t transport_latency_mtos_us_;
@@ -377,7 +379,7 @@ class LeAudioDeviceGroups {
   size_t Size();
   bool IsAnyInTransition();
   void Cleanup(void);
-  void Dump(int fd);
+  void Dump(int fd, int active_group_id);
 
  private:
   std::vector<std::unique_ptr<LeAudioDeviceGroup>> groups_;

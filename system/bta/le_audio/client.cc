@@ -1104,6 +1104,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     if (autoconnect) {
+      leAudioDevice->background_connect_ = true;
       BTA_GATTC_Open(gatt_if_, address, false, false);
     }
   }
@@ -1149,6 +1150,7 @@ class LeAudioClientImpl : public LeAudioClient {
                << " to background connect to connected group: "
                << leAudioDevice->group_id_;
 
+    leAudioDevice->background_connect_ = true;
     BTA_GATTC_Open(gatt_if_, leAudioDevice->address_, false, false);
   }
 
@@ -1168,6 +1170,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     /* Removes all registrations for connection */
+    leAudioDevice->background_connect_ = false;
     BTA_GATTC_CancelOpen(0, address, false);
 
     if (leAudioDevice->conn_id_ != GATT_INVALID_CONN_ID) {
@@ -1695,6 +1698,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
     /* Attempt background re-connect if disconnect was not intended locally */
     if (reason != GATT_CONN_TERMINATE_LOCAL_HOST) {
+      leAudioDevice->background_connect_ = true;
       BTA_GATTC_Open(gatt_if_, address, false, false);
     }
   }
@@ -2820,16 +2824,16 @@ class LeAudioClientImpl : public LeAudioClient {
     std::stringstream stream;
     if (print_audio_state) {
       if (sender) {
-        stream << "   audio sender state: " << audio_sender_state_ << "\n";
+        stream << "\taudio sender state: " << audio_sender_state_ << "\n";
       } else {
-        stream << "   audio receiver state: " << audio_receiver_state_ << "\n";
+        stream << "\taudio receiver state: " << audio_receiver_state_ << "\n";
       }
     }
 
-    stream << "   num_channels: " << +conf->num_channels << "\n"
-           << "   sample rate: " << +conf->sample_rate << "\n"
-           << "   bits pers sample: " << +conf->bits_per_sample << "\n"
-           << "   data_interval_us: " << +conf->data_interval_us << "\n";
+    stream << "\tsample rate: " << +conf->sample_rate
+           << ",\tchan: " << +conf->num_channels
+           << ",\tbits: " << +conf->bits_per_sample
+           << ",\tdata_interval_us: " << +conf->data_interval_us << "\n";
 
     dprintf(fd, "%s", stream.str().c_str());
   }
@@ -2862,17 +2866,18 @@ class LeAudioClientImpl : public LeAudioClient {
 
   void Dump(int fd) {
     dprintf(fd, "  Active group: %d\n", active_group_id_);
-    dprintf(fd, "    configuration content type: 0x%08hx\n",
+    dprintf(fd, "    configuration: %s  (0x%08hx)\n",
+            bluetooth::common::ToString(configuration_context_type_).c_str(),
             configuration_context_type_);
     dprintf(fd, "    TBS state: %s\n", in_call_ ? " In call" : "No calls");
     dprintf(
-        fd, "    stream setup time if started: %d ms\n",
+        fd, "    Start tume: %d ms\n",
         (int)((stream_setup_end_timestamp_ - stream_setup_start_timestamp_) /
               1000));
     printCurrentStreamConfiguration(fd);
     dprintf(fd, "  ----------------\n ");
     dprintf(fd, "  LE Audio Groups:\n");
-    aseGroups_.Dump(fd);
+    aseGroups_.Dump(fd, active_group_id_);
     dprintf(fd, "\n  Not grouped devices:\n");
     leAudioDevices_.Dump(fd, bluetooth::groups::kGroupUnknown);
   }

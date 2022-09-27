@@ -1873,67 +1873,65 @@ bool LeAudioDeviceGroup::Configure(LeAudioContextType context_type,
 }
 
 LeAudioDeviceGroup::~LeAudioDeviceGroup(void) { this->Cleanup(); }
-void LeAudioDeviceGroup::Dump(int fd) {
+void LeAudioDeviceGroup::Dump(int fd, int active_group_id) {
+  bool is_active = (group_id_ == active_group_id);
   std::stringstream stream;
   auto* active_conf = GetActiveConfiguration();
 
-  stream << "    == Group id: " << group_id_ << " == \n"
-         << "      state: " << GetState() << "\n"
-         << "      target state: " << GetTargetState() << "\n"
-         << "      cig state: " << cig_state_ << "\n"
-         << "      number of devices: " << Size() << "\n"
-         << "      number of connected devices: " << NumOfConnected() << "\n"
+  stream << "\n    == Group id: " << group_id_
+         << " == " << (is_active ? ",\tActive\n" : ",\tInactive\n")
+         << "      state: " << GetState()
+         << ",\ttarget state: " << GetTargetState()
+         << ",\tcig state: " << cig_state_ << "\n"
          << "      active context types: "
-         << loghex(GetActiveContexts().to_ulong()) << "\n"
-         << "      current context type: "
-         << static_cast<int>(GetCurrentContextType()) << "\n"
-         << "      active stream configuration name: "
+         << loghex(GetActiveContexts().to_ulong())
+         << ",\tcurrent context type: "
+         << bluetooth::common::ToString(GetCurrentContextType()).c_str() << "\n"
+         << "      active configuration name: "
          << (active_conf ? active_conf->name : " not set") << "\n"
-         << "    Last used stream configuration: \n"
-         << "      pending_configuration: " << stream_conf.pending_configuration
+         << "      stream configuration: "
+         << (stream_conf.conf != nullptr ? stream_conf.conf->name : " unknown ")
          << "\n"
-         << "      codec id : " << +(stream_conf.id.coding_format) << "\n"
-         << "      name: "
-         << (stream_conf.conf != nullptr ? stream_conf.conf->name : " null ")
+         << "      codec id: " << +(stream_conf.id.coding_format)
+         << ",\tpending_configuration: " << stream_conf.pending_configuration
          << "\n"
-         << "      number of sinks in the configuration "
-         << stream_conf.sink_num_of_devices << "\n"
-         << "      number of sink_streams connected: "
-         << stream_conf.sink_streams.size() << "\n"
-         << "      number of sources in the configuration "
-         << stream_conf.source_num_of_devices << "\n"
-         << "      number of source_streams connected: "
-         << stream_conf.source_streams.size() << "\n"
+         << "      num of devices(connected): " << Size() << "("
+         << NumOfConnected() << ")\n"
+         << ",     num of sinks(connected): " << stream_conf.sink_num_of_devices
+         << "(" << stream_conf.sink_streams.size() << ")\n"
+         << "      num of sources(connected): "
+         << stream_conf.source_num_of_devices << "("
+         << stream_conf.source_streams.size() << ")\n"
          << "      allocated CISes: " << static_cast<int>(cises_.size());
 
   if (cises_.size() > 0) {
-    stream << "\n\t === CISes === ";
+    stream << "\n\t == CISes == ";
     for (auto cis : cises_) {
       stream << "\n\t cis id: " << static_cast<int>(cis.id)
-             << ", type: " << static_cast<int>(cis.type)
-             << ", conn_handle: " << static_cast<int>(cis.conn_handle)
-             << ", addr: " << cis.addr;
+             << ",\ttype: " << static_cast<int>(cis.type)
+             << ",\tconn_handle: " << static_cast<int>(cis.conn_handle)
+             << ",\taddr: " << cis.addr;
     }
+    stream << "\n\t ====";
   }
 
   if (GetFirstActiveDevice() != nullptr) {
     uint32_t sink_delay;
-    stream << "\n      presentation_delay for sink (speaker): ";
-    if (GetPresentationDelay(&sink_delay, le_audio::types::kLeAudioDirectionSink)) {
-      stream << sink_delay << " us";
+    if (GetPresentationDelay(&sink_delay,
+                             le_audio::types::kLeAudioDirectionSink)) {
+      stream << "\n      presentation_delay for sink (speaker): " << sink_delay
+             << " us";
     }
-    stream << "\n      presentation_delay for source (microphone): ";
+
     uint32_t source_delay;
-    if (GetPresentationDelay(&source_delay, le_audio::types::kLeAudioDirectionSource)) {
-      stream << source_delay << " us";
+    if (GetPresentationDelay(&source_delay,
+                             le_audio::types::kLeAudioDirectionSource)) {
+      stream << "\n      presentation_delay for source (microphone): "
+             << source_delay << " us";
     }
-    stream << "\n";
-  } else {
-    stream << "\n      presentation_delay for sink (speaker):\n"
-           << "      presentation_delay for source (microphone): \n";
   }
 
-  stream << "      === devices: ===";
+  stream << "\n      == devices: ==";
 
   dprintf(fd, "%s", stream.str().c_str());
 
@@ -2355,32 +2353,48 @@ void LeAudioDevice::SetSupportedContexts(AudioContexts snk_contexts,
 }
 
 void LeAudioDevice::Dump(int fd) {
-  std::stringstream stream;
-  stream << std::boolalpha;
-  stream << "\n\taddress: " << address_
-         << (conn_id_ == GATT_INVALID_CONN_ID ? "\n\t  Not connected "
-                                              : "\n\t  Connected conn_id =")
-         << (conn_id_ == GATT_INVALID_CONN_ID ? "" : std::to_string(conn_id_))
-         << "\n\t  set member: " << csis_member_
-         << "\n\t  known_service_handles_: " << known_service_handles_
-         << "\n\t  notify_connected_after_read_: "
-         << notify_connected_after_read_
-         << "\n\t  removing_device_: " << removing_device_
-         << "\n\t  first_connection_: " << first_connection_
-         << "\n\t  encrypted_: " << encrypted_
-         << "\n\t  connecting_actively_: " << connecting_actively_
-         << "\n\t  number of ases_: " << static_cast<int>(ases_.size());
-
-  if (ases_.size() > 0) {
-    stream << "\n\t  == ASE == ";
-    for (auto& ase : ases_) {
-      stream << "\n\t  id: " << static_cast<int>(ase.id)
-             << ", active: " << ase.active << ", direction: "
-             << (ase.direction == types::kLeAudioDirectionSink ? "sink"
-                                                               : "source")
-             << ", allocated cis id: " << static_cast<int>(ase.cis_id);
+  std::string device_state;
+  if (conn_id_ != GATT_INVALID_CONN_ID) {
+    if (removing_device_) {
+      device_state = "Disconnecting: ";
+    } else {
+      device_state = "Connected: ";
+    }
+  } else {
+    if (connecting_actively_) {
+      device_state = "Connecting";
+    } else if (background_connect_) {
+      device_state = "Background connect";
+    } else if (known_service_handles_) {
+      device_state = "Known device - not connecting";
+    } else {
+      device_state = "Disconnected";
     }
   }
+
+  uint16_t acl_handle = BTM_GetHCIConnHandle(address_, BT_TRANSPORT_LE);
+
+  std::stringstream stream;
+  stream << std::boolalpha;
+  stream << "\n\tAddress: " << address_ << ",\t" << device_state
+         << (conn_id_ == GATT_INVALID_CONN_ID ? "" : std::to_string(conn_id_))
+         << ", acl_handle: " << std::to_string(acl_handle) << ",\t"
+         << (encrypted_ ? "Encrypted" : "Unecrypted")
+         << ",mtu: " << std::to_string(mtu_)
+         << "\n\tnumber of ases_: " << static_cast<int>(ases_.size());
+
+  if (ases_.size() > 0) {
+    stream << "\n\t  == ASEs == ";
+    for (auto& ase : ases_) {
+      stream << "\n\t  id: " << static_cast<int>(ase.id)
+             << ",\tactive: " << ase.active << ", dir: "
+             << (ase.direction == types::kLeAudioDirectionSink ? "sink"
+                                                               : "source")
+             << ",\tcis_id: " << static_cast<int>(ase.cis_id) << ",\tstate: "
+             << bluetooth::common::ToString(ase.data_path_state);
+    }
+  }
+  stream << "\n\t  ====";
 
   dprintf(fd, "%s", stream.str().c_str());
 }
@@ -2520,9 +2534,9 @@ void LeAudioDeviceGroups::Cleanup(void) {
   groups_.clear();
 }
 
-void LeAudioDeviceGroups::Dump(int fd) {
+void LeAudioDeviceGroups::Dump(int fd, int active_group_id) {
   for (auto& g : groups_) {
-    g->Dump(fd);
+    g->Dump(fd, active_group_id);
   }
 }
 
