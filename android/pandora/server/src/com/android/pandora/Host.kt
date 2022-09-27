@@ -440,6 +440,50 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
+  override fun setConnectability(
+    request: SetConnectabilityRequest,
+    responseObserver: StreamObserver<SetConnectabilityResponse>
+  ) {
+    grpcUnary(scope, responseObserver) {
+      Log.d(TAG, "setConnectability")
+      val scanMode =
+        when (request.connectability!!) {
+          ConnectabilityMode.CONNECTABLE_MODE_UNKNOWN,
+          ConnectabilityMode.CONNECTABILITY_MODE_NOT_CONNECTABLE,
+          ConnectabilityMode.UNRECOGNIZED -> BluetoothAdapter.SCAN_MODE_NONE
+          ConnectabilityMode.CONECTABILITY_MODE_CONNECTABLE ->
+            BluetoothAdapter.SCAN_MODE_CONNECTABLE
+        }
+      bluetoothAdapter.setScanMode(scanMode)
+      SetConnectabilityResponse.getDefaultInstance()
+    }
+  }
+
+  override fun setDiscoverability(
+    request: SetDiscoverabilityRequest,
+    responseObserver: StreamObserver<SetDiscoverabilityResponse>
+  ) {
+    Log.d(TAG, "setDiscoverability")
+    grpcUnary(scope, responseObserver) {
+      val scanMode =
+        when (request.discoverability!!) {
+          DiscoverabilityMode.DISCOVERABILITY_NONE,
+          DiscoverabilityMode.DISCOVERABILITY_UNSPECIFIED,
+          DiscoverabilityMode.UNRECOGNIZED -> BluetoothAdapter.SCAN_MODE_CONNECTABLE
+          DiscoverabilityMode.DISCOVERABILITY_LIMITED,
+          DiscoverabilityMode.DISCOVERABILITY_GENERAL ->
+            BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE
+        }
+      bluetoothAdapter.setScanMode(scanMode)
+      if (request.discoverability == DiscoverabilityMode.DISCOVERABILITY_LIMITED) {
+        bluetoothAdapter.setDiscoverableTimeout(
+          Duration.ofSeconds(120)
+        ) // limited discoverability needs a timeout, 120s is Android default
+      }
+      SetDiscoverabilityResponse.getDefaultInstance()
+    }
+  }
+
   override fun runDiscovery(
     request: RunDiscoveryRequest,
     responseObserver: StreamObserver<RunDiscoveryResponse>
