@@ -33,6 +33,42 @@
       "message": "I take back autosubmit -- looks like this is failing `./build.py --target test`\n\nPlease fix these tests in this CL and use follow-up CL for refactors per comment from Sonny.\n\n```\nfailures:\n\n---- bluetooth_gatt::tests::test_uuid_from_string stdout ----\nthread \u0027bluetooth_gatt::tests::test_uuid_from_string\u0027 panicked at \u0027assertion failed: uuid.is_some()\u0027, system/gd/rust/linux/stack/src/bluetooth_gatt.rs:2655:9\nnote: run with `RUST_BACKTRACE\u003d1` environment variable to display a backtrace\n\n---- bluetooth_gatt::tests::test_context_map_clients stdout ----\nthread \u0027bluetooth_gatt::tests::test_context_map_clients\u0027 panicked at \u0027called `Option::unwrap()` on a `None` value\u0027, system/gd/rust/linux/stack/src/bluetooth_gatt.rs:2670:75\n\n\nfailures:\n    bluetooth_gatt::tests::test_context_map_clients\n    bluetooth_gatt::tests::test_uuid_from_string\n    ```",
       "revId": "f99baafd60f20de8d64030e85467295e091c5be3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d0441c3_5a74e5e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-27T15:56:04Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "a0af89b6_8949717c",
+      "revId": "f99baafd60f20de8d64030e85467295e091c5be3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfb56f01_da32d74d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-27T15:56:04Z",
+      "side": 1,
+      "message": "This passes just fine for me. There was a failure like that a few patch versions prior, it\u0027s possible it\u0027s a holdover. I\u0027ll rerun the presubmit.",
+      "parentUuid": "08149439_57ef953c",
+      "revId": "f99baafd60f20de8d64030e85467295e091c5be3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
