@@ -282,15 +282,36 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
       Log.i(TAG, "connect: address=$bluetoothDevice")
 
-      if (!bluetoothDevice.isConnected()) {
-        if (bluetoothDevice.bondState == BOND_BONDED) {
-          // already bonded, just reconnect
-          bluetoothDevice.connect()
-          waitConnectionIntent(bluetoothDevice)
-        } else {
-          // need to bond
-          bluetoothDevice.createBond()
-          acceptPairingAndAwaitBonded(bluetoothDevice)
+      bluetoothAdapter.cancelDiscovery()
+
+      if (request.transport == Transport.TRANSPORT_BREDR) {
+        // do an SDP request to trigger a temporary BREDR connection
+        try {
+          withTimeout(1500) { bluetoothDevice.createRfcommSocket(3).connect() }
+        } catch (e: IOException) {
+          // ignore
+        }
+      } else {
+        if (!bluetoothDevice.isConnected()) {
+          if (
+            bluetoothDevice.bondState == BOND_BONDED &&
+              request.transport == Transport.TRANSPORT_UNSPECIFIED
+          ) {
+            // already bonded, just reconnect
+            bluetoothDevice.connect()
+            waitConnectionIntent(bluetoothDevice)
+          } else {
+            // need to bond
+            bluetoothDevice.createBond(
+              when (request.transport) {
+                Transport.TRANSPORT_UNSPECIFIED -> TRANSPORT_AUTO
+                Transport.TRANSPORT_LE -> TRANSPORT_LE
+                Transport.TRANSPORT_BREDR -> TRANSPORT_BREDR
+                Transport.UNRECOGNIZED -> TRANSPORT_AUTO
+              }
+            )
+            acceptPairingAndAwaitBonded(bluetoothDevice)
+          }
         }
       }
 
