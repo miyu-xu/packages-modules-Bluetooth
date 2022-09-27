@@ -71,7 +71,13 @@ void open() {
   if (sco_uipc != nullptr) {
     LOG_WARN("Re-opening UIPC that is already running");
   }
+
   sco_uipc = UIPC_Init();
+  if (sco_uipc == nullptr) {
+    LOG_ERROR("%s failed to init UIPC", __func__);
+    return;
+  }
+
   UIPC_Open(*sco_uipc, UIPC_CH_ID_AV_AUDIO, sco_data_cb, SCO_HOST_DATA_PATH);
   struct group* grp = getgrnam(SCO_HOST_DATA_GROUP);
   chmod(SCO_HOST_DATA_PATH, 0770);
