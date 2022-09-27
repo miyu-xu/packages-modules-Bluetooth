@@ -78,6 +78,8 @@ message Connection {
 message ConnectRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  // Whether we want to initiate pairing as part of the connection
+  bool initiate_pairing = 2;
 }
 
 // Response of the `Connect` method.

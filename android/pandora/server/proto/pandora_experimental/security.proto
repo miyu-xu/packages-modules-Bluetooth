@@ -26,7 +26,6 @@ service Security {
 
 message PairRequest {
     Connection connection = 1;
-    Transport transport = 2;
 }
 
 message PairingEvent {
