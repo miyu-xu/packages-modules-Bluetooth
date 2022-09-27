@@ -47,6 +47,11 @@ service Host {
   rpc RunInquiry(RunInquiryRequest) returns (stream RunInquiryResponse);
   // Run LE discovery (scanning) and return each device found
   rpc RunDiscovery(RunDiscoveryRequest) returns (stream RunDiscoveryResponse);
+  // Set BREDR connectability mode
+  rpc SetConnectability(SetConnectabilityRequest) returns (SetConnectabilityResponse);
+  // Set BREDR discoverable mode
+  rpc SetDiscoverability(SetDiscoverabilityRequest) returns (SetDiscoverabilityResponse);
+  // Get device info from connection
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -155,10 +160,11 @@ enum AddressType {
   RANDOM = 0x01;
 }
 
-enum LeDiscoveryMode {
-  NON_DISCOVERABLE = 0;
-  LIMITED_DISCOVERABLE = 1;
-  GENERAL_DISCOVERABLE = 2;
+enum DiscoverabilityMode {
+  DISCOVERABILITY_UNSPECIFIED = 0;
+  DISCOVERABILITY_NONE = 1;
+  DISCOVERABILITY_LIMITED = 2;
+  DISCOVERABILITY_GENERAL = 3;
 }
 
 message RunInquiryRequest {
@@ -180,3 +186,22 @@ message Device {
   string name = 1;
   bytes address = 2;
 }
+
+enum ConnectabilityMode {
+  CONNECTABLE_MODE_UNKNOWN = 0;
+  CONNECTABILITY_MODE_NOT_CONNECTABLE = 1;
+  CONECTABILITY_MODE_CONNECTABLE = 2;
+}
+
+message SetConnectabilityRequest {
+  ConnectabilityMode connectability = 1;
+}
+
+message SetConnectabilityResponse {}
+
+message SetDiscoverabilityRequest {
+  DiscoverabilityMode discoverability = 1;
+}
+
+message SetDiscoverabilityResponse {}
+
