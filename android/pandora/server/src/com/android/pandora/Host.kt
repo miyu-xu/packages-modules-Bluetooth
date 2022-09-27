@@ -41,6 +41,7 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
+import java.io.IOException
 import java.time.Duration
 import java.util.UUID
 import kotlin.Result.Companion.failure
@@ -63,6 +64,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
 
@@ -245,15 +247,28 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
       Log.i(TAG, "connect: address=$bluetoothDevice")
 
+      bluetoothAdapter.cancelDiscovery()
+
       if (!bluetoothDevice.isConnected()) {
-        if (bluetoothDevice.bondState == BOND_BONDED) {
-          // already bonded, just reconnect
-          bluetoothDevice.connect()
-          waitConnectionIntent(bluetoothDevice)
+        if (request.skipPairing) {
+          // do an SDP request to trigger a temporary BREDR connection
+          try {
+            withTimeout(1500) { bluetoothDevice.createRfcommSocket(3).connect() }
+          } catch (e: IOException) {
+            // ignore
+          }
         } else {
-          // need to bond
-          bluetoothDevice.createBond()
-          acceptPairingAndAwaitBonded(bluetoothDevice)
+          if (bluetoothDevice.bondState == BOND_BONDED) {
+            // already bonded, just reconnect
+            bluetoothDevice.connect()
+            waitConnectionIntent(bluetoothDevice)
+          } else {
+            // need to bond
+            bluetoothDevice.createBond()
+            if (!request.manuallyConfirm) {
+              acceptPairingAndAwaitBonded(bluetoothDevice)
+            }
+          }
         }
       }
 
