@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f57e2a5_908565de",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-27T09:17:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6367ed4_1dc45ff0",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 88
+      },
+      "revId": "09a9f61f4380b187bb750e1171281803fb39aa0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fca7252_97cf9eb4",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-09-15T00:47:21Z",
       "side": 1,
       "message": "Client-facing API, please document with `///`.",
+      "revId": "09a9f61f4380b187bb750e1171281803fb39aa0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a21f8e_e9442a63",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-27T09:17:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fca7252_97cf9eb4",
       "revId": "09a9f61f4380b187bb750e1171281803fb39aa0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
