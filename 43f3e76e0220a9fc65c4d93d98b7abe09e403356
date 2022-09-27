@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5154b04f_8b975897",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-27T18:36:24Z",
+      "side": 1,
+      "message": "I wanted to avoid adding too much changes in the other controller patch because it is a cherry-pick.\nThis one is the gd / shim only implementation",
+      "parentUuid": "44e9a241_f4d0c777",
+      "revId": "43f3e76e0220a9fc65c4d93d98b7abe09e403356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "febedaee_5621beff",
