@@ -74,6 +74,7 @@ message Connection {
 message ConnectRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  Transport transport = 2;
 }
 
 // Response of the `Connect` method.
@@ -186,4 +187,29 @@ message RunDiscoveryResponse {
 message Device {
   string name = 1;
   bytes address = 2;
+}
+
+enum ConnectabilityMode {
+  CONNECTABLE_MODE_UNKNOWN = 0;
+  CONNECTABILITY_MODE_NOT_CONNECTABLE = 1;
+  CONECTABILITY_MODE_CONNECTABLE = 2;
+}
+
+message SetConnectabilityRequest {
+  ConnectabilityMode connectability = 1;
+}
+
+message SetConnectabilityResponse {}
+
+message SetDiscoverabilityRequest {
+  DiscoverabilityMode discoverability = 1;
+}
+
+message SetDiscoverabilityResponse {}
+
+
+enum Transport {
+  TRANSPORT_UNSPECIFIED = 0;
+  TRANSPORT_BREDR = 1;
+  TRANSPORT_LE = 2;
 }
