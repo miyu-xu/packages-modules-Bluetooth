@@ -151,7 +151,7 @@ class Security(private val context: Context) : SecurityImplBase() {
           val variant = intent.getIntExtra(EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
           Log.i(TAG, "OnPairing: Handling PairingEvent ${variant} for device ${device.address}")
           val eventBuilder =
-            PairingEvent.newBuilder().setAddress(ByteString.copyFrom(device.toByteArray()))
+            PairingEvent.newBuilder().setAddress(device.toByteString())
           when (variant) {
             // SSP / LE Just Works
             BluetoothDevice.PAIRING_VARIANT_CONSENT ->
