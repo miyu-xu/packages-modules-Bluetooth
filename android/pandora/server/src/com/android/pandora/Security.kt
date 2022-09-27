@@ -43,7 +43,7 @@ import pandora.HostProto.*
 import pandora.SecurityGrpc.SecurityImplBase
 import pandora.SecurityProto.*
 
-const val TAG = "PandoraSecurity"
+private const val TAG = "PandoraSecurity"
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Security(private val context: Context) : SecurityImplBase() {
@@ -128,10 +128,7 @@ class Security(private val context: Context) : SecurityImplBase() {
       flow.map { intent ->
         val device = intent.getBluetoothDeviceExtra()
         val variant = intent.getIntExtra(EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
-        Log.i(
-          TAG,
-          "OnPairing: Handling PairingEvent ${variant} for device ${device.address}"
-        )
+        Log.i(TAG, "OnPairing: Handling PairingEvent ${variant} for device ${device.address}")
         val eventBuilder =
           PairingEvent.newBuilder().setAddress(ByteString.copyFrom(device.toByteArray()))
         when (variant) {
@@ -157,8 +154,7 @@ class Security(private val context: Context) : SecurityImplBase() {
           BluetoothDevice.PAIRING_VARIANT_PIN ->
             when (device.type) {
               DEVICE_TYPE_CLASSIC -> eventBuilder.pinCodeRequest = Empty.getDefaultInstance()
-              DEVICE_TYPE_LE ->
-                eventBuilder.passkeyEntryRequest = Empty.getDefaultInstance()
+              DEVICE_TYPE_LE -> eventBuilder.passkeyEntryRequest = Empty.getDefaultInstance()
               else -> error("cannot determine pairing variant, since transport is unknown")
             }
           BluetoothDevice.PAIRING_VARIANT_PIN_16_DIGITS ->

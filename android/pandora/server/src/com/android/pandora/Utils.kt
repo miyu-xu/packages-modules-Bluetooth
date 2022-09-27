@@ -53,6 +53,8 @@ import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostProto.Connection
 
+private const val TAG = "PandoraUtils"
+
 fun shell(cmd: String): String {
   val fd = InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(cmd)
   val input_stream = ParcelFileDescriptor.AutoCloseInputStream(fd)

@@ -17,6 +17,7 @@
 package com.android.pandora
 
 import android.bluetooth.BluetoothA2dp
+import android.bluetooth.BluetoothA2dpSink
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
@@ -52,7 +53,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
-  private val bluetoothA2dp = getProfileProxy<BluetoothA2dp>(context, BluetoothProfile.A2DP)
+  private val a2dpProxy: A2dpProxy
+  private val is_source = shell("getprop bluetooth.profile.a2dp.source.enabled") == "true"
 
   private var audioTrack: AudioTrack? = null
 
@@ -61,12 +63,19 @@ class A2dp(val context: Context) : A2DPImplBase() {
     val intentFilter = IntentFilter()
     intentFilter.addAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED)
     intentFilter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
+    intentFilter.addAction(BluetoothA2dpSink.ACTION_CONNECTION_STATE_CHANGED)
 
     flow = intentFlow(context, intentFilter).shareIn(scope, SharingStarted.Eagerly)
+    a2dpProxy =
+      if (is_source) {
+        A2dpSourceProxy(context, flow)
+      } else {
+        A2dpSinkProxy(context, flow)
+      }
   }
 
   fun deinit() {
-    bluetoothAdapter.closeProfileProxy(BluetoothProfile.A2DP, bluetoothA2dp)
+    a2dpProxy.deinit(bluetoothAdapter)
     scope.cancel()
   }
 
@@ -105,8 +114,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
         throw Status.UNKNOWN.asException()
       }
 
-      if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
-        bluetoothA2dp.connect(device)
+      if (a2dpProxy.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
+        a2dpProxy.connect(device)
         val state =
           flow
             .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
@@ -131,6 +140,19 @@ class A2dp(val context: Context) : A2DPImplBase() {
     }
   }
 
+  override fun waitSink(
+    request: WaitSinkRequest,
+    responseObserver: StreamObserver<WaitSinkResponse>
+  ) {
+    grpcUnary<WaitSinkResponse>(scope, responseObserver) {
+      val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+      Log.i(TAG, "waitSink: device=$device")
+      a2dpProxy.waitStream(device)
+      val sink = Sink.newBuilder().setConnection(request.connection).build()
+      WaitSinkResponse.newBuilder().setSink(sink).build()
+    }
+  }
+
   override fun waitSource(
     request: WaitSourceRequest,
     responseObserver: StreamObserver<WaitSourceResponse>
@@ -138,32 +160,7 @@ class A2dp(val context: Context) : A2DPImplBase() {
     grpcUnary<WaitSourceResponse>(scope, responseObserver) {
       val device = request.connection.toBluetoothDevice(bluetoothAdapter)
       Log.i(TAG, "waitSource: device=$device")
-
-      if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-        Log.e(TAG, "Device is not bonded, cannot openSource")
-        throw Status.UNKNOWN.asException()
-      }
-
-      if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
-        val state =
-          flow
-            .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
-            .filter { it.getBluetoothDeviceExtra() == device }
-            .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
-            .filter {
-              it == BluetoothProfile.STATE_CONNECTED || it == BluetoothProfile.STATE_DISCONNECTED
-            }
-            .first()
-
-        if (state == BluetoothProfile.STATE_DISCONNECTED) {
-          Log.e(TAG, "waitSource failed, A2DP has been disconnected")
-          throw Status.UNKNOWN.asException()
-        }
-      }
-
-      // TODO: b/234891800, AVDTP start request sometimes never sent if playback starts too early.
-      delay(2000L)
-
+      a2dpProxy.waitStream(device)
       val source = Source.newBuilder().setConnection(request.connection).build()
       WaitSourceResponse.newBuilder().setSource(source).build()
     }
@@ -174,10 +171,16 @@ class A2dp(val context: Context) : A2DPImplBase() {
       if (audioTrack == null) {
         audioTrack = buildAudioTrack()
       }
-      val device = request.source.connection.toBluetoothDevice(bluetoothAdapter)
+      val device =
+        if (is_source) {
+          request.source.connection.toBluetoothDevice(bluetoothAdapter)
+        } else {
+          Log.e(TAG, "Cannot start an a2dp stream from bluetooth a2dp sink framework")
+          throw Status.UNKNOWN.asException()
+        }
       Log.i(TAG, "start: device=$device")
 
-      if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
+      if (a2dpProxy.getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
         Log.e(TAG, "Device is not connected, cannot start")
         throw Status.UNKNOWN.asException()
       }
@@ -185,7 +188,7 @@ class A2dp(val context: Context) : A2DPImplBase() {
       audioTrack!!.play()
 
       // If A2dp is not already playing, wait for it
-      if (!bluetoothA2dp.isA2dpPlaying(device)) {
+      if (!a2dpProxy.isA2dpPlaying(device)) {
         flow
           .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
           .filter { it.getBluetoothDeviceExtra() == device }
@@ -202,12 +205,12 @@ class A2dp(val context: Context) : A2DPImplBase() {
       val device = request.source.connection.toBluetoothDevice(bluetoothAdapter)
       Log.i(TAG, "suspend: device=$device")
 
-      if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
+      if (a2dpProxy.getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
         Log.e(TAG, "Device is not connected, cannot suspend")
         throw Status.UNKNOWN.asException()
       }
 
-      if (!bluetoothA2dp.isA2dpPlaying(device)) {
+      if (!a2dpProxy.isA2dpPlaying(device)) {
         Log.e(TAG, "Device is already suspended, cannot suspend")
         throw Status.UNKNOWN.asException()
       }
@@ -232,35 +235,26 @@ class A2dp(val context: Context) : A2DPImplBase() {
       val device = request.source.connection.toBluetoothDevice(bluetoothAdapter)
       Log.i(TAG, "isSuspended: device=$device")
 
-      if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
+      if (a2dpProxy.getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
         Log.e(TAG, "Device is not connected, cannot get suspend state")
         throw Status.UNKNOWN.asException()
       }
 
-      val isSuspended = bluetoothA2dp.isA2dpPlaying(device)
+      val isSuspended = a2dpProxy.isA2dpPlaying(device)
       IsSuspendedResponse.newBuilder().setIsSuspended(isSuspended).build()
     }
   }
 
   override fun close(request: CloseRequest, responseObserver: StreamObserver<CloseResponse>) {
     grpcUnary<CloseResponse>(scope, responseObserver) {
-      val device = request.source.connection.toBluetoothDevice(bluetoothAdapter)
+      val device =
+        if (request.hasSource()) {
+          request.source.connection.toBluetoothDevice(bluetoothAdapter)
+        } else {
+          request.sink.connection.toBluetoothDevice(bluetoothAdapter)
+        }
       Log.i(TAG, "close: device=$device")
-
-      if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
-        Log.e(TAG, "Device is not connected, cannot close")
-        throw Status.UNKNOWN.asException()
-      }
-
-      val a2dpConnectionStateChangedFlow =
-        flow
-          .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
-          .filter { it.getBluetoothDeviceExtra() == device }
-          .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
-
-      bluetoothA2dp.disconnect(device)
-      a2dpConnectionStateChangedFlow.filter { it == BluetoothA2dp.STATE_DISCONNECTED }.first()
-
+      a2dpProxy.close(device)
       CloseResponse.getDefaultInstance()
     }
   }
@@ -321,7 +315,7 @@ class A2dp(val context: Context) : A2DPImplBase() {
       val device = request.source.connection.toBluetoothDevice(bluetoothAdapter)
       Log.i(TAG, "getAudioEncoding: device=$device")
 
-      if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
+      if (a2dpProxy.getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
         Log.e(TAG, "Device is not connected, cannot getAudioEncoding")
         throw Status.UNKNOWN.asException()
       }
@@ -332,5 +326,4 @@ class A2dp(val context: Context) : A2DPImplBase() {
         .build()
     }
   }
-
 }
