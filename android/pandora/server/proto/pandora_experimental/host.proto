@@ -78,6 +78,7 @@ message Connection {
 message ConnectRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  Transport transport = 2;
 }
 
 // Response of the `Connect` method.
