@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11a98aa7_da2c7ecb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-27T21:17:54Z",
+      "side": 1,
+      "message": "BYPASS_LONG_LINES_REASON: Bluetooth likes 120 lines",
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b51a9c_55bdc876",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-27T21:17:54Z",
+      "side": 1,
+      "message": "LGTM. This is small changes all over the places, we will need reply on test to verify it\u0027s safe to land.",
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46ad5a84_d3e6f0f9",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2608,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-27T21:17:54Z",
+      "side": 1,
+      "message": "/* is_direct */ true\n\nApply to all other calls.",
+      "range": {
+        "startLine": 2608,
+        "startChar": 60,
+        "endLine": 2608,
+        "endChar": 64
+      },
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
