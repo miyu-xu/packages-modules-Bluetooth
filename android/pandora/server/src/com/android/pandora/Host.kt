@@ -325,6 +325,20 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
+  override fun getConnection(
+    request: GetConnectionRequest,
+    responseObserver: StreamObserver<GetConnectionResponse>
+  ) {
+    grpcUnary(scope, responseObserver) {
+      GetConnectionResponse.newBuilder()
+        .setConnection(
+          Connection.newBuilder()
+            .setCookie(ByteString.copyFromUtf8(request.address.decodeAsMacAddressToString()))
+        )
+        .build()
+    }
+  }
+
   override fun disconnect(
       request: DisconnectRequest,
       responseObserver: StreamObserver<DisconnectResponse>
@@ -620,6 +634,22 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
         awaitClose { bluetoothAdapter.bluetoothLeScanner.stopScan(callback) }
       }
+    }
+  }
+
+  override fun getDevice(
+    request: GetDeviceRequest,
+    responseObserver: StreamObserver<GetDeviceResponse>
+  ) {
+    grpcUnary(scope, responseObserver) {
+      val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+      GetDeviceResponse.newBuilder()
+        .setDevice(
+          Device.newBuilder()
+            .setName(device.name)
+            .setAddress(ByteString.copyFrom(device.toByteArray()))
+        )
+        .build()
     }
   }
 }
