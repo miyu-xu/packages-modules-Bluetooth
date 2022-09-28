@@ -16,6 +16,24 @@
       "message": "com.android.bluetooth.le_audio.LeAudioServiceTest\n\nSome Java unit tests are failing",
       "revId": "b4eb218394f1c44e97013bebf012ba53082d224e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d541be69_11d55440",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-09-28T10:46:42Z",
+      "side": 1,
+      "message": "Tested locally and all was passing... will check if something happened from previous version. Maybe it was related change.",
+      "parentUuid": "301d0342_a8224ab2",
+      "revId": "b4eb218394f1c44e97013bebf012ba53082d224e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
