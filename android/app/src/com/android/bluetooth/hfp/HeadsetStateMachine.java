@@ -2193,7 +2193,7 @@ class HeadsetStateMachine extends StateMachine {
             mNativeInterface.clccResponse(device, 1, 0, 0, 0, false, phoneNumber, type);
             mNativeInterface.clccResponse(device, 0, 0, 0, 0, false, "", 0);
         } else {
-            // In Telecom call, ask Telecom to send send remote phone number
+            // In Telecom call, ask Telecom to send remote phone number
             if (!mSystemInterface.listCurrentCalls()) {
                 Log.e(TAG, "processAtClcc: failed to list current calls for " + device);
                 mNativeInterface.clccResponse(device, 0, 0, 0, 0, false, "", 0);
