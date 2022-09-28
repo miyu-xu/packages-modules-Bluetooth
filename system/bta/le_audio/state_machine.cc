@@ -306,7 +306,11 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                              LeAudioDeviceGroup* group) override {
     struct le_audio::client_parser::ascs::ase_rsp_hdr arh;
 
-    ParseAseStatusHeader(arh, len, value);
+    if (!ParseAseStatusHeader(arh, len, value)) {
+        LOG(ERROR) << " Malformed ASE state notification";
+        StopStream(group);
+        return;
+    }
 
     LOG_INFO(" %s , ASE id: %d, state changed %s -> %s ",
              leAudioDevice->address_.ToString().c_str(), +ase->id,
