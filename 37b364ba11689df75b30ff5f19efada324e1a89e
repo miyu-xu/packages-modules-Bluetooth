@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6e167d3_c1a950d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-28T14:21:21Z",
+      "side": 1,
+      "message": "Can we have description how to reproduce this issue that just got fixed ? When does that happen ?",
+      "revId": "37b364ba11689df75b30ff5f19efada324e1a89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
