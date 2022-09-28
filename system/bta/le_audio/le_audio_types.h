@@ -311,6 +311,18 @@ constexpr uint16_t kMaxTransportLatencyMin = 0x0005;
 constexpr uint16_t kMaxTransportLatencyMax = 0x0FA0;
 
 /* Enums */
+enum class DeviceConnectState : uint8_t {
+  DISCONNECTED,
+  REMOVING,
+  CONNECTED,
+  CONNECTING_BY_USER,
+  CONNECTED_BY_USER_GETTING_READY,
+  DISCONNECTING_BY_USER,
+  CONNECTING_AUTOCONNECT,
+  CONNECTED_AUTOCONNECT_GETTING_READY,
+  DISCONNECTING_AUTOCONNECT,
+};
+
 enum class CigState : uint8_t { NONE, CREATING, CREATED, REMOVING, RECOVERING };
 
 /* ASE states according to BAP defined state machine states */
@@ -600,6 +612,7 @@ std::ostream& operator<<(std::ostream& os, const AseState& state);
 std::ostream& operator<<(std::ostream& os, const CigState& state);
 std::ostream& operator<<(std::ostream& os, const LeAudioLc3Config& config);
 std::ostream& operator<<(std::ostream& os, const LeAudioContextType& context);
+std::ostream& operator<<(std::ostream& os, const DeviceConnectState& state);
 }  // namespace types
 
 namespace set_configurations {
