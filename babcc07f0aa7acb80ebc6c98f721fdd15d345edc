@@ -277,6 +277,30 @@
       },
       "revId": "babcc07f0aa7acb80ebc6c98f721fdd15d345edc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e200835_0c120e70",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T12:24:18Z",
+      "side": 1,
+      "message": "I agree with Henri here, as this comment is in the `LE Add Device To Resolving List command` part of the spec, it makes sense for it to be there to guide the reader to show that we are fulfilling the specification.\nWe indeed can\u0027t tell what `ResolvingListBusy` does, but at least it guides the reader that this part of the specification is fulfilled by this condition.\nI don\u0027t think that it\u0027s a case of DRY here, as it\u0027s a comment, we could do without it, it\u0027s only to guide the reader.",
+      "parentUuid": "342c25b5_42f4b5ab",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 67
+      },
+      "revId": "babcc07f0aa7acb80ebc6c98f721fdd15d345edc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
