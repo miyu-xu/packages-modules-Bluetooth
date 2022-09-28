@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a20d14_5bbd68bd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-09-28T12:28:48Z",
+      "side": 1,
+      "message": "Is there a difference with A2DP/HFP/LEA and hearing Aid devices?\nWe mark the hearing aid device to top priority here. But looks like we don\u0027t do this after line 276 for A2DP/HFP/LEA.",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 65
+      },
+      "revId": "3d58838652df3ef5859aa16477b86cf94fefcdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a3215e_7b203730",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-09-28T12:28:48Z",
+      "side": 1,
+      "message": "Do we want to call inactivateOtherProfiles here?",
+      "revId": "3d58838652df3ef5859aa16477b86cf94fefcdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afdfec15_9fbe07e0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-09-28T12:28:48Z",
+      "side": 1,
+      "message": "do we want to check if this returns false and find the next candidate?",
+      "range": {
+        "startLine": 276,
+        "startChar": 20,
+        "endLine": 276,
+        "endChar": 35
+      },
+      "revId": "3d58838652df3ef5859aa16477b86cf94fefcdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
