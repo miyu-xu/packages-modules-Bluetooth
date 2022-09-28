@@ -972,6 +972,9 @@ impl BtifBluetoothCallbacks for Bluetooth {
             warn!("Connection to [{}] failed. Status: {:?}", addr.to_string(), status);
             return;
         }
+        let tx = self.tx.clone();
+        let bonded_device_list: Vec<_> =
+            self.bonded_devices.keys().cloned().chain(self.found_devices.keys().cloned()).collect();
 
         let address = addr.to_string();
         let device = match self.get_remote_device_if_found_mut(&address) {
@@ -991,6 +994,11 @@ impl BtifBluetoothCallbacks for Bluetooth {
             }
             some => some,
         };
+
+        // TODO: move calculation down here
+        tokio::spawn(async move {
+            let _ = tx.send(Message::UpdatedBondedDeviceList(bonded_device_list)).await;
+        });
 
         match device {
             Some(found) => {
