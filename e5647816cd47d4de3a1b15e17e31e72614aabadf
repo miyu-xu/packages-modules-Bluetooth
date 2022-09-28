@@ -22,6 +22,30 @@
       },
       "revId": "e5647816cd47d4de3a1b15e17e31e72614aabadf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2a2589b_cc3bdbd5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-28T06:22:21Z",
+      "side": 1,
+      "message": "FYI, here is the info about how the isEqualTo() calls equals():\n\nhttps://source.corp.google.com/piper///depot/google3/third_party/java_src/truth/project/core/src/main/java/com/google/common/truth/Subject.java;rcl\u003d393190545;l\u003d181\n\nhttps://source.corp.google.com/piper///depot/google3/third_party/java_src/truth/project/core/src/main/java/com/google/common/truth/Subject.java;rcl\u003d393190545;l\u003d256",
+      "parentUuid": "0d0a851b_9ece8b99",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 33
+      },
+      "revId": "e5647816cd47d4de3a1b15e17e31e72614aabadf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
