@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b17cc374_9deb04da",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-28T23:51:13Z",
+      "side": 1,
+      "message": "nit: seems like you don\u0027t need a function but a constant `Unknown` in the case of Err, you can use `unwrap_or`.",
+      "range": {
+        "startLine": 215,
+        "startChar": 46,
+        "endLine": 215,
+        "endChar": 60
+      },
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46ad5a84_d3e6f0f9",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 3
