@@ -1344,6 +1344,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
       le_audio::client_parser::pacs::ParseAudioLocations(snk_audio_locations,
                                                          len, value);
+      LOG_INFO("Sink audio locations: %s",
+               snk_audio_locations.to_string().c_str());
 
       /* Value may not change */
       if ((leAudioDevice->audio_directions_ &
@@ -1388,6 +1390,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
       le_audio::client_parser::pacs::ParseAudioLocations(src_audio_locations,
                                                          len, value);
+      LOG_INFO("source audio locations: %s",
+               src_audio_locations.to_string().c_str());
 
       /* Value may not change */
       if ((leAudioDevice->audio_directions_ &
