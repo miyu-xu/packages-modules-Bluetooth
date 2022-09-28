@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfb240d9_00a74db3",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T12:46:31Z",
+      "side": 0,
+      "message": "You should add them into \"pass\".",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 27
+      },
+      "revId": "dfe226b68f100eef7d84f61bada1a3202ad99634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
