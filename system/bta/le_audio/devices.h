@@ -50,15 +50,11 @@ class LeAudioDevice {
  public:
   RawAddress address_;
 
+  types::DeviceConnectState connection_state_;
   bool known_service_handles_;
   bool notify_connected_after_read_;
-  bool removing_device_;
-
-  /* we are making active attempt to connect to this device, 'direct connect'.
-   * This is true only during initial phase of first connection. */
-  bool first_connection_;
-  bool connecting_actively_;
   bool closing_stream_for_disconnection_;
+  bool autoconnect_flag_;
   uint16_t conn_id_;
   uint16_t mtu_;
   bool encrypted_;
@@ -84,15 +80,14 @@ class LeAudioDevice {
   alarm_t* link_quality_timer;
   uint16_t link_quality_timer_data;
 
-  LeAudioDevice(const RawAddress& address_, bool first_connection,
+  LeAudioDevice(const RawAddress& address_, types::DeviceConnectState state,
                 int group_id = bluetooth::groups::kGroupUnknown)
       : address_(address_),
+        connection_state_(state),
         known_service_handles_(false),
         notify_connected_after_read_(false),
-        removing_device_(false),
-        first_connection_(first_connection),
-        connecting_actively_(first_connection),
         closing_stream_for_disconnection_(false),
+        autoconnect_flag_(false),
         conn_id_(GATT_INVALID_CONN_ID),
         mtu_(0),
         encrypted_(false),
@@ -102,6 +97,8 @@ class LeAudioDevice {
         link_quality_timer(nullptr) {}
   ~LeAudioDevice(void);
 
+  void SetConnectionState(types::DeviceConnectState state);
+  types::DeviceConnectState GetConnectionState(void);
   void ClearPACs(void);
   void RegisterPACs(std::vector<struct types::acs_ac_record>* apr_db,
                     std::vector<struct types::acs_ac_record>* apr);
@@ -171,7 +168,7 @@ class LeAudioDevice {
  */
 class LeAudioDevices {
  public:
-  void Add(const RawAddress& address, bool first_connection,
+  void Add(const RawAddress& address, le_audio::types::DeviceConnectState state,
            int group_id = bluetooth::groups::kGroupUnknown);
   void Remove(const RawAddress& address);
   LeAudioDevice* FindByAddress(const RawAddress& address);
