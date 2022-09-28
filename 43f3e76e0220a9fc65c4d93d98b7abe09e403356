@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "019b49a0_d68cb685",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-28T08:14:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5154b04f_8b975897",
+      "revId": "43f3e76e0220a9fc65c4d93d98b7abe09e403356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "febedaee_5621beff",
         "filename": "system/main/shim/le_advertising_manager.cc",
         "patchSetId": 4
