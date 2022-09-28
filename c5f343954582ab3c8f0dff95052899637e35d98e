@@ -118,6 +118,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d42299_6e54e8cc",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:40:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93b23637_19b74564",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 65
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc7f34a_cb3ff71a",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:40:18Z",
+      "side": 1,
+      "message": "Most of our interfaces are verbs (\"GetXYZ\", \"Connect\", \"SetXYZ\") so I did this to be consistent.",
+      "parentUuid": "ac17b5bc_7974c18c",
+      "range": {
+        "startLine": 49,
+        "startChar": 6,
+        "endLine": 49,
+        "endChar": 10
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e29be5e_e7a82602",
@@ -131,6 +179,30 @@
       "writtenOn": "2022-08-22T23:02:03Z",
       "side": 1,
       "message": "nit: Capital letter",
+      "range": {
+        "startLine": 189,
+        "startChar": 5,
+        "endLine": 189,
+        "endChar": 12
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75f058fe_83d144ee",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:40:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e29be5e_e7a82602",
       "range": {
         "startLine": 189,
         "startChar": 5,
@@ -164,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "609187f5_a85a25e6",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:40:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e992ef2_eaaaa43b",
+      "range": {
+        "startLine": 192,
+        "startChar": 7,
+        "endLine": 192,
+        "endChar": 12
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4797fdb7_100098c9",
@@ -177,6 +273,30 @@
       "writtenOn": "2022-08-22T23:02:03Z",
       "side": 1,
       "message": "Is the name needed here ?",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 18
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51aec9dc_fdb2917d",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:40:18Z",
+      "side": 1,
+      "message": "I think we need it in later CLs. Plus it made debugging a lot easier?",
+      "parentUuid": "4797fdb7_100098c9",
       "range": {
         "startLine": 203,
         "startChar": 2,
