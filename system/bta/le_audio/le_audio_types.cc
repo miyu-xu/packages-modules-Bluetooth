@@ -578,6 +578,23 @@ uint32_t AdjustAllocationForOffloader(uint32_t allocation) {
 }
 
 namespace types {
+std::ostream& operator<<(std::ostream& os, const DeviceConnectState& state) {
+  static const char* char_value_[] = {
+      "DISCONNECTED",
+      "CONNECTED",
+      "REMOVING",
+      "DISCONNECTING",
+      "CONNECTING_BY_USER",
+      "CONNECTED_BY_USER_GETTING_READY",
+      "CONNECTING_AUTOCONNECT",
+      "CONNECTED_AUTOCONNECT_GETTING_READY",
+  };
+
+  os << char_value_[static_cast<uint8_t>(state)] << " ("
+     << "0x" << std::setfill('0') << std::setw(2) << static_cast<int>(state)
+     << ")";
+  return os;
+}
 std::ostream& operator<<(std::ostream& os, const types::CigState& state) {
   static const char* char_value_[5] = {"NONE", "CREATING", "CREATED",
                                        "REMOVING", "RECOVERING"};

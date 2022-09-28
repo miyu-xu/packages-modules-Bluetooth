@@ -311,6 +311,26 @@ constexpr uint16_t kMaxTransportLatencyMin = 0x0005;
 constexpr uint16_t kMaxTransportLatencyMax = 0x0FA0;
 
 /* Enums */
+enum class DeviceConnectState : uint8_t {
+  /* Initial state */
+  DISCONNECTED,
+  /* When ACL connected and profile is connected */
+  CONNECTED,
+  /* Used when device is unbonding (RemoveDevice API is called) */
+  REMOVING,
+  /* Disconnecting */
+  DISCONNECTING,
+  /* 2 states below are used when user creates connection. Connect API is
+     called. */
+  CONNECTING_BY_USER,
+  /* Always used after CONNECTING_BY_USER */
+  CONNECTED_BY_USER_GETTING_READY,
+  /* 2 states are used when autoconnect was used for the connection.*/
+  CONNECTING_AUTOCONNECT,
+  /* Always used after CONNECTING_AUTOCONNECT */
+  CONNECTED_AUTOCONNECT_GETTING_READY,
+};
+
 enum class CigState : uint8_t { NONE, CREATING, CREATED, REMOVING, RECOVERING };
 
 /* ASE states according to BAP defined state machine states */
@@ -600,6 +620,7 @@ std::ostream& operator<<(std::ostream& os, const AseState& state);
 std::ostream& operator<<(std::ostream& os, const CigState& state);
 std::ostream& operator<<(std::ostream& os, const LeAudioLc3Config& config);
 std::ostream& operator<<(std::ostream& os, const LeAudioContextType& context);
+std::ostream& operator<<(std::ostream& os, const DeviceConnectState& state);
 }  // namespace types
 
 namespace set_configurations {
