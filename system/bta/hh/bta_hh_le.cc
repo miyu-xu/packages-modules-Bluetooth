@@ -34,6 +34,9 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"    // ARRAY_SIZE
 #include "stack/btm/btm_sec.h"  // BTM_
+/** add for handle encryption fail(LE link key unknown), do unpair @{ */
+#include "stack/btm/btm_dev.h"
+/** @} */
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btu.h"       // post_on_bt_main
@@ -978,6 +981,9 @@ static void bta_hh_le_encrypt_cback(const RawAddress* bd_addr,
 void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
                           UNUSED_ATTR const tBTA_HH_DATA* p_buf) {
   APPL_TRACE_DEBUG("%s", __func__);
+  /** add for handle encryption fail(LE link key unknown), do unapir @{ */
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(p_cb->addr);
+  /** @} */
   if (p_cb->status == BTA_HH_OK) {
     if (!p_cb->hid_srvc.in_use) {
       APPL_TRACE_DEBUG("bta_hh_security_cmpl no reports loaded, try to load");
@@ -1004,7 +1010,10 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
       bta_hh_le_pri_service_discovery(p_cb);
     }
   }
-  else if(p_cb->btm_status == BTM_ERR_KEY_MISSING) {
+  /** add for handle encryption fail(LE link key unknown), do unpair @{ */
+  else if(p_cb->btm_status == BTM_ERR_KEY_MISSING ||
+          p_dev_rec->sec_status == HCI_ERR_KEY_MISSING) {
+  /** @} */
     LOG_ERROR("Received encryption failed status:%s btm_status:%s",
               bta_hh_status_text(p_cb->status).c_str(),
               btm_status_text(p_cb->btm_status).c_str());
@@ -1413,9 +1422,9 @@ static void bta_hh_le_search_hid_chars(tBTA_HH_DEV_CB* p_dev_cb,
           APPL_TRACE_ERROR("%s: Add report entry failed !!!", __func__);
           break;
         }
-
-        if (p_rpt->rpt_type != BTA_HH_RPTT_INPUT) break;
-
+        /** Add code to support output type report @{ */
+        if ((p_rpt->rpt_type != BTA_HH_RPTT_INPUT) && (p_rpt->rpt_type != BTA_HH_RPTT_OUTPUT)) break;
+        /**@}*/
         bta_hh_le_read_char_descriptor(p_dev_cb, charac.value_handle,
                                        GATT_UUID_RPT_REF_DESCR,
                                        read_report_ref_desc_cb, p_dev_cb);
@@ -1984,8 +1993,12 @@ void bta_hh_le_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  ******************************************************************************/
 void bta_hh_le_get_dscp_act(tBTA_HH_DEV_CB* p_cb) {
   if (p_cb->hid_srvc.in_use) {
-    p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvc.descriptor.dl_len;
-    p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvc.descriptor.dsc_list;
+/** Some HOGP mouse once bonded, read report map may not permitted  @{ */
+    if (p_cb->hid_srvc.descriptor.dl_len > 0) {
+        p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvc.descriptor.dl_len;
+        p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvc.descriptor.dsc_list;
+    }
+/** @} */
 
     (*bta_hh_cb.p_cback)(BTA_HH_GET_DSCP_EVT, (tBTA_HH*)&p_cb->dscp_info);
   }
