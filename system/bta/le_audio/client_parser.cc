@@ -105,7 +105,6 @@ bool ParseAseStatusHeader(ase_rsp_hdr& arh, uint16_t len,
   if (len < kAseRspHdrMinLen) {
     LOG(ERROR) << __func__
                << ", wrong len of ASE char (header): " << static_cast<int>(len);
-
     return false;
   }
 
@@ -625,9 +624,6 @@ bool ParseAudioLocations(types::AudioLocations& audio_locations, uint16_t len,
   }
 
   STREAM_TO_UINT32(audio_locations, value);
-
-  LOG(INFO) << "Audio locations: " << audio_locations.to_string();
-
   return true;
 }
 
