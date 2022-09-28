@@ -45,6 +45,9 @@
 #include "stack/include/hidh_api.h"
 #include "stack/include/l2c_api.h"
 #include "types/raw_address.h"
+/** Fix HOGP mouse connect fail after unpair  @{ */
+#include "osi/include/semaphore.h"
+/** @} */
 
 #define COD_HID_KEYBOARD 0x0540
 #define COD_HID_POINTING 0x0580
@@ -131,6 +134,9 @@ extern void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 extern void btif_dm_hh_open_failed(RawAddress* bdaddr);
 extern void btif_hd_service_registration();
 extern void btif_hh_timer_timeout(void* data);
+/** Fix BT Stack crash when power off  @{ */
+extern void btif_hh_close_poll_thread(btif_hh_device_t* p_dev);
+/** @} */
 
 /*******************************************************************************
  *  Functions
@@ -311,6 +317,19 @@ btif_hh_device_t* btif_hh_find_connected_dev_by_handle(uint8_t handle) {
   return NULL;
 }
 
+/** Fix HOGP mouse connect fail after unpair  @{ */
+btif_hh_device_t* btif_hh_find_dev_by_handle(uint8_t handle) {
+  uint32_t i;
+  for (i = 0; i < BTIF_HH_MAX_HID; i++) {
+    if (btif_hh_cb.devices[i].dev_handle == handle) {
+      BTIF_TRACE_DEBUG("%s-- dev_status:", __func__, btif_hh_cb.devices[i].dev_status);
+      return &btif_hh_cb.devices[i];
+    }
+  }
+  return NULL;
+}
+/** @} */
+
 /*******************************************************************************
  *
  * Function         btif_hh_find_dev_by_bda
@@ -464,14 +483,21 @@ void btif_hh_remove_device(RawAddress bd_addr) {
   p_dev->dev_handle = BTA_HH_INVALID_HANDLE;
   p_dev->ready_for_data = false;
 
+  /** Fix HOGP mouse connect fail after unpair  @{ */
+  if (p_dev->sema_inited == TRUE){
+    semaphore_free(p_dev->status_sema);
+    p_dev->sema_inited = FALSE;
+  }
+  /** @} */
+
   if (btif_hh_cb.device_num > 0) {
     btif_hh_cb.device_num--;
   } else {
     BTIF_TRACE_WARNING("%s: device_num = 0", __func__);
   }
-
-  p_dev->hh_keep_polling = 0;
-  p_dev->hh_poll_thread_id = -1;
+  /** Fix BT Stack crash when power off  @{ */
+  btif_hh_close_poll_thread(p_dev);
+  /** @} */
   BTIF_TRACE_DEBUG("%s: uhid fd = %d", __func__, p_dev->fd);
   if (p_dev->fd >= 0) {
     bta_hh_co_destroy(p_dev->fd);
@@ -873,9 +899,26 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           bta_hh_co_destroy(p_dev->fd);
           p_dev->fd = -1;
         }
+        /** Fix HOGP mouse connect fail after unpair  @{ */
+        BTIF_TRACE_DEBUG("%s: semaphore_post close ok semphore fd = %d",__func__, (p_dev->status_sema)->fd);
+        //avoid a2dp no snoomth when hid connect
+        if (p_dev->sema_inited == TRUE) {
+          semaphore_post(p_dev->status_sema);
+        }
+        /** @} */
         HAL_CBACK(bt_hh_callbacks, connection_state_cb, &(p_dev->bd_addr),
                   p_dev->dev_status);
       } else {
+      /** Fix HOGP mouse connect fail after unpair  @{ */
+      p_dev = btif_hh_find_dev_by_handle(p_data->dev_status.handle);
+      if (p_dev != NULL) {
+        // also need call sema post when removing device
+        BTIF_TRACE_DEBUG("%s: semaphore_post hh status semphore fd = %d",__func__, (p_dev->status_sema)->fd);
+        if (p_dev->sema_inited == TRUE) {
+          semaphore_post(p_dev->status_sema);
+        }
+      }
+      /** @} */
         BTIF_TRACE_WARNING("Error: cannot find device with handle %d",
                            p_data->dev_status.handle);
       }
@@ -906,6 +949,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         BTIF_TRACE_WARNING("Error: cannot find device with handle %d",
                            p_data->hs_data.handle);
       }
+      /** Fix HID_GET_REPORT error  @{ */
+      if (hdr != NULL) {
+         osi_free_and_reset((void **)&hdr);
+      }
+      /** @} */
       break;
     }
 
@@ -1772,14 +1820,22 @@ static void cleanup(void) {
   }
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     p_dev = &btif_hh_cb.devices[i];
+    /** Fix HOGP mouse connect fail after unpair  @{ */
+    if (p_dev->sema_inited ==TRUE)
+    {
+      semaphore_free(p_dev->status_sema);
+      p_dev->sema_inited = FALSE;
+    }
+    /** @} */
     if (p_dev->dev_status != BTHH_CONN_STATE_UNKNOWN && p_dev->fd >= 0) {
       BTIF_TRACE_DEBUG("%s: Closing uhid fd = %d", __func__, p_dev->fd);
       if (p_dev->fd >= 0) {
         bta_hh_co_destroy(p_dev->fd);
         p_dev->fd = -1;
       }
-      p_dev->hh_keep_polling = 0;
-      p_dev->hh_poll_thread_id = -1;
+      /** Fix BT Stack crash when power off  @{ */
+      btif_hh_close_poll_thread(p_dev);
+      /** @} */
     }
   }
 

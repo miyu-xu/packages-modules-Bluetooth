@@ -29,7 +29,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
+/** Fix BT Stack crash when power off  @{ */
+#include <mutex>
+/** @} */
 #include "bta_api.h"
 #include "bta_hh_api.h"
 #include "btif_hh.h"
@@ -38,8 +40,16 @@
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
 #include "types/raw_address.h"
+/** Fix HOGP mouse connect fail after unpair  @{ */
+#include "osi/include/semaphore.h"
+/** @} */
 
 const char* dev_path = "/dev/uhid";
+/** Fix BT Stack crash when power off  @{ */
+using LockGuard = std::lock_guard<std::mutex>;
+static std::mutex s_hid_poll_thread_mutex;
+void btif_hh_close_poll_thread(btif_hh_device_t* p_dev);
+/** @} */
 
 #include "btif_config.h"
 #define BTA_HH_NV_LOAD_MAX 16
@@ -262,7 +272,9 @@ static void* btif_hh_poll_event_thread(void* arg) {
   sched_params.sched_priority = THREAD_NORMAL_PRIORITY;
   if (sched_setscheduler(gettid(), SCHED_OTHER, &sched_params)) {
     APPL_TRACE_ERROR("%s: Failed to set thread priority to normal", __func__);
-    p_dev->hh_poll_thread_id = -1;
+    /** Fix BT Stack crash when power off  @{ */
+    //p_dev->hh_poll_thread_id = -1;
+    /** @} */
     return 0;
   }
   p_dev->pid = gettid();
@@ -291,17 +303,22 @@ static void* btif_hh_poll_event_thread(void* arg) {
     }
   }
 
-  p_dev->hh_poll_thread_id = -1;
-  p_dev->pid = -1;
+  /** Fix BT Stack crash when power off  @{ */
+  //p_dev->hh_poll_thread_id = -1;
+  //p_dev->pid = -1;
+  /** @} */
   return 0;
 }
 
-static inline void btif_hh_close_poll_thread(btif_hh_device_t* p_dev) {
+void btif_hh_close_poll_thread(btif_hh_device_t* p_dev) {
   APPL_TRACE_DEBUG("%s", __func__);
+  /** Fix BT Stack crash when power off  @{ */
+  LockGuard lock(s_hid_poll_thread_mutex);
   p_dev->hh_keep_polling = 0;
-  if (p_dev->hh_poll_thread_id > 0)
+  if (p_dev->hh_poll_thread_id != (pthread_t)(-1))
     pthread_join(p_dev->hh_poll_thread_id, NULL);
-
+  p_dev->hh_poll_thread_id = -1;
+  /** @} */
   return;
 }
 
@@ -354,6 +371,23 @@ void bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
     p_dev = &btif_hh_cb.devices[i];
     if (p_dev->dev_status != BTHH_CONN_STATE_UNKNOWN &&
         p_dev->dev_handle == dev_handle) {
+        /** Fix HOGP mouse connect fail after unpair  @{ */
+      if (BTHH_CONN_STATE_DISCONNECTED == p_dev->dev_status){
+        // need read semapore for close post
+        APPL_TRACE_DEBUG("%s: semaphore_wait_timeout hh status 1ms fd= %d",
+          __func__, (p_dev->status_sema)->fd);
+        if (p_dev->sema_inited == TRUE) {
+          semaphore_wait_timeout(p_dev->status_sema, 1*1000);
+        }
+      }
+      else{
+        // need read semapore for close post
+        APPL_TRACE_DEBUG("%s: semaphore_wait_timeout hh status 500ms fd= %d", __func__, (p_dev->status_sema)->fd);
+        if (p_dev->sema_inited == TRUE) {
+          semaphore_wait_timeout(p_dev->status_sema, 500*1000);
+        }
+      }
+      /** @} */
       // We found a device with the same handle. Must be a device reconnected.
       APPL_TRACE_WARNING(
           "%s: Found an existing device with the same handle dev_status=%d, "
@@ -389,6 +423,11 @@ void bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
         p_dev->sub_class = sub_class;
         p_dev->app_id = app_id;
         p_dev->local_vup = false;
+        /** Fix HOGP mouse connect fail after unpair  @{ */
+        p_dev->sema_inited = TRUE;
+        p_dev->status_sema = semaphore_new(0);
+        APPL_TRACE_DEBUG("%s: init semaphore.fd = %d", __func__, (p_dev->status_sema)->fd);
+        /** @} */
 
         btif_hh_cb.device_num++;
         // This is a new device,open the uhid driver now.
