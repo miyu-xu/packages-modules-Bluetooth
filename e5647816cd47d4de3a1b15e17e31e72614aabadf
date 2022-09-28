@@ -46,6 +46,30 @@
       },
       "revId": "e5647816cd47d4de3a1b15e17e31e72614aabadf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0dee797_161df4cf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-28T09:17:42Z",
+      "side": 1,
+      "message": "Thanks for letting me know! Changed to isEqualTo() and isNotEqualTo().",
+      "parentUuid": "d2a2589b_cc3bdbd5",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 33
+      },
+      "revId": "e5647816cd47d4de3a1b15e17e31e72614aabadf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
