@@ -2440,6 +2440,8 @@ void LeAudioDevice::DeactivateAllAses(void) {
       ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
       ase.data_path_state = AudioStreamDataPathState::IDLE;
       ase.active = false;
+      ase.cis_id = le_audio::kInvalidCisId;
+      ase.cis_conn_hdl = 0;
     }
   }
 }
