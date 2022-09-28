@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5eae044_3d945b2a",
+        "filename": "android/pandora/server/src/com/android/pandora/A2dpSink.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T12:47:31Z",
+      "side": 1,
+      "message": "I think here we can remove that",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 18
+      },
+      "revId": "4e6e05b231f93bc7aa5bcdfec3497cfdbcd732c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
