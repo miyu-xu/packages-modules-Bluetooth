@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0712327_c032745b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T12:09:53Z",
+      "side": 1,
+      "message": "nit: `int(scanning_phy_parameters.size())`",
+      "range": {
+        "startLine": 637,
+        "startChar": 6,
+        "endLine": 637,
+        "endChar": 22
+      },
+      "revId": "8942323547d5f0924b1423e0bf7142d78f52ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0131e248_573b6a46",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2340,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T12:09:53Z",
+      "side": 1,
+      "message": "For this to be valid we should maybe check that we got the Scan response before the next legacy advertising.",
+      "range": {
+        "startLine": 2340,
+        "startChar": 6,
+        "endLine": 2340,
+        "endChar": 40
+      },
+      "revId": "8942323547d5f0924b1423e0bf7142d78f52ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feb5e14e_24aafde1",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T12:09:53Z",
+      "side": 1,
+      "message": "It\u0027s not an `identity` address, so I suggest to remove this word",
+      "range": {
+        "startLine": 236,
+        "startChar": 66,
+        "endLine": 236,
+        "endChar": 75
+      },
+      "revId": "8942323547d5f0924b1423e0bf7142d78f52ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d189a95b_c8761795",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T12:09:53Z",
+      "side": 1,
+      "message": "I dont think this is the good name for that, `IsLocalAddress` or `IsLocalRandomOrDeviceAddress`, `EqualsRandomOrDeviceAddress` ?",
+      "range": {
+        "startLine": 238,
+        "startChar": 7,
+        "endLine": 238,
+        "endChar": 25
+      },
+      "revId": "8942323547d5f0924b1423e0bf7142d78f52ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
