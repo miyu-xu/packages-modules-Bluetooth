@@ -516,6 +516,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1466aae_eef298b2",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T10:00:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38a53567_14beec0b",
+      "range": {
+        "startLine": 540,
+        "startChar": 0,
+        "endLine": 554,
+        "endChar": 5
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4825dd9a_66190c62",
@@ -553,6 +577,30 @@
       "side": 1,
       "message": "Work for a future CL, maybe. I don\u0027t want to edit anything related to the existing Advertiser class in this CL.",
       "parentUuid": "4825dd9a_66190c62",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 5
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c26eb2e_c599f11c",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T10:00:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ac09d7c3_025ba6c9",
       "range": {
         "startLine": 569,
         "startChar": 0,
