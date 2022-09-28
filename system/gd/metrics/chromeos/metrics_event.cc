@@ -27,6 +27,8 @@ namespace metrics {
 
 // topshim::btif::BtBondState is a copy of hardware/bluetooth.h:bt_bond_state_t
 typedef bt_bond_state_t BtBondState;
+// topshim::btif::BtDeviceType is a copy of hardware/bluetooth.h:bt_device_type_t
+typedef bt_device_type_t BtDeviceType;
 // topshim::btif::BtStatus is a copy of hardware/bluetooth.h:bt_status_t
 typedef bt_status_t BtStatus;
 // topshim::profile::hid_host::BthhConnectionState is a copy of hardware/bluetooth.h:bthh_connection_state_t
@@ -197,6 +199,27 @@ static PairingState FailReasonToPairingState(int32_t fail_reason) {
 
 AdapterState ToAdapterState(uint32_t state) {
   return state == 1 ? AdapterState::ON : AdapterState::OFF;
+}
+
+ConnectionType ToPairingDeviceType(std::string addr, uint32_t device_type) {
+  // A map stores the pending ConnectionType used to match a pairing event with unknown type.
+  // map<address, type>
+  static std::map<std::string, ConnectionType> pending_type;
+
+  switch ((BtDeviceType)device_type) {
+    case BtDeviceType::BT_DEVICE_DEVTYPE_BLE:
+      pending_type[addr] = ConnectionType::CONN_TYPE_LE;
+      return ConnectionType::CONN_TYPE_LE;
+    case BtDeviceType::BT_DEVICE_DEVTYPE_BREDR:
+      pending_type[addr] = ConnectionType::CONN_TYPE_BREDR;
+      return ConnectionType::CONN_TYPE_BREDR;
+    case BtDeviceType::BT_DEVICE_DEVTYPE_DUAL:
+      if (pending_type.find(addr) != pending_type.end()) {
+        return pending_type[addr];
+      } else {
+        return ConnectionType::CONN_TYPE_UNKNOWN;
+      }
+  }
 }
 
 PairingState ToPairingState(uint32_t status, uint32_t bond_state, int32_t fail_reason) {
