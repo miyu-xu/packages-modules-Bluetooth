@@ -9,6 +9,7 @@ use crate::dbus_arg::{DBusArg, DBusArgError, RefArgToRust};
 
 #[dbus_propmap(Battery)]
 pub struct BatteryDBus {
+    remote_address: String,
     percentage: u32,
     source_info: String,
     variant: String,
@@ -19,7 +20,7 @@ struct IBatteryManagerCallbackDBus {}
 #[dbus_proxy_obj(BatteryManagerCallback, "org.chromium.bluetooth.BatteryManagerCallback")]
 impl IBatteryManagerCallback for IBatteryManagerCallbackDBus {
     #[dbus_method("OnBatteryInfoUpdated")]
-    fn on_battery_info_updated(&self, remote_address: String, battery: Battery) {
+    fn on_battery_info_updated(&self, remote_address: String, batteries: Option<Vec<Battery>>) {
         dbus_generated!()
     }
 }
@@ -41,13 +42,8 @@ impl IBatteryManager for IBatteryManagerDBus {
         dbus_generated!()
     }
 
-    #[dbus_method("EnableNotifications")]
-    fn enable_notifications(&mut self, callback_id: u32, enable: bool) {
-        dbus_generated!()
-    }
-
     #[dbus_method("GetBatteryInformation")]
-    fn get_battery_information(&self, remote_address: String) -> Option<Battery> {
+    fn get_battery_information(&self, remote_address: String) -> Option<Vec<Battery>> {
         dbus_generated!()
     }
 }
