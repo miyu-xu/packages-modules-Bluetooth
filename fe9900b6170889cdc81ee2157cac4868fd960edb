@@ -22,6 +22,40 @@
       },
       "revId": "fe9900b6170889cdc81ee2157cac4868fd960edb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1f8c3e_f209234f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-28T13:41:32Z",
+      "side": 1,
+      "message": "I like it. I\u0027m taking that for testing.",
+      "revId": "fe9900b6170889cdc81ee2157cac4868fd960edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ee7ebfe_ee5639d8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4137,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-28T13:41:32Z",
+      "side": 1,
+      "message": "Maybe ?\nAudioHalClient::LeAudioSource::DebugDump(fd);\nAudioHalClient::LeAudioSink::DebugDump(fd);",
+      "revId": "fe9900b6170889cdc81ee2157cac4868fd960edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
