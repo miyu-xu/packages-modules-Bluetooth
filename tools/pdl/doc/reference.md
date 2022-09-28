@@ -563,13 +563,11 @@ packet CRCedBrew {
 > padding_field:\
 > &nbsp;&nbsp; `_padding_` `[` [INTEGER](#integer) `]`
 
-A *\_padding\_* field immediately following an array field pads the array field with `0`s to the
-specified number of **octets**.
+A *\_padding\_* field adds a number of **octet** of padding.
 
 ```
-packet PaddedCoffee {
-  additions: CoffeeAddition[],
-  _padding_[100]
+packet Padded {
+  _padding_[1] // 1 octet/8bit of padding
 }
 ```
 
