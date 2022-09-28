@@ -88,7 +88,13 @@ void open() {
   if (sco_uipc != nullptr) {
     LOG_WARN("Re-opening UIPC that is already running");
   }
+
   sco_uipc = UIPC_Init();
+  if (sco_uipc == nullptr) {
+    LOG_ERROR("%s failed to init UIPC", __func__);
+    return;
+  }
+
   UIPC_Open(*sco_uipc, UIPC_CH_ID_AV_AUDIO, sco_data_cb, SCO_HOST_DATA_PATH);
   struct group* grp = getgrnam(SCO_HOST_DATA_GROUP);
   chmod(SCO_HOST_DATA_PATH, 0770);
@@ -413,7 +419,7 @@ struct tBTM_MSBC_INFO {
   }
 
  public:
-  void init(size_t pkt_size) {
+  size_t init(size_t pkt_size) {
     decode_buf_wo = 0;
     decode_buf_ro = 0;
     encode_buf_wo = 0;
@@ -421,7 +427,7 @@ struct tBTM_MSBC_INFO {
 
     pkt_size = get_supported_packet_size(pkt_size, &buf_size);
     if (pkt_size != BTM_MSBC_PKT_LEN) check_alignment = true;
-    if (pkt_size == packet_size) return;
+    if (pkt_size == packet_size) return packet_size;
     packet_size = pkt_size;
 
     if (msbc_decode_buf) osi_free(msbc_decode_buf);
@@ -436,6 +442,7 @@ struct tBTM_MSBC_INFO {
     }
     plc = (tBTM_MSBC_PLC*)osi_calloc(sizeof(*plc));
     plc->init();
+    return packet_size;
   }
 
   void deinit() {
@@ -536,7 +543,7 @@ struct tBTM_MSBC_INFO {
 
 static tBTM_MSBC_INFO* msbc_info = nullptr;
 
-void init(size_t pkt_size) {
+size_t init(size_t pkt_size) {
   hfp_msbc_decoder_init();
   hfp_msbc_encoder_init();
 
@@ -547,7 +554,7 @@ void init(size_t pkt_size) {
   }
 
   msbc_info = (tBTM_MSBC_INFO*)osi_calloc(sizeof(*msbc_info));
-  msbc_info->init(pkt_size);
+  return msbc_info->init(pkt_size);
 }
 
 void cleanup() {
@@ -575,6 +582,11 @@ size_t enqueue_packet(const uint8_t* data, size_t pkt_size) {
     return 0;
   }
 
+  if (data == nullptr) {
+    LOG_WARN("Invalid data to enqueue");
+    return 0;
+  }
+
   if (msbc_info->check_alignment) {
     if (data[0] != BTM_MSBC_H2_HEADER_0 || data[2] != BTM_MSBC_SYNC_WORD) {
       LOG_DEBUG("Waiting for valid mSBC frame head");
@@ -597,6 +609,11 @@ size_t decode(const uint8_t** out_data) {
 
   if (msbc_info == nullptr) {
     LOG_WARN("mSBC buffer uninitialized or cleaned");
+    return 0;
+  }
+
+  if (out_data == nullptr) {
+    LOG_WARN("Invalid output pointer");
     return 0;
   }
 
@@ -640,6 +657,11 @@ size_t encode(int16_t* data, size_t len) {
     return 0;
   }
 
+  if (data == nullptr) {
+    LOG_WARN("Invalid data to encode");
+    return 0;
+  }
+
   if (len < BTM_MSBC_CODE_SIZE) {
     LOG_DEBUG(
         "PCM frames with size %lu is insufficient to be encoded into a mSBC "
@@ -667,6 +689,11 @@ size_t encode(int16_t* data, size_t len) {
 size_t dequeue_packet(const uint8_t** output) {
   if (msbc_info == nullptr) {
     LOG_WARN("mSBC buffer uninitialized or cleaned");
+    return 0;
+  }
+
+  if (output == nullptr) {
+    LOG_WARN("Invalid output pointer");
     return 0;
   }
 
