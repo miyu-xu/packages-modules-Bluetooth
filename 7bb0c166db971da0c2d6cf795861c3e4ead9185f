@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a35da2e_aefe4ba1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-28T03:46:48Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "fd0afba0_2f92c6df",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 0
+      },
+      "revId": "7bb0c166db971da0c2d6cf795861c3e4ead9185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "136ad87a_5862da94",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a124e968_59d0b33a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-28T03:46:48Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "136ad87a_5862da94",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 42
+      },
+      "revId": "7bb0c166db971da0c2d6cf795861c3e4ead9185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9422ba3a_0517da4a",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-27T09:29:58Z",
       "side": 1,
       "message": "How about createFromMapContract?",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 45
+      },
+      "revId": "7bb0c166db971da0c2d6cf795861c3e4ead9185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9a03e0_57559a64",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoContactElementTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-09-28T03:46:48Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "9422ba3a_0517da4a",
       "range": {
         "startLine": 84,
         "startChar": 16,
