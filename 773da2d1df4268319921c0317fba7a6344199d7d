@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa938b1_72fa8973",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-28T09:38:58Z",
+      "side": 1,
+      "message": "Could you details, why you need that for PTS GAP tests ?\n\n\u003e The remote disconnects once the test finishes, but this could be in the middle of an LMP procedure.\n\nIndeed, but this should remove the associated DualModeController so we should not \"receive\" further packets after the disconnection",
+      "parentUuid": "78b3e1af_a55a091e",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "90afb2c0_74db425d",
