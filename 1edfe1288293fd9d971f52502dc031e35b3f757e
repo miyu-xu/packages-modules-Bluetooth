@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "086348e4_12b99540",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-09-28T09:12:42Z",
+      "side": 1,
+      "message": "looks like it\u0027s no longer needed",
+      "parentUuid": "e56ff9f8_b73ef4b9",
+      "revId": "1edfe1288293fd9d971f52502dc031e35b3f757e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c321274c_87a1761c",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-27T16:33:41Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 100,
+        "startChar": 28,
+        "endLine": 100,
+        "endChar": 35
+      },
+      "revId": "1edfe1288293fd9d971f52502dc031e35b3f757e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f88973b_704e9205",
+        "filename": "system/conf/bt_stack.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-09-28T09:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c321274c_87a1761c",
       "range": {
         "startLine": 100,
         "startChar": 28,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b40256d_6213067a",
+        "filename": "system/conf/bt_stack.conf",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-09-28T09:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a741d96_d54e0d46",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 9
+      },
+      "revId": "1edfe1288293fd9d971f52502dc031e35b3f757e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0053adb0_edc35003",
@@ -77,6 +143,24 @@
       "writtenOn": "2022-09-27T16:33:41Z",
       "side": 1,
       "message": "Nit: PTS_LeAudioSuspendStreaming",
+      "revId": "1edfe1288293fd9d971f52502dc031e35b3f757e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bec481ee_fd20f097",
+        "filename": "system/main/stack_config.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-09-28T09:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0053adb0_edc35003",
       "revId": "1edfe1288293fd9d971f52502dc031e35b3f757e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
