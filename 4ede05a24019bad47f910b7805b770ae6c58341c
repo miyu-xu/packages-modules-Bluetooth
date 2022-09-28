@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5030268d_20d1a240",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-28T12:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7f8299_84a753c4",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 56
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99fb7d19_a3e777e7",
@@ -178,6 +202,30 @@
       "writtenOn": "2022-09-26T14:34:03Z",
       "side": 1,
       "message": "I know that you didn\u0027t changed that and that it would require a change in `hci_packets.pdl` but I think we should rename this variant to `RANDOM_DEVICE_OR_STATIC_IDENTITY_ADDRESS`",
+      "range": {
+        "startLine": 147,
+        "startChar": 42,
+        "endLine": 147,
+        "endChar": 75
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b552169_d9c9c002",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-28T12:28:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe26b9aa_cc4a8f48",
       "range": {
         "startLine": 147,
         "startChar": 42,
@@ -446,6 +494,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4738f5c_131aea6c",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-28T12:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca50d29e_8695b766",
+      "range": {
+        "startLine": 239,
+        "startChar": 6,
+        "endLine": 239,
+        "endChar": 13
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6eba389c_b95fe693",
@@ -459,6 +531,30 @@
       "writtenOn": "2022-09-26T14:34:03Z",
       "side": 1,
       "message": "Changing the `last_event` to a `next_event` instead might make this simpler\n\n`now \u003e\u003d legacy_advertiser_.next_event`\nAnd\n`legacy_advertiser_.next_event \u003d now + legacy_advertiser_.interval;`\nOr even better\n`legacy_advertiser_.next_event +\u003d legacy_advertiser_.interval;`\nBut this means that we need to initialise `legacy_advertiser_.next_event` to `now` at some point`",
+      "range": {
+        "startLine": 537,
+        "startChar": 6,
+        "endLine": 537,
+        "endChar": 74
+      },
+      "revId": "4ede05a24019bad47f910b7805b770ae6c58341c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8fcbd12_62e57156",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-28T12:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eba389c_b95fe693",
       "range": {
         "startLine": 537,
         "startChar": 6,
