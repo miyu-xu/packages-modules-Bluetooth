@@ -16,6 +16,24 @@
       "message": "You might want to add copyright in the file",
       "revId": "a243cd469218f6b7cd86d3f05375067441ce215c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7107a72_f7a6add6",
+        "filename": "android/pandora/server/src/com/android/pandora/GattServerInstance.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T22:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91c16e8d_bc6dcc88",
+      "revId": "a243cd469218f6b7cd86d3f05375067441ce215c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

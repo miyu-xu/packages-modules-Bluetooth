@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e203f424_ba2ce559",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T22:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded1aac5_6a39a0ba",
+      "revId": "2c34b78fb5fe40da8eb55ee13dd6acdabc10260f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1c95d04_9a305f15",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "313cf533_c6609748",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T22:27:50Z",
+      "side": 1,
+      "message": "Yup, since it could be populated with more info (e.g. handle IDs) that we don\u0027t have at creation time.",
+      "parentUuid": "b1c95d04_9a305f15",
+      "revId": "2c34b78fb5fe40da8eb55ee13dd6acdabc10260f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df2b7e82_df78febc",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-09-13T09:40:47Z",
       "side": 1,
       "message": "Shouldn\u0027t the handle be an `uint32` ?\nIf it\u0027s not the GATT handle that you are returning here but more a Token/Cookie like the `Connection` one, I don\u0027t think that we should call that `ServiceHandle` and I would like that we keep a convention for the inner field of thoses structure.",
+      "revId": "2c34b78fb5fe40da8eb55ee13dd6acdabc10260f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e77e6344_d301ef7f",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T22:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df2b7e82_df78febc",
       "revId": "2c34b78fb5fe40da8eb55ee13dd6acdabc10260f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91975b66_69256ee6",
+        "filename": "android/pandora/server/src/com/android/pandora/GattServerInstance.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T22:27:50Z",
+      "side": 1,
+      "message": "We can add more flows and callback methods as needed. I\u0027m trying to keep this class relatively simple, at least initialy",
+      "revId": "540f8914bd7a902a52de54d08c3a1d20e601c753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
