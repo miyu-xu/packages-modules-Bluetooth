@@ -46,7 +46,6 @@ cc_defaults {
         ":TestMockFrameworks",
         ":TestMockHci",
         ":TestMockSystemLibfmq",
-        ":TestMockUdrv",
     ],
     shared_libs: [
         "android.hardware.bluetooth.audio@2.0",
