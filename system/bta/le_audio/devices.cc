@@ -54,6 +54,24 @@ using le_audio::types::LeAudioContextType;
 using le_audio::types::LeAudioLc3Config;
 
 namespace le_audio {
+std::ostream& operator<<(std::ostream& os, const DeviceConnectState& state) {
+  static const char* char_value_[] = {
+      "DISCONNECTED",
+      "CONNECTED",
+      "REMOVING",
+      "DISCONNECTING",
+      "CONNECTING_BY_USER",
+      "CONNECTED_BY_USER_GETTING_READY",
+      "CONNECTING_AUTOCONNECT",
+      "CONNECTED_AUTOCONNECT_GETTING_READY",
+  };
+
+  os << char_value_[static_cast<uint8_t>(state)] << " ("
+     << "0x" << std::setfill('0') << std::setw(2) << static_cast<int>(state)
+     << ")";
+  return os;
+}
+
 /* LeAudioDeviceGroup Class methods implementation */
 void LeAudioDeviceGroup::AddNode(
     const std::shared_ptr<LeAudioDevice>& leAudioDevice) {
@@ -973,7 +991,11 @@ bool LeAudioDeviceGroup::CigAssignCisIds(LeAudioDevice* leAudioDevice) {
   LOG_INFO("device: %s", leAudioDevice->address_.ToString().c_str());
 
   struct ase* ase = leAudioDevice->GetFirstActiveAse();
-  ASSERT_LOG(ase, " Shouldn't be called without an active ASE");
+  if (!ase) {
+    LOG_ERROR(" Device %s shouldn't be called without an active ASE",
+              leAudioDevice->address_.ToString().c_str());
+    return false;
+  }
 
   for (; ase != nullptr; ase = leAudioDevice->GetNextActiveAse(ase)) {
     uint8_t cis_id = kInvalidCisId;
@@ -1929,6 +1951,17 @@ void LeAudioDeviceGroup::Dump(int fd) {
 }
 
 /* LeAudioDevice Class methods implementation */
+void LeAudioDevice::SetConnectionState(DeviceConnectState state) {
+  LOG_DEBUG(" %s --> %s",
+            bluetooth::common::ToString(connection_state_).c_str(),
+            bluetooth::common::ToString(state).c_str());
+  connection_state_ = state;
+}
+
+DeviceConnectState LeAudioDevice::GetConnectionState(void) {
+  return connection_state_;
+}
+
 void LeAudioDevice::ClearPACs(void) {
   snk_pacs_.clear();
   src_pacs_.clear();
@@ -2343,18 +2376,12 @@ void LeAudioDevice::SetSupportedContexts(AudioContexts snk_contexts,
 void LeAudioDevice::Dump(int fd) {
   std::stringstream stream;
   stream << std::boolalpha;
-  stream << "\n\taddress: " << address_
-         << (conn_id_ == GATT_INVALID_CONN_ID ? "\n\t  Not connected "
-                                              : "\n\t  Connected conn_id =")
+  stream << "\n\taddress: " << address_ << ": " << connection_state_ << ": "
          << (conn_id_ == GATT_INVALID_CONN_ID ? "" : std::to_string(conn_id_))
          << "\n\t  set member: " << csis_member_
          << "\n\t  known_service_handles_: " << known_service_handles_
          << "\n\t  notify_connected_after_read_: "
-         << notify_connected_after_read_
-         << "\n\t  removing_device_: " << removing_device_
-         << "\n\t  first_connection_: " << first_connection_
-         << "\n\t  encrypted_: " << encrypted_
-         << "\n\t  connecting_actively_: " << connecting_actively_
+         << notify_connected_after_read_ << "\n\t  encrypted_: " << encrypted_
          << "\n\t  number of ases_: " << static_cast<int>(ases_.size());
 
   if (ases_.size() > 0) {
@@ -2534,7 +2561,7 @@ std::vector<int> LeAudioDeviceGroups::GetGroupsIds(void) {
 }
 
 /* LeAudioDevices Class methods implementation */
-void LeAudioDevices::Add(const RawAddress& address, bool first_connection,
+void LeAudioDevices::Add(const RawAddress& address, DeviceConnectState state,
                          int group_id) {
   auto device = FindByAddress(address);
   if (device != nullptr) {
@@ -2544,7 +2571,7 @@ void LeAudioDevices::Add(const RawAddress& address, bool first_connection,
   }
 
   leAudioDevices_.emplace_back(
-      std::make_shared<LeAudioDevice>(address, first_connection, group_id));
+      std::make_shared<LeAudioDevice>(address, state, group_id));
 }
 
 void LeAudioDevices::Remove(const RawAddress& address) {
