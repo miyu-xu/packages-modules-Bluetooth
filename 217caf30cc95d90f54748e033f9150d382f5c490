@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bda09ec_5a67cae4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-28T11:13:04Z",
+      "side": 1,
+      "message": "Looks good - minor comments.",
+      "revId": "217caf30cc95d90f54748e033f9150d382f5c490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9a25411_29b48e58",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-28T11:13:04Z",
+      "side": 1,
+      "message": "lets use LOG_INFO() when adding new code.",
+      "revId": "217caf30cc95d90f54748e033f9150d382f5c490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a233d8_9f38bf1c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1392,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-28T11:13:04Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "217caf30cc95d90f54748e033f9150d382f5c490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
