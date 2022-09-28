@@ -222,6 +222,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "058b2c91_b23b1250",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:38:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3df60014_59da83b3",
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c0a7a85_9538dae1",
@@ -258,6 +276,54 @@
       "writtenOn": "2022-08-22T23:02:03Z",
       "side": 1,
       "message": "nit: \"Device found: $device\"",
+      "range": {
+        "startLine": 365,
+        "startChar": 22,
+        "endLine": 365,
+        "endChar": 40
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cda4aa2_eb5b0b86",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:38:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c0a7a85_9538dae1",
+      "range": {
+        "startLine": 365,
+        "startChar": 9,
+        "endLine": 365,
+        "endChar": 15
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7b9400b_77e28d65",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-28T21:38:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a67614_2610c619",
       "range": {
         "startLine": 365,
         "startChar": 22,
