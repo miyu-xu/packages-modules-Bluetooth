@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09e93f42_374e3d34",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-28T23:48:41Z",
+      "side": 1,
+      "message": "nit: wrap the comment to 100 char wide.",
+      "range": {
+        "startLine": 1256,
+        "startChar": 0,
+        "endLine": 1256,
+        "endChar": 110
+      },
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc43241d_c88a49e2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-28T23:48:41Z",
+      "side": 1,
+      "message": "nit: just use `address` since this is already unwrapped at line 1233?",
+      "range": {
+        "startLine": 1262,
+        "startChar": 41,
+        "endLine": 1262,
+        "endChar": 54
+      },
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2266d7f1_1e9640be",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
@@ -31,6 +77,29 @@
       "writtenOn": "2022-09-23T12:18:31Z",
       "side": 1,
       "message": "I assume this function is only called if something outside floss calls it (e.g. not from resume). Is that a valid assumption?\nLikewise from every acl_connect_attempt in this CL.",
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a59fcdf1_15f6e4e4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1554,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-28T23:48:41Z",
+      "side": 1,
+      "message": "nit, you can use `map_or`:\n\n```\nlet is_connected \u003d self.get_remote_device_if_found(...).map_or(false, |d| d.acl_state \u003d\u003d BtAclState::Connected)\n```",
+      "range": {
+        "startLine": 1551,
+        "startChar": 27,
+        "endLine": 1554,
+        "endChar": 10
+      },
       "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
