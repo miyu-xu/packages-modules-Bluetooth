@@ -38,22 +38,22 @@ namespace acl_manager {
 
 class TestController : public Controller {
  public:
-  uint16_t GetNumAclPacketBuffers() const {
+  uint16_t GetNumAclPacketBuffers() const override {
     return max_acl_packet_credits_;
   }
 
-  uint16_t GetAclPacketLength() const {
+  uint16_t GetAclPacketLength() const override {
     return hci_mtu_;
   }
 
-  LeBufferSize GetLeBufferSize() const {
+  LeBufferSize GetLeBufferSize() const override {
     LeBufferSize le_buffer_size;
     le_buffer_size.le_data_packet_length_ = le_hci_mtu_;
     le_buffer_size.total_num_le_packets_ = le_max_acl_packet_credits_;
     return le_buffer_size;
   }
 
-  void RegisterCompletedAclPacketsCallback(CompletedAclPacketsCallback cb) {
+  void RegisterCompletedAclPacketsCallback(CompletedAclPacketsCallback cb) override {
     acl_credits_callback_ = cb;
   }
 
@@ -61,9 +61,14 @@ class TestController : public Controller {
     acl_credits_callback_.Invoke(handle, credits);
   }
 
-  void UnregisterCompletedAclPacketsCallback() {
+  void UnregisterCompletedAclPacketsCallback() override {
     acl_credits_callback_ = {};
   }
+
+  bool SupportsBlePrivacy() const override {
+    return supports_ble_privacy_;
+  }
+  bool supports_ble_privacy_{false};
 
   const uint16_t max_acl_packet_credits_ = 10;
   const uint16_t hci_mtu_ = 1024;
@@ -72,13 +77,14 @@ class TestController : public Controller {
 
  private:
   CompletedAclPacketsCallback acl_credits_callback_;
+  std::set<OpCode> supported_opcodes_{};
 };
 
 class RoundRobinSchedulerTest : public ::testing::Test {
  public:
   void SetUp() override {
-    thread_ = new Thread("thread", Thread::Priority::NORMAL);
-    handler_ = new Handler(thread_);
+    thread_ = new os::Thread("thread", os::Thread::Priority::NORMAL);
+    handler_ = new os::Handler(thread_);
     controller_ = new TestController();
     round_robin_scheduler_ = new RoundRobinScheduler(handler_, controller_, hci_queue_.GetUpEnd());
     hci_queue_.GetDownEnd()->RegisterDequeue(
@@ -86,6 +92,7 @@ class RoundRobinSchedulerTest : public ::testing::Test {
   }
 
   void TearDown() override {
+    sync_handler();
     hci_queue_.GetDownEnd()->UnregisterDequeue();
     delete round_robin_scheduler_;
     delete controller_;
@@ -99,7 +106,7 @@ class RoundRobinSchedulerTest : public ::testing::Test {
     auto future = promise.get_future();
     handler_->BindOnceOn(&promise, &std::promise<void>::set_value).Invoke();
     auto status = future.wait_for(std::chrono::milliseconds(3));
-    EXPECT_EQ(status, std::future_status::ready);
+    ASSERT_EQ(status, std::future_status::ready);
   }
 
   void EnqueueAclUpEnd(AclConnection::QueueUpEnd* queue_up_end, std::vector<uint8_t> packet) {
@@ -262,8 +269,8 @@ TEST_F(RoundRobinSchedulerTest, do_not_register_when_credits_is_zero) {
 TEST_F(RoundRobinSchedulerTest, reveived_completed_callback_with_unknown_handle) {
   controller_->SendCompletedAclPacketsCallback(0x00, 1);
   sync_handler();
-  EXPECT_EQ(round_robin_scheduler_->GetCredits(), controller_->max_acl_packet_credits_);
-  EXPECT_EQ(round_robin_scheduler_->GetLeCredits(), controller_->le_max_acl_packet_credits_);
+  ASSERT_EQ(round_robin_scheduler_->GetCredits(), controller_->max_acl_packet_credits_);
+  ASSERT_EQ(round_robin_scheduler_->GetLeCredits(), controller_->le_max_acl_packet_credits_);
 }
 
 TEST_F(RoundRobinSchedulerTest, buffer_packet_intervally) {
