@@ -161,6 +161,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "01c2ddde_3382d259",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T17:20:11Z",
+      "side": 1,
+      "message": "I can\u0027t repro it now, but while developing on the MIMs for GAP/SEC/AUT/BV-02-C, I was hitting this crash. We also saw this crash in tradefed non-deterministically",
+      "parentUuid": "e864cf24_5f591a8c",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "90afb2c0_74db425d",
