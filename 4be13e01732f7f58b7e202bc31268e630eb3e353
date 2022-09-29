@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "809c0bba_e60e0305",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:57:04Z",
+      "side": 1,
+      "message": "I would prefer for us to add a `GetDeviceName` instead as the client should already know the Bluetooth Device address of the connection.",
+      "revId": "4be13e01732f7f58b7e202bc31268e630eb3e353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e5853a_b3405b9a",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:57:04Z",
+      "side": 1,
+      "message": "We should check if the device is already connected.",
+      "revId": "4be13e01732f7f58b7e202bc31268e630eb3e353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
