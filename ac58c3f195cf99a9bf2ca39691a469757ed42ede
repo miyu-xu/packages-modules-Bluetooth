@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c608c4a2_8946e1f1",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T17:09:59Z",
+      "side": 1,
+      "message": "nit: maybe just `address`? Since with battery is already clear that it\u0027s the remote battery we are interested to know.",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "ac58c3f195cf99a9bf2ca39691a469757ed42ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0280d158_afd37425",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T17:09:59Z",
+      "side": 1,
+      "message": "nit: since `Vec` already can contain zero batteries, maybe we don\u0027t need `Option`? this would simplify clients",
+      "range": {
+        "startLine": 23,
+        "startChar": 73,
+        "endLine": 23,
+        "endChar": 93
+      },
+      "revId": "ac58c3f195cf99a9bf2ca39691a469757ed42ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cbf60fc_45032d38",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T17:09:59Z",
+      "side": 1,
+      "message": "I assume a provider can provide multiple batteries of multiple devices, for example CRAS may provide multiple batteries of multiple headset. So this should be `provider_id` instead of `battery_id`?",
+      "range": {
+        "startLine": 32,
+        "startChar": 35,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "ac58c3f195cf99a9bf2ca39691a469757ed42ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
