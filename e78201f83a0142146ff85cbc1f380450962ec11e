@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a149b6f_c7a1768c",
+        "filename": "system/gd/hci/address_with_type.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T13:03:28Z",
+      "side": 1,
+      "message": "There is no information loss though. Peer address type has less information compared to address type, which is complemented by having two constructors for Device and Identity addresses, which are conflated in peer address type.",
+      "parentUuid": "26b5cce8_0042be4e",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95a1ca7b_dd84ad41",
         "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
         "patchSetId": 15
@@ -137,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d906690_ff208b0a",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T13:03:28Z",
+      "side": 1,
+      "message": "link_layer_controller.cc is getting too large, and I want to move the implementation of command groups (advertising / scanning / initiating a.s.o.) to separate files, alongside the handling of relevant link layer packets",
+      "parentUuid": "9b97a6f7_108df29a",
+      "range": {
+        "startLine": 484,
+        "startChar": 5,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ab7163e_2af048a3",
         "filename": "tools/rootcanal/model/controller/le_advertiser.h",
         "patchSetId": 15
@@ -148,6 +196,30 @@
       "writtenOn": "2022-09-29T12:30:23Z",
       "side": 1,
       "message": "Are you planning on moving these into separate files in a future commit?  Usually, we have one class per file.\n\nFor reviewing, It makes it easier to see what\u0027s happening this way, though.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 18
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1044640a_0ce8ca41",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T13:03:28Z",
+      "side": 1,
+      "message": "That might be an option in the future, for now I am happy to keep everything inside le_advertiser.h",
+      "parentUuid": "8ab7163e_2af048a3",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -183,6 +255,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6eb1687a_47af829b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T13:03:28Z",
+      "side": 1,
+      "message": "The address match is performed directly in IncomingLeScanPacket, more precisely in GenerateLegacyScanResponse for legacy advertising and LeAdvertiser::GetScanResponse for extended advertising.",
+      "parentUuid": "c223e2ad_f0a8adb3",
+      "range": {
+        "startLine": 819,
+        "startChar": 0,
+        "endLine": 826,
+        "endChar": 3
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43b83508_e2ec716a",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 15
@@ -194,6 +290,30 @@
       "writtenOn": "2022-09-29T12:30:23Z",
       "side": 1,
       "message": "Can\u0027t we get the advertising type from the legacy advertiser?",
+      "range": {
+        "startLine": 2283,
+        "startChar": 6,
+        "endLine": 2283,
+        "endChar": 14
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "209f4e7a_401f3108",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2283,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T13:03:28Z",
+      "side": 1,
+      "message": "LeConnect currently does not contain the address type for the advertising address (AdvA), only for the initiator address (InitA). I will change this later on when reviewing the implementation of connections.",
+      "parentUuid": "43b83508_e2ec716a",
       "range": {
         "startLine": 2283,
         "startChar": 6,
