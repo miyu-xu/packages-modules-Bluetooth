@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce0459fd_fa849477",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:07:29Z",
+      "side": 1,
+      "message": "We might want to group thoses two RPCs into one call as both of thoses are sent with one command on the HCI and some host expose those two APIs as one, for exemple Eiffel with `fl_gap_set_page_scan`.\n\n`SetGapModes` ?",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "288eb11e_6899a242",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:07:29Z",
+      "side": 1,
+      "message": "nit: `SetConnectabilityMode`",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6dce80f_db40e06d",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:07:29Z",
+      "side": 1,
+      "message": "nit: `SetDiscoverabilityMode`",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e694119_62ea0f6c",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:07:29Z",
+      "side": 1,
+      "message": "I would prefer that we remove the `UNSPECIFIED` variant",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b15c0028_58104e31",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:07:29Z",
+      "side": 1,
+      "message": "I would prefer that we remove the `UNSPECIFIED` variant",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a98fc7_9d2621a7",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:07:29Z",
+      "side": 1,
+      "message": "The transport doesn\u0027t seems to be used in the CL",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c956f5c_8a34ef96",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:07:29Z",
+      "side": 1,
+      "message": "I would prefer that we remove the `UNSPECIFIED` variant",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
