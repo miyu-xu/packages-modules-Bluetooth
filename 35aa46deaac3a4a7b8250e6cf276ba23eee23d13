@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a988a5d_ff6a0ae9",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T10:20:17Z",
+      "side": 1,
+      "message": "nit: We might want to move that to a `gap.proto` file\n\nWhat do you think @girardier@google.com ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aefe1094_1fb884c9",
         "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
         "patchSetId": 15
