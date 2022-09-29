@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8eb278_cf2fc8aa",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_base_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-29T19:08:21Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 53
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e26d30b_3b9d44e5",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-29T19:08:21Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 39
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4246941_e21ccfb0",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-29T19:08:21Z",
+      "side": 1,
+      "message": "remove LOG_ERROR",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 619,
+        "endChar": 23
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
