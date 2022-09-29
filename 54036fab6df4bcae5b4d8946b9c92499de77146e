@@ -160,6 +160,24 @@
       "parentUuid": "361268d4_670a2b8d",
       "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a7e1a21_543ca65b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T14:21:46Z",
+      "side": 1,
+      "message": "\u003e The more interesting question is why PTS wouldn\u0027t work with an extra beacon or two in the environment. It should never influence the result.\n\nI agree, the PTS works in environment with other devices (as everyone use it like that), if there is an issue it might be specific to PTS-bot or RootCanal.",
+      "parentUuid": "330d6784_cab028df",
+      "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
