@@ -16,6 +16,23 @@
       "message": "Hi，Chen Chen\nTesting the issue was passed. please review it",
       "revId": "b535b25148b86d8a524f02e5651fed34aa802666",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce816046_9f3c2813",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T03:51:54Z",
+      "side": 1,
+      "message": "Thanks for the fix!",
+      "revId": "b535b25148b86d8a524f02e5651fed34aa802666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
