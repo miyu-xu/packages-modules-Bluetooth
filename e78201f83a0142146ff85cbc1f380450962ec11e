@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd427134_3327b3ee",
+        "filename": "system/gd/hci/address_with_type.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T13:02:19Z",
+      "side": 1,
+      "message": ":)   Not in this CL, but if we\u0027re using the other ones in RootCanal, we could remove that in this CL.",
+      "parentUuid": "26b5cce8_0042be4e",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95a1ca7b_dd84ad41",
         "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
         "patchSetId": 15
