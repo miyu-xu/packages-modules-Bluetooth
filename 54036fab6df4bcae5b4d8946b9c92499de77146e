@@ -142,6 +142,24 @@
       "parentUuid": "6c61d299_e086ca3f",
       "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "330d6784_cab028df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T14:12:29Z",
+      "side": 1,
+      "message": "cts/tests/tests/bluetooth/src/android/bluetooth/cts/BluetoothLeScanTest.java\n\nThe more interesting question is why PTS wouldn\u0027t work with an extra beacon or two in the environment.  It should never influence the result.",
+      "parentUuid": "361268d4_670a2b8d",
+      "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
