@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3c121fd_0b470121",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:51:43Z",
+      "side": 1,
+      "message": "nit: As we are asserting that above, I think we can remove the condition",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 55
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bcc2b4c_5a52f9f7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:51:43Z",
+      "side": 1,
+      "message": "Can we test that `self.connection is None` here instead ?",
+      "range": {
+        "startLine": 136,
+        "startChar": 12,
+        "endLine": 136,
+        "endChar": 33
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d4e164e_c6a7e913",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:51:43Z",
+      "side": 1,
+      "message": "This is weird, we should not need a `- 1` here",
+      "range": {
+        "startLine": 173,
+        "startChar": 40,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26bf4aaa_895fc15a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:51:43Z",
+      "side": 1,
+      "message": "nit: We are asserting this condition on top, so I think we should remove this condition",
+      "range": {
+        "startLine": 284,
+        "startChar": 19,
+        "endLine": 284,
+        "endChar": 45
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63e25417_14359dd6",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 28
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:51:43Z",
+      "side": 1,
+      "message": "You should not be adding `AVRCP` tests no ?",
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
