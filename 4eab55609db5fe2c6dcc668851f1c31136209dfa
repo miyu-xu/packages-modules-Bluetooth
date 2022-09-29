@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa919468_b9a19b9d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandlerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-29T22:13:51Z",
+      "side": 1,
+      "message": "Please use Truth",
+      "revId": "4eab55609db5fe2c6dcc668851f1c31136209dfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
