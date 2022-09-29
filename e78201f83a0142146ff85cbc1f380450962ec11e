@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0769252b_cdacb4ec",
+        "filename": "system/gd/hci/address_with_type.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:30:23Z",
+      "side": 1,
+      "message": "We have to be really careful here.  These aren\u0027t directly convertible (there\u0027s information lost here).  I\u0027d rather not make this part of AddressWithType, because the user should know what\u0027s happening.\n\nThis can be a helper function in RootCanal, but not here.",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a1ca7b_dd84ad41",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:30:23Z",
+      "side": 1,
+      "message": "What about:\n\n      legacy_advertiser_.advertising_address \u003d resolvable_address.value_or(random_address);\n      if (legacy_advertiser_.advertising_address \u003d\u003d Address::kEmpty) {\n        LOG_INFO(\n            \"own_address_type is Resolvable_Or_Random_Address but the\"\n            \" Resolving_List does not contain a matching entry and the\"\n            \" Random_Address is not initialized\");\n        return ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;\n      }",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 7
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25f7a5a9_9f5886a7",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:30:23Z",
+      "side": 1,
+      "message": "I guess we could check here for the empty address, and that would simplify the above cases and handle the case of the LE-only controller.",
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b97a6f7_108df29a",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:30:23Z",
+      "side": 1,
+      "message": "I agree this is related here, but it\u0027s not where we would normally expect to find it.  Are you planning on moving it in a future CL?",
+      "range": {
+        "startLine": 484,
+        "startChar": 5,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ab7163e_2af048a3",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:30:23Z",
+      "side": 1,
+      "message": "Are you planning on moving these into separate files in a future commit?  Usually, we have one class per file.\n\nFor reviewing, It makes it easier to see what\u0027s happening this way, though.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 18
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c223e2ad_f0a8adb3",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:30:23Z",
+      "side": 1,
+      "message": "They should still match an advertiser, otherwise they should be dropped.  Let\u0027s not add this here.",
+      "range": {
+        "startLine": 819,
+        "startChar": 0,
+        "endLine": 826,
+        "endChar": 3
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b83508_e2ec716a",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2283,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:30:23Z",
+      "side": 1,
+      "message": "Can\u0027t we get the advertising type from the legacy advertiser?",
+      "range": {
+        "startLine": 2283,
+        "startChar": 6,
+        "endLine": 2283,
+        "endChar": 14
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
