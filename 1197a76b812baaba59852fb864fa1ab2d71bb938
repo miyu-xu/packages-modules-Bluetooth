@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05a09a70_dbc2580c",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-09-29T01:45:01Z",
+      "side": 1,
+      "message": "Rust makes no effort to track raw pointers. It\u0027ll be helpful if we can wrap this up in a method.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 10
+      },
+      "revId": "1197a76b812baaba59852fb864fa1ab2d71bb938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
