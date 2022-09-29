@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e32cdd_03c8d32c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2022-09-29T14:40:31Z",
+      "side": 1,
+      "message": "Hi All\n  Can we ignore the vs code work folder in git repo here?\n  Thanks.",
+      "revId": "7cce284bec83a27f3deb8d07929e3c894c511e73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
