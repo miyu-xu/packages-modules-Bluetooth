@@ -88,6 +88,24 @@
       "parentUuid": "64dc0dd2_25333d5c",
       "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca2e223_035632a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T12:59:17Z",
+      "side": 1,
+      "message": "Is it CTS or CTS Verifier here ?",
+      "parentUuid": "e29580ad_26a1a9b7",
+      "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
