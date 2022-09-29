@@ -281,6 +281,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "118d56c0_a1f8b87c",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T15:54:45Z",
+      "side": 1,
+      "message": "Nothing concrete.  I can think of a couple of ways, but scattered methods are worse than long files to me.",
+      "parentUuid": "acbdddcf_ebd8d888",
+      "range": {
+        "startLine": 484,
+        "startChar": 5,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ab7163e_2af048a3",
         "filename": "tools/rootcanal/model/controller/le_advertiser.h",
         "patchSetId": 15
@@ -447,6 +471,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67eb86e2_a86cb0e4",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T15:54:45Z",
+      "side": 1,
+      "message": "Now I\u0027m feeling personally attacked :)  We must be responding to comments too quickly...  Time to throttle the review process a bit.",
+      "parentUuid": "21726b7f_27d5e3e4",
+      "range": {
+        "startLine": 819,
+        "startChar": 0,
+        "endLine": 826,
+        "endChar": 3
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43b83508_e2ec716a",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 15
@@ -530,6 +578,30 @@
       "side": 1,
       "message": "I am not inventing this, you can refer to the documentation of the CONNECT_IND PDU in the core specification. The advertiser will not match if the address type does not match the type in the CONNECT_IND PDU.",
       "parentUuid": "37e09067_9646c449",
+      "range": {
+        "startLine": 2283,
+        "startChar": 6,
+        "endLine": 2283,
+        "endChar": 14
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5c0332_686d8d15",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2283,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T15:54:45Z",
+      "side": 1,
+      "message": "I didn\u0027t accuse you of inventing it.  Until we can match the type correctly, we should use the address type from our advertiser.  Later we can add the check against the type in connect_ind",
+      "parentUuid": "d344d552_579e0abf",
       "range": {
         "startLine": 2283,
         "startChar": 6,
