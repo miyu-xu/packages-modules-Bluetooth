@@ -16,6 +16,23 @@
       "message": "LGTM, thanks!",
       "revId": "db2190a59cf9d6d16c10f73b385ccb6f9279147d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dddddd6_29d76b49",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-29T01:15:34Z",
+      "side": 1,
+      "message": "nit: should we use all caps?",
+      "revId": "db2190a59cf9d6d16c10f73b385ccb6f9279147d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
