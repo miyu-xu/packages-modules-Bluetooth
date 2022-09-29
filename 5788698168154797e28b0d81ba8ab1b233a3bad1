@@ -16,6 +16,24 @@
       "message": "Looks like we need to add the new module to the Floss build files.",
       "revId": "5788698168154797e28b0d81ba8ab1b233a3bad1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db4c4512_60d76abf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T13:27:57Z",
+      "side": 1,
+      "message": "\u003d note: /usr/bin/ld: /root/.floss/output/out/Default/obj/bt/system/main/shim/LibBluetoothShimSources.stack.o: in function `void bluetooth::ModuleList::add\u003cbluetooth::hci::acl_manager::AclScheduler\u003e()\u0027:\n\n          /root/.floss/output/out/Default/ gd/module.h:60: undefined reference to `bluetooth::hci::acl_manager::AclScheduler::Factory\u0027\n\n          /usr/bin/ld: /root/.floss/output/out/Default/obj/bt/system/gd/hci/BluetoothHciSources.acl_manager.o: in function `bluetooth::hci::acl_manager::classic_impl::create_connection(bluetooth::hci::Address)\u0027:\n\n          /root/.floss/output/out/Default/ gd/hci/acl_manager/classic_impl.h:291: undefined reference to `bluetooth::hci::acl_manager::AclScheduler::EnqueueOutgoingAclConnection(bluetooth::hci::Address, bluetooth::common::ContextualOnceCallback\u003cvoid ()\u003e)\u0027",
+      "parentUuid": "a93735de_1a8140c4",
+      "revId": "5788698168154797e28b0d81ba8ab1b233a3bad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
