@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b20ca6_a14f3f48",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T00:17:12Z",
+      "side": 1,
+      "message": "Correct. But we send HCI packets from our host, and they cause crashes when they should instead be rejected by the controller. \n\nThe reason for making the LMP errors also non-fatal is because when the host disconnects, there could still be LMP packets queued on the PHY. We remove the LMP link before we get any ACK from the peer, so if there are still pending packets then we will crash.",
+      "parentUuid": "baa938b1_72fa8973",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "90afb2c0_74db425d",
