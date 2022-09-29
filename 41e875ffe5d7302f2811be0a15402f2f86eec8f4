@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d2aaf8c_676e896f",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T11:48:23Z",
+      "side": 1,
+      "message": "nit: ALL_DEVICES (no comment necessary)",
+      "range": {
+        "startLine": 765,
+        "startChar": 71,
+        "endLine": 765,
+        "endChar": 76
+      },
+      "revId": "41e875ffe5d7302f2811be0a15402f2f86eec8f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
