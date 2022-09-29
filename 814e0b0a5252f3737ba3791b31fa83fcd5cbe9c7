@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a82187f_4e05618f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-09-29T14:30:42Z",
+      "side": 1,
+      "message": "Sungsoo is OOO until next Monday.\nJack, could you give review on this? Thanks.",
+      "revId": "814e0b0a5252f3737ba3791b31fa83fcd5cbe9c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
