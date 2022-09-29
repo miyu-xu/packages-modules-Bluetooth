@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4558c5ce_77766d63",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:52:06Z",
+      "side": 1,
+      "message": "if so, future CL? I don\u0027t want to deal with merge conflicts all the way up this stack for this reason 😊",
+      "parentUuid": "9a988a5d_ff6a0ae9",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b93f9cbf_7b98dea5",
         "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
         "patchSetId": 15
@@ -37,6 +61,24 @@
       "writtenOn": "2022-09-29T10:22:47Z",
       "side": 1,
       "message": "This doesn\u0027t seems to be used in this CL, could you move it ?",
+      "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a87642_60f358af",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:52:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b93f9cbf_7b98dea5",
       "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +96,24 @@
       "writtenOn": "2022-09-29T10:18:29Z",
       "side": 1,
       "message": "This doesn\u0027t seems to be used.",
+      "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5e11342_ca2fe6a6",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:52:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aefe1094_1fb884c9",
       "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
