@@ -33,6 +33,24 @@
       "message": "If you add a test line here (copying the bytes from Wireshark), you can tell if things are working.\n\ntest MsftReadSupportedFeaturesCommandComplete {\n  \"..copied from Wireshark..\",\n  \"..copied from a different machine (so it has a different prefix length)..\",\n}",
       "revId": "d7b50d3959a8a4fd10004bf91d756bf16410ae5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26113ffe_1c5ee3f7",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 6239,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-09-29T14:18:06Z",
+      "side": 1,
+      "message": "Ah, I just realized that we can add a test line following the packet definition. Thanks Myles for the pointer! PDL is pretty mysterious to me :-)\n\nI will add some command complete events from different vendors such that they come with different prefix lengths. Thanks!",
+      "parentUuid": "a403c398_b566ae2c",
+      "revId": "d7b50d3959a8a4fd10004bf91d756bf16410ae5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
