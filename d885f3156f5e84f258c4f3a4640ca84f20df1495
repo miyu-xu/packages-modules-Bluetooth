@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0709149_3b3aa91f",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:58:42Z",
+      "side": 1,
+      "message": "`Connect` should already only connect on the BREDR transport only",
+      "revId": "d885f3156f5e84f258c4f3a4640ca84f20df1495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
