@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31da40e_46de4e41",
+        "filename": "tools/rootcanal/lmp/src/procedure/encryption.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:08:47Z",
+      "side": 1,
+      "message": "We should not do that unconditionally, let me upload a CL for this",
+      "revId": "c5882e1cc8ea3f254d685c50a7e29f6b10a5e78b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
