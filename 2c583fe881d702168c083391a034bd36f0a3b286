@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0580a0bf_1d0db834",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2360,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T00:12:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5fdef010_e514640f",
+      "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68aa2ca9_26b1b0fb",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-26T13:08:42Z",
       "side": 1,
       "message": "You need to cancel the pending connection as well.",
+      "range": {
+        "startLine": 3046,
+        "startChar": 26,
+        "endLine": 3046,
+        "endChar": 38
+      },
+      "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eaed4d4_774c6a54",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3046,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T00:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68aa2ca9_26b1b0fb",
       "range": {
         "startLine": 3046,
         "startChar": 26,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "905a1be5_9630110b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3047,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T00:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "648cc52d_33f6ae71",
+      "range": {
+        "startLine": 3047,
+        "startChar": 50,
+        "endLine": 3047,
+        "endChar": 67
+      },
+      "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95ff3847_4024a22d",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf2ac91_268f8a9f",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3050,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T00:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95ff3847_4024a22d",
+      "range": {
+        "startLine": 3050,
+        "startChar": 37,
+        "endLine": 3050,
+        "endChar": 42
+      },
+      "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b55230b2_a60e2363",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-09-27T15:42:11Z",
       "side": 1,
       "message": "Do we only need one?  Should we add page timeout for Remote Name Request, as well?",
+      "range": {
+        "startLine": 808,
+        "startChar": 38,
+        "endLine": 808,
+        "endChar": 52
+      },
+      "revId": "2c583fe881d702168c083391a034bd36f0a3b286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0360eac0_fd4c6399",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T00:12:40Z",
+      "side": 1,
+      "message": "future CL - we should unify handling of remote name requests + connection requests, as discussed, to simulate real controllers",
+      "parentUuid": "b55230b2_a60e2363",
       "range": {
         "startLine": 808,
         "startChar": 38,
