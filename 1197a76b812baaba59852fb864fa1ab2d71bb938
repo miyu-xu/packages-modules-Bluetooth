@@ -22,6 +22,30 @@
       },
       "revId": "1197a76b812baaba59852fb864fa1ab2d71bb938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26182c1_f88e1f84",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-09-29T05:09:53Z",
+      "side": 1,
+      "message": "I\u0027d like to leave this (short term) fix as is. And submit it first.\n\nThe situation (get the pointer of an object inside Option) is too special. Wrapping the whole `match` statement into a function seems too specific to me. I\u0027d prefer to wrap all raw pointers with a lifetime-checked class. As the affected code could be a lot, the details may be discussed afterward.",
+      "parentUuid": "05a09a70_dbc2580c",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 10
+      },
+      "revId": "1197a76b812baaba59852fb864fa1ab2d71bb938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
