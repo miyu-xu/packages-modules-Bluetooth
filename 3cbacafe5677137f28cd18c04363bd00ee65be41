@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb580cb6_87605d5e",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T14:57:07Z",
+      "side": 1,
+      "message": "This is not sparing a lot of lines as I would keep the log in the original command to make sure it is tagged with the correct function in the log file.\n\nI also don\u0027t like the fact that UseLegacyAdvertising introduces side effects, it looks too much like a getter.",
+      "parentUuid": "5eb34fe7_1fb1be6f",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 590,
+        "endChar": 36
+      },
+      "revId": "3cbacafe5677137f28cd18c04363bd00ee65be41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75969fb6_5b1e8a11",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 10
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-29T12:51:32Z",
       "side": 1,
       "message": "ignored? dropped?",
+      "range": {
+        "startLine": 2348,
+        "startChar": 68,
+        "endLine": 2348,
+        "endChar": 76
+      },
+      "revId": "3cbacafe5677137f28cd18c04363bd00ee65be41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdaa8e0d_0882fa65",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2348,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T14:57:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75969fb6_5b1e8a11",
       "range": {
         "startLine": 2348,
         "startChar": 68,
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-29T12:51:32Z",
       "side": 1,
       "message": "Maybe add a comment that this is not useful for extended advertising?  Or what it is useful for (connection initiation, scan responses, legacy advertising, ...) ?\n\nMaybe call it IsLocalPublicOrRandomAddress to make it more obvious?",
+      "range": {
+        "startLine": 237,
+        "startChar": 7,
+        "endLine": 237,
+        "endChar": 27
+      },
+      "revId": "3cbacafe5677137f28cd18c04363bd00ee65be41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2808188d_529fb677",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T14:57:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa2bb898_cb457310",
       "range": {
         "startLine": 237,
         "startChar": 7,
