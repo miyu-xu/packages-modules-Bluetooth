@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a113aef7_296bdac2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:26:03Z",
+      "side": 1,
+      "message": "what does it mean when the profile is not in this list? Is it unexpected or not yet handled? If unexpected, maybe print some warning?",
+      "revId": "73034186945e1c3fbe627b89ccd1758d55b54441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c6e07d4_4ee77206",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:26:03Z",
+      "side": 1,
+      "message": "nit: these can be written in functional style and more concise:\n```\nself.a2dp.as_ref().map_or(false, |a2dp| a2dp.is_enabled())\n```\n\ncan be applied to similar situations",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 21
+      },
+      "revId": "73034186945e1c3fbe627b89ccd1758d55b54441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
