@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb34fe7_1fb1be6f",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:51:32Z",
+      "side": 1,
+      "message": "This is repeated often enough that I wonder if it could be abstracted.\n\nif (!UseLegacyAdvertising()) {\n  return ErrorCode::COMMAND_DISALLOWED;\n}\n\nvoid UseLegacyAdvertising() {\n  if (!extended_advertising_in_use_) {\n    legacy_advertising_in_use_ \u003d true;\n    return true;\n  }\n  LOG_INFO(\n        \"legacy advertising command rejected because extended advertising\"\n        \" is being used\");\n  return false;\n}",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 590,
+        "endChar": 36
+      },
+      "revId": "3cbacafe5677137f28cd18c04363bd00ee65be41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75969fb6_5b1e8a11",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2348,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:51:32Z",
+      "side": 1,
+      "message": "ignored? dropped?",
+      "range": {
+        "startLine": 2348,
+        "startChar": 68,
+        "endLine": 2348,
+        "endChar": 76
+      },
+      "revId": "3cbacafe5677137f28cd18c04363bd00ee65be41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2bb898_cb457310",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:51:32Z",
+      "side": 1,
+      "message": "Maybe add a comment that this is not useful for extended advertising?  Or what it is useful for (connection initiation, scan responses, legacy advertising, ...) ?\n\nMaybe call it IsLocalPublicOrRandomAddress to make it more obvious?",
+      "range": {
+        "startLine": 237,
+        "startChar": 7,
+        "endLine": 237,
+        "endChar": 27
+      },
+      "revId": "3cbacafe5677137f28cd18c04363bd00ee65be41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
