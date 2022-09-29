@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e97dcca1_2794870a",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:57:54Z",
+      "side": 1,
+      "message": "We have separate MMIs for these two actions. Therefore mmi2grpc would have to track state to figure out what scan mode is needed. Is that preferrable?",
+      "parentUuid": "ce0459fd_fa849477",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "288eb11e_6899a242",
         "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
         "patchSetId": 9
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-29T10:07:29Z",
       "side": 1,
       "message": "nit: `SetConnectabilityMode`",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2cddd1e_b9258630",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:57:54Z",
+      "side": 1,
+      "message": "will rename if we decide to keep this api and not merge the two",
+      "parentUuid": "288eb11e_6899a242",
       "range": {
         "startLine": 51,
         "startChar": 6,
@@ -60,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21dd8bb4_11a2f9fb",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:57:54Z",
+      "side": 1,
+      "message": "will rename if we decide to keep this api and not merge the two",
+      "parentUuid": "c6dce80f_db40e06d",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e694119_62ea0f6c",
         "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
         "patchSetId": 9
@@ -71,6 +131,24 @@
       "writtenOn": "2022-09-29T10:07:29Z",
       "side": 1,
       "message": "I would prefer that we remove the `UNSPECIFIED` variant",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "618d0348_c4f43b43",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:57:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e694119_62ea0f6c",
       "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -94,6 +172,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7de9e460_7f4d90bb",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:57:54Z",
+      "side": 1,
+      "message": "This is to be used so when we pass connectability/discoverability into advertising APIs, we can distinguish between the user not caring about connectability, and the user wanting connectability\u003dfalse.",
+      "parentUuid": "b15c0028_58104e31",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9a98fc7_9d2621a7",
         "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
         "patchSetId": 9
@@ -105,6 +201,24 @@
       "writtenOn": "2022-09-29T10:07:29Z",
       "side": 1,
       "message": "The transport doesn\u0027t seems to be used in the CL",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dc17657_ea688a68",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:57:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d9a98fc7_9d2621a7",
       "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -122,6 +236,24 @@
       "writtenOn": "2022-09-29T10:07:29Z",
       "side": 1,
       "message": "I would prefer that we remove the `UNSPECIFIED` variant",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72d08cd4_142ddc9f",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T21:57:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5c956f5c_8a34ef96",
       "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
