@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ad8333_e9d5db2e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:42:14Z",
+      "side": 1,
+      "message": "if `path` can\u0027t be None, why is it an `Option` in the first place?",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c3daf80_4953dfdc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:42:14Z",
+      "side": 1,
+      "message": "nit: why not `self.get_allowed_services()`",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 59
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9ce403d_e03000f3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:42:14Z",
+      "side": 1,
+      "message": "nit:\n```\n.map(UuidHelper::to_string)\n```",
+      "range": {
+        "startLine": 107,
+        "startChar": 20,
+        "endLine": 107,
+        "endChar": 66
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82a2417a_305989c7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:42:14Z",
+      "side": 1,
+      "message": "why is it encoded to json just to be decoded as json again?",
+      "range": {
+        "startLine": 204,
+        "startChar": 20,
+        "endLine": 206,
+        "endChar": 36
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
