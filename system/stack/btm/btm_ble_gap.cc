@@ -698,7 +698,7 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
   if (btm_cb.cmn_ble_vsc_cb.max_filter > 0) btm_ble_adv_filter_init();
 
   /* VS capability included and non-4.2 device */
-  if (controller_get_interface()->supports_ble() && 
+  if (controller_get_interface()->supports_ble() &&
       controller_get_interface()->supports_ble_privacy() &&
       btm_cb.cmn_ble_vsc_cb.max_irk_list_sz > 0 &&
       controller_get_interface()->get_ble_resolving_list_max_size() == 0)
@@ -2730,7 +2730,10 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
   /* If existing entry, use that, else get  a new one (possibly reusing the
    * oldest) */
   if (p_i == NULL) {
-    p_i = btm_inq_db_new(bda);
+    /* p_i = btm_inq_db_new(bda); */
+    /** Bug fix for EIR being flushed by too much adv @{ */
+    p_i = btm_inq_db_new(bda, true);
+    /** @} */
     if (p_i != NULL) {
       p_inq->inq_cmpl_info.num_resp++;
       p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
@@ -2827,7 +2830,10 @@ void btm_ble_process_adv_pkt_cont_for_inquiry(
   /* If existing entry, use that, else get  a new one (possibly reusing the
    * oldest) */
   if (p_i == NULL) {
-    p_i = btm_inq_db_new(bda);
+    /* p_i = btm_inq_db_new(bda); */
+    /** Bug fix for EIR being flushed by too much adv @{ */
+    p_i = btm_inq_db_new(bda, true);
+    /** @} */
     if (p_i != NULL) {
       p_inq->inq_cmpl_info.num_resp++;
       p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
@@ -3322,7 +3328,10 @@ void btm_ble_update_mode_operation(uint8_t link_role, const RawAddress* bd_addr,
      now in order */
   if (btm_cb.ble_ctr_cb.is_connection_state_idle() &&
       status != HCI_ERR_HOST_REJECT_RESOURCES &&
-      status != HCI_ERR_MAX_NUM_OF_CONNECTIONS) {
+      status != HCI_ERR_MAX_NUM_OF_CONNECTIONS
+  /** Add judgement to avoid dead loop when stack trigger le create connection twice @{ */
+      && status != HCI_ERR_COMMAND_DISALLOWED) {
+  /** @} */
     LOG_DEBUG("Resuming le background connections");
     btm_ble_resume_bg_conn();
   }
