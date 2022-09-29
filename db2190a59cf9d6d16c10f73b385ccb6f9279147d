@@ -33,6 +33,24 @@
       "message": "nit: should we use all caps?",
       "revId": "db2190a59cf9d6d16c10f73b385ccb6f9279147d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "399a51d4_861d8b80",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-09-29T04:44:15Z",
+      "side": 1,
+      "message": "I don\u0027t have preference.\nBut this is an exact copy of topshim::btif::BtDeviceType. \nThat\u0027s why the follow that convention.",
+      "parentUuid": "8dddddd6_29d76b49",
+      "revId": "db2190a59cf9d6d16c10f73b385ccb6f9279147d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
