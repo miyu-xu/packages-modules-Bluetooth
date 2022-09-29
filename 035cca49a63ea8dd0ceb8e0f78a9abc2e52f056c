@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e744b123_7651b944",
+        "filename": "android/pandora/server/proto/pandora_experimental/security.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T23:19:12Z",
+      "side": 1,
+      "message": "I think we agreed over chat to always use dedicated response protos?\n\nBut removing this so no longer relevant.",
+      "parentUuid": "b6cf263f_a502189b",
+      "range": {
+        "startLine": 24,
+        "startChar": 41,
+        "endLine": 24,
+        "endChar": 57
+      },
+      "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12b9cb00_f3db2734",
+        "filename": "android/pandora/server/proto/pandora_experimental/security.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T23:19:12Z",
+      "side": 1,
+      "message": "We use \"paired\" everywhere even when we mean bonded (e.g. DeletePairing()). What is the convention?\n\nBut removing this so no longer relevant.",
+      "parentUuid": "bedbff38_b46bf17c",
+      "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ef3faf5_82a84502",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-09-29T10:12:09Z",
       "side": 1,
       "message": "We should be able to know the transport from the connection",
+      "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1a5124c_5fa4c269",
+        "filename": "android/pandora/server/proto/pandora_experimental/security.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T23:19:12Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "2ef3faf5_82a84502",
       "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9da500fa_a55c3934",
+        "filename": "android/pandora/server/proto/pandora_experimental/security.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T23:19:12Z",
+      "side": 1,
+      "message": "Removing this so no longer relevant.",
+      "parentUuid": "037b7a1d_8e09ae8a",
+      "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7345bedc_7b8c6c19",
@@ -88,6 +166,30 @@
       "writtenOn": "2022-09-29T10:12:09Z",
       "side": 1,
       "message": "Transport doesn\u0027t seems to be defined",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 91,
+        "endChar": 11
+      },
+      "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbca0d36_9f1b4a23",
+        "filename": "android/pandora/server/proto/pandora_experimental/security.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T23:19:12Z",
+      "side": 1,
+      "message": "Removing this so no longer relevant.",
+      "parentUuid": "7345bedc_7b8c6c19",
       "range": {
         "startLine": 91,
         "startChar": 2,
