@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26b5cce8_0042be4e",
+        "filename": "system/gd/hci/address_with_type.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T12:32:42Z",
+      "side": 1,
+      "message": "There is already the reverse operation inside `AddressWithType` https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/address_with_type.h;l\u003d105;drc\u003da4bcc65a5511c4ab1a0d95d73c844d4c6e73736f, I agree that there is loss of information and it\u0027s not great. But if we remove theses we should remove `ToPeerAddressType` as well.",
+      "parentUuid": "0769252b_cdacb4ec",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95a1ca7b_dd84ad41",
         "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
         "patchSetId": 15
