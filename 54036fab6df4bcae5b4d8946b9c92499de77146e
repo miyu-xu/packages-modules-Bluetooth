@@ -52,6 +52,24 @@
       "parentUuid": "4a8d27e5_63307ac3",
       "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64dc0dd2_25333d5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-29T12:56:47Z",
+      "side": 1,
+      "message": "Removing them would break CTS tests.  I think it\u0027s a fine default to have a couple of visible devices.",
+      "parentUuid": "d67d0e46_5735442e",
+      "revId": "54036fab6df4bcae5b4d8946b9c92499de77146e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
