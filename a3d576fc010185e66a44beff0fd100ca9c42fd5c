@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "079f9f05_0e0efd63",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-09-29T22:11:28Z",
+      "side": 1,
+      "message": "It seems there are more cases to fix.\n\nhttps://source.corp.google.com/search?q\u003d%22mServiceListener.onServiceDisconnected(%22\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "a3d576fc010185e66a44beff0fd100ca9c42fd5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
