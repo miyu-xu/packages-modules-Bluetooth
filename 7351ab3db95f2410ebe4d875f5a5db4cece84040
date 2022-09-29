@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0147df5a_2b21c966",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:57:25Z",
+      "side": 1,
+      "message": "nit: you can use `map_or` for this frequently used match pattern:\n```\nself.uuid_helper.is_known_profile(uuid).map_or(false, |profile| self.uuid_helper.is_profile_supported(profile))\n```",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 481,
+        "endChar": 9
+      },
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b135853c_c49913db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:57:25Z",
+      "side": 1,
+      "message": "nit: use `map_or`",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91c9ed40_266a8093",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:57:25Z",
+      "side": 1,
+      "message": "nit: use `map`:\n```\n        uuids.map(|uuids| {\n            let service_blocked \u003d self.get_blocked_services(\u0026uuids);\n            let affected \u003d self.get_affected_status(\u0026service_blocked);\n            PolicyEffect { service_blocked, affected }\n        })\n```",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 9
+      },
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca8affe6_06e38145",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T00:57:25Z",
+      "side": 1,
+      "message": "there are warnings about `rx` not used, change them to `_rx`.",
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
