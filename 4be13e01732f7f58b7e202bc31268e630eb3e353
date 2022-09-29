@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d277550_a8a1a2b1",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T22:02:20Z",
+      "side": 1,
+      "message": "I imagine that over time we will extend Device to include other fields that might be relevant (e.g. what transports it supports, features, etc) so it makes sense to me to keep the API general.",
+      "parentUuid": "809c0bba_e60e0305",
+      "revId": "4be13e01732f7f58b7e202bc31268e630eb3e353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d5e5853a_b3405b9a",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 12
