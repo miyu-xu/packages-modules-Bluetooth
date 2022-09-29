@@ -399,6 +399,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21726b7f_27d5e3e4",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T14:14:52Z",
+      "side": 1,
+      "message": "Furthermore the generic match does not match the address type because it does not have a generic accessor.",
+      "parentUuid": "fb2f0d64_675addc1",
+      "range": {
+        "startLine": 819,
+        "startChar": 0,
+        "endLine": 826,
+        "endChar": 3
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43b83508_e2ec716a",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 15
