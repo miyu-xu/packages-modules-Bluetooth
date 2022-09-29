@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecddd03f_1590d490",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T09:38:19Z",
+      "side": 1,
+      "message": "\u003e But we send HCI packets from our host, and they cause crashes when they should instead be rejected by the controller.\n\nCould you detail more what is happening (e.g. what command is being rejected, sent by who ?), because this might hide a bigger issue. I don\u0027t see why an Host would send a command with an invalid connection handle or device address.\n\n\u003e The reason for making the LMP errors also non-fatal\n\nI don\u0027t see that as a reason to make the LMP error non-fatal, but more as a reason to remove the error.\n\n\u003e could still be LMP packets queued on the PHY. We remove the LMP link before we get any ACK from the peer, so if there are still pending packets then we will crash.\n\nAs we are running only one instance of rootcanal there is not queue on the PHY, we can still have delays introduced by our usage of the scheduler. The situation that you describe can still happens if the peer sends an HCI command advancing a LMP procedure while the host disconnects.\nThere is also the possibility that the queue that is in play here is the one internal to LMP but if it\u0027s the case I think that this is more a bug and that we should poll the procedure when receive a LMP packet.\n\nConsidering what I say above and that LMP only currently handles authentication this can happen only if the link is disconnected during authentication which I find very unlikely to happen, so I\u0027m not sure that this is what happening there. Do you have some informations that confirm that the host is disconnecting during authentication ?\n\nIf possible I would like to have a clear overview of what we are trying to fix because right now, I don\u0027t even understand what the bug is and so I\u0027m unable to see if this patch is really what we should do.",
+      "parentUuid": "2c1fffa4_eab5804a",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "90afb2c0_74db425d",
