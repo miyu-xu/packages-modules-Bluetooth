@@ -25,7 +25,7 @@ struct Link {
     peer: Cell<hci::Address>,
     // Only store one HCI packet as our Num_HCI_Command_Packets
     // is always 1
-    hci: Cell<Option<hci::CommandPacket>>,
+    hci: Cell<Option<hci::LinkHCICommandHolder>>,
     lmp: RefCell<VecDeque<lmp::PacketPacket>>,
 }
 
@@ -44,11 +44,11 @@ impl Link {
         self.lmp.borrow_mut().push_back(packet);
     }
 
-    fn ingest_hci(&self, command: hci::CommandPacket) {
+    fn ingest_hci(&self, command: hci::LinkHCICommandHolder) {
         assert!(self.hci.replace(Some(command)).is_none(), "HCI flow control violation");
     }
 
-    fn poll_hci_command<C: TryFrom<hci::CommandPacket>>(&self) -> Poll<C> {
+    fn poll_hci_command<C: TryFrom<hci::LinkHCICommandHolder>>(&self) -> Poll<C> {
         let command = self.hci.take();
 
         if let Some(command) = command.clone().and_then(|c| c.try_into().ok()) {
@@ -137,13 +137,22 @@ impl LinkManager {
 
     pub fn ingest_hci(&self, command: hci::CommandPacket) -> Result<(), LinkManagerError> {
         // Try to find the peer address from the command arguments
-        let peer = hci::command_connection_handle(&command)
-            .map(|handle| self.ops.get_address(handle))
-            .or_else(|| hci::command_remote_device_address(&command))
-            .ok_or(LinkManagerError::UnhandledHciPacket)?;
+        
+        let command = hci::LinkHCICommandHolder::new(command).ok_or(LinkManagerError::UnhandledHciPacket)?;
 
-        let link = self.get_link(peer).ok_or(LinkManagerError::UnknownPeer)?;
-        link.ingest_hci(command);
+        let peer = match command.get_identifier() {
+            hci::Identifier::Handle(handle) => self.ops.get_address(handle),
+            hci::Identifier::Address(address) => address,
+        };
+
+        let link = self.get_link(peer);
+
+        match link {
+            Some(link) => link.ingest_hci(command),
+            None => command.reject(|event| {
+                self.ops.send_hci_event(&*event.to_vec())
+            })
+        }
         Ok(())
     }
 
@@ -191,7 +200,7 @@ struct LinkContext {
 }
 
 impl procedure::Context for LinkContext {
-    fn poll_hci_command<C: TryFrom<hci::CommandPacket>>(&self) -> Poll<C> {
+    fn poll_hci_command<C: TryFrom<hci::LinkHCICommandHolder>>(&self) -> Poll<C> {
         if let Some(manager) = self.manager.upgrade() {
             manager.link(self.index).poll_hci_command()
         } else {
