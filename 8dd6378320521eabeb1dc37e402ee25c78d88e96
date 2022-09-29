@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bf3dbc9_5a1812c4",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T01:19:13Z",
+      "side": 1,
+      "message": "this is a good case where we use `Result` as the return, so we can make use of more Rust power, e.g. the statement below can be more concise with `std::fs::create_dir_all(parent)?;` to automatically return Err when it fails.\n\n```\npub fn write_floss_ll_privacy_enabled(enabled: bool) -\u003e std::io::Result\u003c()\u003e {\n    let parent \u003d ...;\n\n    std::fs::create_dir_all(parent)?;\n\n    ...\n\n    std::fs::write(...)\n}\n```",
+      "range": {
+        "startLine": 185,
+        "startChar": 56,
+        "endLine": 185,
+        "endChar": 60
+      },
+      "revId": "8dd6378320521eabeb1dc37e402ee25c78d88e96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e1a900d_2657eab9",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-29T01:19:13Z",
+      "side": 1,
+      "message": "why not use `format`?\n\n```\n    let data \u003d format!(\n        \"[Sysprops]\\nbluetooth.core.gap.le.privacy.enabled\u003d{}\",\n        if enabled { \"true\" } else { \"false\" }\n    );\n\n```",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 62
+      },
+      "revId": "8dd6378320521eabeb1dc37e402ee25c78d88e96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
