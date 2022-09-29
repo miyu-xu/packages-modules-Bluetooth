@@ -143,6 +143,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e864cf24_5f591a8c",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-29T14:05:32Z",
+      "side": 1,
+      "message": "\u003e It\u0027s fairly easy to reproduce.\n\nInteresting, I would be interested to have the steps.\n\n\u003e What kind of evidence are you asking Rahul to give?\n\nI don\u0027t have something specific in mind, just what makes him think that this is indeed the bug that we have.",
+      "parentUuid": "e044b750_5f293106",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "90afb2c0_74db425d",
