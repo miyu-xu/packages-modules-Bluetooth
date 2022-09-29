@@ -33,6 +33,24 @@
       "message": "Hi Joseph!  Welcome to GD development.  \n\nCan we create a new module for Msft support?  That module can check on startup what the opcode is and register for the correct vendor-specific events.  I think it will make it easier to test and simplify the code.\n\nThanks",
       "revId": "cc04e0e7a414c419afe4d0590ec322c5653be253",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b620ac26_481d2d62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-09-29T14:00:25Z",
+      "side": 1,
+      "message": "Good point! Hi Myles, thank you for the comment. I will crate a new module to support Msft. Thanks!",
+      "parentUuid": "52ed3c14_e53ba933",
+      "revId": "cc04e0e7a414c419afe4d0590ec322c5653be253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
