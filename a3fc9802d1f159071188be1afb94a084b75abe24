@@ -16,6 +16,24 @@
       "message": "Can you add the tests which are passing to pts_bot_tests_config.json?",
       "revId": "a3fc9802d1f159071188be1afb94a084b75abe24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c101d9c_1524a6de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-09-29T00:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a02cca_9b3135c0",
+      "revId": "a3fc9802d1f159071188be1afb94a084b75abe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
