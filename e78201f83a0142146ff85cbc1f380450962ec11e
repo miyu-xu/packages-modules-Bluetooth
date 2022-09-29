@@ -233,6 +233,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acbdddcf_ebd8d888",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T14:10:28Z",
+      "side": 1,
+      "message": "What do you have in mind specifically ?",
+      "parentUuid": "08b67866_73aea08c",
+      "range": {
+        "startLine": 484,
+        "startChar": 5,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ab7163e_2af048a3",
         "filename": "tools/rootcanal/model/controller/le_advertiser.h",
         "patchSetId": 15
@@ -351,6 +375,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb2f0d64_675addc1",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T14:10:28Z",
+      "side": 1,
+      "message": "The advertiser is matched in the Scan response handlers mentioned above.\nScan requests are also filtered with the scanners address, and I prefer having both checks at the same time. \n\nIn fine, it does not make sense to match against advertisers for every kind of PDU received, so I would move all relevant checks to the specific handlers.\n\nTo give a concrete problem with this pattern:\ndirected advertising which should by your own logic be matched by one advertiser are still being reported in specific conditions even if the address is not resolved and does not match.",
+      "parentUuid": "ed2dcc31_5fa878cd",
+      "range": {
+        "startLine": 819,
+        "startChar": 0,
+        "endLine": 826,
+        "endChar": 3
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43b83508_e2ec716a",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 15
@@ -410,6 +458,30 @@
       "side": 1,
       "message": "This information shouldn\u0027t come from the connect packet. It should come from our own advertiser.",
       "parentUuid": "209f4e7a_401f3108",
+      "range": {
+        "startLine": 2283,
+        "startChar": 6,
+        "endLine": 2283,
+        "endChar": 14
+      },
+      "revId": "e78201f83a0142146ff85cbc1f380450962ec11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d344d552_579e0abf",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2283,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-29T14:10:28Z",
+      "side": 1,
+      "message": "I am not inventing this, you can refer to the documentation of the CONNECT_IND PDU in the core specification. The advertiser will not match if the address type does not match the type in the CONNECT_IND PDU.",
+      "parentUuid": "37e09067_9646c449",
       "range": {
         "startLine": 2283,
         "startChar": 6,
