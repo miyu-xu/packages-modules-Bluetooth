@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1fffa4_eab5804a",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-29T00:20:10Z",
+      "side": 1,
+      "message": "Imagine the remote disconnects, we enqueue a disconnection complete event, but the host has already enqueued a command for the next step in the procedure. Then the command will reach the controller after the link is gone.",
+      "parentUuid": "e2b20ca6_a14f3f48",
+      "revId": "773da2d1df4268319921c0317fba7a6344199d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "90afb2c0_74db425d",
