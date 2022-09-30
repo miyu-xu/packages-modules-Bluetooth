@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba1d2dfc_bc3cf46f",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-30T16:10:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c608c4a2_8946e1f1",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "ac58c3f195cf99a9bf2ca39691a469757ed42ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0280d158_afd37425",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f14751d_7cfc7206",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-30T16:10:37Z",
+      "side": 1,
+      "message": "I was following off the pattern for `get_battery_info` in which `None` indicates we don\u0027t have any information for that battery. I guess in this case `on_battery_info_updated` necessarily implies that there is information to give.",
+      "parentUuid": "0280d158_afd37425",
+      "range": {
+        "startLine": 23,
+        "startChar": 73,
+        "endLine": 23,
+        "endChar": 93
+      },
+      "revId": "ac58c3f195cf99a9bf2ca39691a469757ed42ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cbf60fc_45032d38",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-29T17:09:59Z",
       "side": 1,
       "message": "I assume a provider can provide multiple batteries of multiple devices, for example CRAS may provide multiple batteries of multiple headset. So this should be `provider_id` instead of `battery_id`?",
+      "range": {
+        "startLine": 32,
+        "startChar": 35,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "ac58c3f195cf99a9bf2ca39691a469757ed42ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9df94293_5abdc708",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-30T16:10:37Z",
+      "side": 1,
+      "message": "I updated this everywhere else to `battery_provider_id`. Realistically, we don\u0027t actually need to propagate this value as its only used internally for callback disconnect. That said, it is not impossible that we might want to use it in the future and it fits the established design patterns so I left it.",
+      "parentUuid": "5cbf60fc_45032d38",
       "range": {
         "startLine": 32,
         "startChar": 35,
