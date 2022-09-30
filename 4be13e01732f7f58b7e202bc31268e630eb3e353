@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f876726_f9e04e4f",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-30T09:30:35Z",
+      "side": 1,
+      "message": "I do not like doing things for the future. I prefer to have something that fit our current use case and refactor in the future if needed.\n\nCurrently I\u0027m not sure to see what we could add in the future. With my current view of Pandora, I\u0027m against adding a way to dynamically get features for the peer or local device (supported transport included) as I think this should be something static maybe done by reusing the ICS system from the SIG.\n\nAlso I\u0027m a bit worried that some things that are related to a `Connection` might be added to the `Device` instead.",
+      "parentUuid": "effbfa21_889546f8",
+      "revId": "4be13e01732f7f58b7e202bc31268e630eb3e353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d5e5853a_b3405b9a",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 12
