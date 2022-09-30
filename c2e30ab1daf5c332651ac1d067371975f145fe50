@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c105e3b2_2b10eaa8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-30T07:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11a98aa7_da2c7ecb",
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f3b51a9c_55bdc876",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -48,6 +66,30 @@
       "writtenOn": "2022-09-28T23:51:13Z",
       "side": 1,
       "message": "nit: seems like you don\u0027t need a function but a constant `Unknown` in the case of Err, you can use `unwrap_or`.",
+      "range": {
+        "startLine": 215,
+        "startChar": 46,
+        "endLine": 215,
+        "endChar": 60
+      },
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6709c8a_40c6b7a9",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-30T07:12:40Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "b17cc374_9deb04da",
       "range": {
         "startLine": 215,
         "startChar": 46,
@@ -95,6 +137,30 @@
       "side": 1,
       "message": "```\n/* locally_initiated */ true\n```",
       "parentUuid": "46ad5a84_d3e6f0f9",
+      "range": {
+        "startLine": 2608,
+        "startChar": 60,
+        "endLine": 2608,
+        "endChar": 64
+      },
+      "revId": "c2e30ab1daf5c332651ac1d067371975f145fe50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2c85a7b_f6534b6c",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2608,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-30T07:12:40Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "6f586f3b_ea024b6d",
       "range": {
         "startLine": 2608,
         "startChar": 60,
