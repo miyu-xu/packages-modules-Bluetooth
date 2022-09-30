@@ -585,7 +585,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     if ((group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) &&
         (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE)) {
       LOG(INFO) << __func__ << " group: " << group->group_id_ << " is in IDLE";
-      group->UpdateActiveContextsMap();
+
+      /* Once all devices being recognized as lost, there will be no ASE
+       * releasement scenario which would deactivate related ASEs. Lets
+       * deactivate all ASEs from group if there is no supported scenarios.
+       */
+      if (!group->UpdateActiveContextsMap()) group->Deactivate();
+
       return;
     }
 
