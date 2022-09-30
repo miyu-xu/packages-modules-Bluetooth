@@ -34,6 +34,24 @@
       "parentUuid": "267517c7_25c91d09",
       "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb345f9_c26c3f99",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-09-30T14:27:14Z",
+      "side": 1,
+      "message": "I don\u0027t think so - because of this aosp/2236922",
+      "parentUuid": "0c8d53b0_08247ce7",
+      "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
