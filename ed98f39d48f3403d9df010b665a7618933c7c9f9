@@ -52,6 +52,24 @@
       "parentUuid": "0c8d53b0_08247ce7",
       "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb153302_63c98260",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-09-30T14:40:51Z",
+      "side": 1,
+      "message": "It might be, that to pass unit test you will need mentioned CL first.",
+      "parentUuid": "9fb345f9_c26c3f99",
+      "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
