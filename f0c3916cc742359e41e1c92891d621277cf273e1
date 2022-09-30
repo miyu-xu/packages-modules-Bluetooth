@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "544fd06b_b1c3ccfe",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-30T12:34:23Z",
+      "side": 1,
+      "message": "The other thing we could do is just support one.  \"Some controllers will support more than one\"\n\nI\u0027m not sure it\u0027s worth any additional complexity in the code.",
+      "parentUuid": "d87b50b9_6056f298",
+      "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1df4ebb4_2bb9f1b9",
