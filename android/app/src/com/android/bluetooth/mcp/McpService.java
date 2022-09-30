@@ -18,10 +18,12 @@
 package com.android.bluetooth.mcp;
 
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothMcpServiceManager;
 import android.content.AttributionSource;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.ParcelUuid;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
@@ -199,10 +201,26 @@ public class McpService extends ProfileService {
     }
 
     public int getDeviceAuthorization(BluetoothDevice device) {
-        // TODO: For now just reject authorization for other than LeAudio device already authorized
-        // except for PTS. Consider intent based authorization mechanism for non-LeAudio devices.
-        return mDeviceAuthorizations.getOrDefault(device, Utils.isPtsTestMode()
-                ? BluetoothDevice.ACCESS_ALLOWED : BluetoothDevice.ACCESS_UNKNOWN);
+        /* Media control is allowed for
+         * 1. in PTS mode
+         * 2. for device being authorized
+         * 3. Any LeAudio devices
+         */
+        if (mDeviceAuthorizations.getOrDefault(device, Utils.isPtsTestMode()
+                ? BluetoothDevice.ACCESS_ALLOWED : BluetoothDevice.ACCESS_UNKNOWN)
+                        == BluetoothDevice.ACCESS_ALLOWED) {
+            return BluetoothDevice.ACCESS_ALLOWED;
+        }
+
+        ParcelUuid[] featureUuids = device.getUuids();
+        if (!Utils.arrayContains(featureUuids, BluetoothUuid.LE_AUDIO)) {
+            if (DBG) {
+                Log.d(TAG, "Authorization allowed based on supported LeAudio service");
+            }
+            return BluetoothDevice.ACCESS_ALLOWED;
+        }
+
+        return BluetoothDevice.ACCESS_UNKNOWN;
     }
 
     @GuardedBy("mLock")
