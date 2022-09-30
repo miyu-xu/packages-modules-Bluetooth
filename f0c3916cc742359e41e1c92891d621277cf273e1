@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f356a37f_ef767db4",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-30T12:44:26Z",
+      "side": 1,
+      "message": "Unresolved, because this would make the naming better too.  Can we go back to one supported LAP, unless there\u0027s something in FL that you want to test with controllers supporting multiple LAPs?  It will make this CL much simpler.",
+      "parentUuid": "544fd06b_b1c3ccfe",
+      "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1df4ebb4_2bb9f1b9",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
         "patchSetId": 1
