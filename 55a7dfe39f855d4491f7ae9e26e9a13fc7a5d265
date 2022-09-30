@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d422f76a_c49c1980",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-30T20:13:49Z",
+      "side": 1,
+      "message": "actually I wanted to check if it is available 😊\nBtw when connectionPolicy changes?",
+      "parentUuid": "1264c626_f70dcf5e",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 9
+      },
+      "revId": "55a7dfe39f855d4491f7ae9e26e9a13fc7a5d265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43cc0eae_3ef76760",
         "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
         "patchSetId": 2
@@ -60,6 +84,30 @@
       "writtenOn": "2022-09-30T18:04:52Z",
       "side": 1,
       "message": "Have this check first on top. If device is in mDeviceAuthorizations, then it\u0027s super fast to just return true.",
+      "range": {
+        "startLine": 215,
+        "startChar": 15,
+        "endLine": 216,
+        "endChar": 82
+      },
+      "revId": "55a7dfe39f855d4491f7ae9e26e9a13fc7a5d265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9851a700_14baa66c",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-09-30T20:13:49Z",
+      "side": 1,
+      "message": "I will do that.",
+      "parentUuid": "43cc0eae_3ef76760",
       "range": {
         "startLine": 215,
         "startChar": 15,
