@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d3e9f9b_f8bbb597",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-30T18:35:03Z",
+      "side": 1,
+      "message": "It\u0027s a hack. The problem is that they want us to read the characteristic _value_ handle using ATT, but the interface only lets us read the characteristic by its handle. \n\nSo we offset by one, since in this test the characteristic value handle is one above the characteristic handle itself.",
+      "parentUuid": "6d4e164e_c6a7e913",
+      "range": {
+        "startLine": 173,
+        "startChar": 40,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26bf4aaa_895fc15a",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
         "patchSetId": 28
@@ -106,6 +130,24 @@
       "writtenOn": "2022-09-29T09:51:43Z",
       "side": 1,
       "message": "You should not be adding `AVRCP` tests no ?",
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e10f3a8_e59dbbe0",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 28
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-30T18:35:03Z",
+      "side": 1,
+      "message": "my fault, messed up merge resolution - fixing",
+      "parentUuid": "63e25417_14359dd6",
       "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
