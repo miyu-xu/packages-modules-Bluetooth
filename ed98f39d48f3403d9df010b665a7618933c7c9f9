@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "267517c7_25c91d09",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-09-30T14:01:25Z",
+      "side": 1,
+      "message": "maybe instead of this, line 598 and 599 should be moved to line 583 ?",
+      "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
