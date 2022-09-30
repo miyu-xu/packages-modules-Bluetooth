@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f0a1d0_febb44ed",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:23Z",
+      "side": 1,
+      "message": "This is actually not used and I forgot to delete it.",
+      "parentUuid": "0147df5a_2b21c966",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 481,
+        "endChar": 9
+      },
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b135853c_c49913db",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-29T00:57:25Z",
       "side": 1,
       "message": "nit: use `map_or`",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c00597_3db5c851",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b135853c_c49913db",
       "range": {
         "startLine": 108,
         "startChar": 26,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1499c50b_ac1c3a5c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91c9ed40_266a8093",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 9
+      },
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca8affe6_06e38145",
@@ -83,6 +155,24 @@
       "writtenOn": "2022-09-29T00:57:25Z",
       "side": 1,
       "message": "there are warnings about `rx` not used, change them to `_rx`.",
+      "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6febb9a2_bbb651ac",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca8affe6_06e38145",
       "revId": "7351ab3db95f2410ebe4d875f5a5db4cece84040",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
