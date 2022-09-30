@@ -233,3 +233,13 @@ TEST(AddressTest, BdAddrHashDifferentForDifferentAddressesZeroAndFullAddr) {
   struct std::hash<Address> hasher;
   ASSERT_NE(hasher(Address::kEmpty), hasher(Address::kAny));
 }
+
+TEST(AddressTest, Inequalities) {
+  Address addr1{{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}};
+  Address addr2{{0x02, 0x03, 0x04, 0x05, 0x06, 0x07}};
+  ASSERT_TRUE(addr1 < addr2);
+  ASSERT_TRUE(addr2 > addr1);
+
+  ASSERT_TRUE(addr1 <= addr1);
+  ASSERT_TRUE(addr2 <= addr2);
+}

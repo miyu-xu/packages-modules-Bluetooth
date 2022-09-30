@@ -20,11 +20,24 @@
 
 #include <gtest/gtest.h>
 
+#include <array>
 #include <map>
 #include <unordered_map>
 
 #include "hci/address.h"
 #include "hci/hci_packets.h"
+
+using namespace bluetooth;
+
+namespace {
+[[maybe_unused]] std::array<hci::AddressType, 4> address_types = {
+    hci::AddressType::PUBLIC_DEVICE_ADDRESS,
+    hci::AddressType::PUBLIC_IDENTITY_ADDRESS,
+    hci::AddressType::RANDOM_DEVICE_ADDRESS,
+    hci::AddressType::RANDOM_IDENTITY_ADDRESS,
+};
+
+}  // namespace
 
 namespace bluetooth {
 namespace hci {
@@ -230,6 +243,67 @@ TEST(AddressWithTypeTest, HashMap) {
     ASSERT_EQ(1UL, map.size());
     map.clear();
   }
+}
+
+TEST(AddressWithTypeTest, ToFilterAcceptListAddressType) {
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::PUBLIC_DEVICE_ADDRESS);
+    ASSERT_EQ(hci::FilterAcceptListAddressType::PUBLIC, address.ToFilterAcceptListAddressType());
+  }
+
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::PUBLIC_IDENTITY_ADDRESS);
+    ASSERT_EQ(hci::FilterAcceptListAddressType::PUBLIC, address.ToFilterAcceptListAddressType());
+  }
+
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::RANDOM_DEVICE_ADDRESS);
+    ASSERT_EQ(hci::FilterAcceptListAddressType::RANDOM, address.ToFilterAcceptListAddressType());
+  }
+
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::RANDOM_IDENTITY_ADDRESS);
+    ASSERT_EQ(hci::FilterAcceptListAddressType::RANDOM, address.ToFilterAcceptListAddressType());
+  }
+}
+
+TEST(AddressWithTypeTest, ToPeerAddressType) {
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::PUBLIC_DEVICE_ADDRESS);
+    ASSERT_EQ(hci::PeerAddressType::PUBLIC_DEVICE_OR_IDENTITY_ADDRESS, address.ToPeerAddressType());
+  }
+
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::PUBLIC_IDENTITY_ADDRESS);
+    ASSERT_EQ(hci::PeerAddressType::PUBLIC_DEVICE_OR_IDENTITY_ADDRESS, address.ToPeerAddressType());
+  }
+
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::RANDOM_DEVICE_ADDRESS);
+    ASSERT_EQ(hci::PeerAddressType::RANDOM_DEVICE_OR_IDENTITY_ADDRESS, address.ToPeerAddressType());
+  }
+
+  {
+    AddressWithType address =
+        AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::RANDOM_IDENTITY_ADDRESS);
+    ASSERT_EQ(hci::PeerAddressType::RANDOM_DEVICE_OR_IDENTITY_ADDRESS, address.ToPeerAddressType());
+  }
+}
+
+TEST(AddressWithTypeTest, StringStream) {
+  AddressWithType address_with_type =
+      AddressWithType(Address{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}}, AddressType::PUBLIC_DEVICE_ADDRESS);
+
+  std::stringstream oss;
+  oss << address_with_type;
+  ASSERT_STREQ("66:55:44:33:22:11[PUBLIC_DEVICE_ADDRESS]", oss.str().c_str());
 }
 
 }  // namespace hci
