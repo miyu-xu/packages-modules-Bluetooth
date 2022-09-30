@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eb03bb7_6a9bfde6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-09-30T06:24:43Z",
+      "side": 1,
+      "message": "Can you please share either here or in a bug what improvements in connection time do you see with vs without this patch ?\n\nControllers are responsible for scheduling radio time for different operations.\nEven if 100% duty cycle is scheduled for LE scan, controller would still do Classic scan. Not to mention maintaining existing connections and wifi coexistence. Are you sure that downgrading LE scans is what user really want here ? What if you have Fitbit, or other LE device using scan to find and then establish connection at same time ?",
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
