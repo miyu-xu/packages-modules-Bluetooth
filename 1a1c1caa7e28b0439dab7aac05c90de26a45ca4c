@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8925f6_27a5add7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-30T18:48:07Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/tools/rootcanal/model/controller/link_layer_controller.cc:2794:48: error: cannot initialize a parameter of type \u0027uint8_t\u0027 (aka \u0027unsigned char\u0027) with an rvalue of type \u0027bluetooth::hci::Role\u0027\n      initiating_address, advertising_address, bluetooth::hci::Role::PERIPHERAL,\n                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\npackages/modules/Bluetooth/tools/rootcanal/model/controller/link_layer_controller.cc:2655:67: note: passing argument to parameter \u0027role\u0027 here\n    AddressWithType address, AddressWithType own_address, uint8_t role,",
+      "revId": "1a1c1caa7e28b0439dab7aac05c90de26a45ca4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
