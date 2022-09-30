@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03c1e677_5dd4ce0b",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-30T19:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed8629d8_8ea6c167",
+      "revId": "9bee652c1c47fcdf9b4857948c5ebf6c207eb235",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "469387c7_306933cd",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5798c01b_df82ab63",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-30T19:11:26Z",
+      "side": 1,
+      "message": "Done. Note that `rustfmt` does not seem capable of doing this but I updated my editor\u0027s settings for the future.",
+      "parentUuid": "469387c7_306933cd",
+      "revId": "9bee652c1c47fcdf9b4857948c5ebf6c207eb235",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32448b8c_8e94de68",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-09-30T18:26:05Z",
       "side": 1,
       "message": "Document what\u0027s going on here and why you need it.",
+      "revId": "9bee652c1c47fcdf9b4857948c5ebf6c207eb235",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a40cb250_5352fa98",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-09-30T19:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32448b8c_8e94de68",
       "revId": "9bee652c1c47fcdf9b4857948c5ebf6c207eb235",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
