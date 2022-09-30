@@ -652,7 +652,7 @@ void bta_hh_handsk_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       if (p_cb->w4_evt == BTA_HH_GET_RPT_EVT)
         bta_hh_co_get_rpt_rsp(bta_hh.dev_status.handle, bta_hh.hs_data.status,
                               NULL, 0);
-      (*bta_hh_cb.p_cback)(p_cb->w4_evt, &bta_hh);
+      (*bta_hh_cb.p_cback)(BtaHhValueToEvt(p_cb->w4_evt), &bta_hh);
       p_cb->w4_evt = 0;
       break;
 
@@ -666,7 +666,7 @@ void bta_hh_handsk_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       if (p_cb->w4_evt == BTA_HH_SET_RPT_EVT)
         bta_hh_co_set_rpt_rsp(bta_hh.dev_status.handle,
                               bta_hh.dev_status.status);
-      (*bta_hh_cb.p_cback)(p_cb->w4_evt, &bta_hh);
+      (*bta_hh_cb.p_cback)(BtaHhValueToEvt(p_cb->w4_evt), &bta_hh);
       p_cb->w4_evt = 0;
       break;
 
@@ -676,7 +676,7 @@ void bta_hh_handsk_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
           p_data->hid_cback.data ? BTA_HH_ERR_PROTO : BTA_HH_OK;
       bta_hh.conn.handle = p_cb->hid_handle;
       bta_hh.conn.bda = p_cb->addr;
-      (*bta_hh_cb.p_cback)(p_cb->w4_evt, &bta_hh);
+      (*bta_hh_cb.p_cback)(BtaHhValueToEvt(p_cb->w4_evt), &bta_hh);
       bta_hh_trace_dev_db();
       p_cb->w4_evt = 0;
       break;
@@ -753,7 +753,7 @@ void bta_hh_ctrl_dat_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   bta_sys_busy(BTA_ID_HH, p_cb->app_id, p_cb->addr);
   bta_sys_idle(BTA_ID_HH, p_cb->app_id, p_cb->addr);
 
-  (*bta_hh_cb.p_cback)(p_cb->w4_evt, (tBTA_HH*)&hs_data);
+  (*bta_hh_cb.p_cback)(BtaHhValueToEvt(p_cb->w4_evt), (tBTA_HH*)&hs_data);
 
   p_cb->w4_evt = 0;
   osi_free_and_reset((void**)&pdata);
@@ -867,7 +867,7 @@ void bta_hh_close_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
     if (disc_dat.status) disc_dat.status = BTA_HH_ERR;
 
-    (*bta_hh_cb.p_cback)(event, (tBTA_HH*)&disc_dat);
+    (*bta_hh_cb.p_cback)(BtaHhValueToEvt(event), (tBTA_HH*)&disc_dat);
 
     /* if virtually unplug, remove device */
     if (p_cb->vp) {
@@ -995,7 +995,8 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       break;
   }
 
-  (*bta_hh_cb.p_cback)(p_dev_info->sub_event, (tBTA_HH*)&dev_info);
+  (*bta_hh_cb.p_cback)(BtaHhValueToEvt(p_dev_info->sub_event),
+                       (tBTA_HH*)&dev_info);
 }
 /*******************************************************************************
  *
@@ -1053,7 +1054,7 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
             },
           },
         };
-        (*bta_hh_cb.p_cback)(event, &cbdata);
+        (*bta_hh_cb.p_cback)(BtaHhValueToEvt(event), &cbdata);
       } else if (api_sndcmd_param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG) {
         tBTA_HH cbdata = {
           .dev_status = {

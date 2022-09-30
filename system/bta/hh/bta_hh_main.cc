@@ -187,7 +187,7 @@ static void bta_hh_better_state_machine(tBTA_HH_DEV_CB* p_cb, uint16_t event,
 void bta_hh_sm_execute(tBTA_HH_DEV_CB* p_cb, uint16_t event,
                        const tBTA_HH_DATA* p_data) {
   tBTA_HH cback_data;
-  tBTA_HH_EVT cback_event = 0;
+  tBTA_HH_EVT cback_event = BTA_HH_ENABLE_EVT;
   tBTA_HH_STATE in_state;
   tBTA_HH_INT_EVT debug_event = static_cast<tBTA_HH_INT_EVT>(event);
 
@@ -208,7 +208,7 @@ void bta_hh_sm_execute(tBTA_HH_DEV_CB* p_cb, uint16_t event,
           break;
         /* DB full, BTA_HhAddDev */
         case BTA_HH_API_MAINT_DEV_EVT:
-          cback_event = p_data->api_maintdev.sub_event;
+          cback_event = BtaHhValueToEvt(p_data->api_maintdev.sub_event);
 
           if (p_data->api_maintdev.sub_event == BTA_HH_ADD_DEV_EVT) {
             cback_data.dev_info.bda = p_data->api_maintdev.bda;
@@ -221,8 +221,9 @@ void bta_hh_sm_execute(tBTA_HH_DEV_CB* p_cb, uint16_t event,
           }
           break;
         case BTA_HH_API_WRITE_DEV_EVT:
-          cback_event = (p_data->api_sndcmd.t_type - HID_TRANS_GET_REPORT) +
-                        BTA_HH_GET_RPT_EVT;
+          cback_event = BtaHhValueToEvt(
+              (p_data->api_sndcmd.t_type - HID_TRANS_GET_REPORT) +
+              BTA_HH_GET_RPT_EVT);
           osi_free_and_reset((void**)&p_data->api_sndcmd.p_data);
           if (p_data->api_sndcmd.t_type == HID_TRANS_SET_PROTOCOL ||
               p_data->api_sndcmd.t_type == HID_TRANS_SET_REPORT ||
@@ -242,7 +243,7 @@ void bta_hh_sm_execute(tBTA_HH_DEV_CB* p_cb, uint16_t event,
             cback_data.status = BTA_HH_ERR_HDL;
             cback_event = BTA_HH_VC_UNPLUG_EVT;
           } else
-            cback_event = 0;
+            cback_event = BTA_HH_ENABLE_EVT;
           break;
 
         case BTA_HH_API_CLOSE_EVT:

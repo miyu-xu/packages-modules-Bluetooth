@@ -50,25 +50,33 @@
 #endif
 
 /* BTA HID Host callback events */
-#define BTA_HH_ENABLE_EVT 0     /* HH enabled */
-#define BTA_HH_DISABLE_EVT 1    /* HH disabled */
-#define BTA_HH_OPEN_EVT 2       /* connection opened */
-#define BTA_HH_CLOSE_EVT 3      /* connection closed */
-#define BTA_HH_GET_RPT_EVT 4    /* BTA_HhGetReport callback */
-#define BTA_HH_SET_RPT_EVT 5    /* BTA_HhSetReport callback */
-#define BTA_HH_GET_PROTO_EVT 6  /* BTA_GetProtoMode callback */
-#define BTA_HH_SET_PROTO_EVT 7  /* BTA_HhSetProtoMode callback */
-#define BTA_HH_GET_IDLE_EVT 8   /* BTA_HhGetIdle comes callback */
-#define BTA_HH_SET_IDLE_EVT 9   /* BTA_HhSetIdle finish callback */
-#define BTA_HH_GET_DSCP_EVT 10  /* Get report descriptor */
-#define BTA_HH_ADD_DEV_EVT 11   /* Add Device callback */
-#define BTA_HH_RMV_DEV_EVT 12   /* remove device finished */
-#define BTA_HH_VC_UNPLUG_EVT 13 /* virtually unplugged */
-#define BTA_HH_DATA_EVT 15
-#define BTA_HH_API_ERR_EVT 16     /* API error is caught */
-#define BTA_HH_UPDATE_SCPP_EVT 17 /* update scan paramter complete */
+typedef enum : uint16_t {
+  BTA_HH_ENABLE_EVT = 0, /* HH enabled */
+  BTA_HH_DISABLE_EVT,    /* HH disabled */
+  BTA_HH_OPEN_EVT,       /* connection opened */
+  BTA_HH_CLOSE_EVT,      /* connection closed */
+  BTA_HH_GET_RPT_EVT,    /* BTA_HhGetReport callback */
+  BTA_HH_SET_RPT_EVT,    /* BTA_HhSetReport callback */
+  BTA_HH_GET_PROTO_EVT,  /* BTA_GetProtoMode callback */
+  BTA_HH_SET_PROTO_EVT,  /* BTA_HhSetProtoMode callback */
+  BTA_HH_GET_IDLE_EVT,   /* BTA_HhGetIdle comes callback */
+  BTA_HH_SET_IDLE_EVT,   /* BTA_HhSetIdle finish callback */
+  BTA_HH_GET_DSCP_EVT,   /* Get report descriptor */
+  BTA_HH_ADD_DEV_EVT,    /* Add Device callback */
+  BTA_HH_RMV_DEV_EVT,    /* remove device finished */
+  BTA_HH_VC_UNPLUG_EVT,  /* virtually unplugged */
+  BTA_HH_DATA_EVT,
+  BTA_HH_API_ERR_EVT,     /* API error is caught */
+  BTA_HH_UPDATE_SCPP_EVT, /* update scan paramter complete */
+} tBTA_HH_EVT;
 
-typedef uint16_t tBTA_HH_EVT;
+inline uint16_t BtaHhEvtToValue(const tBTA_HH_EVT& event) {
+  return static_cast<uint16_t>(event);
+}
+
+inline tBTA_HH_EVT BtaHhValueToEvt(uint16_t value) {
+  return static_cast<tBTA_HH_EVT>(value);
+}
 
 /* application ID(none-zero) for each type of device */
 #define BTA_HH_APP_ID_MI 1
