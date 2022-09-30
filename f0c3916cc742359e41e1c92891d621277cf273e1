@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d87b50b9_6056f298",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-30T11:51:45Z",
+      "side": 1,
+      "message": "That\u0027s less trouble implementing the getter / setter. With a set:\n```\nstd::vector\u003cbluetooth::hci::Lap\u003e current_laps{};\nfor (lap: current_iac_lap_){\n    bluetooth::hci::Lap lap_obj{};\n    lap_obj.lap_ \u003d lap;\n    current_laps.emplace_back(lap_obj);\n}\nreturn current_laps;\n}\n```\nSame on the setter side.",
+      "parentUuid": "4770d46a_76cc84d9",
+      "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1df4ebb4_2bb9f1b9",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-30T11:42:12Z",
       "side": 1,
       "message": "nit: The naming makes me think that there\u0027s only one LAP.",
+      "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e912f3b1_cc6267bc",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-30T11:51:45Z",
+      "side": 1,
+      "message": "Agreed, I am just sticking to the naming of the commands here.",
+      "parentUuid": "1df4ebb4_2bb9f1b9",
       "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
