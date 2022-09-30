@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5531dca6_1876bd3e",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-30T08:51:52Z",
+      "side": 1,
+      "message": "It\u0027s fine with me 😊\n\nI\u0027m keeping this unresolved to wait for an answer from Thomas.\n\nIf this is the last comment feel free to resolve it and move it to a bug.",
+      "parentUuid": "4558c5ce_77766d63",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b93f9cbf_7b98dea5",
         "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
         "patchSetId": 15
