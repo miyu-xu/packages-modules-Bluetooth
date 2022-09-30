@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94da2b37_991c54bd",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-30T09:57:04Z",
+      "side": 1,
+      "message": "I can imagine that we\u0027d eventually have a GetDeviceFeatures, GetDeviceType, etc if we want to test that the host stack is correctly discovering the peer device, and it makes sense to me to put them in one proto rather than having a ton of rpcs (since they all come as part of extended inquiry / read remote features).\n\nSo I disagree, but won\u0027t push back further (they\u0027re your interfaces, not mine 😊) as I can understand your argument. Will make the required change. Leaving unresolved to track.",
+      "parentUuid": "4f876726_f9e04e4f",
+      "revId": "4be13e01732f7f58b7e202bc31268e630eb3e353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d5e5853a_b3405b9a",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 12
@@ -85,6 +103,24 @@
       "writtenOn": "2022-09-29T09:57:04Z",
       "side": 1,
       "message": "We should check if the device is already connected.",
+      "revId": "4be13e01732f7f58b7e202bc31268e630eb3e353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ae99593_647ef6d2",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-30T09:57:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5e5853a_b3405b9a",
       "revId": "4be13e01732f7f58b7e202bc31268e630eb3e353",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
