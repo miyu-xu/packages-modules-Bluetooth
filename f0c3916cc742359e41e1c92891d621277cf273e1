@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a469f9fd_99605206",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-09-30T12:46:56Z",
+      "side": 1,
+      "message": "According to GAP, devices in classic limited discoverable mode accept Inquiry request with both LIAC and GIAC. I wouldn\u0027t be surprised if some hosts were to rely on having more than one IAC_LAP controller side to do this.",
+      "parentUuid": "544fd06b_b1c3ccfe",
+      "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1df4ebb4_2bb9f1b9",
