@@ -16,6 +16,24 @@
       "message": "maybe instead of this, line 598 and 599 should be moved to line 583 ?",
       "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c8d53b0_08247ce7",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-09-30T14:14:37Z",
+      "side": 1,
+      "message": "Would it affect scenario with one lost device re-connecting ?",
+      "parentUuid": "267517c7_25c91d09",
+      "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
