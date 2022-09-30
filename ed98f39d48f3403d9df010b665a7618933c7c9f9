@@ -70,6 +70,24 @@
       "parentUuid": "9fb345f9_c26c3f99",
       "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc6760d_82e24627",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-09-30T14:47:09Z",
+      "side": 1,
+      "message": "I\u0027ve tested it and it works also with recovery scenario.",
+      "parentUuid": "fb153302_63c98260",
+      "revId": "ed98f39d48f3403d9df010b665a7618933c7c9f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
