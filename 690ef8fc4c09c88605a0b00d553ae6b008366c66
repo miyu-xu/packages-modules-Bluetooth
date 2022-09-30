@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8e58f23_c6bc468a",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-30T09:12:46Z",
+      "side": 1,
+      "message": "I was thinking that as the parameters are optional we could just specify the mode that we want to change.\nBut this remove the advantage for Eiffel.\nSo let\u0027s keep two RPCs",
+      "parentUuid": "e97dcca1_2794870a",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "288eb11e_6899a242",
@@ -184,6 +202,24 @@
       "side": 1,
       "message": "This is to be used so when we pass connectability/discoverability into advertising APIs, we can distinguish between the user not caring about connectability, and the user wanting connectability\u003dfalse.",
       "parentUuid": "b15c0028_58104e31",
+      "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e6f391b_73f82d86",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-30T09:12:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7de9e460_7f4d90bb",
       "revId": "690ef8fc4c09c88605a0b00d553ae6b008366c66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
