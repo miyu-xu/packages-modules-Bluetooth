@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edcac476_2f46ae54",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-30T12:03:37Z",
+      "side": 1,
+      "message": "I definitely could have named it better to make it look less like a getter :)",
+      "parentUuid": "bb580cb6_87605d5e",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 590,
+        "endChar": 36
+      },
+      "revId": "3cbacafe5677137f28cd18c04363bd00ee65be41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75969fb6_5b1e8a11",
