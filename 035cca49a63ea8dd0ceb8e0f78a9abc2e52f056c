@@ -83,6 +83,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cba1bec_c809e287",
+        "filename": "android/pandora/server/proto/pandora_experimental/security.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-30T09:09:22Z",
+      "side": 1,
+      "message": "Pairing and Bonding are two different things:\n- Pairing is the process to create and exchange a link key.\n- Bonding is creating a relation between two devices based on the link key by storing it.\nSo a pairing can result into a bonding.\n\nI agree that `DeletePairing` should be named `DeleteBonding`.",
+      "parentUuid": "12b9cb00_f3db2734",
+      "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6472e575_a4ac1501",
+        "filename": "android/pandora/server/proto/pandora_experimental/security.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-30T09:09:22Z",
+      "side": 1,
+      "message": "@girardier@google.com agreed, but I did not.",
+      "parentUuid": "e744b123_7651b944",
+      "range": {
+        "startLine": 24,
+        "startChar": 41,
+        "endLine": 24,
+        "endChar": 57
+      },
+      "revId": "035cca49a63ea8dd0ceb8e0f78a9abc2e52f056c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ef3faf5_82a84502",

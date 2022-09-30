@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba8650b_1b39c86c",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-09-30T09:09:22Z",
+      "side": 1,
+      "message": "We should not have that here. In the case of Android we should store the transport inside the cookie. The purpose of the cookie is for the server to be able to recognise a connection. Currently in the Android implementation we store the Bluetooth Device Address in it but it\u0027s not enough as we need to disambiguate the transport.\n\nFor example with Eiffel in the cookie we store connection handles (an int) and we are able to know the transport from the connection handle (as they are shared across transports) so we don\u0027t need this extra information.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 26
+      },
+      "revId": "bb211c5c5a8f8ed635f6bdc2405bcc72cf12477c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
