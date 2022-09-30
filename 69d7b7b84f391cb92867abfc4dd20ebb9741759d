@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10a8fe85_ac4c8947",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-30T22:47:28Z",
+      "side": 1,
+      "message": "Devices can be bonded but not connected. Devices can be found and not connected.\n\nIMO, you should be sending a notification for all new acl connections and only for the newly connected device (so you know to do a gatt connection for battery service).\n\nIf you want to limit this to bonded+connected, you will need to both check the bonded list here AND in the on_bond_state changed with a check to see if it\u0027s connected.",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
