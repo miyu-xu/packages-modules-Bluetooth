@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5db8cd7f_14edb6a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-30T07:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09e93f42_374e3d34",
+      "range": {
+        "startLine": 1256,
+        "startChar": 0,
+        "endLine": 1256,
+        "endChar": 110
+      },
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc43241d_c88a49e2",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-09-28T23:48:41Z",
       "side": 1,
       "message": "nit: just use `address` since this is already unwrapped at line 1233?",
+      "range": {
+        "startLine": 1262,
+        "startChar": 41,
+        "endLine": 1262,
+        "endChar": 54
+      },
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b67e7028_816d5111",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-30T07:13:50Z",
+      "side": 1,
+      "message": "Good observation... too much copy pasting...\nDone.",
+      "parentUuid": "fc43241d_c88a49e2",
       "range": {
         "startLine": 1262,
         "startChar": 41,
@@ -94,6 +142,30 @@
       "writtenOn": "2022-09-28T23:48:41Z",
       "side": 1,
       "message": "nit, you can use `map_or`:\n\n```\nlet is_connected \u003d self.get_remote_device_if_found(...).map_or(false, |d| d.acl_state \u003d\u003d BtAclState::Connected)\n```",
+      "range": {
+        "startLine": 1551,
+        "startChar": 27,
+        "endLine": 1554,
+        "endChar": 10
+      },
+      "revId": "ab1914a045cec6f2569eb34a12d50488957923e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6c6296b_99d893c1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1554,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-30T07:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a59fcdf1_15f6e4e4",
       "range": {
         "startLine": 1551,
         "startChar": 27,
