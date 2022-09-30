@@ -748,8 +748,17 @@ class VolumeControlImpl : public VolumeControl {
                << " is_autonomous: " << is_autonomous << " opcode: " << +opcode
                << " arg size: " << arguments.size();
 
-    ongoing_operations_.emplace_back(latest_operation_id_++, group_id,
-                                     is_autonomous, opcode, arguments, devices);
+    if (std::find_if(ongoing_operations_.begin(), ongoing_operations_.end(),
+                     [opcode, &arguments](const VolumeOperation& op) {
+                       return (op.opcode_ == opcode) &&
+                              std::equal(op.arguments_.begin(),
+                                         op.arguments_.end(),
+                                         arguments.begin());
+                     }) == ongoing_operations_.end()) {
+      ongoing_operations_.emplace_back(latest_operation_id_++, group_id,
+                                       is_autonomous, opcode, arguments,
+                                       devices);
+    }
   }
 
   void MuteUnmute(std::variant<RawAddress, int> addr_or_group_id, bool mute) {
@@ -816,13 +825,15 @@ class VolumeControlImpl : public VolumeControl {
 
     if (std::holds_alternative<RawAddress>(addr_or_group_id)) {
       DLOG(INFO) << __func__ << " " << std::get<RawAddress>(addr_or_group_id);
-      std::vector<RawAddress> devices = {
-          std::get<RawAddress>(addr_or_group_id)};
-
-      RemovePendingVolumeControlOperations(devices,
-                                           bluetooth::groups::kGroupUnknown);
-      PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown,
-                                    false, opcode, arg);
+      VolumeControlDevice* dev = volume_control_devices_.FindByAddress(
+          std::get<RawAddress>(addr_or_group_id));
+      if (dev && dev->IsConnected() && (dev->volume != volume)) {
+        std::vector<RawAddress> devices = {dev->address};
+        RemovePendingVolumeControlOperations(devices,
+                                             bluetooth::groups::kGroupUnknown);
+        PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown,
+                                      false, opcode, arg);
+      }
     } else {
       /* Handle group change */
       auto group_id = std::get<int>(addr_or_group_id);
