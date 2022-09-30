@@ -22,6 +22,30 @@
       },
       "revId": "bb211c5c5a8f8ed635f6bdc2405bcc72cf12477c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39f8d8ab_19497d48",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-30T20:05:30Z",
+      "side": 1,
+      "message": "Will make the change. I\u0027ll also refactor how the cookie works so it\u0027s an encoded proto, to match standards elsewhere. \n\nSo if I want to know the transport of a connection (for whatever reason, though normally I agree that we should already know it) I need to ask PandoraServer?",
+      "parentUuid": "aba8650b_1b39c86c",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 26
+      },
+      "revId": "bb211c5c5a8f8ed635f6bdc2405bcc72cf12477c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
