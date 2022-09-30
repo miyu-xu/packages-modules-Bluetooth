@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "62e1e20f_8f4547c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:03:02Z",
+      "side": 1,
+      "message": "This had been resolved but I forgot to mark it..",
+      "parentUuid": "99f2fb28_c89b39bb",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 74
+      },
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "42ae6403_d9142ae3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -248,6 +272,24 @@
       "side": 1,
       "message": "This should work fine since BtStatus has `repr(u32)` on it. However, to get the `.into()` to work, you should implement the into trait in btif.rs\n```\nimpl Into\u003ci32\u003e for BtStatus {\n}\n```",
       "parentUuid": "4c6985fd_4a5e61a4",
+      "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eabb63e_7593f667",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:03:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac2faa18_9c21c19c",
       "revId": "06ea09d0b4e2dd9280a389f176e0374cebf1e5b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

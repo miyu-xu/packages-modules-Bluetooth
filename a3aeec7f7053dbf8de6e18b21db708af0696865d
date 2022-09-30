@@ -33,6 +33,24 @@
       "message": "Looks like something in this macro fails to compile",
       "revId": "a3aeec7f7053dbf8de6e18b21db708af0696865d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe9c99ab_0ca13594",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:03:02Z",
+      "side": 1,
+      "message": "You are right. Presubmit is running `cargo clippy` with some flags to check more rust styles. I think we should also add that to our submit hook?",
+      "parentUuid": "05723d53_1c9f2f34",
+      "revId": "a3aeec7f7053dbf8de6e18b21db708af0696865d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
