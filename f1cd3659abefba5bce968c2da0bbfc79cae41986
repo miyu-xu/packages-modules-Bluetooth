@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20762cf1_67960989",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_base_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-30T12:41:06Z",
+      "side": 1,
+      "message": "Do we need this indirection?  It adds a lot of parenthesis, but I\u0027m not sure what else it does.",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 25
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e26d30b_3b9d44e5",
         "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
         "patchSetId": 1
