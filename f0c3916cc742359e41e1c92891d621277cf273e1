@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4770d46a_76cc84d9",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-30T11:42:12Z",
+      "side": 1,
+      "message": "If current_iac_lap were a map or a set, this could be a bit simpler.\n\nif (current_iac_lap_.count(inquiry.GetLap()) \u003d\u003d 0) {  // .contains(inquiry.GetLap()) if we want to be modern.\n  // Do we want a log here?  It shouldn\u0027t happen except in tests, right?\n  return;\n}",
+      "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df4ebb4_2bb9f1b9",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-30T11:42:12Z",
+      "side": 1,
+      "message": "nit: The naming makes me think that there\u0027s only one LAP.",
+      "revId": "f0c3916cc742359e41e1c92891d621277cf273e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
