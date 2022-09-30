@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8274c9bc_9e57f2d3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:03Z",
+      "side": 1,
+      "message": "Initially, I was do it for unit test. But after a second thought, we can just set a random path when initialize BluetoothAdmin in the test.",
+      "parentUuid": "08ad8333_e9d5db2e",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c3daf80_4953dfdc",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-29T00:42:14Z",
       "side": 1,
       "message": "nit: why not `self.get_allowed_services()`",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 59
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e89abb_20ecd899",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c3daf80_4953dfdc",
       "range": {
         "startLine": 105,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef5d8c33_48a1d559",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9ce403d_e03000f3",
+      "range": {
+        "startLine": 107,
+        "startChar": 20,
+        "endLine": 107,
+        "endChar": 66
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82a2417a_305989c7",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-09-29T00:42:14Z",
       "side": 1,
       "message": "why is it encoded to json just to be decoded as json again?",
+      "range": {
+        "startLine": 204,
+        "startChar": 20,
+        "endLine": 206,
+        "endChar": 36
+      },
+      "revId": "b08eb4ef91839128e2a72092fe97b588787dc27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0edc9c3a_2eeab6d4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:04:03Z",
+      "side": 1,
+      "message": "admin.get_config_string() returns a String which represents a json. To get the `allowed_services` value, we need to encode then decode it.",
+      "parentUuid": "82a2417a_305989c7",
       "range": {
         "startLine": 204,
         "startChar": 20,
