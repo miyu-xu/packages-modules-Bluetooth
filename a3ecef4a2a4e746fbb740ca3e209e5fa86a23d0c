@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f99bbfcd_4b5e2246",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-09-30T09:57:49Z",
+      "side": 1,
+      "message": "The flags in the ConnectRequest are based on discussion with @girardier@google.com",
+      "revId": "a3ecef4a2a4e746fbb740ca3e209e5fa86a23d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
