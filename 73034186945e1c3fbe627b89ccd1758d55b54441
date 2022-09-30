@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a1fa8e5_99005ff7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:03:15Z",
+      "side": 1,
+      "message": "This is actually unhandled and I believe it\u0027s not needed to handle since these are the only profiles that we connect.\n\nhttps://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/linux/stack/src/bluetooth.rs;l\u003d1513?q\u003dconnect_all_enabled_profiles\n\nThe other unhandled case is GATT, which should be implemented later.",
+      "parentUuid": "a113aef7_296bdac2",
+      "revId": "73034186945e1c3fbe627b89ccd1758d55b54441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c6e07d4_4ee77206",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 12
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-29T00:26:03Z",
       "side": 1,
       "message": "nit: these can be written in functional style and more concise:\n```\nself.a2dp.as_ref().map_or(false, |a2dp| a2dp.is_enabled())\n```\n\ncan be applied to similar situations",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 21
+      },
+      "revId": "73034186945e1c3fbe627b89ccd1758d55b54441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99fde2d2_46af98cc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-30T09:03:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c6e07d4_4ee77206",
       "range": {
         "startLine": 254,
         "startChar": 0,
