@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f6cbfa_ee073b71",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-09-30T15:42:35Z",
+      "side": 1,
+      "message": "Can we correct or remove this if an alternative authorization mechanism was provided? We could most likely also remove the mDeviceAuthorizations and the functionality around it as it becomes a dead code after this change, as far as I understand.",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 205,
+        "endChar": 97
+      },
+      "revId": "55a7dfe39f855d4491f7ae9e26e9a13fc7a5d265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
