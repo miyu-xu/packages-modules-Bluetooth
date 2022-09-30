@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b63921dd_6770a0ba",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-30T07:50:37Z",
+      "side": 1,
+      "message": "nit: If the peer device initiated the AVRCP connection.\n\nAlso,\n(1) I don\u0027t see \"Connecting\" state transmitted when direction is outgoing.\n(2) Do we even want to transmit AVRCP (dis)connecting status? IIRC we discussed that BlueZ also doesn\u0027t send one.",
+      "range": {
+        "startLine": 306,
+        "startChar": 19,
+        "endLine": 306,
+        "endChar": 62
+      },
+      "revId": "ae55ceb1459d2092a451ab4e071c46714194b629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
