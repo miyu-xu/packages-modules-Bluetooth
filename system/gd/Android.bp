@@ -180,6 +180,7 @@ cc_defaults {
         ":BluetoothCryptoToolboxSources",
         ":BluetoothDumpsysSources",
         ":BluetoothHalSources",
+        ":BluetoothHalSources_mgmt",
         ":BluetoothHciSources",
         ":BluetoothIsoSources",
         ":BluetoothL2capSources",
