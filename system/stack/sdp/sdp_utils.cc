@@ -439,6 +439,9 @@ uint16_t sdpu_get_active_ccb_cid(const RawAddress& remote_bd_addr) {
   uint16_t xx;
   tCONN_CB* p_ccb;
 
+  if (!bluetooth::common::init_flags::sdp_serialization_is_enabled()) {
+    return 0;
+  }
   // Look through each connection control block for active sdp on given remote
   for (xx = 0, p_ccb = sdp_cb.ccb; xx < SDP_MAX_CONNECTIONS; xx++, p_ccb++) {
     if ((p_ccb->con_state == SDP_STATE_CONN_SETUP) ||
