@@ -162,6 +162,10 @@ genrule {
 
 python_library_host {
     name: "pandora_experimental-python",
+    visibility: [
+        "//external/pandora/avatar:__subpackages__",
+        "//packages/modules/Bluetooth:__subpackages__",
+    ],
     srcs: [
         ":pandora_experimental-python-src",
     ],
