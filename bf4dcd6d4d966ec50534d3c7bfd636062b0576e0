@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5055ea98_422026b1",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-10-03T14:21:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c2cc0f76_dadf330f",
+      "revId": "bf4dcd6d4d966ec50534d3c7bfd636062b0576e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5969388_2091ce38",
