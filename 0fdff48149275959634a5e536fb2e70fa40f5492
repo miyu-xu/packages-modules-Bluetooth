@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee620bbf_93bbdc4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-03T23:12:44Z",
+      "side": 1,
+      "message": "OOC, is it possible to have a specific trait used for bluetooth admin?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 12
+      },
+      "revId": "0fdff48149275959634a5e536fb2e70fa40f5492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
