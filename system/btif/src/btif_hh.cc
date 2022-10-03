@@ -741,8 +741,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
   int i;
   int len, tmplen;
 
-  BTIF_TRACE_DEBUG("%s: event=%s dereg = %d", __func__, dump_hh_event(event),
-                   btif_hh_cb.service_dereg_active);
+  if (!is_on_jni_thread()) {
+    LOG_WARN("Execution unit not running on proper JNI thread");
+  }
+  LOG_DEBUG("event=%s dereg = %d", dump_hh_event(event),
+            btif_hh_cb.service_dereg_active);
 
   switch (event) {
     case BTA_HH_ENABLE_EVT:
@@ -882,29 +885,40 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       break;
 
     case BTA_HH_GET_RPT_EVT: {
-      BT_HDR* hdr = p_data->hs_data.rsp_data.p_rpt_data;
-      uint8_t* data = NULL;
-      uint16_t len = 0;
+      ASSERT(p_data != nullptr);
+      tBTA_HH_HSDATA& hs_data = p_data->hs_data;
+      BT_HDR* hdr = hs_data.rsp_data.p_rpt_data;
 
       BTIF_TRACE_DEBUG("BTA_HH_GET_RPT_EVT: status = %d, handle = %d",
-                       p_data->hs_data.status, p_data->hs_data.handle);
-      p_dev = btif_hh_find_connected_dev_by_handle(p_data->hs_data.handle);
+                       hs_data.status, hs_data.handle);
+      p_dev = btif_hh_find_connected_dev_by_handle(hs_data.handle);
       if (p_dev) {
         /* p_rpt_data is NULL in HANDSHAKE response case */
         if (hdr) {
-          data = (uint8_t*)(hdr + 1) + hdr->offset;
-          len = hdr->len;
+          uint8_t* data = (uint8_t*)(hdr + 1) + hdr->offset;
+          const uint16_t len = hdr->len;
           HAL_CBACK(bt_hh_callbacks, get_report_cb,
                     (RawAddress*)&(p_dev->bd_addr),
-                    (bthh_status_t)p_data->hs_data.status, data, len);
+                    (bthh_status_t)hs_data.status, data, len);
         } else {
           HAL_CBACK(bt_hh_callbacks, handshake_cb,
                     (RawAddress*)&(p_dev->bd_addr),
-                    (bthh_status_t)p_data->hs_data.status);
+                    (bthh_status_t)hs_data.status);
         }
       } else {
         BTIF_TRACE_WARNING("Error: cannot find device with handle %d",
-                           p_data->hs_data.handle);
+                           hs_data.handle);
+      }
+      if (hdr) {
+        uint8_t* data = reinterpret_cast<uint8_t*>(hdr + 1);
+        LOG_INFO("CMM data to free:%p sizeof(BT_HDR):%zu p_data:%p",
+                 hs_data.rsp_data.p_rpt_data, sizeof(BT_HDR), p_data);
+        for (int i = 0; i < 32; i++) {
+          LOG_INFO("CMM data:%hhu", data[i]);
+        }
+        //        osi_free_and_reset(reinterpret_cast<void**>(&hs_data.rsp_data.p_rpt_data));
+        // (hdr);
+        //  hs_data.rsp_data.p_rpt_data = nullptr;
       }
       break;
     }
