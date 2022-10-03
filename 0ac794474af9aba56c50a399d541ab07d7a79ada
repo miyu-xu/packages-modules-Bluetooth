@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "842805fc_5f6ad74b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-03T09:53:17Z",
+      "side": 1,
+      "message": "The Microsoft Extension manager becomes a new module by itself.\n\nHi Myles, could you please take a look? Thanks!",
+      "revId": "0ac794474af9aba56c50a399d541ab07d7a79ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
