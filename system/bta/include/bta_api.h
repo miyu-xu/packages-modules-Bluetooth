@@ -1222,6 +1222,7 @@ extern void BTA_VendorInit(void);
  ******************************************************************************/
 extern void BTA_DmClearEventFilter(void);
 
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
 using LeRandCallback = base::Callback<void(uint64_t)>;
 /*******************************************************************************
  *
@@ -1288,5 +1289,17 @@ extern void BTA_DmSetDefaultEventMask();
  *
  *******************************************************************************/
 extern void BTA_DmSetEventFilterInquiryResultAllDevices();
+=======
+/*******************************************************************************
+ *
+ * Function         BTA_DmBleResetId
+ *
+ * Description      This function resets the ble keys such as IRK
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+extern void BTA_DmBleResetId(void);
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
 
 #endif /* BTA_API_H */

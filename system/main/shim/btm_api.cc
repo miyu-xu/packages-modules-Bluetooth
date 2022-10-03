@@ -37,6 +37,7 @@
 #include "main/shim/shim.h"
 #include "main/shim/stack.h"
 #include "osi/include/allocator.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_hdr.h"
@@ -1337,6 +1338,7 @@ tBTM_STATUS bluetooth::shim::BTM_ClearEventFilter() {
   return BTM_SUCCESS;
 }
 
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
 tBTM_STATUS bluetooth::shim::BTM_ClearEventMask() {
   controller_get_interface()->clear_event_mask();
   return BTM_SUCCESS;
@@ -1390,5 +1392,9 @@ tBTM_STATUS bluetooth::shim::BTM_SetDefaultEventMask() {
 tBTM_STATUS bluetooth::shim::BTM_SetEventFilterInquiryResultAllDevices() {
   // Autoplumbed
   controller_get_interface()->set_event_filter_inquiry_result_all_devices();
+=======
+tBTM_STATUS bluetooth::shim::BTM_BleResetId() {
+  btm_ble_reset_id();
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
   return BTM_SUCCESS;
 }

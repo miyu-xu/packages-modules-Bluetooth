@@ -82,9 +82,12 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
           bta_dm_close_gatt_conn(message);
           break;
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
         default:
           LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
                    bta_dm_search_cb.state);
+=======
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
       }
       break;
     case BTA_DM_SEARCH_ACTIVE:

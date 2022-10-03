@@ -678,6 +678,7 @@ void BTA_DmClearEventFilter(void) {
 
 /*******************************************************************************
  *
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
  * Function         BTA_DmLeRand
  *
  * Description      This function clears the event filter
@@ -718,4 +719,16 @@ void BTA_DmSetEventFilterInquiryResultAllDevices() {
   do_in_main_thread(
       FROM_HERE,
       base::Bind(bta_dm_set_event_filter_inquiry_result_all_devices));
+=======
+ * Function         BTA_DmBleResetId
+ *
+ * Description      This function resets the ble keys such as IRK
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTA_DmBleResetId(void) {
+  APPL_TRACE_API("BTA_DmBleResetId");
+  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_ble_reset_id));
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
 }

@@ -430,6 +430,7 @@ tBTM_STATUS bluetooth::shim::BTM_ClearEventFilter() {
   return BTM_SUCCESS;
 }
 
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
 tBTM_STATUS bluetooth::shim::BTM_ClearEventMask() {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
@@ -472,6 +473,9 @@ tBTM_STATUS bluetooth::shim::BTM_SetDefaultEventMask() {
 }
 
 tBTM_STATUS bluetooth::shim::BTM_SetEventFilterInquiryResultAllDevices() {
+=======
+tBTM_STATUS bluetooth::shim::BTM_BleResetId() {
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }
