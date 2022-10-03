@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f9eb3fe_347d8cce",
+        "filename": "tools/rootcanal/lmp/src/packets.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-03T18:06:18Z",
+      "side": 1,
+      "message": "The motivation for `LinkHCICommandHolder` is to act as a wrapper type for all HCI packets that should be received by LMP, and expose standardized methods (e.g. `get_identifier`, `reject`) that all these packets should expose.\n\nIt also lets us validate at compile-time that procedures are only using HCI packets that we support.",
+      "revId": "259a206477ded7682466438738d8301a8e3974e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
