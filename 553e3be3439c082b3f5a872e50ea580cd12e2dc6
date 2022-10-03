@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5c67bc4_d0dbffe8",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-10-03T08:41:06Z",
+      "side": 1,
+      "message": "any reason to derive timestamp from seq_nbr. can we just not rely on the +1 approach all the time?",
+      "revId": "553e3be3439c082b3f5a872e50ea580cd12e2dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
