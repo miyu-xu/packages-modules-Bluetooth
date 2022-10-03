@@ -16,6 +16,29 @@
       "message": "Hi Myles, I added a test case for MsftReadSupportedFeaturesCommandComplete. Could you please take a look? Thanks!",
       "revId": "3cde69e73423d6c86058507511d8f4de7822f799",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a249f6df_87d71df8",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 6237,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-03T18:19:38Z",
+      "side": 1,
+      "message": "For sized fields, we just use this syntax:\n\n_size_(prefix): 8,\n\nSince prefix will be a vector, there\u0027s no need to generate a getter from the packet.",
+      "range": {
+        "startLine": 6237,
+        "startChar": 2,
+        "endLine": 6237,
+        "endChar": 15
+      },
+      "revId": "3cde69e73423d6c86058507511d8f4de7822f799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
