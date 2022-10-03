@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25391f08_c2600fed",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 18
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-03T18:19:46Z",
+      "side": 1,
+      "message": "Is this mentioned in the specification ? If so can you add a comment where it points it to please ?",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 1
+      },
+      "revId": "ad53668728ca8c8c0fa436556c12c886425a64fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e293d5c_4745ff3e",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 18
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-03T18:19:46Z",
+      "side": 1,
+      "message": "Same here please :)",
+      "range": {
+        "startLine": 198,
+        "startChar": 5,
+        "endLine": 198,
+        "endChar": 23
+      },
+      "revId": "ad53668728ca8c8c0fa436556c12c886425a64fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
