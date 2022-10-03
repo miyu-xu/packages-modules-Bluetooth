@@ -11,6 +11,7 @@ package {
 
 cc_library_shared {
     name: "audio.bluetooth.default",
+    defaults: ["flouride_common_options"],
     relative_install_path: "hw",
     proprietary: true,
     srcs: [
@@ -38,14 +39,14 @@ cc_library_shared {
         "libhidlbase",
     ],
     cflags: [
-        "-Wall",
-        "-Werror",
-        "-Wno-unused-parameter",
+        // supress the warning in stream_apis.cc
+        "-Wno-sign-compare",
     ],
 }
 
 cc_test {
     name: "audio_bluetooth_hw_test",
+    defaults: ["flouride_common_options"],
     srcs: [
         "utils.cc",
         "utils_unittest.cc",
@@ -55,10 +56,5 @@ cc_test {
         "libcutils",
         "liblog",
         "libutils",
-    ],
-    cflags: [
-        "-Wall",
-        "-Werror",
-        "-Wno-unused-parameter",
     ],
 }
