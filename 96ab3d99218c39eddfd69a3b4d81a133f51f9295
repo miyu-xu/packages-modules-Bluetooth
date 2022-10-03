@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14a4b219_a8200dc2",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 23
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-03T21:16:53Z",
+      "side": 1,
+      "message": "After discussion offline, couldn\u0027t find a better word so we will stick to this for now.",
+      "parentUuid": "fe45f325_8bb95dd9",
+      "range": {
+        "startLine": 86,
+        "startChar": 61,
+        "endLine": 86,
+        "endChar": 77
+      },
+      "revId": "96ab3d99218c39eddfd69a3b4d81a133f51f9295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63697ba5_ecb95c4a",
