@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50fd5e8e_a534fe6f",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-10-03T13:43:42Z",
+      "side": 1,
+      "message": "We seem to implement self.__post for our respective classes (TopshimDevice as well as TopshimBaseTest). This seems good for now, but we could make a simple utility library for our testing and keep it there and reuse everywhere else.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 61
+      },
+      "revId": "0bc268afabc34540159dd72590630d48c018986e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
