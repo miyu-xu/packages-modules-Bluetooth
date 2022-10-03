@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a4f4778_f0c5a7ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-03T20:23:51Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/gd/hci/le_advertising_manager.cc:170:9: error: format specifies type \u0027unsigned int\u0027 but the argument has underlying type \u0027uint8_t\u0027 (aka \u0027unsigned char\u0027) [-Werror,-Wformat]\n        view.GetStateChangeReason(),\n        ^~~~~~~~~~~~~~~~~~~~~~~~~~~",
+      "revId": "6f7056ef793c61a89611a7f48e65dfcac2f6fa06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91308400_e1bcd06e",
