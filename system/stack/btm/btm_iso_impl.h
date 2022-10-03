@@ -455,7 +455,12 @@ struct iso_impl {
      * It should be incremented by 1 every SDU Interval.
      */
     uint32_t ts = bluetooth::common::time_get_os_boottime_us();
-    iso->sync_info.seq_nb = (ts - iso->sync_info.first_sync_ts) / iso->sdu_itv;
+    uint32_t new_calc_seq_nb =
+        (ts - iso->sync_info.first_sync_ts) / iso->sdu_itv;
+    if (new_calc_seq_nb <= iso->sync_info.seq_nb) {
+      new_calc_seq_nb = iso->sync_info.seq_nb + 1;
+    }
+    iso->sync_info.seq_nb = new_calc_seq_nb;
 
     if (iso_credits_ == 0 || data_len > iso_buffer_size_) {
       iso->cr_stats.credits_underflow_bytes += data_len;
