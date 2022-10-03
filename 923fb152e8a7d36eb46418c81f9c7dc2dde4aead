@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c707662_42750a14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-03T03:15:24Z",
+      "side": 1,
+      "message": "Thanks a lot Jakub for the review. I updated the code and added comments.\nFeel free to add more comments.",
+      "revId": "923fb152e8a7d36eb46418c81f9c7dc2dde4aead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

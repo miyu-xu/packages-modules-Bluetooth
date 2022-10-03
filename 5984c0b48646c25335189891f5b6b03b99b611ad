@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "037e4e56_8f05696a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-03T03:15:24Z",
+      "side": 1,
+      "message": "I agree that it replies on BT Controller\u0027s scheduler. In some phones, I\u0027ve seen connection performance could be downgraded so much by 100% duty cycle LE scan and we may not want to heavily rely on BT Controller\u0027s performance. I thought 25% duty cycle of LE scan (Balanced Mode) for 6 seconds doesn\u0027t break user experience.\n\nThis feature was initiated from SASS audio switching and I\u0027ve run some experiments on it. Please refer slides in \nhttps://docs.google.com/presentation/d/1w5vtbi0sDuKTjOtPt24qmwXPj7545yUuL4PURZcwZ7E/edit#slide\u003did.g14767bb3830_0_0",
+      "parentUuid": "6eb03bb7_6a9bfde6",
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "319127fc_916666a2",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-30T06:39:59Z",
       "side": 1,
       "message": "Should be \"ongoingScan\" ? or just simple \"scan\" ?",
+      "range": {
+        "startLine": 185,
+        "startChar": 17,
+        "endLine": 185,
+        "endChar": 28
+      },
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70833ce0_979c9df1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-03T03:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "319127fc_916666a2",
       "range": {
         "startLine": 185,
         "startChar": 17,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff930efb_074c2529",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-03T03:15:24Z",
+      "side": 1,
+      "message": "Yes, you are right.",
+      "parentUuid": "c0e4991f_c125a74f",
+      "range": {
+        "startLine": 565,
+        "startChar": 38,
+        "endLine": 565,
+        "endChar": 40
+      },
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05771b9b_9ad841c2",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-09-30T06:39:59Z",
       "side": 1,
       "message": "why not jut \"\u003d\" ?",
+      "range": {
+        "startLine": 590,
+        "startChar": 38,
+        "endLine": 590,
+        "endChar": 40
+      },
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "177d9a04_25211c0d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-03T03:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05771b9b_9ad841c2",
       "range": {
         "startLine": 590,
         "startChar": 38,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d965ed_5b11fc49",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-03T03:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bdcba7c_084695b1",
+      "range": {
+        "startLine": 1044,
+        "startChar": 26,
+        "endLine": 1044,
+        "endChar": 37
+      },
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b481f063_cd4eb56d",
@@ -123,6 +237,24 @@
       "writtenOn": "2022-09-30T06:39:59Z",
       "side": 1,
       "message": "Don we want to stop the scan downgrade if you receive STATE_CONNECTED ?",
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a614e1d9_b230405e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-03T03:15:24Z",
+      "side": 1,
+      "message": "The source to report connecting state could be multiple like different remote devices or profiles. Instead of tracking the connecting/connected process from multiple sources, current logic simply refreshes the 6 second (default, configurable) timer whenever connecting state is reported.",
+      "parentUuid": "b481f063_cd4eb56d",
       "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
