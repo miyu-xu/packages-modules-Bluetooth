@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe45f325_8bb95dd9",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 23
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-03T17:36:15Z",
+      "side": 1,
+      "message": "Why would we want to handled it manually since our purpose is to automate everything ? \n\nBy manually do you mean we need to perform the logic with the PairingEvent msg ?",
+      "range": {
+        "startLine": 86,
+        "startChar": 61,
+        "endLine": 86,
+        "endChar": 77
+      },
+      "revId": "96ab3d99218c39eddfd69a3b4d81a133f51f9295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63697ba5_ecb95c4a",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-03T17:36:15Z",
+      "side": 1,
+      "message": "Quick question:\nWhat if the cookie bytes doesn\u0027t represent an InternalConnectionRef ?\n\nRegarding how this is designed, it\u0027s mean we are compulsory to use the newConnectionBuilder to build the connection in the PandoraServer isn\u0027t it ?  If so, it would be worth to mark it explicitly in comment within the host.proto.",
+      "range": {
+        "startLine": 301,
+        "startChar": 10,
+        "endLine": 301,
+        "endChar": 62
+      },
+      "revId": "96ab3d99218c39eddfd69a3b4d81a133f51f9295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
