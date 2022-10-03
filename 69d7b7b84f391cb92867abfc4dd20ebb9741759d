@@ -33,6 +33,23 @@
       "message": "Devices can be bonded but not connected. Devices can be found and not connected.\n\nIMO, you should be sending a notification for all new acl connections and only for the newly connected device (so you know to do a gatt connection for battery service).\n\nIf you want to limit this to bonded+connected, you will need to both check the bonded list here AND in the on_bond_state changed with a check to see if it\u0027s connected.",
       "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db5a4983_4ae98551",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-03T21:09:38Z",
+      "side": 1,
+      "message": "For now it\u0027s okay to hardcode the observer this way. Maybe in future refactor there should be a facility for internal component to register as observer.",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
