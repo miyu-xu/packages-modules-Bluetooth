@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d5ef2fa_ab08da32",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 29
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-03T18:30:51Z",
+      "side": 1,
+      "message": "Can you please add where this is define in the specification please ?",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 25
+      },
+      "revId": "0f2ba4e873a5d1b9da8b6547590e35d4b1487793",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
