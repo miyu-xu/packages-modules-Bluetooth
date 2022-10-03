@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9951c188_1c33c1e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-03T20:44:49Z",
+      "side": 1,
+      "message": "Bug: ######    ?",
+      "revId": "db0a6070ac97f78d312747ff19d3b049023a985e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a7ef859_c234a8e8",
+        "filename": "system/gd/dumpsys/bundler/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-03T20:44:49Z",
+      "side": 1,
+      "message": "bundler.cc is not very long.  Maybe we could just fix the warnings?\n@cmanton@google.com",
+      "range": {
+        "startLine": 53,
+        "startChar": 34,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "db0a6070ac97f78d312747ff19d3b049023a985e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
