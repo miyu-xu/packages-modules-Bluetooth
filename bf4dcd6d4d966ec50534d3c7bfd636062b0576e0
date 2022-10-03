@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e68a4a6_eb925872",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-03T06:52:39Z",
+      "side": 1,
+      "message": "can we possibly change this to LOG_DEBUG now?",
+      "range": {
+        "startLine": 746,
+        "startChar": 9,
+        "endLine": 746,
+        "endChar": 13
+      },
+      "revId": "bf4dcd6d4d966ec50534d3c7bfd636062b0576e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74a03eda_03dd3c97",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-03T06:52:39Z",
+      "side": 1,
+      "message": "this `RemovePendingVolumeControlOperations` does not help?",
+      "revId": "bf4dcd6d4d966ec50534d3c7bfd636062b0576e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5969388_2091ce38",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-03T06:52:39Z",
+      "side": 1,
+      "message": "can we possibly change this to LOG_DEBUG now?",
+      "revId": "bf4dcd6d4d966ec50534d3c7bfd636062b0576e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17fc7898_b89ea819",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-03T06:52:39Z",
+      "side": 1,
+      "message": "what about Mute/Unmute operations? Should we do same thing there? at least `dev \u0026\u0026 dev-\u003eIsConnected())` ?",
+      "revId": "bf4dcd6d4d966ec50534d3c7bfd636062b0576e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
