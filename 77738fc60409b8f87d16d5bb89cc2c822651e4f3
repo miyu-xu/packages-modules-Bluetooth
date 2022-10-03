@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39d0b2ef_ce912c6d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-03T09:28:12Z",
+      "side": 1,
+      "message": "Since old and new direction is same, it should have no impact, right ? So why make a call ?\nOr am I missing something ?",
+      "range": {
+        "startLine": 1581,
+        "startChar": 28,
+        "endLine": 1582,
+        "endChar": 50
+      },
+      "revId": "77738fc60409b8f87d16d5bb89cc2c822651e4f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
