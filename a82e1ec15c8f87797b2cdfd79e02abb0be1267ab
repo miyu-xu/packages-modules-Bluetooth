@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "494507a5_cbec2bb0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-03T10:24:30Z",
+      "side": 1,
+      "message": "We could, if we are ok with leaving group members with unaligned volume when group is deactivated during group member discovery. But I think that unless we really want to save on one or two GATT operations, it would be nice to align its volume if group is known and group volume was already set and cached. I\u0027m not sure.",
+      "parentUuid": "6d52aba2_bee4c0c7",
+      "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "615293c1_9ba4449c",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-03T06:58:39Z",
       "side": 1,
       "message": "maybe this should be handled in `connectionStateChanged` ?\n\nALso, should we do it only when group is active?",
+      "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "335d9433_04eb7c5b",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-03T10:24:30Z",
+      "side": 1,
+      "message": "Hmm, delay it until the state machine sends the intent? Maybe we could, but I\u0027m not sure why.",
+      "parentUuid": "615293c1_9ba4449c",
       "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
