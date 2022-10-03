@@ -16,6 +16,24 @@
       "message": "I didn\u0027t expect the check to be in sdp_utils.cc.\n\nI think it would be more obvious to have the check in sdp_main.cc.\n```\n  cid \u003d sdpu_get_active_ccb_cid(p_bd_addr);\n\n  if (!bluetooth::common::init_flags::sdp_serialization_is_enabled() || cid \u003d\u003d 0) { \n    p_ccb-\u003econ_state \u003d SDP_STATE_CONN_SETUP;\n    cid \u003d L2CA_ConnectReq2(BT_PSM_SDP, p_bd_addr, BTM_SEC_NONE);\n  } else {\n    p_ccb-\u003econ_state \u003d SDP_STATE_CONN_PEND;\n    SDP_TRACE_WARNING(\"SDP already active for peer %s. cid\u003d%#0x\",\n                      p_bd_addr.ToString().c_str(), cid);\n  }\n```  \nI guess the downside is the wasted work in sdpu_get_active_ccb_cid.",
       "revId": "54046cca9b196e71e9194618186f7d1a78bc179a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03adf8ed_629bebd4",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-03T21:15:12Z",
+      "side": 1,
+      "message": "I don\u0027t have a strong opinion for either solution.\nthe \u0027wasted work\u0027 is looping in a 4 item list. So not really important.\nI did the change.",
+      "parentUuid": "d9e3388f_358234ad",
+      "revId": "54046cca9b196e71e9194618186f7d1a78bc179a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
