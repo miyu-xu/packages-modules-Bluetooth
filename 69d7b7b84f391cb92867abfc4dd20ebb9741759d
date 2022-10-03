@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74592f35_02447370",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-03T21:24:19Z",
+      "side": 1,
+      "message": "Regarding BatterySet: yes, I think this is much better. however, I avoided doing something like this because during the API design phase you indicated nested structs were problematic for DBus; is that no longer true?\n\nI disagree somewhat regarding prioritization. Specifically this case:\n\n1. A device exists which supplies battery information from multiple sources (A and B).\n2. Sometimes when the device connects BatteryProviderManager receives information from A first, so the user sees information displayed according to what A says.\n3. User reboots their machine, disconnects device, etc. and in this instance information from B is received first instead.\n\nIf A and B do not send information in the same format, the user may get very difference experiences. Example: A represents battery information as an average of all batteries while B breaks out a Battery for each battery. If we have a deterministic way of determining what should be shown then we\u0027ll be consistent, regardless of which is actually the better source.",
+      "parentUuid": "f731b03e_0e03fa4a",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10a8fe85_ac4c8947",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-30T22:47:28Z",
       "side": 1,
       "message": "Devices can be bonded but not connected. Devices can be found and not connected.\n\nIMO, you should be sending a notification for all new acl connections and only for the newly connected device (so you know to do a gatt connection for battery service).\n\nIf you want to limit this to bonded+connected, you will need to both check the bonded list here AND in the on_bond_state changed with a check to see if it\u0027s connected.",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6700fad9_9b12690d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-03T21:24:19Z",
+      "side": 1,
+      "message": "As I looked back at this I realized the original objective was to get access to `on_device_connected` without needing to hold a reference to this object so I\u0027ll move it up to where that callback is invoked anyway.",
+      "parentUuid": "10a8fe85_ac4c8947",
       "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
