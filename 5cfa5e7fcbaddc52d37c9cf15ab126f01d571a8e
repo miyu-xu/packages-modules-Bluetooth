@@ -16,6 +16,23 @@
       "message": "Hi Myles, I moved MGMT socket handling and Microsoft Extension manager out of the le_scanning_manager to avoid polluting the le_scanning_manager. The Microsoft Extension manager now becomes a module as you suggested. The MGMT socket handling code is placed in a separate file so that things look cleaner. Could you please take a look? Thanks!",
       "revId": "5cfa5e7fcbaddc52d37c9cf15ab126f01d571a8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5767911e_25406280",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-03T18:31:48Z",
+      "side": 1,
+      "message": "Hi Joseph, this looks good.  I think it will be easier to review if we squish it a little, so we don\u0027t add and remove code in the same stack of CLs.",
+      "revId": "5cfa5e7fcbaddc52d37c9cf15ab126f01d571a8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
