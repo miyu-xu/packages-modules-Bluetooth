@@ -16,6 +16,29 @@
       "message": "Hi, please review this CL, thanks!",
       "revId": "6d5b2dada120e2966761bdc8c5bd2632aaca8a36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0987a598_be6964af",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-10-03T08:55:52Z",
+      "side": 1,
+      "message": "Recently there are some discussions about devices using hci1 instead of hci0, do we need to do something here?",
+      "range": {
+        "startLine": 41,
+        "startChar": 64,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "6d5b2dada120e2966761bdc8c5bd2632aaca8a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
