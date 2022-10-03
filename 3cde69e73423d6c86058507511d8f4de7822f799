@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e2d37a3_d0c36759",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-03T09:43:45Z",
+      "side": 1,
+      "message": "Hi Myles, I added a test case for MsftReadSupportedFeaturesCommandComplete. Could you please take a look? Thanks!",
+      "revId": "3cde69e73423d6c86058507511d8f4de7822f799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
