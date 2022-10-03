@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f731b03e_0e03fa4a",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-03T21:02:54Z",
+      "side": 1,
+      "message": "Ideally source_info should be purely informational and does not affect business logic. It should also not be used to group together a set of batteries.\n\nFor now, maybe we can use the source_info only for grouping and not use it for prioritization (to pick the best we can just pick one group arbitrarily). but I am thinking that a future refactoring can better accommodate the concept of multi battery.\n\nIdeally, maybe for future refactor, I think it\u0027s useful to treat a \"BatterySet\" as a first class thing. This way every remote device is associated with a BatterySet, which may contain zero or multiple batteries (can be represented as Vec\u003cBattery\u003e). This way, the APIs become:\n\n```\n/// Represents a group of batteries of a single remote\n/// from a single provider. For example this contains 3 batteries of \n/// left, right, and case of a set of earbuds, provided by one provider e.g.\n/// FastPair protocol.\nstruct BatterySet {\n    batteries: Vec\u003cBattery\u003e,\n    address: String,\n    source_info: String, // only informational\n}\n\n/// Represent a single physical battery, provided by one provider.\nstruct Battery {\n    percentage: u32,\n    variant: String,\n    // extensions like charging_state, etc\n}\n\ntrait IBatteryManager {\n    ...\n    fn get_battery_information(\u0026self, addr) -\u003e Option\u003cBatterySet\u003e;\n}\n\n// Keeps battery sets of a single remote from multiple providers.\nstruct Batteries { // should be now BatterySets\n    battery_sets: Vec\u003cBatterySet\u003e,\n}\n```\n\n`pick_best` can simply be taking the first BatterySet that exists.\n\nThis way, external battery providers must provide BatterySet as well because a single battery does not make sense anymore, each remote needs to have a BatterySet.\n\nThis design would fit better with multi-battery as a native concept but introduce this complexity earlier before multi-battery is commonly used.",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10a8fe85_ac4c8947",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 4
