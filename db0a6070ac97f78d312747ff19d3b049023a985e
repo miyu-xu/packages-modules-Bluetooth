@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62014fb3_919d8339",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-03T21:10:32Z",
+      "side": 1,
+      "message": "fluoride",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 24
+      },
+      "revId": "db0a6070ac97f78d312747ff19d3b049023a985e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a7ef859_c234a8e8",
         "filename": "system/gd/dumpsys/bundler/Android.bp",
         "patchSetId": 3
