@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91308400_e1bcd06e",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-03T20:23:35Z",
+      "side": 1,
+      "message": "This needs to be %s then VseStateChangeReasonText(view.GetStateChangeReason()).c_str()",
+      "range": {
+        "startLine": 168,
+        "startChar": 43,
+        "endLine": 168,
+        "endChar": 47
+      },
+      "revId": "6f7056ef793c61a89611a7f48e65dfcac2f6fa06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
