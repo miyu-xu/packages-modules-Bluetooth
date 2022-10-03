@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61c1cc2_696f5f62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-03T09:52:27Z",
+      "side": 1,
+      "message": "The mgmt socket will be replaced by sockopt/ioctl later and thus the code is not fully optimized. The plan is to remove mgmt.cc and mgmt.h when the sockopt/ioctl is ready in the upstream kernel.\n\nHi Myles, could you please take a look? Thanks!",
+      "revId": "51969068c85791cc5b569819e9004eb4932c1829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
