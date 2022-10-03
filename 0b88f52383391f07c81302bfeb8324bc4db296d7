@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc2ac04_0217387f",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 24
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-03T18:37:18Z",
+      "side": 1,
+      "message": "Why do we need this ?",
+      "range": {
+        "startLine": 597,
+        "startChar": 2,
+        "endLine": 597,
+        "endChar": 25
+      },
+      "revId": "0b88f52383391f07c81302bfeb8324bc4db296d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
