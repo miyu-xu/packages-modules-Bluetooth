@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d52aba2_bee4c0c7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-03T06:58:39Z",
+      "side": 1,
+      "message": "shouldn\u0027t we do it only when group is active?",
+      "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615293c1_9ba4449c",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-03T06:58:39Z",
+      "side": 1,
+      "message": "maybe this should be handled in `connectionStateChanged` ?\n\nALso, should we do it only when group is active?",
+      "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
