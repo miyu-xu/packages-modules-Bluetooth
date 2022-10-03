@@ -46,12 +46,12 @@ genrule {
 
 cc_defaults {
     name: "bluetooth_flatbuffer_bundler_defaults",
+    defaults: ["flouride_common_options"],
     cpp_std: "c++17",
     cflags: [
-        "-Wall",
-        "-Werror",
-        "-Wno-unused-parameter",
         "-Wno-unused-variable",
+        // suppress the warning in bundler.cc
+        "-Wno-sign-compare",
     ],
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
