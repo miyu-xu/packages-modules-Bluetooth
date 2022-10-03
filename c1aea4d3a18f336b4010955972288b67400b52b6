@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "503a475b_5c1a7aba",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-03T22:47:08Z",
+      "side": 1,
+      "message": "bug: You intend to use `and_then` and pass a closure. Using `and` gives you compile success because you are passing a block instead of a closure. So the `info!(\"Write...\")` is always executed to compute the expression value of that block, but this is not the behavior that you want.",
+      "range": {
+        "startLine": 88,
+        "startChar": 57,
+        "endLine": 88,
+        "endChar": 60
+      },
+      "revId": "c1aea4d3a18f336b4010955972288b67400b52b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
