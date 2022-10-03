@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fd7982e_83126413",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-10-03T14:20:16Z",
+      "side": 1,
+      "message": "in general, value is valid only when group is active. When become active we always set value.\n\nOn the other side -- maybe for the Broadcast case it is better as you did now.. so let it be :)",
+      "parentUuid": "494507a5_cbec2bb0",
+      "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "615293c1_9ba4449c",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Hmm, delay it until the state machine sends the intent? Maybe we could, but I\u0027m not sure why.",
       "parentUuid": "615293c1_9ba4449c",
+      "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b4fecd9_04eeabf4",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-10-03T14:20:16Z",
+      "side": 1,
+      "message": "Maybe to make sure this is called once when changed to connected?\nBut if it is safe here, then only NIT comment, that it would be nice to have a helper here and maybe do just \n```\nif (type \u003d\u003d EVENT_TYPE_CONNECTION_STATE_CHANGED \u0026\u0026 valueInt1 \u003d\u003d CONNECTION_STATE_CONNECTED) {\n handleValueSync();\n}\n```\ninstead of `switch() {} ` - unless you expect it to be used ?",
+      "parentUuid": "335d9433_04eb7c5b",
       "revId": "a82e1ec15c8f87797b2cdfd79e02abb0be1267ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
