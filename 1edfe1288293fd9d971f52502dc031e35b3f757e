@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33865625_bf255457",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3836,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-10-03T13:34:19Z",
+      "side": 1,
+      "message": "Please look at patchet #9.",
+      "parentUuid": "d6763678_0b9b4db4",
+      "range": {
+        "startLine": 3836,
+        "startChar": 28,
+        "endLine": 3836,
+        "endChar": 62
+      },
+      "revId": "1edfe1288293fd9d971f52502dc031e35b3f757e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e56ff9f8_b73ef4b9",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 6
