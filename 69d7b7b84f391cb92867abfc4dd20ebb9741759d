@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9635b972_5ff2cba7",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-03T22:57:57Z",
+      "side": 1,
+      "message": "Nested struct is not problematic. I said nested struct with callback types inside the nested struct is problematic, because callback is kind of special object that is hard to handle if nested.\n\nI agree that consistency is important, but it can\u0027t be solved correctly by using source_info because it\u0027s informational. If we want to reliably use source_info as a stable id of source, we should change the API definition into some kind of source_profile_uuid, so that providers know to fill this field with a stable UUID. I am okay with this idea.",
+      "parentUuid": "74592f35_02447370",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10a8fe85_ac4c8947",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 4
