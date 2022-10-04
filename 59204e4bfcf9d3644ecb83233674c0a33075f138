@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b0d99c_e296e3d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-04T22:45:24Z",
+      "side": 1,
+      "message": "Thanks for uploading this patch.\nLGTM",
+      "revId": "59204e4bfcf9d3644ecb83233674c0a33075f138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
