@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3634252_7bf5429e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-10-04T02:01:41Z",
+      "side": 1,
+      "message": "Great work to add test coverage on the new codes!\nLGTM % a few nits.",
+      "revId": "f38078c4283d70d29dbf0da8260df6b345faebfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac9ba59_bded6571",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-10-04T02:01:41Z",
+      "side": 1,
+      "message": "Maybe print `__func__` since the message is super generic.",
+      "revId": "f38078c4283d70d29dbf0da8260df6b345faebfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d7659a_fbce8fde",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-10-04T02:01:41Z",
+      "side": 1,
+      "message": "Anyway can we ASSERT decoder found a packet loss here?",
+      "range": {
+        "startLine": 181,
+        "startChar": 7,
+        "endLine": 181,
+        "endChar": 50
+      },
+      "revId": "f38078c4283d70d29dbf0da8260df6b345faebfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
