@@ -112,6 +112,7 @@ cc_fuzz {
         "libevent",
         "liblog",
         "libstatslog_bt",
+        "libbluetooth_gd",
     ],
     header_libs: ["libbluetooth_headers"],
     corpus: [
