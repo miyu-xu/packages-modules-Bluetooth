@@ -117,6 +117,30 @@
       },
       "revId": "96ab3d99218c39eddfd69a3b4d81a133f51f9295",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b78ea123_b6b39b53",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-04T09:40:23Z",
+      "side": 1,
+      "message": "Agreed with all, but will do in immediate followup to unblock the rest of the stack (particularly the advertising interfaces which Etienne needs), as this does not affect functionality.",
+      "parentUuid": "03c053c0_eb1094e9",
+      "range": {
+        "startLine": 301,
+        "startChar": 10,
+        "endLine": 301,
+        "endChar": 62
+      },
+      "revId": "96ab3d99218c39eddfd69a3b4d81a133f51f9295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
