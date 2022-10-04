@@ -16,6 +16,24 @@
       "message": "any reason to derive timestamp from seq_nbr. can we just not rely on the +1 approach all the time?",
       "revId": "553e3be3439c082b3f5a872e50ea580cd12e2dc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9b570a7_c3328f5e",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-10-04T08:03:11Z",
+      "side": 1,
+      "message": "iso_cis (holding seq_nbr) per CIS is added on CIG create and removed on CIG remove. If we simply do seq_nbr + 1 always, additional handling of seq_nb reset on CIS/LE link disconnect / reconnect is needed.",
+      "parentUuid": "c5c67bc4_d0dbffe8",
+      "revId": "553e3be3439c082b3f5a872e50ea580cd12e2dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
