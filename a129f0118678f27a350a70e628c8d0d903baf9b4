@@ -22,6 +22,30 @@
       },
       "revId": "a129f0118678f27a350a70e628c8d0d903baf9b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f88a89e9_cbca0645",
+        "filename": "system/stack/test/sdp/stack_sdp_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-04T21:42:27Z",
+      "side": 0,
+      "message": "Yes.\nI no longer need it as the feature flag is now set by default in native with this CL.",
+      "parentUuid": "b8d397c9_206c3436",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 51
+      },
+      "revId": "a129f0118678f27a350a70e628c8d0d903baf9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
