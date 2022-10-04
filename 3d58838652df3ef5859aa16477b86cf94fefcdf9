@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0b344e2_e3b83d86",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-04T04:53:49Z",
+      "side": 1,
+      "message": "See L75",
+      "parentUuid": "84a20d14_5bbd68bd",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 65
+      },
+      "revId": "3d58838652df3ef5859aa16477b86cf94fefcdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffc3f199_3fa14721",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-04T04:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69a3215e_7b203730",
+      "revId": "3d58838652df3ef5859aa16477b86cf94fefcdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afdfec15_9fbe07e0",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-09-28T12:28:48Z",
       "side": 1,
       "message": "do we want to check if this returns false and find the next candidate?",
+      "range": {
+        "startLine": 276,
+        "startChar": 20,
+        "endLine": 276,
+        "endChar": 35
+      },
+      "revId": "3d58838652df3ef5859aa16477b86cf94fefcdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8aa6fe_28111400",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-04T04:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afdfec15_9fbe07e0",
       "range": {
         "startLine": 276,
         "startChar": 20,
