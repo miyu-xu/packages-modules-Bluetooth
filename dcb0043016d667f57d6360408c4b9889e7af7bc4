@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90cac58d_dae9ddb3",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-04T11:01:50Z",
+      "side": 1,
+      "message": "Do we care about order of operations ?\nConsider if user quickly press VOL_UP(4) VOL_DOWN(5) VOL_UP(4) VOL_DOWN(5) VOL_UP(4).\n\nCan we end up in state where only first 2 operations are executed, and rest is considered unnecessary because first 2 operations are in ongoing_operations_ and match following operations ?\n\nI guess we have to care wether the scheduled operation matches the volume level with the last scheduled volume operation ?",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 5
+      },
+      "revId": "dcb0043016d667f57d6360408c4b9889e7af7bc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
