@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21d3cdfd_137979e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-04T22:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9951c188_1c33c1e9",
+      "revId": "db0a6070ac97f78d312747ff19d3b049023a985e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62014fb3_919d8339",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eedf7cb_a6982b89",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-04T22:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62014fb3_919d8339",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 24
+      },
+      "revId": "db0a6070ac97f78d312747ff19d3b049023a985e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a7ef859_c234a8e8",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-10-03T20:44:49Z",
       "side": 1,
       "message": "bundler.cc is not very long.  Maybe we could just fix the warnings?\n@cmanton@google.com",
+      "range": {
+        "startLine": 53,
+        "startChar": 34,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "db0a6070ac97f78d312747ff19d3b049023a985e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13cb2fde_d7dd72f4",
+        "filename": "system/gd/dumpsys/bundler/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-04T22:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a7ef859_c234a8e8",
       "range": {
         "startLine": 53,
         "startChar": 34,
