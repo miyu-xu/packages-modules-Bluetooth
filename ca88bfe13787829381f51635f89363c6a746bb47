@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be47ecc1_5017d2b5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-04T09:28:06Z",
+      "side": 1,
+      "message": "Got it. We should put a comment explaining that then 😊",
+      "parentUuid": "9d3e9f9b_f8bbb597",
+      "range": {
+        "startLine": 173,
+        "startChar": 40,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26bf4aaa_895fc15a",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
         "patchSetId": 28
@@ -148,6 +172,24 @@
       "side": 1,
       "message": "my fault, messed up merge resolution - fixing",
       "parentUuid": "63e25417_14359dd6",
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5235411_f5ea2f86",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 28
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-04T09:28:06Z",
+      "side": 1,
+      "message": "Ack (I let you resolve it when it\u0027s done :) )",
+      "parentUuid": "2e10f3a8_e59dbbe0",
       "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
