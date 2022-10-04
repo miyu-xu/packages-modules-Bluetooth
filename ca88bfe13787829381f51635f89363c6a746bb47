@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "186c5318_faa7d91f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-04T17:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3c121fd_0b470121",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 55
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bcc2b4c_5a52f9f7",
@@ -118,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee0d4f48_f4d46dbc",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-04T17:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be47ecc1_5017d2b5",
+      "range": {
+        "startLine": 173,
+        "startChar": 40,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26bf4aaa_895fc15a",
@@ -131,6 +179,30 @@
       "writtenOn": "2022-09-29T09:51:43Z",
       "side": 1,
       "message": "nit: We are asserting this condition on top, so I think we should remove this condition",
+      "range": {
+        "startLine": 284,
+        "startChar": 19,
+        "endLine": 284,
+        "endChar": 45
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54c634c5_178b1f78",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-04T17:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26bf4aaa_895fc15a",
       "range": {
         "startLine": 284,
         "startChar": 19,
@@ -190,6 +262,24 @@
       "side": 1,
       "message": "Ack (I let you resolve it when it\u0027s done :) )",
       "parentUuid": "2e10f3a8_e59dbbe0",
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aa4f401_b230bc61",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 28
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-04T17:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5235411_f5ea2f86",
       "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
