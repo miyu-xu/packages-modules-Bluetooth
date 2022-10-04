@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3148baf9_2aedc8f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-04T06:27:48Z",
+      "side": 1,
+      "message": "Some minor comments:",
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d7343a_59a78bac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-04T06:27:48Z",
+      "side": 1,
+      "message": "profileToActivate?",
+      "range": {
+        "startLine": 284,
+        "startChar": 28,
+        "endLine": 284,
+        "endChar": 43
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86291ef8_23f5a26f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-04T06:27:48Z",
+      "side": 1,
+      "message": "minor) 2 would be okay since when `i \u003d\u003d size - 1`, this will remove and add a same thing again?",
+      "range": {
+        "startLine": 440,
+        "startChar": 52,
+        "endLine": 440,
+        "endChar": 53
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a491b377_fcb28273",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-04T06:27:48Z",
+      "side": 1,
+      "message": "1. Why are these added two times?\n2. Why does this not have null check like L546?",
+      "range": {
+        "startLine": 555,
+        "startChar": 8,
+        "endLine": 556,
+        "endChar": 28
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcbdf49d_43c9fa1f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-04T06:27:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 563,
+        "startChar": 8,
+        "endLine": 564,
+        "endChar": 28
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
