@@ -93,6 +93,30 @@
       },
       "revId": "96ab3d99218c39eddfd69a3b4d81a133f51f9295",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c053c0_eb1094e9",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-04T09:26:55Z",
+      "side": 1,
+      "message": "I don\u0027t think the place of this comment is in `host.proto` as it\u0027s an Android specific thing.\nAnd the interfaces are agnostic.",
+      "parentUuid": "c945915b_aaacb95b",
+      "range": {
+        "startLine": 301,
+        "startChar": 10,
+        "endLine": 301,
+        "endChar": 62
+      },
+      "revId": "96ab3d99218c39eddfd69a3b4d81a133f51f9295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

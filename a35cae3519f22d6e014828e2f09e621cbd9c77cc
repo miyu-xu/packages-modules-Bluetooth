@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b0dee2_43d77bc3",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 25
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-04T09:26:55Z",
+      "side": 1,
+      "message": "We should not document the Android behavior here.",
+      "revId": "a35cae3519f22d6e014828e2f09e621cbd9c77cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aac9c22d_f6b2d6de",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 25
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-04T09:26:55Z",
+      "side": 1,
+      "message": "I don\u0027t really see, why it\u0027s a convenience to put it here, having a separate proto for it seems simple to me.\nI would prefer it to be in another proto file specific to the android server with another package, we can even name it `Connection` in this new proto file.",
+      "revId": "a35cae3519f22d6e014828e2f09e621cbd9c77cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
