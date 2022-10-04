@@ -22,6 +22,30 @@
       },
       "revId": "f14d5962a591378ea5b63e9d86829eb628af603f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af2e9509_062e0f9b",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-04T20:42:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e14657b_1690b5bd",
+      "range": {
+        "startLine": 166,
+        "startChar": 83,
+        "endLine": 166,
+        "endChar": 93
+      },
+      "revId": "f14d5962a591378ea5b63e9d86829eb628af603f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
