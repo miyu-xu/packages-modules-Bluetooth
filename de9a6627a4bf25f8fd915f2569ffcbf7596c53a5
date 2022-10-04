@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa9f585c_fd0e4372",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-10-04T23:37:46Z",
+      "side": 1,
+      "message": "Done. Please review the service implementation.",
+      "parentUuid": "e9105b68_22dbd471",
+      "revId": "de9a6627a4bf25f8fd915f2569ffcbf7596c53a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d322266_149c8374",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30849ae5_06b34531",
+        "filename": "system/blueberry/facade/topshim/facade.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-10-04T23:37:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d322266_149c8374",
+      "range": {
+        "startLine": 101,
+        "startChar": 15,
+        "endLine": 101,
+        "endChar": 29
+      },
+      "revId": "de9a6627a4bf25f8fd915f2569ffcbf7596c53a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "704fdc0b_9b70e3e4",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-10-04T18:13:18Z",
       "side": 1,
       "message": "We should use Start or Enable and make it consistent.",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 23
+      },
+      "revId": "de9a6627a4bf25f8fd915f2569ffcbf7596c53a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "579003a3_57e05e5f",
+        "filename": "system/blueberry/facade/topshim/facade.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-10-04T23:37:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "704fdc0b_9b70e3e4",
       "range": {
         "startLine": 161,
         "startChar": 8,
