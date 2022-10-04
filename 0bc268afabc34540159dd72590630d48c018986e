@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6e4b58_d6b1f060",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-04T15:09:05Z",
+      "side": 1,
+      "message": "Ideally I want to remove __post from everything except here.  I\u0027ve removed it from TopshimBaseTest.",
+      "parentUuid": "50fd5e8e_a534fe6f",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 61
+      },
+      "revId": "0bc268afabc34540159dd72590630d48c018986e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d73dcd9c_72f1adf3",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-03T15:21:16Z",
       "side": 1,
       "message": "Instead of passing the adapter client and Gatt client (and any other clients in future) why don\u0027t we actually just send the port here and create the client in the __init__(). Is there a reason to always create one separately and send it to the Topshim Device (I expect them all to connect to the same port).",
+      "range": {
+        "startLine": 75,
+        "startChar": 23,
+        "endLine": 75,
+        "endChar": 36
+      },
+      "revId": "0bc268afabc34540159dd72590630d48c018986e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa6f95a9_47953337",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-04T15:09:05Z",
+      "side": 1,
+      "message": "Good idea!",
+      "parentUuid": "d73dcd9c_72f1adf3",
       "range": {
         "startLine": 75,
         "startChar": 23,
