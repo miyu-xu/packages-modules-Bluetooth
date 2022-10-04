@@ -1,9 +1,18 @@
-use log::{error, info};
+use log::{error, info, warn};
 use paste::paste;
 use std::sync::Mutex;
 
+macro_rules! default_flag {
+    ($flag:ident) => {
+        let mut $flag = false;
+    };
+    ($flag:ident = $default:tt) => {
+        let mut $flag = $default;
+    };
+}
+
 macro_rules! init_flags {
-    (flags: { $($flag:ident),* }, dependencies: { $($parent:ident => $child:ident),* }) => {
+    (flags: { $($flag:ident $(= $default:tt)?,)* }, dependencies: { $($parent:ident => $child:ident),* }) => {
         #[derive(Default)]
         struct InitFlags {
             $($flag: bool,)*
@@ -16,7 +25,7 @@ macro_rules! init_flags {
 
         impl InitFlags {
             fn parse(flags: Vec<String>) -> Self {
-                $(let mut $flag = false;)*
+                $(default_flag!($flag $(= $default)?);)*
 
                 for flag in flags {
                     let values: Vec<&str> = flag.split("=").collect();
@@ -27,7 +36,7 @@ macro_rules! init_flags {
 
                     match values[0] {
                         $(concat!("INIT_", stringify!($flag)) => $flag = values[1].parse().unwrap_or(false),)*
-                        _ => {}
+                        _ => warn!("Unsaved flag: {} = {}", values[0], values[1])
                     }
                 }
 
@@ -74,14 +83,14 @@ macro_rules! init_flags {
 
 init_flags!(
     flags: {
-        sdp_serialization,
-        gd_core,
-        gd_security,
-        gd_l2cap,
+        btaa_hci = true,
         gatt_robust_caching,
-        btaa_hci,
+        gd_core,
+        gd_l2cap,
+        gd_link_policy,
         gd_rust,
-        gd_link_policy
+        gd_security,
+        sdp_serialization = true,
     },
     dependencies: {
         gd_core => gd_security
