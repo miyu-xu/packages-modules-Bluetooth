@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8d397c9_206c3436",
+        "filename": "system/stack/test/sdp/stack_sdp_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-04T19:51:42Z",
+      "side": 0,
+      "message": "This just got added in the last CL.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 51
+      },
+      "revId": "a129f0118678f27a350a70e628c8d0d903baf9b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
