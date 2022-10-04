@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99b3f917_6cec80ad",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-04T18:35:27Z",
+      "side": 1,
+      "message": "Could we access GD generated header LmpVersion::V_5_1 ?\n\nform \"hci/hci_packets.h\"",
+      "range": {
+        "startLine": 783,
+        "startChar": 26,
+        "endLine": 783,
+        "endChar": 28
+      },
+      "revId": "bf2260c4aa2ba42dc02f5286957419dcd48f9178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
