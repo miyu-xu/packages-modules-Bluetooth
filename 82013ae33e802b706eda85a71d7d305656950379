@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3baaf595_71e7ec92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-04T09:23:03Z",
+      "side": 1,
+      "message": "nit: We should update the commit message as it\u0027s not reflecting the patch anymore",
+      "revId": "82013ae33e802b706eda85a71d7d305656950379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
