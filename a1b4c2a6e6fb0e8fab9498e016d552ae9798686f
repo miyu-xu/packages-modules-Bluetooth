@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ef017c_f731afbd",
+        "filename": "android/pandora/test/AndroidTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-04T09:42:27Z",
+      "side": 1,
+      "message": "We should instead fix the android_service.py in avatar",
+      "revId": "a1b4c2a6e6fb0e8fab9498e016d552ae9798686f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
