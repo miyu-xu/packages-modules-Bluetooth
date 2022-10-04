@@ -115,6 +115,8 @@ const bool enable_address_consolidate = true;  // TODO remove
 #define COD_AV_PORTABLE_AUDIO 0x041C
 #define COD_AV_HIFI_AUDIO 0x0428
 
+#define COD_CLASS_LE_AUDIO (1 << 14)
+
 #define BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING 2
 
 #ifndef PROPERTY_CLASS_OF_DEVICE
@@ -488,6 +490,21 @@ bool check_cod_hid(const RawAddress& bd_addr) {
   return (get_cod(&bd_addr) & COD_HID_MASK) == COD_HID_MAJOR;
 }
 
+bool check_cod_le_audio(const RawAddress* remote_bdaddr) {
+  uint32_t remote_cod;
+  bt_property_t prop_name;
+
+  /* check if we already have it in our btif_storage cache */
+  BTIF_STORAGE_FILL_PROPERTY(&prop_name, BT_PROPERTY_CLASS_OF_DEVICE,
+                             sizeof(uint32_t), &remote_cod);
+  if (btif_storage_get_remote_device_property(
+          (RawAddress*)remote_bdaddr, &prop_name) == BT_STATUS_SUCCESS) {
+    LOG_INFO("%s remote_cod = 0x%08x", __func__, remote_cod);
+    return remote_cod & COD_CLASS_LE_AUDIO;
+  }
+
+  return 0;
+}
 /*****************************************************************************
  *
  * Function        check_sdp_bl
@@ -695,7 +712,16 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
 static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport) {
   bool is_hid = check_cod(&bd_addr, COD_HID_POINTING);
+  bool is_le_audio = check_cod_le_audio(&bd_addr);
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+
+  /* If device is LE Audio capable, we prefer LE connection first, this speeds
+   * up LE profile connection, and limits all possible service discovery
+   * ordering issues (first Classic, GATT over SDP, etc) */
+  if (is_le_audio && LeAudioClient::IsLeAudioClientRunning()) {
+    LOG_INFO("Both devices are LE Audio capable, use LE transport for Bonding");
+    transport = BT_TRANSPORT_LE;
+  }
 
   int device_type = 0;
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
