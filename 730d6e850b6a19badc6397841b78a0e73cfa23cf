@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0feb3792_ae4f6d1e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-04T20:13:09Z",
+      "side": 1,
+      "message": "We can\u0027t reuse this one because COD_MASK used here erases LE AUDIO bit",
+      "range": {
+        "startLine": 475,
+        "startChar": 11,
+        "endLine": 475,
+        "endChar": 32
+      },
+      "revId": "730d6e850b6a19badc6397841b78a0e73cfa23cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
