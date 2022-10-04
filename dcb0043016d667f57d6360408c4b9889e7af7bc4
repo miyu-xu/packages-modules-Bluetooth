@@ -22,6 +22,30 @@
       },
       "revId": "dcb0043016d667f57d6360408c4b9889e7af7bc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ee068f_f652d3a0",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-04T12:25:16Z",
+      "side": 1,
+      "message": "In a case you just described, there is another mechanism that plays a big role. Its the \u0027RemovePendingVolumeControlOperations()\u0027 which is called before each operation is scheduled, to avoid queuing duplicate operations. The logic behind it I guess is that the user may schedule to many operations like VolUp in a short period of time, because the outcome of the previous operations was not yet observed as the operation is still ongoing. If we would queue to many operations the volume could eventually explode once GATT catches up with the user input. However this patch does not change that mechanism.\n\nThis one changes a case where the operation is already ongoing (request was sent, but no result was observed yet) so in worst case we would avoid adding just a single duplicate.\n\nI\u0027m not sure what do you mean by \u0027making sure the scheduled operation matches the volume level with the last scheduled volume operation`. Do you mean that the new operation should be eliminated only if the new operation would not change the computed outcome of all the already scheduled operations, or do you suggest we should just check the last already scheduled operation? For the first case, this would be hard to implement due to implementation specific step size in relative volume op., and for the second case, due to the fact that \u0027RemovePendingVolumeControlOperations()\u0027 has already eliminated duplicates other than what is already executing by the GATT, this change does exactly that, it just eliminates adding one additional operation if such operation is already ongoing.\n\nI hope that answers your question.",
+      "parentUuid": "90cac58d_dae9ddb3",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 5
+      },
+      "revId": "dcb0043016d667f57d6360408c4b9889e7af7bc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
