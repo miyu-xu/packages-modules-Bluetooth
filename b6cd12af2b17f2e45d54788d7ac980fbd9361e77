@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b40cea_79cfd74c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-04T07:20:34Z",
+      "side": 1,
+      "message": "Could you add Javadoc on how to use this method?  For example: \n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;rcl\u003d7c52c585e7f40222cf9f1bf1e15617ac07b75e15;l\u003d1941\n\nEspecially, how to set the expected column index and getInt/Long/String.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "b6cd12af2b17f2e45d54788d7ac980fbd9361e77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
