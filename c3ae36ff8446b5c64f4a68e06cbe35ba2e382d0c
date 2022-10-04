@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "562e7add_e40a522a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-04T06:26:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3024894c_64583355",
+      "range": {
+        "startLine": 68,
+        "startChar": 19,
+        "endLine": 68,
+        "endChar": 38
+      },
+      "revId": "c3ae36ff8446b5c64f4a68e06cbe35ba2e382d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13f9df5b_cc928e95",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-30T03:06:35Z",
       "side": 1,
       "message": "Comparing String with Url, which is always false.\n\nCould you check whether this line is actually run?",
+      "range": {
+        "startLine": 125,
+        "startChar": 38,
+        "endLine": 125,
+        "endChar": 73
+      },
+      "revId": "c3ae36ff8446b5c64f4a68e06cbe35ba2e382d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "573d866d_ad9de739",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppUtilityTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-04T06:26:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13f9df5b_cc928e95",
       "range": {
         "startLine": 125,
         "startChar": 38,
