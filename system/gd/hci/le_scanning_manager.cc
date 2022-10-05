@@ -257,6 +257,11 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
       api_type_ = ScanApiType::LEGACY;
     }
     is_filter_support_ = controller_->IsSupported(OpCode::LE_ADV_FILTER);
+    if (is_filter_support_) {
+      le_scanning_interface_->EnqueueCommand(
+          hci::LeAdvFilterReadExtendedFeaturesBuilder::Create(),
+          module_handler_->BindOnceOn(this, &impl::on_apcf_read_extended_features_complete));
+    }
     is_batch_scan_support_ = controller->IsSupported(OpCode::LE_BATCH_SCAN);
     is_periodic_advertising_sync_transfer_sender_support_ =
         controller_->SupportsBlePeriodicAdvertisingSyncTransferSender();
@@ -969,6 +974,11 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
       uint8_t ad_type,
       std::vector<uint8_t> data,
       std::vector<uint8_t> data_mask) {
+    if (!is_ad_type_filter_support_) {
+      LOG_ERROR("AD type filter isn't supported");
+      return;
+    }
+
     if (data.size() != data_mask.size()) {
       LOG_ERROR("ad type mask should have the same length as ad type data");
       return;
@@ -1230,6 +1240,10 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
     periodic_sync_manager_.SetScanningCallback(scanning_callbacks_);
   }
 
+  bool is_ad_type_filter_support() {
+    return is_ad_type_filter_support_;
+  }
+
   void on_set_scan_parameter_complete(CommandCompleteView view) {
     switch (view.GetCommandOpCode()) {
       case (OpCode::LE_SET_SCAN_PARAMETERS): {
@@ -1352,6 +1366,28 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
       } break;
       default:
         LOG_WARN("Unexpected event type %s", OpCodeText(view.GetCommandOpCode()).c_str());
+    }
+  }
+
+  void on_apcf_read_extended_features_complete(CommandCompleteView view) {
+    ASSERT(view.IsValid());
+    auto status_view = LeAdvFilterCompleteView::Create(view);
+    if (!status_view.IsValid()) {
+      LOG_WARN("Can not get valid LeAdvFilterCompleteView, return");
+      return;
+    }
+    if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+      LOG_WARN(
+          "Got a Command complete %s, status %s",
+          OpCodeText(view.GetCommandOpCode()).c_str(),
+          ErrorCodeText(status_view.GetStatus()).c_str());
+      return;
+    }
+    auto complete_view = LeAdvFilterReadExtendedFeaturesCompleteView::Create(status_view);
+    ASSERT(complete_view.IsValid());
+    if (complete_view.GetAdTypeFilter() == 1) {
+      is_ad_type_filter_support_ = true;
+      LOG_INFO("set is_ad_type_filter_support to true");
     }
   }
 
@@ -1497,6 +1533,7 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
   bool paused_ = false;
   AdvertisingCache advertising_cache_;
   bool is_filter_support_ = false;
+  bool is_ad_type_filter_support_ = false;
   bool is_batch_scan_support_ = false;
   bool is_periodic_advertising_sync_transfer_sender_support_ = false;
 
@@ -1664,6 +1701,10 @@ void LeScanningManager::TrackAdvertiser(uint8_t filter_index, ScannerId scanner_
 
 void LeScanningManager::RegisterScanningCallback(ScanningCallback* scanning_callback) {
   CallOn(pimpl_.get(), &impl::register_scanning_callback, scanning_callback);
+}
+
+bool LeScanningManager::IsAdTypeFilterSupport() const {
+  return pimpl_->is_ad_type_filter_support();
 }
 
 }  // namespace hci
