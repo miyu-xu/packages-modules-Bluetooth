@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "156aa5e8_6ce4855b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-05T16:46:38Z",
+      "side": 1,
+      "message": "That\u0027s the plan. My fault for not making this WIP.",
+      "parentUuid": "a81e429a_ded14ecc",
+      "revId": "8d0737a7748c6131a70b1a03c85919b6069c4043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d346815f_25b83413",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80e86f64_4ec54548",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-05T16:46:38Z",
+      "side": 1,
+      "message": "that will happen, this is WIP and it was easiest for prototyping",
+      "parentUuid": "d346815f_25b83413",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "8d0737a7748c6131a70b1a03c85919b6069c4043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9caca514_947e25f9",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-10-05T09:37:42Z",
       "side": 1,
       "message": "I\u0027m not sure we want to have this interfaces.\nI expect more the harness to handle logging than our interfaces.\nI would prefer that we do that from our Tradefed class (like redirect all logs to the android logcat).\nMy reasoning here is that having two log sources is something particular to Android and that we might do a better (generic) job at this inside tradefed than inside mmi2grpc.",
+      "revId": "8d0737a7748c6131a70b1a03c85919b6069c4043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1858c8c7_933b0bdd",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 48
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-05T16:46:38Z",
+      "side": 1,
+      "message": "Then we need to expose a port and run another grpc server or something on the tradefed process. I thought this was simpler.\n\nIf you\u0027d like, I\u0027ll make this some `Log_INTERNAL_DO_NOT_USE` and make all invocations go through some mmi2grpc utility function. Then we can repoint it at  tradefed and don\u0027t depend on it being in the interface. This will be done as part of the `_android_internal.proto` I\u0027m adding (which will also include the `InternalConnectionRef`).",
+      "parentUuid": "9caca514_947e25f9",
       "revId": "8d0737a7748c6131a70b1a03c85919b6069c4043",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
