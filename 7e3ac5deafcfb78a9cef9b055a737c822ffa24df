@@ -45,6 +45,30 @@
       },
       "revId": "7e3ac5deafcfb78a9cef9b055a737c822ffa24df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e2d964e_d1999205",
+        "filename": "tools/rootcanal/test/async_manager_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-10-05T23:47:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97ac4eed_13deea6f",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 2
+      },
+      "revId": "7e3ac5deafcfb78a9cef9b055a737c822ffa24df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
