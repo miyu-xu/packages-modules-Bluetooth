@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83dc07e7_8326a1c3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-05T18:44:19Z",
+      "side": 1,
+      "message": "I would prefer not to, since that makes it unclear how exactly the state transitions. The counter is ugly but it makes clear that this is a hack and makes the state changes really obvious, because it\u0027s obvious what we do on each iteration.\n\nThis test first bonds on classic (host.Connect), reconnects on classic (host.Connect), disconnects, connects on LE and bonds on LE (here, counter\u003d0), disconnects, and reconnects on LE  (here, counter\u003d1). So we\u0027d have to null out the classic connection on disconnection if we want this to work, which is not what we typically have done.\n\nThe reason why we unpair explicitly here is to clear the CTKD that we got on the classic bond. The reason why we start pairing here is because otherwise we disconnect before getting to the LE pair MMI due to timeout.",
+      "parentUuid": "1bcc2b4c_5a52f9f7",
+      "range": {
+        "startLine": 136,
+        "startChar": 12,
+        "endLine": 136,
+        "endChar": 33
+      },
+      "revId": "ca88bfe13787829381f51635f89363c6a746bb47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d4e164e_c6a7e913",
