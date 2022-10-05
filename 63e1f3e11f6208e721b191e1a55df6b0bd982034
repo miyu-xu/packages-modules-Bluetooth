@@ -22,6 +22,30 @@
       },
       "revId": "63e1f3e11f6208e721b191e1a55df6b0bd982034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbeeaa2b_9b5ce6f3",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-05T17:10:06Z",
+      "side": 1,
+      "message": "I thought I did :-D Thanks for catching it!",
+      "parentUuid": "90f24c6d_1dae5546",
+      "range": {
+        "startLine": 600,
+        "startChar": 1,
+        "endLine": 600,
+        "endChar": 17
+      },
+      "revId": "63e1f3e11f6208e721b191e1a55df6b0bd982034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
