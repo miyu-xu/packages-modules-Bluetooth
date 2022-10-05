@@ -323,13 +323,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       val address = request.address.decodeAsMacAddressToString()
       Log.i(TAG, "connect LE: $address")
       val device = scanLeDevice(address)!!
-      GattInstance(device, TRANSPORT_LE, context)
-
-      flow
-        .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
-        .filter { it.getBluetoothDeviceExtra() == device }
-        .first()
-
+      GattInstance(device!!, TRANSPORT_LE, context).waitForState(BluetoothProfile.STATE_CONNECTED)
       ConnectLEResponse.newBuilder()
         .setConnection(newConnection(device, Transport.TRANSPORT_LE))
         .build()
@@ -414,7 +408,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
           val callback =
             object : AdvertiseCallback() {
               override fun onStartSuccess(settingsInEffect: AdvertiseSettings) {
-                sendBlocking(
+                trySendBlocking(
                   StartAdvertisingResponse.newBuilder()
                     .setHandle(
                       AdvertisingHandle.newBuilder()
