@@ -39,6 +39,11 @@
         <option name="profile" value="GATT/CL/GAD" />
         <option name="profile" value="GATT/CL/GAR" />
         <option name="profile" value="GATT/CL/GAW" />
+        <option name="profile" value="GATT/SR/GAC" />
+        <option name="profile" value="GATT/SR/GAD" />
+        <option name="profile" value="GATT/SR/GAR" />
+        <option name="profile" value="GATT/SR/GAW" />
+        <option name="profile" value="GATT/SR/UNS" />
         <option name="profile" value="HFP/AG/DIS" />
         <option name="profile" value="HFP/AG/HFI" />
         <option name="profile" value="HFP/AG/PSI" />
