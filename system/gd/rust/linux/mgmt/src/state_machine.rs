@@ -55,6 +55,7 @@ pub enum AdapterStateActions {
     BluetoothStarted(i32, i32), // PID and HCI
     BluetoothStopped(i32),
     HciDevicePresence(i32, bool),
+    RestartBluetooth(i32),
 }
 
 /// Enum of all the messages that state machine handles.
@@ -145,6 +146,15 @@ impl StateMachineProxy {
         tokio::spawn(async move {
             let _ =
                 tx.send(Message::AdapterStateChange(AdapterStateActions::StopBluetooth(hci))).await;
+        });
+    }
+
+    pub fn restart_bluetooth(&self, hci: i32) {
+        let tx = self.tx.clone();
+        tokio::spawn(async move {
+            let _ = tx
+                .send(Message::AdapterStateChange(AdapterStateActions::RestartBluetooth(hci)))
+                .await;
         });
     }
 
@@ -629,6 +639,14 @@ pub async fn mainloop(
 
                         bluetooth_manager.lock().unwrap().callback_hci_device_change(hci, presence)
                     }
+                    AdapterStateActions::RestartBluetooth(i) => {
+                        hci = i;
+                        prev_state = context.state_machine.get_process_state(hci);
+                        next_state = ProcessState::TurningOn;
+
+                        let action = context.state_machine.action_restart_bluetooth(i);
+                        cmd_timeout.lock().unwrap().handle_timeout_action(hci, action);
+                    }
                 };
 
                 debug!(
@@ -997,6 +1015,28 @@ impl StateMachineInternal {
         // Desired adapter is either current or not present|enabled so leave the previous default
         // adapter.
         return AdapterChangeAction::DoNothing;
+    }
+
+    /// Returns true if we stop then start bluetooth process
+    pub fn action_restart_bluetooth(&mut self, hci: i32) -> CommandTimeoutAction {
+        if !self.is_known(hci) {
+            warn!("Attempting to stop unknown hci{}", hci);
+            return CommandTimeoutAction::DoNothing;
+        }
+
+        let state = self.get_process_state(hci);
+        let present = self.get_state(hci, move |a: &AdapterState| Some(a.present)).unwrap_or(false);
+        let floss_enabled = self.get_floss_enabled();
+
+        match state {
+            ProcessState::On if present && floss_enabled => {
+                self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::TurningOn);
+                self.process_manager.stop(hci.to_string());
+                self.process_manager.start(hci.to_string());
+                CommandTimeoutAction::ResetTimer
+            }
+            _ => CommandTimeoutAction::DoNothing,
+        }
     }
 
     /// Returns true if we are starting bluetooth process.
