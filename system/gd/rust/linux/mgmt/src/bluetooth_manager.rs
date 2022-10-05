@@ -186,6 +186,13 @@ impl IBluetoothExperimental for BluetoothManager {
             error!("Failed to write ll privacy status: {}", e);
             return;
         }
+
+        let hci_interface = self.get_default_adapter();
+        let virt_hci = VirtualHciIndex(hci_interface);
+
+        if self.is_adapter_enabled(virt_hci) {
+            self.proxy.restart_bluetooth(virt_hci);
+        }
     }
 
     fn set_devcoredump(&mut self, enabled: bool) -> bool {
