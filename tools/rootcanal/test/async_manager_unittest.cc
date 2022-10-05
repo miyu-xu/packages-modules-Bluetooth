@@ -125,6 +125,8 @@ class AsyncManagerSocketTest : public ::testing::Test {
   void SetUp() override {
     memset(server_buffer_, 0, kBufferSize);
     memset(client_buffer_, 0, kBufferSize);
+    socket_fd_ = -1;
+    connection_fd_ = -1;
 
     socket_fd_ = StartServer();
 
@@ -139,6 +141,7 @@ class AsyncManagerSocketTest : public ::testing::Test {
   void TearDown() override {
     async_manager_.StopWatchingFileDescriptor(socket_fd_);
     close(socket_fd_);
+    close(connection_fd_);
     ASSERT_EQ(std::string_view(server_buffer_, kBufferSize), std::string_view(client_buffer_, kBufferSize));
   }
 
@@ -193,6 +196,8 @@ TEST_F(AsyncManagerSocketTest, TestOneConnection) {
 }
 
 TEST_F(AsyncManagerSocketTest, CanUnsubscribeInCallback) {
+  using namespace std::chrono_literals;
+  
   int socket_cli_fd = ConnectClient();
   WriteFromClient(socket_cli_fd);
   AwaitServerResponse(socket_cli_fd);
@@ -211,6 +216,7 @@ TEST_F(AsyncManagerSocketTest, CanUnsubscribeInCallback) {
 
   while (!stopped) {
     write(socket_cli_fd, data.data(), data.size());
+    std::this_thread::sleep_for(5ms);
   }
 
   SUCCEED();
