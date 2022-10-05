@@ -182,9 +182,17 @@ impl IBluetoothExperimental for BluetoothManager {
             return;
         }
 
+        info!("Set floss ll privacy to {}", enabled);
         if let Err(e) = config_util::write_floss_ll_privacy_enabled(enabled) {
             error!("Failed to write ll privacy status: {}", e);
             return;
+        }
+
+        let hci_interface = self.get_default_adapter();
+        let virt_hci = VirtualHciIndex(hci_interface);
+
+        if self.is_adapter_enabled(virt_hci) {
+            self.proxy.restart_bluetooth(virt_hci);
         }
     }
 
