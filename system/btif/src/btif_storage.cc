@@ -30,12 +30,6 @@
 
 #define LOG_TAG "bt_btif_storage"
 
-constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
-#define PRIVATE_ADDRESS(addr)                                            \
-  (addr.ToString()                                                       \
-       .replace(0, strlen(kPrivateAddressPrefix), kPrivateAddressPrefix) \
-       .c_str())
-
 #include "btif_storage.h"
 
 #include <alloca.h>
@@ -1729,7 +1723,7 @@ btif_storage_get_hid_device_addresses(void) {
     btif_get_address_type(bd_addr, &type);
 
     hid_addresses.push_back({bd_addr, type});
-    LOG_DEBUG("Remote device: %s", PRIVATE_ADDRESS(bd_addr));
+    LOG_DEBUG("Remote device: %s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
   }
   return hid_addresses;
 }
