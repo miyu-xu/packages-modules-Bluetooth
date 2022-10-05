@@ -544,6 +544,8 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
     case L2CAP_CMD_CREDIT_BASED_CONN_REQ: {
       if (p + 10 > p_pkt_end) {
         LOG(ERROR) << "invalid L2CAP_CMD_CREDIT_BASED_CONN_REQ len";
+        l2cu_send_peer_cmd_reject(p_lcb, L2CAP_CMD_REJ_NOT_UNDERSTOOD, id, 0,
+                                  0);
         return;
       }
 
@@ -675,6 +677,8 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
     case L2CAP_CMD_CREDIT_BASED_CONN_RES:
       if (p + 8 > p_pkt_end) {
         LOG(ERROR) << "invalid L2CAP_CMD_CREDIT_BASED_CONN_RES len";
+        l2cu_send_peer_cmd_reject(p_lcb, L2CAP_CMD_REJ_NOT_UNDERSTOOD, id, 0,
+                                  0);
         return;
       }
 
@@ -816,7 +820,8 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
       break;
     case L2CAP_CMD_CREDIT_BASED_RECONFIG_REQ: {
       if (p + 6 > p_pkt_end) {
-        l2cu_send_ble_reconfig_rsp(p_lcb, id, L2CAP_RECONFIG_UNACCAPTED_PARAM);
+        l2cu_send_peer_cmd_reject(p_lcb, L2CAP_CMD_REJ_NOT_UNDERSTOOD, id, 0,
+                                  0);
         return;
       }
 
@@ -897,6 +902,8 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
       if (p + sizeof(uint16_t) > p_pkt_end) {
         android_errorWriteLog(0x534e4554, "212694559");
         LOG(ERROR) << "invalid read";
+        l2cu_send_peer_cmd_reject(p_lcb, L2CAP_CMD_REJ_NOT_UNDERSTOOD, id, 0,
+                                  0);
         return;
       }
       STREAM_TO_UINT16(result, p);
