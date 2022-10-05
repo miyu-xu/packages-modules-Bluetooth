@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90f24c6d_1dae5546",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-05T17:08:48Z",
+      "side": 1,
+      "message": "Let\u0027s remove these here instead of in the next CL.  We\u0027ve been cherry-picking a lot of things lately, and I think this will confuse people.",
+      "range": {
+        "startLine": 600,
+        "startChar": 1,
+        "endLine": 600,
+        "endChar": 17
+      },
+      "revId": "63e1f3e11f6208e721b191e1a55df6b0bd982034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
