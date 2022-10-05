@@ -614,4 +614,11 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       GetDeviceNameResponse.newBuilder().setName(device.name).build()
     }
   }
+
+  override fun log(request: LogRequest, responseObserver: StreamObserver<LogResponse>) {
+    grpcUnary(scope, responseObserver) {
+      Log.i(TAG, request.text)
+      LogResponse.getDefaultInstance()
+    }
+  }
 }

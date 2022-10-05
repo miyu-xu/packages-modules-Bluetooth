@@ -34,7 +34,7 @@ NEEDS_CACHE_CLEARED = {
 class GATTProxy(ProfileProxy):
 
     def __init__(self, channel):
-        super().__init__()
+        super().__init__(channel)
         self.gatt = GATT(channel)
         self.host = Host(channel)
         self.connection = None
