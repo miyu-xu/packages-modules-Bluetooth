@@ -87,7 +87,8 @@ class VolumeControlDevice {
 
   void DebugDump(int fd) {
     std::stringstream stream;
-    stream << "   == device address: " << address << " == \n";
+    stream << "   == device address: " << ADDRESS_TO_LOGGABLE_STR(address)
+           << " == \n";
 
     if (connection_id == GATT_INVALID_CONN_ID)
       stream << "    Not connected\n";
