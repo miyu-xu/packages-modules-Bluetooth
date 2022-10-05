@@ -1824,6 +1824,7 @@ tBTM_STATUS BTM_ClearEventFilter(void);
 
 /*******************************************************************************
  *
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
  * Function         BTM_ClearEventMask
  *
  * Description      Clears the event mask in the controller
@@ -1923,6 +1924,14 @@ tBTM_STATUS BTM_SetDefaultEventMask(void);
  *
  *******************************************************************************/
 tBTM_STATUS BTM_SetEventFilterInquiryResultAllDevices(void);
+=======
+ * Function         BTM_BleResetId
+ *
+ * Description      Resets the local BLE keys
+ *
+ *******************************************************************************/
+tBTM_STATUS BTM_BleResetId(void);
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
 
 /**
  * Send remote name request to GD shim Name module

@@ -1433,10 +1433,13 @@ static void btif_get_existing_uuids(RawAddress* bd_addr, Uuid* existing_uuids) {
   btif_storage_get_remote_device_property(bd_addr, &tmp_prop);
 }
 
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
 static bool btif_should_ignore_uuid(const Uuid& uuid) {
   return uuid.IsEmpty() || uuid.IsBase();
 }
 
+=======
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
 /*******************************************************************************
  *
  * Function         btif_dm_search_services_evt
@@ -1479,7 +1482,11 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         LOG_INFO("New UUIDs for %s:", bd_addr.ToString().c_str());
         for (i = 0; i < p_data->disc_res.num_uuids; i++) {
           auto uuid = p_data->disc_res.p_uuid_list + i;
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
           if (btif_should_ignore_uuid(*uuid)) {
+=======
+          if (uuid->IsEmpty()) {
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
             continue;
           }
           LOG_INFO("index:%d uuid:%s", i, uuid->ToString().c_str());
@@ -1491,7 +1498,11 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
 
         for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
           Uuid uuid = existing_uuids[i];
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
           if (btif_should_ignore_uuid(uuid)) {
+=======
+          if (uuid.IsEmpty()) {
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
             continue;
           }
           if (btif_is_interesting_le_service(uuid)) {
@@ -1579,7 +1590,11 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       LOG_INFO("New BLE UUIDs for %s:", bd_addr.ToString().c_str());
       for (Uuid uuid : *p_data->disc_ble_res.services) {
         if (btif_is_interesting_le_service(uuid)) {
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
           if (btif_should_ignore_uuid(uuid)) {
+=======
+          if (uuid.IsEmpty()) {
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
             continue;
           }
           LOG_INFO("index:%d uuid:%s", static_cast<int>(uuids.size()),

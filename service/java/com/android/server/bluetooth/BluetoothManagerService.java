@@ -2983,6 +2983,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                 newState = PackageManager.COMPONENT_ENABLED_STATE_DEFAULT;
             }
 
+<<<<<<< HEAD   (fcacec Merge "le_audio: Disable ASEs after 3sec from suspend reques)
             // Bluetooth OPP activities that should always be enabled,
             // even when Bluetooth is turned OFF.
             ArrayList<String> baseBluetoothOppActivities = new ArrayList<String>() {
@@ -3039,6 +3040,46 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
 
             Log.e(TAG,
                     "Cannot toggle Bluetooth OPP activities, could not find them in any package");
+=======
+            String launcherActivity = "com.android.bluetooth.opp.BluetoothOppLauncherActivity";
+
+            PackageManager packageManager = mContext.createContextAsUser(userHandle, 0)
+                                                        .getPackageManager();
+            var allPackages = packageManager.getPackagesForUid(Process.BLUETOOTH_UID);
+            for (String candidatePackage : allPackages) {
+                PackageInfo packageInfo;
+                try {
+                    // note: we need the package manager for the SYSTEM user, not our userHandle
+                    packageInfo = mContext.getPackageManager().getPackageInfo(
+                        candidatePackage,
+                        PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES));
+                } catch (PackageManager.NameNotFoundException e) {
+                    // ignore, try next package
+                    Log.e(TAG, "Could not find package " + candidatePackage);
+                    continue;
+                } catch (Exception e) {
+                    Log.e(TAG, "Error while loading package" + e);
+                    continue;
+                }
+                if (packageInfo.activities == null) {
+                    continue;
+                }
+                for (var activity : packageInfo.activities) {
+                    if (launcherActivity.equals(activity.name)) {
+                        final ComponentName oppLauncherComponent = new ComponentName(
+                                candidatePackage, launcherActivity
+                        );
+                        packageManager.setComponentEnabledSetting(
+                                oppLauncherComponent, newState, PackageManager.DONT_KILL_APP
+                        );
+                        return;
+                    }
+                }
+            }
+
+            Log.e(TAG,
+                    "Cannot toggle BluetoothOppLauncherActivity, could not find it in any package");
+>>>>>>> BRANCH (80e818 Merge cherrypicks of [19747508] into tm-release.)
         } catch (Exception e) {
             Log.e(TAG, "updateOppLauncherComponentState failed: " + e);
         }
