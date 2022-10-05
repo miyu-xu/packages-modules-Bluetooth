@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4511d4b_b899b7c0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T05:38:45Z",
+      "side": 1,
+      "message": "What about bluetooth/util/CursorUtil.java?",
+      "revId": "01c359410f32910fa75b89580a2a40929118ae11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c0a954c_534e98c9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T05:38:45Z",
+      "side": 1,
+      "message": "CusorMockData",
+      "range": {
+        "startLine": 38,
+        "startChar": 24,
+        "endLine": 38,
+        "endChar": 46
+      },
+      "revId": "01c359410f32910fa75b89580a2a40929118ae11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa473d2_befe336c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T05:38:45Z",
+      "side": 1,
+      "message": "mColumnIndex",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "01c359410f32910fa75b89580a2a40929118ae11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71de4662_1608f452",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T05:38:45Z",
+      "side": 1,
+      "message": "Please include mColumnName as well",
+      "revId": "01c359410f32910fa75b89580a2a40929118ae11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8be0d32a_3b0ebe7c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T05:38:45Z",
+      "side": 1,
+      "message": "Can we get List instead?",
+      "range": {
+        "startLine": 64,
+        "startChar": 27,
+        "endLine": 64,
+        "endChar": 62
+      },
+      "revId": "01c359410f32910fa75b89580a2a40929118ae11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
