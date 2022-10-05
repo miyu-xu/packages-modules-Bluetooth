@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddf91281_2778d8f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:52:21Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. b/251058819 is created for tracking the work.",
+      "parentUuid": "858fe9b5_ff76d9f0",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "646e9486_5ec344a4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-03T23:44:47Z",
       "side": 1,
       "message": "Nit: Use the same pattern as HFP. Not sure why the let is required here.",
+      "range": {
+        "startLine": 450,
+        "startChar": 16,
+        "endLine": 450,
+        "endChar": 90
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed19247c_b3daf120",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "646e9486_5ec344a4",
       "range": {
         "startLine": 450,
         "startChar": 16,
@@ -116,6 +164,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "444f8853_b0ba2625",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:52:21Z",
+      "side": 1,
+      "message": "Good suggestion. Done.",
+      "parentUuid": "96d23b4d_a8e76e91",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 21
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0edf70c_0cd6a9fa",
@@ -139,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ab46cf_5366e184",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0edf70c_0cd6a9fa",
+      "range": {
+        "startLine": 206,
+        "startChar": 11,
+        "endLine": 206,
+        "endChar": 22
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9962e22d_1dee794b",
@@ -152,6 +248,30 @@
       "writtenOn": "2022-10-03T23:44:47Z",
       "side": 1,
       "message": "Is it possible that we have delay_enable to be true but need to disable it?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 39
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b22d68d7_b482da6a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:52:21Z",
+      "side": 1,
+      "message": "Yes, and it is handled in disable_*. The logic is to disable the profile and set the delay flag to false.",
+      "parentUuid": "9962e22d_1dee794b",
       "range": {
         "startLine": 237,
         "startChar": 0,
