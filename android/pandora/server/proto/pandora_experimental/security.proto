@@ -20,6 +20,8 @@ service Security {
   rpc OnPairing(stream PairingEventAnswer) returns (stream PairingEvent);
   // Remove pairing.
   rpc DeletePairing(DeletePairingRequest) returns (DeletePairingResponse);
+  // Set pairing configuration
+  rpc SetPairingConfig(SetPairingConfigRequest) returns (google.protobuf.Empty);
 }
 
 message PairRequest {
@@ -82,3 +84,36 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+enum IOCapability {
+  DISPLAY_ONLY = 0;
+  DISPLAY_YES_NO = 1;
+  KEYBOARD_ONLY = 2;
+  NO_INPUT_NO_OUTPUT = 3;
+  KEYBOARD_DISPLAY = 4;
+}
+
+enum OutOfBandData {
+  NOT_PRESENT = 0;
+  P_192 = 1;
+  P_256 = 2;
+  P_192_AND_P_256 = 3;
+}
+
+enum SmpKeyType {
+  UNKNOWN = 0x00;
+  ENC_KEY = 0x01;
+  ID_KEY = 0x02;
+  SIGN_KEY = 0x04;
+  LINK_KEY = 0x08;
+}
+
+message SetPairingConfigRequest {
+  IOCapability io_capability = 1;
+  OutOfBandData oob_data = 2;
+  bool bonding = 3;
+  bool mitm_required = 4;
+  bool secure_connection_supported = 5;
+  repeated SmpKeyType initiator_key_distribution = 6;
+  repeated SmpKeyType responder_key_distribution = 7;
+}
