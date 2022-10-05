@@ -22,6 +22,30 @@
       },
       "revId": "0bc268afabc34540159dd72590630d48c018986e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0daf7080_f4d74cd9",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-05T16:54:24Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "3ce1b239_3cc27f6e",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 1
+      },
+      "revId": "0bc268afabc34540159dd72590630d48c018986e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

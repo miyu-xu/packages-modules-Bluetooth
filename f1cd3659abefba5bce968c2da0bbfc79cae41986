@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97c8c6f9_99e5135c",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_base_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-05T16:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b8eb278_cf2fc8aa",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 53
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20762cf1_67960989",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-30T12:41:06Z",
       "side": 1,
       "message": "Do we need this indirection?  It adds a lot of parenthesis, but I\u0027m not sure what else it does.",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 25
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3fa6dee_5a5efaae",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_base_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-05T16:54:24Z",
+      "side": 1,
+      "message": "It ensures the dut device never gets overwritten by something else since all of the access will be encapsulated through this function. (I\u0027m a fan of encapsulation)\n\nthe __ will make the variable \"private\" and only allow outside access through the getter.\n\nand rather than get_dut() I opted just for dut().",
+      "parentUuid": "20762cf1_67960989",
       "range": {
         "startLine": 187,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbe4eb13_94a4d3f8",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-05T16:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e26d30b_3b9d44e5",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 39
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4246941_e21ccfb0",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-09-29T19:08:21Z",
       "side": 1,
       "message": "remove LOG_ERROR",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 619,
+        "endChar": 23
+      },
+      "revId": "f1cd3659abefba5bce968c2da0bbfc79cae41986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e6e2be_c8042fd2",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-05T16:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4246941_e21ccfb0",
       "range": {
         "startLine": 600,
         "startChar": 0,
