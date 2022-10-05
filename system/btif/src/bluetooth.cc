@@ -261,7 +261,10 @@ int get_common_criteria_config_compare_result() {
 bool is_atv_device() { return is_local_device_atv; }
 
 static int get_adapter_properties(void) {
-  if (!btif_is_enabled()) return BT_STATUS_NOT_READY;
+  if (!btif_is_enabled()) {
+    LOG_WARN("btif module is not ready");
+    return BT_STATUS_NOT_READY;
+  }
 
   do_in_main_thread(FROM_HERE, base::BindOnce(btif_get_adapter_properties));
   return BT_STATUS_SUCCESS;
@@ -270,15 +273,20 @@ static int get_adapter_properties(void) {
 static int get_adapter_property(bt_property_type_t type) {
   /* Allow get_adapter_property only for BDADDR and BDNAME if BT is disabled */
   if (!btif_is_enabled() && (type != BT_PROPERTY_BDADDR) &&
-      (type != BT_PROPERTY_BDNAME) && (type != BT_PROPERTY_CLASS_OF_DEVICE))
+      (type != BT_PROPERTY_BDNAME) && (type != BT_PROPERTY_CLASS_OF_DEVICE)) {
+    LOG_WARN("btif module is not ready");
     return BT_STATUS_NOT_READY;
+  }
 
   do_in_main_thread(FROM_HERE, base::BindOnce(btif_get_adapter_property, type));
   return BT_STATUS_SUCCESS;
 }
 
 static int set_adapter_property(const bt_property_t* property) {
-  if (!btif_is_enabled()) return BT_STATUS_NOT_READY;
+  if (!btif_is_enabled()) {
+    LOG_WARN("btif module is not ready");
+    return BT_STATUS_NOT_READY;
+  }
 
   switch (property->type) {
     case BT_PROPERTY_BDNAME:
@@ -302,7 +310,10 @@ static int set_adapter_property(const bt_property_t* property) {
 }
 
 int get_remote_device_properties(RawAddress* remote_addr) {
-  if (!btif_is_enabled()) return BT_STATUS_NOT_READY;
+  if (!btif_is_enabled()) {
+    LOG_WARN("btif module is not ready");
+    return BT_STATUS_NOT_READY;
+  }
 
   do_in_main_thread(FROM_HERE, base::BindOnce(btif_get_remote_device_properties,
                                               *remote_addr));
@@ -311,7 +322,10 @@ int get_remote_device_properties(RawAddress* remote_addr) {
 
 int get_remote_device_property(RawAddress* remote_addr,
                                bt_property_type_t type) {
-  if (!btif_is_enabled()) return BT_STATUS_NOT_READY;
+  if (!btif_is_enabled()) {
+    LOG_WARN("btif module is not ready");
+    return BT_STATUS_NOT_READY;
+  }
 
   do_in_main_thread(FROM_HERE, base::BindOnce(btif_get_remote_device_property,
                                               *remote_addr, type));
@@ -629,8 +643,10 @@ static const void* get_profile_interface(const char* profile_id) {
 
 int dut_mode_configure(uint8_t enable) {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
-  if (!stack_manager_get_interface()->get_stack_is_running())
+  if (!stack_manager_get_interface()->get_stack_is_running()) {
+    LOG_WARN("Stack is not running");
     return BT_STATUS_NOT_READY;
+  }
 
   do_in_main_thread(FROM_HERE, base::BindOnce(btif_dut_mode_configure, enable));
   return BT_STATUS_SUCCESS;
