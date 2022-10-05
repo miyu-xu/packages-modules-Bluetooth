@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26d9a884_dd8185e2",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-05T01:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bac9ba59_bded6571",
+      "revId": "f38078c4283d70d29dbf0da8260df6b345faebfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83d7659a_fbce8fde",
