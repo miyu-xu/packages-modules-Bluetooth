@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ac4eed_13deea6f",
+        "filename": "tools/rootcanal/test/async_manager_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1087303
+      },
+      "writtenOn": "2022-10-05T17:21:44Z",
+      "side": 1,
+      "message": "nit: space",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 2
+      },
+      "revId": "7e3ac5deafcfb78a9cef9b055a737c822ffa24df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
