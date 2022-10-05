@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a804aca7_0ffe173d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-05T09:35:40Z",
+      "side": 1,
+      "message": "Actually, as per BAP1.1spec:\n\nIf the Peripheral is in a GAP Discoverable mode over both the LE transport and the BR/EDR transport (as defined in Section 8.2.1) and the Peripheral supports CTKD over BR/EDR to derive an LE LTK, then the Peripheral may use a random device address in the advertising set that exposes the discoverable mode over LE.\n\n\nSo this would break Pairing to those devices, so this patch can\u0027t be merged",
+      "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4856f5a_68259920",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 2
@@ -14,6 +31,24 @@
       "writtenOn": "2022-10-04T22:35:53Z",
       "side": 1,
       "message": "Why can\u0027t we do `return get_cod(\u0026remote_bdaddr) \u0026 COD_CLASS_LE_AUDIO;`?",
+      "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99874d76_377e67d4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-05T09:35:40Z",
+      "side": 1,
+      "message": "because get_cod uses COD_MASK, and filters out LE Audio bit",
+      "parentUuid": "b4856f5a_68259920",
       "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
