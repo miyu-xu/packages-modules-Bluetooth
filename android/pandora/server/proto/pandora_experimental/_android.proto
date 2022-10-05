@@ -4,13 +4,13 @@ option java_outer_classname = "AndroidProto";
 
 package pandora;
 
-import "google/protobuf/empty.proto";
+import "pandora_experimental/host.proto";
 
 // This file contains Android-specific protos and rpcs that should not be part
 // of the general interface. They should not be invoked from MMIs directly since
 // this will couple them too tightly with Android.
 
-// Service for Android-specific operations. 
+// Service for Android-specific operations.
 service Android {
   // Log text (for utility only)
   rpc Log(LogRequest) returns (LogResponse);
@@ -21,3 +21,10 @@ message LogRequest {
 }
 
 message LogResponse {}
+
+// Internal representation of a Connection - not exposed to clients, included here
+// just for code-generation convenience. This is what we put in the Connection.cookie.
+message InternalConnectionRef {
+  bytes address = 1;
+  Transport transport = 2;
+}
