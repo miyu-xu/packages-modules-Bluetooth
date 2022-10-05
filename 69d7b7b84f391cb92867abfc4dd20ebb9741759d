@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ea6762d_c5e74613",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-05T22:22:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9635b972_5ff2cba7",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10a8fe85_ac4c8947",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "As I looked back at this I realized the original objective was to get access to `on_device_connected` without needing to hold a reference to this object so I\u0027ll move it up to where that callback is invoked anyway.",
       "parentUuid": "10a8fe85_ac4c8947",
+      "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7240b36_06ad0889",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-05T22:22:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6700fad9_9b12690d",
       "revId": "69d7b7b84f391cb92867abfc4dd20ebb9741759d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
