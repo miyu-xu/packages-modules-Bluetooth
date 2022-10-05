@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf188a9_6635740b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-05T22:56:52Z",
+      "side": 1,
+      "message": "It might be easier to read by moving this into line 223 and have an early return.\n\nAnd the match at 226 can be simplified to a if and else like\n```\nif profile_is_enabled\n  self.delay_enable_profiles.remove(profile);\nelse \n  self.delay_enable_profiles.insert(profile);\n```",
+      "range": {
+        "startLine": 234,
+        "startChar": 16,
+        "endLine": 234,
+        "endChar": 72
+      },
+      "revId": "86d65806ae177c1c43a983aee4c90978b1b40371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab9f2c9e_63c91460",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-05T22:56:52Z",
+      "side": 1,
+      "message": "NIT",
+      "range": {
+        "startLine": 266,
+        "startChar": 36,
+        "endLine": 266,
+        "endChar": 37
+      },
+      "revId": "86d65806ae177c1c43a983aee4c90978b1b40371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a952597a_e2e9d6bf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-05T22:56:52Z",
+      "side": 1,
+      "message": "Is it possible that disable_profile(avrcp) gets called before BluetoothMedia init?\n\nAlso, may you provide the context why we default to enable AVRCP here?",
+      "range": {
+        "startLine": 816,
+        "startChar": 0,
+        "endLine": 817,
+        "endChar": 51
+      },
+      "revId": "86d65806ae177c1c43a983aee4c90978b1b40371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
