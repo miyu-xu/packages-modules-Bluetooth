@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12890d45_f5b1c7c8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:51:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f1f0fac_b2954ebd",
+      "range": {
+        "startLine": 623,
+        "startChar": 67,
+        "endLine": 623,
+        "endChar": 76
+      },
+      "revId": "34f90c14344364d9a054c1c03a1ba954a397f2ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22c9c55d_777a1eb8",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-03T22:06:38Z",
       "side": 1,
       "message": "similarly, `on_device_found` can borrow read-only reference `\u0026BluetoothDevice` so there is no need to clone.",
+      "revId": "34f90c14344364d9a054c1c03a1ba954a397f2ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2087a85_8a1b4901",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:51:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22c9c55d_777a1eb8",
       "revId": "34f90c14344364d9a054c1c03a1ba954a397f2ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -112,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "777cb4e9_f3ab8206",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:51:26Z",
+      "side": 1,
+      "message": "Yes, I want to call the callbacks only if the policy effect changed. The logic is\n\nif it\u0027s an old device \u003d\u003e do nothing; actually might be a bug since the device is found twice.\nif it\u0027s a new device \u003d\u003e tell the client that the device effect is None, it should be changed once the SDP is done and on_remote_device_properties_changed should be called.\n\nIf we don\u0027t want the callback in here, clients will need to call GetDevicePolicyEffect on every new device or just assume it\u0027s None. I think both ways are ok for me.",
+      "parentUuid": "d261ab49_af861961",
+      "range": {
+        "startLine": 167,
+        "startChar": 76,
+        "endLine": 172,
+        "endChar": 11
+      },
+      "revId": "34f90c14344364d9a054c1c03a1ba954a397f2ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eeaf8318_0e201143",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
         "patchSetId": 5
@@ -123,6 +189,30 @@
       "writtenOn": "2022-10-03T22:06:38Z",
       "side": 1,
       "message": "nit: no need to clone if this is a reference borrow anyway",
+      "range": {
+        "startLine": 192,
+        "startChar": 75,
+        "endLine": 192,
+        "endChar": 83
+      },
+      "revId": "34f90c14344364d9a054c1c03a1ba954a397f2ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f905f91_4e8e0b2d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_admin.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-05T08:51:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eeaf8318_0e201143",
       "range": {
         "startLine": 192,
         "startChar": 75,
