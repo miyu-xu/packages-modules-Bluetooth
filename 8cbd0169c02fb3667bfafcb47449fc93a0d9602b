@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e44a55a_2d267661",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingElementTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-05T04:29:11Z",
+      "side": 1,
+      "message": "Added 2 elements and changed tests accordingly.",
+      "parentUuid": "fda6a253_a026f842",
+      "range": {
+        "startLine": 57,
+        "startChar": 56,
+        "endLine": 57,
+        "endChar": 69
+      },
+      "revId": "8cbd0169c02fb3667bfafcb47449fc93a0d9602b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71340de3_10ac722e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-04T00:50:02Z",
       "side": 1,
       "message": "TEST_VERSION_COUNTER + 1",
+      "range": {
+        "startLine": 100,
+        "startChar": 66,
+        "endLine": 100,
+        "endChar": 67
+      },
+      "revId": "8cbd0169c02fb3667bfafcb47449fc93a0d9602b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3391294_35a20045",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingElementTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-05T04:29:11Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "71340de3_10ac722e",
       "range": {
         "startLine": 100,
         "startChar": 66,
