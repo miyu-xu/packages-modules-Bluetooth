@@ -117,40 +117,30 @@ impl ISuspend for Suspend {
 
     fn suspend(&self, suspend_type: SuspendType) {
         // self.was_a2dp_connected = TODO(230604670): check if A2DP is connected
-        // self.current_advertiser_ids = TODO(224603198): save all advertiser ids
         self.intf.lock().unwrap().clear_event_mask();
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
         // self.gatt.lock().unwrap().advertising_disable(); TODO(224602924): suspend all adv.
-        self.gatt.lock().unwrap().stop_scan(0);
+        // self.gatt.lock().unwrap().stop_scan(0); TODO(22460294): stop all scanning
         self.intf.lock().unwrap().disconnect_all_acls();
 
         // Handle wakeful cases (Connected/Other)
         // Treat Other the same as Connected
         match suspend_type {
             SuspendType::AllowWakeFromHid => {
-                // TODO(231345733): API For allowing classic HID only
+                self.intf.lock().unwrap().allow_wake_by_hid();
                 // TODO(230604670): check if A2DP is connected
                 // TODO(224603198): save all advertiser information
             }
-            SuspendType::NoWakesAllowed => {
-                self.intf.lock().unwrap().clear_event_filter();
-                self.intf.lock().unwrap().clear_event_mask();
-            }
-            _ => {
-                self.intf.lock().unwrap().allow_wake_by_hid();
-            }
+            _ => {}
         }
-        self.intf.lock().unwrap().clear_filter_accept_list();
-        self.intf.lock().unwrap().disconnect_all_acls();
-        self.intf.lock().unwrap().le_rand();
         // Wait on LE Rand before firing callbacks
-        let (p, mut c) = OneShotChannel::<u64>();
+        let (p, mut _c) = OneShotChannel::<u64>();
         self.bt.lock().unwrap().le_rand(p);
-        let rt = topstack::get_runtime();
-        rt.block_on(async {
-            let _ = c.try_recv();
-        });
+        //        let rt = topstack::get_runtime();
+        //        rt.block_on(async {
+        //            let _ = c.try_recv();
+        //        });
         self.callbacks.for_all_callbacks(|callback| {
             callback.on_suspend_ready(1 as u32);
         });
@@ -162,7 +152,6 @@ impl ISuspend for Suspend {
         self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
         if self.is_connected_suspend {
             if self.was_a2dp_connected {
-                // TODO(230604670): self.intf.lock().unwrap().restore_filter_accept_list();
                 // TODO(230604670): reconnect to a2dp device
             }
             // TODO(224603198): start all advertising again
