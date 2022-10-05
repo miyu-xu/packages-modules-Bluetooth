@@ -189,8 +189,10 @@ bt_status_t btif_queue_connect_next(void) {
   CHECK(is_on_jni_thread());
 
   if (connect_queue.empty()) return BT_STATUS_FAIL;
-  if (!stack_manager_get_interface()->get_stack_is_running())
+  if (!stack_manager_get_interface()->get_stack_is_running()) {
+    LOG_WARN("Stack is not running");
     return BT_STATUS_FAIL;
+  }
 
   ConnectNode& head = connect_queue.front();
 
