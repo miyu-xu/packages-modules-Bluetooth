@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43dea101_c2196e71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-05T17:28:42Z",
+      "side": 1,
+      "message": "nit: drown?",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "7e3ac5deafcfb78a9cef9b055a737c822ffa24df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97ac4eed_13deea6f",
         "filename": "tools/rootcanal/test/async_manager_unittest.cc",
         "patchSetId": 2
