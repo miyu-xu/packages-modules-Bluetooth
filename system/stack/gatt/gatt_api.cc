@@ -1289,7 +1289,8 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, bool is_direct,
                ADDRESS_TO_LOGGABLE_CSTR(bd_addr), +gatt_if);
       ret = false;
     } else {
-      LOG_DEBUG("Adding to accept list device:%s", PRIVATE_ADDRESS(bd_addr));
+      LOG_DEBUG("Adding to accept list device:%s",
+                ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
       ret = connection_manager::background_connect_add(gatt_if, bd_addr);
     }
   }
