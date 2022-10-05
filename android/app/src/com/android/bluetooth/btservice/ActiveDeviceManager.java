@@ -44,6 +44,7 @@ import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -116,6 +117,8 @@ class ActiveDeviceManager {
     private static final int MESSAGE_HEARING_AID_ACTION_ACTIVE_DEVICE_CHANGED = 6;
     private static final int MESSAGE_LE_AUDIO_ACTION_ACTIVE_DEVICE_CHANGED = 7;
 
+    private static final int PROFILE_FOR_PHONE = -1;
+
     private final AdapterService mAdapterService;
     private final ServiceFactory mFactory;
     private HandlerThread mHandlerThread = null;
@@ -129,6 +132,7 @@ class ActiveDeviceManager {
     private BluetoothDevice mHfpActiveDevice = null;
     private BluetoothDevice mHearingAidActiveDevice = null;
     private BluetoothDevice mLeAudioActiveDevice = null;
+    private final ActivatedDevicePriorityStack mActivatedDevices;
 
     // Broadcast receiver for all changes
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -221,7 +225,10 @@ class ActiveDeviceManager {
                             // New connected device: select it as active
                             setA2dpActiveDevice(device);
                             setLeAudioActiveDevice(null);
-                            break;
+                            mActivatedDevices.updateWithTopPriority(BluetoothProfile.A2DP, device);
+                        } else {
+                            mActivatedDevices.updateWithSecondPriority(
+                                    BluetoothProfile.A2DP, device);
                         }
                         break;
                     }
@@ -233,9 +240,11 @@ class ActiveDeviceManager {
                                     + "device " + device + " disconnected");
                         }
                         mA2dpConnectedDevices.remove(device);
+                        mActivatedDevices.remove(BluetoothProfile.A2DP, device);
                         if (mA2dpConnectedDevices.isEmpty()
                                 && Objects.equals(mA2dpActiveDevice, device)) {
                             setA2dpActiveDevice(null);
+                            mActivatedDevices.setFallbackDeviceActive();
                         }
                     }
                 }
@@ -255,6 +264,7 @@ class ActiveDeviceManager {
                     }
                     // Just assign locally the new value
                     mA2dpActiveDevice = device;
+                    mActivatedDevices.updateWithTopPriority(BluetoothProfile.A2DP, device);
                 }
                 break;
 
@@ -283,7 +293,11 @@ class ActiveDeviceManager {
                             // New connected device: select it as active
                             setHfpActiveDevice(device);
                             setLeAudioActiveDevice(null);
-                            break;
+                            mActivatedDevices.updateWithTopPriority(
+                                    BluetoothProfile.HEADSET, device);
+                        } else {
+                            mActivatedDevices.updateWithSecondPriority(
+                                    BluetoothProfile.A2DP, device);
                         }
                         break;
                     }
@@ -295,9 +309,11 @@ class ActiveDeviceManager {
                                     + "device " + device + " disconnected");
                         }
                         mHfpConnectedDevices.remove(device);
+                        mActivatedDevices.remove(BluetoothProfile.HEADSET, device);
                         if (mHfpConnectedDevices.isEmpty()
                                 && Objects.equals(mHfpActiveDevice, device)) {
                             setHfpActiveDevice(null);
+                            mActivatedDevices.setFallbackDeviceActive();
                         }
                     }
                 }
@@ -317,6 +333,7 @@ class ActiveDeviceManager {
                     }
                     // Just assign locally the new value
                     mHfpActiveDevice = device;
+                    mActivatedDevices.updateWithTopPriority(BluetoothProfile.HEADSET, device);
                 }
                 break;
 
@@ -335,6 +352,7 @@ class ActiveDeviceManager {
                         setHfpActiveDevice(null);
                         setLeAudioActiveDevice(null);
                     }
+                    mActivatedDevices.updateWithTopPriority(BluetoothProfile.HEARING_AID, device);
                 }
                 break;
 
@@ -353,6 +371,7 @@ class ActiveDeviceManager {
                         setHearingAidActiveDevice(null);
                     }
                     mLeAudioActiveDevice = device;
+                    mActivatedDevices.updateWithTopPriority(BluetoothProfile.LE_AUDIO, device);
                 }
                 break;
             }
@@ -400,11 +419,104 @@ class ActiveDeviceManager {
         }
     }
 
+    private class ActivatedDevicePriorityStack {
+        private final List<BluetoothDevice> mActivatedDevice = new ArrayList<>();
+        private final List<Integer> mActivatedProfile = new ArrayList<>();
+
+        ActivatedDevicePriorityStack() {
+            // Phone should be always in the list.
+            mActivatedProfile.add(PROFILE_FOR_PHONE);
+            mActivatedDevice.add(null);
+        }
+
+        void updateWithTopPriority(int profile, BluetoothDevice device) {
+            if (device == null && profile != PROFILE_FOR_PHONE) {
+                return;
+            }
+            remove(profile, device);
+            mActivatedProfile.add(profile);
+            mActivatedDevice.add(device);
+        }
+
+        void updateWithSecondPriority(int profile, BluetoothDevice device) {
+            if (device == null && profile != PROFILE_FOR_PHONE) {
+                return;
+            }
+            remove(profile, device);
+            int size = mActivatedProfile.size();
+            for (int i = size - 2; i >= 0; i--) {
+                if (mActivatedProfile.get(i) != BluetoothProfile.HEARING_AID) {
+                    mActivatedProfile.add(i + 1, profile);
+                    mActivatedDevice.add(i + 1, device);
+                    break;
+                }
+            }
+        }
+
+        void setFallbackDeviceActive() {
+            // Make hearing aid active if any
+            for (int i = mActivatedProfile.size() - 1; i >= 0; i--) {
+                if (mActivatedProfile.get(i) == BluetoothProfile.HEARING_AID
+                        && setHearingAidActiveDevice(mActivatedDevice.get(i))) {
+                    return;
+                }
+            }
+
+            int profile;
+            BluetoothDevice device;
+            for (int i = mActivatedProfile.size() - 1; i >= 0; i--) {
+                profile = mActivatedProfile.get(i);
+                device = mActivatedDevice.get(i);
+                switch (profile) {
+                    case BluetoothProfile.A2DP:
+                        if (setA2dpActiveDevice(device)) {
+                            updateWithTopPriority(profile, device);
+                            return;
+                        }
+                        break;
+                    case BluetoothProfile.HEADSET:
+                        if (setHfpActiveDevice(device)) {
+                            updateWithTopPriority(profile, device);
+                            return;
+                        }
+                        break;
+                    case BluetoothProfile.LE_AUDIO:
+                        if (setLeAudioActiveDevice(device)) {
+                            updateWithTopPriority(profile, device);
+                            return;
+                        }
+                        break;
+                }
+            }
+            updateWithTopPriority(PROFILE_FOR_PHONE, null);
+        }
+
+        boolean remove(int profile, BluetoothDevice device) {
+            for (int i = mActivatedDevice.size() - 1; i >= 0; i--) {
+                if (profile == mActivatedProfile.get(i)
+                        && Objects.equals(device, mActivatedDevice.get(i))) {
+                    mActivatedProfile.remove(i);
+                    mActivatedDevice.remove(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        void clear() {
+            mActivatedProfile.clear();
+            mActivatedDevice.clear();
+            mActivatedProfile.add(PROFILE_FOR_PHONE);
+            mActivatedDevice.add(null);
+        }
+    }
+
     ActiveDeviceManager(AdapterService service, ServiceFactory factory) {
         mAdapterService = service;
         mFactory = factory;
         mAudioManager = service.getSystemService(AudioManager.class);
         mAudioManagerAudioDeviceCallback = new AudioManagerAudioDeviceCallback();
+        mActivatedDevices = new ActivatedDevicePriorityStack();
     }
 
     void start() {
@@ -457,61 +569,65 @@ class ActiveDeviceManager {
         return mHandlerThread.getLooper();
     }
 
-    private void setA2dpActiveDevice(BluetoothDevice device) {
+    private boolean setA2dpActiveDevice(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "setA2dpActiveDevice(" + device + ")");
         }
         final A2dpService a2dpService = mFactory.getA2dpService();
         if (a2dpService == null) {
-            return;
+            return false;
         }
         if (!a2dpService.setActiveDevice(device)) {
-            return;
+            return false;
         }
         mA2dpActiveDevice = device;
+        return true;
     }
 
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void setHfpActiveDevice(BluetoothDevice device) {
+    private boolean setHfpActiveDevice(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "setHfpActiveDevice(" + device + ")");
         }
         final HeadsetService headsetService = mFactory.getHeadsetService();
         if (headsetService == null) {
-            return;
+            return false;
         }
         if (!headsetService.setActiveDevice(device)) {
-            return;
+            return false;
         }
         mHfpActiveDevice = device;
+        return true;
     }
 
-    private void setHearingAidActiveDevice(BluetoothDevice device) {
+    private boolean setHearingAidActiveDevice(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "setHearingAidActiveDevice(" + device + ")");
         }
         final HearingAidService hearingAidService = mFactory.getHearingAidService();
         if (hearingAidService == null) {
-            return;
+            return false;
         }
         if (!hearingAidService.setActiveDevice(device)) {
-            return;
+            return false;
         }
         mHearingAidActiveDevice = device;
+        return true;
     }
 
-    private void setLeAudioActiveDevice(BluetoothDevice device) {
+    private boolean setLeAudioActiveDevice(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "setLeAudioActiveDevice(" + device + ")");
         }
         final LeAudioService leAudioService = mFactory.getLeAudioService();
         if (leAudioService == null) {
-            return;
+            return false;
         }
         if (!leAudioService.setActiveDevice(device)) {
-            return;
+            return false;
         }
         mLeAudioActiveDevice = device;
+        return true;
     }
 
     private void resetState() {
@@ -523,6 +639,8 @@ class ActiveDeviceManager {
 
         mHearingAidActiveDevice = null;
         mLeAudioActiveDevice = null;
+
+        mActivatedDevices.clear();
     }
 
     @VisibleForTesting
@@ -564,5 +682,6 @@ class ActiveDeviceManager {
         setHfpActiveDevice(null);
         setHearingAidActiveDevice(null);
         setLeAudioActiveDevice(null);
+        mActivatedDevices.updateWithTopPriority(PROFILE_FOR_PHONE, null);
     }
 }
