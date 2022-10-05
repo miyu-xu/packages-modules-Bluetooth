@@ -70,15 +70,7 @@ message ReadLocalAddressResponse {
 // It's acquired via a Connect on the Host service.
 message Connection {
   // Opaque value filled by the gRPC server, must not be modified nor crafted
-  // Android specific: it's secretly an encoded InternelConnectionRef created using newConnection
   bytes cookie = 1;
-}
-
-// Internal representation of a Connection - not exposed to clients, included here
-// just for code-generation convenience
-message InternalConnectionRef {
-  bytes address = 1;
-  Transport transport = 2;
 }
 
 // WARNING: Leaving this enum empty will default to BREDR, so make sure that this is a

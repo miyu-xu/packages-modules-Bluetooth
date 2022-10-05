@@ -53,7 +53,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostProto.Connection
-import pandora.HostProto.InternalConnectionRef
+import pandora.AndroidProto.InternalConnectionRef
 import pandora.HostProto.Transport
 
 private const val TAG = "PandoraUtils"
