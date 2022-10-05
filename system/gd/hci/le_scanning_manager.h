@@ -92,6 +92,8 @@ class LeScanningManager : public bluetooth::Module {
 
   virtual void RegisterScanningCallback(ScanningCallback* scanning_callback);
 
+  virtual bool IsAdTypeFilterSupport() const;
+
   static const ModuleFactory Factory;
 
  protected:
