@@ -643,7 +643,7 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
           connected_with_br_edr ? BT_TRANSPORT_BR_EDR : BT_TRANSPORT_LE;
     }
     LOG_INFO("other_address %s with transport %d connected",
-             PRIVATE_ADDRESS(other_address), other_transport);
+             ADDRESS_TO_LOGGABLE_CSTR(other_address), other_transport);
     /* Take the link down first, and mark the device for removal when
      * disconnected */
     for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
@@ -651,7 +651,8 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
       if (peer_device.peer_bdaddr == other_address &&
           peer_device.transport == other_transport) {
         peer_device.conn_state = BTA_DM_UNPAIRING;
-        LOG_INFO("Remove ACL of address %s", PRIVATE_ADDRESS(other_address));
+        LOG_INFO("Remove ACL of address %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(other_address));
 
         /* Make sure device is not in acceptlist before we disconnect */
         GATT_CancelConnect(0, bd_addr, false);
@@ -740,7 +741,8 @@ void bta_dm_close_acl(const RawAddress& bd_addr, bool remove_dev,
 void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                  tBT_TRANSPORT transport, tBT_DEVICE_TYPE device_type) {
   LOG_DEBUG("Bonding with peer device:%s type:%s transport:%s type:%s",
-            PRIVATE_ADDRESS(bd_addr), AddressTypeText(addr_type).c_str(),
+            ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+            AddressTypeText(addr_type).c_str(),
             bt_transport_text(transport).c_str(),
             DeviceTypeText(device_type).c_str());
 
@@ -2210,7 +2212,8 @@ static void bta_dm_authentication_complete_cback(
         LOG_WARN(
             "Deleting device record as authentication failed entry:%s "
             "reason:%s",
-            PRIVATE_ADDRESS(bd_addr), hci_reason_code_text(reason).c_str());
+            ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+            hci_reason_code_text(reason).c_str());
         break;
 
       default:
@@ -2387,7 +2390,7 @@ static void handle_role_change(const RawAddress& bd_addr, tHCI_ROLE new_role,
     LOG_WARN(
         "Unable to find device for role change peer:%s new_role:%s "
         "hci_status:%s",
-        PRIVATE_ADDRESS(bd_addr), RoleText(new_role).c_str(),
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), RoleText(new_role).c_str(),
         hci_error_code_text(hci_status).c_str());
     return;
   }
@@ -2395,8 +2398,9 @@ static void handle_role_change(const RawAddress& bd_addr, tHCI_ROLE new_role,
   LOG_INFO(
       "Role change callback peer:%s info:0x%x new_role:%s dev count:%d "
       "hci_status:%s",
-      PRIVATE_ADDRESS(bd_addr), p_dev->Info(), RoleText(new_role).c_str(),
-      bta_dm_cb.device_list.count, hci_error_code_text(hci_status).c_str());
+      ADDRESS_TO_LOGGABLE_CSTR(bd_addr), p_dev->Info(),
+      RoleText(new_role).c_str(), bta_dm_cb.device_list.count,
+      hci_error_code_text(hci_status).c_str());
 
   if (p_dev->Info() & BTA_DM_DI_AV_ACTIVE) {
     bool need_policy_change = false;
@@ -2436,18 +2440,19 @@ void BTA_dm_report_role_change(const RawAddress bd_addr, tHCI_ROLE new_role,
 void handle_remote_features_complete(const RawAddress& bd_addr) {
   tBTA_DM_PEER_DEVICE* p_dev = bta_dm_find_peer_device(bd_addr);
   if (!p_dev) {
-    LOG_WARN("Unable to find device peer:%s", PRIVATE_ADDRESS(bd_addr));
+    LOG_WARN("Unable to find device peer:%s",
+             ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     return;
   }
 
   if (controller_get_interface()->supports_sniff_subrating() &&
       acl_peer_supports_sniff_subrating(bd_addr)) {
     LOG_DEBUG("Device supports sniff subrating peer:%s",
-              PRIVATE_ADDRESS(bd_addr));
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     p_dev->info = BTA_DM_DI_USE_SSR;
   } else {
     LOG_DEBUG("Device does NOT support sniff subrating peer:%s",
-              PRIVATE_ADDRESS(bd_addr));
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
   }
 }
 
@@ -2688,7 +2693,7 @@ void bta_dm_rm_cback(tBTA_SYS_CONN_STATUS status, uint8_t id, uint8_t app_id,
 
   LOG_DEBUG("BTA Role management callback count:%d status:%s peer:%s",
             bta_dm_cb.cur_av_count, bta_sys_conn_status_text(status).c_str(),
-            PRIVATE_ADDRESS(peer_addr));
+            ADDRESS_TO_LOGGABLE_CSTR(peer_addr));
 
   p_dev = bta_dm_find_peer_device(peer_addr);
   if (status == BTA_SYS_CONN_OPEN) {
@@ -3324,36 +3329,40 @@ void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
   switch (result) {
     case BTM_SUCCESS:
       LOG_WARN("Encrypted link peer:%s transport:%s status:%s callback:%c",
-               PRIVATE_ADDRESS((*bd_addr)),
+               ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
                bt_transport_text(transport).c_str(),
                btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
       break;
     case BTM_WRONG_MODE:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          PRIVATE_ADDRESS((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_WRONG_MODE;
       break;
     case BTM_NO_RESOURCES:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          PRIVATE_ADDRESS((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_NO_RESOURCES;
       break;
     case BTM_BUSY:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          PRIVATE_ADDRESS((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_BUSY;
       break;
     default:
       LOG_ERROR(
           "Failed to encrypt link peer:%s transport:%s status:%s callback:%c",
-          PRIVATE_ADDRESS((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_FAILURE;
       break;
   }
@@ -3374,7 +3383,8 @@ void bta_dm_set_encryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
   tBTA_DM_PEER_DEVICE* device = find_connected_device(bd_addr, transport);
   if (device == nullptr) {
     LOG_ERROR("Unable to find active ACL connection device:%s transport:%s",
-              PRIVATE_ADDRESS(bd_addr), bt_transport_text(transport).c_str());
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+              bt_transport_text(transport).c_str());
     return;
   }
 
@@ -3382,7 +3392,8 @@ void bta_dm_set_encryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
     LOG_ERROR(
         "Unable to start encryption as already in progress peer:%s "
         "transport:%s",
-        PRIVATE_ADDRESS(bd_addr), bt_transport_text(transport).c_str());
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+        bt_transport_text(transport).c_str());
     (*p_callback)(bd_addr, transport, BTA_BUSY);
     return;
   }
@@ -3391,10 +3402,12 @@ void bta_dm_set_encryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
                         sec_act) == BTM_CMD_STARTED) {
     device->p_encrypt_cback = p_callback;
     LOG_DEBUG("Started encryption peer:%s transport:%s",
-              PRIVATE_ADDRESS(bd_addr), bt_transport_text(transport).c_str());
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+              bt_transport_text(transport).c_str());
   } else {
     LOG_ERROR("Unable to start encryption process peer:%s transport:%s",
-              PRIVATE_ADDRESS(bd_addr), bt_transport_text(transport).c_str());
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+              bt_transport_text(transport).c_str());
   }
 }
 
