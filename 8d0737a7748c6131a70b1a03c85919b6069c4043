@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a81e429a_ded14ecc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-05T09:37:42Z",
+      "side": 1,
+      "message": "If possible for the future, as reviewer I would prefer that added unrelated features like the `log` rpc on `host.proto` be moved into another CL",
+      "revId": "8d0737a7748c6131a70b1a03c85919b6069c4043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d346815f_25b83413",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 48
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-05T09:37:42Z",
+      "side": 1,
+      "message": "Why not enforce having a channel here ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "8d0737a7748c6131a70b1a03c85919b6069c4043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9caca514_947e25f9",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 48
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-10-05T09:37:42Z",
+      "side": 1,
+      "message": "I\u0027m not sure we want to have this interfaces.\nI expect more the harness to handle logging than our interfaces.\nI would prefer that we do that from our Tradefed class (like redirect all logs to the android logcat).\nMy reasoning here is that having two log sources is something particular to Android and that we might do a better (generic) job at this inside tradefed than inside mmi2grpc.",
+      "revId": "8d0737a7748c6131a70b1a03c85919b6069c4043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
