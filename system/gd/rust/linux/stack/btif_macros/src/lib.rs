@@ -46,19 +46,13 @@ pub fn btif_callback(_attr: TokenStream, item: TokenStream) -> TokenStream {
 pub fn btif_callbacks_dispatcher(attr: TokenStream, item: TokenStream) -> TokenStream {
     let args = Punctuated::<Expr, Comma>::parse_separated_nonempty.parse(attr.clone()).unwrap();
 
-    let struct_ident = if let Expr::Path(p) = &args[0] {
-        p.path.get_ident().unwrap()
-    } else {
-        panic!("struct name must be specified");
-    };
-
-    let fn_ident = if let Expr::Path(p) = &args[1] {
+    let fn_ident = if let Expr::Path(p) = &args[0] {
         p.path.get_ident().unwrap()
     } else {
         panic!("function name must be specified");
     };
 
-    let callbacks_struct_ident = if let Expr::Path(p) = &args[2] {
+    let callbacks_struct_ident = if let Expr::Path(p) = &args[1] {
         p.path.get_ident().unwrap()
     } else {
         panic!("callbacks struct ident must be specified");
@@ -67,6 +61,7 @@ pub fn btif_callbacks_dispatcher(attr: TokenStream, item: TokenStream) -> TokenS
     let mut dispatch_arms = quote! {};
 
     let ast: ItemTrait = syn::parse(item.clone()).unwrap();
+    let trait_ident = ast.ident;
 
     let mut fn_names = quote! {};
     for attr in ast.items {
@@ -110,7 +105,7 @@ pub fn btif_callbacks_dispatcher(attr: TokenStream, item: TokenStream) -> TokenS
             dispatch_arms = quote! {
                 #dispatch_arms
                 #callbacks_struct_ident::#btif_callback(#arg_names) => {
-                    self.#method_ident(#arg_names);
+                    obj.#method_ident(#arg_names);
                 }
             };
         }
@@ -120,13 +115,11 @@ pub fn btif_callbacks_dispatcher(attr: TokenStream, item: TokenStream) -> TokenS
 
     let gen = quote! {
         #ori_item
-        impl #struct_ident {
-            pub(crate) fn #fn_ident(&mut self, cb: #callbacks_struct_ident) {
-                match cb {
-                    #dispatch_arms
+        pub(crate) fn #fn_ident<T: #trait_ident>(obj: &mut T, cb: #callbacks_struct_ident) {
+            match cb {
+                #dispatch_arms
 
-                    _ => println!("Unhandled callback arm {:?}", cb),
-                }
+                _ => println!("Unhandled callback arm {:?}", cb),
             }
         }
     };
