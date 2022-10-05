@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3677601_effe9398",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-05T22:18:52Z",
+      "side": 1,
+      "message": "I will remove this as soon as presubmits finish (since I don\u0027t want them to restart)",
+      "revId": "5549ee876c2d9eebebd5382df57215718f54a85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
