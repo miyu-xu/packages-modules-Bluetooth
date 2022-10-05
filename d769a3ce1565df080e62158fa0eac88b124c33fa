@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47054ceb_36f4fd26",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T00:34:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d7343a_59a78bac",
+      "range": {
+        "startLine": 284,
+        "startChar": 28,
+        "endLine": 284,
+        "endChar": 43
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86291ef8_23f5a26f",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-04T06:27:48Z",
       "side": 1,
       "message": "minor) 2 would be okay since when `i \u003d\u003d size - 1`, this will remove and add a same thing again?",
+      "range": {
+        "startLine": 440,
+        "startChar": 52,
+        "endLine": 440,
+        "endChar": 53
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d17b1b2c_b4b34201",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T00:34:46Z",
+      "side": 1,
+      "message": "2 is not okay because the break in L445.",
+      "parentUuid": "86291ef8_23f5a26f",
       "range": {
         "startLine": 440,
         "startChar": 52,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "321b8d6a_21e7274a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T00:34:46Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java;l\u003d611?q\u003dhearingaidservice\u0026ct\u003dos\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "parentUuid": "a491b377_fcb28273",
+      "range": {
+        "startLine": 555,
+        "startChar": 8,
+        "endLine": 556,
+        "endChar": 28
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcbdf49d_43c9fa1f",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-10-04T06:27:48Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 563,
+        "startChar": 8,
+        "endLine": 564,
+        "endChar": 28
+      },
+      "revId": "d769a3ce1565df080e62158fa0eac88b124c33fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7453a04_ffaa61b4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-05T00:34:46Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d1047?q\u003dleaudioservice\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "parentUuid": "bcbdf49d_43c9fa1f",
       "range": {
         "startLine": 563,
         "startChar": 8,
