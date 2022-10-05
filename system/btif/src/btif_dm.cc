@@ -538,8 +538,8 @@ static void btif_update_remote_version_property(RawAddress* p_bd) {
       BTM_ReadRemoteVersion(*p_bd, &lmp_ver, &mfct_set, &lmp_subver);
 
   LOG_INFO("Remote version info valid:%s [%s]: %x, %x, %x",
-           logbool(version_info_valid).c_str(), PRIVATE_ADDRESS((*p_bd)),
-           lmp_ver, mfct_set, lmp_subver);
+           logbool(version_info_valid).c_str(),
+           ADDRESS_TO_LOGGABLE_CSTR((*p_bd)), lmp_ver, mfct_set, lmp_subver);
 
   if (version_info_valid) {
     // Always update cache to ensure we have availability whenever BTM API is
@@ -1854,7 +1854,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       LOG_DEBUG(
           "Sent BT_ACL_STATE_DISCONNECTED upward as ACL link down event "
           "device:%s reason:%s",
-          PRIVATE_ADDRESS(bd_addr),
+          ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
           hci_reason_code_text(
               static_cast<tHCI_REASON>(btm_get_acl_disc_reason_code()))
               .c_str());
@@ -3527,8 +3527,7 @@ bool btif_get_device_type(const RawAddress& bda, int* p_device_type) {
 
   if (!btif_config_get_int(bd_addr_str, "DevType", p_device_type)) return false;
   tBT_DEVICE_TYPE device_type = static_cast<tBT_DEVICE_TYPE>(*p_device_type);
-  // TODO: fix it to replace PRIVATE_ADDRESS in an upcoming patch
-  LOG_DEBUG(" bd_addr:%s device_type:%s", PRIVATE_ADDRESS(bda),
+  LOG_DEBUG(" bd_addr:%s device_type:%s", ADDRESS_TO_LOGGABLE_CSTR(bda),
             DeviceTypeText(device_type).c_str());
 
   return true;
@@ -3543,8 +3542,7 @@ bool btif_get_address_type(const RawAddress& bda, tBLE_ADDR_TYPE* p_addr_type) {
   int val = 0;
   if (!btif_config_get_int(bd_addr_str, "AddrType", &val)) return false;
   *p_addr_type = static_cast<tBLE_ADDR_TYPE>(val);
-  // TODO: fix PRIVATE_ADDRESS
-  LOG_DEBUG(" bd_addr:%s[%s]", PRIVATE_ADDRESS(bda),
+  LOG_DEBUG(" bd_addr:%s[%s]", ADDRESS_TO_LOGGABLE_CSTR(bda),
             AddressTypeText(*p_addr_type).c_str());
   return true;
 }
