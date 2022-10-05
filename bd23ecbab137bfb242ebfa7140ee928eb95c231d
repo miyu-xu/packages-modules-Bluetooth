@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef67a47_bc3badd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-05T21:45:59Z",
+      "side": 1,
+      "message": "Simple restriction to const-ify the source in a deep copy checked by compiler",
+      "revId": "bd23ecbab137bfb242ebfa7140ee928eb95c231d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
