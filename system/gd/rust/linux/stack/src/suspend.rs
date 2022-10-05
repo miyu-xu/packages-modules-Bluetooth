@@ -1,13 +1,12 @@
 //! Suspend/Resume API.
 
-use crate::bluetooth::Bluetooth;
+use crate::bluetooth::{Bluetooth, BtifBluetoothCallbacks};
 use crate::callbacks::Callbacks;
 use crate::{bluetooth_gatt::IBluetoothGatt, BluetoothGatt, Message, RPCProxy};
-use bt_topshim::{btif::BluetoothInterface, topstack};
+use bt_topshim::btif::BluetoothInterface;
 use log::warn;
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
-use tokio::sync::oneshot::channel as OneShotChannel;
 
 /// Defines the Suspend/Resume API.
 ///
@@ -77,9 +76,9 @@ impl Suspend {
         tx: Sender<Message>,
     ) -> Suspend {
         Self {
-            bt: bt,
-            intf: intf,
-            gatt: gatt,
+            bt,
+            intf,
+            gatt,
             tx: tx.clone(),
             callbacks: Callbacks::new(tx.clone(), Message::SuspendCallbackDisconnected),
             is_connected_suspend: false,
@@ -143,17 +142,8 @@ impl ISuspend for Suspend {
         }
         self.intf.lock().unwrap().clear_filter_accept_list();
         self.intf.lock().unwrap().disconnect_all_acls();
-        self.intf.lock().unwrap().le_rand();
-        // Wait on LE Rand before firing callbacks
-        let (p, mut c) = OneShotChannel::<u64>();
-        self.bt.lock().unwrap().le_rand(p);
-        let rt = topstack::get_runtime();
-        rt.block_on(async {
-            let _ = c.try_recv();
-        });
-        self.callbacks.for_all_callbacks(|callback| {
-            callback.on_suspend_ready(1 as u32);
-        });
+
+        self.bt.lock().unwrap().le_rand();
     }
 
     fn resume(&self) -> bool {
@@ -173,5 +163,15 @@ impl ISuspend for Suspend {
         });
 
         true
+    }
+}
+
+impl BtifBluetoothCallbacks for Suspend {
+    fn le_rand_cb(&mut self, _random: u64) {
+        // TODO(b/232547719): Suspend readiness may not depend only on LeRand, make a generic state
+        // machine to support waiting for other conditions.
+        self.callbacks.for_all_callbacks(|callback| {
+            callback.on_suspend_ready(1 as u32);
+        });
     }
 }

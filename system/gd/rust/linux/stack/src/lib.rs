@@ -151,7 +151,8 @@ impl Stack {
                 }
 
                 Message::Base(b) => {
-                    dispatch_base_callbacks(bluetooth.lock().unwrap().as_mut(), b);
+                    dispatch_base_callbacks(bluetooth.lock().unwrap().as_mut(), b.clone());
+                    dispatch_base_callbacks(suspend.lock().unwrap().as_mut(), b);
                 }
 
                 Message::GattClient(m) => {
