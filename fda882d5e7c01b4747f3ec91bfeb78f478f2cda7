@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111f4865_c435cc0a",
+        "filename": "system/gd/common/init_flags.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:55:02Z",
+      "side": 1,
+      "message": "nit: rm",
+      "revId": "fda882d5e7c01b4747f3ec91bfeb78f478f2cda7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
