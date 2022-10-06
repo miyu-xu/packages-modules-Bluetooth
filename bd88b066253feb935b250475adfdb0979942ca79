@@ -93,6 +93,30 @@
       },
       "revId": "bd88b066253feb935b250475adfdb0979942ca79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2e2047_9e268f9c",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T01:05:06Z",
+      "side": 1,
+      "message": "will do in next CL to reduce merge conflicts",
+      "parentUuid": "fa154077_1292f21c",
+      "range": {
+        "startLine": 326,
+        "startChar": 4,
+        "endLine": 326,
+        "endChar": 32
+      },
+      "revId": "bd88b066253feb935b250475adfdb0979942ca79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
