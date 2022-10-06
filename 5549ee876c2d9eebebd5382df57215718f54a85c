@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8c5986d_4fe1c9f1",
+        "filename": "android/pandora/server/proto/pandora_experimental/_android.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:14:15Z",
+      "side": 1,
+      "message": "I disagree with this proto file name. Logging feature could be used by other platform as well. This is a just saying since we\u0027ve agreed offline to merge this CL as is but I still wanted to express my disagreement",
+      "revId": "5549ee876c2d9eebebd5382df57215718f54a85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ac4581_398a0afe",
+        "filename": "android/pandora/server/proto/pandora_experimental/_android.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:14:15Z",
+      "side": 1,
+      "message": "nit: trailing space",
+      "range": {
+        "startLine": 13,
+        "startChar": 42,
+        "endLine": 13,
+        "endChar": 44
+      },
+      "revId": "5549ee876c2d9eebebd5382df57215718f54a85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3677601_effe9398",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 2
