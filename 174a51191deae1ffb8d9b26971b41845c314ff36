@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2dba8ee_cfb12e86",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T11:57:54Z",
+      "side": 1,
+      "message": "nit:\nOur code style always uses braces for loops and conditionals.",
+      "range": {
+        "startLine": 186,
+        "startChar": 50,
+        "endLine": 186,
+        "endChar": 74
+      },
+      "revId": "174a51191deae1ffb8d9b26971b41845c314ff36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
