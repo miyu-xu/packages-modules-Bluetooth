@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1561edc_c852b3ee",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:40:31Z",
+      "side": 1,
+      "message": "do we want to default to `false` here in the case of parsing failure, or to the flag default?",
+      "revId": "640acd31a4b45bff46da4ead1ebc2c8981a1308f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
