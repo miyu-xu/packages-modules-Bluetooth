@@ -19,6 +19,7 @@ package com.android.bluetooth.btservice;
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothCsipSetCoordinator;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
@@ -355,7 +356,8 @@ class PhonePolicy {
                     BluetoothProfile.PAN, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
         }
 
-        if ((leAudioService != null) && Utils.arrayContains(uuids,
+        BluetoothClass btClass = device.getBluetoothClass();
+        if ((btClass != null && btClass.hasService(BluetoothClass.Service.LE_AUDIO)) || (leAudioService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.LE_AUDIO) && (leAudioService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             debugLog("setting le audio profile priority for device " + device);
