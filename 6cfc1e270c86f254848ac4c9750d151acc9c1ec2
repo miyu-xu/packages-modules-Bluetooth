@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21c2b1ca_35a6746c",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2520,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-06T15:56:20Z",
+      "side": 1,
+      "message": "We don\u0027t allow memset to be used like this unless there is no other way.\n\ntBTA_DM_SEC conn \u003d {}; to zero init",
+      "revId": "6cfc1e270c86f254848ac4c9750d151acc9c1ec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
