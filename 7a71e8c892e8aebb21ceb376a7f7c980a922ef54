@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65f4ded7_99cbf3f0",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T04:37:27Z",
+      "side": 1,
+      "message": "nit:\nis_ad_type_filter_supported  ?  It\u0027s quite a bit easier to read and understand, and only a little longer.",
+      "range": {
+        "startLine": 1172,
+        "startChar": 9,
+        "endLine": 1172,
+        "endChar": 34
+      },
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af8c1d0_cdf5aec5",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 4
+      },
+      "lineNbr": 5018,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T04:37:27Z",
+      "side": 1,
+      "message": "Do you have any example packets from wireshark to put in here?\n\ntest LeAdvFilterReadExtendedFeatures {\n  \"bytes copied from Wireshark\",\n}",
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "229f3915_75fba05f",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T04:37:27Z",
+      "side": 1,
+      "message": "Do we know if this one is supported?",
+      "range": {
+        "startLine": 262,
+        "startChar": 15,
+        "endLine": 262,
+        "endChar": 53
+      },
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9a0ac8_fc6be98c",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T04:37:27Z",
+      "side": 1,
+      "message": "nit: We don\u0027t use hci:: in the rest of this file",
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64af02b_abd3d595",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1391,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T04:37:27Z",
+      "side": 1,
+      "message": "Maybe print it every time?\n\nis_ad_type_filter_support_ \u003d complete_view.GetAdTypeFilter() \u003d\u003d 1;\nLOG_INFO(\"set is_ad_type_filter_support to %d\", is_ad_type_filter_support_);",
+      "range": {
+        "startLine": 1388,
+        "startChar": 0,
+        "endLine": 1391,
+        "endChar": 4
+      },
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
