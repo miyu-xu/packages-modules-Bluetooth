@@ -24,6 +24,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "06effb8b_5034fd2f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-10-06T16:55:55Z",
+      "side": 1,
+      "message": "nit: deactivate",
+      "range": {
+        "startLine": 236,
+        "startChar": 38,
+        "endLine": 236,
+        "endChar": 48
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f4125669_a8c47f30",
@@ -107,6 +130,29 @@
       "side": 1,
       "message": "will be removed in the next patch set. I forgot to register intent filter for it.",
       "parentUuid": "2f6b4bdc_667d315d",
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0c791b6_abfd1154",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-10-06T16:55:55Z",
+      "side": 1,
+      "message": "can you add a helper method named something like \"isDeviceDisconnected\" or similar to make this and other instance below more readable?",
+      "range": {
+        "startLine": 646,
+        "startChar": 16,
+        "endLine": 646,
+        "endChar": 69
+      },
       "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
