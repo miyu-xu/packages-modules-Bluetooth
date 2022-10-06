@@ -16,6 +16,24 @@
       "message": "do we want to default to `false` here in the case of parsing failure, or to the flag default?",
       "revId": "640acd31a4b45bff46da4ead1ebc2c8981a1308f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a582509_e68c2a1f",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-06T21:32:18Z",
+      "side": 1,
+      "message": "I am doing this in the next CL, but you are right it should be done there already.\n\nDone",
+      "parentUuid": "b1561edc_c852b3ee",
+      "revId": "640acd31a4b45bff46da4ead1ebc2c8981a1308f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
