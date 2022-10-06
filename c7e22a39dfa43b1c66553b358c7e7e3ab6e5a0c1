@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a12a426b_5d360361",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-06T07:51:02Z",
+      "side": 1,
+      "message": "for authorized devices",
+      "range": {
+        "startLine": 206,
+        "startChar": 13,
+        "endLine": 206,
+        "endChar": 41
+      },
+      "revId": "c7e22a39dfa43b1c66553b358c7e7e3ab6e5a0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
