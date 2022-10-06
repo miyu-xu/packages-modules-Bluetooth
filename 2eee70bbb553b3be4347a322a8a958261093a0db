@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec930db9_4aeca829",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-06T02:12:57Z",
+      "side": 1,
+      "message": "and probably update the comments as well",
+      "range": {
+        "startLine": 52,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 15
+      },
+      "revId": "2eee70bbb553b3be4347a322a8a958261093a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b730dc7_8e8e918b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-06T02:12:57Z",
+      "side": 1,
+      "message": "We need a new case for BluetoothLeAudio.ACTION_CONNECTION_STATE_CHANGED and react to it",
+      "range": {
+        "startLine": 171,
+        "startChar": 14,
+        "endLine": 171,
+        "endChar": 76
+      },
+      "revId": "2eee70bbb553b3be4347a322a8a958261093a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "938c5033_87345cac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-06T02:12:57Z",
+      "side": 1,
+      "message": "Could we reuse A2dpService.getFallbackDevice() and HeadsetService.getFallbackDevice()?",
+      "revId": "2eee70bbb553b3be4347a322a8a958261093a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
