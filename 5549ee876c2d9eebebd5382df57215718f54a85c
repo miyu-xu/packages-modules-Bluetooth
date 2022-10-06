@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15e4112e_65101ede",
+        "filename": "android/pandora/server/proto/pandora_experimental/_android.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:47:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c8c5986d_4fe1c9f1",
+      "revId": "5549ee876c2d9eebebd5382df57215718f54a85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29ac4581_398a0afe",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-10-06T15:14:15Z",
       "side": 1,
       "message": "nit: trailing space",
+      "range": {
+        "startLine": 13,
+        "startChar": 42,
+        "endLine": 13,
+        "endChar": 44
+      },
+      "revId": "5549ee876c2d9eebebd5382df57215718f54a85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9492c6f2_563e1dcd",
+        "filename": "android/pandora/server/proto/pandora_experimental/_android.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29ac4581_398a0afe",
       "range": {
         "startLine": 13,
         "startChar": 42,
