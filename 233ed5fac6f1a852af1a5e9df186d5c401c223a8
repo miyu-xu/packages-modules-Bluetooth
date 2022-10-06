@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9682d537_b39088f8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T16:43:05Z",
+      "side": 1,
+      "message": "Yes why not, it will be clearer 😊",
+      "parentUuid": "37f0a02c_1d04c7ca",
+      "range": {
+        "startLine": 898,
+        "startChar": 22,
+        "endLine": 898,
+        "endChar": 58
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e8603b1_7e602914",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
         "patchSetId": 5
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "We don\u0027t need to no, as this is done in the same method.\nWe also add services in other MMIs without restarting the advertising so changing it here wouldn\u0027t mean we always start advertising after adding services",
       "parentUuid": "f7171fd0_7fe846b8",
+      "range": {
+        "startLine": 896,
+        "startChar": 8,
+        "endLine": 911,
+        "endChar": 14
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3f22df_e51e86c9",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T16:43:05Z",
+      "side": 1,
+      "message": "Ok understood 👍",
+      "parentUuid": "a9a2ce05_4842e1c6",
       "range": {
         "startLine": 896,
         "startChar": 8,
