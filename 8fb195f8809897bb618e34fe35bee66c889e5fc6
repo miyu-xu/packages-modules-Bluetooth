@@ -16,6 +16,24 @@
       "message": "FYI, you\u0027ll want to make sure to run `./build.py --target test` to confirm the rustdoc compiles.",
       "revId": "8fb195f8809897bb618e34fe35bee66c889e5fc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23b0961a_7854919f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-06T23:57:02Z",
+      "side": 1,
+      "message": "Yup I did and it compiled.",
+      "parentUuid": "24fa7a59_fbbec20e",
+      "revId": "8fb195f8809897bb618e34fe35bee66c889e5fc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
