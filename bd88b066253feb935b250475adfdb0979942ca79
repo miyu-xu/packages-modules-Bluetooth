@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "321d5ec5_2e52a85f",
+        "filename": "system/gd/hci/acl_manager/acl_scheduler.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T01:00:33Z",
+      "side": 1,
+      "message": "wontfix based on offline discussion",
+      "parentUuid": "74f4ed9c_3b59f18d",
+      "range": {
+        "startLine": 58,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "bd88b066253feb935b250475adfdb0979942ca79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa154077_1292f21c",
