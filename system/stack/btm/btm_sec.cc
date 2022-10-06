@@ -3374,6 +3374,9 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
         BTM_TRACE_DEBUG("%s start SM over BR/EDR", __func__);
         SMP_BR_PairWith(p_dev_rec->bd_addr);
       }
+    } else {
+      if (btm_cb.api.p_no_ctkd_enc_key_not_p256)
+        btm_cb.api.p_no_ctkd_enc_key_not_p256(p_dev_rec->bd_addr);
     }
   }
 

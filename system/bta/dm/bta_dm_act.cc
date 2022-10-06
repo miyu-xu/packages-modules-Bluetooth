@@ -123,6 +123,7 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
                                     tBTM_LE_EVT_DATA* p_data);
 static void bta_dm_ble_id_key_cback(uint8_t key_type,
                                     tBTM_BLE_LOCAL_KEYS* p_key);
+static void bta_dm_no_ctkd_enc_key_not_p256(const RawAddress& bd_addr);
 static void bta_dm_gattc_register(void);
 static void btm_dm_start_gatt_discovery(const RawAddress& bd_addr);
 static void bta_dm_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data);
@@ -255,7 +256,8 @@ const tBTM_APPL_INFO bta_security = {
     .p_bond_cancel_cmpl_callback = &bta_dm_bond_cancel_complete_cback,
     .p_sp_callback = &bta_dm_sp_cback,
     .p_le_callback = &bta_dm_ble_smp_cback,
-    .p_le_key_callback = &bta_dm_ble_id_key_cback};
+    .p_le_key_callback = &bta_dm_ble_id_key_cback,
+    .p_no_ctkd_enc_key_not_p256 = &bta_dm_no_ctkd_enc_key_not_p256};
 
 #define MAX_DISC_RAW_DATA_BUF (4096)
 uint8_t g_disc_raw_data_buf[MAX_DISC_RAW_DATA_BUF];
@@ -3752,6 +3754,13 @@ static void bta_dm_ble_id_key_cback(uint8_t key_type,
       break;
   }
   return;
+}
+
+void bta_dm_no_ctkd_enc_key_not_p256(const RawAddress& bd_addr) {
+  tBTA_DM_SEC evt_data = {
+      .no_ctkd = {.bd_addr = bd_addr},
+  };
+  bta_dm_cb.p_sec_cback(BTA_DM_NO_CTKD_ENC_KEY_NOT_P256_EVT, &evt_data);
 }
 
 /*******************************************************************************

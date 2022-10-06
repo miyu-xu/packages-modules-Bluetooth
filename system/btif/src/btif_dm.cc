@@ -115,6 +115,8 @@ const bool enable_address_consolidate = true;  // TODO remove
 #define COD_AV_PORTABLE_AUDIO 0x041C
 #define COD_AV_HIFI_AUDIO 0x0428
 
+#define COD_CLASS_LE_AUDIO (1 << 14)
+
 #define BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING 2
 
 #ifndef PROPERTY_CLASS_OF_DEVICE
@@ -248,6 +250,7 @@ static void btif_update_remote_properties(const RawAddress& bd_addr,
 static btif_dm_local_key_cb_t ble_local_key_cb;
 static void btif_dm_ble_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif);
 static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl);
+static void btif_no_ctkd_enc_key_not_p256(const RawAddress& bd_addr);
 static void btif_dm_ble_passkey_req_evt(tBTA_DM_PIN_REQ* p_pin_req);
 static void btif_dm_ble_key_nc_req_evt(tBTA_DM_SP_KEY_NOTIF* p_notif_req);
 static void btif_dm_ble_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type);
@@ -488,6 +491,21 @@ bool check_cod_hid(const RawAddress& bd_addr) {
   return (get_cod(&bd_addr) & COD_HID_MASK) == COD_HID_MAJOR;
 }
 
+bool check_cod_le_audio(const RawAddress* remote_bdaddr) {
+  uint32_t remote_cod;
+  bt_property_t prop_name;
+
+  /* check if we already have it in our btif_storage cache */
+  BTIF_STORAGE_FILL_PROPERTY(&prop_name, BT_PROPERTY_CLASS_OF_DEVICE,
+                             sizeof(uint32_t), &remote_cod);
+  if (btif_storage_get_remote_device_property(
+          (RawAddress*)remote_bdaddr, &prop_name) == BT_STATUS_SUCCESS) {
+    LOG_INFO("%s remote_cod = 0x%08x", __func__, remote_cod);
+    return remote_cod & COD_CLASS_LE_AUDIO;
+  }
+
+  return false;
+}
 /*****************************************************************************
  *
  * Function        check_sdp_bl
@@ -1987,6 +2005,10 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
                                      p_data->proc_id_addr.id_addr);
       break;
 
+    case BTA_DM_NO_CTKD_ENC_KEY_NOT_P256_EVT:
+      btif_no_ctkd_enc_key_not_p256(p_data->no_ctkd.bd_addr);
+      break;
+
     default:
       BTIF_TRACE_WARNING("%s: unhandled event (%d)", __func__, event);
       break;
@@ -3023,6 +3045,23 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     bond_state_changed(status, bd_addr, BT_BOND_STATE_BONDING);
   }
   bond_state_changed(status, bd_addr, state);
+}
+
+void btif_no_ctkd_enc_key_not_p256(const RawAddress& bd_addr) {
+  /* We just finished bonding using Classic transport, but the CTKD didn't
+   * happen because the key was too weak. */
+  bool is_le_audio = check_cod_le_audio(&bd_addr);
+
+  /* BAP 1.0.1 Section 8.1.1:
+   * If the Peripheral is in a GAP Discoverable mode over both the LE transport and the Basic Rate/Enhanced
+   * Data Rate (BR/EDR) transport (as defined in Section 8.2.1) and the Peripheral does not support Cross
+   * Transport Key Derivation (CTKD) over BR/EDR to derive an LE Long-Term Key (LTK), then the
+   * advertising set that exposes the discoverable mode over LE shall use the public Advertising Address type
+   * and shall set the value of the Advertising Address to the BD_ADDR that is used over BR/EDR. */
+  if (is_le_audio && LeAudioClient::IsLeAudioClientRunning()) {
+    LOG_INFO("LE Audio device that's not CTKD capable, bonding LE transport");
+    BTA_DmBond(bd_addr, BLE_ADDR_PUBLIC, BT_TRANSPORT_LE, BT_DEVICE_TYPE_DUMO);
+  }
 }
 
 void btif_dm_load_ble_local_keys(void) {

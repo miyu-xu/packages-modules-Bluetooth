@@ -72,6 +72,13 @@ typedef void(tBTM_AUTH_COMPLETE_CALLBACK)(const RawAddress& bd_addr,
                                           tBTM_BD_NAME bd_name,
                                           tHCI_REASON reason);
 
+/* Cross-transport key dervation from Classic to LE can't happen becase the key
+ * is too weak. Parameters are
+ *              BD Address of remote
+ *
+ */
+typedef void(tBTM_NO_CTKD_ENC_KEY_NOT_P256)(const RawAddress& bd_addr);
+
 struct tBTM_APPL_INFO {
   tBTM_PIN_CALLBACK* p_pin_callback{nullptr};
   tBTM_LINK_KEY_CALLBACK* p_link_key_callback{nullptr};
@@ -80,4 +87,5 @@ struct tBTM_APPL_INFO {
   tBTM_SP_CALLBACK* p_sp_callback{nullptr};
   tBTM_LE_CALLBACK* p_le_callback{nullptr};
   tBTM_LE_KEY_CALLBACK* p_le_key_callback{nullptr};
+  tBTM_NO_CTKD_ENC_KEY_NOT_P256* p_no_ctkd_enc_key_not_p256{nullptr};
 };
