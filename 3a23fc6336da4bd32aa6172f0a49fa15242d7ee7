@@ -34,6 +34,24 @@
       "parentUuid": "bddfce8a_0440a383",
       "revId": "3a23fc6336da4bd32aa6172f0a49fa15242d7ee7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a553d3_2523ca97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T12:51:41Z",
+      "side": 1,
+      "message": "The crash signature in a bug would be helpful, if you still have that.",
+      "parentUuid": "c1cfb19b_86e3c056",
+      "revId": "3a23fc6336da4bd32aa6172f0a49fa15242d7ee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
