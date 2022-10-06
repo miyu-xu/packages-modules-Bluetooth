@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "626fca5d_55a00235",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-06T00:02:54Z",
+      "side": 1,
+      "message": "nit:\n```\nOk(data \u003d\u003d \"[Sysprops]\\nbluetooth.core.gap.le.privacy.enabled\u003dtrue\\n\")\n```",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 5
+      },
+      "revId": "25c1cb097d850496ac29e22008c1858eb99c90c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
