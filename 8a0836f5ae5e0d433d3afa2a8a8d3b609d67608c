@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed644358_ca19a45d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapFolderElementTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-06T01:47:08Z",
+      "side": 1,
+      "message": "Let\u0027s use PLACEHOLDER or some other strings, here and L46 too.\n\nhttps://developers.google.com/style/inclusive-documentation#ableist-language",
+      "range": {
+        "startLine": 39,
+        "startChar": 37,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "8a0836f5ae5e0d433d3afa2a8a8d3b609d67608c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4767355_195475d8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapFolderElementTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-06T01:47:08Z",
+      "side": 1,
+      "message": "Let\u0027s change the method name",
+      "range": {
+        "startLine": 70,
+        "startChar": 27,
+        "endLine": 70,
+        "endChar": 36
+      },
+      "revId": "8a0836f5ae5e0d433d3afa2a8a8d3b609d67608c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
