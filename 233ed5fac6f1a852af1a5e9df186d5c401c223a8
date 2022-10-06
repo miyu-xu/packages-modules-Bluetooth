@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e338c476_bd899f69",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-10-06T16:29:24Z",
+      "side": 1,
+      "message": "Ah I did that so it looked like a `if (!test in` but yes maybe that would be better the other way around",
+      "parentUuid": "37ed824a_9cb26efa",
+      "range": {
+        "startLine": 218,
+        "startChar": 8,
+        "endLine": 218,
+        "endChar": 34
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a2e444a_5d41216b",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-06T15:08:31Z",
       "side": 1,
       "message": "Quick question: Where does these UUIDs come from ?",
+      "range": {
+        "startLine": 898,
+        "startChar": 22,
+        "endLine": 898,
+        "endChar": 58
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37f0a02c_1d04c7ca",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-10-06T16:29:24Z",
+      "side": 1,
+      "message": "These services are the base read/write services, the UUID doesn\u0027t matter as the pts will discover all services. Basically the UUID here can be whatever we want, but it\u0027s better to not override an existing UUID as some can be also checked by PTS in some tests.\n\nWe can have a definition of these services at the start of the file if you think it\u0027s better!",
+      "parentUuid": "4a2e444a_5d41216b",
       "range": {
         "startLine": 898,
         "startChar": 22,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ede007c1_51986cbe",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-10-06T16:29:24Z",
+      "side": 1,
+      "message": "Sure can!",
+      "parentUuid": "1e8603b1_7e602914",
+      "range": {
+        "startLine": 902,
+        "startChar": 24,
+        "endLine": 903,
+        "endChar": 60
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7171fd0_7fe846b8",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
         "patchSetId": 5
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-06T15:08:31Z",
       "side": 1,
       "message": "Should we not register the services before advertising ?",
+      "range": {
+        "startLine": 896,
+        "startChar": 8,
+        "endLine": 911,
+        "endChar": 14
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a2ce05_4842e1c6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-10-06T16:29:24Z",
+      "side": 1,
+      "message": "We don\u0027t need to no, as this is done in the same method.\nWe also add services in other MMIs without restarting the advertising so changing it here wouldn\u0027t mean we always start advertising after adding services",
+      "parentUuid": "f7171fd0_7fe846b8",
       "range": {
         "startLine": 896,
         "startChar": 8,
