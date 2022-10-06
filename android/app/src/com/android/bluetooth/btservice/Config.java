@@ -61,13 +61,14 @@ public class Config {
 
     private static final String FEATURE_HEARING_AID = "settings_bluetooth_hearing_aid";
     private static final String FEATURE_BATTERY = "settings_bluetooth_battery";
-    private static long sSupportedMask = 0;
 
     private static final String FFLAG_OVERRIDE_PREFIX = "sys.fflag.override.";
     private static final String PERSIST_PREFIX = "persist." + FFLAG_OVERRIDE_PREFIX;
 
     private static final String LE_AUDIO_DYNAMIC_SWITCH_PROPERTY =
             "ro.bluetooth.leaudio_switcher.supported";
+    private static final String LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY =
+            "ro.bluetooth.leaudio_broadcast_switcher.supported";
     private static final String LE_AUDIO_DYNAMIC_ENABLED_PROPERTY =
             "persist.bluetooth.leaudio_switcher.enabled";
 
@@ -172,18 +173,34 @@ public class Config {
     private static Class[] sSupportedProfiles = new Class[0];
 
     private static boolean sIsGdEnabledUptoScanningLayer = false;
+    private static boolean sEnableBroadcastService = false;
 
     static void init(Context ctx) {
+        if (LeAudioService.isBroadcastEnabled()) {
+            updateSupportedProfileMask(
+                    true, LeAudioService.class, BluetoothProfile.LE_AUDIO_BROADCAST);
+        }
+
         final boolean leAudioDynamicSwitchSupported =
                 SystemProperties.getBoolean(LE_AUDIO_DYNAMIC_SWITCH_PROPERTY, false);
+        final boolean broadcastDynamicSwitchSupported =
+                SystemProperties.getBoolean(LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY, false);
+        final String leAudioDynamicEnabled =
+                SystemProperties.get(LE_AUDIO_DYNAMIC_ENABLED_PROPERTY, "none");
 
         if (leAudioDynamicSwitchSupported) {
-            final String leAudioDynamicEnabled = SystemProperties
-                    .get(LE_AUDIO_DYNAMIC_ENABLED_PROPERTY, "none");
             if (leAudioDynamicEnabled.equals("true")) {
                 setLeAudioProfileStatus(true);
             } else if (leAudioDynamicEnabled.equals("false")) {
                 setLeAudioProfileStatus(false);
+            }
+        }
+
+        if (broadcastDynamicSwitchSupported) {
+            if (leAudioDynamicEnabled.equals("true")) {
+                setBroadcastProfileStatus(true);
+            } else if (leAudioDynamicEnabled.equals("false")) {
+                setBroadcastProfileStatus(false);
             }
         }
 
@@ -216,6 +233,12 @@ public class Config {
         setProfileEnabled(VolumeControlService.class, enable);
     }
 
+    static void setBroadcastProfileStatus(Boolean enable) {
+        setProfileEnabled(BassClientService.class, enable);
+        updateSupportedProfileMask(
+                enable, LeAudioService.class, BluetoothProfile.LE_AUDIO_BROADCAST);
+    }
+
     /**
      * Remove the input profiles from the supported list.
      */
@@ -235,8 +258,17 @@ public class Config {
         sSupportedProfiles = profilesList.toArray(new Class[profilesList.size()]);
     }
 
-    static void addSupportedProfile(int supportedProfile) {
-        sSupportedMask |= (1 << supportedProfile);
+    static void updateSupportedProfileMask(Boolean enable, Class profile, int supportedProfile) {
+        for (ProfileConfig config : PROFILE_SERVICES_AND_FLAGS) {
+            if (config.mClass == profile) {
+                if (enable) {
+                    config.mMask |= 1 << supportedProfile;
+                } else {
+                    config.mMask &= ~(1 << supportedProfile);
+                }
+                return;
+            }
+        }
     }
 
     static HashSet<Class> getLeAudioUnicastProfiles() {
@@ -262,7 +294,7 @@ public class Config {
     }
 
     static long getSupportedProfilesBitMask() {
-        long mask = sSupportedMask;
+        long mask = 0;
         for (final Class profileClass : getSupportedProfiles()) {
             mask |= getProfileMask(profileClass);
         }
