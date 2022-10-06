@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7ee89c3_0ec06cda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 51
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T16:27:35Z",
+      "side": 1,
+      "message": "General question:\nDo we need to add gap.proto and Gap.kt ?\nThere isn\u0027t any methods defined on them",
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43ff5531_6ba9bc0c",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
         "patchSetId": 51
