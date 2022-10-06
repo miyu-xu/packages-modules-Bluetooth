@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77079095_2ae74b5b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-06T15:14:14Z",
+      "side": 1,
+      "message": "How to make sure the value return by isBroadcastServiceEnabled based on the hw capabilities?",
+      "parentUuid": "62f20dae_c5773020",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 70
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "595553f5_fc698a12",
         "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
         "patchSetId": 1
