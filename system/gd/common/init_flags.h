@@ -30,29 +30,20 @@ class InitFlags final {
   static void Load(const char** flags);
 
   inline static bool IsDebugLoggingEnabledForTag(const std::string& tag) {
-    auto tag_setting = logging_debug_explicit_tag_settings.find(tag);
-    if (tag_setting != logging_debug_explicit_tag_settings.end()) {
-      return tag_setting->second;
-    }
-    return logging_debug_enabled_for_all;
+    return bluetooth::common::init_flags::is_debug_logging_enabled_for_tag(tag);
   }
 
   inline static bool IsDebugLoggingEnabledForAll() {
-    return logging_debug_enabled_for_all;
+    return bluetooth::common::init_flags::logging_debug_enabled_for_all_is_enabled();
   }
 
   inline static int GetAdapterIndex() {
-    return hci_adapter;
+    return bluetooth::common::init_flags::get_hci_adapter();
   }
 
   static void SetAllForTesting();
 
  private:
-  static void SetAll(bool value);
-  static bool logging_debug_enabled_for_all;
-  static int hci_adapter;
-  // save both log allow list and block list in the map to save hashing time
-  static std::unordered_map<std::string, bool> logging_debug_explicit_tag_settings;
 };
 
 }  // namespace common
