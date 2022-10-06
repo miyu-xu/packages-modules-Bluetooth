@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c02bb645_49e04746",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-10-06T19:04:19Z",
+      "side": 1,
+      "message": "There are 33 bugs open against the failing test, and this is blocking our M1 branch. Is it safe to ignore the failure?",
+      "revId": "c1a2deb6aca9547f55522ce8be84810cbd5ecd41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
