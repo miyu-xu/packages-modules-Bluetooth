@@ -22,6 +22,30 @@
       },
       "revId": "3c1db1416839e6f2eb801f667ae4888072261324",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c8136a8_611fb282",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapFolderElementTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-06T07:21:26Z",
+      "side": 1,
+      "message": "Sorry I missed this. Fixed!",
+      "parentUuid": "4abc34c3_d9ed7ea0",
+      "range": {
+        "startLine": 128,
+        "startChar": 34,
+        "endLine": 128,
+        "endChar": 52
+      },
+      "revId": "3c1db1416839e6f2eb801f667ae4888072261324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
