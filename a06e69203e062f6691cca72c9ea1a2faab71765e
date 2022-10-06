@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d574326_0c09759a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4831,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-06T13:48:51Z",
+      "side": 1,
+      "message": "Could it align the isLeAudioSupported logic to check the supportedProfile?",
+      "range": {
+        "startLine": 4831,
+        "startChar": 16,
+        "endLine": 4831,
+        "endChar": 50
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f93c22b_4835e5d3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-06T13:48:51Z",
+      "side": 1,
+      "message": "Why we need to get the value and cache here? Would you plan to change the default properties value? or depend the value to do something?",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 70
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "595553f5_fc698a12",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-06T13:48:51Z",
+      "side": 1,
+      "message": "Enabled value only could be changed as the switcher is supported. You couldn\u0027t check enable status before supported status.",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 51
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0ad2dc_f23709a5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-06T13:48:51Z",
+      "side": 1,
+      "message": "How to control the broadcast profile status? Could it combine to setLeAudioProfileStatus?",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 41
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
