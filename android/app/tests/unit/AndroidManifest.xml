@@ -67,5 +67,7 @@
     <instrumentation android:name="androidx.test.runner.AndroidJUnitRunner"
                      android:targetPackage="com.android.bluetooth"
                      android:label="Tests for com.android.bluetooth"/>
+    <instrumentation android:targetPackage="com.android.bluetooth"
+                     android:name="android.test.InstrumentationTestRunner" />
 </manifest>
 
