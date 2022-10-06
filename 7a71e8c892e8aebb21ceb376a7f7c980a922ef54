@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a9f329_450cd246",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-06T07:38:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65f4ded7_99cbf3f0",
+      "range": {
+        "startLine": 1172,
+        "startChar": 9,
+        "endLine": 1172,
+        "endChar": 34
+      },
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6af8c1d0_cdf5aec5",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-06T04:37:27Z",
       "side": 1,
       "message": "Do you have any example packets from wireshark to put in here?\n\ntest LeAdvFilterReadExtendedFeatures {\n  \"bytes copied from Wireshark\",\n}",
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c875c1ac_7456fae4",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 4
+      },
+      "lineNbr": 5018,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-06T07:38:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6af8c1d0_cdf5aec5",
       "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -81,6 +123,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f2bc3a_478187a6",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-06T07:38:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec9a0ac8_fc6be98c",
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a599ef10_a0fede62",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-06T07:38:00Z",
+      "side": 1,
+      "message": "We don\u0027t have command to check this and any other new command of APCF, so we use this command to read extended features.\nWe don\u0027t assert this command should be success. If the controller doesn\u0027t support this command, we think it doesn\u0027t support any extended feature of APCF",
+      "parentUuid": "229f3915_75fba05f",
+      "range": {
+        "startLine": 262,
+        "startChar": 15,
+        "endLine": 262,
+        "endChar": 53
+      },
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e64af02b_abd3d595",
@@ -94,6 +178,30 @@
       "writtenOn": "2022-10-06T04:37:27Z",
       "side": 1,
       "message": "Maybe print it every time?\n\nis_ad_type_filter_support_ \u003d complete_view.GetAdTypeFilter() \u003d\u003d 1;\nLOG_INFO(\"set is_ad_type_filter_support to %d\", is_ad_type_filter_support_);",
+      "range": {
+        "startLine": 1388,
+        "startChar": 0,
+        "endLine": 1391,
+        "endChar": 4
+      },
+      "revId": "7a71e8c892e8aebb21ceb376a7f7c980a922ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e5ad19_7ec31029",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1391,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-06T07:38:00Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "e64af02b_abd3d595",
       "range": {
         "startLine": 1388,
         "startChar": 0,
