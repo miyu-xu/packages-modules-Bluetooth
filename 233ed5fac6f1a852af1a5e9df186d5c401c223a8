@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcb03d7b_4045427a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-10-06T17:03:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9682d537_b39088f8",
+      "range": {
+        "startLine": 898,
+        "startChar": 22,
+        "endLine": 898,
+        "endChar": 58
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e8603b1_7e602914",
