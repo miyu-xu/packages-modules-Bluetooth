@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22b46445_2009cfdd",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:52:03Z",
+      "side": 1,
+      "message": "Not a huge fan of how you are doing this here, since it just looks like an invalid function call.\n\nMaybe make it expect a closure, so it\u0027s explicit? Or at least take in placeholders like `$extra_flag_fn:ident($(\\?, \\?, $extra_args:tt),*)`",
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa8e7efc_bce734b5",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:52:03Z",
+      "side": 1,
+      "message": "Where are these fields set? I only see them being default initialized and set for testing, but not in normal operation",
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e415863_400eaf19",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:52:03Z",
+      "side": 1,
+      "message": "nit: rm",
+      "range": {
+        "startLine": 188,
+        "startChar": 43,
+        "endLine": 188,
+        "endChar": 44
+      },
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7c0f16_5327d532",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:52:03Z",
+      "side": 1,
+      "message": "Is there a test of extra_fields?",
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
