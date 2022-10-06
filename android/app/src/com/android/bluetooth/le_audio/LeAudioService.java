@@ -968,7 +968,7 @@ public class LeAudioService extends ProfileService {
     public boolean setActiveDevice(BluetoothDevice device) {
         /* Clear active group */
         if (device == null) {
-            setActiveGroupWithDevice(device);
+            setActiveGroupWithDevice(null);
             return true;
         }
         if (getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
