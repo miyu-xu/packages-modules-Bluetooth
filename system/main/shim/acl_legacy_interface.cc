@@ -21,6 +21,8 @@
 #include "stack/include/sec_hci_link_interface.h"
 
 struct tBTM_ESCO_DATA;
+void gatt_notify_phy_updated(tGATT_STATUS status, uint16_t handle,
+                             uint8_t tx_phy, uint8_t rx_phy);
 
 namespace bluetooth {
 namespace shim {
@@ -78,6 +80,7 @@ const acl_interface_t GetAclInterface() {
       .link.le.on_data_length_change = acl_ble_data_length_change_event,
       .link.le.on_read_remote_version_information_complete =
           btm_read_remote_version_complete,
+      .link.le.on_phy_update = gatt_notify_phy_updated,
   };
   return acl_interface;
 }
