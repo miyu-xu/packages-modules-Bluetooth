@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65439e29_a91d3e87",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:53:56Z",
+      "side": 1,
+      "message": "OK, I see now. Why not put them in a separate lazy_static variable? Since I don\u0027t see any reason why it needs to be in the FLAGS object.",
+      "parentUuid": "fa8e7efc_bce734b5",
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e415863_400eaf19",
         "filename": "system/gd/rust/common/src/init_flags.rs",
         "patchSetId": 2
@@ -71,6 +89,24 @@
       "writtenOn": "2022-10-06T20:52:03Z",
       "side": 1,
       "message": "Is there a test of extra_fields?",
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74c8dd89_074d112b",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T20:53:56Z",
+      "side": 1,
+      "message": "nvm, I see it",
+      "parentUuid": "ec7c0f16_5327d532",
       "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
