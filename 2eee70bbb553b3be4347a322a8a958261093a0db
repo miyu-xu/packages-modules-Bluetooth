@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88566453_f8e8fce6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-06T08:31:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec930db9_4aeca829",
+      "range": {
+        "startLine": 52,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 15
+      },
+      "revId": "2eee70bbb553b3be4347a322a8a958261093a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b730dc7_8e8e918b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-06T02:12:57Z",
       "side": 1,
       "message": "We need a new case for BluetoothLeAudio.ACTION_CONNECTION_STATE_CHANGED and react to it",
+      "range": {
+        "startLine": 171,
+        "startChar": 14,
+        "endLine": 171,
+        "endChar": 76
+      },
+      "revId": "2eee70bbb553b3be4347a322a8a958261093a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8ed6520_88522cd6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-06T08:31:00Z",
+      "side": 1,
+      "message": "Added, but it seems the broadcast for MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE_CHANGED is not called.",
+      "parentUuid": "3b730dc7_8e8e918b",
       "range": {
         "startLine": 171,
         "startChar": 14,
