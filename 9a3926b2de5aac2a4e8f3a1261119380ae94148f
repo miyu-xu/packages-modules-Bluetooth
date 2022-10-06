@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49182811_c812c7da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-06T01:49:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b668f273_3ecdc893",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 40
+      },
+      "revId": "9a3926b2de5aac2a4e8f3a1261119380ae94148f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c8c4198_33f4d083",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-06T01:41:34Z",
       "side": 1,
       "message": "Let\u0027s put it on the top.",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 37
+      },
+      "revId": "9a3926b2de5aac2a4e8f3a1261119380ae94148f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15fefe49_ce407343",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-06T01:49:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c8c4198_33f4d083",
       "range": {
         "startLine": 48,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "477e9713_53894e2e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-06T01:49:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7e2cbad_eac1cce9",
+      "range": {
+        "startLine": 58,
+        "startChar": 11,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "9a3926b2de5aac2a4e8f3a1261119380ae94148f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45e263b2_bb198488",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "862f4539_a630e304",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-06T01:49:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45e263b2_bb198488",
+      "range": {
+        "startLine": 59,
+        "startChar": 11,
+        "endLine": 59,
+        "endChar": 12
+      },
+      "revId": "9a3926b2de5aac2a4e8f3a1261119380ae94148f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00adc26b_033184a0",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-10-06T01:41:34Z",
       "side": 1,
       "message": "list?",
+      "range": {
+        "startLine": 66,
+        "startChar": 35,
+        "endLine": 66,
+        "endChar": 38
+      },
+      "revId": "9a3926b2de5aac2a4e8f3a1261119380ae94148f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5b4c0e5_9bc2e3d1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-06T01:49:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00adc26b_033184a0",
       "range": {
         "startLine": 66,
         "startChar": 35,
