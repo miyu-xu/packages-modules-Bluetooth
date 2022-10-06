@@ -16,6 +16,24 @@
       "message": "is there a different way we can test other than compiles?",
       "revId": "fb6f323044e866a2ad1af940ff4e2a0d920d2d76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d89c880_b4052a46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:36:49Z",
+      "side": 1,
+      "message": "I\u0027ll update it once the Fitbit folks manually test that it works. I don\u0027t see an easy way to do an automated test for this, since it\u0027s shim plumbing so cert tests and so forth won\u0027t work here, and Avatar isn\u0027t ready (and the interfaces don\u0027t exist anyway).",
+      "parentUuid": "48708708_5a6fa9da",
+      "revId": "fb6f323044e866a2ad1af940ff4e2a0d920d2d76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
