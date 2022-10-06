@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24fa7a59_fbbec20e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-06T22:28:12Z",
+      "side": 1,
+      "message": "FYI, you\u0027ll want to make sure to run `./build.py --target test` to confirm the rustdoc compiles.",
+      "revId": "8fb195f8809897bb618e34fe35bee66c889e5fc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
