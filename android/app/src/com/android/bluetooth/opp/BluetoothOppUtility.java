@@ -50,6 +50,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.SystemProperties;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 
 import java.io.File;
@@ -302,7 +303,8 @@ public class BluetoothOppUtility {
     public static void updateVisibilityToHidden(Context context, Uri uri) {
         ContentValues updateValues = new ContentValues();
         updateValues.put(BluetoothShare.VISIBILITY, BluetoothShare.VISIBILITY_HIDDEN);
-        context.getContentResolver().update(uri, updateValues, null, null);
+        BluetoothMethodProxy.getInstance().contentResolverUpdate(context.getContentResolver(), uri,
+                updateValues, null, null);
     }
 
     /**
