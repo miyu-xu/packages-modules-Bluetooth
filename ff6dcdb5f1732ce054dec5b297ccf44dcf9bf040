@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c950719_ecc82776",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-10-06T09:23:00Z",
+      "side": 1,
+      "message": "We should update the comment to fit current behavior.",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 65
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f4125669_a8c47f30",
@@ -14,6 +37,24 @@
       "writtenOn": "2022-10-06T08:31:00Z",
       "side": 1,
       "message": "FYI, there is no MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE_CHANGED. So we need to add it here.",
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c21e580_41253cae",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-10-06T09:23:00Z",
+      "side": 1,
+      "message": "we should be able to see it after register the intent filter, so we should move this to above case as well.",
+      "parentUuid": "f4125669_a8c47f30",
       "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
