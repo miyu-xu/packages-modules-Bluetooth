@@ -4828,7 +4828,7 @@ public class AdapterService extends Service {
      * @return true, if the LE audio broadcast source is supported
      */
     public boolean isLeAudioBroadcastSourceSupported() {
-        return  BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false)
+        return  Config.isBroadcastServiceEnabled()
                 && mAdapterProperties.isLePeriodicAdvertisingSupported()
                 && mAdapterProperties.isLeExtendedAdvertisingSupported()
                 && mAdapterProperties.isLeIsochronousBroadcasterSupported();

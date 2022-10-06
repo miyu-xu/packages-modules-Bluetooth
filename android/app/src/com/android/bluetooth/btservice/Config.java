@@ -68,6 +68,8 @@ public class Config {
 
     private static final String LE_AUDIO_DYNAMIC_SWITCH_PROPERTY =
             "ro.bluetooth.leaudio_switcher.supported";
+    private static final String LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY =
+            "ro.bluetooth.leaudio_broadcast_switcher.supported";
     private static final String LE_AUDIO_DYNAMIC_ENABLED_PROPERTY =
             "persist.bluetooth.leaudio_switcher.enabled";
 
@@ -172,18 +174,30 @@ public class Config {
     private static Class[] sSupportedProfiles = new Class[0];
 
     private static boolean sIsGdEnabledUptoScanningLayer = false;
+    private static boolean sEnableBroadcastService = false;
 
     static void init(Context ctx) {
+        sEnableBroadcastService = LeAudioService.isBroadcastEnabled();
         final boolean leAudioDynamicSwitchSupported =
                 SystemProperties.getBoolean(LE_AUDIO_DYNAMIC_SWITCH_PROPERTY, false);
+        final boolean broadcastDynamicSwitchSupported =
+                SystemProperties.getBoolean(LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY, false);
+        final String leAudioDynamicEnabled =
+                SystemProperties.get(LE_AUDIO_DYNAMIC_ENABLED_PROPERTY, "none");
 
-        if (leAudioDynamicSwitchSupported) {
-            final String leAudioDynamicEnabled = SystemProperties
-                    .get(LE_AUDIO_DYNAMIC_ENABLED_PROPERTY, "none");
-            if (leAudioDynamicEnabled.equals("true")) {
+        if (leAudioDynamicEnabled.equals("true")) {
+            if (leAudioDynamicSwitchSupported) {
                 setLeAudioProfileStatus(true);
-            } else if (leAudioDynamicEnabled.equals("false")) {
+            }
+            if (broadcastDynamicSwitchSupported) {
+                setBroadcastProfileStatus(true);
+            }
+        } else if (leAudioDynamicEnabled.equals("false")) {
+            if (leAudioDynamicSwitchSupported) {
                 setLeAudioProfileStatus(false);
+            }
+            if (broadcastDynamicSwitchSupported) {
+                setBroadcastProfileStatus(false);
             }
         }
 
@@ -214,6 +228,11 @@ public class Config {
         setProfileEnabled(TbsService.class, enable);
         setProfileEnabled(McpService.class, enable);
         setProfileEnabled(VolumeControlService.class, enable);
+    }
+
+    static void setBroadcastProfileStatus(Boolean enable) {
+        setProfileEnabled(BassClientService.class, enable);
+        sEnableBroadcastService = enable;
     }
 
     /**
@@ -267,5 +286,9 @@ public class Config {
             mask |= getProfileMask(profileClass);
         }
         return mask;
+    }
+
+    static boolean isBroadcastServiceEnabled() {
+        return sEnableBroadcastService;
     }
 }
