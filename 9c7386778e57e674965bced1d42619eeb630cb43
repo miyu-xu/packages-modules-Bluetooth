@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff3fa8a_aec11b50",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T12:15:31Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 157,
+        "startChar": 45,
+        "endLine": 157,
+        "endChar": 65
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c136c0d6_3bc110db",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T12:15:31Z",
+      "side": 1,
+      "message": "\u003e (According to the comment on line 55)\n\nI think it\u0027s easier to read to just use \u003e, so if we need it to be \u003e\u003d 2, we can change the threshold to be 1.",
+      "range": {
+        "startLine": 194,
+        "startChar": 17,
+        "endLine": 194,
+        "endChar": 19
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "404a030f_99f4df65",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T12:15:31Z",
+      "side": 1,
+      "message": "triangle ?",
+      "range": {
+        "startLine": 265,
+        "startChar": 10,
+        "endLine": 265,
+        "endChar": 14
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "341c0d5e_ebe2bfe1",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T12:15:31Z",
+      "side": 1,
+      "message": "triangle?",
+      "range": {
+        "startLine": 299,
+        "startChar": 24,
+        "endLine": 299,
+        "endChar": 28
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
