@@ -15,6 +15,10 @@ serde = { version = "*", features = ["default", "derive", "serde_derive", "std"]
 serde_json = "*"
 clap = { version = "*", features = ["derive"] }
 syn = "*"
+tempfile = "*"
 
 [dev-dependencies]
-tempfile = "*"
+bytes = "*"
+num-derive = "*"
+num-traits = "*"
+thiserror = "*"
