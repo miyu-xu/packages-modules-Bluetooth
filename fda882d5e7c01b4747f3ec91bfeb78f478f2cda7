@@ -16,6 +16,24 @@
       "message": "nit: rm",
       "revId": "fda882d5e7c01b4747f3ec91bfeb78f478f2cda7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "626d0c52_8565d35d",
+        "filename": "system/gd/common/init_flags.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-06T21:48:52Z",
+      "side": 1,
+      "message": "Done + cleaning duplication between cc and h",
+      "parentUuid": "111f4865_c435cc0a",
+      "revId": "fda882d5e7c01b4747f3ec91bfeb78f478f2cda7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
