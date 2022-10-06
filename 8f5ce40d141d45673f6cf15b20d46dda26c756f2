@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d099ae1d_936fde1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-06T22:36:15Z",
+      "side": 1,
+      "message": "Downgrade from +2 to not have a unwanted submit:\nCan you add the test associated with what this CL is addressing ? (can be a unit test)",
+      "revId": "8f5ce40d141d45673f6cf15b20d46dda26c756f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
