@@ -33,6 +33,24 @@
       "message": "Please expand the rustdoc here explaining how it should be used. Maybe given an example of dispatching to multiple impl structs.",
       "revId": "80f366def244cd442917b6fe6b7011ed7576ab69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13b7ab6a_954905b8",
+        "filename": "system/gd/rust/linux/stack/btif_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-06T22:24:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cab317ab_fcb24bac",
+      "revId": "80f366def244cd442917b6fe6b7011ed7576ab69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
