@@ -50,6 +50,24 @@
       "message": "FYI, there is no MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE_CHANGED. So we need to remove disconnected devices.",
       "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74315771_eb09143c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-06T08:43:47Z",
+      "side": 1,
+      "message": "will be removed in the next patch set. I forgot to register intent filter for it.",
+      "parentUuid": "2f6b4bdc_667d315d",
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
