@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "034389da_23eedee4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-06T16:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a804aca7_0ffe173d",
+      "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4856f5a_68259920",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "because get_cod uses COD_MASK, and filters out LE Audio bit",
       "parentUuid": "b4856f5a_68259920",
+      "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd79e7dc_6075df9a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-06T16:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99874d76_377e67d4",
       "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
