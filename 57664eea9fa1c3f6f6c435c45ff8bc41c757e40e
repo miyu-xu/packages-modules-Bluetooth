@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab6292be_44d64209",
+        "filename": "system/main/shim/shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T22:09:33Z",
+      "side": 1,
+      "message": "sure. Will do after your CLs land to minimize conflict. Leaving unresolved as a reminder.",
+      "parentUuid": "3f406ccc_b978b3c8",
+      "range": {
+        "startLine": 85,
+        "startChar": 67,
+        "endLine": 85,
+        "endChar": 71
+      },
+      "revId": "57664eea9fa1c3f6f6c435c45ff8bc41c757e40e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12b2e31b_0853273f",
         "filename": "system/stack/btm/btm_sec.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-19T21:27:25Z",
       "side": 1,
       "message": "p_bd_addr can be null and this will crash",
+      "range": {
+        "startLine": 2238,
+        "startChar": 11,
+        "endLine": 2238,
+        "endChar": 20
+      },
+      "revId": "57664eea9fa1c3f6f6c435c45ff8bc41c757e40e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8db03d16_dcee3687",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2238,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T22:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12b2e31b_0853273f",
       "range": {
         "startLine": 2238,
         "startChar": 11,
