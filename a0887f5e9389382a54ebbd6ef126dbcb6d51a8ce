@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88d12b8b_67f2c421",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 51
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:21:09Z",
+      "side": 1,
+      "message": "Please add it to PtsBotTestMts.xml",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef063c9_a1444631",
+        "filename": "android/pandora/server/proto/pandora_experimental/gap.proto",
+        "patchSetId": 51
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:21:09Z",
+      "side": 1,
+      "message": "nit: can be removed",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6cf6b8_7cee8dd7",
+        "filename": "android/pandora/server/src/com/android/pandora/Gap.kt",
+        "patchSetId": 51
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:21:09Z",
+      "side": 1,
+      "message": "Do we need this ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 1
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
