@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41f64e9c_f3e132a8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4831,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-06T14:45:47Z",
+      "side": 1,
+      "message": "In current design, while init adapter service, will use this function to check whether to add the LE_AUDIO_BROADCAST into supportedProfile list.\nThe logic is different from other service due to the unicast and broadcast service are setup in the same service(LeAudioService).\nI think the logic may not able to align with the isLeAudioSupported unless the server is separated",
+      "parentUuid": "0d574326_0c09759a",
+      "range": {
+        "startLine": 4831,
+        "startChar": 16,
+        "endLine": 4831,
+        "endChar": 50
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f93c22b_4835e5d3",
         "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-06T13:48:51Z",
       "side": 1,
       "message": "Why we need to get the value and cache here? Would you plan to change the default properties value? or depend the value to do something?",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 70
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f20dae_c5773020",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-06T14:45:47Z",
+      "side": 1,
+      "message": "This is the default value indicate whether to enable the broadcast service.\nThe actual value may be overwritten by the dynamic switcher, so I load it here as the default value. If the switcher is not enabled, then the default value will be used.",
+      "parentUuid": "1f93c22b_4835e5d3",
       "range": {
         "startLine": 180,
         "startChar": 8,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb963176_49aafcc3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-06T14:45:47Z",
+      "side": 1,
+      "message": "will modify",
+      "parentUuid": "595553f5_fc698a12",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 51
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd0ad2dc_f23709a5",
         "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
         "patchSetId": 1
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-06T13:48:51Z",
       "side": 1,
       "message": "How to control the broadcast profile status? Could it combine to setLeAudioProfileStatus?",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 41
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac13f677_2874d074",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-06T14:45:47Z",
+      "side": 1,
+      "message": "In current design, LeAudioService included the unicast and broadcast service.\nThere is no broadcast service included in \"PROFILE_SERVICES_AND_FLAGS\", hence we need to have a way to check whether to start the broadcast service when we start the le audio service.",
+      "parentUuid": "fd0ad2dc_f23709a5",
       "range": {
         "startLine": 233,
         "startChar": 16,
