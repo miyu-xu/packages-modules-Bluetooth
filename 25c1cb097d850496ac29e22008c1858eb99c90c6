@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a8000b3_18716afd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-06T03:27:20Z",
+      "side": 1,
+      "message": "I have a general question about using the experimental interface. The experimental concept is a mechanism used in bluez to introduce new features. When a feature is mature/stable, it will become official and has its own method. \n\nThe experimental feature, in my view point, is primarily designed for the MGMT socket so that deprecated experimental features do not take up the MGMT opcodes. \n\nSince there are no such MGMT opcodes in floss, do we still want to use the “experimental” concept in floss?",
+      "revId": "25c1cb097d850496ac29e22008c1858eb99c90c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "626fca5d_55a00235",
         "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
         "patchSetId": 8
