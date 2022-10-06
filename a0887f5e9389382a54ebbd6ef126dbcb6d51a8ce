@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8635532c_5f1eeaa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 51
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Removed. We can add back later if we decide to move stuff from host into gap (like David proposed but didn\u0027t require)",
+      "parentUuid": "e7ee89c3_0ec06cda",
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43ff5531_6ba9bc0c",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-10-06T15:40:30Z",
       "side": 1,
       "message": "I don\u0027t know if this is gonna be reused in the future. Does a function could be welcome to do such an operation ?",
+      "range": {
+        "startLine": 111,
+        "startChar": 15,
+        "endLine": 111,
+        "endChar": 75
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "926a5294_2baf3883",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 51
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "done, though I don\u0027t think it\u0027s used in any other MMI",
+      "parentUuid": "43ff5531_6ba9bc0c",
       "range": {
         "startLine": 111,
         "startChar": 15,
@@ -87,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d944847d_096c0d24",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 51
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a8f5f11_f88c00de",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 72
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfb886e3_0d078504",
@@ -100,6 +166,30 @@
       "writtenOn": "2022-10-06T15:40:30Z",
       "side": 1,
       "message": "This behavior feels more like a Hack against the MMI than acting as the MMI would like us to",
+      "range": {
+        "startLine": 319,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 55
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "740654a9_cb119223",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 51
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bfb886e3_0d078504",
       "range": {
         "startLine": 319,
         "startChar": 8,
@@ -133,6 +223,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2ab2e1_1223b8c4",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 51
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eaf33641_37e2b8a2",
+      "range": {
+        "startLine": 832,
+        "startChar": 0,
+        "endLine": 832,
+        "endChar": 4
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9567a643_fcd677e1",
@@ -146,6 +260,30 @@
       "writtenOn": "2022-10-06T15:40:30Z",
       "side": 1,
       "message": "Can\u0027t we use WaitConnection instead ?",
+      "range": {
+        "startLine": 870,
+        "startChar": 12,
+        "endLine": 870,
+        "endChar": 21
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f316ad2a_05b0e2f2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 51
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9567a643_fcd677e1",
       "range": {
         "startLine": 870,
         "startChar": 12,
@@ -179,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a0f7251_04020009",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 51
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "It didn\u0027t work when I tried it. I\u0027ll change it back and see if anything fails.",
+      "parentUuid": "d9559d35_56ec7c41",
+      "range": {
+        "startLine": 874,
+        "startChar": 12,
+        "endLine": 874,
+        "endChar": 33
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88d12b8b_67f2c421",
@@ -192,6 +354,30 @@
       "writtenOn": "2022-10-06T15:21:09Z",
       "side": 1,
       "message": "Please add it to PtsBotTestMts.xml",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f03e6f8d_86f97ded",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 51
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88d12b8b_67f2c421",
       "range": {
         "startLine": 42,
         "startChar": 7,
@@ -225,6 +411,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e5dfef9_c42b53e4",
+        "filename": "android/pandora/server/proto/pandora_experimental/gap.proto",
+        "patchSetId": 51
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ef063c9_a1444631",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f6cf6b8_7cee8dd7",
@@ -238,6 +448,30 @@
       "writtenOn": "2022-10-06T15:21:09Z",
       "side": 1,
       "message": "Do we need this ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 1
+      },
+      "revId": "a0887f5e9389382a54ebbd6ef126dbcb6d51a8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2927fff5_56e3ef95",
+        "filename": "android/pandora/server/src/com/android/pandora/Gap.kt",
+        "patchSetId": 51
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-06T17:52:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f6cf6b8_7cee8dd7",
       "range": {
         "startLine": 43,
         "startChar": 2,
