@@ -33,6 +33,32 @@ pub fn find_binary(name: &str) -> Result<std::path::PathBuf, String> {
     ))
 }
 
+/// Run `code` through `pdl`.
+///
+/// # Panics
+///
+/// Panics if `pdl` cannot be found or if it fails.
+pub fn pdl(code: &str) -> String {
+    let tempdir = tempfile::tempdir().unwrap();
+    let input = tempdir.path().join("input.pdl");
+    fs::write(&input, code.as_bytes()).unwrap();
+
+    // Cargo will set `CARGO_BIN_EXE_pdl` when compiling the crate. If
+    // we're not using Cargo, we search for `pdl` using find_binary.
+    let pdl_path = match std::option_env!("CARGO_BIN_EXE_pdl") {
+        Some(pdl_path) => std::path::PathBuf::from(pdl_path),
+        None => find_binary("pdl").unwrap(),
+    };
+    let output = Command::new(&pdl_path)
+        .arg("--output-format")
+        .arg("rust")
+        .arg(input)
+        .output()
+        .expect("pdl failed");
+    assert!(output.status.success(), "pdl failure: {:?}, input:\n{}", output, code);
+    String::from_utf8(output.stdout).unwrap()
+}
+
 /// Run `input` through `rustfmt`.
 ///
 /// # Panics
