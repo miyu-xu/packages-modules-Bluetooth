@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f89eac86_c4fda8eb",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-06T10:37:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32adf5c4_b98660c4",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 9
+      },
+      "revId": "55a7dfe39f855d4491f7ae9e26e9a13fc7a5d265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43cc0eae_3ef76760",
