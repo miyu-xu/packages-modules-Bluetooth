@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f06e99_4de57b50",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-06T18:15:32Z",
+      "side": 1,
+      "message": "We should probably also\n\n```\nif suspend_timeout_joinhandle.is_some() {\n  suspend_timeout_joinhandle.abort();\n  suspend_timeout_joinhandle \u003d None;\n}\n\nlet suspend_timeout_joinhandle \u003d Some(topstack::get_runtime().spawn( async move {\n  sleep(Duration::from_millis(2500));\n  error!(\"Suspend didn\u0027t complete in 2.5s. Continuing anyway.\");\n  \n  le_rand_expected \u003d false;\n  run_suspend_done_callbacks();\n}));\n```\n\nand abort the joinhandle on the lerand callback.",
+      "revId": "5b77381040880318823970808b341487e425a82b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0fad3c_f8b44d77",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-06T18:15:32Z",
+      "side": 1,
+      "message": "You should check here that an LE Rand was expected before sending this. What if the stack generates an LE rand response for an unexpected reason?",
+      "revId": "5b77381040880318823970808b341487e425a82b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
