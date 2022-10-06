@@ -47,6 +47,12 @@ rust_test_host {
     data: [
         ":rustfmt",
         ":rustfmt.toml",
+        "tests/generated/generate_chunk_read_16bit_be.rs",
+        "tests/generated/generate_chunk_read_16bit_le.rs",
+        "tests/generated/generate_chunk_read_24bit_be.rs",
+        "tests/generated/generate_chunk_read_24bit_le.rs",
+        "tests/generated/generate_chunk_read_8bit.rs",
+        "tests/generated/generate_chunk_read_multiple_fields.rs",
         "tests/generated/preamble.rs",
         "tests/generated/packet_decl_empty.rs",
         "tests/generated/packet_decl_simple_little_endian.rs",
