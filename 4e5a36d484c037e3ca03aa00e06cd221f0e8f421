@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61b6d33e_f3292914",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-06T14:45:20Z",
+      "side": 1,
+      "message": "How is this related to the bug?  It seems like an optimization at start up, not a bug fix.",
+      "revId": "4e5a36d484c037e3ca03aa00e06cd221f0e8f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
