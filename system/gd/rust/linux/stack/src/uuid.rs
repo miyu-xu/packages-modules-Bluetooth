@@ -72,6 +72,10 @@ pub enum Profile {
     CoordinatedSet,
 }
 
+// Unsigned integer representation of UUIDs.
+pub const BASE_UUID_NUM: u128 = 0x0000000000001000800000805f9b34fbu128;
+pub const BASE_UUID_MASK: u128 = !(0xffffffffu128 << 96);
+
 /// Wraps a reference of Uuid128Bit, which is the raw array of bytes of UUID.
 /// This is useful in implementing standard Rust traits which can't be implemented directly on
 /// built-in types (Rust's Orphan Rule).
@@ -214,6 +218,31 @@ impl UuidHelper {
 
         Some(uuid)
     }
+
+    /// Parses an 128-bit UUID into a byte array of shortest representation.
+    pub fn get_shortest_bytes(uuid: &Uuid128Bit) -> Vec<u8> {
+        if UuidHelper::in_16bit_uuid_range(uuid) {
+            return vec![uuid[2], uuid[3]];
+        } else if UuidHelper::in_32bit_uuid_range(uuid) {
+            return vec![uuid[0], uuid[1], uuid[2], uuid[3]];
+        } else {
+            return uuid.to_vec();
+        }
+    }
+
+    /// Checks whether the UUID value is in the 16-bit Bluetooth UUID range.
+    fn in_16bit_uuid_range(uuid: &Uuid128Bit) -> bool {
+        if !UuidHelper::in_32bit_uuid_range(uuid) {
+            return false;
+        }
+        uuid[0] == 0 && uuid[1] == 0
+    }
+
+    /// Checks whether the UUID value is in the 32-bit Bluetooth UUID range.
+    fn in_32bit_uuid_range(uuid: &Uuid128Bit) -> bool {
+        let num = u128::from_be_bytes(*uuid);
+        (num & BASE_UUID_MASK) == BASE_UUID_NUM
+    }
 }
 
 // Temporary util that covers only basic string conversion.
@@ -254,5 +283,18 @@ mod tests {
                 None
             });
         }
+    }
+
+    #[test]
+    fn test_get_shortest_bytes() {
+        let uuid_16 = UuidHelper::from_string("0000fef3-0000-1000-8000-00805f9b34fb").unwrap();
+        assert_eq!(UuidHelper::get_shortest_bytes(&uuid_16), [0xfe, 0xf3]);
+
+        let uuid_32 = UuidHelper::from_string("00112233-0000-1000-8000-00805f9b34fb").unwrap();
+        assert_eq!(UuidHelper::get_shortest_bytes(&uuid_32), [0x00, 0x11, 0x22, 0x33]);
+
+        let uuid_128 = UuidHelper::from_string("00112233-4455-6677-8899-aabbccddeeff").unwrap();
+        let ans_128: Vec<u8> = (0..16).map(|d| (d << 4) + d).collect();
+        assert_eq!(UuidHelper::get_shortest_bytes(&uuid_128), ans_128);
     }
 }
