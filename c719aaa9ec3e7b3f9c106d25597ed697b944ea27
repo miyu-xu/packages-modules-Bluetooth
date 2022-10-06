@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab3b874f_f54886db",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-06T21:42:51Z",
+      "side": 1,
+      "message": "Done with `_,_`",
+      "parentUuid": "22b46445_2009cfdd",
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa8e7efc_bce734b5",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbe21df6_70930c31",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-06T21:42:51Z",
+      "side": 1,
+      "message": "Okay as per offline discussion.\n\nsummary:\nIt\u0027s set together with the init_flag and as the same lifetime of all the init flag.\nRemoving from the struct would require a new different mutex, I am not sure it\u0027s worth it.\n\nWe agree that even the mutex seems overkill at this point as this intend to be initialized only once during the lifecycle of the stack, but because this is a global variable ( 😞 ) we don\u0027t have another choice (unsafe is by definition out of the equation)",
+      "parentUuid": "65439e29_a91d3e87",
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e415863_400eaf19",
@@ -66,6 +102,30 @@
       "writtenOn": "2022-10-06T20:52:03Z",
       "side": 1,
       "message": "nit: rm",
+      "range": {
+        "startLine": 188,
+        "startChar": 43,
+        "endLine": 188,
+        "endChar": 44
+      },
+      "revId": "c719aaa9ec3e7b3f9c106d25597ed697b944ea27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fe2088d_2ea96e60",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-06T21:42:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e415863_400eaf19",
       "range": {
         "startLine": 188,
         "startChar": 43,
