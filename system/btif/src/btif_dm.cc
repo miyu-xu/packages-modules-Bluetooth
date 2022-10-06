@@ -115,6 +115,8 @@ const bool enable_address_consolidate = true;  // TODO remove
 #define COD_AV_PORTABLE_AUDIO 0x041C
 #define COD_AV_HIFI_AUDIO 0x0428
 
+#define COD_CLASS_LE_AUDIO (1 << 14)
+
 #define BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING 2
 
 #ifndef PROPERTY_CLASS_OF_DEVICE
@@ -470,7 +472,7 @@ static uint32_t get_cod(const RawAddress* remote_bdaddr) {
   if (btif_storage_get_remote_device_property(
           (RawAddress*)remote_bdaddr, &prop_name) == BT_STATUS_SUCCESS) {
     LOG_INFO("%s remote_cod = 0x%08x", __func__, remote_cod);
-    return remote_cod & COD_MASK;
+    return remote_cod;
   }
 
   return 0;
@@ -488,6 +490,9 @@ bool check_cod_hid(const RawAddress& bd_addr) {
   return (get_cod(&bd_addr) & COD_HID_MASK) == COD_HID_MAJOR;
 }
 
+bool check_cod_le_audio(const RawAddress& bd_addr) {
+  return (get_cod(&bd_addr) & COD_CLASS_LE_AUDIO) == COD_CLASS_LE_AUDIO;
+}
 /*****************************************************************************
  *
  * Function        check_sdp_bl
@@ -696,6 +701,31 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport) {
   bool is_hid = check_cod(&bd_addr, COD_HID_POINTING);
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+
+  /* If device is LE Audio capable, we prefer LE connection first, this speeds
+   * up LE profile connection, and limits all possible service discovery
+   * ordering issues (first Classic, GATT over SDP, etc) */
+  if (transport == BT_TRANSPORT_AUTO &&
+      LeAudioClient::IsLeAudioClientRunning() && check_cod_le_audio(bd_addr)) {
+    tBT_DEVICE_TYPE tmp_dev_type;
+    tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
+    BTM_ReadDevInfo(bd_addr, &tmp_dev_type, &addr_type);
+
+    bool is_le_capable = (tmp_dev_type & BT_DEVICE_TYPE_BLE);
+    if (!is_le_capable) {
+      int device_type = 0;
+      std::string addrstr = bd_addr.ToString();
+      const char* bdstr = addrstr.c_str();
+      btif_config_get_int(bdstr, "DevType", &device_type);
+      is_le_capable =
+          ((device_type & BT_DEVICE_TYPE_BLE) == BT_DEVICE_TYPE_BLE);
+    }
+
+    if (is_le_capable) {
+      LOG_INFO("LE Audio && advertising over LE, use LE transport for Bonding");
+      transport = BT_TRANSPORT_LE;
+    }
+  }
 
   int device_type = 0;
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
