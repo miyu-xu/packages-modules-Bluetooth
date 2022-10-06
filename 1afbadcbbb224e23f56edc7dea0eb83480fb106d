@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b00c490_0b2e79ce",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:08:31Z",
+      "side": 1,
+      "message": "nit: space",
+      "range": {
+        "startLine": 1061,
+        "startChar": 41,
+        "endLine": 1061,
+        "endChar": 42
+      },
+      "revId": "1afbadcbbb224e23f56edc7dea0eb83480fb106d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b590b445_ec4fa413",
         "filename": "android/pandora/server/configs/PtsBotTest.xml",
         "patchSetId": 2
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "b590b445_ec4fa413",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 53
+      },
+      "revId": "1afbadcbbb224e23f56edc7dea0eb83480fb106d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1f9910_bb82cbcf",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:08:31Z",
+      "side": 1,
+      "message": "I think you forgot to add it into PtsBotTestMts.xml",
+      "parentUuid": "50167d8e_5387e3a0",
       "range": {
         "startLine": 42,
         "startChar": 0,

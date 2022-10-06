@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37ed824a_9cb26efa",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:08:31Z",
+      "side": 1,
+      "message": "nit: I would have say `if test not int MMI_SERVER`\nJust saying, doesn\u0027t have to be resolved",
+      "range": {
+        "startLine": 218,
+        "startChar": 8,
+        "endLine": 218,
+        "endChar": 34
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a2e444a_5d41216b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:08:31Z",
+      "side": 1,
+      "message": "Quick question: Where does these UUIDs come from ?",
+      "range": {
+        "startLine": 898,
+        "startChar": 22,
+        "endLine": 898,
+        "endChar": 58
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e8603b1_7e602914",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:08:31Z",
+      "side": 1,
+      "message": "Can we make them global constant instead of commenting them each time we are using it ?",
+      "range": {
+        "startLine": 902,
+        "startChar": 24,
+        "endLine": 903,
+        "endChar": 60
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7171fd0_7fe846b8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:08:31Z",
+      "side": 1,
+      "message": "Should we not register the services before advertising ?",
+      "range": {
+        "startLine": 896,
+        "startChar": 8,
+        "endLine": 911,
+        "endChar": 14
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5fd1b0f_31ee79a0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-06T15:08:31Z",
+      "side": 1,
+      "message": "nit: space",
+      "range": {
+        "startLine": 1007,
+        "startChar": 57,
+        "endLine": 1007,
+        "endChar": 58
+      },
+      "revId": "233ed5fac6f1a852af1a5e9df186d5c401c223a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
