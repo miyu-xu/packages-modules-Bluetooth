@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7750c94c_1fdee095",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "295e0486_012a9028",
+      "range": {
+        "startLine": 286,
+        "startChar": 1,
+        "endLine": 287,
+        "endChar": 1
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c2ba97c_c1e3d32d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-07T13:42:11Z",
       "side": 1,
       "message": "Then this can be \nif (extended_advertisers_[advertising_handle].advertising_enable) {\n\nI don\u0027t appreciate the use of first and second in maps",
+      "range": {
+        "startLine": 299,
+        "startChar": 1,
+        "endLine": 299,
+        "endChar": 38
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d961948_22b40e95",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c2ba97c_c1e3d32d",
       "range": {
         "startLine": 299,
         "startChar": 1,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21d7348a_dc5d11f6",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "I think that advertising sets are intended to be discarded after one use, and not to be recycled for a different purpose.\n\nThe same issue would occur with advertising data anyway: switching from an advertising type with advertising data to another one without, you have to manually clear the advertising data.",
+      "parentUuid": "f3887672_b466e075",
+      "range": {
+        "startLine": 403,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 40
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2789fb5_5cc19955",
         "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
         "patchSetId": 4
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-07T13:42:11Z",
       "side": 1,
       "message": "nit: No extra information, since it\u0027s only printed when it\u0027s zero.",
+      "range": {
+        "startLine": 479,
+        "startChar": 41,
+        "endLine": 479,
+        "endChar": 48
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc584f72_e8a9cad4",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2789fb5_5cc19955",
       "range": {
         "startLine": 479,
         "startChar": 41,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ce8e1c_1e2eaf06",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "I indeed followed the order in the specification. I don\u0027t think that the specific error code matters, but I moved the check first on the list.",
+      "parentUuid": "3ad20dd7_aaf652fd",
+      "range": {
+        "startLine": 509,
+        "startChar": 0,
+        "endLine": 511,
+        "endChar": 31
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed9db294_2b6665d2",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-10-07T13:42:11Z",
       "side": 1,
       "message": "Log the lengths?",
+      "range": {
+        "startLine": 732,
+        "startChar": 4,
+        "endLine": 734,
+        "endChar": 36
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "699ded2b_c98d2d50",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed9db294_2b6665d2",
       "range": {
         "startLine": 732,
         "startChar": 4,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5095b308_2642f8ef",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce0b688a_31004df1",
+      "range": {
+        "startLine": 889,
+        "startChar": 0,
+        "endLine": 889,
+        "endChar": 35
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3576f63d_981d4a48",
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c0ec67_166d31a3",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3576f63d_981d4a48",
+      "range": {
+        "startLine": 891,
+        "startChar": 6,
+        "endLine": 891,
+        "endChar": 55
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "479a8a7c_9ae12eac",
@@ -198,6 +390,30 @@
       "writtenOn": "2022-10-07T13:42:11Z",
       "side": 1,
       "message": "nit: Can we move this block to line 976?  I think it\u0027s easier to understand if this is checked right after the disable all check, since that\u0027s the one place size can be 0.",
+      "range": {
+        "startLine": 985,
+        "startChar": 0,
+        "endLine": 985,
+        "endChar": 2
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba15525b_3c4d2894",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "479a8a7c_9ae12eac",
       "range": {
         "startLine": 985,
         "startChar": 0,
@@ -233,6 +449,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d45a38ac_3d23cc62",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "AddressType is a closed enum, the default should never occur.",
+      "parentUuid": "2efefbf1_dacf7452",
+      "range": {
+        "startLine": 1128,
+        "startChar": 0,
+        "endLine": 1128,
+        "endChar": 5
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca9bdc05_640a85f4",
         "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
         "patchSetId": 4
@@ -244,6 +484,30 @@
       "writtenOn": "2022-10-07T13:42:11Z",
       "side": 1,
       "message": "What about this pattern?\n```\n    // iterate using C++17 facilities\n    for (const auto\u0026 [handle, advertiser] : extended_advertisers_) {\n        std::cout \u003c\u003c \u0027[\u0027 \u003c\u003c handle \u003c\u003c \"] \u003d \" \u003c\u003c advertiser \u003c\u003c \"; \";\n    }\n```",
+      "range": {
+        "startLine": 1336,
+        "startChar": 0,
+        "endLine": 1336,
+        "endChar": 45
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a2f2844_b0f23711",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1336,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-07T15:00:27Z",
+      "side": 1,
+      "message": "I did not known about this pattern, that\u0027s much nicer, thanks for the tip :)",
+      "parentUuid": "ca9bdc05_640a85f4",
       "range": {
         "startLine": 1336,
         "startChar": 0,
