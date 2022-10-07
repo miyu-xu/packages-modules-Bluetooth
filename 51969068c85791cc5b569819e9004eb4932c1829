@@ -33,6 +33,24 @@
       "message": "nit: Can we name this msft_mgmt or msft_management or something else that is a little more obvious?",
       "revId": "51969068c85791cc5b569819e9004eb4932c1829",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "154ef78a_306a5137",
+        "filename": "system/gd/hci/mgmt.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-07T12:35:08Z",
+      "side": 1,
+      "message": "We will have more mgmt opcodes added into this mgmt file. Can we keep the name of \"mgmt\" to be more general? Thanks.",
+      "parentUuid": "65de0e9c_879c00da",
+      "revId": "51969068c85791cc5b569819e9004eb4932c1829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
