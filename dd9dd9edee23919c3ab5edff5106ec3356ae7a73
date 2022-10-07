@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1b16054_eed5fbab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 60
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-07T16:35:01Z",
+      "side": 1,
+      "message": "We are bypassing presubmits since ToT is broken and the failures are unrelated.",
+      "revId": "dd9dd9edee23919c3ab5edff5106ec3356ae7a73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
