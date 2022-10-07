@@ -209,6 +209,7 @@ void LogMetricsProfileConnectionStateChanged(RawAddress* addr, uint32_t profile,
       .Record();
 }
 
+<<<<<<< HEAD
 void LogMetricsAclConnectAttempt(RawAddress* addr, uint32_t acl_state) {
   int64_t boot_time = bluetooth::common::time_get_os_boottime_us();
   std::string addr_string = addr->ToString();
@@ -314,6 +315,8 @@ void LogMetricsChipsetInfoReport() {
         .SetChipsetStringHashValue(chipset_string_hval);
   }
 }
+
+void DebugAssertOrLogMetric(bool condition, uint32_t assert_type, const char* format, ...) {}
 
 }  // namespace metrics
 }  // namespace bluetooth
