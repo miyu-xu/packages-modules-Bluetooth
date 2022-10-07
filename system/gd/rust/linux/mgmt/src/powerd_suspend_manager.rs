@@ -495,14 +495,24 @@ impl PowerdSuspendManager {
         let crossroads = self.context.lock().unwrap().dbus_crossroads.clone();
 
         if let Some(adapter_suspend_dbus) = &mut self.context.lock().unwrap().adapter_suspend_dbus {
-            let suspend_cb_objpath: String =
-                format!("/org/chromium/bluetooth/Manager/suspend_callback");
-            adapter_suspend_dbus.register_callback(Box::new(SuspendCallback::new(
-                suspend_cb_objpath,
-                conn,
-                crossroads,
-                self.context.clone(),
-            )));
+            let mut suspend_dbus_rpc = adapter_suspend_dbus.rpc.clone();
+            let context = self.context.clone();
+            tokio::spawn(async move {
+                let suspend_cb_objpath: String =
+                    format!("/org/chromium/bluetooth/Manager/suspend_callback");
+                let status = suspend_dbus_rpc
+                    .register_callback(Box::new(SuspendCallback::new(
+                        suspend_cb_objpath,
+                        conn,
+                        crossroads,
+                        context.clone(),
+                    )))
+                    .await;
+                log::debug!(
+                    "Suspend::RegisterCallback success = {}",
+                    status.map_or(false, std::convert::identity)
+                );
+            });
         }
     }
 
