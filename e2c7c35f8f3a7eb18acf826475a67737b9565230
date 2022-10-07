@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b3a2f91_29a2184c",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T05:21:10Z",
+      "side": 1,
+      "message": "I think this flag refers to the data, not the handle.  The handle isn\u0027t transmitted over the air.",
+      "range": {
+        "startLine": 417,
+        "startChar": 1,
+        "endLine": 418,
+        "endChar": 1
+      },
+      "revId": "e2c7c35f8f3a7eb18acf826475a67737b9565230",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
