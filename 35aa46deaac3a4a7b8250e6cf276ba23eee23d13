@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9cb45e_09acb663",
+        "filename": "android/pandora/server/proto/pandora_experimental/host.proto",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-07T16:46:41Z",
+      "side": 1,
+      "message": "resolving to remove from my gerrit dashboard 😊 (talked to Thomas before submitting btw, don\u0027t worry)",
+      "parentUuid": "68808dbc_81abf0a3",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "35aa46deaac3a4a7b8250e6cf276ba23eee23d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b93f9cbf_7b98dea5",
