@@ -2276,8 +2276,13 @@ static void btm_ble_appearance_to_cod(uint16_t appearance, uint8_t* dev_class) {
       dev_class[1] = BTM_COD_MAJOR_AUDIO;
       dev_class[2] = BTM_COD_MINOR_UNCLASSIFIED;
       break;
+    case BTM_BLE_APPEARANCE_GENERIC_WEARABLE_AUDIO_DEVICE:
     case BTM_BLE_APPEARANCE_WEARABLE_AUDIO_DEVICE_EARBUD:
-      dev_class[1] = BTM_COD_MAJOR_AUDIO;
+    case BTM_BLE_APPEARANCE_WEARABLE_AUDIO_DEVICE_HEADSET:
+    case BTM_BLE_APPEARANCE_WEARABLE_AUDIO_DEVICE_HEADPHONES:
+    case BTM_BLE_APPEARANCE_WEARABLE_AUDIO_DEVICE_NECK_BAND:
+      dev_class[0] = (BTM_COD_SERVICE_AUDIO | BTM_COD_SERVICE_RENDERING) >> 8;
+      dev_class[1] = (BTM_COD_MAJOR_AUDIO | BTM_COD_SERVICE_LE_AUDIO);
       dev_class[2] = BTM_COD_MINOR_WEARABLE_HEADSET;
       break;
     case BTM_BLE_APPEARANCE_GENERIC_BARCODE_SCANNER:
@@ -2403,6 +2408,14 @@ void btm_ble_update_inq_result(tINQ_DB_ENT* p_i, uint8_t addr_type,
       if (p_uuid16 != NULL) {
         uint8_t i;
         for (i = 0; i + 2 <= len; i = i + 2) {
+          /* if this BLE device support HID over LE, set HID Major in class of
+           * device */
+          if ((p_uuid16[i] | (p_uuid16[i + 1] << 8)) == UUID_SERVCLASS_LE_HID) {
+            p_cur->dev_class[0] = 0;
+            p_cur->dev_class[1] = BTM_COD_MAJOR_PERIPHERAL;
+            p_cur->dev_class[2] = 0;
+            break;
+          }
           /* if this BLE device support HID over LE, set HID Major in class of
            * device */
           if ((p_uuid16[i] | (p_uuid16[i + 1] << 8)) == UUID_SERVCLASS_LE_HID) {
