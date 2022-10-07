@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "220d5332_596b8cbf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-07T07:03:14Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "cfd672a5_391dbc5f",
+      "range": {
+        "startLine": 89,
+        "startChar": 35,
+        "endLine": 89,
+        "endChar": 39
+      },
+      "revId": "05ddf88d2f274326fdde95348390e5af17fcd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16abffd2_99e5657c",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "166612dc_fffe8b9b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-07T07:03:14Z",
+      "side": 1,
+      "message": "They use custom compareTo method for BluetoothMapConvoListingElements, and sort by lastActivity. The latest activity (most recent) comes to the front of the list. So I tried to set different lastActivity values for 3 elements (with the most recent one at the end), and ran sort() and saw if the most recent one came to the front. Please tell me if I should increase readability for this :)",
+      "parentUuid": "16abffd2_99e5657c",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "05ddf88d2f274326fdde95348390e5af17fcd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e198a966_400833aa",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-07T06:17:24Z",
       "side": 1,
       "message": "How about create a new Listing element here? Then we don\u0027t need to think where the \u00275\u0027 value comes from.",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 16
+      },
+      "revId": "05ddf88d2f274326fdde95348390e5af17fcd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "823e54f4_59beaf8f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-07T07:03:14Z",
+      "side": 1,
+      "message": "Great point. Fixed!",
+      "parentUuid": "e198a966_400833aa",
       "range": {
         "startLine": 186,
         "startChar": 8,
