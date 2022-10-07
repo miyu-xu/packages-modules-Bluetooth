@@ -958,11 +958,11 @@ impl CommandHandler {
                 };
 
                 let data = AdvertiseData {
-                    service_uuids: Vec::<String>::new(),
-                    solicit_uuids: Vec::<String>::new(),
-                    transport_discovery_data: Vec::<Vec<u8>>::new(),
-                    manufacturer_data: HashMap::<i32, Vec<u8>>::from([(0, vec![0, 1, 2])]),
-                    service_data: HashMap::<String, Vec<u8>>::new(),
+                    service_uuids: Vec::new(),
+                    solicit_uuids: Vec::new(),
+                    transport_discovery_data: Vec::new(),
+                    manufacturer_data: HashMap::from([(0, vec![0, 1, 2])]),
+                    service_data: HashMap::new(),
                     include_tx_power_level: true,
                     include_device_name: true,
                 };

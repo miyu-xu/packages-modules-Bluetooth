@@ -1,5 +1,6 @@
 //! BLE Advertising types and utilities
 
+use bt_topshim::btif::Uuid;
 use bt_topshim::profiles::gatt::{Gatt, GattStatus, LePhy};
 
 use log::warn;
@@ -9,12 +10,13 @@ use std::sync::atomic::{AtomicIsize, Ordering};
 use tokio::sync::mpsc::Sender;
 
 use crate::callbacks::Callbacks;
-use crate::uuid::parse_uuid_string;
+use crate::uuid::{parse_uuid_string, UuidHelper};
 use crate::{Message, RPCProxy};
 
 pub type AdvertiserId = i32;
 pub type CallbackId = u32;
 pub type RegId = i32;
+pub type ManfId = u16;
 
 /// Advertising parameters for each BLE advertising set.
 #[derive(Debug, Default)]
@@ -50,13 +52,13 @@ pub struct AdvertisingSetParameters {
 pub struct AdvertiseData {
     /// A list of service UUIDs within the advertisement that are used to identify
     /// the Bluetooth GATT services.
-    pub service_uuids: Vec<String>,
+    pub service_uuids: Vec<Uuid>,
     /// A list of service solicitation UUIDs within the advertisement that we invite to connect.
-    pub solicit_uuids: Vec<String>,
+    pub solicit_uuids: Vec<Uuid>,
     /// A list of transport discovery data.
     pub transport_discovery_data: Vec<Vec<u8>>,
     /// A collection of manufacturer Id and the corresponding manufacturer specific data.
-    pub manufacturer_data: HashMap<i32, Vec<u8>>,
+    pub manufacturer_data: HashMap<ManfId, Vec<u8>>,
     /// A map of 128-bit UUID and its corresponding service data.
     pub service_data: HashMap<String, Vec<u8>>,
     /// Whether TX Power level will be included in the advertising packet.
@@ -149,11 +151,17 @@ const PERIODIC_INTERVAL_DELTA: i32 = 16; // 20 ms gap between min and max
 const DEVICE_NAME_MAX: usize = 26;
 
 // Advertising data types.
+const COMPLETE_LIST_16_BIT_SERVICE_UUIDS: u8 = 0x03;
+const COMPLETE_LIST_32_BIT_SERVICE_UUIDS: u8 = 0x05;
 const COMPLETE_LIST_128_BIT_SERVICE_UUIDS: u8 = 0x07;
 const SHORTENED_LOCAL_NAME: u8 = 0x08;
 const COMPLETE_LOCAL_NAME: u8 = 0x09;
 const TX_POWER_LEVEL: u8 = 0x0a;
+const LIST_16_BIT_SERVICE_SOLICITATION_UUIDS: u8 = 0x14;
 const LIST_128_BIT_SERVICE_SOLICITATION_UUIDS: u8 = 0x15;
+const SERVICE_DATA_16_BIT_UUID: u8 = 0x16;
+const LIST_32_BIT_SERVICE_SOLICITATION_UUIDS: u8 = 0x1f;
+const SERVICE_DATA_32_BIT_UUID: u8 = 0x20;
 const SERVICE_DATA_128_BIT_UUID: u8 = 0x21;
 const TRANSPORT_DISCOVERY_DATA: u8 = 0x26;
 const MANUFACTURER_SPECIFIC_DATA: u8 = 0xff;
@@ -204,6 +212,75 @@ impl AdvertiseData {
         dest.extend(&ad_payload[..len]);
     }
 
+    fn append_uuids(dest: &mut Vec<u8>, ad_types: &Vec<u8>, uuids: &Vec<Uuid>) {
+        let uu16_bytes = Vec::<u8>::new();
+        let uu32_bytes = Vec::<u8>::new();
+        let uu128_bytes = Vec::<u8>::new();
+        let mut bytes_list = vec![uu16_bytes, uu32_bytes, uu128_bytes];
+
+        for uuid in uuids {
+            let mut uuid_bytes = UuidHelper::get_shortest_bytes(&uuid.uu);
+            uuid_bytes.reverse();
+            match uuid_bytes.len() {
+                2 => bytes_list[0].extend(uuid_bytes),
+                4 => bytes_list[1].extend(uuid_bytes),
+                16 => bytes_list[2].extend(uuid_bytes),
+                _ => (),
+            }
+        }
+
+        for (ad_type, bytes) in ad_types.iter().zip(bytes_list.iter()) {
+            if bytes.len() > 0 {
+                AdvertiseData::append_adv_data(dest, *ad_type, bytes);
+            }
+        }
+    }
+
+    fn append_service_uuids(dest: &mut Vec<u8>, uuids: &Vec<Uuid>) {
+        let ad_types = vec![
+            COMPLETE_LIST_16_BIT_SERVICE_UUIDS,
+            COMPLETE_LIST_32_BIT_SERVICE_UUIDS,
+            COMPLETE_LIST_128_BIT_SERVICE_UUIDS,
+        ];
+        AdvertiseData::append_uuids(dest, &ad_types, uuids);
+    }
+
+    fn append_solicit_uuids(dest: &mut Vec<u8>, uuids: &Vec<Uuid>) {
+        let ad_types = vec![
+            LIST_16_BIT_SERVICE_SOLICITATION_UUIDS,
+            LIST_32_BIT_SERVICE_SOLICITATION_UUIDS,
+            LIST_128_BIT_SERVICE_SOLICITATION_UUIDS,
+        ];
+        AdvertiseData::append_uuids(dest, &ad_types, uuids);
+    }
+
+    fn append_service_data(dest: &mut Vec<u8>, service_data: &HashMap<String, Vec<u8>>) {
+        let uuids: Vec<&String> = service_data.keys().collect();
+        for uuid_str in uuids {
+            if let Some(uuid) = parse_uuid_string(uuid_str) {
+                let mut uuid_bytes = UuidHelper::get_shortest_bytes(&uuid.uu);
+                uuid_bytes.reverse();
+
+                let uu_len = uuid_bytes.len();
+                let len = uu_len + service_data[uuid_str].len();
+                let mut concated = Vec::<u8>::with_capacity(len);
+                concated.extend(uuid_bytes);
+                concated.extend(&service_data[uuid_str]);
+
+                match uu_len {
+                    2 => AdvertiseData::append_adv_data(dest, SERVICE_DATA_16_BIT_UUID, &concated),
+                    4 => AdvertiseData::append_adv_data(dest, SERVICE_DATA_32_BIT_UUID, &concated),
+                    16 => {
+                        AdvertiseData::append_adv_data(dest, SERVICE_DATA_128_BIT_UUID, &concated)
+                    }
+                    _ => (),
+                }
+            } else {
+                warn!("Invalid UUID {}", uuid_str);
+            }
+        }
+    }
+
     /// Creates raw data from the AdvertiseData.
     pub fn make_with(&self, device_name: &String) -> Vec<u8> {
         let mut bytes = Vec::<u8>::new();
@@ -219,7 +296,7 @@ impl AdvertiseData {
             AdvertiseData::append_adv_data(&mut bytes, ad_type, &name);
         }
 
-        let mut manufacturers: Vec<&i32> = self.manufacturer_data.keys().collect();
+        let mut manufacturers: Vec<&ManfId> = self.manufacturer_data.keys().collect();
         manufacturers.sort();
         for m in manufacturers {
             let len = 2 + self.manufacturer_data[m].len();
@@ -235,59 +312,9 @@ impl AdvertiseData {
             AdvertiseData::append_adv_data(&mut bytes, TX_POWER_LEVEL, &[0]);
         }
 
-        let mut uu128_services = Vec::<u8>::new();
-        for uuid_str in &self.service_uuids {
-            if let Some(uuid) = parse_uuid_string(uuid_str) {
-                match uuid.uu.len() {
-                    16 => uu128_services.extend(uuid.uu),
-                    _ => (),
-                };
-            }
-        }
-        if uu128_services.len() > 0 {
-            AdvertiseData::append_adv_data(
-                &mut bytes,
-                COMPLETE_LIST_128_BIT_SERVICE_UUIDS,
-                &uu128_services,
-            );
-        }
-
-        let uuids: Vec<&String> = self.service_data.keys().collect();
-        for uuid_str in uuids {
-            if let Some(uuid) = parse_uuid_string(uuid_str) {
-                let uu_len = uuid.uu.len();
-                let len = uu_len + self.service_data[uuid_str].len();
-                let mut concated = Vec::<u8>::with_capacity(len);
-                concated.extend(uuid.uu);
-                concated.extend(&self.service_data[uuid_str]);
-
-                match uu_len {
-                    16 => AdvertiseData::append_adv_data(
-                        &mut bytes,
-                        SERVICE_DATA_128_BIT_UUID,
-                        &concated,
-                    ),
-                    _ => (),
-                };
-            }
-        }
-
-        let mut uu128_solicits = Vec::<u8>::new();
-        for uuid_str in &self.solicit_uuids {
-            if let Some(uuid) = parse_uuid_string(uuid_str) {
-                match uuid.uu.len() {
-                    16 => uu128_solicits.extend(uuid.uu),
-                    _ => (),
-                };
-            }
-        }
-        if uu128_solicits.len() > 0 {
-            AdvertiseData::append_adv_data(
-                &mut bytes,
-                LIST_128_BIT_SERVICE_SOLICITATION_UUIDS,
-                &uu128_solicits,
-            );
-        }
+        AdvertiseData::append_service_uuids(&mut bytes, &self.service_uuids);
+        AdvertiseData::append_service_data(&mut bytes, &self.service_data);
+        AdvertiseData::append_solicit_uuids(&mut bytes, &self.solicit_uuids);
 
         for tdd in &self.transport_discovery_data {
             if tdd.len() > 0 {
