@@ -6,7 +6,9 @@ use bt_topshim::profiles::a2dp::{
     A2dpCodecConfig, A2dpCodecSampleRate, BtavAudioState, BtavConnectionState,
     PresentationPosition,
 };
-use bt_topshim::profiles::avrcp::{Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher};
+use bt_topshim::profiles::avrcp::{
+    Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
+};
 use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, Hfp, HfpCallbacks, HfpCallbacksDispatcher,
     HfpCodecCapability,
@@ -84,6 +86,11 @@ pub trait IBluetoothMedia {
     // Start the SCO setup to connect audio
     fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool);
     fn stop_sco_call(&mut self, address: String);
+
+    // AVRCP related methods
+    fn set_player_playback_status(&mut self, status: String);
+    fn set_player_posistion(&mut self, position: i64);
+    fn set_player_metadata(&mut self, metadata: PlayerMetadata);
 }
 
 pub trait IBluetoothMediaCallback: RPCProxy {
@@ -1218,4 +1225,8 @@ impl IBluetoothMedia for BluetoothMedia {
             data_position_nsec: position.data_position_nsec,
         }
     }
+
+    fn set_player_playback_status(&mut self, _status: String) {}
+    fn set_player_posistion(&mut self, _position: i64) {}
+    fn set_player_metadata(&mut self, _metadata: PlayerMetadata) {}
 }
