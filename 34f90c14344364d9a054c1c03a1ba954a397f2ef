@@ -108,6 +108,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5d03e891_b572ba06",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:05:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08b2bf6f_04add417",
+      "range": {
+        "startLine": 1054,
+        "startChar": 36,
+        "endLine": 1054,
+        "endChar": 54
+      },
+      "revId": "34f90c14344364d9a054c1c03a1ba954a397f2ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "64aa3d7d_12e7d935",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 5
