@@ -400,7 +400,9 @@ class LeExtendedScanningManagerTest : public LeScanningManagerTest {
   }
 };
 
-TEST_F(LeScanningManagerTest, startup_teardown) {}
+TEST_F(LeScanningManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 TEST_F(LeScanningManagerTest, start_scan_test) {
   // Enable scan
@@ -432,7 +434,9 @@ TEST_F(LeScanningManagerTest, start_scan_test) {
   test_hci_layer_->IncomingLeMetaEvent(LeAdvertisingReportBuilder::Create({report}));
 }
 
-TEST_F(LeAndroidHciScanningManagerTest, startup_teardown) {}
+TEST_F(LeAndroidHciScanningManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 TEST_F(LeAndroidHciScanningManagerTest, start_scan_test) {
   // Enable scan
@@ -659,7 +663,9 @@ TEST_F(LeAndroidHciScanningManagerTest, read_batch_scan_result) {
       uint8_t{1}, ErrorCode::SUCCESS, BatchScanDataRead::FULL_MODE_DATA, 0, {}));
 }
 
-TEST_F(LeExtendedScanningManagerTest, startup_teardown) {}
+TEST_F(LeExtendedScanningManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 TEST_F(LeExtendedScanningManagerTest, start_scan_test) {
   // Enable scan
