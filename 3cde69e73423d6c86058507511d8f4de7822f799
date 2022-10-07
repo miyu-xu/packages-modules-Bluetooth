@@ -39,6 +39,30 @@
       },
       "revId": "3cde69e73423d6c86058507511d8f4de7822f799",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da91f89b_70cbb319",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 6237,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-07T12:34:20Z",
+      "side": 1,
+      "message": "Since the MSFT specification calls it prefix_length explicitly, can we keep the \"prefix_length\" here to conform to the parameter name used in the specification? Thanks.",
+      "parentUuid": "a249f6df_87d71df8",
+      "range": {
+        "startLine": 6237,
+        "startChar": 2,
+        "endLine": 6237,
+        "endChar": 15
+      },
+      "revId": "3cde69e73423d6c86058507511d8f4de7822f799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
