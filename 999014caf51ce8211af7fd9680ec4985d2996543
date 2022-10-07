@@ -22,6 +22,30 @@
       },
       "revId": "999014caf51ce8211af7fd9680ec4985d2996543",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1791bec_1cafef1c",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2022-10-07T14:51:07Z",
+      "side": 1,
+      "message": "OK. New patch uploaded.",
+      "parentUuid": "37a14a30_9834747e",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 85
+      },
+      "revId": "999014caf51ce8211af7fd9680ec4985d2996543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
