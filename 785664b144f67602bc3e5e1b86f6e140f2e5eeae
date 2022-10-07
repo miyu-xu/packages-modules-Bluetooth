@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af629cf1_f963a751",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-07T12:32:31Z",
+      "side": 1,
+      "message": "I have verified with a MSFT command and a CC event. Thanks.",
+      "parentUuid": "599fc39e_fdd8b722",
+      "revId": "785664b144f67602bc3e5e1b86f6e140f2e5eeae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1498d516_cfd0fc3e",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-09-21T22:05:00Z",
       "side": 1,
       "message": "By convention, we put the test line right after the packet definition.\n\nThe more, the merrier.  If you have one for each of the packets, that would be great.",
+      "range": {
+        "startLine": 6259,
+        "startChar": 0,
+        "endLine": 6262,
+        "endChar": 1
+      },
+      "revId": "785664b144f67602bc3e5e1b86f6e140f2e5eeae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68ccba1b_ad3da17b",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 6262,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-07T12:32:31Z",
+      "side": 1,
+      "message": "Done. I have added more tests in PDL.Thanks.",
+      "parentUuid": "1498d516_cfd0fc3e",
       "range": {
         "startLine": 6259,
         "startChar": 0,
