@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9feb5195_392c4b5d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8db6025_afd317e5",
+      "range": {
+        "startLine": 465,
+        "startChar": 87,
+        "endLine": 465,
+        "endChar": 95
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87aefecd_3e13c82c",
@@ -131,6 +155,30 @@
       "writtenOn": "2022-10-03T22:27:07Z",
       "side": 1,
       "message": "nit: no need to explicitly call to_string, Rust automatically knows how to call this as this is an implementation of `Display` trait.",
+      "range": {
+        "startLine": 468,
+        "startChar": 58,
+        "endLine": 468,
+        "endChar": 67
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80648674_ceb3edb4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87aefecd_3e13c82c",
       "range": {
         "startLine": 468,
         "startChar": 58,
@@ -305,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f136207_a9ea75e9",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c7e34b_18426b2a",
+      "range": {
+        "startLine": 166,
+        "startChar": 21,
+        "endLine": 166,
+        "endChar": 29
+      },
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36103494_87a74836",
@@ -318,6 +390,24 @@
       "writtenOn": "2022-10-03T22:27:07Z",
       "side": 1,
       "message": "Better to defer cloning until needed, so this function could return `\u0026HashSet\u003cProfile\u003e` and the caller can choose to clone if needed, so they can also avoid cloning when not needed.",
+      "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f28cc9a_cabf41bc",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36103494_87a74836",
       "revId": "1dc6cc8cee5bce8d6677f7474188020696712701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

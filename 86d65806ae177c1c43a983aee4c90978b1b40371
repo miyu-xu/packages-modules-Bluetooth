@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f972e6_5b583bfa",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cf188a9_6635740b",
+      "range": {
+        "startLine": 234,
+        "startChar": 16,
+        "endLine": 234,
+        "endChar": 72
+      },
+      "revId": "86d65806ae177c1c43a983aee4c90978b1b40371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab9f2c9e_63c91460",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5751cfd7_53808c92",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:04:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab9f2c9e_63c91460",
+      "range": {
+        "startLine": 266,
+        "startChar": 36,
+        "endLine": 266,
+        "endChar": 37
+      },
+      "revId": "86d65806ae177c1c43a983aee4c90978b1b40371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a952597a_e2e9d6bf",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-05T22:56:52Z",
       "side": 1,
       "message": "Is it possible that disable_profile(avrcp) gets called before BluetoothMedia init?\n\nAlso, may you provide the context why we default to enable AVRCP here?",
+      "range": {
+        "startLine": 816,
+        "startChar": 0,
+        "endLine": 817,
+        "endChar": 51
+      },
+      "revId": "86d65806ae177c1c43a983aee4c90978b1b40371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c8adafc_7ba64953",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:04:46Z",
+      "side": 1,
+      "message": "In the current implementation, AVRCP will not be disabled anywhere (it is ignored in bluetooth::disable_profile).\n\nThe reason why is that I found that btadapterd will crash if AVRCP is disabled and we try to connect a headset.\n\nI\u0027ve added a TODO in the comment.",
+      "parentUuid": "a952597a_e2e9d6bf",
       "range": {
         "startLine": 816,
         "startChar": 0,
