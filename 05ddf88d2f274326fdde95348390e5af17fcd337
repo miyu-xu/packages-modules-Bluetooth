@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f91163_308d5924",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-07T09:44:38Z",
+      "side": 1,
+      "message": "Got it. Added a comment :)",
+      "parentUuid": "ff69d7a2_9c7d34e8",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "05ddf88d2f274326fdde95348390e5af17fcd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e198a966_400833aa",
