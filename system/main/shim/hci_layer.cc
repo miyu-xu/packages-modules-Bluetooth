@@ -410,15 +410,19 @@ static void transmit_fragment(const uint8_t* stream, size_t length) {
 static void transmit_sco_fragment(const uint8_t* stream, size_t length) {
   uint16_t handle_with_flags;
   STREAM_TO_UINT16(handle_with_flags, stream);
+  auto pb_flag = static_cast<bluetooth::hci::PacketStatusFlag>(
+      handle_with_flags >> 12 & 0b11);
   uint16_t handle = handle_with_flags & 0xFFF;
-  ASSERT_LOG(handle <= 0xEFF, "Require handle <= 0xEFF, but is 0x%X", handle);
+  // only assert if the packet is correctly received
+  if (pb_flag == bluetooth::hci::PacketStatusFlag::CORRECTLY_RECEIVED)
+    ASSERT_LOG(handle <= 0xEFF, "Require handle <= 0xEFF, but is 0x%X", handle);
   length -= 2;
   // skip data total length
   stream += 1;
   length -= 1;
   auto payload = std::vector<uint8_t>(stream, stream + length);
   auto sco_packet = bluetooth::hci::ScoBuilder::Create(
-      handle, bluetooth::hci::PacketStatusFlag::CORRECTLY_RECEIVED,
+      handle, pb_flag, bluetooth::hci::PacketStatusFlag::CORRECTLY_RECEIVED,
       std::move(payload));
 
   pending_sco_data->Enqueue(std::move(sco_packet),
