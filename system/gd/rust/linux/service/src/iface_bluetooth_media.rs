@@ -1,4 +1,5 @@
 use bt_topshim::profiles::a2dp::{A2dpCodecConfig, PresentationPosition};
+use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::hfp::HfpCodecCapability;
 use btstack::bluetooth_media::{BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback};
 use btstack::RPCProxy;
@@ -86,6 +87,78 @@ pub struct PresentationPositionDBus {
     total_bytes_read: u64,
     data_position_sec: i64,
     data_position_nsec: i32,
+}
+
+impl DBusArg for PlayerMetadata {
+    type DBusType = dbus::arg::PropMap;
+    fn from_dbus(
+        data: dbus::arg::PropMap,
+        _conn: Option<std::sync::Arc<dbus::nonblock::SyncConnection>>,
+        _remote: Option<dbus::strings::BusName<'static>>,
+        _disconnect_watcher: Option<
+            std::sync::Arc<std::sync::Mutex<dbus_projection::DisconnectWatcher>>,
+        >,
+    ) -> Result<PlayerMetadata, Box<dyn std::error::Error>> {
+        let mut metadata = PlayerMetadata {
+            title: String::new(),
+            artist: String::new(),
+            album: String::new(),
+            length: 0,
+        };
+
+        for (key, variant) in &data {
+            match variant.arg_type() {
+                dbus::arg::ArgType::Variant => {
+                    match key.as_str() {
+                        "title" => metadata.title =
+                            match <<String as DBusArg>::DBusType as RefArgToRust>::ref_arg_to_rust(
+                                variant.as_static_inner(0).unwrap(),
+                                format!("PlayerMetadata::Title"),
+                            ) {
+                                Ok(title) => title,
+                                Err(_) => String::new(),
+                            },
+                        "artist" => metadata.artist =
+                            match <<String as DBusArg>::DBusType as RefArgToRust>::ref_arg_to_rust(
+                                variant.as_static_inner(0).unwrap(),
+                                format!("PlayerMetadata::Artist"),
+                            ) {
+                                Ok(artist) => artist,
+                                Err(_) => String::new(),
+                            },
+                        "album" => metadata.album =
+                            match <<String as DBusArg>::DBusType as RefArgToRust>::ref_arg_to_rust(
+                                variant.as_static_inner(0).unwrap(),
+                                format!("PlayerMetadata::Album"),
+                            ) {
+                                Ok(album) => album,
+                                Err(_) => String::new(),
+                            },
+                        "length" => {
+                            metadata.length =
+                                match <<i64 as DBusArg>::DBusType as RefArgToRust>::ref_arg_to_rust(
+                                    variant.as_static_inner(0).unwrap(),
+                                    format!("PlayerMetadata::Length"),
+                                ) {
+                                    Ok(length) => length,
+                                    Err(_) => 0,
+                                }
+                        }
+
+                        _ => continue,
+                    }
+                }
+                _ => continue,
+            }
+        }
+        return Ok(metadata);
+    }
+
+    fn to_dbus(
+        _metadata: PlayerMetadata,
+    ) -> Result<dbus::arg::PropMap, Box<dyn std::error::Error>> {
+        Ok(std::collections::HashMap::new())
+    }
 }
 
 #[generate_dbus_exporter(export_bluetooth_media_dbus_intf, "org.chromium.bluetooth.BluetoothMedia")]
@@ -177,6 +250,21 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
 
     #[dbus_method("GetPresentationPosition")]
     fn get_presentation_position(&mut self) -> PresentationPosition {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPlayerPlaybackStatus")]
+    fn set_player_playback_status(&mut self, status: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPlayerPosition")]
+    fn set_player_posistion(&mut self, position: i64) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPlayerMetadata")]
+    fn set_player_metadata(&mut self, metadata: PlayerMetadata) {
         dbus_generated!()
     }
 }
