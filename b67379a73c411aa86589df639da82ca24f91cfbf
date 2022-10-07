@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b4293e_f6c53c03",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T13:57:13Z",
+      "side": 1,
+      "message": "Can we do this without changing the HCI layer?  I feel like we should be able to use the vendor-specific event handler, and not touch this.",
+      "range": {
+        "startLine": 654,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 1
+      },
+      "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
