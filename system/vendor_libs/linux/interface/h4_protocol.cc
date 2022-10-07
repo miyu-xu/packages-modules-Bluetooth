@@ -28,6 +28,17 @@ namespace hardware {
 namespace bluetooth {
 namespace hci {
 
+H4Protocol::H4Protocol(int fd, PacketReadCallback event_cb,
+                       PacketReadCallback acl_cb, PacketReadCallback sco_cb,
+                       PacketReadCallback iso_cb,
+                       OnDisconnectCallback disconnect_cb)
+    : uart_fd_(fd),
+      event_cb_(event_cb),
+      acl_cb_(acl_cb),
+      sco_cb_(sco_cb),
+      iso_cb_(iso_cb),
+      disconnect_cb_(disconnect_cb) {}
+
 size_t H4Protocol::Send(uint8_t type, const uint8_t* data, size_t length) {
     /* For HCI communication over USB dongle, multiple write results in
      * response timeout as driver expect type + data at once to process
@@ -56,7 +67,7 @@ size_t H4Protocol::Send(uint8_t type, const uint8_t* data, size_t length) {
     return ret;
 }
 
-void H4Protocol::OnPacketReady() {
+void H4Protocol::OnPacketReady(const std::vector<uint8_t>& packet) {
   switch (hci_packet_type_) {
     case HCI_PACKET_TYPE_EVENT:
       event_cb_(hci_packetizer_.GetPacket());
@@ -77,38 +88,48 @@ void H4Protocol::OnPacketReady() {
   }
   // Get ready for the next type byte.
   hci_packet_type_ = HCI_PACKET_TYPE_UNKNOWN;
+  buffer_offset_ += packet.size();
+  SendDataToPacketizer();
+}
+
+void H4Protocol::SendDataToPacketizer() {
+  if (hci_packet_type_ == HCI_PACKET_TYPE_UNKNOWN) {
+    if (buffer_offset_ < packet_buffer_.size()) {
+      hci_packet_type_ =
+          static_cast<HciPacketType>(packet_buffer_.data()[buffer_offset_]);
+      buffer_offset_ += 1;
+    }
+  }
+  if (buffer_offset_ < packet_buffer_.size()) {
+    bool packet_ready = hci_packetizer_.OnDataReady(
+        hci_packet_type_, packet_buffer_, buffer_offset_);
+    if (packet_ready) {
+      OnPacketReady(hci_packetizer_.GetPacket());
+    }
+  }
+  // All of the bytes have been consumed, so reset the buffer.
+  buffer_offset_ = 0;
 }
 
 void H4Protocol::OnDataReady(int fd) {
-    if (hci_packet_type_ == HCI_PACKET_TYPE_UNKNOWN) {
-        /**
-         * read full buffer. ACL max length is 2 bytes, and SCO max length is 2
-         * byte. so taking 64K as buffer length.
-         * Question : Why to read in single chunk rather than multiple reads,
-         * which can give parameter length arriving in response ?
-         * Answer: The multiple reads does not work with BT USB dongle. At least
-         * with Bluetooth 2.0 supported USB dongle. After first read, either
-         * firmware/kernel (do not know who is responsible - inputs ??) driver
-         * discard the whole message and successive read results in forever
-         * blocking loop. - Is there any other way to make it work with multiple
-         * reads, do not know yet (it can eliminate need of this function) ?
-         * Reading in single shot gives expected response.
-         */
-        const size_t max_plen = 64*1024;
-        hidl_vec<uint8_t> tpkt;
-        tpkt.resize(max_plen);
-        ssize_t bytes_read = TEMP_FAILURE_RETRY(read(fd, tpkt.data(), max_plen));
-        if (bytes_read == 0) {
-            ALOGI("No bytes read");
-            return;
-        }
-        if (bytes_read < 0) {
-            ALOGW("error reading from UART (%s)", strerror(errno));
-            return;
-        }
-        hci_packet_type_ = static_cast<HciPacketType>(tpkt.data()[0]);
-        hci_packetizer_.CbHciPacket(tpkt.data()+1, bytes_read-1);
-    }
+  if (disconnected_) {
+    return;
+  }
+  packet_buffer_.resize(kMaxPacketLength);
+  ssize_t bytes_read =
+      TEMP_FAILURE_RETRY(read(fd, packet_buffer_.data(), kMaxPacketLength));
+  if (bytes_read == 0) {
+    ALOGI("No bytes read, calling the disconnect callback");
+    disconnected_ = true;
+    disconnect_cb_();
+    return;
+  }
+  if (bytes_read < 0) {
+    ALOGW("error reading from UART (%s)", strerror(errno));
+    return;
+  }
+  packet_buffer_.resize(bytes_read);
+  SendDataToPacketizer();
 }
 
 }  // namespace hci
