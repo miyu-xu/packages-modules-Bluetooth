@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a112eb_aadd66b8",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T04:24:23Z",
+      "side": 1,
+      "message": "nit: all other flags and extra fields?",
+      "range": {
+        "startLine": 78,
+        "startChar": 16,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83ddb0c0_cd1d0543",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T04:24:23Z",
+      "side": 1,
+      "message": "?  Does this have some side effect?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 17
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5670cc1_71999154",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T04:24:23Z",
+      "side": 1,
+      "message": "nit: if",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 18
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b375564f_de4014a6",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T04:24:23Z",
+      "side": 1,
+      "message": "We only have one.  I would have expected this to be configured at the HAL if we want to  have more than one...",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 1
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1509189c_52e2e8f5",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T04:24:23Z",
+      "side": 1,
+      "message": "with INIT flags?\n\nI\u0027m confused what\u0027s not 1 to 1",
+      "range": {
+        "startLine": 187,
+        "startChar": 7,
+        "endLine": 187,
+        "endChar": 59
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "152ae90e_93a6a205",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T04:24:23Z",
+      "side": 1,
+      "message": "nit: concurrent tests",
+      "range": {
+        "startLine": 223,
+        "startChar": 23,
+        "endLine": 223,
+        "endChar": 38
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
