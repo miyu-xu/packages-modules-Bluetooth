@@ -212,8 +212,12 @@ void btm_route_sco_data(BT_HDR* p_msg) {
     osi_free(p_msg);
     return;
   }
+
   uint16_t handle = handle_with_flags & 0xFFF;
-  ASSERT_LOG(handle <= 0xEFF, "Require handle <= 0xEFF, but is 0x%X", handle);
+  if (handle <= 0xEFF) {
+    LOG_ERROR("%s Require handle <= 0xEFF, but is 0x%X", __func__, handle);
+    return;
+  }
 
   tSCO_CONN* active_sco = btm_get_active_sco();
   if (active_sco == nullptr || active_sco->hci_handle != handle) {
