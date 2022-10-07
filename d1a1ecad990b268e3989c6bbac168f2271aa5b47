@@ -22,6 +22,30 @@
       },
       "revId": "d1a1ecad990b268e3989c6bbac168f2271aa5b47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b5839ea_64d166ad",
+        "filename": "system/gd/common/init_flags.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:40:16Z",
+      "side": 1,
+      "message": "The method is used in a couple location.\nIf removal can be done, we need to do it on its own",
+      "parentUuid": "cabf3d34_8e65307b",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 3
+      },
+      "revId": "d1a1ecad990b268e3989c6bbac168f2271aa5b47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
