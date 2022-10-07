@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7cc313e_598ac0ad",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-07T04:15:36Z",
+      "side": 1,
+      "message": "Please address \"Error Prone\"s",
+      "revId": "ed35dc787486a402d45e216863987dc3d0f804c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
