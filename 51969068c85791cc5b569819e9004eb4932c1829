@@ -51,6 +51,24 @@
       "parentUuid": "65de0e9c_879c00da",
       "revId": "51969068c85791cc5b569819e9004eb4932c1829",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c70139_c9a46ef3",
+        "filename": "system/gd/hci/mgmt.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T13:47:26Z",
+      "side": 1,
+      "message": "Will all of them not be Microsoft specific?  I\u0027m wondering if this really belongs somewhere else.  When I see mgmt in hci/, I think it might be useful for all of HCI.  This might really belong in the HAL, or somewhere else.",
+      "parentUuid": "154ef78a_306a5137",
+      "revId": "51969068c85791cc5b569819e9004eb4932c1829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
