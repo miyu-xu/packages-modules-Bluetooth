@@ -22,6 +22,30 @@
       },
       "revId": "8b5dfea4d41f8d261b696ecb64fb2d9db6074b83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "760dcbda_076efd36",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-07T12:33:20Z",
+      "side": 1,
+      "message": "Done. The two patches are squashed. This one is kept. Thanks.",
+      "parentUuid": "eec57bf3_0a911270",
+      "range": {
+        "startLine": 330,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 3
+      },
+      "revId": "8b5dfea4d41f8d261b696ecb64fb2d9db6074b83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
