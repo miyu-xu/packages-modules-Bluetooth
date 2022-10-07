@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da688db_0d0722e4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-07T05:59:32Z",
+      "side": 1,
+      "message": "remove\n\nI believe there is a way to set the copyright automatically whenever you create a new file.\n\nThis is for Android Studio, but I think also can be applied to IntelliJ:\n\nhttps://docs.google.com/document/d/1JeStN8PaJ0lhdAz7n1_ADYC7x5Pplv_ou2pKTcGhVZs/edit",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "6bee8477afb6a9b1b3806ca7fed2d509d1b7dab2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "668c7e06_a769b6a3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-07T05:59:32Z",
+      "side": 1,
+      "message": "If it was @Mock, then assigning a new value (BluetoothMethodProxy.getInstance()) will have no effect since it will be overwritten with the new mock instance.",
+      "parentUuid": "bd0ee922_8323a549",
+      "range": {
+        "startLine": 61,
+        "startChar": 48,
+        "endLine": 61,
+        "endChar": 83
+      },
+      "revId": "1c4537b84258f7745b37c8027935788114481c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e6072f1_9b960e59",
