@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37a14a30_9834747e",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T14:30:41Z",
+      "side": 1,
+      "message": "Can you change this to match the logging style in the file?  It\u0027s breaking a different open-source build that depends on this file.\n\nSomething like:\nLOG_ERROR(\"Ignore since ACL connection vanished with handle: 0x%x\", acl_handle);",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 85
+      },
+      "revId": "999014caf51ce8211af7fd9680ec4985d2996543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
