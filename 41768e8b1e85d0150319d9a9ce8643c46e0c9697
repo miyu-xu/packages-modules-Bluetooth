@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afa25074_f20ebe29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:55:03Z",
+      "side": 1,
+      "message": "Can you address all the `Use ASSERT_EQ() instead` warnings ?",
+      "revId": "41768e8b1e85d0150319d9a9ce8643c46e0c9697",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
