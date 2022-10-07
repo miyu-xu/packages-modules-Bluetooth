@@ -416,7 +416,14 @@ typedef struct {
 
   fixed_queue_t* srv_chg_clt_q; /* service change clients queue */
   tGATT_REG cl_rcb[GATT_MAX_APPS];
-  tGATT_CLCB clcb[GATT_CL_MAX_LCB]; /* connection link control block*/
+
+  /* list of connection link control blocks.
+   * Since clcbs are also keep in the channels (ATT and EATT) queues while
+   * processing, we want to make sure that references to elements are not
+   * invalidated when elements are added or removed from the list. This is why
+   * std::list is used.
+   */
+  std::list<tGATT_CLCB> clcb_queue;
 
 #if (GATT_CONFORMANCE_TESTING == TRUE)
   bool enable_err_rsp;
