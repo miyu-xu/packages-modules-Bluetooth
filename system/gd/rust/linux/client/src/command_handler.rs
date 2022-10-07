@@ -5,7 +5,7 @@ use std::sync::{Arc, Mutex};
 use crate::callbacks::BtGattCallback;
 use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
-use bt_topshim::btif::{BtConnectionState, BtStatus, BtTransport};
+use bt_topshim::btif::{BtConnectionState, BtStatus, BtTransport, Uuid};
 use bt_topshim::profiles::gatt::LePhy;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth, IBluetoothQA};
 use btstack::bluetooth_adv::{AdvertiseData, AdvertisingSetParameters};
@@ -958,11 +958,19 @@ impl CommandHandler {
                 };
 
                 let data = AdvertiseData {
-                    service_uuids: Vec::<String>::new(),
-                    solicit_uuids: Vec::<String>::new(),
-                    transport_discovery_data: Vec::<Vec<u8>>::new(),
-                    manufacturer_data: HashMap::<i32, Vec<u8>>::from([(0, vec![0, 1, 2])]),
-                    service_data: HashMap::<String, Vec<u8>>::new(),
+                    service_uuids: vec![Uuid {
+                        uu: [
+                            0x00, 0x00, 0xfe, 0xf3, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0x80,
+                            0x5f, 0x9b, 0x34, 0xfb,
+                        ],
+                    }],
+                    solicit_uuids: Vec::new(),
+                    transport_discovery_data: Vec::new(),
+                    manufacturer_data: HashMap::from([(0, vec![0, 1, 2])]),
+                    service_data: HashMap::from([(
+                        "0000fef3-0000-1000-8000-00805f9b34fb".to_string(),
+                        vec![0x0a, 0x0b],
+                    )]),
                     include_tx_power_level: true,
                     include_device_name: true,
                 };
