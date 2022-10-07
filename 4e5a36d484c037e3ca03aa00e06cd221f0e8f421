@@ -16,6 +16,24 @@
       "message": "How is this related to the bug?  It seems like an optimization at start up, not a bug fix.",
       "revId": "4e5a36d484c037e3ca03aa00e06cd221f0e8f421",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7ed7be_4aaf4a07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-10-07T07:52:08Z",
+      "side": 1,
+      "message": "Hi Myles, true this is a kind of small optimization. I\u0027ve changed bug number to created by me with more brief description of my observation on issue.\n\nIs this ok, or should I change something ?\n\nRegards",
+      "parentUuid": "61b6d33e_f3292914",
+      "revId": "4e5a36d484c037e3ca03aa00e06cd221f0e8f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
