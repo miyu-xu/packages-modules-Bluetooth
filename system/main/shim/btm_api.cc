@@ -105,17 +105,17 @@ void btm_api_process_inquiry_result(const RawAddress& raw_address,
   p_i->inq_info.results.dev_class[1] = device_class[1];
   p_i->inq_info.results.dev_class[2] = device_class[2];
   p_i->inq_info.results.clock_offset = clock_offset | BTM_CLOCK_OFFSET_VALID;
-  p_i->inq_info.results.inq_result_type = BTM_INQ_RESULT_BR;
+  p_i->inq_info.results.inq_result_type |= BTM_INQ_RESULT_BR;
   p_i->inq_info.results.rssi = BTM_INQ_RES_IGNORE_RSSI;
 
   p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
-  p_i->inq_count = btm_cb.btm_inq_vars.inq_counter;
   p_i->inq_info.appl_knows_rem_name = false;
 
   if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
-    p_i->inq_info.results.device_type = BT_DEVICE_TYPE_BREDR;
+    p_i->inq_count = btm_cb.btm_inq_vars.inq_counter;
     btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
     p_i->scan_rsp = false;
+    p_i->inq_info.results.device_type = BT_DEVICE_TYPE_BREDR;
   } else {
     p_i->inq_info.results.device_type |= BT_DEVICE_TYPE_BREDR;
   }
@@ -162,16 +162,16 @@ void btm_api_process_inquiry_result_with_rssi(RawAddress raw_address,
     p_i->inq_info.results.dev_class[1] = device_class[1];
     p_i->inq_info.results.dev_class[2] = device_class[2];
     p_i->inq_info.results.clock_offset = clock_offset | BTM_CLOCK_OFFSET_VALID;
-    p_i->inq_info.results.inq_result_type = BTM_INQ_RESULT_BR;
+    p_i->inq_info.results.inq_result_type |= BTM_INQ_RESULT_BR;
 
     p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
-    p_i->inq_count = btm_cb.btm_inq_vars.inq_counter;
     p_i->inq_info.appl_knows_rem_name = false;
 
     if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
-      p_i->inq_info.results.device_type = BT_DEVICE_TYPE_BREDR;
+      p_i->inq_count = btm_cb.btm_inq_vars.inq_counter;
       btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
       p_i->scan_rsp = false;
+      p_i->inq_info.results.device_type = BT_DEVICE_TYPE_BREDR;
     } else {
       p_i->inq_info.results.device_type |= BT_DEVICE_TYPE_BREDR;
     }
@@ -216,16 +216,16 @@ void btm_api_process_extended_inquiry_result(RawAddress raw_address,
     p_i->inq_info.results.dev_class[1] = device_class[1];
     p_i->inq_info.results.dev_class[2] = device_class[2];
     p_i->inq_info.results.clock_offset = clock_offset | BTM_CLOCK_OFFSET_VALID;
-    p_i->inq_info.results.inq_result_type = BTM_INQ_RESULT_BR;
+    p_i->inq_info.results.inq_result_type |= BTM_INQ_RESULT_BR;
 
     p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
-    p_i->inq_count = btm_cb.btm_inq_vars.inq_counter;
     p_i->inq_info.appl_knows_rem_name = false;
 
     if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
-      p_i->inq_info.results.device_type = BT_DEVICE_TYPE_BREDR;
+      p_i->inq_count = btm_cb.btm_inq_vars.inq_counter;
       btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
       p_i->scan_rsp = false;
+      p_i->inq_info.results.device_type = BT_DEVICE_TYPE_BREDR;
     } else {
       p_i->inq_info.results.device_type |= BT_DEVICE_TYPE_BREDR;
     }
