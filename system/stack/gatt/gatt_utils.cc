@@ -27,6 +27,7 @@
 #include <base/strings/stringprintf.h>
 
 #include <cstdint>
+#include <list>
 
 #include "bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
@@ -948,38 +949,6 @@ tGATT_REG* gatt_get_regcb(tGATT_IF gatt_if) {
 
 /*******************************************************************************
  *
- * Function         gatt_is_clcb_allocated
- *
- * Description      The function check clcb for conn_id is allocated or not
- *
- * Returns           True already allocated
- *
- ******************************************************************************/
-
-bool gatt_is_clcb_allocated(uint16_t conn_id) {
-  uint8_t i = 0;
-  uint8_t num_of_allocated = 0;
-  tGATT_IF gatt_if = GATT_GET_GATT_IF(conn_id);
-  uint8_t tcb_idx = GATT_GET_TCB_IDX(conn_id);
-  tGATT_TCB* p_tcb = gatt_get_tcb_by_idx(tcb_idx);
-  tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
-  int possible_plcb = 1;
-
-  if (p_reg->eatt_support) possible_plcb += p_tcb->eatt;
-
-  /* With eatt number of active clcbs can me up to 1 + number of eatt channels
-   */
-  for (i = 0; i < GATT_CL_MAX_LCB; i++) {
-    if (gatt_cb.clcb[i].in_use && (gatt_cb.clcb[i].conn_id == conn_id)) {
-      if (++num_of_allocated == possible_plcb) return true;
-    }
-  }
-
-  return false;
-}
-
-/*******************************************************************************
- *
  * Function         gatt_tcb_is_cid_busy
  *
  * Description      The function check if channel with given cid is busy
@@ -1008,28 +977,21 @@ bool gatt_tcb_is_cid_busy(tGATT_TCB& tcb, uint16_t cid) {
  *
  ******************************************************************************/
 tGATT_CLCB* gatt_clcb_alloc(uint16_t conn_id) {
-  uint8_t i = 0;
-  tGATT_CLCB* p_clcb = NULL;
+  tGATT_CLCB clcb;
   tGATT_IF gatt_if = GATT_GET_GATT_IF(conn_id);
   uint8_t tcb_idx = GATT_GET_TCB_IDX(conn_id);
   tGATT_TCB* p_tcb = gatt_get_tcb_by_idx(tcb_idx);
   tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
 
-  for (i = 0; i < GATT_CL_MAX_LCB; i++) {
-    if (!gatt_cb.clcb[i].in_use) {
-      p_clcb = &gatt_cb.clcb[i];
+  clcb.in_use = true;
+  clcb.conn_id = conn_id;
+  clcb.p_reg = p_reg;
+  clcb.p_tcb = p_tcb;
+  /* Use eatt only when clients wants that */
+  clcb.cid = gatt_tcb_get_att_cid(*p_tcb, p_reg->eatt_support);
 
-      p_clcb->in_use = true;
-      p_clcb->conn_id = conn_id;
-      p_clcb->p_reg = p_reg;
-      p_clcb->p_tcb = p_tcb;
-
-      /* Use eatt only when clients wants that */
-      p_clcb->cid = gatt_tcb_get_att_cid(*p_tcb, p_reg->eatt_support);
-
-      break;
-    }
-  }
+  gatt_cb.clcb_queue.emplace_back(clcb);
+  auto p_clcb = &(gatt_cb.clcb_queue.back());
 
   return p_clcb;
 }
@@ -1168,7 +1130,13 @@ uint16_t gatt_tcb_get_payload_size_rx(tGATT_TCB& tcb, uint16_t cid) {
 void gatt_clcb_dealloc(tGATT_CLCB* p_clcb) {
   if (p_clcb && p_clcb->in_use) {
     alarm_free(p_clcb->gatt_rsp_timer_ent);
-    memset(p_clcb, 0, sizeof(tGATT_CLCB));
+    for (auto clcb_it = gatt_cb.clcb_queue.begin();
+         clcb_it != gatt_cb.clcb_queue.end(); clcb_it++) {
+      if (&(*clcb_it) == p_clcb) {
+        gatt_cb.clcb_queue.erase(clcb_it);
+        return;
+      }
+    }
   }
 }
 
@@ -1208,10 +1176,10 @@ tGATT_TCB* gatt_find_tcb_by_cid(uint16_t lcid) {
  *
  ******************************************************************************/
 uint8_t gatt_num_clcb_by_bd_addr(const RawAddress& bda) {
-  uint8_t i, num = 0;
+  uint8_t num = 0;
 
-  for (i = 0; i < GATT_CL_MAX_LCB; i++) {
-    if (gatt_cb.clcb[i].in_use && gatt_cb.clcb[i].p_tcb->peer_bda == bda) num++;
+  for (auto const clcb_it : gatt_cb.clcb_queue) {
+    if (clcb_it.in_use && clcb_it.p_tcb->peer_bda == bda) num++;
   }
   return num;
 }
@@ -1476,7 +1444,9 @@ tGATT_CLCB* gatt_cmd_dequeue(tGATT_TCB& tcb, uint16_t cid, uint8_t* p_op_code) {
   tGATT_CMD_Q cmd = cl_cmd_q_p->front();
   tGATT_CLCB* p_clcb = cmd.p_clcb;
   *p_op_code = cmd.op_code;
-  p_clcb->cid = cid;
+
+  CHECK(p_clcb->cid == cid);
+
   cl_cmd_q_p->pop();
 
   return p_clcb;
@@ -1585,17 +1555,19 @@ void gatt_cleanup_upon_disc(const RawAddress& bda, tGATT_DISCONN_REASON reason,
   }
 
   gatt_set_ch_state(p_tcb, GATT_CH_CLOSE);
-  for (uint8_t i = 0; i < GATT_CL_MAX_LCB; i++) {
-    tGATT_CLCB* p_clcb = &gatt_cb.clcb[i];
-    if (!p_clcb->in_use || p_clcb->p_tcb != p_tcb) continue;
+  for (auto clcb_it = gatt_cb.clcb_queue.begin();
+       clcb_it != gatt_cb.clcb_queue.end();) {
+    if (!clcb_it->in_use || clcb_it->p_tcb != p_tcb) continue;
 
-    gatt_stop_rsp_timer(p_clcb);
-    VLOG(1) << "found p_clcb conn_id=" << +p_clcb->conn_id;
-    if (p_clcb->operation == GATTC_OPTYPE_NONE) {
-      gatt_clcb_dealloc(p_clcb);
+    gatt_stop_rsp_timer(&(*clcb_it));
+    VLOG(1) << "found p_clcb conn_id=" << +clcb_it->conn_id;
+    if (clcb_it->operation == GATTC_OPTYPE_NONE) {
+      clcb_it = gatt_cb.clcb_queue.erase(clcb_it);
       continue;
     }
 
+    tGATT_CLCB* p_clcb = &(*clcb_it);
+    ++clcb_it;
     gatt_end_operation(p_clcb, GATT_ERROR, NULL);
   }
 

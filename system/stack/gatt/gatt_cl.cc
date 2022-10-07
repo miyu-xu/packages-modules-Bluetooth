@@ -1185,7 +1185,7 @@ bool gatt_cl_send_next_cmd_inq(tGATT_TCB& tcb) {
 void gatt_client_handle_server_rsp(tGATT_TCB& tcb, uint16_t cid,
                                    uint8_t op_code, uint16_t len,
                                    uint8_t* p_data) {
-  VLOG(1) << __func__ << " opcode: " << loghex(op_code);
+  VLOG(1) << __func__ << " opcode: " << loghex(op_code) << " cid" << +cid;
 
   uint16_t payload_size = gatt_tcb_get_payload_size_rx(tcb, cid);
 
