@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "680bf150_bbdfa2b2",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:21:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08a112eb_aadd66b8",
+      "range": {
+        "startLine": 78,
+        "startChar": 16,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83ddb0c0_cd1d0543",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-07T04:24:23Z",
       "side": 1,
       "message": "?  Does this have some side effect?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 17
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fc2793a_63d41906",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:21:35Z",
+      "side": 1,
+      "message": "No this is useless. I am keeping it to preserve the TODO",
+      "parentUuid": "83ddb0c0_cd1d0543",
       "range": {
         "startLine": 118,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1393d90e_8e2a9b93",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:21:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5670cc1_71999154",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 18
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b375564f_de4014a6",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-07T04:24:23Z",
       "side": 1,
       "message": "We only have one.  I would have expected this to be configured at the HAL if we want to  have more than one...",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 1
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1082864d_2c6637dd",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:21:35Z",
+      "side": 1,
+      "message": "I understood this flag was used by floss.\n\nI do not intend with this change to add or remove any existing flag, I am only removing the code from c++ (removed done in aosp/2242221)\n\nRemoving any useless flag can be done in a follow up",
+      "parentUuid": "b375564f_de4014a6",
       "range": {
         "startLine": 168,
         "startChar": 0,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c53d8f0_f8d4bd5c",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:21:35Z",
+      "side": 1,
+      "message": "the field `logging_debug_explicit_tag_settings` does not have a `INIT_logging_debug_explicit_tag_settings` flag to parse from.\nBut all other flags match this behavior (1 field for 1 flag).",
+      "parentUuid": "1509189c_52e2e8f5",
+      "range": {
+        "startLine": 187,
+        "startChar": 7,
+        "endLine": 187,
+        "endChar": 59
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "152ae90e_93a6a205",
         "filename": "system/gd/rust/common/src/init_flags.rs",
         "patchSetId": 6
@@ -129,6 +249,30 @@
       "writtenOn": "2022-10-07T04:24:23Z",
       "side": 1,
       "message": "nit: concurrent tests",
+      "range": {
+        "startLine": 223,
+        "startChar": 23,
+        "endLine": 223,
+        "endChar": 38
+      },
+      "revId": "c2c38fb4c5506feaf0156ff206c4bafd417e30e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5d631ae_8758843e",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-07T17:21:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "152ae90e_93a6a205",
       "range": {
         "startLine": 223,
         "startChar": 23,
