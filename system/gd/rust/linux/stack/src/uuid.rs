@@ -308,10 +308,12 @@ mod tests {
         ));
 
         let uuid_128 = UuidHelper::from_string("00112233-4455-6677-8899-aabbccddeeff").unwrap();
-        let exp_bytes: Vec<u8> = (0..16).map(|d| (d << 4) + d).collect();
         assert!(matches!(
             UuidHelper::get_shortest_bytes(&uuid_128),
-            UuidBytes::Uuid128Bit(exp_bytes)
+            UuidBytes::Uuid128Bit([
+                0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd,
+                0xee, 0xff
+            ])
         ));
     }
 }
