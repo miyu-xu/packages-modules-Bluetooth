@@ -1454,6 +1454,7 @@ TEST_F(LeImplTest, set_le_suggested_default_data_parameters) {
   ASSERT_TRUE(view.IsValid());
   ASSERT_EQ(kLength, view.GetTxOctets());
   ASSERT_EQ(kTime, view.GetTxTime());
+  ASSERT_TRUE(false);
 }
 
 }  // namespace acl_manager
