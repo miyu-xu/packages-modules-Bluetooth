@@ -70,6 +70,24 @@
       "parentUuid": "c3a553d3_2523ca97",
       "revId": "3a23fc6336da4bd32aa6172f0a49fa15242d7ee7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c978c7c0_0a3b83a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T12:06:26Z",
+      "side": 1,
+      "message": "Thanks for the fix.  That makes sense that this is a race that\u0027s a bit harder to test for.",
+      "parentUuid": "87b65895_e2d116d9",
+      "revId": "3a23fc6336da4bd32aa6172f0a49fa15242d7ee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
