@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541b29cf_225c8eb3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-07T04:14:49Z",
+      "side": 1,
+      "message": "Q) how does it connect with BluetoothOppTransferActivity?",
+      "range": {
+        "startLine": 59,
+        "startChar": 11,
+        "endLine": 59,
+        "endChar": 18
+      },
+      "revId": "1c4537b84258f7745b37c8027935788114481c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3c0164d_59ed27a6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-07T04:14:49Z",
+      "side": 1,
+      "message": "spy would be better.",
+      "range": {
+        "startLine": 60,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "1c4537b84258f7745b37c8027935788114481c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23e058e_6750f4e8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-07T04:14:49Z",
+      "side": 1,
+      "message": "please fix",
+      "range": {
+        "startLine": 61,
+        "startChar": 48,
+        "endLine": 61,
+        "endChar": 83
+      },
+      "revId": "1c4537b84258f7745b37c8027935788114481c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e6072f1_9b960e59",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-07T04:14:49Z",
+      "side": 1,
+      "message": "Two empty lines.",
+      "revId": "1c4537b84258f7745b37c8027935788114481c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc8c5437_0a4ec345",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-07T04:14:49Z",
+      "side": 1,
+      "message": "Please fix.",
+      "revId": "1c4537b84258f7745b37c8027935788114481c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
