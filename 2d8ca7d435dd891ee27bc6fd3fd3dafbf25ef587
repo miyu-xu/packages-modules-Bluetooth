@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "131afed7_a47629f2",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T15:26:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "21d7348a_dc5d11f6",
+      "range": {
+        "startLine": 403,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 40
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2789fb5_5cc19955",
@@ -461,6 +485,30 @@
       "side": 1,
       "message": "AddressType is a closed enum, the default should never occur.",
       "parentUuid": "2efefbf1_dacf7452",
+      "range": {
+        "startLine": 1128,
+        "startChar": 0,
+        "endLine": 1128,
+        "endChar": 5
+      },
+      "revId": "2d8ca7d435dd891ee27bc6fd3fd3dafbf25ef587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ecf1736_6c672bc7",
+        "filename": "tools/rootcanal/model/controller/le_advertiser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-07T15:26:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d45a38ac_3d23cc62",
       "range": {
         "startLine": 1128,
         "startChar": 0,
