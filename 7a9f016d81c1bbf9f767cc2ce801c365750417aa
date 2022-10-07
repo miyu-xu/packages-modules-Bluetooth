@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60d8ecb1_ead7f2eb",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-07T23:57:46Z",
+      "side": 1,
+      "message": "Can we represent this with Rust enum variant? like:\n```\nenum Uuid {\n  Uuid128Bit([u8; 16]),\n  Uuid32Bit([u8; 4]),\n  Uuid16Bit([u8: 2]),\n}\n```\n\nThis way it\u0027s more explicit and the compiler can do more compile-time checks.",
+      "range": {
+        "startLine": 223,
+        "startChar": 52,
+        "endLine": 223,
+        "endChar": 59
+      },
+      "revId": "7a9f016d81c1bbf9f767cc2ce801c365750417aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
