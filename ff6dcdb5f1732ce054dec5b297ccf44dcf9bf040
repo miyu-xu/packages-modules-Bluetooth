@@ -155,6 +155,52 @@
       },
       "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66ba1d0d_2cc3b50d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-10-07T06:21:36Z",
+      "side": 1,
+      "message": "In this case(MODE_NORMAL), we only set A2DP active device, so later if there is a call, the call will be output from the speaker.\n\nShould we also find the most recent HFP device and set it to active?",
+      "range": {
+        "startLine": 704,
+        "startChar": 20,
+        "endLine": 704,
+        "endChar": 39
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce5e753c_ae146ff3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-10-07T06:21:36Z",
+      "side": 1,
+      "message": "Similar question here. Should we also find the most recent A2DP device and set it to active?\n\nIf there is no other A2DP devices connected, should we set to LE audio device if it\u0027s available?",
+      "range": {
+        "startLine": 716,
+        "startChar": 20,
+        "endLine": 716,
+        "endChar": 38
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
