@@ -212,6 +212,15 @@ void btm_route_sco_data(BT_HDR* p_msg) {
     osi_free(p_msg);
     return;
   }
+
+  uint8_t pkt_status = handle_with_flags >> 12 & 0b11;
+  if (pkt_status != 0) {
+    LOG_WARN("Received SCO data with not correct status: %hhu, dropping",
+             pkt_status);
+    osi_free(p_msg);
+    return;
+  }
+
   uint16_t handle = handle_with_flags & 0xFFF;
   ASSERT_LOG(handle <= 0xEFF, "Require handle <= 0xEFF, but is 0x%X", handle);
 
