@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b4f4c1_b4571854",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:03:59Z",
+      "side": 1,
+      "message": "Good suggestion. Added a trait: TogglableProfile.",
+      "parentUuid": "ee620bbf_93bbdc4f",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 12
+      },
+      "revId": "0fdff48149275959634a5e536fb2e70fa40f5492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14ed0c57_0019dc5a",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-04T18:21:54Z",
       "side": 1,
       "message": "If I understand correctly, the purpose of this macro is to \"wrap\" a function analogous to Python\u0027s decorator. If so, it looks like this is a reusable pattern and a quick search shows that there is a crate that helps this without writing our own macro: https://crates.io/crates/adorn. I\u0027m wondering if using this can end up maintaining less macro for us which is a good thing.\n\nIf this macro is already working I am okay with leaving it as is, but I hope that future refactor can reduce macro maintenance.",
+      "revId": "0fdff48149275959634a5e536fb2e70fa40f5492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c40451e0_f2e2413e",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-07T07:03:59Z",
+      "side": 1,
+      "message": "Thanks for finding a public trait. Added a TODO in the above.",
+      "parentUuid": "14ed0c57_0019dc5a",
       "revId": "0fdff48149275959634a5e536fb2e70fa40f5492",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
