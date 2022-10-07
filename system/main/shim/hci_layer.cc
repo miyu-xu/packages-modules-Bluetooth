@@ -411,7 +411,12 @@ static void transmit_sco_fragment(const uint8_t* stream, size_t length) {
   uint16_t handle_with_flags;
   STREAM_TO_UINT16(handle_with_flags, stream);
   uint16_t handle = handle_with_flags & 0xFFF;
-  ASSERT_LOG(handle <= 0xEFF, "Require handle <= 0xEFF, but is 0x%X", handle);
+  // Ignore the packet if the handler is abnormal
+  if (handle <= 0xEFF) {
+    LOG_ERROR("%s Require handle <= 0xEFF, but is 0x%X", __func__, handle);
+    return;
+  }
+
   length -= 2;
   // skip data total length
   stream += 1;
