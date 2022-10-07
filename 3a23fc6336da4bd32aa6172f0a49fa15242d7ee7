@@ -52,6 +52,24 @@
       "parentUuid": "c1cfb19b_86e3c056",
       "revId": "3a23fc6336da4bd32aa6172f0a49fa15242d7ee7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b65895_e2d116d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-07T11:36:42Z",
+      "side": 1,
+      "message": "We only call acl_queue_handlers_.erase in RoundRobinScheduler::Unregister \nbuffer_packet and RoundRobinScheduler::Unregister are triggered by same handler, and we call UnregisterDequeue before erase it. So buffer_packet should not be trigger after we erase the handler.\n\nThe patch looks good to me, but I am not sure how this happen.",
+      "parentUuid": "c3a553d3_2523ca97",
+      "revId": "3a23fc6336da4bd32aa6172f0a49fa15242d7ee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
