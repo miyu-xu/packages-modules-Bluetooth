@@ -33,6 +33,24 @@
       "message": "Hi Joseph, this looks good.  I think it will be easier to review if we squish it a little, so we don\u0027t add and remove code in the same stack of CLs.",
       "revId": "5cfa5e7fcbaddc52d37c9cf15ab126f01d571a8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db2e69cb_9309d550",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-07T12:36:15Z",
+      "side": 1,
+      "message": "Good point! I have squashed this patch to Sonny\u0027s patch. Thanks.",
+      "parentUuid": "5767911e_25406280",
+      "revId": "5cfa5e7fcbaddc52d37c9cf15ab126f01d571a8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
