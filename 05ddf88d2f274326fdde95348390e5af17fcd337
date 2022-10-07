@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfd672a5_391dbc5f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-07T06:17:24Z",
+      "side": 1,
+      "message": "LessThanOne?",
+      "range": {
+        "startLine": 89,
+        "startChar": 35,
+        "endLine": 89,
+        "endChar": 39
+      },
+      "revId": "05ddf88d2f274326fdde95348390e5af17fcd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16abffd2_99e5657c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-07T06:17:24Z",
+      "side": 1,
+      "message": "In what rule do they sort the list?",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "05ddf88d2f274326fdde95348390e5af17fcd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e198a966_400833aa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-07T06:17:24Z",
+      "side": 1,
+      "message": "How about create a new Listing element here? Then we don\u0027t need to think where the \u00275\u0027 value comes from.",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 16
+      },
+      "revId": "05ddf88d2f274326fdde95348390e5af17fcd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
