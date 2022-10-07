@@ -1130,11 +1130,12 @@ uint8_t gatt_cmd_to_rsp_code(uint8_t cmd_code) {
 
 /** Find next command in queue and sent to server */
 bool gatt_cl_send_next_cmd_inq(tGATT_TCB& tcb) {
-  std::queue<tGATT_CMD_Q>* cl_cmd_q;
+  std::queue<tGATT_CMD_Q>* cl_cmd_q = nullptr;
 
-  while (!tcb.cl_cmd_q.empty() ||
-         EattExtension::GetInstance()->IsOutstandingMsgInSendQueue(tcb.peer_bda)) {
-    if (!tcb.cl_cmd_q.empty()) {
+  while (
+      gatt_is_outstanding_msg_in_att_send_queue(tcb) ||
+      EattExtension::GetInstance()->IsOutstandingMsgInSendQueue(tcb.peer_bda)) {
+    if (gatt_is_outstanding_msg_in_att_send_queue(tcb)) {
       cl_cmd_q = &tcb.cl_cmd_q;
     } else {
       EattChannel* channel =
