@@ -16,8 +16,6 @@
 
 #define LOG_TAG "BtGatt.JNI"
 
-#define LOG_NDEBUG 0
-
 #include <base/bind.h>
 #include <base/callback.h>
 #include <cutils/log.h>
@@ -1589,6 +1587,7 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject object,
   jfieldID nameFid = env->GetFieldID(entryClazz, "name", "Ljava/lang/String;");
   jfieldID companyFid = env->GetFieldID(entryClazz, "company", "I");
   jfieldID companyMaskFid = env->GetFieldID(entryClazz, "company_mask", "I");
+  jfieldID adTypeFid = env->GetFieldID(entryClazz, "ad_type", "I");
   jfieldID dataFid = env->GetFieldID(entryClazz, "data", "[B");
   jfieldID dataMaskFid = env->GetFieldID(entryClazz, "data_mask", "[B");
 
@@ -1658,6 +1657,8 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject object,
     curr.company = env->GetIntField(current.get(), companyFid);
 
     curr.company_mask = env->GetIntField(current.get(), companyMaskFid);
+
+    curr.ad_type = env->GetByteField(current.get(), adTypeFid);
 
     ScopedLocalRef<jbyteArray> data(
         env, (jbyteArray)env->GetObjectField(current.get(), dataFid));
@@ -2443,7 +2444,7 @@ static JNINativeMethod sScanMethods[] = {
      (void*)gattSetScanParametersNative},
 };
 
-// JNI functions defined in GattService class.
+// JNI functions defined in GattNativeInterface class.
 static JNINativeMethod sMethods[] = {
     {"classInitNative", "()V", (void*)classInitNative},
     {"initializeNative", "()V", (void*)initializeNative},
@@ -2528,7 +2529,8 @@ int register_com_android_bluetooth_gatt(JNIEnv* env) {
       env, "com/android/bluetooth/gatt/PeriodicScanManager",
       sPeriodicScanMethods, NELEM(sPeriodicScanMethods));
   return register_success &
-         jniRegisterNativeMethods(env, "com/android/bluetooth/gatt/GattService",
-                                  sMethods, NELEM(sMethods));
+         jniRegisterNativeMethods(
+             env, "com/android/bluetooth/gatt/GattNativeInterface", sMethods,
+             NELEM(sMethods));
 }
 }  // namespace android

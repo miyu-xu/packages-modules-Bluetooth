@@ -122,13 +122,21 @@ pub fn cb_variant(input: TokenStream) -> TokenStream {
         stmts.extend(quote! { #stmt });
     }
 
+    let dispatcher_str = quote!(#dispatcher).to_string();
     let tokens = quote! {
         #[no_mangle]
         extern "C" fn #ident(#params) {
             #stmts
-
-            (get_dispatchers().lock().unwrap().get::<#dispatcher>().unwrap().lock().unwrap().dispatch)(#rpath(#args));
-        }
+                (get_dispatchers()
+                    .lock()
+                    .expect("Couldn't lock dispatchers!")
+                    .get::<#dispatcher>()
+                    .expect(concat!("Couldn't find dispatcher type: ", #dispatcher_str))
+                    .clone()
+                    .lock()
+                    .expect(concat!("Couldn't lock specific dispatcher: ", #dispatcher_str))
+                    .dispatch)(#rpath(#args));
+            }
     };
 
     TokenStream::from(tokens)

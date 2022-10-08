@@ -446,7 +446,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
                                 final IBluetoothHapClient service = getService();
                                 if (service != null) {
                                     final SynchronousResultReceiver<Integer> recv =
-                                            new SynchronousResultReceiver();
+                                            SynchronousResultReceiver.get();
                                     service.registerCallback(mCallback, mAttributionSource, recv);
                                     recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
                                 }
@@ -558,7 +558,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
                     final IBluetoothHapClient service = getService();
                     if (service != null) {
                         final SynchronousResultReceiver<Integer> recv =
-                                new SynchronousResultReceiver();
+                                SynchronousResultReceiver.get();
                         service.registerCallback(mCallback, mAttributionSource, recv);
                         recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
                     }
@@ -611,7 +611,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             try {
                 final IBluetoothHapClient service = getService();
                 if (service != null) {
-                    final SynchronousResultReceiver<Integer> recv = new SynchronousResultReceiver();
+                    final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                     service.unregisterCallback(mCallback, mAttributionSource, recv);
                     recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
                 }
@@ -654,7 +654,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
                     && (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
                         || connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
             try {
-                final SynchronousResultReceiver<Boolean> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
                 service.setConnectionPolicy(device, connectionPolicy, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -693,7 +693,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mAdapter.isEnabled() && isValidDevice(device)) {
             try {
-                final SynchronousResultReceiver<Integer> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.getConnectionPolicy(device, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -725,7 +725,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (isEnabled()) {
             try {
-                final SynchronousResultReceiver<List> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<List> recv = SynchronousResultReceiver.get();
                 service.getConnectedDevices(mAttributionSource, recv);
                 return Attributable.setAttributionSource(
                         recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue),
@@ -750,8 +750,8 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     @Override
-    public @NonNull List<BluetoothDevice> getDevicesMatchingConnectionStates(
-            @NonNull int[] states) {
+    @NonNull
+    public List<BluetoothDevice> getDevicesMatchingConnectionStates(@NonNull int[] states) {
         if (VDBG) Log.d(TAG, "getDevicesMatchingConnectionStates()");
         final IBluetoothHapClient service = getService();
         final List defaultValue = new ArrayList<BluetoothDevice>();
@@ -760,7 +760,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (isEnabled()) {
             try {
-                final SynchronousResultReceiver<List> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<List> recv = SynchronousResultReceiver.get();
                 service.getDevicesMatchingConnectionStates(states, mAttributionSource, recv);
                 return Attributable.setAttributionSource(
                         recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue),
@@ -785,8 +785,8 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     @Override
-    public @BluetoothProfile.BtProfileState int getConnectionState(
-            @NonNull BluetoothDevice device) {
+    @BluetoothProfile.BtProfileState
+    public int getConnectionState(@NonNull BluetoothDevice device) {
         if (VDBG) Log.d(TAG, "getConnectionState(" + device + ")");
         final IBluetoothHapClient service = getService();
         final int defaultValue = BluetoothProfile.STATE_DISCONNECTED;
@@ -795,7 +795,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (isEnabled() && isValidDevice(device)) {
             try {
-                final SynchronousResultReceiver<Integer> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.getConnectionState(device, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -837,7 +837,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (isEnabled() && isValidDevice(device)) {
             try {
-                final SynchronousResultReceiver<Integer> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.getHapGroup(device, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -869,7 +869,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (isEnabled() && isValidDevice(device)) {
             try {
-                final SynchronousResultReceiver<Integer> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.getActivePresetIndex(device, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -904,7 +904,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
         } else if (isEnabled() && isValidDevice(device)) {
             try {
                 final SynchronousResultReceiver<BluetoothHapPresetInfo> recv =
-                        new SynchronousResultReceiver();
+                        SynchronousResultReceiver.get();
                 service.getActivePresetInfo(device, mAttributionSource, recv);
                 recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -1113,8 +1113,8 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             android.Manifest.permission.BLUETOOTH_CONNECT,
             android.Manifest.permission.BLUETOOTH_PRIVILEGED
     })
-    public @Nullable BluetoothHapPresetInfo getPresetInfo(@NonNull BluetoothDevice device,
-            int presetIndex) {
+    @Nullable
+    public BluetoothHapPresetInfo getPresetInfo(@NonNull BluetoothDevice device, int presetIndex) {
         final IBluetoothHapClient service = getService();
         final BluetoothHapPresetInfo defaultValue = null;
         if (service == null) {
@@ -1123,7 +1123,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
         } else if (isEnabled() && isValidDevice(device)) {
             try {
                 final SynchronousResultReceiver<BluetoothHapPresetInfo> recv =
-                        new SynchronousResultReceiver();
+                        SynchronousResultReceiver.get();
                 service.getPresetInfo(device, presetIndex, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -1157,7 +1157,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
         } else if (isEnabled() && isValidDevice(device)) {
             try {
                 final SynchronousResultReceiver<List<BluetoothHapPresetInfo>> recv =
-                        new SynchronousResultReceiver();
+                        SynchronousResultReceiver.get();
                 service.getAllPresetInfo(device, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {
@@ -1189,7 +1189,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (isEnabled() && isValidDevice(device)) {
             try {
-                final SynchronousResultReceiver<Integer> recv = new SynchronousResultReceiver();
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.getFeatures(device, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (TimeoutException e) {

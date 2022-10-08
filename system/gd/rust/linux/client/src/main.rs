@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::sync::{Arc, Mutex};
 
 use dbus::channel::MatchingReceiver;
@@ -8,10 +8,14 @@ use dbus_crossroads::Crossroads;
 use tokio::sync::mpsc;
 
 use crate::callbacks::{
-    BtCallback, BtConnectionCallback, BtManagerCallback, ScannerCallback, SuspendCallback,
+    AdvertisingSetCallback, BtCallback, BtConnectionCallback, BtManagerCallback,
+    BtSocketManagerCallback, ScannerCallback, SuspendCallback,
 };
 use crate::command_handler::CommandHandler;
-use crate::dbus_iface::{BluetoothDBus, BluetoothGattDBus, BluetoothManagerDBus, SuspendDBus};
+use crate::dbus_iface::{
+    BluetoothDBus, BluetoothGattDBus, BluetoothManagerDBus, BluetoothQADBus,
+    BluetoothSocketManagerDBus, SuspendDBus,
+};
 use crate::editor::AsyncEditor;
 use bt_topshim::topstack;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth};
@@ -67,11 +71,17 @@ pub(crate) struct ClientContext {
     /// Proxy for adapter interface. Only exists when the default adapter is enabled.
     pub(crate) adapter_dbus: Option<BluetoothDBus>,
 
+    /// Proxy for adapter QA interface. Only exists when the default adapter is enabled.
+    pub(crate) qa_dbus: Option<BluetoothQADBus>,
+
     /// Proxy for GATT interface.
     pub(crate) gatt_dbus: Option<BluetoothGattDBus>,
 
     /// Proxy for suspend interface.
     pub(crate) suspend_dbus: Option<SuspendDBus>,
+
+    /// Proxy for socket manager interface.
+    pub(crate) socket_manager_dbus: Option<BluetoothSocketManagerDBus>,
 
     /// Channel to send actions to take in the foreground
     fg: mpsc::Sender<ForegroundActions>,
@@ -84,6 +94,18 @@ pub(crate) struct ClientContext {
 
     /// Identifies the callback to receive IScannerCallback method calls.
     scanner_callback_id: Option<u32>,
+
+    /// Identifies the callback to receive IAdvertisingSetCallback method calls.
+    advertiser_callback_id: Option<u32>,
+
+    /// Keeps track of active LE scanners.
+    active_scanner_ids: HashSet<u8>,
+
+    /// Advertising sets started/registered. Map from reg_id to advertiser_id.
+    adv_sets: HashMap<i32, Option<i32>>,
+
+    /// Identifies the callback to receive IBluetoothSocketManagerCallback method calls.
+    socket_manager_callback_id: Option<u32>,
 }
 
 impl ClientContext {
@@ -109,12 +131,18 @@ impl ClientContext {
             gatt_client_id: None,
             manager_dbus,
             adapter_dbus: None,
+            qa_dbus: None,
             gatt_dbus: None,
             suspend_dbus: None,
+            socket_manager_dbus: None,
             fg: tx,
             dbus_connection,
             dbus_crossroads,
             scanner_callback_id: None,
+            advertiser_callback_id: None,
+            active_scanner_ids: HashSet::new(),
+            adv_sets: HashMap::new(),
+            socket_manager_callback_id: None,
         }
     }
 
@@ -145,9 +173,13 @@ impl ClientContext {
 
         let dbus = BluetoothDBus::new(conn.clone(), idx);
         self.adapter_dbus = Some(dbus);
+        self.qa_dbus = Some(BluetoothQADBus::new(conn.clone(), idx));
 
         let gatt_dbus = BluetoothGattDBus::new(conn.clone(), idx);
         self.gatt_dbus = Some(gatt_dbus);
+
+        let socket_manager_dbus = BluetoothSocketManagerDBus::new(conn.clone(), idx);
+        self.socket_manager_dbus = Some(socket_manager_dbus);
 
         self.suspend_dbus = Some(SuspendDBus::new(conn.clone(), idx));
 
@@ -371,6 +403,10 @@ async fn start_interactive_shell(
                     format!("/org/chromium/bluetooth/client/{}/suspend_callback", adapter);
                 let scanner_cb_objpath: String =
                     format!("/org/chromium/bluetooth/client/{}/scanner_callback", adapter);
+                let advertiser_cb_objpath: String =
+                    format!("/org/chromium/bluetooth/client/{}/advertising_set_callback", adapter);
+                let socket_manager_cb_objpath: String =
+                    format!("/org/chromium/bluetooth/client/{}/socket_manager_callback", adapter);
 
                 let dbus_connection = context.lock().unwrap().dbus_connection.clone();
                 let dbus_crossroads = context.lock().unwrap().dbus_crossroads.clone();
@@ -423,6 +459,41 @@ async fn start_interactive_shell(
                     .await
                     .expect("D-Bus error on IBluetoothGatt::RegisterScannerCallback");
                 context.lock().unwrap().scanner_callback_id = Some(scanner_callback_id);
+
+                let advertiser_callback_id = context
+                    .lock()
+                    .unwrap()
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .rpc
+                    .register_advertiser_callback(Box::new(AdvertisingSetCallback::new(
+                        advertiser_cb_objpath.clone(),
+                        context.clone(),
+                        dbus_connection.clone(),
+                        dbus_crossroads.clone(),
+                    )))
+                    .await
+                    .expect("D-Bus error on IBluetoothGatt::RegisterAdvertiserCallback");
+                context.lock().unwrap().advertiser_callback_id = Some(advertiser_callback_id);
+
+                let socket_manager_callback_id = context
+                    .lock()
+                    .unwrap()
+                    .socket_manager_dbus
+                    .as_mut()
+                    .unwrap()
+                    .rpc
+                    .register_callback(Box::new(BtSocketManagerCallback::new(
+                        socket_manager_cb_objpath.clone(),
+                        context.clone(),
+                        dbus_connection.clone(),
+                        dbus_crossroads.clone(),
+                    )))
+                    .await
+                    .expect("D-Bus error on IBluetoothSocketManager::RegisterCallback");
+                context.lock().unwrap().socket_manager_callback_id =
+                    Some(socket_manager_callback_id);
 
                 // When adapter is ready, Suspend API is also ready. Register as an observer.
                 // TODO(b/224606285): Implement suspend debug utils in btclient.

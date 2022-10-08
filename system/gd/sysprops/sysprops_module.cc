@@ -66,6 +66,7 @@ std::string SyspropsModule::ToString() const {
 void SyspropsModule::parse_config(std::string file_path) {
   const std::list<std::string> supported_sysprops = {
       // General
+      "bluetooth.device.default_name",
       "bluetooth.core.gap.le.privacy.enabled",
       "bluetooth.device.class_of_device",
       // BR/EDR
@@ -77,6 +78,24 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.core.classic.inq_scan_window",
       "bluetooth.core.acl.link_supervision_timeout",
       "bluetooth.core.classic.page_timeout",
+      "bluetooth.core.classic.sniff_max_intervals",
+      "bluetooth.core.classic.sniff_min_intervals",
+      "bluetooth.core.classic.sniff_attempts",
+      "bluetooth.core.classic.sniff_timeouts",
+      // LE
+      "bluetooth.core.le.min_connection_interval",
+      "bluetooth.core.le.max_connection_interval",
+      "bluetooth.core.le.connection_latency",
+      "bluetooth.core.le.connection_supervision_timeout",
+      "bluetooth.core.le.direct_connection_timeout",
+      "bluetooth.core.le.connection_scan_interval_fast",
+      "bluetooth.core.le.connection_scan_window_fast",
+      "bluetooth.core.le.connection_scan_window_2m_fast",
+      "bluetooth.core.le.connection_scan_window_coded_fast",
+      "bluetooth.core.le.connection_scan_interval_slow",
+      "bluetooth.core.le.connection_scan_window_slow",
+      "bluetooth.core.le.inquiry_scan_interval",
+      "bluetooth.core.le.inquiry_scan_window",
   };
 
   auto config = storage::LegacyConfigFile::FromPath(file_path).Read(kDefaultCapacity);

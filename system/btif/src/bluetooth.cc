@@ -85,6 +85,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/wakelock.h"
+#include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/include/avdt_api.h"
 #include "stack/include/btm_api.h"
@@ -172,14 +173,28 @@ static bool is_profile(const char* p1, const char* p2) {
  *
  ****************************************************************************/
 
+#ifdef OS_ANDROID
+const std::vector<std::string> get_allowed_bt_package_name(void);
+void handle_migration(const std::string& dst,
+                      const std::vector<std::string>& allowed_bt_package_name);
+#endif
+
 static int init(bt_callbacks_t* callbacks, bool start_restricted,
                 bool is_common_criteria_mode, int config_compare_result,
-                const char** init_flags, bool is_atv) {
+                const char** init_flags, bool is_atv,
+                const char* user_data_directory) {
   LOG_INFO(
       "%s: start restricted = %d ; common criteria mode = %d, config compare "
       "result = %d",
       __func__, start_restricted, is_common_criteria_mode,
       config_compare_result);
+
+#ifdef OS_ANDROID
+  if (user_data_directory != nullptr) {
+    handle_migration(std::string(user_data_directory),
+                     get_allowed_bt_package_name());
+  }
+#endif
 
   bluetooth::common::InitFlags::Load(init_flags);
 
@@ -228,6 +243,11 @@ static int disable(void) {
 static void cleanup(void) { stack_manager_get_interface()->clean_up_stack(); }
 
 bool is_restricted_mode() { return restricted_mode; }
+
+static bool get_wbs_supported() {
+  return hfp_hal_interface::get_wbs_supported();
+}
+
 bool is_common_criteria_mode() {
   return is_bluetooth_uid() && common_criteria_mode;
 }
@@ -482,6 +502,20 @@ static int restore_filter_accept_list() {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
   do_in_main_thread(FROM_HERE,
                     base::BindOnce(btif_dm_restore_filter_accept_list));
+  return BT_STATUS_SUCCESS;
+}
+
+static int allow_wake_by_hid() {
+  if (!interface_ready()) return BT_STATUS_NOT_READY;
+  do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_allow_wake_by_hid));
+  return BT_STATUS_SUCCESS;
+}
+
+static int set_event_filter_connection_setup_all_devices() {
+  if (!interface_ready()) return BT_STATUS_NOT_READY;
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindOnce(btif_dm_set_event_filter_connection_setup_all_devices));
   return BT_STATUS_SUCCESS;
 }
 
@@ -744,9 +778,12 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     clear_filter_accept_list,
     disconnect_all_acls,
     le_rand,
+    set_event_filter_connection_setup_all_devices,
+    allow_wake_by_hid,
     restore_filter_accept_list,
     set_default_event_mask,
-    set_event_filter_inquiry_result_all_devices};
+    set_event_filter_inquiry_result_all_devices,
+    get_wbs_supported};
 
 // callback reporting helpers
 

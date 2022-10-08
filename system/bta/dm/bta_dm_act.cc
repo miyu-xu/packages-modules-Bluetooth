@@ -59,6 +59,7 @@
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btu.h"  // do_in_main_thread
+#include "stack/include/srvc_api.h"  // DIS_ReadDISInfo
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -669,13 +670,6 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
   if (!other_address_connected && !other_address.IsEmpty()) {
     bta_dm_process_remove_device(other_address);
   }
-
-  /* Check the length of the paired devices, and if 0 then reset IRK */
-  auto paired_devices = btif_config_get_paired_devices();
-  if (paired_devices.empty()) {
-    LOG_INFO("Last paired device removed, resetting IRK");
-    btm_ble_reset_id();
-  }
 }
 
 /*******************************************************************************
@@ -1198,6 +1192,21 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
         }
       } while (p_sdp_rec);
     }
+
+#if TARGET_FLOSS
+    tSDP_DI_GET_RECORD di_record;
+    if (SDP_GetDiRecord(1, &di_record, bta_dm_search_cb.p_sdp_db) ==
+        SDP_SUCCESS) {
+      tBTA_DM_SEARCH result;
+      result.did_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+      result.did_res.vendor_id_src = di_record.rec.vendor_id_source;
+      result.did_res.vendor_id = di_record.rec.vendor;
+      result.did_res.product_id = di_record.rec.product;
+      result.did_res.version = di_record.rec.version;
+      bta_dm_search_cb.p_search_cback(BTA_DM_DID_RES_EVT, &result);
+    }
+#endif
+
     /* if there are more services to search for */
     if (bta_dm_search_cb.services_to_search) {
       /* Free up the p_sdp_db before checking the next one */
@@ -1293,6 +1302,26 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
   }
 }
 
+/** Callback of peer's DIS reply. This is only called for floss */
+#if TARGET_FLOSS
+static void bta_dm_read_dis_cmpl(const RawAddress& addr,
+                                 tDIS_VALUE* p_dis_value) {
+  if (!p_dis_value) {
+    LOG_WARN("read DIS failed");
+  } else {
+    tBTA_DM_SEARCH result;
+    result.did_res.bd_addr = addr;
+    result.did_res.vendor_id_src = p_dis_value->pnp_id.vendor_id_src;
+    result.did_res.vendor_id = p_dis_value->pnp_id.vendor_id;
+    result.did_res.product_id = p_dis_value->pnp_id.product_id;
+    result.did_res.version = p_dis_value->pnp_id.product_version;
+    bta_dm_search_cb.p_search_cback(BTA_DM_DID_RES_EVT, &result);
+  }
+
+  bta_dm_execute_queued_request();
+}
+#endif
+
 /*******************************************************************************
  *
  * Function         bta_dm_search_cmpl
@@ -1346,6 +1375,13 @@ void bta_dm_search_cmpl() {
   bta_dm_search_cb.p_search_cback(BTA_DM_DISC_BLE_RES_EVT, &result);
 
   bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
+
+#if TARGET_FLOSS
+  if (DIS_ReadDISInfo(bta_dm_search_cb.peer_bdaddr, bta_dm_read_dis_cmpl,
+                      DIS_ATTR_PNP_ID_BIT)) {
+    return;
+  }
+#endif
 
   bta_dm_execute_queued_request();
 }
@@ -3638,7 +3674,8 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
                 (static_cast<uint8_t>(p_data->complt.reason))));
 
         if (btm_sec_is_a_bonded_dev(bda) &&
-            p_data->complt.reason == SMP_CONN_TOUT) {
+            p_data->complt.reason == SMP_CONN_TOUT &&
+            !p_data->complt.smp_over_br) {
           // Bonded device failed to encrypt - to test this remove battery from
           // HID device right after connection, but before encryption is
           // established
@@ -4107,6 +4144,34 @@ void bta_dm_le_rand(LeRandCallback cb) {
 
 /*******************************************************************************
  *
+ * Function        BTA_DmSetEventFilterConnectionSetupAllDevices
+ *
+ * Description    Tell the controller to allow all devices
+ *
+ * Parameters
+ *
+ *******************************************************************************/
+void bta_dm_set_event_filter_connection_setup_all_devices() {
+  // Autoplumbed
+  bluetooth::shim::BTM_SetEventFilterConnectionSetupAllDevices();
+}
+
+/*******************************************************************************
+ *
+ * Function        BTA_DmAllowWakeByHid
+ *
+ * Description     Allow the device to be woken by HID devices
+ *
+ * Parameters      std::vector or RawAddress
+ *
+ *******************************************************************************/
+void bta_dm_allow_wake_by_hid(std::vector<RawAddress> le_hid_devices) {
+  // Autoplumbed
+  bluetooth::shim::BTM_AllowWakeByHid(le_hid_devices);
+}
+
+/*******************************************************************************
+ *
  * Function        BTA_DmRestoreFilterAcceptList
  *
  * Description    Floss: Restore the state of the for the filter accept list
@@ -4145,6 +4210,20 @@ void bta_dm_set_default_event_mask() {
 void bta_dm_set_event_filter_inquiry_result_all_devices() {
   // Autoplumbed
   bluetooth::shim::BTM_SetEventFilterInquiryResultAllDevices();
+}
+
+/*******************************************************************************
+ *
+ * Function         bta_dm_ble_reset_id
+ *
+ * Description      Reset the local adapter BLE keys.
+ *
+ * Parameters:
+ *
+ ******************************************************************************/
+void bta_dm_ble_reset_id(void) {
+  VLOG(1) << "bta_dm_ble_reset_id in bta_dm_act";
+  bluetooth::shim::BTM_BleResetId();
 }
 
 /*******************************************************************************

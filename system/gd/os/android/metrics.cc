@@ -22,8 +22,10 @@
 
 #include <statslog_bt.h>
 
+#include "common/audit_log.h"
 #include "common/metric_id_manager.h"
 #include "common/strings.h"
+#include "hci/hci_packets.h"
 #include "os/log.h"
 
 namespace bluetooth {
@@ -32,6 +34,8 @@ namespace os {
 
 using bluetooth::common::MetricIdManager;
 using bluetooth::hci::Address;
+using bluetooth::hci::ErrorCode;
+using bluetooth::hci::EventCode;
 
 /**
  * nullptr and size 0 represent missing value for obfuscated_id
@@ -232,7 +236,7 @@ void LogMetricReadTxPowerLevelResult(
 }
 
 void LogMetricSmpPairingEvent(
-    const Address& address, uint8_t smp_cmd, android::bluetooth::DirectionEnum direction, uint8_t smp_fail_reason) {
+    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {
   int metric_id = 0;
   if (!address.IsEmpty()) {
     metric_id = MetricIdManager::GetInstance().AllocateId(address);
@@ -284,6 +288,10 @@ void LogMetricClassicPairingEvent(
         common::ToHexString(reason_code).c_str(),
         std::to_string(event_value).c_str(),
         ret);
+  }
+
+  if (static_cast<EventCode>(hci_event) == EventCode::SIMPLE_PAIRING_COMPLETE) {
+    common::LogConnectionAdminAuditEvent("Pairing", address, static_cast<ErrorCode>(cmd_status));
   }
 }
 

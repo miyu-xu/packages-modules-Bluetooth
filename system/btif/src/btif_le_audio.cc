@@ -111,7 +111,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     this->callbacks = callbacks;
 
     for (auto codec : offloading_preference) {
-      LOG_DEBUG("supported codec: %s", codec.ToString().c_str());
+      LOG_INFO("supported codec: %s", codec.ToString().c_str());
     }
 
     LeAudioClient::InitializeAudioSetConfigurationProvider();
@@ -197,6 +197,13 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     do_in_main_thread(
         FROM_HERE, Bind(&LeAudioClient::SetCcidInformation,
                         Unretained(LeAudioClient::Get()), ccid, context_type));
+  }
+
+  void SetInCall(bool in_call) {
+    DVLOG(2) << __func__ << " in_call: " << in_call;
+    do_in_main_thread(FROM_HERE,
+                      Bind(&LeAudioClient::SetInCall,
+                           Unretained(LeAudioClient::Get()), in_call));
   }
 
  private:

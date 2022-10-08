@@ -341,6 +341,13 @@ class VolumeControlImpl : public VolumeControl {
       }
     }
 
+    if (devices.empty() && (is_volume_change || is_mute_change)) {
+      LOG_INFO("No more devices in the group right now");
+      callbacks_->OnGroupVolumeStateChanged(group_id, device->volume,
+                                            device->mute, true);
+      return;
+    }
+
     if (is_volume_change) {
       std::vector<uint8_t> arg({device->volume});
       PrepareVolumeControlOperation(devices, group_id, true,
@@ -736,13 +743,23 @@ class VolumeControlImpl : public VolumeControl {
                                      int group_id, bool is_autonomous,
                                      uint8_t opcode,
                                      std::vector<uint8_t>& arguments) {
-    DLOG(INFO) << __func__ << " num of devices: " << devices.size()
-               << " group_id: " << group_id
-               << " is_autonomous: " << is_autonomous << " opcode: " << +opcode
-               << " arg size: " << arguments.size();
+    LOG_DEBUG(
+        "num of devices: %zu, group_id: %d, is_autonomous: %s  opcode: %d, arg "
+        "size: %zu",
+        devices.size(), group_id, is_autonomous ? "true" : "false", +opcode,
+        arguments.size());
 
-    ongoing_operations_.emplace_back(latest_operation_id_++, group_id,
-                                     is_autonomous, opcode, arguments, devices);
+    if (std::find_if(ongoing_operations_.begin(), ongoing_operations_.end(),
+                     [opcode, &arguments](const VolumeOperation& op) {
+                       return (op.opcode_ == opcode) &&
+                              std::equal(op.arguments_.begin(),
+                                         op.arguments_.end(),
+                                         arguments.begin());
+                     }) == ongoing_operations_.end()) {
+      ongoing_operations_.emplace_back(latest_operation_id_++, group_id,
+                                       is_autonomous, opcode, arguments,
+                                       devices);
+    }
   }
 
   void MuteUnmute(std::variant<RawAddress, int> addr_or_group_id, bool mute) {
@@ -753,11 +770,13 @@ class VolumeControlImpl : public VolumeControl {
     if (std::holds_alternative<RawAddress>(addr_or_group_id)) {
       LOG_DEBUG("Address: %s: ",
                 (std::get<RawAddress>(addr_or_group_id)).ToString().c_str());
-      std::vector<RawAddress> devices = {
-          std::get<RawAddress>(addr_or_group_id)};
-
-      PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown,
-                                    false, opcode, arg);
+      VolumeControlDevice* dev = volume_control_devices_.FindByAddress(
+          std::get<RawAddress>(addr_or_group_id));
+      if (dev && dev->IsConnected()) {
+        std::vector<RawAddress> devices = {dev->address};
+        PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown,
+                                      false, opcode, arg);
+      }
     } else {
       /* Handle group change */
       auto group_id = std::get<int>(addr_or_group_id);
@@ -808,14 +827,17 @@ class VolumeControlImpl : public VolumeControl {
     uint8_t opcode = kControlPointOpcodeSetAbsoluteVolume;
 
     if (std::holds_alternative<RawAddress>(addr_or_group_id)) {
-      DLOG(INFO) << __func__ << " " << std::get<RawAddress>(addr_or_group_id);
-      std::vector<RawAddress> devices = {
-          std::get<RawAddress>(addr_or_group_id)};
-
-      RemovePendingVolumeControlOperations(devices,
-                                           bluetooth::groups::kGroupUnknown);
-      PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown,
-                                    false, opcode, arg);
+      LOG_DEBUG("Address: %s: ",
+                std::get<RawAddress>(addr_or_group_id).ToString().c_str());
+      VolumeControlDevice* dev = volume_control_devices_.FindByAddress(
+          std::get<RawAddress>(addr_or_group_id));
+      if (dev && dev->IsConnected() && (dev->volume != volume)) {
+        std::vector<RawAddress> devices = {dev->address};
+        RemovePendingVolumeControlOperations(devices,
+                                             bluetooth::groups::kGroupUnknown);
+        PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown,
+                                      false, opcode, arg);
+      }
     } else {
       /* Handle group change */
       auto group_id = std::get<int>(addr_or_group_id);
@@ -1051,7 +1073,7 @@ class VolumeControlImpl : public VolumeControl {
 
       case BTA_GATTC_ENC_CMPL_CB_EVT: {
         uint8_t encryption_status;
-        if (!BTM_IsEncrypted(p_data->enc_cmpl.remote_bda, BT_TRANSPORT_LE)) {
+        if (BTM_IsEncrypted(p_data->enc_cmpl.remote_bda, BT_TRANSPORT_LE)) {
           encryption_status = BTM_SUCCESS;
         } else {
           encryption_status = BTM_FAILED_ON_SECURITY;

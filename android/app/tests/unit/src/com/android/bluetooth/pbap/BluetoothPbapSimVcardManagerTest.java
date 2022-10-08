@@ -35,8 +35,9 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.obex.Operation;
-import com.android.bluetooth.obex.ResponseCodes;
+import com.android.bluetooth.BluetoothMethodProxy;
+import com.android.obex.Operation;
+import com.android.obex.ResponseCodes;
 
 import org.junit.After;
 import org.junit.Before;
@@ -60,7 +61,7 @@ public class BluetoothPbapSimVcardManagerTest {
     private static final String TAG = BluetoothPbapSimVcardManagerTest.class.getSimpleName();
 
     @Spy
-    BluetoothPbapMethodProxy mPbapMethodProxy = BluetoothPbapMethodProxy.getInstance();
+    BluetoothMethodProxy mPbapMethodProxy = BluetoothMethodProxy.getInstance();
 
     Context mContext;
     BluetoothPbapSimVcardManager mManager;
@@ -70,14 +71,14 @@ public class BluetoothPbapSimVcardManagerTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        BluetoothPbapMethodProxy.setInstanceForTesting(mPbapMethodProxy);
+        BluetoothMethodProxy.setInstanceForTesting(mPbapMethodProxy);
         mContext =  InstrumentationRegistry.getTargetContext();
         mManager = new BluetoothPbapSimVcardManager(mContext);
     }
 
     @After
     public void tearDown() {
-        BluetoothPbapMethodProxy.setInstanceForTesting(null);
+        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
@@ -204,8 +205,8 @@ public class BluetoothPbapSimVcardManagerTest {
             return currentPosition.get() >= size;
         });
         when(cursor.moveToNext()).then((Answer<Boolean>) i -> {
-            currentPosition.getAndAdd(1);
-            return true;
+            int pos = currentPosition.addAndGet(1);
+            return pos < size;
         });
         when(cursor.getString(anyInt())).then((Answer<String>) i -> {
             return nameList.get(currentPosition.get());
@@ -254,8 +255,8 @@ public class BluetoothPbapSimVcardManagerTest {
             return currentPosition.get() >= size;
         });
         when(cursor.moveToNext()).then((Answer<Boolean>) i -> {
-            currentPosition.getAndAdd(1);
-            return true;
+            int pos = currentPosition.addAndGet(1);
+            return pos < size;
         });
         when(cursor.getString(anyInt())).then((Answer<String>) i -> {
             return nameList.get(currentPosition.get());
@@ -289,8 +290,8 @@ public class BluetoothPbapSimVcardManagerTest {
             return currentPosition.get() >= size;
         });
         when(cursor.moveToNext()).then((Answer<Boolean>) i -> {
-            currentPosition.getAndAdd(1);
-            return true;
+            int pos = currentPosition.addAndGet(1);
+            return pos < size;
         });
         when(cursor.getString(anyInt())).then((Answer<String>) i -> {
             return nameList.get(currentPosition.get());
@@ -328,8 +329,8 @@ public class BluetoothPbapSimVcardManagerTest {
             return currentPosition.get() >= size;
         });
         when(cursor.moveToNext()).then((Answer<Boolean>) i -> {
-            currentPosition.getAndAdd(1);
-            return true;
+            int pos = currentPosition.addAndGet(1);
+            return pos < size;
         });
         when(cursor.getString(BluetoothPbapSimVcardManager.NAME_COLUMN_INDEX)).then(
                 (Answer<String>) i -> {

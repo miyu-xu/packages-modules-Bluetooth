@@ -34,11 +34,15 @@
 #include "main/shim/dumpsys.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
+#include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sco.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
+#include "stack/include/acl_api.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "types/raw_address.h"
+
+extern tBTM_CB btm_cb;
 
 /* Codec negotiation timeout */
 #ifndef BTA_AG_CODEC_NEGOTIATION_TIMEOUT_MS
@@ -409,6 +413,10 @@ static void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
     }
   }
 
+  /* Configure input/output data path based on HAL settings. */
+  hfp_hal_interface::set_codec_datapath(esco_codec);
+  hfp_hal_interface::update_esco_parameters(&params);
+
   /* If initiating, setup parameters to start SCO/eSCO connection */
   if (is_orig) {
     bta_ag_cb.sco.is_local = true;
@@ -510,6 +518,15 @@ static void bta_ag_create_pending_sco(tBTA_AG_SCB* p_scb, bool is_local) {
     } else {
       // HFP <=1.6 eSCO
       params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+    }
+
+    // HFP v1.8 5.7.3 CVSD coding
+    tSCO_CONN* p_sco = NULL;
+    if (p_scb->sco_idx < BTM_MAX_SCO_LINKS)
+      p_sco = &btm_cb.sco_cb.sco_db[p_scb->sco_idx];
+    if (p_sco && (p_sco->esco.data.link_type == BTM_LINK_TYPE_SCO ||
+                  !sco_peer_supports_esco_ev3(p_sco->esco.data.bd_addr))) {
+      params = esco_parameters_for_codec(SCO_CODEC_CVSD_D1, offload);
     }
 
     BTM_EScoConnRsp(p_scb->sco_idx, HCI_SUCCESS, &params);
@@ -1161,6 +1178,12 @@ void bta_ag_sco_open(tBTA_AG_SCB* p_scb, UNUSED_ATTR const tBTA_AG_DATA& data) {
     LOG(INFO) << __func__ << ": not opening sco, by policy";
     return;
   }
+
+  if (data.api_audio_open.force_cvsd) {
+    LOG(INFO) << __func__ << ": set to use fallback codec";
+    p_scb->codec_fallback = true;
+  }
+
   /* if another scb using sco, this is a transfer */
   if (bta_ag_cb.sco.p_curr_scb && bta_ag_cb.sco.p_curr_scb != p_scb) {
     LOG(INFO) << __func__ << ": transfer "
@@ -1333,6 +1356,10 @@ void bta_ag_sco_conn_rsp(tBTA_AG_SCB* p_scb,
   p_scb->inuse_codec = BTM_SCO_CODEC_NONE;
   /* Send pending commands to create SCO connection to peer */
   bta_ag_create_pending_sco(p_scb, bta_ag_cb.sco.is_local);
+}
+
+void bta_ag_set_sco_offload_enabled(bool value) {
+  hfp_hal_interface::enable_offload(value);
 }
 
 void bta_ag_set_sco_allowed(bool value) {

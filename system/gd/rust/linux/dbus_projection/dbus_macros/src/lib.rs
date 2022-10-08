@@ -774,14 +774,7 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
     let gen = quote! {
         #ori_item
 
-        impl RPCProxy for #self_ty {
-            fn register_disconnect(&mut self, _disconnect_callback: Box<dyn Fn(u32) + Send>) -> u32 { 0 }
-            fn get_object_id(&self) -> String {
-                String::from("")
-            }
-            fn unregister(&mut self, _id: u32) -> bool { false }
-            fn export_for_rpc(self: Box<Self>) {}
-        }
+        impl RPCProxy for #self_ty {}
 
         struct #struct_ident {
             conn: std::sync::Arc<dbus::nonblock::SyncConnection>,
@@ -806,7 +799,6 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
             fn unregister(&mut self, id: u32) -> bool {
                 self.disconnect_watcher.lock().unwrap().remove(self.remote.clone(), id)
             }
-            fn export_for_rpc(self: Box<Self>) {}
         }
 
         impl DBusArg for Box<dyn #trait_ + Send> {
@@ -851,7 +843,9 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
         use dbus::nonblock::SyncConnection;
         use dbus::strings::BusName;
         use dbus_projection::DisconnectWatcher;
+        use dbus_projection::impl_dbus_arg_from_into;
 
+        use std::convert::{TryFrom, TryInto};
         use std::error::Error;
         use std::fmt;
         use std::hash::Hash;
@@ -962,7 +956,16 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
                 let mut val = iter.next();
                 while !key.is_none() && !val.is_none() {
                     let k = key.unwrap().as_str().unwrap().to_string();
-                    let v = dbus::arg::Variant(val.unwrap().box_clone());
+                    let val_clone = val.unwrap().box_clone();
+                    let v = dbus::arg::Variant(
+                        val_clone
+                            .as_static_inner(0)
+                            .ok_or(Box::new(DBusArgError::new(String::from(format!(
+                                "{}.{} is not a variant",
+                                name, k
+                            )))))?
+                            .box_clone(),
+                    );
                     map.insert(k, v);
                     key = iter.next();
                     val = iter.next();
@@ -980,7 +983,10 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
                 _name: String,
             ) -> Result<Self::RustType, Box<dyn Error>> {
                 let mut vec: Vec<T> = vec![];
-                let mut iter = arg.as_iter().unwrap();
+                let mut iter = arg.as_iter().ok_or(Box::new(DBusArgError::new(format!(
+                    "Failed parsing array for `{}`",
+                    _name
+                ))))?;
                 let mut val = iter.next();
                 while !val.is_none() {
                     let arg = val.unwrap().box_clone();
@@ -1056,6 +1062,7 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
         impl DirectDBus for u32 {}
         impl DirectDBus for i64 {}
         impl DirectDBus for u64 {}
+        impl DirectDBus for i16 {}
         impl DirectDBus for u16 {}
         impl DirectDBus for u8 {}
         impl DirectDBus for String {}
@@ -1075,6 +1082,9 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
                 return Ok(data);
             }
         }
+
+        // Represent i8 as D-Bus's i16, since D-Bus only has unsigned type for BYTE.
+        impl_dbus_arg_from_into!(i8, i16);
 
         impl DBusArg for std::fs::File {
             type DBusType = std::fs::File;

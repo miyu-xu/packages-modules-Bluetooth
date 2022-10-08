@@ -70,6 +70,11 @@ impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus {
     fn on_hfp_volume_changed(&self, volume: u8, addr: String) {
         dbus_generated!()
     }
+
+    #[dbus_method("OnHfpAudioDisconnected")]
+    fn on_hfp_audio_disconnected(&self, addr: String) {
+        dbus_generated!()
+    }
 }
 
 #[allow(dead_code)]
@@ -105,13 +110,18 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("Disconnect")]
+    fn disconnect(&mut self, address: String) {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetActiveDevice")]
     fn set_active_device(&mut self, address: String) {
         dbus_generated!()
     }
 
-    #[dbus_method("Disconnect")]
-    fn disconnect(&mut self, address: String) {
+    #[dbus_method("SetHfpActiveDevice")]
+    fn set_hfp_active_device(&mut self, address: String) {
         dbus_generated!()
     }
 
@@ -141,7 +151,7 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("GetA2dpAudioStarted")]
-    fn get_a2dp_audio_started(&mut self) -> bool {
+    fn get_a2dp_audio_started(&mut self, address: String) -> u8 {
         dbus_generated!()
     }
 
@@ -151,12 +161,12 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("StartScoCall")]
-    fn start_sco_call(&mut self, address: String) {
+    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) {
         dbus_generated!()
     }
 
     #[dbus_method("GetHfpAudioStarted")]
-    fn get_hfp_audio_started(&mut self) -> bool {
+    fn get_hfp_audio_started(&mut self, address: String) -> u8 {
         dbus_generated!()
     }
 

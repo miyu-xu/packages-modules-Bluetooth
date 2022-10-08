@@ -66,8 +66,9 @@ public abstract class BluetoothProfileConnector<T> {
     };
 
     private @Nullable ComponentName resolveSystemService(@NonNull Intent intent,
-            @NonNull PackageManager pm, @PackageManager.ComponentInfoFlags int flags) {
-        List<ResolveInfo> results = pm.queryIntentServices(intent, flags);
+            @NonNull PackageManager pm) {
+        List<ResolveInfo> results = pm.queryIntentServices(intent,
+                PackageManager.ResolveInfoFlags.of(0));
         if (results == null) {
             return null;
         }
@@ -130,8 +131,7 @@ public abstract class BluetoothProfileConnector<T> {
                 mCloseGuard.open("doUnbind");
                 try {
                     Intent intent = new Intent(mServiceName);
-                    ComponentName comp = resolveSystemService(intent, mContext.getPackageManager(),
-                            0);
+                    ComponentName comp = resolveSystemService(intent, mContext.getPackageManager());
                     intent.setComponent(comp);
                     if (comp == null || !mContext.bindServiceAsUser(intent, mConnection, 0,
                             USER_HANDLE_CURRENT_OR_SELF)) {
@@ -188,7 +188,10 @@ public abstract class BluetoothProfileConnector<T> {
     }
 
     void disconnect() {
-        mServiceListener = null;
+        if (mServiceListener != null) {
+            mServiceListener.onServiceDisconnected(mProfileId);
+            mServiceListener = null;
+        }
         IBluetoothManager mgr = BluetoothAdapter.getDefaultAdapter().getBluetoothManager();
         if (mgr != null) {
             try {

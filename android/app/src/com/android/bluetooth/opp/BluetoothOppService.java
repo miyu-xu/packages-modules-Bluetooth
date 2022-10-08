@@ -37,7 +37,6 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothDevicePicker;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -61,9 +60,9 @@ import com.android.bluetooth.IObexConnectionHandler;
 import com.android.bluetooth.ObexServerSockets;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.obex.ObexTransport;
 import com.android.bluetooth.sdp.SdpManager;
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.obex.ObexTransport;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -87,14 +86,6 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
             BluetoothOppProvider.class.getCanonicalName();
     private static final String OPP_FILE_PROVIDER =
             BluetoothOppFileProvider.class.getCanonicalName();
-    private static final String LAUNCHER_ACTIVITY =
-            BluetoothOppLauncherActivity.class.getCanonicalName();
-    private static final String BT_ENABLE_ACTIVITY =
-            BluetoothOppBtEnableActivity.class.getCanonicalName();
-    private static final String BT_ERROR_ACTIVITY =
-            BluetoothOppBtErrorActivity.class.getCanonicalName();
-    private static final String BT_ENABLING_ACTIVITY =
-            BluetoothOppBtEnablingActivity.class.getCanonicalName();
     private static final String INCOMING_FILE_CONFIRM_ACTIVITY =
             BluetoothOppIncomingFileConfirmActivity.class.getCanonicalName();
     private static final String TRANSFER_ACTIVITY =
@@ -253,10 +244,6 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
         setComponentAvailable(OPP_PROVIDER, true);
         setComponentAvailable(OPP_FILE_PROVIDER, true);
-        setComponentAvailable(LAUNCHER_ACTIVITY, true);
-        setComponentAvailable(BT_ENABLE_ACTIVITY, true);
-        setComponentAvailable(BT_ERROR_ACTIVITY, true);
-        setComponentAvailable(BT_ENABLING_ACTIVITY, true);
         setComponentAvailable(INCOMING_FILE_CONFIRM_ACTIVITY, true);
         setComponentAvailable(TRANSFER_ACTIVITY, true);
         setComponentAvailable(TRANSFER_HISTORY_ACTIVITY, true);
@@ -299,10 +286,6 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
         setComponentAvailable(OPP_PROVIDER, false);
         setComponentAvailable(OPP_FILE_PROVIDER, false);
-        setComponentAvailable(LAUNCHER_ACTIVITY, false);
-        setComponentAvailable(BT_ENABLE_ACTIVITY, false);
-        setComponentAvailable(BT_ERROR_ACTIVITY, false);
-        setComponentAvailable(BT_ENABLING_ACTIVITY, false);
         setComponentAvailable(INCOMING_FILE_CONFIRM_ACTIVITY, false);
         setComponentAvailable(TRANSFER_ACTIVITY, false);
         setComponentAvailable(TRANSFER_HISTORY_ACTIVITY, false);
@@ -602,7 +585,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                                 in1.putExtra(BluetoothDevicePicker.EXTRA_FILTER_TYPE,
                                         BluetoothDevicePicker.FILTER_TYPE_TRANSFER);
                                 in1.putExtra(BluetoothDevicePicker.EXTRA_LAUNCH_PACKAGE,
-                                        Constants.THIS_PACKAGE_NAME);
+                                        getPackageName());
                                 in1.putExtra(BluetoothDevicePicker.EXTRA_LAUNCH_CLASS,
                                         BluetoothOppReceiver.class.getName());
 
