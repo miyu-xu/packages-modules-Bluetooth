@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc0293c_3b17eb83",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-08T00:41:54Z",
+      "side": 1,
+      "message": "What if the data is wrong, will it crash during the cast ? (not sure when this code is run so it may not be useful to handle the case)",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 76
+      },
+      "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9193beb_1739d0aa",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-08T00:41:54Z",
+      "side": 1,
+      "message": "nit: this is more of personal preference but instead of recursively calling the parser I would like to iterate on the top method like this:\n```\nwhile (buffer_offset_ \u003e 0) {\n  SendDataToPacketizer();\n}\n```\nThis require to remove this:\n```\n// All of the bytes have been consumed, so reset the buffer.\n  buffer_offset_ \u003d 0;\n```\nand the `SendDataToPacketizer` in the OnDataReady\n\n\n\n\nActually the loop could even be something totally different:\n```\nwhile (buffer_offset_ \u003e 0) {\n  bool packet_ready \u003d hci_packetizer_.onDataReady(packet_buffer, \u0026buffer_offset_)  // I assume there that the hci_packet_type_ is now living in the hci_packetizer as it has the same lifetime as the data packer\n  if (packet_ready) {\n      OnPacketReady(hci_packetizer_.GetPacket());\n  }\n}\n```",
+      "range": {
+        "startLine": 132,
+        "startChar": 2,
+        "endLine": 132,
+        "endChar": 25
+      },
+      "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc90b48b_a2816014",
+        "filename": "system/vendor_libs/linux/interface/hci_packetizer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-08T00:41:54Z",
+      "side": 1,
+      "message": "I am not a huge fan of calling again the \"state machine dispatcher\".\nWhat would you think about a `copy_header` method and then a `copy_payload` method ? and here you could just call the copy_payload one.\n\n\nOne argument for this is that `packet_completed` is set twice to true, and the setToExternal (whatever it does) is also called twice",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 27
+      },
+      "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
