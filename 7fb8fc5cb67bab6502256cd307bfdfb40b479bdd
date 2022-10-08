@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31c386be_c64d3fe5",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-08T20:55:17Z",
+      "side": 1,
+      "message": "It will crash later (line 86).  static_cast is always safe if it compiles.",
+      "parentUuid": "8dc0293c_3b17eb83",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 76
+      },
+      "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9193beb_1739d0aa",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-08T00:41:54Z",
       "side": 1,
       "message": "nit: this is more of personal preference but instead of recursively calling the parser I would like to iterate on the top method like this:\n```\nwhile (buffer_offset_ \u003e 0) {\n  SendDataToPacketizer();\n}\n```\nThis require to remove this:\n```\n// All of the bytes have been consumed, so reset the buffer.\n  buffer_offset_ \u003d 0;\n```\nand the `SendDataToPacketizer` in the OnDataReady\n\n\n\n\nActually the loop could even be something totally different:\n```\nwhile (buffer_offset_ \u003e 0) {\n  bool packet_ready \u003d hci_packetizer_.onDataReady(packet_buffer, \u0026buffer_offset_)  // I assume there that the hci_packet_type_ is now living in the hci_packetizer as it has the same lifetime as the data packer\n  if (packet_ready) {\n      OnPacketReady(hci_packetizer_.GetPacket());\n  }\n}\n```",
+      "range": {
+        "startLine": 132,
+        "startChar": 2,
+        "endLine": 132,
+        "endChar": 25
+      },
+      "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d00b9c3_d33b2b2f",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-08T20:55:17Z",
+      "side": 1,
+      "message": "I tried ...  See what you think.",
+      "parentUuid": "c9193beb_1739d0aa",
       "range": {
         "startLine": 132,
         "startChar": 2,
