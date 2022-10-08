@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba9a8cb5_23a904ef",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2285,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-08T07:31:15Z",
+      "side": 1,
+      "message": "No change in icon.\nI plan to use BTM_COD_SERVICE_LE_AUDIO bit for making decisions about how to connect and discover services later.\n\nNow the bit is flickering between 1 and 0 if we receive CoD from Classic, then Appearance from LE  after one another.",
+      "parentUuid": "ae7de674_838dcc8b",
+      "range": {
+        "startLine": 2285,
+        "startChar": 0,
+        "endLine": 2285,
+        "endChar": 70
+      },
+      "revId": "07140e10862fb22d017198e4d0603a6b15c762d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "854381ec_82e6c8e6",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-07T23:09:42Z",
       "side": 1,
       "message": "duplicate code?",
+      "range": {
+        "startLine": 2411,
+        "startChar": 10,
+        "endLine": 2426,
+        "endChar": 11
+      },
+      "revId": "07140e10862fb22d017198e4d0603a6b15c762d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0485f3b5_98b5b618",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2426,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-08T07:31:15Z",
+      "side": 1,
+      "message": "Yes sorry, I was also considering checking exposed LE services, but CoD is enough",
+      "parentUuid": "854381ec_82e6c8e6",
       "range": {
         "startLine": 2411,
         "startChar": 10,
