@@ -692,7 +692,7 @@ static void out_update_source_metadata(
 }
 
 static size_t frame_count(size_t microseconds, uint32_t sample_rate) {
-  return (microseconds * sample_rate) / 1000000;
+  return (microseconds / 1000 * sample_rate) / 1000;
 }
 
 int adev_open_output_stream(struct audio_hw_device* dev,
