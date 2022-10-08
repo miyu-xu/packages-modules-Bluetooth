@@ -895,8 +895,15 @@ static void btif_a2dp_source_audio_tx_stop_event(void) {
 static void btif_a2dp_source_audio_handle_timer(void) {
   if (btif_av_is_a2dp_offload_running()) return;
 
+#ifndef TARGET_FLOSS
   uint64_t timestamp_us = bluetooth::common::time_get_os_boottime_us();
-  log_tstamps_us("A2DP Source tx timer", timestamp_us);
+  uint64_t stats_timestamp_us = timestamp_us;
+#else
+  uint64_t timestamp_us = bluetooth::common::time_get_os_monotonic_raw_us();
+  uint64_t stats_timestamp_us = bluetooth::common::time_get_os_boottime_us();
+#endif
+
+  log_tstamps_us("A2DP Source tx scheduling timer", timestamp_us);
 
   if (!btif_a2dp_source_cb.media_alarm.IsScheduled()) {
     LOG_ERROR("%s: ERROR Media task Scheduled after Suspend", __func__);
@@ -916,7 +923,7 @@ static void btif_a2dp_source_audio_handle_timer(void) {
   btif_a2dp_source_cb.encoder_interface->send_frames(timestamp_us);
   bta_av_ci_src_data_ready(BTA_AV_CHNL_AUDIO);
   update_scheduling_stats(&btif_a2dp_source_cb.stats.tx_queue_enqueue_stats,
-                          timestamp_us,
+                          stats_timestamp_us,
                           btif_a2dp_source_cb.encoder_interval_ms * 1000);
 }
 
@@ -1008,12 +1015,22 @@ static bool btif_a2dp_source_enqueue_callback(BT_HDR* p_buf, size_t frames_n,
     if (status != BTM_CMD_STARTED) {
       LOG_WARN("%s: Cannot read RSSI: status %d", __func__, status);
     }
+
+    // Intel controllers don't handle ReadFailedContactCounter very well, it
+    // sends back Hardware Error event which will crash the daemon. So
+    // temporarily disable this for Floss.
+    // TODO(b/249876976): Intel controllers to handle this command correctly.
+    // And if the need for disabling metrics-related HCI call grows, consider
+    // creating a framework to avoid ifdefs.
+#ifndef TARGET_FLOSS
     status = BTM_ReadFailedContactCounter(peer_bda,
                                           btm_read_failed_contact_counter_cb);
     if (status != BTM_CMD_STARTED) {
       LOG_WARN("%s: Cannot read Failed Contact Counter: status %d", __func__,
                status);
     }
+#endif
+
     status =
         BTM_ReadTxPower(peer_bda, BT_TRANSPORT_BR_EDR, btm_read_tx_power_cb);
     if (status != BTM_CMD_STARTED) {

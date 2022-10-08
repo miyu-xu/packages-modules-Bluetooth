@@ -54,10 +54,11 @@ packet Brew {
 }
 ```
 
-The endianess affects how fields of fractional bit-size (hence named bit-fields) are parsed or
-serialized. Such fields are grouped together to the next byte boundary, least
-significant bit first, and then byte-swapped to the required endianess before
-being written to memory, or after being read from memory.
+The endianess affects how fields of fractional byte sizes (hence named
+bit-fields) are parsed or serialized. Such fields are grouped together to the
+next byte boundary, least significant bit first, and then byte-swapped to the
+required endianess before being written to memory, or after being read from
+memory.
 
 ```
 packet Coffee {
@@ -562,11 +563,13 @@ packet CRCedBrew {
 > padding_field:\
 > &nbsp;&nbsp; `_padding_` `[` [INTEGER](#integer) `]`
 
-A *\_padding\_* field adds a number of **octet** of padding.
+A *\_padding\_* field immediately following an array field pads the array field with `0`s to the
+specified number of **octets**.
 
 ```
-packet Padded {
-  _padding_[1] // 1 octet/8bit of padding
+packet PaddedCoffee {
+  additions: CoffeeAddition[],
+  _padding_[100]
 }
 ```
 
@@ -629,13 +632,11 @@ starting with a letter.
 ### Size Modifier
 
 > SIZE_MODIFIER:\
-> &nbsp;&nbsp; `+` | `-` | `*` | `/` DIGIT | `+` | `-` | `*` | `/`
+> &nbsp;&nbsp; `+` INTVALUE
 
-Part of a arithmetic expression where the missing part is a size
-
-For example:
-- `+ 2` defines that the size is 2 octet bigger than the real size
-- `* 8` defines that the size is 8 times bigger than the real size
+A size modifier alters the octet size of the field it is attached to.
+For example, `+ 2` defines that the size is 2 octet bigger than the
+actual field size.
 
 ### Comment
 

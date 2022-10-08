@@ -16,8 +16,6 @@
 
 #define LOG_TAG "BluetoothHeadsetServiceJni"
 
-#define LOG_NDEBUG 0
-
 #include "com_android_bluetooth.h"
 #include "hardware/bluetooth_headset_callbacks.h"
 #include "hardware/bluetooth_headset_interface.h"
@@ -562,7 +560,8 @@ static jboolean connectAudioNative(JNIEnv* env, jobject object,
     return JNI_FALSE;
   }
   ALOGI("%s: device %s", __func__, ((RawAddress*)addr)->ToString().c_str());
-  bt_status_t status = sBluetoothHfpInterface->ConnectAudio((RawAddress*)addr);
+  bt_status_t status =
+      sBluetoothHfpInterface->ConnectAudio((RawAddress*)addr, false);
   if (status != BT_STATUS_SUCCESS) {
     ALOGE("Failed HF audio connection, status: %d", status);
   }

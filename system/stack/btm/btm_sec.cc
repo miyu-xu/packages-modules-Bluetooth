@@ -2781,12 +2781,16 @@ void btm_proc_sp_req_evt(tBTM_SP_EVT event, const uint8_t* p) {
             BTM_ConfirmReqReply(status, p_bda);
             return;
           }
-          if ((p_dev_rec->rmt_io_caps == BTM_IO_CAP_IO) &&
+
+          if ((p_dev_rec->rmt_io_caps == BTM_IO_CAP_IO ||
+               p_dev_rec->rmt_io_caps == BTM_IO_CAP_OUT) &&
               (btm_cb.devcb.loc_io_caps == BTM_IO_CAP_IO) &&
               ((p_dev_rec->rmt_auth_req & BTM_AUTH_SP_YES) ||
                (btm_cb.devcb.loc_auth_req & BTM_AUTH_SP_YES))) {
-            /* Both devices are DisplayYesNo and one or both devices want to
-               authenticate -> use authenticated link key */
+            /* Use Numeric Comparison if
+             * 1. Local IO capability is DisplayYesNo,
+             * 2. Remote IO capability is DisplayOnly or DiaplayYesNo, and
+             * 3. Either of the devices have requested authenticated link key */
             evt_data.cfm_req.just_works = false;
           }
         }
@@ -3285,6 +3289,13 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
   if (status == HCI_SUCCESS) {
     if (encr_enable) {
       if (p_dev_rec->hci_handle == handle) {  // classic
+        if ((p_dev_rec->sec_flags & BTM_SEC_AUTHENTICATED) &&
+            (p_dev_rec->sec_flags & BTM_SEC_ENCRYPTED)) {
+          LOG_INFO(
+              "Link is authenticated & encrypted, ignoring this enc change "
+              "event");
+          return;
+        }
         p_dev_rec->sec_flags |= (BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED);
         if (p_dev_rec->pin_code_length >= 16 ||
             p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||

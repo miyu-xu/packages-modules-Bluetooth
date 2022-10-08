@@ -90,6 +90,7 @@ pub enum BtConnectionState {
     ConnectedOnly = 1,
     EncryptedBredr = 3,
     EncryptedLe = 5,
+    EncryptedBoth = 7,
 }
 
 impl From<i32> for BtConnectionState {
@@ -145,6 +146,9 @@ pub enum BtPropertyType {
     LocalIoCaps,
     LocalIoCapsBle,
     DynamicAudioBuffer,
+    RemoteIsCoordinatedSetMember,
+    Appearance,
+    VendorProductInfo,
 
     Unknown = 0xFE,
     RemoteDeviceTimestamp = 0xFF,
@@ -198,6 +202,20 @@ pub enum BtStatus {
     Unknown = 0xff,
 }
 
+#[derive(Clone, Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
+#[repr(u32)]
+pub enum BtConnectionDirection {
+    Unknown = 0,
+    Outgoing,
+    Incoming,
+}
+
+impl From<u32> for BtConnectionDirection {
+    fn from(item: u32) -> Self {
+        BtConnectionDirection::from_u32(item).unwrap_or(BtConnectionDirection::Unknown)
+    }
+}
+
 pub fn ascii_to_string(data: &[u8], length: usize) -> String {
     // We need to reslice data because from_utf8 tries to interpret the
     // whole slice and not just what is before the null terminated portion
@@ -216,6 +234,13 @@ fn u32_from_bytes(item: &[u8]) -> u32 {
     let len = std::cmp::min(item.len(), 4);
     u[0..len].copy_from_slice(&item);
     u32::from_ne_bytes(u)
+}
+
+fn u16_from_bytes(item: &[u8]) -> u16 {
+    let mut u: [u8; 2] = [0; 2];
+    let len = std::cmp::min(item.len(), 2);
+    u[0..len].copy_from_slice(&item);
+    u16::from_ne_bytes(u)
 }
 
 impl From<bindings::bt_status_t> for BtStatus {
@@ -294,6 +319,7 @@ pub type BtHciErrorCode = u8;
 pub type BtLocalLeFeatures = bindings::bt_local_le_features_t;
 pub type BtPinCode = bindings::bt_pin_code_t;
 pub type BtRemoteVersion = bindings::bt_remote_version_t;
+pub type BtVendorProductInfo = bindings::bt_vendor_product_info_t;
 pub type Uuid = bindings::bluetooth::Uuid;
 pub type Uuid128Bit = bindings::bluetooth::Uuid_UUID128Bit;
 
@@ -309,12 +335,25 @@ impl TryFrom<Vec<u8>> for Uuid {
     type Error = &'static str;
 
     fn try_from(value: Vec<u8>) -> std::result::Result<Self, Self::Error> {
-        if value.len() != 16 {
-            Err("Vector size must be exactly 16.")
-        } else {
-            let mut uu: [u8; 16] = Default::default();
-            uu.copy_from_slice(&value[0..16]);
-            Ok(Uuid { uu })
+        // base UUID defined in the Bluetooth specification
+        let mut uu: [u8; 16] =
+            [0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x80, 0x0, 0x0, 0x80, 0x5f, 0x9b, 0x34, 0xfb];
+        match value.len() {
+            2 => {
+                uu[2..4].copy_from_slice(&value[0..2]);
+                Ok(Uuid { uu })
+            }
+            4 => {
+                uu[0..4].copy_from_slice(&value[0..4]);
+                Ok(Uuid { uu })
+            }
+            16 => {
+                uu.copy_from_slice(&value[0..16]);
+                Ok(Uuid { uu })
+            }
+            _ => {
+                Err("Vector size must be exactly 2 (16 bit UUID), 4 (32 bit UUID), or 16 (128 bit UUID).")
+            }
         }
     }
 }
@@ -362,6 +401,9 @@ pub enum BluetoothProperty {
     LocalIoCaps(BtIoCap),
     LocalIoCapsBle(BtIoCap),
     DynamicAudioBuffer(),
+    RemoteIsCoordinatedSetMember(bool),
+    Appearance(u16),
+    VendorProductInfo(BtVendorProductInfo),
     RemoteDeviceTimestamp(),
 
     Unknown(),
@@ -392,6 +434,11 @@ impl BluetoothProperty {
             BluetoothProperty::LocalIoCaps(_) => BtPropertyType::LocalIoCaps,
             BluetoothProperty::LocalIoCapsBle(_) => BtPropertyType::LocalIoCapsBle,
             BluetoothProperty::DynamicAudioBuffer() => BtPropertyType::DynamicAudioBuffer,
+            BluetoothProperty::RemoteIsCoordinatedSetMember(_) => {
+                BtPropertyType::RemoteIsCoordinatedSetMember
+            }
+            BluetoothProperty::Appearance(_) => BtPropertyType::Appearance,
+            BluetoothProperty::VendorProductInfo(_) => BtPropertyType::VendorProductInfo,
             BluetoothProperty::RemoteDeviceTimestamp() => BtPropertyType::RemoteDeviceTimestamp,
             BluetoothProperty::Unknown() => BtPropertyType::Unknown,
         }
@@ -420,6 +467,9 @@ impl BluetoothProperty {
             BluetoothProperty::LocalLeFeatures(_) => mem::size_of::<BtLocalLeFeatures>(),
             BluetoothProperty::LocalIoCaps(_) => mem::size_of::<BtIoCap>(),
             BluetoothProperty::LocalIoCapsBle(_) => mem::size_of::<BtIoCap>(),
+            BluetoothProperty::RemoteIsCoordinatedSetMember(_) => mem::size_of::<bool>(),
+            BluetoothProperty::Appearance(_) => mem::size_of::<u16>(),
+            BluetoothProperty::VendorProductInfo(_) => mem::size_of::<BtVendorProductInfo>(),
 
             // TODO(abps) - Figure out sizes for these
             BluetoothProperty::DynamicAudioBuffer() => 0,
@@ -512,6 +562,23 @@ impl BluetoothProperty {
             BluetoothProperty::LocalIoCapsBle(iocap) => {
                 data.copy_from_slice(&BtIoCap::to_u32(iocap).unwrap_or_default().to_ne_bytes());
             }
+            BluetoothProperty::RemoteIsCoordinatedSetMember(icsm) => {
+                data[0] = *icsm as u8;
+            }
+            BluetoothProperty::Appearance(appearance) => {
+                data.copy_from_slice(&appearance.to_ne_bytes());
+            }
+            BluetoothProperty::VendorProductInfo(vpi) => {
+                let ptr: *const BtVendorProductInfo = vpi;
+                let slice = unsafe {
+                    std::slice::from_raw_parts(
+                        ptr as *mut u8,
+                        mem::size_of::<BtVendorProductInfo>(),
+                    )
+                };
+                data.copy_from_slice(&slice);
+            }
+
             BluetoothProperty::DynamicAudioBuffer() => (),
             BluetoothProperty::RemoteDeviceTimestamp() => (),
             BluetoothProperty::Unknown() => (),
@@ -578,6 +645,14 @@ impl From<bindings::bt_property_t> for BluetoothProperty {
             BtPropertyType::LocalIoCapsBle => BluetoothProperty::LocalIoCapsBle(
                 BtIoCap::from_u32(u32_from_bytes(slice)).unwrap_or(BtIoCap::Unknown),
             ),
+            BtPropertyType::RemoteIsCoordinatedSetMember => {
+                BluetoothProperty::RemoteIsCoordinatedSetMember(slice[0] != 0)
+            }
+            BtPropertyType::Appearance => BluetoothProperty::Appearance(u16_from_bytes(slice)),
+            BtPropertyType::VendorProductInfo => {
+                let v = unsafe { *(prop.val as *const BtVendorProductInfo) };
+                BluetoothProperty::VendorProductInfo(BtVendorProductInfo::from(v))
+            }
 
             // TODO(abps) - Figure out if these values should actually have contents
             BtPropertyType::DynamicAudioBuffer => BluetoothProperty::DynamicAudioBuffer(),
@@ -963,7 +1038,8 @@ impl BluetoothInterface {
             is_common_criteria_mode,
             config_compare_result,
             flags,
-            is_atv
+            is_atv,
+            std::ptr::null()
         );
 
         self.is_init = init == 0;
@@ -1052,9 +1128,9 @@ impl BluetoothInterface {
         ccall!(self, cancel_bond, ffi_addr)
     }
 
-    pub fn get_connection_state(&self, addr: &RawAddress) -> u32 {
+    pub fn get_connection_state(&self, addr: &RawAddress) -> BtConnectionState {
         let ffi_addr = cast_to_const_ffi_address!(addr as *const RawAddress);
-        ccall!(self, get_connection_state, ffi_addr).to_u32().unwrap()
+        ccall!(self, get_connection_state, ffi_addr).into()
     }
 
     pub fn pin_reply(
@@ -1096,6 +1172,14 @@ impl BluetoothInterface {
         ccall!(self, disconnect_all_acls)
     }
 
+    pub fn allow_wake_by_hid(&self) -> i32 {
+        ccall!(self, allow_wake_by_hid)
+    }
+
+    pub fn get_wbs_supported(&self) -> bool {
+        ccall!(self, get_wbs_supported)
+    }
+
     pub fn le_rand(&self) -> i32 {
         ccall!(self, le_rand)
     }
@@ -1110,6 +1194,10 @@ impl BluetoothInterface {
 
     pub fn set_event_filter_inquiry_result_all_devices(&self) -> i32 {
         ccall!(self, set_event_filter_inquiry_result_all_devices)
+    }
+
+    pub fn set_event_filter_connection_setup_all_devices(&self) -> i32 {
+        ccall!(self, set_event_filter_connection_setup_all_devices)
     }
 
     pub(crate) fn get_profile_interface(

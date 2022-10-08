@@ -450,6 +450,17 @@ tBTM_STATUS bluetooth::shim::BTM_LeRand(LeRandCallback cb) {
   return BTM_SUCCESS;
 }
 
+tBTM_STATUS bluetooth::shim::BTM_SetEventFilterConnectionSetupAllDevices() {
+  mock_function_count_map[__func__]++;
+  return BTM_SUCCESS;
+}
+
+tBTM_STATUS bluetooth::shim::BTM_AllowWakeByHid(
+    std::vector<RawAddress> le_hid_devices) {
+  mock_function_count_map[__func__]++;
+  return BTM_SUCCESS;
+}
+
 tBTM_STATUS bluetooth::shim::BTM_RestoreFilterAcceptList() {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
@@ -461,6 +472,11 @@ tBTM_STATUS bluetooth::shim::BTM_SetDefaultEventMask() {
 }
 
 tBTM_STATUS bluetooth::shim::BTM_SetEventFilterInquiryResultAllDevices() {
+  mock_function_count_map[__func__]++;
+  return BTM_SUCCESS;
+}
+
+tBTM_STATUS bluetooth::shim::BTM_BleResetId() {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }

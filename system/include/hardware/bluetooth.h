@@ -92,7 +92,7 @@ typedef enum {
   BT_STATUS_FAIL,
   BT_STATUS_NOT_READY,
   BT_STATUS_NOMEM,
-  BT_STATUS_BUSY,
+  BT_STATUS_BUSY, /* retryable error */
   BT_STATUS_DONE, /* request already completed */
   BT_STATUS_UNSUPPORTED,
   BT_STATUS_PARM_INVALID,
@@ -213,6 +213,14 @@ typedef struct {
   bool le_isochronous_broadcast_supported;
   bool le_periodic_advertising_sync_transfer_recipient_supported;
 } bt_local_le_features_t;
+
+/** Bluetooth Vendor and Product ID info */
+typedef struct {
+  uint8_t vendor_id_src;
+  uint16_t vendor_id;
+  uint16_t product_id;
+  uint16_t version;
+} bt_vendor_product_info_t;
 
 /* Stored the default/maximum/minimum buffer time for dynamic audio buffer.
  * For A2DP offload usage, the unit is millisecond.
@@ -339,6 +347,20 @@ typedef enum {
    * Data Type - bool.
    */
   BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER,
+
+  /**
+   * Description - Appearance as specified in Assigned Numbers.
+   * Access mode - GET.
+   * Data Type - uint16_t.
+   */
+  BT_PROPERTY_APPEARANCE,
+
+  /**
+   * Description - Peer devices' vendor and product ID.
+   * Access mode - GET.
+   * Data Type - bt_vendor_product_info_t.
+   */
+  BT_PROPERTY_VENDOR_PRODUCT_INFO,
 
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
@@ -605,7 +627,8 @@ typedef struct {
    */
   int (*init)(bt_callbacks_t* callbacks, bool guest_mode,
               bool is_common_criteria_mode, int config_compare_result,
-              const char** init_flags, bool is_atv);
+              const char** init_flags, bool is_atv,
+              const char* user_data_directory);
 
   /** Enable Bluetooth. */
   int (*enable)();
@@ -832,6 +855,27 @@ typedef struct {
    *
    */
   int (*restore_filter_accept_list)();
+
+  /**
+   *
+   * Allow the device to be woken by HID devices
+   *
+   */
+  int (*allow_wake_by_hid)();
+
+  /**
+   *
+   * Tell the controller to allow all devices
+   *
+   */
+  int (*set_event_filter_connection_setup_all_devices)();
+
+  /**
+   *
+   * Is wbs supported by the controller
+   *
+   */
+  bool (*get_wbs_supported)();
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"

@@ -54,7 +54,7 @@ import android.util.Log;
 
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.Utils;
-import com.android.bluetooth.obex.ObexTransport;
+import com.android.obex.ObexTransport;
 
 import java.io.IOException;
 
@@ -183,7 +183,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
         mBatch = batch;
         mSession = session;
 
-        mBatch.registerListern(this);
+        mBatch.registerListener(this);
         mAdapter = BluetoothAdapter.getDefaultAdapter();
 
     }

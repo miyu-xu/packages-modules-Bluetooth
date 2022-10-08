@@ -51,6 +51,18 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
     bool supports_ble_privacy,
     std::chrono::milliseconds minimum_rotation_time,
     std::chrono::milliseconds maximum_rotation_time) {
+  // Handle repeated calls to the function
+  if (address_policy_ != AddressPolicy::POLICY_NOT_SET) {
+    // Need to update some parameteres like IRK if privacy is supported
+    if (supports_ble_privacy) {
+      LOG_INFO("Updating rotation parameters.");
+      rotation_irk_ = rotation_irk;
+      minimum_rotation_time_ = minimum_rotation_time;
+      maximum_rotation_time_ = maximum_rotation_time;
+      set_random_address();
+    }
+    return;
+  }
   ASSERT(address_policy_ == AddressPolicy::POLICY_NOT_SET);
   ASSERT(address_policy != AddressPolicy::POLICY_NOT_SET);
   ASSERT_LOG(registered_clients_.empty(), "Policy must be set before clients are registered.");
@@ -156,8 +168,10 @@ void LeAddressManager::register_client(LeAddressManagerCallback* callback) {
       address_policy_ == AddressPolicy::USE_NON_RESOLVABLE_ADDRESS) {
       if (registered_clients_.size() == 1) {
         schedule_rotate_random_address();
+        LOG_INFO("Scheduled address rotation for first client registered");
       }
   }
+  LOG_INFO("Client registered");
 }
 
 void LeAddressManager::Unregister(LeAddressManagerCallback* callback) {
@@ -172,9 +186,11 @@ void LeAddressManager::unregister_client(LeAddressManagerCallback* callback) {
       ack_resume(callback);
     }
     registered_clients_.erase(callback);
+    LOG_INFO("Client unregistered");
   }
   if (registered_clients_.empty() && address_rotation_alarm_ != nullptr) {
     address_rotation_alarm_->Cancel();
+    LOG_INFO("Cancelled address rotation alarm");
   }
 }
 
@@ -230,12 +246,14 @@ void LeAddressManager::push_command(Command command) {
 
 void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
   if (registered_clients_.find(callback) == registered_clients_.end()) {
+    LOG_INFO("No clients registered to ack pause");
     return;
   }
   registered_clients_.find(callback)->second = ClientState::PAUSED;
   for (auto client : registered_clients_) {
     switch (client.second) {
       case ClientState::PAUSED:
+        LOG_INFO("Client already in paused state");
         break;
       case ClientState::WAITING_FOR_PAUSE:
         // make sure all client paused
@@ -247,6 +265,8 @@ void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
         client.second = ClientState::WAITING_FOR_PAUSE;
         client.first->OnPause();
         return;
+      default:
+        LOG_ERROR("Found client in unexpected state:%u", client.second);
     }
   }
 
@@ -262,6 +282,7 @@ void LeAddressManager::resume_registered_clients() {
     return;
   }
 
+  LOG_INFO("Resuming registered clients");
   for (auto& client : registered_clients_) {
     client.second = ClientState::WAITING_FOR_RESUME;
     client.first->OnResume();
