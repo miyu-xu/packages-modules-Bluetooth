@@ -116,6 +116,30 @@
       },
       "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d21d0d9_d25e7d1e",
+        "filename": "system/vendor_libs/linux/interface/hci_packetizer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-08T21:09:55Z",
+      "side": 1,
+      "message": "done.  Thanks!",
+      "parentUuid": "fc90b48b_a2816014",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 27
+      },
+      "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
