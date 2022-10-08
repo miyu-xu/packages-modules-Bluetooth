@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04314e22_dac59f0e",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-08T21:10:56Z",
+      "side": 1,
+      "message": "I tried a bit harder.  Unresolve if needed :)",
+      "parentUuid": "4d00b9c3_d33b2b2f",
+      "range": {
+        "startLine": 132,
+        "startChar": 2,
+        "endLine": 132,
+        "endChar": 25
+      },
+      "revId": "7fb8fc5cb67bab6502256cd307bfdfb40b479bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc90b48b_a2816014",
