@@ -42,10 +42,16 @@ class ExampleTest(base_test.BaseTestClass):
         # TODO: wait for server
         time.sleep(3)
 
-    def test_classic_connect(self):
+    # def test_classic_connect(self):
+    #     dut_address = self.dut.address
+    #     self.dut.log.info(f'Address: {dut_address}')
+    #     response = self.ref.host.Connect(address=dut_address)
+    #     assert response.WhichOneof("result") == "connection"
+
+    def test_le_connect(self):
         dut_address = self.dut.address
         self.dut.log.info(f'Address: {dut_address}')
-        response = self.ref.host.Connect(address=dut_address)
+        response = self.ref.host.ConnectLE(address=dut_address)
         assert response.WhichOneof("result") == "connection"
 
 
