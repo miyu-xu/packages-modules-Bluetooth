@@ -750,6 +750,7 @@ pub struct RawAddress {
     pub val: [u8; 6],
 }
 
+// TODO: Add ToObfuscatedAddress for this class
 impl Debug for RawAddress {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         f.write_fmt(format_args!(
