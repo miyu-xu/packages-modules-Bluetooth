@@ -71,6 +71,9 @@ class LeAdvertiser(Closable):
     def get_local_advertising_name(self):
         return self.device.sl4a.bluetoothGetLocalName()
 
+    def get_local_public_address(self):
+        self.device.sl4a.bluetoothGetLocalAddress()
+
     def stop_advertising(self):
         if self.is_advertising:
             logging.info("Stopping advertisement")
