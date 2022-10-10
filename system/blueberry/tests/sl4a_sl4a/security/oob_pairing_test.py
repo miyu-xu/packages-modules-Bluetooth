@@ -128,3 +128,7 @@ class OobPairingTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         logging.info("DUT Advertiser Address: %s " % advertiser_address)
         logging.info("DUT Public Address: %s " % public_address)
         assertThat(advertiser_address).isNotEqualTo(public_address)
+
+
+if __name__ == '__main__':
+    test_runner.main()
