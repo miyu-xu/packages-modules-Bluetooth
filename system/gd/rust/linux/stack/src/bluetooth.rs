@@ -162,6 +162,9 @@ pub trait IBluetooth {
     /// Gets whether the remote device is connected.
     fn get_remote_connected(&self, device: BluetoothDevice) -> bool;
 
+    /// Gets whether the remote device can wake the system.
+    fn get_remote_wake_allowed(&self, device: BluetoothDevice) -> bool;
+
     /// Returns a list of connected devices.
     fn get_connected_devices(&self) -> Vec<BluetoothDevice>;
 
@@ -1429,6 +1432,28 @@ impl IBluetooth for Bluetooth {
 
     fn get_remote_connected(&self, device: BluetoothDevice) -> bool {
         self.get_connection_state(device) != BtConnectionState::NotConnected
+    }
+
+    fn get_remote_wake_allowed(&self, device: BluetoothDevice) -> bool {
+        // Wake is allowed if the device supports HIDP or HOGP only.
+        match self.get_remote_device_property(&device, &BtPropertyType::Uuids) {
+            Some(BluetoothProperty::Uuids(uuids)) => {
+                let uu_helper = UuidHelper::new();
+                return uuids
+                    .iter()
+                    .filter(|&x| {
+                        uu_helper
+                            .is_known_profile(&x.uu)
+                            .and_then(|profile| {
+                                Some(profile == &Profile::Hid || profile == &Profile::Hogp)
+                            })
+                            .unwrap_or(false)
+                    })
+                    .count()
+                    != 0;
+            }
+            _ => false,
+        }
     }
 
     fn get_connected_devices(&self) -> Vec<BluetoothDevice> {
