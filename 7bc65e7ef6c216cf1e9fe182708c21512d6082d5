@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c872f0f_6ca541fe",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-10T08:36:41Z",
+      "side": 1,
+      "message": "Should there be a `bta_gattc_continue(p_clcb);` this time as well?",
+      "range": {
+        "startLine": 971,
+        "startChar": 2,
+        "endLine": 971,
+        "endChar": 3
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd9f4eb_83daa11a",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-10T08:36:41Z",
+      "side": 1,
+      "message": "Please fix. `p_data` is just a pointer, just pass by value.",
+      "range": {
+        "startLine": 359,
+        "startChar": 47,
+        "endLine": 359,
+        "endChar": 53
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
