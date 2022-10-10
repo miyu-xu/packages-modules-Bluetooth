@@ -14,12 +14,14 @@
 
 import logging
 
-from bumble.core import BT_BR_EDR_TRANSPORT
+from bumble.core import BT_BR_EDR_TRANSPORT, BT_LE_TRANSPORT
 from bumble.hci import Address, HCI_REMOTE_USER_TERMINATED_CONNECTION_ERROR
 from bumble.smp import PairingConfig
+from bumble.device import *
+from bumble.host import *
 
 from pandora_experimental.host_pb2 import ReadLocalAddressResponse, ConnectResponse, \
-    Connection, DisconnectResponse, GetConnectionResponse
+    Connection, DisconnectResponse, GetConnectionResponse, ConnectLEResponse
 from pandora_experimental.host_grpc import HostServicer
 
 
@@ -32,6 +34,23 @@ class HostService(HostServicer):
     async def ReadLocalAddress(self, request, context):
         logging.info('ReadLocalAddress')
         return ReadLocalAddressResponse(address=bytes(reversed(bytes(self.device.public_address))))
+
+    async def ConnectLE(self, request, context):
+        address = Address(bytes(reversed(request.address)))
+        logging.debug(f"ConnectLE: {address}")
+        try:
+            logging.debug("Connecting...")
+            # add '/P' to let bumble recognize this address as public address
+            connection = await self.device.connect(str(address) + '/P', transport=BT_LE_TRANSPORT)
+            logging.debug("Connected")
+
+            logging.debug(f"Connect: connection handle: {connection.handle}")
+            connection_handle = connection.handle.to_bytes(4, 'big')
+            return ConnectLEResponse(connection=Connection(cookie=connection_handle))
+
+        except Exception as error:
+            logging.error(error)
+            return ConnectLEResponse()
 
     async def Connect(self, request, context):
         # Need to reverse bytes order since Bumble Address is using MSB.
