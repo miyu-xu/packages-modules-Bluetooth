@@ -82,14 +82,16 @@ int do_connect(unsigned int num_loops, const RawAddress& bd_addr,
   acl_state_changed_promise = std::promise<acl_state_changed_params_t>();
   auto future = acl_state_changed_promise.get_future();
 
-  fprintf(stdout, "Creating connection to:%s\n", bd_addr.ToString().c_str());
-  LOG(INFO) << "Creating classic connection to " << bd_addr.ToString();
+  fprintf(stdout, "Creating connection to:%s\n",
+          ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  LOG(INFO) << "Creating classic connection to "
+            << ADDRESS_TO_LOGGABLE_STR(bd_addr);
   acl_create_classic_connection(bd_addr, false, false);
 
   acl_state_changed_params_t result = future.get();
   fprintf(stdout, "Connected created to:%s result:%s[%u]\n",
-          bd_addr.ToString().c_str(), bt_status_text(result.status).c_str(),
-          result.status);
+          ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+          bt_status_text(result.status).c_str(), result.status);
   acl_state_changed_promise = std::promise<acl_state_changed_params_t>();
   future = acl_state_changed_promise.get_future();
 
@@ -110,7 +112,7 @@ int do_connect(unsigned int num_loops, const RawAddress& bd_addr,
             .count();
 
     fprintf(stdout, "Disconnected after:%" PRId64 "ms from:%s result:%s[%u]\n",
-            disconnect - connect, bd_addr.ToString().c_str(),
+            disconnect - connect, ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
             bt_status_text(result.status).c_str(), result.status);
 
     headless_remove_callback("acl_state_changed", callback_interface);
