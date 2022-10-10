@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad2af337_389d8452",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-10T18:45:04Z",
+      "side": 1,
+      "message": "nit: There is a couple build warning here asking to do std::move.",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "95071d230bc8f6cdc77727db499dcb114adc2ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ec3819_5037fda5",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-10T18:45:04Z",
+      "side": 1,
+      "message": "nit: This could just be an else statement",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 48
+      },
+      "revId": "95071d230bc8f6cdc77727db499dcb114adc2ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd630e0a_f9547b84",
         "filename": "system/vendor_libs/linux/interface/h4_protocol_unittest.cc",
         "patchSetId": 4
