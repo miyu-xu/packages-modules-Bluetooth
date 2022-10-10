@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0fa913c_acf8d131",
+        "filename": "system/main/shim/shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-10T22:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab6292be_44d64209",
+      "range": {
+        "startLine": 85,
+        "startChar": 67,
+        "endLine": 85,
+        "endChar": 71
+      },
+      "revId": "57664eea9fa1c3f6f6c435c45ff8bc41c757e40e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12b2e31b_0853273f",
