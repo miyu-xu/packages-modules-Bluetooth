@@ -113,6 +113,8 @@ void GetAdvertiseParams(const AdvertiseSettings& settings, bool has_scan_rsp,
   out_params->primary_advertising_phy = 0x01;
   out_params->secondary_advertising_phy = 0x01;
   out_params->scan_request_notification_enable = 0;
+  // Note: This method GetAdvertiseParams is never called, but if it were....
+  // out_params->own_address_type = ???
 }
 
 }  // namespace
