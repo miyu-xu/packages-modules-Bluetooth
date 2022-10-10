@@ -33,6 +33,7 @@
 #include "gd/storage/storage_module.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
+#include "osi/include/properties.h"
 #include "stack/include/ble_advertiser.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btm_log_history.h"
@@ -44,6 +45,31 @@ using bluetooth::hci::ErrorCode;
 using bluetooth::hci::GapData;
 using bluetooth::hci::OwnAddressType;
 using std::vector;
+
+static const char kPropertyBlePrivacyEnabled[] =
+    "bluetooth.core.gap.le.privacy.enabled";
+
+// TODO(optedoblivion): Read from build prop
+static const bool kDefaultPrivacyEnabled = true;
+
+static OwnAddressType convert_address_type(int8_t legacy_type) {
+  bool is_ble_privay_enabled = osi_property_get_int32(
+      kPropertyBlePrivacyEnabled, kDefaultPrivacyEnabled);
+  if (is_ble_addr_type_known(legacy_type)) {
+    switch (legacy_type) {
+      case BLE_ADDR_PUBLIC:
+        return OwnAddressType::PUBLIC_DEVICE_ADDRESS;
+      case BLE_ADDR_RANDOM:
+        return OwnAddressType::RANDOM_DEVICE_ADDRESS;
+      default:
+        return (is_ble_privay_enabled) ? OwnAddressType::RANDOM_DEVICE_ADDRESS
+                                       : OwnAddressType::PUBLIC_DEVICE_ADDRESS;
+    }
+  } else {
+    return (is_ble_privay_enabled) ? OwnAddressType::RANDOM_DEVICE_ADDRESS
+                                   : OwnAddressType::PUBLIC_DEVICE_ADDRESS;
+  }
+}
 
 namespace {
 constexpr char kBtmLogTag[] = "ADV";
@@ -399,10 +425,7 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
     config.enable_scan_request_notifications =
         static_cast<bluetooth::hci::Enable>(
             params.scan_request_notification_enable);
-    config.own_address_type = OwnAddressType::RANDOM_DEVICE_ADDRESS;
-    if (params.own_address_type == 0) {
-      config.own_address_type = OwnAddressType::PUBLIC_DEVICE_ADDRESS;
-    }
+    config.own_address_type = convert_address_type(params.own_address_type);
   }
   std::map<uint8_t, GetAddressCallback> address_callbacks_;
 };
