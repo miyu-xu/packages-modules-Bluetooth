@@ -47,8 +47,13 @@ void FixedChannelImpl::RegisterOnCloseCallback(os::Handler* user_handler,
 }
 
 void FixedChannelImpl::OnClosed(hci::ErrorCode status) {
-  ASSERT_LOG(!closed_, "Device %s Cid 0x%x closed twice, old status 0x%x, new status 0x%x", device_.ToString().c_str(),
-             cid_, static_cast<int>(close_reason_), static_cast<int>(status));
+  ASSERT_LOG(
+      !closed_,
+      "Device %s Cid 0x%x closed twice, old status 0x%x, new status 0x%x",
+      ADDRESS_TO_LOGGABLE_CSTR(device_),
+      cid_,
+      static_cast<int>(close_reason_),
+      static_cast<int>(status));
   closed_ = true;
   close_reason_ = status;
   acquired_ = false;
