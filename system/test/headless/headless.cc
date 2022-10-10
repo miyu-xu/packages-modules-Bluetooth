@@ -132,7 +132,8 @@ void acl_state_changed(bt_status_t status, RawAddress* remote_bd_addr,
     (callback)(params);
   }
   LOG_INFO("%s status:%s device:%s state:%s", __func__,
-           bt_status_text(status).c_str(), remote_bd_addr->ToString().c_str(),
+           bt_status_text(status).c_str(),
+           ADDRESS_TO_LOGGABLE_CSTR(*remote_bd_addr),
            (state) ? "disconnected" : "connected");
 }
 
