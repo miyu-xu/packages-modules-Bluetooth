@@ -155,10 +155,10 @@ void neighbor::NameModule::impl::ReadRemoteNameRequest(
     hci::ClockOffsetValid clock_offset_valid,
     ReadRemoteNameCallback callback,
     os::Handler* handler) {
-  LOG_INFO("%s Start read remote name request for %s", __func__, address.ToString().c_str());
+  LOG_INFO("%s Start read remote name request for %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(address));
 
   if (read_callback_handler_map_.find(address) != read_callback_handler_map_.end()) {
-    LOG_WARN("Ignoring duplicate read remote name request to:%s", address.ToString().c_str());
+    LOG_WARN("Ignoring duplicate read remote name request to:%s", ADDRESS_TO_LOGGABLE_CSTR(address));
     handler->Post(common::BindOnce(std::move(callback), hci::ErrorCode::UNSPECIFIED_ERROR, address, kEmptyName));
     return;
   }
@@ -173,10 +173,10 @@ void neighbor::NameModule::impl::ReadRemoteNameRequest(
 
 void neighbor::NameModule::impl::CancelRemoteNameRequest(
     hci::Address address, CancelRemoteNameCallback callback, os::Handler* handler) {
-  LOG_INFO("%s Cancel remote name request for %s", __func__, address.ToString().c_str());
+  LOG_INFO("%s Cancel remote name request for %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(address));
 
   if (cancel_callback_handler_map_.find(address) != cancel_callback_handler_map_.end()) {
-    LOG_WARN("Ignoring duplicate cancel remote name request to:%s", address.ToString().c_str());
+    LOG_WARN("Ignoring duplicate cancel remote name request to:%s", ADDRESS_TO_LOGGABLE_CSTR(address));
     handler->Post(common::BindOnce(std::move(callback), hci::ErrorCode::UNSPECIFIED_ERROR, address));
     return;
   }
