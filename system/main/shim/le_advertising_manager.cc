@@ -399,13 +399,35 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
     config.enable_scan_request_notifications =
         static_cast<bluetooth::hci::Enable>(
             params.scan_request_notification_enable);
-    config.own_address_type = OwnAddressType::RANDOM_DEVICE_ADDRESS;
-    if (params.own_address_type == 0) {
-      config.own_address_type = OwnAddressType::PUBLIC_DEVICE_ADDRESS;
-    }
+    config.own_address_type = convert_address_type(params.own_address_type);
   }
   std::map<uint8_t, GetAddressCallback> address_callbacks_;
 };
+
+static OwnAddressType convert_address_type(int8_t legacy_type) {
+  if (is_ble_addr_type_known(legacy_type)) {
+    switch (legacy_type) {
+      case BLE_ADDR_PUBLIC:
+      case BLE_ADDR_PUBLIC_ID:
+        return OwnAddressType::PUBLIC_DEVICE_ADDRESS;
+      case BLE_ADDR_RANDOM:
+      case BLE_ADDR_RANDOM_ID:
+        return OwnAddressType::RANDOM_DEVICE_ADDRESS;
+      case BLE_ADDR_ANONYMOUS:
+        return OwnAddressType::RANDOM_DEVICE_ADDRESS;
+      default:
+        return OwnAddressType::RANDOM_DEVICE_ADDRESS;
+    }
+  } else {
+    // return (sysprop.is_privacy_enabled) ?
+    // OwnAddressType::RANDOM_DEVICE_ADDRESS :
+    // OwnAddressType::PUBLIC_DEVICE_ADDRESS;
+    auto type = OwnAddressType::RANDOM_DEVICE_ADDRESS;
+    LOG(INFO) << __func__ << " Bad address type: " << legacy_type
+              << " defaulting to sysprop: " << type;
+    return type;
+  }
+}
 
 BleAdvertiserInterfaceImpl* bt_le_advertiser_instance = nullptr;
 
