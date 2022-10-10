@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd630e0a_f9547b84",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-10T16:56:51Z",
+      "side": 1,
+      "message": "Race condition if we notify the condvar before waiting on it (plus we need to hold the mutex before notification, which we can\u0027t easily do here).\n\nThe right primitive to use should be a semaphore (`std::binary_semaphore`)",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 0
+      },
+      "revId": "95071d230bc8f6cdc77727db499dcb114adc2ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
