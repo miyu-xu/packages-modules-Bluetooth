@@ -104,6 +104,24 @@
       "message": "return false",
       "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22075208_6dcfe00e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-10T09:21:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a42d3fe9_c96d6a35",
+      "revId": "1fe323eae19414115093d0e55f9a9b5c4aeafbeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
