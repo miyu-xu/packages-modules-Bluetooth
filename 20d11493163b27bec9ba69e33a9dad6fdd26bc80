@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1237f0f2_e2754a1e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-10T21:10:56Z",
+      "side": 1,
+      "message": "to summarize: after this CL, any LE audio device that is LE capable will be paired from LE side first for CTKD?\n\nAre there any LE audio device that is not LE capable? \n\nOr are we just trying to handle a potential IOP issue where device indicate LEA support in CoD, but no LE capabilities?",
+      "range": {
+        "startLine": 712,
+        "startChar": 9,
+        "endLine": 712,
+        "endChar": 22
+      },
+      "revId": "20d11493163b27bec9ba69e33a9dad6fdd26bc80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
