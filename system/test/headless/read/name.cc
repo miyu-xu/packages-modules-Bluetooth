@@ -66,7 +66,7 @@ int bluetooth::test::headless::Name::Run() {
         memcpy(buf, name_packet.remote_bd_name, BD_NAME_LEN);
         std::string name(buf);
         fprintf(stdout, "Name result mac:%s name:%s\n",
-                raw_address.ToString().c_str(), name.c_str());
+                ADDRESS_TO_LOGGABLE_CSTR(raw_address), name.c_str());
       } break;
       case BTM_BAD_VALUE_RET:
         fprintf(stdout, "Name Timeout or other failure");
