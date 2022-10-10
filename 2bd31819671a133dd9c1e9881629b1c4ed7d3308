@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eee4a4ef_12368b3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-10T19:14:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72127ad5_447e8d0c",
+      "range": {
+        "startLine": 17,
+        "startChar": 41,
+        "endLine": 17,
+        "endChar": 48
+      },
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc9d95c9_6a034abd",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-10T18:31:52Z",
       "side": 1,
       "message": "maybe line 104 can be removed as well.",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0cb42e8_3364a001",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-10T19:14:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc9d95c9_6a034abd",
       "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6e57c53_5765fc68",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-10T19:14:02Z",
+      "side": 1,
+      "message": "tmp_dev_type will be filled by BTM_ReadDevInfo.\nIf bit 0 is set, it\u0027s BR capable.\nIf bit 1 is set, it\u0027s LE capable.\n\nenum {\n  BT_DEVICE_TYPE_UNKNOWN \u003d 0,\n  BT_DEVICE_TYPE_BREDR \u003d (1 \u003c\u003c 0),\n  BT_DEVICE_TYPE_BLE \u003d (1 \u003c\u003c 1),\n  BT_DEVICE_TYPE_DUMO \u003d BT_DEVICE_TYPE_BREDR | BT_DEVICE_TYPE_BLE,\n};",
+      "parentUuid": "658b0760_4ef09383",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f790655_dc55d791",
@@ -75,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "275ab121_56562f3a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-10T19:14:02Z",
+      "side": 1,
+      "message": "BTM_ReadDevInfo finds device in inquiry database, and in security records.\nIf we failed, we would here try to look up if we stored this device, and check type from storage.",
+      "parentUuid": "5f790655_dc55d791",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44534430_99ab73be",
@@ -88,6 +166,24 @@
       "writtenOn": "2022-10-10T18:31:52Z",
       "side": 1,
       "message": "at this point of time, are we sure device is advertising ?",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f220fb54_bc23060d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-10T19:14:02Z",
+      "side": 1,
+      "message": "To our best knowledge, it would be advertising using LE transport here.\nBTM_ReadDevInfo would look up inquiry database, if the device is LE capable.\nIn inquiry database we set BT_DEVICE_TYPE_BLE bit when we find LE advertisement.",
+      "parentUuid": "44534430_99ab73be",
       "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
