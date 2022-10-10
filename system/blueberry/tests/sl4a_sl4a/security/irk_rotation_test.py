@@ -104,9 +104,9 @@ class IrkRotationTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
 
     def _bond_remote_device(self, cert_privacy_enabled, cert_public_address):
         if cert_privacy_enabled:
-            self.cert_advertiser_.advertise_public_extended_pdu()
+            self.cert_advertiser_.advertise_rpa_legacy_api()
         else:
-            self.cert_advertiser_.advertise_public_extended_pdu(common.PUBLIC_DEVICE_ADDRESS)
+            self.cert_advertiser_.advertise_rpa_legacy_api(common.PUBLIC_DEVICE_ADDRESS)
 
         advertising_device_name = self.cert_advertiser_.get_local_advertising_name()
         connect_address = self.dut_scanner_.scan_for_name(advertising_device_name)
