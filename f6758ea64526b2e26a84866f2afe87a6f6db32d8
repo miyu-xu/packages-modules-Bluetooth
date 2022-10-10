@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b04ccff5_58a83da8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-10T19:08:29Z",
+      "side": 1,
+      "message": "UuidHelper could be made with static data so that it doesn\u0027t have to instantiate a map every time it\u0027s used. Sent out a refactor https://r.android.com/2246713",
+      "revId": "f6758ea64526b2e26a84866f2afe87a6f6db32d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e240adc_352f447b",
