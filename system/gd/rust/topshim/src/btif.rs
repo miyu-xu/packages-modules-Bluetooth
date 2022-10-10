@@ -766,6 +766,7 @@ impl Hash for RawAddress {
     }
 }
 
+// TODO: Handling Logging in rust code
 impl ToString for RawAddress {
     fn to_string(&self) -> String {
         String::from(format!(
