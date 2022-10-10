@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39a19af9_668e2de1",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-10T09:10:12Z",
+      "side": 0,
+      "message": "There are some unknown dependencies to this define in other modules. Either we should eliminate this define from other modules as well or just make sure this list won\u0027t grow above it (maybe ASSERT or at least ERROR if it does).",
+      "range": {
+        "startLine": 419,
+        "startChar": 18,
+        "endLine": 419,
+        "endChar": 33
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

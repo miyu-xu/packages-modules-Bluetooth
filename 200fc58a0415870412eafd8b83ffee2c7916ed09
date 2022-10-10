@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "782d1c8a_c368e0a9",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1181,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-10T09:10:12Z",
+      "side": 1,
+      "message": "This does not look like an iterator. Shouldn\u0027t this be `auto const \u0026clcb`?",
+      "range": {
+        "startLine": 1181,
+        "startChar": 7,
+        "endLine": 1181,
+        "endChar": 25
+      },
+      "revId": "200fc58a0415870412eafd8b83ffee2c7916ed09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
