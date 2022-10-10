@@ -70,6 +70,12 @@ class FixedChannelImpl : public l2cap::internal::ChannelImpl {
     return ss.str();
   }
 
+  virtual std::string ToStringForLogging() {
+    std::ostringstream ss;
+    ss << "Device " << device_.ToStringForLogging() << " Cid 0x" << std::hex << cid_;
+    return ss.str();
+  }
+
   common::BidiQueueEnd<packet::BasePacketBuilder, packet::PacketView<packet::kLittleEndian>>* GetQueueUpEnd() {
     return channel_queue_.GetUpEnd();
   }
