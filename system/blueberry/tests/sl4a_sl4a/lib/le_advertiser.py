@@ -49,7 +49,13 @@ class LeAdvertiser(Closable):
             return False
         return True
 
-    def advertise_public_extended_pdu(self, address_type=common.RANDOM_DEVICE_ADDRESS, name="SL4A Device"):
+    def advertise_rpa_legacy_api(self, name="SL4A Device"):
+        self.__advertise_legacy_api(common.RANDOM_DEVICE_ADDRESS, name)
+
+    def advertise_public_legacy_api(self, name="SL4A Device"):
+        self.__advertise_legacy_api(common.PUBLIC_DEVICE_ADDRESS, name)
+
+    def __advertise_legacy_api(self, address_type, name):
         if self.is_advertising:
             logging.info("Already advertising!")
             return
