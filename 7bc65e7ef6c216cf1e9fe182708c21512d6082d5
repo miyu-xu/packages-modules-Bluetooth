@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e95b81ff_8cc29343",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-10T22:07:37Z",
+      "side": 1,
+      "message": "thanks for catching that.  I overseen that, it should not be there.",
+      "parentUuid": "0c3b5afc_f6b7c7af",
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0e87c15_6116fcf2",
         "filename": "system/bta/gatt/bta_gattc_utils.cc",
         "patchSetId": 1
@@ -54,6 +72,30 @@
       "writtenOn": "2022-10-10T16:21:59Z",
       "side": 1,
       "message": "Enqueueing",
+      "range": {
+        "startLine": 358,
+        "startChar": 55,
+        "endLine": 358,
+        "endChar": 62
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed4bf41_dde3990f",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-10T22:07:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f0e87c15_6116fcf2",
       "range": {
         "startLine": 358,
         "startChar": 55,
@@ -77,6 +119,30 @@
       "writtenOn": "2022-10-10T08:36:41Z",
       "side": 1,
       "message": "Please fix. `p_data` is just a pointer, just pass by value.",
+      "range": {
+        "startLine": 359,
+        "startChar": 47,
+        "endLine": 359,
+        "endChar": 53
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd43231c_749b421a",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-10T22:07:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2fd9f4eb_83daa11a",
       "range": {
         "startLine": 359,
         "startChar": 47,
