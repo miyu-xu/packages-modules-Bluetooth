@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d11f32_b766bcdd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-10T17:09:54Z",
+      "side": 1,
+      "message": "I think the \"experimental\" term doesn\u0027t have to mean the exact same way in BlueZ and in Floss. In BlueZ, MGMT is an API and it can have its own \"experimental\" concept. In Floss we can also adopt \"experimental\" concept as a feature or behavior that is controllable at runtime before being set as default. In fact the name does not have to be Experimental, but it could have been \"Debug\", \"FeatureFlag\", or something similar and I think it\u0027s okay to choose \"Experimental\" term for this.",
+      "parentUuid": "ce05a989_e0121d64",
+      "revId": "25c1cb097d850496ac29e22008c1858eb99c90c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "626fca5d_55a00235",
