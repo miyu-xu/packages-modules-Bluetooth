@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b14eba7_1cf502e2",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-10T20:51:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad2af337_389d8452",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "95071d230bc8f6cdc77727db499dcb114adc2ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10ec3819_5037fda5",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e943686c_5f257c49",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-10T20:51:45Z",
+      "side": 1,
+      "message": "I think that would be problematic, since buffer_offset_ changes in the if.",
+      "parentUuid": "10ec3819_5037fda5",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 48
+      },
+      "revId": "95071d230bc8f6cdc77727db499dcb114adc2ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd630e0a_f9547b84",
         "filename": "system/vendor_libs/linux/interface/h4_protocol_unittest.cc",
         "patchSetId": 4
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-10T16:56:51Z",
       "side": 1,
       "message": "Race condition if we notify the condvar before waiting on it (plus we need to hold the mutex before notification, which we can\u0027t easily do here).\n\nThe right primitive to use should be a semaphore (`std::binary_semaphore`)",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 0
+      },
+      "revId": "95071d230bc8f6cdc77727db499dcb114adc2ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36d79a14_5cdcb239",
+        "filename": "system/vendor_libs/linux/interface/h4_protocol_unittest.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-10T20:51:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd630e0a_f9547b84",
       "range": {
         "startLine": 235,
         "startChar": 0,
