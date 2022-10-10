@@ -62,7 +62,8 @@ struct acl_state_changed_params_t : public callback_params_t {
     return base::StringPrintf(
         "status:%s remote_bd_addr:%s state:%s transport:%s reason:%s "
         "direction:%d",
-        bt_status_text(status).c_str(), remote_bd_addr.ToString().c_str(),
+        bt_status_text(status).c_str(),
+        ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr),
         (state == BT_ACL_STATE_CONNECTED) ? "CONNECTED" : "DISCONNECTED",
         bt_transport_text(static_cast<const tBT_TRANSPORT>(transport_link_type))
             .c_str(),
@@ -106,7 +107,7 @@ struct remote_device_properties_params_t : public callback_params_t {
   std::string ToString() const override {
     return base::StringPrintf(
         "status:%s bd_addr:%s num_properties:%d properties:%p",
-        bt_status_text(status).c_str(), bd_addr.ToString().c_str(),
+        bt_status_text(status).c_str(), ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
         num_properties, properties);
   }
 };
