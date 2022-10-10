@@ -19,6 +19,7 @@ import io
 import logging
 import os
 import queue
+import time
 
 from blueberry.tests.gd.cert.context import get_current_context
 from blueberry.tests.gd.cert.truth import assertThat
@@ -88,8 +89,10 @@ class OobPairingTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
     def test_le_generate_local_oob_data(self):
         oob_data = self.dut_security_.generate_oob_data(Security.TRANSPORT_LE)
         assertThat(oob_data).isNotNone()
+        logging.info("DUT Address: %s " % oob_data.address)
         oob_data = self.cert_security_.generate_oob_data(Security.TRANSPORT_LE)
         assertThat(oob_data).isNotNone()
+        logging.info("Cert Address: %s " % oob_data.address)
 
     def test_le_generate_local_oob_data_stress(self):
         for i in range(1, 20):
@@ -109,7 +112,19 @@ class OobPairingTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             self.test_le_bond_oob()
             self.dut_security_.remove_all_bonded_devices()
             self.cert_security_.remove_all_bonded_devices()
+            # If we don't sleep, it'll miss the bond event from the intent bus
+            time.sleep(1)
 
     def test_le_generate_local_oob_data_after_le_bond_oob(self):
         self.test_le_bond_oob()
         self.test_le_generate_local_oob_data()
+
+    def test_le_oob_advertiser_not_using_public_address(self):
+        #TODO(optedoblivion): Use sysprop and make another test to handle non privacy case
+        oob_data = self.dut_security_.generate_oob_data(Security.TRANSPORT_LE)
+        assertThat(oob_data).isNotNone()
+        advertiser_address = oob_data.to_sl4a_address()
+        public_address = self.dut_advertiser_.get_local_public_address()
+        logging.info("DUT Advertiser Address: %s " % advertiser_address)
+        logging.info("DUT Public Address: %s " % public_address)
+        assertThat(advertiser_address).isNotEqualTo(public_address)
