@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e240adc_352f447b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1444,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-10T17:50:04Z",
+      "side": 1,
+      "message": "nit: a bit more natural to use `filter_map` since you are letting those with `Some` but not `None`, so you can remove the `unwrap_or` call in the filter function.\n\nAlternatively it also reads more natural if still using `filter` but let the profile comparison be the last evaluation:\n```\n.filter(|\u0026x| {\n    uu_helper.is_known_profile(\u0026x.uu).map_or(false, |profile| {\n        profile \u003d\u003d \u0026Profile::Hid || profile \u003d\u003d \u0026Profile::Hogp\n    })\n})\n```",
+      "range": {
+        "startLine": 1444,
+        "startChar": 21,
+        "endLine": 1444,
+        "endChar": 27
+      },
+      "revId": "f6758ea64526b2e26a84866f2afe87a6f6db32d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "926ef69d_4d683d4a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1453,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-10T17:50:04Z",
+      "side": 1,
+      "message": "nit: a bit more optimized to use `.peekable().peek().is_some()` to avoid counting all the elements.",
+      "range": {
+        "startLine": 1452,
+        "startChar": 0,
+        "endLine": 1453,
+        "endChar": 25
+      },
+      "revId": "f6758ea64526b2e26a84866f2afe87a6f6db32d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
