@@ -26,6 +26,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c3b5afc_f6b7c7af",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-10T16:21:59Z",
+      "side": 1,
+      "message": "memset\u0027ing a std::deque\u003c\u003e is a bad idea, as there is potential internal state in this class that gets crushed.\n\nYou should do something along the lines of this:\n\n```\n*p_clcb \u003d {\n  .bta_conn_id \u003d 0,\n  .bda \u003d {},\n  .transport \u003d BT_TRANSPORT_AUTO,\n  .p_rcb \u003d nullptr,\n  .p_srcb \u003d nullptr,\n  .p_q_cmd\u003d nullptr, // Already done above from os_free_and_reset\n  .p_q_cmd_queue \u003d {},\n  .request_during_discovery \u003d BTA_GATTC_DISCOVER_REQ_NONE,\n  .auto_update \u003d 0,\n  .disc_active \u003d false,\n  .in_use \u003d false,\n  .state \u003d BTA_GATTC_IDLE_ST,\n  .status \u003d GATT_SUCCESS,\n};",
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0e87c15_6116fcf2",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-10T16:21:59Z",
+      "side": 1,
+      "message": "Enqueueing",
+      "range": {
+        "startLine": 358,
+        "startChar": 55,
+        "endLine": 358,
+        "endChar": 62
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2fd9f4eb_83daa11a",
         "filename": "system/bta/gatt/bta_gattc_utils.cc",
         "patchSetId": 1
