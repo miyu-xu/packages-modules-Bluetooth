@@ -84,8 +84,10 @@ int do_connect([[maybe_unused]] unsigned int num_loops,
       std::promise<acl_state_changed_params_t>();
   auto future = connect::acl_state_changed_promise.get_future();
 
-  fprintf(stdout, "Creating connection to:%s\n", bd_addr.ToString().c_str());
-  LOG(INFO) << "Creating classic connection to " << bd_addr.ToString();
+  fprintf(stdout, "Creating connection to:%s\n",
+          ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  LOG(INFO) << "Creating classic connection to "
+            << ADDRESS_TO_LOGGABLE_STR(bd_addr);
   acl_create_classic_connection(bd_addr, false, false);
 
   auto result = future.get();
@@ -111,9 +113,16 @@ int do_connect([[maybe_unused]] unsigned int num_loops,
             std::chrono::system_clock::now().time_since_epoch())
             .count();
 
+<<<<<<< HEAD
     LOG_CONSOLE("Disconnected after:%" PRId64 "ms from:%s result:%s[%u]\n",
                 disconnect - connect, bd_addr.ToString().c_str(),
                 bt_status_text(result.status).c_str(), result.status);
+=======
+    fprintf(stdout, "Disconnected after:%" PRId64 "ms from:%s result:%s[%u]\n",
+            disconnect - connect, ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+            bt_status_text(result.status).c_str(), result.status);
+
+>>>>>>> 269ba4e4a3 (Replace Log Statements in system/test)
     headless_remove_callback("acl_state_changed", callback_interface);
   } else {
     fprintf(stdout, "Waiting %d seconds to just shutdown\n",

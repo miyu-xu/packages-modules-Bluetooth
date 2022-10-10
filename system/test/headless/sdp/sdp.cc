@@ -116,10 +116,11 @@ int sdp_query_uuid([[maybe_unused]] unsigned int num_loops,
                                            uuid.As16Bit(), nullptr);
   if (rec == nullptr) {
     fprintf(stdout, "discovery record is null from:%s uuid:%s\n",
-            raw_address.ToString().c_str(), uuid.ToString().c_str());
+            ADDRESS_TO_LOGGABLE_CSTR(raw_address), uuid.ToString().c_str());
   } else {
     fprintf(stdout, "result:%d attr_id:%x from:%s uuid:%s\n", result,
-            rec->p_first_attr->attr_id, rec->remote_bd_addr.ToString().c_str(),
+            rec->p_first_attr->attr_id,
+            ADDRESS_TO_LOGGABLE_CSTR(rec->remote_bd_addr),
             uuid.ToString().c_str());
   }
   return 0;
