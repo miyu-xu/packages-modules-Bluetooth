@@ -334,8 +334,7 @@ impl CommandHandler {
                     let multi_adv_supported = adapter_dbus.is_multi_advertisement_supported();
                     let le_ext_adv_supported = adapter_dbus.is_le_extended_advertising_supported();
                     let wbs_supported = adapter_dbus.is_wbs_supported();
-                    let uuid_helper = UuidHelper::new();
-                    let enabled_profiles = uuid_helper.get_enabled_profiles();
+                    let enabled_profiles = UuidHelper::get_enabled_profiles();
                     let connected_profiles: Vec<Profile> = enabled_profiles
                         .iter()
                         .filter(|&&prof| adapter_dbus.get_profile_connection_state(prof) > 0)
@@ -357,7 +356,7 @@ impl CommandHandler {
                         DisplayList(
                             uuids
                                 .iter()
-                                .map(|&x| uuid_helper.known_uuid_to_string(&x))
+                                .map(|&x| UuidHelper::known_uuid_to_string(&x))
                                 .collect::<Vec<String>>()
                         )
                     );
@@ -636,7 +635,6 @@ impl CommandHandler {
                         )
                     };
 
-                    let uuid_helper = UuidHelper::new();
                     print_info!("Address: {}", &device.address);
                     print_info!("Name: {}", name);
                     print_info!("Alias: {}", alias);
@@ -651,7 +649,7 @@ impl CommandHandler {
                         DisplayList(
                             uuids
                                 .iter()
-                                .map(|&x| uuid_helper.known_uuid_to_string(&x))
+                                .map(|&x| UuidHelper::known_uuid_to_string(&x))
                                 .collect::<Vec<String>>()
                         )
                     );
