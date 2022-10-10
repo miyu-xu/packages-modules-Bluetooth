@@ -71,6 +71,7 @@
 #include "device/include/controller.h"
 #include "device/include/interop.h"
 #include "gd/common/lru_cache.h"
+#include "hci/hci_packets.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/shim.h"
@@ -2722,6 +2723,9 @@ void btif_dm_generate_local_oob_data(tBT_TRANSPORT transport) {
 static void get_address_callback(tBT_TRANSPORT transport, bool is_valid,
                                  const Octet16& c, const Octet16& r,
                                  uint8_t address_type, RawAddress address) {
+  LOG_DEBUG("Address: %s", address.ToString().c_str());
+  LOG_DEBUG("Address Type: %s",
+            (address_type == BLE_ADDR_PUBLIC ? "PUBLIC" : "RANDOM"));
   invoke_oob_data_request_cb(transport, is_valid, c, r, address, address_type);
   waiting_on_oob_advertiser_start = false;
 }
@@ -2770,7 +2774,7 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
   oob_advertiser_id = id;
 
   auto advertiser = get_ble_advertiser_instance();
-  AdvertiseParameters parameters;
+  AdvertiseParameters parameters{};
   parameters.advertising_event_properties = 0x0041 /* connectable, tx power */;
   parameters.min_interval = 0xa0;   // 100 ms
   parameters.max_interval = 0x500;  // 800 ms
@@ -2779,6 +2783,8 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
   parameters.primary_advertising_phy = 1;
   parameters.secondary_advertising_phy = 2;
   parameters.scan_request_notification_enable = 0;
+  parameters.own_address_type = static_cast<int8_t>(
+      bluetooth::hci::OwnAddressType::RANDOM_DEVICE_ADDRESS);
 
   std::vector<uint8_t> advertisement{0x02, 0x01 /* Flags */,
                                      0x02 /* Connectable */};
