@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22bacf80_688de4ce",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1444,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-10T20:38:36Z",
+      "side": 1,
+      "message": "Optimized using any()",
+      "parentUuid": "2e240adc_352f447b",
+      "range": {
+        "startLine": 1444,
+        "startChar": 21,
+        "endLine": 1444,
+        "endChar": 27
+      },
+      "revId": "f6758ea64526b2e26a84866f2afe87a6f6db32d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "926ef69d_4d683d4a",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-10T17:50:04Z",
       "side": 1,
       "message": "nit: a bit more optimized to use `.peekable().peek().is_some()` to avoid counting all the elements.",
+      "range": {
+        "startLine": 1452,
+        "startChar": 0,
+        "endLine": 1453,
+        "endChar": 25
+      },
+      "revId": "f6758ea64526b2e26a84866f2afe87a6f6db32d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb98772_7cb230e9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1453,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-10T20:38:36Z",
+      "side": 1,
+      "message": "Optimized using any()",
+      "parentUuid": "926ef69d_4d683d4a",
       "range": {
         "startLine": 1452,
         "startChar": 0,
