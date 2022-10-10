@@ -127,3 +127,7 @@ class OobPairingTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         for i in range(0, 10):
             oob_data = self.dut_security_.generate_oob_data(Security.TRANSPORT_LE, True)
             logging.info("OOB Data came back with code: %d", oob_data[0])
+
+
+if __name__ == '__main__':
+    test_runner.main()
