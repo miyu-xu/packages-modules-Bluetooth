@@ -28,6 +28,8 @@ import google.protobuf.descriptor_pool
 google.protobuf.descriptor_pool.Default().__init__()
 
 from pandora_experimental.host_grpc import Host
+from pandora_experimental.host_pb2 import Connection, ConnectabilityMode, AddressType
+from pandora_experimental.l2cap_grpc import L2CAP
 
 
 class ExampleTest(base_test.BaseTestClass):
@@ -43,9 +45,26 @@ class ExampleTest(base_test.BaseTestClass):
         time.sleep(3)
 
     def test_classic_connect(self):
+        print('test_classic_connect', file=sys.stderr)
         dut_address = self.dut.address
         self.dut.log.info(f'Address: {dut_address}')
         response = self.ref.host.Connect(address=dut_address)
+        assert response.WhichOneof("result") == "connection"
+
+    def test_le_connect_ref_initiate(self):
+        print('test_le_connect_ref_initiate', file=sys.stderr)
+        dut_address = self.dut.address
+        ref_address = self.ref.address
+
+        self.dut.host.StartAdvertising(
+            connectability_mode=ConnectabilityMode.CONNECTABILITY_CONNECTABLE,
+            own_address_type=AddressType.PUBLIC,
+        )
+
+        self.dut.log.debug(f'DUT Address: {dut_address}')
+        self.ref.log.debug(f'REF Address: {ref_address}')
+
+        response = self.ref.host.ConnectLE(address=dut_address)
         assert response.WhichOneof("result") == "connection"
 
 
