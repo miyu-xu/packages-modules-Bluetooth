@@ -1775,10 +1775,6 @@ void LeAudioDeviceGroup::SetPendingConfiguration(void) {
   stream_conf.pending_configuration = true;
 }
 
-void LeAudioDeviceGroup::ClearPendingConfiguration(void) {
-  stream_conf.pending_configuration = false;
-}
-
 bool LeAudioDeviceGroup::IsConfigurationSupported(
     LeAudioDevice* leAudioDevice,
     const set_configurations::AudioSetConfiguration* audio_set_conf) {

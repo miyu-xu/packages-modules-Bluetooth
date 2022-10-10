@@ -1582,9 +1582,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
           if (group->GetTargetState() ==
                   AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED &&
-              group->IsPendingConfiguration()) {
+              group->stream_conf.pending_configuration) {
             LOG_INFO(" Configured state completed ");
-            group->ClearPendingConfiguration();
+            group->stream_conf.pending_configuration = false;
             state_machine_callbacks_->StatusReportCb(
                 group->group_id_, GroupStreamStatus::CONFIGURED_BY_USER);
 
@@ -1667,9 +1667,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
           if (group->GetTargetState() ==
                   AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED &&
-              group->IsPendingConfiguration()) {
+              group->stream_conf.pending_configuration) {
             LOG_INFO(" Configured state completed ");
-            group->ClearPendingConfiguration();
+            group->stream_conf.pending_configuration = false;
             state_machine_callbacks_->StatusReportCb(
                 group->group_id_, GroupStreamStatus::CONFIGURED_BY_USER);
 
