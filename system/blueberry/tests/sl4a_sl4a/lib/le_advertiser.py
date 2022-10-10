@@ -23,6 +23,7 @@ from blueberry.tests.gd.cert.closable import Closable
 from blueberry.tests.gd.cert.closable import safeClose
 from blueberry.tests.gd.cert.truth import assertThat
 from blueberry.tests.gd_sl4a.lib.ble_lib import generate_ble_advertise_objects
+from blueberry.tests.gd_sl4a.lib.ble_lib import BleLib
 from blueberry.tests.gd_sl4a.lib.bt_constants import adv_succ
 from blueberry.tests.gd_sl4a.lib.bt_constants import ble_advertise_settings_modes
 from blueberry.tests.sl4a_sl4a.lib import sl4a_sl4a_base_test
@@ -49,17 +50,54 @@ class LeAdvertiser(Closable):
             return False
         return True
 
-    def advertise_public_extended_pdu(self, address_type=common.RANDOM_DEVICE_ADDRESS, name="SL4A Device"):
+    def advertise_rpa_using_advertising_set(self, name="SL4A Device"):
+        """
+        Newer API to use advertising set
+        """
         if self.is_advertising:
             logging.info("Already advertising!")
             return
-        logging.info("Configuring advertisement with address type %d", address_type)
         self.is_advertising = True
-        self.device.sl4a.bleSetScanSettingsLegacy(False)
+        ble_lib = BleLib(self.device)
+        ble_lib.start_connectable_advertisement_set("")
+
+    def stop_all_advertising_sets(self):
+        if not self.is_advertising:
+            logging.info("Not advertising!")
+            return
+        self.is_advertising = False
+        stop_all_advertisement_set("")
+
+    def advertise_rpa_extended_pdu(self, name="SL4A Device"):
+        """
+        This is the legacy API for advertising
+        """
+        if self.is_advertising:
+            logging.info("Already advertising!")
+            return
+        self.is_advertising = True
         self.device.sl4a.bleSetAdvertiseSettingsIsConnectable(True)
         self.device.sl4a.bleSetAdvertiseDataIncludeDeviceName(True)
         self.device.sl4a.bleSetAdvertiseSettingsAdvertiseMode(ble_advertise_settings_modes['low_latency'])
-        self.device.sl4a.bleSetAdvertiseSettingsOwnAddressType(address_type)
+        self.device.sl4a.bleSetAdvertiseSettingsOwnAddressType(common.RANDOM_DEVICE_ADDRESS)
+        self.advertise_callback, self.advertise_data, self.advertise_settings = generate_ble_advertise_objects(
+            self.device.sl4a)
+        self.device.sl4a.bleStartBleAdvertising(self.advertise_callback, self.advertise_data, self.advertise_settings)
+
+        # Wait for SL4A cert to start advertising
+        assertThat(self.__wait_for_event(adv_succ.format(self.advertise_callback))).isTrue()
+        logging.info("Advertising started")
+        return self.advertise_callback
+
+    def advertise_public_extended_pdu(self, name="SL4A Device"):
+        if self.is_advertising:
+            logging.info("Already advertising!")
+            return
+        self.is_advertising = True
+        self.device.sl4a.bleSetAdvertiseSettingsIsConnectable(True)
+        self.device.sl4a.bleSetAdvertiseDataIncludeDeviceName(True)
+        self.device.sl4a.bleSetAdvertiseSettingsAdvertiseMode(ble_advertise_settings_modes['low_latency'])
+        self.device.sl4a.bleSetAdvertiseSettingsOwnAddressType(common.PUBLIC_DEVICE_ADDRESS)
         self.advertise_callback, self.advertise_data, self.advertise_settings = generate_ble_advertise_objects(
             self.device.sl4a)
         self.device.sl4a.bleStartBleAdvertising(self.advertise_callback, self.advertise_data, self.advertise_settings)
@@ -70,6 +108,12 @@ class LeAdvertiser(Closable):
 
     def get_local_advertising_name(self):
         return self.device.sl4a.bluetoothGetLocalName()
+
+    def get_local_public_address(self):
+        return self.device.sl4a.bluetoothGetLocalAddress()
+
+    def get_advertiser_address(self, advertiser_id):
+        return self.device.sl4a.bleAdvSetGetOwnAddress(advertiser_id)
 
     def stop_advertising(self):
         if self.is_advertising:
