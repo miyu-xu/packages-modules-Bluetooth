@@ -151,6 +151,10 @@ class Link : public l2cap::internal::ILink, public hci::acl_manager::ConnectionM
     return GetDevice().ToString();
   }
 
+  virtual std::string ToStringForLogging() const {
+    return GetDevice().ToStringForLogging();
+  }
+
   void SendLeCredit(Cid local_cid, uint16_t credit) override {}
 
   // ConnectionManagementCallbacks
