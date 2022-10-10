@@ -31,7 +31,8 @@ namespace internal {
 
 class Link;
 
-class FixedChannelImpl : public l2cap::internal::ChannelImpl {
+class FixedChannelImpl : public l2cap::internal::ChannelImpl,
+                         public bluetooth::common::IRedactableLoggable {
  public:
   FixedChannelImpl(Cid cid, Link* link, os::Handler* l2cap_handler);
 
@@ -56,16 +57,21 @@ class FixedChannelImpl : public l2cap::internal::ChannelImpl {
 
   virtual void OnClosed(hci::ErrorCode status);
 
-  virtual std::string ToString() {
+  std::string ToStringForLogging() override{
     std::ostringstream ss;
     ss << "Device " << device_ << " Cid 0x" << std::hex << cid_;
+    return ss.str();
+  }
+
+  std::string ToRedactedStringForLogging() override{
+    std::ostringstream ss;
+    ss << "Device " << device_.ToRedactedStringForLogging() << " Cid 0x" << std::hex << cid_;
     return ss.str();
   }
 
   common::BidiQueueEnd<packet::BasePacketBuilder, packet::PacketView<packet::kLittleEndian>>* GetQueueUpEnd() {
     return channel_queue_.GetUpEnd();
   }
-
   common::BidiQueueEnd<packet::PacketView<packet::kLittleEndian>, packet::BasePacketBuilder>* GetQueueDownEnd() {
     return channel_queue_.GetDownEnd();
   }
