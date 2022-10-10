@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8602f496_00d4c188",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-10T22:07:10Z",
+      "side": 1,
+      "message": "thanks. will fix it with a helper functio which will check outstanding att queue with msg ready to send.",
+      "parentUuid": "b1037767_f96af668",
+      "range": {
+        "startLine": 1137,
+        "startChar": 29,
+        "endLine": 1137,
+        "endChar": 63
+      },
+      "revId": "34e2b5356e2c97d703c0f9f373996b878ec768f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d447fc0_d001c24a",
         "filename": "system/stack/gatt/gatt_cl.cc",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-09T00:01:24Z",
       "side": 1,
       "message": "Could this still happen before your change?  Before the condition on 1137 was changed, I wouldn\u0027t have expected us to need this check.  Is there a race?  Maybe we should just be getting the channel and checking if it\u0027s not null in line 1136?",
+      "range": {
+        "startLine": 1143,
+        "startChar": 6,
+        "endLine": 1143,
+        "endChar": 20
+      },
+      "revId": "34e2b5356e2c97d703c0f9f373996b878ec768f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43c8b0c4_5179495b",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-10T22:07:10Z",
+      "side": 1,
+      "message": "with mentioned helper function, this check will not be needed.",
+      "parentUuid": "0d447fc0_d001c24a",
       "range": {
         "startLine": 1143,
         "startChar": 6,
