@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d345ec6_3ef120f7",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-10T09:34:08Z",
+      "side": 1,
+      "message": "Wouldn\u0027t devices.h be a better place for that?",
+      "range": {
+        "startLine": 314,
+        "startChar": 11,
+        "endLine": 314,
+        "endChar": 29
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc59012_2580493c",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-10T09:34:08Z",
+      "side": 1,
+      "message": "Does \u0027profile is connected\u0027 mean that we are already after the initial char. reads and CCC descriptor writes?",
+      "range": {
+        "startLine": 317,
+        "startChar": 28,
+        "endLine": 317,
+        "endChar": 48
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
