@@ -22,6 +22,30 @@
       },
       "revId": "8cd7ce7918fb57dc6a187768c3122aa7b0313f1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79e61ce9_d5c6249f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-11T07:03:54Z",
+      "side": 1,
+      "message": "You are right. Sorry for all the careless mistakes.",
+      "parentUuid": "9823c569_adc43573",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 34
+      },
+      "revId": "8cd7ce7918fb57dc6a187768c3122aa7b0313f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
