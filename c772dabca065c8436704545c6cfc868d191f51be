@@ -1,0 +1,233 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c9b9e8d_3bf5b759",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "I would split it into 3 patches.\n\n1) Adding fallback \n2) Adding Handling changes for LeAudio device \n3) Adding handling for Hearing Aid device.",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eda2713a_da9769c9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "Hearing aid device is also set as Active device in the HearingAidService:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java;l\u003d821;drc\u003db0193ccac5b8399f9b5ef270d102b5a50f9446ab?q\u003dHearingAidService\n\nBut here I\u0027m not sure we want to change it.",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58a45ede_94ac8645",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "I believe we should remove part setting LeAUdio device as Active in the LeAudioService:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d1575?q\u003dLeAudioService",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "390009b3_d23b0df7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "what do you mean by that?",
+      "range": {
+        "startLine": 237,
+        "startChar": 54,
+        "endLine": 237,
+        "endChar": 91
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "829ed192_6d958c5a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "Also here and other place: Please elaborate.",
+      "range": {
+        "startLine": 333,
+        "startChar": 51,
+        "endLine": 333,
+        "endChar": 89
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac03eebd_1f0cff05",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "this seems to be not valid here",
+      "range": {
+        "startLine": 425,
+        "startChar": 30,
+        "endLine": 425,
+        "endChar": 94
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff5432a4_bb4ed531",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "Please make sure to remove \nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d1575?q\u003dLeAUdioService\u0026ss\u003dandroid%2Fplatform%2Fsuperproject",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a54b38de_3420963b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "shouldn\u0027t headsetFallbackDevice be checked here?",
+      "range": {
+        "startLine": 671,
+        "startChar": 20,
+        "endLine": 671,
+        "endChar": 34
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b75573a_96b31563",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "shouldn\u0027t headsetFallbackDevice be checked here instead?",
+      "range": {
+        "startLine": 676,
+        "startChar": 20,
+        "endLine": 676,
+        "endChar": 34
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f862baf4_fd89ebd5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "just asking. Is this OK if (device !\u003d headsetFallbackDevice) ? Maybe yes, just checking",
+      "range": {
+        "startLine": 688,
+        "startChar": 24,
+        "endLine": 688,
+        "endChar": 45
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e77fda54_7f41560d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:43:26Z",
+      "side": 1,
+      "message": "just asking. Is this OK if (device !\u003d a2dpFallbackDevice) ? Maybe yes, just checking",
+      "range": {
+        "startLine": 703,
+        "startChar": 24,
+        "endLine": 703,
+        "endChar": 42
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
