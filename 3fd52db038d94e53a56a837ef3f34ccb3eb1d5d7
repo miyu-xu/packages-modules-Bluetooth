@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd6afdd_006f5c43",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-11T22:08:53Z",
+      "side": 1,
+      "message": "looks like making Uuid from array of 16 bytes is often used. Would be good to implement `From`:\n```\nimpl From\u003c[u8; 16]\u003e for Uuid {\n    fn from(value: [u8; 16]) -\u003e Self {\n        Self { uu: value }\n    }\n}\n```\n\nso that the caller can just do `Uuid::from([...])` or `[...].into()`",
+      "range": {
+        "startLine": 961,
+        "startChar": 40,
+        "endLine": 965,
+        "endChar": 26
+      },
+      "revId": "3fd52db038d94e53a56a837ef3f34ccb3eb1d5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31bad03_903a74e3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-11T22:08:53Z",
+      "side": 1,
+      "message": "this trick looks a bit hacky to me. If you need grouping, I suggest we use `itertools::group_by` which can group iterators. So `append_service_uuids` could look like:\n\n```\n    fn append_service_uuids(dest: \u0026mut Vec\u003cu8\u003e, uuids: \u0026Vec\u003cUuid\u003e) {\n        for (ad_type, uuids) in uuids\n            .iter()\n            .map(|uuid| UuidHelper::get_shortest_slice(\u0026uuid.uu))\n            .group_by(|uuid| match uuid.len() {\n                2 \u003d\u003e COMPLETE_LIST_16_BIT_SERVICE_UUIDS,\n                4 \u003d\u003e COMPLETE_LIST_32_BIT_SERVICE_UUIDS,\n                16 \u003d\u003e COMPLETE_LIST_128_BIT_SERVICE_UUIDS,\n                _ \u003d\u003e INVALID,\n            })\n            .into_iter()\n        {\n            Self::append_uuids(dest, ad_type, uuids.collect());\n        }\n    }\n\n```\n\nAnd `append_adv_bytes` could look like:\n```\n    fn append_uuids(dest: \u0026mut Vec\u003cu8\u003e, ad_type: u8, uuids: Vec\u003c\u0026[u8]\u003e) {\n        // construct reversed bytes here\n        AdvertiseData::append_adv_data(dest, ad_type, reversed_bytes);\n    }\n```",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 43
+      },
+      "revId": "3fd52db038d94e53a56a837ef3f34ccb3eb1d5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71b4e1bd_79eb2a77",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-11T22:08:53Z",
+      "side": 1,
+      "message": "looking at how this was used, I think my recommendation wasn\u0027t optimal since this is returning concrete copied data. If this is how it\u0027s used, it would be more optimal if this returns only a slice so that no data is copied until it really needs to be copied. Something like:\n\n```\n    pub fn get_shortest_slice(uuid: \u0026Uuid128Bit) -\u003e \u0026[u8] {\n        if UuidHelper::in_16bit_uuid_range(uuid) {\n            return \u0026uuid[2..4];\n        } else if UuidHelper::in_32bit_uuid_range(uuid) {\n            return \u0026uuid[0..4];\n        } else {\n            return \u0026uuid[..];\n        }\n    }\n```",
+      "range": {
+        "startLine": 222,
+        "startChar": 41,
+        "endLine": 222,
+        "endChar": 59
+      },
+      "revId": "3fd52db038d94e53a56a837ef3f34ccb3eb1d5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
