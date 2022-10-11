@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "074c9755_99fb4589",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-10-11T16:59:41Z",
+      "side": 1,
+      "message": "Any progress, this is blocking CTS Verifier",
+      "revId": "6dd6b6befdbe26af8a25ffa2ce997bedb53386f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
