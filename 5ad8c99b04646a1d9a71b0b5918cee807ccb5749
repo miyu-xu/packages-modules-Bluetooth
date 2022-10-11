@@ -22,6 +22,30 @@
       },
       "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7db22f6_d115f06f",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-11T16:48:30Z",
+      "side": 1,
+      "message": "I would go ahead and throw out all the explicit `string` stuff and use this pattern\n\n```\n#define CASE_RETURN_TEXT(code) \\\n  case code:                   \\\n    return #code\n\ninline std::string sco_state_text(const tSCO_STATE\u0026 state) {\n    CASE_RETURN_TEXT(SCO_ST_UNUSED);\n    ...\n}\n#undef CASE_RETURN_TEXT\n```\n\nThis does 3 things:\n1. Remove a layer of author\u0027s interpretation between the ENUM value and what it is supposed to do in text form.  This requires context and may be accurate, slightly inaccurate or very much off base as the definition and usage shifts\n\n2. Require well-thought names that explicitly indicate the state for that enum as that is the exact name used in logging.\n\n3. Allow direct code search from the logging output into the code, rather than a short hop into re-encoding what the author wrote as `string` into the `enum`",
+      "parentUuid": "75085bf2_59d93926",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 29
+      },
+      "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
