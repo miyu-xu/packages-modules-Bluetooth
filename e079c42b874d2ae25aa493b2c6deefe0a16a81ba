@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a788353c_bb83e41b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T03:49:37Z",
+      "side": 1,
+      "message": "Could you let me know where this is called?\nI can\u0027t see where this is called.",
+      "range": {
+        "startLine": 82,
+        "startChar": 54,
+        "endLine": 82,
+        "endChar": 74
+      },
+      "revId": "e079c42b874d2ae25aa493b2c6deefe0a16a81ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
