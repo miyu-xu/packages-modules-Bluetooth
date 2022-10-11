@@ -587,11 +587,17 @@ class LeExtendedAdvertisingAPITest : public LeExtendedAdvertisingManagerTest {
   AdvertiserId advertiser_id_;
 };
 
-TEST_F(LeAdvertisingManagerTest, startup_teardown) {}
+TEST_F(LeAdvertisingManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
-TEST_F(LeAndroidHciAdvertisingManagerTest, startup_teardown) {}
+TEST_F(LeAndroidHciAdvertisingManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
-TEST_F(LeExtendedAdvertisingManagerTest, startup_teardown) {}
+TEST_F(LeExtendedAdvertisingManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 TEST_F(LeAdvertisingManagerTest, create_advertiser_test) {
   ExtendedAdvertisingConfig advertising_config{};
@@ -736,13 +742,21 @@ TEST_F(LeExtendedAdvertisingManagerTest, create_advertiser_test) {
   ASSERT_EQ(OpCode::LE_REMOVE_ADVERTISING_SET, test_hci_layer_->GetCommand().GetOpCode());
 }
 
-TEST_F(LeAdvertisingAPITest, startup_teardown) {}
+TEST_F(LeAdvertisingAPITest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
-TEST_F(LeAndroidHciAdvertisingAPITest, startup_teardown) {}
+TEST_F(LeAndroidHciAdvertisingAPITest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
-TEST_F(LeAndroidHciAdvertisingAPIPublicAddressTest, startup_teardown) {}
+TEST_F(LeAndroidHciAdvertisingAPIPublicAddressTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
-TEST_F(LeExtendedAdvertisingAPITest, startup_teardown) {}
+TEST_F(LeExtendedAdvertisingAPITest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 TEST_F(LeAdvertisingAPITest, set_parameter) {
   ExtendedAdvertisingConfig advertising_config{};
