@@ -133,6 +133,7 @@ inline std::string sco_state_text(const tSCO_STATE& state) {
     case SCO_ST_PEND_MODECHANGE:
       return std::string("pending_mode_change");
   }
+  return "unknown_sco_state";
 }
 
 /* Define the structure that contains (e)SCO data */
