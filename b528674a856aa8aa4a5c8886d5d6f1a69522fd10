@@ -16,6 +16,24 @@
       "message": "Are other comments deleted by accident?",
       "revId": "b528674a856aa8aa4a5c8886d5d6f1a69522fd10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d34ccc_0c4fcf90",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T06:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8df61838_4015e412",
+      "revId": "b528674a856aa8aa4a5c8886d5d6f1a69522fd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
