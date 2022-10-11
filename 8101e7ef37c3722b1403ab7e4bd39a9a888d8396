@@ -33,6 +33,177 @@
       "message": "Will this be abandoned?",
       "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42e37207_e5db7535",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "I think changes are going in good way but in single patch we do to much.\n\n1. Refactor handling the intents from services and providing information to the ActiveDeviceManager handler. This looks good, but it should be separate patch which just do this refactor without any logic changes.\n\n2. Adds handler for the BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED which was not here as it is handled in HearindAidService. Not sure if we should touch it. If yes, this should be done in separate patch\n\n3. Adds handler for the BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED. This is what we actually want it this patch. We just need to make sure to remove this functionality from the LeAudioService (https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d1575?q\u003dLeAudioService)\n\n4. Added priority list - this feature should be added also in separate patch and should be better described on how it works.",
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf636aa9_605e6299",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "mActivedDevicesWithPriority?\n\nCan you please put here some comment on how this priority suppose to work?",
+      "range": {
+        "startLine": 121,
+        "startChar": 47,
+        "endLine": 121,
+        "endChar": 64
+      },
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b5f728_d7c4a0c3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "We are adding here something which is now handled in the service\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java;l\u003d821;drc\u003db0193ccac5b8399f9b5ef270d102b5a50f9446ab?q\u003dHearingAidService\n\n\nThis change current behavior which I believe is not intended.",
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e492217_96b29415",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "Can we move it to proper cases?",
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1083e96_7c8a42e5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 187,
+        "startChar": 16,
+        "endLine": 187,
+        "endChar": 24
+      },
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ac907a6_23f26501",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "could we have here single list which would contain elements like this\n\nclass ActivatedDeviceInfo {\n   BluetoothDevice device;\n   Integer Profile;\n};\n\n?",
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8196a526_c90217f5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "nit: getProfileByIndex()",
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8988396d_f1a23630",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "nit: getDeviceByIndex()",
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db63362_a185281d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T11:13:44Z",
+      "side": 1,
+      "message": "is it ok if size() is 0?",
+      "range": {
+        "startLine": 452,
+        "startChar": 30,
+        "endLine": 452,
+        "endChar": 54
+      },
+      "revId": "8101e7ef37c3722b1403ab7e4bd39a9a888d8396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
