@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6676b716_e07670b7",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-10-11T21:53:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e47b23a_7d3b89e5",
+      "range": {
+        "startLine": 26,
+        "startChar": 7,
+        "endLine": 26,
+        "endChar": 15
+      },
+      "revId": "5263293d508f9e90d326c1025dbab5bdeeb1f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0396be15_40c43e7d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-10T22:20:31Z",
       "side": 1,
       "message": "nit: Got a bit confused here, might be better as `types::Integer::new()`",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 32
+      },
+      "revId": "5263293d508f9e90d326c1025dbab5bdeeb1f93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5f9d051_82b88195",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-10-11T21:53:35Z",
+      "side": 1,
+      "message": "Okay, sure!",
+      "parentUuid": "0396be15_40c43e7d",
       "range": {
         "startLine": 28,
         "startChar": 25,
