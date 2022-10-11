@@ -1444,6 +1444,7 @@ TEST_F(LeImplTest, cancel_connect) {
   le_impl_->cancel_connect(remote_public_address_with_type_);
   sync_handler();
   ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
+  ASSERT_TRUE(false);
 }
 
 TEST_F(LeImplTest, set_le_suggested_default_data_parameters) {
@@ -1454,6 +1455,7 @@ TEST_F(LeImplTest, set_le_suggested_default_data_parameters) {
   ASSERT_TRUE(view.IsValid());
   ASSERT_EQ(kLength, view.GetTxOctets());
   ASSERT_EQ(kTime, view.GetTxTime());
+  ASSERT_TRUE(false);
 }
 
 }  // namespace acl_manager
