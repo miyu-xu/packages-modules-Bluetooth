@@ -22,6 +22,30 @@
       },
       "revId": "871f699f3445786c1167939c69921e35d74e2e12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47abd30e_be6ecf3b",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-10-11T21:53:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "075e1e09_efb3550a",
+      "range": {
+        "startLine": 14,
+        "startChar": 27,
+        "endLine": 14,
+        "endChar": 57
+      },
+      "revId": "871f699f3445786c1167939c69921e35d74e2e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
