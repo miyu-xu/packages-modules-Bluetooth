@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75085bf2_59d93926",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-11T16:41:47Z",
+      "side": 1,
+      "message": "Can we add something like:\n return \"unknown_sco_state \" + to_string(state);",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 29
+      },
+      "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
