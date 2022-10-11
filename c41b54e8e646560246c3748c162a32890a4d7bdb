@@ -16,6 +16,75 @@
       "message": "All comments fixed.",
       "revId": "c41b54e8e646560246c3748c162a32890a4d7bdb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a861005b_33d3c53a",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-11T16:20:34Z",
+      "side": 1,
+      "message": "nit: Enqueuing or Queuing",
+      "range": {
+        "startLine": 371,
+        "startChar": 55,
+        "endLine": 371,
+        "endChar": 62
+      },
+      "revId": "c41b54e8e646560246c3748c162a32890a4d7bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961d11d4_1159a491",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-11T16:20:34Z",
+      "side": 1,
+      "message": "This seems like INFO to me.  WARN makes you worry.",
+      "range": {
+        "startLine": 371,
+        "startChar": 2,
+        "endLine": 371,
+        "endChar": 10
+      },
+      "revId": "c41b54e8e646560246c3748c162a32890a4d7bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "833edb64_12af8131",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-11T16:20:34Z",
+      "side": 1,
+      "message": "std::move of a trivially-copyable type.",
+      "range": {
+        "startLine": 372,
+        "startChar": 37,
+        "endLine": 372,
+        "endChar": 53
+      },
+      "revId": "c41b54e8e646560246c3748c162a32890a4d7bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
