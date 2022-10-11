@@ -22,6 +22,30 @@
       },
       "revId": "20d11493163b27bec9ba69e33a9dad6fdd26bc80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610efc6c_a7d887a4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-11T08:30:51Z",
+      "side": 1,
+      "message": "Afer this CL:\n\nIf device is discoverable ONLY using Classic, it will be connected using Classic transport, even if LE Audio in CoD is set.\n\nIf it is discoverable using Classic AND LE, and LE Audio in CoD is set, we prefer LE.\n\nWe know it\u0027s discoverable using LE when we find advertisement during current inquiry coming from this device (which enables LE bit in device type in what we read from BTM_Read... )",
+      "parentUuid": "1237f0f2_e2754a1e",
+      "range": {
+        "startLine": 712,
+        "startChar": 9,
+        "endLine": 712,
+        "endChar": 22
+      },
+      "revId": "20d11493163b27bec9ba69e33a9dad6fdd26bc80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

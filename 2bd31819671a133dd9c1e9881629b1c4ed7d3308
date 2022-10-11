@@ -222,6 +222,24 @@
       "parentUuid": "f220fb54_bc23060d",
       "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6519b0e_40b6afa3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-11T08:30:51Z",
+      "side": 1,
+      "message": "This would be a hard case. I\u0027m not quite sure why would someone trigger that, but it is handled for bonding at line 748 below.\n\nMaybe OOB data stored device type because we didn\u0027t scan at all ? or re-pairing that would be re-pairing triggeed from the app, or upgrading the keys ?  Or maybe re-pairing to trigger service discovery again ? Just to be on safe side I kept this code. If you think it\u0027s dangerous I can get rid of it, but I think reading form storage it\u0027s LE capable might be good.",
+      "parentUuid": "e69a73cd_c2c8bc08",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
