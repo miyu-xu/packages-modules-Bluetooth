@@ -22,6 +22,30 @@
       },
       "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd43351a_391a0ad9",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T09:08:47Z",
+      "side": 0,
+      "message": "ok, let\u0027s put a warning about that.",
+      "parentUuid": "39a19af9_668e2de1",
+      "range": {
+        "startLine": 419,
+        "startChar": 18,
+        "endLine": 419,
+        "endChar": 33
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

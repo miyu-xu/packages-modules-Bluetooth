@@ -22,6 +22,30 @@
       },
       "revId": "200fc58a0415870412eafd8b83ffee2c7916ed09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18696278_534a41fa",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1181,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T09:08:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "782d1c8a_c368e0a9",
+      "range": {
+        "startLine": 1181,
+        "startChar": 7,
+        "endLine": 1181,
+        "endChar": 25
+      },
+      "revId": "200fc58a0415870412eafd8b83ffee2c7916ed09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
