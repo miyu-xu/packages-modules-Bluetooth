@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8879d214_0917d20f",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T14:42:44Z",
+      "side": 1,
+      "message": "😊",
+      "revId": "2de19f15c0ba8e0ba06432b35d0743b4e9edbf5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5a50bf3_56638faa",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T14:42:44Z",
+      "side": 1,
+      "message": "tBTA_GATTC cb_data \u003d {0}; would not work?",
+      "revId": "2de19f15c0ba8e0ba06432b35d0743b4e9edbf5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
