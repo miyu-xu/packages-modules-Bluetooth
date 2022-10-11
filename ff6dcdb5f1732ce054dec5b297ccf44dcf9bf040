@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "400eed2b_16dae993",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T01:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c950719_ecc82776",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 65
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06effb8b_5034fd2f",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-06T16:55:55Z",
       "side": 1,
       "message": "nit: deactivate",
+      "range": {
+        "startLine": 236,
+        "startChar": 38,
+        "endLine": 236,
+        "endChar": 48
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66aee8c5_517ff935",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T01:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06effb8b_5034fd2f",
       "range": {
         "startLine": 236,
         "startChar": 38,
@@ -101,6 +149,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "551bf36a_b086153f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T01:46:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cdf00296_2ff6bf67",
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2f6b4bdc_667d315d",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 3
@@ -157,6 +223,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab501926_5636bc63",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T01:46:47Z",
+      "side": 1,
+      "message": "This code is removed.",
+      "parentUuid": "c0c791b6_abfd1154",
+      "range": {
+        "startLine": 646,
+        "startChar": 16,
+        "endLine": 646,
+        "endChar": 69
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66ba1d0d_2cc3b50d",
@@ -180,6 +270,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48b8c290_0f4f812b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T01:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66ba1d0d_2cc3b50d",
+      "range": {
+        "startLine": 704,
+        "startChar": 20,
+        "endLine": 704,
+        "endChar": 39
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce5e753c_ae146ff3",
@@ -193,6 +307,30 @@
       "writtenOn": "2022-10-07T06:21:36Z",
       "side": 1,
       "message": "Similar question here. Should we also find the most recent A2DP device and set it to active?\n\nIf there is no other A2DP devices connected, should we set to LE audio device if it\u0027s available?",
+      "range": {
+        "startLine": 716,
+        "startChar": 20,
+        "endLine": 716,
+        "endChar": 38
+      },
+      "revId": "ff6dcdb5f1732ce054dec5b297ccf44dcf9bf040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f322655_cde238e6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T01:46:47Z",
+      "side": 1,
+      "message": "I think,\nwe can activate both HFP and A2DP, but\nwe can\u0027t activate both HFP and LE audio, or both A2DP and LE audio.",
+      "parentUuid": "ce5e753c_ae146ff3",
       "range": {
         "startLine": 716,
         "startChar": 20,

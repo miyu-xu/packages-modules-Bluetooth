@@ -110,6 +110,24 @@
       "message": "Could we reuse A2dpService.getFallbackDevice() and HeadsetService.getFallbackDevice()?",
       "revId": "2eee70bbb553b3be4347a322a8a958261093a0db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c66d57e6_99c78a81",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-11T01:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "938c5033_87345cac",
+      "revId": "2eee70bbb553b3be4347a322a8a958261093a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
