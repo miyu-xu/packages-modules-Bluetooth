@@ -206,7 +206,9 @@ class PeriodicSyncManagerTest : public ::testing::Test {
   PeriodicSyncManager* periodic_sync_manager_ = nullptr;
 };
 
-TEST_F(PeriodicSyncManagerTest, startup_teardown) {}
+TEST_F(PeriodicSyncManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 TEST_F(PeriodicSyncManagerTest, start_sync_test) {
   Address address;
