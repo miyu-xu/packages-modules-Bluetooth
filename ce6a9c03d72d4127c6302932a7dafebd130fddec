@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65c28e17_00b64150",
+        "filename": "framework/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1947766
+      },
+      "writtenOn": "2022-10-11T16:01:14Z",
+      "side": 1,
+      "message": "Okay got it, removed now.",
+      "parentUuid": "e9e47898_62e6ad20",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "revId": "ce6a9c03d72d4127c6302932a7dafebd130fddec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6dbbd3c8_1691316d",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-11T15:51:47Z",
       "side": 1,
       "message": "ditto",
+      "revId": "ce6a9c03d72d4127c6302932a7dafebd130fddec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b0b291c_7f9ee2f1",
+        "filename": "service/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1947766
+      },
+      "writtenOn": "2022-10-11T16:01:14Z",
+      "side": 1,
+      "message": "Okay got it, removed now.",
+      "parentUuid": "6dbbd3c8_1691316d",
       "revId": "ce6a9c03d72d4127c6302932a7dafebd130fddec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
