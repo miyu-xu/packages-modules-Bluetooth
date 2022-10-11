@@ -22,6 +22,30 @@
       },
       "revId": "dca491421d9bed0c917444b9dd5767cb897932a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0772e288_7ce44f7a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapConvoListingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-11T03:56:48Z",
+      "side": 1,
+      "message": "Removed unused variables.",
+      "parentUuid": "9b30e21d_419b3967",
+      "range": {
+        "startLine": 53,
+        "startChar": 56,
+        "endLine": 53,
+        "endChar": 69
+      },
+      "revId": "dca491421d9bed0c917444b9dd5767cb897932a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
