@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ec7add_97dccc27",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-11T16:22:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8879d214_0917d20f",
+      "revId": "2de19f15c0ba8e0ba06432b35d0743b4e9edbf5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5a50bf3_56638faa",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-11T14:42:44Z",
       "side": 1,
       "message": "tBTA_GATTC cb_data \u003d {0}; would not work?",
+      "revId": "2de19f15c0ba8e0ba06432b35d0743b4e9edbf5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1ceae3_5648c13f",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-11T16:22:44Z",
+      "side": 1,
+      "message": "`{0}` will work due to `tBTA_GATTC` struct not having default values for its members, but technically this `0` is set for the first struct member only. If we rely on the default initialization mechanism, we should do it on all the members and use `{}` instead.",
+      "parentUuid": "c5a50bf3_56638faa",
       "revId": "2de19f15c0ba8e0ba06432b35d0743b4e9edbf5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
