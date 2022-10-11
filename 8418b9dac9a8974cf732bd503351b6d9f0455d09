@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e53b9ce_712a783d",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T14:17:47Z",
+      "side": 1,
+      "message": "Yes, I can update it here.",
+      "parentUuid": "1cc59012_2580493c",
+      "range": {
+        "startLine": 317,
+        "startChar": 28,
+        "endLine": 317,
+        "endChar": 48
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb72dc6e_ac98bd86",
@@ -94,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de53fb26_a05be3e7",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T14:17:47Z",
+      "side": 1,
+      "message": "REMOVING is only for unboding - actually `RemoveDevice()` API which is used when unbonding happens.",
+      "parentUuid": "cb72dc6e_ac98bd86",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 66
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dbd6355_cf703dce",
@@ -107,6 +155,30 @@
       "writtenOn": "2022-10-11T08:54:35Z",
       "side": 1,
       "message": "What for ? It ends after Registering for CCC ? or when streming starts ?",
+      "range": {
+        "startLine": 327,
+        "startChar": 2,
+        "endLine": 327,
+        "endChar": 33
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4165b639_a84d22d2",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T14:17:47Z",
+      "side": 1,
+      "message": "depends.\n\n1) After bonding, we this ends when CCC is registered and all characteristics are read - especially ASEs\n2) For Reconnection it ends when link is encrypted,  CCC is registered.",
+      "parentUuid": "0dbd6355_cf703dce",
       "range": {
         "startLine": 327,
         "startChar": 2,
