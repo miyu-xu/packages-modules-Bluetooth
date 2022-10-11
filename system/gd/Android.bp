@@ -341,8 +341,9 @@ cc_test {
         "mts_defaults",
     ],
     host_supported: true,
-    // TODO(b/231993739): Reenable isolated:true by deleting the explicit disable below
-    isolated: false,
+    test_options: {
+        unit_test: true,
+    },
     target: {
         linux: {
             srcs: [
