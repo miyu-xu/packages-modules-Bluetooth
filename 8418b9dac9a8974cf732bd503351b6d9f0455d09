@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8119f854_a200d13e",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-11T08:54:35Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "0d345ec6_3ef120f7",
+      "range": {
+        "startLine": 314,
+        "startChar": 11,
+        "endLine": 314,
+        "endChar": 29
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cc59012_2580493c",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 3
@@ -42,6 +66,52 @@
         "startChar": 28,
         "endLine": 317,
         "endChar": 48
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb72dc6e_ac98bd86",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-11T08:54:35Z",
+      "side": 1,
+      "message": "Does that also cover profile disconnection ? Or only whole device unbonding ?",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 66
+      },
+      "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dbd6355_cf703dce",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-11T08:54:35Z",
+      "side": 1,
+      "message": "What for ? It ends after Registering for CCC ? or when streming starts ?",
+      "range": {
+        "startLine": 327,
+        "startChar": 2,
+        "endLine": 327,
+        "endChar": 33
       },
       "revId": "8418b9dac9a8974cf732bd503351b6d9f0455d09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
