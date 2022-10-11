@@ -3943,7 +3943,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
                       p_dev_rec->link_key_type);
       (*btm_cb.api.p_link_key_callback)(p_bda, p_dev_rec->dev_class,
                                         p_dev_rec->sec_bd_name, link_key,
-                                        p_dev_rec->link_key_type);
+                                        p_dev_rec->link_key_type, true);
     }
   } else {
     if ((p_dev_rec->link_key_type == BTM_LKEY_TYPE_UNAUTH_COMB_P_256) ||
@@ -3993,7 +3993,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
       } else {
         (*btm_cb.api.p_link_key_callback)(p_bda, p_dev_rec->dev_class,
                                           p_dev_rec->sec_bd_name, link_key,
-                                          p_dev_rec->link_key_type);
+                                          p_dev_rec->link_key_type, false);
       }
     }
   }
@@ -4579,7 +4579,7 @@ static void btm_send_link_key_notif(tBTM_SEC_DEV_REC* p_dev_rec) {
   if (btm_cb.api.p_link_key_callback)
     (*btm_cb.api.p_link_key_callback)(
         p_dev_rec->bd_addr, p_dev_rec->dev_class, p_dev_rec->sec_bd_name,
-        p_dev_rec->link_key, p_dev_rec->link_key_type);
+        p_dev_rec->link_key, p_dev_rec->link_key_type, false);
 }
 
 /*******************************************************************************
