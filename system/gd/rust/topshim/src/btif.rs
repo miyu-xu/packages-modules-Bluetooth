@@ -1173,6 +1173,7 @@ impl BluetoothInterface {
     }
 
     pub fn allow_wake_by_hid(&self) -> i32 {
+        log::warn!("abps - allow_wake_by_hid in topshim");
         ccall!(self, allow_wake_by_hid)
     }
 
@@ -1181,6 +1182,7 @@ impl BluetoothInterface {
     }
 
     pub fn le_rand(&self) -> i32 {
+        log::warn!("abps - le_rand in topshim");
         ccall!(self, le_rand)
     }
 

@@ -699,8 +699,11 @@ void BTA_DmSetEventFilterConnectionSetupAllDevices() {
 
 void BTA_DmAllowWakeByHid(std::vector<RawAddress> le_hid_devices) {
   APPL_TRACE_API("BTA_DmAllowWakeByHid");
+  bta_dm_allow_wake_by_hid(le_hid_devices);
+#if 0
   do_in_main_thread(FROM_HERE,
                     base::Bind(bta_dm_allow_wake_by_hid, le_hid_devices));
+#endif
 }
 
 void BTA_DmRestoreFilterAcceptList() {

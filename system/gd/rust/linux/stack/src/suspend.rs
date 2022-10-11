@@ -129,6 +129,7 @@ impl ISuspend for Suspend {
     }
 
     fn suspend(&mut self, suspend_type: SuspendType) {
+        warn!("abps - Starting suspend");
         // self.was_a2dp_connected = TODO(230604670): check if A2DP is connected
         // self.current_advertiser_ids = TODO(224603198): save all advertiser ids
         self.intf.lock().unwrap().clear_event_mask();
@@ -141,7 +142,9 @@ impl ISuspend for Suspend {
         // Handle wakeful cases (Connected/Other)
         // Treat Other the same as Connected
         match suspend_type {
-            SuspendType::AllowWakeFromHid => {
+            SuspendType::AllowWakeFromHid | SuspendType::Other => {
+                warn!("abps - Doing allow wake from hid");
+                self.intf.lock().unwrap().allow_wake_by_hid();
                 // TODO(231345733): API For allowing classic HID only
                 // TODO(230604670): check if A2DP is connected
                 // TODO(224603198): save all advertiser information
@@ -150,13 +153,9 @@ impl ISuspend for Suspend {
                 self.intf.lock().unwrap().clear_event_filter();
                 self.intf.lock().unwrap().clear_event_mask();
             }
-            _ => {
-                self.intf.lock().unwrap().allow_wake_by_hid();
-            }
-        }
-        self.intf.lock().unwrap().clear_filter_accept_list();
-        self.intf.lock().unwrap().disconnect_all_acls();
+        };
 
+        warn!("Now waiting for le rand to complete...");
         self.bt.lock().unwrap().le_rand();
         self.suspend_state.lock().unwrap().le_rand_expected = true;
 
@@ -214,6 +213,8 @@ impl BtifBluetoothCallbacks for Suspend {
 
         let tx = self.tx.clone();
         tokio::spawn(async move {
+            tokio::time::sleep(tokio::time::Duration::from_millis(2000)).await;
+            warn!("abps - Sending suspend ready after waiting 2000ms...");
             let _result = tx.send(Message::SuspendReady(1)).await;
         });
     }

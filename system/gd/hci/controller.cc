@@ -1053,6 +1053,7 @@ void Controller::LeRand(LeRandCallback cb) {
 }
 
 void Controller::AllowWakeByHid() {
+  LOG_ERROR("abps - Allowing wake by hid");
   // Allow Classic HID
   auto class_of_device = ClassOfDevice::FromUint32Legacy(COD_HID_MAJOR).value();
   auto class_of_device_mask = ClassOfDevice::FromUint32Legacy(COD_HID_MASK).value();

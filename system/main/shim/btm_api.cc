@@ -1349,7 +1349,9 @@ tBTM_STATUS bluetooth::shim::BTM_ClearFilterAcceptList() {
 }
 
 tBTM_STATUS bluetooth::shim::BTM_DisconnectAllAcls() {
-  Stack::GetInstance()->GetAcl()->Shutdown();
+  LOG_WARN("abps - Disconnecting all ACLs");
+  Stack::GetInstance()->GetAcl()->DisconnectAll();
+  //Stack::GetInstance()->GetAcl()->Shutdown();
   return BTM_SUCCESS;
 }
 
@@ -1366,6 +1368,7 @@ tBTM_STATUS bluetooth::shim::BTM_SetEventFilterConnectionSetupAllDevices() {
 
 tBTM_STATUS bluetooth::shim::BTM_AllowWakeByHid(
     std::vector<RawAddress> le_hid_devices) {
+  LOG_WARN("abps - calling BTM_AllowWakeByHid");
   // Autoplumbed
   controller_get_interface()->allow_wake_by_hid();
   // Allow BLE HID

@@ -477,6 +477,7 @@ static void le_rand_btif_cb(uint64_t random_number) {
 
 static int le_rand() {
   LOG_VERBOSE("%s", __func__);
+  LOG_INFO("abps - bluetooth.cc le_rand");
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
   do_in_main_thread(
@@ -506,6 +507,7 @@ static int restore_filter_accept_list() {
 }
 
 static int allow_wake_by_hid() {
+  LOG_INFO("abps - bluetooth.cc allow_wake_by_hid");
   if (!interface_ready()) return BT_STATUS_NOT_READY;
   do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_allow_wake_by_hid));
   return BT_STATUS_SUCCESS;

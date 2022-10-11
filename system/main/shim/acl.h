@@ -106,6 +106,7 @@ class Acl : public hci::acl_manager::ConnectionCallbacks,
   void Dump(int fd) const;
   void DumpConnectionHistory(int fd) const;
 
+  void DisconnectAll();
   void Shutdown();
   void FinalShutdown();
 

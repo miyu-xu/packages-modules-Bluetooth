@@ -3541,6 +3541,7 @@ void btif_dm_disconnect_all_acls() {
 
 void btif_dm_le_rand(LeRandCallback callback) {
   LOG_VERBOSE("%s: called", __func__);
+  LOG_WARN("abps - %s", __func__);
   bta_dm_le_rand(callback);
 }
 
@@ -3550,9 +3551,10 @@ void btif_dm_set_event_filter_connection_setup_all_devices() {
 }
 
 void btif_dm_allow_wake_by_hid() {
+  LOG_WARN("abps - %s", __func__);
   // Autoplumbed
   auto le_hid_devices = btif_storage_get_hid_device_addresses();
-  BTA_DmAllowWakeByHid(le_hid_devices);
+  bta_dm_allow_wake_by_hid(le_hid_devices);
 }
 
 void btif_dm_restore_filter_accept_list() {
