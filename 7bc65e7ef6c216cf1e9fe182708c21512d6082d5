@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "984fffdc_d361018e",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-11T09:08:30Z",
+      "side": 1,
+      "message": "thanks - correct.",
+      "parentUuid": "8c872f0f_6ca541fe",
+      "range": {
+        "startLine": 971,
+        "startChar": 2,
+        "endLine": 971,
+        "endChar": 3
+      },
+      "revId": "7bc65e7ef6c216cf1e9fe182708c21512d6082d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c3b5afc_f6b7c7af",
