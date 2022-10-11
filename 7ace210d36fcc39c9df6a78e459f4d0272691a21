@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78da7a8f_731cb9ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-11T20:41:55Z",
+      "side": 1,
+      "message": "This test command does not make the previous CL to fail.\nIn fact, I am not able to locally make the previous one to fail.\n\nHow can we assure this CL will not have the same issue as the previous one ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 15,
+        "endChar": 75
+      },
+      "revId": "7ace210d36fcc39c9df6a78e459f4d0272691a21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
