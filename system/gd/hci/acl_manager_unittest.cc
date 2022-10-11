@@ -632,7 +632,9 @@ class AclManagerWithConnectionTest : public AclManagerWithCallbacksTest {
   } mock_connection_management_callbacks_;
 };
 
-TEST_F(AclManagerWithCallbacksTest, startup_teardown) {}
+TEST_F(AclManagerWithCallbacksTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 class AclManagerWithLeConnectionTest : public AclManagerWithCallbacksTest {
  protected:
