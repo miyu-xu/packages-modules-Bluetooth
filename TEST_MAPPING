@@ -70,6 +70,9 @@
     },
     {
       "name" : "net_test_stack_btm"
+    },
+    {
+      "name" : "bluetooth_test_gd_unit"
     }
   ]
 }
