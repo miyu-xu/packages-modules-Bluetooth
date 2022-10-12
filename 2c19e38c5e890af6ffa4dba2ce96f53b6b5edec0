@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc7226a_1a81f168",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T22:27:58Z",
+      "side": 1,
+      "message": "Since this is public API, let\u0027s add doc comments to each attribute",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 32
+      },
+      "revId": "2c19e38c5e890af6ffa4dba2ce96f53b6b5edec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dfab285_54fa8ab3",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T22:27:58Z",
+      "side": 1,
+      "message": "If this is meant to be a wrapper of a `Vec\u003cBatterySet\u003e` with convenient functions, a common way is to use tuple struct:\n```\npub struct Batteries(Vec\u003cBatterySet\u003e);\n```\n\nand accessing the Vec can be done with `self.0`, e.g.\n```\npub fn pick_best(\u0026self) -\u003e Option\u003cBatterySet\u003e {\n    self.0.iter()...\n}\n```\n\nand the constructor would be like:\n```\npub fn new() -\u003e Self {\n    Self(vec![])\n}\n```",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 1
+      },
+      "revId": "2c19e38c5e890af6ffa4dba2ce96f53b6b5edec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9820116d_d81ed488",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T22:27:58Z",
+      "side": 1,
+      "message": "I am not clear why we need this callback internally. What is the use case where BatteryManager needs to be a ConsumerCallback of BatteryProviderManager? Can you describe a concrete flow of this use case?",
+      "revId": "2c19e38c5e890af6ffa4dba2ce96f53b6b5edec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
