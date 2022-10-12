@@ -18,6 +18,7 @@ import android.util.Log;
 import android.util.Xml;
 
 import com.android.bluetooth.DeviceWorkArounds;
+import com.android.internal.annotations.VisibleForTesting;
 
 import org.xmlpull.v1.XmlSerializer;
 
@@ -29,6 +30,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class BluetoothMapMessageListing {
+    @VisibleForTesting
+    boolean mIsTesting = false;
     private boolean mHasUnread = false;
     private static final String TAG = "BluetoothMapMessageListing";
     private static final boolean D = BluetoothMapService.DEBUG;
@@ -90,9 +93,15 @@ public class BluetoothMapMessageListing {
     public byte[] encode(boolean includeThreadId, String version)
             throws UnsupportedEncodingException {
         StringWriter sw = new StringWriter();
-        boolean isBenzCarkit = DeviceWorkArounds.addressStartsWith(
-                BluetoothMapService.getRemoteDevice().getAddress(),
-                DeviceWorkArounds.MERCEDES_BENZ_CARKIT);
+        boolean isBenzCarkit;
+
+        if (mIsTesting) {
+            isBenzCarkit = false;
+        } else {
+            isBenzCarkit = DeviceWorkArounds.addressStartsWith(
+                    BluetoothMapService.getRemoteDevice().getAddress(),
+                    DeviceWorkArounds.MERCEDES_BENZ_CARKIT);
+        }
         try {
             XmlSerializer xmlMsgElement = Xml.newSerializer();
             xmlMsgElement.setOutput(sw);
@@ -121,8 +130,9 @@ public class BluetoothMapMessageListing {
             Log.w(TAG, e);
         }
         /* Fix IOT issue to replace '&amp;' by '&', &lt; by < and '&gt; by '>' in MessageListing */
-        if (DeviceWorkArounds.addressStartsWith(BluetoothMapService.getRemoteDevice().getAddress(),
-                    DeviceWorkArounds.BREZZA_ZDI_CARKIT)) {
+        if (isBenzCarkit && DeviceWorkArounds.addressStartsWith(
+                BluetoothMapService.getRemoteDevice().getAddress(),
+                DeviceWorkArounds.BREZZA_ZDI_CARKIT)) {
             return sw.toString()
                     .replaceAll("&amp;", "&")
                     .replaceAll("&lt;", "<")
