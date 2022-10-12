@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d877d0d_2d05bd55",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "Why does the code work differently comparing with the other profile services? :(\nThis is not good for readability.\n\nAnyway shouldn\u0027t we call setActiveDevice for other profile null?\nFor now, calling multiple times of setActiveDevice with the same device looks ok.\n\nLet me know if you see any problem, or I\u0027ll merge the CL, and do refactoring in the follow-up CLs for Android U.",
+      "parentUuid": "eda2713a_da9769c9",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58a45ede_94ac8645",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e55b5f0f_d65c4bb6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "ditto.",
+      "parentUuid": "58a45ede_94ac8645",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "390009b3_d23b0df7",
@@ -65,6 +101,30 @@
       "writtenOn": "2022-10-11T11:43:26Z",
       "side": 1,
       "message": "what do you mean by that?",
+      "range": {
+        "startLine": 237,
+        "startChar": 54,
+        "endLine": 237,
+        "endChar": 91
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "924c39e8_50c7ad94",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "A2DP and HFP can be activated at the same time.",
+      "parentUuid": "390009b3_d23b0df7",
       "range": {
         "startLine": 237,
         "startChar": 54,
@@ -98,6 +158,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53faa3f7_7a354c00",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "829ed192_6d958c5a",
+      "range": {
+        "startLine": 333,
+        "startChar": 51,
+        "endLine": 333,
+        "endChar": 89
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac03eebd_1f0cff05",
@@ -111,6 +195,30 @@
       "writtenOn": "2022-10-11T11:43:26Z",
       "side": 1,
       "message": "this seems to be not valid here",
+      "range": {
+        "startLine": 425,
+        "startChar": 30,
+        "endLine": 425,
+        "endChar": 94
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f29e5339_ab2bc921",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac03eebd_1f0cff05",
       "range": {
         "startLine": 425,
         "startChar": 30,
@@ -138,6 +246,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67ccfd9e_e993652a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "Calling multiple times of setActiveDevice with the same device would be no op.\nI added a guiding logic in setLeAudioActiveDevice as well.",
+      "parentUuid": "ff5432a4_bb4ed531",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a54b38de_3420963b",
@@ -161,6 +287,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d370dc6_16308867",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a54b38de_3420963b",
+      "range": {
+        "startLine": 671,
+        "startChar": 20,
+        "endLine": 671,
+        "endChar": 34
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b75573a_96b31563",
@@ -174,6 +324,30 @@
       "writtenOn": "2022-10-11T11:43:26Z",
       "side": 1,
       "message": "shouldn\u0027t headsetFallbackDevice be checked here instead?",
+      "range": {
+        "startLine": 676,
+        "startChar": 20,
+        "endLine": 676,
+        "endChar": 34
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13d54b52_fd43b34e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b75573a_96b31563",
       "range": {
         "startLine": 676,
         "startChar": 20,
@@ -209,6 +383,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18a16893_73e81899",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "It\u0027s not 100% OK since people have different opinions on it.\nWithout this, phone call will be happening via builtin earpiece.\nThis would be somewhat rare cases, and I guess using HFP might be better than builtin earpiece.\nWhat do you think?",
+      "parentUuid": "f862baf4_fd89ebd5",
+      "range": {
+        "startLine": 688,
+        "startChar": 24,
+        "endLine": 688,
+        "endChar": 45
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e77fda54_7f41560d",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 5
@@ -220,6 +418,30 @@
       "writtenOn": "2022-10-11T11:43:26Z",
       "side": 1,
       "message": "just asking. Is this OK if (device !\u003d a2dpFallbackDevice) ? Maybe yes, just checking",
+      "range": {
+        "startLine": 703,
+        "startChar": 24,
+        "endLine": 703,
+        "endChar": 42
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d352b801_fda82c39",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T00:55:04Z",
+      "side": 1,
+      "message": "ditto.",
+      "parentUuid": "e77fda54_7f41560d",
       "range": {
         "startLine": 703,
         "startChar": 24,
