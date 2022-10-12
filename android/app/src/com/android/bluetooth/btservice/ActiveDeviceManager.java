@@ -115,7 +115,8 @@ class ActiveDeviceManager {
     private static final int MESSAGE_HFP_ACTION_ACTIVE_DEVICE_CHANGED = 5;
     private static final int MESSAGE_HEARING_AID_ACTION_CONNECTION_STATE_CHANGED = 6;
     private static final int MESSAGE_HEARING_AID_ACTION_ACTIVE_DEVICE_CHANGED = 7;
-    private static final int MESSAGE_LE_AUDIO_ACTION_ACTIVE_DEVICE_CHANGED = 8;
+    private static final int MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE_CHANGED = 8;
+    private static final int MESSAGE_LE_AUDIO_ACTION_ACTIVE_DEVICE_CHANGED = 9;
 
     private final AdapterService mAdapterService;
     private final ServiceFactory mFactory;
@@ -127,6 +128,7 @@ class ActiveDeviceManager {
     private final List<BluetoothDevice> mA2dpConnectedDevices = new LinkedList<>();
     private final List<BluetoothDevice> mHfpConnectedDevices = new LinkedList<>();
     private final List<BluetoothDevice> mHearingAidConnectedDevices = new LinkedList<>();
+    private final List<BluetoothDevice> mLeAudioConnectedDevices = new LinkedList<>();
     private BluetoothDevice mA2dpActiveDevice = null;
     private BluetoothDevice mHfpActiveDevice = null;
     private BluetoothDevice mHearingAidActiveDevice = null;
@@ -168,6 +170,10 @@ class ActiveDeviceManager {
                     break;
                 case BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED:
                     mHandler.obtainMessage(MESSAGE_HEARING_AID_ACTION_ACTIVE_DEVICE_CHANGED,
+                            intent).sendToTarget();
+                    break;
+                case BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED:
+                    mHandler.obtainMessage(MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE_CHANGED,
                             intent).sendToTarget();
                     break;
                 case BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED:
@@ -385,10 +391,48 @@ class ActiveDeviceManager {
                 }
                 break;
 
+                case MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE_CHANGED: {
+                    Intent intent = (Intent) msg.obj;
+                    BluetoothDevice device =
+                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    int prevState = intent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, -1);
+                    int nextState = intent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1);
+                    if (prevState == nextState) {
+                        // Nothing has changed
+                        break;
+                    }
+                    if (nextState == BluetoothProfile.STATE_CONNECTED) {
+                        // Device connected
+                        if (DBG) {
+                            Log.d(TAG, "handleMessage(MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE"
+                                    + "_CHANGED): device " + device + " connected");
+                        }
+                        if (mLeAudioConnectedDevices.contains(device)) {
+                            break;      // The device is already connected
+                        }
+                        mLeAudioConnectedDevices.add(device);
+                        // TODO: New connected device: select it as active
+                        break;
+                    }
+                    if (prevState == BluetoothProfile.STATE_CONNECTED) {
+                        // Device disconnected
+                        if (DBG) {
+                            Log.d(TAG, "handleMessage(MESSAGE_LE_AUDIO_ACTION_CONNECTION_STATE"
+                                    + "_CHANGED): device " + device + " disconnected");
+                        }
+                        mLeAudioConnectedDevices.remove(device);
+                        // TODO: Disconnected device: call setLeAudioActiveDevice(null) if needed
+                    }
+                }
+                break;
+
                 case MESSAGE_LE_AUDIO_ACTION_ACTIVE_DEVICE_CHANGED: {
                     Intent intent = (Intent) msg.obj;
                     BluetoothDevice device =
                             intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    if (device != null && !mLeAudioConnectedDevices.contains(device)) {
+                        mLeAudioConnectedDevices.add(device);
+                    }
                     if (DBG) {
                         Log.d(TAG, "handleMessage(MESSAGE_LE_AUDIO_ACTION_ACTIVE_DEVICE_CHANGED): "
                                 + "device= " + device);
@@ -472,6 +516,8 @@ class ActiveDeviceManager {
         // HearingAidService also handles ACTION_CONNECTION_STATE_CHANGED
         filter.addAction(BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED);
+        // LeAudioService also handles ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED);
         mAdapterService.registerReceiver(mReceiver, filter);
 
@@ -558,7 +604,8 @@ class ActiveDeviceManager {
         if (leAudioService == null) {
             return;
         }
-        if (!leAudioService.setActiveDevice(device)) {
+        if (!leAudioService.getActiveDevices().contains(device)
+                && !leAudioService.setActiveDevice(device)) {
             return;
         }
         mLeAudioActiveDevice = device;
