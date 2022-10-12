@@ -59,6 +59,8 @@ pub enum SuspendType {
 
 struct SuspendState {
     le_rand_expected: bool,
+    suspend_expected: bool,
+    resume_expected: bool,
 }
 
 /// Implementation of the suspend API.
@@ -90,7 +92,11 @@ impl Suspend {
             is_connected_suspend: false,
             was_a2dp_connected: false,
             suspend_timeout_joinhandle: None,
-            suspend_state: Arc::new(Mutex::new(SuspendState { le_rand_expected: false })),
+            suspend_state: Arc::new(Mutex::new(SuspendState {
+                le_rand_expected: false,
+                suspend_expected: false,
+                resume_expected: false,
+            })),
         }
     }
 
@@ -108,6 +114,12 @@ impl Suspend {
     pub(crate) fn suspend_ready(&self, suspend_id: u32) {
         self.callbacks.for_all_callbacks(|callback| {
             callback.on_suspend_ready(suspend_id);
+        });
+    }
+
+    pub(crate) fn resume_ready(&self, suspend_id: u32) {
+        self.callbacks.for_all_callbacks(|callback| {
+            callback.on_resumed(suspend_id as i32);
         });
     }
 }
@@ -129,36 +141,26 @@ impl ISuspend for Suspend {
     }
 
     fn suspend(&mut self, suspend_type: SuspendType) {
-        // self.was_a2dp_connected = TODO(230604670): check if A2DP is connected
-        // self.current_advertiser_ids = TODO(224603198): save all advertiser ids
         self.intf.lock().unwrap().clear_event_mask();
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
         // self.gatt.lock().unwrap().advertising_disable(); TODO(224602924): suspend all adv.
-        self.gatt.lock().unwrap().stop_scan(0);
+        // self.gatt.lock().unwrap().stop_scan(0);
         self.intf.lock().unwrap().disconnect_all_acls();
 
         // Handle wakeful cases (Connected/Other)
         // Treat Other the same as Connected
         match suspend_type {
-            SuspendType::AllowWakeFromHid => {
-                // TODO(231345733): API For allowing classic HID only
-                // TODO(230604670): check if A2DP is connected
-                // TODO(224603198): save all advertiser information
-            }
-            SuspendType::NoWakesAllowed => {
-                self.intf.lock().unwrap().clear_event_filter();
-                self.intf.lock().unwrap().clear_event_mask();
-            }
-            _ => {
+            SuspendType::AllowWakeFromHid | SuspendType::Other => {
                 self.intf.lock().unwrap().allow_wake_by_hid();
+                // self.was_a2dp_connected = TODO(230604670): check if A2DP is connected
+                // TODO(230604670): check if A2DP is connected
             }
+            _ => {}
         }
-        self.intf.lock().unwrap().clear_filter_accept_list();
-        self.intf.lock().unwrap().disconnect_all_acls();
-
-        self.bt.lock().unwrap().le_rand();
         self.suspend_state.lock().unwrap().le_rand_expected = true;
+        self.suspend_state.lock().unwrap().suspend_expected = true;
+        self.bt.lock().unwrap().le_rand();
 
         if let Some(join_handle) = &self.suspend_timeout_joinhandle {
             join_handle.abort();
@@ -172,6 +174,7 @@ impl ISuspend for Suspend {
             log::error!("Suspend did not complete in 2 seconds, continuing anyway.");
 
             suspend_state.lock().unwrap().le_rand_expected = false;
+            suspend_state.lock().unwrap().suspend_expected = false;
             tokio::spawn(async move {
                 let _result = tx.send(Message::SuspendReady(1)).await;
             });
@@ -190,10 +193,9 @@ impl ISuspend for Suspend {
             // TODO(224603198): start all advertising again
         }
 
-        self.callbacks.for_all_callbacks(|callback| {
-            callback.on_resumed(1);
-        });
-
+        self.suspend_state.lock().unwrap().le_rand_expected = true;
+        self.suspend_state.lock().unwrap().resume_expected = true;
+        self.bt.lock().unwrap().le_rand();
         true
     }
 }
@@ -206,15 +208,27 @@ impl BtifBluetoothCallbacks for Suspend {
             log::warn!("Unexpected LE Rand callback, ignoring.");
             return;
         }
+        self.suspend_state.lock().unwrap().le_rand_expected = false;
 
         if let Some(join_handle) = &self.suspend_timeout_joinhandle {
             join_handle.abort();
             self.suspend_timeout_joinhandle = None;
         }
 
-        let tx = self.tx.clone();
-        tokio::spawn(async move {
-            let _result = tx.send(Message::SuspendReady(1)).await;
-        });
+        if self.suspend_state.lock().unwrap().suspend_expected {
+            self.suspend_state.lock().unwrap().suspend_expected = false;
+            let tx = self.tx.clone();
+            tokio::spawn(async move {
+                let _result = tx.send(Message::SuspendReady(1)).await;
+            });
+        }
+
+        if self.suspend_state.lock().unwrap().resume_expected {
+            self.suspend_state.lock().unwrap().resume_expected = false;
+            let tx = self.tx.clone();
+            tokio::spawn(async move {
+                let _result = tx.send(Message::ResumeReady(1)).await;
+            });
+        }
     }
 }
