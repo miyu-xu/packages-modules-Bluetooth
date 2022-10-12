@@ -45,6 +45,30 @@
       },
       "revId": "d725a7e05f46419dcf2b1ed35d58d3c05aec3886",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd68bfb7_599a4611",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T06:25:36Z",
+      "side": 1,
+      "message": "or even better, without mutability:\n```\nlet concated: Vec\u003cu8\u003e \u003d uuid_slice.iter().rev().chain(data).cloned().collect();\n```",
+      "parentUuid": "53ecb885_12d5c0bf",
+      "range": {
+        "startLine": 267,
+        "startChar": 20,
+        "endLine": 267,
+        "endChar": 23
+      },
+      "revId": "d725a7e05f46419dcf2b1ed35d58d3c05aec3886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
