@@ -58,6 +58,7 @@ import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.hfp.HeadsetStackEvent;
 
 import org.hamcrest.core.AllOf;
@@ -93,6 +94,8 @@ public class HeadsetClientStateMachineTest {
     private AdapterService mAdapterService;
     @Mock
     private Resources mMockHfpResources;
+    @Mock
+    private HeadsetService mHeadsetService;
     @Mock
     private HeadsetClientService mHeadsetClientService;
     @Mock
@@ -138,7 +141,7 @@ public class HeadsetClientStateMachineTest {
         mHandlerThread.start();
         // Manage looper execution in main test thread explicitly to guarantee timing consistency
         mHeadsetClientStateMachine = new TestHeadsetClientStateMachine(mHeadsetClientService,
-                mHandlerThread.getLooper(), mNativeInterface);
+                mHeadsetService, mHandlerThread.getLooper(), mNativeInterface);
         mHeadsetClientStateMachine.start();
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
     }
@@ -1399,9 +1402,9 @@ public class HeadsetClientStateMachineTest {
 
         Boolean allowConnect = null;
 
-        TestHeadsetClientStateMachine(HeadsetClientService context, Looper looper,
-                NativeInterface nativeInterface) {
-            super(context, looper, nativeInterface);
+        TestHeadsetClientStateMachine(HeadsetClientService context, HeadsetService headsetService,
+                Looper looper, NativeInterface nativeInterface) {
+            super(context, headsetService, looper, nativeInterface);
         }
 
         public boolean doesSuperHaveDeferredMessages(int what) {
