@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c75d7efe_41837ed2",
+        "filename": "system/bta/gatt/bta_gattc_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T14:48:14Z",
+      "side": 1,
+      "message": "This was added in latest patch version - found during testing that, queue elements could be free actually :)",
+      "revId": "db0645b8e1fcea5dc3d042fc330a671c5292b43c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
