@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0ade769_af17678a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-12T14:01:06Z",
+      "side": 1,
+      "message": "I\u0027m slightly worried about the failure of v2/android-virtual-infra/test_mapping/presubmit-avd. It looks not relevant to the unittests this CL added and can be a known issue(b/154347133) as I see all tests passed, so I\u0027ll just submit it.",
+      "revId": "482f200d0f5b64afe787357ae9c9ef0aa8fadcdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
