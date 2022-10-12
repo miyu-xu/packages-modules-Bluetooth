@@ -193,3 +193,13 @@ TEST_F(StackL2capChannelTest, l2c_lcc_proc_pdu__NextSegment) {
 
   l2c_lcc_proc_pdu(&ccb_, p_buf);
 }
+
+TEST_F(StackL2capChannelTest, l2c_link_init) {
+  l2cb.num_lm_acl_bufs = 0;
+  l2cb.controller_xmit_window = 0;
+
+  l2c_link_init(controller_.get_acl_buffer_count_classic());
+
+  ASSERT_EQ(123, l2cb.num_lm_acl_bufs);
+  ASSERT_EQ(123, l2cb.controller_xmit_window);
+}
