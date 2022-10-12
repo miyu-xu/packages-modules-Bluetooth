@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62615051_df6822d6",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T03:48:09Z",
+      "side": 1,
+      "message": "That\u0027s better, but in this case returning Result and having to unwrap is unnecessary because we can guarantee that there is no case where it could fail to build a `Uuid` from a `[u8; 16]`. Having the 5-line `impl From\u003c[u8; 16]\u003e for Uuid` will pay off since this conversion is used a lot.",
+      "parentUuid": "03408c1f_d52c155d",
+      "range": {
+        "startLine": 961,
+        "startChar": 40,
+        "endLine": 965,
+        "endChar": 26
+      },
+      "revId": "3fd52db038d94e53a56a837ef3f34ccb3eb1d5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a31bad03_903a74e3",
