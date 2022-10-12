@@ -748,10 +748,19 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         RemoveCigForGroup(group);
       }
 
-      LOG(ERROR) << __func__
-                 << ", failed to create CIS, status: " << loghex(event->status);
+      LOG_ERROR("failed to create CIS, status: 0x%02x ", event->status);
+      if (event->status == HCI_ERR_CONN_FAILED_ESTABLISHMENT) {
+        CisCreateForDevice(group, leAudioDevice);
+        return;
+      }
 
-      StopStream(group);
+      if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+        /* Release the stream if we are not able to create CISes.
+         * But if there is one device streaming, keep it going. */
+        StopStream(group);
+      } else {
+        // TODO WHat?
+      }
       return;
     }
 
@@ -1454,7 +1463,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       auto ases_pair = leAudioDevice->GetAsesByCisConnHdl(ase->cis_conn_hdl);
 
       /* Already in pending state - bi-directional CIS */
-      if (ase->data_path_state == AudioStreamDataPathState::CIS_PENDING)
+      if (ase->data_path_state == AudioStreamDataPathState::CIS_PENDING ||
+          ase->data_path_state == AudioStreamDataPathState::CIS_ESTABLISHED)
         continue;
 
       if (ases_pair.sink)
