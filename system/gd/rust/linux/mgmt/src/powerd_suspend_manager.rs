@@ -136,7 +136,7 @@ impl ISuspendCallback for SuspendCallback {
         }
     }
 
-    fn on_resumed(&self, suspend_id: i32) {
+    fn on_resumed(&self, suspend_id: u32) {
         // Received when adapter is ready to suspend. This is just for our information and powerd
         // doesn't need to know about this.
         log::debug!("Suspend resumed, adapter suspend_id = {}", suspend_id);
@@ -485,7 +485,7 @@ impl PowerdSuspendManager {
         self.context.lock().unwrap().pending_suspend_imminent = None;
 
         if let Some(adapter_suspend_dbus) = &self.context.lock().unwrap().adapter_suspend_dbus {
-            let suspend_dbus_rpc = adapter_suspend_dbus.rpc.clone();
+            let mut suspend_dbus_rpc = adapter_suspend_dbus.rpc.clone();
             tokio::spawn(async move {
                 let result = suspend_dbus_rpc.resume().await;
                 log::debug!("Adapter resume call, success = {}", result.unwrap_or(false));
