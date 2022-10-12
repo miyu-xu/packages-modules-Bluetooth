@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f88f5a9_1f4dfdd1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapapi/BluetoothMapIMProviderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T04:40:54Z",
+      "side": 1,
+      "message": "missing space",
+      "range": {
+        "startLine": 529,
+        "startChar": 39,
+        "endLine": 529,
+        "endChar": 40
+      },
+      "revId": "ffca5f71f4bf18134a2ac51945c8d93cf2390579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef3cb6e_a1fc7320",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapapi/BluetoothMapIMProviderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T04:40:54Z",
+      "side": 1,
+      "message": "Could you check the value of Uri instead of any?",
+      "range": {
+        "startLine": 535,
+        "startChar": 38,
+        "endLine": 535,
+        "endChar": 41
+      },
+      "revId": "ffca5f71f4bf18134a2ac51945c8d93cf2390579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55396ade_d808d56f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapapi/BluetoothMapIMProviderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T04:40:54Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 540,
+        "startChar": 41,
+        "endLine": 540,
+        "endChar": 42
+      },
+      "revId": "ffca5f71f4bf18134a2ac51945c8d93cf2390579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
