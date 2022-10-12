@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad708727_b19c437c",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1587936
+      },
+      "writtenOn": "2022-10-12T17:44:15Z",
+      "side": 1,
+      "message": "If we aren\u0027t storing them anywhere in fluoride, I\u0027d argue this isn\u0027t serving any purpose.  Let\u0027s file a task to consider removing this all together.",
+      "range": {
+        "startLine": 692,
+        "startChar": 0,
+        "endLine": 695,
+        "endChar": 5
+      },
+      "revId": "c3a9c6ba9f0efc9b66ec1154585c781ad9eff877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
