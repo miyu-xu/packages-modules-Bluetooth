@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd2c323_1f0f58a1",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-12T09:09:10Z",
+      "side": 1,
+      "message": "Can we have switch/case without default here ?\nWhen there is no default in switch/case, we get compilation error when someone adds new enum value, but doesn\u0027t update the switch/case.",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 4
+      },
+      "revId": "005c2c28082e61d310aba740018f7053b5844178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4342c3b_7a5ee87b",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-12T09:09:10Z",
+      "side": 1,
+      "message": "why differentiate between CONNECTED_BY_USER_GETTING_READY and CONNECTED_AUTOCONNECT_GETTING_READY ?\n\n\nis GETTING_READY different for auto connect vs user initated connection ?\nIf no can we have just one state, GETTING_READY, or maybe CONFIGURING ?",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "005c2c28082e61d310aba740018f7053b5844178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9969d041_fec0b721",
+        "filename": "system/bta/le_audio/storage_helper_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-12T09:09:10Z",
+      "side": 1,
+      "message": "using decl \u0027DeviceConnectState\u0027 is unused [misc-unused-using-decls]\nusing le_audio::DeviceConnectState;\n                ^\n/b/f/w/packages/modules/Bluetooth/system/bta/le_audio/storage_helper_test.cc:23:17: note: remove the using\nusing le_audio::DeviceConnectState;\n~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 35
+      },
+      "revId": "005c2c28082e61d310aba740018f7053b5844178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
