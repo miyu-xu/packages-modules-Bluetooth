@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8c2bc5_6dce9d2c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T06:09:30Z",
+      "side": 1,
+      "message": "you can iterate the key value pairs together:\n```\nfor (uuid_str, data) in service_data.iter() {\n```\n\nOr even more convenient, just iterate elements with valid uuid str:\n```\nfor (uuid, data) in service_data.iter().filter_map(|(s, d)| Some((parse_uuid_string(s)?, d))) {\n```",
+      "range": {
+        "startLine": 265,
+        "startChar": 8,
+        "endLine": 265,
+        "endChar": 31
+      },
+      "revId": "d725a7e05f46419dcf2b1ed35d58d3c05aec3886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ecb885_12d5c0bf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T06:09:30Z",
+      "side": 1,
+      "message": "avoid mutability if possible, and defer data copy until needed:\n```\n// no data copy, cheap slicing\nlet uuid_bytes \u003d UuidHelper::get_shortest_slice(\u0026uuid.uu);\n```\n\nWhen extending, do the copy and reverse:\n```\nconcated.extend(uuid_bytes.iter().rev());\n```",
+      "range": {
+        "startLine": 267,
+        "startChar": 20,
+        "endLine": 267,
+        "endChar": 23
+      },
+      "revId": "d725a7e05f46419dcf2b1ed35d58d3c05aec3886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
