@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6241d9bf_90007a53",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:38:31Z",
+      "side": 1,
+      "message": "I would just remove code from the LeAudioService and put it here instead in this patch.",
+      "revId": "6222acc28b4d2ba6068b95b1095827517d210ca0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9825674_ce5fc17c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:38:31Z",
+      "side": 1,
+      "message": "Ditto",
+      "revId": "6222acc28b4d2ba6068b95b1095827517d210ca0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf3d451_1ea37b8d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:38:31Z",
+      "side": 1,
+      "message": "I would use this patch to move the control from LeAudioService to this place.",
+      "revId": "6222acc28b4d2ba6068b95b1095827517d210ca0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
