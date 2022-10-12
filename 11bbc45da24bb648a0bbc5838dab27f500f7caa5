@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec7017f_bf976ff1",
+        "filename": "system/bta/dm/bta_dm_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:03:09Z",
+      "side": 1,
+      "message": "Why do one more layer of `PostTask` here? btif is scheduled on main thread already, why schedule it AGAIN for bta?",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f91bad_d11c613a",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:03:09Z",
+      "side": 1,
+      "message": "This seems like a debugging comment -- we should still be stopping scanning right?",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ea1d38_a94fbece",
+        "filename": "system/main/shim/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:03:09Z",
+      "side": 1,
+      "message": "We may want to rename this as `DisconnectAllForSuspend` so that we document why we use hci error reason 0x15",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbaaa749_e99e767c",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1353,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:03:09Z",
+      "side": 1,
+      "message": "This should just get deleted instead of being commented out.",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
