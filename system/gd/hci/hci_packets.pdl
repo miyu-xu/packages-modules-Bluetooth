@@ -5655,7 +5655,7 @@ enum DirectAdvertisingAddressType : 8 {
   PUBLIC_IDENTITY_ADDRESS = 0x02,
   RANDOM_IDENTITY_ADDRESS = 0x03,
   CONTROLLER_UNABLE_TO_RESOLVE = 0xFE,
-  NO_ADDRESS = 0xFF,
+  NONE = 0xFF,
 }
 
 enum DirectAdvertisingEventType : 8 {
