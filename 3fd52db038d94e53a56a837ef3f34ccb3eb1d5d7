@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2580a401_ad904e72",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T03:42:54Z",
+      "side": 1,
+      "message": "using group_by will get what you want: [(16BIT, [uuid1, uuid2]), (32BIT, [uuid3, uuid4])], that\u0027s why it\u0027s called group_by because it groups the uuids based on a the given criterion (in this case the length type). In my opinion there is a big benefit of using Rust\u0027s functional style because it avoids re-writing an existing logic (in this case grouping logic) and also reducing mutability can reduce logic errors. In this case the situation is not complex (mostly logic reuse) so I encourage you to try extending my prototype above and you could get used to functional style and appreciate its benefits.\n\nAnother example where functional style\u0027s benefits can be clearly seen: https://r.android.com/c/platform/packages/modules/Bluetooth/+/2221532/1..7. The diff shows before and after changing to functional style, the code becomes:\n1. more concise\n2. more re-use of existing logic (e.g. iterating chunks, flattening nested structures) and better separation of concerns (in this case iterating concern can be separated)\n3. minimal use of mutable variable reduces accidental error\n4. easy to extend: https://r.android.com/2235177",
+      "parentUuid": "0bed9b84_a1108d17",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 43
+      },
+      "revId": "3fd52db038d94e53a56a837ef3f34ccb3eb1d5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71b4e1bd_79eb2a77",
