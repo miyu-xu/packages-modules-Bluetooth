@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b8a0cc_5ee9bd7c",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-12T21:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "202fef13_742455df",
+      "revId": "322c030361bf92a035c472904c24d14a1f7d4d3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f9b1a91_78501db3",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-10-10T23:50:53Z",
       "side": 1,
       "message": "nit: use `{}` for do nothing in match arm, unless we specifically need to get out of the function.",
+      "range": {
+        "startLine": 98,
+        "startChar": 28,
+        "endLine": 98,
+        "endChar": 34
+      },
+      "revId": "322c030361bf92a035c472904c24d14a1f7d4d3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "477f42dd_80e33ab7",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-12T21:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f9b1a91_78501db3",
       "range": {
         "startLine": 98,
         "startChar": 28,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30394723_b98455f8",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-12T21:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "521e1db8_8bcebb9b",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 12
+      },
+      "revId": "322c030361bf92a035c472904c24d14a1f7d4d3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adc88220_60c8f5c2",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da917724_059b478d",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-12T21:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adc88220_60c8f5c2",
+      "range": {
+        "startLine": 125,
+        "startChar": 50,
+        "endLine": 125,
+        "endChar": 59
+      },
+      "revId": "322c030361bf92a035c472904c24d14a1f7d4d3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1927cb40_ed0c74ab",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-10-10T23:50:53Z",
       "side": 1,
       "message": "make `remote_address` and `value` immutable references (`remote_address: \u0026String, value: \u0026Vec\u003cu8\u003e`) since we do the clones inside this function.",
+      "range": {
+        "startLine": 237,
+        "startChar": 35,
+        "endLine": 237,
+        "endChar": 73
+      },
+      "revId": "322c030361bf92a035c472904c24d14a1f7d4d3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f74ecfd_8affd2b0",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-12T21:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1927cb40_ed0c74ab",
       "range": {
         "startLine": 237,
         "startChar": 35,
