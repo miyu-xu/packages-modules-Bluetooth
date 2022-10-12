@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48001741_1b03bdca",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T21:35:37Z",
+      "side": 1,
+      "message": "since this is getting more complex, please add `new` function to construct the default",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 39
+      },
+      "revId": "22a167c3ffaf87cef81f49e7dea21647c17a7fb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d74050f_da3eb7e2",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-12T21:35:37Z",
+      "side": 1,
+      "message": "suspend_id should be u32, please fix the interface to be u32.",
+      "range": {
+        "startLine": 122,
+        "startChar": 32,
+        "endLine": 122,
+        "endChar": 49
+      },
+      "revId": "22a167c3ffaf87cef81f49e7dea21647c17a7fb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
