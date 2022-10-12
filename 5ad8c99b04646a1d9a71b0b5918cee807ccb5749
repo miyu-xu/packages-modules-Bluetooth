@@ -70,6 +70,30 @@
       },
       "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9218955_402843e4",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-12T15:56:46Z",
+      "side": 1,
+      "message": "I don\u0027t think it has to be abandoned; there is merit in catching the `default` case.\n\nMy point is with just a little extra modifications this part will be compliant with the rest of the code base and provide significantly better logging/reporting.\n\nThere are many examples of how to address this in other parts of the code that may be used, so please update accordingly.\n\nThis effort is worthwhile.",
+      "parentUuid": "111e8745_5b0f3e4f",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 29
+      },
+      "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
