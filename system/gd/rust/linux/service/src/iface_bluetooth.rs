@@ -569,7 +569,7 @@ impl ISuspend for ISuspendDBus {
     }
 
     #[dbus_method("Resume")]
-    fn resume(&self) -> bool {
+    fn resume(&mut self) -> bool {
         dbus_generated!()
     }
 }
@@ -588,7 +588,7 @@ impl ISuspendCallback for SuspendCallbackDBus {
         dbus_generated!()
     }
     #[dbus_method("OnResumed")]
-    fn on_resumed(&self, suspend_id: i32) {
+    fn on_resumed(&self, suspend_id: u32) {
         dbus_generated!()
     }
 }
