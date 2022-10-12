@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60196722_a20893c4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:48:02Z",
+      "side": 1,
+      "message": "I think this should go to aosp/2251197",
+      "revId": "de3a504354d6ffa801981c3b07ef34fbe67986bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "412caa94_6ab76db8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:48:02Z",
+      "side": 1,
+      "message": "I think this should go to aosp/2251198",
+      "revId": "de3a504354d6ffa801981c3b07ef34fbe67986bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdb758fa_d6d173d5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:48:02Z",
+      "side": 1,
+      "message": "nit: actually if  headsetFallbackDevice !\u003d null implies headsetService !\u003d null. But it can stay as well.",
+      "range": {
+        "startLine": 672,
+        "startChar": 20,
+        "endLine": 672,
+        "endChar": 34
+      },
+      "revId": "de3a504354d6ffa801981c3b07ef34fbe67986bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ff399fd_fe7ca6e5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:48:02Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 678,
+        "startChar": 20,
+        "endLine": 678,
+        "endChar": 34
+      },
+      "revId": "de3a504354d6ffa801981c3b07ef34fbe67986bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

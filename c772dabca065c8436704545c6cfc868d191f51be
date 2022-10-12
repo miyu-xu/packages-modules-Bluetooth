@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33b10cc4_cea15115",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:48:02Z",
+      "side": 1,
+      "message": "Commented in other patch.",
+      "parentUuid": "e55b5f0f_d65c4bb6",
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "390009b3_d23b0df7",
@@ -395,6 +413,30 @@
       "side": 1,
       "message": "It\u0027s not 100% OK since people have different opinions on it.\nWithout this, phone call will be happening via builtin earpiece.\nThis would be somewhat rare cases, and I guess using HFP might be better than builtin earpiece.\nWhat do you think?",
       "parentUuid": "f862baf4_fd89ebd5",
+      "range": {
+        "startLine": 688,
+        "startChar": 24,
+        "endLine": 688,
+        "endChar": 45
+      },
+      "revId": "c772dabca065c8436704545c6cfc868d191f51be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab529ee_87edf2a4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-12T08:48:02Z",
+      "side": 1,
+      "message": "I think I OK with this, as long as we are sure that we can set 1 headset for A2DP and second one for HFP.",
+      "parentUuid": "18a16893_73e81899",
       "range": {
         "startLine": 688,
         "startChar": 24,
