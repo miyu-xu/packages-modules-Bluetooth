@@ -16,6 +16,24 @@
       "message": "Why dev-dependencies and not dependencies?",
       "revId": "740a258c503b2b8d9345122001f91034451abd6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7c763a5_6b59c86a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-12T22:03:12Z",
+      "side": 1,
+      "message": "Because the only use is in the [parameter-provider](https://source.corp.google.com/android/packages/modules/Bluetooth/system/gd/rust/common/src/parameter_provider.rs;l\u003d145?q\u003df:bluetooth%20%20parameter_provider.rs\u0026sq\u003dp:%5Eandroid$) test to create a tokio::sync::mutex\n\n¯\\\\\\_(ツ)\\_/¯",
+      "parentUuid": "abc4658d_86ad55db",
+      "revId": "740a258c503b2b8d9345122001f91034451abd6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
