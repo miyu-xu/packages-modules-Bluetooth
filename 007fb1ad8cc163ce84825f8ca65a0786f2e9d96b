@@ -16,6 +16,24 @@
       "message": "looks like constructing `Uuid` from little endian can be used often, so will be useful to have something like `Uuid::try_from_little_endian(value: \u0026[u8])`, so the caller can conveniently do `Uuid::try_from_little_endian(chunk).ok().map(|uuid| uuid.uu)`",
       "revId": "007fb1ad8cc163ce84825f8ca65a0786f2e9d96b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8218264f_673a0b54",
+        "filename": "system/gd/rust/linux/utils/src/adv_parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-10-12T23:42:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11ae4e78_516279dd",
+      "revId": "007fb1ad8cc163ce84825f8ca65a0786f2e9d96b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
