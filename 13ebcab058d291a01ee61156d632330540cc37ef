@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "156f8211_528d2fd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2022-10-12T06:42:52Z",
+      "side": 1,
+      "message": "Hi Myles, this change is for floss in CrOS. Please let me know if there is a better new name for the enum entry, and/or there are more location that needs fixing. Thanks!",
+      "revId": "13ebcab058d291a01ee61156d632330540cc37ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
