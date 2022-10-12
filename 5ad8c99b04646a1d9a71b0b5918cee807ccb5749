@@ -46,6 +46,30 @@
       },
       "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111e8745_5b0f3e4f",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2022-10-12T15:22:14Z",
+      "side": 1,
+      "message": "Ok, for this reason, then this pactch can be abandoned.",
+      "parentUuid": "e7db22f6_d115f06f",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 29
+      },
+      "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
