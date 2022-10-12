@@ -183,6 +183,7 @@ init_flags!(
         irk_rotation,
         logging_debug_enabled_for_all,
         sdp_serialization = true,
+        sydney_gatt_include_adi = true,
     }
     // extra_fields are not a 1 to 1 match with "INIT_*" flags
     extra_fields: {

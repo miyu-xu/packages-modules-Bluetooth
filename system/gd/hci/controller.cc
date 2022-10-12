@@ -1012,6 +1012,7 @@ LOCAL_LE_FEATURE_ACCESSOR(SupportsBleIsochronousChannelsHostSupport, 32)
 LOCAL_LE_FEATURE_ACCESSOR(SupportsBlePowerControlRequest, 33)
 LOCAL_LE_FEATURE_ACCESSOR(SupportsBlePowerChangeIndication, 34)
 LOCAL_LE_FEATURE_ACCESSOR(SupportsBlePathLossMonitoring, 35)
+LOCAL_LE_FEATURE_ACCESSOR(SupportsBlePeriodicAdvertisingAdi, 36)
 
 uint64_t Controller::GetLocalFeatures(uint8_t page_number) const {
   if (page_number < impl_->extended_lmp_features_array_.size()) {

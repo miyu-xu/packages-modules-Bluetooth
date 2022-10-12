@@ -271,10 +271,11 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
   }
 
   void SetPeriodicAdvertisingEnable(int advertiser_id, bool enable,
+                                    bool include_adi,
                                     StatusCallback cb) override {
     LOG(INFO) << __func__ << " in shim layer";
-    bluetooth::shim::GetAdvertising()->EnablePeriodicAdvertising(advertiser_id,
-                                                                 enable);
+    bluetooth::shim::GetAdvertising()->EnablePeriodicAdvertising(
+        advertiser_id, enable, include_adi);
   }
 
   void RegisterCallbacks(AdvertisingCallbacks* callbacks) {

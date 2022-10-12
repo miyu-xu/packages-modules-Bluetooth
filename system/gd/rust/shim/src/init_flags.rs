@@ -17,6 +17,7 @@ mod ffi {
         fn is_debug_logging_enabled_for_tag(tag: &str) -> bool;
         fn logging_debug_enabled_for_all_is_enabled() -> bool;
         fn sdp_serialization_is_enabled() -> bool;
+        fn sydney_gatt_include_adi_is_enabled() -> bool;
     }
 }
 
