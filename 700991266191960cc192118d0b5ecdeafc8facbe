@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e6efbd5_515eadd5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-12T12:09:12Z",
+      "side": 1,
+      "message": "Try to run this after manually disabling bluetooth. Does it still pass?\n\n`atest BluetoothOppTransferActivityTest#onCreate_showSendOnGoingDialog`",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 46
+      },
+      "revId": "700991266191960cc192118d0b5ecdeafc8facbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
