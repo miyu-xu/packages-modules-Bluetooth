@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea47d1ed_334fd025",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T09:08:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2818bbd6_de5dee12",
+      "revId": "b4511cdf0ee136c4e08fa3cfdad4cffe5f99ac4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cad2ac74_7cdd868a",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-12T08:37:13Z",
       "side": 1,
       "message": "this kind of things could go to cleaning patch. However I still don\u0027t understand why we do not deactivate HFP.",
+      "revId": "b4511cdf0ee136c4e08fa3cfdad4cffe5f99ac4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f59e3f2_6b5c4513",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T09:08:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cad2ac74_7cdd868a",
       "revId": "b4511cdf0ee136c4e08fa3cfdad4cffe5f99ac4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d14c923b_4f3bfd7a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T09:08:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a11e2d43_eaf70ec4",
+      "revId": "b4511cdf0ee136c4e08fa3cfdad4cffe5f99ac4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e291a16c_4e80566b",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-10-12T08:37:13Z",
       "side": 1,
       "message": "ditto",
+      "revId": "b4511cdf0ee136c4e08fa3cfdad4cffe5f99ac4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "def73267_affa5a86",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-12T09:08:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e291a16c_4e80566b",
       "revId": "b4511cdf0ee136c4e08fa3cfdad4cffe5f99ac4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
