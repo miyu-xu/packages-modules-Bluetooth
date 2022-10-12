@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c68232c_07ff5db6",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4afba52_485e439a",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f45cd2e0_2f4edc31",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-10T22:35:30Z",
       "side": 1,
       "message": "what does empty devpath mean? Maybe devpath is more suitable to be `Option\u003cString\u003e`?",
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5460635e_fc4588c7",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Empty devpath just means we don\u0027t know the devpath. This is just the construction so that we have default values which we can modify.",
+      "parentUuid": "f45cd2e0_2f4edc31",
       "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b451ec4d_a8756421",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "We explicitly try to avoid implement `From` and `Into` between Virtual \u003c--\u003e Real. This only exists here as `unwrap_or`. I could be convinced that I should just `0` this out since the value should be written as part of modify_state.",
+      "parentUuid": "4ebe57b5_7d510ac4",
+      "range": {
+        "startLine": 210,
+        "startChar": 12,
+        "endLine": 210,
+        "endChar": 38
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9fa5aa42_7c5ee28e",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 2
@@ -77,6 +143,24 @@
       "writtenOn": "2022-10-10T22:35:30Z",
       "side": 1,
       "message": "nit: `Option::map` looks suitable in this case:\n```\nre.captures(path)?.get(1)?.as_str().parse().ok().map(|v| RealHciIndex(v))\n```",
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "957d7d46_5f370134",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fa5aa42_7c5ee28e",
       "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -94,6 +178,30 @@
       "writtenOn": "2022-10-10T22:35:30Z",
       "side": 1,
       "message": "nit: looks like `unwrap_or_else` is suitable for this pattern:\n\n```\nhci \u003d context.state_machine.get_virtual_id_by_real_id(*real_hci).unwrap_or_else(|| ...);\n```",
+      "range": {
+        "startLine": 661,
+        "startChar": 24,
+        "endLine": 661,
+        "endChar": 94
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2f78502_d28ace34",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Prefer not to here.\n\nThe problem with `unwrap_or_else` is that if both functions take `\u0026mut self`, you can\u0027t actually use it since the closure will have a mutable reference while the function is called.\n\nThe match pattern works better in this case.",
+      "parentUuid": "adc3a09a_51f53c0a",
       "range": {
         "startLine": 661,
         "startChar": 24,
@@ -127,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9811fa7a_b1cef7e2",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c979d72_891f685c",
+      "range": {
+        "startLine": 689,
+        "startChar": 71,
+        "endLine": 689,
+        "endChar": 79
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e12b32e0_725856e4",
@@ -146,6 +278,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e64391c_181ac9f6",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Didn\u0027t work well because get_state responded with an Option\u003c\u003e and that got wrapped again by the Option::map. and_then would work but I have the same concern about mutability in closures here.",
+      "parentUuid": "e12b32e0_725856e4",
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a7ff247_c001f32b",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 2
@@ -157,6 +307,30 @@
       "writtenOn": "2022-10-10T22:35:30Z",
       "side": 1,
       "message": "nit: can be written in function style:\n```\nself.state.lock().unwrap().iter().find_map(|(k, v)| (v.real_hci \u003d\u003d hci).then(|| k)).cloned()\n```",
+      "range": {
+        "startLine": 1083,
+        "startChar": 0,
+        "endLine": 1089,
+        "endChar": 12
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e22e7a5_d01ba59c",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Nack. I\u0027m not a fan of how this statement looks now -- the expanded code looks clearer.",
+      "parentUuid": "4a7ff247_c001f32b",
       "range": {
         "startLine": 1083,
         "startChar": 0,
@@ -192,6 +366,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0865d08a_2e09815c",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Nack. Virtual/Real indices don\u0027t have any other state besides the hci index. This keeps it simple. Prefer to keep using StateMachineInternal for this.",
+      "parentUuid": "4fabd574_9d732e6c",
+      "range": {
+        "startLine": 1098,
+        "startChar": 23,
+        "endLine": 1098,
+        "endChar": 54
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "533a3117_6e5137ea",
         "filename": "system/gd/rust/linux/service/src/main.rs",
         "patchSetId": 2
@@ -203,6 +401,24 @@
       "writtenOn": "2022-10-10T22:35:30Z",
       "side": 1,
       "message": "maybe document a bit more how the invoker should fill out the virtual index and HCI index?",
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d5eb12_95c67b8a",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "533a3117_6e5137ea",
       "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -220,6 +436,30 @@
       "writtenOn": "2022-10-10T22:35:30Z",
       "side": 1,
       "message": "nit: a bit more concise:\n\n```\nlet adapter_index \u003d matches.value_of(\"index\").map_or(0, |idx| idx.parse::\u003ci32\u003e().unwrap_or(0));\nlet hci_index \u003d matches.value_of(\"hci\").map_or(0, |idx| idx.parse::\u003ci32\u003e().unwrap_or(0));\n```",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 6
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c3f15b_b2fc86f9",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-12T20:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf1f503_786ac23c",
       "range": {
         "startLine": 80,
         "startChar": 0,
