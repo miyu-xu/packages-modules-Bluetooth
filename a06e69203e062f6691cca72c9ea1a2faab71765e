@@ -333,6 +333,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57163a40_5524f44b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T09:35:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ead34eb_29849fcd",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 41
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b54c9ea_63a4195a",
