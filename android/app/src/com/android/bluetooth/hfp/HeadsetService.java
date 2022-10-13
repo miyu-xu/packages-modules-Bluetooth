@@ -23,6 +23,7 @@ import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -1309,6 +1310,23 @@ public class HeadsetService extends ProfileService {
     }
 
     /**
+     * Get the Bluetooth Audio Policy stored in the state machine
+     *
+     * @param device the device to change silence mode
+     * @return a {@link BluetoothAudioPolicy} object
+     */
+    public BluetoothAudioPolicy getHfpCallAudioPolicy(BluetoothDevice device) {
+        synchronized (mStateMachines) {
+            final HeadsetStateMachine stateMachine = mStateMachines.get(device);
+            if (stateMachine == null) {
+                Log.e(TAG, "getHfpCallAudioPolicy(), " + device + " does not have a state machine");
+                return null;
+            }
+            return stateMachine.getHfpCallAudioPolicy();
+        }
+    }
+
+    /**
      * Remove the active device
      */
     private void removeActiveDevice() {
@@ -1885,6 +1903,20 @@ public class HeadsetService extends ProfileService {
     public boolean isInbandRingingEnabled() {
         boolean isInbandRingingSupported = getResources().getBoolean(
                 com.android.bluetooth.R.bool.config_bluetooth_hfp_inband_ringing_support);
+        if (!mInbandRingingRuntimeDisable) {
+            List<BluetoothDevice> audioConnectableDevices = getConnectedDevices();
+            if (audioConnectableDevices.size() == 1) {
+                BluetoothDevice connectedDevice = getConnectedDevices().get(0);
+                BluetoothAudioPolicy callAudioPolicy =
+                        getHfpCallAudioPolicy(connectedDevice);
+                if (callAudioPolicy.getInBandRingPolicy()
+                        == BluetoothAudioPolicy.CALL_AUDIO_NOT_ALLOWED) {
+                    mInbandRingingRuntimeDisable = true;
+                }
+            } else {
+                mInbandRingingRuntimeDisable = true;
+            }
+        }
         return isInbandRingingSupported && !SystemProperties.getBoolean(
                 DISABLE_INBAND_RINGING_PROPERTY, false) && !mInbandRingingRuntimeDisable;
     }
