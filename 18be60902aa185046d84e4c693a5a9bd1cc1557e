@@ -16,6 +16,24 @@
       "message": "add a test that has interleaved types to fail my misunderstanding of group_by, e.g.:\n```\n let uuids \u003d vec![uuid_16, uuid_32, uuid_128, uuid_16];\n```",
       "revId": "18be60902aa185046d84e4c693a5a9bd1cc1557e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "869270ba_7d827bde",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T03:45:21Z",
+      "side": 1,
+      "message": "Done. The group_by version is a good test case for this test case:)\nHere\u0027s the output of group_by version of append_uuids():\n```\nthread \u0027bluetooth_adv::tests::test_append_service_uuids\u0027 panicked at \u0027assertion failed: `(left \u003d\u003d right)`\n  left: `[3, 3, 243, 254, 17, 7, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 3, 3, 187, 170, 5, 5, 51, 34, 17, 0]`,\n right: `[5, 3, 243, 254, 187, 170, 5, 5, 51, 34, 17, 0, 17, 7, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]`\u0027, system/gd/rust/linux/stack/src/bluetooth_adv.rs:591:9\n```",
+      "parentUuid": "24aad234_3f686d32",
+      "revId": "18be60902aa185046d84e4c693a5a9bd1cc1557e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
