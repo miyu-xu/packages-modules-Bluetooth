@@ -11,6 +11,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAssignedNumbers;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
@@ -705,5 +706,15 @@ public class HeadsetClientStateMachineTest {
 
         verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(1))
                 .updateBatteryLevel();
+    }
+
+    @SmallTest
+    @Test
+    public void testSetCallAudioPolicy() {
+        BluetoothAudioPolicy dummyAudioPolicy = new BluetoothAudioPolicy();
+        // set default audio policies for testing
+        mHeadsetClientStateMachine.setAudioPolicy(new BluetoothAudioPolicy());
+        verify(mNativeInterface, timeout(STANDARD_WAIT_MILLIS).times(1))
+                .sendAndroidAt(mTestDevice, "1,0,0,0");
     }
 }
