@@ -34,6 +34,24 @@
       "parentUuid": "24aad234_3f686d32",
       "revId": "18be60902aa185046d84e4c693a5a9bd1cc1557e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f4c8d6_6897a8ab",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-13T04:13:28Z",
+      "side": 1,
+      "message": "Thanks, this will prevent such misunderstanding that I made since I was relying on the tests when experimenting with it :)",
+      "parentUuid": "869270ba_7d827bde",
+      "revId": "18be60902aa185046d84e4c693a5a9bd1cc1557e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
