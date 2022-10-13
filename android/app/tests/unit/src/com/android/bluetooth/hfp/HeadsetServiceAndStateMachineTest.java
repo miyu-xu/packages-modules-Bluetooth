@@ -179,6 +179,8 @@ public class HeadsetServiceAndStateMachineTest {
                 .getRemoteUuids(any(BluetoothDevice.class));
         doAnswer(invocation -> mBondedDevices.toArray(new BluetoothDevice[]{})).when(
                 mAdapterService).getBondedDevices();
+        doReturn(new BluetoothAudioPolicy()).when(mAdapterService)
+                .getAudioPolicy(any(BluetoothDevice.class));
         // Mock system interface
         doNothing().when(mSystemInterface).stop();
         doReturn(mPhoneState).when(mSystemInterface).getHeadsetPhoneState();
