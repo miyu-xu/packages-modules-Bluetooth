@@ -26,6 +26,7 @@ import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHapClient;
 import android.bluetooth.BluetoothHeadset;
@@ -123,6 +124,8 @@ public class ActiveDeviceManagerTest {
         mMostRecentDevice = null;
 
         when(mA2dpService.setActiveDevice(any())).thenReturn(true);
+        when(mHeadsetService.getHfpCallAudioPolicy(any())).thenReturn(
+                new BluetoothAudioPolicy.Builder().build());
         when(mHeadsetService.setActiveDevice(any())).thenReturn(true);
         when(mHearingAidService.setActiveDevice(any())).thenReturn(true);
         when(mLeAudioService.setActiveDevice(any())).thenReturn(true);
@@ -307,6 +310,50 @@ public class ActiveDeviceManagerTest {
         Mockito.clearInvocations(mHeadsetService);
         headsetDisconnected(mSecondaryAudioDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
+    }
+
+    /**
+     * Test setActiveDevice(null) for both A2dpService and HeadsetService are called when an
+     * activated combo (A2DP + Headset) device is disconnected while in call.
+     */
+    @Test
+    public void a2dpHeadsetDisconnected_callsSetActiveDeviceNull() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_NORMAL);
+        // A2dpHeadset connected
+        headsetConnected(mA2dpHeadsetDevice);
+        a2dpConnected(mA2dpHeadsetDevice);
+        // Verify activation of A2DP in media mode
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice, false);
+
+        // Mode changed to call mode
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
+        mAudioModeChangedListener.onModeChanged(AudioManager.MODE_IN_CALL);
+        // Verify activation of HFP in call mode
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+
+        // A2dpHeadset disconnected
+        headsetDisconnected(mA2dpHeadsetDevice);
+        a2dpDisconnected(mA2dpHeadsetDevice);
+        // Verify setActiveDevice(null) called
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(null);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(null, false);
+    }
+
+    /**
+     * A headset device with connecting audio policy set to NOT ALLOWED.
+     */
+    @Test
+    public void notAllowedConnectingPolicyHeadsetConnected_noSetActiveDevice() {
+        // setting connecting policy to NOT ALLOWED
+        when(mHeadsetService.getHfpCallAudioPolicy(mHeadsetDevice))
+                .thenReturn(new BluetoothAudioPolicy.Builder()
+                        .setCallEstablishPolicy(BluetoothAudioPolicy.POLICY_ALLOWED)
+                        .setConnectDuringCallPolicy(BluetoothAudioPolicy.POLICY_NOT_ALLOWED)
+                        .setInBandRingPolicy(BluetoothAudioPolicy.POLICY_ALLOWED)
+                        .build());
+
+        headsetConnected(mHeadsetDevice);
+        verify(mHeadsetService, never()).setActiveDevice(mHeadsetDevice);
     }
 
     /**
