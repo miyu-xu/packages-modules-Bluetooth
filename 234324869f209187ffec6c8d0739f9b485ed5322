@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "791475f5_6e8e0788",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-13T10:56:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f0763f2_d96854d7",
+      "revId": "234324869f209187ffec6c8d0739f9b485ed5322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "473bd0f3_313822cf",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-13T07:46:51Z",
       "side": 1,
       "message": "Is there a problem with notifying about group beeing inactive when changing active groups?",
+      "revId": "234324869f209187ffec6c8d0739f9b485ed5322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d59fbe76_ec551966",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-13T10:56:47Z",
+      "side": 1,
+      "message": "Telecom log says that there are multiple LEA groups active at the same time and then they select phone speaker instead of the newly connected one.\n\nNot sure whether there are any potential problem with this change, but it fixes the issue.\n\nPlease let me know if you see any problems or have any concerns with this change.\nThanks.",
+      "parentUuid": "473bd0f3_313822cf",
       "revId": "234324869f209187ffec6c8d0739f9b485ed5322",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
