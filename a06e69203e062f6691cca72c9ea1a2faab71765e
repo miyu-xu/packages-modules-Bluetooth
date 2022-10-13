@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5640c767_a50f1c46",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4831,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T08:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41f64e9c_f3e132a8",
+      "range": {
+        "startLine": 4831,
+        "startChar": 16,
+        "endLine": 4831,
+        "endChar": 50
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f93c22b_4835e5d3",
@@ -143,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0ed06ed_edd8c852",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T08:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aa906ce_58830e46",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 70
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "595553f5_fc698a12",
@@ -180,6 +228,30 @@
       "side": 1,
       "message": "will modify",
       "parentUuid": "595553f5_fc698a12",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 51
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6de44b7_635e4575",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T08:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb963176_49aafcc3",
       "range": {
         "startLine": 188,
         "startChar": 0,
@@ -274,6 +346,30 @@
       "writtenOn": "2022-10-13T02:39:51Z",
       "side": 1,
       "message": "Check ProfileBitMask instead?",
+      "range": {
+        "startLine": 184,
+        "startChar": 26,
+        "endLine": 184,
+        "endChar": 44
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fcf0ea5_5a957ad5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T08:33:44Z",
+      "side": 1,
+      "message": "All the profile service has the \"isEnabled()\" function to load the system property, so I added this function to align with others.",
+      "parentUuid": "9b54c9ea_63a4195a",
       "range": {
         "startLine": 184,
         "startChar": 26,
