@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2d0328f_c2ab30da",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T15:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48001741_1b03bdca",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 39
+      },
+      "revId": "22a167c3ffaf87cef81f49e7dea21647c17a7fb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d74050f_da3eb7e2",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-12T21:35:37Z",
       "side": 1,
       "message": "suspend_id should be u32, please fix the interface to be u32.",
+      "range": {
+        "startLine": 122,
+        "startChar": 32,
+        "endLine": 122,
+        "endChar": 49
+      },
+      "revId": "22a167c3ffaf87cef81f49e7dea21647c17a7fb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f28ddde_9bdb9eab",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T15:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d74050f_da3eb7e2",
       "range": {
         "startLine": 122,
         "startChar": 32,

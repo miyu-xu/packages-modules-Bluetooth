@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a85fa8_2a656ef3",
+        "filename": "system/bta/dm/bta_dm_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T15:43:37Z",
+      "side": 1,
+      "message": "Yeah, I think we should go ahead and follow the pattern here b/c some of the commands already get posted again here.",
+      "parentUuid": "7ec7017f_bf976ff1",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73f91bad_d11c613a",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-12T20:03:09Z",
       "side": 1,
       "message": "This seems like a debugging comment -- we should still be stopping scanning right?",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85c39f41_2bc5ef65",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T15:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f91bad_d11c613a",
       "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d234fdd9_b1e1bf30",
+        "filename": "system/main/shim/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T15:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7ea1d38_a94fbece",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbaaa749_e99e767c",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-10-12T20:03:09Z",
       "side": 1,
       "message": "This should just get deleted instead of being commented out.",
+      "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6464a7ff_77c6b1e4",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1353,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T15:43:37Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure if we would need it still yet because we aren\u0027t sure if the orphaned acl check cleans them up which I don\u0027t think it does.",
+      "parentUuid": "dbaaa749_e99e767c",
       "revId": "11bbc45da24bb648a0bbc5838dab27f500f7caa5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
