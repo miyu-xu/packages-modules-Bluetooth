@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4610fff_36b8de40",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMessageListing.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-13T12:17:44Z",
+      "side": 1,
+      "message": "How about using `Utils.isInstrumentationTestMode()`?\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/Utils.java;rcl\u003deb71d527a01298ac34bd731ee694a8d7ac152558;l\u003d892",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 31
+      },
+      "revId": "059aa21eaecb4fb05d74331964a72a8b718ee9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
