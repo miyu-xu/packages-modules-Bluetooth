@@ -17,6 +17,7 @@
 package android.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothHeadsetClientCall;
 import android.content.AttributionSource;
 
@@ -86,6 +87,13 @@ oneway interface IBluetoothHeadsetClient {
     void setAudioRouteAllowed(in BluetoothDevice device, boolean allowed, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void getAudioRouteAllowed(in BluetoothDevice device, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void getAudioPolicyRemoteSupported(in BluetoothDevice device, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void setAudioPolicy(in BluetoothDevice device, in BluetoothAudioPolicy policies, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void getAudioPolicy(in BluetoothDevice device, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void sendVendorAtCommand(in BluetoothDevice device, int vendorId, String atCommand, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
 

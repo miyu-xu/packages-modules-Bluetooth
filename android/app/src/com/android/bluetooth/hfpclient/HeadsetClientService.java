@@ -19,6 +19,7 @@ package com.android.bluetooth.hfpclient;
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothHeadsetClientCall;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothHeadsetClient;
@@ -456,6 +457,50 @@ public class HeadsetClientService extends ProfileService {
                     defaultValue = service.getAudioRouteAllowed(device);
                 }
                 receiver.send(defaultValue);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void setAudioPolicy(BluetoothDevice device, BluetoothAudioPolicy policies,
+        AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                HeadsetClientService service = getService(source);
+                if (service != null) {
+                    service.setAudioPolicy(device, policies);
+                }
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void getAudioPolicy(BluetoothDevice device, AttributionSource source,
+        SynchronousResultReceiver receiver) {
+            try {
+                HeadsetClientService service = getService(source);
+                BluetoothAudioPolicy policy = null;
+                if (service != null) {
+                    policy = service.getAudioPolicy(device);
+                }
+                receiver.send(policy);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void getAudioPolicyRemoteSupported(BluetoothDevice device, AttributionSource source,
+        SynchronousResultReceiver receiver) {
+            try {
+                HeadsetClientService service = getService(source);
+                int supported = BluetoothHeadsetClient.REMOTE_STATUS_UNKNOWN;
+                if (service != null) {
+                    supported = service.getAudioPolicyRemoteSupported(device);
+                }
+                receiver.send(supported);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
@@ -906,6 +951,10 @@ public class HeadsetClientService extends ProfileService {
         if (sm != null) {
             sm.setAudioRouteAllowed(allowed);
         }
+
+        // DEMO: call to setAudioPolicy
+        setAudioPolicy(device, new BluetoothAudioPolicy(
+            allowed == true? 1 : 0 ,0,1));
     }
 
     public boolean getAudioRouteAllowed(BluetoothDevice device) {
@@ -915,6 +964,43 @@ public class HeadsetClientService extends ProfileService {
             return sm.getAudioRouteAllowed();
         }
         return false;
+    }
+
+    public void setAudioPolicy(BluetoothDevice device, BluetoothAudioPolicy policies) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        Log.i(TAG, "setAudioPolicy: device=" + device + ", " + policies.toString() + ", "
+                + Utils.getUidPidString());
+        HeadsetClientStateMachine sm = mStateMachineMap.get(device);
+        if (sm != null) {
+            sm.setAudioPolicy(policies);
+        }
+    }
+
+    public BluetoothAudioPolicy getAudioPolicy(BluetoothDevice device) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        HeadsetClientStateMachine sm = mStateMachineMap.get(device);
+        if (sm != null) {
+            return sm.getAudioPolicy();
+        }
+        return null;
+    }
+
+    public void setAudioPolicyRemoteSupported(BluetoothDevice device, boolean supported) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        Log.i(TAG, "setAudioPolicyRemoteSupported: " + supported);
+        HeadsetClientStateMachine sm = mStateMachineMap.get(device);
+        if (sm != null) {
+            sm.setAudioPolicyRemoteSupported(supported);
+        }
+    }
+
+    public int getAudioPolicyRemoteSupported(BluetoothDevice device) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        HeadsetClientStateMachine sm = mStateMachineMap.get(device);
+        if (sm != null) {
+            return sm.getAudioPolicyRemoteSupported();
+        }
+        return HeadsetClientStateMachine.REMOTE_STATUS_UNKNOWN;
     }
 
     public boolean connectAudio(BluetoothDevice device) {

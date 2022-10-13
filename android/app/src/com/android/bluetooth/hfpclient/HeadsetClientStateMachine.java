@@ -40,6 +40,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
 import android.bluetooth.BluetoothHeadsetClient.NetworkServiceState;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.hfp.BluetoothHfpProtoEnums;
@@ -62,6 +63,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.IState;
 import com.android.internal.util.State;
@@ -76,13 +78,14 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 
 public class HeadsetClientStateMachine extends StateMachine {
     private static final String TAG = "HeadsetClientStateMachine";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
+    private static final boolean DBG = true;
 
     static final int NO_ACTION = 0;
     static final int IN_BAND_RING_ENABLED = 1;
@@ -108,6 +111,7 @@ public class HeadsetClientStateMachine extends StateMachine {
     public static final int DISABLE_NREC = 20;
     public static final int SEND_VENDOR_AT_COMMAND = 21;
     public static final int SEND_BIEV = 22;
+    public static final int SEND_ANDROID_AT_COMMAND = 23;
 
     // internal actions
     private static final int QUERY_CURRENT_CALLS = 50;
@@ -171,6 +175,20 @@ public class HeadsetClientStateMachine extends StateMachine {
     private int mAudioState;
     // Indicates whether audio can be routed to the device
     private boolean mAudioRouteAllowed;
+
+    private static final int CALL_AUDIO_POLICY_FEATURE_ID = 1;
+
+    public static final int REMOTE_STATUS_UNKNOWN = 0;
+    public static final int REMOTE_STATUS_SUPPORTED = 1;
+    public static final int REMOTE_STATUS_NOT_SUPPORTED = 2;
+
+    public static final int PICK_UP_AUDIO_POLICY = 0;
+    public static final int CONNECT_DURING_CALL_AUDIO_POLICY = 1;
+    public static final int IN_BAND_RING_AUDIO_POLICY = 2;
+
+    public int mAudioPolicyRemoteSupported;
+    private BluetoothAudioPolicy mHsClientAudioPolicy;
+
     private boolean mAudioWbs;
     private int mVoiceRecognitionActive;
     private final BluetoothAdapter mAdapter;
@@ -214,6 +232,8 @@ public class HeadsetClientStateMachine extends StateMachine {
         ProfileService.println(sb, "  mOperatorName: " + mOperatorName);
         ProfileService.println(sb, "  mSubscriberInfo: " + mSubscriberInfo);
         ProfileService.println(sb, "  mAudioRouteAllowed: " + mAudioRouteAllowed);
+        ProfileService.println(sb, "  mAudioPolicyRemoteSupported: "+ mAudioPolicyRemoteSupported);
+        ProfileService.println(sb, "  mHsClientAudioPolicy: " + mHsClientAudioPolicy.toString());
 
         ProfileService.println(sb, "  mCalls:");
         if (mCalls != null) {
@@ -837,12 +857,15 @@ public class HeadsetClientStateMachine extends StateMachine {
         mVendorProcessor = new VendorCommandResponseProcessor(mService, mNativeInterface);
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
+
         mAudioState = BluetoothHeadsetClient.STATE_AUDIO_DISCONNECTED;
         mAudioWbs = false;
         mVoiceRecognitionActive = HeadsetClientHalConstants.VR_STATE_STOPPED;
 
         mAudioRouteAllowed = context.getResources().getBoolean(
             R.bool.headset_client_initial_audio_route_allowed);
+
+        mHsClientAudioPolicy = new BluetoothAudioPolicy();
 
         mIndicatorNetworkState = HeadsetClientHalConstants.NETWORK_STATE_NOT_AVAILABLE;
         mIndicatorNetworkType = HeadsetClientHalConstants.SERVICE_TYPE_HOME;
@@ -1103,7 +1126,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                     break;
                 case StackEvent.STACK_EVENT:
                     StackEvent event = (StackEvent) message.obj;
-                    logD("Connecting: event type: " + event.type);
+                    logD("Connecting: stack event type: " + event.type);
                     switch (event.type) {
                         case StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED:
                             logD("Connecting: Connection " + event.device + " state changed:"
@@ -1125,7 +1148,42 @@ public class HeadsetClientStateMachine extends StateMachine {
                         case StackEvent.EVENT_TYPE_VOLUME_CHANGED:
                             deferMessage(message);
                             break;
+
                         case StackEvent.EVENT_TYPE_CMD_RESULT:
+                            logD("Connecting: CMD_RESULT valueInt:" + event.valueInt +
+                                    " mQueuedActions.size=" + mQueuedActions.size());
+                            if (!mQueuedActions.isEmpty()) {
+                                logD("queuedAction:" + mQueuedActions.peek().first);
+                            }
+                            Pair<Integer, Object> queuedAction = mQueuedActions.poll();
+                            if (queuedAction == null || queuedAction.first == NO_ACTION) {
+                                break;
+                            }
+                            switch (queuedAction.first) {
+                                case SEND_ANDROID_AT_COMMAND:
+                                    if (event.valueInt == StackEvent.CMD_RESULT_TYPE_OK) {
+                                        Log.w(TAG, "Received OK instead of +ANDROID");
+                                    } else {
+                                        Log.w(TAG, "Received ERROR instead of +ANDROID");
+                                    }
+                                    setAudioPolicyRemoteSupported(false);
+                                    transitionTo(mConnected);
+                                    break;
+                                default:
+                                    Log.w(TAG, "Ignored CMD Result");
+                                    break;
+                            }
+                            break;
+
+                        case StackEvent.EVENT_TYPE_UNKNOWN_EVENT:
+                            if (mVendorProcessor.processEvent(event.valueString, event.device)) {
+                                mQueuedActions.poll();
+                                transitionTo(mConnected);
+                            } else {
+                                Log.e(TAG, "Unknown event :" + event.valueString
+                                + " for device " + event.device);
+                            }
+                            break;
                         case StackEvent.EVENT_TYPE_SUBSCRIBER_INFO:
                         case StackEvent.EVENT_TYPE_CURRENT_CALLS:
                         case StackEvent.EVENT_TYPE_OPERATOR_NAME:
@@ -1189,7 +1247,11 @@ public class HeadsetClientStateMachine extends StateMachine {
                             mAudioManager.isMicrophoneMute() ? 0 : 15, 0));
                     // query subscriber info
                     deferMessage(obtainMessage(HeadsetClientStateMachine.SUBSCRIBER_INFO));
-                    transitionTo(mConnected);
+
+                    if (!queryRemoteSupportedFeatures()) {
+                        Log.w(TAG, "Couldn't query Android AT remote supported!");
+                        transitionTo(mConnected);
+                    }
                     break;
 
                 case HeadsetClientHalConstants.CONNECTION_STATE_CONNECTED:
@@ -1571,6 +1633,8 @@ public class HeadsetClientStateMachine extends StateMachine {
                                                 oldState, mVoiceRecognitionActive);
                                     }
                                     break;
+                                case SEND_ANDROID_AT_COMMAND:
+                                    Log.w(TAG, "Connected: Received OK for AT+ANDROID");
                                 default:
                                     Log.w(TAG, "Unhandled AT OK " + event);
                                     break;
@@ -2060,16 +2124,70 @@ public class HeadsetClientStateMachine extends StateMachine {
     }
 
     private static void logD(String message) {
-        if (DBG) {
-            Log.d(TAG, message);
+        if (DBG || true) {
+            Log.i(TAG, message);
         }
     }
 
     public void setAudioRouteAllowed(boolean allowed) {
         mAudioRouteAllowed = allowed;
+
+        int pickUp = allowed ?
+                BluetoothAudioPolicy.CALL_AUDIO_ALLOWED :
+                BluetoothAudioPolicy.CALL_AUDIO_NOT_ALLOWED;
+
+        setAudioPolicy(getAudioPolicy().setCallPickUpPolicy(pickUp));
     }
 
     public boolean getAudioRouteAllowed() {
         return mAudioRouteAllowed;
+    }
+
+    private String createMaskString(BluetoothAudioPolicy policies) {
+        StringBuilder mask = new StringBuilder();
+        mask.append(Integer.toString(CALL_AUDIO_POLICY_FEATURE_ID));
+        mask.append("," + policies.getCallPickUpPolicy());
+        mask.append("," + policies.getConnectingPolicy());
+        mask.append("," + policies.getCallPickUpPolicy());
+        return mask.toString();
+    }
+
+    public void setAudioPolicy(BluetoothAudioPolicy policies) {
+        logD("setAudioPolicy: " + policies);
+        mHsClientAudioPolicy = policies;
+
+        if (mAudioPolicyRemoteSupported != REMOTE_STATUS_SUPPORTED) {
+            Log.e(TAG, "Audio Policy feature not supported!");
+            return;
+        }
+
+        if (!mNativeInterface.sendAndroidAt(mCurrentDevice,
+                "+ANDROID=" + createMaskString(policies))) {
+            Log.e(TAG, "ERROR: Couldn't send call audio policies");
+        }
+    }
+
+    public BluetoothAudioPolicy getAudioPolicy() {
+        return mHsClientAudioPolicy;
+    }
+
+    private boolean queryRemoteSupportedFeatures() {
+        Log.w(TAG, "queryRemoteSupportedFeatures");
+        if (!mNativeInterface.sendAndroidAt(mCurrentDevice, "+ANDROID=?")) {
+            Log.e(TAG, "ERROR: Couldn't send call audio policies");
+            return false;
+        }
+        addQueuedAction(SEND_ANDROID_AT_COMMAND);
+        return true;
+    }
+
+    public void setAudioPolicyRemoteSupported(boolean supported) {
+        mAudioPolicyRemoteSupported = supported == true?
+                REMOTE_STATUS_SUPPORTED :
+                REMOTE_STATUS_NOT_SUPPORTED;
+    }
+
+    public int getAudioPolicyRemoteSupported() {
+        return mAudioPolicyRemoteSupported;
     }
 }

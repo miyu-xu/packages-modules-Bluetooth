@@ -43,6 +43,7 @@ import android.bluetooth.BluetoothActivityEnergyInfo;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAdapter.ActiveDeviceProfile;
 import android.bluetooth.BluetoothAdapter.ActiveDeviceUse;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothFrameworkInitializer;
@@ -118,6 +119,7 @@ import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.hfpclient.HeadsetClientService;
+import com.android.bluetooth.hfpclient.HeadsetClientStateMachine;
 import com.android.bluetooth.hid.HidDeviceService;
 import com.android.bluetooth.hid.HidHostService;
 import com.android.bluetooth.le_audio.LeAudioService;
@@ -3763,6 +3765,78 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void getAudioPolicyRemoteSupported(BluetoothDevice device,
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getAudioPolicyRemoteSupported(device, source));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private int getAudioPolicyRemoteSupported(BluetoothDevice device,
+                AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            } else if (!callerIsSystemOrActiveUser(TAG, "getAudioPolicyRemoteSupported")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            } else if (!Utils.checkConnectPermissionForDataDelivery(
+                service, source, TAG)) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+            return service.getAudioPolicyRemoteSupported(device);
+        }
+
+        @Override
+        public void setAudioPolicy(BluetoothDevice device, BluetoothAudioPolicy policies,
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(setAudioPolicy(device, policies, source));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private int setAudioPolicy(BluetoothDevice device, BluetoothAudioPolicy policies,
+                AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            } else if (!callerIsSystemOrActiveUser(TAG, "setAudioPolicy")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            } else if (!Utils.checkConnectPermissionForDataDelivery(
+                service, source, TAG)) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+            return service.setAudioPolicy(device, policies);
+        }
+
+        @Override
+        public void getAudioPolicy(BluetoothDevice device,
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getAudioPolicy(device, source));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private BluetoothAudioPolicy getAudioPolicy(BluetoothDevice device,
+                AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return null;
+            } else if (!callerIsSystemOrActiveUser(TAG, "getAudioPolicy")) {
+                return null;
+            } else if (!Utils.checkConnectPermissionForDataDelivery(
+                service, source, TAG)) {
+                return null;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+            return service.getAudioPolicy(device);
+        }
+
+        @Override
         public void requestActivityInfo(IBluetoothActivityEnergyInfoListener listener,
                     AttributionSource source) {
             BluetoothActivityEnergyInfo info = reportActivityInfo(source);
@@ -5555,6 +5629,45 @@ public class AdapterService extends Service {
             return 0;
         }
         return getMetricIdNative(Utils.getByteAddress(device));
+    }
+
+    public int getAudioPolicyRemoteSupported(BluetoothDevice device) {
+        if (mHeadsetClientService != null) {
+            return mHeadsetClientService.getAudioPolicyRemoteSupported(device);
+        } else {
+            Log.e(TAG, "HeadsetClient not connected");
+            return HeadsetClientStateMachine.REMOTE_STATUS_UNKNOWN;
+        }
+    }
+
+    public int setAudioPolicy(BluetoothDevice device, BluetoothAudioPolicy policies) {
+            DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
+        if (deviceProp == null) {
+            return BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED;
+        }
+
+        if (mHeadsetClientService != null) {
+            deviceProp.setAudioPolicy(policies);
+            mHeadsetClientService.setAudioPolicy(device, policies);
+            return BluetoothStatusCodes.SUCCESS;
+        } else {
+            Log.e(TAG, "HeadsetClient not connected");
+            return BluetoothStatusCodes.ERROR_PROFILE_NOT_CONNECTED;
+        }
+    }
+
+    public BluetoothAudioPolicy getAudioPolicy(BluetoothDevice device) {
+            DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
+        if (deviceProp == null) {
+            return null;
+        }
+
+        if (mHeadsetClientService != null) {
+            return deviceProp.getAudioPolicy();
+        } else {
+            Log.e(TAG, "HeadsetClient not connected");
+            return null;
+        }
     }
 
     /**
