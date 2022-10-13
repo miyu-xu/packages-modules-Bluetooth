@@ -22,6 +22,75 @@
       },
       "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675e5e9f_b618f11a",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMessageListing.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-13T06:36:36Z",
+      "side": 1,
+      "message": "I think adding `isBenzCarkit` makes this if statement be never true.\n\nWhy isBenzCarkit is added here?",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 28
+      },
+      "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "532b32fd_4595e898",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapMessageListingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-13T06:36:36Z",
+      "side": 1,
+      "message": "Let\u0027s check all three items are in correct order.",
+      "range": {
+        "startLine": 103,
+        "startChar": 76,
+        "endLine": 103,
+        "endChar": 92
+      },
+      "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bfb4fa0_63a7670a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapMessageListingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-13T06:36:36Z",
+      "side": 1,
+      "message": "Q) Is there any other way to check whether the encode() works correctly?\n\nIt seems too many logics are added for tests, which makes the test hard to read and possibly error-prone.",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 21
+      },
+      "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
