@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24aad234_3f686d32",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-13T00:44:13Z",
+      "side": 1,
+      "message": "add a test that has interleaved types to fail my misunderstanding of group_by, e.g.:\n```\n let uuids \u003d vec![uuid_16, uuid_32, uuid_128, uuid_16];\n```",
+      "revId": "18be60902aa185046d84e4c693a5a9bd1cc1557e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
