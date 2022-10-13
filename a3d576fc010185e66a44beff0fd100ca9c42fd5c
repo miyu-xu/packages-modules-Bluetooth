@@ -22,6 +22,30 @@
       },
       "revId": "a3d576fc010185e66a44beff0fd100ca9c42fd5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a92723_6525ae8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-13T11:56:21Z",
+      "side": 1,
+      "message": "Searched other use cases, and these are the only cases that needs to be fixed.",
+      "parentUuid": "079f9f05_0e0efd63",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "a3d576fc010185e66a44beff0fd100ca9c42fd5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
