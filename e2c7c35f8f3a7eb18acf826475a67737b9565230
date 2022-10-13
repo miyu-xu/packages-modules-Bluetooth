@@ -22,6 +22,30 @@
       },
       "revId": "e2c7c35f8f3a7eb18acf826475a67737b9565230",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3df54293_c8349499",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-13T08:46:47Z",
+      "side": 1,
+      "message": "Thank you for pointing this out! PTAL.",
+      "parentUuid": "5b3a2f91_29a2184c",
+      "range": {
+        "startLine": 417,
+        "startChar": 1,
+        "endLine": 418,
+        "endChar": 1
+      },
+      "revId": "e2c7c35f8f3a7eb18acf826475a67737b9565230",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
