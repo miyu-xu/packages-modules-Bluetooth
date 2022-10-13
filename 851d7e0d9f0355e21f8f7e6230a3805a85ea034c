@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6418bdde_9ecfa7ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-13T04:48:00Z",
+      "side": 1,
+      "message": "Diff introducing it:\nhttps://android.googlesource.com/platform/packages/apps/Bluetooth/+/438d26339b29fb7d68fa99fa6c06aea9aa9f0431%5E%21/#F18",
+      "revId": "851d7e0d9f0355e21f8f7e6230a3805a85ea034c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
