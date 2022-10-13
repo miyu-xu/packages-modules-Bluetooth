@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7aa906ce_58830e46",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T02:39:51Z",
+      "side": 1,
+      "message": "Per talk, please use the ProfileConfig mMask instead.",
+      "parentUuid": "77079095_2ae74b5b",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 70
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "595553f5_fc698a12",
         "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
         "patchSetId": 1
@@ -208,6 +232,53 @@
         "startChar": 16,
         "endLine": 233,
         "endChar": 41
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ead34eb_29849fcd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T02:39:51Z",
+      "side": 1,
+      "message": "How about merging into setLeAudioProfileStatus and check the properties there?",
+      "parentUuid": "ac13f677_2874d074",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 41
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b54c9ea_63a4195a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T02:39:51Z",
+      "side": 1,
+      "message": "Check ProfileBitMask instead?",
+      "range": {
+        "startLine": 184,
+        "startChar": 26,
+        "endLine": 184,
+        "endChar": 44
       },
       "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
