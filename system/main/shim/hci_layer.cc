@@ -410,6 +410,8 @@ static void transmit_fragment(const uint8_t* stream, size_t length) {
 static void transmit_sco_fragment(const uint8_t* stream, size_t length) {
   uint16_t handle_with_flags;
   STREAM_TO_UINT16(handle_with_flags, stream);
+  auto pb_flag = static_cast<bluetooth::hci::PacketStatusFlag>(
+      handle_with_flags >> 12 & 0b11);
   uint16_t handle = handle_with_flags & 0xFFF;
   // Ignore the packet if the handler is abnormal
   if (handle <= 0xEFF) {
@@ -422,9 +424,8 @@ static void transmit_sco_fragment(const uint8_t* stream, size_t length) {
   stream += 1;
   length -= 1;
   auto payload = std::vector<uint8_t>(stream, stream + length);
-  auto sco_packet = bluetooth::hci::ScoBuilder::Create(
-      handle, bluetooth::hci::PacketStatusFlag::CORRECTLY_RECEIVED,
-      std::move(payload));
+  auto sco_packet =
+      bluetooth::hci::ScoBuilder::Create(handle, pb_flag, std::move(payload));
 
   pending_sco_data->Enqueue(std::move(sco_packet),
                             bluetooth::shim::GetGdShimHandler());
