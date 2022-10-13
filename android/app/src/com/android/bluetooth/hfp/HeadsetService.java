@@ -23,6 +23,7 @@ import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -1306,6 +1307,23 @@ public class HeadsetService extends ProfileService {
         }
 
         return true;
+    }
+
+    /**
+     * Get the Bluetooth Audio Policy stored in the state machine
+     *
+     * @param device the device to change silence mode
+     * @return a {@link BluetoothAudioPolicy} object
+     */
+    public BluetoothAudioPolicy getHfpCallAudioPolicy(BluetoothDevice device) {
+        synchronized (mStateMachines) {
+            final HeadsetStateMachine stateMachine = mStateMachines.get(device);
+            if (stateMachine == null) {
+                Log.e(TAG, "getHfpCallAudioPolicy(), " + device + " does not have a state machine");
+                return null;
+            }
+            return stateMachine.getHfpCallAudioPolicy();
+        }
     }
 
     /**
