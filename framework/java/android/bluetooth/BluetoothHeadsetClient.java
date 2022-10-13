@@ -728,6 +728,26 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      */
     public static final int CALL_ACCEPT_TERMINATE = 2;
 
+    /**
+     * @hide
+     */
+    @SystemApi
+    public static final int REMOTE_STATUS_UNKNOWN = 0;
+
+    /**
+     * @hide
+     */
+    @SystemApi
+    public static final int REMOTE_STATUS_SUPPORTED = 1;
+
+    /**
+     * @hide
+     */
+    @SystemApi
+    public static final int REMOTE_STATUS_NOT_SUPPORTED = 2;
+
+
+
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
     private final BluetoothProfileConnector<IBluetoothHeadsetClient> mProfileConnector =
@@ -1587,7 +1607,7 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void setAudioRouteAllowed(BluetoothDevice device, boolean allowed) {
-        if (VDBG) log("setAudioRouteAllowed");
+        if (DBG) log("setAudioRouteAllowed");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {
             Log.w(TAG, "Proxy not attached to service");
@@ -1631,6 +1651,109 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
             }
         }
         return defaultValue;
+    }
+
+    /**
+     * Returns whether the audio policy feature is supported by the remote or not.
+     * Since this requires vendor specific command and it is out of the SLC, we
+     * need to add an extra REMOTE_STATE_UNKNOWN state to specify the supported
+     * flag is not configured yet.
+     *
+     * @param device remote device
+     * @return if call audio policy feature is supported or not.
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public int getAudioPolicyRemoteSupported(
+                @NonNull BluetoothDevice device) {
+        if (DBG) log("getAudioPolicyRemoteSupported");
+        final IBluetoothHeadsetClient service = getService();
+        final int supported = REMOTE_STATUS_UNKNOWN;
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.getAudioPolicyRemoteSupported(device, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(supported);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return supported;
+    }
+
+    /**
+     * Sets (and sends to the remote) call audio preferences
+     *
+     * @param device remote device
+     * @param policies call audio preferences
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void setAudioPolicy(@NonNull BluetoothDevice device,
+            @NonNull BluetoothAudioPolicy policies) {
+        if (DBG) log("setAudioPolicy");
+        final IBluetoothHeadsetClient service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.setAudioPolicy(device, policies, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Returns call audio routing preferences
+     *
+     * @param device remote device
+     * @return call audio policy
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @Nullable BluetoothAudioPolicy getAudioPolicy(@NonNull BluetoothDevice device) {
+        if (VDBG) log("getAudioPolicy");
+        final IBluetoothHeadsetClient service = getService();
+        final BluetoothAudioPolicy defaultPolicy = null;
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver<BluetoothAudioPolicy>
+                        recv = SynchronousResultReceiver.get();
+                service.getAudioPolicy(device, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultPolicy);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return defaultPolicy;
     }
 
     /**
