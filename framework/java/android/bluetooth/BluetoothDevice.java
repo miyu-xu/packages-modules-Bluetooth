@@ -3213,6 +3213,139 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         return METADATA_LE_AUDIO;
     }
 
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+        prefix = { "REMOTE_STATUS_" },
+        value = {
+            /** Remote support status of audio policy feature is unknown/unconfigured **/
+            BluetoothAudioPolicy.REMOTE_STATUS_UNKNOWN,
+            /** Remote support status of audio policy feature is supported **/
+            BluetoothAudioPolicy.REMOTE_STATUS_SUPPORTED,
+            /** Remote support status of audio policy feature is not supported **/
+            BluetoothAudioPolicy.REMOTE_STATUS_NOT_SUPPORTED,
+        }
+    )
+
+    public @interface AudioPolicyRemoteSupport {}
+
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {
+            BluetoothStatusCodes.SUCCESS,
+            BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED,
+            BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED,
+            BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION,
+            BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION,
+            BluetoothStatusCodes.ERROR_PROFILE_NOT_CONNECTED,
+            BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED,
+    })
+    public @interface AudioPolicyReturnValues{}
+
+    /**
+     * Returns whether the audio policy feature is supported by the remote or not.
+     * Since this requires vendor specific command and it is out of the SLC, we
+     * need to add an extra REMOTE_STATE_UNKNOWN state to specify the supported
+     * flag is not configured yet.
+     *
+     * @return if call audio policy feature is supported or not.
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @AudioPolicyRemoteSupport int getAudioPolicyRemoteSupported() {
+        if (DBG) log("getAudioPolicyRemoteSupported()");
+        final IBluetooth service = getService();
+        final int defaultValue = BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "BT not enabled. Cannot retrieve audio policy support status.");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.getAudioPolicyRemoteSupported(this, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+            } catch (TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            } catch (RemoteException e) {
+                Log.e(TAG, "", e);
+                throw e.rethrowFromSystemServer();
+            }
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Sets (and sends to the remote) call audio preferences
+     *
+     * @param policies call audio preferences
+     *
+     * @return whether audio policy was set successfully or not
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @AudioPolicyReturnValues int setAudioPolicy(@NonNull BluetoothAudioPolicy policies) {
+        if (DBG) log("setAudioPolicy");
+        final IBluetooth service = getService();
+        final int defaultValue = BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "Bluetooth is not enabled. Cannot set Audio Policy.");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.setAudioPolicy(this, policies, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Getter for the latest set call audio preferences
+     *
+     * @return call audio policy as {@link BluetoothAudioPolicy} object
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @Nullable BluetoothAudioPolicy getAudioPolicy() {
+        if (DBG) log("getAudioPolicy");
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "Bluetooth is not enabled. Cannot get Audio Policy.");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                final SynchronousResultReceiver<BluetoothAudioPolicy>
+                        recv = SynchronousResultReceiver.get();
+                service.getAudioPolicy(this, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return null;
+    }
+
     /**
      * Enable or disable audio low latency for this {@link BluetoothDevice}.
      *
