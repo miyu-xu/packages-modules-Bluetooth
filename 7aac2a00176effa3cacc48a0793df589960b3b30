@@ -1,0 +1,400 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaa8854a_699037da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "nit: Avrcp",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1023a9b8_47e52550",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "Can you please rune ktfmt to format the kotlin file ?\n\nI have tried to run the tests on my machine and I have 6 tests failing:\nAVRCP#AVRCP/TG/MCN/CB/BI-02-C\nAVRCP#AVRCP/TG/MCN/CB/BV-04-I\nAVRCP#AVRCP/TG/MCN/NP/BV-01-I\nAVRCP#AVRCP/TG/MCN/NP/BV-07-C\nAVRCP#AVRCP/TG/MPS/BV-02-I\nAVRCP#AVRCP/TG/MPS/BV-06-C",
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b06396a1_d6818b0e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "Regardings the `pts_bot_tests_config.json`, this condition is always true since there isn\u0027t any `TG/VLH` tests. Is there any missing working tests who needs to be into the `pts_bot_config.json` file ?",
+      "range": {
+        "startLine": 183,
+        "startChar": 29,
+        "endLine": 183,
+        "endChar": 49
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f929e869_2737616e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "I can\u0027t find any `CT/VLH` tests in the json configuration file",
+      "range": {
+        "startLine": 183,
+        "startChar": 55,
+        "endLine": 183,
+        "endChar": 61
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eb3cbe0_22679e4d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "The source and the state are in the same `oneof`. So actually I think this doesn\u0027t work and only the state is sent to the PandoraServer.\n\nIf we remove the state from the `oneof` then it will work as intended.",
+      "range": {
+        "startLine": 579,
+        "startChar": 8,
+        "endLine": 579,
+        "endChar": 73
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa3a93a_9f33d9d5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "I think we need to implement a start in this case",
+      "range": {
+        "startLine": 683,
+        "startChar": 8,
+        "endLine": 683,
+        "endChar": 47
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6348269_898f32bc",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "Here as well",
+      "range": {
+        "startLine": 692,
+        "startChar": 8,
+        "endLine": 692,
+        "endChar": 51
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899f8b53_32a1cdab",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "The assert_description doesn\u0027t crash because we didn\u0027t populate the list as expected in the previous mmi. I guess the Media Element will be dynamically according to what we\u0027ve done previously and we will need to perform some actions",
+      "range": {
+        "startLine": 765,
+        "startChar": 8,
+        "endLine": 765,
+        "endChar": 70
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0866b12d_a83977a6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "This implementation is working only if there is one track in the media player. But in case we need to populate the media player with couples of tracks, then this MMI will not behave as intended.",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 807,
+        "endChar": 73
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "837af70e_26f64295",
+        "filename": "android/pandora/server/proto/pandora_experimental/avrcp.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "Usually we go for \u003cmethod_name\u003eRequest/Response.\nHere it will be SetPlaybackStateRequest and SetPlaybackStateResponse",
+      "range": {
+        "startLine": 14,
+        "startChar": 23,
+        "endLine": 14,
+        "endChar": 33
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b2032e_9817bdcf",
+        "filename": "android/pandora/server/proto/pandora_experimental/avrcp.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "nit: delete new line",
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04127680_40931a12",
+        "filename": "android/pandora/server/proto/pandora_experimental/avrcp.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "I think `state` need to be out of the scope of the `oneof`",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 3
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c143517_29000479",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "This Log is not needed we can remove it",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd4fef6_f4af1f9c",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "Why do we need to play audio for 100ms ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 3
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "703d42d6_a1121089",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "we need to call `stopService` here to stop the AvrcpBrowserService",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 3
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72b1979d_9599d4cf",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "Maybe we can move the buildAudioTrack() function from the A2dp.kt into Utils.kt instead of having a copy of it",
+      "range": {
+        "startLine": 73,
+        "startChar": 2,
+        "endLine": 93,
+        "endChar": 3
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21f99924_8afcc81b",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "the target is unused here, is it in purpose ?",
+      "range": {
+        "startLine": 97,
+        "startChar": 5,
+        "endLine": 102,
+        "endChar": 5
+      },
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ec5f6d_e92c2281",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-13T21:09:53Z",
+      "side": 1,
+      "message": "Missing the last \"_\" ?",
+      "revId": "7aac2a00176effa3cacc48a0793df589960b3b30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
