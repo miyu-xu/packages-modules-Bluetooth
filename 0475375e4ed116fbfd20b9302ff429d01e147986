@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "722e0595_0df26214",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60c4d279_8d6685f9",
+      "range": {
+        "startLine": 215,
+        "startChar": 50,
+        "endLine": 215,
+        "endChar": 58
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "babf8d27_6ed6d95d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ab1d88_e365a6eb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "babf8d27_6ed6d95d",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 17
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4c201ee_eb044431",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-12T18:24:17Z",
       "side": 1,
       "message": "you may keep this implementation, but to share with you this is how the functional style implementation can look like:\n```\nfn append_uuids(dest: \u0026mut Vec\u003cu8\u003e, ad_types: (u8, u8, u8), uuids: \u0026Vec\u003cUuid\u003e) {\n    for (ad_type, uuids) in uuids\n        .iter()\n        .map(|uuid| UuidHelper::get_shortest_slice(\u0026uuid.uu))\n        .group_by(|uuid| match uuid.len() {\n            2 \u003d\u003e ad_types.0,\n            4 \u003d\u003e ad_types.1,\n            16 \u003d\u003e ad_types.2,\n            _ \u003d\u003e 0,\n        })\n        .into_iter()\n        .filter(|(k, _)| *k !\u003d 0)\n    {\n        let little_endian_uuids \u003d uuids.fold(Vec::new(), |mut acc, uuid| {\n            acc.extend(uuid.iter().rev());\n            acc\n        });\n        Self::append_adv_data(dest, ad_type, \u0026little_endian_uuids);\n    }\n}\n```\nnotice that:\n1. no unnecessary mutability\n2. no re-inventing logic (therefore actually more expressive)\n3. still efficient (can defer all array copy until the last step)\n\nIf you want to give it a try, add `itertools \u003d \"0.10.5\"` to `system/gd/rust/linux/stack/Cargo.toml` and add `use itertools::Itertools` on top of the file. The crate is already in our vendored crates so we don\u0027t need audit.\n\nIf you want to keep the imperative style, I have other comments above.",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 9
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a50f6b10_20d7f87c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "ACK. Thanks for the sharing. I have tried group_by and explained why group_by is not suitable for this use case in previous comment. Here\u0027s an example: \n\n```\nfn main() {\n    let data: Vec\u003cu8\u003e  \u003d vec![2, 16, 2]; \n    println!(\"input: {:?}\", data);\n    for (attr, ids) in data.iter()\n                    .group_by(|elt| **elt \u003e 2)\n                    .into_iter() {\n        for id in ids {\n            println!(\"output: attr\u003d{}, id\u003d{}\", attr, id);\n        }\n    }   \n}\n\n// Console output:\n/*\ninput: [2, 16, 2]\noutput: attr\u003dfalse, id\u003d2\noutput: attr\u003dtrue, id\u003d16\noutput: attr\u003dfalse, id\u003d2\n*/\n```",
+      "parentUuid": "a4c201ee_eb044431",
       "range": {
         "startLine": 216,
         "startChar": 0,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b759b6d_da15e4c0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done. Thanks for the trick.",
+      "parentUuid": "d11f7547_40b12493",
+      "range": {
+        "startLine": 264,
+        "startChar": 68,
+        "endLine": 267,
+        "endChar": 9
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd53bf46_e8063e59",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
         "patchSetId": 6
@@ -106,6 +202,30 @@
       "writtenOn": "2022-10-12T18:24:17Z",
       "side": 1,
       "message": "nit: since the arms are one-liners, you can remove the curly brackets",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 279,
+        "endChar": 17
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7754ce1e_96999238",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd53bf46_e8063e59",
       "range": {
         "startLine": 271,
         "startChar": 0,
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65a8e968_f9aa5340",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80615853_913c8112",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 21
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34cf7f9f_c349bc13",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-10-12T18:24:17Z",
       "side": 1,
       "message": "with `use itertools::Itertools`, this can simply be:\n```\nfor (m, data) in manufacturer_data.iter().sorted() {\n```",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 32
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03059fac_3a342aa9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34cf7f9f_c349bc13",
       "range": {
         "startLine": 301,
         "startChar": 0,
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f3599f8_9207b036",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done. to_le_bytes() should be used, see https://docs.google.com/document/d/1v9PH4iv3cWZCLNPEepjI7KCIKE65YlQNKaPA6Vax-6o/edit#bookmark\u003did.yyqpnmqaqr0",
+      "parentUuid": "5b041c04_875e74f5",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 51
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95e60ee3_fe0d5771",
@@ -198,6 +390,30 @@
       "writtenOn": "2022-10-12T18:24:17Z",
       "side": 1,
       "message": "nit: filter out the empty tdd in the iterator:\n```\nfor tdd in transport_discovery_data.iter().filter(|tdd| tdd.len() \u003e 0) {\n```",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 317,
+        "endChar": 45
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b66ce16_e4b2fb6f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-13T00:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95e60ee3_fe0d5771",
       "range": {
         "startLine": 317,
         "startChar": 0,
