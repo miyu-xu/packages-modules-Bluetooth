@@ -11,6 +11,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAssignedNumbers;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
@@ -91,6 +92,7 @@ public class HeadsetClientStateMachineTest {
 
         TestUtils.setAdapterService(mAdapterService);
         mNativeInterface = spy(NativeInterface.getInstance());
+        doReturn(true).when(mNativeInterface).sendAndroidAt(anyObject(), anyString());
 
         // This line must be called to make sure relevant objects are initialized properly
         mAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -390,6 +392,10 @@ public class HeadsetClientStateMachineTest {
 
     /* Utility function to simulate SLC connection. */
     private int setUpServiceLevelConnection(int startBroadcastIndex) {
+        return setUpServiceLevelConnection(startBroadcastIndex, false);
+    }
+
+    private int setUpServiceLevelConnection(int startBroadcastIndex, boolean atAndroidSupported) {
         // Trigger SLC connection
         StackEvent slcEvent = new StackEvent(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
         slcEvent.valueInt = HeadsetClientHalConstants.CONNECTION_STATE_SLC_CONNECTED;
@@ -397,6 +403,20 @@ public class HeadsetClientStateMachineTest {
         slcEvent.valueInt2 |= HeadsetClientHalConstants.PEER_FEAT_HF_IND;
         slcEvent.device = mTestDevice;
         mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, slcEvent);
+
+        if (atAndroidSupported) {
+            StackEvent unknownEvt = new StackEvent(StackEvent.EVENT_TYPE_UNKNOWN_EVENT);
+            unknownEvt.valueString = "+ANDROID: 1";
+            unknownEvt.device = mTestDevice;
+            mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, unknownEvt);
+        } else {
+            // receive CMD_RESULT CME_ERROR due to remote not supporting Android AT
+            StackEvent cmdResEvt = new StackEvent(StackEvent.EVENT_TYPE_CMD_RESULT);
+            cmdResEvt.valueInt = StackEvent.CMD_RESULT_TYPE_CME_ERROR;
+            slcEvent.device = mTestDevice;
+            mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, cmdResEvt);
+        }
+
         ArgumentCaptor<Intent> intentArgument = ArgumentCaptor.forClass(Intent.class);
         verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(startBroadcastIndex))
                 .sendBroadcastMultiplePermissions(intentArgument.capture(),
@@ -404,6 +424,7 @@ public class HeadsetClientStateMachineTest {
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED,
                 intentArgument.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
         startBroadcastIndex++;
+
         return startBroadcastIndex;
     }
 
@@ -705,5 +726,46 @@ public class HeadsetClientStateMachineTest {
 
         verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(1))
                 .updateBatteryLevel();
+    }
+
+    @Test
+    public void testQueryRemoteSupported_Supported_StateTransition() {
+        // Setup connection state machine to be in connected state
+        when(mHeadsetClientService.getConnectionPolicy(any(BluetoothDevice.class))).thenReturn(
+                BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        int expectedBroadcastIndex = 1;
+
+        expectedBroadcastIndex = setUpHfpClientConnection(expectedBroadcastIndex);
+        expectedBroadcastIndex = setUpServiceLevelConnection(expectedBroadcastIndex);
+
+
+    }
+
+    @SmallTest
+    @Test
+    public void testSetCallAudioPolicy() {
+        // Return true for priority.
+        when(mHeadsetClientService.getConnectionPolicy(any(BluetoothDevice.class))).thenReturn(
+                BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        int expectedBroadcastIndex = 1;
+
+        expectedBroadcastIndex = setUpHfpClientConnection(expectedBroadcastIndex);
+        expectedBroadcastIndex = setUpServiceLevelConnection(expectedBroadcastIndex);
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=?");
+
+        BluetoothAudioPolicy dummyAudioPolicy = new BluetoothAudioPolicy();
+        mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
+        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "ANDROID=1,0,0,0");
+
+        mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
+        mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,0,0,0");
+
+    }
+
+    @Test
+    public void testBlank() {
+
     }
 }
