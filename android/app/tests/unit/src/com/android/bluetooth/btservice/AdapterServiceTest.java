@@ -131,6 +131,7 @@ public class AdapterServiceTest {
     private @Mock AudioManager mAudioManager;
     private @Mock android.app.Application mApplication;
     private @Mock MetricsLogger mMockMetricsLogger;
+//     private @Mock HeadsetClientService mMockHeadsetClientService;
 
     // BatteryStatsManager is final and cannot be mocked with regular mockito, so just mock the
     // underlying binder calls.
@@ -311,6 +312,9 @@ public class AdapterServiceTest {
         when(mMockGattService.getName()).thenReturn("GattService");
         when(mMockService.getName()).thenReturn("Service1");
         when(mMockService2.getName()).thenReturn("Service2");
+        // when(mMockHeadsetClientService.getName()).thenReturn("HeadsetClientService");
+        // when(mMockHeadsetClientService.getAudioPolicyRemoteSupported(anyObject()))
+        //         .thenReturn(BluetoothAudioPolicy.REMOTE_STATUS_SUPPORTED);
 
         when(mMockMetricsLogger.init(any())).thenReturn(true);
         when(mMockMetricsLogger.close()).thenReturn(true);
@@ -391,8 +395,11 @@ public class AdapterServiceTest {
 
             mAdapterService.addProfile(mMockService);
             mAdapterService.addProfile(mMockService2);
+        //     mAdapterService.addProfile(mMockHeadsetClientService);
             mAdapterService.onProfileServiceStateChanged(mMockService, BluetoothAdapter.STATE_ON);
             mAdapterService.onProfileServiceStateChanged(mMockService2, BluetoothAdapter.STATE_ON);
+        //     mAdapterService.onProfileServiceStateChanged(mMockHeadsetClientService,
+        //             BluetoothAdapter.STATE_ON);
         }
 
         verifyStateChange(BluetoothAdapter.STATE_TURNING_ON, BluetoothAdapter.STATE_ON,
@@ -427,6 +434,8 @@ public class AdapterServiceTest {
 
             mAdapterService.onProfileServiceStateChanged(mMockService, BluetoothAdapter.STATE_OFF);
             mAdapterService.onProfileServiceStateChanged(mMockService2, BluetoothAdapter.STATE_OFF);
+        //     mAdapterService.onProfileServiceStateChanged(mMockHeadsetClientService,
+        //             BluetoothAdapter.STATE_OFF);
         }
 
         verifyStateChange(BluetoothAdapter.STATE_TURNING_OFF, BluetoothAdapter.STATE_BLE_ON,
