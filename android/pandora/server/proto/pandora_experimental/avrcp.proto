@@ -4,9 +4,47 @@ option java_outer_classname = "AvrcpProto";
 
 package pandora;
 
-import "pandora_experimental/host.proto";
+import "pandora_experimental/a2dp.proto";
 
 
 service AVRCP {
 
+
+  // Update the Playback state of Media Session
+  rpc setPlaybackState(SetRequest) returns (GetResponse);
+
 }
+
+enum PlaybackStates {
+  STATE_NONE = 0;
+  STATE_PAUSED = 2;
+  STATE_PLAYING = 3;
+  STATE_SKIPPING_TO_NEXT = 10;
+  STATE_SKIPPING_TO_PREVIOUS = 9;
+  STATE_STOPPED = 1;
+
+}
+
+
+// A Token representing a Sink stream (see [A2DP] 2.2).
+// It's acquired via an OpenSink on the A2DP service.
+message State {
+  Source source = 1;
+  // Playback states.
+  // PTS sends different AVRCP actions
+  // This is to handle different Playback states sent by CT
+  bytes data = 2;
+}
+
+// Request for the `setPlaybackState` method.
+message SetRequest {
+  // Target of the setPlaybackState, either a Sink or a Source.
+  oneof target {
+    Sink sink = 1;
+    Source source = 2;
+    PlaybackStates state = 3;
+  }
+}
+
+// Response for the `setPlaybackState` method.
+message GetResponse {}
