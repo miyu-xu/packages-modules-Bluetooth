@@ -23,6 +23,7 @@
 
 #include "common/init_flags.h"
 #include "hci/hci_layer.h"
+#include "hci_controller_generated.h"
 
 namespace bluetooth {
 namespace hci {
@@ -254,6 +255,7 @@ struct Controller::impl {
     ErrorCode status = complete_view.GetStatus();
     ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
     local_supported_commands_ = complete_view.GetSupportedCommands();
+    local_supported_commands_string_ = complete_view.ToString();
   }
 
   void read_local_extended_features_complete_handler(std::promise<void> promise, CommandCompleteView view) {
@@ -591,6 +593,10 @@ struct Controller::impl {
     return supported;                                                          \
   }
 
+  void Dump(
+      std::promise<flatbuffers::Offset<ControllerData>> promise, flatbuffers::FlatBufferBuilder* fb_builder) const;
+  mutable std::mutex dumpsys_mutex_;
+
   bool is_supported(OpCode op_code) {
     switch (op_code) {
       OP_CODE_MAPPING(INQUIRY)
@@ -885,6 +891,7 @@ struct Controller::impl {
   CompletedAclPacketsCallback acl_monitor_credits_callback_{};
   LocalVersionInformation local_version_information_;
   std::array<uint8_t, 64> local_supported_commands_;
+  std::string local_supported_commands_string_;
   std::vector<uint64_t> extended_lmp_features_array_;
   uint16_t acl_buffer_length_ = 0;
   uint16_t acl_buffers_ = 0;
@@ -1202,5 +1209,102 @@ void Controller::Stop() {
 std::string Controller::ToString() const {
   return "Controller";
 }
+
+void Controller::impl::Dump(
+    std::promise<flatbuffers::Offset<ControllerData>> promise, flatbuffers::FlatBufferBuilder* fb_builder) const {
+  ASSERT(fb_builder != nullptr);
+  auto title = fb_builder->CreateString("----- Hci Controller Dumpsys -----");
+
+  auto hci_version_string = fb_builder->CreateString(HciVersionText(local_version_information_.hci_version_));
+  auto lmp_version_string = fb_builder->CreateString(LmpVersionText(local_version_information_.lmp_version_));
+  auto local_version_information_data = CreateLocalVersionInformationData(
+      *fb_builder,
+      hci_version_string,
+      local_version_information_.hci_revision_,
+      lmp_version_string,
+      local_version_information_.manufacturer_name_,
+      local_version_information_.lmp_subversion_);
+
+  auto le_buffer_size_data =
+      CreateBufferSizeData(*fb_builder, le_buffer_size_.le_data_packet_length_, le_buffer_size_.total_num_le_packets_);
+
+  auto iso_buffer_size_data = CreateBufferSizeData(
+      *fb_builder, iso_buffer_size_.le_data_packet_length_, iso_buffer_size_.total_num_le_packets_);
+
+  auto le_maximum_data_length_data = CreateLeMaximumDataLengthData(
+      *fb_builder,
+      le_maximum_data_length_.supported_max_tx_octets_,
+      le_maximum_data_length_.supported_max_tx_time_,
+      le_maximum_data_length_.supported_max_rx_octets_,
+      le_maximum_data_length_.supported_max_rx_time_);
+
+  auto local_supported_commands_string = fb_builder->CreateString(local_supported_commands_string_);
+
+  auto vendor_capabilities_data = CreateVendorCapabilitiesData(
+      *fb_builder,
+      vendor_capabilities_.is_supported_,
+      vendor_capabilities_.max_advt_instances_,
+      vendor_capabilities_.offloaded_resolution_of_private_address_,
+      vendor_capabilities_.total_scan_results_storage_,
+      vendor_capabilities_.max_irk_list_sz_,
+      vendor_capabilities_.filtering_support_,
+      vendor_capabilities_.max_filter_,
+      vendor_capabilities_.activity_energy_info_support_,
+      vendor_capabilities_.version_supported_,
+      vendor_capabilities_.total_num_of_advt_tracked_,
+      vendor_capabilities_.extended_scan_support_,
+      vendor_capabilities_.debug_logging_supported_,
+      vendor_capabilities_.le_address_generation_offloading_support_,
+      vendor_capabilities_.a2dp_source_offload_capability_mask_,
+      vendor_capabilities_.bluetooth_quality_report_support_);
+
+  auto extended_lmp_features_vector = fb_builder->CreateVector(extended_lmp_features_array_);
+
+  ControllerDataBuilder builder(*fb_builder);
+
+  builder.add_title(title);
+
+  builder.add_acl_buffer_length(acl_buffer_length_);
+  builder.add_acl_buffers(acl_buffers_);
+  builder.add_sco_buffer_length(sco_buffer_length_);
+  builder.add_sco_buffers(sco_buffers_);
+
+  builder.add_local_version_information(local_version_information_data);
+  builder.add_vendor_capabilities(vendor_capabilities_data);
+  builder.add_le_maximum_data_length(le_maximum_data_length_data);
+  builder.add_iso_buffer_size(iso_buffer_size_data);
+  builder.add_le_buffer_size(le_buffer_size_data);
+
+  builder.add_local_supported_commands(local_supported_commands_string);
+
+  builder.add_extended_lmp_features_array(extended_lmp_features_vector);
+
+  builder.add_le_local_supported_features(le_local_supported_features_);
+  builder.add_le_supported_states(le_supported_states_);
+  builder.add_le_connect_list_size(le_connect_list_size_);
+  builder.add_le_resolving_list_size(le_resolving_list_size_);
+  builder.add_le_maximum_advertising_data_length(le_maximum_advertising_data_length_);
+  builder.add_le_suggested_default_data_length(le_suggested_default_data_length_);
+  builder.add_le_number_supported_advertising_sets(le_number_supported_advertising_sets_);
+  builder.add_le_periodic_advertiser_list_size(le_periodic_advertiser_list_size_);
+
+  flatbuffers::Offset<ControllerData> dumpsys_data = builder.Finish();
+  promise.set_value(dumpsys_data);
+}
+
+DumpsysDataFinisher Controller::GetDumpsysData(flatbuffers::FlatBufferBuilder* fb_builder) const {
+  ASSERT(fb_builder != nullptr);
+
+  std::promise<flatbuffers::Offset<ControllerData>> promise;
+  auto future = promise.get_future();
+  impl_->Dump(std::move(promise), fb_builder);
+
+  auto dumpsys_data = future.get();
+
+  return [dumpsys_data](DumpsysDataBuilder* dumpsys_builder) {
+    dumpsys_builder->add_hci_controller_dumpsys_data(dumpsys_data);
+  };
+}
+
 }  // namespace hci
 }  // namespace bluetooth
