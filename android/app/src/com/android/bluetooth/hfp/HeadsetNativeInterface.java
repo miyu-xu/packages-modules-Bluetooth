@@ -227,6 +227,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public void init(int maxHfClients, boolean inbandRingingEnabled) {
+        Log.w(TAG, "init: maxHfClients:" + maxHfClients + " isinband:" + inbandRingingEnabled);
         initializeNative(maxHfClients, inbandRingingEnabled);
     }
 
