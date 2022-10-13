@@ -46,6 +46,30 @@
       },
       "revId": "20d11493163b27bec9ba69e33a9dad6fdd26bc80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb29902_fe41cae3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T17:49:25Z",
+      "side": 1,
+      "message": "I agree with prefer LE + CKTD",
+      "parentUuid": "610efc6c_a7d887a4",
+      "range": {
+        "startLine": 712,
+        "startChar": 9,
+        "endLine": 712,
+        "endChar": 22
+      },
+      "revId": "20d11493163b27bec9ba69e33a9dad6fdd26bc80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -173,6 +173,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8c6f5d88_3c045b64",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T17:49:25Z",
+      "side": 1,
+      "message": "Looks like the right logic here.  Do you think we could compartmentalize some of it into separate functions to be more readable?  Then everyone else might understand a bit better.",
+      "parentUuid": "14804f0d_474058c5",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44534430_99ab73be",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 6
@@ -238,6 +256,24 @@
       "side": 1,
       "message": "This would be a hard case. I\u0027m not quite sure why would someone trigger that, but it is handled for bonding at line 748 below.\n\nMaybe OOB data stored device type because we didn\u0027t scan at all ? or re-pairing that would be re-pairing triggeed from the app, or upgrading the keys ?  Or maybe re-pairing to trigger service discovery again ? Just to be on safe side I kept this code. If you think it\u0027s dangerous I can get rid of it, but I think reading form storage it\u0027s LE capable might be good.",
       "parentUuid": "e69a73cd_c2c8bc08",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe68be1_59cf99ed",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T17:49:25Z",
+      "side": 1,
+      "message": "If OOB data is setting the incorrect device type then that is up to the peripheral implementing the data IMO",
+      "parentUuid": "f6519b0e_40b6afa3",
       "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
