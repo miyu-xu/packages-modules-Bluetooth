@@ -20,6 +20,7 @@ import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsPreferenceStatus;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsSupportStatus;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
@@ -280,6 +281,61 @@ public class DatabaseManager {
 
             Metadata data = mMetadataCache.get(address);
             return data.getCustomizedMeta(key);
+        }
+    }
+
+    /**
+     * Set audio policy metadata to database with requested key
+     */
+    @VisibleForTesting
+    public boolean setAudioPolicyMetadata(BluetoothDevice device, BluetoothAudioPolicy policies) {
+        synchronized (mMetadataCache) {
+            if (device == null) {
+                Log.e(TAG, "setCustomMeta: device is null");
+                return false;
+            }
+
+            String address = device.getAddress();
+            if (!mMetadataCache.containsKey(address)) {
+                createMetadata(address, false);
+            }
+            Metadata data = mMetadataCache.get(address);
+            AudioPolicyEntity policy = data.getAudioPolicyMetadata();
+            policy.call_pick_up_audio_policy = policies.getCallPickUpPolicy();
+            policy.connecting_audio_policy = policies.getConnectingPolicy();
+            policy.in_band_ring_audio_policy = policies.getInBandRingPolicy();
+            data.setAudioPolicyMetadata(policy);
+
+            updateDatabase(data);
+            return true;
+        }
+    }
+
+    /**
+     * Get audio policy metadata from database with requested key
+     */
+    @VisibleForTesting
+    public BluetoothAudioPolicy getAudioPolicyMetadata(BluetoothDevice device) {
+        synchronized (mMetadataCache) {
+            if (device == null) {
+                Log.e(TAG, "getAudioPolicyMetadata: device is null");
+                return null;
+            }
+
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.d(TAG, "getCustomMeta: device " + address + " is not in cache");
+                return null;
+            }
+
+            Metadata data = mMetadataCache.get(address);
+            AudioPolicyEntity policies = data.getAudioPolicyMetadata();
+            return new BluetoothAudioPolicy(
+                    policies.call_pick_up_audio_policy,
+                    policies.connecting_audio_policy,
+                    policies.in_band_ring_audio_policy
+            );
         }
     }
 
