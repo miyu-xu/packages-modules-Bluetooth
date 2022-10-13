@@ -19,6 +19,7 @@ package com.android.bluetooth.hfp;
 import static org.mockito.Mockito.*;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -990,6 +991,42 @@ public class HeadsetServiceTest {
         // Test that active device should not be changed if audio is not allowed
         Assert.assertFalse(mHeadsetService.setActiveDevice(mCurrentDevice));
         Assert.assertEquals(null, mHeadsetService.getActiveDevice());
+    }
+
+    @Test
+    public void testConnectDeviceNotAllowedInbandRingPolicy_InbandRingStatus() {
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                eq(BluetoothProfile.HEADSET)))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        mCurrentDevice = TestUtils.getTestDevice(mAdapter, 0);
+        Assert.assertTrue(mHeadsetService.connect(mCurrentDevice));
+        when(mStateMachines.get(mCurrentDevice).getDevice()).thenReturn(mCurrentDevice);
+        when(mStateMachines.get(mCurrentDevice).getConnectionState()).thenReturn(
+                BluetoothProfile.STATE_CONNECTED);
+        when(mStateMachines.get(mCurrentDevice).getConnectingTimestampMs()).thenReturn(
+                SystemClock.uptimeMillis());
+        Assert.assertEquals(Collections.singletonList(mCurrentDevice),
+                mHeadsetService.getConnectedDevices());
+        mHeadsetService.onConnectionStateChangedFromStateMachine(mCurrentDevice,
+                BluetoothProfile.STATE_DISCONNECTED, BluetoothProfile.STATE_CONNECTED);
+
+        when(mStateMachines.get(mCurrentDevice).getHfpCallAudioPolicy()).thenReturn(
+                new BluetoothAudioPolicy(
+                        BluetoothAudioPolicy.CALL_AUDIO_ALLOWED,
+                        BluetoothAudioPolicy.CALL_AUDIO_ALLOWED,
+                        BluetoothAudioPolicy.CALL_AUDIO_ALLOWED
+                )
+        );
+        Assert.assertEquals(true, mHeadsetService.isInbandRingingEnabled());
+
+        when(mStateMachines.get(mCurrentDevice).getHfpCallAudioPolicy()).thenReturn(
+                new BluetoothAudioPolicy(
+                        BluetoothAudioPolicy.CALL_AUDIO_ALLOWED,
+                        BluetoothAudioPolicy.CALL_AUDIO_ALLOWED,
+                        BluetoothAudioPolicy.CALL_AUDIO_NOT_ALLOWED
+                )
+        );
+        Assert.assertEquals(false, mHeadsetService.isInbandRingingEnabled());
     }
 
     /*
