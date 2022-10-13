@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c274162_94b3b1b6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-13T00:21:57Z",
+      "side": 1,
+      "message": "I think you misunderstood group_by. My prototype passed your tests. group_by does what it says, it groups the flat items into list of lists based on the given grouping criterion. In my example, `(ad_type, uuids)` is given for each iteration, having `uuids` being the list of uuids having type `ad_type`.",
+      "parentUuid": "a50f6b10_20d7f87c",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 9
+      },
+      "revId": "0475375e4ed116fbfd20b9302ff429d01e147986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d11f7547_40b12493",
