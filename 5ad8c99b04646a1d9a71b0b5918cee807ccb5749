@@ -94,6 +94,30 @@
       },
       "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049f8802_6283c7c5",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2022-10-13T00:50:42Z",
+      "side": 1,
+      "message": "OK, thanks.\nI updated it.",
+      "parentUuid": "b9218955_402843e4",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 29
+      },
+      "revId": "5ad8c99b04646a1d9a71b0b5918cee807ccb5749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
