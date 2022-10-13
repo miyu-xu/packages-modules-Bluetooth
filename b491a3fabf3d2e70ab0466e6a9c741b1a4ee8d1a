@@ -33,6 +33,24 @@
       "message": "To keep from polluting this compilation unit, add this to tell the preprocessor to unlink this definition\n\n```\n#undef CASE_RETURN_TEXT\n```",
       "revId": "b491a3fabf3d2e70ab0466e6a9c741b1a4ee8d1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6b1af2e_df2b091b",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2022-10-13T15:38:24Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "5526881d_21de40b4",
+      "revId": "b491a3fabf3d2e70ab0466e6a9c741b1a4ee8d1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
