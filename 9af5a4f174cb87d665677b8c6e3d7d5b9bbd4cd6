@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9f417a7_2dcbd4cf",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-13T18:44:24Z",
+      "side": 1,
+      "message": "we can leave out this empty parameters from `new()` since we always want to create SuspendState starting with all `false` values",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "9af5a4f174cb87d665677b8c6e3d7d5b9bbd4cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
