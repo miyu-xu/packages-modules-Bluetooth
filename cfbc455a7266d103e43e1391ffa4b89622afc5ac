@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a28a03_2d621226",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-13T15:27:27Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nDhananjay got his approvals but facing further errors on Forge Committer error. We followed the link mentioned \nSo I have uploaded this CL to confirm on our approach. \n\nWe will submit new CL with Dhananjay\u0027s ID once his commit approval issue is resolved.",
+      "revId": "cfbc455a7266d103e43e1391ffa4b89622afc5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
