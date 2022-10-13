@@ -642,9 +642,13 @@ static uint8_t avdt_msg_prs_cfg(AvdtpSepConfig* p_cfg, uint8_t* p, uint16_t len,
           android_errorWriteLog(0x534e4554, "78288378");
           break;
         }
-        p_cfg->num_codec++;
-        p_cfg->codec_info[0] = elem_len;
-        memcpy(&p_cfg->codec_info[1], p, tmp);
+
+        if (AVDT_IS_VALID_MEDIA_CODEC_TYPE(*(p+1))) {
+          p_cfg->num_codec++;
+          p_cfg->codec_info[0] = elem_len;
+          memcpy(&p_cfg->codec_info[1], p, tmp);
+        }
+
         p += elem_len;
         break;
 

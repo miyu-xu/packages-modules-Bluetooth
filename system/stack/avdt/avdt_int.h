@@ -1000,4 +1000,16 @@ void avdt_l2c_disconnect(uint16_t lcid);
 
 constexpr uint16_t kAvdtpMtu = 1024;
 
+/* Define the AVDTP MEDIA CODEC TYPE ID
+*/
+#define AVDT_MEDIA_CODEC_TYPE_SBC               0x00
+#define AVDT_MEDIA_CODEC_TYPE_M12               0x01
+#define AVDT_MEDIA_CODEC_TYPE_M24               0x02
+#define AVDT_MEDIA_CODEC_TYPE_MD                0x03
+#define AVDT_MEDIA_CODEC_TYPE_ATRAC             0x04
+#define AVDT_MEDIA_CODEC_TYPE_NON_A2DP          0xff
+
+#define AVDT_IS_VALID_MEDIA_CODEC_TYPE(a)          ((((a <= AVDT_MEDIA_CODEC_TYPE_ATRAC)) || \
+                    (a == AVDT_MEDIA_CODEC_TYPE_NON_A2DP)) ? TRUE : FALSE)
+
 #endif /* AVDT_INT_H */
