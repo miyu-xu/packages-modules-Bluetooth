@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2eb052d_751cb188",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMessageListing.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-13T02:06:11Z",
+      "side": 1,
+      "message": "What about adding a new constructor for testing?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
