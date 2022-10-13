@@ -17,6 +17,7 @@
 package com.android.bluetooth.hfpclient;
 
 import android.annotation.RequiresPermission;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
 import android.bluetooth.BluetoothHeadsetClientCall;
@@ -915,6 +916,69 @@ public class HeadsetClientService extends ProfileService {
             return sm.getAudioRouteAllowed();
         }
         return false;
+    }
+
+    /**
+     * sends the {@BluetoothAudioPolicy} object to the state machine of the corresponding
+     * device to store and send to the remote device using Android specific AT commands.
+     *
+     * @param device for whom the policies to be set
+     * @param policies to be set policies
+     */
+    public void setAudioPolicy(BluetoothDevice device, BluetoothAudioPolicy policies) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        Log.i(TAG, "setAudioPolicy: device=" + device + ", " + policies.toString() + ", "
+                + Utils.getUidPidString());
+        HeadsetClientStateMachine sm = getStateMachine(device);
+        if (sm != null) {
+            sm.setAudioPolicy(policies);
+        }
+    }
+
+    /**
+     * Retrieve the audio policies stored in the state machine for the corresponding
+     * device.
+     *
+     * @param device queried device for audio policy
+     * @return {@link BluetoothAudioPolicy} for the corresponding device
+     */
+    public BluetoothAudioPolicy getAudioPolicy(BluetoothDevice device) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        HeadsetClientStateMachine sm = getStateMachine(device);
+        if (sm != null) {
+            return sm.getAudioPolicy();
+        }
+        return null;
+    }
+
+    /**
+     * sets the audio policy feature support status for the corresponding device.
+     *
+     * @param device for whom the policies to be set
+     * @param supported support status
+     */
+    public void setAudioPolicyRemoteSupported(BluetoothDevice device, boolean supported) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        Log.i(TAG, "setAudioPolicyRemoteSupported: " + supported);
+        HeadsetClientStateMachine sm = getStateMachine(device);
+        if (sm != null) {
+            sm.setAudioPolicyRemoteSupported(supported);
+        }
+    }
+
+    /**
+     * gets the audio policy feature support status for the corresponding device.
+     *
+     * @param device for whom the policies to be set
+     * @return int support status
+     */
+    public int getAudioPolicyRemoteSupported(BluetoothDevice device) {
+        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
+        HeadsetClientStateMachine sm = getStateMachine(device);
+        if (sm != null) {
+            return sm.getAudioPolicyRemoteSupported();
+        }
+        return HeadsetClientStateMachine.REMOTE_STATUS_UNKNOWN;
     }
 
     public boolean connectAudio(BluetoothDevice device) {
