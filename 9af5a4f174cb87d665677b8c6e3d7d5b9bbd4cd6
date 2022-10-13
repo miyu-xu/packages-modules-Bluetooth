@@ -22,6 +22,30 @@
       },
       "revId": "9af5a4f174cb87d665677b8c6e3d7d5b9bbd4cd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2e3039_62e014e0",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T23:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9f417a7_2dcbd4cf",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "9af5a4f174cb87d665677b8c6e3d7d5b9bbd4cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
