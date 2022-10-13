@@ -48,6 +48,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers;
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;

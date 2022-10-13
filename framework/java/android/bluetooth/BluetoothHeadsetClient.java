@@ -1587,7 +1587,7 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void setAudioRouteAllowed(BluetoothDevice device, boolean allowed) {
-        if (VDBG) log("setAudioRouteAllowed");
+        if (DBG) log("setAudioRouteAllowed");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {
             Log.w(TAG, "Proxy not attached to service");
