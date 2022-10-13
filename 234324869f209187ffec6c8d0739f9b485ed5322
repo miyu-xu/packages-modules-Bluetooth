@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0763f2_d96854d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-13T07:46:51Z",
+      "side": 1,
+      "message": "please add more information to the commit message so the reviewers can understand what the problem is solved here.\n\n\nAlso, please elaborate what \"manual\" means.",
+      "revId": "234324869f209187ffec6c8d0739f9b485ed5322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "473bd0f3_313822cf",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-13T07:46:51Z",
+      "side": 1,
+      "message": "Is there a problem with notifying about group beeing inactive when changing active groups?",
+      "revId": "234324869f209187ffec6c8d0739f9b485ed5322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
