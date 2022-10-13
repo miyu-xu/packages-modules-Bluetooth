@@ -124,7 +124,7 @@ static void bta_hf_client_queue_at(tBTA_HF_CLIENT_CB* client_cb,
   tBTA_HF_CLIENT_AT_QCMD* new_cmd =
       (tBTA_HF_CLIENT_AT_QCMD*)osi_malloc(sizeof(tBTA_HF_CLIENT_AT_QCMD));
 
-  APPL_TRACE_DEBUG("%s", __func__);
+  APPL_TRACE_WARNING("%s", __func__);
 
   new_cmd->cmd = cmd;
   new_cmd->buf_len = buf_len;
@@ -169,7 +169,7 @@ static void bta_hf_client_stop_at_resp_timer(tBTA_HF_CLIENT_CB* client_cb) {
 static void bta_hf_client_send_at(tBTA_HF_CLIENT_CB* client_cb,
                                   tBTA_HF_CLIENT_AT_CMD cmd, const char* buf,
                                   uint16_t buf_len) {
-  APPL_TRACE_DEBUG("%s", __func__);
+  APPL_TRACE_WARNING("%s %d", __func__, cmd);
   if ((client_cb->at_cb.current_cmd == BTA_HF_CLIENT_AT_NONE ||
        !client_cb->svc_conn) &&
       !alarm_is_scheduled(client_cb->at_cb.hold_timer)) {
@@ -197,13 +197,14 @@ static void bta_hf_client_send_at(tBTA_HF_CLIENT_CB* client_cb,
     return;
   }
 
+  APPL_TRACE_WARNING("%s: busy! queued: %d", __func__, cmd);
   bta_hf_client_queue_at(client_cb, cmd, buf, buf_len);
 }
 
 static void bta_hf_client_send_queued_at(tBTA_HF_CLIENT_CB* client_cb) {
   tBTA_HF_CLIENT_AT_QCMD* cur = client_cb->at_cb.queued_cmd;
 
-  APPL_TRACE_DEBUG("%s", __func__);
+  LOG_INFO("%s", __func__);
 
   if (cur != NULL) {
     client_cb->at_cb.queued_cmd = cur->next;
@@ -240,7 +241,7 @@ static void bta_hf_client_start_at_hold_timer(tBTA_HF_CLIENT_CB* client_cb) {
  ******************************************************************************/
 
 static void bta_hf_client_handle_ok(tBTA_HF_CLIENT_CB* client_cb) {
-  APPL_TRACE_DEBUG("%s", __func__);
+  LOG_INFO("current_cmd:%d", client_cb->at_cb.current_cmd);
 
   bta_hf_client_stop_at_resp_timer(client_cb);
 
@@ -266,6 +267,10 @@ static void bta_hf_client_handle_ok(tBTA_HF_CLIENT_CB* client_cb) {
     case BTA_HF_CLIENT_AT_NONE:
       bta_hf_client_stop_at_hold_timer(client_cb);
       break;
+    case BTA_HF_CLIENT_AT_ANDROID:
+      LOG_INFO("%s: at_android", __func__);
+      bta_hf_client_at_result(client_cb, BTA_HF_CLIENT_AT_RESULT_OK, 0);
+      break;
     default:
       if (client_cb->send_at_reply) {
         bta_hf_client_at_result(client_cb, BTA_HF_CLIENT_AT_RESULT_OK, 0);
@@ -281,7 +286,8 @@ static void bta_hf_client_handle_ok(tBTA_HF_CLIENT_CB* client_cb) {
 static void bta_hf_client_handle_error(tBTA_HF_CLIENT_CB* client_cb,
                                        tBTA_HF_CLIENT_AT_RESULT_TYPE type,
                                        uint16_t cme) {
-  APPL_TRACE_DEBUG("%s: %u %u", __func__, type, cme);
+  LOG_INFO("type:%u cme:%u current_cmd:%d", type, cme,
+           client_cb->at_cb.current_cmd);
 
   bta_hf_client_stop_at_resp_timer(client_cb);
 
@@ -301,6 +307,10 @@ static void bta_hf_client_handle_error(tBTA_HF_CLIENT_CB* client_cb,
       if (!client_cb->send_at_reply) {
         client_cb->send_at_reply = true;
       }
+      break;
+    case BTA_HF_CLIENT_AT_ANDROID:
+      APPL_TRACE_WARNING("%s: at_android", __func__);
+      bta_hf_client_at_result(client_cb, type, cme);
       break;
     default:
       if (client_cb->send_at_reply) {
@@ -1874,7 +1884,7 @@ void bta_hf_client_send_at_biev(tBTA_HF_CLIENT_CB* client_cb, int indicator_id,
 void bta_hf_client_send_at_clip(tBTA_HF_CLIENT_CB* client_cb, bool activate) {
   const char* buf;
 
-  APPL_TRACE_DEBUG("%s", __func__);
+  APPL_TRACE_WARNING("%s", __func__);
 
   if (activate)
     buf = "AT+CLIP=1\r";
@@ -2180,6 +2190,22 @@ void bta_hf_client_send_at_vendor_specific_cmd(tBTA_HF_CLIENT_CB* client_cb,
                         at_len);
 }
 
+void bta_hf_client_send_at_android(tBTA_HF_CLIENT_CB* client_cb,
+                                   const char* str) {
+  char buf[BTA_HF_CLIENT_AT_MAX_LEN];
+  int at_len;
+
+  APPL_TRACE_DEBUG("%s", __func__);
+
+  at_len = snprintf(buf, sizeof(buf), "AT%s\r", str);
+  if (at_len < 0) {
+    APPL_TRACE_ERROR("%s: AT command Framing error", __func__);
+    return;
+  }
+
+  bta_hf_client_send_at(client_cb, BTA_HF_CLIENT_AT_ANDROID, buf, at_len);
+}
+
 void bta_hf_client_at_init(tBTA_HF_CLIENT_CB* client_cb) {
   alarm_free(client_cb->at_cb.resp_timer);
   alarm_free(client_cb->at_cb.hold_timer);
@@ -2218,7 +2244,7 @@ void bta_hf_client_send_at_cmd(tBTA_HF_CLIENT_DATA* p_data) {
   tBTA_HF_CLIENT_DATA_VAL* p_val = (tBTA_HF_CLIENT_DATA_VAL*)p_data;
   char buf[BTA_HF_CLIENT_AT_MAX_LEN];
 
-  APPL_TRACE_DEBUG("%s: at cmd: %d", __func__, p_val->uint8_val);
+  APPL_TRACE_WARNING("%s: at cmd: %d", __func__, p_val->uint8_val);
   switch (p_val->uint8_val) {
     case BTA_HF_CLIENT_AT_CMD_VTS:
       bta_hf_client_send_at_vts(client_cb, (char)p_val->uint32_val1);
@@ -2278,6 +2304,9 @@ void bta_hf_client_send_at_cmd(tBTA_HF_CLIENT_DATA* p_data) {
       break;
     case BTA_HF_CLIENT_AT_CMD_VENDOR_SPECIFIC_CMD:
       bta_hf_client_send_at_vendor_specific_cmd(client_cb, p_val->str);
+      break;
+    case BTA_HF_CLIENT_AT_CMD_ANDROID:
+      bta_hf_client_send_at_android(client_cb, p_val->str);
       break;
     default:
       APPL_TRACE_ERROR("Default case");
