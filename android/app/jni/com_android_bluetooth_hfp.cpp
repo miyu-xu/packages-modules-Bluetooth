@@ -438,6 +438,8 @@ static void initializeNative(JNIEnv* env, jobject object, jint max_hf_clients,
   std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
   std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
 
+  ALOGW("initializeNative");
+
   const bt_interface_t* btInf = getBluetoothInterface();
   if (!btInf) {
     ALOGE("%s: Bluetooth module is not loaded", __func__);
