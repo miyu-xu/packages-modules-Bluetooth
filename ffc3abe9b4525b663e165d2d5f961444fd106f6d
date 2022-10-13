@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db55320c_bc52ec86",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T11:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1411bcf_793ca5f8",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 59
+      },
+      "revId": "ffc3abe9b4525b663e165d2d5f961444fd106f6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ff9cc56_414d88b7",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1598642_3d0cbba8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T11:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ff9cc56_414d88b7",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 9
+      },
+      "revId": "ffc3abe9b4525b663e165d2d5f961444fd106f6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06ef54c7_dc088371",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-13T09:37:19Z",
       "side": 1,
       "message": "You need to check bitMask instead to decide if the broadcast need to be inited.",
+      "range": {
+        "startLine": 246,
+        "startChar": 28,
+        "endLine": 246,
+        "endChar": 61
+      },
+      "revId": "ffc3abe9b4525b663e165d2d5f961444fd106f6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "208a5de2_862f9ccf",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-13T11:23:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06ef54c7_dc088371",
       "range": {
         "startLine": 246,
         "startChar": 28,
