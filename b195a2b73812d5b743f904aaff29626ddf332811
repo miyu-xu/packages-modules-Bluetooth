@@ -91,6 +91,30 @@
       },
       "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d86b8d8_99bd7d69",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapMessageListingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-13T06:43:31Z",
+      "side": 1,
+      "message": "If there is no good way, then my suggestion is adding these \u0027decode\u0027 methods into the BluetoothMapMessageListing class itself, and marking them with @VisibleForTesting.",
+      "parentUuid": "6bfb4fa0_63a7670a",
+      "range": {
+        "startLine": 129,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 21
+      },
+      "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
