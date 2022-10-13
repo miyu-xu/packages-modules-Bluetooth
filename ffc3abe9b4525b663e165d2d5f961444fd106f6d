@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1411bcf_793ca5f8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T09:37:19Z",
+      "side": 1,
+      "message": "Do we still need this?",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 59
+      },
+      "revId": "ffc3abe9b4525b663e165d2d5f961444fd106f6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ff9cc56_414d88b7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T09:37:19Z",
+      "side": 1,
+      "message": "The logic should be checked by the following order if you don\u0027t plan to have separate toggles for unicast/broadcast and further change in the developer setting.\n1. if LE_AUDIO_DYNAMIC_SWITCH_PROPERTY supported, the le audio switcher toggle is enabled\n2. if LE_AUDIO_DYNAMIC_ENABLED_PROPERTY enabled, the unicast could be enabled\n3. if LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY supported, and LE_AUDIO_DYNAMIC_ENABLED_PROPERTY enabled, the broadcast could be enabled.\n\nSo I would suggest to check LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY inside setLeAudioProfileStatus function in line#227",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 9
+      },
+      "revId": "ffc3abe9b4525b663e165d2d5f961444fd106f6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ef54c7_dc088371",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T09:37:19Z",
+      "side": 1,
+      "message": "You need to check bitMask instead to decide if the broadcast need to be inited.",
+      "range": {
+        "startLine": 246,
+        "startChar": 28,
+        "endLine": 246,
+        "endChar": 61
+      },
+      "revId": "ffc3abe9b4525b663e165d2d5f961444fd106f6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

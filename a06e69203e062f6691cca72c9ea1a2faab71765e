@@ -357,6 +357,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a2645a_0e0840a5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T09:37:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ead34eb_29849fcd",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 41
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b54c9ea_63a4195a",
@@ -394,6 +418,30 @@
       "side": 1,
       "message": "All the profile service has the \"isEnabled()\" function to load the system property, so I added this function to align with others.",
       "parentUuid": "9b54c9ea_63a4195a",
+      "range": {
+        "startLine": 184,
+        "startChar": 26,
+        "endLine": 184,
+        "endChar": 44
+      },
+      "revId": "a06e69203e062f6691cca72c9ea1a2faab71765e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883bad8c_4ac95fb0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-10-13T09:37:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3fcf0ea5_5a957ad5",
       "range": {
         "startLine": 184,
         "startChar": 26,
