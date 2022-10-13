@@ -16,6 +16,24 @@
       "message": "Patch looks good, but I still think we should remove matching logic from HearingAidService. Also I suggest to put this patch as the last one in the chain - in case it breaks something on HearingAid which was not predicted.",
       "revId": "4e1ae539e20b562dcf64edd159ce00e294232ea9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f455e657_f9700814",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-13T10:33:29Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "25fb2d01_45318bb2",
+      "revId": "4e1ae539e20b562dcf64edd159ce00e294232ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
