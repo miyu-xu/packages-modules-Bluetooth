@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3194aba9_1cbbcf97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-13T07:37:20Z",
+      "side": 1,
+      "message": "Looks good but it will not change much if the code from LeAUdioService will not be updated. Here were are save with changes around LeAudioService - so I recommend to do this in this change.",
+      "revId": "18e59dc44a52ad85a245c7b5b8993215263f5496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e13b32a8_dff3d639",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-13T07:37:20Z",
+      "side": 1,
+      "message": "Could you please remove setting active device handling in LeAudioService:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d1575?q\u003dLeAudioService.java\u0026ss\u003dandroid%2Fplatform%2Fsuperproject",
+      "revId": "18e59dc44a52ad85a245c7b5b8993215263f5496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
