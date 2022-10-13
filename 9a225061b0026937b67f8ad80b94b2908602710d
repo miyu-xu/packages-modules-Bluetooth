@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4558435a_77552c9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-13T07:50:23Z",
+      "side": 1,
+      "message": "Please rebase - we should consider to take it.",
+      "revId": "9a225061b0026937b67f8ad80b94b2908602710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e4195af_5706c9db",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-13T07:50:23Z",
+      "side": 1,
+      "message": "could you also add operator\u003c\u003c ?\n\nI would use it here:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2234221/5/system/bta/le_audio/client.cc#2936\n\nand other places",
+      "revId": "9a225061b0026937b67f8ad80b94b2908602710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
