@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d94ea95_b651b828",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T16:36:10Z",
+      "side": 1,
+      "message": "Ok, that\u0027ll be easier :)",
+      "parentUuid": "337bfb4e_5d166f62",
+      "range": {
+        "startLine": 402,
+        "startChar": 30,
+        "endLine": 402,
+        "endChar": 50
+      },
+      "revId": "88c2c0c20ced5064257030c5e58b1f5b14e38890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4902495_045666b8",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-10T23:34:56Z",
       "side": 1,
       "message": "This type means look the Peer up in the resolving list, and generate a random address to target it.",
+      "revId": "88c2c0c20ced5064257030c5e58b1f5b14e38890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bdef610_d4ab9998",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-13T16:36:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4902495_045666b8",
       "revId": "88c2c0c20ced5064257030c5e58b1f5b14e38890",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
