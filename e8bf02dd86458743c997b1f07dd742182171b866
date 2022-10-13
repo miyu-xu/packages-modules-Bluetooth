@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7985ad8_e4f98494",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-13T14:20:25Z",
+      "side": 1,
+      "message": "NIT: this should be unnecessary, osi_free_and_reset , and later memset in osi_free_and_reset sets the p_q_cmd to zeros",
+      "revId": "e8bf02dd86458743c997b1f07dd742182171b866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
