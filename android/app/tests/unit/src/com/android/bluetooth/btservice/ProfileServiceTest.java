@@ -22,6 +22,7 @@ import static org.mockito.Mockito.*;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
@@ -121,6 +122,8 @@ public class ProfileServiceTest {
         doReturn(mDatabaseManager).when(mMockAdapterService).getDatabase();
 
         Assert.assertNotNull(AdapterService.getAdapterService());
+
+        Log.w("ProfileServiceTest", "setUp done");
     }
 
     @After
@@ -130,6 +133,8 @@ public class ProfileServiceTest {
         TestUtils.clearAdapterService(mMockAdapterService);
         mMockAdapterService = null;
         mProfiles = null;
+
+        Log.w("ProfileServiceTest", "tearDown done");
     }
 
     /**
