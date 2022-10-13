@@ -24,6 +24,7 @@ import static org.mockito.Mockito.*;
 import android.app.AlarmManager;
 import android.app.admin.DevicePolicyManager;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.IBluetoothCallback;
@@ -55,6 +56,7 @@ import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
+import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
@@ -94,6 +96,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -116,8 +119,11 @@ public class AdapterServiceTest {
     private static final String TEST_BT_ADDR_1 = "00:11:22:33:44:55";
     private static final String TEST_BT_ADDR_2 = "00:11:22:33:44:66";
 
+    @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
+
     private AdapterService mAdapterService;
     private AdapterService.AdapterServiceBinder mServiceBinder;
+    private HeadsetClientService mHeadsetClientService;
 
     private @Mock Context mMockContext;
     private @Mock ApplicationInfo mMockApplicationInfo;
@@ -163,6 +169,7 @@ public class AdapterServiceTest {
         Config.setProfileEnabled(PanService.class, true);
         Config.setProfileEnabled(BluetoothPbapService.class, true);
         Config.setProfileEnabled(GattService.class, true);
+        Config.setProfileEnabled(HeadsetClientService.class, true);
 
         Config.setProfileEnabled(A2dpService.class, false);
         Config.setProfileEnabled(A2dpSinkService.class, false);
@@ -173,7 +180,6 @@ public class AdapterServiceTest {
         Config.setProfileEnabled(CsipSetCoordinatorService.class, false);
         Config.setProfileEnabled(HapClientService.class, false);
         Config.setProfileEnabled(HeadsetService.class, false);
-        Config.setProfileEnabled(HeadsetClientService.class, false);
         Config.setProfileEnabled(HearingAidService.class, false);
         Config.setProfileEnabled(HidDeviceService.class, false);
         Config.setProfileEnabled(HidHostService.class, false);
@@ -214,6 +220,15 @@ public class AdapterServiceTest {
             Looper.prepare();
         }
         Assert.assertNotNull(Looper.myLooper());
+
+        try {
+            TestUtils.startService(mServiceRule, HeadsetClientService.class);
+        } catch (Exception e) {
+
+        }
+        // At this point the service should have started so check NOT null
+        mHeadsetClientService = HeadsetClientService.getHeadsetClientService();
+        Assert.assertNotNull(mHeadsetClientService);
 
         // Dispatch all async work through instrumentation so we can wait until
         // it's drained below
@@ -331,8 +346,17 @@ public class AdapterServiceTest {
 
         mServiceBinder.registerCallback(mIBluetoothCallback, mAttributionSource);
 
+        try {
+            TestUtils.setAdapterService(spy(mAdapterService));
+            TestUtils.startService(mServiceRule, HeadsetClientService.class);
+            mHeadsetClientService = HeadsetClientService.getHeadsetClientService();
+            Assert.assertNotNull(mHeadsetClientService);
+        } catch(Exception e) {
+            Log.w("AdapterServiceTest", "setUp(): " + e);
+        }
         mAdapterConfig = TestUtils.readAdapterConfig();
         Assert.assertNotNull(mAdapterConfig);
+
     }
 
     @After
@@ -365,7 +389,7 @@ public class AdapterServiceTest {
         Assert.assertFalse(mAdapterService.getState() == BluetoothAdapter.STATE_ON);
 
         int startServiceCalls;
-        startServiceCalls = 2 * (onlyGatt ? 1 : 3); // Start and stop GATT + 2
+        startServiceCalls = 2 * (onlyGatt ? 1 : 4); // Start and stop GATT + 2
 
         mAdapterService.enable(false);
 
@@ -389,12 +413,14 @@ public class AdapterServiceTest {
         if (!onlyGatt) {
             // Start Mock PBAP and PAN services
             verify(mMockContext, timeout(ONE_SECOND_MS).times(
-                    startServiceCalls * invocationNumber + 3)).startService(any());
+                    startServiceCalls * invocationNumber + 4)).startService(any());
 
             mAdapterService.addProfile(mMockService);
             mAdapterService.addProfile(mMockService2);
+            mAdapterService.addProfile(mHeadsetClientService);
             mAdapterService.onProfileServiceStateChanged(mMockService, BluetoothAdapter.STATE_ON);
             mAdapterService.onProfileServiceStateChanged(mMockService2, BluetoothAdapter.STATE_ON);
+            mAdapterService.onProfileServiceStateChanged(mHeadsetClientService, BluetoothAdapter.STATE_ON);
         }
 
         verifyStateChange(BluetoothAdapter.STATE_TURNING_ON, BluetoothAdapter.STATE_ON,
@@ -415,7 +441,7 @@ public class AdapterServiceTest {
         Assert.assertTrue(mAdapterService.getState() == BluetoothAdapter.STATE_ON);
 
         int startServiceCalls;
-        startServiceCalls = 2 * (onlyGatt ? 1 : 3); // Start and stop GATT + 2
+        startServiceCalls = 2 * (onlyGatt ? 1 : 4); // Start and stop GATT + 3
 
         mAdapterService.disable();
 
@@ -425,10 +451,12 @@ public class AdapterServiceTest {
         if (!onlyGatt) {
             // Stop PBAP and PAN services
             verify(mMockContext, timeout(ONE_SECOND_MS).times(
-                    startServiceCalls * invocationNumber + 5)).startService(any());
+                    startServiceCalls * invocationNumber + 7)).startService(any());
 
             mAdapterService.onProfileServiceStateChanged(mMockService, BluetoothAdapter.STATE_OFF);
             mAdapterService.onProfileServiceStateChanged(mMockService2, BluetoothAdapter.STATE_OFF);
+            mAdapterService.onProfileServiceStateChanged(mHeadsetClientService,
+                    BluetoothAdapter.STATE_OFF);
         }
 
         verifyStateChange(BluetoothAdapter.STATE_TURNING_OFF, BluetoothAdapter.STATE_BLE_ON,
@@ -1017,5 +1045,22 @@ public class AdapterServiceTest {
         mAdapterService.dump(fd, writer, new String[]{"set-test-mode", "enabled"});
         mAdapterService.dump(fd, writer, new String[]{"--proto-bin"});
         mAdapterService.dump(fd, writer, new String[]{"random", "arguments"});
+    }
+
+    /**
+     * Test: checks for audio policy remote supported state if hfp is enabled
+     */
+    @Test
+    public void testGetAudioPolicyRemoteSupported() {
+        // initializing hfp
+        // when(mHeadsetClientService.getAudioPolicyRemoteSupported(anyObject()))
+        //         .thenReturn(BluetoothAudioPolicy.REMOTE_STATUS_SUPPORTED);
+        BluetoothDevice device = TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
+
+        // test and verify
+        // mAdapterService.getAudioPolicyRemoteSupported(device);
+        // Assert.assertEquals(BluetoothAudioPolicy.REMOTE_STATUS_SUPPORTED,
+        //         mAdapterService.getAudioPolicyRemoteSupported(device));
+        // verify(mHeadsetClientService).getAudioPolicyRemoteSupported(anyObject());
     }
 }
