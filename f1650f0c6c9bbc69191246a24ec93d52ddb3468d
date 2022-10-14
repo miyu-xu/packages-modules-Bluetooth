@@ -70,6 +70,30 @@
       },
       "revId": "f1650f0c6c9bbc69191246a24ec93d52ddb3468d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b513b0_d2e2a1a0",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-14T20:53:04Z",
+      "side": 0,
+      "message": "I think he meant a feature flag as this is not really a system property.\n\nSuch flags are defined in [init_flags.rs](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/common/src/init_flags.rs;l\u003d172?q\u003dpackages%2Fmodules%2FBluetooth%2Fsystem%2Fgd%2Frust%2Fcommon%2Fsrc%2Finit_flags.rs) and they need the associated [ffi](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/shim/src/init_flags.rs;l\u003d1?q\u003dinit_flags.rs\u0026sq\u003d).\nThe can be called with `bluetooth::common::init_flags::\u003cxxx\u003e_is_enabled()`\n\nThe benefit of feature flag as opposed to system property is that they can be change on server side and they will trigger a bluetooth restart to take the new config",
+      "parentUuid": "4c99afab_0f252ef4",
+      "range": {
+        "startLine": 1567,
+        "startChar": 37,
+        "endLine": 1567,
+        "endChar": 60
+      },
+      "revId": "f1650f0c6c9bbc69191246a24ec93d52ddb3468d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
