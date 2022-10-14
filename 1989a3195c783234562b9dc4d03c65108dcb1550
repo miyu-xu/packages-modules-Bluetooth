@@ -51,6 +51,23 @@
       "parentUuid": "11898cac_a8ae1f12",
       "revId": "1989a3195c783234562b9dc4d03c65108dcb1550",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ded592b1_4e24b87a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-10-14T16:07:13Z",
+      "side": 1,
+      "message": "Is this safe to submit? This is blocking our CTS efforts.",
+      "revId": "1989a3195c783234562b9dc4d03c65108dcb1550",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
