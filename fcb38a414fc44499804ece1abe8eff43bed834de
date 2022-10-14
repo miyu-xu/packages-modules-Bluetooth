@@ -52,6 +52,24 @@
       "parentUuid": "96fa2df1_9c4606c3",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7204afe7_7f10815d",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T21:58:14Z",
+      "side": 0,
+      "message": "I think it\u0027s fine just to log it if the handle is the only byte that might be corrupted.  It\u0027s not that big of a deal if one SCO packet gets dropped.  I\u0027m more worried that there are other packets getting corrupted, and this is just the canary.  Silencing canaries is dangerous.",
+      "parentUuid": "65eb1703_e41569a9",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
