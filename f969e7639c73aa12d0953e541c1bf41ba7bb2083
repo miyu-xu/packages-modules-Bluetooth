@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83f9edfb_4709d920",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T21:52:14Z",
+      "side": 1,
+      "message": "since this is repeated, you can generalize this into a function and call it like `metadata.title \u003d get_from_variant(variant, \"PlayerMetadata::Title\")`\n\nand you can define such helper function like:\n```\nfn get_from_variant\u003cT: Default + RefArgToRust\u003cRustType \u003d T\u003e\u003e(\n    variant: \u0026dbus::arg::Variant\u003cBox\u003cdyn RefArg\u003e\u003e,\n    field_name: \u0026str,\n) -\u003e T {\n    T::ref_arg_to_rust(variant.as_static_inner(0).unwrap(), String::from(field_name))\n        .unwrap_or(T::default())\n}\n```",
+      "range": {
+        "startLine": 113,
+        "startChar": 35,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d408546_9ec43295",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T21:52:14Z",
+      "side": 1,
+      "message": "this is a common match pattern that you can do it in functional style with more concise:\n```\n\u003c\u003cString as DBusArg\u003e::DBusType as RefArgToRust\u003e::ref_arg_to_rust(\n    variant.as_static_inner(0).unwrap(),\n    format!(\"PlayerMetadata::Artist\"),\n)\n.unwrap_or(String::new())\n```",
+      "range": {
+        "startLine": 122,
+        "startChar": 28,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "252cc530_21460b02",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T21:52:14Z",
+      "side": 1,
+      "message": "alternatively, another concise form that doesn\u0027t involve creating a helper function:\n```\nmetadata.album \u003d String::ref_arg_to_rust(\n    variant.as_static_inner(0).unwrap(),\n    String::from(\"PlayerMetadata::Album\"),\n)?\n```\n\nThe `?` syntax is a convenient unwrap or return the error immediately at conversion failure.",
+      "range": {
+        "startLine": 129,
+        "startChar": 35,
+        "endLine": 136,
+        "endChar": 30
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d869ac_c5be8ddd",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T21:52:14Z",
+      "side": 1,
+      "message": "prefer `String::from` to avoid unnecessary formatting logic since we don\u0027t need to do string interpolation.",
+      "range": {
+        "startLine": 141,
+        "startChar": 36,
+        "endLine": 141,
+        "endChar": 43
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39cc669f_825f787f",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T21:52:14Z",
+      "side": 1,
+      "message": "nit: prefer `{}` or `()` to indicate no-op in this match arm.\n\nsame with below `continue`.",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 37
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5c2ff6f_b9a6ffd5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T21:52:14Z",
+      "side": 1,
+      "message": "Since these are client-facing API, please add docs with `///` to each method. Also explain that these methods don\u0027t follow the Floss API conventions (especially how PlayerMetadata is encoded in D-Bus) since this is a copy of CRAS API.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 64
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
