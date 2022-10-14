@@ -68,6 +68,24 @@
       "message": "Is this safe to submit? This is blocking our CTS efforts.",
       "revId": "1989a3195c783234562b9dc4d03c65108dcb1550",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57a8f14d_13b7746f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-14T16:35:33Z",
+      "side": 1,
+      "message": "I am still chasing some presubmit failures.\nLet me also validate on my side that the CTS are unblocked by this change",
+      "parentUuid": "ded592b1_4e24b87a",
+      "revId": "1989a3195c783234562b9dc4d03c65108dcb1550",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
