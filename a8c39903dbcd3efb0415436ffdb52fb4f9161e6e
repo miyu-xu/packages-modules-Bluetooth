@@ -70,6 +70,30 @@
       },
       "revId": "a8c39903dbcd3efb0415436ffdb52fb4f9161e6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0b7738_e9c5324d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-14T07:46:09Z",
+      "side": 1,
+      "message": "Thank you.\nANyways, the solutions should be when new Active group is announced by the Native and not before. We were doing it only for the case where group was getting Inactive.\n\nI we are chaining Active group, we should first make sure, Native actually will have not issues doing this.",
+      "parentUuid": "281e7bd7_9a4e5828",
+      "range": {
+        "startLine": 953,
+        "startChar": 15,
+        "endLine": 953,
+        "endChar": 46
+      },
+      "revId": "a8c39903dbcd3efb0415436ffdb52fb4f9161e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
