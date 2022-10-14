@@ -554,7 +554,7 @@ ErrorCode LinkLayerController::LeSetExtendedAdvertisingParameters(
            max_extended_advertising_pdu_size)) {
     LOG_INFO(
         "the advertising data contained in the set is larger than the"
-        "available PDU capacity");
+        " available PDU capacity");
     return ErrorCode::PACKET_TOO_LONG;
   }
 
@@ -753,7 +753,7 @@ ErrorCode LinkLayerController::LeSetExtendedAdvertisingData(
       advertiser.advertising_data.size() > max_advertising_data_length) {
     LOG_INFO(
         "the advertising data contained in the set is larger than the"
-        "available PDU capacity");
+        " available PDU capacity");
     advertiser.advertising_data.clear();
     advertiser.partial_advertising_data = false;
     return ErrorCode::PACKET_TOO_LONG;
@@ -927,7 +927,7 @@ ErrorCode LinkLayerController::LeSetExtendedScanResponseData(
       max_extended_advertising_pdu_size) {
     LOG_INFO(
         "the scan response data contained in the set is larger than the"
-        "available PDU capacity");
+        " available PDU capacity");
     advertiser.scan_response_data.clear();
     advertiser.partial_scan_response_data = false;
     return ErrorCode::PACKET_TOO_LONG;
