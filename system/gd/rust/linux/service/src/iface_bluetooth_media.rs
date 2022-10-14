@@ -244,7 +244,7 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("SetPlayerPosition")]
-    fn set_player_posistion(&mut self, position: i64) {
+    fn set_player_position(&mut self, position: i64) {
         dbus_generated!()
     }
 
