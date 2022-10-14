@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "894d6367_597ee134",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T22:21:20Z",
+      "side": 1,
+      "message": "nit: better to return error if this is not variant:\n```\nif variant.arg_type() !\u003d dbus::arg::ArgType::Variant {\n    return Err(Box::new(DBusArgError::new(format!(\"{} must be a variant\", key))));\n}\n\nmatch key.as_str() {\n...\n}\n```",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 36
+      },
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b7eaa7f_80e6fe9a",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T22:21:20Z",
+      "side": 1,
+      "message": "nit: remove blank line",
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
