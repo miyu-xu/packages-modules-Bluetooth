@@ -62,6 +62,63 @@
       "message": "nit: remove blank line",
       "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a148c2cb_c9711f35",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T22:24:25Z",
+      "side": 1,
+      "message": "nit: remove extra `///`",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c07372a_64e5c5e1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T22:24:25Z",
+      "side": 1,
+      "message": "nit: wrap to 100 char width",
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a86c1ae_faced7d7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1233,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T22:24:25Z",
+      "side": 1,
+      "message": "nit: add a `// TODO` comment if this is not intentionally blank",
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
