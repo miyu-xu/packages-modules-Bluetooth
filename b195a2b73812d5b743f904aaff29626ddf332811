@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d3add1e_1e7b1ab8",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMessageListing.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-14T04:09:17Z",
+      "side": 1,
+      "message": "Talked offline. Didn\u0027t add new constructor since Utils.isInstrumentationTestMode() is now used instead of mIsTesting.",
+      "parentUuid": "01831165_8cd463a7",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "b195a2b73812d5b743f904aaff29626ddf332811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "675e5e9f_b618f11a",
