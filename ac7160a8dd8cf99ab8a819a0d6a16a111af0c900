@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd1039ef_e89343b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-14T01:21:02Z",
+      "side": 1,
+      "message": "Please run follows:\n  atest CtsBluetoothTestCases DeviceHealthChecks",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "ac7160a8dd8cf99ab8a819a0d6a16a111af0c900",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
