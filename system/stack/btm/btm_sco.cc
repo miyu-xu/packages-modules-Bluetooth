@@ -147,6 +147,11 @@ static void btm_esco_conn_rsp(uint16_t sco_inx, uint8_t hci_status,
       /* Use the last setup passed thru BTM_SetEscoMode (or defaults) */
       *p_setup = btm_cb.sco_cb.def_esco_parms;
     }
+    if (p_sco->esco.data.link_type == BTM_LINK_TYPE_SCO &&
+        (p_setup->retransmission_effort == ESCO_RETRANSMISSION_POWER ||
+         p_setup->retransmission_effort == ESCO_RETRANSMISSION_QUALITY)) {
+      p_setup->retransmission_effort = ESCO_RETRANSMISSION_OFF;
+    }
     /* Use Enhanced Synchronous commands if supported */
     if (controller_get_interface()
             ->supports_enhanced_setup_synchronous_connection()) {
