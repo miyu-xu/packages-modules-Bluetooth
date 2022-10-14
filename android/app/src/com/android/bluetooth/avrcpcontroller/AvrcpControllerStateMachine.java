@@ -563,6 +563,7 @@ class AvrcpControllerStateMachine extends StateMachine {
                             && focusState == AudioManager.AUDIOFOCUS_NONE) {
                         if (shouldRequestFocus()) {
                             mSessionCallbacks.onPrepare();
+                            requestAudioFocus();
                         } else {
                             sendMessage(MSG_AVRCP_PASSTHRU,
                                     AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE);
@@ -1146,6 +1147,7 @@ class AvrcpControllerStateMachine extends StateMachine {
         public void onPlay() {
             logD("onPlay");
             onPrepare();
+            requestAudioFocus();
             sendMessage(MSG_AVRCP_PASSTHRU, AvrcpControllerService.PASS_THRU_CMD_ID_PLAY);
         }
 
@@ -1159,6 +1161,7 @@ class AvrcpControllerStateMachine extends StateMachine {
         public void onSkipToNext() {
             logD("onSkipToNext");
             onPrepare();
+            requestAudioFocus();
             sendMessage(MSG_AVRCP_PASSTHRU, AvrcpControllerService.PASS_THRU_CMD_ID_FORWARD);
         }
 
@@ -1166,6 +1169,7 @@ class AvrcpControllerStateMachine extends StateMachine {
         public void onSkipToPrevious() {
             logD("onSkipToPrevious");
             onPrepare();
+            requestAudioFocus();
             sendMessage(MSG_AVRCP_PASSTHRU, AvrcpControllerService.PASS_THRU_CMD_ID_BACKWARD);
         }
 
@@ -1173,6 +1177,7 @@ class AvrcpControllerStateMachine extends StateMachine {
         public void onSkipToQueueItem(long id) {
             logD("onSkipToQueueItem id=" + id);
             onPrepare();
+            requestAudioFocus();
             BrowseTree.BrowseNode node = mBrowseTree.getTrackFromNowPlayingList((int) id);
             if (node != null) {
                 sendMessage(MESSAGE_PLAY_ITEM, node);
@@ -1188,10 +1193,6 @@ class AvrcpControllerStateMachine extends StateMachine {
         @Override
         public void onPrepare() {
             logD("onPrepare");
-            A2dpSinkService a2dpSinkService = A2dpSinkService.getA2dpSinkService();
-            if (a2dpSinkService != null) {
-                a2dpSinkService.requestAudioFocus(mDevice, true);
-            }
         }
 
         @Override
@@ -1211,6 +1212,7 @@ class AvrcpControllerStateMachine extends StateMachine {
             logD("onPlayFromMediaId");
             // Play the item if possible.
             onPrepare();
+            requestAudioFocus();
             BrowseTree.BrowseNode node = mBrowseTree.findBrowseNodeByID(mediaId);
             if (node != null) {
                 // node was found on this bluetooth device
@@ -1235,6 +1237,14 @@ class AvrcpControllerStateMachine extends StateMachine {
 
         }
     };
+
+    private void requestAudioFocus() {
+        logD("requestAudioFocus()");
+        A2dpSinkService a2dpSinkService = A2dpSinkService.getA2dpSinkService();
+        if (a2dpSinkService != null) {
+            a2dpSinkService.requestAudioFocus(mDevice, true);
+        }
+    }
 
     protected void broadcastConnectionStateChanged(int currentState) {
         if (mMostRecentState == currentState) {

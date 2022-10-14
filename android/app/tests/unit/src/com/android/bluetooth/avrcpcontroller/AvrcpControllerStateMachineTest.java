@@ -453,6 +453,19 @@ public class AvrcpControllerStateMachineTest {
     }
 
     /**
+     * Test that prepare explicitly does not request audio focus
+     */
+    @Test
+    public void testPrepare() {
+        setUpConnectedState(true, true);
+        MediaControllerCompat.TransportControls transportControls =
+                BluetoothMediaBrowserService.getTransportControls();
+
+        transportControls.prepare();
+        verify(mAudioManager, never()).requestAudioFocus(any());
+    }
+
+    /**
      * Test media browser play command
      */
     @Test
