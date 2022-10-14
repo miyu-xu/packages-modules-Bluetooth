@@ -33,6 +33,24 @@
       "message": "It looks like there are quite a few tests that are failing with this CL.  Can you run cert/run DirectHciTest ?",
       "revId": "1989a3195c783234562b9dc4d03c65108dcb1550",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99a0db6e_61e21a30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-14T15:45:14Z",
+      "side": 1,
+      "message": "I am investigating this presently 😊",
+      "parentUuid": "11898cac_a8ae1f12",
+      "revId": "1989a3195c783234562b9dc4d03c65108dcb1550",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
