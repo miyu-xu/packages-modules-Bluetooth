@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1df39374_5d871d00",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-10-14T15:30:39Z",
+      "side": 1,
+      "message": "Ok I see that in following CL this is filled. Done",
+      "parentUuid": "f525719c_3bb92cdb",
+      "revId": "76d5a3a0c50b760c7c8463d7dc1e508abfc2bbbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78d377b1_c635c08c",
