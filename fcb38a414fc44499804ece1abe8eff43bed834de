@@ -70,6 +70,24 @@
       "parentUuid": "65eb1703_e41569a9",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c0958c_698caecd",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T22:04:12Z",
+      "side": 0,
+      "message": "Wow.  I\u0027m sorry I didn\u0027t see this earlier.\n\nWe\u0027re actually crashing if the stack is giving us an invalid handle in these lines of code.  So the bits that are corrupted must be in the connection complete packet that was received?\n\nWhy are we trying to send data to an invalid handle?\n\nIt doesn\u0027t seem like this will be a case of a dropped packet.  It looks like the connection won\u0027t work at all.  The chip should drop any packet that arrives without a valid handle.\n\nAm I reading this wrong (again) ?",
+      "parentUuid": "7204afe7_7f10815d",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
