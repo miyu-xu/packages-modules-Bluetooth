@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55535eb1_b22a626c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T20:24:46Z",
+      "side": 1,
+      "message": "Joseph, please `git commit --amend --reset-author` to reflect that this work is mostly done by you 😊",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 49
+      },
+      "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9b4293e_f6c53c03",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 8
