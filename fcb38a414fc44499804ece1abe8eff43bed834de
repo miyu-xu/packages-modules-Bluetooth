@@ -16,6 +16,24 @@
       "message": "Can we use the codepath metric to implement a DCHECK style assert which will crash in debug builds (i.e. developer builds) only and emit a codepath metric in both Debug+Release builds? We could use this to capture instances of bad controller/firmware behavior.",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96fa2df1_9c4606c3",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T21:43:50Z",
+      "side": 0,
+      "message": "My understanding was that we think this is a bit error on the UART.  Do we think the controller or firmware is corrupting the handle?",
+      "parentUuid": "5ec40a53_4988b175",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
