@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc384e84_ed900c7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T22:25:12Z",
+      "side": 1,
+      "message": "overall LGTM, just requesting a few nits",
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "196f9a3c_14ef2fb8",
