@@ -39,6 +39,30 @@
       },
       "revId": "6d5b2dada120e2966761bdc8c5bd2632aaca8a36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df62f6d9_8f005b08",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-14T17:17:12Z",
+      "side": 1,
+      "message": "Yes -- you should get this information from `InitFlags::GetAdapterIndex()` (gd/common/init_flags.h)",
+      "parentUuid": "0987a598_be6964af",
+      "range": {
+        "startLine": 41,
+        "startChar": 64,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "6d5b2dada120e2966761bdc8c5bd2632aaca8a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
