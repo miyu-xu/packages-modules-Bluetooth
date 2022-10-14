@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446fc888_2a0fc859",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T03:06:15Z",
+      "side": 1,
+      "message": "This link is internal, please remove.  Thanks",
+      "range": {
+        "startLine": 15,
+        "startChar": 1,
+        "endLine": 15,
+        "endChar": 50
+      },
+      "revId": "06ef0a771ce7c5d2d2bfbbfde10844767f3a5dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
