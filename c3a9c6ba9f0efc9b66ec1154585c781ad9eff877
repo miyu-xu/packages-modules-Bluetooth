@@ -22,6 +22,30 @@
       },
       "revId": "c3a9c6ba9f0efc9b66ec1154585c781ad9eff877",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44b3efe5_f65759aa",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-14T16:35:19Z",
+      "side": 1,
+      "message": "Done: b/253632173",
+      "parentUuid": "ad708727_b19c437c",
+      "range": {
+        "startLine": 692,
+        "startChar": 0,
+        "endLine": 695,
+        "endChar": 5
+      },
+      "revId": "c3a9c6ba9f0efc9b66ec1154585c781ad9eff877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
