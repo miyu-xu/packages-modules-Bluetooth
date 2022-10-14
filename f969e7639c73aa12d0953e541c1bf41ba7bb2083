@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3d65eae_67daa142",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T21:57:15Z",
+      "side": 1,
+      "message": "I prefer this form since it can return Error when failed at conversion, and isn\u0027t very verbose either",
+      "parentUuid": "252cc530_21460b02",
+      "range": {
+        "startLine": 129,
+        "startChar": 35,
+        "endLine": 136,
+        "endChar": 30
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44d869ac_c5be8ddd",
         "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
         "patchSetId": 3
