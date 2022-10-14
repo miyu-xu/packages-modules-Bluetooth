@@ -470,7 +470,7 @@ public class BluetoothOppManager {
                 }
 
                 values.put(BluetoothShare.MIMETYPE, contentType);
-                values.put(BluetoothShare.DESTINATION, mRemoteDevice.getAddress());
+                values.put(BluetoothShare.DESTINATION, mRemoteDevice.getIdentityAddress());
                 values.put(BluetoothShare.TIMESTAMP, ts);
                 if (mIsHandoverInitiated) {
                     values.put(BluetoothShare.USER_CONFIRMATION,
@@ -480,7 +480,7 @@ public class BluetoothOppManager {
                         mContext.getContentResolver().insert(BluetoothShare.CONTENT_URI, values);
                 if (V) {
                     Log.v(TAG, "Insert contentUri: " + contentUri + "  to device: " + getDeviceName(
-                            mRemoteDevice));
+                            mRemoteDevice.getIdentityAddress()));
                 }
             }
         }
@@ -492,7 +492,7 @@ public class BluetoothOppManager {
             ContentValues values = new ContentValues();
             values.put(BluetoothShare.URI, mUri);
             values.put(BluetoothShare.MIMETYPE, mTypeOfSingleFile);
-            values.put(BluetoothShare.DESTINATION, mRemoteDevice.getAddress());
+            values.put(BluetoothShare.DESTINATION, mRemoteDevice.getIdentityAddress());
             if (mIsHandoverInitiated) {
                 values.put(BluetoothShare.USER_CONFIRMATION,
                         BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED);
@@ -501,7 +501,7 @@ public class BluetoothOppManager {
                     mContext.getContentResolver().insert(BluetoothShare.CONTENT_URI, values);
             if (V) {
                 Log.v(TAG, "Insert contentUri: " + contentUri + "  to device: " + getDeviceName(
-                        mRemoteDevice));
+                        mRemoteDevice.getIdentityAddress()));
             }
         }
     }
