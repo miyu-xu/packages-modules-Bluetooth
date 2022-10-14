@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2c6ebf_8f7c4f4e",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T20:30:09Z",
+      "side": 1,
+      "message": "nit: is_ble_privacy_enabled",
+      "range": {
+        "startLine": 56,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 28
+      },
+      "revId": "aec40ce622eb6d3175175a74b42f22977c639e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598a5df6_b9a6cc3f",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T20:30:09Z",
+      "side": 1,
+      "message": "What if we just leave this as passing the parameter that comes in, then handle checking the property in the advertising manager (not the shim)?\n\nThe shim already does too much.",
+      "range": {
+        "startLine": 428,
+        "startChar": 30,
+        "endLine": 428,
+        "endChar": 76
+      },
+      "revId": "aec40ce622eb6d3175175a74b42f22977c639e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
