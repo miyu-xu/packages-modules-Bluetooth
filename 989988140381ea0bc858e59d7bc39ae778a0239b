@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdfa6e3e_1dbf7a91",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T14:58:46Z",
+      "side": 1,
+      "message": "If we\u0027re deregistering GATT, should we be erasing all of them, not just the ones that are in use?",
+      "range": {
+        "startLine": 1175,
+        "startChar": 0,
+        "endLine": 1175,
+        "endChar": 52
+      },
+      "revId": "989988140381ea0bc858e59d7bc39ae778a0239b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4df489a4_6b524d6d",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T14:58:46Z",
+      "side": 1,
+      "message": "Why a list?  Is the order important?",
+      "range": {
+        "startLine": 419,
+        "startChar": 0,
+        "endLine": 419,
+        "endChar": 70
+      },
+      "revId": "989988140381ea0bc858e59d7bc39ae778a0239b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
