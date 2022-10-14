@@ -16,7 +16,7 @@ use bt_topshim::profiles::hfp::{
 use bt_topshim::{metrics, topstack};
 use bt_utils::uinput::UInput;
 
-use log::{info, warn};
+use log::{debug, info, warn};
 use num_traits::cast::ToPrimitive;
 use std::collections::{HashMap, HashSet};
 use std::convert::TryFrom;
@@ -1231,7 +1231,25 @@ impl IBluetoothMedia for BluetoothMedia {
         }
     }
 
-    fn set_player_playback_status(&mut self, _status: String) {}
-    fn set_player_posistion(&mut self, _position: i64) {}
-    fn set_player_metadata(&mut self, _metadata: PlayerMetadata) {}
+    fn set_player_playback_status(&mut self, status: String) {
+        debug!("AVRCP received player playback status: {}", status);
+        match self.avrcp.as_mut() {
+            Some(avrcp) => avrcp.set_playback_status(status),
+            None => warn!("Uninitialized AVRCP to set player playback status"),
+        };
+    }
+    fn set_player_posistion(&mut self, position: i64) {
+        debug!("AVRCP received player position: {}", position);
+        match self.avrcp.as_mut() {
+            Some(avrcp) => avrcp.set_posistion(position),
+            None => warn!("Uninitialized AVRCP to set player position"),
+        };
+    }
+    fn set_player_metadata(&mut self, metadata: PlayerMetadata) {
+        debug!("AVRCP received player metadata: {:?}", metadata);
+        match self.avrcp.as_mut() {
+            Some(avrcp) => avrcp.set_metadata(metadata),
+            None => warn!("Uninitialized AVRCP to set player playback status"),
+        };
+    }
 }
