@@ -739,6 +739,7 @@ mod ffi {
 
 // Export the raw address type directly from the bindings
 pub type FfiAddress = bindings::RawAddress;
+pub type FfiOobData = bindings::bt_oob_data_s;
 
 /// A shared address structure that has the same representation as
 /// bindings::RawAddress. Macros `deref_ffi_address` and `cast_to_ffi_address`
@@ -810,6 +811,73 @@ impl RawAddress {
     }
 }
 
+/// A shared address structure that has the same representation as
+/// bindings::bt_oob_data_s. Macros `deref_ffi_address` and `cast_to_ffi_address`
+/// are used for transforming between bindings::bt_oob_data_s at ffi boundaries.
+#[derive(Copy, Clone, Hash, Eq, PartialEq)]
+#[repr(C)]
+pub struct OobData {
+    pub is_valid: bool,
+    pub address: [u8; 7],
+    pub confirmation: [u8; 16],
+    pub randomizer: [u8; 16],
+    pub device_name: [u8; 256],
+    pub oob_data_length: [u8; 2],
+    pub class_of_device: [u8; 2],
+    pub le_device_role: u8,
+    pub sm_tk: [u8; 16],
+    pub le_flags: u8,
+    pub le_appearance: [u8; 2],
+}
+
+impl Debug for OobData {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        f.write_fmt(format_args!(
+            "{:02X}:{:02X}:{:02X}:{:02X}:{:02X}:{:02X} - {:02X}",
+            self.address[0],
+            self.address[1],
+            self.address[2],
+            self.address[3],
+            self.address[4],
+            self.address[5],
+            self.address[6]
+        ))
+    }
+}
+
+impl Default for OobData {
+    fn default() -> Self {
+        Self {
+            is_valid: false,
+            address: [0; 7],
+            confirmation: [0; 16],
+            randomizer: [0; 16],
+            device_name: [0; 256],
+            oob_data_length: [0; 2],
+            class_of_device: [0; 2],
+            le_device_role: 0,
+            sm_tk: [0; 16],
+            le_flags: 0,
+            le_appearance: [0; 2],
+        }
+    }
+}
+
+impl ToString for OobData {
+    fn to_string(&self) -> String {
+        String::from(format!(
+            "{:02X}:{:02X}:{:02X}:{:02X}:{:02X}:{:02X} - {:02X}",
+            self.address[0],
+            self.address[1],
+            self.address[2],
+            self.address[3],
+            self.address[4],
+            self.address[5],
+            self.address[6]
+        ))
+    }
+}
+
 #[macro_export]
 macro_rules! deref_ffi_address {
     ($ffi_addr:ident) => {
@@ -858,9 +926,9 @@ pub enum BaseCallbacks {
     // le_test_mode_cb
     // energy_info_cb
     // link_quality_report_cb
-    // generate_local_oob_data_cb
     // switch_buffer_size_cb
     // switch_codec_cb
+    GenerateLocalOobData(u8, FfiOobData),
     LeRandCallback(u64),
 }
 
@@ -917,6 +985,8 @@ cb_variant!(BaseCb, acl_state_cb -> BaseCallbacks::AclState,
 u32 -> BtStatus, *mut FfiAddress, bindings::bt_acl_state_t -> BtAclState, i32 -> BtTransport, bindings::bt_hci_error_code_t -> BtHciErrorCode, bindings::bt_conn_direction_t -> BtConnectionDirection, {
     let _1 = unsafe { *(_1 as *const RawAddress) };
 });
+
+cb_variant!(BaseCb, generate_local_oob_data_cb -> BaseCallbacks::GenerateLocalOobData, u8, FfiOobData);
 
 cb_variant!(BaseCb, le_rand_cb -> BaseCallbacks::LeRandCallback, u64);
 
@@ -1036,7 +1106,7 @@ impl BluetoothInterface {
             le_test_mode_cb: None,
             energy_info_cb: None,
             link_quality_report_cb: None,
-            generate_local_oob_data_cb: None,
+            generate_local_oob_data_cb: Some(generate_local_oob_data_cb),
             switch_buffer_size_cb: None,
             switch_codec_cb: None,
             le_rand_cb: Some(le_rand_cb),
@@ -1199,6 +1269,10 @@ impl BluetoothInterface {
 
     pub fn le_rand(&self) -> i32 {
         ccall!(self, le_rand)
+    }
+
+    pub fn generate_local_oob_data(&self, transport: i32) -> i32 {
+        ccall!(self, generate_local_oob_data, transport as u8)
     }
 
     pub fn restore_filter_accept_list(&self) -> i32 {

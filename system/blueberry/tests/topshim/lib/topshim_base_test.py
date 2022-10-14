@@ -170,8 +170,10 @@ class TopshimBaseTest(base_test.BaseTestClass):
         assertThat(started).isTrue()
         started = started and await cert_adapter._verify_adapter_started()
         assertThat(started).isTrue()
-        self.__dut = TopshimDevice(dut_adapter, self.dut_port)
-        self.__cert = TopshimDevice(cert_adapter, self.cert_port)
+        self.__dut = TopshimDevice(
+            dut_adapter, GattClient(port=self.dut_port), SecurityClient(dut_adapter, port=self.dut_port))
+        self.__cert = TopshimDevice(
+            cert_adapter, GattClient(port=self.cert_port), SecurityClient(cert_adapter, port=self.cert_port))
         return started
 
     async def __teardown_adapter(self):
