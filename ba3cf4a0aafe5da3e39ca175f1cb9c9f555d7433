@@ -22,6 +22,30 @@
       },
       "revId": "ba3cf4a0aafe5da3e39ca175f1cb9c9f555d7433",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a0292d9_b6fdc891",
+        "filename": "system/gd/rust/topshim/src/profiles/avrcp.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:42:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "745af483_50a1bae7",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "ba3cf4a0aafe5da3e39ca175f1cb9c9f555d7433",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
