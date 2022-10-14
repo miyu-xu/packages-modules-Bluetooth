@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27281133_f4d42e2c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapMessageListingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-14T05:15:46Z",
+      "side": 1,
+      "message": "Please fix",
+      "range": {
+        "startLine": 188,
+        "startChar": 68,
+        "endLine": 188,
+        "endChar": 75
+      },
+      "revId": "748d976a184e281ab04208047ff2292c91743c50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
