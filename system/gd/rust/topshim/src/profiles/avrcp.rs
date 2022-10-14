@@ -31,6 +31,15 @@ pub mod ffi {
         fn connect(self: Pin<&mut AvrcpIntf>, bt_addr: RustRawAddress) -> u32;
         fn disconnect(self: Pin<&mut AvrcpIntf>, bt_addr: RustRawAddress) -> u32;
         fn set_volume(self: Pin<&mut AvrcpIntf>, volume: i8);
+        fn set_playback_status(self: Pin<&mut AvrcpIntf>, status: String);
+        fn set_posistion(self: Pin<&mut AvrcpIntf>, position: i64);
+        fn set_metadata(
+            self: Pin<&mut AvrcpIntf>,
+            title: String,
+            artist: String,
+            album: String,
+            length: i64,
+        );
 
     }
     extern "Rust" {
@@ -153,5 +162,22 @@ impl Avrcp {
 
     pub fn set_volume(&mut self, volume: i8) {
         self.internal.pin_mut().set_volume(volume);
+    }
+
+    pub fn set_playback_status(&mut self, status: String) {
+        self.internal.pin_mut().set_playback_status(status);
+    }
+
+    pub fn set_posistion(&mut self, position: i64) {
+        self.internal.pin_mut().set_posistion(position);
+    }
+
+    pub fn set_metadata(&mut self, metadata: PlayerMetadata) {
+        self.internal.pin_mut().set_metadata(
+            metadata.title,
+            metadata.artist,
+            metadata.album,
+            metadata.length,
+        );
     }
 }
