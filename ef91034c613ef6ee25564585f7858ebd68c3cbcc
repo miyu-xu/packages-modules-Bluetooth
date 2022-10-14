@@ -16,6 +16,24 @@
       "message": "Thanks for the exceptional review! I learned a lot!",
       "revId": "ef91034c613ef6ee25564585f7858ebd68c3cbcc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db4af71c_ffe3a09f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-14T22:45:18Z",
+      "side": 1,
+      "message": "You\u0027re welcome 😊\nLGTM now!",
+      "parentUuid": "a9b69351_7fc922e8",
+      "revId": "ef91034c613ef6ee25564585f7858ebd68c3cbcc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
