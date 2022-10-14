@@ -2206,7 +2206,8 @@ void DualModeController::LeCreateConnection(CommandView command) {
     link_layer_controller_.SetLePeerAddress(AddressWithType{
         command_view.GetPeerAddress(), command_view.GetPeerAddressType()});
   }
-  link_layer_controller_.SetLeAddressType(command_view.GetOwnAddressType());
+  link_layer_controller_.SetLeConnectionOwnAddressType(
+      command_view.GetOwnAddressType());
   link_layer_controller_.SetLeConnectionIntervalMin(
       command_view.GetConnIntervalMin());
   link_layer_controller_.SetLeConnectionIntervalMax(
@@ -2487,7 +2488,8 @@ void DualModeController::LeExtendedCreateConnection(CommandView command) {
         command_view.GetPeerAddressType(),
     });
   }
-  link_layer_controller_.SetLeAddressType(command_view.GetOwnAddressType());
+  link_layer_controller_.SetLeConnectionOwnAddressType(
+      command_view.GetOwnAddressType());
   link_layer_controller_.SetLeConnectionIntervalMin(
       params[0].conn_interval_min_);
   link_layer_controller_.SetLeConnectionIntervalMax(
