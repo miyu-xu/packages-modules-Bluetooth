@@ -34,6 +34,24 @@
       "parentUuid": "5ec40a53_4988b175",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65eb1703_e41569a9",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-14T21:55:04Z",
+      "side": 0,
+      "message": "The original report was on an Atlas chromebook which uses a USB BT controller. The corrupted handle can be for the following probable reasons:\n\n- The USB controller on the module side is corrupting the handle\n- The Firmware is corrupting the handle (potentially out-of-bands write in firmware)\n- The Host USB stack is corrupting the handle\n\nIt\u0027s likely to be a software problem in firmware (and we\u0027ll get the vendor to investigate it) but we have seen an issue with another board where it can be the first one.",
+      "parentUuid": "96fa2df1_9c4606c3",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
