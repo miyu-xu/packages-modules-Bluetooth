@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b77eadf7_b0cfdcd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-14T23:25:32Z",
+      "side": 1,
+      "message": "Hi Snehal, we\u0027ve worked on a draft of an AVRCP interface which could be a good starting point, let me know what you think about it, here it is:\n\n```\nsyntax \u003d \"proto3\";\n\noption java_outer_classname \u003d \"AvrcpProto\";\n\npackage pandora;\n\nimport \"pandora_experimental/host.proto\";\n\nservice AVRCP {\n  rpc Connect(ConnectRequest) returns (ConnectResponse);\n  rpc Release(ReleaseRequest) returns (google.protobuf.Empty);\n  rpc SetAbsoluteVolume(SetAbsoluteVolumeRequest) returns (google.protobuf.Empty);\n  rpc Play(PlayRequest) returns (google.protobuf.Empty);\n  rpc Stop(StopRequest) returns (google.protobuf.Empty);\n  rpc Pause(PauseRequest) returns (google.protobuf.Empty);\n  rpc Rewind(RewindRequest) returns (google.protobuf.Empty);\n  rpc FastForward(FastForwardRequest) returns (google.protobuf.Empty);\n  rpc Forward(ForwardRequest) returns (google.protobuf.Empty);\n  rpc Backward(BackwardRequest) returns (google.protobuf.Empty);\n  rpc OnEventNotification(google.protobuf.Empty) returns (stream EventNotification);\n}\n\nmessage AvctpConnection {\n  bytes cookie \u003d 1;\n}\n\nmessage ConnectRequest {\n  Connection connection \u003d 1;\n}\n\nmessage ConnectResponse {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\nmessage ReleaseRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\n// AVRCP Specification 6.13.1\n// The volume is specified as a percentage of the maximum.\n// The value 0x0 corresponds to 0%. The value 0x7F corresponds to 100%.\nmessage SetAbsoluteVolumeRequest {\n  int32 absoluteVolume \u003d 1;\n}\n\nmessage PlayRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\nmessage StopRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\nmessage PauseRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\nmessage RewindRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\nmessage FastForwardRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\nmessage ForwardRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\nmessage BackwardRequest {\n  AvctpConnection avctpConnection \u003d 1;\n}\n\n// AVRCP Profile Specification 6.7.1\nenum PlayStatus {\n  STOPPED \u003d 0;\n  PLAYING \u003d 1;\n  PAUSED \u003d 2;\n  FWD_SEEK \u003d 3;\n  REV_SEEL \u003d 4;\n  ERROR \u003d 5;\n}\n\n// AVRCP Profile Specification 5.5.2.b\nenum TrackChangeEvent {\n  CHANGE \u003d 1;\n  START \u003d 2;\n  END \u003d 4;\n}\n\n// AVRCP Profile Specification Table 6.37\nenum BatteryStatus {\n  NORMAL \u003d 0;\n  WARNING \u003d 1;\n  CRITICAL \u003d 2;\n  EXTERNAL \u003d 3;\n  FULL_CHARGE \u003d 4;\n}\n\n// AVRCP Profile Specification Table 6.38\nenum SystemStatus {\n  POWER_ON \u003d 0;\n  POWER_OFF \u003d 1;\n  UNPLUGGED \u003d 2;\n}\n\nmessage PlayerApplicationSetting {\n  int32 numPlayerApplicationSettingAtt \u003d 1;\n  int32 playerApplicaitonSettingID \u003d 2;\n  bytes PlayerApplicationSettingsValueID \u003d 3;\n}\n\n// AVRCP Profile SPecification 6.7.2\nmessage EventNotification {\n  oneof event {\n    PlayStatus playsStatusEvent \u003d 1;\n    int32 trackChanged \u003d 2;\n    bool trackReachedEnd \u003d 3;\n    bool trackReachedStart \u003d 4;\n    int32 playbackPosChanged \u003d 5;\n    BatteryStatus battSatusChanged \u003d 6;\n    SystemStatus systemStatusChanged \u003d 7;\n    PlayerApplicationSetting playerApplicationSetting \u003d 8;\n    int32 volume \u003d 9;\n  }\n}\n```",
+      "revId": "5682864fdab655194cf16f0bcea1816fb130538c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
