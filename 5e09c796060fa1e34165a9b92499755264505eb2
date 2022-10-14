@@ -170,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf4314dd_96ae47e1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:29:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a148c2cb_c9711f35",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c07372a_64e5c5e1",
@@ -187,6 +211,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97dbc612_51cb8508",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:29:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c07372a_64e5c5e1",
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a86c1ae_faced7d7",
@@ -200,6 +242,24 @@
       "writtenOn": "2022-10-14T22:24:25Z",
       "side": 1,
       "message": "nit: add a `// TODO` comment if this is not intentionally blank",
+      "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b892060_4e842a98",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1233,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:29:09Z",
+      "side": 1,
+      "message": "Ack.\n\nThe next patch will update this.",
+      "parentUuid": "0a86c1ae_faced7d7",
       "revId": "5e09c796060fa1e34165a9b92499755264505eb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
