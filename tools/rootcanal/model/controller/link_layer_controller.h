@@ -294,8 +294,9 @@ class LinkLayerController {
 
   uint8_t LeReadNumberOfSupportedAdvertisingSets();
 
-  void SetLeAddressType(bluetooth::hci::OwnAddressType le_address_type) {
-    le_address_type_ = le_address_type;
+  void SetLeConnectionOwnAddressType(
+      bluetooth::hci::OwnAddressType own_address_type) {
+    le_connection_own_address_type_ = own_address_type;
   }
   ErrorCode SetLeConnect(bool le_connect, bool extended) {
     if (le_connect_ == le_connect) {
@@ -948,8 +949,6 @@ class LinkLayerController {
   uint16_t le_scan_interval_{};
   uint16_t le_scan_window_{};
 
-  bluetooth::hci::OwnAddressType le_address_type_{};
-
   bool le_connect_{false};
   bool le_extended_connect_{false};
   bool le_pending_connect_{false};
@@ -959,6 +958,7 @@ class LinkLayerController {
   uint16_t le_connection_supervision_timeout_{};
   uint16_t le_connection_minimum_ce_length_{};
   uint16_t le_connection_maximum_ce_length_{};
+  bluetooth::hci::OwnAddressType le_connection_own_address_type_{};
   bluetooth::hci::InitiatorFilterPolicy le_initiator_filter_policy_{};
 
   AddressWithType le_peer_address_{};
