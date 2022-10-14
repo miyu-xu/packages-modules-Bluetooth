@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3316f0eb_49fb8471",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1099,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-14T13:57:09Z",
+      "side": 1,
+      "message": "nit: in this change, we are using 3 different names for same information\n`ltk_derived_lk`, `is_ctkd`, `is_crosskey`.  Could we somehow unify it?",
+      "range": {
+        "startLine": 1099,
+        "startChar": 9,
+        "endLine": 1099,
+        "endChar": 20
+      },
+      "revId": "730ac272fdd9f941b34a27e0eeee5eef4cf455f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
