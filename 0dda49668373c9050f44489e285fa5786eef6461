@@ -16,6 +16,24 @@
       "message": "Could unit tests be added for this CL to make sure the logic implements what we want? \n\nAlso, what tests have been conducted on this CL?",
       "revId": "0dda49668373c9050f44489e285fa5786eef6461",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87066494_8ff2f545",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-14T04:13:54Z",
+      "side": 1,
+      "message": "Added more tests.\nI only ran the ActiveDeviceManagerTest.",
+      "parentUuid": "43b1fd94_5c210087",
+      "revId": "0dda49668373c9050f44489e285fa5786eef6461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
