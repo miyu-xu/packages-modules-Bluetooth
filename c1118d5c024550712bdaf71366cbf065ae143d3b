@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "269bf6a2_0653d0a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-14T07:35:33Z",
+      "side": 1,
+      "message": "nit: \"to\" seems to be redundant",
+      "range": {
+        "startLine": 10,
+        "startChar": 16,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "c1118d5c024550712bdaf71366cbf065ae143d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b1e6cdf_db577bd2",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-14T07:35:33Z",
+      "side": 1,
+      "message": "This is not being used, shall we remove it?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 20
+      },
+      "revId": "c1118d5c024550712bdaf71366cbf065ae143d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc99aa6_aeeb6ae4",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-14T07:35:33Z",
+      "side": 1,
+      "message": "How about moving parse_uuid_string() into UUIDHelper?",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 68
+      },
+      "revId": "c1118d5c024550712bdaf71366cbf065ae143d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
