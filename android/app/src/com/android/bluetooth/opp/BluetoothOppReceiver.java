@@ -67,7 +67,7 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
             BluetoothDevice remoteDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
             if (D) {
-                Log.d(TAG, "Received BT device selected intent, bt device: " + remoteDevice);
+                Log.d(TAG, "Received BT device selected intent, bt device: " + remoteDevice.getIdentityAddress());
             }
 
             if (remoteDevice == null) {

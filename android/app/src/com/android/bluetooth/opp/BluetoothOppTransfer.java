@@ -113,13 +113,13 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
             if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (device == null || mBatch == null || mCurrentShare == null) {
-                    Log.e(TAG, "device : " + device + " mBatch :" + mBatch + " mCurrentShare :"
+                    Log.e(TAG, "device : " + device.getIdentityAddress() + " mBatch :" + mBatch + " mCurrentShare :"
                             + mCurrentShare);
                     return;
                 }
                 try {
                     if (V) {
-                        Log.v(TAG, "Device :" + device + "- OPP device: " + mBatch.mDestination
+                        Log.v(TAG, "Device :" + device.getIdentityAddress() + "- OPP device: " + mBatch.mDestination
                                 + " \n mCurrentShare.mConfirm == " + mCurrentShare.mConfirm);
                     }
                     if ((device.equals(mBatch.mDestination)) && (mCurrentShare.mConfirm
@@ -152,7 +152,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                         Log.w(TAG, "OPP SDP search, target device is null, ignoring result");
                         return;
                     }
-                    if (!device.getAddress().equalsIgnoreCase(mDevice.getAddress())) {
+                    if (!device.getIdentityAddress().equalsIgnoreCase(mDevice.getIdentityAddress())) {
                         Log.w(TAG, " OPP SDP search for wrong device, ignoring!!");
                         return;
                     }
