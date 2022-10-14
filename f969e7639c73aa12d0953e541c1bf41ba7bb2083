@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44a04db1_b992433c",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83f9edfb_4709d920",
+      "range": {
+        "startLine": 113,
+        "startChar": 35,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d408546_9ec43295",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-14T21:52:14Z",
       "side": 1,
       "message": "this is a common match pattern that you can do it in functional style with more concise:\n```\n\u003c\u003cString as DBusArg\u003e::DBusType as RefArgToRust\u003e::ref_arg_to_rust(\n    variant.as_static_inner(0).unwrap(),\n    format!(\"PlayerMetadata::Artist\"),\n)\n.unwrap_or(String::new())\n```",
+      "range": {
+        "startLine": 122,
+        "startChar": 28,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99229137_8c6919d3",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d408546_9ec43295",
       "range": {
         "startLine": 122,
         "startChar": 28,
@@ -94,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "830881b8_ee97810b",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3d65eae_67daa142",
+      "range": {
+        "startLine": 129,
+        "startChar": 35,
+        "endLine": 136,
+        "endChar": 30
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44d869ac_c5be8ddd",
@@ -107,6 +179,30 @@
       "writtenOn": "2022-10-14T21:52:14Z",
       "side": 1,
       "message": "prefer `String::from` to avoid unnecessary formatting logic since we don\u0027t need to do string interpolation.",
+      "range": {
+        "startLine": 141,
+        "startChar": 36,
+        "endLine": 141,
+        "endChar": 43
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f461c799_73fbe53f",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d869ac_c5be8ddd",
       "range": {
         "startLine": 141,
         "startChar": 36,
@@ -140,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc607b0_14fe5786",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39cc669f_825f787f",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 37
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5c2ff6f_b9a6ffd5",
@@ -153,6 +273,30 @@
       "writtenOn": "2022-10-14T21:52:14Z",
       "side": 1,
       "message": "Since these are client-facing API, please add docs with `///` to each method. Also explain that these methods don\u0027t follow the Floss API conventions (especially how PlayerMetadata is encoded in D-Bus) since this is a copy of CRAS API.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 64
+      },
+      "revId": "f969e7639c73aa12d0953e541c1bf41ba7bb2083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd8eb40_1aad7a7d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-14T22:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5c2ff6f_b9a6ffd5",
       "range": {
         "startLine": 91,
         "startChar": 0,
