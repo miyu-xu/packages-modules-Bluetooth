@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566e23b1_13bfff58",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-14T22:21:59Z",
+      "side": 1,
+      "message": "Just realized you\u0027ll never hit this branch since you check `active_sco-\u003ehci_handle !\u003d handle` in the previous branch too.",
+      "revId": "ca6a5beed087f9a2fe360d51fe31f14c48ce867c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -88,6 +88,41 @@
       "parentUuid": "7204afe7_7f10815d",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d18e773_0119ca81",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-14T22:21:59Z",
+      "side": 0,
+      "message": "Hmm, our previous conversation needs to go into the `btm_route_sco_data` thread. \n\nHere, the stream handle will be taken from connection complete (which should drop the handle since it\u0027s not valid). Leaving an assert here is probably ok since the connection should have already been dropped by this point.",
+      "parentUuid": "c8c0958c_698caecd",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08791dd8_ecaaef07",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-14T22:21:59Z",
+      "side": 0,
+      "message": "This should be retained as a DCHECK with crash on debug builds + log+metrics on release builds.\n\nI\u0027m assuming this is on receive path (which is what the conversation on transmit_sco_fragment was about).",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
