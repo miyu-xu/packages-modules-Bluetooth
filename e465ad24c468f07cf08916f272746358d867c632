@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "594e32f6_ab57d9a0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-10-14T15:29:16Z",
+      "side": 1,
+      "message": "Does this support to LE Audio device fallback ?",
+      "revId": "e465ad24c468f07cf08916f272746358d867c632",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "867cb29e_f61ce759",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-10-14T15:29:16Z",
+      "side": 1,
+      "message": "Is this change needed ? This is a coding style guide forced change ? This actually does the same - device is already null.",
+      "revId": "e465ad24c468f07cf08916f272746358d867c632",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
