@@ -33,6 +33,29 @@
       "message": "Ping Myles for review, thanks!",
       "revId": "13ebcab058d291a01ee61156d632330540cc37ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59c0561e_67bec265",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5658,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-14T02:51:39Z",
+      "side": 1,
+      "message": "NO_ADDRESS_PROVIDED would match the spec better.",
+      "range": {
+        "startLine": 5658,
+        "startChar": 2,
+        "endLine": 5658,
+        "endChar": 6
+      },
+      "revId": "13ebcab058d291a01ee61156d632330540cc37ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
