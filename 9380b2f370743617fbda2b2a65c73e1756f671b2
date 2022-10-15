@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b3fd83_e90fdf4a",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-15T14:05:43Z",
+      "side": 1,
+      "message": "since this is the Android HAL, remove os/log.h",
+      "range": {
+        "startLine": 28,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 7
+      },
+      "revId": "9380b2f370743617fbda2b2a65c73e1756f671b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
