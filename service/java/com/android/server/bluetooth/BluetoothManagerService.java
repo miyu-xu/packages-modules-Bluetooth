@@ -102,7 +102,6 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -2985,16 +2984,13 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
 
             // Bluetooth OPP activities that should always be enabled,
             // even when Bluetooth is turned OFF.
-            ArrayList<String> baseBluetoothOppActivities = new ArrayList<String>() {
-                {
+            List<String> baseBluetoothOppActivities = List.of(
                     // Base sharing activity
-                    add("com.android.bluetooth.opp.BluetoothOppLauncherActivity");
+                    "com.android.bluetooth.opp.BluetoothOppLauncherActivity",
                     // BT enable activities
-                    add("com.android.bluetooth.opp.BluetoothOppBtEnableActivity");
-                    add("com.android.bluetooth.opp.BluetoothOppBtEnablingActivity");
-                    add("com.android.bluetooth.opp.BluetoothOppBtErrorActivity");
-                }
-            };
+                    "com.android.bluetooth.opp.BluetoothOppBtEnableActivity",
+                    "com.android.bluetooth.opp.BluetoothOppBtEnablingActivity",
+                    "com.android.bluetooth.opp.BluetoothOppBtErrorActivity");
 
             PackageManager systemPackageManager = mContext.getPackageManager();
             PackageManager userPackageManager = mContext.createContextAsUser(userHandle, 0)

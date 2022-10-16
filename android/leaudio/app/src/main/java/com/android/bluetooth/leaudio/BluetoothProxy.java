@@ -807,7 +807,7 @@ public class BluetoothProxy {
     }
 
     private Boolean checkForEnabledBluetooth() {
-        Boolean current_state = bluetoothAdapter.isEnabled();
+        boolean current_state = bluetoothAdapter.isEnabled();
 
         // Force the update since event may not come if bt was already enabled
         if (enabledBluetoothMutable.getValue() != current_state)
