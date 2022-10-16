@@ -106,7 +106,7 @@ class VendorCommandResponseProcessor {
         // replace all white spaces
         commandWord = commandWord.replaceAll("\\s+", "");
 
-        if (SUPPORTED_VENDOR_AT_COMMANDS.get(commandWord) != (Integer) (vendorId)) {
+        if (SUPPORTED_VENDOR_AT_COMMANDS.get(commandWord).intValue() != vendorId) {
             Log.e(TAG, "Invalid command " + atCommand + ", " + vendorId + ". Cand="
                     + commandWord);
             return false;

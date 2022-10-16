@@ -110,7 +110,8 @@ public class ScanManager {
     // Scan parameters for batch scan.
     private BatchScanParams mBatchScanParms;
 
-    private Integer mCurUsedTrackableAdvertisements;
+    private final Object mCurUsedTrackableAdvertisementsLock = new Object();
+    private int mCurUsedTrackableAdvertisements;
     private final GattService mService;
     private final AdapterService mAdapterService;
     private BroadcastReceiver mBatchAlarmReceiver;
@@ -1508,7 +1509,7 @@ public class ScanManager {
                 boolean allocate) {
             int maxTotalTrackableAdvertisements =
                     AdapterService.getAdapterService().getTotalNumOfTrackableAdvertisements();
-            synchronized (mCurUsedTrackableAdvertisements) {
+            synchronized (mCurUsedTrackableAdvertisementsLock) {
                 int availableEntries =
                         maxTotalTrackableAdvertisements - mCurUsedTrackableAdvertisements;
                 if (allocate) {
