@@ -984,7 +984,7 @@ public class BluetoothInCallService extends InCallService {
                 numHeldCalls = 1;  // Merge is available, so expose via numHeldCalls.
             }
 
-            for (Integer id : activeCall.getChildrenIds()) {
+            for (int id : activeCall.getChildrenIds()) {
                 // Held BluetoothCall has changed due to it being combined into a CDMA conference.
                 // Keep track of this and ignore any future update since it doesn't really count
                 // as a BluetoothCall change.
@@ -1526,4 +1526,4 @@ public class BluetoothInCallService extends InCallService {
             mBluetoothLeCallControl.requestResult(requestId, BluetoothLeCallControl.RESULT_ERROR_APPLICATION);
         }
     };
-};
+}

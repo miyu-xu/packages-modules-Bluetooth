@@ -746,7 +746,7 @@ public class LeAudioService extends ProfileService {
         }
         synchronized (mGroupLock) {
             for (Map.Entry<BluetoothDevice, Integer> entry : mDeviceGroupIdMap.entrySet()) {
-                if (entry.getValue() != groupId) {
+                if (!groupId.equals(entry.getValue())) {
                     continue;
                 }
                 LeAudioStateMachine sm = mStateMachines.get(entry.getKey());

@@ -457,7 +457,7 @@ public class BassClientStateMachine extends StateMachine {
                 subGroup.addChannel(channel.build());
             }
             byte[] arrayCodecId = baseLevel2.codecId;
-            long codeId = (long) ((arrayCodecId[4] & 0xff) << 32
+            long codeId = (((long)(arrayCodecId[4] & 0xff)) << 32
                     | (arrayCodecId[3] & 0xff) << 24
                     | (arrayCodecId[2] & 0xff) << 16
                     | (arrayCodecId[1] & 0xff) << 8
