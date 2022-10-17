@@ -103,6 +103,8 @@ cc_defaults {
         // HAL layer
         "src/bluetooth.cc",
         "src/bluetooth_data_migration.cc",
+        // Initializing core library
+        "src/profile_log_levels.cc",
         // BTIF implementation
         "src/btif_a2dp.cc",
         "src/btif_a2dp_control.cc",
