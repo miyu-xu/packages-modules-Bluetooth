@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ca4d00_1b5cc8dc",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-17T23:54:28Z",
+      "side": 1,
+      "message": "I\u0027m a little worried about opening this up as a public API. This gives an application the ability to set the codec config for any bonded bluetooth device. I think we should consider additional mechanisms of enforcement (e.g. CDM association) to minimize risk for the end user.",
+      "revId": "b18085c8775163745c16ed5899a64cb145e8fbbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
