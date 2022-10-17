@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee15f2e8_ab900e8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1535516
+      },
+      "writtenOn": "2022-10-17T22:01:24Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s nice. There\u0027s also `Map.of` and `Set.of`, which I used in other cls.",
+      "parentUuid": "451a0bed_b21c3a37",
+      "revId": "cb813cb5bfd7d5a5a438418713d213ef620013b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81e165d8_104d70d7",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-10-17T21:11:21Z",
       "side": 1,
       "message": "Shouldn\u0027t we add `@GuardedBy(\"mCurUsedTrackableAdvertisementsLock\")` annotation ?",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 47
+      },
+      "revId": "cb813cb5bfd7d5a5a438418713d213ef620013b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38077058_f2dae677",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1535516
+      },
+      "writtenOn": "2022-10-17T22:01:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81e165d8_104d70d7",
       "range": {
         "startLine": 114,
         "startChar": 16,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "473c7dfc_27a31b7f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1535516
+      },
+      "writtenOn": "2022-10-17T22:01:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8505479_18aa2a19",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 39
+      },
+      "revId": "cb813cb5bfd7d5a5a438418713d213ef620013b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aae982fb_1e3bce2b",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-10-17T21:11:21Z",
       "side": 1,
       "message": "GuardedBy will probably ask to add synchronized block here too",
+      "range": {
+        "startLine": 720,
+        "startChar": 15,
+        "endLine": 720,
+        "endChar": 46
+      },
+      "revId": "cb813cb5bfd7d5a5a438418713d213ef620013b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1cb4c86_897000c9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1535516
+      },
+      "writtenOn": "2022-10-17T22:01:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aae982fb_1e3bce2b",
       "range": {
         "startLine": 720,
         "startChar": 15,
