@@ -33,6 +33,7 @@
 #include "bta/include/bta_hearing_aid_api.h"
 #include "device/include/controller.h"
 #include "embdrv/g722/g722_enc_dec.h"
+#include "hearing_aid_storage.h"
 #include "osi/include/compat.h"
 #include "osi/include/log.h"
 #include "osi/include/properties.h"
@@ -56,11 +57,6 @@ constexpr uint16_t MIN_CE_LEN_10MS_CI = 0x0006;
 constexpr uint16_t MIN_CE_LEN_20MS_CI = 0x000C;
 constexpr uint16_t CONNECTION_INTERVAL_10MS_PARAM = 0x0008;
 constexpr uint16_t CONNECTION_INTERVAL_20MS_PARAM = 0x0010;
-
-void btif_storage_add_hearing_aid(const HearingDevice& dev_info);
-bool btif_storage_get_hearing_aid_prop(
-    const RawAddress& address, uint8_t* capabilities, uint64_t* hi_sync_id,
-    uint16_t* render_delay, uint16_t* preparation_delay, uint16_t* codecs);
 
 constexpr uint8_t CODEC_G722_16KHZ = 0x01;
 constexpr uint8_t CODEC_G722_24KHZ = 0x02;
@@ -688,7 +684,7 @@ class HearingAidImpl : public HearingAid {
 
     for (const gatt::Characteristic& charac : service->characteristics) {
       if (charac.uuid == READ_ONLY_PROPERTIES_UUID) {
-        if (!btif_storage_get_hearing_aid_prop(
+        if (!bluetooth::hearing_aid::storage::GetHearingDeviceProperties(
                 hearingDevice->address, &hearingDevice->capabilities,
                 &hearingDevice->hi_sync_id, &hearingDevice->render_delay,
                 &hearingDevice->preparation_delay, &hearingDevice->codecs)) {
@@ -964,7 +960,8 @@ class HearingAidImpl : public HearingAid {
     }
 
     if (hearingDevice->first_connection) {
-      btif_storage_add_hearing_aid(*hearingDevice);
+      bluetooth::hearing_aid::storage::AddHearingDeviceToStorage(
+          *hearingDevice);
 
       hearingDevice->first_connection = false;
     }
