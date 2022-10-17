@@ -15,7 +15,8 @@ def desugar_field_(field: Field, previous: Field, constraints: Dict[str, Constra
 
     elif isinstance(field, PaddingField):
         previous.padded_size = field.size
-        return []
+        field.padded_field = previous
+        return [field]
 
     elif isinstance(field, TypedefField) and field.id in constraints:
         tag_id = constraints[field.id].tag_id
@@ -124,7 +125,7 @@ def get_packet_ancestor(
     if decl.parent_id is None:
         return decl
     else:
-        return get_packet_ancestor(decl.grammar.packet_scope[decl.parent_id])
+        return get_packet_ancestor(decl.file.packet_scope[decl.parent_id])
 
 
 def get_derived_packets(decl: Union[PacketDeclaration, StructDeclaration]

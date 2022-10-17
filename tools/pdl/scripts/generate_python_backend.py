@@ -155,7 +155,7 @@ class FieldParser:
     def parse_array_element_dynamic_(self, field: ast.ArrayField, span: str):
         """Parse a single array field element of variable size."""
         if isinstance(field.type, ast.StructDeclaration):
-            self.append_(f"    element, span = {field.type_id}.parse({span})")
+            self.append_(f"    element, {span} = {field.type_id}.parse({span})")
             self.append_(f"    {field.id}.append(element)")
         else:
             raise Exception(f'Unexpected array element type {field.type_id} {field.width}')
