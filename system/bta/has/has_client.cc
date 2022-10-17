@@ -38,6 +38,7 @@
 #include "device/include/controller.h"
 #include "gap_api.h"
 #include "gatt_api.h"
+#include "has_storage.h"
 #include "has_types.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
@@ -68,22 +69,6 @@ using le_audio::has::kUuidHearingAidFeatures;
 using le_audio::has::kUuidHearingAidPresetControlPoint;
 using le_audio::has::PresetCtpChangeId;
 using le_audio::has::PresetCtpOpcode;
-
-void btif_storage_add_leaudio_has_device(const RawAddress& address,
-                                         std::vector<uint8_t> presets_bin,
-                                         uint8_t features,
-                                         uint8_t active_preset);
-bool btif_storage_get_leaudio_has_presets(const RawAddress& address,
-                                          std::vector<uint8_t>& presets_bin,
-                                          uint8_t& active_preset);
-void btif_storage_set_leaudio_has_presets(const RawAddress& address,
-                                          std::vector<uint8_t> presets_bin);
-bool btif_storage_get_leaudio_has_features(const RawAddress& address,
-                                           uint8_t& features);
-void btif_storage_set_leaudio_has_features(const RawAddress& address,
-                                           uint8_t features);
-void btif_storage_set_leaudio_has_active_preset(const RawAddress& address,
-                                                uint8_t active_preset);
 
 extern bool gatt_profile_get_eatt_support(const RawAddress& remote_bda);
 
@@ -968,9 +953,9 @@ class HasClientImpl : public HasClient {
 
       std::vector<uint8_t> presets_bin;
       if (device.SerializePresets(presets_bin)) {
-        btif_storage_add_leaudio_has_device(device.addr, presets_bin,
-                                            device.GetFeatures(),
-                                            device.currently_active_preset);
+        le_audio::has::storage::AddDevice(device.addr, presets_bin,
+                                          device.GetFeatures(),
+                                          device.currently_active_preset);
       }
       NotifyHasDeviceValid(device);
     }
@@ -1076,7 +1061,7 @@ class HasClientImpl : public HasClient {
     device->UpdateFeatures(features);
 
     if (device->isGattServiceValid()) {
-      btif_storage_set_leaudio_has_features(device->addr, features);
+      le_audio::has::storage::SetHasFeatures(device->addr, features);
     }
 
     /* Journal update */
@@ -1220,7 +1205,7 @@ class HasClientImpl : public HasClient {
       /* Update preset values in the storage */
       std::vector<uint8_t> presets_bin;
       if (device.SerializePresets(presets_bin)) {
-        btif_storage_set_leaudio_has_presets(device.addr, presets_bin);
+        le_audio::has::storage::SetHasPresets(device.addr, presets_bin);
       }
 
       /* Check for the matching coordinated group op. to use group callbacks */
@@ -1319,7 +1304,7 @@ class HasClientImpl : public HasClient {
     if (device.isGattServiceValid()) {
       std::vector<uint8_t> presets_bin;
       if (device.SerializePresets(presets_bin)) {
-        btif_storage_set_leaudio_has_presets(device.addr, presets_bin);
+        le_audio::has::storage::SetHasPresets(device.addr, presets_bin);
       }
     }
 
@@ -1359,7 +1344,7 @@ class HasClientImpl : public HasClient {
     if (device.isGattServiceValid()) {
       std::vector<uint8_t> presets_bin;
       if (device.SerializePresets(presets_bin)) {
-        btif_storage_set_leaudio_has_presets(device.addr, presets_bin);
+        le_audio::has::storage::SetHasPresets(device.addr, presets_bin);
       }
     }
 
@@ -1451,7 +1436,7 @@ class HasClientImpl : public HasClient {
     STREAM_TO_UINT8(device->currently_active_preset, pp);
 
     if (device->isGattServiceValid()) {
-      btif_storage_set_leaudio_has_active_preset(
+      le_audio::has::storage::SetHasActivePreset(
           device->addr, device->currently_active_preset);
     }
 
@@ -1609,8 +1594,8 @@ class HasClientImpl : public HasClient {
     std::vector<uint8_t> presets_bin;
     uint8_t active_preset;
 
-    if (!btif_storage_get_leaudio_has_presets(device->addr, presets_bin,
-                                              active_preset))
+    if (!le_audio::has::storage::GetHasPresets(device->addr, presets_bin,
+                                               active_preset))
       return false;
 
     if (!HasDevice::DeserializePresets(presets_bin.data(), presets_bin.size(),
@@ -1623,7 +1608,7 @@ class HasClientImpl : public HasClient {
 
     /* Update features and refresh opcode support map */
     uint8_t val;
-    if (btif_storage_get_leaudio_has_features(device->addr, val))
+    if (le_audio::has::storage::GetHasFeatures(device->addr, val))
       device->UpdateFeatures(val);
 
     /* With all the details loaded we can already mark it as valid */
