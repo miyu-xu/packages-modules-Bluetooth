@@ -63,6 +63,30 @@
       },
       "revId": "6d5b2dada120e2966761bdc8c5bd2632aaca8a36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9fe7aa_5967514d",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-10-17T09:46:00Z",
+      "side": 1,
+      "message": "Ack, will update this one",
+      "parentUuid": "df62f6d9_8f005b08",
+      "range": {
+        "startLine": 41,
+        "startChar": 64,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "6d5b2dada120e2966761bdc8c5bd2632aaca8a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
