@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0f99b11_223308b1",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 15
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-17T16:44:14Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 22
+      },
+      "revId": "fb55e3a38ec1dceefda751e63863fc2d1fccad7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
