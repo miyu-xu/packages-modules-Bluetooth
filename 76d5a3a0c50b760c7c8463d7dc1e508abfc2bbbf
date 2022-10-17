@@ -86,6 +86,24 @@
       "parentUuid": "78d377b1_c635c08c",
       "revId": "76d5a3a0c50b760c7c8463d7dc1e508abfc2bbbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b584ab_8c06a744",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-17T04:35:51Z",
+      "side": 1,
+      "message": "What would be a good way to check whether a device is supporting HAP profile in here?",
+      "parentUuid": "52960b42_dbaa8124",
+      "revId": "76d5a3a0c50b760c7c8463d7dc1e508abfc2bbbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
