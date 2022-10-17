@@ -72,6 +72,11 @@ struct CoreInterface {
   // generic interface
   EventCallbacks* events;
 
+  virtual void onBluetoothEnabled();
+  virtual bt_status_t toggleProfile(tBTA_SERVICE_ID service_id, bool enable);
+  virtual void removeDeviceFromProfiles(const RawAddress& bd_addr);
+  virtual void onLinkDown(const RawAddress& bd_addr);
+
   CoreInterface(EventCallbacks* eventCallbacks) : events{eventCallbacks} {};
 
   CoreInterface(const CoreInterface&) = delete;
