@@ -416,6 +416,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             FEATURE_TYPE_MONAURAL,
             FEATURE_TYPE_BANDED,
             FEATURE_SYNCHRONIZATED_PRESETS,
+            FEATURE_INDEPENDENT_PRESETS,
             FEATURE_DYNAMIC_PRESETS,
             FEATURE_WRITABLE_PRESETS,
     })
@@ -1176,6 +1177,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
      * @return features value with feature bits set
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {
             android.Manifest.permission.BLUETOOTH_CONNECT,
