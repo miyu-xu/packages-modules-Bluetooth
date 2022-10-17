@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3416628a_9cb5d7d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-17T21:07:40Z",
+      "side": 1,
+      "message": "Please fix spelling before submitting",
+      "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a07c441e_9952f335",
+        "filename": "system/gd/rust/topshim/src/profiles/avrcp.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-17T21:07:40Z",
+      "side": 1,
+      "message": "spelling: set_position",
+      "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
