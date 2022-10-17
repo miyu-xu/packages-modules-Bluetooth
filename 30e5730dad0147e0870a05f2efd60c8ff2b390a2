@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0068da4f_ede8a39b",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-10-17T20:54:25Z",
+      "side": 1,
+      "message": "Nit: \"in debug mode\", or \"as debug binary\" or the like.",
+      "range": {
+        "startLine": 843,
+        "startChar": 62,
+        "endLine": 843,
+        "endChar": 64
+      },
+      "revId": "30e5730dad0147e0870a05f2efd60c8ff2b390a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
