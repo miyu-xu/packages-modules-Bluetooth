@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ac710da_21d8e957",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-17T06:30:49Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "bd1ecd8440bc7d18f8591b9acba16adb0130bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f741b0_b7c55be9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-17T06:30:49Z",
+      "side": 1,
+      "message": "Not used",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "bd1ecd8440bc7d18f8591b9acba16adb0130bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f32fae_5e43ca01",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-17T06:30:49Z",
+      "side": 1,
+      "message": "Can we set some values like:\n\n`advPkt \u003d new byte[] {0x02}\u0027?\n\nSame for scanRsp.",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "bd1ecd8440bc7d18f8591b9acba16adb0130bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
