@@ -24,6 +24,7 @@
 #include <hardware/bluetooth.h>
 #include <hardware/bt_hearing_aid.h>
 
+#include "bta/hearing_aid/hearing_aid_storage.h"
 #include "bta_hearing_aid_api.h"
 #include "btif_common.h"
 #include "btif_storage.h"
@@ -63,7 +64,8 @@ class HearingAidInterfaceImpl
         FROM_HERE,
         Bind(&HearingAid::Initialize, this,
              jni_thread_wrapper(FROM_HERE,
-                                Bind(&btif_storage_load_bonded_hearing_aids))));
+                                Bind(&bluetooth::hearing_aid::storage::
+                                         LoadBondedHearingAidsFromStorage))));
   }
 
   void OnConnectionState(ConnectionState state,
@@ -93,16 +95,20 @@ class HearingAidInterfaceImpl
     DVLOG(2) << __func__ << " address: " << address;
     do_in_main_thread(FROM_HERE, Bind(&HearingAid::Disconnect,
                                       Unretained(HearingAid::Get()), address));
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_set_hearing_aid_acceptlist,
-                                     address, false));
+    do_in_jni_thread(
+        FROM_HERE,
+        Bind(&bluetooth::hearing_aid::storage::SetHearingDeviceAcceptlist,
+             address, false));
   }
 
   void AddToAcceptlist(const RawAddress& address) override {
     VLOG(2) << __func__ << " address: " << address;
     do_in_main_thread(FROM_HERE, Bind(&HearingAid::AddToAcceptlist,
                                       Unretained(HearingAid::Get()), address));
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_set_hearing_aid_acceptlist,
-                                     address, true));
+    do_in_jni_thread(
+        FROM_HERE,
+        Bind(&bluetooth::hearing_aid::storage::SetHearingDeviceAcceptlist,
+             address, true));
   }
 
   void SetVolume(int8_t volume) override {
@@ -121,8 +127,10 @@ class HearingAidInterfaceImpl
                              Unretained(HearingAid::Get()), address));
     }
 
-    do_in_jni_thread(FROM_HERE,
-                     Bind(&btif_storage_remove_hearing_aid, address));
+    do_in_jni_thread(
+        FROM_HERE,
+        Bind(&bluetooth::hearing_aid::storage::RemoveHearingDeviceFromStorage,
+             address));
   }
 
   void Cleanup(void) override {
