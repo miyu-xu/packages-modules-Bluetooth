@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27bf11dd_61b09857",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-17T21:16:18Z",
+      "side": 1,
+      "message": "I should have looked further to see what the conflict was.  I was hoping it was in the next CL in the topic.",
+      "revId": "20dde3cd08c5fd2683ac8a3a12e8329a86f97576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
