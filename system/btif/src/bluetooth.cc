@@ -434,12 +434,6 @@ static void start_profiles() {
   HID_HostInit();
 #endif
   bta_ar_init();
-
-  // initialize profile-specific logging levels
-  const auto stack_config = stack_config_get_interface();
-  if (stack_config->get_trace_config_enabled()) {
-    load_levels_from_config(stack_config->get_all());
-  }
 }
 
 static void stop_profiles() {
@@ -768,8 +762,6 @@ static void dump(int fd, const char** arguments) {
   connection_manager::dump(fd);
   bluetooth::bqr::DebugDump(fd);
   bluetooth::shim::Dump(fd, arguments);
-  PAN_Dumpsys(fd);
-  DumpsysHid(fd);
 }
 
 static void dumpMetrics(std::string* output) {
