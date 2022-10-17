@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b25279d7_2602d472",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-17T16:41:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afc7226a_1a81f168",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 32
+      },
+      "revId": "2c19e38c5e890af6ffa4dba2ce96f53b6b5edec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5dfab285_54fa8ab3",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7941fabd_84fafd05",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-17T16:41:55Z",
+      "side": 1,
+      "message": "Neat.",
+      "parentUuid": "5dfab285_54fa8ab3",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 1
+      },
+      "revId": "2c19e38c5e890af6ffa4dba2ce96f53b6b5edec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9820116d_d81ed488",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-10-12T22:27:58Z",
       "side": 1,
       "message": "I am not clear why we need this callback internally. What is the use case where BatteryManager needs to be a ConsumerCallback of BatteryProviderManager? Can you describe a concrete flow of this use case?",
+      "revId": "2c19e38c5e890af6ffa4dba2ce96f53b6b5edec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91290b5b_cc33d7dc",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-17T16:41:55Z",
+      "side": 1,
+      "message": "From chat:\nBatteryManager -\u003e public interface for clients to consume battery information\nBatteryProviderManager -\u003e public/internal interface for battery providers\n\nIf I write a client UI that needs battery info updates I would register a callback with BatteryManager, but BatteryManager needs updates from BatteryProviderManager to know when to invoke callbacks which is achieved by registering a BatteryConsumerCallback\n\n-\u003e Conclusion: lets change this to use internal message passing.",
+      "parentUuid": "9820116d_d81ed488",
       "revId": "2c19e38c5e890af6ffa4dba2ce96f53b6b5edec0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
