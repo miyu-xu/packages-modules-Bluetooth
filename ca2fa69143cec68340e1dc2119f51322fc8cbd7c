@@ -46,6 +46,30 @@
       },
       "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "643dc495_535b4615",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-17T23:47:22Z",
+      "side": 0,
+      "message": "ack.",
+      "parentUuid": "a08b2db6_e829a28a",
+      "range": {
+        "startLine": 75,
+        "startChar": 57,
+        "endLine": 75,
+        "endChar": 59
+      },
+      "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
