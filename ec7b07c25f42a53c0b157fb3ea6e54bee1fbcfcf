@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd5d904d_2db13bbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-10-17T13:50:19Z",
+      "side": 1,
+      "message": "@sungsoo@google.com please check your all changes witch such scenario if you haven\u0027t done it already:\n1. Connect Hearing Aid\n2. Connect LE Audio device\n3. Select LE Audio device in Bluetooth settings menu\n\nI see some issues that I have two devices marked as active.",
+      "revId": "ec7b07c25f42a53c0b157fb3ea6e54bee1fbcfcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
