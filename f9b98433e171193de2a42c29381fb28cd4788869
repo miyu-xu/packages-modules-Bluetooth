@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08812b4e_11f518f0",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-17T23:26:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d955ed47_275ed6b8",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d1d2740_3d965b09",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-17T21:19:34Z",
       "side": 1,
       "message": "If the length is expected to be sent in `us`, you should rename the parameter to `length_us` for clarity.",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e1b1e6c_7c650a3b",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-17T23:26:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d1d2740_3d965b09",
       "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9bacdb2_ceb54375",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-17T23:26:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49ccb4b9_b7589b49",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c19545fa_7e3185d0",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-10-17T21:19:34Z",
       "side": 1,
       "message": "Spelling: set_position",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ca414db_6ea4d379",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-17T23:26:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c19545fa_7e3185d0",
       "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

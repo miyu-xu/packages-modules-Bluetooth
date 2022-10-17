@@ -22,6 +22,30 @@
       },
       "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a08b2db6_e829a28a",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-17T23:26:44Z",
+      "side": 0,
+      "message": "Prefer not, otherwise the previous CL will complain this function is not implemented.",
+      "parentUuid": "9dd0e7ca_88a362fc",
+      "range": {
+        "startLine": 75,
+        "startChar": 57,
+        "endLine": 75,
+        "endChar": 59
+      },
+      "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
