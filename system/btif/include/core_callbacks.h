@@ -67,17 +67,54 @@ struct EventCallbacks {
   EventCallbacks& operator=(const EventCallbacks&) = delete;
 };
 
+// This interface lets us query for configuration properties of the stack that
+// could change at runtime
+struct ConfigInterface {
+  virtual bool isA2DPOffloadEnabled();
+  virtual bool isAndroidTVDevice();
+  virtual bool isRestrictedMode();
+
+  explicit ConfigInterface() = default;
+  ConfigInterface(const ConfigInterface&) = delete;
+  ConfigInterface& operator=(const ConfigInterface&) = delete;
+  virtual ~ConfigInterface() = default;
+};
+
+// This interface lets us communicate with encoders used in profiles
+struct CodecInterface {
+  virtual void initialize();
+  virtual void cleanup();
+
+  virtual uint32_t encodePacket(int16_t* input, uint8_t* output);
+  virtual bool decodePacket(const uint8_t* i_buf, int16_t* o_buf,
+                            size_t out_len);
+
+  explicit CodecInterface() = default;
+  CodecInterface(const CodecInterface&) = delete;
+  CodecInterface& operator=(const CodecInterface&) = delete;
+  virtual ~CodecInterface() = default;
+};
+
+// Please DO NOT add any more methods to this interface.
 // This class defines the overall interface expected by bluetooth::core.
 struct CoreInterface {
   // generic interface
   EventCallbacks* events;
+  ConfigInterface* config;
+
+  // codecs
+  CodecInterface* msbcCodec;
 
   virtual void onBluetoothEnabled();
   virtual bt_status_t toggleProfile(tBTA_SERVICE_ID service_id, bool enable);
   virtual void removeDeviceFromProfiles(const RawAddress& bd_addr);
   virtual void onLinkDown(const RawAddress& bd_addr);
 
-  CoreInterface(EventCallbacks* eventCallbacks) : events{eventCallbacks} {};
+  CoreInterface(EventCallbacks* eventCallbacks,
+                ConfigInterface* configInterface, CodecInterface* msbcCodec)
+      : events{eventCallbacks},
+        config{configInterface},
+        msbcCodec{msbcCodec} {};
 
   CoreInterface(const CoreInterface&) = delete;
   CoreInterface& operator=(const CoreInterface&) = delete;

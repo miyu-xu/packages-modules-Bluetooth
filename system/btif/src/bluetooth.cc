@@ -165,6 +165,51 @@ extern bt_status_t btif_hd_execute_service(bool b_enable);
  *  Callbacks from bluetooth::core (see go/invisalign-bt)
  ******************************************************************************/
 
+struct ConfigInterfaceImpl : bluetooth::core::ConfigInterface {
+  ConfigInterfaceImpl() : bluetooth::core::ConfigInterface(){};
+
+  bool isRestrictedMode() override { return is_restricted_mode(); }
+
+  bool isA2DPOffloadEnabled() override {
+    char value_sup[PROPERTY_VALUE_MAX] = {'\0'};
+    char value_dis[PROPERTY_VALUE_MAX] = {'\0'};
+
+    osi_property_get("ro.bluetooth.a2dp_offload.supported", value_sup, "false");
+    osi_property_get("persist.bluetooth.a2dp_offload.disabled", value_dis,
+                     "false");
+    auto a2dp_offload_enabled =
+        (strcmp(value_sup, "true") == 0) && (strcmp(value_dis, "false") == 0);
+    BTIF_TRACE_DEBUG("a2dp_offload.enable = %d", a2dp_offload_enabled);
+
+    return a2dp_offload_enabled;
+  }
+
+  bool isAndroidTVDevice() override { return is_atv_device(); }
+};
+
+// TODO(aryarahul): remove unnecessary indirection through hfp_msbc_*.cc
+struct MSBCCodec : bluetooth::core::CodecInterface {
+  MSBCCodec() : bluetooth::core::CodecInterface(){};
+
+  void initialize() override {
+    hfp_msbc_decoder_init();
+    hfp_msbc_encoder_init();
+  }
+
+  void cleanup() override {
+    hfp_msbc_decoder_cleanup();
+    hfp_msbc_encoder_cleanup();
+  }
+
+  uint32_t encodePacket(int16_t* input, uint8_t* output) {
+    return hfp_msbc_encode_frames(input, output);
+  }
+
+  bool decodePacket(const uint8_t* i_buf, int16_t* o_buf, size_t out_len) {
+    return hfp_msbc_decoder_decode_packet(i_buf, o_buf, out_len);
+  }
+};
+
 struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
   using bluetooth::core::CoreInterface::CoreInterface;
 
@@ -267,7 +312,10 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
       .invoke_le_test_mode_cb = invoke_le_test_mode_cb,
       .invoke_energy_info_cb = invoke_energy_info_cb,
       .invoke_link_quality_report_cb = invoke_link_quality_report_cb};
-  static auto interfaceForCore = CoreInterfaceImpl(&eventCallbacks;
+  static auto configInterface = ConfigInterfaceImpl();
+  static auto msbcCodecInterface = MSBCCodec();
+  static auto interfaceForCore =
+      CoreInterfaceImpl(&eventCallbacks, &configInterface, &msbcCodecInterface);
   return &interfaceForCore;
 }
 
