@@ -44,12 +44,6 @@ bool btif_has_ble_keys(const std::string& bdstr) {
   mock_function_count_map[__func__]++;
   return false;
 }
-bool btif_storage_get_hearing_aid_prop(
-    const RawAddress& address, uint8_t* capabilities, uint64_t* hi_sync_id,
-    uint16_t* render_delay, uint16_t* preparation_delay, uint16_t* codecs) {
-  mock_function_count_map[__func__]++;
-  return false;
-}
 bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr,
                                          char* name) {
   mock_function_count_map[__func__]++;
@@ -121,14 +115,6 @@ bt_status_t btif_storage_load_bonded_devices(void) {
   mock_function_count_map[__func__]++;
   return BT_STATUS_SUCCESS;
 }
-bt_status_t btif_storage_load_bonded_hid_info(void) {
-  mock_function_count_map[__func__]++;
-  return BT_STATUS_SUCCESS;
-}
-bt_status_t btif_storage_load_hidd(void) {
-  mock_function_count_map[__func__]++;
-  return BT_STATUS_SUCCESS;
-}
 bt_status_t btif_storage_remove_ble_bonding_keys(
     const RawAddress* remote_bd_addr) {
   mock_function_count_map[__func__]++;
@@ -143,19 +129,7 @@ bt_status_t btif_storage_remove_bonded_device(
   mock_function_count_map[__func__]++;
   return BT_STATUS_SUCCESS;
 }
-bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr) {
-  mock_function_count_map[__func__]++;
-  return BT_STATUS_SUCCESS;
-}
-bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr) {
-  mock_function_count_map[__func__]++;
-  return BT_STATUS_SUCCESS;
-}
 bt_status_t btif_storage_set_adapter_property(bt_property_t* property) {
-  mock_function_count_map[__func__]++;
-  return BT_STATUS_SUCCESS;
-}
-bt_status_t btif_storage_set_hidd(const RawAddress& remote_bd_addr) {
   mock_function_count_map[__func__]++;
   return BT_STATUS_SUCCESS;
 }
@@ -168,9 +142,6 @@ bt_status_t btif_storage_set_remote_device_property(
     const RawAddress* remote_bd_addr, bt_property_t* property) {
   mock_function_count_map[__func__]++;
   return BT_STATUS_SUCCESS;
-}
-void btif_storage_add_hearing_aid(const HearingDevice& dev_info) {
-  mock_function_count_map[__func__]++;
 }
 int btif_storage_get_num_bonded_devices(void) {
   mock_function_count_map[__func__]++;
@@ -193,16 +164,10 @@ uint8_t btif_storage_get_local_io_caps_ble() {
   mock_function_count_map[__func__]++;
   return 0;
 }
-void btif_storage_load_bonded_hearing_aids() {
-  mock_function_count_map[__func__]++;
-}
 void btif_storage_remove_gatt_cl_db_hash(const RawAddress& bd_addr) {
   mock_function_count_map[__func__]++;
 }
 void btif_storage_remove_gatt_cl_supp_feat(const RawAddress& bd_addr) {
-  mock_function_count_map[__func__]++;
-}
-void btif_storage_remove_hearing_aid(const RawAddress& address) {
   mock_function_count_map[__func__]++;
 }
 void btif_storage_set_gatt_cl_db_hash(const RawAddress& bd_addr, Octet16 hash) {
@@ -212,34 +177,10 @@ void btif_storage_set_gatt_cl_supp_feat(const RawAddress& bd_addr,
                                         uint8_t feat) {
   mock_function_count_map[__func__]++;
 }
-void btif_storage_set_hearing_aid_acceptlist(const RawAddress& address,
-                                             bool add_to_acceptlist) {
-  mock_function_count_map[__func__]++;
-}
 void btif_storage_set_gatt_sr_supp_feat(const RawAddress& addr, uint8_t feat) {
   mock_function_count_map[__func__]++;
 }
 uint8_t btif_storage_get_sr_supp_feat(const RawAddress& bd_addr) {
   mock_function_count_map[__func__]++;
   return 0;
-}
-void btif_storage_add_groups(RawAddress const&) {
-  mock_function_count_map[__func__]++;
-}
-void btif_storage_remove_groups(RawAddress const&) {
-  mock_function_count_map[__func__]++;
-}
-void btif_storage_load_bonded_groups() { mock_function_count_map[__func__]++; }
-void btif_storage_set_csis_autoconnect(const RawAddress& addr,
-                                       bool autoconnect) {
-  mock_function_count_map[__func__]++;
-}
-void btif_storage_update_csis_info(const RawAddress& addr) {
-  mock_function_count_map[__func__]++;
-}
-void btif_storage_load_bonded_csis_devices() {
-  mock_function_count_map[__func__]++;
-}
-void btif_storage_remove_csis_device(const RawAddress& address) {
-  mock_function_count_map[__func__]++;
 }
