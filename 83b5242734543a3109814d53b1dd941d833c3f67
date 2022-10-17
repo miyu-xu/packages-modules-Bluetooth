@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2bad81f_35c1740c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-17T04:19:21Z",
+      "side": 1,
+      "message": "Bluetooth\u0027Opp\u0027TransferActivityTest",
+      "range": {
+        "startLine": 9,
+        "startChar": 12,
+        "endLine": 9,
+        "endChar": 41
+      },
+      "revId": "83b5242734543a3109814d53b1dd941d833c3f67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

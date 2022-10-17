@@ -46,6 +46,30 @@
       },
       "revId": "700991266191960cc192118d0b5ecdeafc8facbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71462961_93cbe15a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-17T04:19:21Z",
+      "side": 1,
+      "message": "Adding instrumentation will affect all of the tests in Bluetooth unit test.\nTherefore you\u0027ll need to ensure all the tests are running well.\n\nInstead of adding instrumentation in manifest, could you use this?\n\n```\n    private void enableActivity(boolean enable) {\n        int enabledState \u003d enable ? COMPONENT_ENABLED_STATE_ENABLED\n                : COMPONENT_ENABLED_STATE_DEFAULT;\n\n        mTargetContext.getPackageManager().setApplicationEnabledSetting(\n                mTargetContext.getPackageName(), enabledState, DONT_KILL_APP);\n\n        ComponentName activityName \u003d new ComponentName(mTargetContext, BluetoothPbapActivity.class);\n        mTargetContext.getPackageManager().setComponentEnabledSetting(\n                activityName, enabledState, DONT_KILL_APP);\n    }\n```\n\nenableActivity(true) before ActivityScenario.launch()\nenableActivity(false) in tearDown()",
+      "parentUuid": "a4958d92_b0529b99",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 46
+      },
+      "revId": "700991266191960cc192118d0b5ecdeafc8facbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
