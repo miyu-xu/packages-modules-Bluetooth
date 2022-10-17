@@ -22,6 +22,30 @@
       },
       "revId": "700991266191960cc192118d0b5ecdeafc8facbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4958d92_b0529b99",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-17T04:13:42Z",
+      "side": 1,
+      "message": "Done. Add instrumentation to manifest",
+      "parentUuid": "6e6efbd5_515eadd5",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 46
+      },
+      "revId": "700991266191960cc192118d0b5ecdeafc8facbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
