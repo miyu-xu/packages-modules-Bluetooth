@@ -434,6 +434,12 @@ static void start_profiles() {
   HID_HostInit();
 #endif
   bta_ar_init();
+
+  // initialize profile-specific logging levels
+  const auto stack_config = stack_config_get_interface();
+  if (stack_config->get_trace_config_enabled()) {
+    load_levels_from_config(stack_config->get_all());
+  }
 }
 
 static void stop_profiles() {
