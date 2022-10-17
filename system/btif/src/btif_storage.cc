@@ -920,7 +920,7 @@ bt_status_t btif_storage_add_bonded_device(RawAddress* remote_bd_addr,
   ret &=
       btif_config_set_bin(bdstr, "LinkKey", link_key.data(), link_key.size());
 
-  if (is_restricted_mode()) {
+  if (GetInterfaceToProfiles()->config->isRestrictedMode()) {
     BTIF_TRACE_WARNING("%s: '%s' pairing will be removed if unrestricted",
                        __func__, bdstr.c_str());
     btif_config_set_int(bdstr, "Restricted", 1);
@@ -1076,10 +1076,12 @@ void btif_storage_load_le_devices(void) {
   for (const auto& device : consolidated_devices) {
     if (bonded_addresses.find(device.second) != bonded_addresses.end()) {
       // Invokes address consolidation for DuMo devices
-      invoke_address_consolidate_cb(device.first, device.second);
+      GetInterfaceToProfiles()->events->invoke_address_consolidate_cb(
+          device.first, device.second);
     } else {
       // Associates RPA & identity address for LE-only devices
-      invoke_le_address_associate_cb(device.first, device.second);
+      GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(
+          device.first, device.second);
     }
   }
 }
