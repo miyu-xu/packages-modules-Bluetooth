@@ -90,6 +90,11 @@
 #include "stack/include/avdt_api.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btu.h"
+#include "stack/include/hfp_msbc_decoder.h"
+#include "stack/include/hfp_msbc_encoder.h"
+#include "stack/include/hidh_api.h"
+#include "stack/include/pan_api.h"
+#include "stack_config.h"
 #include "types/raw_address.h"
 
 using bluetooth::csis::CsisClientInterface;
@@ -753,6 +758,8 @@ static void dump(int fd, const char** arguments) {
   connection_manager::dump(fd);
   bluetooth::bqr::DebugDump(fd);
   bluetooth::shim::Dump(fd, arguments);
+  PAN_Dumpsys(fd);
+  DumpsysHid(fd);
 }
 
 static void dumpMetrics(std::string* output) {
