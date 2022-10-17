@@ -47,6 +47,9 @@ rust_test_host {
     data: [
         ":rustfmt",
         ":rustfmt.toml",
+        "tests/generated/enum_decl_simple_big_endian.rs",
+        "tests/generated/enum_decl_simple_little_endian.rs",
+        "tests/generated/enum_max_discriminant_little_endian.rs",
         "tests/generated/generate_chunk_read_8bit.rs",
         "tests/generated/generate_chunk_read_16bit_be.rs",
         "tests/generated/generate_chunk_read_16bit_le.rs",

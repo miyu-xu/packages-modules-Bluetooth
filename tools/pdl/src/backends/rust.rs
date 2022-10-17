@@ -273,12 +273,34 @@ fn generate_packet_decl(
     code
 }
 
+fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> String {
+    let variants = tags.iter().map(|t| {
+        let variant = format_ident!("{}", t.id);
+        let value = syn::parse_str::<syn::LitInt>(&format!("{:#x}", t.value)).unwrap();
+        quote! {
+            #variant = #value
+        }
+    });
+
+    let name = format_ident!("{}", id);
+    let code = quote! {
+        #[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
+        #[repr(u64)]
+        pub enum #name {
+            #(#variants),*
+        }
+    };
+
+    code.to_string()
+}
+
 fn generate_decl(scope: &lint::Scope<'_>, file: &ast::File, decl: &ast::Decl) -> String {
     match decl {
         ast::Decl::Packet { id, fields, parent_id, .. } => {
             let fields = fields.iter().map(Field::from).collect::<Vec<_>>();
             generate_packet_decl(scope, file, id, &fields, parent_id)
         }
+        ast::Decl::Enum { id, tags, .. } => generate_enum_decl(id, tags),
         _ => todo!("unsupported Decl::{:?}", decl),
     }
 }
@@ -423,6 +445,68 @@ mod tests {
         let actual_code = generate_decl(&scope, &file, decl);
         assert_snapshot_eq(
             "tests/generated/packet_decl_complex_big_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_enum_decl_little_endian() {
+        let file = parse_str(
+            r#"
+              little_endian_packets
+
+              enum Enum7 : 7 {
+                  A = 1,
+                  B = 2,
+              }
+            "#,
+        );
+        let scope = lint::Scope::new(&file).unwrap();
+        let decl = &file.declarations[0];
+        let actual_code = generate_decl(&scope, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/enum_decl_simple_little_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_enum_decl_big_endian() {
+        let file = parse_str(
+            r#"
+              big_endian_packets
+
+              enum Enum7 : 7 {
+                  A = 1,
+                  B = 2,
+              }
+            "#,
+        );
+        let scope = lint::Scope::new(&file).unwrap();
+        let decl = &file.declarations[0];
+        let actual_code = generate_decl(&scope, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/enum_decl_simple_big_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_enum_max_discriminant_little_endian() {
+        let file = parse_str(
+            r#"
+              little_endian_packets
+
+              enum MaxDiscriminantEnum : 64 {
+                  Max = 0xffffffffffffffff,
+              }
+            "#,
+        );
+        let scope = lint::Scope::new(&file).unwrap();
+        let decl = &file.declarations[0];
+        let actual_code = generate_decl(&scope, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/enum_max_discriminant_little_endian.rs",
             &rustfmt(&actual_code),
         );
     }
