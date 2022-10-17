@@ -365,45 +365,75 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     public static final int PRESET_INDEX_UNAVAILABLE = IBluetoothHapClient.PRESET_INDEX_UNAVAILABLE;
 
     /**
-     * Feature value.
+     * Hearing aid type value.
      * @hide
      */
-    public static final int FEATURE_TYPE_MONAURAL =
-            1 << IBluetoothHapClient.FEATURE_BIT_NUM_TYPE_MONAURAL;
+    public static final int TYPE_BINAURAL = 0b00;
 
     /**
-     * Feature value.
+     * Hearing aid type value.
      * @hide
      */
-    public static final int FEATURE_TYPE_BANDED =
-            1 << IBluetoothHapClient.FEATURE_BIT_NUM_TYPE_BANDED;
+    public static final int TYPE_MONAURAL = 0b01;
 
     /**
-     * Feature value.
+     * Hearing aid type value.
      * @hide
      */
-    public static final int FEATURE_SYNCHRONIZATED_PRESETS =
+    public static final int TYPE_BANDED = 0b10;
+
+    /**
+     * Hearing aid type value.
+     * @hide
+     */
+    public static final int TYPE_RFU = 0b11;
+
+    /**
+     * @hide
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+            flag = true,
+            value = {
+                    TYPE_BINAURAL,
+                    TYPE_MONAURAL,
+                    TYPE_BANDED,
+                    TYPE_RFU,
+            })
+    @interface HearingAidType {}
+
+    /**
+     * Feature mask value.
+     * @hide
+     */
+    public static final int FEATURE_MASK_HEARING_AID_TYPE = 0b11;
+
+    /**
+     * Feature mask value.
+     * @hide
+     */
+    public static final int FEATURE_MASK_SYNCHRONIZATED_PRESETS =
             1 << IBluetoothHapClient.FEATURE_BIT_NUM_SYNCHRONIZATED_PRESETS;
 
     /**
-     * Feature value.
+     * Feature mask value.
      * @hide
      */
-    public static final int FEATURE_INDEPENDENT_PRESETS =
+    public static final int FEATURE_MASK_INDEPENDENT_PRESETS =
             1 << IBluetoothHapClient.FEATURE_BIT_NUM_INDEPENDENT_PRESETS;
 
     /**
-     * Feature value.
+     * Feature mask value.
      * @hide
      */
-    public static final int FEATURE_DYNAMIC_PRESETS =
+    public static final int FEATURE_MASK_DYNAMIC_PRESETS =
             1 << IBluetoothHapClient.FEATURE_BIT_NUM_DYNAMIC_PRESETS;
 
     /**
-     * Feature value.
+     * Feature mask value.
      * @hide
      */
-    public static final int FEATURE_WRITABLE_PRESETS =
+    public static final int FEATURE_MASK_WRITABLE_PRESETS =
             1 << IBluetoothHapClient.FEATURE_BIT_NUM_WRITABLE_PRESETS;
 
     /**
@@ -411,15 +441,15 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(
-        flag = true,
-        value = {
-            FEATURE_TYPE_MONAURAL,
-            FEATURE_TYPE_BANDED,
-            FEATURE_SYNCHRONIZATED_PRESETS,
-            FEATURE_DYNAMIC_PRESETS,
-            FEATURE_WRITABLE_PRESETS,
-    })
-    @interface Feature {}
+            flag = true,
+            value = {
+                    FEATURE_MASK_HEARING_AID_TYPE,
+                    FEATURE_MASK_SYNCHRONIZATED_PRESETS,
+                    FEATURE_MASK_INDEPENDENT_PRESETS,
+                    FEATURE_MASK_DYNAMIC_PRESETS,
+                    FEATURE_MASK_WRITABLE_PRESETS,
+            })
+    @interface FeatureMask {}
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
@@ -1181,7 +1211,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             android.Manifest.permission.BLUETOOTH_CONNECT,
             android.Manifest.permission.BLUETOOTH_PRIVILEGED
     })
-    public @Feature int getFeatures(@NonNull BluetoothDevice device) {
+    public int getFeatures(@NonNull BluetoothDevice device) {
         final IBluetoothHapClient service = getService();
         final int defaultValue = 0x00;
         if (service == null) {
@@ -1200,6 +1230,72 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
         }
         return defaultValue;
     }
+
+    /**
+     * Retrieves hearing aid type from feature value
+     *
+     * @param device is the device for which we want to get the hearing aid type
+     * @return hearing aid type
+     * @hide
+     */
+    @SystemApi
+    @HearingAidType
+    public int getHearingAidType(@NonNull BluetoothDevice device) {
+        return getFeatures(device) & FEATURE_MASK_HEARING_AID_TYPE;
+    }
+
+    /**
+     *  Retrieves if this device supports synchronized presets or not from feature value
+     *
+     * @param device is the device for which we want to know if supports synchronized presets
+     * @return true if the device supports synchronized presets, false otherwise
+     * @hide
+     */
+    @SystemApi
+    public boolean supportSynchronizedPresets(@NonNull BluetoothDevice device) {
+        return (getFeatures(device) & FEATURE_MASK_SYNCHRONIZATED_PRESETS)
+                == FEATURE_MASK_SYNCHRONIZATED_PRESETS;
+    }
+
+    /**
+     *  Retrieves if this device supports independent presets or not from feature value
+     *
+     * @param device is the device for which we want to know if supports independent presets
+     * @return true if the device supports independent presets, false otherwise
+     * @hide
+     */
+    @SystemApi
+    public boolean supportIndependentPresets(@NonNull BluetoothDevice device) {
+        return (getFeatures(device) & FEATURE_MASK_INDEPENDENT_PRESETS)
+                == FEATURE_MASK_INDEPENDENT_PRESETS;
+    }
+
+    /**
+     *  Retrieves if this device supports dynamic presets or not from feature value
+     *
+     * @param device is the device for which we want to know if supports dynamic presets
+     * @return true if the device supports dynamic presets, false otherwise
+     * @hide
+     */
+    @SystemApi
+    public boolean supportDynamicPresets(@NonNull BluetoothDevice device) {
+        return (getFeatures(device) & FEATURE_MASK_DYNAMIC_PRESETS)
+                == FEATURE_MASK_DYNAMIC_PRESETS;
+    }
+
+    /**
+     *  Retrieves if this device supports writable presets or not from feature value
+     *
+     * @param device is the device for which we want to know if supports writable presets
+     * @return true if the device supports writable presets, false otherwise
+     * @hide
+     */
+    @SystemApi
+    public boolean supportWritablePresets(@NonNull BluetoothDevice device) {
+        return (getFeatures(device) & FEATURE_MASK_WRITABLE_PRESETS)
+                == FEATURE_MASK_WRITABLE_PRESETS;
+    }
+
 
     /**
      * Sets the preset name for a particular device
