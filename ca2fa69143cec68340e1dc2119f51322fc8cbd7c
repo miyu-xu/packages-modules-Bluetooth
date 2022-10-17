@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dd0e7ca_88a362fc",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-17T21:02:29Z",
+      "side": 0,
+      "message": "nit: fix this in the previous CL?",
+      "range": {
+        "startLine": 75,
+        "startChar": 57,
+        "endLine": 75,
+        "endChar": 59
+      },
+      "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
