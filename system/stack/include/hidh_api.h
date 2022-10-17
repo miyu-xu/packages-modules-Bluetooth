@@ -206,4 +206,6 @@ extern void HID_HostInit(void);
  ******************************************************************************/
 extern uint8_t HID_HostSetTraceLevel(uint8_t new_level);
 
+void DumpsysHid(int fd);
+
 #endif /* HIDH_API_H */
