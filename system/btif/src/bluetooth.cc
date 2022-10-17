@@ -762,6 +762,8 @@ static void dump(int fd, const char** arguments) {
   connection_manager::dump(fd);
   bluetooth::bqr::DebugDump(fd);
   bluetooth::shim::Dump(fd, arguments);
+  PAN_Dumpsys(fd);
+  DumpsysHid(fd);
 }
 
 static void dumpMetrics(std::string* output) {
