@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5816a81_a5832129",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-17T22:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a07aa6b_6cac8b34",
+      "revId": "3829738765f5f665369968badd8a14161d832fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44415349_c35a8044",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43436d0a_ec993c11",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-17T22:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44415349_c35a8044",
+      "revId": "3829738765f5f665369968badd8a14161d832fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8d612bf_b505995d",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-10-17T19:32:07Z",
       "side": 1,
       "message": "nit: Since you don\u0027t need to do anything if this is `None`, using if let saves some indentation:\n\n```\nif let Some(best_battery_set) \u003d batteries.pick_best() {\n    let tx \u003d self.tx.clone();\n    ...\n```",
+      "revId": "3829738765f5f665369968badd8a14161d832fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eed95fd_c38cec15",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-10-17T22:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8d612bf_b505995d",
       "revId": "3829738765f5f665369968badd8a14161d832fba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
