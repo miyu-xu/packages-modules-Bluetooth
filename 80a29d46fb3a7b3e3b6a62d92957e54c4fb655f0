@@ -16,6 +16,24 @@
       "message": "Can this be fixed by using `const ::rust::String\u0026 status`?\n\nIn the Rust world this would be `status: \u0026String`\n\nAlso similarly applies to warnings below",
       "revId": "80a29d46fb3a7b3e3b6a62d92957e54c4fb655f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31dfb7ce_a875d79d",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-17T20:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2f5babb_b1e04cde",
+      "revId": "80a29d46fb3a7b3e3b6a62d92957e54c4fb655f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
