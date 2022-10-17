@@ -87,8 +87,9 @@ genrule {
 }
 
 // libbtif static library for target
-cc_defaults {
-    name: "libbtif_defaults",
+
+cc_library_static {
+    name: "libbtif",
     defaults: ["fluoride_basic_defaults"],
     include_dirs: btifCommonIncludes,
     srcs: [
@@ -138,12 +139,10 @@ cc_defaults {
         "src/btif_le_audio_broadcaster.cc",
         "src/btif_metrics_logging.cc",
         "src/btif_pan.cc",
-        "src/btif_profile_queue.cc",
         "src/btif_rc.cc",
         "src/btif_sdp.cc",
         "src/btif_sdp_server.cc",
         "src/btif_sock.cc",
-        "src/btif_sock_rfc.cc",
         "src/btif_sock_l2cap.cc",
         "src/btif_sock_sco.cc",
         "src/btif_sock_sdp.cc",
@@ -186,11 +185,81 @@ cc_defaults {
         "-DBUILDCFG",
     ],
     host_supported: true,
+    min_sdk_version: "Tiramisu"
 }
 
 cc_library_static {
-    name: "libbtif",
-    defaults: ["libbtif_defaults"],
+    name: "libbtif-core",
+    defaults: ["fluoride_basic_defaults"],
+    include_dirs: btifCommonIncludes,
+    srcs: [
+        // Callouts
+        "co/bta_dm_co.cc",
+        "co/bta_gatts_co.cc",
+        // BTIF implementation
+        "src/btif_activity_attribution.cc",
+        "src/btif_ble_advertiser.cc",
+        "src/btif_ble_scanner.cc",
+        "src/btif_bqr.cc",
+        "src/btif_config.cc",
+        "src/btif_config_cache.cc",
+        "src/btif_config_transcode.cc",
+        "src/btif_core.cc",
+        "src/btif_debug_conn.cc",
+        "src/btif_dm.cc",
+        "src/btif_gatt.cc",
+        "src/btif_gatt_client.cc",
+        "src/btif_gatt_server.cc",
+        "src/btif_gatt_test.cc",
+        "src/btif_gatt_util.cc",
+        "src/btif_metrics_logging.cc",
+        "src/btif_profile_queue.cc",
+        "src/btif_sdp.cc",
+        "src/btif_sdp_server.cc",
+        "src/btif_sock.cc",
+        "src/btif_sock_rfc.cc",
+        "src/btif_sock_l2cap.cc",
+        "src/btif_sock_sco.cc",
+        "src/btif_sock_sdp.cc",
+        "src/btif_sock_thread.cc",
+        "src/btif_sock_util.cc",
+        "src/btif_storage.cc",
+        "src/btif_uid.cc",
+        "src/btif_util.cc",
+        "src/btif_keystore.cc",
+        "src/stack_manager.cc",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    target: {
+        android: {
+            whole_static_libs: [
+                "libPlatformProperties",
+            ],
+            srcs: ["src/btif_avrcp_audio_track.cc"],
+        },
+        host: {
+            srcs: [
+                     "src/btif_avrcp_audio_track_linux.cc",
+                     "src/btif_leaudio_hal_version_host.cc",
+                  ],
+        },
+    },
+    static_libs: [
+        "lib-bt-packets",
+        "lib-bt-packets-base",
+        "libbt-audio-hal-interface",
+        "libbt-stack",
+        "libaudio-a2dp-hw-utils",
+    ],
+    cflags: [
+        /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
+        "-fvisibility=default",
+        "-DBUILDCFG",
+    ],
+    host_supported: true,
     min_sdk_version: "Tiramisu"
 }
 
