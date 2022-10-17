@@ -1,0 +1,5 @@
+#[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
+pub enum Enum7 {
+    A = 0x1,
+    B = 0x2,
+}
