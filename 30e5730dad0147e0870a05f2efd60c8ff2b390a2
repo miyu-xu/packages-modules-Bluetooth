@@ -22,6 +22,30 @@
       },
       "revId": "30e5730dad0147e0870a05f2efd60c8ff2b390a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcd04d0d_718cc869",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-17T21:35:52Z",
+      "side": 1,
+      "message": "Nack. Generally we refer to these as \"build as debug\" and \"build as release\" so I\u0027d like to leave as-is.",
+      "parentUuid": "0068da4f_ede8a39b",
+      "range": {
+        "startLine": 843,
+        "startChar": 62,
+        "endLine": 843,
+        "endChar": 64
+      },
+      "revId": "30e5730dad0147e0870a05f2efd60c8ff2b390a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
