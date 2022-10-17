@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d955ed47_275ed6b8",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-17T21:19:34Z",
+      "side": 1,
+      "message": "nit: Place line break before this `if block`. \n\nWould prefer this to be a full braced block but style guide is okay with single line statements.\n\nhttps://google.github.io/styleguide/cppguide.html#Conditionals",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d1d2740_3d965b09",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-17T21:19:34Z",
+      "side": 1,
+      "message": "If the length is expected to be sent in `us`, you should rename the parameter to `length_us` for clarity.",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49ccb4b9_b7589b49",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-17T21:19:34Z",
+      "side": 1,
+      "message": "style:\n\nLocal variables should end in _.\n\ni.e. playStatusCb_, songInfoCb_, playStatus_",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19545fa_7e3185d0",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-17T21:19:34Z",
+      "side": 1,
+      "message": "Spelling: set_position",
+      "revId": "f9b98433e171193de2a42c29381fb28cd4788869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
