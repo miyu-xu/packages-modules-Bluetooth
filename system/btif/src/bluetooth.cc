@@ -226,17 +226,38 @@ static int init(bt_callbacks_t* callbacks, bool start_restricted,
   return BT_STATUS_SUCCESS;
 }
 
+static void start_profiles() {
+#if (BNEP_INCLUDED == TRUE)
+  BNEP_Init();
+#if (PAN_INCLUDED == TRUE)
+  PAN_Init();
+#endif /* PAN */
+#endif /* BNEP Included */
+  A2DP_Init();
+  AVRC_Init();
+#if (HID_HOST_INCLUDED == TRUE)
+  HID_HostInit();
+#endif
+  bta_ar_init();
+}
+
+static void stop_profiles() {
+  btif_sock_cleanup();
+  btif_pan_cleanup();
+}
+
 static int enable() {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
-  stack_manager_get_interface()->start_up_stack_async();
+  stack_manager_get_interface()->start_up_stack_async(&start_profiles,
+                                                      &stop_profiles);
   return BT_STATUS_SUCCESS;
 }
 
 static int disable(void) {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
-  stack_manager_get_interface()->shut_down_stack_async();
+  stack_manager_get_interface()->shut_down_stack_async(&stop_profiles);
   return BT_STATUS_SUCCESS;
 }
 
