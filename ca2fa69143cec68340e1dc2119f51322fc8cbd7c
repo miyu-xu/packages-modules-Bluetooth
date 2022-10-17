@@ -33,6 +33,24 @@
       "message": "spelling: set_position",
       "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56539b74_25cc1baf",
+        "filename": "system/gd/rust/topshim/src/profiles/avrcp.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-17T23:12:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a07c441e_9952f335",
+      "revId": "ca2fa69143cec68340e1dc2119f51322fc8cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
