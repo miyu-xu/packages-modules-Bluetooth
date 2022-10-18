@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f8bdc35_ead5774b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSmsPduTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-18T10:21:57Z",
+      "side": 1,
+      "message": "Passing submit pdus with type cdma result in \"\" after decoding, even when I put in submitPdus obtained from the BluetoothMapSmsPdu.getSubmitPdus(). I don\u0027t know if this is the desired behavior, but wrote the test based on how it behaves right now.",
+      "revId": "f655b8bdd19d554952cb14f2cc90a7be6e202ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
