@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b1434af_95c15684",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-18T07:14:34Z",
+      "side": 1,
+      "message": "is getIdentityAddress always guaranteed to return non-null ? What about Classic only devices that don\u0027t use LE ?\nInstead of just returning stored value, like getAddress() it actually make a binder call to BT Service. Maybe we could make internal lookup instead ?",
+      "range": {
+        "startLine": 87,
+        "startChar": 76,
+        "endLine": 87,
+        "endChar": 94
+      },
+      "revId": "f14f283504fdb0d39c7464e6d6f7358a4bb60ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
