@@ -458,10 +458,10 @@ TEST_F(LeAndroidHciScanningManagerTest, start_scan_test) {
   // Enable scan
   test_hci_layer_->SetCommandFuture(2);
   le_scanning_manager->Scan(true);
-  ASSERT_EQ(param_opcode_, test_hci_layer_->GetCommand().GetOpCode());
-  test_hci_layer_->IncomingEvent(LeSetScanParametersCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
-  ASSERT_EQ(enable_opcode_, test_hci_layer_->GetCommand().GetOpCode());
-  test_hci_layer_->IncomingEvent(LeSetScanEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+  ASSERT_EQ(OpCode::LE_ADV_FILTER, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(LeAdvFilterCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+  ASSERT_EQ(OpCode::LE_EXTENDED_SCAN_PARAMS, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(LeSetExtendedScanParametersCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
 
   LeAdvertisingResponse report{};
   report.event_type_ = AdvertisingEventType::ADV_DIRECT_IND;
