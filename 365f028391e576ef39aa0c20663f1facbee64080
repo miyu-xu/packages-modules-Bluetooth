@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c51deac_c9caad9f",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-10-18T13:03:51Z",
+      "side": 1,
+      "message": "This would look much nicer if we had https://github.com/rust-analyzer/expect-test available in AOSP...\n\nRight now, I\u0027m not actually sure if we should do this change. What do you folks think?",
+      "range": {
+        "startLine": 194,
+        "startChar": 8,
+        "endLine": 194,
+        "endChar": 26
+      },
+      "revId": "365f028391e576ef39aa0c20663f1facbee64080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
