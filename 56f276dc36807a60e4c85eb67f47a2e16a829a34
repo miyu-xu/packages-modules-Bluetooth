@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d1d543c_edaab21f",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-18T06:48:43Z",
+      "side": 1,
+      "message": "Is this guaranteed to return proper values even if bluetooth is disabled/enabling/crashed ?\nMaybe handling bindServiceAsUser returning false below would fix the issue ?",
+      "range": {
+        "startLine": 134,
+        "startChar": 61,
+        "endLine": 134,
+        "endChar": 81
+      },
+      "revId": "56f276dc36807a60e4c85eb67f47a2e16a829a34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15cd9370_7c354bd6",
         "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
         "patchSetId": 1
