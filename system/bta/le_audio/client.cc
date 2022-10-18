@@ -16,6 +16,8 @@
  */
 
 #include <base/bind.h>
+#include <base/location.h>
+#include <base/logging.h>
 #include <base/strings/string_number_conversions.h>
 
 #include <deque>
@@ -51,6 +53,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "state_machine.h"
+#include "storage.h"
 #include "storage_helper.h"
 
 using base::Closure;
@@ -1167,7 +1170,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (leAudioDevice->conn_id_ != GATT_INVALID_CONN_ID) {
       /* User is disconnecting the device, we shall remove the autoconnect flag
        */
-      btif_storage_set_leaudio_autoconnect(address, false);
+      le_audio::storage::SetLeAudioAutoconnect(address, false);
       leAudioDevice->autoconnect_flag_ = false;
 
       auto group = aseGroups_.FindById(leAudioDevice->group_id_);
@@ -1296,7 +1299,7 @@ class LeAudioClientImpl : public LeAudioClient {
                                 group->GetAvailableContexts().value());
       }
       if (notify) {
-        btif_storage_leaudio_update_pacs_bin(leAudioDevice->address_);
+        le_audio::storage::UpdatePacsBin(leAudioDevice->address_);
       }
       return;
     }
@@ -1331,7 +1334,7 @@ class LeAudioClientImpl : public LeAudioClient {
       }
 
       if (notify) {
-        btif_storage_leaudio_update_pacs_bin(leAudioDevice->address_);
+        le_audio::storage::UpdatePacsBin(leAudioDevice->address_);
       }
       return;
     }
@@ -1360,7 +1363,7 @@ class LeAudioClientImpl : public LeAudioClient {
                                                snk_audio_locations.to_ulong());
 
       if (notify) {
-        btif_storage_set_leaudio_audio_location(
+        le_audio::storage::SetAudioLocation(
             leAudioDevice->address_,
             leAudioDevice->snk_audio_locations_.to_ulong(),
             leAudioDevice->src_audio_locations_.to_ulong());
@@ -1402,7 +1405,7 @@ class LeAudioClientImpl : public LeAudioClient {
       LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
 
       if (notify) {
-        btif_storage_set_leaudio_audio_location(
+        le_audio::storage::SetAudioLocation(
             leAudioDevice->address_,
             leAudioDevice->snk_audio_locations_.to_ulong(),
             leAudioDevice->src_audio_locations_.to_ulong());
@@ -1470,10 +1473,9 @@ class LeAudioClientImpl : public LeAudioClient {
       leAudioDevice->SetSupportedContexts(supp_audio_contexts.snk_supp_cont,
                                           supp_audio_contexts.src_supp_cont);
 
-      btif_storage_set_leaudio_supported_context_types(
-          leAudioDevice->address_, supp_audio_contexts.snk_supp_cont.value(),
-          supp_audio_contexts.src_supp_cont.value());
-
+      le_audio::storage::SetSupportedContextTypes(
+          leAudioDevice->address_, supp_audio_contexts->snk_supp_cont.value(),
+          supp_audio_contexts->src_supp_cont.value());
     } else if (hdl == leAudioDevice->ctp_hdls_.val_hdl) {
       auto ntf =
           std::make_unique<struct le_audio::client_parser::ascs::ctp_ntf>();
@@ -2132,7 +2134,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     leAudioDevice->known_service_handles_ = true;
-    btif_storage_leaudio_update_handles_bin(leAudioDevice->address_);
+    le_audio::storage::UpdateHandlesBin(leAudioDevice->address_);
 
     leAudioDevice->notify_connected_after_read_ = true;
 
@@ -3044,8 +3046,8 @@ class LeAudioClientImpl : public LeAudioClient {
                                        timeoutMs);
 
     if (stack_config_get_interface()
-           ->get_pts_le_audio_disable_ases_before_stopping()) {
-        timeoutMs += kAudioDisableTimeoutMs;
+            ->get_pts_le_audio_disable_ases_before_stopping()) {
+      timeoutMs += kAudioDisableTimeoutMs;
     }
 
     LOG_DEBUG("Stream suspend_timeout_ started: %d ms",
@@ -3596,10 +3598,10 @@ class LeAudioClientImpl : public LeAudioClient {
       leAudioDevice->notify_connected_after_read_ = false;
 
       /* Update PACs and ASEs when all is read.*/
-      btif_storage_leaudio_update_pacs_bin(leAudioDevice->address_);
-      btif_storage_leaudio_update_ase_bin(leAudioDevice->address_);
+      le_audio::storage::UpdatePacsBin(leAudioDevice->address_);
+      le_audio::storage::UpdateAseBin(leAudioDevice->address_);
 
-      btif_storage_set_leaudio_audio_location(
+      le_audio::storage::SetAudioLocation(
           leAudioDevice->address_,
           leAudioDevice->snk_audio_locations_.to_ulong(),
           leAudioDevice->src_audio_locations_.to_ulong());

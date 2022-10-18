@@ -247,9 +247,9 @@ TEST_F(GroupsTest, test_group_id_assign) {
 }
 
 TEST_F(GroupsTest, test_storage_calls) {
-  ASSERT_EQ(0, mock_function_count_map["btif_storage_load_bonded_groups"]);
+  ASSERT_EQ(0, mock_function_count_map["LoadBondedGroups"]);
   DeviceGroups::Initialize(callbacks.get());
-  ASSERT_EQ(1, mock_function_count_map["btif_storage_load_bonded_groups"]);
+  ASSERT_EQ(1, mock_function_count_map["LoadBondedGroups"]);
 
   ASSERT_EQ(0, mock_function_count_map["btif_storage_add_groups"]);
   DeviceGroups::Get()->AddDevice(GetTestAddress(1), Uuid::kEmpty, 7);

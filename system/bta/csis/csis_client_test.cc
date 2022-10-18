@@ -24,8 +24,8 @@
 #include "bta_dm_api_mock.h"
 #include "bta_gatt_api_mock.h"
 #include "bta_gatt_queue_mock.h"
-#include "btif_storage.h"
 #include "btm_api_mock.h"
+#include "csis_storage.h"
 #include "csis_types.h"
 #include "gatt/database_builder.h"
 #include "hardware/bt_gatt_types.h"
@@ -406,7 +406,7 @@ class CsisClientTest : public ::testing::Test {
         .WillOnce(DoAll(SaveArg<0>(&gatt_callback),
                         SaveArg<1>(&app_register_callback)));
     CsisClient::Initialize(callbacks.get(),
-                           Bind(&btif_storage_load_bonded_csis_devices));
+                           Bind(&bluetooth::csis::storage::LoadBondedDevices));
     ASSERT_TRUE(gatt_callback);
     ASSERT_TRUE(app_register_callback);
     app_register_callback.Run(gatt_if, GATT_SUCCESS);
