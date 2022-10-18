@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb0c4017_7b474536",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-10-18T12:57:39Z",
+      "side": 1,
+      "message": "I know this may be not in scope of this CL but I\u0027ll just put here my thoughts.\n\nJust wondering if such code could save here some redundant operations on triggering active device set for services:\n\"\n\n        if (device \u003d\u003d null) {\n          /* No active Hearing Aid device */\n          if (Collections.frequency(hearingAidService.getActiveDevices(), device) \u003d\u003d 2) {\n            return;\n          }\n\n          /* Could not set device as active */\n          if (!hearingAidService.setActiveDevice(device)) {\n            return;\n          }\n        }\n\n        /* Replace device if possible to another as active */\n        if (!hearingAidService.getActiveDevices().contains(device)\n                \u0026\u0026 !hearingAidService.setActiveDevice(device)) {\n            return;\n        }\n\"",
+      "revId": "4d0e1c077de3bcb541333d6ced49e5eb06304d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
