@@ -107,8 +107,9 @@ class TestHciLayer : public HciLayer {
 
   CommandView GetCommand() {
     // Wait for EnqueueCommand if command_queue_ is empty
-    if (command_queue_.empty() && command_future_ != nullptr) {
+    if (command_queue_.empty() && command_promise_ != nullptr) {
       command_future_->wait_for(std::chrono::milliseconds(1000));
+      command_promise_.reset();
     }
 
     std::lock_guard<std::mutex> lock(mutex_);
@@ -281,11 +282,12 @@ class LeScanningManagerTest : public ::testing::Test {
     } else {
       test_hci_layer_->SetCommandFuture(1);
     }
+    test_hci_layer_->GetCommand();
+
     // configure_scan will be trigger by impl.start() and enqueue set scan parameter command
     fake_registry_.Start<LeScanningManager>(&thread_);
     le_scanning_manager =
         static_cast<LeScanningManager*>(fake_registry_.GetModuleUnderTest(&LeScanningManager::Factory));
-    HandleConfiguration();
     le_scanning_manager->RegisterScanningCallback(&mock_callbacks_);
   }
 
