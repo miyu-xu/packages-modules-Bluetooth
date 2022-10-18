@@ -263,6 +263,7 @@ static void btif_stats_add_bond_event(const RawAddress& bd_addr,
  *  Externs
  *****************************************************************************/
 extern bt_status_t btif_sdp_execute_service(bool b_enable);
+extern bt_status_t btif_hh_connect(const RawAddress* bd_addr);
 
 /******************************************************************************
  *  Functions
