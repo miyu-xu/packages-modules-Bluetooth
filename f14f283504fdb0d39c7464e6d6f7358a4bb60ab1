@@ -70,6 +70,30 @@
       },
       "revId": "f14f283504fdb0d39c7464e6d6f7358a4bb60ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c13db704_d2c24267",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-18T08:01:52Z",
+      "side": 1,
+      "message": "Got it, thanks!",
+      "parentUuid": "46a04fe1_95ca8e54",
+      "range": {
+        "startLine": 87,
+        "startChar": 76,
+        "endLine": 87,
+        "endChar": 94
+      },
+      "revId": "f14f283504fdb0d39c7464e6d6f7358a4bb60ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
