@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "669f0cbf_fa3c2513",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-18T08:54:47Z",
+      "side": 1,
+      "message": "It seems I didn\u0027t review it carefully before.\n\nThe method name should be cancelBatchWithInvalidShareInfo_throwIlleganArguementException.\n\nBut the exception comes from ContentResolver, and we want to test cancelBatch method instead of the ContentResolver.\n\nI recommend to use method proxy and test cancelBatch properly.",
+      "revId": "aef9d7187ce1a956c880be6922fdde51d45558fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31d2e18_c0991ec4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBatchTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-18T08:54:47Z",
+      "side": 1,
+      "message": "This is not reachable.\nPlease make the test code run here, and check it.",
+      "revId": "aef9d7187ce1a956c880be6922fdde51d45558fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
