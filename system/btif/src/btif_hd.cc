@@ -27,13 +27,14 @@
  ***********************************************************************************/
 #define LOG_TAG "BTIF_HD"
 
+#include "btif/include/btif_hd.h"
+
 #include <cstdint>
 
 #include "bt_target.h"  // Must be first to define build configuration
-
 #include "bta/include/bta_hd_api.h"
 #include "btif/include/btif_common.h"
-#include "btif/include/btif_hd.h"
+#include "btif/include/btif_config.h"
 #include "btif/include/btif_storage.h"
 #include "btif/include/btif_util.h"
 #include "include/hardware/bt_hd.h"
@@ -111,6 +112,81 @@ static void btif_hd_free_buf() {
   app_info.p_description = NULL;
   app_info.p_name = NULL;
   app_info.p_provider = NULL;
+}
+
+/*******************************************************************************
+ * Function         btif_storage_load_hidd
+ *
+ * Description      Loads hidd bonded device and "plugs" it into hidd
+ *
+ * Returns          BT_STATUS_SUCCESS if successful, BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_load_hidd(void) {
+  for (const auto& bd_addr : btif_config_get_paired_devices()) {
+    auto name = bd_addr.ToString();
+
+    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
+    int value;
+    if (btif_in_fetch_bonded_device(name) == BT_STATUS_SUCCESS) {
+      if (btif_config_get_int(name, "HidDeviceCabled", &value)) {
+        // BTA_HdAddDevice(bd_addr);
+        break;
+      }
+    }
+  }
+
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_set_hidd
+ *
+ * Description      Stores currently used HIDD device info in nvram and remove
+ *                  the "HidDeviceCabled" flag from unused devices
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_set_hidd(const RawAddress& remote_bd_addr) {
+  std::string remote_device_address_string = remote_bd_addr.ToString();
+  for (const auto& bd_addr : btif_config_get_paired_devices()) {
+    auto name = bd_addr.ToString();
+    if (bd_addr == remote_bd_addr) continue;
+    if (btif_in_fetch_bonded_device(name) == BT_STATUS_SUCCESS) {
+      btif_config_remove(name, "HidDeviceCabled");
+    }
+  }
+
+  btif_config_set_int(remote_device_address_string, "HidDeviceCabled", 1);
+  btif_config_save();
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_remove_hidd
+ *
+ * Description      Removes hidd bonded device info from nvram
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr) {
+  return BT_STATUS_SUCCESS;
+}
+
+// Get the name of a device from btif for interop database matching.
+bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr,
+                                         char* name) {
+  bt_property_t property;
+  property.type = BT_PROPERTY_BDNAME;
+  property.len = BTM_MAX_REM_BD_NAME_LEN;
+  property.val = name;
+
+  return (btif_storage_get_remote_device_property(&bd_addr, &property) ==
+          BT_STATUS_SUCCESS);
 }
 
 /*******************************************************************************
