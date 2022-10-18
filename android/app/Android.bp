@@ -152,9 +152,10 @@ android_app {
         "com.android.btservices",
     ],
     errorprone: {
+        extra_check_modules: ["error_prone_android_framework"],
         javacflags: [
-            // "-Xep:AndroidFrameworkRequiresPermission:ERROR",
             "-Xep:AlmostJavadoc:ERROR",
+            "-Xep:AndroidFrameworkRequiresPermission:ERROR",
         ],
     },
     min_sdk_version: "Tiramisu",
