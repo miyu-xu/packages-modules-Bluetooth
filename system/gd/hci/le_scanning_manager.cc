@@ -1370,6 +1370,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void on_apcf_read_extended_features_complete(CommandCompleteView view) {
+      LOG_ERROR("CMM should hit this on_apcf_read_extended_features_complete");
     ASSERT(view.IsValid());
     auto status_view = LeAdvFilterCompleteView::Create(view);
     if (!status_view.IsValid()) {
