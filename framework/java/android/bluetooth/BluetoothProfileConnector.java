@@ -129,6 +129,15 @@ public abstract class BluetoothProfileConnector<T> {
             if (mService == null) {
                 logDebug("Binding service...");
                 mCloseGuard.open("doUnbind");
+
+                List<Integer> mSupportedProfileList =
+                        BluetoothAdapter.getDefaultAdapter().getSupportedProfiles();
+
+                if (!mSupportedProfileList.contains(mProfileId)) {
+                    logDebug("Skip binding " + mProfileName + " service due to not supported");
+                    return false;
+                }
+
                 try {
                     Intent intent = new Intent(mServiceName);
                     ComponentName comp = resolveSystemService(intent, mContext.getPackageManager());
