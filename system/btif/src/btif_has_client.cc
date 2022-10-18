@@ -26,9 +26,9 @@
 #include <string>
 #include <vector>
 
+#include "bta/has/has_storage.h"
 #include "bta_has_api.h"
 #include "btif_common.h"
-#include "btif_storage.h"
 #include "stack/include/btu.h"
 
 using base::Bind;
@@ -60,7 +60,7 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
         Bind(&HasClient::Initialize, this,
              jni_thread_wrapper(
                  FROM_HERE,
-                 Bind(&btif_storage_load_bonded_leaudio_has_devices))));
+                 Bind(&le_audio::has::storage::AddBondedHasDevices))));
   }
 
   void Connect(const RawAddress& addr) override {
@@ -69,7 +69,7 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
                                       Unretained(HasClient::Get()), addr));
 
     do_in_jni_thread(
-        FROM_HERE, Bind(&btif_storage_set_leaudio_has_acceptlist, addr, true));
+        FROM_HERE, Bind(&le_audio::has::storage::SetHasAcceptlist, addr, true));
   }
 
   void Disconnect(const RawAddress& addr) override {
@@ -77,8 +77,8 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
     do_in_main_thread(FROM_HERE, Bind(&HasClient::Disconnect,
                                       Unretained(HasClient::Get()), addr));
 
-    do_in_jni_thread(
-        FROM_HERE, Bind(&btif_storage_set_leaudio_has_acceptlist, addr, false));
+    do_in_jni_thread(FROM_HERE, Bind(&le_audio::has::storage::SetHasAcceptlist,
+                                     addr, false));
   }
 
   void SelectActivePreset(std::variant<RawAddress, int> addr_or_group_id,
@@ -138,7 +138,8 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
                                         Unretained(HasClient::Get()), addr));
     }
 
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_leaudio_has, addr));
+    do_in_jni_thread(FROM_HERE,
+                     Bind(&le_audio::has::storage::RemoveHasDevice, addr));
   }
 
   void Cleanup(void) override {
