@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39146568_aae1ad8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "Done. Sorry I was copy pasting it from another file :)",
+      "parentUuid": "2cdd3a45_c3068c19",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6b4655f_ca8c12bd",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-17T06:40:49Z",
       "side": 1,
       "message": "To ensure the values are properly set, could you use any value other than 0?\nHere and others",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 22
+      },
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdbaa4ad_9c082f53",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "I\u0027ve set it to 1, I believe that should be correct. Please let me know if it\u0027s not. Thank you.",
+      "parentUuid": "e6b4655f_ca8c12bd",
       "range": {
         "startLine": 44,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "847b8776_b685668d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "Done. Hope the values make sense. Thank you.",
+      "parentUuid": "8947a667_c746f709",
+      "range": {
+        "startLine": 57,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 34
+      },
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99a9710d_6b6b7f0b",
@@ -87,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "407a447f_6658247c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "Done. Checking all entries! Thank you.",
+      "parentUuid": "99a9710d_6b6b7f0b",
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "073a209a_1ce43f42",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-10-17T06:40:49Z",
       "side": 1,
       "message": "Let\u0027s check the popped element has above data",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77b83bd2_86b00403",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "073a209a_1ce43f42",
       "range": {
         "startLine": 80,
         "startChar": 8,
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "964db600_a714cc11",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "2bb42d3f_ce474436",
+      "range": {
+        "startLine": 91,
+        "startChar": 58,
+        "endLine": 91,
+        "endChar": 60
+      },
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78c2888d_c12ddd00",
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cb3c69f_85ea1d94",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "78c2888d_c12ddd00",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 56
+      },
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c32d6565_d5f9bd04",
@@ -169,6 +331,30 @@
       "writtenOn": "2022-10-17T06:40:49Z",
       "side": 1,
       "message": "Declare \u0027int numOfEntries \u003d 7\u0027 and use them (for readability)",
+      "range": {
+        "startLine": 130,
+        "startChar": 53,
+        "endLine": 130,
+        "endChar": 54
+      },
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d6b27f6_8e61ff10",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T02:57:12Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "c32d6565_d5f9bd04",
       "range": {
         "startLine": 130,
         "startChar": 53,
