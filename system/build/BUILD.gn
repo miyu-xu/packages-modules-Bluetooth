@@ -34,7 +34,7 @@ config("linux") {
     "-fpic",
     "-fdata-sections",
     "-ffunction-sections",
-    "-fvisibility=hidden",
+    #"-fvisibility=hidden",
   ]
 
   cflags_c = [ "-std=c99" ]
