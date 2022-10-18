@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb15d63_46cdc6b5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapbMessageSmsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-18T02:26:42Z",
+      "side": 1,
+      "message": "assertThat(instance).isInstanceOf(class)\n\nHere and L99",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 69
+      },
+      "revId": "796ae7eb5bc50050366ef5f72aac1ff757189485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
