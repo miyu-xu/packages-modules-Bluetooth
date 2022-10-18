@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10bf6670_07dcef5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-18T03:09:04Z",
+      "side": 1,
+      "message": "As the BT stack follows an AOSP first development strategy, this CL is just the copy of http://ag/20071717.",
+      "revId": "451942a36e996e7805e5255eb9e4c54bf7769453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
