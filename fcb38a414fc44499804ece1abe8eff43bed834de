@@ -108,6 +108,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaa06463_970566ac",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-18T14:02:23Z",
+      "side": 0,
+      "message": "I just realize that I totatlly read this function wrong. I thought this is the path that we route the sco_data to btm. I\u0027ll revert this and keep the assert as Abhishek\u0027s comment that the the connection should have already been dropped by this point when the handle is invalid.",
+      "parentUuid": "8d18e773_0119ca81",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08791dd8_ecaaef07",
@@ -121,6 +139,24 @@
       "writtenOn": "2022-10-14T22:21:59Z",
       "side": 0,
       "message": "This should be retained as a DCHECK with crash on debug builds + log+metrics on release builds.\n\nI\u0027m assuming this is on receive path (which is what the conversation on transmit_sco_fragment was about).",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bbc4ed2_508e4b0b",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-18T14:02:23Z",
+      "side": 0,
+      "message": "For the DCHECK and\"codepath metric\", is there a working way to follow on Floss? Otherwise, I tend to proceed with the LOG_ERROR and leaving it as a future refinement of the overall assert and logging on Floss.\n\nTBH, I don\u0027t really when to use which form of log function on Fluroide. I think I\u0027ve seen more than three forms for them including `LOG_*`, `LOG(*) \u003c\u003c`, and `*_TRACE_*`.",
+      "parentUuid": "08791dd8_ecaaef07",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
