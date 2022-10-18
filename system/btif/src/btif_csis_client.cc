@@ -22,9 +22,9 @@
 #include <hardware/bt_csis.h>
 
 #include "bind_helpers.h"
+#include "bta/csis/csis_storage.h"
 #include "bta_csis_api.h"
 #include "btif_common.h"
-#include "btif_storage.h"
 #include "stack/include/btu.h"
 
 using base::Bind;
@@ -51,8 +51,9 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     do_in_main_thread(
         FROM_HERE,
         Bind(&CsisClient::Initialize, this,
-             jni_thread_wrapper(FROM_HERE,
-                                Bind(&btif_storage_load_bonded_csis_devices))));
+             jni_thread_wrapper(
+                 FROM_HERE,
+                 Bind(&bluetooth::csis::storage::LoadBondedDevices))));
   }
 
   void Connect(const RawAddress& addr) override {
