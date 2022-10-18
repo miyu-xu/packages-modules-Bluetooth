@@ -46,6 +46,30 @@
       },
       "revId": "f14f283504fdb0d39c7464e6d6f7358a4bb60ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46a04fe1_95ca8e54",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-18T07:36:56Z",
+      "side": 1,
+      "message": "Actually this is not happening often enough, we shouldn\u0027t care about efficiency here yet.",
+      "parentUuid": "d312cdf1_4c0e9f72",
+      "range": {
+        "startLine": 87,
+        "startChar": 76,
+        "endLine": 87,
+        "endChar": 94
+      },
+      "revId": "f14f283504fdb0d39c7464e6d6f7358a4bb60ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
