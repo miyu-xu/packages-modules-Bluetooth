@@ -38,6 +38,10 @@
     (p_prop)->val = (p_v);                            \
   } while (0)
 
+#define BTIF_STORAGE_PATH_REMOTE_SERVICE "Service"
+#define STORAGE_UUID_STRING_SIZE \
+  (36 + 1) /* 00001200-0000-1000-8000-00805f9b34fb; */
+
 /*******************************************************************************
  *  Functions
  ******************************************************************************/
@@ -252,15 +256,17 @@ bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr);
  ******************************************************************************/
 std::vector<RawAddress> btif_storage_get_hid_device_addresses(void);
 
-/** Loads information about bonded hearing aid devices */
-void btif_storage_load_bonded_hearing_aids();
-
-/** Deletes the bonded hearing aid device info from NVRAM */
-void btif_storage_remove_hearing_aid(const RawAddress& address);
-
-/** Set/Unset the hearing aid device HEARING_AID_IS_ACCEPTLISTED flag. */
-void btif_storage_set_hearing_aid_acceptlist(const RawAddress& address,
-                                             bool add_to_acceptlist);
+/*******************************************************************************
+ *
+ * Function         btif_in_fetch_bonded_devices
+ *
+ * Description      Helper function to fetch the bonded devices
+ *                  from NVRAM
+ *
+ * Returns          BT_STATUS_SUCCESS if successful, BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+bt_status_t btif_in_fetch_bonded_device(const std::string& bdstr);
 
 /** Stores information about GATT Client supported features support */
 void btif_storage_set_gatt_cl_supp_feat(const RawAddress& bd_addr,
@@ -286,50 +292,6 @@ Octet16 btif_storage_get_gatt_cl_db_hash(const RawAddress& bd_addr);
 
 /** Remove last server database hash for remote client */
 void btif_storage_remove_gatt_cl_db_hash(const RawAddress& bd_addr);
-
-/** Get the hearing aid device properties. */
-bool btif_storage_get_hearing_aid_prop(
-    const RawAddress& address, uint8_t* capabilities, uint64_t* hi_sync_id,
-    uint16_t* render_delay, uint16_t* preparation_delay, uint16_t* codecs);
-
-/** Store Le Audio device autoconnect flag */
-void btif_storage_set_leaudio_autoconnect(const RawAddress& addr,
-                                          bool autoconnect);
-
-/** Store PACs information */
-void btif_storage_leaudio_update_pacs_bin(const RawAddress& addr);
-
-/** Store ASEs information */
-void btif_storage_leaudio_update_ase_bin(const RawAddress& addr);
-
-/** Store Handles information */
-void btif_storage_leaudio_update_handles_bin(const RawAddress& addr);
-
-/** Store Le Audio device audio locations */
-void btif_storage_set_leaudio_audio_location(const RawAddress& addr,
-                                             uint32_t sink_location,
-                                             uint32_t source_location);
-
-/** Store Le Audio device context types */
-void btif_storage_set_leaudio_supported_context_types(
-    const RawAddress& addr, uint16_t sink_supported_context_type,
-    uint16_t source_supported_context_type);
-
-/** Remove Le Audio device from the storage */
-void btif_storage_remove_leaudio(const RawAddress& address);
-
-/** Load bonded Le Audio devices */
-void btif_storage_load_bonded_leaudio(void);
-
-/** Loads information about bonded HAS devices */
-void btif_storage_load_bonded_leaudio_has_devices(void);
-
-/** Deletes the bonded HAS device info from NVRAM */
-void btif_storage_remove_leaudio_has(const RawAddress& address);
-
-/** Set/Unset the HAS device acceptlist flag. */
-void btif_storage_set_leaudio_has_acceptlist(const RawAddress& address,
-                                             bool add_to_acceptlist);
 
 /*******************************************************************************
  *
@@ -377,50 +339,6 @@ bool btif_storage_get_remote_device_type(const RawAddress& remote_bd_addr,
                                          tBT_DEVICE_TYPE& device_type);
 void btif_storage_set_remote_device_type(const RawAddress& remote_bd_addr,
                                          const tBT_DEVICE_TYPE& device_type);
-
-void btif_storage_add_groups(const RawAddress& addr);
-void btif_storage_load_bonded_groups(void);
-void btif_storage_remove_groups(const RawAddress& address);
-
-void btif_storage_set_csis_autoconnect(const RawAddress& addr,
-                                       bool autoconnect);
-void btif_storage_update_csis_info(const RawAddress& addr);
-void btif_storage_load_bonded_csis_devices();
-void btif_storage_remove_csis_device(const RawAddress& address);
-
-/*******************************************************************************
- * Function         btif_storage_load_hidd
- *
- * Description      Loads hidd bonded device and "plugs" it into hidd
- *
- * Returns          BT_STATUS_SUCCESS if successful, BT_STATUS_FAIL otherwise
- *
- ******************************************************************************/
-bt_status_t btif_storage_load_hidd(void);
-
-/*******************************************************************************
- *
- * Function         btif_storage_set_hidd
- *
- * Description      Stores hidd bonded device info in nvram.
- *
- * Returns          BT_STATUS_SUCCESS
- *
- ******************************************************************************/
-
-bt_status_t btif_storage_set_hidd(const RawAddress& remote_bd_addr);
-
-/*******************************************************************************
- *
- * Function         btif_storage_remove_hidd
- *
- * Description      Removes hidd bonded device info from nvram
- *
- * Returns          BT_STATUS_SUCCESS
- *
- ******************************************************************************/
-
-bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr);
 
 // Gets the device name for a given Bluetooth address |bd_addr|.
 // The device name (if found) is stored in |name|.
