@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acd6df0d_568f1587",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-18T18:32:11Z",
+      "side": 1,
+      "message": "Hey everyone! Just wanted to chime in here with some history in case we see problems in the future!\n\nImages were being compared because some applications load their images slowly:\n(1) A null image is in the bitmap metadata field first, then *something*\n(2) A placeholder bitmap is in the metadata field first, then the correct image\n\nBy not comparing the image contents directly, we run the risk of missing an image, or never updating the placeholder\n\nAs well, I could see some applications that utilize the bitmap field for ads causing problems where maybe we never update it to the next image (sort of like the placeholder case, but in this case its not a generic placeholder and more a specific image).\n\nThat said, this has been in for some time now and neither the Pixel QA, nor the AAOS QA teams have complained. It\u0027s likely that few apps are impacted by this as of right now. We can probably keep this as is until something changes.",
+      "revId": "b4d77324d743d27eb9744a4c210fda280afcd69b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
