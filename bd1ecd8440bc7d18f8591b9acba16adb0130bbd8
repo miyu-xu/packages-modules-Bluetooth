@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaa71ba8_71c76cf8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T01:37:22Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "1ac710da_21d8e957",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "bd1ecd8440bc7d18f8591b9acba16adb0130bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75f741b0_b7c55be9",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e97167_df0b45fd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T01:37:22Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "75f741b0_b7c55be9",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "bd1ecd8440bc7d18f8591b9acba16adb0130bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52f32fae_5e43ca01",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-17T06:30:49Z",
       "side": 1,
       "message": "Can we set some values like:\n\n`advPkt \u003d new byte[] {0x02}\u0027?\n\nSame for scanRsp.",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "bd1ecd8440bc7d18f8591b9acba16adb0130bbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "130968af_aa167efb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-18T01:37:22Z",
+      "side": 1,
+      "message": "Done for both. Thank you.",
+      "parentUuid": "52f32fae_5e43ca01",
       "range": {
         "startLine": 40,
         "startChar": 15,
