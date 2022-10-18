@@ -81,6 +81,21 @@ struct ConfigInterface {
   virtual ~ConfigInterface() = default;
 };
 
+// This interface lets us communicate with encoders used in profiles
+struct CodecInterface {
+  virtual void initialize();
+  virtual void cleanup();
+
+  virtual uint32_t encodePacket(int16_t* input, uint8_t* output);
+  virtual bool decodePacket(const uint8_t* i_buf, int16_t* o_buf,
+                            size_t out_len);
+
+  explicit CodecInterface() = default;
+  CodecInterface(const CodecInterface&) = delete;
+  CodecInterface& operator=(const CodecInterface&) = delete;
+  virtual ~CodecInterface() = default;
+};
+
 // This class defines the overall interface expected by bluetooth::core.
 struct CoreInterface {
   // generic interface
