@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02eef433_5fa35790",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-18T16:53:02Z",
+      "side": 1,
+      "message": "Here we get a connection complete with a bad handle.  Instead of crashing we just return.  We won\u0027t be able to use this connection, and we\u0027ll throw away any data we receive.  Crashing seems better.",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 3
+      },
+      "revId": "5fcfa12795adf3a0e7176b8f92cb65242f3c7a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9258e4d_2d002caa",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-18T16:53:02Z",
+      "side": 1,
+      "message": "I wonder how much effort it would be to replace this with PDL parsing.  Then we could know if the event that came was wrong, or if we just parsed the handle out incorrectly.",
+      "range": {
+        "startLine": 1118,
+        "startChar": 0,
+        "endLine": 1127,
+        "endChar": 37
+      },
+      "revId": "5fcfa12795adf3a0e7176b8f92cb65242f3c7a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
