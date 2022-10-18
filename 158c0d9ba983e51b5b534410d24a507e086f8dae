@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83cbe348_8ef39e1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-18T01:49:46Z",
+      "side": 1,
+      "message": "I\u0027ve left calls to the effectively no-op prepare call in places we used to call it because (1) we claim support for it and others may assume we have it, and (2) it keeps the \"prepare before doing stuff\" mechanism consistent. If ever want to do something in prepare again, we just add it in one place now.\n\nThat said, I\u0027m on the fence about it though. Especially since its kind of dead code.",
+      "revId": "158c0d9ba983e51b5b534410d24a507e086f8dae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
