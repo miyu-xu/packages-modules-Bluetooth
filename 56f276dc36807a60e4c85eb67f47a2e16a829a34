@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71223d27_de087b0c",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-18T07:33:54Z",
+      "side": 1,
+      "message": "Should we call unbindService when bindServiceAsUser returns false anyway?",
+      "parentUuid": "e9c359d9_89c294a5",
+      "range": {
+        "startLine": 134,
+        "startChar": 61,
+        "endLine": 134,
+        "endChar": 81
+      },
+      "revId": "56f276dc36807a60e4c85eb67f47a2e16a829a34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15cd9370_7c354bd6",
         "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
         "patchSetId": 1
