@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9c359d9_89c294a5",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-18T07:27:24Z",
+      "side": 1,
+      "message": "From my local test, the bindServiceAsUser() returns true even if the service is disabled. Hence, handling bindServiceAsUser returning false is not able to fix the issue.",
+      "parentUuid": "9d1d543c_edaab21f",
+      "range": {
+        "startLine": 134,
+        "startChar": 61,
+        "endLine": 134,
+        "endChar": 81
+      },
+      "revId": "56f276dc36807a60e4c85eb67f47a2e16a829a34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15cd9370_7c354bd6",
         "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
         "patchSetId": 1
