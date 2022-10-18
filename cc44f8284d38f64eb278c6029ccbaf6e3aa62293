@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aebbc155_c6bf1e06",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapbMessageEmailTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-18T09:29:03Z",
+      "side": 1,
+      "message": "Got it. Will do from now on. Added!",
+      "parentUuid": "3e7fa214_0aaab318",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "cc44f8284d38f64eb278c6029ccbaf6e3aa62293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b458fbf1_659cf73f",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-17T03:59:56Z",
       "side": 1,
       "message": "Use `assertThat(instance).isInstanceOf(class)`.\n\nUsually, `assertThat(a).isTrue()` is only used when `a` returns a boolean object.\n\nIn most cases there are some methods for common use cases.\nFor example, if we want to check an element is in the List, we can use:\n\n`assertThat(list).contains(element);`\n\nAdvantage of using these methods is that they produce more straightful, easy-to-read.",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 80
+      },
+      "revId": "cc44f8284d38f64eb278c6029ccbaf6e3aa62293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab2fd06_a10dd085",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapbMessageEmailTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-18T09:29:03Z",
+      "side": 1,
+      "message": "Thanks for letting me know. Fixed!",
+      "parentUuid": "b458fbf1_659cf73f",
       "range": {
         "startLine": 55,
         "startChar": 8,
