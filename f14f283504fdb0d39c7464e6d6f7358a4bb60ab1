@@ -22,6 +22,30 @@
       },
       "revId": "f14f283504fdb0d39c7464e6d6f7358a4bb60ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d312cdf1_4c0e9f72",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-18T07:34:15Z",
+      "side": 1,
+      "message": "Yes it guaranteed to return non-null. If if can\u0027t find Identity Address it will return mAddress.\n\nThanks for the suggestion! let me try to add a internal lookup",
+      "parentUuid": "2b1434af_95c15684",
+      "range": {
+        "startLine": 87,
+        "startChar": 76,
+        "endLine": 87,
+        "endChar": 94
+      },
+      "revId": "f14f283504fdb0d39c7464e6d6f7358a4bb60ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
