@@ -22,6 +22,30 @@
       },
       "revId": "9380b2f370743617fbda2b2a65c73e1756f671b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15cbfdc7_dbdbad07",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-19T20:30:32Z",
+      "side": 1,
+      "message": "This ended up being more painful than I expected.  Future work, since it is not really part of this CL.",
+      "parentUuid": "75b3fd83_e90fdf4a",
+      "range": {
+        "startLine": 28,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 7
+      },
+      "revId": "9380b2f370743617fbda2b2a65c73e1756f671b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
