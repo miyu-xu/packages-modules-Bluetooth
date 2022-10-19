@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1821d857_55faf77a",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 20
+      },
+      "lineNbr": 5522,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-19T00:48:17Z",
+      "side": 1,
+      "message": "No.\n\n(╯°□°）╯︵ ┻━┻",
+      "range": {
+        "startLine": 5522,
+        "startChar": 28,
+        "endLine": 5522,
+        "endChar": 33
+      },
+      "revId": "21093dd181b88fca3a5f0b6fbb12e5bd2e2770b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d90935e1_2a4e4c04",
+        "filename": "system/main/shim/shim.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-19T00:48:17Z",
+      "side": 1,
+      "message": "nit\nIs the shim really needed ? \nAll new flag are called directly",
+      "range": {
+        "startLine": 85,
+        "startChar": 5,
+        "endLine": 85,
+        "endChar": 57
+      },
+      "revId": "21093dd181b88fca3a5f0b6fbb12e5bd2e2770b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
