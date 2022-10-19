@@ -22,6 +22,46 @@
       },
       "revId": "730ac272fdd9f941b34a27e0eeee5eef4cf455f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "568449f1_5ce6dc9c",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-19T18:43:31Z",
+      "side": 1,
+      "message": "For self-documentation to aggregate relevant informtion maybe do \n\n, false /* !is_ctkd */);\n\nAnother way is to do something like this in a header:\nbool kIsCtkd \u003d true;",
+      "range": {
+        "startLine": 465,
+        "startChar": 39,
+        "endLine": 465,
+        "endChar": 44
+      },
+      "revId": "730ac272fdd9f941b34a27e0eeee5eef4cf455f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17fee273_150b4df4",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3946,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-19T18:43:31Z",
+      "side": 1,
+      "message": "Same with the `true` and `false` params in this API for readability",
+      "revId": "730ac272fdd9f941b34a27e0eeee5eef4cf455f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
