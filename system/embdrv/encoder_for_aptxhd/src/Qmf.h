@@ -28,7 +28,7 @@ typedef struct
 /* Outer QMF filter for aptX HD is a symmetrical 32-tap filter (16
  * different coefficients). The table  defined in QmfConv.c */
 #ifndef _STDQMFOUTERCOEFF
-const int32_t Qmf_outerCoeffs[12] =
+static const int32_t Qmf_outerCoeffs[12] =
 {
    /* (C(1/30)C(3/28)), C(5/26), C(7/24) */
    0xFE6302DA, 0xFFFFDA75, 0x0000AA6A,
@@ -40,7 +40,7 @@ const int32_t Qmf_outerCoeffs[12] =
    0x0DB7D8C5,  0xFC7F02B0
 };
 #else
-const int32_t Qmf_outerCoeffs[16] =
+static const int32_t Qmf_outerCoeffs[16] =
 {
    730,        -413,       -9611,       43626,
    -121026,    269973,     -585547,     2801966,
@@ -51,7 +51,7 @@ const int32_t Qmf_outerCoeffs[16] =
 
 /* Each inner QMF filter for aptX HD is a symmetrical 32-tap filter (16
  * different coefficients) */
-const int32_t Qmf_innerCoeffs[16] =
+static const int32_t Qmf_innerCoeffs[16] =
 {
     1033,      -584,      -13592,    61697,
     -171156,   381799,    -828088,   3962579,
