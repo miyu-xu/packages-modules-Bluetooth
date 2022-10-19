@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c9c5e3c_228dbfd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-19T16:53:02Z",
+      "side": 1,
+      "message": "Hi team,\n\nSubmitting browsing test cases for review. \nCreated new CL and also incorporated the comments from draft version.\nRef: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2253995\nUpdated the comment response in above CL\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
