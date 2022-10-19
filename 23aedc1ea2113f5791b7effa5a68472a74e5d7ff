@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d89560d_4818719c",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-19T18:55:25Z",
+      "side": 1,
+      "message": "Should we check input param `transport` for LE ? Or is that unreliable ?\n\nHow about `reason` ? What if that is !\u003d SUCCESS ?",
+      "range": {
+        "startLine": 253,
+        "startChar": 38,
+        "endLine": 253,
+        "endChar": 53
+      },
+      "revId": "23aedc1ea2113f5791b7effa5a68472a74e5d7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea65c458_511d5314",
         "filename": "system/stack/smp/smp_l2c.cc",
         "patchSetId": 2
