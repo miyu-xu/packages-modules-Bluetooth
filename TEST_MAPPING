@@ -57,6 +57,9 @@
   ],
   "presubmit" : [
     {
+      "name" : "BluetoothInstrumentationTests"
+    },
+    {
       "name" : "net_test_hf_client_add_record"
     },
     {
