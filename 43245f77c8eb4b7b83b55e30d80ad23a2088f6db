@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18b503f9_e829d609",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-19T18:30:23Z",
+      "side": 0,
+      "message": "nit: where did this go?",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 51
+      },
+      "revId": "43245f77c8eb4b7b83b55e30d80ad23a2088f6db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
