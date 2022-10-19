@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30269a76_b40747a4",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-19T00:34:02Z",
+      "side": 1,
+      "message": "Should we put this outside of this change ?",
+      "range": {
+        "startLine": 393,
+        "startChar": 12,
+        "endLine": 395,
+        "endChar": 15
+      },
+      "revId": "f66263d448d60949052af7ed9b2b83f218bea9aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bd9ec13_32df574a",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 22
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-19T00:34:02Z",
+      "side": 1,
+      "message": "No.",
+      "range": {
+        "startLine": 220,
+        "startChar": 13,
+        "endLine": 220,
+        "endChar": 17
+      },
+      "revId": "f66263d448d60949052af7ed9b2b83f218bea9aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
