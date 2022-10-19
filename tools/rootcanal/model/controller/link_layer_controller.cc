@@ -2163,6 +2163,7 @@ static Address generate_rpa(
 void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
     model::packets::LeLegacyAdvertisingPduView& pdu, uint8_t rssi) {
   if (!scanner_.IsEnabled()) {
+    LOG_INFO("Legacy advertising ignored because the scanner is not enabled");
     return;
   }
 
@@ -2203,6 +2204,14 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
   std::optional<AddressWithType> resolved_target_address =
       ResolvePrivateAddress(target_address, IrkSelection::Peer);
 
+  if (resolved_advertising_address != advertising_address) {
+    LOG_INFO("Resolved the advertising address %s(%hhx) to %s(%hhx)",
+             advertising_address.ToString().c_str(),
+             advertising_address.GetAddressType(),
+             resolved_advertising_address.ToString().c_str(),
+             resolved_advertising_address.GetAddressType());
+  }
+
   // Vol 6, Part B § 4.3.3 Scanner filter policy
   switch (scanner_.scan_filter_policy) {
     case bluetooth::hci::LeScanningFilterPolicy::ACCEPT_ALL:
@@ -2212,6 +2221,11 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
     case bluetooth::hci::LeScanningFilterPolicy::
         FILTER_ACCEPT_LIST_AND_INITIATORS_IDENTITY:
       if (!LeFilterAcceptListContainsDevice(resolved_advertising_address)) {
+        LOG_INFO(
+            "Legacy advertising ignored by scanner because the advertising "
+            "address %s(%hhx) is not in the filter accept list",
+            resolved_advertising_address.ToString().c_str(),
+            resolved_advertising_address.GetAddressType());
         return;
       }
       break;
@@ -2238,6 +2252,12 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
       case bluetooth::hci::LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY:
         if (!IsLocalPublicOrRandomAddress(target_address) &&
             !(target_address.IsRpa() && resolved_target_address)) {
+          LOG_INFO(
+              "Legacy advertising ignored by scanner because the directed "
+              "address %s(%hhx) does not match the current device or cannot be "
+              "resolved",
+              target_address.ToString().c_str(),
+              target_address.GetAddressType());
           return;
         }
         break;
@@ -2250,6 +2270,12 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
           FILTER_ACCEPT_LIST_AND_INITIATORS_IDENTITY:
         if (!IsLocalPublicOrRandomAddress(target_address) &&
             !target_address.IsRpa()) {
+          LOG_INFO(
+              "Legacy advertising ignored by scanner because the directed "
+              "address %s(%hhx) does not match the current device or is not a "
+              "resovable private address",
+              target_address.ToString().c_str(),
+              target_address.GetAddressType());
           return;
         }
         should_send_directed_advertising_report =
@@ -2351,8 +2377,25 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
   // Active scanning.
   // Note: only send SCAN requests in response to scannable advertising
   // events (ADV_IND, ADV_SCAN_IND).
-  if (active_scanning && scannable_advertising &&
-      !scanner_.pending_scan_request) {
+  if (!scannable_advertising) {
+    LOG_INFO(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "it is not scannable",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
+  } else if (!active_scanning) {
+    LOG_INFO(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "the scanner is passive",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
+  } else if (scanner_.pending_scan_request) {
+    LOG_INFO(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "an LE Scan request is already pending",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
+  } else {
     // TODO: apply privacy mode in resolving list.
     // Scan requests with public or random device addresses must be ignored
     // when the peer has network privacy mode.
@@ -2397,6 +2440,13 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
     scanner_.connectable_scan_response = connectable_advertising;
     scanner_.pending_scan_request = advertising_address;
 
+    LOG_INFO(
+        "Sending LE Scan request to advertising address %s(%hhx) with scanning "
+        "address %s(%hhx)",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType(),
+        scanning_address.ToString().c_str(), scanning_address.GetAddressType());
+
     // The advertiser’s device address (AdvA field) in the scan request PDU
     // shall be the same as the advertiser’s device address (AdvA field)
     // received in the advertising PDU to which the scanner is responding.
@@ -2412,6 +2462,7 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
 void LinkLayerController::ConnectIncomingLeLegacyAdvertisingPdu(
     model::packets::LeLegacyAdvertisingPduView& pdu) {
   if (!le_connect_) {
+    LOG_INFO("Legacy advertising ignored because the initiator is not enabled");
     return;
   }
 
@@ -2432,7 +2483,16 @@ void LinkLayerController::ConnectIncomingLeLegacyAdvertisingPdu(
   // Connection.
   // Note: only send CONNECT requests in response to connectable advertising
   // events (ADV_IND, ADV_DIRECT_IND).
-  if (le_pending_connect_ || !connectable_advertising) {
+  if (!connectable_advertising) {
+    LOG_INFO(
+        "Legacy advertising ignored by initiator because it is not "
+        "connectable");
+    return;
+  }
+  if (le_pending_connect_) {
+    LOG_INFO(
+        "Legacy advertising ignored because an LE Connect request is already "
+        "pending");
     return;
   }
 
@@ -2489,11 +2549,13 @@ void LinkLayerController::ConnectIncomingLeLegacyAdvertisingPdu(
         }
         break;
     }
-    LOG_INFO("Connecting to %s (type %hhx) with address %s (type %hhx)",
-             advertising_address.GetAddress().ToString().c_str(),
-             advertising_address.GetAddressType(),
-             initiating_address.ToString().c_str(),
-             initiating_address.GetAddressType());
+    LOG_INFO(
+        "Sending LE Connect request to %s(%hhx) with initiating address "
+        "%s(%hhx)",
+        advertising_address.GetAddress().ToString().c_str(),
+        advertising_address.GetAddressType(),
+        initiating_address.ToString().c_str(),
+        initiating_address.GetAddressType());
 
     le_pending_connect_ = true;
 
@@ -2512,6 +2574,13 @@ void LinkLayerController::ConnectIncomingLeLegacyAdvertisingPdu(
             advertising_address.GetAddressType()),
         le_connection_interval_min_, le_connection_interval_max_,
         le_connection_latency_, le_connection_supervision_timeout_));
+  } else {
+    LOG_INFO(
+        "Legacy advertising ignored by initiator because the advertising "
+        "address %s(%hhx) does not match the peer address or is not in the "
+        "filter accept list",
+        advertising_address.GetAddress().ToString().c_str(),
+        advertising_address.GetAddressType());
   }
 }
 
@@ -2527,7 +2596,12 @@ void LinkLayerController::IncomingLeLegacyAdvertisingPdu(
 // Handle legacy advertising PDUs while in the Scanning state.
 void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
     model::packets::LeExtendedAdvertisingPduView& pdu, uint8_t rssi) {
-  if (!scanner_.IsEnabled() || !ExtendedAdvertising()) {
+  if (!scanner_.IsEnabled()) {
+    LOG_INFO("Extended advertising ignored because the scanner is not enabled");
+    return;
+  }
+  if (!ExtendedAdvertising()) {
+    LOG_INFO("Extended advertising ignored because the scanner is legacy");
     return;
   }
 
@@ -2559,6 +2633,14 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
   std::optional<AddressWithType> resolved_target_address =
       ResolvePrivateAddress(target_address, IrkSelection::Peer);
 
+  if (resolved_advertising_address != advertising_address) {
+    LOG_INFO("Resolved the advertising address %s(%hhx) to %s(%hhx)",
+             advertising_address.ToString().c_str(),
+             advertising_address.GetAddressType(),
+             resolved_advertising_address.ToString().c_str(),
+             resolved_advertising_address.GetAddressType());
+  }
+
   // Vol 6, Part B § 4.3.3 Scanner filter policy
   switch (scanner_.scan_filter_policy) {
     case bluetooth::hci::LeScanningFilterPolicy::ACCEPT_ALL:
@@ -2568,6 +2650,11 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
     case bluetooth::hci::LeScanningFilterPolicy::
         FILTER_ACCEPT_LIST_AND_INITIATORS_IDENTITY:
       if (!LeFilterAcceptListContainsDevice(resolved_advertising_address)) {
+        LOG_INFO(
+            "Extended advertising ignored by scanner because the advertising "
+            "address %s(%hhx) is not in the filter accept list",
+            resolved_advertising_address.ToString().c_str(),
+            resolved_advertising_address.GetAddressType());
         return;
       }
       break;
@@ -2592,6 +2679,12 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
       case bluetooth::hci::LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY:
         if (!IsLocalPublicOrRandomAddress(target_address) &&
             !(target_address.IsRpa() && resolved_target_address)) {
+          LOG_INFO(
+              "Extended advertising ignored by scanner because the directed "
+              "address %s(%hhx) does not match the current device or cannot be "
+              "resolved",
+              target_address.ToString().c_str(),
+              target_address.GetAddressType());
           return;
         }
         break;
@@ -2604,6 +2697,12 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
           FILTER_ACCEPT_LIST_AND_INITIATORS_IDENTITY:
         if (!IsLocalPublicOrRandomAddress(target_address) &&
             !target_address.IsRpa()) {
+          LOG_INFO(
+              "Extended advertising ignored by scanner because the directed "
+              "address %s(%hhx) does not match the current device or is not a "
+              "resovable private address",
+              target_address.ToString().c_str(),
+              target_address.GetAddressType());
           return;
         }
         should_send_directed_advertising_report =
@@ -2651,8 +2750,25 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
   // Active scanning.
   // Note: only send SCAN requests in response to scannable advertising
   // events (ADV_IND, ADV_SCAN_IND).
-  if (active_scanning && scannable_advertising &&
-      !scanner_.pending_scan_request) {
+  if (!scannable_advertising) {
+    LOG_INFO(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "it is not scannable",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
+  } else if (!active_scanning) {
+    LOG_INFO(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "the scanner is passive",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
+  } else if (scanner_.pending_scan_request) {
+    LOG_INFO(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "an LE Scan request is already pending",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
+  } else {
     // TODO: apply privacy mode in resolving list.
     // Scan requests with public or random device addresses must be ignored
     // when the peer has network privacy mode.
@@ -2697,6 +2813,13 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
     scanner_.connectable_scan_response = connectable_advertising;
     scanner_.pending_scan_request = advertising_address;
 
+    LOG_INFO(
+        "Sending LE Scan request to advertising address %s(%hhx) with scanning "
+        "address %s(%hhx)",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType(),
+        scanning_address.ToString().c_str(), scanning_address.GetAddressType());
+
     // The advertiser’s device address (AdvA field) in the scan request PDU
     // shall be the same as the advertiser’s device address (AdvA field)
     // received in the advertising PDU to which the scanner is responding.
@@ -2712,6 +2835,8 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
 void LinkLayerController::ConnectIncomingLeExtendedAdvertisingPdu(
     model::packets::LeExtendedAdvertisingPduView& pdu) {
   if (!le_connect_) {
+    LOG_INFO(
+        "Extended advertising ignored because the initiator is not enabled");
     return;
   }
 
@@ -2726,7 +2851,17 @@ void LinkLayerController::ConnectIncomingLeExtendedAdvertisingPdu(
   // Connection.
   // Note: only send CONNECT requests in response to connectable advertising
   // events (ADV_IND, ADV_DIRECT_IND).
-  if (le_pending_connect_ || !pdu.GetConnectable()) {
+
+  if (!pdu.GetConnectable()) {
+    LOG_INFO(
+        "Extended advertising ignored by initiator because it is not "
+        "connectable");
+    return;
+  }
+  if (le_pending_connect_) {
+    LOG_INFO(
+        "Extended advertising ignored because an LE Connect request is already "
+        "pending");
     return;
   }
 
@@ -2783,11 +2918,13 @@ void LinkLayerController::ConnectIncomingLeExtendedAdvertisingPdu(
         }
         break;
     }
-    LOG_INFO("Connecting to %s (type %hhx) with address %s (type %hhx)",
-             advertising_address.GetAddress().ToString().c_str(),
-             advertising_address.GetAddressType(),
-             initiating_address.ToString().c_str(),
-             initiating_address.GetAddressType());
+    LOG_INFO(
+        "Sending LE Connect request to %s(%hhx) with initiating address "
+        "%s(%hhx)",
+        advertising_address.GetAddress().ToString().c_str(),
+        advertising_address.GetAddressType(),
+        initiating_address.ToString().c_str(),
+        initiating_address.GetAddressType());
 
     le_pending_connect_ = true;
 
@@ -2806,6 +2943,13 @@ void LinkLayerController::ConnectIncomingLeExtendedAdvertisingPdu(
             advertising_address.GetAddressType()),
         le_connection_interval_min_, le_connection_interval_max_,
         le_connection_latency_, le_connection_supervision_timeout_));
+  } else {
+    LOG_INFO(
+        "Extended advertising ignored by initiator because the advertising "
+        "address %s(%hhx) does not match the peer address or is not in the "
+        "filter accept list",
+        advertising_address.GetAddress().ToString().c_str(),
+        advertising_address.GetAddressType());
   }
 }
 
@@ -3028,6 +3172,9 @@ uint16_t LinkLayerController::HandleLeConnection(
 bool LinkLayerController::ProcessIncomingLegacyConnectRequest(
     model::packets::LeConnectView const& connect_ind) {
   if (!legacy_advertiser_.IsEnabled() || !legacy_advertiser_.IsConnectable()) {
+    LOG_INFO(
+        "LE Connect request ignored by legacy advertiser because it is not %s",
+        legacy_advertiser_.IsEnabled() ? "connectable" : "enabled");
     return false;
   }
 
@@ -3042,6 +3189,13 @@ bool LinkLayerController::ProcessIncomingLegacyConnectRequest(
   };
 
   if (legacy_advertiser_.GetAdvertisingAddress() != advertising_address) {
+    LOG_INFO(
+        "LE Connect request ignored by legacy advertiser because the "
+        "advertising address %s(%hhx) does not match %s(%hhx)",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType(),
+        legacy_advertiser_.GetAdvertisingAddress().ToString().c_str(),
+        legacy_advertiser_.GetAdvertisingAddress().GetAddressType());
     return false;
   }
 
@@ -3054,10 +3208,26 @@ bool LinkLayerController::ProcessIncomingLegacyConnectRequest(
       ResolvePrivateAddress(initiating_address, IrkSelection::Peer)
           .value_or(initiating_address);
 
+  if (resolved_initiating_address != initiating_address) {
+    LOG_INFO("Resolved the initiating address %s(%hhx) to %s(%hhx)",
+             initiating_address.ToString().c_str(),
+             initiating_address.GetAddressType(),
+             resolved_initiating_address.ToString().c_str(),
+             resolved_initiating_address.GetAddressType());
+  }
+
   // When the Link Layer is [...] connectable directed advertising events the
   // advertising filter policy shall be ignored.
   if (legacy_advertiser_.IsDirected()) {
     if (legacy_advertiser_.GetTargetAddress() != resolved_initiating_address) {
+      LOG_INFO(
+          "LE Connect request ignored by legacy advertiser because the "
+          "initiating address %s(%hhx) does not match the target address "
+          "%s(%hhx)",
+          resolved_initiating_address.ToString().c_str(),
+          resolved_initiating_address.GetAddressType(),
+          legacy_advertiser_.GetTargetAddress().ToString().c_str(),
+          legacy_advertiser_.GetTargetAddress().GetAddressType());
       return false;
     }
   } else {
@@ -3070,11 +3240,22 @@ bool LinkLayerController::ProcessIncomingLegacyConnectRequest(
       case bluetooth::hci::AdvertisingFilterPolicy::LISTED_CONNECT:
       case bluetooth::hci::AdvertisingFilterPolicy::LISTED_SCAN_AND_CONNECT:
         if (!LeFilterAcceptListContainsDevice(resolved_initiating_address)) {
+          LOG_INFO(
+              "LE Connect request ignored by legacy advertiser because the "
+              "initiating address %s(%hhx) is not in the filter accept list",
+              resolved_initiating_address.ToString().c_str(),
+              resolved_initiating_address.GetAddressType());
           return false;
         }
         break;
     }
   }
+
+  LOG_INFO(
+      "Accepting LE Connect request to legacy advertiser from initiating "
+      "address %s(%hhx)",
+      resolved_initiating_address.ToString().c_str(),
+      resolved_initiating_address.GetAddressType());
 
   if (!connections_.CreatePendingLeConnection(
           initiating_address,
@@ -3114,6 +3295,11 @@ bool LinkLayerController::ProcessIncomingExtendedConnectRequest(
     ExtendedAdvertiser& advertiser,
     model::packets::LeConnectView const& connect_ind) {
   if (!advertiser.IsEnabled() || !advertiser.IsConnectable()) {
+    LOG_INFO(
+        "LE Connect request ignored by extended advertiser %d because it is "
+        "not %s",
+        advertiser.advertising_handle,
+        advertiser.IsEnabled() ? "connectable" : "enabled");
     return false;
   }
 
@@ -3128,6 +3314,13 @@ bool LinkLayerController::ProcessIncomingExtendedConnectRequest(
   };
 
   if (advertiser.GetAdvertisingAddress() != advertising_address) {
+    LOG_INFO(
+        "LE Connect request ignored by extended advertiser %d because the "
+        "advertising address %s(%hhx) does not match %s(%hhx)",
+        advertiser.advertising_handle, advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType(),
+        advertiser.GetAdvertisingAddress().ToString().c_str(),
+        advertiser.GetAdvertisingAddress().GetAddressType());
     return false;
   }
 
@@ -3140,10 +3333,27 @@ bool LinkLayerController::ProcessIncomingExtendedConnectRequest(
       ResolvePrivateAddress(initiating_address, IrkSelection::Peer)
           .value_or(initiating_address);
 
+  if (resolved_initiating_address != initiating_address) {
+    LOG_INFO("Resolved the initiating address %s(%hhx) to %s(%hhx)",
+             initiating_address.ToString().c_str(),
+             initiating_address.GetAddressType(),
+             resolved_initiating_address.ToString().c_str(),
+             resolved_initiating_address.GetAddressType());
+  }
+
   // When the Link Layer is [...] connectable directed advertising events the
   // advertising filter policy shall be ignored.
   if (advertiser.IsDirected()) {
     if (advertiser.GetTargetAddress() != resolved_initiating_address) {
+      LOG_INFO(
+          "LE Connect request ignored by extended advertiser %d because the "
+          "initiating address %s(%hhx) does not match the target address "
+          "%s(%hhx)",
+          advertiser.advertising_handle,
+          resolved_initiating_address.ToString().c_str(),
+          resolved_initiating_address.GetAddressType(),
+          advertiser.GetTargetAddress().ToString().c_str(),
+          advertiser.GetTargetAddress().GetAddressType());
       return false;
     }
   } else {
@@ -3156,11 +3366,25 @@ bool LinkLayerController::ProcessIncomingExtendedConnectRequest(
       case bluetooth::hci::AdvertisingFilterPolicy::LISTED_CONNECT:
       case bluetooth::hci::AdvertisingFilterPolicy::LISTED_SCAN_AND_CONNECT:
         if (!LeFilterAcceptListContainsDevice(resolved_initiating_address)) {
+          LOG_INFO(
+              "LE Connect request ignored by extended advertiser %d because "
+              "the initiating address %s(%hhx) is not in the filter accept "
+              "list",
+              advertiser.advertising_handle,
+              resolved_initiating_address.ToString().c_str(),
+              resolved_initiating_address.GetAddressType());
           return false;
         }
         break;
     }
   }
+
+  LOG_INFO(
+      "Accepting LE Connect request to extended advertiser %d from initiating "
+      "address %s(%hhx)",
+      advertiser.advertising_handle,
+      resolved_initiating_address.ToString().c_str(),
+      resolved_initiating_address.GetAddressType());
 
   if (!connections_.CreatePendingLeConnection(
           initiating_address,
@@ -3229,10 +3453,18 @@ void LinkLayerController::IncomingLeConnectCompletePacket(
     model::packets::LinkLayerPacketView incoming) {
   auto complete = model::packets::LeConnectCompleteView::Create(incoming);
   ASSERT(complete.IsValid());
+
+  AddressWithType advertising_address{
+      incoming.GetSourceAddress(), static_cast<bluetooth::hci::AddressType>(
+                                       complete.GetAdvertisingAddressType())};
+
+  LOG_INFO(
+      "Received LE Connect complete response with advertising address %s(%hhx)",
+      advertising_address.ToString().c_str(),
+      advertising_address.GetAddressType());
+
   HandleLeConnection(
-      AddressWithType(incoming.GetSourceAddress(),
-                      static_cast<bluetooth::hci::AddressType>(
-                          complete.GetAdvertisingAddressType())),
+      advertising_address,
       AddressWithType(incoming.GetDestinationAddress(),
                       static_cast<bluetooth::hci::AddressType>(
                           complete.GetInitiatingAddressType())),
@@ -3397,8 +3629,21 @@ void LinkLayerController::ProcessIncomingLegacyScanRequest(
     AddressWithType advertising_address) {
   // Check if the advertising addresses matches the legacy
   // advertising address.
-  if (!legacy_advertiser_.IsEnabled() || !legacy_advertiser_.IsScannable() ||
-      advertising_address != legacy_advertiser_.advertising_address) {
+  if (!legacy_advertiser_.IsEnabled() || !legacy_advertiser_.IsScannable()) {
+    LOG_INFO(
+        "LE Scan request ignored by legacy advertiser because it is not %s",
+        legacy_advertiser_.IsEnabled() ? "scannable" : "enabled");
+    return;
+  }
+
+  if (advertising_address != legacy_advertiser_.advertising_address) {
+    LOG_INFO(
+        "LE Scan request ignored by legacy advertiser because the advertising "
+        "address %s(%hhx) does not match %s(%hhx)",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType(),
+        legacy_advertiser_.GetAdvertisingAddress().ToString().c_str(),
+        legacy_advertiser_.GetAdvertisingAddress().GetAddressType());
     return;
   }
 
@@ -3411,10 +3656,21 @@ void LinkLayerController::ProcessIncomingLegacyScanRequest(
     case bluetooth::hci::AdvertisingFilterPolicy::LISTED_SCAN:
     case bluetooth::hci::AdvertisingFilterPolicy::LISTED_SCAN_AND_CONNECT:
       if (!LeFilterAcceptListContainsDevice(resolved_scanning_address)) {
+        LOG_INFO(
+            "LE Scan request ignored by legacy advertiser because the scanning "
+            "address %s(%hhx) is not in the filter accept list",
+            resolved_scanning_address.ToString().c_str(),
+            resolved_scanning_address.GetAddressType());
         return;
       }
       break;
   }
+
+  LOG_INFO(
+      "Accepting LE Scan request to legacy advertiser from scanning address "
+      "%s(%hhx)",
+      resolved_scanning_address.ToString().c_str(),
+      resolved_scanning_address.GetAddressType());
 
   // Generate the SCAN_RSP packet.
   // Note: If the advertiser processes the scan request, the advertiser’s
@@ -3434,8 +3690,23 @@ void LinkLayerController::ProcessIncomingExtendedScanRequest(
     AddressWithType advertising_address) {
   // Check if the advertising addresses matches the legacy
   // advertising address.
-  if (!advertiser.IsEnabled() || !advertiser.IsScannable() ||
-      advertising_address != advertiser.advertising_address) {
+  if (!advertiser.IsEnabled() || !advertiser.IsScannable()) {
+    LOG_INFO(
+        "LE Scan request ignored by extended advertiser %d because it is not "
+        "%s",
+        advertiser.advertising_handle,
+        advertiser.IsEnabled() ? "scannable" : "enabled");
+    return;
+  }
+
+  if (advertising_address != advertiser.advertising_address) {
+    LOG_INFO(
+        "LE Scan request ignored by extended advertiser %d because the "
+        "advertising address %s(%hhx) does not match %s(%hhx)",
+        advertiser.advertising_handle, advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType(),
+        advertiser.GetAdvertisingAddress().ToString().c_str(),
+        advertiser.GetAdvertisingAddress().GetAddressType());
     return;
   }
 
@@ -3448,6 +3719,12 @@ void LinkLayerController::ProcessIncomingExtendedScanRequest(
     case bluetooth::hci::AdvertisingFilterPolicy::LISTED_SCAN:
     case bluetooth::hci::AdvertisingFilterPolicy::LISTED_SCAN_AND_CONNECT:
       if (!LeFilterAcceptListContainsDevice(resolved_scanning_address)) {
+        LOG_INFO(
+            "LE Scan request ignored by extended advertiser %d because the "
+            "scanning address %s(%hhx) is not in the filter accept list",
+            advertiser.advertising_handle,
+            resolved_scanning_address.ToString().c_str(),
+            resolved_scanning_address.GetAddressType());
         return;
       }
       break;
@@ -3457,8 +3734,23 @@ void LinkLayerController::ProcessIncomingExtendedScanRequest(
   // scannable directed event types.
   if (advertiser.IsDirected() &&
       advertiser.target_address != resolved_scanning_address) {
+    LOG_INFO(
+        "LE Scan request ignored by extended advertiser %d because the "
+        "scanning address %s(%hhx) does not match the target address %s(%hhx)",
+        advertiser.advertising_handle,
+        resolved_scanning_address.ToString().c_str(),
+        resolved_scanning_address.GetAddressType(),
+        advertiser.GetTargetAddress().ToString().c_str(),
+        advertiser.GetTargetAddress().GetAddressType());
     return;
   }
+
+  LOG_INFO(
+      "Accepting LE Scan request to extended advertiser %d from scanning "
+      "address %s(%hhx)",
+      advertiser.advertising_handle,
+      resolved_scanning_address.ToString().c_str(),
+      resolved_scanning_address.GetAddressType());
 
   // Generate the SCAN_RSP packet.
   // Note: If the advertiser processes the scan request, the advertiser’s
@@ -3496,6 +3788,14 @@ void LinkLayerController::IncomingLeScanPacket(
       ResolvePrivateAddress(scanning_address, IrkSelection::Peer)
           .value_or(scanning_address);
 
+  if (resolved_scanning_address != scanning_address) {
+    LOG_INFO("Resolved the scanning address %s(%hhx) to %s(%hhx)",
+             scanning_address.ToString().c_str(),
+             scanning_address.GetAddressType(),
+             resolved_scanning_address.ToString().c_str(),
+             resolved_scanning_address.GetAddressType());
+  }
+
   ProcessIncomingLegacyScanRequest(scanning_address, resolved_scanning_address,
                                    advertising_address);
   for (auto& [_, advertiser] : extended_advertisers_) {
@@ -3511,6 +3811,14 @@ void LinkLayerController::IncomingLeScanResponsePacket(
   ASSERT(scan_response.IsValid());
 
   if (!scanner_.IsEnabled()) {
+    LOG_INFO("LE Scan response ignored by scanner because it is not enabled");
+    return;
+  }
+
+  if (!scanner_.pending_scan_request) {
+    LOG_INFO(
+        "LE Scan response ignored by scanner because no request is currently "
+        "pending");
     return;
   }
 
@@ -3518,17 +3826,37 @@ void LinkLayerController::IncomingLeScanResponsePacket(
       scan_response.GetSourceAddress(),
       static_cast<AddressType>(scan_response.GetAdvertisingAddressType())};
 
-  AddressWithType resolved_advertising_address =
-      ResolvePrivateAddress(advertising_address, IrkSelection::Peer)
-          .value_or(advertising_address);
-
   // If the advertiser processes the scan request, the advertiser’s device
   // address (AdvA field) in the scan response PDU shall be the same as the
   // advertiser’s device address (AdvA field) in the scan request PDU to which
   // it is responding.
   if (advertising_address != scanner_.pending_scan_request) {
+    LOG_INFO(
+        "LE Scan response ignored by scanner because the advertising address "
+        "%s(%hhx) does not match the pending request %s(%hhx)",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType(),
+        scanner_.pending_scan_request.value().ToString().c_str(),
+        scanner_.pending_scan_request.value().GetAddressType());
     return;
   }
+
+  AddressWithType resolved_advertising_address =
+      ResolvePrivateAddress(advertising_address, IrkSelection::Peer)
+          .value_or(advertising_address);
+
+  if (advertising_address != resolved_advertising_address) {
+    LOG_INFO("Resolved the advertising address %s(%hhx) to %s(%hhx)",
+             advertising_address.ToString().c_str(),
+             advertising_address.GetAddressType(),
+             resolved_advertising_address.ToString().c_str(),
+             resolved_advertising_address.GetAddressType());
+    return;
+  }
+
+  LOG_INFO("Accepting LE Scan response from advertising address %s(%hhx)",
+           resolved_advertising_address.ToString().c_str(),
+           resolved_advertising_address.GetAddressType());
 
   scanner_.pending_scan_request = {};
 
