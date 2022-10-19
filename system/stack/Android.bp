@@ -208,6 +208,8 @@ cc_library_static {
     whole_static_libs: [
         "libldacBT_abr",
         "libldacBT_enc",
+        "libaptx_enc",
+        "libaptxhd_enc",
     ],
     host_supported: true,
     min_sdk_version: "Tiramisu"
