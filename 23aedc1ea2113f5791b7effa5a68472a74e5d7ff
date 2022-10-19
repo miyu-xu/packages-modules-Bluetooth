@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90ce0b7f_62cf4f26",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-19T20:37:38Z",
+      "side": 1,
+      "message": "The transport should actualy be CLASSIC, callback have _br_ in name.\nWe don\u0027t care if classic connection failed or succeeded, or error codes., the pairing happens on LE link.",
+      "parentUuid": "1d89560d_4818719c",
+      "range": {
+        "startLine": 253,
+        "startChar": 38,
+        "endLine": 253,
+        "endChar": 53
+      },
+      "revId": "23aedc1ea2113f5791b7effa5a68472a74e5d7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea65c458_511d5314",
         "filename": "system/stack/smp/smp_l2c.cc",
         "patchSetId": 2
