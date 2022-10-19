@@ -177,6 +177,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e8ef112_28ee2f26",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-19T04:06:24Z",
+      "side": 1,
+      "message": "Oh, I thought the entries has order (since it is named as \u0027queue\u0027), but it seems not 😊",
+      "parentUuid": "407a447f_6658247c",
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "073a209a_1ce43f42",
