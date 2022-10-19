@@ -16,6 +16,47 @@
       "message": "Passing submit pdus with type cdma result in \"\" after decoding, even when I put in submitPdus obtained from the BluetoothMapSmsPdu.getSubmitPdus(). I don\u0027t know if this is the desired behavior, but wrote the test based on how it behaves right now.",
       "revId": "f655b8bdd19d554952cb14f2cc90a7be6e202ca1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4934bac2_12b79ce9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSmsPduTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-19T04:12:17Z",
+      "side": 1,
+      "message": "Hmm.. then let\u0027s remove the L146 and L147 since it does not affect the coverage.",
+      "parentUuid": "3f8bdc35_ead5774b",
+      "revId": "f655b8bdd19d554952cb14f2cc90a7be6e202ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b926cc1_10d69816",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSmsPduTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-19T04:12:17Z",
+      "side": 1,
+      "message": "Q) Are these constants declared as a variable? If so, let\u0027s make them @VisibleForTesting and use them here.",
+      "range": {
+        "startLine": 200,
+        "startChar": 85,
+        "endLine": 200,
+        "endChar": 93
+      },
+      "revId": "f655b8bdd19d554952cb14f2cc90a7be6e202ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
