@@ -275,6 +275,7 @@ DualModeController::DualModeController(const std::string& properties_filename,
   SET_SUPPORTED(LE_CLEAR_RESOLVING_LIST, LeClearResolvingList);
   SET_SUPPORTED(LE_READ_RESOLVING_LIST_SIZE, LeReadResolvingListSize);
   SET_SUPPORTED(LE_READ_MAXIMUM_DATA_LENGTH, LeReadMaximumDataLength);
+  SET_SUPPORTED(LE_READ_PHY, LeReadPhy);
 
   SET_SUPPORTED(LE_SET_EXTENDED_SCAN_PARAMETERS, LeSetExtendedScanParameters);
   SET_SUPPORTED(LE_SET_EXTENDED_SCAN_ENABLE, LeSetExtendedScanEnable);
@@ -2385,6 +2386,19 @@ void DualModeController::LeReadMaximumDataLength(CommandView command) {
   data_length.supported_max_tx_time_ = kLeMaximumDataTime + 10;
   send_event_(bluetooth::hci::LeReadMaximumDataLengthCompleteBuilder::Create(
       kNumCommandPackets, ErrorCode::SUCCESS, data_length));
+}
+
+void DualModeController::LeReadPhy(CommandView command) {
+  auto command_view = gd_hci::LeReadPhyView::Create(
+      gd_hci::LeConnectionManagementCommandView::Create(
+          gd_hci::AclCommandView::Create(command)));
+  ASSERT(command_view.IsValid());
+  // TODO: check the actual PHY used for the connection, the user has some
+  // control of it through other commands.
+  send_event_(bluetooth::hci::LeReadPhyCompleteBuilder::Create(
+      kNumCommandPackets, ErrorCode::SUCCESS,
+      command_view.GetConnectionHandle(), bluetooth::hci::PhyType::LE_1M,
+      bluetooth::hci::PhyType::LE_1M));
 }
 
 void DualModeController::LeReadSuggestedDefaultDataLength(CommandView command) {

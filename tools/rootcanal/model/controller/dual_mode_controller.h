@@ -541,6 +541,9 @@ class DualModeController : public Device {
   // 7.8.46
   void LeReadMaximumDataLength(CommandView args);
 
+  // 7.8.47
+  void LeReadPhy(CommandView args);
+
   // 7.8.52
   void LeSetAdvertisingSetRandomAddress(CommandView args);
 
