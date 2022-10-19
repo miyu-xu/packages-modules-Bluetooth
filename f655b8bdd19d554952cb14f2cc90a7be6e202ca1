@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65847688_27ca6e24",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSmsPduTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-19T08:11:55Z",
+      "side": 1,
+      "message": "Got it. Removed!",
+      "parentUuid": "4934bac2_12b79ce9",
+      "revId": "f655b8bdd19d554952cb14f2cc90a7be6e202ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b926cc1_10d69816",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-10-19T04:12:17Z",
       "side": 1,
       "message": "Q) Are these constants declared as a variable? If so, let\u0027s make them @VisibleForTesting and use them here.",
+      "range": {
+        "startLine": 200,
+        "startChar": 85,
+        "endLine": 200,
+        "endChar": 93
+      },
+      "revId": "f655b8bdd19d554952cb14f2cc90a7be6e202ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe911672_c4ea11c6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSmsPduTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-19T08:11:55Z",
+      "side": 1,
+      "message": "They are not declared as a variable and assigned as new string inside the function :( (https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapSmsPdu.java;l\u003d470;bpv\u003d0;bpt\u003d1)",
+      "parentUuid": "1b926cc1_10d69816",
       "range": {
         "startLine": 200,
         "startChar": 85,
