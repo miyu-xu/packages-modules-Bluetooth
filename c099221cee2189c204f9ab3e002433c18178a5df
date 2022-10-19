@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8afa595_ab13e745",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-19T00:19:04Z",
+      "side": 1,
+      "message": "Whoops sorry I meant we only need cdm check for the setter. The getter should mirror the broadcast intent which only requires BLUETOOTH_CONNECT.",
+      "revId": "c099221cee2189c204f9ab3e002433c18178a5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
