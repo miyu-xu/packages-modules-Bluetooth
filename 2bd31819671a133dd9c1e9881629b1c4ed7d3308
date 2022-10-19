@@ -191,6 +191,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "781399d3_6800e178",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-19T18:49:27Z",
+      "side": 1,
+      "message": "+1 This also make a separate conditional unit that can be tested directly.\n\ne.g.\n\nif (is_device_LE_audio_capable()) {\n      LOG_INFO(\"LE Audio \u0026\u0026 advertising over LE, use LE transport for Bonding\");\n      transport \u003d BT_TRANSPORT_LE;\n}\n\n...\n\nbool is_device_LE_audio_capable(...) {\n  bool is_le_capable \u003d false;\n if (transport \u003d\u003d BT_TRANSPORT_AUTO \u0026\u0026\n      LeAudioClient::IsLeAudioClientRunning() \u0026\u0026 check_cod_le_audio(bd_addr)) {\n    tBT_DEVICE_TYPE tmp_dev_type;\n    tBLE_ADDR_TYPE addr_type \u003d BLE_ADDR_PUBLIC;\n    BTM_ReadDevInfo(bd_addr, \u0026tmp_dev_type, \u0026addr_type);\n\n    is_le_capable \u003d (tmp_dev_type \u0026 BT_DEVICE_TYPE_BLE);\n    if (!is_le_capable) {\n      int device_type \u003d 0;\n      std::string addrstr \u003d bd_addr.ToString();\n      const char* bdstr \u003d addrstr.c_str();\n      btif_config_get_int(bdstr, \"DevType\", \u0026device_type);\n      is_le_capable \u003d\n          ((device_type \u0026 BT_DEVICE_TYPE_BLE) \u003d\u003d BT_DEVICE_TYPE_BLE);\n    }\n  return is_le_capable;\n}",
+      "parentUuid": "8c6f5d88_3c045b64",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44534430_99ab73be",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 6
