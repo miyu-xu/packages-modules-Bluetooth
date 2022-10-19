@@ -16,6 +16,24 @@
       "message": "May want to get rid of these `CHROMIUM` prefixes since this is the upstream patch.",
       "revId": "346aca27ee55289396a60a9d8b8dd17dfdf19367",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dccd94dc_a82e51a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-10-19T04:03:43Z",
+      "side": 1,
+      "message": "Right, sorry. Cherry-pick went wrong.",
+      "parentUuid": "d1cc8829_35b634be",
+      "revId": "346aca27ee55289396a60a9d8b8dd17dfdf19367",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
