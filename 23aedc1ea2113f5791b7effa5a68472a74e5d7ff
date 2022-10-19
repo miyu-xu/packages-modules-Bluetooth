@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b6f979c_ccca725e",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-19T21:00:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90ce0b7f_62cf4f26",
+      "range": {
+        "startLine": 253,
+        "startChar": 38,
+        "endLine": 253,
+        "endChar": 53
+      },
+      "revId": "23aedc1ea2113f5791b7effa5a68472a74e5d7ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea65c458_511d5314",
