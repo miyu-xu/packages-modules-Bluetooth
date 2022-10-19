@@ -195,6 +195,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "086023fd_f724069a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanFilterQueueTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-10-19T04:07:36Z",
+      "side": 1,
+      "message": "Haha yeah! That was an interesting debugging experience for me as well. :)",
+      "parentUuid": "4e8ef112_28ee2f26",
+      "revId": "8e9ad395fb38d50807d1ac411d66b5d2990b89f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "073a209a_1ce43f42",
