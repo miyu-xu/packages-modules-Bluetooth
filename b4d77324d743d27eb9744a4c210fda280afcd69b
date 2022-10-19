@@ -34,6 +34,24 @@
       "parentUuid": "acd6df0d_568f1587",
       "revId": "b4d77324d743d27eb9744a4c210fda280afcd69b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb2c6cb2_96c35ddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-19T17:04:18Z",
+      "side": 1,
+      "message": "Patchset 1 still appears to check pixel data, with a few fail-fast mechanics. The previous `sameAs` call _also_ does pixel-by-pixel comparison, which was deemed slow/the cause of the log spam:\nhttps://source.corp.google.com/android/frameworks/base/graphics/java/android/graphics/Bitmap.java;l\u003d2223?q\u003dBitmap%20sameAs\u0026sq\u003dpackage:%5Eandroid$\n\nIf the goal is to just get rid of the spam by rolling our own sameAs, then PS1 will work. If the goal is to improve a speed metric here then it may not be all that much better. If the goal is to work well with media apps at any cost, then PS1 will probably do the trick. If we want something in between (fast enough and works with most apps) then the null check is definitely something we want and dimension check is a nice to have/sanity check.\n\nI agree with Jakub\u0027s note too that that type of logic probably belongs on the Image object itself too if its more than just a null check.",
+      "parentUuid": "cce87fa8_9fbbe358",
+      "revId": "b4d77324d743d27eb9744a4c210fda280afcd69b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
