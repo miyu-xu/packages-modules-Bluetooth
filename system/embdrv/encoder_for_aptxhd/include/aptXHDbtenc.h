@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
  *
- *  This file exposes a public interface to allow clients to invoke aptX HD 
+ *  This file exposes a public interface to allow clients to invoke aptX HD
  *  encoding on 4 new PCM samples, generating 2 new codeword (one for the
  *  left channel and one for the right channel).
  *
@@ -16,13 +16,12 @@ extern "C" {
 #ifdef _DLLEXPORT
 #define APTXHDBTENCEXPORT __declspec(dllexport)
 #else
-#define APTXHDBTENCEXPORT 
+#define APTXHDBTENCEXPORT
 #endif
-
 
 /* SizeofAptxhdbtenc returns the size (in byte) of the memory
  * allocation required to store the state of the encoder */
-APTXHDBTENCEXPORT int SizeofAptxhdbtenc (void);
+APTXHDBTENCEXPORT int SizeofAptxhdbtenc(void);
 
 /* aptxhdbtenc_version can be used to extract the version number
  * of the aptX HD encoder */
@@ -39,11 +38,11 @@ APTXHDBTENCEXPORT int aptxhdbtenc_init(void* _state, short endian);
 /* StereoEncode will take 8 audio samples (24-bit per sample)
  * and generate one 24-bit codeword with autosync inserted.
  * The bitstream is compatible with be BC05 implementation. */
-APTXHDBTENCEXPORT int aptxhdbtenc_encodestereo(void* _state, void* _pcmL, void* _pcmR, void* _buffer);
-
+APTXHDBTENCEXPORT int aptxhdbtenc_encodestereo(void* _state, void* _pcmL,
+                                               void* _pcmR, void* _buffer);
 
 #ifdef __cplusplus
-} //  /extern "C"
+}  //  /extern "C"
 #endif
 
-#endif //APTXHDBTENC_H
+#endif  // APTXHDBTENC_H
