@@ -18,15 +18,17 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothManager
 import android.content.Context
-
-import pandora.AVRCPGrpc.AVRCPImplBase
-import pandora.AvrcpProto.*
-import com.google.protobuf.Empty
-
+import android.content.Intent
+import android.media.*
+import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import pandora.AVRCPGrpc.AVRCPImplBase
+import pandora.AvrcpProto.*
+import com.google.protobuf.Empty
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Avrcp(val context: Context) : AVRCPImplBase() {
@@ -37,14 +39,50 @@ class Avrcp(val context: Context) : AVRCPImplBase() {
   private val bluetoothManager =
     context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
   private val bluetoothAdapter = bluetoothManager.adapter
+  private var audioTrack: AudioTrack? = null
 
   init {
     // Init the CoroutineScope
     scope = CoroutineScope(Dispatchers.Default)
+    context.startService(Intent(context, AvrcpBrowserService::class.java))
+    scope.launch { initAudio() }
+  }
+
+  suspend fun initAudio() {
+    // Starting audio for a while to make the Mediasession as active session.
+    // Without playing audio the media button events are not received
+    if (audioTrack == null) {
+      audioTrack = buildAudioTrack()
+    }
+    audioTrack?.play()
+    delay(100)
+    audioTrack?.pause()
   }
 
   fun deinit() {
     // Deinit the CoroutineScope
     scope.cancel()
+    // Stop service
+    context.stopService(Intent(context, AvrcpBrowserService::class.java))
+  }
+
+  override fun setPlaybackState(
+    request: setPlaybackStateRequest,
+    responseObserver: StreamObserver<setPlaybackStateResponse>
+  ) {
+    grpcUnary<setPlaybackStateResponse>(scope, responseObserver) {
+      AvrcpBrowserService.instance.setPlaybackState(request.state.getNumber())
+      setPlaybackStateResponse.getDefaultInstance()
+    }
+  }
+
+  override fun setLargeMetadata(
+    request: Empty,
+    responseObserver: StreamObserver<Empty>
+  ) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      AvrcpBrowserService.instance.setLargeMetadata()
+      Empty.getDefaultInstance()
+    }
   }
 }
