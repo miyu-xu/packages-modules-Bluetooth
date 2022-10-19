@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7346df85_4ed95ca0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-19T10:54:35Z",
+      "side": 1,
+      "message": "This is actually making situation worse on some devices, we should have a timer, and if pairing doesn\u0027t go through in 30 seconds return the error. returning error immediately can result in disconnection",
+      "revId": "0653f57cda21e59ad988786618147261e3b79018",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
