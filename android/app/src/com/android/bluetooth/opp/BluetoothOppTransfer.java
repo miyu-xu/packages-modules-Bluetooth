@@ -52,8 +52,10 @@ import android.os.ParcelUuid;
 import android.os.Process;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.Utils;
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.ObexTransport;
 
 import java.io.IOException;
@@ -63,18 +65,15 @@ import java.io.IOException;
  * disconnect)
  */
 public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatchListener {
+    @VisibleForTesting
+    static final int TRANSPORT_ERROR = 10;
+    @VisibleForTesting
+    static final int TRANSPORT_CONNECTED = 11;
+    @VisibleForTesting
+    static final int SOCKET_ERROR_RETRY = 13;
     private static final String TAG = "BtOppTransfer";
-
     private static final boolean D = Constants.DEBUG;
-
     private static final boolean V = Constants.VERBOSE;
-
-    private static final int TRANSPORT_ERROR = 10;
-
-    private static final int TRANSPORT_CONNECTED = 11;
-
-    private static final int SOCKET_ERROR_RETRY = 13;
-
     private static final int CONNECT_WAIT_TIMEOUT = 45000;
 
     private static final int CONNECT_RETRY_TIME = 100;
@@ -82,98 +81,18 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
     private static final String SOCKET_LINK_KEY_ERROR = "Invalid exchange";
 
     private static final Object INSTANCE_LOCK = new Object();
-
+    @VisibleForTesting
+    SocketConnectThread mConnectThread;
     private Context mContext;
-
     private BluetoothAdapter mAdapter;
-
     private BluetoothDevice mDevice;
-
     private BluetoothOppBatch mBatch;
-
     private BluetoothOppObexSession mSession;
-
     private BluetoothOppShareInfo mCurrentShare;
-
     private ObexTransport mTransport;
-
     private HandlerThread mHandlerThread;
-
     private EventHandler mSessionHandler;
-
     private long mTimestamp;
-
-    private class OppConnectionReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (D) {
-                Log.d(TAG, " Action :" + action);
-            }
-            if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                if (device == null || mBatch == null || mCurrentShare == null) {
-                    Log.e(TAG, "device : " + device + " mBatch :" + mBatch + " mCurrentShare :"
-                            + mCurrentShare);
-                    return;
-                }
-                try {
-                    if (V) {
-                        Log.v(TAG, "Device :" + device + "- OPP device: " + mBatch.mDestination
-                                + " \n mCurrentShare.mConfirm == " + mCurrentShare.mConfirm);
-                    }
-                    if ((device.equals(mBatch.mDestination)) && (mCurrentShare.mConfirm
-                            == BluetoothShare.USER_CONFIRMATION_PENDING)) {
-                        if (V) {
-                            Log.v(TAG, "ACTION_ACL_DISCONNECTED to be processed for batch: "
-                                    + mBatch.mId);
-                        }
-                        // Remove the timeout message triggered earlier during Obex Put
-                        mSessionHandler.removeMessages(BluetoothOppObexSession.MSG_CONNECT_TIMEOUT);
-                        // Now reuse the same message to clean up the session.
-                        mSessionHandler.sendMessage(mSessionHandler.obtainMessage(
-                                BluetoothOppObexSession.MSG_CONNECT_TIMEOUT));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (action.equals(BluetoothDevice.ACTION_SDP_RECORD)) {
-                ParcelUuid uuid = intent.getParcelableExtra(BluetoothDevice.EXTRA_UUID);
-                if (D) {
-                    Log.d(TAG, "Received UUID: " + uuid.toString());
-                    Log.d(TAG, "expected UUID: " + BluetoothUuid.OBEX_OBJECT_PUSH.toString());
-                }
-                if (uuid.equals(BluetoothUuid.OBEX_OBJECT_PUSH)) {
-                    int status = intent.getIntExtra(BluetoothDevice.EXTRA_SDP_SEARCH_STATUS, -1);
-                    Log.d(TAG, " -> status: " + status);
-                    BluetoothDevice device =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    if (mDevice == null) {
-                        Log.w(TAG, "OPP SDP search, target device is null, ignoring result");
-                        return;
-                    }
-                    if (!device.getAddress().equalsIgnoreCase(mDevice.getAddress())) {
-                        Log.w(TAG, " OPP SDP search for wrong device, ignoring!!");
-                        return;
-                    }
-                    SdpOppOpsRecord record =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_SDP_RECORD);
-                    if (record == null) {
-                        Log.w(TAG, " Invalid SDP , ignoring !!");
-                        markConnectionFailed(null);
-                        return;
-                    }
-                    synchronized (INSTANCE_LOCK) {
-                        mConnectThread =
-                                new SocketConnectThread(mDevice, false, true, record.getL2capPsm());
-                    }
-                    mConnectThread.start();
-                    mDevice = null;
-                }
-            }
-        }
-    }
-
     private OppConnectionReceiver mBluetoothReceiver;
 
     public BluetoothOppTransfer(Context context, BluetoothOppBatch batch,
@@ -194,191 +113,6 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
 
     public int getBatchId() {
         return mBatch.mId;
-    }
-
-    /*
-     * Receives events from mConnectThread & mSession back in the main thread.
-     */
-    private class EventHandler extends Handler {
-        EventHandler(Looper looper) {
-            super(looper);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case SOCKET_ERROR_RETRY:
-                    BluetoothDevice device = (BluetoothDevice) msg.obj;
-                    synchronized (INSTANCE_LOCK) {
-                        mConnectThread = new SocketConnectThread(device, true);
-                        mConnectThread.start();
-                    }
-                    break;
-                case TRANSPORT_ERROR:
-                    /*
-                    * RFCOMM connect fail is for outbound share only! Mark batch
-                    * failed, and all shares in batch failed
-                    */
-                    if (V) {
-                        Log.v(TAG, "receive TRANSPORT_ERROR msg");
-                    }
-                    synchronized (INSTANCE_LOCK) {
-                        mConnectThread = null;
-                    }
-                    markBatchFailed(BluetoothShare.STATUS_CONNECTION_ERROR);
-                    mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
-
-                    break;
-                case TRANSPORT_CONNECTED:
-                    /*
-                    * RFCOMM connected is for outbound share only! Create
-                    * BluetoothOppObexClientSession and start it
-                    */
-                    if (V) {
-                        Log.v(TAG, "Transfer receive TRANSPORT_CONNECTED msg");
-                    }
-                    synchronized (INSTANCE_LOCK) {
-                        mConnectThread = null;
-                    }
-                    mTransport = (ObexTransport) msg.obj;
-                    startObexSession();
-
-                    break;
-                case BluetoothOppObexSession.MSG_SHARE_COMPLETE:
-                    /*
-                    * Put next share if available,or finish the transfer.
-                    * For outbound session, call session.addShare() to send next file,
-                    * or call session.stop().
-                    * For inbounds session, do nothing. If there is next file to receive,it
-                    * will be notified through onShareAdded()
-                    */
-                    BluetoothOppShareInfo info = (BluetoothOppShareInfo) msg.obj;
-                    if (V) {
-                        Log.v(TAG, "receive MSG_SHARE_COMPLETE for info " + info.mId);
-                    }
-                    if (mBatch.mDirection == BluetoothShare.DIRECTION_OUTBOUND) {
-                        mCurrentShare = mBatch.getPendingShare();
-
-                        if (mCurrentShare != null) {
-                            /* we have additional share to process */
-                            if (V) {
-                                Log.v(TAG, "continue session for info " + mCurrentShare.mId
-                                        + " from batch " + mBatch.mId);
-                            }
-                            processCurrentShare();
-                        } else {
-                            /* for outbound transfer, all shares are processed */
-                            if (V) {
-                                Log.v(TAG, "Batch " + mBatch.mId + " is done");
-                            }
-                            mSession.stop();
-                        }
-                    }
-                    break;
-                case BluetoothOppObexSession.MSG_SESSION_COMPLETE:
-                    /*
-                    * Handle session completed status Set batch status to
-                    * finished
-                    */
-                    cleanUp();
-                    BluetoothOppShareInfo info1 = (BluetoothOppShareInfo) msg.obj;
-                    if (V) {
-                        Log.v(TAG, "receive MSG_SESSION_COMPLETE for batch " + mBatch.mId);
-                    }
-                    mBatch.mStatus = Constants.BATCH_STATUS_FINISHED;
-                    /*
-                     * trigger content provider again to know batch status change
-                     */
-                    tickShareStatus(info1);
-                    break;
-
-                case BluetoothOppObexSession.MSG_SESSION_ERROR:
-                    /* Handle the error state of an Obex session */
-                    if (V) {
-                        Log.v(TAG, "receive MSG_SESSION_ERROR for batch " + mBatch.mId);
-                    }
-                    cleanUp();
-                    try {
-                        BluetoothOppShareInfo info2 = (BluetoothOppShareInfo) msg.obj;
-                        if (mSession != null) {
-                            mSession.stop();
-                        }
-                        mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
-                        markBatchFailed(info2.mStatus);
-                        tickShareStatus(mCurrentShare);
-                    } catch (Exception e) {
-                        Log.e(TAG, "Exception while handling MSG_SESSION_ERROR");
-                        e.printStackTrace();
-                    }
-                    break;
-
-                case BluetoothOppObexSession.MSG_SHARE_INTERRUPTED:
-                    if (V) {
-                        Log.v(TAG, "receive MSG_SHARE_INTERRUPTED for batch " + mBatch.mId);
-                    }
-                    BluetoothOppShareInfo info3 = (BluetoothOppShareInfo) msg.obj;
-                    if (mBatch.mDirection == BluetoothShare.DIRECTION_OUTBOUND) {
-                        try {
-                            if (mTransport == null) {
-                                Log.v(TAG, "receive MSG_SHARE_INTERRUPTED but mTransport = null");
-                            } else {
-                                mTransport.close();
-                            }
-                        } catch (IOException e) {
-                            Log.e(TAG, "failed to close mTransport");
-                        }
-                        if (V) {
-                            Log.v(TAG, "mTransport closed ");
-                        }
-                        mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
-                        if (info3 != null) {
-                            markBatchFailed(info3.mStatus);
-                        } else {
-                            markBatchFailed(BluetoothShare.STATUS_UNKNOWN_ERROR);
-                        }
-                        tickShareStatus(mCurrentShare);
-                    }
-                    break;
-
-                case BluetoothOppObexSession.MSG_CONNECT_TIMEOUT:
-                    if (V) {
-                        Log.v(TAG, "receive MSG_CONNECT_TIMEOUT for batch " + mBatch.mId);
-                    }
-                    /* for outbound transfer, the block point is BluetoothSocket.write()
-                     * The only way to unblock is to tear down lower transport
-                     * */
-                    if (mBatch.mDirection == BluetoothShare.DIRECTION_OUTBOUND) {
-                        try {
-                            if (mTransport == null) {
-                                Log.v(TAG, "receive MSG_SHARE_INTERRUPTED but mTransport = null");
-                            } else {
-                                mTransport.close();
-                            }
-                        } catch (IOException e) {
-                            Log.e(TAG, "failed to close mTransport");
-                        }
-                        if (V) {
-                            Log.v(TAG, "mTransport closed ");
-                        }
-                    } else {
-                        /*
-                         * For inbound transfer, the block point is waiting for
-                         * user confirmation we can interrupt it nicely
-                         */
-
-                        // Remove incoming file confirm notification
-                        NotificationManager nm =
-                                mContext.getSystemService(NotificationManager.class);
-                        nm.cancel(mCurrentShare.mId);
-                        // Send intent to UI for timeout handling
-                        Intent in = new Intent(BluetoothShare.USER_CONFIRMATION_TIMEOUT_ACTION);
-                        mContext.sendBroadcast(in);
-
-                        markShareTimeout(mCurrentShare);
-                    }
-                    break;
-            }
-        }
     }
 
     private void markShareTimeout(BluetoothOppShareInfo share) {
@@ -442,31 +176,15 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                         mContext.getContentResolver().delete(info.mUri, null, null);
                     }
                 }
-                mContext.getContentResolver().update(contentUri, updateValues, null, null);
+                BluetoothMethodProxy.getInstance().contentResolverUpdate(
+                        mContext.getContentResolver(),
+                        contentUri, updateValues, null, null);
                 Constants.sendIntentIfCompleted(mContext, contentUri, info.mStatus);
             }
             info = mBatch.getPendingShare();
         }
 
     }
-
-    /*
-     * NOTE
-     * For outbound transfer
-     * 1) Check Bluetooth status
-     * 2) Start handler thread
-     * 3) new a thread to connect to target device
-     * 3.1) Try a few times to do SDP query for target device OPUSH channel
-     * 3.2) Try a few seconds to connect to target socket
-     * 4) After BluetoothSocket is connected,create an instance of RfcommTransport
-     * 5) Create an instance of BluetoothOppClientSession
-     * 6) Start the session and process the first share in batch
-     * For inbound transfer
-     * The transfer already has session and transport setup, just start it
-     * 1) Check Bluetooth status
-     * 2) Start handler thread
-     * 3) Start the session and process the first share in batch
-     */
 
     /**
      * Start the transfer
@@ -477,7 +195,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
          * normally it's impossible to reach here if BT is disabled. Just check
          * for safety
          */
-        if (!mAdapter.isEnabled()) {
+        if (!BluetoothMethodProxy.getInstance().bluetoothAdapterIsEnabled(mAdapter)) {
             Log.e(TAG, "Can't start transfer when Bluetooth is disabled for " + mBatch.mId);
             markBatchFailed(BluetoothShare.STATUS_UNKNOWN_ERROR);
             mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
@@ -506,6 +224,24 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
         }
 
     }
+
+    /*
+     * NOTE
+     * For outbound transfer
+     * 1) Check Bluetooth status
+     * 2) Start handler thread
+     * 3) new a thread to connect to target device
+     * 3.1) Try a few times to do SDP query for target device OPUSH channel
+     * 3.2) Try a few seconds to connect to target socket
+     * 4) After BluetoothSocket is connected,create an instance of RfcommTransport
+     * 5) Create an instance of BluetoothOppClientSession
+     * 6) Start the session and process the first share in batch
+     * For inbound transfer
+     * The transfer already has session and transport setup, just start it
+     * 1) Check Bluetooth status
+     * 2) Start handler thread
+     * 3) Start the session and process the first share in batch
+     */
 
     /**
      * Stop the transfer
@@ -619,6 +355,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
         if (V) {
             Log.v(TAG, "processCurrentShare" + mCurrentShare.mId);
         }
+
         mSession.addShare(mCurrentShare);
         if (mCurrentShare.mConfirm == BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED) {
             confirmStatusChanged();
@@ -660,7 +397,368 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
         }
     }
 
-    private SocketConnectThread mConnectThread;
+    private void markConnectionFailed(BluetoothSocket s) {
+        if (V) {
+            Log.v(TAG, "markConnectionFailed " + s);
+        }
+        try {
+            if (s != null) {
+                s.close();
+            }
+        } catch (IOException e) {
+            if (V) {
+                Log.e(TAG, "Error when close socket");
+            }
+        }
+        mSessionHandler.obtainMessage(TRANSPORT_ERROR).sendToTarget();
+        return;
+    }
+
+    /* update a trivial field of a share to notify Provider the batch status change */
+    private void tickShareStatus(BluetoothOppShareInfo share) {
+        if (share == null) {
+            Log.d(TAG, "Share is null");
+            return;
+        }
+        Uri contentUri = Uri.parse(BluetoothShare.CONTENT_URI + "/" + share.mId);
+        ContentValues updateValues = new ContentValues();
+        updateValues.put(BluetoothShare.DIRECTION, share.mDirection);
+        mContext.getContentResolver().update(contentUri, updateValues, null, null);
+    }
+
+    /**
+     * Process when a share is added to current transfer
+     */
+    @Override
+    public void onShareAdded(int id) {
+        BluetoothOppShareInfo info = mBatch.getPendingShare();
+        if (info.mDirection == BluetoothShare.DIRECTION_INBOUND) {
+            mCurrentShare = mBatch.getPendingShare();
+            /*
+             * TODO what if it's not auto confirmed?
+             */
+            if (mCurrentShare != null && (
+                    mCurrentShare.mConfirm == BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED
+                            || mCurrentShare.mConfirm
+                            == BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED)) {
+                /* have additional auto confirmed share to process */
+                if (V) {
+                    Log.v(TAG, "Transfer continue session for info " + mCurrentShare.mId
+                            + " from batch " + mBatch.mId);
+                }
+                processCurrentShare();
+                confirmStatusChanged();
+            }
+        }
+    }
+
+    /**
+     * Process when a share is deleted from current transfer
+     */
+    @Override
+    public void onShareDeleted(int id) {
+
+    }
+
+    /**
+     * Process when current transfer is canceled
+     */
+    @Override
+    public void onBatchCanceled() {
+        if (V) {
+            Log.v(TAG, "Transfer on Batch canceled");
+        }
+
+        this.stop();
+        mBatch.mStatus = Constants.BATCH_STATUS_FINISHED;
+    }
+
+    /*
+     * Note: For outbound transfer We don't implement this method now. If later
+     * we want to support merging a later added share into an existing session,
+     * we could implement here For inbounds transfer add share means it's
+     * multiple receive in the same session, we should handle it to fill it into
+     * mSession
+     */
+
+    private void cleanUp() {
+        synchronized (this) {
+            try {
+                if (mBluetoothReceiver != null) {
+                    mContext.unregisterReceiver(mBluetoothReceiver);
+                    mBluetoothReceiver = null;
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Exception:unregisterReceiver");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*
+     * NOTE We don't implement this method now. Now delete a single share from
+     * the batch means the whole batch should be canceled. If later we want to
+     * support single cancel, we could implement here For outbound transfer, if
+     * the share is currently in transfer, cancel it For inbounds transfer,
+     * delete share means the current receiving file should be canceled.
+     */
+
+    private class OppConnectionReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (D) {
+                Log.d(TAG, " Action :" + action);
+            }
+            if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                if (device == null || mBatch == null || mCurrentShare == null) {
+                    Log.e(TAG, "device : " + device + " mBatch :" + mBatch + " mCurrentShare :"
+                            + mCurrentShare);
+                    return;
+                }
+                try {
+                    if (V) {
+                        Log.v(TAG, "Device :" + device + "- OPP device: " + mBatch.mDestination
+                                + " \n mCurrentShare.mConfirm == " + mCurrentShare.mConfirm);
+                    }
+                    if ((device.equals(mBatch.mDestination)) && (mCurrentShare.mConfirm
+                            == BluetoothShare.USER_CONFIRMATION_PENDING)) {
+                        if (V) {
+                            Log.v(TAG, "ACTION_ACL_DISCONNECTED to be processed for batch: "
+                                    + mBatch.mId);
+                        }
+                        // Remove the timeout message triggered earlier during Obex Put
+                        mSessionHandler.removeMessages(BluetoothOppObexSession.MSG_CONNECT_TIMEOUT);
+                        // Now reuse the same message to clean up the session.
+                        mSessionHandler.sendMessage(mSessionHandler.obtainMessage(
+                                BluetoothOppObexSession.MSG_CONNECT_TIMEOUT));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (action.equals(BluetoothDevice.ACTION_SDP_RECORD)) {
+                ParcelUuid uuid = intent.getParcelableExtra(BluetoothDevice.EXTRA_UUID);
+                if (D) {
+                    Log.d(TAG, "Received UUID: " + uuid.toString());
+                    Log.d(TAG, "expected UUID: " + BluetoothUuid.OBEX_OBJECT_PUSH.toString());
+                }
+                if (uuid.equals(BluetoothUuid.OBEX_OBJECT_PUSH)) {
+                    int status = intent.getIntExtra(BluetoothDevice.EXTRA_SDP_SEARCH_STATUS, -1);
+                    Log.d(TAG, " -> status: " + status);
+                    BluetoothDevice device =
+                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    if (mDevice == null) {
+                        Log.w(TAG, "OPP SDP search, target device is null, ignoring result");
+                        return;
+                    }
+                    if (!device.getAddress().equalsIgnoreCase(mDevice.getAddress())) {
+                        Log.w(TAG, " OPP SDP search for wrong device, ignoring!!");
+                        return;
+                    }
+                    SdpOppOpsRecord record =
+                            intent.getParcelableExtra(BluetoothDevice.EXTRA_SDP_RECORD);
+                    if (record == null) {
+                        Log.w(TAG, " Invalid SDP , ignoring !!");
+                        markConnectionFailed(null);
+                        return;
+                    }
+                    synchronized (INSTANCE_LOCK) {
+                        mConnectThread =
+                                new SocketConnectThread(mDevice, false, true, record.getL2capPsm());
+                    }
+                    mConnectThread.start();
+                    mDevice = null;
+                }
+            }
+        }
+    }
+
+    /*
+     * Receives events from mConnectThread & mSession back in the main thread.
+     */
+    @VisibleForTesting
+    class EventHandler extends Handler {
+        EventHandler(Looper looper) {
+            super(looper);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SOCKET_ERROR_RETRY:
+                    BluetoothDevice device = (BluetoothDevice) msg.obj;
+                    synchronized (INSTANCE_LOCK) {
+                        mConnectThread = new SocketConnectThread(device, true);
+                        mConnectThread.start();
+                    }
+                    break;
+                case TRANSPORT_ERROR:
+                    /*
+                     * RFCOMM connect fail is for outbound share only! Mark batch
+                     * failed, and all shares in batch failed
+                     */
+                    if (V) {
+                        Log.v(TAG, "receive TRANSPORT_ERROR msg");
+                    }
+                    synchronized (INSTANCE_LOCK) {
+                        mConnectThread = null;
+                    }
+                    markBatchFailed(BluetoothShare.STATUS_CONNECTION_ERROR);
+                    mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
+
+                    break;
+                case TRANSPORT_CONNECTED:
+                    /*
+                     * RFCOMM connected is for outbound share only! Create
+                     * BluetoothOppObexClientSession and start it
+                     */
+                    if (V) {
+                        Log.v(TAG, "Transfer receive TRANSPORT_CONNECTED msg");
+                    }
+                    synchronized (INSTANCE_LOCK) {
+                        mConnectThread = null;
+                    }
+                    mTransport = (ObexTransport) msg.obj;
+                    startObexSession();
+
+                    break;
+                case BluetoothOppObexSession.MSG_SHARE_COMPLETE:
+                    /*
+                     * Put next share if available,or finish the transfer.
+                     * For outbound session, call session.addShare() to send next file,
+                     * or call session.stop().
+                     * For inbounds session, do nothing. If there is next file to receive,it
+                     * will be notified through onShareAdded()
+                     */
+                    BluetoothOppShareInfo info = (BluetoothOppShareInfo) msg.obj;
+                    if (V) {
+                        Log.v(TAG, "receive MSG_SHARE_COMPLETE for info " + info.mId);
+                    }
+                    if (mBatch.mDirection == BluetoothShare.DIRECTION_OUTBOUND) {
+                        mCurrentShare = mBatch.getPendingShare();
+
+                        if (mCurrentShare != null) {
+                            /* we have additional share to process */
+                            if (V) {
+                                Log.v(TAG, "continue session for info " + mCurrentShare.mId
+                                        + " from batch " + mBatch.mId);
+                            }
+                            processCurrentShare();
+                        } else {
+                            /* for outbound transfer, all shares are processed */
+                            if (V) {
+                                Log.v(TAG, "Batch " + mBatch.mId + " is done");
+                            }
+                            mSession.stop();
+                        }
+                    }
+                    break;
+                case BluetoothOppObexSession.MSG_SESSION_COMPLETE:
+                    /*
+                     * Handle session completed status Set batch status to
+                     * finished
+                     */
+                    cleanUp();
+                    BluetoothOppShareInfo info1 = (BluetoothOppShareInfo) msg.obj;
+                    if (V) {
+                        Log.v(TAG, "receive MSG_SESSION_COMPLETE for batch " + mBatch.mId);
+                    }
+                    mBatch.mStatus = Constants.BATCH_STATUS_FINISHED;
+                    /*
+                     * trigger content provider again to know batch status change
+                     */
+                    tickShareStatus(info1);
+                    break;
+
+                case BluetoothOppObexSession.MSG_SESSION_ERROR:
+                    /* Handle the error state of an Obex session */
+                    if (V) {
+                        Log.v(TAG, "receive MSG_SESSION_ERROR for batch " + mBatch.mId);
+                    }
+                    cleanUp();
+                    try {
+                        BluetoothOppShareInfo info2 = (BluetoothOppShareInfo) msg.obj;
+                        if (mSession != null) {
+                            mSession.stop();
+                        }
+                        mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
+                        markBatchFailed(info2.mStatus);
+                        tickShareStatus(mCurrentShare);
+                    } catch (Exception e) {
+                        Log.e(TAG, "Exception while handling MSG_SESSION_ERROR");
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case BluetoothOppObexSession.MSG_SHARE_INTERRUPTED:
+                    if (V) {
+                        Log.v(TAG, "receive MSG_SHARE_INTERRUPTED for batch " + mBatch.mId);
+                    }
+                    BluetoothOppShareInfo info3 = (BluetoothOppShareInfo) msg.obj;
+                    if (mBatch.mDirection == BluetoothShare.DIRECTION_OUTBOUND) {
+                        try {
+                            if (mTransport == null) {
+                                Log.v(TAG, "receive MSG_SHARE_INTERRUPTED but mTransport = null");
+                            } else {
+                                mTransport.close();
+                            }
+                        } catch (IOException e) {
+                            Log.e(TAG, "failed to close mTransport");
+                        }
+                        if (V) {
+                            Log.v(TAG, "mTransport closed ");
+                        }
+                        mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
+                        if (info3 != null) {
+                            markBatchFailed(info3.mStatus);
+                        } else {
+                            markBatchFailed(BluetoothShare.STATUS_UNKNOWN_ERROR);
+                        }
+                        tickShareStatus(mCurrentShare);
+                    }
+                    break;
+
+                case BluetoothOppObexSession.MSG_CONNECT_TIMEOUT:
+                    if (V) {
+                        Log.v(TAG, "receive MSG_CONNECT_TIMEOUT for batch " + mBatch.mId);
+                    }
+                    /* for outbound transfer, the block point is BluetoothSocket.write()
+                     * The only way to unblock is to tear down lower transport
+                     */
+                    if (mBatch.mDirection == BluetoothShare.DIRECTION_OUTBOUND) {
+                        try {
+                            if (mTransport == null) {
+                                Log.v(TAG, "receive MSG_SHARE_INTERRUPTED but mTransport = null");
+                            } else {
+                                mTransport.close();
+                            }
+                        } catch (IOException e) {
+                            Log.e(TAG, "failed to close mTransport");
+                        }
+                        if (V) {
+                            Log.v(TAG, "mTransport closed ");
+                        }
+                    } else {
+                        /*
+                         * For inbound transfer, the block point is waiting for
+                         * user confirmation we can interrupt it nicely
+                         */
+
+                        // Remove incoming file confirm notification
+                        NotificationManager nm =
+                                mContext.getSystemService(NotificationManager.class);
+                        nm.cancel(mCurrentShare.mId);
+                        // Send intent to UI for timeout handling
+                        Intent in = new Intent(BluetoothShare.USER_CONFIRMATION_TIMEOUT_ACTION);
+                        mContext.sendBroadcast(in);
+
+                        markShareTimeout(mCurrentShare);
+                    }
+                    break;
+            }
+        }
+    }
 
     private class SocketConnectThread extends Thread {
         private final String mHost;
@@ -832,112 +930,6 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                 }
                 connectRfcommSocket();
                 return;
-            }
-        }
-    }
-
-    private void markConnectionFailed(BluetoothSocket s) {
-        if (V) {
-            Log.v(TAG, "markConnectionFailed " + s);
-        }
-        try {
-            if (s != null) {
-                s.close();
-            }
-        } catch (IOException e) {
-            if (V) {
-                Log.e(TAG, "Error when close socket");
-            }
-        }
-        mSessionHandler.obtainMessage(TRANSPORT_ERROR).sendToTarget();
-        return;
-    }
-
-    /* update a trivial field of a share to notify Provider the batch status change */
-    private void tickShareStatus(BluetoothOppShareInfo share) {
-        if (share == null) {
-            Log.d(TAG, "Share is null");
-            return;
-        }
-        Uri contentUri = Uri.parse(BluetoothShare.CONTENT_URI + "/" + share.mId);
-        ContentValues updateValues = new ContentValues();
-        updateValues.put(BluetoothShare.DIRECTION, share.mDirection);
-        mContext.getContentResolver().update(contentUri, updateValues, null, null);
-    }
-
-    /*
-     * Note: For outbound transfer We don't implement this method now. If later
-     * we want to support merging a later added share into an existing session,
-     * we could implement here For inbounds transfer add share means it's
-     * multiple receive in the same session, we should handle it to fill it into
-     * mSession
-     */
-
-    /**
-     * Process when a share is added to current transfer
-     */
-    @Override
-    public void onShareAdded(int id) {
-        BluetoothOppShareInfo info = mBatch.getPendingShare();
-        if (info.mDirection == BluetoothShare.DIRECTION_INBOUND) {
-            mCurrentShare = mBatch.getPendingShare();
-            /*
-             * TODO what if it's not auto confirmed?
-             */
-            if (mCurrentShare != null && (
-                    mCurrentShare.mConfirm == BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED
-                            || mCurrentShare.mConfirm
-                            == BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED)) {
-                /* have additional auto confirmed share to process */
-                if (V) {
-                    Log.v(TAG, "Transfer continue session for info " + mCurrentShare.mId
-                            + " from batch " + mBatch.mId);
-                }
-                processCurrentShare();
-                confirmStatusChanged();
-            }
-        }
-    }
-
-    /*
-     * NOTE We don't implement this method now. Now delete a single share from
-     * the batch means the whole batch should be canceled. If later we want to
-     * support single cancel, we could implement here For outbound transfer, if
-     * the share is currently in transfer, cancel it For inbounds transfer,
-     * delete share means the current receiving file should be canceled.
-     */
-
-    /**
-     * Process when a share is deleted from current transfer
-     */
-    @Override
-    public void onShareDeleted(int id) {
-
-    }
-
-    /**
-     * Process when current transfer is canceled
-     */
-    @Override
-    public void onBatchCanceled() {
-        if (V) {
-            Log.v(TAG, "Transfer on Batch canceled");
-        }
-
-        this.stop();
-        mBatch.mStatus = Constants.BATCH_STATUS_FINISHED;
-    }
-
-    private void cleanUp() {
-        synchronized (this) {
-            try {
-                if (mBluetoothReceiver != null) {
-                    mContext.unregisterReceiver(mBluetoothReceiver);
-                    mBluetoothReceiver = null;
-                }
-            } catch (Exception e) {
-                Log.e(TAG, "Exception:unregisterReceiver");
-                e.printStackTrace();
             }
         }
     }

@@ -37,6 +37,8 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
+
 import java.util.ArrayList;
 
 /**
@@ -59,45 +61,20 @@ import java.util.ArrayList;
 public class BluetoothOppBatch {
     private static final String TAG = "BtOppBatch";
     private static final boolean V = Constants.VERBOSE;
-
-    public int mId;
-    public int mStatus;
-
     public final long mTimestamp;
     public final int mDirection;
     public final BluetoothDevice mDestination;
-
-    private BluetoothOppBatchListener mListener;
-
     private final ArrayList<BluetoothOppShareInfo> mShares;
     private final Context mContext;
-
-    /**
-     * An interface for notifying when BluetoothOppTransferBatch is changed
-     */
-    public interface BluetoothOppBatchListener {
-        /**
-         * Called to notify when a share is added into the batch
-         * @param id , BluetoothOppShareInfo.id
-         */
-        void onShareAdded(int id);
-
-        /**
-         * Called to notify when a share is deleted from the batch
-         * @param id , BluetoothOppShareInfo.id
-         */
-        void onShareDeleted(int id);
-
-        /**
-         * Called to notify when the batch is canceled
-         */
-        void onBatchCanceled();
-    }
+    public int mId;
+    public int mStatus;
+    private BluetoothOppBatchListener mListener;
 
     /**
      * A batch is always created with at least one ShareInfo
+     *
      * @param context, Context
-     * @param info, BluetoothOppShareInfo
+     * @param info,    BluetoothOppShareInfo
      */
     public BluetoothOppBatch(Context context, BluetoothOppShareInfo info) {
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
@@ -148,7 +125,9 @@ public class BluetoothOppBatch {
 
             if (info.mStatus < 200) {
                 if (info.mDirection == BluetoothShare.DIRECTION_INBOUND && info.mUri != null) {
-                    mContext.getContentResolver().delete(info.mUri, null, null);
+                    BluetoothMethodProxy.getInstance().contentResolverDelete(
+                            mContext.getContentResolver(), info.mUri, null, null
+                    );
                 }
                 if (V) {
                     Log.v(TAG, "Cancel batch for info " + info.mId);
@@ -174,20 +153,21 @@ public class BluetoothOppBatch {
         return mShares.size();
     }
 
-    /**
-     * Get the running status of the batch
-     * @return
-     */
-
     /** register a listener for the batch change */
     public void registerListener(BluetoothOppBatchListener listener) {
         mListener = listener;
     }
 
     /**
+     * Get the running status of the batch
+     * @return
+     */
+
+    /**
      * Get the first pending ShareInfo of the batch
+     *
      * @return BluetoothOppShareInfo, for the first pending share, or null if
-     *         none exists
+     * none exists
      */
     public BluetoothOppShareInfo getPendingShare() {
         for (int i = 0; i < mShares.size(); i++) {
@@ -197,5 +177,29 @@ public class BluetoothOppBatch {
             }
         }
         return null;
+    }
+
+    /**
+     * An interface for notifying when BluetoothOppTransferBatch is changed
+     */
+    public interface BluetoothOppBatchListener {
+        /**
+         * Called to notify when a share is added into the batch
+         *
+         * @param id , BluetoothOppShareInfo.id
+         */
+        void onShareAdded(int id);
+
+        /**
+         * Called to notify when a share is deleted from the batch
+         *
+         * @param id , BluetoothOppShareInfo.id
+         */
+        void onShareDeleted(int id);
+
+        /**
+         * Called to notify when the batch is canceled
+         */
+        void onBatchCanceled();
     }
 }
