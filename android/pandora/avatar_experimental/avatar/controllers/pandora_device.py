@@ -104,12 +104,13 @@ class AndroidPandoraDevice(PandoraDevice):
 
 class BumblePandoraDevice(PandoraDevice):
 
-    def __init__(self, server):
+    def __init__(self, server, init_random_address):
         self.server = server
         self.loop = asyncio.get_event_loop()
         self.loop.run_until_complete(self.server.start())
         self.thread = threading.Thread(target=lambda: self.loop.run_forever())
         self.thread.start()
+        self.random_address = init_random_address
 
         super().__init__(f'localhost:{self.server.grpc_port}')
 
@@ -126,4 +127,6 @@ class BumblePandoraDevice(PandoraDevice):
     def create(cls, transport, **kwargs):
         loop = asyncio.get_event_loop()
         server = loop.run_until_complete(BumblePandoraServer.open(0, transport, kwargs))
-        return cls(server)
+        addr = kwargs.get("address", "00:00:00:00:00:00")
+        logging.debug("kwargs address %s", addr)
+        return cls(server, addr)

@@ -20,6 +20,7 @@ from mobly import test_runner, base_test, asserts
 from grpc import RpcError
 
 from avatar.controllers import pandora_device
+from avatar.utils import Address
 
 import google.protobuf.descriptor_pool
 
@@ -66,6 +67,36 @@ class ExampleTest(base_test.BaseTestClass):
 
         response = self.ref.host.ConnectLE(address=dut_address)
         assert response.WhichOneof("result") == "connection"
+
+    def test_le_connect_dut_initiate(self):
+        """
+        REF device advertises, then DUT runs discovery, and connects.
+        """
+        print('test_le_connect_dut_initiate', file=sys.stderr)
+
+        dut_address = self.dut.address
+        ref_address = self.ref.address
+        self.dut.log.debug(f'DUT Address: {dut_address}')
+        self.ref.log.debug(f'REF Address: {ref_address}')
+
+        self.ref.log.debug(f'REF StartAdvertising with random address: {self.ref.random_address}')
+        self.ref.host.StartAdvertising(
+            connectability_mode=ConnectabilityMode.CONNECTABILITY_CONNECTABLE,
+            own_address_type=AddressType.RANDOM,
+        )
+
+        self.dut.log.debug(f'DUT RunDiscovery')
+        discovery_scans = self.dut.host.RunDiscovery()
+        for discovery_scan in discovery_scans:
+            self.dut.log.debug(f'DUT found discovery_scan with address: {Address(discovery_scan.device.address)}')
+            if discovery_scan.device.address == Address(self.ref.random_address):
+                self.dut.log.debug(f'DUT found REF device with random address: {self.ref.random_address}')
+                discovery_scans.cancel()
+                break
+
+        self.dut.log.debug(f'DUT ConnectLE with random address: {self.ref.random_address}')
+        connectLE_response = self.dut.host.ConnectLE(address=Address(self.ref.random_address))
+        assert connectLE_response.WhichOneof("result") == "connection"
 
 
 if __name__ == '__main__':
