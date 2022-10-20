@@ -28,7 +28,7 @@ use num_traits::clamp;
 use rand::rngs::SmallRng;
 use rand::{RngCore, SeedableRng};
 use std::collections::{HashMap, HashSet};
-use std::sync::{Arc, Mutex};
+use std::sync::{Arc, Mutex, MutexGuard};
 use tokio::sync::mpsc::Sender;
 
 struct Client {
@@ -730,16 +730,18 @@ pub struct ScanFilter {
     pub condition: ScanFilterCondition,
 }
 
+type ScannersMap = HashMap<Uuid, ScannerInfo>;
+
 /// Implementation of the GATT API (IBluetoothGatt).
 pub struct BluetoothGatt {
     intf: Arc<Mutex<BluetoothInterface>>,
-    gatt: Option<Gatt>,
+    gatt: Option<Arc<Mutex<Gatt>>>,
     adapter: Option<Arc<Mutex<Box<Bluetooth>>>>,
 
     context_map: ContextMap,
     reliable_queue: HashSet<String>,
     scanner_callbacks: Callbacks<dyn IScannerCallback + Send>,
-    scanners: HashMap<Uuid, ScannerInfo>,
+    scanners: Arc<Mutex<ScannersMap>>,
     advertisers: Advertisers,
 
     // Used for generating random UUIDs. SmallRng is chosen because it is fast, don't use this for
@@ -757,7 +759,7 @@ impl BluetoothGatt {
             context_map: ContextMap::new(tx.clone()),
             reliable_queue: HashSet::new(),
             scanner_callbacks: Callbacks::new(tx.clone(), Message::ScannerCallbackDisconnected),
-            scanners: HashMap::new(),
+            scanners: Arc::new(Mutex::new(HashMap::new())),
             small_rng: SmallRng::from_entropy(),
             advertisers: Advertisers::new(tx.clone()),
         }
@@ -824,7 +826,7 @@ impl BluetoothGatt {
             }),
         };
 
-        self.gatt.as_mut().unwrap().initialize(
+        self.gatt.as_ref().unwrap().lock().unwrap().initialize(
             gatt_client_callbacks_dispatcher,
             gatt_server_callbacks_dispatcher,
             gatt_scanner_callbacks_dispatcher,
@@ -838,6 +840,8 @@ impl BluetoothGatt {
     pub fn remove_scanner_callback(&mut self, callback_id: u32) -> bool {
         let affected_scanner_ids: Vec<u8> = self
             .scanners
+            .lock()
+            .unwrap()
             .iter()
             .filter(|(_uuid, scanner)| scanner.callback_id == callback_id)
             .filter_map(|(_uuid, scanner)| {
@@ -880,20 +884,24 @@ impl BluetoothGatt {
     // Update the topshim's scan state depending on the states of registered scanners. Scan is
     // enabled if there is at least 1 active registered scanner.
     fn update_scan(&mut self) {
-        if self.scanners.values().find(|scanner| scanner.is_active).is_some() {
-            self.gatt.as_mut().unwrap().scanner.start_scan();
+        if self.scanners.lock().unwrap().values().find(|scanner| scanner.is_active).is_some() {
+            self.gatt.as_ref().unwrap().lock().unwrap().scanner.start_scan();
         } else {
-            self.gatt.as_mut().unwrap().scanner.stop_scan();
+            self.gatt.as_ref().unwrap().lock().unwrap().scanner.stop_scan();
         }
     }
 
-    fn find_scanner_by_id(&mut self, scanner_id: u8) -> Option<&mut ScannerInfo> {
-        self.scanners.values_mut().find(|scanner| scanner.scanner_id == Some(scanner_id))
+    fn find_scanner_by_id<'a>(
+        scanners: &'a mut MutexGuard<ScannersMap>,
+        scanner_id: u8,
+    ) -> Option<&'a mut ScannerInfo> {
+        scanners.values_mut().find(|scanner| scanner.scanner_id == Some(scanner_id))
     }
 
     /// Remove an advertiser callback and unregisters all advertising sets associated with that callback.
     pub fn remove_adv_callback(&mut self, callback_id: u32) -> bool {
-        self.advertisers.remove_callback(callback_id, self.gatt.as_mut().unwrap())
+        self.advertisers
+            .remove_callback(callback_id, &mut self.gatt.as_ref().unwrap().lock().unwrap())
     }
 
     fn get_adapter_name(&self) -> String {
@@ -958,23 +966,29 @@ impl IBluetoothGatt for BluetoothGatt {
         self.small_rng.fill_bytes(&mut bytes);
         let uuid = Uuid::from(bytes);
 
-        self.scanners.insert(uuid, ScannerInfo { callback_id, scanner_id: None, is_active: false });
+        self.scanners
+            .lock()
+            .unwrap()
+            .insert(uuid, ScannerInfo { callback_id, scanner_id: None, is_active: false });
 
         // libbluetooth's register_scanner takes a UUID of the scanning application. This UUID does
         // not correspond to higher level concept of "application" so we use random UUID that
         // functions as a unique identifier of the scanner.
-        self.gatt.as_mut().unwrap().scanner.register_scanner(uuid);
+        self.gatt.as_ref().unwrap().lock().unwrap().scanner.register_scanner(uuid);
 
         uuid.uu
     }
 
     fn unregister_scanner(&mut self, scanner_id: u8) -> bool {
-        self.gatt.as_mut().unwrap().scanner.unregister(scanner_id);
+        self.gatt.as_ref().unwrap().lock().unwrap().scanner.unregister(scanner_id);
 
         // The unregistered scanner must also be stopped.
         self.stop_scan(scanner_id);
 
-        self.scanners.retain(|_uuid, scanner| scanner.scanner_id != Some(scanner_id));
+        self.scanners
+            .lock()
+            .unwrap()
+            .retain(|_uuid, scanner| scanner.scanner_id != Some(scanner_id));
 
         true
     }
@@ -989,11 +1003,14 @@ impl IBluetoothGatt for BluetoothGatt {
         // and stop_scan maintains the state of all registered scanners and based on the states
         // update the scanning and/or filter states of libbluetooth.
         // TODO(b/217274432): Honor settings and filters.
-        if let Some(scanner) = self.find_scanner_by_id(scanner_id) {
-            scanner.is_active = true;
-        } else {
-            log::warn!("Scanner {} not found", scanner_id);
-            return BtStatus::Fail;
+        {
+            let mut scanners_lock = self.scanners.lock().unwrap();
+            if let Some(scanner) = Self::find_scanner_by_id(&mut scanners_lock, scanner_id) {
+                scanner.is_active = true;
+            } else {
+                log::warn!("Scanner {} not found", scanner_id);
+                return BtStatus::Fail;
+            }
         }
 
         self.update_scan();
@@ -1001,12 +1018,15 @@ impl IBluetoothGatt for BluetoothGatt {
     }
 
     fn stop_scan(&mut self, scanner_id: u8) -> BtStatus {
-        if let Some(scanner) = self.find_scanner_by_id(scanner_id) {
-            scanner.is_active = false;
-        } else {
-            log::warn!("Scanner {} not found", scanner_id);
-            // Clients can assume success of the removal since the scanner does not exist.
-            return BtStatus::Success;
+        {
+            let mut scanners_lock = self.scanners.lock().unwrap();
+            if let Some(scanner) = Self::find_scanner_by_id(&mut scanners_lock, scanner_id) {
+                scanner.is_active = false;
+            } else {
+                log::warn!("Scanner {} not found", scanner_id);
+                // Clients can assume success of the removal since the scanner does not exist.
+                return BtStatus::Success;
+            }
         }
 
         self.update_scan();
@@ -1028,7 +1048,8 @@ impl IBluetoothGatt for BluetoothGatt {
     }
 
     fn unregister_advertiser_callback(&mut self, callback_id: u32) {
-        self.advertisers.remove_callback(callback_id, self.gatt.as_mut().unwrap());
+        self.advertisers
+            .remove_callback(callback_id, &mut self.gatt.as_ref().unwrap().lock().unwrap());
     }
 
     fn start_advertising_set(
@@ -1061,7 +1082,7 @@ impl IBluetoothGatt for BluetoothGatt {
         let reg_id = s.reg_id();
         self.advertisers.add(s);
 
-        self.gatt.as_mut().unwrap().advertiser.start_advertising_set(
+        self.gatt.as_ref().unwrap().lock().unwrap().advertiser.start_advertising_set(
             reg_id,
             params,
             adv_bytes,
@@ -1081,7 +1102,7 @@ impl IBluetoothGatt for BluetoothGatt {
         }
         let s = s.unwrap().clone();
 
-        self.gatt.as_mut().unwrap().advertiser.unregister(s.adv_id());
+        self.gatt.as_ref().unwrap().lock().unwrap().advertiser.unregister(s.adv_id());
 
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_advertising_set_stopped(advertiser_id);
@@ -1091,7 +1112,7 @@ impl IBluetoothGatt for BluetoothGatt {
 
     fn get_own_address(&mut self, advertiser_id: i32) {
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
-            self.gatt.as_mut().unwrap().advertiser.get_own_address(s.adv_id());
+            self.gatt.as_ref().unwrap().lock().unwrap().advertiser.get_own_address(s.adv_id());
         }
     }
 
@@ -1106,7 +1127,7 @@ impl IBluetoothGatt for BluetoothGatt {
         let adv_events = clamp(max_ext_adv_events, 0, 0xff) as u8;
 
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
-            self.gatt.as_mut().unwrap().advertiser.enable(
+            self.gatt.as_ref().unwrap().lock().unwrap().advertiser.enable(
                 s.adv_id(),
                 enable,
                 adv_timeout,
@@ -1120,7 +1141,11 @@ impl IBluetoothGatt for BluetoothGatt {
         let bytes = data.make_with(&device_name);
 
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
-            self.gatt.as_mut().unwrap().advertiser.set_data(s.adv_id(), false, bytes);
+            self.gatt.as_ref().unwrap().lock().unwrap().advertiser.set_data(
+                s.adv_id(),
+                false,
+                bytes,
+            );
         }
     }
 
@@ -1129,7 +1154,11 @@ impl IBluetoothGatt for BluetoothGatt {
         let bytes = data.make_with(&device_name);
 
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
-            self.gatt.as_mut().unwrap().advertiser.set_data(s.adv_id(), true, bytes);
+            self.gatt.as_ref().unwrap().lock().unwrap().advertiser.set_data(
+                s.adv_id(),
+                true,
+                bytes,
+            );
         }
     }
 
@@ -1141,7 +1170,13 @@ impl IBluetoothGatt for BluetoothGatt {
         let params = parameters.into();
 
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
-            self.gatt.as_mut().unwrap().advertiser.set_parameters(s.adv_id(), params);
+            self.gatt
+                .as_ref()
+                .unwrap()
+                .lock()
+                .unwrap()
+                .advertiser
+                .set_parameters(s.adv_id(), params);
         }
     }
 
@@ -1154,7 +1189,9 @@ impl IBluetoothGatt for BluetoothGatt {
 
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
             self.gatt
-                .as_mut()
+                .as_ref()
+                .unwrap()
+                .lock()
                 .unwrap()
                 .advertiser
                 .set_periodic_advertising_parameters(s.adv_id(), params);
@@ -1166,14 +1203,22 @@ impl IBluetoothGatt for BluetoothGatt {
         let bytes = data.make_with(&device_name);
 
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
-            self.gatt.as_mut().unwrap().advertiser.set_periodic_advertising_data(s.adv_id(), bytes);
+            self.gatt
+                .as_ref()
+                .unwrap()
+                .lock()
+                .unwrap()
+                .advertiser
+                .set_periodic_advertising_data(s.adv_id(), bytes);
         }
     }
 
     fn set_periodic_advertising_enable(&mut self, advertiser_id: i32, enable: bool) {
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
             self.gatt
-                .as_mut()
+                .as_ref()
+                .unwrap()
+                .lock()
                 .unwrap()
                 .advertiser
                 .set_periodic_advertising_enable(s.adv_id(), enable);
@@ -1197,13 +1242,15 @@ impl IBluetoothGatt for BluetoothGatt {
         self.gatt
             .as_ref()
             .expect("GATT has not been initialized")
+            .lock()
+            .unwrap()
             .client
             .register_client(&uuid, eatt_support);
     }
 
     fn unregister_client(&mut self, client_id: i32) {
         self.context_map.remove(client_id);
-        self.gatt.as_ref().unwrap().client.unregister_client(client_id);
+        self.gatt.as_ref().unwrap().lock().unwrap().client.unregister_client(client_id);
     }
 
     fn client_connect(
@@ -1220,7 +1267,7 @@ impl IBluetoothGatt for BluetoothGatt {
             Some(addr) => addr,
         };
 
-        self.gatt.as_ref().unwrap().client.connect(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.connect(
             client_id,
             &address,
             is_direct,
@@ -1236,7 +1283,7 @@ impl IBluetoothGatt for BluetoothGatt {
             return;
         }
 
-        self.gatt.as_ref().unwrap().client.disconnect(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.disconnect(
             client_id,
             &RawAddress::from_string(address).unwrap(),
             conn_id.unwrap(),
@@ -1246,6 +1293,8 @@ impl IBluetoothGatt for BluetoothGatt {
     fn refresh_device(&self, client_id: i32, addr: String) {
         self.gatt
             .as_ref()
+            .unwrap()
+            .lock()
             .unwrap()
             .client
             .refresh(client_id, &RawAddress::from_string(addr).unwrap());
@@ -1257,7 +1306,7 @@ impl IBluetoothGatt for BluetoothGatt {
             return;
         }
 
-        self.gatt.as_ref().unwrap().client.search_service(conn_id.unwrap(), None);
+        self.gatt.as_ref().unwrap().lock().unwrap().client.search_service(conn_id.unwrap(), None);
     }
 
     fn discover_service_by_uuid(&self, client_id: i32, addr: String, uuid: String) {
@@ -1271,7 +1320,7 @@ impl IBluetoothGatt for BluetoothGatt {
             return;
         }
 
-        self.gatt.as_ref().unwrap().client.search_service(conn_id.unwrap(), uuid);
+        self.gatt.as_ref().unwrap().lock().unwrap().client.search_service(conn_id.unwrap(), uuid);
     }
 
     fn read_characteristic(&self, client_id: i32, addr: String, handle: i32, auth_req: i32) {
@@ -1282,7 +1331,7 @@ impl IBluetoothGatt for BluetoothGatt {
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.as_ref().unwrap().client.read_characteristic(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.read_characteristic(
             conn_id.unwrap(),
             handle as u16,
             auth_req,
@@ -1310,7 +1359,7 @@ impl IBluetoothGatt for BluetoothGatt {
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.as_ref().unwrap().client.read_using_characteristic_uuid(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.read_using_characteristic_uuid(
             conn_id.unwrap(),
             &uuid.unwrap(),
             start_handle as u16,
@@ -1341,7 +1390,7 @@ impl IBluetoothGatt for BluetoothGatt {
 
         // TODO(b/200070162): Handle concurrent write characteristic.
 
-        self.gatt.as_ref().unwrap().client.write_characteristic(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.write_characteristic(
             conn_id.unwrap(),
             handle as u16,
             write_type.to_i32().unwrap(),
@@ -1360,7 +1409,7 @@ impl IBluetoothGatt for BluetoothGatt {
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.as_ref().unwrap().client.read_descriptor(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.read_descriptor(
             conn_id.unwrap(),
             handle as u16,
             auth_req,
@@ -1382,7 +1431,7 @@ impl IBluetoothGatt for BluetoothGatt {
 
         // TODO(b/200065274): Perform check on restricted handles.
 
-        self.gatt.as_ref().unwrap().client.write_descriptor(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.write_descriptor(
             conn_id.unwrap(),
             handle as u16,
             auth_req,
@@ -1399,13 +1448,13 @@ impl IBluetoothGatt for BluetoothGatt {
         // TODO(b/200065274): Perform check on restricted handles.
 
         if enable {
-            self.gatt.as_ref().unwrap().client.register_for_notification(
+            self.gatt.as_ref().unwrap().lock().unwrap().client.register_for_notification(
                 client_id,
                 &RawAddress::from_string(addr).unwrap(),
                 handle as u16,
             );
         } else {
-            self.gatt.as_ref().unwrap().client.deregister_for_notification(
+            self.gatt.as_ref().unwrap().lock().unwrap().client.deregister_for_notification(
                 client_id,
                 &RawAddress::from_string(addr).unwrap(),
                 handle as u16,
@@ -1428,6 +1477,8 @@ impl IBluetoothGatt for BluetoothGatt {
         self.gatt
             .as_ref()
             .unwrap()
+            .lock()
+            .unwrap()
             .client
             .execute_write(conn_id.unwrap(), if execute { 1 } else { 0 });
     }
@@ -1435,6 +1486,8 @@ impl IBluetoothGatt for BluetoothGatt {
     fn read_remote_rssi(&self, client_id: i32, addr: String) {
         self.gatt
             .as_ref()
+            .unwrap()
+            .lock()
             .unwrap()
             .client
             .read_remote_rssi(client_id, &RawAddress::from_string(addr).unwrap());
@@ -1446,7 +1499,7 @@ impl IBluetoothGatt for BluetoothGatt {
             return;
         }
 
-        self.gatt.as_ref().unwrap().client.configure_mtu(conn_id.unwrap(), mtu);
+        self.gatt.as_ref().unwrap().lock().unwrap().client.configure_mtu(conn_id.unwrap(), mtu);
     }
 
     fn connection_parameter_update(
@@ -1460,7 +1513,7 @@ impl IBluetoothGatt for BluetoothGatt {
         min_ce_len: u16,
         max_ce_len: u16,
     ) {
-        self.gatt.as_ref().unwrap().client.conn_parameter_update(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.conn_parameter_update(
             &RawAddress::from_string(addr).unwrap(),
             min_interval,
             max_interval,
@@ -1484,7 +1537,7 @@ impl IBluetoothGatt for BluetoothGatt {
             return;
         }
 
-        self.gatt.as_ref().unwrap().client.set_preferred_phy(
+        self.gatt.as_ref().unwrap().lock().unwrap().client.set_preferred_phy(
             &RawAddress::from_string(address).unwrap(),
             tx_phy.to_u8().unwrap(),
             rx_phy.to_u8().unwrap(),
@@ -1498,7 +1551,7 @@ impl IBluetoothGatt for BluetoothGatt {
             Some(addr) => addr,
         };
 
-        self.gatt.as_mut().unwrap().client.read_phy(client_id, &address);
+        self.gatt.as_ref().unwrap().lock().unwrap().client.read_phy(client_id, &address);
     }
 }
 
@@ -1672,7 +1725,7 @@ impl BtifGattClientCallbacks for BluetoothGatt {
 
     fn search_complete_cb(&mut self, conn_id: i32, _status: GattStatus) {
         // Gatt DB is ready!
-        self.gatt.as_ref().unwrap().client.get_gatt_db(conn_id);
+        self.gatt.as_ref().unwrap().lock().unwrap().client.get_gatt_db(conn_id);
     }
 
     fn register_for_notification_cb(
@@ -2316,11 +2369,12 @@ impl BtifGattScannerCallbacks for BluetoothGatt {
 
         if status != GattStatus::Success {
             log::error!("Error registering scanner UUID {}", uuid);
-            self.scanners.remove(&uuid);
+            self.scanners.lock().unwrap().remove(&uuid);
             return;
         }
 
-        let scanner_info = self.scanners.get_mut(&uuid);
+        let mut scanners_lock = self.scanners.lock().unwrap();
+        let scanner_info = scanners_lock.get_mut(&uuid);
 
         if let Some(info) = scanner_info {
             info.scanner_id = Some(scanner_id);
