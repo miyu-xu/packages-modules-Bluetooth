@@ -213,7 +213,7 @@ void quantiseDifferenceHL(const int32_t diffSignal, const int32_t ditherVal,
   if (tmp_round0 == 0x40000000L) acc--;
   _delta = -delta << 8;
 
-  acc = acc << 4;
+  acc = (int32_t)((uint32_t)acc << 4);
 
   /* Form (absDiffSignal * 0.125) - (acc * delta), which is the final distance
    * signal used to determine if dithering alters the quantised code value or
@@ -358,7 +358,7 @@ void quantiseDifferenceHH(const int32_t diffSignal, const int32_t ditherVal,
   if (tmp_round0 == 0x40000000L) acc--;
   _delta = -delta << 8;
 
-  acc = acc << 4;
+  acc = (int32_t)((uint32_t)acc << 4);
 
   /* Form (absDiffSignal * 0.125) - (acc * delta), which is the final distance
    * signal used to determine if dithering alters the quantised code value or
@@ -503,7 +503,8 @@ void quantiseDifferenceLL(const int32_t diffSignal, const int32_t ditherVal,
   if (tmp_round0 == 0x40000000L) acc--;
   _delta = -delta << 8;
 
-  acc = acc << 4;
+  acc = (int32_t)((uint32_t)acc << 4);
+
   /* Form (absDiffSignal * 0.125) - (acc * delta), which is the final distance
    * signal used to determine if dithering alters the quantised code value or
    * not. */
@@ -646,7 +647,7 @@ void quantiseDifferenceLH(const int32_t diffSignal, const int32_t ditherVal,
   if (tmp_round0 == 0x40000000L) acc--;
   _delta = -delta << 8;
 
-  acc = acc << 4;
+  acc = (int32_t)((uint32_t)acc << 4);
 
   /* Form (absDiffSignal * 0.125) - (acc * delta), which is the final distance
    * signal used to determine if dithering alters the quantised code value or
