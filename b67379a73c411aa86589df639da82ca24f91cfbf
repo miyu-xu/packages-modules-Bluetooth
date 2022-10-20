@@ -45,6 +45,30 @@
       },
       "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f84e10_c01a4d69",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-20T13:31:54Z",
+      "side": 1,
+      "message": "Hi Myles, I studied the code a bit. But I do not know how I can declare and return an interface in vendor_specific_event_manager.\n\nThe msft_interface is currently declared in hci_layer.h as \n\n  CommandInterfaceImpl\u003cMsftCommandBuilder\u003e msft_interface{*this};\n  \nwhere \"class CommandInterfaceImpl\" is private in hci_layer.h. Maybe that\u0027s why all interfaces are declared in hci_layer.h?   Then I do not know how I can delcare msft_interface in vendor_specific_event_manager. I may mis-understand the code though. Could you explain a bit more? Thanks!",
+      "parentUuid": "c9b4293e_f6c53c03",
+      "range": {
+        "startLine": 654,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 1
+      },
+      "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
