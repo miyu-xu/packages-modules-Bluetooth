@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5201037_bb846da0",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T04:59:23Z",
+      "side": 1,
+      "message": "why is this not btif/include/core_callbacks.h ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 10,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "d99b9a1cd3df9dbe98f326f2e0564980c8d6bfc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
