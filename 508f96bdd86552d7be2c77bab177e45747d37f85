@@ -57,6 +57,30 @@
       },
       "revId": "508f96bdd86552d7be2c77bab177e45747d37f85",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9112845b_baab0bb5",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-20T23:25:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d8e14ec_19f38964",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 40
+      },
+      "revId": "508f96bdd86552d7be2c77bab177e45747d37f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
