@@ -16,6 +16,29 @@
       "message": "Remove dependency and subsequently an unnecessary include file",
       "revId": "e41aba3b13cfa0a2fbfe1f7ab0f04cbdcfb734f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d5a446a_1cd6bbaf",
+        "filename": "system/stack/test/stack_l2cap_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-20T18:17:50Z",
+      "side": 1,
+      "message": "nit:\ncontroller_.get_acl_buffer_count_classic()) instead of the magic number 123 ?",
+      "range": {
+        "startLine": 203,
+        "startChar": 12,
+        "endLine": 203,
+        "endChar": 15
+      },
+      "revId": "e41aba3b13cfa0a2fbfe1f7ab0f04cbdcfb734f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
