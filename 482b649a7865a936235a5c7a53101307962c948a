@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a3a3901_1afa03a6",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-20T07:14:22Z",
+      "side": 1,
+      "message": "Just make this uint64_t, and all will be good.",
+      "range": {
+        "startLine": 694,
+        "startChar": 32,
+        "endLine": 694,
+        "endChar": 33
+      },
+      "revId": "482b649a7865a936235a5c7a53101307962c948a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99e0831d_52ec9a9c",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-20T07:14:22Z",
+      "side": 1,
+      "message": "For LE Audio, microseconds\u003d7500, we would return wrong value.",
+      "range": {
+        "startLine": 695,
+        "startChar": 10,
+        "endLine": 695,
+        "endChar": 29
+      },
+      "revId": "482b649a7865a936235a5c7a53101307962c948a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
