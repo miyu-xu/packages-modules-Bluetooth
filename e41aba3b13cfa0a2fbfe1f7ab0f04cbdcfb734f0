@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac6356a_726038ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-10-20T16:17:07Z",
+      "side": 1,
+      "message": "Remove dependency and subsequently an unnecessary include file",
+      "revId": "e41aba3b13cfa0a2fbfe1f7ab0f04cbdcfb734f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
