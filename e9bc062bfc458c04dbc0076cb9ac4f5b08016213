@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aadc140d_b580764d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1835,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T02:57:36Z",
+      "side": 0,
+      "message": "Is this still needed?",
+      "range": {
+        "startLine": 1835,
+        "startChar": 6,
+        "endLine": 1835,
+        "endChar": 30
+      },
+      "revId": "e9bc062bfc458c04dbc0076cb9ac4f5b08016213",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
