@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f14cabf_425a8aba",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-20T18:06:03Z",
+      "side": 1,
+      "message": "Prefer something like:\n\n```\nstd::copy(bytes.begin(), bytes.end(), std::back_inserter(converted));\n```\n\nSee https://cxx.rs/binding/vec.html",
+      "revId": "16b41a224c882074d700ec42c492e2e593defa80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
