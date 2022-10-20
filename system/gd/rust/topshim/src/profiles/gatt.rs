@@ -1703,7 +1703,7 @@ pub struct Gatt {
 }
 
 impl Gatt {
-    pub fn new(intf: &BluetoothInterface) -> Option<Gatt> {
+    pub fn new(intf: &BluetoothInterface) -> Option<Arc<Mutex<Gatt>>> {
         let r = intf.get_profile_interface(SupportedProfiles::Gatt);
 
         if r == std::ptr::null() {
@@ -1714,7 +1714,7 @@ impl Gatt {
         let gatt_scanner_intf = unsafe { ffi::GetBleScannerIntf(r as *const u8) };
         let gatt_advertiser_intf = unsafe { ffi::GetBleAdvertiserIntf(r as *const u8) };
 
-        Some(Gatt {
+        Some(Arc::new(Mutex::new(Gatt {
             internal: RawGattWrapper { raw: r as *const btgatt_interface_t },
             is_init: false,
             client: GattClient {
@@ -1740,7 +1740,7 @@ impl Gatt {
             gatt_client_callbacks: None,
             gatt_server_callbacks: None,
             gatt_scanner_callbacks: None,
-        })
+        })))
     }
 
     pub fn is_initialized(&self) -> bool {
