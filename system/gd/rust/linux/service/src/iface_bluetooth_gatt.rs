@@ -468,7 +468,7 @@ impl IBluetoothGatt for IBluetoothGattDBus {
         &mut self,
         scanner_id: u8,
         settings: ScanSettings,
-        filter: ScanFilter,
+        filter: Option<ScanFilter>,
     ) -> BtStatus {
         dbus_generated!()
     }

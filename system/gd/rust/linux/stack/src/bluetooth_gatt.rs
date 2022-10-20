@@ -208,7 +208,7 @@ pub trait IBluetoothGatt {
         &mut self,
         scanner_id: u8,
         settings: ScanSettings,
-        filter: ScanFilter,
+        filter: Option<ScanFilter>,
     ) -> BtStatus;
 
     /// Deactivate scan of the given scanner id.
@@ -983,7 +983,7 @@ impl IBluetoothGatt for BluetoothGatt {
         &mut self,
         scanner_id: u8,
         _settings: ScanSettings,
-        _filter: ScanFilter,
+        _filter: Option<ScanFilter>,
     ) -> BtStatus {
         // Multiplexing scanners happens at this layer. The implementations of start_scan
         // and stop_scan maintains the state of all registered scanners and based on the states
