@@ -22,6 +22,30 @@
       },
       "revId": "d99b9a1cd3df9dbe98f326f2e0564980c8d6bfc3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "147b2cac_03ffcf93",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-20T18:46:18Z",
+      "side": 1,
+      "message": "no reason, and our include paths apparently let it work\n\nFixed",
+      "parentUuid": "b5201037_bb846da0",
+      "range": {
+        "startLine": 37,
+        "startChar": 10,
+        "endLine": 37,
+        "endChar": 24
+      },
+      "revId": "d99b9a1cd3df9dbe98f326f2e0564980c8d6bfc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
