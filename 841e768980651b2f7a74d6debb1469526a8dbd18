@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ae0a91c_ec9c639f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-20T16:28:23Z",
+      "side": 1,
+      "message": "trying a fix by gating out the relevant parts with an ifdef\n\nIt looks like we could remove the ifdef at the top of the file (since btif_dm was able to unconditionally use them) but might as well gate them out here to be consistent",
+      "parentUuid": "f78ff599_f98301c9",
+      "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "789bb06d_8d362b18",
         "filename": "system/btif/src/bluetooth.cc",
         "patchSetId": 5
@@ -31,6 +49,30 @@
       "writtenOn": "2022-10-20T04:31:15Z",
       "side": 1,
       "message": "Is it missing the namespace?  I\u0027m not sure what else it could be.\n\nextern bluetooth::le_audio::LeAudioClientInterface*\nbtif_le_audio_get_interface();",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 61
+      },
+      "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a1f8ac5_0940850a",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-20T16:28:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "789bb06d_8d362b18",
       "range": {
         "startLine": 157,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a4e0e1c_834fcb97",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-20T16:28:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8e848ce_3ee10eee",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 47
+      },
+      "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4125fad1_252db420",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-10-20T04:31:15Z",
       "side": 1,
       "message": "Or, maybe FLOSS doesn\u0027t have this interface?",
+      "range": {
+        "startLine": 760,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 41
+      },
+      "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d1707d1_4b848a4f",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-20T16:28:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4125fad1_252db420",
       "range": {
         "startLine": 760,
         "startChar": 0,
