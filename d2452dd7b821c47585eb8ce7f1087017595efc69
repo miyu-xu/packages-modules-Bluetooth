@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d6b8922_360fe8dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-20T18:06:29Z",
+      "side": 1,
+      "message": "Looks like simple wiring with no impl yet and has no impact on Android. Will need OWNERS review.",
+      "revId": "d2452dd7b821c47585eb8ce7f1087017595efc69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
