@@ -16,6 +16,75 @@
       "message": "FAILED: obj/bt/system/btif/src/libbtif.bluetooth.o \n\nclang++ -MMD -MF obj/bt/system/btif/src/libbtif.bluetooth.o.d -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS\u003d64 -DHAS_NO_BDROID_BUILDCFG -DOS_GENERIC -DOS_LINUX_GENERIC -DTARGET_FLOSS -DEXPORT_SYMBOL\u003d__attribute__\\(\\(visibility\\(\\\"default\\\"\\)\\)\\) -DFALLTHROUGH_INTENDED\u003d\\[\\[clang::fallthrough\\]\\] -DBTIF_HF_FEATURES\u003d0x00000240 -DEXCLUDE_NONSTANDARD_CODECS -I../../../staging/bt/system/btif/include -I../../../staging/bt/system -I../../../staging/bt/system/bta/dm -I../../../staging/bt/system/linux_include -I../../../staging/bt/system/audio_a2dp_hw/include -I../../../staging/bt/system/audio_hearing_aid_hw/include -I../../../staging/bt/system/bta/include -I../../../staging/bt/system/bta/sys -I../../../staging/bt/system/device/include -I../../../staging/bt/system/embdrv/sbc/encoder/include -I../../../staging/bt/system/embdrv/sbc/decoder/include -I../../../staging/bt/system/gd -I../../../staging/bt/system/stack/a2dp -I../../../staging/bt/system/stack/btm -I../../../staging/bt/system/stack/l2cap -I../../../staging/bt/system/stack/include -I../../../staging/bt/system/internal_include -I../../../staging/bt/system/udrv/include -I../../../staging/bt/system/utils/include -I../../../staging/bt/system/vnd/include -I../../../staging/bt/system/profile/avrcp -Igen/include -I../../../staging -I/usr/include -I../../../staging/bt/system/types -I../../../staging/bt/system/include -Igen/bt/system/gd -Igen/bt/system/gd/dumpsys/bundler -Igen -Igen/bt/system/gd/rust/shim -I../../../staging/bt/system/gd/rust/shim -Wall -Wunused -Wbool-operation -Wfree-nonheap-object -Wint-in-bool-context -Wstring-compare -Wstring-plus-int -Wxor-used-as-pow -Wimplicit-int-float-conversion -Wdeprecated-declarations -Wno-c99-designator -Wno-unused-parameter -Wunreachable-code -Wunreachable-code-return -ggdb3 -fstack-protector-strong -Wformat\u003d2 -fvisibility\u003dinternal -Wa,--noexecstack -Wimplicit-fallthrough --sysroot\u003d/. -fPIE -fPIC -Wno-non-c-typedef-for-linkage -Wno-unreachable-code-return -Wno-defaulted-function-deleted -Wno-gnu-variable-sized-type-not-at-end -Wno-format-nonliteral -Wno-inconsistent-missing-override -Wno-unreachable-code -Wno-range-loop-construct -Wno-reorder-init-list -Wno-unused-function -Wno-unused-result -Wno-unused-variable -Wno-unused-const-variable -Wno-format -Wno-pessimizing-move -Wno-unknown-warning-option -Wno-final-dtor-non-final-class -ffile-prefix-map\u003d../../../staging/bt/system/\u003d\\  -Wno-unused-local-typedefs -DBASE_VER\u003d930012 -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/nss -I/usr/include/nspr -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/libchrome -I/usr/include/perfetto -std\u003dgnu++17 -DNDEBUG -I/usr/include/ -fno-exceptions -fno-unwind-tables -fno-asynchronous-unwind-tables -std\u003dc++17 -c ../../../staging/bt/system/btif/src/bluetooth.cc -o obj/bt/system/btif/src/libbtif.bluetooth.o\n\n../../../staging/bt/system/btif/src/bluetooth.cc:249:7: error: use of undeclared identifier \u0027btif_le_audio_get_interface\u0027\n\n      btif_le_audio_get_interface()-\u003eRemoveDevice(bd_addr);\n\n      ^\n\n1 error generated.\n\n[272/693] CXX obj/bt/system/btif/src/libbtif.btif_a2dp_source.o",
       "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "789bb06d_8d362b18",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T04:31:15Z",
+      "side": 1,
+      "message": "Is it missing the namespace?  I\u0027m not sure what else it could be.\n\nextern bluetooth::le_audio::LeAudioClientInterface*\nbtif_le_audio_get_interface();",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 61
+      },
+      "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e848ce_3ee10eee",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T04:31:15Z",
+      "side": 1,
+      "message": "I don\u0027t think we need the FALLTHROUGH_INTENDED here as long as the comments are also removed :)",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 47
+      },
+      "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4125fad1_252db420",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T04:31:15Z",
+      "side": 1,
+      "message": "Or, maybe FLOSS doesn\u0027t have this interface?",
+      "range": {
+        "startLine": 760,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 41
+      },
+      "revId": "841e768980651b2f7a74d6debb1469526a8dbd18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
