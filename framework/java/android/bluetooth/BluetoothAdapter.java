@@ -479,6 +479,57 @@ public final class BluetoothAdapter {
      */
     public static final int SCAN_MODE_CONNECTABLE_DISCOVERABLE = 23;
 
+
+    /**
+     * Used as parameter for {@link #setBluetoothHciSnoopLoggingMode}, indicates that
+     * the Bluetooth HCI snoop logging should be disabled.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int BT_SNOOP_LOG_MODE_DISABLED = 0;
+
+    /**
+     * Used as parameter for {@link #setBluetoothHciSnoopLoggingMode}, indicates that
+     * the Bluetooth HCI snoop logging should be enabled without collecting potential
+     * Personally Identifiable Information and packet data.
+     *
+     * See {@link #BT_SNOOP_LOG_MODE_FULL} to enable logging of all information available.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int BT_SNOOP_LOG_MODE_FILTERED = 1;
+
+    /**
+     * Used as parameter for {@link #setSnoopLogMode}, indicates that the Bluetooth HCI snoop
+     * logging should be enabled.
+     *
+     * See {@link #BT_SNOOP_LOG_MODE_FILTERED} to enable logging with filtered information.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int BT_SNOOP_LOG_MODE_FULL = 2;
+
+    /** @hide */
+    @IntDef(value = {
+            BT_SNOOP_LOG_MODE_DISABLED,
+            BT_SNOOP_LOG_MODE_FILTERED,
+            BT_SNOOP_LOG_MODE_FULL
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface BluetoothSnoopLogMode {}
+
+    /** @hide */
+    @IntDef(value = {
+            BluetoothStatusCodes.SUCCESS,
+            BluetoothStatusCodes.ERROR_UNKNOWN,
+            BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface SetSnoopLogModeStatusCode {}
+
     /**
      * Device only has a display.
      *
@@ -5031,5 +5082,83 @@ public final class BluetoothAdapter {
                 return BluetoothProfile.PRIORITY_UNDEFINED;
         }
         return BluetoothProfile.PRIORITY_UNDEFINED;
+    }
+
+    /**
+     * Sets the desired mode of the HCI snoop logging applied at Bluetooth startup
+     *
+     * Please note that Bluetooth needs to be restarted in order for the change
+     * to take effect.
+     *
+     * @param mode either {@link #BT_SNOOP_LOG_MODE_DISABLED}, {@link #BT_SNOOP_LOG_MODE_FILTERED}
+     *             or {@link #BT_SNOOP_LOG_MODE_FULL}
+     * @return status code indicating whether the logging mode was successfully set
+     * @throws IllegalArgumentException if the mode is not a valid logging mode
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    @SetSnoopLogModeStatusCode
+    public int setBluetoothHciSnoopLoggingMode(@BluetoothSnoopLogMode int mode) {
+        if (getState() != STATE_ON) {
+            return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+        }
+        if (mode != BT_SNOOP_LOG_MODE_DISABLED && mode != BT_SNOOP_LOG_MODE_FILTERED
+                && mode != BT_SNOOP_LOG_MODE_FULL) {
+            throw new IllegalArgumentException("Invalid Bluetooth HCI snoop log mode param value");
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                mService.setBtHciSnoopLogMode(mode, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout())
+                        .getValue(BluetoothStatusCodes.ERROR_UNKNOWN);
+            }
+        } catch (TimeoutException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return BluetoothStatusCodes.ERROR_UNKNOWN;
+    }
+
+    /**
+     * Gets the current desired mode of HCI snoop logging applied at Bluetooth startup
+     *
+     * @return the current HCI snoop logging mode applied at Bluetooth startup
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    @BluetoothSnoopLogMode
+    public int getBluetoothHciSnoopLoggingMode() {
+        if (getState() != STATE_ON) {
+            return BT_SNOOP_LOG_MODE_DISABLED;
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                mService.getBtHciSnoopLogMode(mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(
+                        getSyncTimeout()).getValue(BT_SNOOP_LOG_MODE_DISABLED);
+            }
+        } catch (TimeoutException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return BT_SNOOP_LOG_MODE_DISABLED;
     }
 }

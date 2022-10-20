@@ -3959,6 +3959,51 @@ public class AdapterService extends Service {
             enforceBluetoothPrivilegedPermission(service);
             Utils.setForegroundUserId(userId);
         }
+
+        @Override
+        public void setBtHciSnoopLogMode(int mode, AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(setBtHciSnoopLogMode(mode, source));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
+        private int setBtHciSnoopLogMode(int mode, AttributionSource attributionSource) {
+            AdapterService service = getService();
+            if (service == null
+                    || !Utils.checkCallerIsSystemOrActiveUser(TAG)) {
+                return BluetoothStatusCodes.ERROR_UNKNOWN;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+            return service.setBtHciSnoopLogMode(mode)
+                    ? BluetoothStatusCodes.SUCCESS : BluetoothStatusCodes.ERROR_UNKNOWN;
+        }
+
+        @Override
+        public void getBtHciSnoopLogMode(AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getBtHciSnoopLogMode(source));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
+        private int getBtHciSnoopLogMode(AttributionSource attributionSource) {
+            AdapterService service = getService();
+            if (service == null
+                    || !Utils.checkCallerIsSystemOrActiveUser(TAG)) {
+                return BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+            return service.getBtHciSnoopLogMode();
+        }
     }
 
     // ----API Methods--------
@@ -5134,6 +5179,39 @@ public class AdapterService extends Service {
     @VisibleForTesting
     protected RemoteDevices getRemoteDevices() {
         return mRemoteDevices;
+    }
+
+    private boolean setBtHciSnoopLogMode(int mode) {
+        switch (mode) {
+            case BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED:
+                BluetoothProperties.snoop_log_mode(
+                        BluetoothProperties.snoop_log_mode_values.DISABLED);
+                break;
+            case BluetoothAdapter.BT_SNOOP_LOG_MODE_FILTERED:
+                BluetoothProperties.snoop_log_mode(
+                        BluetoothProperties.snoop_log_mode_values.FILTERED);
+                break;
+            case BluetoothAdapter.BT_SNOOP_LOG_MODE_FULL:
+                BluetoothProperties.snoop_log_mode(
+                        BluetoothProperties.snoop_log_mode_values.FULL);
+                break;
+            default:
+                BluetoothProperties.snoop_log_mode(
+                        BluetoothProperties.snoop_log_mode_values.EMPTY);
+                return false;
+        }
+        return true;
+    }
+
+    private int getBtHciSnoopLogMode() {
+        BluetoothProperties.snoop_log_mode_values mode = BluetoothProperties.snoop_log_mode()
+                .orElse(BluetoothProperties.snoop_log_mode_values.DISABLED);
+        if (mode == BluetoothProperties.snoop_log_mode_values.FILTERED) {
+            return BluetoothAdapter.BT_SNOOP_LOG_MODE_FILTERED;
+        } else if (mode == BluetoothProperties.snoop_log_mode_values.FULL) {
+            return BluetoothAdapter.BT_SNOOP_LOG_MODE_FULL;
+        }
+        return BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED;
     }
 
     @Override
