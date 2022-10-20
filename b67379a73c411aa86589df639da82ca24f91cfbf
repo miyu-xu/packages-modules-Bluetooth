@@ -69,6 +69,30 @@
       },
       "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2494ea0_b0f3a423",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T14:11:32Z",
+      "side": 1,
+      "message": "Hi Joseph,\n\nI highlighted line 267 in the scan manager.  I think you should be able to register for events there without getting a new interface from the HCI layer.",
+      "parentUuid": "f7f84e10_c01a4d69",
+      "range": {
+        "startLine": 654,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 1
+      },
+      "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
