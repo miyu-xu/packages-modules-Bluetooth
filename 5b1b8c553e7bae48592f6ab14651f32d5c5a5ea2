@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a03e4e2_38b5e3d5",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "Why is it needed? It is already package private so you can use it in the test.",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 22
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38f3f57b_38d113b7",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "This too",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 22
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5b90bc6_d3bc7dea",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "Let\u0027s revert back these comment modifications for easier finding of the original author.",
+      "range": {
+        "startLine": 225,
+        "startChar": 20,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f32baec_9947e934",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "Not needed?",
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d5a0111_6331bf8c",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "ditto (not needed)",
+      "range": {
+        "startLine": 671,
+        "startChar": 4,
+        "endLine": 671,
+        "endChar": 22
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d6894c_3bd1a1c9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "needs indentation",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 117,
+        "endChar": 8
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "044931cb_422eb078",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "If you want to make sure stopping the other thread, use HandlerThread rather than main thread:\n\nhttps://source.corp.google.com/android/cts/tests/camera/src/android/hardware/camera2/cts/RecordingTest.java;rcl\u003d692270fa4bdcad2fa0852061f3c71b4bd6233494;l\u003d2193\n\nThis will free you from using application main thread.\nIn tearDown, call `handlerThread.quit()`.",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 87
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc888ee_a06b994b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "Q) Why do we create a transfer object again? What is this test testing?",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 194,
+        "endChar": 45
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce945c24_1f0a2a2c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-20T08:39:48Z",
+      "side": 1,
+      "message": "What is the assertion after this?",
+      "range": {
+        "startLine": 249,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 45
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
