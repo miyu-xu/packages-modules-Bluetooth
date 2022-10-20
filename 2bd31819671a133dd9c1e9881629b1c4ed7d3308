@@ -207,6 +207,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "194af401_88c32d24",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-20T11:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "781399d3_6800e178",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44534430_99ab73be",
@@ -292,6 +310,24 @@
       "side": 1,
       "message": "If OOB data is setting the incorrect device type then that is up to the peripheral implementing the data IMO",
       "parentUuid": "f6519b0e_40b6afa3",
+      "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf9a072_04e1bee2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-20T11:17:02Z",
+      "side": 1,
+      "message": "It\u0027s not about OOB data setting incorrect thing, it\u0027s about this code reading and honouring what\u0027s potentially set in OOB",
+      "parentUuid": "abe68be1_59cf99ed",
       "revId": "2bd31819671a133dd9c1e9881629b1c4ed7d3308",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
