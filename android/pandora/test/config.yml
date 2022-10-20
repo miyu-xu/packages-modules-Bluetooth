@@ -10,3 +10,4 @@ TestBeds:
     - class: BumblePandoraDevice
       transport: 'tcp-client:127.0.0.1:7300'
       classic_enabled: true
+      address: '12:34:56:78:90:00'

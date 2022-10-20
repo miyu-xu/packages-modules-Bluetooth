@@ -42,7 +42,13 @@ class BumblePandoraServer:
         device_config = DeviceConfiguration()
         device_config.load_from_dict(config)
         host = Host(controller_source=hci.source, controller_sink=hci.sink)
-        self.device = Device(config=device_config, host=host)
+        # config loads from `config.yml` instead of the `device_config.json`
+        if "address" in config:
+            logging.debug("config address: %s", config.get("address"))
+            random_address = config.get('address', "00:00:00:00:00:00")
+            self.device = Device(config=device_config, host=host, address=random_address)
+        else:
+            self.device = Device(config=device_config, host=host)
         self.device.classic_enabled = config.get('classic_enabled', False)
 
         self.server = grpc.aio.server()
@@ -68,6 +74,7 @@ class BumblePandoraServer:
 
 async def serve():
     transport = f'tcp-client:127.0.0.1:{ROOTCANAL_PORT_CUTTLEFISH}'
+    # This is not used in atest
     server = await BumblePandoraServer.open(BUMBLE_SERVER_PORT, transport, {'classic_enabled': True})
 
     await server.start()

@@ -21,7 +21,7 @@ from bumble.device import *
 from bumble.host import *
 
 from pandora_experimental.host_pb2 import ReadLocalAddressResponse, ConnectResponse, \
-    Connection, DisconnectResponse, GetConnectionResponse, ConnectLEResponse
+    Connection, DisconnectResponse, GetConnectionResponse, ConnectLEResponse, StartAdvertisingResponse
 from pandora_experimental.host_grpc import HostServicer
 
 
@@ -77,6 +77,11 @@ class HostService(HostServicer):
         except Exception as error:
             logging.error(error)
             return ConnectResponse()
+
+    async def StartAdvertising(self, request, context):
+        logging.debug(f"StartAdvertising")
+        start_advertising_handle = await self.device.start_advertising()
+        return StartAdvertisingResponse(handle=start_advertising_handle)
 
     async def Disconnect(self, request, context):
         # Need to reverse bytes order since Bumble Address is using MSB.
