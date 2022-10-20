@@ -67,6 +67,24 @@ class ExampleTest(base_test.BaseTestClass):
         response = self.ref.host.ConnectLE(address=dut_address)
         assert response.WhichOneof("result") == "connection"
 
+    def test_le_connect_dut_initiate(self):
+        print('test_le_connect_dut_initiate', file=sys.stderr)
+
+        dut_address = self.dut.address
+        ref_address = self.ref.address
+        self.dut.log.debug(f'DUT Address: {dut_address}')
+        self.ref.log.debug(f'REF Address: {ref_address}')
+
+        self.ref.log.debug(f'REF StartAdvertising')
+        self.ref.host.StartAdvertising(
+            connectability_mode=ConnectabilityMode.CONNECTABILITY_CONNECTABLE,
+            own_address_type=AddressType.PUBLIC,
+        )
+
+        self.dut.log.debug(f'DUT ConnectLE')
+        response = self.dut.host.ConnectLE(address=ref_address)
+        assert response.WhichOneof("result") == "connection"
+
 
 if __name__ == '__main__':
     # MoblyBinaryHostTest pass test_runner arguments after a "--"

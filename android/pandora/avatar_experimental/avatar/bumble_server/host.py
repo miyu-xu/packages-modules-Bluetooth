@@ -78,6 +78,9 @@ class HostService(HostServicer):
             logging.error(error)
             return ConnectResponse()
 
+    async def StartAdvertising(self, request, context):
+        self.device.start_advertising()
+
     async def Disconnect(self, request, context):
         # Need to reverse bytes order since Bumble Address is using MSB.
         connection_handle = int.from_bytes(request.connection.cookie, 'big')
