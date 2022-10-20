@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45cef3da_f009c393",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T04:57:17Z",
+      "side": 1,
+      "message": "Should we include \"core_callbacks.h\" here to be consistent?",
+      "revId": "508f96bdd86552d7be2c77bab177e45747d37f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8e14ec_19f38964",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-20T04:57:17Z",
+      "side": 1,
+      "message": "I guess we could also decide not to include core_callbacks.h here for consistency.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 40
+      },
+      "revId": "508f96bdd86552d7be2c77bab177e45747d37f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
