@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59c47373_5658d55a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-20T14:40:31Z",
+      "side": 1,
+      "message": "We used to have BtStressTest that was toggling bluetooth 100 times:\n\nhttps://cs.android.com/android/platform/superproject/+/master:tools/test/connectivity/acts_tests/tests/google/bt/system_tests/BtStressTest.py;l\u003d45\n\nWas it already rewritten ? If yes can you try running it?",
+      "revId": "fdb1ece10d26631ae40223d14880c28923ac861d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12aaad1c_969fa7eb",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-20T14:40:31Z",
+      "side": 1,
+      "message": "change of ordering makes any difference ? Why not below line 353 ?",
+      "range": {
+        "startLine": 352,
+        "startChar": 2,
+        "endLine": 352,
+        "endChar": 17
+      },
+      "revId": "fdb1ece10d26631ae40223d14880c28923ac861d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
