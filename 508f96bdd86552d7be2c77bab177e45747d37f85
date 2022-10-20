@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef32020_e592834f",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-20T07:24:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45cef3da_f009c393",
+      "revId": "508f96bdd86552d7be2c77bab177e45747d37f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d8e14ec_19f38964",
