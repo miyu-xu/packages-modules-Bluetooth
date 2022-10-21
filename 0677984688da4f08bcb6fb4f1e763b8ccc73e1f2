@@ -16,6 +16,52 @@
       "message": "This patch is good to go.\nCould you please have a look?",
       "revId": "0677984688da4f08bcb6fb4f1e763b8ccc73e1f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8ce1199_b04cc8fa",
+        "filename": "system/gd/os/system_properties_common.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-21T21:37:43Z",
+      "side": 1,
+      "message": "`result.has_value()` ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "0677984688da4f08bcb6fb4f1e763b8ccc73e1f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9cdabae_b4e9c90b",
+        "filename": "system/gd/os/system_properties_common.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-21T21:37:43Z",
+      "side": 1,
+      "message": "Open question: Do we need to specify the type in the name if the type is already provided in the parameter ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 22,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "0677984688da4f08bcb6fb4f1e763b8ccc73e1f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
