@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30cef363_bb361e1f",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T12:56:46Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 34
+      },
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25dcc2f9_e4551c50",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T12:56:46Z",
+      "side": 1,
+      "message": "Is this needed?  It seems like it would be nicer to let it only keep the symbols that are used.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 6
+      },
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1425c11_ea426d62",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T12:56:46Z",
+      "side": 1,
+      "message": "Remove ?",
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ffc31c_61994682",
+        "filename": "system/build/BUILD.gn",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T12:56:46Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
