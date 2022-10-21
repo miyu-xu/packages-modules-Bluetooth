@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebc09c3b_c7a1b0d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-21T16:37:00Z",
+      "side": 1,
+      "message": "This patch is good to go.\nCould you please have a look?",
+      "revId": "0677984688da4f08bcb6fb4f1e763b8ccc73e1f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
