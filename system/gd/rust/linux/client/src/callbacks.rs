@@ -436,23 +436,20 @@ impl IAdvertisingSetCallback for AdvertisingSetCallback {
             tx_power,
             status
         );
-        if status == GattStatus::Success {
-            if let Some(Some(ex_adv_id)) =
-                self.context.lock().unwrap().adv_sets.insert(reg_id, Some(advertiser_id))
-            {
-                print_error!(
-                    "on_advertising_set_started: previous advertising set ({}) registered ({}) is omitted",
-                    ex_adv_id,
-                    reg_id,
-                    );
-            }
-        } else {
+        if status != GattStatus::Success {
             print_error!(
                 "on_advertising_set_started: remove advertising set registered ({})",
                 reg_id
             );
             self.context.lock().unwrap().adv_sets.remove(&reg_id);
+            return;
         }
+        if !self.context.lock().unwrap().adv_sets.contains_key(&reg_id) {
+            print_error!("on_advertising_set_started: invalid callback for reg_id={}", reg_id);
+            return;
+        }
+        self.context.lock().unwrap().adv_sets.get_mut(&reg_id).unwrap().adv_id =
+            Some(advertiser_id);
     }
 
     fn on_own_address_read(&self, advertiser_id: i32, address_type: i32, address: String) {
@@ -466,7 +463,7 @@ impl IAdvertisingSetCallback for AdvertisingSetCallback {
 
     fn on_advertising_set_stopped(&self, advertiser_id: i32) {
         print_info!("on_advertising_set_stopped: advertiser_id = {}", advertiser_id);
-        self.context.lock().unwrap().adv_sets.retain(|_, val| *val != Some(advertiser_id));
+        self.context.lock().unwrap().adv_sets.retain(|_, s| s.adv_id != Some(advertiser_id));
     }
 
     fn on_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: GattStatus) {
