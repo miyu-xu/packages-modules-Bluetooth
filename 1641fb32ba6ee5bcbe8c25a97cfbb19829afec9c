@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c4558e3_ffafe438",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-21T11:35:50Z",
+      "side": 1,
+      "message": "I don\u0027t think this is good strategy to go forward.\nLE Audio bit should be set for either client or server roles.\nSo LE Audio capable phones should also have this bit set, actually some companies ping us we should set this bit on phone side, as they use it as info to enable some features on earbuds side.\n\nWith https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2238841\nwe should prefer to bond using LE transport, and this makes pairing more stable.\n\nThere will be future improvements around pairing and initial profile connection.",
+      "range": {
+        "startLine": 362,
+        "startChar": 16,
+        "endLine": 362,
+        "endChar": 88
+      },
+      "revId": "1641fb32ba6ee5bcbe8c25a97cfbb19829afec9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
