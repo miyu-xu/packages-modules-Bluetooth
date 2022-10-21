@@ -206,10 +206,10 @@ public class McpService extends ProfileService {
          * 2. authorized devices
          * 3. Any LeAudio devices which are allowed to connect
          */
-        if (mDeviceAuthorizations.getOrDefault(device, Utils.isPtsTestMode()
-                ? BluetoothDevice.ACCESS_ALLOWED : BluetoothDevice.ACCESS_UNKNOWN)
-                        == BluetoothDevice.ACCESS_ALLOWED) {
-            return BluetoothDevice.ACCESS_ALLOWED;
+        int current_authorization = mDeviceAuthorizations.getOrDefault(device, Utils.isPtsTestMode()
+                ? BluetoothDevice.ACCESS_ALLOWED : BluetoothDevice.ACCESS_UNKNOWN);
+        if (current_authorization != BluetoothDevice.ACCESS_UNKNOWN) {
+            return current_authorization;
         }
 
         LeAudioService leAudioService = LeAudioService.getLeAudioService();
