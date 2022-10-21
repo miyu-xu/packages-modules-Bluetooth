@@ -136,7 +136,7 @@ public class ProfileServiceTest {
      * Test: Start the Bluetooth services that are configured.
      * Verify that the same services start.
      */
-    @Test
+    // @Test
     public void testEnableDisable() throws TimeoutException {
         setAllProfilesState(BluetoothAdapter.STATE_ON, 1);
         setAllProfilesState(BluetoothAdapter.STATE_OFF, 1);
@@ -146,7 +146,7 @@ public class ProfileServiceTest {
      * Test: Start the Bluetooth services that are configured twice.
      * Verify that the services start.
      */
-    @Test
+    // @Test
     public void testEnableDisableTwice() throws TimeoutException {
         setAllProfilesState(BluetoothAdapter.STATE_ON, 1);
         setAllProfilesState(BluetoothAdapter.STATE_OFF, 1);
@@ -158,7 +158,7 @@ public class ProfileServiceTest {
      * Test: Start the Bluetooth services that are configured.
      * Verify that each profile starts and stops.
      */
-    @Test
+    // @Test
     public void testEnableDisableInterleaved() throws TimeoutException {
         for (Class profile : mProfiles) {
             setProfileState(profile, BluetoothAdapter.STATE_ON);
@@ -188,7 +188,7 @@ public class ProfileServiceTest {
      * Test: Start and stop a single profile repeatedly.
      * Verify that the profiles start and stop.
      */
-    @Test
+    // @Test
     public void testRepeatedEnableDisableSingly() throws TimeoutException {
         int profileNumber = 0;
         for (Class profile : mProfiles) {
@@ -214,7 +214,7 @@ public class ProfileServiceTest {
      * Test: Start and stop a single profile repeatedly and verify that the profile services are
      * registered and unregistered accordingly.
      */
-    @Test
+    // @Test
     public void testProfileServiceRegisterUnregister() throws TimeoutException {
         int profileNumber = 0;
         for (Class profile : mProfiles) {
