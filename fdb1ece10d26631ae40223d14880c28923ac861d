@@ -39,6 +39,30 @@
       },
       "revId": "fdb1ece10d26631ae40223d14880c28923ac861d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ca7082d_2d57c133",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-21T01:21:22Z",
+      "side": 1,
+      "message": "no reason, fixed",
+      "parentUuid": "12aaad1c_969fa7eb",
+      "range": {
+        "startLine": 352,
+        "startChar": 2,
+        "endLine": 352,
+        "endChar": 17
+      },
+      "revId": "fdb1ece10d26631ae40223d14880c28923ac861d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
