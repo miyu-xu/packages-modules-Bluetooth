@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9cedfa2_1589e52d",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-21T10:34:05Z",
+      "side": 1,
+      "message": "You can end up here if comp\u003d\u003dnull, without ever calling bindServiceAsUser first, so you should probably split those checks and call unbindService only if bindServiceAsUser was called.",
+      "range": {
+        "startLine": 148,
+        "startChar": 24,
+        "endLine": 148,
+        "endChar": 60
+      },
+      "revId": "d8578c4d0ab8f8f92e3e0348ee99b1b2884e39d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
