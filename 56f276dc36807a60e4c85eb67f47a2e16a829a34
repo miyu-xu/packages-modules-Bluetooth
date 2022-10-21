@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5dd0b1d_381f61da",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-21T05:59:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71223d27_de087b0c",
+      "range": {
+        "startLine": 134,
+        "startChar": 61,
+        "endLine": 134,
+        "endChar": 81
+      },
+      "revId": "56f276dc36807a60e4c85eb67f47a2e16a829a34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15cd9370_7c354bd6",
@@ -85,6 +109,30 @@
       "writtenOn": "2022-10-18T06:43:57Z",
       "side": 1,
       "message": "* @return {@code true} if the system is in the process of bringing up a\n     *         service that your client has permission to bind to; {@code false}\n     *         if the system couldn\u0027t find the service. You should call {@link #unbindService}\n     *         to release the connection even if this method returned {@code false}.",
+      "range": {
+        "startLine": 145,
+        "startChar": 50,
+        "endLine": 145,
+        "endChar": 67
+      },
+      "revId": "56f276dc36807a60e4c85eb67f47a2e16a829a34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a75aad01_7363cf27",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-10-21T05:59:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15cd9370_7c354bd6",
       "range": {
         "startLine": 145,
         "startChar": 50,
