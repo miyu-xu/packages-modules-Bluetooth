@@ -607,6 +607,31 @@ public class ActiveDeviceManagerTest {
     }
 
     /**
+     * Test connect/disconnect of devices.
+     * Hearing Aid, LE Hearing Aid, A2DP connected, then LE hearing Aid nad hearing aid
+     * disconnected.
+     */
+    @Test
+    public void activeDeviceChange_withHearingAidLeHearingAidAndA2dpDevices() {
+        hearingAidConnected(mHearingAidDevice);
+        verify(mHearingAidService, timeout(TIMEOUT_MS)).setActiveDevice(mHearingAidDevice);
+
+        leHearingAidConnected(mLeAudioDevice);
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeAudioDevice);
+
+        a2dpConnected(mA2dpDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        verify(mA2dpService, never()).setActiveDevice(mA2dpDevice);
+
+        leHearingAidDisconnected(mLeAudioDevice);
+        verify(mHearingAidService, timeout(TIMEOUT_MS).times(2))
+                .setActiveDevice(mHearingAidDevice);
+
+        hearingAidDisconnected(mHearingAidDevice);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
+    }
+
+    /**
      * A wired audio device is connected. Then all active devices are set to null.
      */
     @Test

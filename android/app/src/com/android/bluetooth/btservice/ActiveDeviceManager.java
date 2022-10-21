@@ -261,10 +261,9 @@ class ActiveDeviceManager {
                         }
                         mA2dpConnectedDevices.remove(device);
                         if (Objects.equals(mA2dpActiveDevice, device)) {
-                            if (mA2dpConnectedDevices.isEmpty()) {
+                            if (!setFallbackDeviceActive() && mA2dpConnectedDevices.isEmpty()) {
                                 setA2dpActiveDevice(null);
                             }
-                            setFallbackDeviceActive();
                         }
                     }
                 }
@@ -324,10 +323,9 @@ class ActiveDeviceManager {
                         }
                         mHfpConnectedDevices.remove(device);
                         if (Objects.equals(mHfpActiveDevice, device)) {
-                            if (mHfpConnectedDevices.isEmpty()) {
+                            if (!setFallbackDeviceActive() && mHfpConnectedDevices.isEmpty()) {
                                 setHfpActiveDevice(null);
                             }
-                            setFallbackDeviceActive();
                         }
                     }
                 }
@@ -385,10 +383,10 @@ class ActiveDeviceManager {
                         }
                         mHearingAidConnectedDevices.remove(device);
                         if (Objects.equals(mHearingAidActiveDevice, device)) {
-                            if (mHearingAidConnectedDevices.isEmpty()) {
+                            if (!setFallbackDeviceActive()
+                                    && mHearingAidConnectedDevices.isEmpty()) {
                                 setHearingAidActiveDevice(null);
                             }
-                            setFallbackDeviceActive();
                         }
                     }
                 }
@@ -448,10 +446,9 @@ class ActiveDeviceManager {
                         }
                         mLeAudioConnectedDevices.remove(device);
                         if (Objects.equals(mLeAudioActiveDevice, device)) {
-                            if (mLeAudioConnectedDevices.isEmpty()) {
+                            if (!setFallbackDeviceActive() && mLeAudioConnectedDevices.isEmpty()) {
                                 setLeAudioActiveDevice(null);
                             }
-                            setFallbackDeviceActive();
                         }
                     }
                 }
@@ -502,11 +499,7 @@ class ActiveDeviceManager {
                             mLeAudioConnectedDevices.add(device);
                         }
                         // New connected device: select it as active
-                        setLeAudioActiveDevice(device);
-                        if (mLeAudioActiveDevice == device) {
-                            // setLeAudioActiveDevice succeed
-                            mLeHearingAidActiveDevice = device;
-                        }
+                        setLeHearingAidActiveDevice(device);
                         setA2dpActiveDevice(null);
                         setHfpActiveDevice(null);
                         break;
@@ -523,10 +516,9 @@ class ActiveDeviceManager {
                         // mLeHearingAidConnectedDevices. Call setLeAudioActiveDevice(null)
                         // only if there are no LE audio devices.
                         if (Objects.equals(mLeHearingAidConnectedDevices, device)) {
-                            if (mLeAudioConnectedDevices.isEmpty()) {
+                            if (!setFallbackDeviceActive() && mLeAudioConnectedDevices.isEmpty()) {
                                 setLeAudioActiveDevice(null);
                             }
-                            setFallbackDeviceActive();
                         }
                     }
                 }
@@ -718,27 +710,51 @@ class ActiveDeviceManager {
         }
     }
 
-    private void setFallbackDeviceActive() {
+    private void setLeHearingAidActiveDevice(BluetoothDevice device) {
+        setLeAudioActiveDevice(device);
+        if (mLeAudioActiveDevice == device) {
+            // setLeAudioActiveDevice succeed
+            mLeHearingAidActiveDevice = device;
+        }
+    }
+
+    private boolean setFallbackDeviceActive() {
         if (DBG) {
             Log.d(TAG, "setFallbackDeviceActive");
         }
         DatabaseManager dbManager = mAdapterService.getDatabase();
         if (dbManager == null) {
-            return;
+            return false;
         }
-
+        List<BluetoothDevice> connectedDevices = new LinkedList<>();
         if (!mHearingAidConnectedDevices.isEmpty()) {
+            connectedDevices.addAll(mHearingAidConnectedDevices);
+        }
+        if (!mLeHearingAidConnectedDevices.isEmpty()) {
+            connectedDevices.addAll(mLeHearingAidConnectedDevices);
+        }
+        if (!connectedDevices.isEmpty()) {
             BluetoothDevice device =
-                    dbManager.getMostRecentlyConnectedDevicesInList(mHearingAidConnectedDevices);
+                    dbManager.getMostRecentlyConnectedDevicesInList(connectedDevices);
             if (device != null) {
-                if (DBG) {
-                    Log.d(TAG, "set hearing aid device active: " + device);
+                if (mHearingAidConnectedDevices.contains(device)) {
+                    if (DBG) {
+                        Log.d(TAG, "set hearing aid device active: " + device);
+                    }
+                    setHearingAidActiveDevice(device);
+                    setA2dpActiveDevice(null);
+                    setHfpActiveDevice(null);
+                    setLeAudioActiveDevice(null);
+                } else {
+                    if (DBG) {
+                        Log.d(TAG, "set LE hearing aid device active: " + device);
+                    }
+                    setLeHearingAidActiveDevice(device);
+                    setHearingAidActiveDevice(null);
+                    setA2dpActiveDevice(null);
+                    setHfpActiveDevice(null);
                 }
-                setHearingAidActiveDevice(device);
-                setA2dpActiveDevice(null);
-                setHfpActiveDevice(null);
-                setLeAudioActiveDevice(null);
-                return;
+                return true;
             }
         }
 
@@ -754,7 +770,7 @@ class ActiveDeviceManager {
             headsetFallbackDevice = headsetService.getFallbackDevice();
         }
 
-        List<BluetoothDevice> connectedDevices = new LinkedList<>();
+        connectedDevices.clear();
         connectedDevices.addAll(mLeAudioConnectedDevices);
         switch (mAudioManager.getMode()) {
             case AudioManager.MODE_NORMAL:
@@ -811,7 +827,9 @@ class ActiveDeviceManager {
                     setHfpActiveDevice(null);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     private void resetState() {
