@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd908013_4ca0198b",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-10-21T17:17:15Z",
+      "side": 1,
+      "message": "Is it guaranteed that if \"VendorIdSource\" exists in Floss, then \"SdpDiVendorIdSource\" will also exist for all these instances? For example, will a newly paired classic device in Floss only have the Sdp* versions of these and therefore we miss it in the migration from Floss-\u003eBlueZ?",
+      "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24625e81_9f5b8070",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-10-21T17:17:15Z",
+      "side": 1,
+      "message": "Following up on the other questions, does anywhere in the code only use the Sdp* version of these? Is that why we\u0027re keeping both? Your commit mentions they might exist, but do they must exist in the floss conf file?",
+      "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
