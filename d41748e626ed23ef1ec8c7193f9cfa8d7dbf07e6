@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5474d3c4_1e781f55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-10-21T12:50:57Z",
+      "side": 1,
+      "message": "Hello all,\n\nI am submitting 4 AVCTP test cases completed. \nWith this we complete TG test cases for AVCTP except for AVCTP/TG/FRA/BV-02-C which needs grpc calls, post review of kotlin files we will complete this test case.\n\nthanks and regards,\nFahad",
+      "revId": "d41748e626ed23ef1ec8c7193f9cfa8d7dbf07e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
