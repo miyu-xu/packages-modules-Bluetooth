@@ -602,4 +602,16 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       GetDeviceNameResponse.newBuilder().setName(device.name).build()
     }
   }
+
+  override fun verifyPasskey(
+    request: VerifyPasskeyRequest,
+    responseObserver: StreamObserver<VerifyPasskeyResponse>
+  ) {
+    Log.d(TAG, "Verifying passkey")
+    grpcUnary<VerifyPasskeyResponse>(scope, responseObserver) {
+      val passkey = request.passkey
+      //REMOVE ALL INSTANCES OF TEST
+      VerifyPasskeyResponse.newBuilder().setTest(false).build()
+    }
+  }
 }

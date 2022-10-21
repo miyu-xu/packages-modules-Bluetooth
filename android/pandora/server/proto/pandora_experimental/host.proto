@@ -58,6 +58,8 @@ service Host {
   rpc SetDiscoverabilityMode(SetDiscoverabilityModeRequest) returns (SetDiscoverabilityModeResponse);
   // Get device name from connection
   rpc GetDeviceName(GetDeviceNameRequest) returns (GetDeviceNameResponse);
+  // Verify six digit passkey is correct and complete pairing process
+  rpc VerifyPasskey(VerifyPasskeyRequest) returns (VerifyPasskeyResponse);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -296,4 +298,13 @@ message GetDeviceNameRequest {
 
 message GetDeviceNameResponse {
   string name = 1;
+}
+
+message VerifyPasskeyRequest {
+  string passkey = 1;
+}
+
+message VerifyPasskeyResponse {
+  //REMOVE THE TEST INSTANCE
+  bool test = 1;
 }

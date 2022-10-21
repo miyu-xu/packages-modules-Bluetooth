@@ -85,6 +85,16 @@ class L2CAPProxy(ProfileProxy):
 
         return "OK"
 
+    def MMI_TESTER_ENABLE_CONNECTION(self, **kwargs):
+        """
+        Action: Place the IUT in connectable mode.
+
+        Description: PTS requires that the IUT be in connectable mode.
+        The PTS will attempt to establish an ACL connection.
+        """
+
+        return "OK"
+
     @assert_description
     def MMI_TESTER_ENABLE_LE_CONNECTION(self, test: str, **kwargs):
         """
@@ -347,6 +357,25 @@ class L2CAPProxy(ProfileProxy):
         Initiate or create LE ACL connection to the PTS.
         """
         self.connection = self.host.ConnectLE(address=pts_addr).connection
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_INITIATE_ACL_CONNECTION(self, pts_addr: bytes, **kwargs):
+        """
+        Using the Implementation Under Test(IUT), initiate ACL Create Connection
+        Request to the PTS.
+
+        Description : The Implementation Under Test(IUT)
+        should create ACL connection request to PTS.
+        """
+        self.connection = self.host.Connect(address=pts_addr).connection
+        return "OK"
+
+    @assert_description
+    def _mmi_2001(self, **kwargs):
+        """
+        Please verify the passKey is correct: 000000
+        """
         return "OK"
 
     @assert_description
