@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97a0c033_41995944",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T12:30:19Z",
+      "side": 1,
+      "message": "nit: It seems like this CL is avoiding an ordering problem by assigning the fields using the names.",
+      "revId": "fe3cc0d2f0b0e32de6ab6c2ccf74835c977d563e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
