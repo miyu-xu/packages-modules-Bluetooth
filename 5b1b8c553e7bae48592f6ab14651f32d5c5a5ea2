@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97c2c7db_1ae1f187",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-21T08:21:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5b90bc6_d3bc7dea",
+      "range": {
+        "startLine": 225,
+        "startChar": 20,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f32baec_9947e934",
@@ -131,6 +155,24 @@
       "writtenOn": "2022-10-20T08:39:48Z",
       "side": 1,
       "message": "Not needed?",
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed039b70_1027b411",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-21T08:21:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f32baec_9947e934",
       "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -205,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71178b6f_0660c25a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-21T08:21:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63d6894c_3bd1a1c9",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 117,
+        "endChar": 8
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "044931cb_422eb078",
@@ -218,6 +284,30 @@
       "writtenOn": "2022-10-20T08:39:48Z",
       "side": 1,
       "message": "If you want to make sure stopping the other thread, use HandlerThread rather than main thread:\n\nhttps://source.corp.google.com/android/cts/tests/camera/src/android/hardware/camera2/cts/RecordingTest.java;rcl\u003d692270fa4bdcad2fa0852061f3c71b4bd6233494;l\u003d2193\n\nThis will free you from using application main thread.\nIn tearDown, call `handlerThread.quit()`.",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 87
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2445dc04_89701a87",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-21T08:21:26Z",
+      "side": 1,
+      "message": "In this specific case, how can we handle it? I\u0027m not sure if it is applicable",
+      "parentUuid": "044931cb_422eb078",
       "range": {
         "startLine": 144,
         "startChar": 8,
@@ -251,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6faeed87_3167bf52",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-21T08:21:26Z",
+      "side": 1,
+      "message": "I have to change the direction of initial share info",
+      "parentUuid": "dbc888ee_a06b994b",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 194,
+        "endChar": 45
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce945c24_1f0a2a2c",
@@ -264,6 +378,30 @@
       "writtenOn": "2022-10-20T08:39:48Z",
       "side": 1,
       "message": "What is the assertion after this?",
+      "range": {
+        "startLine": 249,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 45
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0af31b37_30b63476",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-21T08:21:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce945c24_1f0a2a2c",
       "range": {
         "startLine": 249,
         "startChar": 8,
