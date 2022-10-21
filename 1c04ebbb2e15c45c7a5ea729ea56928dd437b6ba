@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dbdc7e3_fc92f310",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-21T00:14:32Z",
+      "side": 1,
+      "message": "is this the correct bug number?",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cb0a4065_05fbac1a",
@@ -14,6 +37,29 @@
       "writtenOn": "2022-10-19T08:55:24Z",
       "side": 1,
       "message": "PTAL thanks,",
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6bcc9d0_376307a7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-21T00:14:32Z",
+      "side": 1,
+      "message": "would this flip the group status between inactive and active really quickly? would this cause any problem?",
+      "range": {
+        "startLine": 977,
+        "startChar": 6,
+        "endLine": 981,
+        "endChar": 69
+      },
       "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
