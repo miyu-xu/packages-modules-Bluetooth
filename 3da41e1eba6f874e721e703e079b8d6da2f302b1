@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b49eedf3_47eb6558",
+        "filename": "system/bta/csis/csis_storage.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T12:49:47Z",
+      "side": 1,
+      "message": "#pragma once for new header files?",
+      "revId": "3da41e1eba6f874e721e703e079b8d6da2f302b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efa8134e_202b22a6",
+        "filename": "system/bta/le_audio/storage.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T12:49:47Z",
+      "side": 1,
+      "message": "nit: #pragma once ?",
+      "revId": "3da41e1eba6f874e721e703e079b8d6da2f302b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
