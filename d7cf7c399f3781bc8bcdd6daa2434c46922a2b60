@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc0b15a_dcec7d31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-21T18:36:17Z",
+      "side": 1,
+      "message": "Some format issue in this change are addressed in the [follow-up CL](https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2262305)\n\nFeel free to apply them or not (as you want)\n\n\nCan the \u0027Qualcomm-Review\u0027 give it\u0027s approval for this ?",
+      "revId": "d7cf7c399f3781bc8bcdd6daa2434c46922a2b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
