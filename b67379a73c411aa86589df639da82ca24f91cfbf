@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb49bf5f_201d0d3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-21T13:51:27Z",
+      "side": 1,
+      "message": "Ack. Actually, you have contributed more to the framework. Let\u0027s keep you as the author.",
+      "parentUuid": "55535eb1_b22a626c",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 49
+      },
+      "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9b4293e_f6c53c03",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Hi Joseph,\n\nI highlighted line 267 in the scan manager.  I think you should be able to register for events there without getting a new interface from the HCI layer.",
       "parentUuid": "f7f84e10_c01a4d69",
+      "range": {
+        "startLine": 654,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 1
+      },
+      "revId": "b67379a73c411aa86589df639da82ca24f91cfbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd50e6c4_670c0eea",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-21T13:51:27Z",
+      "side": 1,
+      "message": "Hi Myles, understood! For now, I will keep msft_interface.h in order to declare MSFT vendor events later which will be registered through vendor_specific_event_manager_ from the MSFT module. I will fill in the MSFT vendor events and implement the event handler in followup patches.\n\nHere, let me remove my code from hci_layer. Many thanks!",
+      "parentUuid": "e2494ea0_b0f3a423",
       "range": {
         "startLine": 654,
         "startChar": 0,

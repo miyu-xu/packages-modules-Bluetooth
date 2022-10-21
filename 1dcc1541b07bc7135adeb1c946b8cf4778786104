@@ -46,6 +46,30 @@
       },
       "revId": "1dcc1541b07bc7135adeb1c946b8cf4778786104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b67af108_4d22214f",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-21T13:51:27Z",
+      "side": 1,
+      "message": "Thanks for highlighting the code! Got your point now. Thanks!",
+      "parentUuid": "58863bf8_2082afd4",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 120
+      },
+      "revId": "1dcc1541b07bc7135adeb1c946b8cf4778786104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
