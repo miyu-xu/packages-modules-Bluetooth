@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "157180fd_4e119231",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-21T06:35:17Z",
+      "side": 1,
+      "message": "Please ignore this comment. I saw it wrongly.",
+      "parentUuid": "8a03e4e2_38b5e3d5",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 22
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38f3f57b_38d113b7",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-20T08:39:48Z",
       "side": 1,
       "message": "This too",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 22
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0282091_9410ccab",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-21T06:35:17Z",
+      "side": 1,
+      "message": "Please ignore this comment. I saw it wrongly.",
+      "parentUuid": "38f3f57b_38d113b7",
       "range": {
         "startLine": 207,
         "startChar": 4,
@@ -100,6 +148,30 @@
       "writtenOn": "2022-10-20T08:39:48Z",
       "side": 1,
       "message": "ditto (not needed)",
+      "range": {
+        "startLine": 671,
+        "startChar": 4,
+        "endLine": 671,
+        "endChar": 22
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c73bcd46_98b830b9",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-21T06:35:17Z",
+      "side": 1,
+      "message": "Please ignore this comment. I saw it wrongly.",
+      "parentUuid": "9d5a0111_6331bf8c",
       "range": {
         "startLine": 671,
         "startChar": 4,
