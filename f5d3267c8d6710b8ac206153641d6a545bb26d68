@@ -46,6 +46,30 @@
       },
       "revId": "f5d3267c8d6710b8ac206153641d6a545bb26d68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb6ba53_d259e74b",
+        "filename": "tools/rootcanal/model/controller/controller_properties.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T18:29:20Z",
+      "side": 1,
+      "message": "For posterity, it works to use the \u003d initializer, but we couldn\u0027t find the specific reason in the C++ draft specification.",
+      "parentUuid": "7e6ea41f_d7749fc2",
+      "range": {
+        "startLine": 113,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "f5d3267c8d6710b8ac206153641d6a545bb26d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
