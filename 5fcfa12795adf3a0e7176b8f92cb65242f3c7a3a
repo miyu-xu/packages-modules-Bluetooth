@@ -93,6 +93,23 @@
       },
       "revId": "5fcfa12795adf3a0e7176b8f92cb65242f3c7a3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e3f6a7e_abaf6958",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-21T22:37:51Z",
+      "side": 1,
+      "message": "Did you mean to return here? Right now it\u0027ll continue w/ completion.\n\nIf I read the other conversation correctly, you intended to crash here (got an eSCO connection complete event with an invalid handle).",
+      "revId": "5fcfa12795adf3a0e7176b8f92cb65242f3c7a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

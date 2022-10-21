@@ -159,6 +159,24 @@
       "parentUuid": "08791dd8_ecaaef07",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2776071_4acf5893",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-21T22:37:51Z",
+      "side": 0,
+      "message": "LOG_* in most places. You should avoid LOG(*) which uses the libchrome logging which doesn\u0027t go through `osi/log.h`.\n\nFor the DCHECK+CODEPATH, you can define a new function in https://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/metrics/metrics.h and leave the implementation empty with a TODO.\n\nSomething like:\n```\n// TODO(b/...) This function should assert on debug builds. On release builds, it \n// should log the error and upload a codepath metric indicating this assert was hit \n// but not crash.\nDebugAssertOrLogMetric(condition, format, args...)\n```",
+      "parentUuid": "0bbc4ed2_508e4b0b",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
