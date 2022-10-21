@@ -69,6 +69,24 @@
       "parentUuid": "154ef78a_306a5137",
       "revId": "51969068c85791cc5b569819e9004eb4932c1829",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84ca883_13f7af01",
+        "filename": "system/gd/hci/mgmt.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-21T13:53:10Z",
+      "side": 1,
+      "message": "Done. They are not limited to MSFT specific. Move mgmt to under hal/. I am not very sure whether my Android.bp is correct or not. Could you please help check it out. Thanks!",
+      "parentUuid": "c8c70139_c9a46ef3",
+      "revId": "51969068c85791cc5b569819e9004eb4932c1829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
