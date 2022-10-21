@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96cc523d_136d5d4d",
+        "filename": "tools/rootcanal/model/controller/controller_properties.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-21T13:03:05Z",
+      "side": 1,
+      "message": "In file included from packages/modules/Bluetooth/tools/rootcanal/model/controller/controller_properties.cc:16:\npackages/modules/Bluetooth/tools/rootcanal/model/controller/controller_properties.h:101:7: error: use of undeclared identifier \u0027le_num_supported_advertising_sets\u0027\n      le_num_supported_advertising_sets,  // max_advt_instances\n      \nLooks like you were right, this doesn\u0027t work.\n\nIf you changed the definition to:\nuint8_t le_num_supported_advertising_sets \u003d 8;\n\nI wonder if that would work...\n\nI guess a better way would be to use a constant in both places.",
+      "range": {
+        "startLine": 113,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "f5d3267c8d6710b8ac206153641d6a545bb26d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
