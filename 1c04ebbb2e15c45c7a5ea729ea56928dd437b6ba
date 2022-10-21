@@ -65,6 +65,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a437c812_81f98185",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-21T08:34:33Z",
+      "side": 1,
+      "message": "Maybe there was an assumption that only one group can be active at a time so if other group gets active, the previous active group implicitly becomes inactive. Therefor we were sending INACTIVE only when the new active group was set to kGroupUnknown. This probably wasn\u0027t the right choice. We should have been more explicit here indeed.",
+      "range": {
+        "startLine": 977,
+        "startChar": 63,
+        "endLine": 977,
+        "endChar": 71
+      },
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6bcc9d0_376307a7",
@@ -102,6 +125,30 @@
       "side": 1,
       "message": "Good question. I need to find a better place to do it.\nHowever, at least, not notifying the group status change makes the problem.",
       "parentUuid": "e6bcc9d0_376307a7",
+      "range": {
+        "startLine": 977,
+        "startChar": 6,
+        "endLine": 981,
+        "endChar": 69
+      },
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3258c6c1_e94ce6ac",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-21T08:34:33Z",
+      "side": 1,
+      "message": "Do we know how much delay would be considered \u0027not quickly` or \u0027slow enough\u0027. This seems like a good place to me.\n\nSungsoo do you suspect if its some routing issue with going from one BLE Headset device to another device of the same type, and going through an intermediate default device for a split second actually helps? Or is this an issue with the LeAudioService not calling `clearLostDevicesWhileStreaming()` for the devices of the old group? I don\u0027t suspect it\u0027s about the application callback, since Telecom has an empty implementation for `onGroupStatusChanged()` callback.",
+      "parentUuid": "3dc1443e_0139b33a",
       "range": {
         "startLine": 977,
         "startChar": 6,
