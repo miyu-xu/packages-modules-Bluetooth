@@ -22,6 +22,30 @@
       },
       "revId": "f5d3267c8d6710b8ac206153641d6a545bb26d68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6ea41f_d7749fc2",
+        "filename": "tools/rootcanal/model/controller/controller_properties.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-21T16:11:03Z",
+      "side": 1,
+      "message": "I think that\u0027s just an alternate way of writing `uint8_t le_num_supported_advertising_sets{8};`.\nI replaced the initializer by the numerical value.",
+      "parentUuid": "96cc523d_136d5d4d",
+      "range": {
+        "startLine": 113,
+        "startChar": 6,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "f5d3267c8d6710b8ac206153641d6a545bb26d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
