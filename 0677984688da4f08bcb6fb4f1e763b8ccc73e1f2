@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54d1cb49_9f49a309",
+        "filename": "system/gd/os/system_properties_common.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-22T01:34:22Z",
+      "side": 1,
+      "message": "Fixed. as suggested.",
+      "parentUuid": "f8ce1199_b04cc8fa",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "0677984688da4f08bcb6fb4f1e763b8ccc73e1f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9cdabae_b4e9c90b",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-21T21:37:43Z",
       "side": 1,
       "message": "Open question: Do we need to specify the type in the name if the type is already provided in the parameter ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 22,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "0677984688da4f08bcb6fb4f1e763b8ccc73e1f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "134fff6d_d27e0a0d",
+        "filename": "system/gd/os/system_properties_common.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-22T01:34:22Z",
+      "side": 1,
+      "message": "I agree that removing the type suffix in the API name makes it consistent across all types and shorter.\nBut here I choose to add the suffix to keep it consistent with GetSystemPropertyUint32. If I change GetSystemPropertyUint32 -\u003e GetSystemProperty, I have update 20-30 locations that use this API.",
+      "parentUuid": "b9cdabae_b4e9c90b",
       "range": {
         "startLine": 33,
         "startChar": 22,
