@@ -16,6 +16,24 @@
       "message": "nit: formatting",
       "revId": "4dfed1700b1e18e3927141d83c7cf78cc8754517",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36d14ffc_f9add82c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-22T23:47:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05ac008b_f2dc779d",
+      "revId": "4dfed1700b1e18e3927141d83c7cf78cc8754517",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
