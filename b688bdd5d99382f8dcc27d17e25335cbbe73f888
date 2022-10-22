@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d655c195_216eafed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-22T23:41:39Z",
+      "side": 1,
+      "message": "Passed:\n```\n  10-22 23:31:07 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:12  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:17 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:22  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:28 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:33  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:38 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:43  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:48 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:53  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:31:58 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:04  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:09 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:14  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:19 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:24  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:29 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:34  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:40 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:45  Enabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n  10-22 23:32:51 Disabled  due to APPLICATION_REQUEST by com.googlecode.android_scripting\n\n[AndroidDeviceCert] 10-22 23:29:18.567 INFO [Test] test_enable_disable\n[AndroidDeviceCert] 10-22 23:32:55.435 INFO [Test] test_enable_disable PASS\n```",
+      "revId": "b688bdd5d99382f8dcc27d17e25335cbbe73f888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
