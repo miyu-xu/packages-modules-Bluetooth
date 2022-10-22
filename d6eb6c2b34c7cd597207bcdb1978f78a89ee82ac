@@ -16,6 +16,259 @@
       "message": "Hi team,\n\nSubmitting browsing test cases for review. \nCreated new CL and also incorporated the comments from draft version.\nRef: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2253995\nUpdated the comment response in above CL\n\nThank you.\n\nRegards,\nSnehal",
       "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "518d7919_1eeef709",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "We should rather call `host.Disconnect(connection\u003dself.connection)` here.",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 26
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96af6f4_b177c4bc",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "To put before the `if` statement, to avoid code duplication.",
+      "range": {
+        "startLine": 377,
+        "startChar": 12,
+        "endLine": 377,
+        "endChar": 76
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43913f4b_4b308daf",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "To remove.",
+      "range": {
+        "startLine": 380,
+        "startChar": 12,
+        "endLine": 380,
+        "endChar": 76
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "301a9b71_9d47c86a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "To replace by:\n```\nself.mediaplayer.Play()\nself.mediaplayer.Forward()\n```",
+      "range": {
+        "startLine": 703,
+        "startChar": 0,
+        "endLine": 704,
+        "endChar": 53
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bd5ef50_e08e6baf",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "To replace by:\n\n```\nself.mediaplayer.SetLargeMetadata()\nself.mediaplayer.Play()\n```",
+      "range": {
+        "startLine": 737,
+        "startChar": 8,
+        "endLine": 737,
+        "endChar": 37
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc1727e_d197c253",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "We should avoid this, since it can turn to be flaky and not really flexible.\n\nWe should rather do:\n- Initialize the audioTrack in the init function of `MediaPlayer.kt` (see my comment below).\n- Add a dedicated `Play` method which starts playing when we want (see the modifications I recommend in `avrcp.py`).\n- Add a dedicated `Pause` method for pausing it.\n- Etc",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c1ef903_5bb78d55",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "As mentioned in my previous comment, I would move all those changes to a `MediaPlayer.kt` file which implements `mediaplayer.proto`.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 3
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6013c9ee_f597c6e9",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "Why do we need a `MediaBrowserService` here? Could everything be handled by just a `MediaSession`?",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "330768ab_887b1401",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "Should be done in a separate `Play` function.",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 48
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0c2e1f7_76000b7d",
+        "filename": "pandora/interfaces/pandora_experimental/avrcp.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "These are not really AVRCP methods, but rather methods related to the media player. Indeed, in this case, the Android device is an AVRCP TG and we\u0027re only trying to do actions on the mediaplayer in order to trigger AVRCP notifications for the CT.\n\nI think we should move these methods in a `mediaplayer.proto` file and keep only AVRCP methods as part of `avrcp.proto`.\n\nTo make it a bit more user friendly, I would also recommend implementing directly one method to go to each state, instead of having a `setPlaybackState` method.\n\nFor instance, `mediaplayer.proto` could look like that:\n\n```\nservice MediaPlayer {\n  rpc Play(PlayRequest) returns (google.protobuf.Empty);\n  rpc Stop(StopRequest) returns (google.protobuf.Empty);\n  rpc Pause(PauseRequest) returns (google.protobuf.Empty);\n  rpc Rewind(RewindRequest) returns (google.protobuf.Empty);\n  rpc FastForward(FastForwardRequest) returns (google.protobuf.Empty);\n  rpc Forward(ForwardRequest) returns (google.protobuf.Empty);\n  rpc Backward(BackwardRequest) returns (google.protobuf.Empty);\n  rpc SetLargeMetadata(google.protobuf.Empty) returns (google.protobuf.Empty);\n}\n```",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6b87e2_01c19140",
+        "filename": "pandora/interfaces/pandora_experimental/avrcp.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-22T02:16:03Z",
+      "side": 1,
+      "message": "Remove the \u0027s\u0027: `PlaybackState`.",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 19
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
