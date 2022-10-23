@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c51a98a9_6c954308",
+        "filename": "android/pandora/test/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-10-23T16:47:21Z",
+      "side": 1,
+      "message": "To limit the number of functions I would the argument parser to main directly",
+      "revId": "db9d7c3e8bcca9b3bab54e7b7759c140fbbeaa88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb62e5c_f618f762",
+        "filename": "android/pandora/test/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-10-23T16:47:21Z",
+      "side": 1,
+      "message": "I suggest using a positional argument since it\u0027s required",
+      "revId": "db9d7c3e8bcca9b3bab54e7b7759c140fbbeaa88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9423f907_c86ad3d2",
+        "filename": "android/pandora/test/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-10-23T16:47:21Z",
+      "side": 1,
+      "message": "I suggest using a positional argument since it\u0027s required (before config)",
+      "revId": "db9d7c3e8bcca9b3bab54e7b7759c140fbbeaa88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ea6478_6bc4818f",
+        "filename": "android/pandora/test/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-10-23T16:47:21Z",
+      "side": 1,
+      "message": "I suggest adding an option for logging level.\nFor example, default to info `-v` downgrade to `DEBUG`, `-vv` to a lower level, etc",
+      "revId": "db9d7c3e8bcca9b3bab54e7b7759c140fbbeaa88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
