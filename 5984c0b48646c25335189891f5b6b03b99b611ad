@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab960991_40b6ba76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-23T06:38:04Z",
+      "side": 1,
+      "message": "Hi Jakub,\n\nAt https://b.corp.google.com/issues/237351651#comment5, I uploaded bugreport including full btsnoop log to compare when enabling this downgrade feature and disabling it. Please review logs.",
+      "parentUuid": "037e4e56_8f05696a",
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "319127fc_916666a2",
@@ -255,6 +273,24 @@
       "side": 1,
       "message": "The source to report connecting state could be multiple like different remote devices or profiles. Instead of tracking the connecting/connected process from multiple sources, current logic simply refreshes the 6 second (default, configurable) timer whenever connecting state is reported.",
       "parentUuid": "b481f063_cd4eb56d",
+      "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be9cd09_6dd9f2c4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-23T06:38:04Z",
+      "side": 1,
+      "message": "Hi Jakub,\n\nThanks for your comments. I added the way to stop downgrade when connecting state is done based on the multi-profile state counter. Please review the updated code.",
+      "parentUuid": "a614e1d9_b230405e",
       "revId": "5984c0b48646c25335189891f5b6b03b99b611ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "415d39dd_c9e7d0ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-10-23T06:38:04Z",
+      "side": 1,
+      "message": "Thanks Jakub for your review! I updated the code and uploaded bugreport. Please review it.",
+      "revId": "bac8e3b496b079e7d13dd83a69b73769ca01cc98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
