@@ -15,10 +15,20 @@
  *  limitations under the License.
  *
  ******************************************************************************/
+#include "raw_address.h"
 
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "raw_address.h"
+#include <map>
+#include <tuple>
+#include <variant>  // std::get
+#include <vector>
+
+#include "test/mock/mock_init_flags.h"
+#include "test/mock/mock_system_properties.h"
+
+std::map<std::string, int> mock_function_count_map;
 
 static const char* test_addr = "12:34:56:78:9a:bc";
 static const char* test_addr2 = "cb:a9:87:65:43:21";
@@ -197,4 +207,33 @@ TEST(RawAddressTest, BdAddrFromArray) {
 
   std::array<uint8_t, 6> mac2 = bdaddr.ToArray();
   ASSERT_EQ(mac, mac2);
+}
+
+TEST(RawAddress, ToStringForLoggingTest) {
+  std::array<uint8_t, 6> addr_bytes = {0x11, 0x22, 0x33, 0x44, 0x55, 0xab};
+  RawAddress addr(addr_bytes);
+
+#define ADDRESS_STR_FOR_LOGGING "xx:xx:xx:xx:55:ab"
+#define FULL_ADDRESS_STR "11:22:33:44:55:ab"
+  // debuggable, hide_address_in_log_is_enabled, expected output
+  std::vector<std::tuple<bool, bool, const std::string>> test_specs = {
+      std::make_tuple(true, true, FULL_ADDRESS_STR),
+      std::make_tuple(true, false, FULL_ADDRESS_STR),
+      std::make_tuple(false, true, ADDRESS_STR_FOR_LOGGING),
+      std::make_tuple(false, false, FULL_ADDRESS_STR)};
+  for (size_t i = 0; i < test_specs.size(); i++) {
+    auto& spec = test_specs[i];
+    test::mock::system_properties::GetSystemPropertyBool.return_value =
+        std::get<0>(spec);
+    test::mock::init_flags::hide_address_in_log_is_enabled.return_value =
+        std::get<1>(spec);
+    std::string ret = addr.ToStringForLogging();
+#ifdef OS_ANDROID
+    ASSERT_STREQ(ret.c_str(), std::get<2>(spec).c_str());
+#else
+    ASSERT_STREQ(ret.c_str(), FULL_ADDRESS_STR);
+#endif
+  }
+#undef ADDRESS_STR_FOR_LOGGING
+#undef FULL_ADDRESS_STR
 }
