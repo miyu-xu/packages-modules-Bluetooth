@@ -16,7 +16,8 @@ import logging
 
 from bumble.core import BT_BR_EDR_TRANSPORT
 from bumble.hci import Address, HCI_REMOTE_USER_TERMINATED_CONNECTION_ERROR
-from bumble.smp import PairingConfig
+
+from google.protobuf.empty_pb2 import Empty
 
 from pandora_experimental.host_pb2 import ReadLocalAddressResponse, ConnectResponse, \
     Connection, DisconnectResponse, GetConnectionResponse
@@ -25,13 +26,25 @@ from pandora_experimental.host_grpc import HostServicer
 
 class HostService(HostServicer):
 
-    def __init__(self, device):
-        self.device = device
-        self.device.pairing_config_factory = lambda connection: PairingConfig(bonding=False)
+    def __init__(self, manager):
+        self.manager = manager
+
+    @property
+    def device(self):
+        return self.manager.device
 
     async def ReadLocalAddress(self, request, context):
         logging.info('ReadLocalAddress')
         return ReadLocalAddressResponse(address=bytes(reversed(bytes(self.device.public_address))))
+
+    async def SoftReset(self, request, context):
+        await self.manager.start()
+        return Empty()
+
+    async def HardReset(self, request, context):
+        self.manager.hard_reset()
+        await self.manager.start()
+        return Empty()
 
     async def Connect(self, request, context):
         # Need to reverse bytes order since Bumble Address is using MSB.
