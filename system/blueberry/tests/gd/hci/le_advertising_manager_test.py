@@ -94,14 +94,14 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
 
         # CERT Scans
         self.cert_hci.send_command(hci_packets.LeSetRandomAddressBuilder('0C:05:04:03:02:01'))
-        scan_parameters = hci_packets.PhyScanParameters()
-        scan_parameters.le_scan_type = hci_packets.LeScanType.ACTIVE
-        scan_parameters.le_scan_interval = 40
-        scan_parameters.le_scan_window = 20
+        scanning_phy_params = hci_packets.ScanningPhyParameters()
+        scanning_phy_params.le_scan_type = hci_packets.LeScanType.ACTIVE
+        scanning_phy_params.le_scan_interval = 40
+        scanning_phy_params.le_scan_window = 20
         self.cert_hci.send_command(
             hci_packets.LeSetExtendedScanParametersBuilder(hci_packets.OwnAddressType.RANDOM_DEVICE_ADDRESS,
                                                            hci_packets.LeScanningFilterPolicy.ACCEPT_ALL, 1,
-                                                           [scan_parameters]))
+                                                           [scanning_phy_params]))
         self.cert_hci.send_command(
             hci_packets.LeSetExtendedScanEnableBuilder(hci_packets.Enable.ENABLED,
                                                        hci_packets.FilterDuplicates.DISABLED, 0, 0))
@@ -122,14 +122,14 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
 
         # CERT Scans
         self.cert_hci.send_command(hci_packets.LeSetRandomAddressBuilder('0C:05:04:03:02:01'))
-        scan_parameters = hci_packets.PhyScanParameters()
-        scan_parameters.le_scan_type = hci_packets.LeScanType.ACTIVE
-        scan_parameters.le_scan_interval = 40
-        scan_parameters.le_scan_window = 20
+        scanning_phy_params = hci_packets.ScanningPhyParameters()
+        scanning_phy_params.le_scan_type = hci_packets.LeScanType.ACTIVE
+        scanning_phy_params.le_scan_interval = 40
+        scanning_phy_params.le_scan_window = 20
         self.cert_hci.send_command(
             hci_packets.LeSetExtendedScanParametersBuilder(hci_packets.OwnAddressType.RANDOM_DEVICE_ADDRESS,
                                                            hci_packets.LeScanningFilterPolicy.ACCEPT_ALL, 1,
-                                                           [scan_parameters]))
+                                                           [scanning_phy_params]))
         self.cert_hci.send_command(
             hci_packets.LeSetExtendedScanEnableBuilder(hci_packets.Enable.ENABLED,
                                                        hci_packets.FilterDuplicates.DISABLED, 0, 0))

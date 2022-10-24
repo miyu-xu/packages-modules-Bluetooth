@@ -170,7 +170,7 @@ TEST(HciPacketsTest, testLeSetExtendedScanParameters) {
 
   ASSERT_TRUE(view.IsValid());
   ASSERT_EQ(1, view.GetScanningPhys());
-  auto params = view.GetParameters();
+  auto params = view.GetScanningPhyParameters();
   ASSERT_EQ(1ul, params.size());
   ASSERT_EQ(LeScanType::ACTIVE, params[0].le_scan_type_);
   ASSERT_EQ(18, params[0].le_scan_interval_);
@@ -189,7 +189,7 @@ TEST(HciPacketsTest, testLeSetExtendedScanParameters_6553) {
 
   ASSERT_TRUE(view.IsValid());
   ASSERT_EQ(1, view.GetScanningPhys());
-  auto params = view.GetParameters();
+  auto params = view.GetScanningPhyParameters();
   ASSERT_EQ(1ul, params.size());
   ASSERT_EQ(LeScanType::ACTIVE, params[0].le_scan_type_);
   ASSERT_EQ(6553, params[0].le_scan_interval_);
