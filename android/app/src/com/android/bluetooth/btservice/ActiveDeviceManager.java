@@ -49,6 +49,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.RejectedExecutionException;
 
 /**
  * The active device manager is responsible for keeping track of the
@@ -130,6 +131,7 @@ class ActiveDeviceManager {
     private Handler mHandler = null;
     private final AudioManager mAudioManager;
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback;
+    private final AudioManagerOnModeChangedListener mAudioManagerOnModeChangedListener;
 
     private final List<BluetoothDevice> mA2dpConnectedDevices = new LinkedList<>();
     private final List<BluetoothDevice> mHfpConnectedDevices = new LinkedList<>();
@@ -137,7 +139,9 @@ class ActiveDeviceManager {
     private final List<BluetoothDevice> mLeAudioConnectedDevices = new LinkedList<>();
     private final List<BluetoothDevice> mLeHearingAidConnectedDevices = new LinkedList<>();
     private BluetoothDevice mA2dpActiveDevice = null;
+    private BluetoothDevice mPendingA2dpActiveDevice = null;
     private BluetoothDevice mHfpActiveDevice = null;
+    private BluetoothDevice mPendingHfpActiveDevice = null;
     private BluetoothDevice mHearingAidActiveDevice = null;
     private BluetoothDevice mLeAudioActiveDevice = null;
     private BluetoothDevice mLeHearingAidActiveDevice = null;
@@ -244,11 +248,33 @@ class ActiveDeviceManager {
                         if (mA2dpConnectedDevices.contains(device)) {
                             break;      // The device is already connected
                         }
+                        // New connected device
                         mA2dpConnectedDevices.add(device);
                         if (mHearingAidActiveDevice == null && mLeHearingAidActiveDevice == null) {
-                            // New connected device: select it as active
-                            setA2dpActiveDevice(device);
-                            setLeAudioActiveDevice(null);
+                            // Lazy active if A2DP is not in use to prevent LE audio
+                            // inactivate earlier than HFP.
+                            switch (mAudioManager.getMode()) {
+                                case AudioManager.MODE_NORMAL:
+                                    break;
+                                case AudioManager.MODE_RINGTONE: {
+                                    HeadsetService headsetService = mFactory.getHeadsetService();
+                                    if (mHfpActiveDevice == null && headsetService != null
+                                            && headsetService.isInbandRingingEnabled()) {
+                                        mPendingA2dpActiveDevice = device;
+                                    }
+                                    break;
+                                }
+                                default: {
+                                    if (mHfpActiveDevice == null) {
+                                        mPendingA2dpActiveDevice = device;
+                                    }
+                                }
+                            }
+                            if (mPendingA2dpActiveDevice == null) {
+                                // select the device as active if not lazy active
+                                setA2dpActiveDevice(device);
+                                setLeAudioActiveDevice(null);
+                            }
                         }
                         break;
                     }
@@ -307,11 +333,31 @@ class ActiveDeviceManager {
                         if (mHfpConnectedDevices.contains(device)) {
                             break;      // The device is already connected
                         }
+                        // New connected HFP device.
                         mHfpConnectedDevices.add(device);
                         if (mHearingAidActiveDevice == null && mLeHearingAidActiveDevice == null) {
-                            // New connected device: select it as active
-                            setHfpActiveDevice(device);
-                            setLeAudioActiveDevice(null);
+                            // Lazy active if HFP is not in use to prevent LE audio
+                            // inactivate earlier than A2DP.
+                            switch (mAudioManager.getMode()) {
+                                case AudioManager.MODE_NORMAL:
+                                    if (mA2dpActiveDevice == null) {
+                                        mPendingHfpActiveDevice = device;
+                                    }
+                                    break;
+                                case AudioManager.MODE_RINGTONE: {
+                                    HeadsetService headsetService = mFactory.getHeadsetService();
+                                    if (headsetService == null
+                                            || !headsetService.isInbandRingingEnabled()) {
+                                        mPendingHfpActiveDevice = device;
+                                    }
+                                    break;
+                                }
+                            }
+                            if (mPendingHfpActiveDevice == null) {
+                                // select the device as active if not lazy active
+                                setHfpActiveDevice(device);
+                                setLeAudioActiveDevice(null);
+                            }
                         }
                         break;
                     }
@@ -556,6 +602,37 @@ class ActiveDeviceManager {
         }
     }
 
+    private class AudioManagerOnModeChangedListener implements AudioManager.OnModeChangedListener {
+        public void onModeChanged(int mode) {
+            switch (mode) {
+                case AudioManager.MODE_NORMAL: {
+                    if (mHfpActiveDevice != null && mPendingA2dpActiveDevice != null) {
+                        setA2dpActiveDevice(mPendingA2dpActiveDevice);
+                        setLeAudioActiveDevice(null);
+                    }
+                    break;
+                }
+                case AudioManager.MODE_RINGTONE: {
+                    final HeadsetService headsetService = mFactory.getHeadsetService();
+                    if (headsetService != null && headsetService.isInbandRingingEnabled()) {
+                        if (mA2dpActiveDevice != null && mPendingHfpActiveDevice != null) {
+                            setHfpActiveDevice(mPendingHfpActiveDevice);
+                            setLeAudioActiveDevice(null);
+                        }
+                    }
+                    break;
+                }
+                default: {
+                    if (mA2dpActiveDevice != null && mPendingHfpActiveDevice != null) {
+                        setHfpActiveDevice(mPendingHfpActiveDevice);
+                        setLeAudioActiveDevice(null);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
     /** Notifications of audio device connection and disconnection events. */
     @SuppressLint("AndroidFrameworkRequiresPermission")
     private class AudioManagerAudioDeviceCallback extends AudioDeviceCallback {
@@ -602,6 +679,7 @@ class ActiveDeviceManager {
         mFactory = factory;
         mAudioManager = service.getSystemService(AudioManager.class);
         mAudioManagerAudioDeviceCallback = new AudioManagerAudioDeviceCallback();
+        mAudioManagerOnModeChangedListener = new AudioManagerOnModeChangedListener();
     }
 
     void start() {
@@ -628,6 +706,11 @@ class ActiveDeviceManager {
         mAdapterService.registerReceiver(mReceiver, filter);
 
         mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback, mHandler);
+        mAudioManager.addOnModeChangedListener(command -> {
+            if (!mHandler.post(command)) {
+                throw new RejectedExecutionException(mHandler + " is shutting down");
+            }
+        }, mAudioManagerOnModeChangedListener);
     }
 
     void cleanup() {
@@ -670,6 +753,10 @@ class ActiveDeviceManager {
             return;
         }
         mA2dpActiveDevice = device;
+        mPendingA2dpActiveDevice = null;
+        if (mPendingHfpActiveDevice != null) {
+            setHfpActiveDevice(mPendingHfpActiveDevice);
+        }
     }
 
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
@@ -685,6 +772,10 @@ class ActiveDeviceManager {
             return;
         }
         mHfpActiveDevice = device;
+        mPendingHfpActiveDevice = null;
+        if (mPendingA2dpActiveDevice != null) {
+            setA2dpActiveDevice(mPendingA2dpActiveDevice);
+        }
     }
 
     private void setHearingAidActiveDevice(BluetoothDevice device) {

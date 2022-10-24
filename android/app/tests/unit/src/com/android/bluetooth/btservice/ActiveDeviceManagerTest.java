@@ -197,6 +197,7 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void onlyHeadsetConnected_setHeadsetActive() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
         headsetConnected(mHeadsetDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
     }
@@ -206,6 +207,7 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void secondHeadsetConnected_setSecondHeadsetActive() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
         headsetConnected(mHeadsetDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
 
@@ -218,6 +220,7 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void lastHeadsetDisconnected_clearHeadsetActive() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
         headsetConnected(mHeadsetDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
 
@@ -230,6 +233,7 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void headsetActiveDeviceSelected_setActive() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
         headsetConnected(mHeadsetDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
 
@@ -250,6 +254,7 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void headsetSecondDeviceDisconnected_fallbackDeviceActive() {
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
         headsetConnected(mSecondaryAudioDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mSecondaryAudioDevice);
 
@@ -578,7 +583,7 @@ public class ActiveDeviceManagerTest {
                 }
         );
         a2dpDisconnected(mA2dpDevice);
-        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(isNull());
+        verify(mA2dpService, timeout(TIMEOUT_MS).atLeast(1)).setActiveDevice(isNull());
         verify(mHearingAidService, timeout(TIMEOUT_MS).times(2))
                 .setActiveDevice(mHearingAidDevice);
     }
