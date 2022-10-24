@@ -22,6 +22,30 @@
       },
       "revId": "85a39a636d715366c9fafc48e1e1114a0446b3df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39c106b3_a92590df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-24T01:59:15Z",
+      "side": 1,
+      "message": "It doesn\u0027t work on Myles\u0027s machine but work on mine (even though I believe it should work on all machine)",
+      "parentUuid": "74483170_f524f053",
+      "range": {
+        "startLine": 7,
+        "startChar": 42,
+        "endLine": 7,
+        "endChar": 58
+      },
+      "revId": "85a39a636d715366c9fafc48e1e1114a0446b3df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
