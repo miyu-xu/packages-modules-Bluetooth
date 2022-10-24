@@ -1317,6 +1317,9 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
          (p_scb->callsetup_ind == BTA_AG_CALLSETUP_NONE)) ||
         (p_scb->post_sco == BTA_AG_POST_SCO_CALL_END)) {
       bta_sys_sco_unuse(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
+    } else if (!p_scb->svc_conn) {
+      /* In case rfcomm disconnected first in call, ag should inform av about sco closed */
+      bta_sys_sco_unuse(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
     }
 
     /* call app callback */
