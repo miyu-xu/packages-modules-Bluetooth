@@ -122,6 +122,30 @@ class Security(private val context: Context) : SecurityImplBase() {
     }
   }
 
+  override fun waitPairing(
+    request: WaitPairingRequest,
+    responseObserver: StreamObserver<WaitPairingResponse>
+  ) {
+    grpcUnary(globalScope, responseObserver) {
+      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
+      Log.i(TAG, "WaitPairing: device=$bluetoothDevice")
+
+      var state = bluetoothDevice.getBondState()
+      if (state != BOND_BONDED) {
+        state = flow
+          .filter { it.action == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
+          .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+          .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
+          .filter { it == BOND_BONDED || it == BluetoothDevice.BOND_NONE }
+          .first()
+      }
+      
+      WaitPairingResponse.newBuilder()
+        .setSuccess(if (state == BOND_BONDED) true else false)
+        .build()
+    }
+  }
+
   override fun onPairing(
     responseObserver: StreamObserver<PairingEvent>
   ): StreamObserver<PairingEventAnswer> =
