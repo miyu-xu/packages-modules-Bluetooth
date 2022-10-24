@@ -2210,16 +2210,14 @@ void DualModeController::LeCreateConnection(CommandView command) {
   link_layer_controller_.SetLeConnectionOwnAddressType(
       command_view.GetOwnAddressType());
   link_layer_controller_.SetLeConnectionIntervalMin(
-      command_view.GetConnIntervalMin());
+      command_view.GetConnectionIntervalMin());
   link_layer_controller_.SetLeConnectionIntervalMax(
-      command_view.GetConnIntervalMax());
-  link_layer_controller_.SetLeConnectionLatency(command_view.GetConnLatency());
+      command_view.GetConnectionIntervalMax());
+  link_layer_controller_.SetLeConnectionLatency(command_view.GetMaxLatency());
   link_layer_controller_.SetLeSupervisionTimeout(
       command_view.GetSupervisionTimeout());
-  link_layer_controller_.SetLeMinimumCeLength(
-      command_view.GetMinimumCeLength());
-  link_layer_controller_.SetLeMaximumCeLength(
-      command_view.GetMaximumCeLength());
+  link_layer_controller_.SetLeMinimumCeLength(command_view.GetMinCeLength());
+  link_layer_controller_.SetLeMaximumCeLength(command_view.GetMaxCeLength());
 
   auto status = link_layer_controller_.SetLeConnect(true, false);
 
@@ -2451,7 +2449,7 @@ void DualModeController::LeSetExtendedScanParameters(CommandView command) {
   ASSERT(command_view.IsValid());
   ErrorCode status = link_layer_controller_.LeSetExtendedScanParameters(
       command_view.GetOwnAddressType(), command_view.GetScanningFilterPolicy(),
-      command_view.GetScanningPhys(), command_view.GetParameters());
+      command_view.GetScanningPhys(), command_view.GetScanningPhyParameters());
   send_event_(
       bluetooth::hci::LeSetExtendedScanParametersCompleteBuilder::Create(
           kNumCommandPackets, status));
@@ -2475,7 +2473,7 @@ void DualModeController::LeExtendedCreateConnection(CommandView command) {
           gd_hci::AclCommandView::Create(command)));
   ASSERT(command_view.IsValid());
   ASSERT_LOG(command_view.GetInitiatingPhys() == 1, "Only LE_1M is supported");
-  auto params = command_view.GetPhyScanParameters();
+  auto params = command_view.GetInitiatingPhyParameters();
   auto initiator_filter_policy = command_view.GetInitiatorFilterPolicy();
 
   link_layer_controller_.SetLeScanInterval(params[0].scan_interval_);
@@ -2492,10 +2490,10 @@ void DualModeController::LeExtendedCreateConnection(CommandView command) {
   link_layer_controller_.SetLeConnectionOwnAddressType(
       command_view.GetOwnAddressType());
   link_layer_controller_.SetLeConnectionIntervalMin(
-      params[0].conn_interval_min_);
+      params[0].connection_interval_min_);
   link_layer_controller_.SetLeConnectionIntervalMax(
-      params[0].conn_interval_max_);
-  link_layer_controller_.SetLeConnectionLatency(params[0].conn_latency_);
+      params[0].connection_interval_max_);
+  link_layer_controller_.SetLeConnectionLatency(params[0].max_latency_);
   link_layer_controller_.SetLeSupervisionTimeout(
       params[0].supervision_timeout_);
   link_layer_controller_.SetLeMinimumCeLength(params[0].min_ce_length_);

@@ -645,7 +645,8 @@ ErrorCode LinkLayerController::LeSetExtendedScanParameters(
     bluetooth::hci::OwnAddressType own_address_type,
     bluetooth::hci::LeScanningFilterPolicy scanning_filter_policy,
     uint8_t scanning_phys,
-    std::vector<bluetooth::hci::PhyScanParameters> scanning_phy_parameters) {
+    std::vector<bluetooth::hci::ScanningPhyParameters>
+        scanning_phy_parameters) {
   // Extended advertising commands are disallowed when legacy advertising
   // commands were used since the last reset.
   if (!SelectExtendedAdvertising()) {
