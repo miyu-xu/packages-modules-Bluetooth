@@ -535,13 +535,13 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void configure_scan() {
-    std::vector<PhyScanParameters> parameter_vector;
-    PhyScanParameters phy_scan_parameters;
-    phy_scan_parameters.le_scan_window_ = window_ms_;
-    phy_scan_parameters.le_scan_interval_ = interval_ms_;
-    phy_scan_parameters.le_scan_type_ = le_scan_type_;
-    parameter_vector.push_back(phy_scan_parameters);
-    uint8_t phys_in_use = 1;
+    std::vector<ScanningPhyParameters> scanning_phy_parameters;
+    ScanningPhyParameters le_1m_parameters;
+    le_1m_parameters.le_scan_window_ = window_ms_;
+    le_1m_parameters.le_scan_interval_ = interval_ms_;
+    le_1m_parameters.le_scan_type_ = le_scan_type_;
+    scanning_phy_parameters.push_back(le_1m_parameters);
+    uint8_t scanning_phys = 1;
 
     // The Host shall not issue set scan parameter command when scanning is enabled
     stop_scan();
@@ -556,7 +556,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       case ScanApiType::EXTENDED:
         le_scanning_interface_->EnqueueCommand(
             LeSetExtendedScanParametersBuilder::Create(
-                own_address_type_, filter_policy_, phys_in_use, parameter_vector),
+                own_address_type_, filter_policy_, scanning_phys, scanning_phy_parameters),
             module_handler_->BindOnceOn(this, &impl::on_set_scan_parameter_complete));
         break;
       case ScanApiType::ANDROID_HCI:
