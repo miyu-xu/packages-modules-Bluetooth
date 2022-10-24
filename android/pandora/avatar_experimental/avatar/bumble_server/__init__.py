@@ -25,6 +25,7 @@ from bumble.device import Device, DeviceConfiguration
 from bumble.transport import open_transport
 
 from bumble.a2dp import make_audio_sink_service_sdp_records
+from bumble.smp import PairingConfig
 
 from pandora_experimental.host_grpc import add_HostServicer_to_server
 from .host import HostService
@@ -39,14 +40,13 @@ class BumblePandoraServer:
 
     def __init__(self, grpc_port, hci, config):
         self.hci = hci
-        device_config = DeviceConfiguration()
-        device_config.load_from_dict(config)
-        host = Host(controller_source=hci.source, controller_sink=hci.sink)
-        self.device = Device(config=device_config, host=host)
-        self.device.classic_enabled = config.get('classic_enabled', False)
+        self.config = config
+        self.pairing_config_factory = lambda connection: PairingConfig(bonding=False)
+        self.host = Host(controller_source=hci.source, controller_sink=hci.sink)
+        self.hard_reset()
 
         self.server = grpc.aio.server()
-        add_HostServicer_to_server(HostService(self.device), self.server)
+        add_HostServicer_to_server(HostService(self), self.server)
         self.grpc_port = self.server.add_insecure_port(f'localhost:{grpc_port}')
 
     @classmethod
@@ -57,6 +57,16 @@ class BumblePandoraServer:
     async def start(self):
         await self.device.power_on()
         await self.server.start()
+
+    def hard_reset(self):
+        device_config = DeviceConfiguration()
+        device_config.load_from_dict(self.config)
+        if hasattr(self, 'device'):
+            self.device.host = None
+            del self.device
+        self.device = Device(config=device_config, host=self.host)
+        self.device.classic_enabled = self.config.get('classic_enabled', False)
+        self.device.pairing_config_factory = self.pairing_config_factory
 
     async def wait_for_termination(self):
         await self.server.wait_for_termination()
