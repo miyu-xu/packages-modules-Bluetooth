@@ -56,14 +56,6 @@ class HostService(HostServicer):
             connection = await self.device.connect(address, transport=BT_BR_EDR_TRANSPORT)
             logging.info("Connected")
 
-            logging.info("Authenticating...")
-            await self.device.authenticate(connection)
-            logging.info("Authenticated")
-
-            logging.info("Enabling encryption...")
-            await self.device.encrypt(connection)
-            logging.info("Encryption on")
-
             logging.info(f"Connect: connection handle: {connection.handle}")
             connection_handle = connection.handle.to_bytes(4, 'big')
             return ConnectResponse(connection=Connection(cookie=connection_handle))
