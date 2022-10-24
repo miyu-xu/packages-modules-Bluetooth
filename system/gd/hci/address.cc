@@ -26,6 +26,11 @@
 
 #include "common/strings.h"
 
+#ifdef OS_ANDROID
+// headers for accessing system properties and init flags
+#include "common/init_flags.h"
+#include "os/system_properties.h"
+#endif
 namespace bluetooth {
 namespace hci {
 
@@ -42,15 +47,42 @@ Address::Address(std::initializer_list<uint8_t> l) {
   std::copy(l.begin(), std::min(l.begin() + kLength, l.end()), data());
 }
 
-std::string Address::ToString() const {
+std::string Address::_ToMaskedColonSepHexString(int bytes_to_mask) const {
   std::stringstream ss;
+  int count = 0;
   for (auto it = address.rbegin(); it != address.rend(); it++) {
-    ss << std::nouppercase << std::hex << std::setw(2) << std::setfill('0') << +*it;
+    if (count++ < bytes_to_mask) {
+      ss << "xx";
+    } else {
+      ss << std::nouppercase << std::hex << std::setw(2) << std::setfill('0') << +*it;
+    }
     if (std::next(it) != address.rend()) {
       ss << ':';
     }
   }
   return ss.str();
+}
+
+std::string Address::ToString() const {
+  return _ToMaskedColonSepHexString(0);
+}
+
+std::string Address::ToColonSepHexString() const {
+  return _ToMaskedColonSepHexString(0);
+}
+
+#ifdef OS_ANDROID
+using bluetooth::common::init_flags::hide_address_in_log_is_enabled;
+using bluetooth::os::GetSystemPropertyBool;
+#endif
+std::string Address::ToStringForLogging() const {
+  size_t bytes_to_mask = 0;
+#ifdef OS_ANDROID
+  if (!GetSystemPropertyBool(DEBUGGABLE_SYS_PROP_NAME, false) && hide_address_in_log_is_enabled()) {
+    bytes_to_mask = 4;
+  }
+#endif
+  return _ToMaskedColonSepHexString(bytes_to_mask);
 }
 
 std::string Address::ToLegacyConfigString() const {

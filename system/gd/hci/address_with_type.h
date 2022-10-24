@@ -119,6 +119,10 @@ class AddressWithType final {
     return ss.str();
   }
 
+  std::string ToStringForLogging() const {
+    return address_.ToStringForLogging() + "[" + AddressTypeText(address_type_) + "]";
+  }
+
  private:
   Address address_;
   AddressType address_type_;

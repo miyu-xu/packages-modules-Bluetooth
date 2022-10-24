@@ -13,6 +13,14 @@ cc_defaults {
     defaults: [
         "fluoride_common_options",
     ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system/",
+        // to use headers in gd
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    generated_headers: [
+        "libbt_init_flags_bridge_header",
+    ],
     tidy_checks: [
         "-performance-unnecessary-value-param",
     ],
@@ -329,6 +337,57 @@ cc_binary {
         address: true,
         cfi: true,
     }
+}
+
+// Separate the unit tests of hci::Address from
+// bluetooth_test_gd_unit, as init flag APIs
+// are mocked in bluetooth_gd_hci_address_unittests
+cc_test {
+    name:"bluetooth_gd_hci_address_unittests",
+    test_suites: ["device-tests"],
+    defaults: [
+        "gd_defaults",
+        "gd_clang_coverage_bin",
+        "libchrome_support_defaults",
+        "mts_defaults",
+    ],
+    cflags: [
+        "-Wno-unused-lambda-capture",
+    ],
+    host_supported: true,
+    isolated: false,
+    target: {
+        android: {
+            shared_libs: [
+                "libbinder_ndk",
+                "libcutils",
+                "libhidlbase",
+                "libutils",
+                "libstatssocket",
+            ],
+        },
+    },
+    srcs: [
+        ":TestMockInitFlags",
+        ":TestMockSystemProperties",
+        ":BluetoothCryptoToolboxSources",
+        ":BluetoothHciAddressSources",
+        ":BluetoothHciAddressUnitTestSources",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedPackets_h",
+    ],
+    static_libs: [
+        "libgmock",
+        "libbt_shim_bridge",
+        "libbt_shim_ffi",
+    ],
+    shared_libs: [
+        "libcrypto",
+    ],
+    sanitize: {
+        address: true,
+    },
 }
 
 cc_test {
