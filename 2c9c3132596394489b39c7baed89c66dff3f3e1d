@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb3e315f_a3d263b2",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-24T22:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5460635e_fc4588c7",
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ebe57b5_7d510ac4",
@@ -120,6 +138,30 @@
       "side": 1,
       "message": "We explicitly try to avoid implement `From` and `Into` between Virtual \u003c--\u003e Real. This only exists here as `unwrap_or`. I could be convinced that I should just `0` this out since the value should be written as part of modify_state.",
       "parentUuid": "4ebe57b5_7d510ac4",
+      "range": {
+        "startLine": 210,
+        "startChar": 12,
+        "endLine": 210,
+        "endChar": 38
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7082f5df_14507f8c",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-24T22:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b451ec4d_a8756421",
       "range": {
         "startLine": 210,
         "startChar": 12,
@@ -212,6 +254,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73537607_3346736d",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-24T22:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2f78502_d28ace34",
+      "range": {
+        "startLine": 661,
+        "startChar": 24,
+        "endLine": 661,
+        "endChar": 94
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c979d72_891f685c",
@@ -294,6 +360,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "653fe88b_9090b345",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-24T22:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e64391c_181ac9f6",
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a7ff247_c001f32b",
@@ -341,6 +425,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f163b851_0e38a064",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-24T22:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e22e7a5_d01ba59c",
+      "range": {
+        "startLine": 1083,
+        "startChar": 0,
+        "endLine": 1089,
+        "endChar": 12
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fabd574_9d732e6c",
@@ -378,6 +486,30 @@
       "side": 1,
       "message": "Nack. Virtual/Real indices don\u0027t have any other state besides the hci index. This keeps it simple. Prefer to keep using StateMachineInternal for this.",
       "parentUuid": "4fabd574_9d732e6c",
+      "range": {
+        "startLine": 1098,
+        "startChar": 23,
+        "endLine": 1098,
+        "endChar": 54
+      },
+      "revId": "2c9c3132596394489b39c7baed89c66dff3f3e1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ff17b50_4731f80d",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-24T22:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0865d08a_2e09815c",
       "range": {
         "startLine": 1098,
         "startChar": 23,
