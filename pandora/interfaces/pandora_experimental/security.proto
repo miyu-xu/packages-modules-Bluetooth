@@ -20,6 +20,8 @@ service Security {
   rpc OnPairing(stream PairingEventAnswer) returns (stream PairingEvent);
   // Remove pairing.
   rpc DeletePairing(DeletePairingRequest) returns (DeletePairingResponse);
+  // Wait for pairing complete.
+  rpc WaitPairing(WaitPairingRequest) returns (WaitPairingResponse);
 }
 
 message PairRequest {
@@ -82,3 +84,14 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+// Request of the `WaitPairing` method.
+message WaitPairingRequest {
+    // Local Bluetooth Device Address as array of 6 bytes.
+    bytes address = 1;
+}
+
+// Response of the `WaitPairing` method.
+message WaitPairingResponse {
+    bool success = 1;
+}
