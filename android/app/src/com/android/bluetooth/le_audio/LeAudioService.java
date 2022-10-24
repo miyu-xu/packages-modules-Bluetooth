@@ -1166,7 +1166,7 @@ public class LeAudioService extends ProfileService {
     // Suppressed since this is part of a local process
     @SuppressLint("AndroidFrameworkRequiresPermission")
     void messageFromNative(LeAudioStackEvent stackEvent) {
-        Log.d(TAG, "Message from native: " + stackEvent);
+        Log.d(TAG, "sss Message from native: " + stackEvent);
         BluetoothDevice device = stackEvent.device;
         Intent intent = null;
 

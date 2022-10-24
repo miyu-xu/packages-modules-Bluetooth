@@ -953,6 +953,7 @@ public class A2dpService extends ProfileService {
 
     // Handle messages from native (JNI) to Java
     void messageFromNative(A2dpStackEvent stackEvent) {
+        Log.d(TAG, "sss Message from native: " + stackEvent);
         Objects.requireNonNull(stackEvent.device,
                                "Device should never be null, event: " + stackEvent);
         synchronized (mStateMachines) {
