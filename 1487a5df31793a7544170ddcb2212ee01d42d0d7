@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91693b34_b5ea8522",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-24T21:06:51Z",
+      "side": 1,
+      "message": "Please add more docs here to distinguish between these constants.",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d42deca_c77b31c5",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1235,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-24T21:06:51Z",
+      "side": 1,
+      "message": "nit: End the first sentence with a period for all of these methods.",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf67af1_75691258",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-24T21:06:51Z",
+      "side": 1,
+      "message": "The constants were marked @hide, but this method is @SystemApi. Either both should be @SystemApi or both should be @hide otherwise the interaction model won\u0027t be consistent. Currently, if a system app calls this API, they cannot compare the return value to the @HearingAidType constants.",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4142f20a_7c4cecfa",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-24T21:06:51Z",
+      "side": 1,
+      "message": "All of these methods call getFeatures(BluetoothDevice) under the hood. This method requires BLUETOOTH_CONNECT and BLUETOOTH_PRIVILEGED permissions. Please make sure to add a @RequiresPermission annotation for each of these to reflect that requirement.",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94fb1a21_06a8c233",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-24T21:06:51Z",
+      "side": 1,
+      "message": "nit: extra space at the start for a few of these",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa602874_633853ae",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-24T21:06:51Z",
+      "side": 1,
+      "message": "nit: \"know if supports\" --\u003e \"know if it supports\" for all of these",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647d8520_ca1c5851",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-10-24T21:06:51Z",
+      "side": 1,
+      "message": "Replace \"true\" and \"false\" with \"{@code true}\" and \"{@code false}\"",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
