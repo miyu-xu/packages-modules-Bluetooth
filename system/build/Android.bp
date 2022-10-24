@@ -93,6 +93,18 @@ fluoride_defaults {
             ],
         },
     },
+    target: {
+        android: {
+            shared_libs: [
+                "libutils",
+            ],
+        },
+        host_linux: {
+            shared_libs: [
+                "libutils",
+            ],
+        },
+    },
 }
 
 fluoride_defaults {
