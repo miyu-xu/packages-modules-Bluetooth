@@ -181,6 +181,7 @@ init_flags!(
         gd_rust,
         gd_security,
         hci_adapter: i32,
+        hide_address_in_log = true,
         irk_rotation,
         logging_debug_enabled_for_all,
         pass_phy_update_callback = true,

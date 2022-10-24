@@ -51,6 +51,9 @@ class Address final : public packet::CustomFieldFixedSizeInterface<Address>, pub
 
   // storage::Serializable methods
   std::string ToString() const override;
+  std::string ToColonSepHexString() const;
+  std::string ToStringForLogging() const;
+
   static std::optional<Address> FromString(const std::string& from);
   std::string ToLegacyConfigString() const override;
   static std::optional<Address> FromLegacyConfigString(const std::string& str);
@@ -91,6 +94,8 @@ class Address final : public packet::CustomFieldFixedSizeInterface<Address>, pub
 
   static const Address kEmpty;  // 00:00:00:00:00:00
   static const Address kAny;    // FF:FF:FF:FF:FF:FF
+ private:
+  std::string _ToMaskedColonSepHexString(int bytes_to_mask) const;
 };
 
 inline std::ostream& operator<<(std::ostream& os, const Address& a) {

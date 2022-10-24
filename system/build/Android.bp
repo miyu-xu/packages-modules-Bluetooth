@@ -31,6 +31,7 @@ cc_defaults {
         "-Werror",
         // there are too many unused parameters in all the code.
         "-Wno-unused-parameter",
+        "-Wno-deprecated-builtins",
     ],
 }
 
@@ -90,6 +91,18 @@ fluoride_defaults {
         debuggable: {
             cflags: [
                 "-DBLUEDROID_DEBUG",
+            ],
+        },
+    },
+    target: {
+        android: {
+            shared_libs: [
+                "libutils",
+            ],
+        },
+        host_linux: {
+            shared_libs: [
+                "libutils",
             ],
         },
     },

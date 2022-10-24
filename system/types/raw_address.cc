@@ -25,6 +25,12 @@
 #include <array>
 #include <vector>
 
+#ifdef OS_ANDROID
+// headers for accessing system properties and init flags
+#include "common/init_flags.h"
+#include "os/system_properties.h"
+#endif
+
 static_assert(sizeof(RawAddress) == 6, "RawAddress must be 6 bytes long!");
 
 const RawAddress RawAddress::kAny{{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}};
@@ -38,10 +44,26 @@ RawAddress::RawAddress(const std::array<uint8_t, kLength> mac) {
   std::copy(mac.begin(), mac.end(), address);
 }
 
-std::string RawAddress::ToString() const {
+std::string RawAddress::ToString() const { return ToColonSepHexString(); }
+
+std::string RawAddress::ToColonSepHexString() const {
   return base::StringPrintf("%02x:%02x:%02x:%02x:%02x:%02x", address[0],
                             address[1], address[2], address[3], address[4],
                             address[5]);
+}
+
+#ifdef OS_ANDROID
+using bluetooth::common::init_flags::hide_address_in_log_is_enabled;
+using bluetooth::os::GetSystemPropertyBool;
+#endif
+std::string RawAddress::ToStringForLogging() const {
+#ifdef OS_ANDROID
+  if (!GetSystemPropertyBool(DEBUGGABLE_SYS_PROP_NAME, false) &&
+      hide_address_in_log_is_enabled()) {
+    return base::StringPrintf("xx:xx:xx:xx:%02x:%02x", address[4], address[5]);
+  }
+#endif
+  return ToColonSepHexString();
 }
 
 std::array<uint8_t, RawAddress::kLength> RawAddress::ToArray() const {
