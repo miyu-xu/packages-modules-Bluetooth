@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0ca5d26_8e3f2483",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-10-24T04:37:40Z",
+      "side": 1,
+      "message": "\u003e Is it guaranteed that if \"VendorIdSource\" exists in Floss, then \"SdpDiVendorIdSource\" will also exist for all these instances?\n\nNo, SdpDi* only exists for classic connection. The Vendor* and Product* version exist for both classic and LE.\n\n\u003e For example, will a newly paired classic device in Floss only have the Sdp* versions of these and therefore we miss it in the migration from Floss-\u003eBlueZ?\n\nNo, newly paired classic device in Floss will have both the Sdp* versions and the Vendor* and Product* versions, therefore we will not miss it (that is, unless the user paired the device using pre-M107 floss and migrate to BlueZ after this CL).\n\nLE connections, on the other hand, only have the Vendor* version. Thus, with this CL, we will not miss it on the Floss-\u003eBlueZ migration, whereas it was missed previously.",
+      "parentUuid": "bd908013_4ca0198b",
+      "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24625e81_9f5b8070",
         "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-21T17:17:15Z",
       "side": 1,
       "message": "Following up on the other questions, does anywhere in the code only use the Sdp* version of these? Is that why we\u0027re keeping both? Your commit mentions they might exist, but do they must exist in the floss conf file?",
+      "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e0208a_c3979f56",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-10-24T04:37:40Z",
+      "side": 1,
+      "message": "The only place I see it is \"used\" is [1], which is related to hci metrics logging, a feature that is unimplemented for floss. Therefore, I believe removing it won\u0027t have any negative impact.\n\nHowever, I\u0027m not sure whether they have any other plan of using it in some other way, so I suppose the safest way is to maintain both parameters in floss conf.\n\nWDYT?\n\n[1] https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/gd/hci/hci_metrics_logging.cc;l\u003d1099;rcl\u003d3182b13457ab3336097b82544af26597aa8eb114",
+      "parentUuid": "24625e81_9f5b8070",
       "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
