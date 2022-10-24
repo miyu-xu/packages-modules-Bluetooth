@@ -28,7 +28,9 @@ from bumble.a2dp import make_audio_sink_service_sdp_records
 from bumble.smp import PairingConfig
 
 from pandora_experimental.host_grpc import add_HostServicer_to_server
+from pandora_experimental.security_grpc import add_SecurityServicer_to_server
 from .host import HostService
+from .security import SecurityService
 
 BUMBLE_SERVER_PORT = 7999
 ROOTCANAL_PORT_CUTTLEFISH = 7300
@@ -46,7 +48,10 @@ class BumblePandoraServer:
         self.hard_reset()
 
         self.server = grpc.aio.server()
-        add_HostServicer_to_server(HostService(self), self.server)
+        self.host_service = HostService(self)
+        self.security_service = SecurityService(self)
+        add_HostServicer_to_server(self.host_service, self.server)
+        add_SecurityServicer_to_server(self.security_service, self.server)
         self.grpc_port = self.server.add_insecure_port(f'localhost:{grpc_port}')
 
     @classmethod
