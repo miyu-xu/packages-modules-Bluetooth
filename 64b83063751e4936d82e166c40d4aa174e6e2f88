@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e69baf6_12c25d1f",
+        "filename": "system/blueberry/tests/sl4a_sl4a/adapter/adapter_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-24T08:15:34Z",
+      "side": 1,
+      "message": "SL4A was doing 100 repetitions, I guess it would be impractical, 1000s",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 25,
+        "endChar": 26
+      },
+      "revId": "64b83063751e4936d82e166c40d4aa174e6e2f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
