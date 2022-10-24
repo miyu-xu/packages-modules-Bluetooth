@@ -231,19 +231,20 @@ class PyHci(Closable):
         assertThat(self.event_stream).emits(HciMatchers.CommandComplete(OpCode.LE_SET_RANDOM_ADDRESS))
 
     def initiate_le_connection(self, remote_addr):
-        phy_scan_params = hci_packets.LeCreateConnPhyScanParameters()
-        phy_scan_params.scan_interval = 0x60
-        phy_scan_params.scan_window = 0x30
-        phy_scan_params.conn_interval_min = 0x18
-        phy_scan_params.conn_interval_max = 0x28
-        phy_scan_params.conn_latency = 0
-        phy_scan_params.supervision_timeout = 0x1f4
-        phy_scan_params.min_ce_length = 0
-        phy_scan_params.max_ce_length = 0
+        initiating_phy_params = hci_packets.InitiatingPhyParameters()
+        initiating_phy_params.scan_interval = 0x60
+        initiating_phy_params.scan_window = 0x30
+        initiating_phy_params.connection_interval_min = 0x18
+        initiating_phy_params.connection_interval_max = 0x28
+        initiating_phy_params.max_latency = 0
+        initiating_phy_params.supervision_timeout = 0x1f4
+        initiating_phy_params.min_ce_length = 0
+        initiating_phy_params.max_ce_length = 0
         self.send_command(
-            hci_packets.LeExtendedCreateConnectionBuilder(
-                hci_packets.InitiatorFilterPolicy.USE_PEER_ADDRESS, hci_packets.OwnAddressType.RANDOM_DEVICE_ADDRESS,
-                hci_packets.AddressType.RANDOM_DEVICE_ADDRESS, remote_addr, 1, [phy_scan_params]))
+            hci_packets.LeExtendedCreateConnectionBuilder(hci_packets.InitiatorFilterPolicy.USE_PEER_ADDRESS,
+                                                          hci_packets.OwnAddressType.RANDOM_DEVICE_ADDRESS,
+                                                          hci_packets.AddressType.RANDOM_DEVICE_ADDRESS, remote_addr, 1,
+                                                          [initiating_phy_params]))
         assertThat(self.event_stream).emits(HciMatchers.CommandStatus(OpCode.LE_EXTENDED_CREATE_CONNECTION))
 
     def incoming_le_connection(self):

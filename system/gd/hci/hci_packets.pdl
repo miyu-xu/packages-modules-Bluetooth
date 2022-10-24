@@ -3224,12 +3224,12 @@ packet LeCreateConnection : LeConnectionManagementCommand (op_code = LE_CREATE_C
   peer_address_type : AddressType,
   peer_address : Address,
   own_address_type : OwnAddressType,
-  conn_interval_min : 16, // 0x0006-0x0C80 (7.5ms to 4s)
-  conn_interval_max : 16, // 0x0006-0x0C80 (7.5ms to 4s)
-  conn_latency : 16, // 0x0006-0x01F3
+  connection_interval_min : 16, // 0x0006-0x0C80 (7.5ms to 4s)
+  connection_interval_max : 16, // 0x0006-0x0C80 (7.5ms to 4s)
+  max_latency : 16, // 0x0006-0x01F3
   supervision_timeout : 16, // 0x00A to 0x0C80 (100ms to 32s)
-  minimum_ce_length : 16, // 0.625ms
-  maximum_ce_length : 16, // 0.625ms
+  min_ce_length : 16, // 0.625ms
+  max_ce_length : 16, // 0.625ms
 }
 
 packet LeCreateConnectionStatus : CommandStatus (command_op_code = LE_CREATE_CONNECTION) {
@@ -3951,7 +3951,7 @@ packet LeSetPeriodicAdvertisingEnableComplete : CommandComplete (command_op_code
   status : ErrorCode,
 }
 
-struct PhyScanParameters {
+struct ScanningPhyParameters {
   le_scan_type : LeScanType,
   le_scan_interval : 16, // 0x0004-0xFFFF Default 0x10 (10ms)
   le_scan_window : 16, // 0x004-0xFFFF Default 0x10 (10ms)
@@ -3961,7 +3961,7 @@ packet LeSetExtendedScanParameters : LeScanningCommand (op_code = LE_SET_EXTENDE
   own_address_type : OwnAddressType,
   scanning_filter_policy : LeScanningFilterPolicy,
   scanning_phys : 8,
-  parameters : PhyScanParameters[],
+  scanning_phy_parameters : ScanningPhyParameters[],
 }
 
 test LeSetExtendedScanParameters {
@@ -4003,12 +4003,12 @@ test LeSetExtendedScanEnableComplete {
   "\x0e\x04\x01\x42\x20\x00",
 }
 
-struct LeCreateConnPhyScanParameters {
+struct InitiatingPhyParameters {
   scan_interval : 16, // 0x0004-0xFFFF
   scan_window : 16, // < = LeScanInterval
-  conn_interval_min : 16, // 0x0006-0x0C80 (7.5ms to 4s)
-  conn_interval_max : 16, // 0x0006-0x0C80 (7.5ms to 4s)
-  conn_latency : 16, // 0x0006-0x01F3
+  connection_interval_min : 16, // 0x0006-0x0C80 (7.5ms to 4s)
+  connection_interval_max : 16, // 0x0006-0x0C80 (7.5ms to 4s)
+  max_latency : 16, // 0x0006-0x01F3
   supervision_timeout : 16, // 0x00A to 0x0C80 (100ms to 32s)
   min_ce_length : 16, // 0.625ms
   max_ce_length : 16, // 0.625ms
@@ -4020,7 +4020,7 @@ packet LeExtendedCreateConnection : LeConnectionManagementCommand (op_code = LE_
   peer_address_type : AddressType,
   peer_address : Address,
   initiating_phys : 8,
-  phy_scan_parameters : LeCreateConnPhyScanParameters[],
+  initiating_phy_parameters : InitiatingPhyParameters[],
 }
 
 test LeExtendedCreateConnection {

@@ -32,7 +32,7 @@ from bluetooth_packets_python3.hci_packets import ScanEnable
 from bluetooth_packets_python3.hci_packets import InquiryBuilder
 from bluetooth_packets_python3.hci_packets import SubeventCode
 from bluetooth_packets_python3.hci_packets import LeSetRandomAddressBuilder
-from bluetooth_packets_python3.hci_packets import PhyScanParameters
+from bluetooth_packets_python3.hci_packets import ScanningPhyParameters
 from bluetooth_packets_python3.hci_packets import LeScanType
 from bluetooth_packets_python3.hci_packets import LeSetExtendedScanParametersBuilder
 from bluetooth_packets_python3.hci_packets import OwnAddressType
@@ -53,7 +53,7 @@ from bluetooth_packets_python3.hci_packets import LeSetExtendedScanResponseDataB
 from bluetooth_packets_python3.hci_packets import LeSetExtendedAdvertisingEnableBuilder
 from bluetooth_packets_python3.hci_packets import LeSetExtendedScanEnableBuilder
 from bluetooth_packets_python3.hci_packets import EnabledSet
-from bluetooth_packets_python3.hci_packets import LeCreateConnPhyScanParameters
+from bluetooth_packets_python3.hci_packets import InitiatingPhyParameters
 from bluetooth_packets_python3.hci_packets import LeExtendedCreateConnectionBuilder
 from bluetooth_packets_python3.hci_packets import InitiatorFilterPolicy
 from bluetooth_packets_python3.hci_packets import AddressType
@@ -122,14 +122,14 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):
 
         # DUT Scans
         self.dut_hci.send_command(LeSetRandomAddressBuilder('0D:05:04:03:02:01'))
-        phy_scan_params = PhyScanParameters()
-        phy_scan_params.le_scan_interval = 6553
-        phy_scan_params.le_scan_window = 6553
-        phy_scan_params.le_scan_type = LeScanType.ACTIVE
+        scanning_phy_params = ScanningPhyParameters()
+        scanning_phy_params.le_scan_interval = 6553
+        scanning_phy_params.le_scan_window = 6553
+        scanning_phy_params.le_scan_type = LeScanType.ACTIVE
 
         self.dut_hci.send_command(
             LeSetExtendedScanParametersBuilder(OwnAddressType.RANDOM_DEVICE_ADDRESS, LeScanningFilterPolicy.ACCEPT_ALL,
-                                               1, [phy_scan_params]))
+                                               1, [scanning_phy_params]))
         self.dut_hci.send_command(LeSetExtendedScanEnableBuilder(Enable.ENABLED, FilterDuplicates.DISABLED, 0, 0))
 
         # CERT Advertises
@@ -191,16 +191,16 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):
 
     @staticmethod
     def _create_phy_scan_params():
-        phy_scan_params = LeCreateConnPhyScanParameters()
-        phy_scan_params.scan_interval = 0x60
-        phy_scan_params.scan_window = 0x30
-        phy_scan_params.conn_interval_min = 0x18
-        phy_scan_params.conn_interval_max = 0x28
-        phy_scan_params.conn_latency = 0
-        phy_scan_params.supervision_timeout = 0x1f4
-        phy_scan_params.min_ce_length = 0
-        phy_scan_params.max_ce_length = 0
-        return phy_scan_params
+        initiating_phy_params = InitiatingPhyParameters()
+        initiating_phy_params.scan_interval = 0x60
+        initiating_phy_params.scan_window = 0x30
+        initiating_phy_params.connection_interval_min = 0x18
+        initiating_phy_params.connection_interval_max = 0x28
+        initiating_phy_params.max_latency = 0
+        initiating_phy_params.supervision_timeout = 0x1f4
+        initiating_phy_params.min_ce_length = 0
+        initiating_phy_params.max_ce_length = 0
+        return initiating_phy_params
 
     def test_le_connection_dut_advertises(self):
         self.dut_hci.register_for_le_events(SubeventCode.CONNECTION_COMPLETE, SubeventCode.ADVERTISING_SET_TERMINATED,
@@ -222,9 +222,8 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):
         (dut_handle, cert_handle) = self._verify_le_connection_complete()
 
         self.dut_hci.send_command(LeReadRemoteFeaturesBuilder(dut_handle))
-        assertThat(self.dut_hci.get_le_event_stream()).emits(
-            lambda packet: packet.payload[0] == int(EventCode.LE_META_EVENT) and packet.payload[2] == int(SubeventCode.READ_REMOTE_FEATURES_COMPLETE)
-        )
+        assertThat(self.dut_hci.get_le_event_stream()).emits(lambda packet: packet.payload[0] == int(
+            EventCode.LE_META_EVENT) and packet.payload[2] == int(SubeventCode.READ_REMOTE_FEATURES_COMPLETE))
 
         # Send ACL Data
         self.enqueue_acl_data(dut_handle, PacketBoundaryFlag.FIRST_NON_AUTOMATICALLY_FLUSHABLE,
@@ -248,14 +247,13 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):
                                               'BA:D5:A4:A3:A2:A1', 1, [phy_scan_params]))
 
         self.cert_hal.unmask_event(EventCode.LE_META_EVENT)
-        advertisement = self.cert_hal.create_advertisement(
-            1,
-            '0C:05:04:03:02:01',
-            min_interval=512,
-            max_interval=768,
-            peer_address='A6:A5:A4:A3:A2:A1',
-            tx_power=0x7f,
-            sid=0)
+        advertisement = self.cert_hal.create_advertisement(1,
+                                                           '0C:05:04:03:02:01',
+                                                           min_interval=512,
+                                                           max_interval=768,
+                                                           peer_address='A6:A5:A4:A3:A2:A1',
+                                                           tx_power=0x7f,
+                                                           sid=0)
         advertisement.set_data(b'Im_A_Cert')
         advertisement.start()
 
@@ -275,8 +273,9 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):
 
         self.cert_hal.unmask_event(EventCode.LE_META_EVENT)
         self.cert_hal.send_hci_command(LeSetRandomAddressBuilder('0C:05:04:03:02:01'))
-        advertisement = self.cert_hal.create_legacy_advertisement(
-            min_interval=512, max_interval=768, peer_address='A6:A5:A4:A3:A2:A1')
+        advertisement = self.cert_hal.create_legacy_advertisement(min_interval=512,
+                                                                  max_interval=768,
+                                                                  peer_address='A6:A5:A4:A3:A2:A1')
         advertisement.set_data(b'Im_A_Cert')
         advertisement.start()
 
@@ -288,20 +287,21 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):
 
         # DUT Scans
         self.dut_hci.send_command(LeSetRandomAddressBuilder('0D:05:04:03:02:01'))
-        phy_scan_params = PhyScanParameters()
-        phy_scan_params.le_scan_interval = 6553
-        phy_scan_params.le_scan_window = 6553
-        phy_scan_params.le_scan_type = LeScanType.ACTIVE
+        scanning_phy_params = ScanningPhyParameters()
+        scanning_phy_params.le_scan_interval = 6553
+        scanning_phy_params.le_scan_window = 6553
+        scanning_phy_params.le_scan_type = LeScanType.ACTIVE
 
         self.dut_hci.send_command(
             LeSetExtendedScanParametersBuilder(OwnAddressType.RANDOM_DEVICE_ADDRESS, LeScanningFilterPolicy.ACCEPT_ALL,
-                                               1, [phy_scan_params]))
+                                               1, [scanning_phy_params]))
         self.dut_hci.send_command(LeSetExtendedScanEnableBuilder(Enable.ENABLED, FilterDuplicates.DISABLED, 0, 0))
 
         self.cert_hal.unmask_event(EventCode.LE_META_EVENT)
         self.cert_hal.send_hci_command(LeSetRandomAddressBuilder('0C:05:04:03:02:01'))
-        advertisement = self.cert_hal.create_legacy_advertisement(
-            min_interval=512, max_interval=768, peer_address='A6:A5:A4:A3:A2:A1')
+        advertisement = self.cert_hal.create_legacy_advertisement(min_interval=512,
+                                                                  max_interval=768,
+                                                                  peer_address='A6:A5:A4:A3:A2:A1')
         advertisement.set_data(b'Im_A_Cert')
         advertisement.start()
 

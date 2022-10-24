@@ -790,42 +790,42 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
     if (controller_->IsSupported(OpCode::LE_EXTENDED_CREATE_CONNECTION)) {
       uint8_t initiating_phys = PHY_LE_1M;
-      std::vector<LeCreateConnPhyScanParameters> parameters = {};
-      LeCreateConnPhyScanParameters scan_parameters;
-      scan_parameters.scan_interval_ = le_scan_interval;
-      scan_parameters.scan_window_ = le_scan_window;
-      scan_parameters.conn_interval_min_ = conn_interval_min;
-      scan_parameters.conn_interval_max_ = conn_interval_max;
-      scan_parameters.conn_latency_ = conn_latency;
-      scan_parameters.supervision_timeout_ = supervision_timeout;
-      scan_parameters.min_ce_length_ = 0x00;
-      scan_parameters.max_ce_length_ = 0x00;
-      parameters.push_back(scan_parameters);
+      std::vector<InitiatingPhyParameters> initiating_phy_parameters = {};
+      InitiatingPhyParameters le_1m_parameters;
+      le_1m_parameters.scan_interval_ = le_scan_interval;
+      le_1m_parameters.scan_window_ = le_scan_window;
+      le_1m_parameters.connection_interval_min_ = conn_interval_min;
+      le_1m_parameters.connection_interval_max_ = conn_interval_max;
+      le_1m_parameters.max_latency_ = conn_latency;
+      le_1m_parameters.supervision_timeout_ = supervision_timeout;
+      le_1m_parameters.min_ce_length_ = 0x00;
+      le_1m_parameters.max_ce_length_ = 0x00;
+      initiating_phy_parameters.push_back(le_1m_parameters);
 
       if (controller_->SupportsBle2mPhy()) {
-        LeCreateConnPhyScanParameters scan_parameters_2m;
-        scan_parameters_2m.scan_interval_ = le_scan_interval;
-        scan_parameters_2m.scan_window_ = le_scan_window_2m;
-        scan_parameters_2m.conn_interval_min_ = conn_interval_min;
-        scan_parameters_2m.conn_interval_max_ = conn_interval_max;
-        scan_parameters_2m.conn_latency_ = conn_latency;
-        scan_parameters_2m.supervision_timeout_ = supervision_timeout;
-        scan_parameters_2m.min_ce_length_ = 0x00;
-        scan_parameters_2m.max_ce_length_ = 0x00;
-        parameters.push_back(scan_parameters_2m);
+        InitiatingPhyParameters le_2m_parameters;
+        le_2m_parameters.scan_interval_ = le_scan_interval;
+        le_2m_parameters.scan_window_ = le_scan_window_2m;
+        le_2m_parameters.connection_interval_min_ = conn_interval_min;
+        le_2m_parameters.connection_interval_max_ = conn_interval_max;
+        le_2m_parameters.max_latency_ = conn_latency;
+        le_2m_parameters.supervision_timeout_ = supervision_timeout;
+        le_2m_parameters.min_ce_length_ = 0x00;
+        le_2m_parameters.max_ce_length_ = 0x00;
+        initiating_phy_parameters.push_back(le_2m_parameters);
         initiating_phys |= PHY_LE_2M;
       }
       if (controller_->SupportsBleCodedPhy()) {
-        LeCreateConnPhyScanParameters scan_parameters_coded;
-        scan_parameters_coded.scan_interval_ = le_scan_interval;
-        scan_parameters_coded.scan_window_ = le_scan_window_coded;
-        scan_parameters_coded.conn_interval_min_ = conn_interval_min;
-        scan_parameters_coded.conn_interval_max_ = conn_interval_max;
-        scan_parameters_coded.conn_latency_ = conn_latency;
-        scan_parameters_coded.supervision_timeout_ = supervision_timeout;
-        scan_parameters_coded.min_ce_length_ = 0x00;
-        scan_parameters_coded.max_ce_length_ = 0x00;
-        parameters.push_back(scan_parameters_coded);
+        InitiatingPhyParameters le_coded_parameters;
+        le_coded_parameters.scan_interval_ = le_scan_interval;
+        le_coded_parameters.scan_window_ = le_scan_window_coded;
+        le_coded_parameters.connection_interval_min_ = conn_interval_min;
+        le_coded_parameters.connection_interval_max_ = conn_interval_max;
+        le_coded_parameters.max_latency_ = conn_latency;
+        le_coded_parameters.supervision_timeout_ = supervision_timeout;
+        le_coded_parameters.min_ce_length_ = 0x00;
+        le_coded_parameters.max_ce_length_ = 0x00;
+        initiating_phy_parameters.push_back(le_coded_parameters);
         initiating_phys |= PHY_LE_CODED;
       }
 
@@ -836,7 +836,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
               address_with_type.GetAddressType(),
               address_with_type.GetAddress(),
               initiating_phys,
-              parameters),
+              initiating_phy_parameters),
           handler_->BindOnce(&le_impl::on_extended_create_connection, common::Unretained(this)));
     } else {
       le_acl_connection_interface_->EnqueueCommand(
