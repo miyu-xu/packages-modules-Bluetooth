@@ -110,6 +110,8 @@ public class A2dpService extends ProfileService {
     private BroadcastReceiver mBondStateChangedReceiver;
     private BroadcastReceiver mConnectionStateChangedReceiver;
 
+    private boolean mActiveLocally = false;
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileA2dpSourceEnabled().orElse(false);
     }
@@ -514,15 +516,15 @@ public class A2dpService extends ProfileService {
             // disconnected. Please see comment in updateAndBroadcastActiveDevice() for why.
             updateAndBroadcastActiveDevice(null);
 
-            // Make sure the Audio Manager knows the previous Active device is disconnected.
-            // However, if A2DP is still connected and not forcing stop audio for that remote
-            // device, the user has explicitly switched the output to the local device and music
-            // should continue playing. Otherwise, the remote device has been indeed disconnected
-            // and audio should be suspended before switching the output to the local device.
-            boolean stopAudio = forceStopPlayingAudio || (prevActiveConnectionState
-                        != BluetoothProfile.STATE_CONNECTED);
-            mAudioManager.handleBluetoothActiveDeviceChanged(null, previousActiveDevice,
-                    BluetoothProfileConnectionInfo.createA2dpInfo(!stopAudio, -1));
+            //// Make sure the Audio Manager knows the previous Active device is disconnected.
+            //// However, if A2DP is still connected and not forcing stop audio for that remote
+            //// device, the user has explicitly switched the output to the local device and music
+            //// should continue playing. Otherwise, the remote device has been indeed disconnected
+            //// and audio should be suspended before switching the output to the local device.
+            //boolean stopAudio = forceStopPlayingAudio || (prevActiveConnectionState
+            //            != BluetoothProfile.STATE_CONNECTED);
+            //mAudioManager.handleBluetoothActiveDeviceChanged(null, previousActiveDevice,
+            //        BluetoothProfileConnectionInfo.createA2dpInfo(!stopAudio, -1));
 
             synchronized (mStateMachines) {
                 // Make sure the Active device in native layer is set to null and audio is off
@@ -569,6 +571,7 @@ public class A2dpService extends ProfileService {
         synchronized (mActiveSwitchingGuard) {
             if (device == null) {
                 // Remove active device and continue playing audio only if necessary.
+                Log.d(TAG, "GK D1, removed active A2DP device");
                 removeActiveDevice(false);
                 return true;
             }
@@ -635,7 +638,9 @@ public class A2dpService extends ProfileService {
             // And inform the Audio Service about the codec configuration
             // change, so the Audio Service can reset accordingly the audio
             // feeding parameters in the Audio HAL to the Bluetooth stack.
-            mAudioManager.handleBluetoothActiveDeviceChanged(newActiveDevice, previousActiveDevice,
+            // Hack to force the same device re-activate
+            Log.d(TAG, "GK D2, active new device: " + newActiveDevice);
+            mAudioManager.handleBluetoothActiveDeviceChanged(newActiveDevice, newActiveDevice /*previousActiveDevice*/,
                     BluetoothProfileConnectionInfo.createA2dpInfo(true, rememberedVolume));
         }
         return true;
@@ -648,6 +653,11 @@ public class A2dpService extends ProfileService {
      */
     public BluetoothDevice getActiveDevice() {
         synchronized (mStateMachines) {
+            if (!mActiveLocally) {
+                BluetoothDevice noDevice = null;
+                return noDevice;
+            }
+
             return mActiveDevice;
         }
     }
@@ -1072,6 +1082,12 @@ public class A2dpService extends ProfileService {
             mActiveDevice = device;
         }
 
+        if (device == null) {
+            mActiveLocally = false;
+        } else {
+            mActiveLocally = true;
+        }
+
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
                 BluetoothProfile.A2DP, mAdapterService.obfuscateAddress(device),
                 mAdapterService.getMetricId(device));
@@ -1220,6 +1236,15 @@ public class A2dpService extends ProfileService {
         }
         if (toState == BluetoothProfile.STATE_CONNECTED) {
             MetricsLogger.logProfileConnectionEvent(BluetoothMetricsProto.ProfileId.A2DP);
+            // Make sure the Audio Manager knows the previous Active device is disconnected,
+            // and the new Active device is connected.
+            // And inform the Audio Service about the codec configuration
+            // change, so the Audio Service can reset accordingly the audio
+            // feeding parameters in the Audio HAL to the Bluetooth stack.
+            int rememberedVolume = mFactory.getAvrcpTargetService()
+                        .getRememberedVolumeForDevice(device);
+            mAudioManager.handleBluetoothActiveDeviceChanged(device, null,
+                    BluetoothProfileConnectionInfo.createA2dpInfo(true, rememberedVolume));
         }
         // Set the active device if only one connected device is supported and it was connected
         if (toState == BluetoothProfile.STATE_CONNECTED && (mMaxConnectedAudioDevices == 1)) {
@@ -1237,6 +1262,15 @@ public class A2dpService extends ProfileService {
                 }
                 removeStateMachine(device);
             }
+            // Make sure the Audio Manager knows the previous Active device is disconnected.
+            // However, if A2DP is still connected and not forcing stop audio for that remote
+            // device, the user has explicitly switched the output to the local device and music
+            // should continue playing. Otherwise, the remote device has been indeed disconnected
+            // and audio should be suspended before switching the output to the local device.
+            boolean stopAudio = true;//forceStopPlayingAudio || (prevActiveConnectionState
+                        //!= BluetoothProfile.STATE_CONNECTED);
+            mAudioManager.handleBluetoothActiveDeviceChanged(null, device,
+                    BluetoothProfileConnectionInfo.createA2dpInfo(!stopAudio, -1));
         }
     }
 

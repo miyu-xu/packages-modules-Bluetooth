@@ -91,6 +91,8 @@ public class HearingAidService extends ProfileService {
 
     private final ServiceFactory mFactory = new ServiceFactory();
 
+    private boolean mActiveLocally = false;
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileAshaCentralEnabled().orElse(false);
     }
@@ -610,6 +612,9 @@ public class HearingAidService extends ProfileService {
         ArrayList<BluetoothDevice> activeDevices = new ArrayList<>();
         activeDevices.add(null);
         activeDevices.add(null);
+        if (!mActiveLocally) {
+            return activeDevices;
+        }
         synchronized (mStateMachines) {
             if (mActiveDeviceHiSyncId == BluetoothHearingAid.HI_SYNC_ID_INVALID) {
                 return activeDevices;
@@ -697,6 +702,15 @@ public class HearingAidService extends ProfileService {
         }
     }
 
+    private void connectAudioDevice(BluetoothDevice device) {
+        mAudioManager.handleBluetoothActiveDeviceChanged(device, mPreviousAudioDevice,
+                BluetoothProfileConnectionInfo.createHearingAidInfo(true));
+    }
+    private void disconnectAudioDevice(BluetoothDevice device) {
+        mAudioManager.handleBluetoothActiveDeviceChanged(device, mPreviousAudioDevice,
+                BluetoothProfileConnectionInfo.createHearingAidInfo(false));
+    }
+
     /**
      * Report the active device change to the active device manager and the media framework.
      * @param device the new active device; or null if no active device
@@ -704,6 +718,13 @@ public class HearingAidService extends ProfileService {
     private void reportActiveDevice(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "reportActiveDevice(" + device + ")");
+        }
+
+        Log.d(TAG, "GK E active locally change: " + mActiveLocally);
+        if (device == null) {
+            mActiveLocally = false;
+        } else {
+            mActiveLocally = true;
         }
 
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
@@ -722,6 +743,12 @@ public class HearingAidService extends ProfileService {
             Log.d(TAG, "Hearing Aid audio: " + mPreviousAudioDevice + " -> " + device
                     + ". Stop audio: " + stopAudio);
         }
+
+        if (device == null) {
+            return;
+        }
+
+        Log.d(TAG, "GK C1 - switch Hearing Aid");
         mAudioManager.handleBluetoothActiveDeviceChanged(device, mPreviousAudioDevice,
                 BluetoothProfileConnectionInfo.createHearingAidInfo(!stopAudio));
         mPreviousAudioDevice = device;
@@ -820,6 +847,7 @@ public class HearingAidService extends ProfileService {
             if (!mHiSyncIdConnectedMap.getOrDefault(myHiSyncId, false)) {
                 mHiSyncIdConnectedMap.put(myHiSyncId, true);
             }
+            connectAudioDevice(device);
         }
         if (fromState == BluetoothProfile.STATE_CONNECTED && getConnectedDevices().isEmpty()) {
             setActiveDevice(null);
@@ -835,6 +863,7 @@ public class HearingAidService extends ProfileService {
                 }
                 removeStateMachine(device);
             }
+            disconnectAudioDevice(null);
         }
     }
 

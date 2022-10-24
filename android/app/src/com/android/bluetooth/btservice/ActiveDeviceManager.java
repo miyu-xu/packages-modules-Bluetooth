@@ -46,6 +46,7 @@ import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -522,11 +523,9 @@ class ActiveDeviceManager {
                         // mLeAudioConnectedDevices should contain all of
                         // mLeHearingAidConnectedDevices. Call setLeAudioActiveDevice(null)
                         // only if there are no LE audio devices.
-                        if (Objects.equals(mLeHearingAidConnectedDevices, device)) {
-                            if (mLeAudioConnectedDevices.isEmpty()) {
-                                setLeAudioActiveDevice(null);
-                            }
-                            setFallbackDeviceActive();
+                        if (mLeAudioConnectedDevices.isEmpty()
+                                && Objects.equals(mLeHearingAidConnectedDevices, device)) {
+                            setLeAudioActiveDevice(null);
                         }
                     }
                 }
@@ -693,9 +692,25 @@ class ActiveDeviceManager {
         }
         final HearingAidService hearingAidService = mFactory.getHearingAidService();
         if (hearingAidService == null) {
+            Log.d(TAG, "GK A1 returning here");
             return;
         }
-        if (!hearingAidService.setActiveDevice(device)) {
+
+        if (device == null) {
+          /* No active Hearing Aid device */
+          if (Collections.frequency(hearingAidService.getActiveDevices(), device) == 2) {
+            return;
+          }
+
+          /* Could not set device as active */
+          if (!hearingAidService.setActiveDevice(device)) {
+            return;
+          }
+        }
+
+        /* Replace device if possible to another as active */
+        if (!hearingAidService.getActiveDevices().contains(device)
+                && !hearingAidService.setActiveDevice(device)) {
             return;
         }
         mHearingAidActiveDevice = device;
