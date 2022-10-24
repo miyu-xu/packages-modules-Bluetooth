@@ -140,7 +140,7 @@ const bool enable_address_consolidate = true;  // TODO remove
 #define ENCRYPTED_BREDR 2
 #define ENCRYPTED_LE 4
 
-typedef struct {
+struct btif_dm_pairing_cb_t {
   bt_bond_state_t state;
   RawAddress static_bdaddr;
   RawAddress bd_addr;
@@ -157,7 +157,12 @@ typedef struct {
   bool is_le_nc; /* LE Numeric comparison */
   btif_dm_ble_cb_t ble;
   uint8_t fail_reason;
-} btif_dm_pairing_cb_t;
+
+  enum service_discovery_state { NOT_STARTED, SCHEDULED, FINISHED };
+
+  service_discovery_state gatt_on_le;
+  service_discovery_state sdp_on_classic;
+};
 
 // TODO(jpawlowski): unify ?
 // btif_dm_local_key_id_t == tBTM_BLE_LOCAL_ID_KEYS == tBTA_BLE_LOCAL_ID_KEYS
@@ -1109,7 +1114,13 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
         } else {
           bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED);
         }
-        btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
+
+        if (pairing_cb.sdp_on_classic ==
+            btif_dm_pairing_cb_t::service_discovery_state::NOT_STARTED) {
+          pairing_cb.sdp_on_classic =
+              btif_dm_pairing_cb_t::service_discovery_state::SCHEDULED;
+          btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
+        }
       }
     }
     // Do not call bond_state_changed_cb yet. Wait until remote service
@@ -1456,6 +1467,10 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         }
         return;
       }
+
+      pairing_cb.sdp_on_classic =
+          btif_dm_pairing_cb_t::service_discovery_state::FINISHED;
+
       prop.type = BT_PROPERTY_UUIDS;
       prop.len = 0;
       if ((p_data->disc_res.result == BTA_SUCCESS) &&
@@ -1563,6 +1578,8 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       RawAddress& bd_addr = p_data->disc_ble_res.bd_addr;
 
       if (event == BTA_DM_GATT_OVER_LE_RES_EVT) {
+        pairing_cb.gatt_on_le =
+            btif_dm_pairing_cb_t::service_discovery_state::FINISHED;
         LOG_INFO("New GATT over LE UUIDs for %s:", bd_addr.ToString().c_str());
       } else {
         LOG_INFO("New GATT over SDP UUIDs for %s:", bd_addr.ToString().c_str());
@@ -3002,7 +3019,13 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
       state = BT_BOND_STATE_NONE;
     } else {
       btif_dm_save_ble_bonding_keys(bd_addr);
-      btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_LE);
+
+      if (pairing_cb.gatt_on_le ==
+          btif_dm_pairing_cb_t::service_discovery_state::NOT_STARTED) {
+        pairing_cb.gatt_on_le =
+            btif_dm_pairing_cb_t::service_discovery_state::SCHEDULED;
+        btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_LE);
+      }
     }
   } else {
     /*Map the HCI fail reason  to  bt status  */
