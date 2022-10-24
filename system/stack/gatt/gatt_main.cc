@@ -113,7 +113,10 @@ void gatt_init(void) {
   fixed_reg.pL2CA_FixedConn_Cb = gatt_le_connect_cback;
   fixed_reg.pL2CA_FixedData_Cb = gatt_le_data_ind;
   fixed_reg.pL2CA_FixedCong_Cb = gatt_le_cong_cback; /* congestion callback */
-  fixed_reg.default_idle_tout = 0xffff; /* 0xffff default idle timeout */
+  fixed_reg.default_idle_tout =
+      bluetooth::shim::is_finite_att_timeout_enabled()
+          ? 2 /* We allow 2s for GATT clients to connect once the link is up */
+          : L2CAP_NO_IDLE_TIMEOUT;
 
   L2CA_RegisterFixedChannel(L2CAP_ATT_CID, &fixed_reg);
 
