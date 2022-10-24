@@ -16,6 +16,23 @@
       "message": "All good to me :+1:",
       "revId": "1c6425766c405bb711ef4ec01722ddeb68128ed8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef237ce_30afb43f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-24T22:50:02Z",
+      "side": 1,
+      "message": "reason to bypass presubmit: b/255410571",
+      "revId": "1c6425766c405bb711ef4ec01722ddeb68128ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
