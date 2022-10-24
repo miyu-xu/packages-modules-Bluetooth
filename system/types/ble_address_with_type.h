@@ -116,9 +116,16 @@ struct tBLE_BD_ADDR {
     return (other & ~kBleAddressIdentityBit) ==
            (type & ~kBleAddressIdentityBit);
   }
+
+  // TODO: remove
   std::string ToString() const {
     return std::string(bda.ToString() + "[" + AddressTypeText(type) + "]");
   }
+
+  std::string ToStringForLogging() const {
+    return bda.ToStringForLogging() + "[" + AddressTypeText(type) + "]";
+  }
+
   bool operator==(const tBLE_BD_ADDR rhs) const {
     return rhs.type == type && rhs.bda == bda;
   }
