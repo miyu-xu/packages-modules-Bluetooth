@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccac65af_bc4f0bc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-25T12:58:16Z",
+      "side": 1,
+      "message": "For the SMP it seems to be safe because\n1) for smp this timeout is set to 60 in smp_l2c.cc\n2) in `l2cu_no_dynamic_ccbs` timeout is not taken into account `if (p_lcb-\u003eIsBonding())`\n\nMy question is why it is 2 sec and not the default L2CAP_LINK_INACTIVITY_TOUT ?\nSeems that minimum will be 4.\n\nAlso, I agree with Jakub, that if GATT db on the remote side is big, it might cause a problem.",
+      "parentUuid": "50f5ae39_735a7410",
+      "revId": "c24851b3e490132bd46b945cabce44f6c426aaec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e87946b_6c81eff2",
         "filename": "system/stack/gatt/gatt_main.cc",
         "patchSetId": 2
