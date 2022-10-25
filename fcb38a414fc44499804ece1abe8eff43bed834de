@@ -177,6 +177,24 @@
       "parentUuid": "0bbc4ed2_508e4b0b",
       "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53094d7d_b4bcf02e",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-25T10:47:48Z",
+      "side": 0,
+      "message": "Make aosp/2267178 for this.",
+      "parentUuid": "b2776071_4acf5893",
+      "revId": "fcb38a414fc44499804ece1abe8eff43bed834de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
