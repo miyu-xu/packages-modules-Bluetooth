@@ -191,6 +191,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7421ca76_121c18e9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-25T08:34:35Z",
+      "side": 1,
+      "message": "Could you make this as: \n\n`assertThat(browseTree.getNodesUsingCoverArt(TEST_HANDLE)).isEmpty();`\n\nand move it into L124, to show the an initial condition?",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 75
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6c8813e_94385e28",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
         "patchSetId": 1
@@ -231,6 +254,53 @@
         "startChar": 0,
         "endLine": 140,
         "endChar": 5
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d8e02f9_801c1012",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-25T08:34:35Z",
+      "side": 1,
+      "message": "For me personally,  it seems splitting this is better since they can show different test cases.",
+      "parentUuid": "e1752218_7c12d4fb",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79d0243_924aa280",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-25T08:34:35Z",
+      "side": 1,
+      "message": "Could you split this test into two?\n\n1. getEldestChild() returns null if they are not in ancestor-descendant relation.\n\n2. getEldestChild() returns something for grandparent and son relation.",
+      "range": {
+        "startLine": 156,
+        "startChar": 16,
+        "endLine": 156,
+        "endChar": 30
       },
       "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
