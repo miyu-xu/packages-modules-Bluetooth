@@ -51,5 +51,7 @@ void LogMetricsAclConnectionStateChanged(
 
 void LogMetricsChipsetInfoReport() {}
 
+void DebugAssertOrLogMetric(bool condition, uint32_t assert_type, const char* format, ...) {}
+
 }  // namespace metrics
 }  // namespace bluetooth
