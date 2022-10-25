@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3716904d_462b6dbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-10-25T07:52:29Z",
+      "side": 1,
+      "message": "Hi @rahulsabnis@google.com,\nWe have some process question about new APIs, could you help to answer?\n\nPlease see comments in https://googleplex-android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/20071717/comment/9444c150_fc0e91d9/",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91693b34_b5ea8522",
         "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
         "patchSetId": 5
