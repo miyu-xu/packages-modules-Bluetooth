@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5340e965_87671388",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-25T16:59:59Z",
+      "side": 1,
+      "message": "Hey Chris, PTAL. \n\nWe found that the sysprop wasn\u0027t properly applying anymore and narrowed it down to LE Address Manager not actually using the `supports_ble_privacy` value and acl_manager not reading the sysprop.",
+      "revId": "8209cd84f95fb3717bafa73f40f26098a17bb6ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
