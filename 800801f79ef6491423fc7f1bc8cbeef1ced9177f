@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f7b7dd_9074f39a",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 1,
+      "message": "nit: Just \"set gain to zero\", no \"and wait\", or is waiting built into `setFluorideAudioTrackGain`?",
+      "range": {
+        "startLine": 212,
+        "startChar": 68,
+        "endLine": 212,
+        "endChar": 77
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "373803a8_3e1e25d0",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 1,
+      "message": "nit: do we want to add some debug logging here for when `\u003d\u003d null`?",
+      "range": {
+        "startLine": 225,
+        "startChar": 16,
+        "endLine": 225,
+        "endChar": 51
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9376d9b4_3104f55e",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 1,
+      "message": "Is it possible for the active device to change in `case AUDIO_FOCUS_CHANGE:` in `A2dpSinkStreamHandler` (i.e., before/between when `avrcpControllerService.onAudioFocusStateChanged(mAudioFocus)` is called)?",
+      "range": {
+        "startLine": 572,
+        "startChar": 11,
+        "endLine": 572,
+        "endChar": 85
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c13ec0a_b2ac6faf",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 1,
+      "message": "Is the check for `STATE_PLAYING` due to concern that sending a pause cmd to a paused state will toggle it to a playing state?\n\nIf so, is a similar check needed in the `else` statement right below (i.e., `!\u003d DEVICE_STATE_ACTIVE`)?\n\nAnd maybe also in `case AudioManager.AUDIOFOCUS_LOSS:` below?",
+      "range": {
+        "startLine": 489,
+        "startChar": 28,
+        "endLine": 489,
+        "endChar": 89
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd94d634_e3d5cbcf",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 1,
+      "message": "Is this check perhaps unnecessary, since the only way to set `mShouldSendPlayOnFocusRecovery` to `true` is `AUDIOFOCUS_LOSS_TRANSIENT` case? I.e., is there a case where we would want `mShouldSendPlayOnFocusRecovery` to remain `true`? Or is this protecting against some race condition?",
+      "range": {
+        "startLine": 1210,
+        "startChar": 16,
+        "endLine": 1210,
+        "endChar": 73
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

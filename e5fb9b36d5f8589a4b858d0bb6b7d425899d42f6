@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f16e544_d1b7977f",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 0,
+      "message": "Can `DELAYED_PAUSE` be eliminated? It no longer seems to be used anywhere else, except for one instance in A2dpSinkStreamHandlerTest.java?",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 41
+      },
+      "revId": "e5fb9b36d5f8589a4b858d0bb6b7d425899d42f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad2c3047_5e5261a1",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 0,
+      "message": "Can `mSentPause` be eliminated, it doesn\u0027t seem to be consumed anymore?",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 39
+      },
+      "revId": "e5fb9b36d5f8589a4b858d0bb6b7d425899d42f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4740a968_c09787f1",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 0,
+      "message": "Can `mSentPause` be eliminated, it doesn\u0027t seem to be consumed anymore?",
+      "range": {
+        "startLine": 190,
+        "startChar": 16,
+        "endLine": 190,
+        "endChar": 35
+      },
+      "revId": "e5fb9b36d5f8589a4b858d0bb6b7d425899d42f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64095941_f9a883fd",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-10-25T21:44:42Z",
+      "side": 0,
+      "message": "This seems to be the only place where `mSentPause` is consumed? We maybe able to eliminate the variable entirely?",
+      "range": {
+        "startLine": 201,
+        "startChar": 28,
+        "endLine": 201,
+        "endChar": 38
+      },
+      "revId": "e5fb9b36d5f8589a4b858d0bb6b7d425899d42f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
