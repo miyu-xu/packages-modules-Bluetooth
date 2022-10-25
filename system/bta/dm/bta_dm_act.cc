@@ -1981,7 +1981,7 @@ static void bta_dm_remname_cback(void* p) {
   APPL_TRACE_DEBUG("bta_dm_remname_cback len = %d name=<%s>",
                    p_remote_name->length, p_remote_name->remote_bd_name);
 
-  if (bta_dm_search_cb.peer_bdaddr == p_remote_name->bd_addr) {
+  if (bta_dm_search_cb.peer_bdaddr == p_remote_name->bd_addr || true) {
     if (bluetooth::shim::is_gd_security_enabled()) {
       bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
           &bta_dm_service_search_remname_cback);
