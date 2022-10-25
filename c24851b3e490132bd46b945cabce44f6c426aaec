@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f5ae39_735a7410",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-25T12:13:52Z",
+      "side": 1,
+      "message": "I think you are dealing with fixed channel timeouts for classic and LE devices here too, which if I remember well should include security channel.\nUsually pairing times out after 30 seconds of inactivity. That means user can start typing PIN or confirm yes/no dialog after i.e. 20 seconds. With your patch you would close this \"unused\" SMP channel after 2 seconds.\n\nFor BLE: 2s is not enough to finish service discovery on some devices. I would suggest 10 or 15 seconds at least. Also, make it into constant.",
+      "revId": "c24851b3e490132bd46b945cabce44f6c426aaec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
