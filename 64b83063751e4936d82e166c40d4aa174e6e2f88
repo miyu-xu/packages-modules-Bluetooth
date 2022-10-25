@@ -22,6 +22,29 @@
       },
       "revId": "64b83063751e4936d82e166c40d4aa174e6e2f88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02db811d_360b13e4",
+        "filename": "system/blueberry/tests/sl4a_sl4a/adapter/adapter_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T23:28:16Z",
+      "side": 1,
+      "message": "I\u0027d prefer using the SL4A listeners for adapter state changes.  Timing is fragile.",
+      "range": {
+        "startLine": 27,
+        "startChar": 7,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "64b83063751e4936d82e166c40d4aa174e6e2f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
