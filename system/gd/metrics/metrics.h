@@ -15,6 +15,7 @@
  */
 #pragma once
 
+#include <cstdbool>
 #include <cstdint>
 
 #include "types/raw_address.h"
@@ -40,6 +41,10 @@ void LogMetricsAclConnectAttempt(RawAddress* addr, uint32_t acl_state);
 void LogMetricsAclConnectionStateChanged(
     RawAddress* addr, uint32_t transport, uint32_t status, uint32_t acl_state, uint32_t direction, uint32_t hci_reason);
 void LogMetricsChipsetInfoReport();
+// TODO(b/255510968) This function should assert on debug builds. On release
+// builds, it should log the error and upload a codepath metric indicating this
+// assert was hit but not crash.
+void DebugAssertOrLogMetric(bool condition, uint32_t assert_type, const char* format, ...);
 
 }  // namespace metrics
 }  // namespace bluetooth
