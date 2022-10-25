@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1c1fbf9_6398b523",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-25T10:31:22Z",
+      "side": 1,
+      "message": "Done. I copied the definition from Bluetooth HAS spec.",
+      "parentUuid": "91693b34_b5ea8522",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d42deca_c77b31c5",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-10-24T21:06:51Z",
       "side": 1,
       "message": "nit: End the first sentence with a period for all of these methods.",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc5bbf04_b3c3084b",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1235,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-25T10:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d42deca_c77b31c5",
       "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56e5a8b4_b61878ef",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-25T10:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caf67af1_75691258",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4142f20a_7c4cecfa",
@@ -82,6 +136,24 @@
       "writtenOn": "2022-10-24T21:06:51Z",
       "side": 1,
       "message": "All of these methods call getFeatures(BluetoothDevice) under the hood. This method requires BLUETOOTH_CONNECT and BLUETOOTH_PRIVILEGED permissions. Please make sure to add a @RequiresPermission annotation for each of these to reflect that requirement.",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f672dec_7f0782dc",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-25T10:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4142f20a_7c4cecfa",
       "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -103,6 +175,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d6b9b34_402158d9",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-25T10:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94fb1a21_06a8c233",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa602874_633853ae",
@@ -120,6 +210,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6430c72_4c8c2efe",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-25T10:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa602874_633853ae",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "647d8520_ca1c5851",
@@ -133,6 +241,24 @@
       "writtenOn": "2022-10-24T21:06:51Z",
       "side": 1,
       "message": "Replace \"true\" and \"false\" with \"{@code true}\" and \"{@code false}\"",
+      "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f3d1e1_e3722a04",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-10-25T10:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "647d8520_ca1c5851",
       "revId": "1487a5df31793a7544170ddcb2212ee01d42d0d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
