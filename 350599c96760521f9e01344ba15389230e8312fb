@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ead52e9_f4dbd6c5",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-25T07:47:52Z",
+      "side": 1,
+      "message": "please consider const as Lint suggests",
+      "range": {
+        "startLine": 1213,
+        "startChar": 28,
+        "endLine": 1213,
+        "endChar": 66
+      },
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9211e446_1693bd37",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-25T07:47:52Z",
+      "side": 1,
+      "message": "in line 1430, before `CsisActiveDiscovery()` is called (which is the only place where `CheckForGroupInInqDb()` is called), this  check is done.\n\nIf this is  expected that  `CheckForGroupInInqDb()` will be called also from other places, I suggest to do this check as the first thing in this function",
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e95e665c_0c36d1d8",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-25T07:47:52Z",
+      "side": 1,
+      "message": "If member has been found in InqDb, does it make sense to enable discovery later on in `CsisActiveDiscovery()`?",
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
