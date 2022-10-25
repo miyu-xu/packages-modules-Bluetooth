@@ -318,6 +318,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ce73950_f25abd3a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-10-25T06:49:06Z",
+      "side": 1,
+      "message": "For now, I think it\u0027s okay to go with this",
+      "parentUuid": "2445dc04_89701a87",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 87
+      },
+      "revId": "5b1b8c553e7bae48592f6ab14651f32d5c5a5ea2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbc888ee_a06b994b",
