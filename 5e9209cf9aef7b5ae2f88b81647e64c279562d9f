@@ -45,6 +45,30 @@
       },
       "revId": "5e9209cf9aef7b5ae2f88b81647e64c279562d9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8de043af_ea73f47a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-10-25T22:55:58Z",
+      "side": 1,
+      "message": "it says \"click OK, *then* disable\".\n\nSo we need to defer disabling until after we press OK, and the pts-bot starts listening for the disconnection. Otherwise our disconnection occurs before pts-bot starts listening.",
+      "parentUuid": "9796cb70_70396548",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 112,
+        "endChar": 25
+      },
+      "revId": "5e9209cf9aef7b5ae2f88b81647e64c279562d9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
