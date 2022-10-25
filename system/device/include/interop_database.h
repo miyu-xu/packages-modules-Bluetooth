@@ -206,7 +206,7 @@ static const interop_addr_range_entry_t interop_addr_range_database[] = {
 };
 
 typedef struct {
-  char name[20];
+  char name[249];
   size_t length;
   interop_feature_t feature;
 } interop_name_entry_t;
@@ -234,4 +234,26 @@ static const interop_name_entry_t interop_name_database[] = {
     // dynamically. They require custom HID report command to change mode.
     {"Pro Controller", 14, INTEROP_HID_HOST_LIMIT_SNIFF_INTERVAL},
     {"Joy-Con", 7, INTEROP_HID_HOST_LIMIT_SNIFF_INTERVAL},
+};
+typedef struct {
+  uint16_t manufacturer;
+  interop_feature_t feature;
+} interop_manufacturer_t;
+
+static const interop_manufacturer_t interop_manufacturer_database[] = {
+    // Apple Devices - SDP No Resources Error
+    {76, INTEROP_DISABLE_SDP_AFTER_PAIRING},
+    // Apple Devices - Lags during SCO
+    {76, INTEROP_DISABLE_SNIFF_DURING_SCO},
+};
+
+typedef struct {
+  uint16_t vendor_id;
+  uint16_t product_id;
+  interop_feature_t feature;
+} interop_hid_multitouch_t;
+
+static const interop_hid_multitouch_t interop_hid_multitouch_database[] = {
+    // HID Moto KZ500 Keyboard - Problematic SDP digitizer descriptor
+    {0x22b8, 0x093d, INTEROP_REMOVE_HID_DIG_DESCRIPTOR},
 };
