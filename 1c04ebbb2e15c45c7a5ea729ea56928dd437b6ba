@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3931754b_89799fdf",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T12:11:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c4a37a02_8f299283",
+      "range": {
+        "startLine": 977,
+        "startChar": 63,
+        "endLine": 977,
+        "endChar": 71
+      },
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6bcc9d0_376307a7",
@@ -221,6 +245,30 @@
       "side": 1,
       "message": "Without this change, when a LEA disconnected, handleGroupTransitToInactive is called twice anyway.\n\nFirst: \nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d964?q\u003dleaudioservice.java\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n\nSecond:\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d1333?q\u003dleaudioservice.java\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n\n\nAnd I just realized that I miss read Telecom and/or Bluetooth code.\nI made this change because I saw a log from Telecom that says \n\"BluetoothRouteManager: More than one profile reporting active devices.\"\nand I found the inactivate wasn\u0027t notified.\nHowever, the LeAudioService.getActiveDevices always returns two devices. So, now I don\u0027t know why it is fixed with this CL :(",
       "parentUuid": "bd745f8a_b0ad92b0",
+      "range": {
+        "startLine": 977,
+        "startChar": 6,
+        "endLine": 981,
+        "endChar": 69
+      },
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80d34439_48d0683a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T12:11:55Z",
+      "side": 1,
+      "message": "Now I know why. Updated the commit message. PTAL.",
+      "parentUuid": "e8ce4746_2e36cb43",
       "range": {
         "startLine": 977,
         "startChar": 6,
