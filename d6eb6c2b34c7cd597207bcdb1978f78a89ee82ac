@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "198f5332_84900870",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "518d7919_1eeef709",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 26
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e96af6f4_b177c4bc",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-22T02:16:03Z",
       "side": 1,
       "message": "To put before the `if` statement, to avoid code duplication.",
+      "range": {
+        "startLine": 377,
+        "startChar": 12,
+        "endLine": 377,
+        "endChar": 76
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0652c7b1_e9e8778e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e96af6f4_b177c4bc",
       "range": {
         "startLine": 377,
         "startChar": 12,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce473c73_d1e863ce",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43913f4b_4b308daf",
+      "range": {
+        "startLine": 380,
+        "startChar": 12,
+        "endLine": 380,
+        "endChar": 76
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "301a9b71_9d47c86a",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-10-22T02:16:03Z",
       "side": 1,
       "message": "To replace by:\n```\nself.mediaplayer.Play()\nself.mediaplayer.Forward()\n```",
+      "range": {
+        "startLine": 703,
+        "startChar": 0,
+        "endLine": 704,
+        "endChar": 53
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "474256fd_c392f0bd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "301a9b71_9d47c86a",
       "range": {
         "startLine": 703,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c864ccd9_5c7cdb3b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Updating the SetLargeMetadata to setLargeMetadata. Removed Play() as it will update with current track meta-data.\nSo we are currently just setting Large Meta Data to mediaSession.",
+      "parentUuid": "4bd5ef50_e08e6baf",
+      "range": {
+        "startLine": 737,
+        "startChar": 8,
+        "endLine": 737,
+        "endChar": 37
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcc1727e_d197c253",
@@ -146,6 +266,30 @@
       "writtenOn": "2022-10-22T02:16:03Z",
       "side": 1,
       "message": "We should avoid this, since it can turn to be flaky and not really flexible.\n\nWe should rather do:\n- Initialize the audioTrack in the init function of `MediaPlayer.kt` (see my comment below).\n- Add a dedicated `Play` method which starts playing when we want (see the modifications I recommend in `avrcp.py`).\n- Add a dedicated `Pause` method for pausing it.\n- Etc",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0d9871e_b8b7d4e4",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "We used AudioTrack class to keep mediaSession active to receive MediaButton events for PTT commands. With further implementation we could see that for target test cases we need not use AudioTrack. So removing initAudio() from Avrcp.kt.",
+      "parentUuid": "bcc1727e_d197c253",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -179,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1083ec58_c9e5d852",
+        "filename": "android/pandora/server/src/com/android/pandora/Avrcp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Resolved: We have removed setPlaybackState() and created separate functions play(),pause(),forward() etc",
+      "parentUuid": "9c1ef903_5bb78d55",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 3
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6013c9ee_f597c6e9",
@@ -192,6 +360,30 @@
       "writtenOn": "2022-10-22T02:16:03Z",
       "side": 1,
       "message": "Why do we need a `MediaBrowserService` here? Could everything be handled by just a `MediaSession`?",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2da03cba_536c754e",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Since some of the test cases looks for the browsing folder structure which is required to pass those test cases.",
+      "parentUuid": "6013c9ee_f597c6e9",
       "range": {
         "startLine": 29,
         "startChar": 28,
@@ -225,6 +417,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "765a2016_9a688774",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "330768ab_887b1401",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 48
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0c2e1f7_76000b7d",
@@ -248,6 +464,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8b2eb7a_8dd7fffe",
+        "filename": "pandora/interfaces/pandora_experimental/avrcp.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Done, We have created different calls for Play Pause etc actions in mediaplayer.proto. Since we have individual function calls we are not sending state parameter(PlayRequest,StopRequest) in grpc Request",
+      "parentUuid": "b0c2e1f7_76000b7d",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c6b87e2_01c19140",
@@ -261,6 +501,30 @@
       "writtenOn": "2022-10-22T02:16:03Z",
       "side": 1,
       "message": "Remove the \u0027s\u0027: `PlaybackState`.",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 19
+      },
+      "revId": "d6eb6c2b34c7cd597207bcdb1978f78a89ee82ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebcf9ea1_b811067d",
+        "filename": "pandora/interfaces/pandora_experimental/avrcp.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "We dont need this enum as we are using individual functions. So have removed it from avrcp.proto file",
+      "parentUuid": "7c6b87e2_01c19140",
       "range": {
         "startLine": 17,
         "startChar": 5,

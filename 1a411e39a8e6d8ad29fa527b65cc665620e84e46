@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b605d4_95f00b00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-25T16:35:26Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nAVRCP files, have updated the remarks in comments for more details.\nPS: We have added queue in MediaSession for testing \"Forward\" \"Previous\" etc.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
