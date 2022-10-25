@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "287ee919_7f990909",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T17:24:13Z",
+      "side": 1,
+      "message": "I think we need to check the version, then.  Or we could name this CheckSupportedFeatures5_3 ...\n\nAt some point, I would like to test pairing with \"old\" devices, and these checks will fail.",
+      "range": {
+        "startLine": 350,
+        "startChar": 1,
+        "endLine": 353,
+        "endChar": 0
+      },
+      "revId": "2f2c694d588397fb21642df2640dd8a66d295463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5c12eb1_5332b8c6",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T17:24:13Z",
+      "side": 1,
+      "message": "Can we just print a warning here if LE isn\u0027t supported on the controller?  Or are you thinking returning a status from this function?",
+      "range": {
+        "startLine": 831,
+        "startChar": 1,
+        "endLine": 831,
+        "endChar": 36
+      },
+      "revId": "2f2c694d588397fb21642df2640dd8a66d295463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
