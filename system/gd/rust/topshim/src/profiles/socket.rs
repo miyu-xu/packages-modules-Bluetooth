@@ -8,6 +8,7 @@ use crate::bindings::root as bindings;
 use crate::btif::{
     BluetoothInterface, BtStatus, FfiAddress, RawAddress, SupportedProfiles, Uuid, Uuid128Bit,
 };
+use crate::utils::LTCheckedPtr;
 use crate::{cast_to_ffi_address, ccall};
 
 #[derive(Clone, Debug, FromPrimitive, ToPrimitive)]
@@ -161,18 +162,17 @@ impl BtSocket {
             None => None,
         };
 
-        let uuid_ptr = match uuid {
-            Some(ref u) => u as *const Uuid,
-            None => std::ptr::null(),
-        };
+        let uuid_ptr = LTCheckedPtr::from(&uuid);
 
         let name = CString::new(service_name).expect("Service name has null in it.");
+        let name_ptr = LTCheckedPtr::from(&name);
+
         let status: BtStatus = ccall!(
             self,
             listen,
             sock_type.into(),
-            name.as_ptr(),
-            uuid_ptr,
+            name_ptr.into(),
+            uuid_ptr.into(),
             channel,
             &mut sockfd,
             flags,
@@ -198,10 +198,7 @@ impl BtSocket {
             None => None,
         };
 
-        let uuid_ptr = match uuid {
-            Some(ref u) => u as *const Uuid,
-            None => std::ptr::null(),
-        };
+        let uuid_ptr = LTCheckedPtr::from(&uuid);
 
         let ffi_addr = cast_to_ffi_address!(&addr as *const RawAddress);
 
@@ -210,7 +207,7 @@ impl BtSocket {
             connect,
             ffi_addr,
             sock_type.into(),
-            uuid_ptr,
+            uuid_ptr.into(),
             channel,
             &mut sockfd,
             flags,

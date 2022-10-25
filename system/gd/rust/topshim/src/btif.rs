@@ -4,6 +4,7 @@
 
 use crate::bindings::root as bindings;
 use crate::topstack::get_dispatchers;
+use crate::utils::{LTCheckedPtr, LTCheckedPtrMut};
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 use std::cmp;
 use std::convert::TryFrom;
@@ -496,10 +497,10 @@ impl BluetoothProperty {
     }
 
     /// Given a mutable array, this will copy the data to that array and return a
-    /// pointer to it.
+    /// LTCheckedPtrMut to it.
     ///
     /// The lifetime of the returned pointer is tied to that of the slice given.
-    fn get_data_ptr<'a>(&'a self, data: &'a mut [u8]) -> *mut u8 {
+    fn get_data_ptr<'a>(&'a self, data: &'a mut [u8]) -> LTCheckedPtrMut<'a, u8> {
         let len = self.get_len();
         match &*self {
             BluetoothProperty::BdName(name) => {
@@ -601,7 +602,7 @@ impl BluetoothProperty {
             BluetoothProperty::Unknown() => (),
         };
 
-        data.as_mut_ptr()
+        data.into()
     }
 }
 
@@ -686,7 +687,7 @@ impl From<BluetoothProperty> for (Box<[u8]>, bindings::bt_property_t) {
         let prop = bindings::bt_property_t {
             type_: prop.get_type().into(),
             len: prop.get_len() as i32,
-            val: prop.get_data_ptr(&mut data) as *mut std::os::raw::c_void,
+            val: prop.get_data_ptr(&mut data).cast_into::<std::os::raw::c_void>(),
         };
 
         (data, prop)
@@ -1042,7 +1043,7 @@ impl BluetoothInterface {
             le_rand_cb: Some(le_rand_cb),
         });
 
-        let rawcb: *mut bindings::bt_callbacks_t = &mut *callbacks;
+        let cb_ptr = LTCheckedPtrMut::from_ref(&mut *callbacks);
 
         let (guest_mode, is_common_criteria_mode, config_compare_result, is_atv) =
             (false, false, 0, false);
@@ -1050,7 +1051,7 @@ impl BluetoothInterface {
         let init = ccall!(
             self,
             init,
-            rawcb,
+            cb_ptr.into(),
             guest_mode,
             is_common_criteria_mode,
             config_compare_result,
@@ -1222,11 +1223,8 @@ impl BluetoothInterface {
         profile: SupportedProfiles,
     ) -> *const std::os::raw::c_void {
         let cprofile = Vec::<u8>::from(profile);
-        ccall!(
-            self,
-            get_profile_interface,
-            cprofile.as_slice().as_ptr() as *const std::os::raw::c_char
-        )
+        let cprofile_ptr = LTCheckedPtr::from(&cprofile);
+        ccall!(self, get_profile_interface, cprofile_ptr.cast_into::<std::os::raw::c_char>())
     }
 
     pub(crate) fn as_raw_ptr(&self) -> *const u8 {

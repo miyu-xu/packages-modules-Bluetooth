@@ -8,6 +8,7 @@ use crate::profiles::gatt::bindings::{
     BleAdvertiserInterface, BleScannerInterface,
 };
 use crate::topstack::get_dispatchers;
+use crate::utils::LTCheckedPtr;
 use crate::{cast_to_ffi_address, ccall, deref_ffi_address, mutcxxcall};
 
 use num_traits::cast::{FromPrimitive, ToPrimitive};
@@ -1121,12 +1122,8 @@ impl GattClient {
     }
 
     pub fn search_service(&self, conn_id: i32, filter_uuid: Option<Uuid>) -> BtStatus {
-        let filter_uuid_ptr = match filter_uuid {
-            None => std::ptr::null(),
-            Some(uuid) => &uuid,
-        };
-
-        BtStatus::from(ccall!(self, search_service, conn_id, filter_uuid_ptr))
+        let filter_uuid_ptr = LTCheckedPtr::from(&filter_uuid);
+        BtStatus::from(ccall!(self, search_service, conn_id, filter_uuid_ptr.into()))
     }
 
     pub fn btif_gattc_discover_service_by_uuid(&self, conn_id: i32, uuid: &Uuid) {
@@ -1164,6 +1161,7 @@ impl GattClient {
         auth_req: i32,
         value: &[u8],
     ) -> BtStatus {
+        let value_ptr = LTCheckedPtr::from(value);
         BtStatus::from(ccall!(
             self,
             write_characteristic,
@@ -1171,7 +1169,7 @@ impl GattClient {
             handle,
             write_type,
             auth_req,
-            value.as_ptr(),
+            value_ptr.into(),
             value.len()
         ))
     }
@@ -1187,13 +1185,14 @@ impl GattClient {
         auth_req: i32,
         value: &[u8],
     ) -> BtStatus {
+        let value_ptr = LTCheckedPtr::from(value);
         BtStatus::from(ccall!(
             self,
             write_descriptor,
             conn_id,
             handle,
             auth_req,
-            value.as_ptr(),
+            value_ptr.into(),
             value.len()
         ))
     }
@@ -1320,7 +1319,8 @@ impl GattServer {
     }
 
     pub fn add_service(&self, server_if: i32, service: &[BtGattDbElement]) -> BtStatus {
-        BtStatus::from(ccall!(self, add_service, server_if, service.as_ptr(), service.len()))
+        let service_ptr = LTCheckedPtr::from(service);
+        BtStatus::from(ccall!(self, add_service, server_if, service_ptr.into(), service.len()))
     }
 
     pub fn stop_service(&self, server_if: i32, service_handle: i32) -> BtStatus {
@@ -1339,6 +1339,7 @@ impl GattServer {
         confirm: i32,
         value: &[u8],
     ) -> BtStatus {
+        let value_ptr = LTCheckedPtr::from(value);
         BtStatus::from(ccall!(
             self,
             send_indication,
@@ -1346,7 +1347,7 @@ impl GattServer {
             attribute_handle,
             conn_id,
             confirm,
-            value.as_ptr(),
+            value_ptr.into(),
             value.len()
         ))
     }
@@ -1785,9 +1786,9 @@ impl Gatt {
             scanner: &mut *gatt_scanner_callbacks,
         });
 
-        let rawcb = &mut *callbacks;
+        let cb_ptr = LTCheckedPtr::from_ref(&mut *callbacks);
 
-        let init = ccall!(self, init, rawcb);
+        let init = ccall!(self, init, cb_ptr.into());
         self.is_init = init == 0;
         self.callbacks = Some(callbacks);
         self.gatt_client_callbacks = Some(gatt_client_callbacks);
