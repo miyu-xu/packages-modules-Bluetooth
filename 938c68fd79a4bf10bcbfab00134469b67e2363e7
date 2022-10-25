@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "682e0829_164c4427",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-25T22:27:47Z",
+      "side": 1,
+      "message": "How about we follow the pattern that is used in Rust\u0027s standard library: pass by immutable borrow and return `Option` of immutable borrow?\n\n```\nfn find_reg_id(\u0026self, adv_id: \u0026AdvertiserId) -\u003e Option\u003c\u0026RegId\u003e {\n```\n\nIn the case of `AdvertiserId` and `RegId` probably there is not much optimization but I think it\u0027s a good habit to avoid move/copy if we only need to borrow, and does not return value unless we move the value out from the struct.\n\nWe still pass by value if we intend to take the value, for example for setters `set_*` in this impl.\n\nlet\u0027s try on other methods here as well, e.g.:\n```\n// returns a reference since nothing is moved out from the struct.\nfn get_mut_by_reg_id(\u0026mut self, reg_id: \u0026RegId) -\u003e Option\u003c\u0026mut AdvertisingSetInfo\u003e;\n \n// returns value because it\u0027s taken out of the struct.\nfn remove_by_reg_id(\u0026mut self, reg_id: \u0026RegId) -\u003e Option\u003cAdvertisingSetInfo\u003e;\n\n...\n```",
+      "range": {
+        "startLine": 450,
+        "startChar": 4,
+        "endLine": 450,
+        "endChar": 66
+      },
+      "revId": "938c68fd79a4bf10bcbfab00134469b67e2363e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec230aa_cdf95d3a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2462,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-25T22:27:47Z",
+      "side": 1,
+      "message": "to avoid naked unwrap:\n```\nif let Some(info) \u003d self.advertisers.get_mut_by_advertiser_id(advertiser_id) {\n    info.set_enabled(enabled);\n}\n```",
+      "range": {
+        "startLine": 2459,
+        "startChar": 0,
+        "endLine": 2462,
+        "endChar": 95
+      },
+      "revId": "938c68fd79a4bf10bcbfab00134469b67e2363e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
