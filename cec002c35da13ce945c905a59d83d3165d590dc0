@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7548a5_c2075314",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-25T13:55:24Z",
+      "side": 1,
+      "message": "Q) Is this assertion run on main thread? If so, please do not make the test fail in main thread since it makes the test crash. \n\nInstead, if you want to verify the sendBroadcast() is called with intent action USER_CONFIRMATION_TIMEOUT_ACTION, use ArgumentCaptor.\n\nhttps://www.baeldung.com/mockito-argumentcaptor#4-inspect-the-captured-value",
+      "range": {
+        "startLine": 254,
+        "startChar": 12,
+        "endLine": 254,
+        "endChar": 98
+      },
+      "revId": "cec002c35da13ce945c905a59d83d3165d590dc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
