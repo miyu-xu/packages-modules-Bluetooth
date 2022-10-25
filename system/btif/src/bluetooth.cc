@@ -1,5 +1,6 @@
 /******************************************************************************
  *
+ *  Copyright (C) 2016 The Linux Foundation. All rights reserved
  *  Copyright 2009-2012 Broadcom Corporation
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -106,6 +107,8 @@
 #include "stack/include/pan_api.h"
 #include "stack_config.h"
 #include "types/raw_address.h"
+#include "device/include/interop.h"
+#include "device/include/interop_config.h"
 
 using bluetooth::csis::CsisClientInterface;
 using bluetooth::has::HasClientInterface;
@@ -957,6 +960,94 @@ static bool allow_low_latency_audio(bool allowed, const RawAddress& address) {
   return true;
 }
 
+static bool interop_match_addr(const char* feature_name,
+    const RawAddress* addr)
+{
+  if (feature_name == NULL || addr == NULL) {
+    return false;
+  }
+
+  int feature = interop_feature_name_to_feature_id(feature_name);
+  if (feature == -1) {
+    BTIF_TRACE_ERROR("%s: feature doesn't exist: %s", __func__, feature_name);
+    return false;
+  }
+
+  return interop_match_addr((interop_feature_t)feature, addr);
+}
+
+static bool interop_match_name(const char* feature_name,
+    const char* name)
+{
+  if (feature_name == NULL || name == NULL) {
+    return false;
+  }
+
+  int feature = interop_feature_name_to_feature_id(feature_name);
+  if (feature == -1) {
+    BTIF_TRACE_ERROR("%s: feature doesn't exist: %s", __func__, feature_name);
+    return false;
+  }
+
+  return interop_match_name((interop_feature_t)feature, name);
+}
+
+static bool interop_match_addr_or_name(const char* feature_name,
+    const RawAddress* addr)
+{
+  if (feature_name == NULL || addr == NULL) {
+    return false;
+  }
+
+  int feature = interop_feature_name_to_feature_id(feature_name);
+  if (feature == -1) {
+    BTIF_TRACE_ERROR("%s: feature doesn't exist: %s", __func__, feature_name);
+    return false;
+  }
+
+  return interop_match_addr_or_name((interop_feature_t)feature, addr);
+}
+
+static void interop_database_add_remove_addr(bool do_add,
+    const char* feature_name, const RawAddress* addr, int length)
+{
+  if (feature_name == NULL || addr == NULL) {
+    return;
+  }
+
+  int feature = interop_feature_name_to_feature_id(feature_name);
+  if (feature == -1) {
+    BTIF_TRACE_ERROR("%s: feature doesn't exist: %s", __func__, feature_name);
+    return;
+  }
+
+  if (do_add) {
+    interop_database_add_addr((interop_feature_t)feature, addr, (size_t)length);
+  } else {
+    interop_database_remove_addr((interop_feature_t)feature, addr);
+  }
+}
+
+static void interop_database_add_remove_name(bool do_add,
+    const char* feature_name, const char* name)
+{
+  if (feature_name == NULL || name == NULL) {
+    return;
+  }
+
+  int feature = interop_feature_name_to_feature_id(feature_name);
+  if (feature == -1) {
+    BTIF_TRACE_ERROR("%s: feature doesn't exist: %s", __func__, feature_name);
+    return;
+  }
+
+  if (do_add) {
+    interop_database_add_name((interop_feature_t)feature, name);
+  } else {
+    interop_database_remove_name((interop_feature_t)feature, name);
+  }
+}
+
 EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     sizeof(bluetoothInterface),
     .init = init,
@@ -1009,7 +1100,12 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     .allow_wake_by_hid = allow_wake_by_hid,
     .set_event_filter_connection_setup_all_devices =
         set_event_filter_connection_setup_all_devices,
-    .get_wbs_supported = get_wbs_supported};
+    .get_wbs_supported = get_wbs_supported,
+    .interop_match_addr = interop_match_addr,
+    .interop_match_name = interop_match_name,
+    .interop_match_addr_or_name = interop_match_addr_or_name,
+    .interop_database_add_remove_addr = interop_database_add_remove_addr,
+    .interop_database_add_remove_name = interop_database_add_remove_name};
 
 // callback reporting helpers
 
@@ -1301,3 +1397,4 @@ void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {
                                   },
                                   is_low_latency_buffer_size));
 }
+

@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2016-2017 The Linux Foundation. All rights reserved
  * Copyright (C) 2012 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -91,6 +92,9 @@ class AdapterProperties {
 
     private CopyOnWriteArrayList<BluetoothDevice> mBondedDevices =
             new CopyOnWriteArrayList<BluetoothDevice>();
+
+    private CopyOnWriteArrayList<String> mWhitelistedPlayers =
+            new CopyOnWriteArrayList<String>();
 
     private int mProfilesConnecting, mProfilesConnected, mProfilesDisconnecting;
     private final HashMap<Integer, Pair<Integer, Integer>> mProfileConnectionState =
@@ -256,6 +260,7 @@ class AdapterProperties {
         mService = null;
         mBondedDevices.clear();
         invalidateBluetoothCaches();
+        mWhitelistedPlayers.clear();
     }
 
     private static void invalidateGetProfileConnectionStateCache() {
@@ -680,6 +685,24 @@ class AdapterProperties {
         }
     }
 
+     /**
+     * @return the mWhitelistedPlayers
+     */
+    String[] getWhitelistedMediaPlayers() {
+        String[] WhitelistedPlayersList = new String[0];
+        try {
+            WhitelistedPlayersList = mWhitelistedPlayers.toArray(WhitelistedPlayersList);
+        } catch (ArrayStoreException ee) {
+            errorLog("Error retrieving Whitelisted Players array");
+        }
+        Log.d(TAG, "getWhitelistedMediaPlayers: numWhitelistedPlayers = "
+                                        + WhitelistedPlayersList.length);
+        for (int i=0; i< WhitelistedPlayersList.length;i++) {
+            Log.d(TAG,"players :" + WhitelistedPlayersList[i]);
+        }
+        return WhitelistedPlayersList;
+    }
+
     long discoveryEndMillis() {
         return mDiscoveryEndMs;
     }
@@ -891,6 +914,15 @@ class AdapterProperties {
         }
     }
 
+    void updateWhitelistedMediaPlayers(String playername) {
+        Log.d(TAG, "updateWhitelistedMediaPlayers ");
+
+        if (!mWhitelistedPlayers.contains(playername)) {
+            Log.d(TAG, "Adding to Whitelisted Players list:" + playername);
+            mWhitelistedPlayers.add(playername);
+        }
+    }
+
     @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
     void adapterPropertyChangedCallback(int[] types, byte[][] values) {
         Intent intent;
@@ -977,6 +1009,23 @@ class AdapterProperties {
                     case AbstractionLayer.BT_PROPERTY_LOCAL_IO_CAPS_BLE:
                         mLocalIOCapabilityBLE = Utils.byteArrayToInt(val);
                         debugLog("mLocalIOCapabilityBLE set to " + mLocalIOCapabilityBLE);
+                        break;
+
+                    case AbstractionLayer.BT_PROPERTY_WL_MEDIA_PLAYERS_LIST:
+                        int name_len = 0, pos = 0;
+                        for (int j = 0; j < val.length; j++) {
+                          if (val[j] == 0) {
+                              name_len = j - pos;
+                          } else
+                              continue;
+
+                            byte[] buf = new byte[name_len];
+                            System.arraycopy(val, pos, buf, 0, name_len);
+                            String player_name = new String(buf,0,name_len);
+                            Log.d(TAG, " player_name :"  +  player_name);
+                            updateWhitelistedMediaPlayers(player_name);
+                            pos += (name_len + 1);
+                        }
                         break;
 
                     default:
