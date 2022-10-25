@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a61ee00_240b229e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T23:31:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bc0d0f6a_fe685a5d",
+      "revId": "df56d340e4d3d5bf54f5d6226dbe035069e9b346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00552fc8_062f3cc3",
@@ -59,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5af9d83e_fec797f6",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2440,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T23:31:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "00552fc8_062f3cc3",
+      "range": {
+        "startLine": 2440,
+        "startChar": 8,
+        "endLine": 2440,
+        "endChar": 12
+      },
+      "revId": "df56d340e4d3d5bf54f5d6226dbe035069e9b346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc747396_f96460c2",
@@ -72,6 +114,30 @@
       "writtenOn": "2022-10-25T23:24:35Z",
       "side": 1,
       "message": "LOG_VERB",
+      "range": {
+        "startLine": 2809,
+        "startChar": 8,
+        "endLine": 2809,
+        "endChar": 12
+      },
+      "revId": "df56d340e4d3d5bf54f5d6226dbe035069e9b346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b0ff5a_eb289e4f",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2809,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T23:31:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dc747396_f96460c2",
       "range": {
         "startLine": 2809,
         "startChar": 8,
