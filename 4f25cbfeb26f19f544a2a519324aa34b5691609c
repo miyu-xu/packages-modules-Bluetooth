@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f5d31e9_c7e18995",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T05:39:01Z",
+      "side": 1,
+      "message": "constructor_withoutDevice?",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6731bac5_818563c2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T05:39:01Z",
+      "side": 1,
+      "message": "Can we use BorwseTree after clear?\nIf not, shouldn\u0027t it be \"destroy\"?\n\nPlease file an issue for refactoring.",
+      "range": {
+        "startLine": 66,
+        "startChar": 19,
+        "endLine": 66,
+        "endChar": 40
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b610a68d_e30bb5ec",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T05:39:01Z",
+      "side": 1,
+      "message": "Please add comment why you expecting null for this?\nOr make it return non null.",
+      "range": {
+        "startLine": 73,
+        "startChar": 19,
+        "endLine": 73,
+        "endChar": 59
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a882061f_6983a72d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T05:39:01Z",
+      "side": 1,
+      "message": "What about checking getChildrenCount() before and after onConnected() instead?",
+      "range": {
+        "startLine": 82,
+        "startChar": 19,
+        "endLine": 82,
+        "endChar": 69
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c8813e_94385e28",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T05:39:01Z",
+      "side": 1,
+      "message": "Could you merge these two tests into one?\n\nindicateCoverArtUsedAndUnused?",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
