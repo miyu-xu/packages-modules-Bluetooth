@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc0d0f6a_fe685a5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-25T23:29:13Z",
+      "side": 1,
+      "message": "I left the logs on the success path as LOG_INFO.",
+      "parentUuid": "ddfc3368_06fa871c",
+      "revId": "df56d340e4d3d5bf54f5d6226dbe035069e9b346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00552fc8_062f3cc3",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 10
