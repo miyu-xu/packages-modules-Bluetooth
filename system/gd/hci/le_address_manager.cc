@@ -435,32 +435,32 @@ void LeAddressManager::AddDeviceToResolvingList(
     Address peer_identity_address,
     const std::array<uint8_t, 16>& peer_irk,
     const std::array<uint8_t, 16>& local_irk) {
-  // Disable Address resolution
-  auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
-  Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
-  cached_commands_.push(std::move(disable));
-
-  auto packet_builder = hci::LeAddDeviceToResolvingListBuilder::Create(
-      peer_identity_address_type, peer_identity_address, peer_irk, local_irk);
-  Command command = {CommandType::ADD_DEVICE_TO_RESOLVING_LIST, std::move(packet_builder)};
-  cached_commands_.push(std::move(command));
-
   if (supports_ble_privacy_) {
-    auto packet_builder =
-        hci::LeSetPrivacyModeBuilder::Create(peer_identity_address_type, peer_identity_address, PrivacyMode::DEVICE);
-    Command command = {CommandType::LE_SET_PRIVACY_MODE, std::move(packet_builder)};
+    // Disable Address resolution
+    auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
+    Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
+    cached_commands_.push(std::move(disable));
+
+    auto packet_builder = hci::LeAddDeviceToResolvingListBuilder::Create(
+        peer_identity_address_type, peer_identity_address, peer_irk, local_irk);
+    Command command = {CommandType::ADD_DEVICE_TO_RESOLVING_LIST, std::move(packet_builder)};
     cached_commands_.push(std::move(command));
-  }
 
-  // Enable Address resolution
-  auto enable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::ENABLED);
-  Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
-  cached_commands_.push(std::move(enable));
+    auto set_privacy_builder =
+        hci::LeSetPrivacyModeBuilder::Create(peer_identity_address_type, peer_identity_address, PrivacyMode::DEVICE);
+    Command set_privacy = {CommandType::LE_SET_PRIVACY_MODE, std::move(set_privacy_builder)};
+    cached_commands_.push(std::move(set_privacy));
 
-  if (registered_clients_.empty()) {
-    handler_->BindOnceOn(this, &LeAddressManager::handle_next_command).Invoke();
-  } else {
-    handler_->BindOnceOn(this, &LeAddressManager::pause_registered_clients).Invoke();
+    // Enable Address resolution
+    auto enable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::ENABLED);
+    Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
+    cached_commands_.push(std::move(enable));
+
+    if (registered_clients_.empty()) {
+      handler_->BindOnceOn(this, &LeAddressManager::handle_next_command).Invoke();
+    } else {
+      handler_->BindOnceOn(this, &LeAddressManager::pause_registered_clients).Invoke();
+    }
   }
 }
 
@@ -473,25 +473,27 @@ void LeAddressManager::RemoveDeviceFromFilterAcceptList(
 
 void LeAddressManager::RemoveDeviceFromResolvingList(
     PeerAddressType peer_identity_address_type, Address peer_identity_address) {
-  // Disable Address resolution
-  auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
-  Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
-  cached_commands_.push(std::move(disable));
+  if (supports_ble_privacy_) {
+    // Disable Address resolution
+    auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
+    Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
+    cached_commands_.push(std::move(disable));
 
-  auto packet_builder =
-      hci::LeRemoveDeviceFromResolvingListBuilder::Create(peer_identity_address_type, peer_identity_address);
-  Command command = {CommandType::REMOVE_DEVICE_FROM_RESOLVING_LIST, std::move(packet_builder)};
-  cached_commands_.push(std::move(command));
+    auto packet_builder =
+        hci::LeRemoveDeviceFromResolvingListBuilder::Create(peer_identity_address_type, peer_identity_address);
+    Command command = {CommandType::REMOVE_DEVICE_FROM_RESOLVING_LIST, std::move(packet_builder)};
+    cached_commands_.push(std::move(command));
 
-  // Enable Address resolution
-  auto enable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::ENABLED);
-  Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
-  cached_commands_.push(std::move(enable));
+    // Enable Address resolution
+    auto enable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::ENABLED);
+    Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
+    cached_commands_.push(std::move(enable));
 
-  if (registered_clients_.empty()) {
-    handler_->BindOnceOn(this, &LeAddressManager::handle_next_command).Invoke();
-  } else {
-    handler_->BindOnceOn(this, &LeAddressManager::pause_registered_clients).Invoke();
+    if (registered_clients_.empty()) {
+      handler_->BindOnceOn(this, &LeAddressManager::handle_next_command).Invoke();
+    } else {
+      handler_->BindOnceOn(this, &LeAddressManager::pause_registered_clients).Invoke();
+    }
   }
 }
 
@@ -502,21 +504,23 @@ void LeAddressManager::ClearFilterAcceptList() {
 }
 
 void LeAddressManager::ClearResolvingList() {
-  // Disable Address resolution
-  auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
-  Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
-  cached_commands_.push(std::move(disable));
+  if (supports_ble_privacy_) {
+    // Disable Address resolution
+    auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
+    Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
+    cached_commands_.push(std::move(disable));
 
-  auto packet_builder = hci::LeClearResolvingListBuilder::Create();
-  Command command = {CommandType::CLEAR_RESOLVING_LIST, std::move(packet_builder)};
-  cached_commands_.push(std::move(command));
+    auto packet_builder = hci::LeClearResolvingListBuilder::Create();
+    Command command = {CommandType::CLEAR_RESOLVING_LIST, std::move(packet_builder)};
+    cached_commands_.push(std::move(command));
 
-  // Enable Address resolution
-  auto enable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::ENABLED);
-  Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
-  cached_commands_.push(std::move(enable));
+    // Enable Address resolution
+    auto enable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::ENABLED);
+    Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
+    cached_commands_.push(std::move(enable));
 
-  handler_->BindOnceOn(this, &LeAddressManager::pause_registered_clients).Invoke();
+    handler_->BindOnceOn(this, &LeAddressManager::pause_registered_clients).Invoke();
+  }
 }
 
 template <class View>
