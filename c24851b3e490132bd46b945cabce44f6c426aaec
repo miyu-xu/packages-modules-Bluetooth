@@ -34,6 +34,23 @@
       "parentUuid": "50f5ae39_735a7410",
       "revId": "c24851b3e490132bd46b945cabce44f6c426aaec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e87946b_6c81eff2",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-25T12:48:49Z",
+      "side": 1,
+      "message": "L2CAP_LINK_INACTIVITY_TOUT ?",
+      "revId": "c24851b3e490132bd46b945cabce44f6c426aaec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
