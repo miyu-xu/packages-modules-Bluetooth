@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac48756e_33c3bde5",
+        "filename": "system/gd/rust/linux/client/src/bt_adv.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-25T22:48:08Z",
+      "side": 1,
+      "message": "use `Uuid::from` to convert directly from array instead of vector",
+      "range": {
+        "startLine": 37,
+        "startChar": 38,
+        "endLine": 37,
+        "endChar": 46
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd8efd4e_0e7964a4",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-25T22:48:08Z",
+      "side": 1,
+      "message": "avoid naked unwrap when possible:\n```\nif let Some(set) \u003d self.context.lock().unwrap().adv_sets.get_mut(\u0026reg_id) {\n    set.adv_id \u003d Some(advertiser_id);\n} else {\n    print_error...\n}\n```",
+      "range": {
+        "startLine": 447,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 32
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f832a668_cf0d6a52",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-25T22:48:08Z",
+      "side": 1,
+      "message": "nit: also `\u003con|off|set-interval\u003e`",
+      "range": {
+        "startLine": 944,
+        "startChar": 44,
+        "endLine": 944,
+        "endChar": 54
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c416499b_95a63f62",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-25T22:48:08Z",
+      "side": 1,
+      "message": "also can avoid copy:\n```\nfor adv_id in\n    self.context.lock().unwrap().adv_sets.iter().filter_map(|(_, s)| s.adv_id)\n{\n```",
+      "range": {
+        "startLine": 967,
+        "startChar": 0,
+        "endLine": 975,
+        "endChar": 39
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65caa810_ad302eac",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-25T22:48:08Z",
+      "side": 1,
+      "message": "looks like we don\u0027t need to copy, but only iterate, so we can avoid copy + allocate like:\n```\nfor reg_id in self.context.lock().unwrap().adv_sets.keys() {\n...\n```",
+      "range": {
+        "startLine": 999,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 39
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
