@@ -309,6 +309,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff0aad37_3c3de072",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T10:34:44Z",
+      "side": 1,
+      "message": "```\n        browseTree.indicateCoverArtUsed(TEST_NODE_ID, TEST_HANDLE);\n        browseTree.indicateCoverArtUnused(TEST_NODE_ID, TEST_HANDLE);\n```\nIf the browseTree\u0027s state is exact same before and after these two methods calls, I prefer merging the two tests into one.\n\nOr, I\u0027m also OK with checking the status in between xxxUsed and xxxUnused.",
+      "parentUuid": "4d8e02f9_801c1012",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "4f25cbfeb26f19f544a2a519324aa34b5691609c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f79d0243_924aa280",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
         "patchSetId": 1
