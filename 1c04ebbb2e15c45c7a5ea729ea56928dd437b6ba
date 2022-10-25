@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4a37a02_8f299283",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T11:48:32Z",
+      "side": 1,
+      "message": "Do you mean you think that this change is needed?",
+      "parentUuid": "a437c812_81f98185",
+      "range": {
+        "startLine": 977,
+        "startChar": 63,
+        "endLine": 977,
+        "endChar": 71
+      },
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6bcc9d0_376307a7",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 7
@@ -173,6 +197,30 @@
       "side": 1,
       "message": "I think having this in #977 is fair enough since this is different group than \"NEW\" ID is different, but for some reason there was an implicit call (omitting stack) for setting device to null (https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d7b939f597cba8aa235899097a7750d415a9f6576;l\u003d964). I\u0027m wondering if it should follow such pattern. If so it means that extending in LeAudioService for:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d7b939f597cba8aa235899097a7750d415a9f6576;l\u003d959\n\nRemove such if. It will handle ```handleGroupTransitToInactive``` for setting to null device and changing from deviceA -\u003e deviceB.\n```\nif (groupId \u003d\u003d LE_AUDIO_GROUP_ID_INVALID) {\n```\n\nI\u0027m just wondering if this would trigger double call of handleGroupTransitToInactive\n\nOne:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d7b939f597cba8aa235899097a7750d415a9f6576;l\u003d964\n\nSecond:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d7b939f597cba8aa235899097a7750d415a9f6576;l\u003d1333\n\nBesides this issue here I see that, current code would probably called twice  handleGroupTransitToInactive if setting to NULL device.",
       "parentUuid": "3258c6c1_e94ce6ac",
+      "range": {
+        "startLine": 977,
+        "startChar": 6,
+        "endLine": 981,
+        "endChar": 69
+      },
+      "revId": "1c04ebbb2e15c45c7a5ea729ea56928dd437b6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ce4746_2e36cb43",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-25T11:48:32Z",
+      "side": 1,
+      "message": "Without this change, when a LEA disconnected, handleGroupTransitToInactive is called twice anyway.\n\nFirst: \nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d964?q\u003dleaudioservice.java\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n\nSecond:\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d1333?q\u003dleaudioservice.java\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n\n\nAnd I just realized that I miss read Telecom and/or Bluetooth code.\nI made this change because I saw a log from Telecom that says \n\"BluetoothRouteManager: More than one profile reporting active devices.\"\nand I found the inactivate wasn\u0027t notified.\nHowever, the LeAudioService.getActiveDevices always returns two devices. So, now I don\u0027t know why it is fixed with this CL :(",
+      "parentUuid": "bd745f8a_b0ad92b0",
       "range": {
         "startLine": 977,
         "startChar": 6,
