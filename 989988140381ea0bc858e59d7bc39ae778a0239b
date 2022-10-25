@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff45cdca_b7cb2298",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T20:39:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c65d368e_3f0689bf",
+      "range": {
+        "startLine": 1175,
+        "startChar": 0,
+        "endLine": 1175,
+        "endChar": 52
+      },
+      "revId": "989988140381ea0bc858e59d7bc39ae778a0239b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4df489a4_6b524d6d",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Good question. The important thing is that the pointer to the element stays the same when we do add/remove operations on the list. `std::list` provides that. It is important because, the pointer to those elements might be also on the channels queue (ATT or EATT).\n\nI will put the comment here.",
       "parentUuid": "4df489a4_6b524d6d",
+      "range": {
+        "startLine": 419,
+        "startChar": 0,
+        "endLine": 419,
+        "endChar": 70
+      },
+      "revId": "989988140381ea0bc858e59d7bc39ae778a0239b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdff65b3_3f273662",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-25T20:39:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "209278cb_a78d081b",
       "range": {
         "startLine": 419,
         "startChar": 0,
