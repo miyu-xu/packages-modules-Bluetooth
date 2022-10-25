@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c5f4efd_9ee4b42d",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-10-25T00:31:29Z",
+      "side": 1,
+      "message": "Ack. Since the scenario where we will miss this info is quite small and Floss is not fully launched, this is fine with me. Thanks!",
+      "parentUuid": "d0ca5d26_8e3f2483",
+      "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24625e81_9f5b8070",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "The only place I see it is \"used\" is [1], which is related to hci metrics logging, a feature that is unimplemented for floss. Therefore, I believe removing it won\u0027t have any negative impact.\n\nHowever, I\u0027m not sure whether they have any other plan of using it in some other way, so I suppose the safest way is to maintain both parameters in floss conf.\n\nWDYT?\n\n[1] https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/gd/hci/hci_metrics_logging.cc;l\u003d1099;rcl\u003d3182b13457ab3336097b82544af26597aa8eb114",
       "parentUuid": "24625e81_9f5b8070",
+      "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89dc3778_eff96f56",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-10-25T00:31:29Z",
+      "side": 1,
+      "message": "I\u0027m OK with keeping both since we\u0027re not sure how it will be used later on and it\u0027s not too much to maintain.",
+      "parentUuid": "b7e0208a_c3979f56",
       "revId": "0bd3f19d43cdbe4407d1ab5322e3c6dbb314d1c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
