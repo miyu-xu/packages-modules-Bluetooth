@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5a0a156_0a7cef4f",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-25T19:40:39Z",
+      "side": 1,
+      "message": "Previously, even if clcb was freed, such pointers would point to a valid piece of memory that was not in_use.\nLifecycle of tGATT_CMD_Q that holds tGATT_CMD_Q is not tied to p_clcb.\nNow it would be a dangling pointer causing crashes.\nHow do you ensure accessing freed pointer never happens ?\nShouldn\u0027t shared pointer be used for such things ?",
+      "range": {
+        "startLine": 209,
+        "startChar": 2,
+        "endLine": 209,
+        "endChar": 21
+      },
+      "revId": "b7a49152ebc04e9063f944351404c998fc418dee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
