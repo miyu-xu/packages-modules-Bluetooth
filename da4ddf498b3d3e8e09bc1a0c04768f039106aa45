@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "561126de_610956df",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-25T23:07:27Z",
+      "side": 1,
+      "message": "there is no security in hfp.py\nyou need to add `self.security \u003d Security(channel)`",
+      "range": {
+        "startLine": 69,
+        "startChar": 13,
+        "endLine": 69,
+        "endChar": 21
+      },
+      "revId": "da4ddf498b3d3e8e09bc1a0c04768f039106aa45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
