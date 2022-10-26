@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e1631b_4ac27462",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-26T07:16:52Z",
+      "side": 1,
+      "message": "I accidentally clear advertising set while resolving merge conflict in patch 3. Please take a look again.",
+      "revId": "8b4b83cf7531c319df4ca9c81fb2836642164b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
