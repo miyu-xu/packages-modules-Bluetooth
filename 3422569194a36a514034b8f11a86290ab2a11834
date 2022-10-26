@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "365eb488_4f8ad7f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "This explains the problematic case. Could you also write the new order after this CL is applied? (e.g. Before vs. After)",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 24
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b8ab28c_56d9464d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "Let\u0027s talk offline about this CL tomorrow.",
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff370605_af710df7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "Newly connected A2dp device",
+      "range": {
+        "startLine": 251,
+        "startChar": 41,
+        "endLine": 251,
+        "endChar": 47
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e7d21a_6993d636",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "Suggestion) \n\nLazily activate A2DP if it is not being used. \nThis will prevent LE audio from being inactivated earlier than A2DP.",
+      "range": {
+        "startLine": 254,
+        "startChar": 31,
+        "endLine": 255,
+        "endChar": 59
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec1e6617_ae2e9cb9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "How does this change can fix the case mentioned in the bug? For MODE_NORMAL, the behavior is same as before. The bug reported case seems not include the phone call.\n\nAm I misunderstanding the logic?",
+      "range": {
+        "startLine": 257,
+        "startChar": 32,
+        "endLine": 258,
+        "endChar": 42
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab38051f_bb84e55b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 336,
+        "startChar": 24,
+        "endLine": 336,
+        "endChar": 52
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "340ed631_df5d64b8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 339,
+        "startChar": 28,
+        "endLine": 340,
+        "endChar": 60
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a87710e5_8a9e081a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "Why there is no `default:` here?",
+      "range": {
+        "startLine": 354,
+        "startChar": 32,
+        "endLine": 354,
+        "endChar": 33
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3240e76_02f33b63",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T15:38:23Z",
+      "side": 1,
+      "message": "Q) Why is this needed?",
+      "range": {
+        "startLine": 709,
+        "startChar": 8,
+        "endLine": 713,
+        "endChar": 47
+      },
+      "revId": "3422569194a36a514034b8f11a86290ab2a11834",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
