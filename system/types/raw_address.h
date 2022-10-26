@@ -46,7 +46,22 @@ class RawAddress final {
 
   bool IsEmpty() const { return *this == kEmpty; }
 
+  // TODO: remove it and
+  // replace its usage with ToColonSepHexString
   std::string ToString() const;
+
+  // Return a string representation of in the form of
+  // hexadecimal string separated by colon (:), e.g.,
+  // "12:34:56:ab:cd:ef"
+  std::string ToColonSepHexString() const;
+  // same as ToColonSepHexString
+  std::string ToStringForLogging() const;
+
+  // Similar with ToColonHexString, ToStringForLogging returns a string
+  // colon separated hexadecimal reprentation of the address but, with the
+  // leftmost 4 bytes masked with "xx", e.g., "xx:xx:xx:xx:ab:cd".
+  // hexadecimal numbers are represented in lowercase.
+  std::string ToRedactedStringForLogging() const;
 
   // Converts |string| to RawAddress and places it in |to|. If |from| does
   // not represent a Bluetooth address, |to| is not modified and this function
