@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df197877_8083c635",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-26T09:26:24Z",
+      "side": 1,
+      "message": "mSBC defines the packet size to be 60 bytes, but only the first 59 are meaningful. The last last 0x00 is used for padding. However, some devices do check if the padding byte exists.",
+      "parentUuid": "7ff3fa8a_aec11b50",
+      "range": {
+        "startLine": 157,
+        "startChar": 45,
+        "endLine": 157,
+        "endChar": 65
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c136c0d6_3bc110db",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-06T12:15:31Z",
       "side": 1,
       "message": "\u003e (According to the comment on line 55)\n\nI think it\u0027s easier to read to just use \u003e, so if we need it to be \u003e\u003d 2, we can change the threshold to be 1.",
+      "range": {
+        "startLine": 194,
+        "startChar": 17,
+        "endLine": 194,
+        "endChar": 19
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f45cabd_b2474743",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-26T09:26:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c136c0d6_3bc110db",
       "range": {
         "startLine": 194,
         "startChar": 17,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca1e315b_6758a2c6",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-26T09:26:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "404a030f_99f4df65",
+      "range": {
+        "startLine": 265,
+        "startChar": 10,
+        "endLine": 265,
+        "endChar": 14
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "341c0d5e_ebe2bfe1",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-06T12:15:31Z",
       "side": 1,
       "message": "triangle?",
+      "range": {
+        "startLine": 299,
+        "startChar": 24,
+        "endLine": 299,
+        "endChar": 28
+      },
+      "revId": "9c7386778e57e674965bced1d42619eeb630cb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4aadc71_8c1ffb25",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-26T09:26:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "341c0d5e_ebe2bfe1",
       "range": {
         "startLine": 299,
         "startChar": 24,
