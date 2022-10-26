@@ -1,0 +1,2208 @@
+From e71c3481c888c5dcb56c15d6b8e85f658152ef82 Mon Sep 17 00:00:00 2001
+From: Subramanian Srinivasan <quic_subrsrin@quicinc.com>
+Date: Sun, 16 May 2021 22:10:09 -0700
+Subject: [PATCH] Enhanced connection update changes
+
+Change-Id: If723dc2d341be5adbcc48a090383752439b1538a
+---
+ bta/dm/bta_dm_act.cc         |  56 +++++++++
+ bta/dm/bta_dm_api.cc         |  73 +++++++++++
+ bta/dm/bta_dm_int.h          |  47 +++++++
+ bta/dm/bta_dm_main.cc        |  35 ++++++
+ bta/gatt/bta_gattc_act.cc    |  61 ++++++++-
+ bta/gatt/bta_gatts_act.cc    |  61 ++++++++-
+ bta/include/bta_api.h        |  57 +++++++++
+ bta/include/bta_gatt_api.h   |  58 +++++++++
+ btif/src/btif_gatt_client.cc |  64 +++++++++-
+ btif/src/btif_gatt_server.cc |  41 ++++++
+ btif/src/btif_gatt_test.cc   |  35 ++++++
+ device/include/controller.h  |  36 ++++++
+ device/src/controller.cc     |  62 ++++++++-
+ stack/btm/btm_ble_int.h      |   1 +
+ stack/btu/btu_hcif.cc        |  90 +++++++++++++
+ stack/gap/gap_ble.cc         |  35 ++++++
+ stack/gatt/gatt_attr.cc      |  35 ++++++
+ stack/gatt/gatt_main.cc      |  54 ++++++++
+ stack/hcic/hciblecmds.cc     |  83 ++++++++++++
+ stack/include/gatt_api.h     |  40 ++++++
+ stack/include/hcidefs.h      |  48 +++++++
+ stack/include/hcimsgs.h      |  44 +++++++
+ stack/include/l2c_api.h      |  67 ++++++++++
+ stack/l2cap/l2c_ble.cc       | 236 ++++++++++++++++++++++++++++++++++-
+ stack/l2cap/l2c_int.h        |  54 ++++++++
+ stack/srvc/srvc_eng.cc       |  35 ++++++
+ 26 files changed, 1499 insertions(+), 9 deletions(-)
+
+diff --git a/bta/dm/bta_dm_act.cc b/bta/dm/bta_dm_act.cc
+index 33f2b40d5c..57d2c43516 100644
+--- a/bta/dm/bta_dm_act.cc
++++ b/bta/dm/bta_dm_act.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -5850,3 +5884,25 @@ static void bta_dm_bond_retrail_cback(void* data) {
+   osi_free(data);
+ }
+ 
++/*******************************************************************************
++ *
++ * Function         bta_dm_ble_subrate_request
++ *
++ * Description      This function requests BLE subrate procedure.
++ *
++ * Parameters:
++ *
++ ******************************************************************************/
++void bta_dm_ble_subrate_request(tBTA_DM_MSG* p_data) {
++  APPL_TRACE_ERROR("bta_dm_ble_subrate_request");
++  if (!L2CA_SubrateRequest(p_data->ble_subrate_req.bd_addr,
++                           p_data->ble_subrate_req.subrate_min,
++                           p_data->ble_subrate_req.subrate_max,
++                           p_data->ble_subrate_req.max_latency,
++                           p_data->ble_subrate_req.cont_num,
++                           p_data->ble_subrate_req.timeout)) {
++    APPL_TRACE_ERROR("Subrate request failed!");
++  }
++}
++
++
+diff --git a/bta/dm/bta_dm_api.cc b/bta/dm/bta_dm_api.cc
+index 4bdd93033d..ff102e15bf 100644
+--- a/bta/dm/bta_dm_api.cc
++++ b/bta/dm/bta_dm_api.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -1393,3 +1427,42 @@ void BTA_DmProcessQueuedServiceDiscovery(void) {
+     }
+   }
+ }
++
++/*******************************************************************************
++ *
++ * Function         BTA_DmBleSubrateRequest
++ *
++ * Description      subrate request, can only be used when
++ *                  connection is up.
++ *
++ * Parameters:      bd_addr       - BD address of the peer
++ *                  subrate_min   - subrate factor minimum,
++ *                                  [0x0001 - 0x01F4]
++ *                  subrate_max   - subrate factor maximum,
++ *                                  [0x0001 - 0x01F4]
++ *                  max_latency   - max peripheral latency [0x0000 - 01F3]
++ *                  cont_num      - continuation number [0x0000 - 01F3]
++ *                  timeout       - supervision timeout [0x000a - 0xc80]
++ *
++ * Returns          void
++ *
++ ******************************************************************************/
++void BTA_DmBleSubrateRequest(const RawAddress& bd_addr,
++                             uint16_t subrate_min, uint16_t subrate_max,
++                             uint16_t max_latency, uint16_t cont_num,
++                             uint16_t timeout) {
++  tBTA_DM_API_SUBRATE_REQ* p_msg =
++      (tBTA_DM_API_SUBRATE_REQ*)osi_calloc(
++       sizeof(tBTA_DM_API_SUBRATE_REQ));
++
++  APPL_TRACE_API("%s", __func__);
++  p_msg->hdr.event = BTA_DM_API_SUBRATE_REQ_EVT;
++  p_msg->bd_addr = bd_addr;
++  p_msg->subrate_min = subrate_min;
++  p_msg->subrate_max = subrate_max;
++  p_msg->max_latency = max_latency;
++  p_msg->cont_num = cont_num;
++  p_msg->timeout = timeout;
++
++  bta_sys_sendmsg(p_msg);
++}
+diff --git a/bta/dm/bta_dm_int.h b/bta/dm/bta_dm_int.h
+index 05f506c37e..72fab36d3d 100644
+--- a/bta/dm/bta_dm_int.h
++++ b/bta/dm/bta_dm_int.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -107,6 +141,7 @@ enum {
+   BTA_DM_API_BREDR_CLEANUP_EVT,
+   BTA_DM_API_BREDR_STARTUP_EVT,
+   BTA_DM_API_RST_PAIR_FLAG_EVT,
++  BTA_DM_API_SUBRATE_REQ_EVT,
+   BTA_DM_MAX_EVT
+ };
+ 
+@@ -510,6 +545,16 @@ typedef struct {
+   uint16_t max_ce_len;
+ } tBTA_DM_API_UPDATE_CONN_PARAM;
+ 
++typedef struct {
++  BT_HDR hdr;
++  RawAddress bd_addr;
++  uint16_t subrate_min;
++  uint16_t subrate_max;
++  uint16_t max_latency;
++  uint16_t cont_num;
++  uint16_t timeout;
++} tBTA_DM_API_SUBRATE_REQ;
++
+ /* union of all data types */
+ typedef union {
+   /* GKI event buffer header */
+@@ -572,6 +617,7 @@ typedef union {
+   tBTA_DM_API_LOCAL_PRIVACY ble_local_privacy;
+   tBTA_DM_API_UPDATE_CONN_PARAM ble_update_conn_params;
+   tBTA_DM_API_BLE_SET_DATA_LENGTH ble_set_data_length;
++  tBTA_DM_API_SUBRATE_REQ ble_subrate_req;
+ 
+   tBTA_DM_API_ENERGY_INFO ble_energy_info;
+ 
+@@ -977,5 +1023,6 @@ extern void bta_dm_hci_raw_command(tBTA_DM_MSG *p_data);
+ 
+ extern void bta_dm_queue_service_disc(tBTA_DM_MSG* p_data);
+ 
++extern void bta_dm_ble_subrate_request(tBTA_DM_MSG* p_data);
+ 
+ #endif /* BTA_DM_INT_H */
+diff --git a/bta/dm/bta_dm_main.cc b/bta/dm/bta_dm_main.cc
+index 772e279866..8719aa89cf 100644
+--- a/bta/dm/bta_dm_main.cc
++++ b/bta/dm/bta_dm_main.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -98,6 +132,7 @@ const tBTA_DM_ACTION bta_dm_action[] = {
+     bta_dm_bredr_cleanup, /* BTA_DM_API_BREDR_CLEANUP_EVT */
+     bta_dm_bredr_startup, /* BTA_DM_API_BREDR_STARTUP_EVT */
+     bta_dm_reset_pairing_flag, /*BTA_DM_API_RST_PAIR_FLAG_EVT*/
++    bta_dm_ble_subrate_request, /* BTA_DM_API_SUBRATE_REQ_EVT */
+ };
+ 
+ /* state machine action enumeration list */
+diff --git a/bta/gatt/bta_gattc_act.cc b/bta/gatt/bta_gattc_act.cc
+index 936c7e3b3d..b7b53f1a9a 100644
+--- a/bta/gatt/bta_gattc_act.cc
++++ b/bta/gatt/bta_gattc_act.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -87,6 +121,9 @@ static void bta_gattc_phy_update_cback(tGATT_IF gatt_if, uint16_t conn_id,
+ static void bta_gattc_conn_update_cback(tGATT_IF gatt_if, uint16_t conn_id,
+                                         uint16_t interval, uint16_t latency,
+                                         uint16_t timeout, uint8_t status);
++static void bta_gattc_subrate_chg_cback(tGATT_IF gatt_if, uint16_t conn_id,
++                                        uint16_t subrate_factor, uint16_t latency,
++                                        uint16_t cont_num, uint16_t timeout, uint8_t status);
+ 
+ static tGATT_CBACK bta_gattc_cl_cback = {bta_gattc_conn_cback,
+                                          bta_gattc_cmpl_cback,
+@@ -96,7 +133,8 @@ static tGATT_CBACK bta_gattc_cl_cback = {bta_gattc_conn_cback,
+                                          bta_gattc_enc_cmpl_cback,
+                                          bta_gattc_cong_cback,
+                                          bta_gattc_phy_update_cback,
+-                                         bta_gattc_conn_update_cback};
++                                         bta_gattc_conn_update_cback,
++                                         bta_gattc_subrate_chg_cback};
+ 
+ /* opcode(tGATTC_OPTYPE) order has to be comply with internal event order */
+ static uint16_t bta_gattc_opcode_to_int_evt[] = {
+@@ -1741,3 +1779,24 @@ static void bta_gattc_conn_update_cback(tGATT_IF gatt_if, uint16_t conn_id,
+   cb_data.conn_update.status = status;
+   (*p_clreg->p_cback)(BTA_GATTC_CONN_UPDATE_EVT, &cb_data);
+ }
++
++static void bta_gattc_subrate_chg_cback(tGATT_IF gatt_if, uint16_t conn_id,
++                                        uint16_t subrate_factor, uint16_t latency,
++                                        uint16_t cont_num, uint16_t timeout,
++                                        uint8_t status) {
++  tBTA_GATTC_RCB* p_clreg = bta_gattc_cl_get_regcb(gatt_if);
++
++  if (!p_clreg || !p_clreg->p_cback) {
++    LOG(ERROR) << __func__ << ": client_if=" << gatt_if << " not found";
++    return;
++  }
++
++  tBTA_GATTC cb_data;
++  cb_data.subrate_chg.conn_id = conn_id;
++  cb_data.subrate_chg.subrate_factor = subrate_factor;
++  cb_data.subrate_chg.latency = latency;
++  cb_data.subrate_chg.cont_num = cont_num;
++  cb_data.subrate_chg.timeout = timeout;
++  cb_data.subrate_chg.status = status;
++  (*p_clreg->p_cback)(BTA_GATTC_SUBRATE_CHG_EVT, &cb_data);
++}
+diff --git a/bta/gatt/bta_gatts_act.cc b/bta/gatt/bta_gatts_act.cc
+index 2646258709..2cd992721b 100644
+--- a/bta/gatt/bta_gatts_act.cc
++++ b/bta/gatt/bta_gatts_act.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -58,6 +92,9 @@ static void bta_gatts_phy_update_cback(tGATT_IF gatt_if, uint16_t conn_id,
+ static void bta_gatts_conn_update_cback(tGATT_IF gatt_if, uint16_t conn_id,
+                                         uint16_t interval, uint16_t latency,
+                                         uint16_t timeout, uint8_t status);
++static void bta_gatts_subrate_chg_cback(tGATT_IF gatt_if, uint16_t conn_id,
++                                        uint16_t subrate_factor, uint16_t latency,
++                                        uint16_t cont_num, uint16_t timeout, uint8_t status);
+ 
+ static tGATT_CBACK bta_gatts_cback = {bta_gatts_conn_cback,
+                                       NULL,
+@@ -67,7 +104,8 @@ static tGATT_CBACK bta_gatts_cback = {bta_gatts_conn_cback,
+                                       NULL,
+                                       bta_gatts_cong_cback,
+                                       bta_gatts_phy_update_cback,
+-                                      bta_gatts_conn_update_cback};
++                                      bta_gatts_conn_update_cback,
++                                      bta_gatts_subrate_chg_cback};
+ 
+ tGATT_APPL_INFO bta_gatts_nv_cback = {bta_gatts_nv_save_cback,
+                                       bta_gatts_nv_srv_chg_cback};
+@@ -745,6 +783,27 @@ static void bta_gatts_conn_update_cback(tGATT_IF gatt_if, uint16_t conn_id,
+   (*p_reg->p_cback)(BTA_GATTS_CONN_UPDATE_EVT, &cb_data);
+ }
+ 
++static void bta_gatts_subrate_chg_cback(tGATT_IF gatt_if, uint16_t conn_id,
++                                        uint16_t subrate_factor, uint16_t latency,
++                                        uint16_t cont_num, uint16_t timeout,
++                                        uint8_t status) {
++  tBTA_GATTS_RCB* p_reg = bta_gatts_find_app_rcb_by_app_if(gatt_if);
++  if (!p_reg || !p_reg->p_cback) {
++    LOG(ERROR) << __func__ << ": server_if=" << +gatt_if << " not found";
++    return;
++  }
++
++  tBTA_GATTS cb_data;
++  cb_data.subrate_chg.conn_id = conn_id;
++  cb_data.subrate_chg.server_if = gatt_if;
++  cb_data.subrate_chg.subrate_factor = subrate_factor;
++  cb_data.subrate_chg.latency = latency;
++  cb_data.subrate_chg.cont_num = cont_num;
++  cb_data.subrate_chg.timeout = timeout;
++  cb_data.subrate_chg.status = status;
++  (*p_reg->p_cback)(BTA_GATTS_SUBRATE_CHG_EVT, &cb_data);
++}
++
+ /*******************************************************************************
+  *
+  * Function         bta_gatts_cong_cback
+diff --git a/bta/include/bta_api.h b/bta/include/bta_api.h
+index 097caf8d1f..820817fd5e 100644
+--- a/bta/include/bta_api.h
++++ b/bta/include/bta_api.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -1940,4 +1974,27 @@ extern void BTA_DmProcessQueuedServiceDiscovery(void);
+ extern void BTA_GetGroupData(uint8_t* p_eir, size_t eir_len, uint8_t* gid_data,
+                              bool* found);
+ 
++/*******************************************************************************
++ *
++ * Function         BTA_DmBleSubrateRequest
++ *
++ * Description      subrate request, can only be used when
++ *                  connection is up.
++ *
++ * Parameters:      bd_addr   - BD address of the peer
++ *                  subrate_min   - subrate min
++ *                  subrate_max   - subrate max
++ *                  max_latency   - max latency
++ *                  cont_num      - continuation number
++ *                  timeout   - supervision timeout
++ *
++ * Returns          void
++ *
++ ******************************************************************************/
++extern void BTA_DmBleSubrateRequest(const RawAddress& bd_addr,
++                                    uint16_t subrate_min, uint16_t subrate_max,
++                                    uint16_t max_latency, uint16_t cont_num,
++                                    uint16_t timeout);
++
++
+ #endif /* BTA_API_H */
+diff --git a/bta/include/bta_gatt_api.h b/bta/include/bta_gatt_api.h
+index 253403af61..0a762e6fd5 100644
+--- a/bta/include/bta_gatt_api.h
++++ b/bta/include/bta_gatt_api.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -65,6 +99,7 @@ typedef struct {
+ #define BTA_GATTC_CONGEST_EVT 24     /* Congestion event */
+ #define BTA_GATTC_PHY_UPDATE_EVT 25  /* PHY change event */
+ #define BTA_GATTC_CONN_UPDATE_EVT 26 /* Connection parameters update event */
++#define BTA_GATTC_SUBRATE_CHG_EVT 27 /* Subrate Change event */
+ 
+ typedef uint8_t tBTA_GATTC_EVT;
+ 
+@@ -210,6 +245,16 @@ typedef struct {
+   uint16_t conn_id;
+ } tBTA_GATTC_SERVICE_CHANGED;
+ 
++typedef struct {
++  tGATT_IF server_if;
++  uint16_t conn_id;
++  uint16_t subrate_factor;
++  uint16_t latency;
++  uint16_t cont_num;
++  uint16_t timeout;
++  tGATT_STATUS status;
++} tBTA_GATTC_SUBRATE_CHG;
++
+ typedef union {
+   tGATT_STATUS status;
+ 
+@@ -229,6 +274,7 @@ typedef union {
+   tBTA_GATTC_PHY_UPDATE phy_update;
+   tBTA_GATTC_CONN_UPDATE conn_update;
+   tBTA_GATTC_SERVICE_CHANGED service_changed;
++  tBTA_GATTC_SUBRATE_CHG subrate_chg;
+ } tBTA_GATTC;
+ 
+ /* GATTC enable callback function */
+@@ -261,6 +307,7 @@ typedef void(tBTA_GATTC_CBACK)(tBTA_GATTC_EVT event, tBTA_GATTC* p_data);
+ #define BTA_GATTS_PHY_UPDATE_EVT 21
+ #define BTA_GATTS_CONN_UPDATE_EVT 22
+ #define BTA_GATTS_MULTI_NTF_EVT 23
++#define BTA_GATTS_SUBRATE_CHG_EVT 24
+ 
+ typedef uint8_t tBTA_GATTS_EVT;
+ 
+@@ -347,6 +394,16 @@ typedef struct {
+   tGATT_STATUS status;
+ } tBTA_GATTS_CONN_UPDATE;
+ 
++typedef struct {
++  tGATT_IF server_if;
++  uint16_t conn_id;
++  uint16_t subrate_factor;
++  uint16_t latency;
++  uint16_t cont_num;
++  uint16_t timeout;
++  tGATT_STATUS status;
++} tBTA_GATTS_SUBRATE_CHG;
++
+ /* Multiple Handle value Notifications*/
+ typedef struct {
+   uint8_t num_attr;
+@@ -367,6 +424,7 @@ typedef union {
+   tBTA_GATTS_PHY_UPDATE phy_update; /* BTA_GATTS_PHY_UPDATE_EVT callback data */
+   tBTA_GATTS_CONN_UPDATE
+       conn_update; /* BTA_GATTS_CONN_UPDATE_EVT callback data */
++  tBTA_GATTS_SUBRATE_CHG subrate_chg;
+ } tBTA_GATTS;
+ 
+ /* GATTS enable callback function */
+diff --git a/btif/src/btif_gatt_client.cc b/btif/src/btif_gatt_client.cc
+index 270623eee9..5c4c63c143 100644
+--- a/btif/src/btif_gatt_client.cc
++++ b/btif/src/btif_gatt_client.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /*******************************************************************************
+@@ -210,6 +244,13 @@ void btif_gattc_upstreams_evt(uint16_t event, char* p_param) {
+                 p_data->service_changed.conn_id);
+       break;
+ 
++    case BTA_GATTC_SUBRATE_CHG_EVT:
++      HAL_CBACK(bt_gatt_callbacks, client->subrate_chg_cb,
++                p_data->subrate_chg.conn_id, p_data->subrate_chg.subrate_factor,
++                p_data->subrate_chg.latency, p_data->subrate_chg.cont_num,
++                p_data->subrate_chg.timeout, p_data->subrate_chg.status);
++      break;
++
+     default:
+       LOG_ERROR(LOG_TAG, "%s: Unhandled event (%d)!", __func__, event);
+       break;
+@@ -639,6 +680,26 @@ bt_status_t btif_gattc_test_command(int command,
+   return btif_gattc_test_command_impl(command, &params);
+ }
+ 
++void btif_gattc_subrate_request_impl(RawAddress addr, int subrate_min,
++                                     int subrate_max, int max_latency,
++                                     int cont_num, int sup_timeout) {
++  if (BTA_DmGetConnectionState(addr)) {
++    BTA_DmBleSubrateRequest(addr, subrate_min, subrate_max, max_latency,
++                            cont_num, sup_timeout);
++  }
++}
++
++bt_status_t btif_gattc_subrate_request(const RawAddress& bd_addr,
++                                       int subrate_min, int subrate_max,
++                                       int max_latency, int cont_num,
++                                       int sup_timeout) {
++  CHECK_BTGATT_INIT();
++  return do_in_jni_thread(Bind(
++      base::IgnoreResult(&btif_gattc_subrate_request_impl), bd_addr,
++      subrate_min, subrate_max, max_latency, cont_num, sup_timeout));
++}
++
++
+ }  // namespace
+ 
+ const btgatt_client_interface_t btgattClientInterface = {
+@@ -664,4 +725,5 @@ const btgatt_client_interface_t btgattClientInterface = {
+     btif_gattc_set_preferred_phy,
+     btif_gattc_read_phy,
+     btif_gattc_test_command,
+-    btif_gattc_get_gatt_db};
++    btif_gattc_get_gatt_db,
++    btif_gattc_subrate_request};
+diff --git a/btif/src/btif_gatt_server.cc b/btif/src/btif_gatt_server.cc
+index 2f99569cb8..f1cac0ca20 100644
+--- a/btif/src/btif_gatt_server.cc
++++ b/btif/src/btif_gatt_server.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /*******************************************************************************
+@@ -254,6 +288,13 @@ static void btapp_gatts_handle_cback(uint16_t event, char* p_param) {
+                 p_data->conn_update.status);
+       break;
+ 
++    case BTA_GATTS_SUBRATE_CHG_EVT:
++      HAL_CBACK(bt_gatt_callbacks, server->subrate_chg_cb,
++                p_data->subrate_chg.conn_id, p_data->subrate_chg.subrate_factor,
++                p_data->subrate_chg.latency, p_data->subrate_chg.cont_num,
++                p_data->subrate_chg.timeout, p_data->subrate_chg.status);
++      break;
++
+     default:
+       LOG_ERROR(LOG_TAG, "%s: Unhandled event (%d)!", __func__, event);
+       break;
+diff --git a/btif/src/btif_gatt_test.cc b/btif/src/btif_gatt_test.cc
+index 7c8a0bf308..1c2ae0f5fb 100644
+--- a/btif/src/btif_gatt_test.cc
++++ b/btif/src/btif_gatt_test.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ #define LOG_TAG "bt_btif_gatt"
+@@ -168,6 +202,7 @@ static tGATT_CBACK btif_test_callbacks = {btif_test_connect_cback,
+                                           NULL,
+                                           NULL,
+                                           NULL,
++                                          NULL,
+                                           NULL};
+ 
+ /*******************************************************************************
+diff --git a/device/include/controller.h b/device/include/controller.h
+index 6e9907afe5..9f1fb8b570 100644
+--- a/device/include/controller.h
++++ b/device/include/controller.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ #pragma once
+@@ -123,6 +157,8 @@ typedef struct controller_t {
+   bool (*is_qbce_QLE_HCI_supported)(void);
+   bool (*is_qbce_QCM_HCI_supported)(void);
+   const bt_device_qll_local_supported_features_t* (*get_qll_features)(void);
++  bool (*is_conn_subrating_supported)(void);
++  bool (*is_conn_subrating_host_supported)(void);
+ } controller_t;
+ 
+ const controller_t* controller_get_interface();
+diff --git a/device/src/controller.cc b/device/src/controller.cc
+index 099f4ab234..570aaf7657 100644
+--- a/device/src/controller.cc
++++ b/device/src/controller.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ #define LOG_TAG "bt_controller"
+@@ -45,7 +79,7 @@
+ #define BTSNOOP_SOCLOG_PROPERTY "persist.vendor.service.bdroid.soclog"
+ 
+ const bt_event_mask_t BLE_EVENT_MASK = {
+-    {0x00, 0x00, 0x00, 0x02, 0x4F, 0x0B, 0xFE, 0x7f}};
++    {0x00, 0x00, 0x00, 0x06, 0x4F, 0x0B, 0xFE, 0x7f}};
+ 
+ const bt_event_mask_t CLASSIC_EVENT_MASK = {HCI_DUMO_EVENT_MASK_EXT};
+ 
+@@ -61,6 +95,7 @@ const uint8_t SCO_HOST_BUFFER_SIZE = 0xff;
+ #define MAX_SCRAMBLING_FREQS_SIZE 64
+ #define ISO_CHANNEL_HOST_SUPPORT_BIT 32
+ #define MIN_ENCRYPTION_KEY_SIZE 7
++#define CONN_SUBRATING_HOST_SUPPORT_BIT 38
+ #define UNUSED(x) (void)(x)
+ 
+ #define QHS_TRANSPORT_LE_ISO 2
+@@ -499,6 +534,14 @@ static future_t* start_up(void) {
+       HCI_LE_SET_CIS_HOST_SUPPORT(features_ble.as_array);
+     }
+ 
++    // Set Host support for LE connection subrating
++    if (HCI_LE_CONN_SUBRATING_SUPPORT(features_ble.as_array)) {
++      response = AWAIT_COMMAND(
++          packet_factory->make_ble_set_host_feature_cmd(CONN_SUBRATING_HOST_SUPPORT_BIT, 1));
++      packet_parser->parse_ble_set_host_feature_cmd(response);
++      HCI_LE_SET_CONN_SUBRATING_HOST_SUPPORT(features_ble.as_array);
++    }
++
+     if (HCI_LE_ENHANCED_PRIVACY_SUPPORTED(features_ble.as_array)) {
+       response =
+           AWAIT_COMMAND(packet_factory->make_ble_read_resolving_list_size());
+@@ -1106,6 +1149,21 @@ static bool supports_twsp_remote_state() {
+   return twsp_state_supported;
+ }
+ 
++/* to check if support for conn subrating is set in LL Feature Mask*/
++static bool is_conn_subrating_supported(void) {
++  CHECK(readable);
++  CHECK(ble_supported);
++  return HCI_LE_CONN_SUBRATING_SUPPORT(features_ble.as_array);
++}
++
++/* to check if host support for conn subrating is set in LL Feature Mask*/
++static bool is_conn_subrating_host_supported(void) {
++  CHECK(readable);
++  CHECK(ble_supported);
++  return HCI_LE_CONN_SUBRATING_HOST_SUPPORT(features_ble.as_array);
++}
++
++
+ /* save transport information of standard and vendor specific codecs */
+ void update_soc_codec_transport() {
+   int number_of_codecs = (number_of_local_supported_codecs > number_of_vs_supported_codecs ?
+@@ -1264,6 +1322,8 @@ static const controller_t interface = {
+     is_qbce_QLE_HCI_supported,
+     is_qbce_QCM_HCI_supported,
+     get_qll_features,
++    is_conn_subrating_supported,
++    is_conn_subrating_host_supported,
+ };
+ 
+ const controller_t* controller_get_interface() {
+diff --git a/stack/btm/btm_ble_int.h b/stack/btm/btm_ble_int.h
+index add18febe2..f7045456a6 100644
+--- a/stack/btm/btm_ble_int.h
++++ b/stack/btm/btm_ble_int.h
+@@ -81,6 +81,7 @@ extern void btm_ble_create_ll_conn_complete(uint8_t status);
+ extern void btm_le_create_big_complete(uint8_t* p, uint16_t length);
+ extern void btm_le_create_big_cmd_status(uint8_t status);
+ extern void btm_le_terminate_big_complete(uint8_t* p, uint16_t length);
++extern void btm_ble_subrate_req_cmd_status(uint8_t status, uint16_t handle);
+ 
+ /* LE security function from btm_sec.cc */
+ extern void btm_ble_link_sec_check(const RawAddress& bd_addr,
+diff --git a/stack/btu/btu_hcif.cc b/stack/btu/btu_hcif.cc
+index 02dcbe11f6..0edb269369 100644
+--- a/stack/btu/btu_hcif.cc
++++ b/stack/btu/btu_hcif.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -139,6 +173,8 @@ static void btu_ble_rc_param_req_evt(uint8_t* p);
+ static void btu_ble_proc_enhanced_conn_cmpl(uint8_t* p, uint16_t evt_len);
+ #endif
+ 
++static void btu_ble_subrate_change_evt(uint8_t* p, uint16_t evt_len);
++
+ static void do_in_hci_thread(const base::Location& from_here,
+                              const base::Closure& task) {
+   base::MessageLoop* hci_message_loop = get_message_loop();
+@@ -433,6 +469,10 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id, BT_HDR* p_msg) {
+           }
+           btm_le_terminate_big_complete(p, hci_evt_len);
+           break;
++
++        case HCI_LE_SUBRATE_CHANGE_EVT:
++          btu_ble_subrate_change_evt(p, hci_evt_len);
++          break;
+       }
+       break;
+     }
+@@ -1357,6 +1397,14 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
+             btm_ble_create_ll_conn_complete(status);
+             break;
+ 
++          case HCI_BLE_SUBRATE_REQ:
++            if (p_cmd != NULL) {
++              p_cmd++; /* bypass length field */
++              STREAM_TO_UINT16(handle, p_cmd);
++              btm_ble_subrate_req_cmd_status(status, handle);
++            }
++            break;
++
+ #if (BTM_SCO_INCLUDED == TRUE)
+           case HCI_SETUP_ESCO_CONNECTION:
+           case HCI_ENH_SETUP_ESCO_CONNECTION:
+@@ -1958,6 +2006,10 @@ extern void gatt_notify_conn_update(uint16_t handle, uint16_t interval,
+                                     uint16_t latency, uint16_t timeout,
+                                     uint8_t status);
+ 
++extern void gatt_notify_subrate_change(uint16_t handle, uint16_t subrate_factor,
++                                       uint16_t latency, uint16_t cont_num,
++                                       uint16_t timeout, uint8_t status);
++
+ static void btu_ble_ll_conn_param_upd_evt(uint8_t* p, uint16_t evt_len) {
+   /* LE connection update has completed successfully as a master. */
+   /* We can enable the update request if the result is a success. */
+@@ -2030,3 +2082,41 @@ static void btu_ble_rc_param_req_evt(uint8_t* p) {
+                                       timeout);
+ }
+ #endif /* BLE_LLT_INCLUDED */
++
++static void btu_ble_subrate_change_evt(uint8_t* p, uint16_t evt_len) {
++  uint8_t status;
++  uint16_t handle;
++  uint16_t subrate_factor;
++  uint16_t peripheral_latency;
++  uint16_t cont_num;
++  uint16_t timeout;
++
++  STREAM_TO_UINT8(status, p);
++  STREAM_TO_UINT16(handle, p);
++  STREAM_TO_UINT16(subrate_factor, p);
++  STREAM_TO_UINT16(peripheral_latency, p);
++  STREAM_TO_UINT16(cont_num, p);
++  STREAM_TO_UINT16(timeout, p);
++
++  l2cble_process_subrate_change_evt(handle, status, subrate_factor,
++                                    peripheral_latency, cont_num, timeout);
++
++  gatt_notify_subrate_change(handle & 0x0FFF, subrate_factor,
++                             peripheral_latency, cont_num, timeout, status);
++}
++
++void btm_ble_subrate_req_cmd_status(uint8_t status, uint16_t handle) {
++  uint16_t subrate_factor = 0;
++  uint16_t peripheral_latency = 0;
++  uint16_t cont_num = 0;
++  uint16_t timeout = 0;
++
++  if (status == HCI_SUCCESS) return;
++
++  LOG(ERROR) << "LE Subrate request - cmd status error";
++  l2cble_process_subrate_change_evt(handle, status, subrate_factor,
++                                    peripheral_latency, cont_num, timeout);
++
++  gatt_notify_subrate_change(handle & 0x0FFF, subrate_factor,
++                             peripheral_latency, cont_num, timeout, status);
++}
+diff --git a/stack/gap/gap_ble.cc b/stack/gap/gap_ble.cc
+index 557579b16f..e906455d7b 100644
+--- a/stack/gap/gap_ble.cc
++++ b/stack/gap/gap_ble.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ #include <base/logging.h>
+@@ -65,6 +99,7 @@ tGATT_CBACK gap_cback = {client_connect_cback,
+                          NULL,
+                          NULL,
+                          NULL,
++                         NULL,
+                          NULL};
+ 
+ constexpr int GAP_CHAR_DEV_NAME_SIZE = BD_NAME_LEN;
+diff --git a/stack/gatt/gatt_attr.cc b/stack/gatt/gatt_attr.cc
+index d1cfbcf705..eeba6758fc 100644
+--- a/stack/gatt/gatt_attr.cc
++++ b/stack/gatt/gatt_attr.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -96,6 +130,7 @@ static tGATT_CBACK gatt_profile_cback = {gatt_connect_cback,
+                                          NULL,
+                                          NULL,
+                                          NULL,
++                                         NULL,
+                                          NULL};
+ 
+ /*******************************************************************************
+diff --git a/stack/gatt/gatt_main.cc b/stack/gatt/gatt_main.cc
+index c2eaf1a3f9..f4822a9d30 100644
+--- a/stack/gatt/gatt_main.cc
++++ b/stack/gatt/gatt_main.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -744,6 +778,26 @@ void gatt_notify_conn_update(uint16_t handle, uint16_t interval,
+   }
+ }
+ 
++void gatt_notify_subrate_change(uint16_t handle, uint16_t subrate_factor,
++                                uint16_t latency, uint16_t cont_num,
++                                uint16_t timeout, uint8_t status) {
++  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev_by_handle(handle);
++  if (!p_dev_rec) return;
++
++  tGATT_TCB* p_tcb =
++      gatt_find_tcb_by_addr(p_dev_rec->ble.pseudo_addr, BT_TRANSPORT_LE);
++  if (!p_tcb) return;
++
++  for (int i = 0; i < GATT_MAX_APPS; i++) {
++    tGATT_REG* p_reg = &gatt_cb.cl_rcb[i];
++    if (p_reg->in_use && p_reg->app_cb.p_subrate_chg_cb) {
++      uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
++      (*p_reg->app_cb.p_subrate_chg_cb)(p_reg->gatt_if, conn_id, subrate_factor,
++                                        latency, cont_num, timeout, status);
++    }
++  }
++}
++
+ /** This function is called when GATT fixed channel is congested or uncongested
+  */
+ static void gatt_le_cong_cback(const RawAddress& remote_bda, bool congested) {
+diff --git a/stack/hcic/hciblecmds.cc b/stack/hcic/hciblecmds.cc
+index 48fda7d685..1bd1521b8c 100644
+--- a/stack/hcic/hciblecmds.cc
++++ b/stack/hcic/hciblecmds.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -1322,3 +1356,52 @@ void btsnd_hcic_ble_pa_sync_tx_parameters(uint16_t conn_handle,
+ 
+   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
+ }
++
++void btsnd_hcic_ble_subrate_request(uint16_t conn_handle,
++                                    uint16_t subrate_min,
++                                    uint16_t subrate_max,
++                                    uint16_t max_latency,
++                                    uint16_t cont_num,
++                                    uint16_t sup_tout) {
++  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
++  uint8_t* pp = (uint8_t*)(p + 1);
++
++  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_BLE_SUBRATE_REQ;
++  p->offset = 0;
++
++  UINT16_TO_STREAM(pp, HCI_BLE_SUBRATE_REQ);
++  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_BLE_SUBRATE_REQ);
++
++  UINT16_TO_STREAM(pp, conn_handle);
++
++  UINT16_TO_STREAM(pp, subrate_min);
++  UINT16_TO_STREAM(pp, subrate_max);
++  UINT16_TO_STREAM(pp, max_latency);
++  UINT16_TO_STREAM(pp, cont_num);
++  UINT16_TO_STREAM(pp, sup_tout);
++
++  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
++}
++
++void btsnd_hcic_ble_set_default_subrate(uint16_t subrate_min,
++                                        uint16_t subrate_max,
++                                        uint16_t max_latency,
++                                        uint16_t cont_num,
++                                        uint16_t sup_tout) {
++  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
++  uint8_t* pp = (uint8_t*)(p + 1);
++
++  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_BLE_SET_DEFAULT_SUBRATE;
++  p->offset = 0;
++
++  UINT16_TO_STREAM(pp, HCI_BLE_SET_DEFAULT_SUBRATE);
++  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_BLE_SET_DEFAULT_SUBRATE);
++
++  UINT16_TO_STREAM(pp, subrate_min);
++  UINT16_TO_STREAM(pp, subrate_max);
++  UINT16_TO_STREAM(pp, max_latency);
++  UINT16_TO_STREAM(pp, cont_num);
++  UINT16_TO_STREAM(pp, sup_tout);
++
++  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
++}
+diff --git a/stack/include/gatt_api.h b/stack/include/gatt_api.h
+index 03a5253371..b79d4b53e4 100644
+--- a/stack/include/gatt_api.h
++++ b/stack/include/gatt_api.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ #ifndef GATT_API_H
+ #define GATT_API_H
+@@ -633,6 +667,11 @@ typedef void(tGATT_CONN_UPDATE_CB)(tGATT_IF gatt_if, uint16_t conn_id,
+                                    uint16_t interval, uint16_t latency,
+                                    uint16_t timeout, uint8_t status);
+ 
++/* Define a callback function when subrate change event is received */
++typedef void(tGATT_SUBRATE_CHG_CB)(tGATT_IF gatt_if, uint16_t conn_id,
++                                   uint16_t subrate_factor, uint16_t latency,
++                                   uint16_t cont_num, uint16_t timeout, uint8_t status);
++
+ /* Define the structure that applications use to register with
+  * GATT. This structure includes callback functions. All functions
+  * MUST be provided.
+@@ -647,6 +686,7 @@ typedef struct {
+   tGATT_CONGESTION_CBACK* p_congestion_cb;
+   tGATT_PHY_UPDATE_CB* p_phy_update_cb;
+   tGATT_CONN_UPDATE_CB* p_conn_update_cb;
++  tGATT_SUBRATE_CHG_CB* p_subrate_chg_cb;
+ } tGATT_CBACK;
+ 
+ /*****************  Start Handle Management Definitions   *********************/
+diff --git a/stack/include/hcidefs.h b/stack/include/hcidefs.h
+index 082f74685a..8e7555df7c 100644
+--- a/stack/include/hcidefs.h
++++ b/stack/include/hcidefs.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ #ifndef HCIDEFS_H
+@@ -430,6 +464,9 @@
+ #define HCI_BLE_CREATE_BIG (0x0068 | HCI_GRP_BLE_CMDS)
+ #define HCI_BLE_TERMINATE_BIG (0x006A | HCI_GRP_BLE_CMDS)
+ 
++#define HCI_BLE_SET_DEFAULT_SUBRATE (0x007D | HCI_GRP_BLE_CMDS)
++#define HCI_BLE_SUBRATE_REQ (0x007E | HCI_GRP_BLE_CMDS)
++
+ /* LE Get Vendor Capabilities Command OCF */
+ #define HCI_BLE_VENDOR_CAP_OCF (0x0153 | HCI_GRP_VENDOR_SPECIFIC)
+ 
+@@ -698,6 +735,8 @@ constexpr uint8_t HCI_LE_STATES_INIT_MASTER_SLAVE_BIT = 41;
+ #define HCI_LE_PATH_LOSS_THRESHOLD 0x20
+ #define HCI_LE_TRANSMIT_POWER_REPORTING 0x21
+ 
++#define HCI_LE_SUBRATE_CHANGE_EVT 0x23
++
+ #define HCI_CIS_CONNECTION_TIMEOUT (30 * 1000)
+ 
+ /* Definitions for LE Channel Map */
+@@ -1534,6 +1573,9 @@ typedef struct {
+ #define HCI_LE_PATHLOSS_MONITORING_SUPPORT(x) ((x)[4] & 0x08)
+ #define HCI_LE_PERIODIC_ADVERTISING_ADI_SUPPORTED(x) ((x)[4] & 0x10)
+ 
++#define HCI_LE_CONN_SUBRATING_SUPPORT(x) ((x)[4] & 0x20)
++#define HCI_LE_CONN_SUBRATING_HOST_SUPPORT(x) ((x)[4] & 0x40)
++
+ /* Add_on features encoding - page 0 (the only page for now)*/
+ #define HCI_WIPOWER_FASTBOOT_ENABLE(x) ((x)[0] & 0x01)
+ #define HCI_SPLIT_A2DP_SCRAMBLING_DATA_REQUIRED(x) ((x)[0] & 0x02)
+@@ -1836,4 +1878,10 @@ typedef struct {
+     (x)[4] = (x)[4] | 0x01;               \
+   }
+ 
++// Set Host Support for Connection subrating bit in features_ble
++#define HCI_LE_SET_CONN_SUBRATING_HOST_SUPPORT(x)   \
++  {                                       \
++    (x)[4] = (x)[4] | 0x40;               \
++  }
++
+ #endif
+diff --git a/stack/include/hcimsgs.h b/stack/include/hcimsgs.h
+index 19888847b6..bb83dabee1 100644
+--- a/stack/include/hcimsgs.h
++++ b/stack/include/hcimsgs.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ #ifndef HCIMSGS_H
+@@ -730,6 +764,9 @@ extern void btsnd_hcic_vendor_spec_cmd(void* buffer, uint16_t opcode,
+ #define HCIC_PARAM_SIZE_BLE_SET_DATA_LENGTH 6
+ #define HCIC_PARAM_SIZE_BLE_WRITE_EXTENDED_SCAN_PARAM 11
+ 
++#define HCIC_PARAM_SIZE_BLE_SUBRATE_REQ 12
++#define HCIC_PARAM_SIZE_BLE_SET_DEFAULT_SUBRATE 10
++
+ /* ULP HCI command */
+ extern void btsnd_hcic_ble_set_evt_mask(BT_EVENT_MASK event_mask);
+ 
+@@ -1077,4 +1114,11 @@ extern void btsnd_hcic_ble_pa_sync_tx_parameters(uint16_t conn_handle,
+                                                  uint16_t timeout,
+                                                  uint8_t cte_type);
+ 
++extern void btsnd_hcic_ble_subrate_request(uint16_t conn_handle, uint16_t subrate_min,
++                                           uint16_t subrate_max, uint16_t max_latency,
++                                           uint16_t cont_num, uint16_t sup_tout);
++extern void btsnd_hcic_ble_set_default_subrate(uint16_t subrate_min, uint16_t subrate_max,
++                                               uint16_t max_latency, uint16_t cont_num,
++                                               uint16_t sup_tout);
++
+ #endif
+diff --git a/stack/include/l2c_api.h b/stack/include/l2c_api.h
+index 44831df050..4f5cabb46c 100644
+--- a/stack/include/l2c_api.h
++++ b/stack/include/l2c_api.h
+@@ -14,6 +14,40 @@
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
++*  Changes from Qualcomm Innovation Center are provided under the following license:
++*
++*  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++*
++*  Redistribution and use in source and binary forms, with or without
++*  modification, are permitted (subject to the limitations in the
++*  disclaimer below) provided that the following conditions are met:
++*
++*  Redistributions of source code must retain the above copyright
++*  notice, this list of conditions and the following disclaimer.
++*
++*  Redistributions in binary form must reproduce the above
++*  copyright notice, this list of conditions and the following
++*  disclaimer in the documentation and/or other materials provided
++*  with the distribution.
++*
++*  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++*  contributors may be used to endorse or promote products derived
++*  from this software without specific prior written permission.
++*
++*  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++*  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++*  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++*  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++*  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++*  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++*  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++*  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++*  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++*  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++*  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++*  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++*  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++*
+ ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -1564,4 +1598,37 @@ extern bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id, bool is_lo
+ extern void L2CA_AdjustConnectionIntervals(uint16_t* min_interval,
+                                            uint16_t* max_interval,
+                                            uint16_t floor_interval);
++
++/*******************************************************************************
++ *
++ *  Function        L2CA_SetDefaultSubrate
++ *
++ *  Description     BLE Set Default Subrate.
++ *
++ *  Parameters:     Subrate parameters
++ *
++ *  Return value:   void
++ *
++ ******************************************************************************/
++extern void L2CA_SetDefaultSubrate(uint16_t subrate_min, uint16_t subrate_max,
++                                   uint16_t max_latency, uint16_t cont_num,
++                                   uint16_t timeout);
++
++
++/*******************************************************************************
++ *
++ *  Function        L2CA_SubrateRequest
++ *
++ *  Description     BLE Subrate request.
++ *
++ *  Parameters:     Subrate parameters
++ *
++ *  Return value:   true if update started
++ *
++ ******************************************************************************/
++extern bool L2CA_SubrateRequest(const RawAddress& rem_bda,
++                                uint16_t subrate_min, uint16_t subrate_max,
++                                uint16_t max_latency, uint16_t cont_num,
++                                uint16_t timeout);
++
+ #endif /* L2C_API_H */
+diff --git a/stack/l2cap/l2c_ble.cc b/stack/l2cap/l2c_ble.cc
+index 9ba8a67607..221af05807 100644
+--- a/stack/l2cap/l2c_ble.cc
++++ b/stack/l2cap/l2c_ble.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -43,6 +77,7 @@
+ using base::StringPrintf;
+ 
+ static void l2cble_start_conn_update(tL2C_LCB* p_lcb);
++static void l2cble_start_subrate_change(tL2C_LCB* p_lcb);
+ 
+ /*******************************************************************************
+  *
+@@ -175,10 +210,14 @@ bool L2CA_EnableUpdateBleConnParams(const RawAddress& rem_bda, bool enable) {
+     return false;
+   }
+ 
+-  if (enable)
++  if (enable) {
+     p_lcb->conn_update_mask &= ~L2C_BLE_CONN_UPDATE_DISABLE;
+-  else
++    p_lcb->subrate_req_mask &= ~L2C_BLE_SUBRATE_REQ_DISABLE;
++  }
++  else {
+     p_lcb->conn_update_mask |= L2C_BLE_CONN_UPDATE_DISABLE;
++    p_lcb->subrate_req_mask |= L2C_BLE_SUBRATE_REQ_DISABLE;
++  }
+ 
+   l2cble_start_conn_update(p_lcb);
+ 
+@@ -315,6 +354,14 @@ void l2cble_conn_comp(uint16_t handle, uint8_t role, const RawAddress& bda,
+   p_lcb->latency = conn_latency;
+   p_lcb->conn_update_mask = L2C_BLE_NOT_DEFAULT_PARAM;
+ 
++  p_lcb->subrate_req_mask = 0;
++  p_lcb->subrate_min = 1;
++  p_lcb->subrate_max = 1;
++  p_lcb->max_latency = 0;
++  p_lcb->cont_num = 0;
++  p_lcb->supervision_tout = 0;
++
++
+   /* Tell BTM Acl management about the link */
+   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(bda);
+   btm_acl_created(bda, NULL, p_dev_rec->sec_bd_name, handle, p_lcb->link_role,
+@@ -364,7 +411,8 @@ static void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
+   // verify if this call is needed at all and remove it otherwise.
+   btm_find_or_alloc_dev(p_lcb->remote_bd_addr);
+ 
+-  if (p_lcb->conn_update_mask & L2C_BLE_UPDATE_PENDING) return;
++  if ((p_lcb->conn_update_mask & L2C_BLE_UPDATE_PENDING) ||
++      (p_lcb->subrate_req_mask & L2C_BLE_SUBRATE_REQ_PENDING)) return;
+ 
+   if (p_lcb->conn_update_mask & L2C_BLE_CONN_UPDATE_DISABLE) {
+     /* application requests to disable parameters update.
+@@ -459,8 +507,10 @@ void l2cble_process_conn_update_evt(uint16_t handle, uint8_t status,
+ 
+   l2cble_start_conn_update(p_lcb);
+ 
+-  L2CAP_TRACE_DEBUG("%s: conn_update_mask=%d", __func__,
+-                    p_lcb->conn_update_mask);
++  l2cble_start_subrate_change(p_lcb);
++
++  L2CAP_TRACE_DEBUG("%s: conn_update_mask=%d , subrate_req_mask=%d", __func__,
++                    p_lcb->conn_update_mask, p_lcb->subrate_req_mask);
+ }
+ 
+ /*******************************************************************************
+@@ -1397,3 +1447,179 @@ void L2CA_AdjustConnectionIntervals(uint16_t* min_interval,
+     *max_interval = phone_min_interval;
+   }
+ }
++
++/*******************************************************************************
++ *
++ *  Function        l2cble_start_subrate_change
++ *
++ *  Description     Start the BLE subrate change process based on
++ *                  status.
++ *
++ *  Parameters:     lcb : l2cap link control block
++ *
++ *  Return value:   none
++ *
++ ******************************************************************************/
++static void l2cble_start_subrate_change(tL2C_LCB* p_lcb) {
++  tACL_CONN* p_acl_cb = btm_bda_to_acl(p_lcb->remote_bd_addr, BT_TRANSPORT_LE);
++  if (!p_acl_cb) {
++    LOG(ERROR) << "No known connection ACL for " << p_lcb->remote_bd_addr;
++    return;
++  }
++
++  btm_find_or_alloc_dev(p_lcb->remote_bd_addr);
++
++  L2CAP_TRACE_DEBUG("%s: conn_update_mask=%d", __func__,
++                    p_lcb->conn_update_mask);
++
++  L2CAP_TRACE_DEBUG("%s: subrate_req_mask=%d", __func__,
++                    p_lcb->subrate_req_mask);
++
++  if (p_lcb->subrate_req_mask & L2C_BLE_SUBRATE_REQ_PENDING) {
++    L2CAP_TRACE_DEBUG("%s: returning L2C_BLE_SUBRATE_REQ_PENDING ", __func__);
++    return;
++  }
++
++  if ((p_lcb->subrate_req_mask & L2C_BLE_SUBRATE_REQ_DISABLE) == 0) {
++    L2CAP_TRACE_DEBUG("%s: L2C_BLE_SUBRATE_REQ_DISABLE is 0 ", __func__);
++    /* application allows to do update, if we were delaying one do it now */
++    if ((p_lcb->subrate_req_mask & L2C_BLE_NEW_SUBRATE_PARAM) &&
++        ((p_lcb->conn_update_mask & L2C_BLE_UPDATE_PENDING) == 0) &&
++        ((p_lcb->conn_update_mask & L2C_BLE_NEW_CONN_PARAM) == 0)) {
++      L2CAP_TRACE_DEBUG("%s: L2C_BLE_NEW_SUBRATE_PARAM ", __func__);
++      L2CAP_TRACE_DEBUG("%s: L2C_BLE_NEW_SUBRATE_PARAM local_host_sup=%d, "
++          "local_conn_subrarte_sup=%d, peer_subrate_sup=%d, peer_host_sup=%d",
++          __func__, controller_get_interface()->is_conn_subrating_host_supported(),
++          controller_get_interface()->is_conn_subrating_supported(),
++          HCI_LE_CONN_SUBRATING_SUPPORT(p_acl_cb->peer_le_features),
++          HCI_LE_CONN_SUBRATING_HOST_SUPPORT(p_acl_cb->peer_le_features));
++
++      if (controller_get_interface()->is_conn_subrating_host_supported()
++          && controller_get_interface()->is_conn_subrating_supported()
++          && HCI_LE_CONN_SUBRATING_SUPPORT(p_acl_cb->peer_le_features)
++          && HCI_LE_CONN_SUBRATING_HOST_SUPPORT(p_acl_cb->peer_le_features)) {
++        L2CAP_TRACE_DEBUG("%s: Sending HCI cmd for subrate req ", __func__);
++        btsnd_hcic_ble_subrate_request(p_lcb->handle, p_lcb->subrate_min,
++                                       p_lcb->subrate_max, p_lcb->max_latency,
++                                       p_lcb->cont_num, p_lcb->supervision_tout);
++
++        p_lcb->subrate_req_mask |= L2C_BLE_SUBRATE_REQ_PENDING;
++        p_lcb->subrate_req_mask &= ~L2C_BLE_NEW_SUBRATE_PARAM;
++        p_lcb->conn_update_mask |= L2C_BLE_NOT_DEFAULT_PARAM;
++      }
++    }
++  }
++}
++
++/*******************************************************************************
++ *
++ *  Function        L2CA_SetDefaultSubrate
++ *
++ *  Description     BLE Set Default Subrate
++ *
++ *  Parameters:     Subrate parameters
++ *
++ *  Return value:   void
++ *
++ ******************************************************************************/
++void L2CA_SetDefaultSubrate(uint16_t subrate_min, uint16_t subrate_max,
++                            uint16_t max_latency, uint16_t cont_num,
++                            uint16_t timeout) {
++  VLOG(1) << __func__ << " subrate_min=" << subrate_min
++          << ", subrate_max=" << subrate_max << ", max_latency=" << max_latency
++          << ", cont_num=" << cont_num << ", timeout=" << timeout;
++
++  btsnd_hcic_ble_set_default_subrate(subrate_min, subrate_max, max_latency,
++                                     cont_num, timeout);
++}
++
++/*******************************************************************************
++ *
++ *  Function        L2CA_SubrateRequest
++ *
++ *  Description     BLE Subrate request.
++ *
++ *  Parameters:     Subrate parameters
++ *
++ *  Return value:   true if update started
++ *
++ ******************************************************************************/
++bool L2CA_SubrateRequest(const RawAddress& rem_bda, uint16_t subrate_min,
++                         uint16_t subrate_max, uint16_t max_latency,
++                         uint16_t cont_num, uint16_t timeout) {
++  tL2C_LCB* p_lcb;
++  tACL_CONN* p_acl_cb = btm_bda_to_acl(rem_bda, BT_TRANSPORT_LE);
++
++  /* See if we have a link control block for the remote device */
++  p_lcb = l2cu_find_lcb_by_bd_addr(rem_bda, BT_TRANSPORT_LE);
++
++  /* If we don't have one, create one and accept the connection. */
++  if (!p_lcb || !p_acl_cb) {
++    LOG(WARNING) << __func__ << " - unknown BD_ADDR " << rem_bda;
++    return (false);
++  }
++
++  if (p_lcb->transport != BT_TRANSPORT_LE) {
++    LOG(WARNING) << __func__ << " - BD_ADDR " << rem_bda << " not LE";
++    return (false);
++  }
++
++  VLOG(1) << __func__ << ": BD_ADDR=" << rem_bda << ", subrate_min=" << subrate_min
++          << ", subrate_max=" << subrate_max << ", max_latency=" << max_latency
++          << ", cont_num=" << cont_num << ", timeout=" << timeout;
++
++  p_lcb->subrate_min = subrate_min;
++  p_lcb->subrate_max = subrate_max;
++  p_lcb->max_latency = max_latency;
++  p_lcb->cont_num = cont_num;
++  p_lcb->subrate_req_mask |= L2C_BLE_NEW_SUBRATE_PARAM;
++  p_lcb->supervision_tout = timeout;
++
++  l2cble_start_subrate_change(p_lcb);
++
++  return (true);
++}
++
++/*******************************************************************************
++ *
++ * Function         l2cble_process_subrate_change_evt
++ *
++ * Description      This function enables LE subrating
++ *                  after a successful subrate change process is
++ *                  done.
++ *
++ * Parameters:      LE connection handle
++ *                  status
++ *                  subrate factor
++ *                  peripheral latency
++ *                  continuation number
++ *                  supervision timeout
++ *
++ * Returns          void
++ *
++ ******************************************************************************/
++void l2cble_process_subrate_change_evt(uint16_t handle, uint8_t status,
++                                       uint16_t subrate_factor, uint16_t peripheral_latency,
++                                       uint16_t cont_num, uint16_t timeout) {
++  L2CAP_TRACE_DEBUG("%s", __func__);
++
++  /* See if we have a link control block for the remote device */
++  tL2C_LCB* p_lcb = l2cu_find_lcb_by_handle(handle);
++  if (!p_lcb) {
++    L2CAP_TRACE_WARNING("%s: Invalid handle: %d", __func__, handle);
++    return;
++  }
++
++  p_lcb->subrate_req_mask &= ~L2C_BLE_SUBRATE_REQ_PENDING;
++
++  if (status != HCI_SUCCESS) {
++    L2CAP_TRACE_WARNING("%s: Error status: %d", __func__, status);
++  }
++
++  l2cble_start_conn_update(p_lcb);
++
++  l2cble_start_subrate_change(p_lcb);
++
++  L2CAP_TRACE_DEBUG("%s: conn_update_mask=%d , subrate_req_mask=%d", __func__,
++                     p_lcb->conn_update_mask, p_lcb->subrate_req_mask);
++}
+diff --git a/stack/l2cap/l2c_int.h b/stack/l2cap/l2c_int.h
+index 5fe0214565..cd0842884e 100644
+--- a/stack/l2cap/l2c_int.h
++++ b/stack/l2cap/l2c_int.h
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /******************************************************************************
+@@ -561,6 +595,22 @@ typedef struct t_l2c_linkcb {
+   uint16_t min_ce_len;
+   uint16_t max_ce_len;
+ 
++#define L2C_BLE_SUBRATE_REQ_DISABLE \
++  0x1                              /* disable subrate req */
++#define L2C_BLE_NEW_SUBRATE_PARAM 0x2 /* new subrate req parameter to be set */
++#define L2C_BLE_SUBRATE_REQ_PENDING                  \
++  0x4 /* waiting for subrate change to be completed \
++         */
++
++  /* subrate req params */
++  uint16_t subrate_min;
++  uint16_t subrate_max;
++  uint16_t max_latency;
++  uint16_t cont_num;
++  uint16_t supervision_tout;
++
++  uint8_t subrate_req_mask;
++
+ #if (L2CAP_ROUND_ROBIN_CHANNEL_SERVICE == TRUE)
+   /* each priority group is limited burst transmission */
+   /* round robin service for the same priority channels */
+@@ -1029,4 +1079,8 @@ extern void l2cu_clear_reconfig_params(tL2C_CCB* p_ccb);
+ extern tL2C_CCB* l2cu_find_ccb_by_l2cap_id(tL2C_LCB* p_lcb, uint16_t l2cap_id);
+ bool l2cu_is_unaccepted_coc_result_code(uint16_t result);
+ 
++extern void l2cble_process_subrate_change_evt(uint16_t handle, uint8_t status,
++                                              uint16_t subrate_factor, uint16_t peripheral_latency,
++                                              uint16_t cont_num, uint16_t timeout);
++
+ #endif
+diff --git a/stack/srvc/srvc_eng.cc b/stack/srvc/srvc_eng.cc
+index 0b5f68b37f..0d5d63f8ce 100644
+--- a/stack/srvc/srvc_eng.cc
++++ b/stack/srvc/srvc_eng.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ #include "bt_target.h"
+@@ -46,6 +80,7 @@ static tGATT_CBACK srvc_gatt_cback = {srvc_eng_connect_cback,
+                                       NULL,
+                                       NULL,
+                                       NULL,
++                                      NULL,
+                                       NULL};
+ /* type for action functions */
+ typedef void (*tSRVC_ENG_C_CMPL_ACTION)(tSRVC_CLCB* p_clcb, tGATTC_OPTYPE op,
+-- 
+2.25.1
+
