@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8262172_2fa9746a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T16:55:20Z",
+      "side": 1,
+      "message": "Can you test a sco connection?  Do we have some tests for this that could be run?",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8f418a88_83e4da2a",
@@ -31,6 +54,29 @@
       "writtenOn": "2022-10-26T16:50:45Z",
       "side": 1,
       "message": "Close this if you\u0027ll add another patch in this series where you replace this with DEBUG_ASSERT_OR_LOG_METRIC. Otherwise, re-order this series to make that call here.",
+      "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf18c87a_0f921a37",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T16:55:20Z",
+      "side": 1,
+      "message": "This looks wrong.  Shouldn\u0027t we be asserting that the handle is \u003c\u003d MAX ?",
+      "range": {
+        "startLine": 1131,
+        "startChar": 6,
+        "endLine": 1131,
+        "endChar": 29
+      },
       "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
