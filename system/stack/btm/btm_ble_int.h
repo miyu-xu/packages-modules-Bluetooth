@@ -58,6 +58,7 @@ extern void btm_ble_connected_from_address_with_type(
 extern tBTM_STATUS btm_ble_start_adv(void);
 extern tBTM_STATUS btm_ble_stop_adv(void);
 extern void btm_ble_start_scan(void);
+extern void btm_ble_subrate_req_cmd_status(uint8_t status, uint16_t handle);
 
 /* LE security function from btm_sec.cc */
 extern void btm_ble_link_sec_check(const RawAddress& bd_addr,

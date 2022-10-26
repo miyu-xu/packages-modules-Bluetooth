@@ -646,4 +646,13 @@ extern void btsnd_hcic_configure_data_path(uint8_t data_path_direction,
                                            uint8_t data_path_id,
                                            std::vector<uint8_t> vendor_config);
 
+extern void btsnd_hcic_ble_subrate_request(
+    uint16_t conn_handle, uint16_t subrate_min, uint16_t subrate_max,
+    uint16_t max_latency, uint16_t cont_num, uint16_t sup_tout);
+
+extern void btsnd_hcic_ble_set_default_subrate(uint16_t subrate_min,
+                                               uint16_t subrate_max,
+                                               uint16_t max_latency,
+                                               uint16_t cont_num,
+                                               uint16_t sup_tout);
 #endif
