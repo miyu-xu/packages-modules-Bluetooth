@@ -22,6 +22,30 @@
       },
       "revId": "4f6d190cc77407c3793b25df6aea7ba17937a9b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d057ce6d_170280ae",
+        "filename": "tools/pdl/Cargo.toml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-10-26T16:14:47Z",
+      "side": 1,
+      "message": "What do you mean with \"by constraint\" here?\n\nYou\u0027re right that `cargo update` currently won\u0027t break since we use the latest versions of the other packages. However, I was thinking that it would be nice to put bounds on all versions in case that other packages release semver-incompatible versions in the future.",
+      "parentUuid": "91e32f6d_2837f29a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 52
+      },
+      "revId": "4f6d190cc77407c3793b25df6aea7ba17937a9b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
