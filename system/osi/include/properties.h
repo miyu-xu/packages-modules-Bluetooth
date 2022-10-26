@@ -27,6 +27,8 @@
 
 #define BUILD_SANITY_PROPERTY_VALUE_MAX 92
 
+#define DEBUGGABLE_SYS_PROP_NAME "ro.debuggable"
+
 // Get value associated with key |key| into |value|.
 // Returns the length of the value which will never be greater than
 // PROPERTY_VALUE_MAX - 1 and will always be zero terminated.
