@@ -142,6 +142,7 @@ static jmethodID method_onClientPhyUpdate;
 static jmethodID method_onClientPhyRead;
 static jmethodID method_onClientConnUpdate;
 static jmethodID method_onServiceChanged;
+static jmethodID method_onClientSubrateChange;
 
 /**
  * Server callback methods
@@ -163,6 +164,7 @@ static jmethodID method_onServerMtuChanged;
 static jmethodID method_onServerPhyUpdate;
 static jmethodID method_onServerPhyRead;
 static jmethodID method_onServerConnUpdate;
+static jmethodID method_onServerSubrateChange;
 
 /**
  * Advertiser callback methods
@@ -548,6 +550,21 @@ void btgattc_service_changed_cb(int conn_id) {
   sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onServiceChanged, conn_id);
 }
 
+void btgattc_subrate_change_cb(int conn_id, uint16_t subrate_factor,
+                               uint16_t latency, uint16_t cont_num,
+                               uint16_t timeout, uint8_t status) {
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid()) return;
+  if (!mCallbacksObj) {
+    ALOGE("mCallbacksObj is NULL. Return.");
+    return;
+  }
+
+  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onClientSubrateChange,
+                               conn_id, subrate_factor, latency, cont_num,
+                               timeout, status);
+}
+
 static const btgatt_scanner_callbacks_t sGattScannerCallbacks = {
     btgattc_scan_result_cb,
     btgattc_batchscan_reports_cb,
@@ -576,6 +593,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
     btgattc_phy_updated_cb,
     btgattc_conn_updated_cb,
     btgattc_service_changed_cb,
+    btgattc_subrate_change_cb,
 };
 
 /**
@@ -756,6 +774,21 @@ void btgatts_conn_updated_cb(int conn_id, uint16_t interval, uint16_t latency,
                                conn_id, interval, latency, timeout, status);
 }
 
+void btgatts_subrate_change_cb(int conn_id, uint16_t subrate_factor,
+                               uint16_t latency, uint16_t cont_num,
+                               uint16_t timeout, uint8_t status) {
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid()) return;
+  if (!mCallbacksObj) {
+    ALOGE("mCallbacksObj is NULL. Return.");
+    return;
+  }
+
+  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onServerSubrateChange,
+                               conn_id, subrate_factor, latency, cont_num,
+                               timeout, status);
+}
+
 static const btgatt_server_callbacks_t sGattServerCallbacks = {
     btgatts_register_app_cb,
     btgatts_connection_cb,
@@ -772,7 +805,9 @@ static const btgatt_server_callbacks_t sGattServerCallbacks = {
     btgatts_congestion_cb,
     btgatts_mtu_changed_cb,
     btgatts_phy_updated_cb,
-    btgatts_conn_updated_cb};
+    btgatts_conn_updated_cb,
+    btgatts_subrate_change_cb,
+};
 
 /**
  * GATT callbacks
@@ -1125,6 +1160,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onClientConnUpdate", "(IIIII)V");
   method_onServiceChanged =
       env->GetMethodID(clazz, "onServiceChanged", "(I)V");
+  method_onClientSubrateChange =
+      env->GetMethodID(clazz, "onClientSubrateChange", "(IIIIII)V");
 
   // Server callbacks
 
@@ -1161,6 +1198,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onServerPhyUpdate", "(IIII)V");
   method_onServerConnUpdate =
       env->GetMethodID(clazz, "onServerConnUpdate", "(IIIII)V");
+  method_onServerSubrateChange =
+      env->GetMethodID(clazz, "onServerSubrateChange", "(IIIIII)V");
 
   info("classInitNative: Success!");
 }
@@ -1726,6 +1765,17 @@ static void gattConnectionParameterUpdateNative(JNIEnv* env, jobject object,
   sGattIf->client->conn_parameter_update(
       str2addr(env, address), min_interval, max_interval, latency, timeout,
       (uint16_t)min_ce_len, (uint16_t)max_ce_len);
+}
+
+static void gattSubrateRequestNative(JNIEnv* env, jobject object,
+                                     jint client_if, jstring address,
+                                     jint subrate_min, jint subrate_max,
+                                     jint max_latency, jint cont_num,
+                                     jint sup_timeout) {
+  if (!sGattIf) return;
+  sGattIf->client->subrate_request(str2addr(env, address), subrate_min,
+                                   subrate_max, max_latency, cont_num,
+                                   sup_timeout);
 }
 
 void batchscan_cfg_storage_cb(uint8_t client_if, uint8_t status) {
@@ -2514,6 +2564,8 @@ static JNINativeMethod sMethods[] = {
      (void*)gattServerSendNotificationNative},
     {"gattServerSendResponseNative", "(IIIIII[BI)V",
      (void*)gattServerSendResponseNative},
+    {"gattSubrateRequestNative", "(ILjava/lang/String;IIIII)V",
+     (void*)gattSubrateRequestNative},
 
     {"gattTestNative", "(IJJLjava/lang/String;IIIII)V", (void*)gattTestNative},
 };

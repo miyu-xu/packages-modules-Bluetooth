@@ -186,6 +186,7 @@ init_flags!(
         logging_debug_enabled_for_all,
         pass_phy_update_callback = true,
         sdp_serialization = true,
+        sydney_enhanced_connection_update,
     }
     // extra_fields are not a 1 to 1 match with "INIT_*" flags
     extra_fields: {
