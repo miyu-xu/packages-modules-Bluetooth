@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d19c249_164307cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-26T04:31:58Z",
+      "side": 1,
+      "message": "This is solving the sqlite error and the MANAGE_USER one",
+      "revId": "8e52bb95d8753ad19cabe676479c579ee91ebd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
