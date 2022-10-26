@@ -54,7 +54,7 @@ class ConnectNode {
 
   std::string ToString() const {
     return base::StringPrintf("address=%s UUID=%04X busy=%s",
-                              PRIVATE_ADDRESS(address_), uuid_,
+                              address_.ToStringForLogging().c_str(), uuid_,
                               (busy_) ? "true" : "false");
   }
 
