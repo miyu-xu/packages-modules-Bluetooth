@@ -742,6 +742,9 @@ void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...);
 #include <sstream>
 #include <type_traits>
 
+#define ADDRESS_TO_LOGGABLE_STR(addr) (addr).ToStringForLogging()
+#define ADDRESS_TO_LOGGABLE_CSTR(addr) ADDRESS_TO_LOGGABLE_STR(addr).c_str()
+
 #include "check.h"
 
 /* Prints integral parameter x as hex string, with '0' fill */
