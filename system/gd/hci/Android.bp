@@ -8,8 +8,16 @@ package {
 }
 
 filegroup {
+    name: "BluetoothHciAddressSources",
+    srcs: [
+        "address.cc",
+    ],
+}
+
+filegroup {
     name: "BluetoothHciSources",
     srcs: [
+        ":BluetoothHciAddressSources",
         "acl_manager/acl_connection.cc",
         "acl_manager/acl_scheduler.cc",
         "acl_manager/classic_acl_connection.cc",
@@ -17,7 +25,6 @@ filegroup {
         "acl_manager/round_robin_scheduler.cc",
         "acl_manager/acl_fragmenter.cc",
         "acl_manager.cc",
-        "address.cc",
         "class_of_device.cc",
         "controller.cc",
         "hci_layer.cc",
@@ -31,6 +38,18 @@ filegroup {
     ],
 }
 
+// separate hci::Address related tests
+// from BluetoothHciUnitTestSources
+// because they depend on mocks of GetSystemProperty
+// and init flag APIs
+filegroup {
+    name: "BluetoothHciAddressUnitTestSources",
+    srcs: [
+        "address_unittest.cc",
+        "address_with_type_test.cc",
+    ],
+}
+
 filegroup {
     name: "BluetoothHciUnitTestSources",
     srcs: [
@@ -39,8 +58,6 @@ filegroup {
         "acl_builder_test.cc",
         "acl_manager_unittest.cc",
         "acl_manager/acl_scheduler_test.cc",
-        "address_unittest.cc",
-        "address_with_type_test.cc",
         "class_of_device_unittest.cc",
         "controller_test.cc",
         "controller_unittest.cc",

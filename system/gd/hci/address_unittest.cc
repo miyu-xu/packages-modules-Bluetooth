@@ -16,12 +16,21 @@
  *
  ******************************************************************************/
 
-#include <unordered_map>
+#include "hci/address.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "hci/address.h"
+#include <cstdint>
+#include <tuple>
+#include <unordered_map>
+#include <variant>  // std::get
+#include <vector>
+
+#include "test/mock/mock_init_flags.h"
+#include "test/mock/mock_system_properties.h"
+
+std::map<std::string, int> mock_function_count_map;
 
 using bluetooth::hci::Address;
 
@@ -232,4 +241,28 @@ TEST(AddressTest, BdAddrHashDifferentForDifferentAddressesFullAddr) {
 TEST(AddressTest, BdAddrHashDifferentForDifferentAddressesZeroAndFullAddr) {
   struct std::hash<Address> hasher;
   ASSERT_NE(hasher(Address::kEmpty), hasher(Address::kAny));
+}
+
+TEST(AddressTest, ToStringForLoggingTestOutputUnderDebuggablePropAndInitFlag) {
+  Address addr{{0xab, 0x55, 0x44, 0x33, 0x22, 0x11}};
+
+  const std::string address_str_for_logging = "xx:xx:xx:xx:55:ab";
+  const std::string full_address_str = "11:22:33:44:55:ab";
+  // debuggable, hide_address_in_log_is_enabled, expected output
+  std::vector<std::tuple<bool, bool, const std::string>> test_specs = {
+      std::make_tuple(true, true, full_address_str),
+      std::make_tuple(true, false, full_address_str),
+      std::make_tuple(false, true, address_str_for_logging),
+      std::make_tuple(false, false, full_address_str)};
+  for (size_t i = 0; i < test_specs.size(); i++) {
+    auto& spec = test_specs[i];
+    test::mock::system_properties::GetSystemPropertyBool.return_value = std::get<0>(spec);
+    test::mock::init_flags::hide_address_in_log_is_enabled.return_value = std::get<1>(spec);
+    std::string ret = addr.ToStringForLogging();
+#ifdef OS_ANDROID
+    ASSERT_STREQ(ret.c_str(), std::get<2>(spec).c_str());
+#else
+    ASSERT_STREQ(ret.c_str(), full_address_str.c_str());
+#endif
+  }
 }
