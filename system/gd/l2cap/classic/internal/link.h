@@ -20,6 +20,7 @@
 #include <memory>
 #include <unordered_map>
 
+#include "common/interfaces/ILoggable.h"
 #include "hci/acl_manager/classic_acl_connection.h"
 #include "l2cap/classic/dynamic_channel_configuration_option.h"
 #include "l2cap/classic/internal/dynamic_channel_service_manager_impl.h"
@@ -44,7 +45,7 @@ namespace internal {
 class LinkManager;
 class DumpsysHelper;
 
-class Link : public l2cap::internal::ILink, public hci::acl_manager::ConnectionManagementCallbacks {
+class Link : public l2cap::internal::ILink, public hci::acl_manager::ConnectionManagementCallbacks, public ILoggable {
  public:
   Link(os::Handler* l2cap_handler, std::unique_ptr<hci::acl_manager::ClassicAclConnection> acl_connection,
        l2cap::internal::ParameterProvider* parameter_provider,
@@ -149,6 +150,10 @@ class Link : public l2cap::internal::ILink, public hci::acl_manager::ConnectionM
 
   virtual std::string ToString() const {
     return GetDevice().ToString();
+  }
+
+  std::string ToStringForLogging() const override {
+    return GetDevice().ToStringForLogging();
   }
 
   void SendLeCredit(Cid local_cid, uint16_t credit) override {}
