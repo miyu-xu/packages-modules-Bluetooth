@@ -221,6 +221,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e86cdcb5_f38fede9",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-26T22:30:31Z",
+      "side": 1,
+      "message": "We should keep a global playbackState with all the available actions and only call \"setState\" when necessary instead of rebuild a PlaybackState object everytime we want to perform an action.",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "47798873_730a523d",
         "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
         "patchSetId": 2
