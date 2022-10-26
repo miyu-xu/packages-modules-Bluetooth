@@ -459,6 +459,20 @@ filegroup {
   ],
 }
 
+filegroup {
+    name: "TestMockSystemProperties",
+    srcs: [
+        "mock/mock_system_properties.cc",
+    ],
+}
+
+filegroup {
+    name: "TestMockInitFlags",
+    srcs: [
+        "mock/mock_init_flags.cc",
+    ],
+}
+
 cc_defaults {
     name: "mts_defaults",
     target: {
