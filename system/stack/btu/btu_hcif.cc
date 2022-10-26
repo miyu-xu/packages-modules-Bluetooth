@@ -39,6 +39,7 @@
 #include "main/shim/hci_layer.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/ble_acl_interface.h"
 #include "stack/include/ble_hci_link_interface.h"
@@ -54,6 +55,7 @@
 #include "stack/include/sco_hci_link_interface.h"
 #include "stack/include/sec_hci_link_interface.h"
 #include "stack/include/stack_metrics_logging.h"
+#include "stack/l2cap/l2c_int.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
 
@@ -96,6 +98,8 @@ static void btu_ble_proc_ltk_req(uint8_t* p);
 static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p);
 static void btu_ble_data_length_change_evt(uint8_t* p, uint16_t evt_len);
 static void btu_ble_rc_param_req_evt(uint8_t* p);
+
+static void btu_ble_subrate_change_evt(uint8_t* p, uint16_t evt_len);
 
 /**
  * Log HCI event metrics that are not handled in special functions
@@ -386,6 +390,10 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
 
         case HCI_LE_BIGINFO_ADVERTISING_REPORT_EVT:
           btm_ble_biginfo_adv_report_rcvd(p, hci_evt_len);
+          break;
+
+        case HCI_LE_SUBRATE_CHANGE_EVT:
+          btu_ble_subrate_change_evt(p, hci_evt_len);
           break;
 
           // Events are now captured by gd/hci/le_acl_connection_interface.h
@@ -1380,6 +1388,15 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
         smp_cancel_start_encryption_attempt();
       }
       break;
+    case HCI_BLE_SUBRATE_REQ:
+      if (status != HCI_SUCCESS) {
+        if (p_cmd != NULL) {
+          p_cmd++; /* bypass length field */
+          STREAM_TO_UINT16(handle, p_cmd);
+          btm_ble_subrate_req_cmd_status(status, handle);
+        }
+      }
+      break;
 
     // Link Policy Commands
     case HCI_EXIT_SNIFF_MODE:
@@ -1603,6 +1620,10 @@ static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p) {
  * BLE Events
  **********************************************/
 
+extern void gatt_notify_subrate_change(uint16_t handle, uint16_t subrate_factor,
+                                       uint16_t latency, uint16_t cont_num,
+                                       uint16_t timeout, uint8_t status);
+
 static void btu_ble_ll_conn_param_upd_evt(uint8_t* p, uint16_t evt_len) {
   /* LE connection update has completed successfully as a central. */
   /* We can enable the update request if the result is a success. */
@@ -1667,4 +1688,42 @@ static void btu_ble_rc_param_req_evt(uint8_t* p) {
 
   l2cble_process_rc_param_request_evt(handle, int_min, int_max, latency,
                                       timeout);
+}
+
+static void btu_ble_subrate_change_evt(uint8_t* p, uint16_t evt_len) {
+  uint8_t status;
+  uint16_t handle;
+  uint16_t subrate_factor;
+  uint16_t peripheral_latency;
+  uint16_t cont_num;
+  uint16_t timeout;
+
+  STREAM_TO_UINT8(status, p);
+  STREAM_TO_UINT16(handle, p);
+  STREAM_TO_UINT16(subrate_factor, p);
+  STREAM_TO_UINT16(peripheral_latency, p);
+  STREAM_TO_UINT16(cont_num, p);
+  STREAM_TO_UINT16(timeout, p);
+
+  l2cble_process_subrate_change_evt(handle, status, subrate_factor,
+                                    peripheral_latency, cont_num, timeout);
+
+  gatt_notify_subrate_change(handle & 0x0FFF, subrate_factor,
+                             peripheral_latency, cont_num, timeout, status);
+}
+
+void btm_ble_subrate_req_cmd_status(uint8_t status, uint16_t handle) {
+  uint16_t subrate_factor = 0;
+  uint16_t peripheral_latency = 0;
+  uint16_t cont_num = 0;
+  uint16_t timeout = 0;
+
+  if (status == HCI_SUCCESS) return;
+
+  LOG(ERROR) << "LE Subrate request - cmd status error";
+  l2cble_process_subrate_change_evt(handle, status, subrate_factor,
+                                    peripheral_latency, cont_num, timeout);
+
+  gatt_notify_subrate_change(handle & 0x0FFF, subrate_factor,
+                             peripheral_latency, cont_num, timeout, status);
 }
