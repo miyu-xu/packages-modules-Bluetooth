@@ -31,8 +31,8 @@
 namespace bluetooth {
 namespace avrcp {
 
-#define DEVICE_LOG(LEVEL) LOG(LEVEL) << address_.ToString() << " : "
-#define DEVICE_VLOG(LEVEL) VLOG(LEVEL) << address_.ToString() << " : "
+#define DEVICE_LOG(LEVEL) LOG(LEVEL) << address_.ToStringForLogging() << " : "
+#define DEVICE_VLOG(LEVEL) VLOG(LEVEL) << address_.ToStringForLogging() << " : "
 
 #define VOL_NOT_SUPPORTED -1
 #define VOL_REGISTRATION_FAILED -2
@@ -510,7 +510,7 @@ void Device::PlaybackStatusNotificationResponse(uint8_t label, bool interim,
   if (!interim && state_to_send == last_play_status_.state) {
     DEVICE_VLOG(0) << __func__
                    << ": Not sending notification due to no state update "
-                   << address_.ToString();
+                   << address_.ToStringForLogging();
     return;
   }
 
@@ -539,7 +539,7 @@ void Device::PlaybackPosNotificationResponse(uint8_t label, bool interim,
   }
 
   if (!interim && last_play_status_.position == status.position) {
-    DEVICE_LOG(WARNING) << address_.ToString()
+    DEVICE_LOG(WARNING) << address_.ToStringForLogging()
                         << ": No update to play position";
     return;
   }
@@ -705,7 +705,7 @@ void Device::MessageReceived(uint8_t label, std::shared_ptr<Packet> pkt) {
               if (!d) return;
 
               if (!d->IsActive()) {
-                LOG(INFO) << "Setting " << d->address_.ToString()
+                LOG(INFO) << "Setting " << d->address_.ToStringForLogging()
                           << " to be the active device";
                 d->media_interface_->SetActiveDevice(d->address_);
 
@@ -1507,7 +1507,7 @@ static std::string volumeToStr(int8_t volume) {
 }
 
 std::ostream& operator<<(std::ostream& out, const Device& d) {
-  out << d.address_.ToString();
+  out << d.address_.ToStringForLogging();
   if (d.IsActive()) out << " <Active>";
   out << std::endl;
 
