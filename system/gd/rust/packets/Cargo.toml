@@ -21,10 +21,10 @@ build = "build.rs"
 
 [dependencies]
 
-bindgen = "*"
-bytes = "*"
-num-derive = "*"
-num-traits = "*"
+ bindgen = "*"
+ bytes = "*"
+ num-derive = "*"
+ num-traits = "*"
 thiserror = "*"
 walkdir = "*"
 
