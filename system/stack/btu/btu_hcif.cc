@@ -39,6 +39,7 @@
 #include "main/shim/hci_layer.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/ble_acl_interface.h"
 #include "stack/include/ble_hci_link_interface.h"
@@ -54,6 +55,7 @@
 #include "stack/include/sco_hci_link_interface.h"
 #include "stack/include/sec_hci_link_interface.h"
 #include "stack/include/stack_metrics_logging.h"
+#include "stack/l2cap/l2c_int.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
 
@@ -391,6 +393,7 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
           // Events are now captured by gd/hci/le_acl_connection_interface.h
         case HCI_BLE_CONN_COMPLETE_EVT:  // SubeventCode::CONNECTION_COMPLETE
         case HCI_BLE_ENHANCED_CONN_COMPLETE_EVT:  // SubeventCode::ENHANCED_CONNECTION_COMPLETE
+        case HCI_LE_SUBRATE_CHANGE_EVT:  // SubeventCode::LE_SUBRATE_CHANGE
         default:
           LOG_ERROR(
               "Unexpectedly received LE sub_event_code:0x%02x that should not "
