@@ -609,6 +609,7 @@ ErrorCode LinkLayerController::LeSetScanEnable(bool enable,
 
   if (!enable) {
     scanner_.scan_enable = false;
+    scanner_.history.clear();
     return ErrorCode::SUCCESS;
   }
 
@@ -633,6 +634,7 @@ ErrorCode LinkLayerController::LeSetScanEnable(bool enable,
   }
 
   scanner_.scan_enable = true;
+  scanner_.history.clear();
   scanner_.timeout = {};
   scanner_.filter_duplicates = filter_duplicates
                                    ? bluetooth::hci::FilterDuplicates::ENABLED
@@ -760,6 +762,7 @@ ErrorCode LinkLayerController::LeSetExtendedScanEnable(
 
   if (!enable) {
     scanner_.scan_enable = false;
+    scanner_.history.clear();
     return ErrorCode::SUCCESS;
   }
 
@@ -809,6 +812,7 @@ ErrorCode LinkLayerController::LeSetExtendedScanEnable(
   }
 
   scanner_.scan_enable = true;
+  scanner_.history.clear();
   scanner_.timeout = {};
   scanner_.filter_duplicates = filter_duplicates;
   scanner_.duration = slots(duration);
@@ -2721,8 +2725,19 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
     }
   }
 
+  bool should_send_advertising_report = true;
+  if (scanner_.filter_duplicates !=
+      bluetooth::hci::FilterDuplicates::DISABLED) {
+    if (scanner_.IsPacketInHistory(pdu)) {
+      should_send_advertising_report = false;
+    } else {
+      scanner_.AddPacketInHistory(pdu);
+    }
+  }
+
   // Legacy scanning, directed advertising.
-  if (LegacyAdvertising() && should_send_directed_advertising_report &&
+  if (LegacyAdvertising() && should_send_advertising_report &&
+      should_send_directed_advertising_report &&
       IsLeEventUnmasked(SubeventCode::DIRECTED_ADVERTISING_REPORT)) {
     bluetooth::hci::LeDirectedAdvertisingResponse response;
     response.event_type_ =
@@ -2741,7 +2756,8 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
   }
 
   // Legacy scanning, un-directed advertising.
-  if (LegacyAdvertising() && !should_send_directed_advertising_report &&
+  if (LegacyAdvertising() && should_send_advertising_report &&
+      !should_send_directed_advertising_report &&
       IsLeEventUnmasked(SubeventCode::ADVERTISING_REPORT)) {
     bluetooth::hci::LeAdvertisingResponseRaw response;
     response.address_type_ = resolved_advertising_address.GetAddressType();
@@ -2772,7 +2788,7 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
   }
 
   // Extended scanning.
-  if (ExtendedAdvertising() &&
+  if (ExtendedAdvertising() && should_send_advertising_report &&
       IsLeEventUnmasked(SubeventCode::EXTENDED_ADVERTISING_REPORT)) {
     bluetooth::hci::LeExtendedAdvertisingResponseRaw response;
     response.connectable_ = connectable_advertising;
@@ -2826,6 +2842,12 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
     LOG_VERB(
         "Not sending LE Scan request to advertising address %s(%hhx) because "
         "an LE Scan request is already pending",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
+  } else if (!should_send_advertising_report) {
+    LOG_VERB(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "the advertising message was filtered",
         advertising_address.ToString().c_str(),
         advertising_address.GetAddressType());
   } else {
@@ -3180,7 +3202,18 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
     }
   }
 
-  if (IsLeEventUnmasked(SubeventCode::EXTENDED_ADVERTISING_REPORT)) {
+  bool should_send_advertising_report = true;
+  if (scanner_.filter_duplicates !=
+      bluetooth::hci::FilterDuplicates::DISABLED) {
+    if (scanner_.IsPacketInHistory(pdu)) {
+      should_send_advertising_report = false;
+    } else {
+      scanner_.AddPacketInHistory(pdu);
+    }
+  }
+
+  if (should_send_advertising_report &&
+      IsLeEventUnmasked(SubeventCode::EXTENDED_ADVERTISING_REPORT)) {
     bluetooth::hci::LeExtendedAdvertisingResponseRaw response;
     response.connectable_ = connectable_advertising;
     response.scannable_ = scannable_advertising;
@@ -3235,6 +3268,12 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
         "an LE Scan request is already pending",
         advertising_address.ToString().c_str(),
         advertising_address.GetAddressType());
+  } else if (!should_send_advertising_report) {
+    LOG_VERB(
+        "Not sending LE Scan request to advertising address %s(%hhx) because "
+        "the advertising message was filtered",
+        advertising_address.ToString().c_str(),
+        advertising_address.GetAddressType());
   } else {
     // TODO: apply privacy mode in resolving list.
     // Scan requests with public or random device addresses must be ignored
@@ -3250,8 +3289,8 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
 
     // The ScanA field of the scanning PDU is generated using the
     // Resolving List’s Local IRK value and the Resolvable Private Address
-    // Generation procedure (see Section 1.3.2.2), or the address is provided
-    // by the Host.
+    // Generation procedure (see Section 1.3.2.2), or the address is
+    // provided by the Host.
     AddressWithType scanning_address;
     std::optional<AddressWithType> resolvable_scanning_address;
     switch (scanner_.own_address_type) {
@@ -3281,7 +3320,8 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
     scanner_.pending_scan_request = advertising_address;
 
     LOG_INFO(
-        "Sending LE Scan request to advertising address %s(%hhx) with scanning "
+        "Sending LE Scan request to advertising address %s(%hhx) with "
+        "scanning "
         "address %s(%hhx)",
         advertising_address.ToString().c_str(),
         advertising_address.GetAddressType(),
@@ -3320,7 +3360,8 @@ void LinkLayerController::ConnectIncomingLeExtendedAdvertisingPdu(
   }
   if (initiator_.pending_connect_request) {
     LOG_VERB(
-        "Extended advertising ignored because an LE Connect request is already "
+        "Extended advertising ignored because an LE Connect request is "
+        "already "
         "pending");
     return;
   }
@@ -3364,14 +3405,14 @@ void LinkLayerController::ConnectIncomingLeExtendedAdvertisingPdu(
       break;
   }
 
-  // When an initiator receives a directed connectable advertising event that
-  // contains a resolvable private address for the target’s address
+  // When an initiator receives a directed connectable advertising event
+  // that contains a resolvable private address for the target’s address
   // (TargetA field) and address resolution is enabled, the Link Layer shall
-  // resolve the private address using the resolving list’s Local IRK values.
-  // An initiator that has been instructed by the Host to use Resolvable Private
-  // Addresses shall not respond to directed connectable advertising events that
-  // contain Public or Static addresses for the target’s address (TargetA
-  // field).
+  // resolve the private address using the resolving list’s Local IRK
+  // values. An initiator that has been instructed by the Host to use
+  // Resolvable Private Addresses shall not respond to directed connectable
+  // advertising events that contain Public or Static addresses for the
+  // target’s address (TargetA field).
   if (pdu.GetDirected()) {
     if (!IsLocalPublicOrRandomAddress(resolved_target_address)) {
       LOG_VERB(
@@ -3401,9 +3442,10 @@ void LinkLayerController::ConnectIncomingLeExtendedAdvertisingPdu(
       GenerateResolvablePrivateAddress(resolved_advertising_address,
                                        IrkSelection::Local);
 
-  // The Link Layer shall use resolvable private addresses for the initiator’s
-  // device address (InitA field) when initiating connection establishment with
-  // an associated device that exists in the Resolving List.
+  // The Link Layer shall use resolvable private addresses for the
+  // initiator’s device address (InitA field) when initiating connection
+  // establishment with an associated device that exists in the Resolving
+  // List.
   AddressWithType initiating_address;
   switch (initiator_.own_address_type) {
     case bluetooth::hci::OwnAddressType::PUBLIC_DEVICE_ADDRESS:
@@ -4376,7 +4418,17 @@ void LinkLayerController::IncomingLeScanResponsePacket(
 
   scanner_.pending_scan_request = {};
 
-  if (LegacyAdvertising() &&
+  bool should_send_advertising_report = true;
+  if (scanner_.filter_duplicates !=
+      bluetooth::hci::FilterDuplicates::DISABLED) {
+    if (scanner_.IsPacketInHistory(incoming)) {
+      should_send_advertising_report = false;
+    } else {
+      scanner_.AddPacketInHistory(incoming);
+    }
+  }
+
+  if (LegacyAdvertising() && should_send_advertising_report &&
       IsLeEventUnmasked(SubeventCode::ADVERTISING_REPORT)) {
     bluetooth::hci::LeAdvertisingResponseRaw response;
     response.event_type_ = bluetooth::hci::AdvertisingEventType::SCAN_RESPONSE;
@@ -4388,7 +4440,7 @@ void LinkLayerController::IncomingLeScanResponsePacket(
         bluetooth::hci::LeAdvertisingReportRawBuilder::Create({response}));
   }
 
-  if (ExtendedAdvertising() &&
+  if (ExtendedAdvertising() && should_send_advertising_report &&
       IsLeEventUnmasked(SubeventCode::EXTENDED_ADVERTISING_REPORT)) {
     bluetooth::hci::LeExtendedAdvertisingResponseRaw response;
     response.address_ = resolved_advertising_address.GetAddress();
@@ -4424,7 +4476,7 @@ void LinkLayerController::LeScanning() {
     // an HCI_LE_Scan_Timeout event shall be generated.
     LOG_INFO("Extended Scan Timeout");
     scanner_.Disable();
-
+    scanner_.history.clear();
     if (IsLeEventUnmasked(SubeventCode::SCAN_TIMEOUT)) {
       send_event_(bluetooth::hci::LeScanTimeoutBuilder::Create());
     }

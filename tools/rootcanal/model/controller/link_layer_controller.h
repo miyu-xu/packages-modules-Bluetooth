@@ -16,7 +16,9 @@
 
 #pragma once
 
+#include <algorithm>
 #include <map>
+#include <vector>
 
 #include "hci/address.h"
 #include "hci/hci_packets.h"
@@ -912,8 +914,23 @@ class LinkLayerController {
     // Time keeping
     std::optional<std::chrono::steady_clock::time_point> timeout;
 
+    // Packet History
+    std::vector<model::packets::LinkLayerPacketView> history;
+
     bool IsEnabled() const { return scan_enable; }
     void Disable() { scan_enable = false; }
+
+    bool IsPacketInHistory(model::packets::LinkLayerPacketView packet) const {
+      return std::any_of(
+          history.begin(), history.end(),
+          [packet](model::packets::LinkLayerPacketView const& a) {
+            return a.size() == packet.size() &&
+                   std::equal(a.begin(), a.end(), packet.begin());
+          });
+    }
+    void AddPacketInHistory(model::packets::LinkLayerPacketView packet) {
+      history.push_back(packet);
+    }
   };
 
   // Legacy and extended scanning properties.
