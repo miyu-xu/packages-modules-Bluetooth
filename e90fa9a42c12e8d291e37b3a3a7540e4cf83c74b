@@ -258,6 +258,30 @@
       },
       "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f13f0160_768168c1",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-26T18:42:11Z",
+      "side": 1,
+      "message": "Oh, right, didn\u0027t realize you needed it to be mutated and also to send over D-Bus.\n\nIn that case, some recommendations:\n* prefer that we copy the things that eventually will be moved anyway, which are the adv_id and the params.\n* prefer to iterate the elements directly rather than the iterate the keys and then use the keys to index (more efficient).\n* `self.context.lock().unwrap()` is used multiple times in the vicinity we can acquire the lock once and use it for subsequent operations.\n\n```\n# Acquire once for conciseness.\n# It\u0027s safe since the lock will be released right after the end of the block.\nlet mut context \u003d self.context.lock().unwrap();\n\n# Mutable operation can be separated on its own. For loop is okay too but I think\n# `Iterator::for_each` is suitable in this case.\ncontext.adv_sets.iter_mut().for_each(|(_, set)| set.params.interval \u003d interval);\n\n# Immutable operation, and also collecting what needs to be sent over D-Bus.\n# Cloning is okay since we need to avoid deadlock and the data will be moved when\n# calling D-Bus anyway.\nlet advs: Vec\u003c(_, _)\u003e \u003d context\n    .adv_sets\n    .iter()\n    .filter_map(|(_reg_id, set)| {\n        set.adv_id.map(|adv_id| (adv_id.clone(), set.params.clone()))\n    })\n    .collect();\n\n# Just sending the cloned data to D-Bus.\nfor (adv_id, params) in advs {\n    print_info!(\"Setting advertising parameters for {}\", adv_id);\n    context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);\n}\n\n```\n\nCan you try to apply similar pattern to the other similar situation above?",
+      "parentUuid": "43fb9dcc_574957a3",
+      "range": {
+        "startLine": 999,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 39
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
