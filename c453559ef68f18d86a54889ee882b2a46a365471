@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a6eb773_e6ba95b3",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-26T06:30:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22d57102_f72a64f2",
+      "range": {
+        "startLine": 34,
+        "startChar": 9,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "664e0341_e3d6d01d",
@@ -250,6 +274,30 @@
       "writtenOn": "2022-10-26T04:55:20Z",
       "side": 1,
       "message": "nit: Why a define and not just a var in the test ?",
+      "range": {
+        "startLine": 248,
+        "startChar": 1,
+        "endLine": 248,
+        "endChar": 7
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c2a8836_a9174e1c",
+        "filename": "system/gd/hci/address_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-26T06:30:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "583a7494_f65ac2c0",
       "range": {
         "startLine": 248,
         "startChar": 1,
