@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22d57102_f72a64f2",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-26T05:49:51Z",
+      "side": 1,
+      "message": "This is unnneeded. \nUsed for suppressing the warning from libchrome. \nwill remove it.",
+      "parentUuid": "7f7f0d0f_90f005ab",
+      "range": {
+        "startLine": 34,
+        "startChar": 9,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "664e0341_e3d6d01d",
         "filename": "system/gd/Android.bp",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-26T04:55:20Z",
       "side": 1,
       "message": "nit: header_libs is prefered as the include_dirs.",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c64832_f9f0f9b0",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-26T05:49:51Z",
+      "side": 1,
+      "message": "In gd, no header_libs are defined for individual components.\nAs everything is bundled in one libbluetooth_gd. \nI guess the headers are intended to be used in this way?\n@mylesgw@google.com could you comment on this.",
+      "parentUuid": "664e0341_e3d6d01d",
       "range": {
         "startLine": 16,
         "startChar": 4,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dace980a_af35baa6",
+        "filename": "system/gd/hci/address.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-26T05:49:51Z",
+      "side": 1,
+      "message": "After talking with Jack. This one is going to be removed and `ToColonSepHexString` is going to be used instead, as it clearer. \n\n`ToString` will be removed in the end.",
+      "parentUuid": "1325f574_c073d5ed",
+      "range": {
+        "startLine": 66,
+        "startChar": 21,
+        "endLine": 66,
+        "endChar": 29
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4f4b8dd_82fd3abf",
         "filename": "system/gd/hci/address.h",
         "patchSetId": 2
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-26T04:55:20Z",
       "side": 1,
       "message": "Whast is the purpose for this ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 33
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a409e1f_dc2bba1e",
+        "filename": "system/gd/hci/address.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-26T05:49:51Z",
+      "side": 1,
+      "message": "See above.",
+      "parentUuid": "a4f4b8dd_82fd3abf",
       "range": {
         "startLine": 54,
         "startChar": 14,
