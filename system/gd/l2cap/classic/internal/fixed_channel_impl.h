@@ -17,6 +17,7 @@
 #pragma once
 
 #include "common/bidi_queue.h"
+#include "common/interfaces/ILoggable.h"
 #include "l2cap/cid.h"
 #include "l2cap/classic/fixed_channel.h"
 #include "l2cap/internal/channel_impl.h"
@@ -31,7 +32,7 @@ namespace internal {
 
 class Link;
 
-class FixedChannelImpl : public l2cap::internal::ChannelImpl {
+class FixedChannelImpl : public l2cap::internal::ChannelImpl, public ILoggable {
  public:
   FixedChannelImpl(Cid cid, Link* link, os::Handler* l2cap_handler);
 
@@ -62,7 +63,7 @@ class FixedChannelImpl : public l2cap::internal::ChannelImpl {
     return ss.str();
   }
 
-  virtual std::string ToObfuscatedAddress() {
+  std::string ToStringForLogging() const override {
     std::ostringstream ss;
     ss << "Device " << ADDRESS_TO_LOGGABLE_STR(device_.GetAddress()) << " Cid 0x" << std::hex << cid_;
     return ss.str();
