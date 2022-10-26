@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b86dabe7_dee948f7",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-26T09:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31665153_7a059a30",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 3
+      },
+      "revId": "5fcfa12795adf3a0e7176b8f92cb65242f3c7a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9258e4d_2d002caa",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Not familiar with PDL at all 😋 so couldn\u0027t comment on this. Agree that it\u0027s can be nice if we may utilize a more solid parsing infrastructure if exists.",
       "parentUuid": "d9258e4d_2d002caa",
+      "range": {
+        "startLine": 1118,
+        "startChar": 0,
+        "endLine": 1127,
+        "endChar": 37
+      },
+      "revId": "5fcfa12795adf3a0e7176b8f92cb65242f3c7a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5554ff20_ae99137b",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-26T09:00:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0851afd4_952be5fc",
       "range": {
         "startLine": 1118,
         "startChar": 0,
