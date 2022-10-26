@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d66c681_9e1a011e",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-26T17:02:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0f7b7dd_9074f39a",
+      "range": {
+        "startLine": 212,
+        "startChar": 68,
+        "endLine": 212,
+        "endChar": 77
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "373803a8_3e1e25d0",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-25T21:44:42Z",
       "side": 1,
       "message": "nit: do we want to add some debug logging here for when `\u003d\u003d null`?",
+      "range": {
+        "startLine": 225,
+        "startChar": 16,
+        "endLine": 225,
+        "endChar": 51
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc16b3a_2b493d96",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-26T17:02:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "373803a8_3e1e25d0",
       "range": {
         "startLine": 225,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7809da3d_7071eb4b",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-26T17:02:04Z",
+      "side": 1,
+      "message": "I\u0027m holding the active device lock while processing the message, so the active device can\u0027t change while we\u0027re sending the message. This would cause this previous device (right before the switch) to pause when focus is removed. It would have _another_ pause sent once the active device change actually goes through.\n\nThe new active device would be paused in the existing active device switch logic too, so that\u0027s not a worry.\n\nPerhaps we should clean up the focus variables when we\u0027re no longer active though?",
+      "parentUuid": "9376d9b4_3104f55e",
+      "range": {
+        "startLine": 572,
+        "startChar": 11,
+        "endLine": 572,
+        "endChar": 85
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c13ec0a_b2ac6faf",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61c1e0e_cc6dd410",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-26T17:02:04Z",
+      "side": 1,
+      "message": "Done. Consistency is a good thing.",
+      "parentUuid": "5c13ec0a_b2ac6faf",
+      "range": {
+        "startLine": 489,
+        "startChar": 28,
+        "endLine": 489,
+        "endChar": 89
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd94d634_e3d5cbcf",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-10-25T21:44:42Z",
       "side": 1,
       "message": "Is this check perhaps unnecessary, since the only way to set `mShouldSendPlayOnFocusRecovery` to `true` is `AUDIOFOCUS_LOSS_TRANSIENT` case? I.e., is there a case where we would want `mShouldSendPlayOnFocusRecovery` to remain `true`? Or is this protecting against some race condition?",
+      "range": {
+        "startLine": 1210,
+        "startChar": 16,
+        "endLine": 1210,
+        "endChar": 73
+      },
+      "revId": "800801f79ef6491423fc7f1bc8cbeef1ced9177f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13977f7b_a4182886",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-10-26T17:02:04Z",
+      "side": 1,
+      "message": "I did this to be very explicit about what we\u0027re doing and help give a backbone to the log statement below. I figured it would make seeing this case easier in the future.\n\nLogically though, you\u0027re right. I think we could get away with blanket setting this to false. But for now, I think I like the explicit log statement.",
+      "parentUuid": "fd94d634_e3d5cbcf",
       "range": {
         "startLine": 1210,
         "startChar": 16,
