@@ -43,6 +43,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.media.AudioDeviceCallback;
+import android.media.AudioDeviceInfo;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -166,6 +168,10 @@ public class LeAudioService extends ProfileService {
     private BroadcastReceiver mMuteStateChangedReceiver;
     private int mStoredRingerMode = -1;
     private Handler mHandler = new Handler(Looper.getMainLooper());
+    private final AudioManagerAddAudioDeviceCallback mAudioManagerAddAudioDeviceCallback =
+            new AudioManagerAddAudioDeviceCallback();
+    private final AudioManagerRemoveAudioDeviceCallback mAudioManagerRemoveAudioDeviceCallback =
+            new AudioManagerRemoveAudioDeviceCallback();
 
     private final Map<Integer, Integer> mBroadcastStateMap = new HashMap<>();
     private final Map<Integer, Boolean> mBroadcastsPlaybackMap = new HashMap<>();
@@ -816,6 +822,14 @@ public class LeAudioService extends ProfileService {
                         + " isLeOutput: false");
             }
 
+            if (mActiveAudioInDevice != null) {
+                mAudioManager.registerAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback,
+                        mHandler);
+            } else {
+                mAudioManager.registerAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback,
+                        mHandler);
+            }
+
             mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioInDevice,previousInDevice,
                     BluetoothProfileConnectionInfo.createLeAudioInfo(false, false));
 
@@ -882,6 +896,11 @@ public class LeAudioService extends ProfileService {
             int volume = IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME;
             if (mActiveAudioOutDevice != null) {
                 volume = getAudioDeviceGroupVolume(groupId);
+                mAudioManager.registerAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback,
+                        mHandler);
+            } else {
+                mAudioManager.registerAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback,
+                        mHandler);
             }
 
             mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
@@ -891,6 +910,47 @@ public class LeAudioService extends ProfileService {
         }
         Log.d(TAG, "updateActiveOutDevice: Nothing to do.");
         return false;
+    }
+
+    private void notifyActiveDeviceChanged() {
+        Intent intent = new Intent(BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED);
+        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mActiveAudioOutDevice);
+        intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+        sendBroadcast(intent, BLUETOOTH_CONNECT);
+    }
+
+    /** Notifications of audio device connection and disconnection events. */
+    private class AudioManagerRemoveAudioDeviceCallback extends AudioDeviceCallback {
+        @Override
+        public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
+            Log.d(TAG, "GK AB");
+            for (AudioDeviceInfo deviceInfo : removedDevices) {
+                Log.d(TAG, "GK B11, added removed= " + deviceInfo.getType());
+                if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_HEADSET ||
+                        deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_SPEAKER) {
+                    Log.d(TAG, "GK B111");
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback);
+                }
+            }
+        }
+    }
+    /** Notifications of audio device connection and disconnection events. */
+    private class AudioManagerAddAudioDeviceCallback extends AudioDeviceCallback {
+        @Override
+        public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
+            Log.d(TAG, "GK A1");
+            for (AudioDeviceInfo deviceInfo : addedDevices) {
+                Log.d(TAG, "GK A11, added device= " + deviceInfo.getType());
+                if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_HEADSET ||
+                        deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_SPEAKER) {
+                    Log.d(TAG, "GK A111");
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback);
+                }
+            }
+        }
     }
 
     /**
@@ -916,13 +976,8 @@ public class LeAudioService extends ProfileService {
                 updateActiveInDevice(device, groupId, oldSupportedAudioDirections,
                         newSupportedAudioDirections);
 
-        if (outReplaced || inReplaced) {
-            Intent intent = new Intent(BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED);
-            intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mActiveAudioOutDevice);
-            intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
-                    | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-            sendBroadcast(intent, BLUETOOTH_CONNECT);
-        }
+        //if (outReplaced || inReplaced) {
+        //}
 
         return mActiveAudioOutDevice != null;
     }

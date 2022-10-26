@@ -30,8 +30,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.media.AudioDeviceCallback;
+import android.media.AudioDeviceInfo;
 import android.media.BluetoothProfileConnectionInfo;
+import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.ParcelUuid;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
@@ -73,6 +77,7 @@ public class HearingAidService extends ProfileService {
     private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
     private BluetoothDevice mPreviousAudioDevice;
+    private BluetoothDevice mActiveDevice;
 
     @VisibleForTesting
     HearingAidNativeInterface mHearingAidNativeInterface;
@@ -88,6 +93,11 @@ public class HearingAidService extends ProfileService {
 
     private BroadcastReceiver mBondStateChangedReceiver;
     private BroadcastReceiver mConnectionStateChangedReceiver;
+    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private final AudioManagerAddAudioDeviceCallback mAudioManagerAddAudioDeviceCallback =
+            new AudioManagerAddAudioDeviceCallback();
+    private final AudioManagerRemoveAudioDeviceCallback mAudioManagerRemoveAudioDeviceCallback =
+            new AudioManagerRemoveAudioDeviceCallback();
 
     private final ServiceFactory mFactory = new ServiceFactory();
 
@@ -574,7 +584,13 @@ public class HearingAidService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "setActiveDevice:" + device);
         }
+
         synchronized (mStateMachines) {
+            /* No action needed since this is the same device as previousely activated */
+            if (device == mActiveDevice) {
+                return true;
+            }
+
             if (device == null) {
                 if (mActiveDeviceHiSyncId != BluetoothHearingAid.HI_SYNC_ID_INVALID) {
                     reportActiveDevice(null);
@@ -697,6 +713,47 @@ public class HearingAidService extends ProfileService {
         }
     }
 
+    private void notifyActiveDeviceChanged() {
+        Intent intent = new Intent(BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED);
+        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mActiveDevice);
+        intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+        sendBroadcast(intent, BLUETOOTH_CONNECT, Utils.getTempAllowlistBroadcastOptions());
+
+    }
+
+    /** Notifications of audio device connection and disconnection events. */
+    private class AudioManagerAddAudioDeviceCallback extends AudioDeviceCallback {
+        @Override
+        public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
+            Log.d(TAG, "GK A1");
+            for (AudioDeviceInfo deviceInfo : addedDevices) {
+                Log.d(TAG, "GK A11, added device= " + deviceInfo.getType());
+                if (deviceInfo.getType() == AudioDeviceInfo.TYPE_HEARING_AID) {
+                    Log.d(TAG, "GK A111");
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback);
+                }
+            }
+        }
+    }
+
+    /** Notifications of audio device disconnection events. */
+    private class AudioManagerRemoveAudioDeviceCallback extends AudioDeviceCallback {
+        @Override
+        public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
+            Log.d(TAG, "GK AB");
+            for (AudioDeviceInfo deviceInfo : removedDevices) {
+                Log.d(TAG, "GK B11, added removed= " + deviceInfo.getType());
+                if (deviceInfo.getType() == AudioDeviceInfo.TYPE_HEARING_AID) {
+                    Log.d(TAG, "GK B111");
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback);
+                }
+            }
+        }
+    }
+
     /**
      * Report the active device change to the active device manager and the media framework.
      * @param device the new active device; or null if no active device
@@ -706,21 +763,28 @@ public class HearingAidService extends ProfileService {
             Log.d(TAG, "reportActiveDevice(" + device + ")");
         }
 
+        mActiveDevice = device;
+
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
                 BluetoothProfile.HEARING_AID, mAdapterService.obfuscateAddress(device),
                 mAdapterService.getMetricId(device));
-
-        Intent intent = new Intent(BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
-        intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
-                | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-        sendBroadcast(intent, BLUETOOTH_CONNECT, Utils.getTempAllowlistBroadcastOptions());
 
         boolean stopAudio = device == null
                 && (getConnectionState(mPreviousAudioDevice) != BluetoothProfile.STATE_CONNECTED);
         if (DBG) {
             Log.d(TAG, "Hearing Aid audio: " + mPreviousAudioDevice + " -> " + device
                     + ". Stop audio: " + stopAudio);
+        }
+
+        if (device != null) {
+            /* XXX: Who will unregister this if for some reason AudioManager wouldn't be able to
+             * connect device.
+             */
+            mAudioManager.registerAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback,
+                    mHandler);
+        } else {
+            mAudioManager.registerAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback,
+                    mHandler);
         }
         mAudioManager.handleBluetoothActiveDeviceChanged(device, mPreviousAudioDevice,
                 BluetoothProfileConnectionInfo.createHearingAidInfo(!stopAudio));

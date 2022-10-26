@@ -38,9 +38,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.media.AudioDeviceCallback;
+import android.media.AudioDeviceInfo;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Build;
+import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
@@ -104,6 +108,11 @@ public class A2dpService extends ProfileService {
 
     private BroadcastReceiver mBondStateChangedReceiver;
     private BroadcastReceiver mConnectionStateChangedReceiver;
+    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private final AudioManagerAddAudioDeviceCallback mAudioManagerAddAudioDeviceCallback =
+            new AudioManagerAddAudioDeviceCallback();
+    private final AudioManagerRemoveAudioDeviceCallback mAudioManagerRemoveAudioDeviceCallback =
+            new AudioManagerRemoveAudioDeviceCallback();
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileA2dpSourceEnabled().orElse(false);
@@ -515,6 +524,7 @@ public class A2dpService extends ProfileService {
             // and audio should be suspended before switching the output to the local device.
             boolean stopAudio = forceStopPlayingAudio || (prevActiveConnectionState
                         != BluetoothProfile.STATE_CONNECTED);
+            mAudioManager.registerAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback, mHandler);
             mAudioManager.handleBluetoothActiveDeviceChanged(null, previousActiveDevice,
                     BluetoothProfileConnectionInfo.createA2dpInfo(!stopAudio, -1));
 
@@ -629,6 +639,7 @@ public class A2dpService extends ProfileService {
             // And inform the Audio Service about the codec configuration
             // change, so the Audio Service can reset accordingly the audio
             // feeding parameters in the Audio HAL to the Bluetooth stack.
+            mAudioManager.registerAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback, mHandler);
             mAudioManager.handleBluetoothActiveDeviceChanged(newActiveDevice, previousActiveDevice,
                     BluetoothProfileConnectionInfo.createA2dpInfo(true, rememberedVolume));
         }
@@ -1050,6 +1061,49 @@ public class A2dpService extends ProfileService {
         }
     }
 
+    private void notifyActiveDeviceChanged() {
+        BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
+                BluetoothProfile.A2DP, mAdapterService.obfuscateAddress(mActiveDevice),
+                mAdapterService.getMetricId(mActiveDevice));
+        Intent intent = new Intent(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
+        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mActiveDevice);
+        intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                        | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+        sendBroadcast(intent, BLUETOOTH_CONNECT, Utils.getTempAllowlistBroadcastOptions());
+    }
+
+    /** Notifications of audio device connection and disconnection events. */
+    private class AudioManagerAddAudioDeviceCallback extends AudioDeviceCallback {
+        @Override
+        public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
+            Log.d(TAG, "GK A1");
+            for (AudioDeviceInfo deviceInfo : addedDevices) {
+                Log.d(TAG, "GK A11, added device= " + deviceInfo.getType());
+                if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP) {
+                    Log.d(TAG, "GK A111");
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback);
+                }
+            }
+        }
+    }
+
+    /** Notifications of audio device connection and disconnection events. */
+    private class AudioManagerRemoveAudioDeviceCallback extends AudioDeviceCallback {
+        @Override
+        public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
+            Log.d(TAG, "GK AB");
+            for (AudioDeviceInfo deviceInfo : removedDevices) {
+                Log.d(TAG, "GK B11, added removed= " + deviceInfo.getType());
+                if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP) {
+                    Log.d(TAG, "GK B111");
+                    notifyActiveDeviceChanged();
+                    mAudioManager.unregisterAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback);
+                }
+            }
+        }
+    }
+
     // This needs to run before any of the Audio Manager connection functions since
     // AVRCP needs to be aware that the audio device is changed before the Audio Manager
     // changes the volume of the output devices.
@@ -1065,15 +1119,6 @@ public class A2dpService extends ProfileService {
         synchronized (mStateMachines) {
             mActiveDevice = device;
         }
-
-        BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
-                BluetoothProfile.A2DP, mAdapterService.obfuscateAddress(device),
-                mAdapterService.getMetricId(device));
-        Intent intent = new Intent(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
-        intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
-                        | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-        sendBroadcast(intent, BLUETOOTH_CONNECT, Utils.getTempAllowlistBroadcastOptions());
     }
 
     private void broadcastCodecConfig(BluetoothDevice device, BluetoothCodecStatus codecStatus) {
