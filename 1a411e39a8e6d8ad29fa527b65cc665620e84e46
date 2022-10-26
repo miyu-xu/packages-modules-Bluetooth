@@ -16,6 +16,230 @@
       "message": "Hi Thomas,\n\nAVRCP files, have updated the remarks in comments for more details.\nPS: We have added queue in MediaSession for testing \"Forward\" \"Previous\" etc.\n\nThank you.\n\nRegards,\nSnehal",
       "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b3988e_11bb3e03",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Unused, to be removed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4bb483_33fb27da",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Reorder alphabetically.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 33
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea811e00_8dc717d5",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "To rename into `MediaPlayerBrowserService`",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47798873_730a523d",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "This is common to all functions, so you should keep it in a `setPlaybackState` function to avoid code duplication.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 48
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64e85203_c9da8f2a",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Comment can be removed, function name is clear enough.",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 173,
+        "endChar": 59
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf1ffaa_aeda5f95",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Comment can be removed, statement clear enough.",
+      "range": {
+        "startLine": 175,
+        "startChar": 6,
+        "endLine": 175,
+        "endChar": 81
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bee9c5cd_e42a0ef0",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Should be stored as a static variable.",
+      "range": {
+        "startLine": 251,
+        "startChar": 20,
+        "endLine": 251,
+        "endChar": 21
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa58c8b8_db0bc51c",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Same as previous one, should be stored as a static variable.",
+      "range": {
+        "startLine": 258,
+        "startChar": 58,
+        "endLine": 258,
+        "endChar": 59
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9960920d_8482d839",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayer.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Useless new line, also applicable to other functions.",
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f0765d_9dd17245",
+        "filename": "pandora/interfaces/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-26T18:48:29Z",
+      "side": 1,
+      "message": "Should keep a newline at the end of the file.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 1
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
