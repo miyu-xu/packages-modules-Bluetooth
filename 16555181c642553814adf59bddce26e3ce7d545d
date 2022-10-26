@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8901270_708dbff9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T19:57:19Z",
+      "side": 0,
+      "message": "Removing this doesn\u0027t make sense with the CL description.  If the current information says LE, we would have returned in line 651... right?",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 660,
+        "endChar": 3
+      },
+      "revId": "16555181c642553814adf59bddce26e3ce7d545d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
