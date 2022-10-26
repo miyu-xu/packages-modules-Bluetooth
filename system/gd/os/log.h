@@ -26,6 +26,9 @@
 
 static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
 
+#define ADDRESS_TO_LOGGABLE_STR(addr) (addr).ToStringForLogging()
+#define ADDRESS_TO_LOGGABLE_CSTR(addr) ADDRESS_TO_LOGGABLE_STR(addr).c_str()
+
 #if defined(OS_ANDROID)
 
 #include <log/log.h>
