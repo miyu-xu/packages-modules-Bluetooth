@@ -60,7 +60,7 @@ feature_getters! {
 }
 
 macro_rules! le_feature_getters {
-    ($($id:ident),*) => {
+    ($($id:ident,)*) => {
         paste! {
             $(
                 pub fn [<controller_supports_ $id>](c: &Controller) -> bool {
@@ -86,7 +86,9 @@ le_feature_getters! {
     connected_iso_stream_central,
     connected_iso_stream_peripheral,
     iso_broadcaster,
-    synchronized_receiver
+    synchronized_receiver,
+    ble_connection_subrating,
+    ble_connection_subrating_host,
 }
 
 macro_rules! opcode_getters {
