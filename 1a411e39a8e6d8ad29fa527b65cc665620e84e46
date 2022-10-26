@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12591c1d_ea8619e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-26T22:25:48Z",
+      "side": 1,
+      "message": "Can you please use `ktfmt --google-style` on the kotlin file ?\n\nOtherwise, since avrcp.proto and Avrcp.kt does nothing I am not sure it is usefull to have them here, we can delete them",
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77b3988e_11bb3e03",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
         "patchSetId": 2
@@ -43,6 +60,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c60523e5_3b68b6ea",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-26T22:25:48Z",
+      "side": 1,
+      "message": "I don\u0027t see any mention of \"TG/VLH\" in your added tests in the json thus this condition is always true",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 49
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc3a44f_e587791d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-26T22:25:48Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 66,
+        "startChar": 54,
+        "endLine": 66,
+        "endChar": 70
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff8ba048_4b81bbdc",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-26T22:25:48Z",
+      "side": 1,
+      "message": "self.a2dp.close isn\u0027t enough ? \n\nIn any case, we need to either `del` `self.connection` or set it to none",
+      "range": {
+        "startLine": 153,
+        "startChar": 7,
+        "endLine": 155,
+        "endChar": 56
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ddfdf48_695d9cf1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-26T22:25:48Z",
+      "side": 1,
+      "message": "Same as previous comment",
+      "range": {
+        "startLine": 377,
+        "startChar": 29,
+        "endLine": 377,
+        "endChar": 71
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b4bb483_33fb27da",
         "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
         "patchSetId": 2
@@ -57,6 +166,29 @@
       "range": {
         "startLine": 96,
         "startChar": 0,
+        "endLine": 125,
+        "endChar": 33
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4fccb52_c2375d57",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-10-26T22:25:48Z",
+      "side": 1,
+      "message": "Why is there any changements on the AVDTP/SNK tests ?",
+      "range": {
+        "startLine": 96,
+        "startChar": 3,
         "endLine": 125,
         "endChar": 33
       },
