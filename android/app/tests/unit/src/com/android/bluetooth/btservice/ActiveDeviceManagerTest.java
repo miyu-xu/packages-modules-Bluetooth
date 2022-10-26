@@ -600,8 +600,12 @@ public class ActiveDeviceManagerTest {
      * One LE Hearing Aid is connected.
      */
     @Test
-    public void onlyLeHearingAIdConnected_setLeAudioActive() {
+    public void onlyLeHearingAidConnected_setLeAudioActive() {
         leHearingAidConnected(mLeHearingAidDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        verify(mLeAudioService, never()).setActiveDevice(mLeHearingAidDevice);
+
+        leAudioConnected(mLeHearingAidDevice);
         verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeHearingAidDevice);
     }
 
@@ -612,6 +616,7 @@ public class ActiveDeviceManagerTest {
     @Test
     public void leAudioConnectedAfterLeHearingAid_setLeAudioActiveShouldNotBeCalled() {
         leHearingAidConnected(mLeHearingAidDevice);
+        leAudioConnected(mLeHearingAidDevice);
         verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeHearingAidDevice);
 
         leAudioConnected(mLeAudioDevice);
@@ -632,14 +637,16 @@ public class ActiveDeviceManagerTest {
         verify(mHearingAidService, timeout(TIMEOUT_MS)).setActiveDevice(mHearingAidDevice);
 
         leHearingAidConnected(mLeHearingAidDevice);
+        leAudioConnected(mLeHearingAidDevice);
         verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeHearingAidDevice);
 
         a2dpConnected(mA2dpDevice);
         TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
         verify(mA2dpService, never()).setActiveDevice(mA2dpDevice);
 
-        Mockito.clearInvocations(mHearingAidService, mA2dpService);
+        Mockito.clearInvocations(mHearingAidService);
         leHearingAidDisconnected(mLeHearingAidDevice);
+        leAudioDisconnected(mLeHearingAidDevice);
         verify(mHearingAidService, timeout(TIMEOUT_MS)).setActiveDevice(mHearingAidDevice);
         verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(isNull());
 
