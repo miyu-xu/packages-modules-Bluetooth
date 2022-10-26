@@ -22,6 +22,30 @@
       },
       "revId": "16555181c642553814adf59bddce26e3ce7d545d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb20c5c5_403a7876",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-26T19:59:28Z",
+      "side": 0,
+      "message": "If we found device during scan/inquiry, we would return true in line 651.\n\nIf it was not found during scan, but we remember it was dual mode i.e. from previous pairing, we would return true here (and that was the problem).",
+      "parentUuid": "f8901270_708dbff9",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 660,
+        "endChar": 3
+      },
+      "revId": "16555181c642553814adf59bddce26e3ce7d545d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
