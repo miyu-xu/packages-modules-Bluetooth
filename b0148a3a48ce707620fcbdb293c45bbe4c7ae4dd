@@ -22,6 +22,30 @@
       },
       "revId": "b0148a3a48ce707620fcbdb293c45bbe4c7ae4dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3392ac8_ab4e60e4",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-10-26T16:28:20Z",
+      "side": 1,
+      "message": "Okay, that makes sense. Thanks for the example!",
+      "parentUuid": "465a69a4_bee32fd9",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 18
+      },
+      "revId": "b0148a3a48ce707620fcbdb293c45bbe4c7ae4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
