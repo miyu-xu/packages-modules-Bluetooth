@@ -15,6 +15,21 @@
 
 [workspace]
 
-members = [
-  "lmp",
-]
+members = ["lmp"]
+
+
+# You must have the following set of crates available in your
+# repo.
+[patch.crates-io]
+bindgen = { path = "../../../../../external/rust/crates/bindgen" }
+bytes = { path = "../../../../../external/rust/crates/bytes" }
+clang-sys = { path = "../../../../../external/rust/crates/clang-sys" }
+num-bigint = { path = "../../../../../external/rust/crates/num-bigint" }
+num-derive = { path = "../../../../../external/rust/crates/num-derive" }
+num-integer = { path = "../../../../../external/rust/crates/num-integer" }
+num-traits = { path = "../../../../../external/rust/crates/num-traits" }
+pin-utils = { path = "../../../../../external/rust/crates/pin-utils" }
+rand = { path = "../../../../../external/rust/crates/rand" }
+thiserror = { path = "../../../../../external/rust/crates/thiserror" }
+thiserror-impl = { path = "../../../../../external/rust/crates/thiserror-impl" }
+walkdir = { path = "../../../../../external/rust/crates/walkdir" }
