@@ -657,7 +657,11 @@ public class ActiveDeviceManagerTest {
      * One LE Hearing Aid is connected.
      */
     @Test
-    public void onlyLeHearingAIdConnected_setLeAudioActive() {
+    public void onlyLeHearingAidConnected_setLeAudioActive() {
+        leHearingAidConnected(TEST_HAP_DEVICE_INDEX);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        verify(mLeAudioService, never()).setActiveDevice(mTestDevices.get(TEST_HAP_DEVICE_INDEX));
+
         leAudioConnected(TEST_HAP_DEVICE_INDEX);
         verify(mLeAudioService, timeout(TIMEOUT_MS))
                 .setActiveDevice(mTestDevices.get(TEST_HAP_DEVICE_INDEX));
@@ -670,6 +674,7 @@ public class ActiveDeviceManagerTest {
     @Test
     public void leAudioConnectedAfterLeHearingAid_setLeAudioActiveShouldNotBeCalled() {
         leHearingAidConnected(TEST_HAP_DEVICE_INDEX);
+        leAudioConnected(TEST_HAP_DEVICE_INDEX);
         verify(mLeAudioService, timeout(TIMEOUT_MS))
                 .setActiveDevice(mTestDevices.get(TEST_HAP_DEVICE_INDEX));
 
@@ -692,6 +697,7 @@ public class ActiveDeviceManagerTest {
                 .setActiveDevice(mTestDevices.get(TEST_HA_DEVICE_INDEX));
 
         leHearingAidConnected(TEST_HAP_DEVICE_INDEX);
+        leAudioConnected(TEST_HAP_DEVICE_INDEX);
         verify(mLeAudioService, timeout(TIMEOUT_MS))
                 .setActiveDevice(mTestDevices.get(TEST_HAP_DEVICE_INDEX));
 
@@ -701,6 +707,7 @@ public class ActiveDeviceManagerTest {
 
         Mockito.clearInvocations(mHearingAidService);
         leHearingAidDisconnected(TEST_HAP_DEVICE_INDEX);
+        leAudioDisconnected(TEST_HAP_DEVICE_INDEX);
         verify(mHearingAidService, timeout(TIMEOUT_MS))
                 .setActiveDevice(mTestDevices.get(TEST_HA_DEVICE_INDEX));
 
