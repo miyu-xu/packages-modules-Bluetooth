@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc8b203_19ae27b5",
+        "filename": "system/test/mock/mock_osi_properties.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-26T02:27:27Z",
+      "side": 1,
+      "message": "This is not needed at all. TODO: remove it",
+      "revId": "dd6ca8937930fef5dafcd4ad1f04d25a97f0bc55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
