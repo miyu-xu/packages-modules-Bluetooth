@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58237de4_59d1ca2a",
+        "filename": "system/gd/hci/address.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-26T06:11:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dace980a_af35baa6",
+      "range": {
+        "startLine": 66,
+        "startChar": 21,
+        "endLine": 66,
+        "endChar": 29
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4f4b8dd_82fd3abf",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "See above.",
       "parentUuid": "a4f4b8dd_82fd3abf",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 33
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e07eaf2_f73a0f63",
+        "filename": "system/gd/hci/address.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-26T06:11:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1a409e1f_dc2bba1e",
       "range": {
         "startLine": 54,
         "startChar": 14,
