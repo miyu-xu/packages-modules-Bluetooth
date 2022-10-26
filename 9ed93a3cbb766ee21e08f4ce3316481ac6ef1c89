@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cd8503e_5c3056c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T14:29:38Z",
+      "side": 1,
+      "message": "Good to see the code that shows condition-action-assertion separately 😊",
+      "revId": "9ed93a3cbb766ee21e08f4ce3316481ac6ef1c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bebc02bf_30af10cb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-26T14:29:38Z",
+      "side": 1,
+      "message": "Let\u0027s use assertThat(...).isNotEqualTo():\n\nhttps://source.corp.google.com/piper///depot/google3/third_party/java_src/truth/project/core/src/main/java/com/google/common/truth/Subject.java;rcl\u003d478924507;l\u003d197",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 58
+      },
+      "revId": "9ed93a3cbb766ee21e08f4ce3316481ac6ef1c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
