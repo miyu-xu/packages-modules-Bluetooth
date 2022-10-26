@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5280789b_bd0250b2",
+        "filename": "system/gd/rust/linux/client/src/bt_adv.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-26T02:54:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac48756e_33c3bde5",
+      "range": {
+        "startLine": 37,
+        "startChar": 38,
+        "endLine": 37,
+        "endChar": 46
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd8efd4e_0e7964a4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-25T22:48:08Z",
       "side": 1,
       "message": "avoid naked unwrap when possible:\n```\nif let Some(set) \u003d self.context.lock().unwrap().adv_sets.get_mut(\u0026reg_id) {\n    set.adv_id \u003d Some(advertiser_id);\n} else {\n    print_error...\n}\n```",
+      "range": {
+        "startLine": 447,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 32
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e12157_e565cbfd",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-26T02:54:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd8efd4e_0e7964a4",
       "range": {
         "startLine": 447,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "058a72b3_7213b7dd",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-26T02:54:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f832a668_cf0d6a52",
+      "range": {
+        "startLine": 944,
+        "startChar": 44,
+        "endLine": 944,
+        "endChar": 54
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c416499b_95a63f62",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56ad7e6a_cf8e4a5a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-26T02:54:10Z",
+      "side": 1,
+      "message": "This will hit a deadlock as it acquires the lock twice, one is for reading adv_sets and another is for writing to d-bus.",
+      "parentUuid": "c416499b_95a63f62",
+      "range": {
+        "startLine": 967,
+        "startChar": 0,
+        "endLine": 975,
+        "endChar": 39
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65caa810_ad302eac",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-10-25T22:48:08Z",
       "side": 1,
       "message": "looks like we don\u0027t need to copy, but only iterate, so we can avoid copy + allocate like:\n```\nfor reg_id in self.context.lock().unwrap().adv_sets.keys() {\n...\n```",
+      "range": {
+        "startLine": 999,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 39
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f19f0f7b_29193f73",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-26T02:54:10Z",
+      "side": 1,
+      "message": "The copy is to avoid the deadlock.",
+      "parentUuid": "65caa810_ad302eac",
       "range": {
         "startLine": 999,
         "startChar": 0,
