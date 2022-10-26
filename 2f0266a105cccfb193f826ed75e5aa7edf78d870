@@ -16,6 +16,23 @@
       "message": "Ping for review 😋",
       "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d7e64b_62f3ea6c",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-26T16:50:45Z",
+      "side": 1,
+      "message": "Close this if you\u0027ll add another patch in this series where you replace this with DEBUG_ASSERT_OR_LOG_METRIC. Otherwise, re-order this series to make that call here.",
+      "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
