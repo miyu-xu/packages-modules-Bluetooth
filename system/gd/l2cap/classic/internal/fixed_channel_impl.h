@@ -17,6 +17,7 @@
 #pragma once
 
 #include "common/bidi_queue.h"
+#include "common/interfaces/ILoggable.h"
 #include "l2cap/cid.h"
 #include "l2cap/classic/fixed_channel.h"
 #include "l2cap/internal/channel_impl.h"
@@ -31,8 +32,12 @@ namespace internal {
 
 class Link;
 
+<<<<<<< HEAD
 class FixedChannelImpl : public l2cap::internal::ChannelImpl,
                          public bluetooth::common::IRedactableLoggable {
+=======
+class FixedChannelImpl : public l2cap::internal::ChannelImpl, public bluetooth::common::IRedactableLoggable {
+>>>>>>> b0e3c17ca8 (Replace Logging ILink related instances in system/gd/l2cap)
  public:
   FixedChannelImpl(Cid cid, Link* link, os::Handler* l2cap_handler);
 
@@ -57,13 +62,13 @@ class FixedChannelImpl : public l2cap::internal::ChannelImpl,
 
   virtual void OnClosed(hci::ErrorCode status);
 
-  std::string ToStringForLogging() override{
+  std::string ToStringForLogging() const override {
     std::ostringstream ss;
-    ss << "Device " << device_ << " Cid 0x" << std::hex << cid_;
+    ss << "Device " << device_.ToStringForLogging() << " Cid 0x" << std::hex << cid_;
     return ss.str();
   }
 
-  std::string ToRedactedStringForLogging() override{
+  std::string ToRedactedStringForLogging() const override {
     std::ostringstream ss;
     ss << "Device " << device_.ToRedactedStringForLogging() << " Cid 0x" << std::hex << cid_;
     return ss.str();
