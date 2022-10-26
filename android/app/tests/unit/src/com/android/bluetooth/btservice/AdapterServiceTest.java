@@ -88,6 +88,7 @@ import com.android.internal.app.IBatteryStats;
 import libcore.util.HexEncoding;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -200,6 +201,11 @@ public class AdapterServiceTest {
         Assert.assertNotNull(adapterConfig);
         Assert.assertNotNull("metrics salt is null: " + adapterConfig.toString(),
                 getMetricsSalt(adapterConfig));
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        AsyncTask.setDefaultExecutor(AsyncTask.SERIAL_EXECUTOR);
     }
 
     @Before
