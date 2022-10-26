@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26544778_8ee6abf2",
+        "filename": "system/gd/metrics/metrics.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-26T16:49:58Z",
+      "side": 1,
+      "message": "Use this #define:\n\n```\n// TODO(b/255510968) This function should assert on debug builds. On release\n// builds, it should log the error and upload a codepath metric indicating this\n// assert was hit but not crash.\n//\n// Note: Replace the DCHECK with an explicit check later.\n#define DEBUG_ASSERT_OR_LOG_METRIC(condition, assert_type, format, ...) \\\n{ \\\n  DCHECK(condition); \\\n  if (condition) { \\\n    LOG_ERROR(format, __VA_ARGS__); \\\n  } \\\n}\n```",
+      "revId": "a79b54726c8fd17f4d88b082b43737c05ef4aef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
