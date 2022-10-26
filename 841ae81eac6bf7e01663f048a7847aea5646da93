@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60405b5a_69f1e308",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T05:14:41Z",
+      "side": 1,
+      "message": "I\u0027d prefer just to have the vector.  Vectors already have a length.",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "841ae81eac6bf7e01663f048a7847aea5646da93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f9ab39_fc38a18e",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T05:14:41Z",
+      "side": 1,
+      "message": "I think you should be able to do something like:\nauto payload \u003d event.GetPayload();\nfor (size_t i \u003d 0; i \u003c msft_.prefix.size(); i++) {\n  if (msft_.prefix[i] !\u003d payload[i]) {\n    // Print a warning and return\n  }\n}\n\nMsftEventPayloadView::Create(payload.GetLittleEndianSubview(msft_.prefix.size(), payload.size()));\n// Assert that it\u0027s valid\n// Check the type of event\n// Cast it, and handle it.",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 4
+      },
+      "revId": "841ae81eac6bf7e01663f048a7847aea5646da93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0e8549c_fa55d1aa",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T05:14:41Z",
+      "side": 1,
+      "message": "Can we use get_value() here?",
+      "range": {
+        "startLine": 85,
+        "startChar": 70,
+        "endLine": 85,
+        "endChar": 82
+      },
+      "revId": "841ae81eac6bf7e01663f048a7847aea5646da93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
