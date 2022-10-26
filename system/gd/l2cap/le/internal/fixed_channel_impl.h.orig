@@ -32,7 +32,8 @@ namespace internal {
 
 class Link;
 
-class FixedChannelImpl : public l2cap::internal::ChannelImpl, public bluetooth::common::IRedactableLoggable {
+class FixedChannelImpl : public l2cap::internal::ChannelImpl,
+                         public bluetooth::common::IRedactableLoggable {
  public:
   FixedChannelImpl(Cid cid, Link* link, os::Handler* l2cap_handler);
 
