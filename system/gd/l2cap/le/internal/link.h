@@ -143,6 +143,10 @@ class Link : public l2cap::internal::ILink, public hci::acl_manager::LeConnectio
     return GetDevice().ToString();
   }
 
+  virtual std::string ToStringForLogging() {
+    return GetDevice().ToStringForLogging();
+  }
+
   virtual uint16_t GetMps() const;
 
   virtual uint16_t GetInitialCredit() const;
