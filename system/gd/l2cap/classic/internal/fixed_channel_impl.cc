@@ -71,12 +71,12 @@ void FixedChannelImpl::OnClosed(hci::ErrorCode status) {
 void FixedChannelImpl::Acquire() {
   ASSERT_LOG(user_handler_ != nullptr, "Must register OnCloseCallback before calling any methods");
   if (closed_) {
-    LOG_WARN("%s is already closed", ToString().c_str());
+    LOG_WARN("%s is already closed", ToStringForLogging().c_str());
     ASSERT(!acquired_);
     return;
   }
   if (acquired_) {
-    LOG_INFO("%s was already acquired", ToString().c_str());
+    LOG_INFO("%s was already acquired", ToStringForLogging().c_str());
     return;
   }
   acquired_ = true;
@@ -86,12 +86,12 @@ void FixedChannelImpl::Acquire() {
 void FixedChannelImpl::Release() {
   ASSERT_LOG(user_handler_ != nullptr, "Must register OnCloseCallback before calling any methods");
   if (closed_) {
-    LOG_WARN("%s is already closed", ToString().c_str());
+    LOG_WARN("%s is already closed", ToStringForLogging().c_str());
     ASSERT(!acquired_);
     return;
   }
   if (!acquired_) {
-    LOG_INFO("%s was already released", ToString().c_str());
+    LOG_INFO("%s was already released", ToStringForLogging().c_str());
     return;
   }
   acquired_ = false;
