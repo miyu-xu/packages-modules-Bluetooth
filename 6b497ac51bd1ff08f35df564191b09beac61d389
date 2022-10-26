@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a81a475b_2eb0a291",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T15:25:51Z",
+      "side": 1,
+      "message": "I feel like this should be done at a much higher level.  I think it\u0027s possible to have a bonded device that shouldn\u0027t be in the autoconnect list.",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "6b497ac51bd1ff08f35df564191b09beac61d389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
