@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599d6be7_bf2b6827",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-26T19:56:51Z",
+      "side": 1,
+      "message": "nit: Something like this would match the pattern from the rest of the file:\n\n      auto connection \u003d acl_connections_.find(handle);\n      if (connection \u003d\u003d acl_connections_.end()) return Address::kEmpty;\n      return connection-\u003esecond.address_with_type_.GetAddress();",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 7
+      },
+      "revId": "5fd59b77a81870dd25632fa511db422a562c07f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
