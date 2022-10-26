@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c329a76d_1d914a70",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-26T03:43:33Z",
+      "side": 1,
+      "message": "sort ...",
+      "range": {
+        "startLine": 563,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 25
+      },
+      "revId": "c3c07e6a17f3ae53678deb580841fd37aad01ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {

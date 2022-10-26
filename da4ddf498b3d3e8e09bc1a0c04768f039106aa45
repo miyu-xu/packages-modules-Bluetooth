@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e3a2439_c4063a53",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-26T03:43:33Z",
+      "side": 0,
+      "message": "Why removing this test?",
+      "range": {
+        "startLine": 215,
+        "startChar": 5,
+        "endLine": 215,
+        "endChar": 23
+      },
+      "revId": "da4ddf498b3d3e8e09bc1a0c04768f039106aa45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
