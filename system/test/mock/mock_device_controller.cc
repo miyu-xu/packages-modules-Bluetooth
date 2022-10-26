@@ -306,6 +306,14 @@ bool supports_ble_synchronized_receiver(void) {
   return HCI_LE_SYNCHRONIZED_RECEIVER(features_ble.as_array);
 }
 
+bool support_ble_connection_subrating(void) {
+  return HCI_LE_CONN_SUBRATING_SUPPORT(features_ble.as_array);
+}
+
+bool support_ble_connection_subrating_host(void) {
+  return HCI_LE_CONN_SUBRATING_HOST_SUPPORT(features_ble.as_array);
+}
+
 uint16_t get_acl_data_size_classic(void) { return acl_data_size_classic; }
 
 uint16_t get_acl_data_size_ble(void) { return acl_data_size_ble; }
@@ -443,6 +451,10 @@ const controller_t interface = {
     supports_ble_connected_isochronous_stream_peripheral,
     supports_ble_isochronous_broadcaster,
     supports_ble_synchronized_receiver,
+    support_ble_connection_subrating,
+    support_ble_connection_subrating_host,
+    // is_conn_subrating_supported,
+    // is_conn_subrating_host_supported,
 
     get_acl_data_size_classic,
     get_acl_data_size_ble,
