@@ -82,12 +82,20 @@ class ConnectAddressWithType {
       : address_(address_with_type.GetAddress()),
         type_(address_with_type.ToFilterAcceptListAddressType()) {}
 
+  // TODO: remove this method
   std::string const ToString() const {
     std::stringstream ss;
-    ss << address_ << "[" << FilterAcceptListAddressTypeText(type_) << "]";
+    ss << address_.ToString() << "[" << FilterAcceptListAddressTypeText(type_)
+       << "]";
     return ss.str();
   }
 
+  std::string const ToStringForLogging() const {
+    std::stringstream ss;
+    ss << address_.ToStringForLogging() << "["
+       << FilterAcceptListAddressTypeText(type_) << "]";
+    return ss.str();
+  }
   bool operator==(const ConnectAddressWithType& rhs) const {
     return address_ == rhs.address_ && type_ == rhs.type_;
   }
