@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6bc41a_aacf540a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-27T08:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9eac22ec_5066de7b",
+      "range": {
+        "startLine": 611,
+        "startChar": 72,
+        "endLine": 611,
+        "endChar": 75
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1d0ede8_f2c74f89",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-27T05:27:01Z",
       "side": 1,
       "message": "Can we move this below when(), to easily see that the mocks are set before LE hearing aid is disconnected?",
+      "range": {
+        "startLine": 626,
+        "startChar": 8,
+        "endLine": 626,
+        "endChar": 49
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0834ca9_092b8f59",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-27T08:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1d0ede8_f2c74f89",
       "range": {
         "startLine": 626,
         "startChar": 8,
@@ -108,6 +156,30 @@
       "side": 1,
       "message": "If that\u0027s the case, then I think we\u0027d better to use Mockito#clearInvocations before leHearingAidDisconnected().",
       "parentUuid": "d4afa713_9e633077",
+      "range": {
+        "startLine": 645,
+        "startChar": 8,
+        "endLine": 646,
+        "endChar": 52
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcebb6d4_b18ac261",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-27T08:55:13Z",
+      "side": 1,
+      "message": "Added clear invocation instead.",
+      "parentUuid": "bc60f8f4_45277b1b",
       "range": {
         "startLine": 645,
         "startChar": 8,
