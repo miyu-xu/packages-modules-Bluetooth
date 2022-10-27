@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8275920c_35100c4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12591c1d_ea8619e1",
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77b3988e_11bb3e03",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-10-26T18:48:29Z",
       "side": 1,
       "message": "Unused, to be removed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3de03efc_c5f92b0c",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77b3988e_11bb3e03",
       "range": {
         "startLine": 41,
         "startChar": 4,
@@ -104,6 +146,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc96c490_f7dd0b21",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "This condition is required for deciding Source and Sink test cases. Currently we have not implemented VLH cases, this is required for future use.",
+      "parentUuid": "c60523e5_3b68b6ea",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 49
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fc22641_5757f716",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "This condition is required for deciding Source and Sink test cases. Currently we have not implemented VLH cases, this is required for future use.",
+      "parentUuid": "6cc3a44f_e587791d",
+      "range": {
+        "startLine": 66,
+        "startChar": 54,
+        "endLine": 66,
+        "endChar": 70
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff8ba048_4b81bbdc",
@@ -127,6 +217,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2886d300_55170408",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "a2dp.close works in this scenario, but using host disconnect will simplify disconnection event as we need not mention source/sink as parameter.",
+      "parentUuid": "ff8ba048_4b81bbdc",
+      "range": {
+        "startLine": 153,
+        "startChar": 7,
+        "endLine": 155,
+        "endChar": 56
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ddfdf48_695d9cf1",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-10-26T22:25:48Z",
       "side": 1,
       "message": "Same as previous comment",
+      "range": {
+        "startLine": 377,
+        "startChar": 29,
+        "endLine": 377,
+        "endChar": 71
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f2df61_d87c84a0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "This condition is required for deciding Source and Sink test cases. Currently we have not implemented VLH cases, this is required for future use.",
+      "parentUuid": "9ddfdf48_695d9cf1",
       "range": {
         "startLine": 377,
         "startChar": 29,
@@ -196,6 +334,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf7b94e9_cad1a638",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b4bb483_33fb27da",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 33
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf783fb6_90a414a3",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4fccb52_c2375d57",
+      "range": {
+        "startLine": 96,
+        "startChar": 3,
+        "endLine": 125,
+        "endChar": 33
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea811e00_8dc717d5",
@@ -209,6 +395,30 @@
       "writtenOn": "2022-10-26T18:48:29Z",
       "side": 1,
       "message": "To rename into `MediaPlayerBrowserService`",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c3178b_3c74a1f2",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea811e00_8dc717d5",
       "range": {
         "startLine": 29,
         "startChar": 6,
@@ -242,6 +452,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "876798b3_80230138",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "As PlaybackState instance does not have a public setter to set the state, we are maintaining PlaybackState.Builder instance across the file. Please suggest us if there is any other approach to handle this.",
+      "parentUuid": "e86cdcb5_f38fede9",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47798873_730a523d",
@@ -255,6 +489,30 @@
       "writtenOn": "2022-10-26T18:48:29Z",
       "side": 1,
       "message": "This is common to all functions, so you should keep it in a `setPlaybackState` function to avoid code duplication.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 48
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb99a3d7_bf53ef22",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "We have created separate function for setPlaybackState for AVRCP state operations",
+      "parentUuid": "47798873_730a523d",
       "range": {
         "startLine": 89,
         "startChar": 0,
@@ -288,6 +546,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ffec479_3ac3e6c0",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64e85203_c9da8f2a",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 173,
+        "endChar": 59
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdf1ffaa_aeda5f95",
@@ -301,6 +583,30 @@
       "writtenOn": "2022-10-26T18:48:29Z",
       "side": 1,
       "message": "Comment can be removed, statement clear enough.",
+      "range": {
+        "startLine": 175,
+        "startChar": 6,
+        "endLine": 175,
+        "endChar": 81
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccec80bb_7e9dc19c",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdf1ffaa_aeda5f95",
       "range": {
         "startLine": 175,
         "startChar": 6,
@@ -334,6 +640,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d4bf58b_c4ccb599",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bee9c5cd_e42a0ef0",
+      "range": {
+        "startLine": 251,
+        "startChar": 20,
+        "endLine": 251,
+        "endChar": 21
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa58c8b8_db0bc51c",
@@ -347,6 +677,30 @@
       "writtenOn": "2022-10-26T18:48:29Z",
       "side": 1,
       "message": "Same as previous one, should be stored as a static variable.",
+      "range": {
+        "startLine": 258,
+        "startChar": 58,
+        "endLine": 258,
+        "endChar": 59
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "295660f9_74f133ba",
+        "filename": "android/pandora/server/src/com/android/pandora/AvrcpBrowserService.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa58c8b8_db0bc51c",
       "range": {
         "startLine": 258,
         "startChar": 58,
@@ -374,6 +728,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ff9dc3_7888484d",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayer.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9960920d_8482d839",
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4f0765d_9dd17245",
@@ -387,6 +759,30 @@
       "writtenOn": "2022-10-26T18:48:29Z",
       "side": 1,
       "message": "Should keep a newline at the end of the file.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 1
+      },
+      "revId": "1a411e39a8e6d8ad29fa527b65cc665620e84e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c861de0_aed62022",
+        "filename": "pandora/interfaces/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f0765d_9dd17245",
       "range": {
         "startLine": 104,
         "startChar": 0,

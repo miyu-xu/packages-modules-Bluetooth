@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d5ecbb3_6df887bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-10-27T11:33:34Z",
+      "side": 1,
+      "message": "Hi Thomas, Hi Charlie,\n\nThank you for your comments, we have fixed the comments and also provided remarks in case we have maintained the old code.\n\nPlease let us know if this is good to go.\n\nRegards,\nSnehal",
+      "revId": "7f2bf9aaeda5c9d000558b017575b7421f25b2d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
