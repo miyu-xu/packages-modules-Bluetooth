@@ -1468,7 +1468,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       prop.len = 0;
       if ((p_data->disc_res.result == BTA_SUCCESS) &&
           (p_data->disc_res.num_uuids > 0)) {
-        LOG_INFO("New UUIDs for %s:", bd_addr.ToString().c_str());
+        LOG_INFO("New UUIDs for %s count:%hu:", bd_addr.ToString().c_str(), p_data->disc_res.num_uuids);
         for (i = 0; i < p_data->disc_res.num_uuids; i++) {
           auto uuid = p_data->disc_res.p_uuid_list + i;
           if (btif_should_ignore_uuid(*uuid)) {
