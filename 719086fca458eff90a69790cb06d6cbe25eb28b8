@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95eb12f2_1e7d82f9",
+        "filename": "system/gd/hci/address.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-27T05:13:50Z",
+      "side": 1,
+      "message": "I know floss for example use the --hci_adapter to get the adapter index.\nI think init flag are available for other target.",
+      "parentUuid": "47e8bf2e_859e6ec8",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 17
+      },
+      "revId": "719086fca458eff90a69790cb06d6cbe25eb28b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "791a386a_2170aefa",
         "filename": "system/gd/hci/address_unittest.cc",
         "patchSetId": 7
