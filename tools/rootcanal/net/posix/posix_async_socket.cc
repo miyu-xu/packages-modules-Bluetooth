@@ -23,7 +23,6 @@
 
 #include "model/setup/async_manager.h"  // for AsyncManager
 #include "os/log.h"                     // for LOG_INFO
-#include "osi/include/osi.h"            // for OSI_NO_INTR
 
 #ifdef _WIN32
 #include "msvc-posix.h"
@@ -35,6 +34,11 @@
 #else
 #define DD(...) LOG_INFO(__VA_ARGS__)
 #endif
+
+// Re-run |fn| system call until the system call doesn't cause EINTR.
+#define REPEAT_UNTIL_NO_INTR(fn) \
+  do {                           \
+  } while ((fn) == -1 && errno == EINTR)
 
 namespace android {
 namespace net {
@@ -74,7 +78,8 @@ ssize_t PosixAsyncSocket::Recv(uint8_t* buffer, uint64_t bufferSize) {
 
   errno = 0;
   ssize_t res = 0;
-  OSI_NO_INTR(res = read(fd_, buffer, bufferSize));
+  REPEAT_UNTIL_NO_INTR(res = read(fd_, buffer, bufferSize));
+
   if (res < 0) {
     DD("Recv < 0: %s (%d)", strerror(errno), fd_);
   }
@@ -94,7 +99,8 @@ ssize_t PosixAsyncSocket::Send(const uint8_t* buffer, uint64_t bufferSize) {
   // the socket.
   const int sendFlags = 0;
 #endif
-  OSI_NO_INTR(res = send(fd_, buffer, bufferSize, sendFlags));
+
+  REPEAT_UNTIL_NO_INTR(res = send(fd_, buffer, bufferSize, sendFlags));
 
   DD("%zd bytes (%d)", res, fd_);
   return res;
@@ -131,7 +137,7 @@ void PosixAsyncSocket::Close() {
              &error_code_size);
 
   // shutdown sockets if possible,
-  OSI_NO_INTR(shutdown(fd_, SHUT_RDWR));
+  REPEAT_UNTIL_NO_INTR(shutdown(fd_, SHUT_RDWR));
 
   error_code = ::close(fd_);
   if (error_code == -1) {
