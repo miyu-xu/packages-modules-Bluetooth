@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e8fa606_f93c99e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T11:31:41Z",
+      "side": 1,
+      "message": "Test: atest rootcanal_hci_test",
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f995a16f_45a9e1fc",
