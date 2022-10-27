@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a4db0b4_7f514710",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-27T14:24:43Z",
+      "side": 1,
+      "message": "I wonder if this should be the same as prio list in ChooseConfigurationContextType().",
+      "range": {
+        "startLine": 657,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 36
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
