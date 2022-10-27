@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d79dbac_d27cf794",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2736,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-10-27T16:15:17Z",
+      "side": 1,
+      "message": "When LE_Set_Extended_Scan_Parameters is used with `Filter Duplicates` set to `0x2`, the history is reset every period:\n```\nIf the Filter_Duplicates parameter is set to 0x02, duplicate advertisements in a\nsingle scan period should not be sent to the Host in advertising report events;\nthis setting shall only be used if both Period and Duration are non-zero. If\nFilter_Duplicates is set to 0x02 and either Period or Duration to zero, the\nController shall return the error code Invalid HCI Command Parameters (0x12).\n```",
+      "range": {
+        "startLine": 2727,
+        "startChar": 0,
+        "endLine": 2736,
+        "endChar": 3
+      },
+      "revId": "4951d7c25f53bf478de972d90451bcc4a3c372fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e30a77fd_d54539de",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
         "patchSetId": 3
