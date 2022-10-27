@@ -401,6 +401,7 @@ class AudioContexts {
   bool test_any(const AudioContexts& v) const {
     return (mValue & v.value()) != 0;
   }
+  void clear() { mValue = static_cast<T>(LeAudioContextType::UNINITIALIZED); }
 
   std::string to_string() const;
 

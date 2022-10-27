@@ -783,7 +783,7 @@ class StateMachineTest : public Test {
     /* Stimulate update of active context map */
     auto types_set = update_contexts.any() ? context_type | update_contexts
                                            : types::AudioContexts(context_type);
-    group->UpdateActiveContextsMap(types_set);
+    group->UpdateGroupAudioContextTypeAvailability(types_set);
 
     ASSERT_NE(group, nullptr);
     ASSERT_EQ(group->Size(), total_devices);
@@ -2505,7 +2505,7 @@ TEST_F(StateMachineTest, testConfigureDataPathForHost) {
 
   /* Should be called 3 times because
    * 1 - calling GetConfigurations just after connection
-   * (UpdateActiveContextsMap)
+   * (UpdateGroupAudioContextTypeAvailability)
    * 2 - when doing configuration of the context type
    * 3 - AddCisToStreamConfiguration -> CreateStreamVectorForOffloader
    * 4 - Data Path
@@ -2543,7 +2543,7 @@ TEST_F(StateMachineTest, testConfigureDataPathForAdsp) {
 
   /* Should be called 3 times because
    * 1 - calling GetConfigurations just after connection
-   * (UpdateActiveContextsMap)
+   * (UpdateGroupAudioContextTypeAvailability)
    * 2 - when doing configuration of the context type
    * 3 - AddCisToStreamConfiguration -> CreateStreamVectorForOffloader
    * 4 - data path
@@ -2595,7 +2595,7 @@ TEST_F(StateMachineTest, testStreamConfigurationAdspDownMix) {
 
   /* Should be called 5 times because
    * 1 - calling GetConfigurations just after connection
-   * (UpdateActiveContextsMap),
+   * (UpdateGroupAudioContextTypeAvailability),
    * 2 - when doing configuration of the context type
    * 3 - AddCisToStreamConfiguration -> CreateStreamVectorForOffloader (sink)
    * 4 - AddCisToStreamConfiguration -> CreateStreamVectorForOffloader (source)
@@ -2752,7 +2752,7 @@ TEST_F(StateMachineTest, testAttachDeviceToTheStream) {
             types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
 
   lastDevice->conn_id_ = 3;
-  group->UpdateActiveContextsMap();
+  group->UpdateGroupAudioContextTypeAvailability();
 
   // Make sure ASE with disconnected CIS are not left in STREAMING
   ASSERT_EQ(lastDevice->GetFirstAseWithState(
