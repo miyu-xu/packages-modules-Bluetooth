@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bfbbf48_a159a0ab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-27T05:29:59Z",
+      "side": 1,
+      "message": "Q) Shouldn\u0027t this be SERIAL_EXECUTOR? Since it is set by default.\n\nhttps://source.corp.google.com/android/frameworks/base/core/java/android/os/AsyncTask.java;rcl\u003da7f78d589c6babc947d9696c6597802a67bfa9d0;l\u003d280",
+      "range": {
+        "startLine": 348,
+        "startChar": 37,
+        "endLine": 348,
+        "endChar": 67
+      },
+      "revId": "8e8738a17828571e2787ca4a450de8011bbf2619",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
