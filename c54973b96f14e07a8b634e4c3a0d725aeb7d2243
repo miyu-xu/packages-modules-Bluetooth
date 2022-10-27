@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eac22ec_5066de7b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-27T05:27:01Z",
+      "side": 1,
+      "message": "and",
+      "range": {
+        "startLine": 611,
+        "startChar": 72,
+        "endLine": 611,
+        "endChar": 75
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d0ede8_f2c74f89",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-27T05:27:01Z",
+      "side": 1,
+      "message": "Can we move this below when(), to easily see that the mocks are set before LE hearing aid is disconnected?",
+      "range": {
+        "startLine": 626,
+        "startChar": 8,
+        "endLine": 626,
+        "endChar": 49
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc60f8f4_45277b1b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-27T05:27:01Z",
+      "side": 1,
+      "message": "When LE hearing aid is disconnected,  why setActiveDevice() should be called twice?",
+      "range": {
+        "startLine": 645,
+        "startChar": 8,
+        "endLine": 646,
+        "endChar": 52
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
