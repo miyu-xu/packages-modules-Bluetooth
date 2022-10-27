@@ -22,6 +22,30 @@
       },
       "revId": "b7a49152ebc04e9063f944351404c998fc418dee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6494106_d7571acd",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-27T12:41:22Z",
+      "side": 1,
+      "message": "this tGATT_CMD_Q is allocated and put only on the channels queue (EATT or ATT) when scheduled for execution (or yet another queuing)\nTo be precise it is either here:\n\n1) https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/eatt/eatt.h;l\u003d57?q\u003dtGATT_CMD_Q\n\nor here\n\n2) https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/gatt/gatt_int.h;drc\u003db45a2ea782074944f79fc388df20b06e01f265f7;l\u003d333\n\nIt is there as long as channel is connected and there is no response.\n\nWhen response arrives, this is taken from the queue with `gatt_cmd_dequeue` (https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/gatt/gatt_utils.cc;drc\u003db45a2ea782074944f79fc388df20b06e01f265f7;l\u003d1462)\n\n\nWhen channel is disconnected is disconnected then clearing of this queue is happening in\n1) Eatt channel descrtuctor: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/eatt/eatt.h;l\u003d69?q\u003deatt.h\n\n2) and in tcb reset here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/gatt/gatt_utils.cc;l\u003d1623?q\u003dgatt_utils.cc\n\nHowever - in new patch set I added there explicit cleaning.\n\nWhat if fact was missing, and you pointed it out - is when during GATT operation, client unregister.\n\nFor this purpose I\u0027ve added new helper function: `gatt_clcb_invalidate` which will make sure there is no hanging p_clcb when client deregistered.",
+      "parentUuid": "b5a0a156_0a7cef4f",
+      "range": {
+        "startLine": 209,
+        "startChar": 2,
+        "endLine": 209,
+        "endChar": 21
+      },
+      "revId": "b7a49152ebc04e9063f944351404c998fc418dee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
