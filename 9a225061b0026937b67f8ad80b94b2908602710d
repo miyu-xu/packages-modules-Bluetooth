@@ -33,6 +33,24 @@
       "message": "could you also add operator\u003c\u003c ?\n\nI would use it here:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2234221/5/system/bta/le_audio/client.cc#2936\n\nand other places",
       "revId": "9a225061b0026937b67f8ad80b94b2908602710d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da072f63_cd01673d",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-27T14:16:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e4195af_5706c9db",
+      "revId": "9a225061b0026937b67f8ad80b94b2908602710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
