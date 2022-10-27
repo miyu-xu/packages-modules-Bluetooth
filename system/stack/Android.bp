@@ -67,6 +67,11 @@ cc_library_static {
         "packages/modules/Bluetooth/system/bta/sys",
         "packages/modules/Bluetooth/system/utils/include",
         "packages/modules/Bluetooth/system/gd/rust/shim",
+        "packages/modules/Bluetooth/system/gd/hal",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
     ],
     srcs: crypto_toolbox_srcs + [
         "a2dp/a2dp_aac.cc",
@@ -363,12 +368,14 @@ cc_test {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/gd/hal",
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/utils/include",
     ],
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockHci",
+        ":TestMockMainShim",
         ":TestMockStackMetrics",
         "rfcomm/port_api.cc",
         "rfcomm/port_rfc.cc",
@@ -388,12 +395,17 @@ cc_test {
         "test/rfcomm/stack_rfcomm_test_utils.cc",
         "test/rfcomm/stack_rfcomm_test_utils_test.cc",
     ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
     shared_libs: [
         "libcutils",
         "libprotobuf-cpp-lite",
         "libcrypto",
     ],
     static_libs: [
+        "libflatbuffers-cpp",
         "liblog",
         "libgmock",
         "libosi",
