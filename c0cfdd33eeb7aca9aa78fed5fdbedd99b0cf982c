@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b37afecd_4f631377",
+        "filename": "system/gd/rust/linux/client/Cargo.toml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-27T09:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ad35827_2055d683",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 10
+      },
+      "revId": "c0cfdd33eeb7aca9aa78fed5fdbedd99b0cf982c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f62daf18_d2ee0aee",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-26T21:51:49Z",
       "side": 1,
       "message": "nit: should be `command` for consistency with the argument name",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 16
+      },
+      "revId": "c0cfdd33eeb7aca9aa78fed5fdbedd99b0cf982c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d7075bc_05aacee8",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-27T09:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f62daf18_d2ee0aee",
       "range": {
         "startLine": 279,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8702ec22_78f2d0c4",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-27T09:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "072af928_32385ca5",
+      "range": {
+        "startLine": 361,
+        "startChar": 15,
+        "endLine": 361,
+        "endChar": 16
+      },
+      "revId": "c0cfdd33eeb7aca9aa78fed5fdbedd99b0cf982c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ad3ec8e_c601bfc0",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-26T21:51:49Z",
       "side": 1,
       "message": "no need to construct a vector to be split again to another vector. Instead, do this directly from the iter result of split:\n```\nOk(command) \u003d\u003e {\n    let mut iter \u003d command.split(\u0027 \u0027).map(String::from);\n    handler.process_cmd_line(\n        \u0026iter.next().unwrap_or(String::from(\"\")),\n        \u0026iter.collect::\u003cVec\u003cString\u003e\u003e(),\n    );\n}\n```",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 363,
+        "endChar": 83
+      },
+      "revId": "c0cfdd33eeb7aca9aa78fed5fdbedd99b0cf982c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f821a59_725977c1",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-10-27T09:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ad3ec8e_c601bfc0",
       "range": {
         "startLine": 362,
         "startChar": 0,
