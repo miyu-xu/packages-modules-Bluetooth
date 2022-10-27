@@ -155,9 +155,6 @@ void btm_inq_db_reset(void) { mock_function_count_map[__func__]++; }
 void btm_inq_remote_name_timer_timeout(UNUSED_ATTR void* data) {
   mock_function_count_map[__func__]++;
 }
-void btm_inq_rmt_name_failed_cancelled(void) {
-  mock_function_count_map[__func__]++;
-}
 void btm_inq_stop_on_ssp(void) { mock_function_count_map[__func__]++; }
 void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode) {
   mock_function_count_map[__func__]++;
