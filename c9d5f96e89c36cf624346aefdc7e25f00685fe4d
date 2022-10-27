@@ -22,6 +22,30 @@
       },
       "revId": "c9d5f96e89c36cf624346aefdc7e25f00685fe4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c1f2936_077b2e39",
+        "filename": "tools/rootcanal/test/controller/le/test_helpers.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T03:45:14Z",
+      "side": 1,
+      "message": "That can be in a different CL.",
+      "parentUuid": "d67f6317_2da593ff",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 17
+      },
+      "revId": "c9d5f96e89c36cf624346aefdc7e25f00685fe4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
