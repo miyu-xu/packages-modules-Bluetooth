@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb4e7cb_5464a64f",
+        "filename": "android/app/src/com/android/bluetooth/opp/Constants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-27T05:49:48Z",
+      "side": 1,
+      "message": "Please remove this line",
+      "revId": "9369d1dcf843f1d27a90674a1a64470faeb7b508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
