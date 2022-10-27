@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b96abd22_5a9087ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1880143
+      },
+      "writtenOn": "2022-10-27T13:27:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e8fa606_f93c99e5",
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f995a16f_45a9e1fc",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -58,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fe05928_0a8b306c",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3445,
+      "author": {
+        "id": 1880143
+      },
+      "writtenOn": "2022-10-27T13:27:08Z",
+      "side": 1,
+      "message": "I suspect this appeared during my last rebase... I\u0027ll revert the modifications on the comments. Thanks!",
+      "parentUuid": "d04a7fe5_a05238b4",
+      "range": {
+        "startLine": 3445,
+        "startChar": 0,
+        "endLine": 3445,
+        "endChar": 4
+      },
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfa64db1_173d841d",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-10-27T11:30:58Z",
       "side": 1,
       "message": "nit: AddPacketToHistory ?",
+      "range": {
+        "startLine": 931,
+        "startChar": 18,
+        "endLine": 931,
+        "endChar": 20
+      },
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25d24fdf_078fd1ca",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1880143
+      },
+      "writtenOn": "2022-10-27T13:27:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfa64db1_173d841d",
       "range": {
         "startLine": 931,
         "startChar": 18,
@@ -98,6 +164,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3772b465_4cafe43e",
+        "filename": "tools/rootcanal/test/controller/le/le_scanning_filter_duplicates_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1880143
+      },
+      "writtenOn": "2022-10-27T13:27:08Z",
+      "side": 1,
+      "message": "Definitely better indeed!",
+      "parentUuid": "4d201caa_cbf210b2",
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53fea131_734b62bc",
@@ -111,6 +195,30 @@
       "writtenOn": "2022-10-27T11:30:58Z",
       "side": 1,
       "message": "nit:typo",
+      "range": {
+        "startLine": 85,
+        "startChar": 26,
+        "endLine": 85,
+        "endChar": 37
+      },
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb82eff5_23897c46",
+        "filename": "tools/rootcanal/test/controller/le/le_scanning_filter_duplicates_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1880143
+      },
+      "writtenOn": "2022-10-27T13:27:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53fea131_734b62bc",
       "range": {
         "startLine": 85,
         "startChar": 26,
