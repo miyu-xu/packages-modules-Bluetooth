@@ -38,6 +38,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.obex.HeaderSet;
 
 import java.io.IOException;
@@ -229,11 +230,13 @@ public class Constants {
         Uri contentUri = Uri.parse(BluetoothShare.CONTENT_URI + "/" + id);
         ContentValues updateValues = new ContentValues();
         updateValues.put(BluetoothShare.STATUS, status);
-        context.getContentResolver().update(contentUri, updateValues, null, null);
+        BluetoothMethodProxy.getInstance().contentResolverUpdate(context.getContentResolver(),
+                contentUri, updateValues, null, null);
         Constants.sendIntentIfCompleted(context, contentUri, status);
     }
 
     /** This function should be called whenever the transfer status changes to completed. */
+
     static void sendIntentIfCompleted(Context context, Uri contentUri, int status) {
         if (BluetoothShare.isStatusCompleted(status)) {
             Intent intent = new Intent(BluetoothShare.TRANSFER_COMPLETED_ACTION);
