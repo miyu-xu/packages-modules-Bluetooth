@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "644fd6e7_f08abf11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-27T13:51:56Z",
+      "side": 1,
+      "message": "I agree.",
+      "parentUuid": "2710a1b3_17c9af74",
+      "revId": "e1d2a8211476ff47117a73d95ceb16be4f219d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f882504c_f906c681",
         "filename": "system/stack/eatt/eatt.h",
         "patchSetId": 6
@@ -31,6 +49,30 @@
       "writtenOn": "2022-10-27T13:03:31Z",
       "side": 1,
       "message": "Should there be warning/error if queue was not empty and we dropped request ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 22
+      },
+      "revId": "e1d2a8211476ff47117a73d95ceb16be4f219d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f439725_325330c7",
+        "filename": "system/stack/eatt/eatt.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-27T13:51:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f882504c_f906c681",
       "range": {
         "startLine": 78,
         "startChar": 4,
