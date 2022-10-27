@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f995a16f_45a9e1fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T11:30:58Z",
+      "side": 1,
+      "message": "Thanks Adrien!",
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d04a7fe5_a05238b4",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3445,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T11:30:58Z",
+      "side": 1,
+      "message": "Did you mean to reformat so many comments?  It looks like you were using a line width smaller than 80 (79?)",
+      "range": {
+        "startLine": 3445,
+        "startChar": 0,
+        "endLine": 3445,
+        "endChar": 4
+      },
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfa64db1_173d841d",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T11:30:58Z",
+      "side": 1,
+      "message": "nit: AddPacketToHistory ?",
+      "range": {
+        "startLine": 931,
+        "startChar": 18,
+        "endLine": 931,
+        "endChar": 20
+      },
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d201caa_cbf210b2",
+        "filename": "tools/rootcanal/test/controller/le/le_scanning_filter_duplicates_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T11:30:58Z",
+      "side": 1,
+      "message": "I think the tests would be easier to read if this function were split into four functions.\n\nvoid StartExtendedScan(FilterDuplicates filter_duplicates)\n\nvoid StopExtendedScan(FilterDuplicates filter_duplicates)\n\nvoid StartScan(FilterDuplicates filter_duplicates)\n\nvoid StopScan(FilterDuplicates filter_duplicates)\n\nIf you pulled the Reset() out of the function, you could also test that the history was cleared when the scans were enabled/disabled.",
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fea131_734b62bc",
+        "filename": "tools/rootcanal/test/controller/le/le_scanning_filter_duplicates_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T11:30:58Z",
+      "side": 1,
+      "message": "nit:typo",
+      "range": {
+        "startLine": 85,
+        "startChar": 26,
+        "endLine": 85,
+        "endChar": 37
+      },
+      "revId": "99ec47094c64c6d5b1542f3bed05f85b22ec9499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
