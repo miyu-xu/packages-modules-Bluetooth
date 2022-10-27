@@ -16,6 +16,29 @@
       "message": "Thanks!",
       "revId": "4951d7c25f53bf478de972d90451bcc4a3c372fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e30a77fd_d54539de",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T15:33:39Z",
+      "side": 1,
+      "message": "Looks like the microsoft compiler is a bit pickier about this:\n\n14:09:11(06:55.10) bld | In file included from C:/buildbot/src/android/emu-master-dev/packages/modules/Bluetooth/tools/rootcanal/model/devices/hci_device.cc:17:\n14:09:11(06:55.10) bld | In file included from C:/buildbot/src/android/emu-master-dev/packages/modules/Bluetooth/tools/rootcanal/model/devices/hci_device.h:19:\n14:09:11(06:55.10) bld | In file included from C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include/memory:15:\n14:09:11(06:55.10) bld | In file included from C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include/xmemory:16:\n14:09:11(06:55.10) bld | C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include/xutility(1422,58): error: invalid operands to binary expression (\u0027const bluetooth::packet::Iterator\u003ctrue\u003e\u0027 and \u0027const bluetooth::packet::Iterator\u003ctrue\u003e\u0027)\n14:09:11(06:55.10) bld | return static_cast\u003c_Iter_diff_t\u003c_Checked\u003e\u003e(_Last - _First);\n14:09:11(06:55.10) bld | ~~~~~ ^ ~~~~~~\n14:09:11(06:55.10) bld | C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include/xutility(4686,52): note: in instantiation of function template specialization \u0027std::_Idl_distance\u003cbluetooth::packet::Iterator\u003ctrue\u003e, bluetooth::packet::Iterator\u003ctrue\u003e\u003e\u0027 requested here\n14:09:11(06:55.10) bld | auto _UFirst2      \u003d _Get_unwrapped_n(_First2, _Idl_distance\u003c_InIt1\u003e(_UFirst1, _ULast1));\n14:09:11(06:55.10) bld | ^\n14:09:11(06:55.10) bld | C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include/xutility(4714,17): note: in instantiation of function template specialization \u0027std::equal\u003cbluetooth::packet::Iterator\u003ctrue\u003e, bluetooth::packet::Iterator\u003ctrue\u003e, std::equal_to\u003c\u003e\u003e\u0027 requested here\n14:09:11(06:55.15) bld | return _STD equal(_First1, _Last1, _First2, equal_to\u003c\u003e{});\n14:09:11(06:55.27) bld | ^\n14:09:11(06:55.27) bld | C:/buildbot/src/android/emu-master-dev/packages/modules/Bluetooth/system/../tools/rootcanal/model/controller/link_layer_controller.h(928,25): note: in instantiation of function template specialization \u0027std::equal\u003cbluetooth::packet::Iterator\u003ctrue\u003e, bluetooth::packet::Iterator\u003ctrue\u003e\u003e\u0027 requested here\n14:09:11(06:55.27) bld | std::equal(a.begin(), a.end(), packet.begin());\n14:09:11(06:55.27) bld | ^\n14:09:11(06:55.27) bld | C:/buildbot/src/android/emu-master-dev/packages/modules/Bluetooth/system/gd/packet/iterator.h(57,12): note: candidate function not viable: \u0027this\u0027 argument has type \u0027const bluetooth::packet::Iterator\u003ctrue\u003e\u0027, but method is not marked const\n14:09:11(06:55.27) bld | Iterator operator-(int offset);\n14:09:11(06:55.27) bld | ^\n14:09:11(06:55.27) bld | C:/buildbot/src/android/emu-master-dev/packages/modules/Bluetooth/system/gd/packet/iterator.h(58,7): note: candidate function not viable: \u0027this\u0027 argument has type \u0027const bluetooth::packet::Iterator\u003ctrue\u003e\u0027, but method is not marked const\n14:09:11(06:55.27) bld | int operator-(Iterator\u0026 itr);\n14:09:11(06:55.27) bld | ^\n14:09:11(06:55.27) bld | 1 error generated.",
+      "range": {
+        "startLine": 928,
+        "startChar": 0,
+        "endLine": 928,
+        "endChar": 66
+      },
+      "revId": "4951d7c25f53bf478de972d90451bcc4a3c372fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
