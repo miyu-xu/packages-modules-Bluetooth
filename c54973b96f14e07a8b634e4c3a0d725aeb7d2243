@@ -92,6 +92,30 @@
       },
       "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02fe7d08_41fda9d0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-27T06:54:46Z",
+      "side": 1,
+      "message": "If that\u0027s the case, then I think we\u0027d better to use Mockito#clearInvocations before leHearingAidDisconnected().",
+      "parentUuid": "d4afa713_9e633077",
+      "range": {
+        "startLine": 645,
+        "startChar": 8,
+        "endLine": 646,
+        "endChar": 52
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
