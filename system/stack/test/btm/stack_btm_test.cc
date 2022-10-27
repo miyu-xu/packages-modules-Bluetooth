@@ -32,6 +32,7 @@
 #include "internal_include/stack_config.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sco.h"
@@ -420,4 +421,36 @@ TEST_F(StackBtmTest, sco_state_text) {
                sco_state_text(static_cast<tSCO_STATE>(
                                   std::numeric_limits<std::uint16_t>::max()))
                    .c_str());
+}
+
+TEST_F(StackBtmTest, btm_ble_link_sec_check__BTM_BLE_SEC_REQ_ACT_NONE) {
+  RawAddress bd_addr;
+  tBTM_LE_AUTH_REQ auth_req = BTM_LE_AUTH_REQ_NO_BOND;
+  tBTM_BLE_SEC_REQ_ACT sec_req_act = BTM_BLE_SEC_REQ_ACT_NONE;
+
+  btm_ble_link_sec_check(bd_addr, auth_req, &sec_req_act);
+}
+
+TEST_F(StackBtmTest, btm_ble_link_sec_check__BTM_BLE_SEC_REQ_ACT_ENCRYPT) {
+  RawAddress bd_addr;
+  tBTM_LE_AUTH_REQ auth_req = BTM_LE_AUTH_REQ_NO_BOND;
+  tBTM_BLE_SEC_REQ_ACT sec_req_act = BTM_BLE_SEC_REQ_ACT_ENCRYPT;
+
+  btm_ble_link_sec_check(bd_addr, auth_req, &sec_req_act);
+}
+
+TEST_F(StackBtmTest, btm_ble_link_sec_check__BTM_BLE_SEC_REQ_ACT_PAIR) {
+  RawAddress bd_addr;
+  tBTM_LE_AUTH_REQ auth_req = BTM_LE_AUTH_REQ_NO_BOND;
+  tBTM_BLE_SEC_REQ_ACT sec_req_act = BTM_BLE_SEC_REQ_ACT_PAIR;
+
+  btm_ble_link_sec_check(bd_addr, auth_req, &sec_req_act);
+}
+
+TEST_F(StackBtmTest, btm_ble_link_sec_check__BTM_BLE_SEC_REQ_ACT_DISCARD) {
+  RawAddress bd_addr;
+  tBTM_LE_AUTH_REQ auth_req = BTM_LE_AUTH_REQ_NO_BOND;
+  tBTM_BLE_SEC_REQ_ACT sec_req_act = BTM_BLE_SEC_REQ_ACT_DISCARD;
+
+  btm_ble_link_sec_check(bd_addr, auth_req, &sec_req_act);
 }
