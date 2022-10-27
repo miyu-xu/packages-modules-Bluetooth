@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "47b86991_894b8f1d",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-27T00:04:06Z",
+      "side": 1,
+      "message": "many of the use cases are converting directly to non-lifetime-checked raw pointer. Can you highlight an example in our code where keeping the lifetime of the pointer helps preventing lifetime issue?",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 53
+      },
+      "revId": "24d419b51d2dd5ea216a9d65a6c4a01149ddbdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5050c52d_c255b706",
@@ -26,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "815f5639_86449258",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-27T00:04:06Z",
+      "side": 1,
+      "message": "looks like getting a LTCheckedPtr from an option could be a frequent use case, how about implement `From` for this?\n```\nimpl\u003c\u0027a, T\u003e From\u003c\u0026\u0027a Option\u003cT\u003e\u003e for LTCheckedPtr\u003c\u0027a, T\u003e {\n    fn from(val: \u0026\u0027a Option\u003cT\u003e) -\u003e Self {\n        match val {\n            ...\n        }\n    }\n}\n```",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 10
+      },
+      "revId": "24d419b51d2dd5ea216a9d65a6c4a01149ddbdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30167da7_43fe2d85",
         "filename": "system/gd/rust/topshim/src/utils.rs",
         "patchSetId": 1
@@ -37,6 +83,24 @@
       "writtenOn": "2022-10-26T03:13:23Z",
       "side": 1,
       "message": "Hi reviewers, WDYT about the From implementations in this file?\n\nI tried to dedup them with macro, but it seems at least four branches are needed:\n- `impl\u003c\u0027a, T\u003e` case for const\n- `impl\u003c\u0027a, T\u003e` case for mut\n- `impl\u003c\u0027a\u003e` case for const\n- `impl\u003c\u0027a\u003e` case for mut\n\nSo I found that it doesn\u0027t bring many improvement to the readability.",
+      "revId": "24d419b51d2dd5ea216a9d65a6c4a01149ddbdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b5063a7_9d38da86",
+        "filename": "system/gd/rust/topshim/src/utils.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-27T00:04:06Z",
+      "side": 1,
+      "message": "I think it\u0027s fine for now. If the need to add more types grows I think creating 4 macros can help.",
+      "parentUuid": "30167da7_43fe2d85",
       "revId": "24d419b51d2dd5ea216a9d65a6c4a01149ddbdef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
