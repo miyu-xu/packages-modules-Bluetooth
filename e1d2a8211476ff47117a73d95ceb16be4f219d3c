@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2710a1b3_17c9af74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-27T13:03:31Z",
+      "side": 1,
+      "message": "This change is quite big and hard to comprehend.\nIt needs at least comprehensive manual regression testing.",
+      "revId": "e1d2a8211476ff47117a73d95ceb16be4f219d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f882504c_f906c681",
+        "filename": "system/stack/eatt/eatt.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-27T13:03:31Z",
+      "side": 1,
+      "message": "Should there be warning/error if queue was not empty and we dropped request ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 22
+      },
+      "revId": "e1d2a8211476ff47117a73d95ceb16be4f219d3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
