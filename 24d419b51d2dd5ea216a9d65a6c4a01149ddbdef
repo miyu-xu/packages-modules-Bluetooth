@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "443d2b82_2ddeee5b",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-10-27T04:27:37Z",
+      "side": 1,
+      "message": "First, there was an issue in [`socket.rs`] which brought this refactoring to our attention: https://r.android.com/2234933\n\nSecond, I think the get_data_ptr function in [`btif.rs`] has the potential issue as well. The caller should take care of the lifetime while that\u0027s not pretty straightforward.\n\nAnd, I have a new finding in [`gatt.rs`]: Does it work? It seems exactly the same as the 2234933 case.\n\n[`socket.rs`]:https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/topshim/src/profiles/socket.rs;l\u003d165;drc\u003ddb5053d21664acf1e65e1c76e91cc701ce27f0ff\n[`btif.rs`]:https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/topshim/src/btif.rs;l\u003d502;drc\u003d858a02f38c7b0f7988d7c13f85bc54f7cea3c946\n[`gatt.rs`]:https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/topshim/src/profiles/gatt.rs;l\u003d1126;drc\u003ddb5053d21664acf1e65e1c76e91cc701ce27f0ff",
+      "parentUuid": "47b86991_894b8f1d",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 53
+      },
+      "revId": "24d419b51d2dd5ea216a9d65a6c4a01149ddbdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5050c52d_c255b706",
@@ -60,6 +84,30 @@
       "writtenOn": "2022-10-27T00:04:06Z",
       "side": 1,
       "message": "looks like getting a LTCheckedPtr from an option could be a frequent use case, how about implement `From` for this?\n```\nimpl\u003c\u0027a, T\u003e From\u003c\u0026\u0027a Option\u003cT\u003e\u003e for LTCheckedPtr\u003c\u0027a, T\u003e {\n    fn from(val: \u0026\u0027a Option\u003cT\u003e) -\u003e Self {\n        match val {\n            ...\n        }\n    }\n}\n```",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 10
+      },
+      "revId": "24d419b51d2dd5ea216a9d65a6c4a01149ddbdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1461bb_054e0a8d",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-10-27T04:27:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "815f5639_86449258",
       "range": {
         "startLine": 164,
         "startChar": 0,
