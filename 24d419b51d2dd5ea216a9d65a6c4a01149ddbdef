@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7d69c542_0a993903",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-27T05:11:29Z",
+      "side": 1,
+      "message": "Thanks for the explanation. The new finding in gatt.rs should also be broken, we probably haven\u0027t realized it yet.",
+      "parentUuid": "443d2b82_2ddeee5b",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 53
+      },
+      "revId": "24d419b51d2dd5ea216a9d65a6c4a01149ddbdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5050c52d_c255b706",
         "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
         "patchSetId": 1
