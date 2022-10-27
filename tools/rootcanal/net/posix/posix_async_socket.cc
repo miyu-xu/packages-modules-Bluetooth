@@ -23,7 +23,6 @@
 
 #include "model/setup/async_manager.h"  // for AsyncManager
 #include "os/log.h"                     // for LOG_INFO
-#include "osi/include/osi.h"            // for OSI_NO_INTR
 
 #ifdef _WIN32
 #include "msvc-posix.h"
@@ -74,7 +73,10 @@ ssize_t PosixAsyncSocket::Recv(uint8_t* buffer, uint64_t bufferSize) {
 
   errno = 0;
   ssize_t res = 0;
-  OSI_NO_INTR(res = read(fd_, buffer, bufferSize));
+  do {
+    res = read(fd_, buffer, bufferSize);
+  } while (res == -1 && errno == EINTR);
+
   if (res < 0) {
     DD("Recv < 0: %s (%d)", strerror(errno), fd_);
   }
@@ -94,7 +96,10 @@ ssize_t PosixAsyncSocket::Send(const uint8_t* buffer, uint64_t bufferSize) {
   // the socket.
   const int sendFlags = 0;
 #endif
-  OSI_NO_INTR(res = send(fd_, buffer, bufferSize, sendFlags));
+
+  do {
+    res = send(fd_, buffer, bufferSize, sendFlags);
+  } while (res == -1 && errno == EINTR);
 
   DD("%zd bytes (%d)", res, fd_);
   return res;
@@ -131,7 +136,8 @@ void PosixAsyncSocket::Close() {
              &error_code_size);
 
   // shutdown sockets if possible,
-  OSI_NO_INTR(shutdown(fd_, SHUT_RDWR));
+  do {
+  } while (shutdown(fd_, SHUT_RDWR) == -1 && errno == EINTR);
 
   error_code = ::close(fd_);
   if (error_code == -1) {

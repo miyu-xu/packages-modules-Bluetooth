@@ -29,7 +29,6 @@ cc_defaults {
         "include",
     ],
     include_dirs: [
-        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
     generated_headers: [
@@ -153,7 +152,6 @@ cc_test_host {
         ".",
     ],
     include_dirs: [
-        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
     shared_libs: [
@@ -188,7 +186,6 @@ cc_test_host {
         "include",
     ],
     include_dirs: [
-        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
     shared_libs: [
