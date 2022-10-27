@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9d8b17d_39396ef3",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppPreference.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-27T07:21:19Z",
+      "side": 1,
+      "message": "FYI, you can use Objects.equals()",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 82
+      },
+      "revId": "a09b1995dc0aa6cf961eba53d6fb8d2cee0506e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
