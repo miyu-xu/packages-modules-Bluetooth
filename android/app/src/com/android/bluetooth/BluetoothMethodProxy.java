@@ -76,6 +76,14 @@ public class BluetoothMethodProxy {
     }
 
     /**
+     * Proxies {@link ContentResolver#update(Uri, ContentValues, String, String[])}.
+     */
+    public int contentResolverUpdate(ContentResolver contentResolver, final Uri contentUri,
+            final ContentValues contentValues, String where, String[] selectionArgs) {
+        return contentResolver.update(contentUri, contentValues, where, selectionArgs);
+    }
+
+    /**
      * Proxies {@link ContentResolver#delete(Uri, String, String[])}.
      */
     public int contentResolverDelete(ContentResolver contentResolver, final Uri url,
