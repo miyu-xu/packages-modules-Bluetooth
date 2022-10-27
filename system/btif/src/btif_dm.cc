@@ -99,6 +99,7 @@ const Uuid UUID_LE_MIDI = Uuid::FromString("03B80E5A-EDE8-4B33-A751-6CE34EC4C700
 const Uuid UUID_HAS = Uuid::FromString("1854");
 const Uuid UUID_BASS = Uuid::FromString("184F");
 const Uuid UUID_BATTERY = Uuid::FromString("180F");
+const Uuid UUID_A2DP_SINK = Uuid::FromString("110B");
 const bool enable_address_consolidate = true;  // TODO remove
 
 #define COD_UNCLASSIFIED ((0x1F) << 8)
@@ -1454,6 +1455,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       bt_status_t ret;
       std::vector<uint8_t> property_value;
       std::set<Uuid> uuids;
+      bool a2dp_sink_capable = false;
 
       RawAddress& bd_addr = p_data->disc_res.bd_addr;
 
@@ -1510,6 +1512,9 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
           auto uuid_128bit = uuid.To128BitBE();
           property_value.insert(property_value.end(), uuid_128bit.begin(),
                                 uuid_128bit.end());
+          if (uuid == UUID_A2DP_SINK) {
+            a2dp_sink_capable = true;
+          }
         }
         prop.val = (void*)property_value.data();
         prop.len = Uuid::kNumBytes128 * uuids.size();
@@ -1551,9 +1556,6 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
             prop.len = Uuid::kNumBytes128;
           }
         }
-        // Both SDP and bonding are done, clear pairing control block in case
-        // it is not already cleared
-        pairing_cb = {};
       }
 
       if (p_data->disc_res.num_uuids != 0 || num_eir_uuids != 0) {
@@ -1561,6 +1563,34 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         ret = btif_storage_set_remote_device_property(&bd_addr, &prop);
         ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed",
                 ret);
+
+        if (bd_addr == pairing_cb.bd_addr ||
+            bd_addr == pairing_cb.static_bdaddr) {
+          bool le_audio_capable = LeAudioClient::IsLeAudioClientRunning() &&
+                                  check_cod_le_audio(bd_addr);
+          if (le_audio_capable && a2dp_sink_capable &&
+              pairing_cb.gatt_on_le !=
+                  btif_dm_pairing_cb_t::service_discovery_state::FINISHED) {
+            LOG_INFO(
+                "Bonding LE Audio sink - must wait for le services discovery "
+                "to pass all services to java %s:",
+                bd_addr.ToString().c_str());
+            /* For LE Audio capable devices, we care more about passing GATT LE
+             * services than about just finishing pairing */
+
+            /* Next step is either successful BLE service discovery, or failure,
+             * no need to keep pairing_cb */
+            pairing_cb = {};
+            LOG_DEBUG("wiping btif pairing_cb");
+            return;
+          }
+        }
+
+        /* Next step is either successful BLE service discovery, or failure, no
+         * need to keep pairing_cb */
+        pairing_cb = {};
+        LOG_DEBUG("wiping btif pairing_cb");
+
         /* Send the event to the BTIF */
         GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
             BT_STATUS_SUCCESS, bd_addr, 1, &prop);
