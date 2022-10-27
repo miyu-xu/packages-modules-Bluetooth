@@ -68,6 +68,30 @@
       },
       "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4afa713_9e633077",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-10-27T06:34:01Z",
+      "side": 1,
+      "message": "I think this is because setActiveDevice(mHearingAidDevice) is called\n 1. when HearingAid is connected.\n 2. when LeHearingAid is disconnected",
+      "parentUuid": "bc60f8f4_45277b1b",
+      "range": {
+        "startLine": 645,
+        "startChar": 8,
+        "endLine": 646,
+        "endChar": 52
+      },
+      "revId": "c54973b96f14e07a8b634e4c3a0d725aeb7d2243",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
