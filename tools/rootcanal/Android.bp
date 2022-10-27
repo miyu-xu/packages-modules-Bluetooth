@@ -29,7 +29,6 @@ cc_defaults {
         "include",
     ],
     include_dirs: [
-        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
     generated_headers: [
@@ -67,7 +66,6 @@ cc_library_static {
         "model/devices/scripted_beacon.cc",
         "model/devices/sniffer.cc",
         "model/hci/h4_data_channel_packetizer.cc",
-        "model/hci/h4_packetizer.cc",
         "model/hci/h4_parser.cc",
         "model/hci/hci_protocol.cc",
         "model/hci/hci_sniffer.cc",
@@ -153,7 +151,6 @@ cc_test_host {
         ".",
     ],
     include_dirs: [
-        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
     shared_libs: [
@@ -188,7 +185,6 @@ cc_test_host {
         "include",
     ],
     include_dirs: [
-        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
     shared_libs: [
@@ -312,7 +308,6 @@ cc_library_static {
         "libbt_init_flags_bridge_header",
     ],
     include_dirs: [
-        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
 }
