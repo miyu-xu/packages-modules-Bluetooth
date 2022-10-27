@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a047be6_1af8e2df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-10-27T09:22:33Z",
+      "side": 1,
+      "message": "For now, please try to change the behavior only for LeAudio. Keep the old way for others.",
+      "revId": "22a7a039a3e6be925ecb24af8563ba5c7b621204",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
