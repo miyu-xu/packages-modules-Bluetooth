@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26b10c4f_3da5874f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-10-27T19:52:18Z",
+      "side": 1,
+      "message": "Looks like this fundamentally is not going to work due to other teams having a dependency on LMP as well.",
+      "revId": "866c99b54787ffd60d9a203cfd58ff1249d1492f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
