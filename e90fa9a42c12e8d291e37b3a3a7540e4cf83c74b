@@ -282,6 +282,30 @@
       },
       "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab64457_1b288b58",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-27T00:59:55Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll follow up this in b/255863017.",
+      "parentUuid": "f13f0160_768168c1",
+      "range": {
+        "startLine": 999,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 39
+      },
+      "revId": "e90fa9a42c12e8d291e37b3a3a7540e4cf83c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
