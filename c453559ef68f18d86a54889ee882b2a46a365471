@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3f409f1_486040e5",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-27T03:54:11Z",
+      "side": 1,
+      "message": "I believe William that header_libs is better, and we should prefer to move in that direction.",
+      "parentUuid": "56c64832_f9f0f9b0",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "c453559ef68f18d86a54889ee882b2a46a365471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1325f574_c073d5ed",
         "filename": "system/gd/hci/address.cc",
         "patchSetId": 2
