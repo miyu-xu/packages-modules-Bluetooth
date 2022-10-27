@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdacdf53_4f80d2c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-27T23:14:01Z",
+      "side": 1,
+      "message": "Thanks for taking this on! Should clear up several of these unclear pointer scenarios.",
+      "revId": "48933880f6211449513676a6bdb5ee1de6bd802e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b24dff56_f11b4409",
+        "filename": "system/gd/rust/topshim/src/utils.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-10-27T23:14:01Z",
+      "side": 1,
+      "message": "note: Since you implement a from variant with `Option`, you can just do:\n```\nlet uuid: Option\u003cUuid\u003e;\nlet uuid_ptr \u003d LTCheckedPtr::from(\u0026u);\n```\n\nThis seems better than matching the Option. Do you want to use some other example here instead? I would rather people directly use `::from` for Options.",
+      "revId": "48933880f6211449513676a6bdb5ee1de6bd802e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
