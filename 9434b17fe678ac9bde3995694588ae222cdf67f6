@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11f4c3fc_f7326749",
+        "filename": "system/gd/rust/stack/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-28T23:02:32Z",
+      "side": 1,
+      "message": "Is this really needed ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "9434b17fe678ac9bde3995694588ae222cdf67f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
