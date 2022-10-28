@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "916d49ce_b920389c",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "028c855b_4b4d152a",
+      "range": {
+        "startLine": 45,
+        "startChar": 49,
+        "endLine": 45,
+        "endChar": 59
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c53eca2b_912b88a0",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2a70ad8_b56039f9",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c53eca2b_912b88a0",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d31ecc9_5d407ce9",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "We are storing the answer to AcceptConnection here not the cookie, so we should either rename the variable or store the cookie into this variable.",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c84bb34e_cb763e92",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d31ecc9_5d407ce9",
       "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -104,6 +164,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d4a2b0c_d49b483e",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "I\u0027m using the Host Connect, as well.",
+      "parentUuid": "f5f0ba27_8dea2054",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cf40312_fdb03388",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "This can be done in a follow-on CL.  None of the other profiles have a subpackage to themselves.",
+      "parentUuid": "bf2df4f2_de89a1da",
+      "range": {
+        "startLine": 11,
+        "startChar": 39,
+        "endLine": 11,
+        "endChar": 55
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d411fcff_b711cc26",
@@ -134,6 +242,48 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "nit: `StartServerResponse`",
+      "range": {
+        "startLine": 12,
+        "startChar": 48,
+        "endLine": 12,
+        "endChar": 68
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c96bc93a_4e5d1118",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d411fcff_b711cc26",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3767ef31_6427e35f",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "139c9c92_f81c784c",
       "range": {
         "startLine": 12,
         "startChar": 48,
@@ -190,6 +340,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f02171_86f0aaeb",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4156fa44_e8982c57",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8957395e_d5955a33",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f04696e_892b51fc",
+      "range": {
+        "startLine": 13,
+        "startChar": 52,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8d0f9d0_63d43d0e",
@@ -236,6 +434,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fdad2dd_3a2178d1",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d599a9d_13a7d1cf",
+      "range": {
+        "startLine": 14,
+        "startChar": 44,
+        "endLine": 14,
+        "endChar": 63
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db9c5e63_33fa482d",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8d0f9d0_63d43d0e",
+      "range": {
+        "startLine": 14,
+        "startChar": 17,
+        "endLine": 14,
+        "endChar": 33
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48ce3aae_6e47178d",
@@ -249,6 +495,30 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "I think we should remove the `Cookie` as part of the type name and rename the field to `cookie`, as this message being a Token containing a \"cookie\" should not be exposed to the messages using this type.\nThe goal for this message is to be opaque so the server can put what it wants here to track connections.",
+      "range": {
+        "startLine": 17,
+        "startChar": 14,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05b3df2d_c59113c6",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48ce3aae_6e47178d",
       "range": {
         "startLine": 17,
         "startChar": 14,
@@ -276,6 +546,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7747536d_7e0bab89",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "For a follow-up CL if it\u0027s still important.",
+      "parentUuid": "8153cb0b_accf2c52",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3c3dacf_4c901c85",
@@ -289,6 +577,24 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "I think we should redefine the `cookie` instead of using the RfcommCookie, because this means that a client can craft a RfcommServerCookie using a RfcommCookie obtained with `Connect`.",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4978caec_64636439",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3c3dacf_4c901c85",
       "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -316,6 +622,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0265eb31_bf1c49d7",
+        "filename": "android/pandora/server/proto/pandora_experimental/rfcomm.proto",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7773072_5eb7e6a7",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 21
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9655628a_5f9ae3f6",
@@ -329,6 +659,24 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "nit: `const val` ?",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d05db23d_d533c5f1",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "I tried:\n\nConst \u0027val\u0027 are only allowed on top level, in named objects, or in companion objects",
+      "parentUuid": "9655628a_5f9ae3f6",
       "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -350,6 +698,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0165cc9_bb104beb",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6eb08f9_97044618",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d640a85_005b21d8",
@@ -363,6 +729,30 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "This mean that we will only be able to have one server, one clientSocket and one acceptedSocket.\nThis works for the PTS but this is not great, the client should be able to handle multiple server and clients at the same time (for example in context of avatar tests).\nTo do that we should associate the Clients and the servers with their cookie, maybe with a map ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 51
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf247bc5_a5c94798",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d640a85_005b21d8",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -396,6 +786,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e290c28_2d605df1",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2255f60_1d941c25",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 13
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3333938e_f540be7a",
@@ -409,6 +823,30 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "nit: Add a value after the `:` or drop the `:`.",
+      "range": {
+        "startLine": 121,
+        "startChar": 18,
+        "endLine": 121,
+        "endChar": 30
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a3146a_9b61d243",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3333938e_f540be7a",
       "range": {
         "startLine": 121,
         "startChar": 18,
@@ -442,6 +880,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ee4ad81_a8f15319",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56980896_c70bb02a",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 35
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30e1458b_e7bbb859",
@@ -465,6 +927,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bfd11da_1fdd197f",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30e1458b_e7bbb859",
+      "range": {
+        "startLine": 148,
+        "startChar": 12,
+        "endLine": 148,
+        "endChar": 13
+      },
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d3fbe83_484175c6",
@@ -478,6 +964,24 @@
       "writtenOn": "2022-09-15T09:20:03Z",
       "side": 1,
       "message": "We should maybe return an error here instead of giving the client an invalid cookie ?",
+      "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32e20913_9470e4ed",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T23:45:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d3fbe83_484175c6",
       "revId": "a7d28c6c00649693bbee8beb3a541395578d9a1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
