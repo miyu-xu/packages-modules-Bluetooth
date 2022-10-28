@@ -44,6 +44,10 @@ class InitFlags final {
     return init_flags::logging_debug_enabled_for_all_is_enabled();
   }
 
+  inline static bool IsSnoopLoggerSocketEnabled() {
+    return init_flags::gd_hal_snoop_logger_socket_is_enabled();
+  }
+
   inline static int GetAdapterIndex() {
     return init_flags::get_hci_adapter();
   }

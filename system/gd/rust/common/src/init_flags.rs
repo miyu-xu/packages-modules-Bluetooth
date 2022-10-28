@@ -181,6 +181,7 @@ init_flags!(
         gd_remote_name_request,
         gd_rust,
         gd_security,
+        gd_hal_snoop_logger_socket,
         hci_adapter: i32,
         irk_rotation,
         logging_debug_enabled_for_all,
