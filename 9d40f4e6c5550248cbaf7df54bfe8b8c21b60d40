@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e9ca170_70f4f25b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-28T01:38:23Z",
+      "side": 1,
+      "message": "Let\u0027s not use index variables (like comment in L733)",
+      "parentUuid": "d24479e6_282d7ddd",
+      "range": {
+        "startLine": 63,
+        "startChar": 29,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "9d40f4e6c5550248cbaf7df54bfe8b8c21b60d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7bc69f1_3a2f336e",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 7
