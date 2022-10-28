@@ -166,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9716816_8c64537f",
+        "filename": "system/gd/hci/address.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-28T21:48:57Z",
+      "side": 1,
+      "message": "This logic is moved out of this class",
+      "parentUuid": "95eb12f2_1e7d82f9",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 17
+      },
+      "revId": "719086fca458eff90a69790cb06d6cbe25eb28b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "791a386a_2170aefa",
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "Here address hiding is only supported on Android. Other OS is not supported, because init flags are only supported on Android.",
       "parentUuid": "791a386a_2170aefa",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 17
+      },
+      "revId": "719086fca458eff90a69790cb06d6cbe25eb28b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df88d2bf_ba2f21fc",
+        "filename": "system/gd/hci/address_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-28T21:48:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3f70973_77bdc8d1",
       "range": {
         "startLine": 262,
         "startChar": 0,
