@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "029c361a_a931f3f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-10-28T22:28:48Z",
+      "side": 1,
+      "message": "Hi, reviewers:\n\nThe original reverted CL is in patch 1 for your convenience.",
+      "revId": "37ee789dfe09e3deecb341a359e9491a23e073bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
