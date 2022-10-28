@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26d488a_ddacaa08",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-28T20:08:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ead52e9_f4dbd6c5",
+      "range": {
+        "startLine": 1213,
+        "startChar": 28,
+        "endLine": 1213,
+        "endChar": 66
+      },
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9211e446_1693bd37",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a39c4ce_3ce8faa2",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-28T20:08:18Z",
+      "side": 1,
+      "message": "Good catch!\n\nThis is copy-paste from OnScanBackgroundResult(). I guess there we must take into account the asynchronous nature, and that results might come after set member is added",
+      "parentUuid": "9211e446_1693bd37",
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e95e665c_0c36d1d8",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-10-25T07:47:52Z",
       "side": 1,
       "message": "If member has been found in InqDb, does it make sense to enable discovery later on in `CsisActiveDiscovery()`?",
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cb4028b_562c104e",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-28T20:08:18Z",
+      "side": 1,
+      "message": "I don\u0027t have a clear opinion here. I think it shouldn\u0027t hurt.\nIf we finish pairing with another device in set, we should stop the scan.\n\nI think this should stay for case where device in set uses RPA, and just rotated it\u0027s address while we were pairing to 1st set member. This shouldn\u0027t happen often, but it\u0027s possibility.",
+      "parentUuid": "e95e665c_0c36d1d8",
       "revId": "350599c96760521f9e01344ba15389230e8312fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
