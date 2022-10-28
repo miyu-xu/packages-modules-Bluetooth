@@ -46,6 +46,7 @@ class MediaPlayerBrowserService : MediaBrowserService() {
 
   fun deinit() {
     // Releasing MediaSession instance
+    mediaSession.setActive(false)
     mediaSession.release()
   }
 
@@ -88,8 +89,11 @@ class MediaPlayerBrowserService : MediaBrowserService() {
       currentTrack = 1
       initQueue()
       mediaSession.setQueue(queue)
-      mediaSession.setMetadata(metadataItems.get("" + currentTrack))
+    } else {
+      currentTrack += 1
     }
+
+    mediaSession.setMetadata(metadataItems.get("" + currentTrack))
   }
 
   fun stop() {
