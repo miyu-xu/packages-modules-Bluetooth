@@ -2504,10 +2504,8 @@ void btm_io_capabilities_req(const RawAddress& p) {
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(p);
 
-  if ((btm_cb.security_mode == BTM_SEC_MODE_SC) &&
-      (!p_dev_rec->remote_feature_received)) {
-    BTM_TRACE_EVENT("%s: Device security mode is SC only.",
-                    "To continue need to know remote features.", __func__);
+  if (!p_dev_rec->remote_feature_received) {
+    BTM_TRACE_EVENT("%s: To continue need to know remote features.", __func__);
 
     // ACL calls back to btm_sec_set_peer_sec_caps after it gets data
     p_dev_rec->remote_features_needed = true;
