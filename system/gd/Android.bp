@@ -395,6 +395,7 @@ cc_test {
         ":BluetoothShimTestSources",
         ":BluetoothSecurityUnitTestSources",
         ":BluetoothStorageUnitTestSources",
+        //":BluetoothHciTestSources",
     ],
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
