@@ -16,6 +16,24 @@
       "message": "if {}",
       "revId": "fa3c0f4ec5ae9e90b4b4983fb1a3b1961c650a23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a204a1_04366aa9",
+        "filename": "system/gd/os/logging/log_adapter.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-28T20:24:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ad184d2_60770bb0",
+      "revId": "fa3c0f4ec5ae9e90b4b4983fb1a3b1961c650a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
