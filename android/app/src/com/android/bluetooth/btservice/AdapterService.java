@@ -195,8 +195,18 @@ public class AdapterService extends Service {
     static final String BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY = "persist.bluetooth.btsnooplogmode";
     static final String BLUETOOTH_BTSNOOP_DEFAULT_MODE_PROPERTY =
             "persist.bluetooth.btsnoopdefaultmode";
+    static final String BLUETOOTH_BTSNOOP_LOG_FILTER_TYPES_PROPERTY =
+            "persist.bluetooth.btsnooplogfilter.types";
+    static final String BLUETOOTH_BTSNOOP_LOG_FILTER_PROFILES_PBAP_MODE_PROPERTY =
+            "persist.bluetooth.btsnooplogfilter.profiles.pbap";
+    static final String BLUETOOTH_BTSNOOP_LOG_FILTER_PROFILES_MAP_MODE_PROPERTY =
+            "persist.bluetooth.btsnooplogfilter.profiles.map";
+
     private String mSnoopLogSettingAtEnable = "empty";
     private String mDefaultSnoopLogSettingAtEnable = "empty";
+    private String mSnoopLogFilterTypeSettingAtEnable = "empty";
+    private String mSnoopLogFilterProfilesPbapModeSettingAtEnable = "empty";
+    private String mSnoopLogFilterProfilesMapModeSettingAtEnable = "empty";
 
     public static final String BLUETOOTH_PRIVILEGED =
             android.Manifest.permission.BLUETOOTH_PRIVILEGED;
@@ -808,6 +818,17 @@ public class AdapterService extends Service {
             mDefaultSnoopLogSettingAtEnable =
                     Settings.Global.getString(getContentResolver(),
                             Settings.Global.BLUETOOTH_BTSNOOP_DEFAULT_MODE);
+
+            mSnoopLogFilterTypeSettingAtEnable =
+                    SystemProperties.get(
+                            BLUETOOTH_BTSNOOP_LOG_FILTER_TYPES_PROPERTY, "empty");
+            mSnoopLogFilterProfilesPbapModeSettingAtEnable =
+                    SystemProperties.get(
+                            BLUETOOTH_BTSNOOP_LOG_FILTER_PROFILES_PBAP_MODE_PROPERTY, "empty");
+            mSnoopLogFilterProfilesMapModeSettingAtEnable =
+                    SystemProperties.get(
+                            BLUETOOTH_BTSNOOP_LOG_FILTER_PROFILES_MAP_MODE_PROPERTY, "empty");
+
             BluetoothProperties.snoop_default_mode(
                     BluetoothProperties.snoop_default_mode_values.DISABLED);
             for (BluetoothProperties.snoop_default_mode_values value :
@@ -816,6 +837,8 @@ public class AdapterService extends Service {
                     BluetoothProperties.snoop_default_mode(value);
                 }
             }
+
+
         } else if (newState == BluetoothAdapter.STATE_BLE_ON
                    && prevState != BluetoothAdapter.STATE_OFF) {
             String snoopLogSetting =
@@ -823,10 +846,24 @@ public class AdapterService extends Service {
             String snoopDefaultModeSetting =
                     Settings.Global.getString(getContentResolver(),
                             Settings.Global.BLUETOOTH_BTSNOOP_DEFAULT_MODE);
+            String snoopLogFilterTypeSetting =
+                    SystemProperties.get(BLUETOOTH_BTSNOOP_LOG_FILTER_TYPES_PROPERTY, "empty");
+            String snoopLogFilterProfilesPbapModeSetting =
+                    SystemProperties.get(
+                        BLUETOOTH_BTSNOOP_LOG_FILTER_PROFILES_PBAP_MODE_PROPERTY, "empty");
+            String snoopLogFilterProfilesMapModeSetting =
+                    SystemProperties.get(
+                        BLUETOOTH_BTSNOOP_LOG_FILTER_PROFILES_MAP_MODE_PROPERTY, "empty");
 
             if (!TextUtils.equals(mSnoopLogSettingAtEnable, snoopLogSetting)
                     || !TextUtils.equals(mDefaultSnoopLogSettingAtEnable,
-                            snoopDefaultModeSetting)) {
+                                         snoopDefaultModeSetting)
+                    || !TextUtils.equals(mSnoopLogFilterTypeSettingAtEnable,
+                                         snoopLogFilterTypeSetting)
+                    || !TextUtils.equals(mSnoopLogFilterProfilesPbapModeSettingAtEnable,
+                                         snoopLogFilterProfilesPbapModeSetting)
+                    || !TextUtils.equals(mSnoopLogFilterProfilesMapModeSettingAtEnable,
+                                         snoopLogFilterProfilesMapModeSetting)) {
                 mAdapterStateMachine.sendMessage(AdapterState.BLE_TURN_OFF);
             }
         }

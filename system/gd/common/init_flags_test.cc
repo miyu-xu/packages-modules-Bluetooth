@@ -80,3 +80,9 @@ TEST(InitFlagsTest, test_enable_snoop_logger_socket) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::IsSnoopLoggerSocketEnabled());
 }
+
+TEST(InitFlagsTest, test_enable_snoop_logger_filtering) {
+  const char* input[] = {"INIT_gd_hal_snoop_logger_filtering=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsSnoopLoggerFilteringEnabled());
+}
