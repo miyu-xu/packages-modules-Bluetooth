@@ -33,6 +33,24 @@
       "message": "AVCTP/TG/NFR/BV-02-C seems not to work. Also need rebase 😊",
       "revId": "d41748e626ed23ef1ec8c7193f9cfa8d7dbf07e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26d980e_8e553a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-10-28T13:11:56Z",
+      "side": 1,
+      "message": "Rebased to master. \nWe were able to run AVCTP/TG/NFR/BV-02-C test case in 2 setups. It PASSED in both setups. Request to share failure logs.\n\nSummary (Test executed with 1 devices.)\n-------\nx86_64 pts-bot: Passed: 11, Failed: 0, Ignored: 0, Assumption Failed: 0,",
+      "parentUuid": "1aacbc84_c7b73ddf",
+      "revId": "d41748e626ed23ef1ec8c7193f9cfa8d7dbf07e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
