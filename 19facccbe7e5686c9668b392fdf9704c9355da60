@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c423cf5_e115bd61",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-28T01:39:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a902812_fc7d8720",
+      "revId": "19facccbe7e5686c9668b392fdf9704c9355da60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba71a632_3c1c4514",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a7d481_8082e67f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-28T01:39:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba71a632_3c1c4514",
+      "revId": "19facccbe7e5686c9668b392fdf9704c9355da60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6f7d643_26727c9b",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-10-26T12:58:01Z",
       "side": 1,
       "message": "I\u0027m not sure if that Message is used at all.",
+      "revId": "19facccbe7e5686c9668b392fdf9704c9355da60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c4b84f2_ee030811",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-28T01:39:08Z",
+      "side": 1,
+      "message": "Nice to have if we are not sure.",
+      "parentUuid": "d6f7d643_26727c9b",
       "revId": "19facccbe7e5686c9668b392fdf9704c9355da60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "517d36ed_d43059fb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-28T01:39:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dedf6b6_353499c9",
+      "range": {
+        "startLine": 713,
+        "startChar": 12,
+        "endLine": 713,
+        "endChar": 32
+      },
+      "revId": "19facccbe7e5686c9668b392fdf9704c9355da60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5885b661_8f5778de",
@@ -88,6 +166,24 @@
       "writtenOn": "2022-10-26T12:58:01Z",
       "side": 1,
       "message": "btw - shouldn\u0027t we priorityze LE Hearing aid here? So first we should check if device is in mLeHearingAidConnectedDevices() ?",
+      "revId": "19facccbe7e5686c9668b392fdf9704c9355da60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "653bfb12_fea2bfae",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-28T01:39:08Z",
+      "side": 1,
+      "message": "The most recently connected device is either hearing aid or LE hearing aid in here.\n(See L731~L740)",
+      "parentUuid": "5885b661_8f5778de",
       "revId": "19facccbe7e5686c9668b392fdf9704c9355da60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
