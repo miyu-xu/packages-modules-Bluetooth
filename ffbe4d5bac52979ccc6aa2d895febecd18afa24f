@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5fb701d_15cebe4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-10-28T02:24:41Z",
+      "side": 1,
+      "message": "As we have many `From\u003c\u0026\u0027a Box\u003cT\u003e\u003e` use cases, I added a From implementation for it. In patch set 3.",
+      "revId": "ffbe4d5bac52979ccc6aa2d895febecd18afa24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

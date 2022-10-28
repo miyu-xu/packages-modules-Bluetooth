@@ -33,6 +33,24 @@
       "message": "note: Since you implement a from variant with `Option`, you can just do:\n```\nlet uuid: Option\u003cUuid\u003e;\nlet uuid_ptr \u003d LTCheckedPtr::from(\u0026u);\n```\n\nThis seems better than matching the Option. Do you want to use some other example here instead? I would rather people directly use `::from` for Options.",
       "revId": "48933880f6211449513676a6bdb5ee1de6bd802e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3affc517_e5ae0aca",
+        "filename": "system/gd/rust/topshim/src/utils.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-10-28T02:24:41Z",
+      "side": 1,
+      "message": "Ah `::from` for Option was added in patch set 2 and I forgot to update the doc. Thanks for catching this.\n\nThough now we don\u0027t have a use case for RawAddress (blocked by the refactoring), I added it as an example, and added Option in example 3.",
+      "parentUuid": "b24dff56_f11b4409",
+      "revId": "48933880f6211449513676a6bdb5ee1de6bd802e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
