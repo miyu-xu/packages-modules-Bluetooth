@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6a390f64_8bb1ec29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-28T10:34:11Z",
+      "side": 1,
+      "message": "Yes. I couldn\u0027t find any so I just did a manual verification.",
+      "parentUuid": "f8262172_2fa9746a",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8f418a88_83e4da2a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -58,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b5347d0_00266df6",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-28T10:34:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b4d7e64b_62f3ea6c",
+      "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf18c87a_0f921a37",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-10-26T16:55:20Z",
       "side": 1,
       "message": "This looks wrong.  Shouldn\u0027t we be asserting that the handle is \u003c\u003d MAX ?",
+      "range": {
+        "startLine": 1131,
+        "startChar": 6,
+        "endLine": 1131,
+        "endChar": 29
+      },
+      "revId": "2f0266a105cccfb193f826ed75e5aa7edf78d870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e63ad505_be323d74",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-10-28T10:34:11Z",
+      "side": 1,
+      "message": "Yes. It is really wrong. Thank you for catching this.",
+      "parentUuid": "bf18c87a_0f921a37",
       "range": {
         "startLine": 1131,
         "startChar": 6,
