@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3afbf3c4_151cf474",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-10-28T16:45:22Z",
+      "side": 1,
+      "message": "nit: call these `valid_sets_mut`, `enabled_sets_mut`, `paused_sets_mut` since we are returning mut references that can be mutated by the caller.",
+      "range": {
+        "startLine": 465,
+        "startChar": 18,
+        "endLine": 465,
+        "endChar": 28
+      },
+      "revId": "c19181ef2e33af247a94dc0531d4dcabf29b6bb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
