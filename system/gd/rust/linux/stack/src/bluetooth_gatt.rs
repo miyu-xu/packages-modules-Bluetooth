@@ -904,6 +904,32 @@ impl BluetoothGatt {
         // Always remove callback.
         self.context_map.remove_callback(callback_id);
     }
+
+    /// Enters suspend mode for LE advertising.
+    pub fn advertising_enter_suspend(&mut self) {
+        for s in self.advertisers.enabled_sets() {
+            s.set_paused(true);
+            self.gatt.as_mut().unwrap().advertiser.enable(
+                s.adv_id(),
+                false,
+                s.adv_timeout(),
+                s.adv_events(),
+            );
+        }
+    }
+
+    /// Exits suspend mode for LE advertising.
+    pub fn advertising_exit_suspend(&mut self) {
+        for s in self.advertisers.paused_sets() {
+            s.set_paused(false);
+            self.gatt.as_mut().unwrap().advertiser.enable(
+                s.adv_id(),
+                true,
+                s.adv_timeout(),
+                s.adv_events(),
+            );
+        }
+    }
 }
 
 #[derive(Debug, FromPrimitive, ToPrimitive)]

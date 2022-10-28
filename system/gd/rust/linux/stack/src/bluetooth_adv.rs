@@ -364,6 +364,9 @@ pub(crate) struct AdvertisingSetInfo {
     /// Whether the advertising set has been enabled.
     enabled: bool,
 
+    /// Whether the advertising set has been paused.
+    paused: bool,
+
     /// Advertising duration, in 10 ms unit.
     adv_timeout: u16,
 
@@ -379,6 +382,7 @@ impl AdvertisingSetInfo {
             callback_id,
             reg_id: REG_ID_COUNTER.fetch_add(1, Ordering::SeqCst) as RegId,
             enabled: false,
+            paused: false,
             adv_timeout,
             adv_events,
         }
@@ -415,6 +419,16 @@ impl AdvertisingSetInfo {
         self.enabled
     }
 
+    /// Marks the advertising set as paused or not.
+    pub(crate) fn set_paused(&mut self, paused: bool) {
+        self.paused = paused;
+    }
+
+    /// Returns true if the advertising set has been paused, false otherwise.
+    pub(crate) fn is_paused(&self) -> bool {
+        self.paused
+    }
+
     /// Gets adv_timeout.
     pub(crate) fn adv_timeout(&self) -> u16 {
         self.adv_timeout
@@ -445,6 +459,21 @@ impl Advertisers {
         if let Some(old) = self.sets.insert(s.reg_id(), s) {
             warn!("An advertising set with the same reg_id ({}) exists. Drop it!", old.reg_id);
         }
+    }
+
+    /// Returns valid advertising sets.
+    pub(crate) fn valid_sets(&mut self) -> impl Iterator<Item = &mut AdvertisingSetInfo> {
+        self.sets.iter_mut().filter_map(|(_, s)| s.adv_id.map(|_| s))
+    }
+
+    /// Returns enabled advertising sets.
+    pub(crate) fn enabled_sets(&mut self) -> impl Iterator<Item = &mut AdvertisingSetInfo> {
+        self.valid_sets().filter(|s| s.is_enabled())
+    }
+
+    /// Returns paused advertising sets.
+    pub(crate) fn paused_sets(&mut self) -> impl Iterator<Item = &mut AdvertisingSetInfo> {
+        self.valid_sets().filter(|s| s.is_paused())
     }
 
     fn find_reg_id(&self, adv_id: AdvertiserId) -> Option<RegId> {
@@ -570,6 +599,26 @@ mod tests {
             let s = AdvertisingSetInfo::new(callback_id, 0, 0);
             assert_eq!(s.callback_id(), callback_id);
             assert_eq!(uniq.insert(s.reg_id()), true);
+        }
+    }
+
+    #[test]
+    fn test_iterate_adving_set_info() {
+        let (tx, _rx) = crate::Stack::create_channel();
+        let mut advertisers = Advertisers::new(tx.clone());
+
+        let size = 256;
+        for i in 0..size {
+            let callback_id: CallbackId = i as CallbackId;
+            let adv_id: AdvertiserId = i as AdvertiserId;
+            let mut s = AdvertisingSetInfo::new(callback_id, 0, 0);
+            s.set_adv_id(Some(adv_id));
+            advertisers.add(s);
+        }
+
+        assert_eq!(advertisers.valid_sets().count(), size);
+        for s in advertisers.valid_sets() {
+            assert_eq!(s.callback_id() as u32, s.adv_id() as u32);
         }
     }
 
