@@ -1071,10 +1071,10 @@ TEST_F(AclManagerWithConnectionTest, send_qos_setup) {
   auto command_view = QosSetupView::Create(packet);
   ASSERT_TRUE(command_view.IsValid());
   ASSERT_EQ(command_view.GetServiceType(), ServiceType::BEST_EFFORT);
-  ASSERT_EQ(command_view.GetTokenRate(), 0x1234);
-  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1233);
-  ASSERT_EQ(command_view.GetLatency(), 0x1232);
-  ASSERT_EQ(command_view.GetDelayVariation(), 0x1231);
+  ASSERT_EQ(command_view.GetTokenRate(), 0x1234u);
+  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1233u);
+  ASSERT_EQ(command_view.GetLatency(), 0x1232u);
+  ASSERT_EQ(command_view.GetDelayVariation(), 0x1231u);
 
   EXPECT_CALL(mock_connection_management_callbacks_,
               OnQosSetupComplete(ServiceType::BEST_EFFORT, 0x1234, 0x1233, 0x1232, 0x1231));
@@ -1091,10 +1091,10 @@ TEST_F(AclManagerWithConnectionTest, send_flow_specification) {
   ASSERT_TRUE(command_view.IsValid());
   ASSERT_EQ(command_view.GetFlowDirection(), FlowDirection::OUTGOING_FLOW);
   ASSERT_EQ(command_view.GetServiceType(), ServiceType::BEST_EFFORT);
-  ASSERT_EQ(command_view.GetTokenRate(), 0x1234);
-  ASSERT_EQ(command_view.GetTokenBucketSize(), 0x1233);
-  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1232);
-  ASSERT_EQ(command_view.GetAccessLatency(), 0x1231);
+  ASSERT_EQ(command_view.GetTokenRate(), 0x1234u);
+  ASSERT_EQ(command_view.GetTokenBucketSize(), 0x1233u);
+  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1232u);
+  ASSERT_EQ(command_view.GetAccessLatency(), 0x1231u);
 
   EXPECT_CALL(mock_connection_management_callbacks_,
               OnFlowSpecificationComplete(FlowDirection::OUTGOING_FLOW, ServiceType::BEST_EFFORT, 0x1234, 0x1233,
