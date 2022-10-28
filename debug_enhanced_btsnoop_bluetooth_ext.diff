@@ -1,0 +1,93 @@
+From c9c80a7374db28f36bfee98356786f5cf251d943 Mon Sep 17 00:00:00 2001
+From: xiaowang <quic_xiaowang@quicinc.com>
+Date: Wed, 26 Oct 2022 13:04:12 +0800
+Subject: [PATCH] BT snoop: Add profilesfiltered snoop property support
+
+CRs-Fixed: 3311851
+
+BT Snoop: Add Advnace snoop properties (4/4)
+
+Add Advance snoop property
+CRs-Fixed: 3264880
+
+Add Filtering for vendor snoop logs (2/4)
+
+ - Added new filtering options Enabled Headers Filtered
+   and Enabled Media Pkts Filtered in snoop logging.
+ - Added logic to capture vendor snoop logs and filtered
+   vendor snoop logs enabled from developer options
+CRs-Fixed: 2426675
+
+Change-Id: I725f4abebfdcd2cbcf37e93c6c42de02963aaa82
+---
+ system_bt_ext/btif/src/btif_l2cap.cc |  2 +-
+ system_bt_ext/osi/src/vnd_log.cc     | 22 +++++++++++++++-------
+ 2 files changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/system_bt_ext/btif/src/btif_l2cap.cc b/system_bt_ext/btif/src/btif_l2cap.cc
+index 8653fad..282f47e 100644
+--- a/system_bt_ext/btif/src/btif_l2cap.cc
++++ b/system_bt_ext/btif/src/btif_l2cap.cc
+@@ -198,7 +198,7 @@ static bt_status_t L2cap_Register (uint16_t psm, bool ConnType, uint16_t SecLeve
+         }
+     }
+ #endif
+-    g_Psm = L2CA_Register (psm, pl2test_l2c_appl);
++    g_Psm = L2CA_Register (psm, pl2test_l2c_appl, true);
+     if(0 == g_Psm) {
+         BTIF_TRACE_DEBUG("Error:: L2CA_Register failed");
+         return BT_STATUS_FAIL;
+diff --git a/system_bt_ext/osi/src/vnd_log.cc b/system_bt_ext/osi/src/vnd_log.cc
+index 12d8158..aa89459 100644
+--- a/system_bt_ext/osi/src/vnd_log.cc
++++ b/system_bt_ext/osi/src/vnd_log.cc
+@@ -42,12 +42,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+ #define IS_DEBUGGABLE_PROPERTY "ro.debuggable"
+ #define BTSNOOP_LOG_MODE_PROPERTY "persist.bluetooth.btsnooplogmode"
++//adding adv prop
++#define BTSNOOP_LOG_MODE_PROPERTY_ADV "persist.vendor.service.bt.adv_snoop"
+ #define BTSNOOP_DEFAULT_MODE_PROPERTY "persist.bluetooth.btsnoopdefaultmode"
+ #define BTSNOOP_MODE_DISABLED "disabled"
+ #define BTSNOOP_MODE_FILTERED "filtered"
+ #define BTSNOOP_MODE_FULL "full"
+ #define BTSNOOP_MODE_SNOOPHEADERSFILTERED "snoopheadersfiltered"
+ #define BTSNOOP_MODE_MEDIAPKTSFILTERED "mediapktsfiltered"
++#define BTSNOOP_MODE_PROFILESFILTERED "profilesfiltered"
+ #define BTLOGGER_ENABLE_PROPERTY "persist.bluetooth.btsnoopenable"
+ #define LOCAL_SOCKET_NAME "bthcitraffic"
+ 
+@@ -127,18 +130,23 @@ static bool is_logging_enable()
+     default_mode = std::string(property.data(), len);
+   }
+ 
+-  // Get the actual mode
+-  int len = osi_property_get(BTSNOOP_LOG_MODE_PROPERTY, property.data(),
++  // Get the adv prop
++  int len = osi_property_get(BTSNOOP_LOG_MODE_PROPERTY_ADV, property.data(),
++                             default_mode.c_str());
++  std::string btsnoop_mode_adv(property.data(), len);
++  // Get the aosp prop
++  len = osi_property_get(BTSNOOP_LOG_MODE_PROPERTY, property.data(),
+                              default_mode.c_str());
+   std::string btsnoop_mode(property.data(), len);
+ 
+-  if (btsnoop_mode == BTSNOOP_MODE_FULL ||
+-      btsnoop_mode == BTSNOOP_MODE_MEDIAPKTSFILTERED ||
+-      btsnoop_mode == BTSNOOP_MODE_SNOOPHEADERSFILTERED) {
+-    osi_property_set("persist.bluetooth.btsnoopenable", "true");
++  if ( btsnoop_mode == BTSNOOP_MODE_FULL ||
++       btsnoop_mode_adv == BTSNOOP_MODE_MEDIAPKTSFILTERED ||
++       btsnoop_mode_adv == BTSNOOP_MODE_SNOOPHEADERSFILTERED ||
++       btsnoop_mode_adv == BTSNOOP_MODE_PROFILESFILTERED) {
++    osi_property_set(BTLOGGER_ENABLE_PROPERTY, "true");
+     bt_logger_enabled = true;
+   } else {
+-    osi_property_set("persist.bluetooth.btsnoopenable", "");
++    osi_property_set(BTLOGGER_ENABLE_PROPERTY, "");
+     bt_logger_enabled = false;
+   }
+   return bt_logger_enabled;
+-- 
+2.7.4
+

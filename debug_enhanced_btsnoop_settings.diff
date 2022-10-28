@@ -1,0 +1,103 @@
+From 734e7dbe26cd0a5cef4c0bb94d87804fb7f6f133 Mon Sep 17 00:00:00 2001
+From: xiaowang <quic_xiaowang@quicinc.com>
+Date: Wed, 26 Oct 2022 12:58:09 +0800
+Subject: [PATCH] BT Snoop: Add Advance snoop properties (2/4)
+
+Add Advance snoop property
+
+CRs-Fixed: 3234423
+
+Add Filtering for vendor snoop logs (3/4)
+
+ - Added new filtering options Enabled Headers Filtered
+   and Enabled Media Pkts Filtered in snoop logging.
+
+ - Added logic to capture vendor snoop logs and filtred
+   vendor snoop logs enabled from developer options.
+
+CRs-Fixed: 2426720
+
+Change-Id: If82bdd843f4542dcf4507436e1c5e92c29ed2449
+---
+ .../BluetoothSnoopLogPreferenceController.java     | 28 ++++++++++++++++++++--
+ 1 file changed, 26 insertions(+), 2 deletions(-)
+
+diff --git a/src/com/android/settings/development/BluetoothSnoopLogPreferenceController.java b/src/com/android/settings/development/BluetoothSnoopLogPreferenceController.java
+index 203552f..339d751 100644
+--- a/src/com/android/settings/development/BluetoothSnoopLogPreferenceController.java
++++ b/src/com/android/settings/development/BluetoothSnoopLogPreferenceController.java
+@@ -29,6 +29,9 @@ import androidx.preference.ListPreference;
+ import androidx.preference.Preference;
+ import androidx.preference.SwitchPreference;
+ 
++import java.util.Arrays;
++import java.util.List;
++
+ import com.android.settings.R;
+ import com.android.settings.core.PreferenceControllerMixin;
+ import com.android.settingslib.development.DeveloperOptionsPreferenceController;
+@@ -44,15 +47,26 @@ public class BluetoothSnoopLogPreferenceController extends DeveloperOptionsPrefe
+     @VisibleForTesting
+     static final int BTSNOOP_LOG_MODE_FULL_INDEX = 2;
+     @VisibleForTesting
++    static final int BTSNOOP_LOG_MODE_SNOOPHEADERSFILTERED_INDEX = 3;
++    @VisibleForTesting
++    static final int BTSNOOP_LOG_MODE_MEDIAPKTSFILTERED_INDEX = 4;
++    @VisibleForTesting
++
+     static final String BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY = "persist.bluetooth.btsnooplogmode";
++    static final String BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY_ADV = "persist.vendor.service.bt.adv_snoop";
+ 
+     private final String[] mListValues;
+     private final String[] mListEntries;
++    private final List<String> mListEnhancedValues;
++    private final String emptyVal = null;
++
+ 
+     public BluetoothSnoopLogPreferenceController(Context context) {
+         super(context);
+         mListValues = context.getResources().getStringArray(R.array.bt_hci_snoop_log_values);
+         mListEntries = context.getResources().getStringArray(R.array.bt_hci_snoop_log_entries);
++        mListEnhancedValues = Arrays.asList(context.getResources().getStringArray(
++                R.array.bt_hci_snoop_log_values_enhanced));
+     }
+ 
+     // Default mode is DISABLED. It can also be changed by modifying the global setting.
+@@ -80,7 +94,14 @@ public class BluetoothSnoopLogPreferenceController extends DeveloperOptionsPrefe
+ 
+     @Override
+     public boolean onPreferenceChange(Preference preference, Object newValue) {
+-        SystemProperties.set(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY, newValue.toString());
++        String val = newValue.toString();
++        if(mListEnhancedValues.contains(val)) {
++            SystemProperties.set(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY_ADV, val);
++            SystemProperties.set(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY, emptyVal);
++        } else {
++            SystemProperties.set(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY, val);
++            SystemProperties.set(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY_ADV, emptyVal);
++        }
+         updateState(mPreference);
+         return true;
+     }
+@@ -88,7 +109,9 @@ public class BluetoothSnoopLogPreferenceController extends DeveloperOptionsPrefe
+     @Override
+     public void updateState(Preference preference) {
+         final ListPreference listPreference = (ListPreference) preference;
+-        final String currentValue = SystemProperties.get(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY);
++        String value = SystemProperties.get(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY);
++        String valueAdv = SystemProperties.get(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY_ADV);
++        final String currentValue = (TextUtils.isEmpty(value) ? valueAdv : value);
+ 
+         int index = getDefaultModeIndex();
+         for (int i = 0; i < mListValues.length; i++) {
+@@ -110,6 +133,7 @@ public class BluetoothSnoopLogPreferenceController extends DeveloperOptionsPrefe
+     protected void onDeveloperOptionsSwitchDisabled() {
+         super.onDeveloperOptionsSwitchDisabled();
+         SystemProperties.set(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY, null);
++        SystemProperties.set(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY_ADV, null);
+         ((ListPreference) mPreference).setValue(mListValues[getDefaultModeIndex()]);
+         ((ListPreference) mPreference).setSummary(mListEntries[getDefaultModeIndex()]);
+     }
+-- 
+2.7.4
+

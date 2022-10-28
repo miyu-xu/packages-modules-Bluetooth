@@ -1,0 +1,198 @@
+From 439842120af144559949834cb9043fc1b440ffb9 Mon Sep 17 00:00:00 2001
+From: xiaowang <quic_xiaowang@quicinc.com>
+Date: Wed, 26 Oct 2022 12:48:33 +0800
+Subject: [PATCH] BT: Add new filtering option for vendor snoop logs
+
+- Add profilesfiltered option in snoop logging
+- Multiple languages support
+
+CRs-Fixed: 3311891
+
+BT Snoop: Add Adavnce snoop properties (1/4)
+
+Add Advance snoop values
+
+CRs-Fixed: 3234423
+
+Add Filtering for vendor snoop logs (4/4)
+
+ - Added new filtering options Enabled Headers Filtered
+   and Enabled Media Pkts Filtered in snoop logging.
+
+ - Added logic to capture vendor snoop logs and filtred
+   vendor snoop logs enabled from developer options.
+
+CRs-Fixed: 2426720
+
+Change-Id: I60f93ab164714f9a8ea08770c37fb89f87240b0b
+---
+ packages/SettingsLib/res/values-en-rAU/arrays.xml |  1 +
+ packages/SettingsLib/res/values-en-rCA/arrays.xml |  1 +
+ packages/SettingsLib/res/values-en-rGB/arrays.xml |  1 +
+ packages/SettingsLib/res/values-en-rIN/arrays.xml |  1 +
+ packages/SettingsLib/res/values-en-rXC/arrays.xml |  1 +
+ packages/SettingsLib/res/values-ja/arrays.xml     |  1 +
+ packages/SettingsLib/res/values-ko/arrays.xml     |  1 +
+ packages/SettingsLib/res/values-zh-rCN/arrays.xml |  1 +
+ packages/SettingsLib/res/values-zh-rHK/arrays.xml |  1 +
+ packages/SettingsLib/res/values-zh-rTW/arrays.xml |  1 +
+ packages/SettingsLib/res/values/arrays.xml        | 14 ++++++++++++++
+ 11 files changed, 24 insertions(+)
+
+diff --git a/packages/SettingsLib/res/values-en-rAU/arrays.xml b/packages/SettingsLib/res/values-en-rAU/arrays.xml
+index eff593c..7641944 100644
+--- a/packages/SettingsLib/res/values-en-rAU/arrays.xml
++++ b/packages/SettingsLib/res/values-en-rAU/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"Enabled"</item>
+     <item>Enabled Headers Filtered</item>
+     <item>Enabled Media Pkts Filtered</item>
++    <item>Enabled Profiles Filtered</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5 (Default)"</item>
+diff --git a/packages/SettingsLib/res/values-en-rCA/arrays.xml b/packages/SettingsLib/res/values-en-rCA/arrays.xml
+index eff593c..7641944 100644
+--- a/packages/SettingsLib/res/values-en-rCA/arrays.xml
++++ b/packages/SettingsLib/res/values-en-rCA/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"Enabled"</item>
+     <item>Enabled Headers Filtered</item>
+     <item>Enabled Media Pkts Filtered</item>
++    <item>Enabled Profiles Filtered</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5 (Default)"</item>
+diff --git a/packages/SettingsLib/res/values-en-rGB/arrays.xml b/packages/SettingsLib/res/values-en-rGB/arrays.xml
+index eff593c..7641944 100644
+--- a/packages/SettingsLib/res/values-en-rGB/arrays.xml
++++ b/packages/SettingsLib/res/values-en-rGB/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"Enabled"</item>
+     <item>Enabled Headers Filtered</item>
+     <item>Enabled Media Pkts Filtered</item>
++    <item>Enabled Profiles Filtered</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5 (Default)"</item>
+diff --git a/packages/SettingsLib/res/values-en-rIN/arrays.xml b/packages/SettingsLib/res/values-en-rIN/arrays.xml
+index eff593c..7641944 100644
+--- a/packages/SettingsLib/res/values-en-rIN/arrays.xml
++++ b/packages/SettingsLib/res/values-en-rIN/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"Enabled"</item>
+     <item>Enabled Headers Filtered</item>
+     <item>Enabled Media Pkts Filtered</item>
++    <item>Enabled Profiles Filtered</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5 (Default)"</item>
+diff --git a/packages/SettingsLib/res/values-en-rXC/arrays.xml b/packages/SettingsLib/res/values-en-rXC/arrays.xml
+index 22c3f81..043ca49 100644
+--- a/packages/SettingsLib/res/values-en-rXC/arrays.xml
++++ b/packages/SettingsLib/res/values-en-rXC/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‏‎‎‎‏‎‏‏‏‏‏‎‏‎‎‏‏‎‏‎‎‏‎‎‎‏‎‏‏‎‏‏‎‏‏‎‏‏‏‏‎‏‏‎‏‏‎‏‎‏‏‏‏‎‏‎‏‏‏‏‏‎‏‎‏‏‏‎‎‏‎‎‎‎‎Enabled‎‏‎‎‏‎"</item>
+     <item>Enabled Headers Filtered</item>
+     <item>Enabled Media Pkts Filtered</item>
++    <item>Enabled Profiles Filtered</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‎‏‎‎‏‎‎‎‏‎‏‏‏‏‏‏‏‎‏‏‎‏‏‏‎‏‎‎‏‎‏‏‎‏‏‎‎‏‎‏‎‎‎‎‏‏‏‎‏‏‎‏‏‎‎‎‏‎‎‎‎‎‏‎‎‎‏‏‏‏‏‏‏‏‎‎‎‎‎‎AVRCP 1.5 (Default)‎‏‎‎‏‎"</item>
+diff --git a/packages/SettingsLib/res/values-ja/arrays.xml b/packages/SettingsLib/res/values-ja/arrays.xml
+index 0b9eec3..2c80296 100644
+--- a/packages/SettingsLib/res/values-ja/arrays.xml
++++ b/packages/SettingsLib/res/values-ja/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"有効"</item>
+     <item>"有効（ヘッダーのみ）"</item>
+     <item>"有効（メディアパケット除外）"</item>
++    <item>"有効 (プロファイルはフィルター処理されます)"</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5（デフォルト）"</item>
+diff --git a/packages/SettingsLib/res/values-ko/arrays.xml b/packages/SettingsLib/res/values-ko/arrays.xml
+index e3ecd3e..55632ff 100644
+--- a/packages/SettingsLib/res/values-ko/arrays.xml
++++ b/packages/SettingsLib/res/values-ko/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"사용 설정됨"</item>
+     <item>"헤더 필터링 사용 설정됨"</item>
+     <item>"미디어 패킷 필터링 사용 설정됨"</item>
++    <item>"활성화됨(프로필 필터링됨)"</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5(기본값)"</item>
+diff --git a/packages/SettingsLib/res/values-zh-rCN/arrays.xml b/packages/SettingsLib/res/values-zh-rCN/arrays.xml
+index a511de8..11471a2 100644
+--- a/packages/SettingsLib/res/values-zh-rCN/arrays.xml
++++ b/packages/SettingsLib/res/values-zh-rCN/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"已启用"</item>
+     <item>"已过滤已启用的标题"</item>
+     <item>"已过滤已启用的媒体包"</item>
++    <item>"已启用（已过滤配置文件）"</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5（默认）"</item>
+diff --git a/packages/SettingsLib/res/values-zh-rHK/arrays.xml b/packages/SettingsLib/res/values-zh-rHK/arrays.xml
+index b72dc27..0e79f9e 100644
+--- a/packages/SettingsLib/res/values-zh-rHK/arrays.xml
++++ b/packages/SettingsLib/res/values-zh-rHK/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"已啟用"</item>
+     <item>"已過濾已啟用的標題"</item>
+     <item>"已過濾已啟用的媒體包"</item>
++    <item>"已啟用（已過濾配置文件）"</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5 (預設)"</item>
+diff --git a/packages/SettingsLib/res/values-zh-rTW/arrays.xml b/packages/SettingsLib/res/values-zh-rTW/arrays.xml
+index 7b473e0..2f2a2a5 100644
+--- a/packages/SettingsLib/res/values-zh-rTW/arrays.xml
++++ b/packages/SettingsLib/res/values-zh-rTW/arrays.xml
+@@ -64,6 +64,7 @@
+     <item msgid="2779123106632690576">"已啟用"</item>
+     <item>"已過濾已啟用的標題"</item>
+     <item>"已過濾已啟用的媒體包"</item>
++    <item>"已啟用（已過濾配置文件）"</item>
+   </string-array>
+   <string-array name="bluetooth_avrcp_versions">
+     <item msgid="6603880723315236832">"AVRCP 1.5 (預設)"</item>
+diff --git a/packages/SettingsLib/res/values/arrays.xml b/packages/SettingsLib/res/values/arrays.xml
+index 692a3ef..4e3ff37 100644
+--- a/packages/SettingsLib/res/values/arrays.xml
++++ b/packages/SettingsLib/res/values/arrays.xml
+@@ -107,6 +107,9 @@
+         <item>Disabled</item>
+         <item>Enabled Filtered</item>
+         <item>Enabled</item>
++        <item>Enabled Headers Filtered</item>
++        <item>Enabled Media Pkts Filtered</item>
++        <item>Enabled Profiles Filtered</item>
+     </string-array>
+ 
+     <!-- Values for Bluetooth HCI Snoop Logging -->
+@@ -114,8 +117,19 @@
+         <item>disabled</item>
+         <item>filtered</item>
+         <item>full</item>
++        <item>snoopheadersfiltered</item>
++        <item>mediapktsfiltered</item>
++        <item>profilesfiltered</item>
+     </string-array>
+ 
++    <!-- Values for Bluetooth HCI Snoop Logging Enhanced-->
++    <string-array name="bt_hci_snoop_log_values_enhanced" translatable="false">
++        <item>snoopheadersfiltered</item>
++        <item>mediapktsfiltered</item>
++        <item>profilesfiltered</item>
++    </string-array>
++
++
+     <!-- Titles for Bluetooth AVRCP Versions -->
+     <string-array name="bluetooth_avrcp_versions">
+         <item>AVRCP 1.5 (Default)</item>
+-- 
+2.7.4
+
