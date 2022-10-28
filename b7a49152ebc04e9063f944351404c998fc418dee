@@ -46,6 +46,30 @@
       },
       "revId": "b7a49152ebc04e9063f944351404c998fc418dee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b0898d1_e10cf965",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-28T08:48:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6494106_d7571acd",
+      "range": {
+        "startLine": 209,
+        "startChar": 2,
+        "endLine": 209,
+        "endChar": 21
+      },
+      "revId": "b7a49152ebc04e9063f944351404c998fc418dee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
