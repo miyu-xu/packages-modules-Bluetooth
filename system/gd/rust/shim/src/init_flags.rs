@@ -14,6 +14,7 @@ mod ffi {
         fn gd_remote_name_request_is_enabled() -> bool;
         fn gd_rust_is_enabled() -> bool;
         fn gd_security_is_enabled() -> bool;
+        fn gd_hal_snoop_logger_socket_is_enabled() -> bool;
         fn get_hci_adapter() -> i32;
         fn irk_rotation_is_enabled() -> bool;
         fn is_debug_logging_enabled_for_tag(tag: &str) -> bool;
