@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379c4b1a_32c7abe7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-28T07:14:24Z",
+      "side": 1,
+      "message": "final?",
+      "revId": "972fa2711154e8ed17b9b9bd38e1672ae3466c72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
