@@ -23,6 +23,7 @@
 
 #include "common/circular_buffer.h"
 #include "hal/hci_hal.h"
+#include "hal/snoop_logger_socket.h"
 #include "module.h"
 #include "os/repeating_alarm.h"
 
@@ -58,13 +59,6 @@ class SnoopLogger : public ::bluetooth::Module {
     uint8_t type;
   } __attribute__((__packed__));
 
-  // Put in header for test
-  struct FileHeaderType {
-    uint8_t identification_pattern[8];
-    uint32_t version_number;
-    uint32_t datalink_type;
-  } __attribute__((__packed__));
-
   // Returns the maximum number of packets per file
   // Changes to this value is only effective after restarting Bluetooth
   static size_t GetMaxPacketsPerFile();
@@ -94,6 +88,8 @@ class SnoopLogger : public ::bluetooth::Module {
   };
 
   void Capture(const HciPacket& packet, Direction direction, PacketType type);
+
+  void RegisterSocket(SnoopLoggerSocketInterface* socket);
 
  protected:
   void ListDependencies(ModuleList* list) const override;
@@ -132,6 +128,8 @@ class SnoopLogger : public ::bluetooth::Module {
   std::unique_ptr<os::RepeatingAlarm> alarm_;
   std::chrono::milliseconds snooz_log_life_time_;
   std::chrono::milliseconds snooz_log_delete_alarm_interval_;
+  std::unique_ptr<SnoopLoggerSocket> snoop_logger_socket_;
+  SnoopLoggerSocketInterface* socket_;
 };
 
 }  // namespace hal
