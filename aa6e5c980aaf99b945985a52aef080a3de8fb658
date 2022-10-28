@@ -16,6 +16,24 @@
       "message": "@mylesgw@google.com\n\nHere I want to define a clear interface  between \nILoggable and the logger, and thus want to define\na unified logging interface.\n\nRegarding logging, I think there a few different types of logging statements:\n1. ALOGI (android log API)\n2. BT_TRACE_XXX (defined in libchrome)\n3. LOG_INFO etc, also from libchrome?\n4. LOG(WARNING) \u003c\u003c something.\n\nIt seems that LOG_INFO style is the most widely used. \nSo which is the direction to go in the future?",
       "revId": "aa6e5c980aaf99b945985a52aef080a3de8fb658",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b2a1130_f95c85c8",
+        "filename": "system/gd/os/logging/log_adapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-28T22:23:49Z",
+      "side": 1,
+      "message": "I agree that logging should be cleaned up.  Maybe a one-pager for this would be a good place for discussion :)",
+      "parentUuid": "d1df4aa6_82ece4d0",
+      "revId": "aa6e5c980aaf99b945985a52aef080a3de8fb658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
