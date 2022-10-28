@@ -33,5 +33,7 @@ flatbuffers::Offset<bluetooth::common::InitFlagsData> bluetooth::dumpsys::InitFl
   builder.add_btaa_hci_log_enabled(bluetooth::common::init_flags::btaa_hci_is_enabled());
   builder.add_btm_dm_flush_discovery_queue_on_search_cancel_enabled(
       bluetooth::common::init_flags::btm_dm_flush_discovery_queue_on_search_cancel_is_enabled());
+  builder.add_gd_hal_snoop_logger_socket_enabled(
+      bluetooth::common::init_flags::gd_hal_snoop_logger_socket_is_enabled());
   return builder.Finish();
 }
