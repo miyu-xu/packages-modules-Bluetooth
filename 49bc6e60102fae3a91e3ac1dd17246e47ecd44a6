@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b066dfee_90ac30a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-10-28T10:07:16Z",
+      "side": 1,
+      "message": "If we cannot set the dynamic property to enable broadcast during tests, and `SystemProperties.set(...)` calls from the tests seems to be rejected by SELinux policy, this might be the way to go for the time being.",
+      "revId": "49bc6e60102fae3a91e3ac1dd17246e47ecd44a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
