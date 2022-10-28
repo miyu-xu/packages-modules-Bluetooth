@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Looper;
 
+import android.util.Log;
 import android.os.ParcelUuid;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
@@ -54,6 +55,7 @@ import java.util.List;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class LeAudioBroadcastServiceTest {
+    private static final String TAG = "LeAudioBroadcastServiceTest";
     private static final int TIMEOUT_MS = 1000;
     @Rule
     public final ServiceTestRule mServiceRule = new ServiceTestRule();
@@ -189,6 +191,13 @@ public class LeAudioBroadcastServiceTest {
         when(mNativeInterface.getDevice(any(byte[].class))).thenReturn(mDevice);
 
         mIntentQueue = new LinkedBlockingQueue<Intent>();
+
+        if ((mAdapterService.getSupportedProfilesBitMask()
+            & (1 << BluetoothProfile.LE_AUDIO_BROADCAST)) != 0) {
+            Assert.assertNotNull(mService.mBroadcastCallbacks );
+        } else {
+            Assert.assertNull(mService.mBroadcastCallbacks );
+        }
     }
 
     @After
@@ -298,6 +307,10 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testCreateBroadcastNative() {
+        if (mService.mBroadcastCallbacks == null) {
+            Log.w(TAG, "testCreateBroadcastNative - broadcast not supported on this target");
+            return;
+        }
         int broadcastId = 243;
         byte[] code = {0x00, 0x01, 0x00, 0x02};
 
@@ -313,6 +326,10 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testCreateBroadcastNativeFailed() {
+        if (mService.mBroadcastCallbacks == null) {
+            Log.w(TAG, "testCreateBroadcastNativeFailed - broadcast not supported on this target");
+            return;
+        }
         int broadcastId = 243;
         byte[] code = {0x00, 0x01, 0x00, 0x02};
 
@@ -339,6 +356,10 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testStartStopBroadcastNative() {
+        if (mService.mBroadcastCallbacks == null) {
+            Log.w(TAG, "testStartStopBroadcastNative - broadcast not supported on this target");
+            return;
+        }
         int broadcastId = 243;
         byte[] code = {0x00, 0x01, 0x00, 0x02};
 
@@ -355,6 +376,10 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testBroadcastInvalidBroadcastIdRequest() {
+        if (mService.mBroadcastCallbacks == null) {
+            Log.w(TAG, "testBroadcastInvalidBroadcastIdRequest - broadcast not supported on this target");
+            return;
+        }
         int broadcastId = 243;
 
         mService.mBroadcastCallbacks.register(mCallbacks);
