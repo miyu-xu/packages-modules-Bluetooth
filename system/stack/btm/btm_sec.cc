@@ -26,6 +26,7 @@
 
 #include "stack/btm/btm_sec.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/strings/stringprintf.h>
 
@@ -2440,11 +2441,10 @@ void btm_io_capabilities_req(RawAddress p) {
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(p);
 
-  if ((btm_sec_cb.security_mode == BTM_SEC_MODE_SC) &&
-      (!p_dev_rec->remote_feature_received)) {
-    LOG_VERBOSE(
-        "Device security mode is SC only."
-        "To continue need to know remote features.");
+  if ((IS_FLAG_ENABLED(le_audio_dev_type_detection_fix) ||
+       (btm_sec_cb.security_mode == BTM_SEC_MODE_SC)) &&
+      !p_dev_rec->remote_feature_received) {
+    LOG_INFO("To continue need to know remote features.");
 
     // ACL calls back to btm_sec_set_peer_sec_caps after it gets data
     p_dev_rec->remote_features_needed = true;
@@ -4988,7 +4988,7 @@ void btm_sec_set_peer_sec_caps(uint16_t hci_handle, bool ssp_supported,
   }
 
   if (p_dev_rec->remote_features_needed) {
-    LOG_DEBUG("Now device in SC Only mode, waiting for peer remote features!");
+    LOG_INFO("peer remote features received, continue btm_io_capabilities_req");
     btm_io_capabilities_req(p_dev_rec->bd_addr);
     p_dev_rec->remote_features_needed = false;
   }
