@@ -742,6 +742,8 @@ void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...);
 #include <sstream>
 #include <type_traits>
 
+#include "os/logging/log_adapter.h"
+
 #include "check.h"
 
 /* Prints integral parameter x as hex string, with '0' fill */
