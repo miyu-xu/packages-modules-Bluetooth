@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdb15751_3956de10",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-28T07:36:07Z",
+      "side": 1,
+      "message": "without this patch, this callback is never called ?\nOr is it called with some delay, as part of events triggered by GroupStop ?",
+      "range": {
+        "startLine": 977,
+        "startChar": 6,
+        "endLine": 977,
+        "endChar": 73
+      },
+      "revId": "f93640b7fd1738c11f1d961edcf0f2bd959468c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
