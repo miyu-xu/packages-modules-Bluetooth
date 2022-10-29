@@ -1,0 +1,199 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From 7e9d329956a5f9cfec50c31fa716db7dbd756a35 Mon Sep 17 00:00:00 2001
+From: "P.N.Janani" <quic_janani@quicinc.com>
+Date: Mon, 23 May 2022 10:58:15 +0530
+Subject: [PATCH] L2CAP_CREDIT_BASED_CONNECTION_RSP pending flags
+
+errata id: 14605
+
+Introduced flags to check any connection pending status
+for encryption and authorization.
+The status will be reflected when a new peer connection
+has arrived and if the current request is in the security
+check.
+
+CRs-Fixed: 3204192
+Change-Id: Ib6bcded898b9e2c7cd8c175cc3a8f0fa622352bd
+---
+ stack/include/l2cdefs.h  |  5 ++++-
+ stack/l2cap/l2c_csm.cc   | 25 ++++++++++++++++++++-----
+ stack/l2cap/l2c_int.h    |  8 ++++++++
+ stack/l2cap/l2c_utils.cc | 20 ++++++++++++++++++++
+ 4 files changed, 52 insertions(+), 6 deletions(-)
+
+diff --git a/stack/include/l2cdefs.h b/stack/include/l2cdefs.h
+index a1b8439eee..4525996e61 100644
+--- a/stack/include/l2cdefs.h
++++ b/stack/include/l2cdefs.h
+@@ -169,7 +169,10 @@ typedef uint8_t tL2CAP_LE_RESULT_CODE;
+ #define L2CAP_ECFC_SOME_CONNS_REFUSED_SOURCE_CID_ALREADY_ALLOCATED 0xA
+ #define L2CAP_ECFC_ALL_CONNS_REFUSED_UNACCEPTABLE_PARAMS 0xB
+ #define L2CAP_ECFC_ALL_CONNS_REFUSED_INVALID_PARAMS 0xC
+-
++//errata id = 14605
++#define L2CAP_ECFC_ALL_CONNS_PENDING_NO_FURTHER_INFORMATION_AVAILABLE 0xD
++#define L2CAP_ECFC_ALL_CONNS_PENDING_AUTHENTICATION_PENDING 0xE
++#define L2CAP_ECFC_ALL_CONNS_PENDING_AUTHORIZATION_PENDING 0xF
+ /* Define L2CAP Move Channel Response result codes
+ */
+ #define L2CAP_MOVE_OK 0
+diff --git a/stack/l2cap/l2c_csm.cc b/stack/l2cap/l2c_csm.cc
+index 2b42f469db..2e70f20e71 100644
+--- a/stack/l2cap/l2c_csm.cc
++++ b/stack/l2cap/l2c_csm.cc
+@@ -451,17 +451,20 @@ static void l2c_csm_closed(tL2C_CCB* p_ccb, uint16_t event, void* p_data) {
+       if (p_ccb->p_lcb->transport == BT_TRANSPORT_LE) {
+         l2cu_set_coc_chnl_state(p_ccb, CST_TERM_W4_SEC_COMP);
+         uint16_t result;
+-
++        /* errata id = 14605 */
++        p_ccb->coc_cmd_info.connection_pending = CONNECTION_PENDING ;
+         result = l2ble_sec_access_req(p_ccb->p_lcb->remote_bd_addr,
+             p_ccb->p_rcb->psm, false, &l2c_link_sec_comp2, p_ccb);
+-
+         switch (result) {
+           case L2CAP_ECFC_ALL_CONNS_REFUSED_INSUFF_AUTHENTICATION:
+           case L2CAP_ECFC_ALL_CONNS_REFUSED_INSUFF_AUTHERIZATION:
+           case L2CAP_ECFC_ALL_CONNS_REFUSED_INSUFF_ENCRYPTION_KEY_SIZE:
+           case L2CAP_ECFC_ALL_CONNS_REFUSED_INSUFF_ENCRYPTION:
+-            l2cu_reject_coc_connection(p_ccb->p_lcb, p_ccb->remote_id,
+-              result, p_ccb->coc_cmd_info.num_coc_chnls);
++            /* errata id = 14605 */
++            p_ccb->coc_cmd_info.connection_pending =
++              CONNECTION_PENDING_RESET;
++            l2cu_reject_coc_connection(p_ccb->p_lcb, p_ccb->remote_id,result,
++            p_ccb->coc_cmd_info.num_coc_chnls);
+             l2cu_release_coc_ccbs(p_ccb);
+             break;
+         }
+@@ -831,8 +834,13 @@ static void l2c_csm_term_w4_sec_comp(tL2C_CCB* p_ccb, uint16_t event,
+                   p_ccb->remote_id,
+                   p_ccb->coc_cmd_info.ecfc_conn_result,
+                   L2CAP_CONN_OK);
++            /* errata id = 14605 */
++            p_ccb->coc_cmd_info.authorization_pending =
++              L2CAP_AUTHORIZATION_PENDING ;
+           }
+         }
++        p_ccb->coc_cmd_info.connection_pending =
++          CONNECTION_PENDING_RESET;
+       }
+       break;
+ 
+@@ -854,6 +862,8 @@ static void l2c_csm_term_w4_sec_comp(tL2C_CCB* p_ccb, uint16_t event,
+           l2cu_release_ccb(p_ccb);
+       }
+     } else {
++      /* errata id = 14605 */
++      p_ccb->coc_cmd_info.connection_pending =  CONNECTION_PENDING_RESET;
+       l2cu_reject_coc_connection(p_ccb->p_lcb, p_ccb->remote_id,
+                               L2CAP_ECFC_ALL_CONNS_REFUSED_INSUFF_AUTHENTICATION,
+                               p_ccb->coc_cmd_info.num_coc_chnls);
+@@ -1320,7 +1330,6 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, uint16_t event,
+                            l2c_ccb_timer_timeout, p_ccb);
+         L2CAP_TRACE_API("L2CAP - Calling Connect_Ind_Cb(), CID: 0x%04x",
+                         p_ccb->local_cid);
+-
+         if (p_ccb->p_rcb && p_ccb->p_rcb->api.pL2CA_ConnectInd_Cb) {
+           (*p_ccb->p_rcb->api.pL2CA_ConnectInd_Cb)(
+             p_ccb->p_lcb->remote_bd_addr, p_ccb->local_cid, p_ccb->p_rcb->psm,
+@@ -1331,6 +1340,9 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, uint16_t event,
+     case L2CEVT_L2CA_COC_CONNECT_RSP:
+       alarm_cancel(p_ccb->coc_cmd_info.ecfc_conn_alarm);
+       alarm_free(p_ccb->coc_cmd_info.ecfc_conn_alarm);
++      /* errata id = 14605 */
++      p_ccb->coc_cmd_info.authorization_pending =
++        L2CAP_AUTHORIZATION_PENDING_RESET;
+       /* Result should be OK */
+       if (p_ccb->p_lcb->transport == BT_TRANSPORT_LE) {
+         if(!l2cu_set_data_length_ext(p_ccb)) {
+@@ -1342,6 +1354,9 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, uint16_t event,
+       l2cu_set_coc_chnl_state(p_ccb, CST_OPEN);
+       break;
+     case L2CEVT_L2CA_COC_CONNECT_NEG_RSP:
++      /* errata id = 14605 */
++      p_ccb->coc_cmd_info.authorization_pending =
++        L2CAP_AUTHORIZATION_PENDING_RESET;
+       /* Result should be Reject */
+       l2cu_reject_coc_connection(p_ccb->p_lcb, p_ccb->remote_id,
+         p_ccb->coc_cmd_info.ecfc_conn_result,
+diff --git a/stack/l2cap/l2c_int.h b/stack/l2cap/l2c_int.h
+index fbfaa6efa4..5517f5889d 100644
+--- a/stack/l2cap/l2c_int.h
++++ b/stack/l2cap/l2c_int.h
+@@ -249,6 +249,11 @@ typedef enum {
+ #define L2CAP_MIN_MONITOR_TOUT 12000
+ 
+ #define L2CAP_MAX_FCR_CFG_TRIES 2 /* Config attempts before disconnecting */
++//errata id = 14605
++#define CONNECTION_PENDING 1
++#define CONNECTION_PENDING_RESET 0
++#define L2CAP_AUTHORIZATION_PENDING 1
++#define L2CAP_AUTHORIZATION_PENDING_RESET 0
+ 
+ typedef uint8_t tL2C_BLE_FIXED_CHNLS_MASK;
+ 
+@@ -370,6 +375,9 @@ typedef struct {
+   uint16_t peer_rsp_cids[L2C_MAX_ECFC_CHNLS_PER_CONN];
+   uint64_t disc_pending;
+   alarm_t* ecfc_conn_alarm;
++  //errata id = 14605
++  uint64_t connection_pending;
++  uint64_t authorization_pending;
+ } tL2C_coc_cmd_info;
+ 
+ /* This structure contains information needed to handle ECFC reconfig Request */
+diff --git a/stack/l2cap/l2c_utils.cc b/stack/l2cap/l2c_utils.cc
+index 83ff61fd5a..e3ba63a469 100644
+--- a/stack/l2cap/l2c_utils.cc
++++ b/stack/l2cap/l2c_utils.cc
+@@ -4588,6 +4588,26 @@ void l2cu_process_peer_conn_request(tL2C_LCB* p_lcb,
+     }
+   }
+ 
++  //errata id = 14605
++  for (int i = 0; i < num_chnls; i++) {
++    p_ccb = l2cu_find_ccb_by_remote_cid(p_lcb, dest_cid[i]);
++    if (p_ccb) {
++      if (p_ccb->remote_id == id) {
++        L2CAP_TRACE_WARNING("L2CAP - rcvd conn req with ID: 0x%d", id);
++        if (p_ccb->coc_cmd_info.connection_pending == CONNECTION_PENDING) {
++          p_ccb->coc_cmd_info.ecfc_conn_result =
++            L2CAP_ECFC_ALL_CONNS_PENDING_AUTHENTICATION_PENDING ;
++        } else if (p_ccb->coc_cmd_info.authorization_pending ==
++            L2CAP_AUTHORIZATION_PENDING) {
++          p_ccb->coc_cmd_info.ecfc_conn_result =
++            L2CAP_ECFC_ALL_CONNS_PENDING_AUTHORIZATION_PENDING ;
++        }
++        l2cu_send_peer_credit_based_conn_res(p_ccb,
++          p_ccb->coc_cmd_info.ecfc_conn_result);
++        return;
++      }
++    }
++  }
+   for (int i = 0; i < num_chnls; i++) {
+     p_ccb = l2cu_find_ccb_by_remote_cid(p_lcb, dest_cid[i]);
+     if (p_ccb) {
+-- 
+2.25.1
+
