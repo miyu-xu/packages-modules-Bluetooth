@@ -94,6 +94,30 @@
       },
       "revId": "9434b17fe678ac9bde3995694588ae222cdf67f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f42068d4_f5b988e8",
+        "filename": "system/gd/rust/stack/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-29T05:43:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d02afd8a_6d63b856",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "9434b17fe678ac9bde3995694588ae222cdf67f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
