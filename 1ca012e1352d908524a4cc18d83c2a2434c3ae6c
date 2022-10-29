@@ -33,6 +33,24 @@
       "message": "this no longer needs to be mut",
       "revId": "1ca012e1352d908524a4cc18d83c2a2434c3ae6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a0b2711_b1a86a72",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1782,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2022-10-29T07:43:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6049deb_e233bc09",
+      "revId": "1ca012e1352d908524a4cc18d83c2a2434c3ae6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
