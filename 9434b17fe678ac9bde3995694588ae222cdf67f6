@@ -22,6 +22,30 @@
       },
       "revId": "9434b17fe678ac9bde3995694588ae222cdf67f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a752b77c_375751fc",
+        "filename": "system/gd/rust/stack/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-10-29T00:07:22Z",
+      "side": 1,
+      "message": "Yes. Because we are need to include `os/logging/log_adapter.h` for each source that includes `bt_trace.h` or `os/log.h`\n\nso I added `\"packages/modules/Bluetooth/system/gd\"` to include_dirs in `fluoride_common_options` to make it effective in all sources. \n\nOtherwise the change would be huge.",
+      "parentUuid": "11f4c3fc_f7326749",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "9434b17fe678ac9bde3995694588ae222cdf67f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
