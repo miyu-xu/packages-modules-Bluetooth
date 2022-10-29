@@ -46,6 +46,30 @@
       },
       "revId": "9434b17fe678ac9bde3995694588ae222cdf67f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "578f0955_a4d219b2",
+        "filename": "system/gd/rust/stack/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-29T00:25:27Z",
+      "side": 1,
+      "message": "I see.\nBut there is no RawAddress in `src/hal/ffi/hidl.cc` and we are not calling anything from `log_adapter.h`",
+      "parentUuid": "a752b77c_375751fc",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "9434b17fe678ac9bde3995694588ae222cdf67f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
