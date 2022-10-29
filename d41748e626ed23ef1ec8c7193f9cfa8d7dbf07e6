@@ -51,6 +51,24 @@
       "parentUuid": "1aacbc84_c7b73ddf",
       "revId": "d41748e626ed23ef1ec8c7193f9cfa8d7dbf07e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3924ed44_62404bf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-10-29T00:25:28Z",
+      "side": 1,
+      "message": "AVCTP/TG/NFR/BV-02-C is still failing on my side. Can you try disable retries in `packages/modules/Bluetooth/android/pandora/server/configs/PtsBotTest.xml` by setting:\n\n```\n\u003coption name\u003d\"max-flaky-tests\" value\u003d\"0\" /\u003e\n\u003coption name\u003d\"max-retries-per-test\" value\u003d\"0\" /\u003e\n```\n\nThen, rerun PTS-bot AVCTP tests.\n\n(Do not commit that change)",
+      "parentUuid": "b26d980e_8e553a54",
+      "revId": "d41748e626ed23ef1ec8c7193f9cfa8d7dbf07e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
