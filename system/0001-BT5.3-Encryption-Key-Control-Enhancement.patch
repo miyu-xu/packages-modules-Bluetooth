@@ -1,0 +1,217 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From c1eed243784f2d87dd3659d8304bd29afee6833f Mon Sep 17 00:00:00 2001
+From: Sunny Kapdi <quic_sunnyk@quicinc.com>
+Date: Fri, 15 Oct 2021 22:44:37 -0700
+Subject: [PATCH] BT5.3: Encryption Key Control Enhancement
+
+Change-Id: Ifdcc816c1e4309113fe9f6b17511ffe28b128695
+---
+ device/include/controller.h      |  1 +
+ device/src/controller.cc         | 15 +++++++++++++++
+ hci/include/hci_packet_factory.h |  1 +
+ hci/include/hci_packet_parser.h  |  2 ++
+ hci/src/hci_packet_factory.cc    | 11 +++++++++++
+ hci/src/hci_packet_parser.cc     |  7 +++++++
+ stack/btu/btu_hcif.cc            |  7 +++++++
+ stack/include/hcidefs.h          |  2 ++
+ 8 files changed, 46 insertions(+)
+
+diff --git a/device/include/controller.h b/device/include/controller.h
+index 8920be0244..4410a6f1a7 100644
+--- a/device/include/controller.h
++++ b/device/include/controller.h
+@@ -53,6 +53,7 @@ typedef struct controller_t {
+   bool (*supports_master_slave_role_switch)(void);
+   bool (*supports_enhanced_setup_synchronous_connection)(void);
+   bool (*supports_enhanced_accept_synchronous_connection)(void);
++  bool (*supports_set_min_encryption_key_size)(void);
+ 
+   bool (*supports_ble)(void);
+   bool (*supports_ble_packet_extension)(void);
+diff --git a/device/src/controller.cc b/device/src/controller.cc
+index 78d02f7fc6..a23f618fb9 100644
+--- a/device/src/controller.cc
++++ b/device/src/controller.cc
+@@ -60,6 +60,7 @@ const uint8_t SCO_HOST_BUFFER_SIZE = 0xff;
+ #define MAX_SUPPORTED_SCRAMBLING_FREQ_SIZE 8
+ #define MAX_SCRAMBLING_FREQS_SIZE 64
+ #define ISO_CHANNEL_HOST_SUPPORT_BIT 32
++#define MIN_ENCRYPTION_KEY_SIZE 7
+ #define UNUSED(x) (void)(x)
+ 
+ #define QHS_TRANSPORT_LE_ISO 2
+@@ -446,6 +447,14 @@ static future_t* start_up(void) {
+   }
+ #endif
+ 
++  // Set the min encryption key size
++  if (HCI_SET_MIN_ENCRYPTION_KEY_SIZE_SUPPORTED(supported_commands)) {
++    response = AWAIT_COMMAND(packet_factory->make_set_min_encryption_key_size(
++        MIN_ENCRYPTION_KEY_SIZE));
++    packet_parser->parse_set_min_encryption_key_size_response(
++        response);
++  }
++
+   ble_supported = last_features_classic_page_index >= 1 &&
+                   HCI_LE_HOST_SUPPORTED(features_classic[1].as_array);
+   if (ble_supported) {
+@@ -849,6 +858,11 @@ static bool supports_enhanced_accept_synchronous_connection(void) {
+   return HCI_ENH_ACCEPT_SYNCH_CONN_SUPPORTED(supported_commands);
+ }
+ 
++static bool supports_set_min_encryption_key_size(void) {
++  assert(readable);
++  return HCI_SET_MIN_ENCRYPTION_KEY_SIZE_SUPPORTED(supported_commands);
++}
++
+ static bool supports_ble(void) {
+   CHECK(readable);
+   return ble_supported;
+@@ -1169,6 +1183,7 @@ static const controller_t interface = {
+     supports_master_slave_role_switch,
+     supports_enhanced_setup_synchronous_connection,
+     supports_enhanced_accept_synchronous_connection,
++    supports_set_min_encryption_key_size,
+ 
+     supports_ble,
+     supports_ble_packet_extension,
+diff --git a/hci/include/hci_packet_factory.h b/hci/include/hci_packet_factory.h
+index ed2873053a..018ce94e60 100644
+--- a/hci/include/hci_packet_factory.h
++++ b/hci/include/hci_packet_factory.h
+@@ -56,6 +56,7 @@ typedef struct {
+   BT_HDR* (*make_qbce_set_qll_event_mask)(const bt_event_mask_t* event_mask);
+   BT_HDR* (*make_qbce_set_qlm_event_mask)(const bt_event_mask_t* event_mask);
+   BT_HDR* (*make_ble_write_rf_path_compensation)(uint16_t tx_value, uint16_t rx_value);
++  BT_HDR* (*make_set_min_encryption_key_size)(uint8_t size);
+ } hci_packet_factory_t;
+ 
+ const hci_packet_factory_t* hci_packet_factory_get_interface();
+diff --git a/hci/include/hci_packet_parser.h b/hci/include/hci_packet_parser.h
+index e930978e23..4e39ac1b57 100644
+--- a/hci/include/hci_packet_parser.h
++++ b/hci/include/hci_packet_parser.h
+@@ -103,6 +103,8 @@ typedef struct {
+ 
+   void (*parse_ble_set_host_feature_cmd)(BT_HDR* response);
+ 
++  void (*parse_set_min_encryption_key_size_response)(BT_HDR* response);
++
+ } hci_packet_parser_t;
+ 
+ const hci_packet_parser_t* hci_packet_parser_get_interface();
+diff --git a/hci/src/hci_packet_factory.cc b/hci/src/hci_packet_factory.cc
+index 2e950dbf2d..0c5432aaf7 100644
+--- a/hci/src/hci_packet_factory.cc
++++ b/hci/src/hci_packet_factory.cc
+@@ -253,6 +253,16 @@ static BT_HDR* make_qbce_set_qlm_event_mask(const bt_event_mask_t* event_mask) {
+   return packet;
+ }
+ 
++static BT_HDR* make_set_min_encryption_key_size(uint8_t size) {
++  uint8_t* stream;
++  const uint8_t parameter_size = 1;
++  BT_HDR* packet =
++      make_command(HCI_SET_MIN_ENCRYPTION_KEY_SIZE, parameter_size, &stream);
++
++  UINT8_TO_STREAM(stream, size);
++  return packet;
++}
++
+ // Internal functions
+ 
+ static BT_HDR* make_command_no_params(uint16_t opcode) {
+@@ -315,6 +325,7 @@ static const hci_packet_factory_t interface = {
+     make_qbce_set_qll_event_mask,
+     make_qbce_set_qlm_event_mask,
+     make_ble_write_rf_path_compensation,
++    make_set_min_encryption_key_size,
+ };
+ 
+ const hci_packet_factory_t* hci_packet_factory_get_interface() {
+diff --git a/hci/src/hci_packet_parser.cc b/hci/src/hci_packet_parser.cc
+index 579c8ef3c5..f93a7eddd9 100644
+--- a/hci/src/hci_packet_parser.cc
++++ b/hci/src/hci_packet_parser.cc
+@@ -327,6 +327,12 @@ static void parse_ble_read_number_of_supported_advertising_sets(
+   buffer_allocator->free(response);
+ }
+ 
++static void parse_set_min_encryption_key_size_response(BT_HDR* response) {
++  assert(read_command_complete_header(
++      response, HCI_SET_MIN_ENCRYPTION_KEY_SIZE, 0) != NULL);
++}
++
++
+ // Internal functions
+ 
+ static uint8_t* read_command_complete_header(BT_HDR* response,
+@@ -390,6 +396,7 @@ static const hci_packet_parser_t interface = {
+     parse_read_add_on_features_supported_response,
+     parse_read_local_simple_paring_options_response,
+     parse_ble_set_host_feature_cmd,
++    parse_set_min_encryption_key_size_response,
+ };
+ 
+ const hci_packet_parser_t* hci_packet_parser_get_interface() {
+diff --git a/stack/btu/btu_hcif.cc b/stack/btu/btu_hcif.cc
+index 0ad871b2a9..8001c16baf 100644
+--- a/stack/btu/btu_hcif.cc
++++ b/stack/btu/btu_hcif.cc
+@@ -884,6 +884,13 @@ static void btu_hcif_encryption_change_evt(uint8_t* p) {
+     btsnd_hcic_read_encryption_key_size(
+         handle,
+         base::Bind(&read_encryption_key_size_complete_after_encryption_change));
++#if 0
++    // Skip encryption key size check when using set_min_encryption_key_size
++    if (!controller_get_interface()->supports_set_min_encryption_key_size()) {
++      btsnd_hcic_read_encryption_key_size(handle, base::Bind(
++          &read_encryption_key_size_complete_after_encryption_change));
++    }
++#endif
+   }
+ }
+ 
+diff --git a/stack/include/hcidefs.h b/stack/include/hcidefs.h
+index 4528d6e826..3e13e1bbb4 100644
+--- a/stack/include/hcidefs.h
++++ b/stack/include/hcidefs.h
+@@ -257,6 +257,7 @@
+   (0x007A | HCI_GRP_HOST_CONT_BASEBAND_CMDS)
+ #define HCI_SET_ECOSYSTEM_BASE_INTERVAL (0x0082 | HCI_GRP_HOST_CONT_BASEBAND_CMDS)
+ #define HCI_CONFIGURE_DATA_PATH (0x0083 | HCI_GRP_HOST_CONT_BASEBAND_CMDS)
++#define HCI_SET_MIN_ENCRYPTION_KEY_SIZE (0x0084 | HCI_GRP_HOST_CONT_BASEBAND_CMDS)
+ 
+ #define HCI_CONT_BASEBAND_CMDS_FIRST HCI_SET_EVENT_MASK
+ #define HCI_CONT_BASEBAND_CMDS_LAST HCI_CONFIGURE_DATA_PATH
+@@ -1818,6 +1819,7 @@ typedef struct {
+ #define HCI_LE_READ_BUFFER_SIZE_V2_SUPPORTED(x) ((x)[41] & 0x20)
+ 
+ #define HCI_READ_LOCAL_CODECS_SUPPORTED_V2(x) ((x)[45] & 0x04)
++#define HCI_SET_MIN_ENCRYPTION_KEY_SIZE_SUPPORTED(x) ((x)[45] & 0x80)
+ 
+ // Set Host Support for Isochronous channels bits in features_ble
+ #define HCI_LE_SET_CIS_HOST_SUPPORT(x)   \
+-- 
+2.25.1
+
