@@ -1,0 +1,76 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From 8a51e278f0a4318411cbef7af80937905b6a39ec Mon Sep 17 00:00:00 2001
+From: Sunny Kapdi <quic_sunnyk@quicinc.com>
+Date: Fri, 11 Mar 2022 18:45:22 -0800
+Subject: [PATCH] BT5.3 Enable min encryption key size
+
+Change-Id: Ie6549ae788b877b8fd9d9ceccbb31f14e1ace35a
+---
+ stack/btu/btu_hcif.cc | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
+
+diff --git a/stack/btu/btu_hcif.cc b/stack/btu/btu_hcif.cc
+index 8001c16baf..02dcbe11f6 100644
+--- a/stack/btu/btu_hcif.cc
++++ b/stack/btu/btu_hcif.cc
+@@ -881,16 +881,14 @@ static void btu_hcif_encryption_change_evt(uint8_t* p) {
+     btm_acl_encrypt_change(handle, status, encr_enable);
+     btm_sec_encrypt_change(handle, status, encr_enable);
+   } else {
+-    btsnd_hcic_read_encryption_key_size(
+-        handle,
+-        base::Bind(&read_encryption_key_size_complete_after_encryption_change));
+-#if 0
+     // Skip encryption key size check when using set_min_encryption_key_size
+     if (!controller_get_interface()->supports_set_min_encryption_key_size()) {
+       btsnd_hcic_read_encryption_key_size(handle, base::Bind(
+           &read_encryption_key_size_complete_after_encryption_change));
++    } else {
++      btm_acl_encrypt_change(handle, status, encr_enable);
++      btm_sec_encrypt_change(handle, status, encr_enable);
+     }
+-#endif
+   }
+ }
+ 
+@@ -1932,9 +1930,14 @@ static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p) {
+   if (status != HCI_SUCCESS || BTM_IsBleConnection(handle)) {
+     btm_sec_encrypt_change(handle, status, (status == HCI_SUCCESS) ? 1 : 0);
+   } else {
+-    btsnd_hcic_read_encryption_key_size(
+-        handle,
+-        base::Bind(&read_encryption_key_size_complete_after_key_refresh));
++    // Skip encryption key size check when using set_min_encryption_key_size
++    if (!controller_get_interface()->supports_set_min_encryption_key_size()) {
++      btsnd_hcic_read_encryption_key_size(
++          handle,
++          base::Bind(&read_encryption_key_size_complete_after_key_refresh));
++    } else {
++      btm_sec_encrypt_change(handle, status, (status == HCI_SUCCESS) ? 1 : 0);
++    }
+   }
+ }
+ 
+-- 
+2.25.1
+
