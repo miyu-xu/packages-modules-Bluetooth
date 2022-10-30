@@ -249,12 +249,12 @@ public class ScanManager {
     }
 
     void registerScanner(UUID uuid) {
-        mScanNative.registerScannerNative(uuid.getLeastSignificantBits(),
+        mScanNative.registerScanner(uuid.getLeastSignificantBits(),
                 uuid.getMostSignificantBits());
     }
 
     void unregisterScanner(int scannerId) {
-        mScanNative.unregisterScannerNative(scannerId);
+        mScanNative.unregisterScanner(scannerId);
     }
 
     /**
@@ -898,8 +898,10 @@ public class ScanManager {
 
         private AlarmManager mAlarmManager;
         private PendingIntent mBatchScanIntervalIntent;
+        private GattNativeInterface mNativeInterface;
 
         ScanNative() {
+            mNativeInterface = GattObjectsFactory.getInstance().getNativeInterface();
             mFilterIndexStack = new ArrayDeque<Integer>();
             mClientFilterIndexMap = new HashMap<Integer, Deque<Integer>>();
 
@@ -962,7 +964,7 @@ public class ScanManager {
                     // convert scanWindow and scanInterval from ms to LE scan units(0.625ms)
                     int scanWindow = Utils.millsToUnit(scanWindowMs);
                     int scanInterval = Utils.millsToUnit(scanIntervalMs);
-                    gattClientScanNative(false);
+                    mNativeInterface.gattClientScan(false);
                     if (DBG) {
                         Log.d(TAG, "Start gattClientScanNative with"
                                 + " old scanMode " + mLastConfiguredScanSetting
@@ -971,8 +973,9 @@ public class ScanManager {
                                 + ", in scan unit: " + scanInterval + " / " + scanWindow + " )"
                                 + client);
                     }
-                    gattSetScanParametersNative(client.scannerId, scanInterval, scanWindow);
-                    gattClientScanNative(true);
+                    mNativeInterface.gattSetScanParameters(client.scannerId, scanInterval,
+                            scanWindow);
+                    mNativeInterface.gattClientScan(true);
                     mLastConfiguredScanSetting = curScanSetting;
                 }
             } else {
@@ -1011,7 +1014,7 @@ public class ScanManager {
                 if (DBG) {
                     Log.d(TAG, "start gattClientScanNative from startRegularScan()");
                 }
-                gattClientScanNative(true);
+                mNativeInterface.gattClientScan(true);
             }
         }
 
@@ -1071,7 +1074,7 @@ public class ScanManager {
                     Log.d(TAG, "stopping BLe Batch");
                 }
                 resetCountDownLatch();
-                gattClientStopBatchScanNative(scannerId);
+                mNativeInterface.gattClientStopBatchScan(scannerId);
                 waitForCallback();
                 // Clear pending results as it's illegal to config storage if there are still
                 // pending results.
@@ -1089,16 +1092,16 @@ public class ScanManager {
                 if (DBG) {
                     Log.d(TAG, "configuring batch scan storage, appIf " + client.scannerId);
                 }
-                gattClientConfigBatchScanStorageNative(client.scannerId, fullScanPercent,
-                        100 - fullScanPercent, notifyThreshold);
+                mNativeInterface.gattClientConfigBatchScanStorage(client.scannerId,
+                        fullScanPercent, 100 - fullScanPercent, notifyThreshold);
                 waitForCallback();
                 resetCountDownLatch();
                 int scanInterval =
                         Utils.millsToUnit(getBatchScanIntervalMillis(batchScanParams.scanMode));
                 int scanWindow =
                         Utils.millsToUnit(getBatchScanWindowMillis(batchScanParams.scanMode));
-                gattClientStartBatchScanNative(scannerId, resultType, scanInterval, scanWindow, 0,
-                        DISCARD_OLDEST_WHEN_BUFFER_FULL);
+                mNativeInterface.gattClientStartBatchScan(scannerId, resultType, scanInterval,
+                        scanWindow, 0, DISCARD_OLDEST_WHEN_BUFFER_FULL);
                 waitForCallback();
             }
             mBatchScanParms = batchScanParams;
@@ -1217,7 +1220,7 @@ public class ScanManager {
                 if (DBG) {
                     Log.d(TAG, "stop gattClientScanNative");
                 }
-                gattClientScanNative(false);
+                mNativeInterface.gattClientScan(false);
             }
             removeScanFilters(client.scannerId);
         }
@@ -1249,7 +1252,7 @@ public class ScanManager {
                 if (DBG) {
                     Log.d(TAG, "stop gattClientScanNative");
                 }
-                gattClientScanNative(false);
+                mNativeInterface.gattClientScan(false);
             }
         }
 
@@ -1299,13 +1302,13 @@ public class ScanManager {
             }
             if (mBatchScanParms.fullScanscannerId != -1) {
                 resetCountDownLatch();
-                gattClientReadScanReportsNative(mBatchScanParms.fullScanscannerId,
+                mNativeInterface.gattClientReadScanReports(mBatchScanParms.fullScanscannerId,
                         SCAN_RESULT_TYPE_FULL);
                 waitForCallback();
             }
             if (mBatchScanParms.truncatedScanscannerId != -1) {
                 resetCountDownLatch();
-                gattClientReadScanReportsNative(mBatchScanParms.truncatedScanscannerId,
+                mNativeInterface.gattClientReadScanReports(mBatchScanParms.truncatedScanscannerId,
                         SCAN_RESULT_TYPE_TRUNCATED);
                 waitForCallback();
             }
@@ -1350,7 +1353,7 @@ public class ScanManager {
             }
 
             resetCountDownLatch();
-            gattClientScanFilterEnableNative(scannerId, true);
+            mNativeInterface.gattClientScanFilterEnable(scannerId, true);
             waitForCallback();
 
             if (shouldUseAllPassFilter(client)) {
@@ -1371,7 +1374,8 @@ public class ScanManager {
                     int filterIndex = mFilterIndexStack.pop();
 
                     resetCountDownLatch();
-                    gattClientScanFilterAddNative(scannerId, queue.toArray(), filterIndex);
+                    mNativeInterface.gattClientScanFilterAdd(scannerId, queue.toArray(),
+                            filterIndex);
                     waitForCallback();
 
                     resetCountDownLatch();
@@ -1420,7 +1424,7 @@ public class ScanManager {
                 mFilterIndexStack.addAll(filterIndices);
                 for (Integer filterIndex : filterIndices) {
                     resetCountDownLatch();
-                    gattClientScanFilterParamDeleteNative(scannerId, filterIndex);
+                    mNativeInterface.gattClientScanFilterParamDelete(scannerId, filterIndex);
                     waitForCallback();
                 }
             }
@@ -1439,7 +1443,7 @@ public class ScanManager {
             // Remove ALL_PASS filter iff no app is using it.
             if (clients.isEmpty()) {
                 resetCountDownLatch();
-                gattClientScanFilterParamDeleteNative(scannerId, filterIndex);
+                mNativeInterface.gattClientScanFilterParamDelete(scannerId, filterIndex);
                 waitForCallback();
             }
         }
@@ -1510,7 +1514,7 @@ public class ScanManager {
                     new FilterParams(scannerId, filterIndex, featureSelection, LIST_LOGIC_TYPE,
                             FILTER_LOGIC_TYPE, rssiThreshold, rssiThreshold, deliveryMode,
                             onFoundTimeout, onLostTimeout, onFoundCount, numOfTrackingEntries);
-            gattClientScanFilterParamAddNative(filtValue);
+            mNativeInterface.gattClientScanFilterParamAdd(filtValue);
         }
 
         // Get delivery mode based on scan settings.
@@ -1687,43 +1691,13 @@ public class ScanManager {
             }
         }
 
+        private void registerScanner(long appUuidLsb, long appUuidMsb) {
+            mNativeInterface.registerScanner(appUuidLsb, appUuidMsb);
+        }
 
-        /************************** Regular scan related native methods **************************/
-        private native void registerScannerNative(long appUuidLsb, long appUuidMsb);
-
-        private native void unregisterScannerNative(int scannerId);
-
-        private native void gattClientScanNative(boolean start);
-
-        private native void gattSetScanParametersNative(int clientIf, int scanInterval,
-                int scanWindow);
-
-        /************************** Filter related native methods ********************************/
-        private native void gattClientScanFilterAddNative(int clientId,
-                ScanFilterQueue.Entry[] entries, int filterIndex);
-
-        private native void gattClientScanFilterParamAddNative(FilterParams filtValue);
-
-        // Note this effectively remove scan filters for ALL clients.
-        private native void gattClientScanFilterParamClearAllNative(int clientIf);
-
-        private native void gattClientScanFilterParamDeleteNative(int clientIf, int filtIndex);
-
-        private native void gattClientScanFilterClearNative(int clientIf, int filterIndex);
-
-        private native void gattClientScanFilterEnableNative(int clientIf, boolean enable);
-
-        /************************** Batch related native methods *********************************/
-        private native void gattClientConfigBatchScanStorageNative(int clientIf,
-                int maxFullReportsPercent, int maxTruncatedReportsPercent,
-                int notifyThresholdPercent);
-
-        private native void gattClientStartBatchScanNative(int clientIf, int scanMode,
-                int scanIntervalUnit, int scanWindowUnit, int addressType, int discardRule);
-
-        private native void gattClientStopBatchScanNative(int clientIf);
-
-        private native void gattClientReadScanReportsNative(int clientIf, int scanType);
+        private void unregisterScanner(int scannerId) {
+            mNativeInterface.unregisterScanner(scannerId);
+        }
     }
 
     @VisibleForTesting
