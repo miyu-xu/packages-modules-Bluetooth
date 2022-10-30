@@ -1,0 +1,527 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "692183b2_d3da7b09",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Should we put this behind a flag ?",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 407,
+        "endChar": 65
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9700047d_ee07e051",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Why do you need this change (same question for below) ?",
+      "range": {
+        "startLine": 456,
+        "startChar": 2,
+        "endLine": 457,
+        "endChar": 96
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d558dcee_8a772276",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "add `#include \"common/init_flags.h\"`",
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c513830a_34d9a19d",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Because fd is never null (CHECK just below). I think it\u0027s preferable to pass it as a reference.",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fdbe38c_d2b0adde",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "This constructor should call the other one with the default parameter as argument.\nI also like another possibility: a unique constructor with default value on the argument\nwdyt ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 1
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "712d2669_168fedcc",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "if this return -1, i suppose we could have a infinite join below",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "696cc70a_9845d4f5",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "I feel weird about releasing the thread ressources outside of the thread.\nCan we put all of this in the `cleanup` tag of the Run method ?",
+      "range": {
+        "startLine": 111,
+        "startChar": 3,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a17ebb_b0576886",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "I assume this log is never printed unless it has been explicitly allowed with the INIT_ flag but can you confirm ?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 34
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "996f9aa6_a563f01d",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "use `O_CLOEXEC` as suggested.\n\nShould the return set `listen_thread_running_` to false ?",
+      "range": {
+        "startLine": 152,
+        "startChar": 27,
+        "endLine": 152,
+        "endChar": 37
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfd8fdce_a275a72c",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Should we return if the socket has failed to initialized ? (and set `listen_thread_running_`, clean etc...)",
+      "range": {
+        "startLine": 163,
+        "startChar": 19,
+        "endLine": 163,
+        "endChar": 31
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e405a413_8e9e3452",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Do we want to add the client_socket to the select to properly close it in case of a disconnection ?",
+      "range": {
+        "startLine": 170,
+        "startChar": 9,
+        "endLine": 170,
+        "endChar": 15
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "714c2d01_f105a655",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Why `goto` here and `break` l183 ? Can you use break in all cases ?",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 19
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af9126c3_d8e60636",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Use `accept4` as suggested",
+      "range": {
+        "startLine": 180,
+        "startChar": 34,
+        "endLine": 180,
+        "endChar": 40
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "826da61a_b19940cb",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "`break` to trigger close socket ?",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 194,
+        "endChar": 12
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63bc8aac_4539fcba",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "`SafeCloseSocket(\u0026client_socket)`",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 14
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a984cd24_2bdeb2c0",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "We only want to do this in the `accept` case.\n\nIt may be easier to put this in a separate private method.",
+      "range": {
+        "startLine": 201,
+        "startChar": 4,
+        "endLine": 216,
+        "endChar": 12
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2d94b90_aee32cf0",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "This send does not check as many error as in the `Write`.\nShould we call it instead (and we\u0027ll need to change the mutex to be a recursive mutex)",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 216,
+        "endChar": 12
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6fbb69_c82dcffc",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Why only closing listen_socket_ ?",
+      "range": {
+        "startLine": 220,
+        "startChar": 2,
+        "endLine": 220,
+        "endChar": 17
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b56ed20_b15a19bc",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "use `SOCK_CLOEXEC` as suggested",
+      "range": {
+        "startLine": 229,
+        "startChar": 34,
+        "endLine": 229,
+        "endChar": 45
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c73abff8_c6b1c9ea",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Should the socket be closed in this return ? \nSame in below return",
+      "range": {
+        "startLine": 244,
+        "startChar": 4,
+        "endLine": 244,
+        "endChar": 13
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b497ab27_6f99b50c",
+        "filename": "system/gd/hal/snoop_logger_socket.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Naive question: Why do we want to expose this ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "466efc1d_14e322d0",
+        "filename": "system/gd/hal/snoop_logger_socket_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7880c54c_8b793257",
+        "filename": "system/gd/hal/snoop_logger_socket_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-30T08:09:57Z",
+      "side": 1,
+      "message": "Is this intended ?",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
