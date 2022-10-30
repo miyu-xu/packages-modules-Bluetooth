@@ -1299,11 +1299,14 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
   p_scb->sco_idx = BTM_INVALID_SCO_INDEX;
 
   /* codec_fallback is set when AG is initiator and connection failed for mSBC.
-   * OR if codec is msbc and T2 settings failed, then retry Safe T1 settings */
+   * OR if codec is msbc and T2 settings failed, then retry Safe T1 settings
+   * This event is only handled during opening state
+   */
   if (p_scb->svc_conn &&
       (p_scb->codec_fallback ||
        (p_scb->sco_codec == BTM_SCO_CODEC_MSBC &&
-        p_scb->codec_msbc_settings == BTA_AG_SCO_MSBC_SETTINGS_T1))) {
+        p_scb->codec_msbc_settings == BTA_AG_SCO_MSBC_SETTINGS_T1)) &&
+      bta_ag_cb.sco.state == BTA_AG_SCO_OPENING_ST) {
     bta_ag_sco_event(p_scb, BTA_AG_SCO_REOPEN_E);
   } else {
     /* Indicate if the closing of audio is because of transfer */
