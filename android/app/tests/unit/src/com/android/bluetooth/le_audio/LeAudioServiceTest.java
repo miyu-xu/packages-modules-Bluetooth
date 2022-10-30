@@ -171,6 +171,7 @@ public class LeAudioServiceTest {
         doAnswer(invocation -> mBondedDevices.toArray(new BluetoothDevice[]{})).when(
                 mAdapterService).getBondedDevices();
 
+        doNothing().when(mNativeInterface).init(any());
         startService();
         mService.mLeAudioNativeInterface = mNativeInterface;
         mService.mAudioManager = mAudioManager;

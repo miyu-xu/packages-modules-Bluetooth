@@ -44,9 +44,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
-import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Parcel;
 import android.os.ParcelUuid;
 import android.os.RemoteCallbackList;
@@ -165,7 +163,6 @@ public class LeAudioService extends ProfileService {
     private BroadcastReceiver mConnectionStateChangedReceiver;
     private BroadcastReceiver mMuteStateChangedReceiver;
     private int mStoredRingerMode = -1;
-    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     private final Map<Integer, Integer> mBroadcastStateMap = new HashMap<>();
     private final Map<Integer, Boolean> mBroadcastsPlaybackMap = new HashMap<>();
@@ -271,18 +268,9 @@ public class LeAudioService extends ProfileService {
 
         // Delay the call to init by posting it. This ensures TBS and MCS are fully initialized
         // before we start accepting connections
-        mHandler.post(this::init);
+        mLeAudioNativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
 
         return true;
-    }
-
-    private void init() {
-        LeAudioNativeInterface nativeInterface = mLeAudioNativeInterface;
-        if (nativeInterface == null) {
-            Log.w(TAG, "the service is stopped. ignore init()");
-            return;
-        }
-        nativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
     }
 
     @Override
@@ -293,7 +281,6 @@ public class LeAudioService extends ProfileService {
             return true;
         }
 
-        mHandler.removeCallbacks(this::init);
         setActiveDevice(null);
 
         if (mTmapGattServer == null) {
