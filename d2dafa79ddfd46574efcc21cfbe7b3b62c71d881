@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1dfb8083_16ca87a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T21:58:16Z",
+      "side": 1,
+      "message": "I don\u0027t think `sCallbackEnv` need to be protected.\nMaybe it should be rename because the `s` kind-of says it\u0027s a static while it is not. But I feel this is out of the scope of this change",
+      "parentUuid": "7a35cef7_8e9eacba",
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de5e26f2_6bbd4533",
         "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
         "patchSetId": 1
