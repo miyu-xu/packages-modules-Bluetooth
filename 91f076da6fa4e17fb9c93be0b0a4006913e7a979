@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c64f08a_1e5d4a32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T09:06:09Z",
+      "side": 1,
+      "message": "this seems to revert the fix done with aosp/1931096 \ndone by @Jakub P.",
+      "revId": "91f076da6fa4e17fb9c93be0b0a4006913e7a979",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
