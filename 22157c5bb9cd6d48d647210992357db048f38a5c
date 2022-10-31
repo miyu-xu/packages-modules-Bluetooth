@@ -70,6 +70,30 @@
       },
       "revId": "22157c5bb9cd6d48d647210992357db048f38a5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f94c810_458cb06b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-31T09:22:57Z",
+      "side": 1,
+      "message": "Added test for browseNode.equals() returning true!",
+      "parentUuid": "6719eeec_47ae752c",
+      "range": {
+        "startLine": 159,
+        "startChar": 16,
+        "endLine": 159,
+        "endChar": 41
+      },
+      "revId": "22157c5bb9cd6d48d647210992357db048f38a5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
