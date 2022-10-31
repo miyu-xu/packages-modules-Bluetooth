@@ -16,6 +16,24 @@
       "message": "If this is not a place to remove pairing_cb() - maybe good to fire here a flag that pairing_cb_ready_to_be_cleared ?\n\nOtherwise we are changing behavior here.\nI understand that in L1584, we want to keep paring_cb() data, but in case of no UUIDs found, this struct will not be cleared.",
       "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0038b4cd_79b1449d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1555,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T10:07:23Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "9ee39660_8d72268c",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
