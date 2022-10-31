@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03690a44_6819a6ec",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-31T15:33:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3afbf3c4_151cf474",
+      "range": {
+        "startLine": 465,
+        "startChar": 18,
+        "endLine": 465,
+        "endChar": 28
+      },
+      "revId": "c19181ef2e33af247a94dc0531d4dcabf29b6bb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc598b4e_fee4f553",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-28T16:50:40Z",
       "side": 1,
       "message": "can the caller assume that suspend can be performed right after this method returns? If not, you might need to add a callback mechanism to let the caller know.",
+      "revId": "c19181ef2e33af247a94dc0531d4dcabf29b6bb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2783215_c9accad6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-10-31T15:33:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc598b4e_fee4f553",
       "revId": "c19181ef2e33af247a94dc0531d4dcabf29b6bb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
