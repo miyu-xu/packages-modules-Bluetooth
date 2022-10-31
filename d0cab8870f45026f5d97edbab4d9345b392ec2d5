@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a394b2_5b98aae9",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T21:29:34Z",
+      "side": 1,
+      "message": "5 sec seems a lot.\nDoes that mean if we have a non-responding socket we will wait 5 sec each time we want to try to log something ?\nMore global question: because it\u0027s a local socket, can we remove the timeout completely and just write as non-blocking IO ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee156aed_afedc766",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T21:29:34Z",
+      "side": 1,
+      "message": "pass as reference if you want to propagate the `SafeCloseSocket` call",
+      "range": {
+        "startLine": 105,
+        "startChar": 34,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f830c64f_a9ee0e69",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T21:29:34Z",
+      "side": 1,
+      "message": "Should we move the mutex to the API call ? because it will be the one accessing the `client_socket_`",
+      "range": {
+        "startLine": 107,
+        "startChar": 35,
+        "endLine": 107,
+        "endChar": 55
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99638465_7e2b4393",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T21:29:34Z",
+      "side": 1,
+      "message": "`return client_socket !\u003d INVALID_FD` in case the above Write failed and closed the fd",
+      "range": {
+        "startLine": 257,
+        "startChar": 9,
+        "endLine": 257,
+        "endChar": 10
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
