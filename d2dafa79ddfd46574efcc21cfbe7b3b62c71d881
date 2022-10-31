@@ -66,6 +66,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46720dfc_fc3be2bc",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T20:55:25Z",
+      "side": 1,
+      "message": "You don\u0027t want a shared_lock here as you are writing the callback object.\nShouldn\u0027t it be a std::unique lock  ?\n\nSame for initialize",
+      "range": {
+        "startLine": 1260,
+        "startChar": 0,
+        "endLine": 1260,
+        "endChar": 60
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6c0a960_b324a6ae",
         "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
         "patchSetId": 1
