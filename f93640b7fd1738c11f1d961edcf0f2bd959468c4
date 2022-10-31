@@ -22,6 +22,30 @@
       },
       "revId": "f93640b7fd1738c11f1d961edcf0f2bd959468c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46484309_247c383d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-10-31T04:46:09Z",
+      "side": 1,
+      "message": "I think the the callback is missing. See L908.",
+      "parentUuid": "bdb15751_3956de10",
+      "range": {
+        "startLine": 977,
+        "startChar": 6,
+        "endLine": 977,
+        "endChar": 73
+      },
+      "revId": "f93640b7fd1738c11f1d961edcf0f2bd959468c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
