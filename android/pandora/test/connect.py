@@ -31,6 +31,13 @@ google.protobuf.descriptor_pool.Default().__init__()
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.host_pb2 import Connection, ConnectabilityMode, AddressType
 from pandora_experimental.l2cap_grpc import L2CAP
+from pandora_experimental.security_grpc import Security
+from pandora_experimental.gatt_grpc import GATT
+from pandora_experimental.gatt_pb2 import AttStatusCode, AttProperties, AttPermissions
+from pandora_experimental.gatt_pb2 import GattServiceParams
+from pandora_experimental.gatt_pb2 import GattCharacteristicParams
+from pandora_experimental.gatt_pb2 import ReadCharacteristicResponse
+from pandora_experimental.gatt_pb2 import ReadCharacteristicsFromUuidResponse
 
 
 class ExampleTest(base_test.BaseTestClass):
@@ -97,6 +104,41 @@ class ExampleTest(base_test.BaseTestClass):
         self.dut.log.debug(f'DUT ConnectLE with random address: {self.ref.random_address}')
         connectLE_response = self.dut.host.ConnectLE(address=Address(self.ref.random_address))
         assert connectLE_response.WhichOneof("result") == "connection"
+
+    def test_dut_discover_services(self):
+        print('test_dut_discover_services', file=sys.stderr)
+
+        dut_address = self.dut.address
+        ref_address = self.ref.address
+        self.dut.log.debug(f'DUT Address: {dut_address}')
+        self.ref.log.debug(f'REF Address: {ref_address}')
+
+        self.ref.log.debug(f'REF StartAdvertising with random address: {self.ref.random_address}')
+        self.ref.host.StartAdvertising(
+            connectability_mode=ConnectabilityMode.CONNECTABILITY_CONNECTABLE,
+            own_address_type=AddressType.RANDOM,
+        )
+
+        self.dut.log.debug(f'DUT RunDiscovery')
+        discovery_scans = self.dut.host.RunDiscovery()
+        for discovery_scan in discovery_scans:
+            self.dut.log.debug(f'DUT found discovery_scan with address: {Address(discovery_scan.device.address)}')
+            if discovery_scan.device.address == Address(self.ref.random_address):
+                self.dut.log.debug(f'DUT found REF device with random address: {self.ref.random_address}')
+                discovery_scans.cancel()
+                break
+
+        self.dut.log.debug(f'DUT ConnectLE with random address: {self.ref.random_address}')
+        connectLE_response = self.dut.host.ConnectLE(address=Address(self.ref.random_address))
+        connection = connectLE_response.connection
+        assert connection is not None
+
+        self.dut.log.debug(f'DUT DiscoverServices')
+        dut_services = self.dut.gatt.DiscoverServices(connection=connection).services
+        for service in dut_services:
+            self.dut.log.debug(
+                f'service handle: {service.handle}, service type: {service.type}, service uuid: {service.uuid}')
+        assert dut_services is not None
 
 
 if __name__ == '__main__':

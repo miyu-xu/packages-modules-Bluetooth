@@ -26,6 +26,7 @@ from ..bumble_server import BumblePandoraServer
 from ..utils import Address
 
 from pandora_experimental.host_grpc import Host
+from pandora_experimental.gatt_grpc import GATT
 
 MOBLY_CONTROLLER_CONFIG_NAME = 'PandoraDevice'
 
@@ -63,6 +64,10 @@ class PandoraDevice:
     @property
     def host(self):
         return Host(self.channel)
+
+    @property
+    def gatt(self):
+        return GATT(self.channel)
 
     @property
     def address(self):
