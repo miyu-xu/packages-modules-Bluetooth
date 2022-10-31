@@ -22,6 +22,98 @@
       },
       "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fea6e2e0_169c5684",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:48:04Z",
+      "side": 1,
+      "message": "avaliable ? maybe \"git grep\" and check where it\u0027s left ?",
+      "range": {
+        "startLine": 724,
+        "startChar": 28,
+        "endLine": 724,
+        "endChar": 34
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89f950d_1ae75546",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:48:04Z",
+      "side": 1,
+      "message": "Already in Group class, do you need Group in function name ?\n\nI.e.: would \"UpdateAudioContextAvailability\" be good ?",
+      "range": {
+        "startLine": 304,
+        "startChar": 13,
+        "endLine": 304,
+        "endChar": 18
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6084daef_89602079",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:48:04Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 305,
+        "startChar": 7,
+        "endLine": 305,
+        "endChar": 46
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dd5eb6a_570589bf",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:48:04Z",
+      "side": 1,
+      "message": "Should this go to previous patch ?",
+      "range": {
+        "startLine": 404,
+        "startChar": 2,
+        "endLine": 404,
+        "endChar": 78
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
