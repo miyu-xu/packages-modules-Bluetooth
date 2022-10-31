@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "865e7198_ed94a712",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:56:50Z",
+      "side": 1,
+      "message": "maybe move this log below 1406 and include there \"is_gatt_over_ble\" info ?",
+      "revId": "0a3ac17219bfea08dbf88db43de2dd7130739410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b0b2a1b_2542a47e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:56:50Z",
+      "side": 1,
+      "message": "_gatt_",
+      "range": {
+        "startLine": 1406,
+        "startChar": 10,
+        "endLine": 1406,
+        "endChar": 13
+      },
+      "revId": "0a3ac17219bfea08dbf88db43de2dd7130739410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
