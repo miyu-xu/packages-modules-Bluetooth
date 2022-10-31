@@ -32,6 +32,8 @@
 #include "internal_include/stack_config.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
+#include "stack/btm/btm_ble_int.h"
+#include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sco.h"
@@ -132,6 +134,13 @@ const stack_config_t* stack_config_get_interface(void) {
 std::map<std::string, int> mock_function_count_map;
 
 namespace {
+const RawAddress kBdAddr = RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
+const std::deque<tSMP_SEC_LEVEL> smp_sec_level_dequeue{
+    SMP_SEC_NONE,
+    SMP_SEC_UNAUTHENTICATE,
+    SMP_SEC_AUTHENTICATED,
+};
+}  // namespace
 
 using testing::_;
 using testing::DoAll;
@@ -277,8 +286,6 @@ TEST(ScoTest, make_sco_packet) {
 
 TEST(BtmTest, BTM_EIR_MAX_SERVICES) { ASSERT_EQ(46, BTM_EIR_MAX_SERVICES); }
 
-}  // namespace
-
 void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
                                        const uint8_t* p_bd_name,
                                        tHCI_STATUS status);
@@ -422,6 +429,10 @@ TEST_F(StackBtmTest, sco_state_text) {
                    .c_str());
 }
 
+void PrintTo(const tBTM_BLE_SEC_REQ_ACT& action, std::ostream* os) {
+  *os << btm_ble_sec_req_act_text(action);
+}
+
 TEST_F(StackBtmTest, btm_ble_sec_req_act_text) {
   ASSERT_EQ("BTM_BLE_SEC_REQ_ACT_NONE",
             btm_ble_sec_req_act_text(BTM_BLE_SEC_REQ_ACT_NONE));
@@ -431,4 +442,211 @@ TEST_F(StackBtmTest, btm_ble_sec_req_act_text) {
             btm_ble_sec_req_act_text(BTM_BLE_SEC_REQ_ACT_PAIR));
   ASSERT_EQ("BTM_BLE_SEC_REQ_ACT_DISCARD",
             btm_ble_sec_req_act_text(BTM_BLE_SEC_REQ_ACT_DISCARD));
+}
+
+TEST_F(StackBtmTest, btm_ble_link_sec_check__BTM_BLE_SEC_REQ_ACT_NONE) {
+  RawAddress bd_addr;
+  tBTM_LE_AUTH_REQ auth_req = BTM_LE_AUTH_REQ_NO_BOND;
+  tBTM_BLE_SEC_REQ_ACT sec_req_act = BTM_BLE_SEC_REQ_ACT_NONE;
+
+  btm_ble_link_sec_check(bd_addr, auth_req, &sec_req_act);
+}
+
+TEST_F(StackBtmWithInitFreeTest,
+       btm_ble_link_sec_check__BTM_LE_AUTH_REQ_NO_BOND) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_sec_allocate_dev_rec();
+  p_dev_rec->bd_addr = kBdAddr;
+
+  ASSERT_EQ(BTM_SEC_STATE_IDLE, p_dev_rec->sec_state);
+  tBTM_BLE_SEC_REQ_ACT sec_req_act;
+
+  {
+    p_dev_rec->sec_state = BTM_SEC_STATE_ENCRYPTING;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_DISCARD, sec_req_act);
+  }
+
+  {
+    p_dev_rec->sec_state = BTM_SEC_STATE_AUTHENTICATING;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_DISCARD, sec_req_act);
+  }
+
+  // all other device security states
+  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  {
+    p_dev_rec->set_le_device_encrypted();
+    p_dev_rec->set_le_device_authenticated();
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act) << sec_req_act;
+    p_dev_rec->sec_flags = 0;
+  }
+
+  {
+    p_dev_rec->set_le_device_encrypted();
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act);
+    p_dev_rec->sec_flags = 0;
+  }
+
+  {
+    p_dev_rec->sec_flags = 0;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+  }
+
+  // Secnario when we have a peer encryption key
+  p_dev_rec->ble.key_type = BTM_LE_KEY_PENC;
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+  }
+
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_UNAUTHENTICATE;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act);
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+  }
+
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_AUTHENTICATED;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_NO_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act);
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+  }
+  p_dev_rec->ble.key_type = BTM_LE_KEY_NONE;
+}
+
+TEST_F(StackBtmWithInitFreeTest, btm_ble_link_sec_check__BTM_LE_AUTH_REQ_BOND) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_sec_allocate_dev_rec();
+  p_dev_rec->bd_addr = kBdAddr;
+
+  ASSERT_EQ(BTM_SEC_STATE_IDLE, p_dev_rec->sec_state);
+  tBTM_BLE_SEC_REQ_ACT sec_req_act;
+
+  {
+    p_dev_rec->sec_state = BTM_SEC_STATE_ENCRYPTING;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_DISCARD, sec_req_act);
+  }
+
+  {
+    p_dev_rec->sec_state = BTM_SEC_STATE_AUTHENTICATING;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_DISCARD, sec_req_act);
+  }
+
+  // all other device security states
+  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  {
+    p_dev_rec->set_le_device_encrypted();
+    p_dev_rec->set_le_device_authenticated();
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act) << sec_req_act;
+    p_dev_rec->sec_flags = 0;
+  }
+
+  {
+    p_dev_rec->set_le_device_encrypted();
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act);
+    p_dev_rec->sec_flags = 0;
+  }
+
+  {
+    p_dev_rec->sec_flags = 0;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+  }
+
+  // Secnario when we have a peer encryption key
+  p_dev_rec->ble.key_type = BTM_LE_KEY_PENC;
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+  }
+
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_UNAUTHENTICATE;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act);
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+  }
+
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_AUTHENTICATED;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_BOND, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act);
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+  }
+  p_dev_rec->ble.key_type = BTM_LE_KEY_NONE;
+}
+
+TEST_F(StackBtmWithInitFreeTest, btm_ble_link_sec_check__BTM_LE_AUTH_REQ_MITM) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_sec_allocate_dev_rec();
+  p_dev_rec->bd_addr = kBdAddr;
+
+  ASSERT_EQ(BTM_SEC_STATE_IDLE, p_dev_rec->sec_state);
+  tBTM_BLE_SEC_REQ_ACT sec_req_act;
+
+  {
+    p_dev_rec->sec_state = BTM_SEC_STATE_ENCRYPTING;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_DISCARD, sec_req_act);
+  }
+
+  {
+    p_dev_rec->sec_state = BTM_SEC_STATE_AUTHENTICATING;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_DISCARD, sec_req_act);
+  }
+
+  // all other device security states
+  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  {
+    p_dev_rec->set_le_device_encrypted();
+    p_dev_rec->set_le_device_authenticated();
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act) << sec_req_act;
+    p_dev_rec->sec_flags = 0;
+  }
+
+  {
+    p_dev_rec->set_le_device_encrypted();
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+    p_dev_rec->sec_flags = 0;
+  }
+
+  {
+    p_dev_rec->sec_flags = 0;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+  }
+
+  // Secnario when we have a peer encryption key
+  p_dev_rec->ble.key_type = BTM_LE_KEY_PENC;
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+  }
+
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_UNAUTHENTICATE;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_PAIR, sec_req_act);
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+  }
+
+  {
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_AUTHENTICATED;
+    btm_ble_link_sec_check(kBdAddr, BTM_LE_AUTH_REQ_MITM, &sec_req_act);
+    ASSERT_EQ(BTM_BLE_SEC_REQ_ACT_ENCRYPT, sec_req_act);
+    p_dev_rec->ble.keys.sec_level = SMP_SEC_NONE;
+  }
+  p_dev_rec->ble.key_type = BTM_LE_KEY_NONE;
 }
