@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5631a3_a7992360",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-31T02:14:26Z",
+      "side": 1,
+      "message": "Where is the `AvrcpItem.equals(otherItem) \u003d\u003d true` case covered?\n\nIt will cover about ~15 lines.\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpItem.java;rcl\u003dde83f2fa968addc4c8276b9aab95d8abb55a931d;l\u003d259",
+      "range": {
+        "startLine": 159,
+        "startChar": 16,
+        "endLine": 159,
+        "endChar": 41
+      },
+      "revId": "22157c5bb9cd6d48d647210992357db048f38a5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
