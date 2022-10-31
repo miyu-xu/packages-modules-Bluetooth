@@ -70,6 +70,30 @@
       },
       "revId": "6b497ac51bd1ff08f35df564191b09beac61d389",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "125f7886_74e63480",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-10-31T13:34:44Z",
+      "side": 1,
+      "message": "Got it, thanks!\nLet\u0027s do it via profiles",
+      "parentUuid": "cf2132bb_4b473126",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "6b497ac51bd1ff08f35df564191b09beac61d389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
