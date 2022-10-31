@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "248a8b8d_267718d0",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T09:53:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1403f4f4_474b6915",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d954b087_287fd30f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-10-31T07:47:12Z",
       "side": 1,
       "message": "I would go for LOG_INFO first. We can move it to debug later on",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e05b1c_eaa0d4f4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1677,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T09:53:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d954b087_287fd30f",
       "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "312e7d77_8c7c4804",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3054,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T09:53:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3620895d_2eb5d7ca",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e24c30b4_a0731ebd",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-10-31T07:47:12Z",
       "side": 1,
       "message": "should it be LOG_WARN?\n\nAlso consider printing out current state instead of the \"or\" statement",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70ac4806_68abe034",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3057,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T09:53:14Z",
+      "side": 1,
+      "message": "it\u0027s nothing bad, but I\u0027ll make it INFO to match other places",
+      "parentUuid": "e24c30b4_a0731ebd",
       "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
