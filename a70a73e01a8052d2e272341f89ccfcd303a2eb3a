@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1403f4f4_474b6915",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:47:12Z",
+      "side": 1,
+      "message": "please add logs when changing states. Then it will be easier to find what happen wrong in case line 1593 is executed.\nPlease do LOG_INFO",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d954b087_287fd30f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1677,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:47:12Z",
+      "side": 1,
+      "message": "I would go for LOG_INFO first. We can move it to debug later on",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3620895d_2eb5d7ca",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3054,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:47:12Z",
+      "side": 1,
+      "message": "as above - let\u0027s log state change for now.",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e24c30b4_a0731ebd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3057,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:47:12Z",
+      "side": 1,
+      "message": "should it be LOG_WARN?\n\nAlso consider printing out current state instead of the \"or\" statement",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
