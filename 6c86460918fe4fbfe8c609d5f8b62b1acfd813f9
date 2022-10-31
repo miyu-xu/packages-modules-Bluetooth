@@ -94,6 +94,30 @@
       },
       "revId": "6c86460918fe4fbfe8c609d5f8b62b1acfd813f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b9ab1e2_e4d09f14",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 7
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-31T14:48:19Z",
+      "side": 1,
+      "message": "Hi Myles, I have a question regarding the command op_code. By removing the MSFT_OPCODE_xxxx command op_code from the pdl file, there are test errors as shown in my comments above. However, floss seems running well without the MSFT_OPCODE_xxxx after I deploy the floss to my chromebook. My question is that -- does fluoride/gd check the command op_code at run time? Thanks!",
+      "parentUuid": "623a493b_3e8afcc6",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 32
+      },
+      "revId": "6c86460918fe4fbfe8c609d5f8b62b1acfd813f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
