@@ -116,6 +116,24 @@
       "parentUuid": "e95e665c_0c36d1d8",
       "revId": "350599c96760521f9e01344ba15389230e8312fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da00f2b1_899ccfa6",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T08:34:02Z",
+      "side": 1,
+      "message": "I think line 1163 comes here with a help. Idea behind CSIS search is that we search for the member and if found we notify Java and wait for this device to be paired.\nWhen paired, and there is still member missing, we will restart active scan.\n\nSo I suggest to make this function return bool and when member is found, just wait for the found member to be paired",
+      "parentUuid": "6cb4028b_562c104e",
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
