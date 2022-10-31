@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7fbce1d_0bb0057c",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:54:08Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 434,
+        "startChar": 39,
+        "endLine": 434,
+        "endChar": 48
+      },
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e081081e_125f29d1",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:54:08Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 438,
+        "startChar": 66,
+        "endLine": 438,
+        "endChar": 75
+      },
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b9e2a0a_90a87f7b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1628,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-10-31T07:54:08Z",
+      "side": 1,
+      "message": "Please add LOG INFO before return,",
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
