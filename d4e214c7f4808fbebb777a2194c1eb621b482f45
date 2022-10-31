@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c61e57d_84cfc1af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-31T07:21:24Z",
+      "side": 1,
+      "message": "Same as previous CL, please name the CL more accurately about what change this change really does.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a4db0b4_7f514710",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 5
