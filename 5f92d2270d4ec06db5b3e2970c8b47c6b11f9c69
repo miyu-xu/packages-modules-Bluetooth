@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f63612_a34dc783",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-31T17:06:34Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 71
+      },
+      "revId": "5f92d2270d4ec06db5b3e2970c8b47c6b11f9c69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf4e262_be0ad6aa",
+        "filename": "system/blueberry/tests/topshim/security/le_security_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-31T17:06:34Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 14
+      },
+      "revId": "5f92d2270d4ec06db5b3e2970c8b47c6b11f9c69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1b37c5f_68125d59",
+        "filename": "system/gd/rust/topshim/facade/src/adapter_service.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-31T17:06:34Z",
+      "side": 1,
+      "message": "remove annotation",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "5f92d2270d4ec06db5b3e2970c8b47c6b11f9c69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "727c344e_9a097ffd",
+        "filename": "system/gd/rust/topshim/facade/src/security_service.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-10-31T17:06:34Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 75
+      },
+      "revId": "5f92d2270d4ec06db5b3e2970c8b47c6b11f9c69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
