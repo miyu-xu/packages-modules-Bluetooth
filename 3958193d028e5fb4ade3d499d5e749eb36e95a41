@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14ca2027_90917142",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-31T08:52:43Z",
+      "side": 1,
+      "message": "One thing left: SapServerBroadcastReceiver.onReceive()",
+      "revId": "3958193d028e5fb4ade3d499d5e749eb36e95a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
