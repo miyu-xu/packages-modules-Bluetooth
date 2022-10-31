@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75a21316_d8882b9f",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T21:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de5e26f2_6bbd4533",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 331,
+        "endChar": 1
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76fafe29_cbea236e",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-31T15:30:34Z",
       "side": 1,
       "message": "Mutex here, since we have one in cleanupNative?",
+      "range": {
+        "startLine": 1218,
+        "startChar": 0,
+        "endLine": 1218,
+        "endChar": 2
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f406aa8_d2041f8c",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T21:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76fafe29_cbea236e",
       "range": {
         "startLine": 1218,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "283ecc2f_9e4fc482",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T21:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46720dfc_fc3be2bc",
+      "range": {
+        "startLine": 1260,
+        "startChar": 0,
+        "endLine": 1260,
+        "endChar": 60
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bab6c95_72afc257",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-10-31T20:58:50Z",
       "side": 1,
       "message": "modify to be a unique lock, same in cleanup",
+      "range": {
+        "startLine": 2061,
+        "startChar": 7,
+        "endLine": 2061,
+        "endChar": 18
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc551061_7edd2427",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2061,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T21:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bab6c95_72afc257",
       "range": {
         "startLine": 2061,
         "startChar": 7,
@@ -147,6 +243,30 @@
       "side": 1,
       "message": "I think yes, as well as in the cleanup just after.\nBoth should be unique lock, not shared",
       "parentUuid": "a6c0a960_b324a6ae",
+      "range": {
+        "startLine": 2363,
+        "startChar": 0,
+        "endLine": 2363,
+        "endChar": 2
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4721f9b3_37615c32",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2363,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T21:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee7b489f_446ffe83",
       "range": {
         "startLine": 2363,
         "startChar": 0,
