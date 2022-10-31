@@ -348,6 +348,11 @@ class AclManagerNoCallbacksTest : public ::testing::Test {
   }
 
   void TearDown() override {
+    // Invalid mutex exception is raised if the connections
+    // are cleared after the AclConnectionInterface is deleted
+    // through fake_registry_.
+    mock_connection_callback_.Clear();
+    mock_le_connection_callbacks_.Clear();
     fake_registry_.SynchronizeModuleHandler(&AclManager::Factory, std::chrono::milliseconds(20));
     fake_registry_.StopAll();
   }
@@ -408,6 +413,11 @@ class AclManagerNoCallbacksTest : public ::testing::Test {
         connection_promise_.reset();
       }
     }
+
+    void Clear() {
+      connections_.clear();
+    }
+
     MOCK_METHOD(void, OnConnectFail, (Address, ErrorCode reason, bool locally_initiated), (override));
 
     MOCK_METHOD(void, HACK_OnEscoConnectRequest, (Address, ClassOfDevice), (override));
@@ -426,6 +436,11 @@ class AclManagerNoCallbacksTest : public ::testing::Test {
         le_connection_promise_.reset();
       }
     }
+
+    void Clear() {
+      le_connections_.clear();
+    }
+
     MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason, bool locally_initiated), (override));
 
     std::list<std::shared_ptr<LeAclConnection>> le_connections_;
@@ -470,6 +485,10 @@ class AclManagerWithConnectionTest : public AclManagerTest {
   }
 
   void TearDown() override {
+    // Invalid mutex exception is raised if the connection
+    // is cleared after the AclConnectionInterface is deleted
+    // through fake_registry_.
+    connection_.reset();
     fake_registry_.SynchronizeModuleHandler(&HciLayer::Factory, std::chrono::milliseconds(20));
     fake_registry_.SynchronizeModuleHandler(&AclManager::Factory, std::chrono::milliseconds(20));
     fake_registry_.StopAll();
@@ -712,7 +731,7 @@ TEST_F(AclManagerTest, invoke_registered_callback_le_connection_complete_fail) {
   test_hci_layer_->IncomingLeMetaEvent(LeConnectionCompleteBuilder::Create(
       ErrorCode::CONNECTION_REJECTED_LIMITED_RESOURCES,
       0x123,
-      Role::PERIPHERAL,
+      Role::CENTRAL,
       AddressType::PUBLIC_DEVICE_ADDRESS,
       remote,
       0x0100,
@@ -736,6 +755,7 @@ TEST_F(AclManagerTest, cancel_le_connection) {
   test_hci_layer_->IncomingEvent(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
   test_hci_layer_->SetCommandFuture();
   test_hci_layer_->GetLastCommand(OpCode::LE_CREATE_CONNECTION);
+  test_hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
 
   test_hci_layer_->SetCommandFuture();
   acl_manager_->CancelLeConnect(remote_with_type);
@@ -749,7 +769,7 @@ TEST_F(AclManagerTest, cancel_le_connection) {
   test_hci_layer_->IncomingLeMetaEvent(LeConnectionCompleteBuilder::Create(
       ErrorCode::UNKNOWN_CONNECTION,
       0x123,
-      Role::PERIPHERAL,
+      Role::CENTRAL,
       AddressType::PUBLIC_DEVICE_ADDRESS,
       remote,
       0x0100,
@@ -773,6 +793,7 @@ TEST_F(AclManagerTest, create_connection_with_fast_mode) {
   test_hci_layer_->GetLastCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   test_hci_layer_->IncomingEvent(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
   test_hci_layer_->SetCommandFuture();
+
   auto packet = test_hci_layer_->GetLastCommand(OpCode::LE_CREATE_CONNECTION);
   auto command_view =
       LeCreateConnectionView::Create(LeConnectionManagementCommandView::Create(AclCommandView::Create(packet)));
@@ -780,17 +801,19 @@ TEST_F(AclManagerTest, create_connection_with_fast_mode) {
   ASSERT_EQ(command_view.GetLeScanInterval(), kScanIntervalFast);
   ASSERT_EQ(command_view.GetLeScanWindow(), kScanWindowFast);
   test_hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
+
   auto first_connection = GetLeConnectionFuture();
   test_hci_layer_->IncomingLeMetaEvent(LeConnectionCompleteBuilder::Create(
       ErrorCode::SUCCESS,
       0x00,
-      Role::PERIPHERAL,
+      Role::CENTRAL,
       AddressType::PUBLIC_DEVICE_ADDRESS,
       remote,
       0x0100,
       0x0010,
       0x0C80,
       ClockAccuracy::PPM_30));
+
   test_hci_layer_->SetCommandFuture();
   test_hci_layer_->GetCommand(OpCode::LE_REMOVE_DEVICE_FROM_FILTER_ACCEPT_LIST);
   test_hci_layer_->IncomingEvent(LeRemoveDeviceFromFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -816,7 +839,7 @@ TEST_F(AclManagerTest, create_connection_with_slow_mode) {
   test_hci_layer_->IncomingLeMetaEvent(LeConnectionCompleteBuilder::Create(
       ErrorCode::SUCCESS,
       0x00,
-      Role::PERIPHERAL,
+      Role::CENTRAL,
       AddressType::PUBLIC_DEVICE_ADDRESS,
       remote,
       0x0100,
@@ -1071,10 +1094,10 @@ TEST_F(AclManagerWithConnectionTest, send_qos_setup) {
   auto command_view = QosSetupView::Create(packet);
   ASSERT_TRUE(command_view.IsValid());
   ASSERT_EQ(command_view.GetServiceType(), ServiceType::BEST_EFFORT);
-  ASSERT_EQ(command_view.GetTokenRate(), 0x1234);
-  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1233);
-  ASSERT_EQ(command_view.GetLatency(), 0x1232);
-  ASSERT_EQ(command_view.GetDelayVariation(), 0x1231);
+  ASSERT_EQ(command_view.GetTokenRate(), 0x1234u);
+  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1233u);
+  ASSERT_EQ(command_view.GetLatency(), 0x1232u);
+  ASSERT_EQ(command_view.GetDelayVariation(), 0x1231u);
 
   EXPECT_CALL(mock_connection_management_callbacks_,
               OnQosSetupComplete(ServiceType::BEST_EFFORT, 0x1234, 0x1233, 0x1232, 0x1231));
@@ -1091,10 +1114,10 @@ TEST_F(AclManagerWithConnectionTest, send_flow_specification) {
   ASSERT_TRUE(command_view.IsValid());
   ASSERT_EQ(command_view.GetFlowDirection(), FlowDirection::OUTGOING_FLOW);
   ASSERT_EQ(command_view.GetServiceType(), ServiceType::BEST_EFFORT);
-  ASSERT_EQ(command_view.GetTokenRate(), 0x1234);
-  ASSERT_EQ(command_view.GetTokenBucketSize(), 0x1233);
-  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1232);
-  ASSERT_EQ(command_view.GetAccessLatency(), 0x1231);
+  ASSERT_EQ(command_view.GetTokenRate(), 0x1234u);
+  ASSERT_EQ(command_view.GetTokenBucketSize(), 0x1233u);
+  ASSERT_EQ(command_view.GetPeakBandwidth(), 0x1232u);
+  ASSERT_EQ(command_view.GetAccessLatency(), 0x1231u);
 
   EXPECT_CALL(mock_connection_management_callbacks_,
               OnFlowSpecificationComplete(FlowDirection::OUTGOING_FLOW, ServiceType::BEST_EFFORT, 0x1234, 0x1233,
