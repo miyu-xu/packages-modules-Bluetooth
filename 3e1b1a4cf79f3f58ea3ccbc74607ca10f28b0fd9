@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c4ade2d_a8a0cadb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-10-31T07:20:49Z",
+      "side": 1,
+      "message": "Please make the name more accurate instead of using generic descriptions\n\ne.g. \n\nLeAudio: Split HAL clients into source and sink",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
