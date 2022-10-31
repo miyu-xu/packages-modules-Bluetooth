@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "267b1e46_bb90e669",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-31T03:46:18Z",
+      "side": 1,
+      "message": "Why does this default exist? In what use-case this logic can be meaningful?",
+      "range": {
+        "startLine": 269,
+        "startChar": 32,
+        "endLine": 273,
+        "endChar": 33
+      },
+      "revId": "d879f17834708099e2e9e8f753eccf31da8a3fbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c02e868_9839ff47",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-10-31T03:46:18Z",
+      "side": 1,
+      "message": "What does happen if HFP-only device is connected?\nIt seems the device will be never activated if `isInbandRingingEnabled` is false.",
+      "range": {
+        "startLine": 346,
+        "startChar": 36,
+        "endLine": 349,
+        "endChar": 42
+      },
+      "revId": "d879f17834708099e2e9e8f753eccf31da8a3fbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
