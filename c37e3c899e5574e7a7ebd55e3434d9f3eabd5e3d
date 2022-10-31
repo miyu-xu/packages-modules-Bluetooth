@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "779dc96c_91587cd5",
+        "filename": "tools/rootcanal/net/posix/posix_async_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-31T15:13:10Z",
+      "side": 1,
+      "message": "Can we move it here so it only gets defined once?\n packages/modules/Bluetooth/tools/rootcanal/net/posix/posix_async_socket.h",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 0
+      },
+      "revId": "c37e3c899e5574e7a7ebd55e3434d9f3eabd5e3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
