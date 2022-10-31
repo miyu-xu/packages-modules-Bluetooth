@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28cc834c_54ddf31b",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-31T11:02:52Z",
+      "side": 1,
+      "message": "Done. Please allow me to put it as comments here and work on it in a separate CL? Thanks!",
+      "parentUuid": "52f9ab39_fc38a18e",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 4
+      },
+      "revId": "841ae81eac6bf7e01663f048a7847aea5646da93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0e8549c_fa55d1aa",
