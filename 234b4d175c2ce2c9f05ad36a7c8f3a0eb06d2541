@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dedb6a0b_34df5e1b",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T12:43:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7fbce1d_0bb0057c",
+      "range": {
+        "startLine": 434,
+        "startChar": 39,
+        "endLine": 434,
+        "endChar": 48
+      },
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e081081e_125f29d1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f3f58c_d9e9265c",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T12:43:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e081081e_125f29d1",
+      "range": {
+        "startLine": 438,
+        "startChar": 66,
+        "endLine": 438,
+        "endChar": 75
+      },
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b9e2a0a_90a87f7b",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-10-31T07:54:08Z",
       "side": 1,
       "message": "Please add LOG INFO before return,",
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2200e198_18f9ee3f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1628,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T12:43:26Z",
+      "side": 1,
+      "message": "It\u0027s already clear from the other logs what\u0027s going on, and invoke_remote_device_properties_cb will be called anyway, just in BTA_DM_DISC_RES_EVT",
+      "parentUuid": "9b9e2a0a_90a87f7b",
       "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
