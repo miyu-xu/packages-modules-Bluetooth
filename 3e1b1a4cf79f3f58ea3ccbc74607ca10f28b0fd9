@@ -22,6 +22,161 @@
       },
       "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1932de_4abbebcf",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_hal_client.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:26:12Z",
+      "side": 1,
+      "message": "Can you please mention in comment that it\u0027s sink from Bluetooth perspective as you wrote in commit message?",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be328ef0_4eae1057",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_hal_client.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:26:12Z",
+      "side": 1,
+      "message": "Can you please mention in comment that it\u0027s source from Bluetooth perspective as you wrote in commit message?",
+      "range": {
+        "startLine": 139,
+        "startChar": 8,
+        "endLine": 139,
+        "endChar": 21
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c30a380c_a0839da9",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:26:12Z",
+      "side": 1,
+      "message": "Since this object is owned here, use unique_ptr",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 8
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58363fb0_695c4adf",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:26:12Z",
+      "side": 1,
+      "message": "Same here",
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4708c9_991dbda1",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:26:12Z",
+      "side": 1,
+      "message": "If it\u0027s owned, use unique_ptr.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40871a9d_98ca6a68",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:26:12Z",
+      "side": 1,
+      "message": "Would it make sense to have separate RelaseBroadcast and ReleaseUnicast funcitons ?",
+      "range": {
+        "startLine": 479,
+        "startChar": 21,
+        "endLine": 479,
+        "endChar": 28
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90cd1f5a_7e07a1c8",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-10-31T07:26:12Z",
+      "side": 1,
+      "message": "Since you Acquire() and Release() here maybe we should own the instance here, rather than having it as public variable in audio_source_hal_client.cc ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 23,
+        "endLine": 122,
+        "endChar": 30
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
