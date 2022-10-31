@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4de8ff3a_e1c1b0f6",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-31T10:59:36Z",
+      "side": 1,
+      "message": "Done. The prefix_len member is removed.",
+      "parentUuid": "60405b5a_69f1e308",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "841ae81eac6bf7e01663f048a7847aea5646da93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52f9ab39_fc38a18e",
@@ -60,6 +84,30 @@
       "writtenOn": "2022-10-26T05:14:41Z",
       "side": 1,
       "message": "Can we use get_value() here?",
+      "range": {
+        "startLine": 85,
+        "startChar": 70,
+        "endLine": 85,
+        "endChar": 82
+      },
+      "revId": "841ae81eac6bf7e01663f048a7847aea5646da93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df45f8ec_096cca4b",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-31T10:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0e8549c_fa55d1aa",
       "range": {
         "startLine": 85,
         "startChar": 70,
