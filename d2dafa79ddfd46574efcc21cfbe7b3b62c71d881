@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a35cef7_8e9eacba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-31T15:30:34Z",
+      "side": 1,
+      "message": "It wasn\u0027t clear to me if we only needed to protect sCallbackEnv, or if we should also be protecting mCallbacksObj",
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de5e26f2_6bbd4533",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-31T15:30:34Z",
+      "side": 1,
+      "message": "mutex here?",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 331,
+        "endChar": 1
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76fafe29_cbea236e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-31T15:30:34Z",
+      "side": 1,
+      "message": "Mutex here, since we have one in cleanupNative?",
+      "range": {
+        "startLine": 1218,
+        "startChar": 0,
+        "endLine": 1218,
+        "endChar": 2
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c0a960_b324a6ae",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2363,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-31T15:30:34Z",
+      "side": 1,
+      "message": "Do we need a mutex here and in periodicScanCleanupNative?",
+      "range": {
+        "startLine": 2363,
+        "startChar": 0,
+        "endLine": 2363,
+        "endChar": 2
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
