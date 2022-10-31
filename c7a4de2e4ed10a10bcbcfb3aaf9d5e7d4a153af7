@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee40eeb_e437e48c",
+        "filename": "system/gd/packet/raw_builder.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-10-31T15:39:43Z",
+      "side": 1,
+      "message": "I was wondering which way you would solve this :)\n\nI prefer not to have the code in the header file, but maybe this is the least ugly way.  Did you try any other ways?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 3
+      },
+      "revId": "c7a4de2e4ed10a10bcbcfb3aaf9d5e7d4a153af7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
