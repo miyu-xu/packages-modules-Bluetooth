@@ -70,6 +70,30 @@
       },
       "revId": "6c86460918fe4fbfe8c609d5f8b62b1acfd813f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "623a493b_3e8afcc6",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 7
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-10-31T14:30:15Z",
+      "side": 1,
+      "message": "Actually, all tests about Msft commands and events failed. I do not know whether there is a simple way to handle the unknown command op_code. Do you have any advice? Thanks!",
+      "parentUuid": "c614a78f_12f084f5",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 32
+      },
+      "revId": "6c86460918fe4fbfe8c609d5f8b62b1acfd813f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
