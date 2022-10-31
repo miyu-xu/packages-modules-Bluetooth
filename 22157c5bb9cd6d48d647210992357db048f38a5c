@@ -22,6 +22,30 @@
       },
       "revId": "22157c5bb9cd6d48d647210992357db048f38a5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bc4c482_c986d542",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-10-31T06:53:21Z",
+      "side": 1,
+      "message": "I didn\u0027t cover that case because this test was intended for testing BrowseNode.equals(). Would it be a good idea to cover that case within this test?",
+      "parentUuid": "ec5631a3_a7992360",
+      "range": {
+        "startLine": 159,
+        "startChar": 16,
+        "endLine": 159,
+        "endChar": 41
+      },
+      "revId": "22157c5bb9cd6d48d647210992357db048f38a5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
