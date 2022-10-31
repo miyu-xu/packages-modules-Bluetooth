@@ -89,6 +89,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bab6c95_72afc257",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2061,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T20:58:50Z",
+      "side": 1,
+      "message": "modify to be a unique lock, same in cleanup",
+      "range": {
+        "startLine": 2061,
+        "startChar": 7,
+        "endLine": 2061,
+        "endChar": 18
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6c0a960_b324a6ae",
         "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
         "patchSetId": 1
@@ -100,6 +123,30 @@
       "writtenOn": "2022-10-31T15:30:34Z",
       "side": 1,
       "message": "Do we need a mutex here and in periodicScanCleanupNative?",
+      "range": {
+        "startLine": 2363,
+        "startChar": 0,
+        "endLine": 2363,
+        "endChar": 2
+      },
+      "revId": "d2dafa79ddfd46574efcc21cfbe7b3b62c71d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee7b489f_446ffe83",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2363,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-10-31T20:58:50Z",
+      "side": 1,
+      "message": "I think yes, as well as in the cleanup just after.\nBoth should be unique lock, not shared",
+      "parentUuid": "a6c0a960_b324a6ae",
       "range": {
         "startLine": 2363,
         "startChar": 0,
