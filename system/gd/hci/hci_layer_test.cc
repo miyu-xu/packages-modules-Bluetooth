@@ -290,7 +290,7 @@ class DependsOnHci : public Module {
     hci_->GetIsoQueueEnd()->UnregisterDequeue();
   }
 
-  void ListDependencies(ModuleList* list) {
+  void ListDependencies(ModuleList* list) const {
     list->add<HciLayer>();
   }
 
@@ -390,14 +390,14 @@ class HciTest : public ::testing::Test {
     ASSERT_EQ(reset_sent_status, std::future_status::ready);
 
     // Verify that reset was received
-    ASSERT_EQ(1, hal->GetNumSentCommands());
+    ASSERT_EQ(1u, hal->GetNumSentCommands());
 
     auto sent_command = hal->GetSentCommand();
     auto reset_view = ResetView::Create(CommandView::Create(sent_command));
     ASSERT_TRUE(reset_view.IsValid());
 
     // Verify that only one was sent
-    ASSERT_EQ(0, hal->GetNumSentCommands());
+    ASSERT_EQ(0u, hal->GetNumSentCommands());
 
     // Send the response event
     uint8_t num_packets = 1;
@@ -478,7 +478,7 @@ TEST_F(HciTest, hciTimeOut) {
 }
 
 TEST_F(HciTest, noOpCredits) {
-  ASSERT_EQ(0, hal->GetNumSentCommands());
+  ASSERT_EQ(0u, hal->GetNumSentCommands());
 
   // Send 0 credits
   uint8_t num_packets = 0;
@@ -488,7 +488,7 @@ TEST_F(HciTest, noOpCredits) {
   upper->SendHciCommandExpectingComplete(ReadLocalVersionInformationBuilder::Create());
 
   // Verify that nothing was sent
-  ASSERT_EQ(0, hal->GetNumSentCommands());
+  ASSERT_EQ(0u, hal->GetNumSentCommands());
 
   num_packets = 1;
   hal->callbacks->hciEventReceived(GetPacketBytes(NoCommandCompleteBuilder::Create(num_packets)));
@@ -497,7 +497,7 @@ TEST_F(HciTest, noOpCredits) {
   ASSERT_EQ(command_sent_status, std::future_status::ready);
 
   // Verify that one was sent
-  ASSERT_EQ(1, hal->GetNumSentCommands());
+  ASSERT_EQ(1u, hal->GetNumSentCommands());
 
   auto event_future = upper->GetReceivedEventFuture();
 
@@ -522,7 +522,7 @@ TEST_F(HciTest, noOpCredits) {
 }
 
 TEST_F(HciTest, creditsTest) {
-  ASSERT_EQ(0, hal->GetNumSentCommands());
+  ASSERT_EQ(0u, hal->GetNumSentCommands());
 
   auto command_future = hal->GetSentCommandFuture();
 
@@ -535,14 +535,14 @@ TEST_F(HciTest, creditsTest) {
   ASSERT_EQ(command_sent_status, std::future_status::ready);
 
   // Verify that the first one is sent
-  ASSERT_EQ(1, hal->GetNumSentCommands());
+  ASSERT_EQ(1u, hal->GetNumSentCommands());
 
   auto sent_command = hal->GetSentCommand();
   auto version_view = ReadLocalVersionInformationView::Create(CommandView::Create(sent_command));
   ASSERT_TRUE(version_view.IsValid());
 
   // Verify that only one was sent
-  ASSERT_EQ(0, hal->GetNumSentCommands());
+  ASSERT_EQ(0u, hal->GetNumSentCommands());
 
   // Get a new future
   auto event_future = upper->GetReceivedEventFuture();
@@ -570,14 +570,14 @@ TEST_F(HciTest, creditsTest) {
   // Verify that the second one is sent
   command_sent_status = command_future.wait_for(kTimeout);
   ASSERT_EQ(command_sent_status, std::future_status::ready);
-  ASSERT_EQ(1, hal->GetNumSentCommands());
+  ASSERT_EQ(1u, hal->GetNumSentCommands());
 
   sent_command = hal->GetSentCommand();
   auto supported_commands_view = ReadLocalSupportedCommandsView::Create(CommandView::Create(sent_command));
   ASSERT_TRUE(supported_commands_view.IsValid());
 
   // Verify that only one was sent
-  ASSERT_EQ(0, hal->GetNumSentCommands());
+  ASSERT_EQ(0u, hal->GetNumSentCommands());
   event_future = upper->GetReceivedEventFuture();
   command_future = hal->GetSentCommandFuture();
 
@@ -598,14 +598,14 @@ TEST_F(HciTest, creditsTest) {
   // Verify that the third one is sent
   command_sent_status = command_future.wait_for(kTimeout);
   ASSERT_EQ(command_sent_status, std::future_status::ready);
-  ASSERT_EQ(1, hal->GetNumSentCommands());
+  ASSERT_EQ(1u, hal->GetNumSentCommands());
 
   sent_command = hal->GetSentCommand();
   auto supported_features_view = ReadLocalSupportedFeaturesView::Create(CommandView::Create(sent_command));
   ASSERT_TRUE(supported_features_view.IsValid());
 
   // Verify that only one was sent
-  ASSERT_EQ(0, hal->GetNumSentCommands());
+  ASSERT_EQ(0u, hal->GetNumSentCommands());
   event_future = upper->GetReceivedEventFuture();
 
   // Send the response event
@@ -631,7 +631,7 @@ TEST_F(HciTest, leSecurityInterfaceTest) {
 
   // Check the command
   auto sent_command = hal->GetSentCommand();
-  ASSERT_LT(0, sent_command.size());
+  ASSERT_LT(0u, sent_command.size());
   LeRandView view = LeRandView::Create(LeSecurityCommandView::Create(CommandView::Create(sent_command)));
   ASSERT_TRUE(view.IsValid());
 
@@ -662,7 +662,7 @@ TEST_F(HciTest, securityInterfacesTest) {
 
   // Check the command
   auto sent_command = hal->GetSentCommand();
-  ASSERT_LT(0, sent_command.size());
+  ASSERT_LT(0u, sent_command.size());
   auto view = WriteSimplePairingModeView::Create(SecurityCommandView::Create(CommandView::Create(sent_command)));
   ASSERT_TRUE(view.IsValid());
 
@@ -699,7 +699,7 @@ TEST_F(HciTest, createConnectionTest) {
 
   // Check the command
   auto sent_command = hal->GetSentCommand();
-  ASSERT_LT(0, sent_command.size());
+  ASSERT_LT(0u, sent_command.size());
   CreateConnectionView view = CreateConnectionView::Create(
       ConnectionManagementCommandView::Create(AclCommandView::Create(CommandView::Create(sent_command))));
   ASSERT_TRUE(view.IsValid());
@@ -776,7 +776,7 @@ TEST_F(HciTest, createConnectionTest) {
   auto sent_acl_status = sent_acl_future.wait_for(kAclTimeout);
   ASSERT_EQ(sent_acl_status, std::future_status::ready);
   auto sent_acl = hal->GetSentAcl();
-  ASSERT_LT(0, sent_acl.size());
+  ASSERT_LT(0u, sent_acl.size());
   AclView sent_acl_view = AclView::Create(sent_acl);
   ASSERT_TRUE(sent_acl_view.IsValid());
   ASSERT_EQ(bd_addr.length() + sizeof(handle), sent_acl_view.GetPayload().size());
