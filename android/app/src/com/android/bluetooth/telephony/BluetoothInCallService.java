@@ -713,7 +713,8 @@ public class BluetoothInCallService extends InCallService {
         boolean isForeground = mCallInfo.getForegroundCall() == call;
         int state = getBtCallState(call, isForeground);
         boolean isPartOfConference = false;
-        boolean isConferenceWithNoChildren = isConferenceWithNoChildren(call);
+        boolean isConferenceWithNoChildren = call.isConference()
+                && call.can(Connection.CAPABILITY_CONFERENCE_HAS_NO_CHILDREN);
 
         if (state == CALL_STATE_IDLE) {
             return;
