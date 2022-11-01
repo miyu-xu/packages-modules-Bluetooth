@@ -349,6 +349,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
             common::Unretained(le_client_callbacks_),
             remote_address,
             status,
+            // The connection failure is only reported to the host
+            // that initiated the connection.
             true /* locally_initiated */));
         return;
       }
@@ -367,7 +369,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
             common::Unretained(le_client_callbacks_),
             remote_address,
             status,
-            false /* locally_initiated */));
+            // The connection failure is only reported to the host
+            // that initiated the connection.
+            true /* locally_initiated */));
         return;
       }
 
