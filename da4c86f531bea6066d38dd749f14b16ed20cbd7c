@@ -39,6 +39,30 @@
       },
       "revId": "da4c86f531bea6066d38dd749f14b16ed20cbd7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d84a638_45b5faca",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-01T18:12:22Z",
+      "side": 1,
+      "message": "got it. thanks for the note!",
+      "parentUuid": "162686a2_10321a27",
+      "range": {
+        "startLine": 92,
+        "startChar": 6,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "da4c86f531bea6066d38dd749f14b16ed20cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
