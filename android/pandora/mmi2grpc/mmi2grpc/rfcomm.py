@@ -46,7 +46,7 @@ class RFCOMMProxy(ProfileProxy):
         """
 
         try:
-            self.connection = self.rfcomm.Connect(address=pts_addr, uuid=self.SPP_UUID).connection
+            self.connection = self.rfcomm.ConnectToServer(address=pts_addr, uuid=self.SPP_UUID).connection
         except Exception as e:
             if test == "RFCOMM/DEVA/RFC/BV-01-C":
                 print(f'{test}: PTS disconnected as expected', file=sys.stderr)

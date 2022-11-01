@@ -59,9 +59,9 @@ class Rfcomm(val context: Context) : RFCOMMImplBase() {
     scope.cancel()
   }
 
-  override fun connect(
-    request: RfcommConnectRequest,
-    responseObserver: StreamObserver<RfcommConnectResponse>,
+  override fun connectToServer(
+    request: ConnectionRequest,
+    responseObserver: StreamObserver<ConnectionResponse>,
   ) {
     grpcUnary(scope, responseObserver) {
       Log.i(TAG, "RFCOMM: connect: request=${request.address}")
@@ -84,15 +84,15 @@ class Rfcomm(val context: Context) : RFCOMMImplBase() {
         Log.e(TAG, "temp sockets not created", e)
       }
 
-      RfcommConnectResponse.newBuilder()
+      ConnectionResponse.newBuilder()
         .setConnection(RfcommConnection.newBuilder().setId(connectedClientSocket).build())
         .build()
     }
   }
 
   override fun disconnect(
-    request: RfcommDisconnectRequest,
-    responseObserver: StreamObserver<RfcommDisconnectResponse>,
+    request: DisconnectionRequest,
+    responseObserver: StreamObserver<DisconnectionResponse>,
   ) {
     grpcUnary(scope, responseObserver) {
       val id = request.connection.id
@@ -103,13 +103,13 @@ class Rfcomm(val context: Context) : RFCOMMImplBase() {
       } else {
         throw Status.UNKNOWN.asException()
       }
-      RfcommDisconnectResponse.newBuilder().build()
+      DisconnectionResponse.newBuilder().build()
     }
   }
 
   override fun startServer(
-    request: RfcommServerOptions,
-    responseObserver: StreamObserver<RfcommStartServerResponse>,
+    request: ServerOptions,
+    responseObserver: StreamObserver<StartServerResponse>,
   ) {
     grpcUnary(scope, responseObserver) {
       Log.i(TAG, "startServer")
@@ -117,14 +117,14 @@ class Rfcomm(val context: Context) : RFCOMMImplBase() {
       val serverSocketCookie = currentCookie++
       serverMap[serverSocketCookie] = serverSocket
 
-      RfcommStartServerResponse.newBuilder().setServer(
-      RfcommServer.newBuilder().setId(serverSocketCookie).build()).build()
+      StartServerResponse.newBuilder().setServer(
+      ServerId.newBuilder().setId(serverSocketCookie).build()).build()
     }
   }
 
   override fun acceptConnection(
-    request: RfcommAcceptConnectionRequest,
-    responseObserver: StreamObserver<RfcommAcceptConnectionResponse>,
+    request: AcceptConnectionRequest,
+    responseObserver: StreamObserver<AcceptConnectionResponse>,
   ) {
     grpcUnary(scope, responseObserver) {
       Log.i(TAG, "accepting: serverSocket= $(request.id)")
@@ -140,15 +140,15 @@ class Rfcomm(val context: Context) : RFCOMMImplBase() {
       }
 
       Log.i(TAG, "after accept")
-      RfcommAcceptConnectionResponse.newBuilder().setConnection(
+      AcceptConnectionResponse.newBuilder().setConnection(
       RfcommConnection.newBuilder().setId(acceptedSocketCookie).build()
       ).build()
     }
   }
 
   override fun send(
-    request: RfcommTxRequest,
-    responseObserver: StreamObserver<RfcommTxResponse>,
+    request: TxRequest,
+    responseObserver: StreamObserver<TxResponse>,
   ) {
     grpcUnary(scope, responseObserver) {
       if (request.data.isEmpty) {
@@ -166,13 +166,13 @@ class Rfcomm(val context: Context) : RFCOMMImplBase() {
         }
       }
       Log.i(TAG, "Sent data")
-      RfcommTxResponse.newBuilder().build()
+      TxResponse.newBuilder().build()
     }
   }
 
   override fun receive(
-    request: RfcommRxRequest,
-    responseObserver: StreamObserver<RfcommRxResponse>,
+    request: RxRequest,
+    responseObserver: StreamObserver<RxResponse>,
   ) {
     grpcUnary(scope, responseObserver) {
       val data = ByteArray(_bufferSize)
@@ -186,7 +186,7 @@ class Rfcomm(val context: Context) : RFCOMMImplBase() {
         }
       }
       Log.i(TAG, "Read data")
-      RfcommRxResponse.newBuilder().setData(ByteString.copyFrom(data)).build()
+      RxResponse.newBuilder().setData(ByteString.copyFrom(data)).build()
     }
   }
 }

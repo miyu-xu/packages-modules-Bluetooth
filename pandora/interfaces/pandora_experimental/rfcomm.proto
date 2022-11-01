@@ -6,16 +6,16 @@ package pandora;
 
 // Service to trigger RFCOMM procedures.
 service RFCOMM {
-  rpc Connect(RfcommConnectRequest) returns (RfcommConnectResponse);
-  rpc StartServer(RfcommServerOptions) returns (RfcommStartServerResponse);
-  rpc AcceptConnection(RfcommAcceptConnectionRequest) returns (RfcommAcceptConnectionResponse);
-  rpc Disconnect(RfcommDisconnectRequest) returns (RfcommDisconnectResponse);
-  rpc StopRfcommServer(RfcommStopServerRequest) returns (RfcommStopServerResponse);
-  rpc Send(RfcommTxRequest) returns (RfcommTxResponse);
-  rpc Receive(RfcommRxRequest) returns (RfcommRxResponse);
+  rpc ConnectToServer(ConnectionRequest) returns (ConnectionResponse);
+  rpc StartServer(ServerOptions) returns (StartServerResponse);
+  rpc AcceptConnection(AcceptConnectionRequest) returns (AcceptConnectionResponse);
+  rpc Disconnect(DisconnectionRequest) returns (DisconnectionResponse);
+  rpc StopServer(StopServerRequest) returns (StopServerResponse);
+  rpc Send(TxRequest) returns (TxResponse);
+  rpc Receive(RxRequest) returns (RxResponse);
 }
 
-message RfcommConnectRequest {
+message ConnectionRequest {
   bytes address = 1;
   string uuid = 2;
 }
@@ -24,57 +24,57 @@ message RfcommConnection {
   uint32 id = 1;
 }
 
-message RfcommConnectResponse {
+message ConnectionResponse {
   RfcommConnection connection = 1;
 }
 
-message RfcommServerOptions {
+message ServerOptions {
   string name = 1;
   string uuid = 2;
 }
 
-message RfcommServer {
+message ServerId {
   uint32 id = 1;
 }
 
-message RfcommStartServerResponse {
-  RfcommServer server = 1;
+message StartServerResponse {
+  ServerId server = 1;
 }
 
-message RfcommStopServerRequest {
-  RfcommServer server = 1;
+message StopServerRequest {
+  ServerId server = 1;
 }
 
-message RfcommStopServerResponse {
+message StopServerResponse {
 }
 
-message RfcommAcceptConnectionRequest {
-  RfcommServer server = 1;
+message AcceptConnectionRequest {
+  ServerId server = 1;
 }
 
-message RfcommAcceptConnectionResponse {
+message AcceptConnectionResponse {
   RfcommConnection connection = 1;
 }
 
-message RfcommDisconnectRequest {
+message DisconnectionRequest {
   RfcommConnection connection = 1;
 }
 
-message RfcommDisconnectResponse {
+message DisconnectionResponse {
 }
 
-message RfcommTxRequest {
+message TxRequest {
   RfcommConnection connection = 1;
   bytes data = 2;
 }
 
-message RfcommTxResponse {
+message TxResponse {
 }
 
-message RfcommRxRequest {
+message RxRequest {
   RfcommConnection connection = 1;
 }
 
-message RfcommRxResponse {
+message RxResponse {
   bytes data = 1;
 }
