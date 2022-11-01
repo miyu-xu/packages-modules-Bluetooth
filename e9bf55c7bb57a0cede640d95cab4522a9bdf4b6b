@@ -46,6 +46,30 @@
       },
       "revId": "e9bf55c7bb57a0cede640d95cab4522a9bdf4b6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ac9f97c_695d702d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-01T15:45:23Z",
+      "side": 1,
+      "message": "I don\u0027t see that in the spec.",
+      "parentUuid": "aed0f5b0_9fd1ba9d",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 374,
+        "endChar": 7
+      },
+      "revId": "e9bf55c7bb57a0cede640d95cab4522a9bdf4b6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
