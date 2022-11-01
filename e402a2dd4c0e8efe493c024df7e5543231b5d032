@@ -16,6 +16,24 @@
       "message": "Minor thing, but FEATURE_MASK_HEARING_AID_TYPE is @hide and is more of an implementation detail here. I would just remove it from the docs. Using the @HearingAidType IntDef annotation should indicate when this constant will be used as a return value.",
       "revId": "e402a2dd4c0e8efe493c024df7e5543231b5d032",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb9b721d_9e138577",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2022-11-01T06:57:04Z",
+      "side": 1,
+      "message": "Removed sentences mentioning FEATURE_MASK_HEARING_AID_TYPE from the documentations.",
+      "parentUuid": "50644e2d_4a07c063",
+      "revId": "e402a2dd4c0e8efe493c024df7e5543231b5d032",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
