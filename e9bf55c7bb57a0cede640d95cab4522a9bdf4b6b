@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b6cbf6_a0611575",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-01T04:39:37Z",
+      "side": 1,
+      "message": "Maybe this should be an assert if connection failures are only reported to the initiator.  This is in the case where the role is peripheral.",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 374,
+        "endChar": 7
+      },
+      "revId": "e9bf55c7bb57a0cede640d95cab4522a9bdf4b6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
