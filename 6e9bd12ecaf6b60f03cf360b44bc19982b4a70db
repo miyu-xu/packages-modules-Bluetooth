@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bf70d83_763a03e5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-01T21:27:56Z",
+      "side": 1,
+      "message": "Naive question:\nShould it be protected there as well ? (and in `remove(int)` below)",
+      "range": {
+        "startLine": 264,
+        "startChar": 26,
+        "endLine": 264,
+        "endChar": 38
+      },
+      "revId": "6e9bd12ecaf6b60f03cf360b44bc19982b4a70db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
