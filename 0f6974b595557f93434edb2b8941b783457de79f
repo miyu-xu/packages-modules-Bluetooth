@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "067f551f_3bf71947",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/RequestGetImageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-01T11:06:21Z",
+      "side": 1,
+      "message": "Q) Is there any way to convert the expected string to an XML, and compare that?\n\nAsking this because just adding a space(\u0027 \u0027) in the XML will result the comparison to be false.",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 84
+      },
+      "revId": "0f6974b595557f93434edb2b8941b783457de79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
