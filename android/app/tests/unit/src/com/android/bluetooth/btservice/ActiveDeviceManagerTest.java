@@ -47,6 +47,7 @@ import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -430,14 +431,18 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void leAudioSecondDeviceDisconnected_fallbackDeviceActive() {
+        ArgumentCaptor<BluetoothDevice> argument = ArgumentCaptor.forClass(BluetoothDevice.class);
         leAudioConnected(mSecondaryAudioDevice);
-        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mSecondaryAudioDevice);
-
         leAudioConnected(mLeAudioDevice);
-        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeAudioDevice);
-
         leAudioDisconnected(mLeAudioDevice);
-        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mSecondaryAudioDevice);
+
+        verify(mLeAudioService, timeout(TIMEOUT_MS).times(3)).setActiveDevice(argument.capture());
+
+        List<BluetoothDevice> values = argument.getAllValues();
+
+        Assert.assertTrue(values.contains(mSecondaryAudioDevice));
+        Assert.assertTrue(values.contains(mLeAudioDevice));
+        Assert.assertTrue(values.contains(mSecondaryAudioDevice));
     }
 
     /**
