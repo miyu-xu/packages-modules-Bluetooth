@@ -16,6 +16,29 @@
       "message": "How does this fix the original reason of getting reverted?",
       "revId": "da4c86f531bea6066d38dd749f14b16ed20cbd7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "162686a2_10321a27",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-01T17:59:48Z",
+      "side": 1,
+      "message": "Re: Sonny \n\nThe additional guard here.\n\nWhen media information comes there is no guarantee any of this meta data fields is not empty. Calling AttributeEntry constructor with empty string end up in a crash.",
+      "range": {
+        "startLine": 92,
+        "startChar": 6,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "da4c86f531bea6066d38dd749f14b16ed20cbd7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
