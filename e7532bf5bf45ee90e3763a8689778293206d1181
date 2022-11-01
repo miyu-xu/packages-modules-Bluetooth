@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b02cf8f_412462cf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/PlayerApplicationSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-01T04:56:55Z",
+      "side": 1,
+      "message": "Q) What is the difference of purpose btw. `makeSupportedSettings` and `makeSettings`?",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 28
+      },
+      "revId": "e7532bf5bf45ee90e3763a8689778293206d1181",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
