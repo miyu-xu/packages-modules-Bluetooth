@@ -21,7 +21,6 @@
 #include "btif/include/btif_av.h"
 
 #include <base/bind.h>
-#include <base/logging.h>
 #include <base/strings/stringprintf.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/a2dp/enums.pb.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
@@ -472,7 +471,7 @@ class BtifAvSource {
    */
   bool SetActivePeer(const RawAddress& peer_address,
                      std::promise<void> peer_ready_promise) {
-    LOG(INFO) << __PRETTY_FUNCTION__ << ": peer: " << peer_address;
+    LOG_INFO("%s: peer: %s", __func__, peer_address.ToString().c_str());
 
     if (active_peer_ == peer_address) {
       peer_ready_promise.set_value();
@@ -482,8 +481,7 @@ class BtifAvSource {
       BTIF_TRACE_EVENT("%s: peer address is empty, shutdown the Audio source",
                        __func__);
       if (!bta_av_co_set_active_peer(peer_address)) {
-        LOG(WARNING) << __func__
-                     << ": unable to set active peer to empty in BtaAvCo";
+        LOG_WARN("%s: unable to set active peer to empty in BtaAvCo", __func__);
       }
       btif_a2dp_source_end_session(active_peer_);
       btif_a2dp_source_shutdown();
@@ -494,8 +492,8 @@ class BtifAvSource {
 
     BtifAvPeer* peer = FindPeer(peer_address);
     if (peer == nullptr || !peer->IsConnected()) {
-      LOG(ERROR) << __func__ << ": Error setting " << peer_address
-                 << " as active Source peer";
+      LOG_ERROR("%s: Error setting %s as active Source peer", __func__,
+                peer_address.ToString().c_str());
       peer_ready_promise.set_value();
       return false;
     }
@@ -611,7 +609,7 @@ class BtifAvSink {
    */
   bool SetActivePeer(const RawAddress& peer_address,
                      std::promise<void> peer_ready_promise) {
-    LOG(INFO) << __PRETTY_FUNCTION__ << ": peer: " << peer_address;
+    LOG_INFO("%s: peer: %s", __func__, peer_address.ToString().c_str());
 
     if (active_peer_ == peer_address) {
       peer_ready_promise.set_value();
@@ -621,8 +619,7 @@ class BtifAvSink {
       BTIF_TRACE_EVENT("%s: peer address is empty, shutdown the Audio sink",
                        __func__);
       if (!bta_av_co_set_active_peer(peer_address)) {
-        LOG(WARNING) << __func__
-                     << ": unable to set active peer to empty in BtaAvCo";
+        LOG_WARN("%s: unable to set active peer to empty in BtaAvCo", __func__);
       }
       btif_a2dp_sink_end_session(active_peer_);
       btif_a2dp_sink_shutdown();
@@ -633,8 +630,8 @@ class BtifAvSink {
 
     BtifAvPeer* peer = FindPeer(peer_address);
     if (peer == nullptr || !peer->IsConnected()) {
-      LOG(ERROR) << __func__ << ": Error setting " << peer_address
-                 << " as active Sink peer";
+      LOG_ERROR("%s: Error setting %s as active Sink peer", __func__,
+                peer_address.ToString().c_str());
       peer_ready_promise.set_value();
       return false;
     }
@@ -954,8 +951,8 @@ const RawAddress& BtifAvPeer::ActivePeerAddress() const {
   if (IsSink()) {
     return btif_av_source.ActivePeer();
   }
-  LOG(FATAL) << __PRETTY_FUNCTION__ << ": A2DP peer " << PeerAddress()
-             << " is neither Source nor Sink";
+  LOG_ALWAYS_FATAL("%s: A2DP peer %s is neither Source nor Sink", __func__,
+                   PeerAddress().ToString().c_str());
   return RawAddress::kEmpty;
 }
 
@@ -1955,14 +1952,12 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event,
       if (peer_.IsSink()) {
         if (!peer_.CheckFlags(BtifAvPeer::kFlagPendingStart |
                               BtifAvPeer::kFlagRemoteSuspend)) {
-          LOG(WARNING) << __PRETTY_FUNCTION__ << ": Peer "
-                       << peer_.PeerAddress()
-                       << " : trigger Suspend as remote initiated";
+          LOG_WARN("%s: Peer %s : trigger Suspend as remote initiated",
+                   __func__, peer_.PeerAddress().ToString().c_str());
           should_suspend = true;
         } else if (!peer_.IsActivePeer()) {
-          LOG(WARNING) << __PRETTY_FUNCTION__ << ": Peer "
-                       << peer_.PeerAddress()
-                       << " : trigger Suspend as non-active";
+          LOG_WARN("%s: Peer %s : trigger Suspend as non-active", __func__,
+                   peer_.PeerAddress().ToString().c_str());
           should_suspend = true;
         }
 
@@ -2037,11 +2032,11 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event,
 
     case BTA_AV_RECONFIG_EVT:
       if (p_av->reconfig.status != BTA_AV_SUCCESS) {
-        LOG(WARNING) << __PRETTY_FUNCTION__ << ": Peer " << peer_.PeerAddress()
-                     << " : failed reconfiguration";
+        LOG_WARN("%s: Peer %s : failed reconfiguration", __func__,
+                 peer_.PeerAddress().ToString().c_str());
         if (peer_.CheckFlags(BtifAvPeer::kFlagPendingStart)) {
-          LOG(ERROR) << __PRETTY_FUNCTION__ << ": Peer " << peer_.PeerAddress()
-                     << " : cannot proceed to do AvStart";
+          LOG_ERROR("%s: Peer %s : cannot proceed to do AvStart", __func__,
+                    peer_.PeerAddress().ToString().c_str());
           peer_.ClearFlags(BtifAvPeer::kFlagPendingStart);
           btif_a2dp_command_ack(A2DP_CTRL_ACK_FAILURE);
         }
@@ -2054,17 +2049,19 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event,
       }
 
       if (peer_.IsActivePeer()) {
-        LOG(INFO) << __PRETTY_FUNCTION__ << " : Peer " << peer_.PeerAddress()
-                  << " : Reconfig done - calling startSession() to audio HAL";
+        LOG_INFO(
+            "%s : Peer %s : Reconfig done - calling startSession() to audio "
+            "HAL",
+            __func__, peer_.PeerAddress().ToString().c_str());
         std::promise<void> peer_ready_promise;
         std::future<void> peer_ready_future = peer_ready_promise.get_future();
         btif_a2dp_source_start_session(peer_.PeerAddress(),
                                        std::move(peer_ready_promise));
       }
       if (peer_.CheckFlags(BtifAvPeer::kFlagPendingStart)) {
-        LOG(INFO) << __PRETTY_FUNCTION__ << " : Peer " << peer_.PeerAddress()
-                  << " : Reconfig done - calling BTA_AvStart("
-                  << loghex(peer_.BtaHandle()) << ")";
+        LOG_INFO("%s : Peer %s : Reconfig done - calling BTA_AvStart(%s)",
+                 __func__, peer_.PeerAddress().ToString().c_str(),
+                 loghex(peer_.BtaHandle()).c_str());
         BTA_AvStart(peer_.BtaHandle());
       }
       break;
@@ -2918,7 +2915,7 @@ static bt_status_t connect_int(RawAddress* peer_address, uint16_t uuid) {
   bt_status_t status = do_in_main_thread(
       FROM_HERE, base::BindOnce(connection_task, peer_address, uuid));
   if (status != BT_STATUS_SUCCESS) {
-    LOG(ERROR) << __func__ << ": can't post connection task to main_thread";
+    LOG_ERROR("%s: can't post connection task to main_thread", __func__);
   }
   return status;
 }
@@ -3028,7 +3025,7 @@ static bt_status_t sink_set_active_device(const RawAddress& peer_address) {
   BTIF_TRACE_EVENT("%s: Peer %s", __func__, peer_address.ToString().c_str());
 
   if (!btif_av_sink.Enabled()) {
-    LOG(WARNING) << __func__ << ": BTIF AV Source is not enabled";
+    LOG_WARN("%s: BTIF AV Source is not enabled", __func__);
     return BT_STATUS_NOT_READY;
   }
 
@@ -3041,7 +3038,7 @@ static bt_status_t sink_set_active_device(const RawAddress& peer_address) {
   if (status == BT_STATUS_SUCCESS) {
     peer_ready_future.wait();
   } else {
-    LOG(WARNING) << __func__ << ": BTIF AV Sink fails to change peer";
+    LOG_WARN("%s: BTIF AV Sink fails to change peer", __func__);
   }
   return status;
 }
@@ -3062,7 +3059,7 @@ static bt_status_t src_set_active_sink(const RawAddress& peer_address) {
   BTIF_TRACE_EVENT("%s: Peer %s", __func__, peer_address.ToString().c_str());
 
   if (!btif_av_source.Enabled()) {
-    LOG(WARNING) << __func__ << ": BTIF AV Source is not enabled";
+    LOG_WARN("%s: BTIF AV Source is not enabled", __func__);
     return BT_STATUS_NOT_READY;
   }
 
@@ -3075,7 +3072,7 @@ static bt_status_t src_set_active_sink(const RawAddress& peer_address) {
   if (status == BT_STATUS_SUCCESS) {
     peer_ready_future.wait();
   } else {
-    LOG(WARNING) << __func__ << ": BTIF AV Source fails to change peer";
+    LOG_WARN("%s: BTIF AV Source fails to change peer", __func__);
   }
   return status;
 }
@@ -3086,12 +3083,12 @@ static bt_status_t codec_config_src(
   BTIF_TRACE_EVENT("%s", __func__);
 
   if (!btif_av_source.Enabled()) {
-    LOG(WARNING) << __func__ << ": BTIF AV Source is not enabled";
+    LOG_WARN("%s: BTIF AV Source is not enabled", __func__);
     return BT_STATUS_NOT_READY;
   }
 
   if (peer_address.IsEmpty()) {
-    LOG(WARNING) << __func__ << ": BTIF AV Source needs peer to config";
+    LOG_WARN("%s: BTIF AV Source needs peer to config", __func__);
     return BT_STATUS_PARM_INVALID;
   }
 
@@ -3105,7 +3102,7 @@ static bt_status_t codec_config_src(
   if (status == BT_STATUS_SUCCESS) {
     peer_ready_future.wait();
   } else {
-    LOG(WARNING) << __func__ << ": BTIF AV Source fails to config codec";
+    LOG_WARN("%s: BTIF AV Source fails to config codec", __func__);
   }
   return status;
 }
