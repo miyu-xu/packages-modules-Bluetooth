@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cb4c2ef_d2aeae9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-11-01T02:29:20Z",
+      "side": 1,
+      "message": "Hi Sungsoo,\n\nSorry for the abrupt request. You seem to be the only owner that is at APAC timezone. May you help review this CL? We\u0027d love this to be merged into ChromeOS 109 which branches today.",
+      "revId": "f81dae45e70909a90f52b43608ad1716b108e6c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
