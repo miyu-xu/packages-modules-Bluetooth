@@ -20,7 +20,6 @@
 #define LOG_TAG "bt_btif_a2dp_source"
 #define ATRACE_TAG ATRACE_TAG_AUDIO
 
-#include <base/logging.h>
 #include <base/run_loop.h>
 #ifndef OS_GENERIC
 #include <cutils/trace.h>
@@ -364,15 +363,15 @@ static void btif_a2dp_source_startup_delayed() {
   LOG_INFO("%s: state=%s", __func__, btif_a2dp_source_cb.StateStr().c_str());
   if (!btif_a2dp_source_thread.EnableRealTimeScheduling()) {
 #if defined(OS_ANDROID)
-    LOG(FATAL) << __func__ << ": unable to enable real time scheduling";
+    LOG_ALWAYS_FATAL("%s: unable to enable real time scheduling", __func__);
 #endif
   }
   if (!bluetooth::audio::a2dp::init(&btif_a2dp_source_thread)) {
     if (btif_av_is_a2dp_offload_enabled()) {
       // TODO: BluetoothA2dp@1.0 is deprecated
-      LOG(WARNING) << __func__ << ": Using BluetoothA2dp HAL";
+      LOG_WARN("%s: Using BluetoothA2dp HAL", __func__);
     } else {
-      LOG(WARNING) << __func__ << ": Using legacy HAL";
+      LOG_WARN("%s: Using legacy HAL", __func__);
       btif_a2dp_control_init();
     }
   }
@@ -381,8 +380,9 @@ static void btif_a2dp_source_startup_delayed() {
 
 bool btif_a2dp_source_start_session(const RawAddress& peer_address,
                                     std::promise<void> peer_ready_promise) {
-  LOG(INFO) << __func__ << ": peer_address=" << peer_address
-            << " state=" << btif_a2dp_source_cb.StateStr();
+  LOG_INFO("%s: peer_address=%s state=%s", __func__,
+           peer_address.ToString().c_str(),
+           btif_a2dp_source_cb.StateStr().c_str());
   btif_a2dp_source_setup_codec(peer_address);
   if (btif_a2dp_source_thread.DoInThread(
           FROM_HERE,
@@ -391,19 +391,20 @@ bool btif_a2dp_source_start_session(const RawAddress& peer_address,
     return true;
   } else {
     // cannot set promise but triggers crash
-    LOG(FATAL) << __func__ << ": peer_address=" << peer_address
-               << " state=" << btif_a2dp_source_cb.StateStr()
-               << " fails to context switch";
+    LOG_ALWAYS_FATAL("%s: peer_address=%s state=%s fails to context switch",
+                     __func__, peer_address.ToString().c_str(),
+                     btif_a2dp_source_cb.StateStr().c_str());
     return false;
   }
 }
 
 static void btif_a2dp_source_start_session_delayed(
     const RawAddress& peer_address, std::promise<void> peer_ready_promise) {
-  LOG(INFO) << __func__ << ": peer_address=" << peer_address
-            << " state=" << btif_a2dp_source_cb.StateStr();
+  LOG_INFO("%s: peer_address=%s state=%s", __func__,
+           peer_address.ToString().c_str(),
+           btif_a2dp_source_cb.StateStr().c_str());
   if (btif_a2dp_source_cb.State() != BtifA2dpSource::kStateRunning) {
-    LOG(ERROR) << __func__ << ": A2DP Source media task is not running";
+    LOG_ERROR("%s: A2DP Source media task is not running", __func__);
     peer_ready_promise.set_value();
     return;
   }
@@ -422,11 +423,10 @@ static void btif_a2dp_source_start_session_delayed(
 bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
                                       const RawAddress& new_peer_address,
                                       std::promise<void> peer_ready_promise) {
-  bool is_streaming = btif_a2dp_source_cb.media_alarm.IsScheduled();
-  LOG(INFO) << __func__ << ": old_peer_address=" << old_peer_address
-            << " new_peer_address=" << new_peer_address
-            << " is_streaming=" << logbool(is_streaming)
-            << " state=" << btif_a2dp_source_cb.StateStr();
+  LOG_INFO("%s: old_peer_address=%s new_peer_address=%s state=%s", __func__,
+           old_peer_address.ToString().c_str(),
+           new_peer_address.ToString().c_str(),
+           btif_a2dp_source_cb.StateStr().c_str());
 
   CHECK(!new_peer_address.IsEmpty());
 
@@ -636,18 +636,19 @@ void btif_a2dp_source_encoder_user_config_update_req(
     const RawAddress& peer_address,
     const std::vector<btav_a2dp_codec_config_t>& codec_user_preferences,
     std::promise<void> peer_ready_promise) {
-  LOG(INFO) << __func__ << ": peer_address=" << peer_address
-            << " state=" << btif_a2dp_source_cb.StateStr() << " "
-            << codec_user_preferences.size() << " codec_preference(s)";
+  LOG_INFO("%s: peer_address=%s state=%s %zu codec_preference(s)", __func__,
+           peer_address.ToString().c_str(),
+           btif_a2dp_source_cb.StateStr().c_str(),
+           codec_user_preferences.size());
   if (!btif_a2dp_source_thread.DoInThread(
           FROM_HERE,
           base::BindOnce(&btif_a2dp_source_encoder_user_config_update_event,
                          peer_address, codec_user_preferences,
                          std::move(peer_ready_promise)))) {
     // cannot set promise but triggers crash
-    LOG(FATAL) << __func__ << ": peer_address=" << peer_address
-               << " state=" << btif_a2dp_source_cb.StateStr()
-               << " fails to context switch";
+    LOG_ALWAYS_FATAL("%s: peer_address=%s state=%s fails to context switch",
+                     __func__, peer_address.ToString().c_str(),
+                     btif_a2dp_source_cb.StateStr().c_str());
   }
 }
 
@@ -661,10 +662,13 @@ static void btif_a2dp_source_encoder_user_config_update_event(
     success = bta_av_co_set_codec_user_config(peer_address, codec_user_config,
                                               &restart_output);
     if (success) {
-      LOG(INFO) << __func__ << ": peer_address=" << peer_address
-                << " state=" << btif_a2dp_source_cb.StateStr()
-                << " codec_preference={" << codec_user_config.ToString()
-                << "} restart_output=" << (restart_output ? "true" : "false");
+      LOG_INFO(
+          "%s: peer_address=%s state=%s codec_preference={%s} "
+          "restart_output=%s",
+          __func__, peer_address.ToString().c_str(),
+          btif_a2dp_source_cb.StateStr().c_str(),
+          codec_user_config.ToString().c_str(),
+          (restart_output ? "true" : "false"));
       break;
     }
   }
@@ -676,7 +680,7 @@ static void btif_a2dp_source_encoder_user_config_update_event(
     return;
   }
   if (!success) {
-    LOG(ERROR) << __func__ << ": cannot update codec user configuration(s)";
+    LOG_ERROR("%s: cannot update codec user configuration(s)", __func__);
   }
   if (!peer_address.IsEmpty() && peer_address == btif_av_source_active_peer()) {
     // No more actions needed with remote, and if succeed, user had changed the
