@@ -252,6 +252,30 @@
       },
       "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536b11bc_52c857f9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-01T21:33:30Z",
+      "side": 1,
+      "message": "Or maybe we can pass it as a argument when creating the AdvertiseManager ?",
+      "parentUuid": "9c233979_0bbc1d0b",
+      "range": {
+        "startLine": 229,
+        "startChar": 18,
+        "endLine": 229,
+        "endChar": 32
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
