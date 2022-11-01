@@ -36,8 +36,6 @@
 #include "osi/include/log.h"
 #include "types/raw_address.h"
 
-#include <base/logging.h>
-
 void btif_a2dp_on_idle(void) {
   LOG_VERBOSE("Peer stream endpoint type:%s",
               peer_stream_endpoint_text(btif_av_get_peer_sep()).c_str());
@@ -49,12 +47,14 @@ void btif_a2dp_on_idle(void) {
 }
 
 bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start) {
-  LOG(INFO) << __func__ << ": ## ON A2DP STARTED ## peer " << peer_addr << " p_av_start:" << p_av_start;
+  LOG_INFO("%s: ## ON A2DP STARTED ## peer %s p_av_start: %p", __func__,
+           peer_addr.ToString().c_str(), (void*)p_av_start);
 
   if (p_av_start == NULL) {
     tA2DP_CTRL_ACK status = A2DP_CTRL_ACK_SUCCESS;
     if (!bluetooth::headset::IsCallIdle()) {
-      LOG(ERROR) << __func__ << ": peer " << peer_addr << " call in progress, do not start A2DP stream";
+      LOG_ERROR("%s: peer %s call in progress, do not start A2DP stream",
+                __func__, peer_addr.ToString().c_str());
       status = A2DP_CTRL_ACK_INCALL_FAILURE;
     }
     /* just ack back a local start request, do not start the media encoder since
@@ -67,12 +67,15 @@ bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start
     return true;
   }
 
-  LOG(INFO) << __func__ << ": peer " << peer_addr << " status:" << +p_av_start->status
-            << " suspending:" << logbool(p_av_start->suspending) << " initiator:" << logbool(p_av_start->initiator);
+  LOG_INFO("%s: peer %s status:%u suspending:%s initiator:%s", __func__,
+           peer_addr.ToString().c_str(), +p_av_start->status,
+           (p_av_start->suspending ? "true" : "false"),
+           (p_av_start->initiator ? "true" : "false"));
 
   if (p_av_start->status == BTA_AV_SUCCESS) {
     if (p_av_start->suspending) {
-      LOG(WARNING) << __func__ << ": peer " << peer_addr << " A2DP is suspending and ignores the started event";
+      LOG_WARN("%s: peer %s A2DP is suspending and ignores the started event",
+               __func__, peer_addr.ToString().c_str());
       return false;
     }
     if (btif_av_is_a2dp_offload_running()) {
@@ -94,7 +97,8 @@ bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start
       /* media task is auto-started upon UIPC connection of a2dp audiopath */
     }
   } else if (p_av_start->initiator) {
-    LOG(ERROR) << __func__ << ": peer " << peer_addr << " A2DP start request failed: status = " << +p_av_start->status;
+    LOG_ERROR("%s: peer %s A2DP start request failed: status = %u", __func__,
+              peer_addr.ToString().c_str(), +p_av_start->status);
     if (bluetooth::audio::a2dp::is_hal_enabled()) {
       bluetooth::audio::a2dp::ack_stream_started(A2DP_CTRL_ACK_FAILURE);
     } else {
