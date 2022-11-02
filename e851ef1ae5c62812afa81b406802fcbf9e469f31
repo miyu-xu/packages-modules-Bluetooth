@@ -16,6 +16,24 @@
       "message": "nit: I\u0027m not sure to understand why we are adding this if this is falling through the default",
       "revId": "e851ef1ae5c62812afa81b406802fcbf9e469f31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be212203_2b96b625",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-02T18:16:29Z",
+      "side": 1,
+      "message": "4 reasons:\n1. Insurance. In case of the remote chance that and event actually makes it through to legacy stack we have a observable indicator.\n2. Documentation. It\u0027s obvious not only from this CL but from the code what is happens with this event.\n3. Code Search. Should somebody search through the current or old code base for either token `HCI_CONNECTION_REQUEST_EVT` or `CONNECTION_REQUEST` one can see a mapping between the two\n4. Enum Style. *All* enums should have a `case` for explicit behavior indication.",
+      "parentUuid": "57706eed_338db5b9",
+      "revId": "e851ef1ae5c62812afa81b406802fcbf9e469f31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
