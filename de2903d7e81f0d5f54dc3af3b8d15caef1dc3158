@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "272b6a32_8204ad8a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-02T12:21:18Z",
+      "side": 1,
+      "message": "so `pairing_cb.` is needed only for getting gatt_on_le status right?\nAnd this can be removed even if `skip_reporting_wait_for_le \u003d true`?",
+      "revId": "de2903d7e81f0d5f54dc3af3b8d15caef1dc3158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
