@@ -16,6 +16,24 @@
       "message": "Should this be enclosed in\n\nif (p_clcb-\u003etransport \u003d\u003d BT_TRANSPORT_BREDR) {\n\n}\n\n?",
       "revId": "ab5144e45dfc8c28b043652bb59e48056d2a219b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85127fbb_e927a1de",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-11-02T13:35:59Z",
+      "side": 1,
+      "message": "Doesn\u0027t seem to be needed on line 324.",
+      "parentUuid": "607e0e9b_51413bdc",
+      "revId": "ab5144e45dfc8c28b043652bb59e48056d2a219b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
