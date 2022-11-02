@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50b4b4b0_384e83c1",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-02T20:05:25Z",
+      "side": 1,
+      "message": "You will ALWAYS get this log before SDP result:\n\n```\n11-02 21:00:52.759 12393 12461 I bt_stack: [INFO:gatt_api.cc(787)] GATTC_Discover conn_id\u003d0x0001, disc_type\u003d4, s_handle\u003d0x0001, e_handle\u003d0x0015\n11-02 21:00:52.778 12393 12461 I bt_bta_dm: packages/modules/Bluetooth/system/bta/dm/bta_dm_act.cc:1611 bta_dm_find_services: bta_dm_find_services services_to_search\u003d7ffffffe\n11-02 21:00:52.778 12393 12461 I bt_bta_dm: packages/modules/Bluetooth/system/bta/dm/bta_dm_act.cc:1636 bta_dm_find_services: bta_dm_find_services search UUID \u003d 00000100-0000-1000-8000-00805f9b34fb\n11-02 21:00:52.778 12393 12461 I bt_btm  : packages/modules/Bluetooth/system/main/bte_logmsg.cc:124 LogMsg: BTM_SetSecurityLevel : sec: 0x0\n11-02 21:00:52.907 12393 12461 W bt_sdp  : packages/modules/Bluetooth/system/main/bte_logmsg.cc:120 LogMsg: SDP - Rcvd L2CAP disc, process pend sdp ccb: 0x47\n11-02 21:00:52.942 12393 12461 I bt_stack: [INFO:gatt_api.cc(787)] GATTC_Discover conn_id\u003d0x0001, disc_type\u003d5, s_handle\u003d0x0013, e_handle\u003d0x0015\n11-02 21:00:52.975 12393 12461 W bt_stack: [WARNING:sdp_utils.cc(161)] sdpu_find_most_specific_service_uuid: Bad Service Class ID list attribute\n```\n\n\n\n\nAnd you will always get this log before BLE results:\n\n```\n11-02 21:00:53.085 12393 12461 I bt_stack: [INFO:bta_gattc_act.cc(801)] bta_gattc_start_discover: pending service discovery, read db hash first\n...\n02 21:00:55.521 12393 12461 I bt_bta_gattc: packages/modules/Bluetooth/system/bta/gatt/bta_gattc_cache.cc:956 bta_gattc_get_gatt_db: bta_gattc_get_gatt_db\n11-02 21:00:55.517 12393 12461 I bt_stack: [INFO:bta_gattc_cache.cc(211)] bta_gattc_explore_srvc_finished: service discovery finished\n``` \n\nService discovery is never done on two transports at same time, so you are guaranteed these are in proper order.",
+      "parentUuid": "953fb25c_88043bb3",
+      "revId": "0a3ac17219bfea08dbf88db43de2dd7130739410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b0b2a1b_2542a47e",
