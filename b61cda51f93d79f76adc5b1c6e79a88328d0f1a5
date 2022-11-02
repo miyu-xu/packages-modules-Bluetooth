@@ -16,6 +16,24 @@
       "message": "Thank you for the CL, but can I merge a different CL?\n\nI found two issues, one for mock return values on getFallbackDevice.\nAnd the other for timing issues on the test.\nThe timing issues happens 2 times over 2000 times tests.\n\nI will upload the fix today after running another 2000 times tests.\nThanks.",
       "revId": "b61cda51f93d79f76adc5b1c6e79a88328d0f1a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec2f017_55556cfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-02T05:16:57Z",
+      "side": 1,
+      "message": "Yes sure you can.\nI am gonna abandon this one then.\n\nFYI with this CL I have 100% success so far on this tests",
+      "parentUuid": "768fd773_d2eb8208",
+      "revId": "b61cda51f93d79f76adc5b1c6e79a88328d0f1a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
