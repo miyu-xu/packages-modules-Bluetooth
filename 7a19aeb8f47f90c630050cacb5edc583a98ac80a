@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e31d0500_5892f28d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bas/BatteryStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-02T06:44:24Z",
+      "side": 1,
+      "message": "to a disconnected state?",
+      "range": {
+        "startLine": 224,
+        "startChar": 24,
+        "endLine": 224,
+        "endChar": 48
+      },
+      "revId": "7a19aeb8f47f90c630050cacb5edc583a98ac80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94783639_fbfbdba6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bas/BatteryStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-02T06:44:24Z",
+      "side": 1,
+      "message": "to connected state?",
+      "range": {
+        "startLine": 238,
+        "startChar": 24,
+        "endLine": 238,
+        "endChar": 48
+      },
+      "revId": "7a19aeb8f47f90c630050cacb5edc583a98ac80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28fd1249_34d339d4",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bas/BatteryStateMachineTest.java",
         "patchSetId": 1
