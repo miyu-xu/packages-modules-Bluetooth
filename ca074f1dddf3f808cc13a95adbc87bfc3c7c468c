@@ -16,6 +16,24 @@
       "message": "nit: We should maybe update https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/btm/btm_ble.cc;l\u003d1363;drc\u003db45a2ea782074944f79fc388df20b06e01f265f7 to use this function (and other locations where we print tBTM_BLE_SEC_REQ_ACT values but I wasn\u0027t able to find any).",
       "revId": "ca074f1dddf3f808cc13a95adbc87bfc3c7c468c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c846ca4_1eed70d9",
+        "filename": "system/stack/btm/btm_ble_int_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-02T18:22:48Z",
+      "side": 1,
+      "message": "SMP_TRACE_DEBUG(\"%s: sec_req_act\u003d0x%x\", __func__, sec_req_act);\n\nOne more.",
+      "parentUuid": "385d7ec7_89ae60a9",
+      "revId": "ca074f1dddf3f808cc13a95adbc87bfc3c7c468c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
