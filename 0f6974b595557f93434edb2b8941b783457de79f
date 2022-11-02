@@ -46,6 +46,30 @@
       },
       "revId": "0f6974b595557f93434edb2b8941b783457de79f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a07a4a_10b738f2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/RequestGetImageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-02T05:57:51Z",
+      "side": 1,
+      "message": "Usually it is a better testing practice to compare the \u0027structured\u0027 data.\n\nhttps://docs.google.com/document/d/12GEpMaC_E1JBT_C33Wy7zFoIAlE6br1gDRv4QnnTaok/edit?resourcekey\u003d0-pT7jGEzeSKgFmfPPJ6fLXA\n\nHowever it seems the class is not easily found. Let\u0027s leave as-is.",
+      "parentUuid": "7638d6cf_dabf6d82",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 84
+      },
+      "revId": "0f6974b595557f93434edb2b8941b783457de79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
