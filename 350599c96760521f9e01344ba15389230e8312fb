@@ -134,6 +134,24 @@
       "parentUuid": "6cb4028b_562c104e",
       "revId": "350599c96760521f9e01344ba15389230e8312fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69f2823f_8e6902c9",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-02T21:06:23Z",
+      "side": 1,
+      "message": "So in case device rotated address or is just somehow gone, we would now wait 30 seconds (bond attempt timeout) before attempting to scan for it ?\n\nI\u0027m not sure what is worse in this case. If we enable scanning, we might just sightly decrease the initial connection speed (see aosp/2210955 ), so I\u0027m more leaning towards that.",
+      "parentUuid": "da00f2b1_899ccfa6",
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
