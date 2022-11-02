@@ -16,6 +16,24 @@
       "message": "Hi Josh,\n\nSoftReset and HardReset have been implemented on the avatar repository in the PandoraGOB last week:\ngo/pandoracl/1960\ngo/pandoracl/1941\n\nIf you need them on AOSP, we can work on updating the avatar_experimental.\n\nDo you have access to the Pandora Gerrit ? It could help you identify what is being implemented or already implemented 😊",
       "revId": "060d7a5fe10a0df11ef30877d7f5e752fd1a5782",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddcb5168_9fa0ca9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-02T16:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bea312e7_d225c652",
+      "revId": "060d7a5fe10a0df11ef30877d7f5e752fd1a5782",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
