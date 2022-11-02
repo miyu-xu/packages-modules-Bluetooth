@@ -34,6 +34,7 @@
 #include <hardware/bluetooth.h>
 #include <hardware/bt_gatt.h>
 
+#include <algorithm>
 #include <string>
 
 #include "bta_api.h"
@@ -527,9 +528,9 @@ static bt_status_t btif_gattc_write_char(int conn_id, uint16_t handle,
                                          const uint8_t* val, size_t len) {
   CHECK_BTGATT_INIT();
 
-  std::vector<uint8_t> value(val, val + len);
+  len = std::min(len, (size_t)BTGATT_MAX_ATTR_LEN);
 
-  if (value.size() > BTGATT_MAX_ATTR_LEN) value.resize(BTGATT_MAX_ATTR_LEN);
+  std::vector<uint8_t> value(val, val + len);
 
   return do_in_jni_thread(Bind(&BTA_GATTC_WriteCharValue, conn_id, handle,
                                write_type, std::move(value), auth_req,
@@ -556,6 +557,8 @@ static bt_status_t btif_gattc_write_char_descr(int conn_id, uint16_t handle,
                                                int auth_req, const uint8_t* val,
                                                size_t len) {
   CHECK_BTGATT_INIT();
+
+  len = std::min(len, (size_t)BTGATT_MAX_ATTR_LEN);
 
   std::vector<uint8_t> value(val, val + len);
 
