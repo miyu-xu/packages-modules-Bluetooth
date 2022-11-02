@@ -362,6 +362,7 @@ impl BluetoothMedia {
                 self.a2dp_audio_state.insert(addr, state);
             }
             A2dpCallbacks::AudioConfig(addr, _config, _local_caps, a2dp_caps) => {
+                info!("[{}]: a2dp updated audio config: {:?}", addr.to_string(), a2dp_caps);
                 self.a2dp_caps.insert(addr, a2dp_caps);
             }
             A2dpCallbacks::MandatoryCodecPreferred(_addr) => {}
@@ -862,6 +863,8 @@ impl IBluetoothMedia for BluetoothMedia {
 
         let available_profiles = self.adapter_get_audio_profiles(addr);
 
+        info!("[{}]: Connecting to device, available profiles: {:?}.", address, available_profiles);
+
         let connected_profiles = self.connected_profiles.entry(addr).or_insert_with(HashSet::new);
 
         let missing_profiles =
@@ -1198,6 +1201,8 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn start_audio_request(&mut self) {
+        info!("Start audio request");
+
         match self.a2dp.as_mut() {
             Some(a2dp) => a2dp.start_audio_request(),
             None => warn!("Uninitialized A2DP to start audio request"),
@@ -1209,6 +1214,8 @@ impl IBluetoothMedia for BluetoothMedia {
             info!("No active stream on A2DP device, ignoring request to stop audio.");
             return;
         }
+
+        info!("Stop audio request");
 
         match self.a2dp.as_mut() {
             Some(a2dp) => a2dp.stop_audio_request(),
