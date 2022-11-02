@@ -146,6 +146,24 @@
       "parentUuid": "2200e198_18f9ee3f",
       "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e554ea42_9403e55d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1628,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-02T11:53:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0f366ae7_d2549e48",
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
