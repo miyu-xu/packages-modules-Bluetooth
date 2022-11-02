@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "607e0e9b_51413bdc",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-02T11:50:07Z",
+      "side": 1,
+      "message": "Should this be enclosed in\n\nif (p_clcb-\u003etransport \u003d\u003d BT_TRANSPORT_BREDR) {\n\n}\n\n?",
+      "revId": "ab5144e45dfc8c28b043652bb59e48056d2a219b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
