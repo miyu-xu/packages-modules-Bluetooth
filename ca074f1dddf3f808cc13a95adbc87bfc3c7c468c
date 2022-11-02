@@ -34,6 +34,24 @@
       "parentUuid": "385d7ec7_89ae60a9",
       "revId": "ca074f1dddf3f808cc13a95adbc87bfc3c7c468c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a7ba8fc_31ca1745",
+        "filename": "system/stack/btm/btm_ble_int_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-02T19:33:22Z",
+      "side": 1,
+      "message": "Yes we should, but not now otherwise CLs and files touched explode pretty quickly.\n\nThe legacy logging all requires serious updating and cannot be accomplished all at once.\n\nAs we lay the groundwork for standardized logging such as this, we will migrate over time.",
+      "parentUuid": "385d7ec7_89ae60a9",
+      "revId": "ca074f1dddf3f808cc13a95adbc87bfc3c7c468c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
