@@ -157,6 +157,24 @@
       "parentUuid": "70ac4806_68abe034",
       "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46880f69_19e477ac",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3057,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-02T20:56:23Z",
+      "side": 1,
+      "message": "We log every state change. You would be interested in what triggered state change, so would need to digg through logs to find what happened before, i.e. who triggered service discovery on LE transport anyway.",
+      "parentUuid": "2d7a8970_4a476df2",
+      "revId": "a70a73e01a8052d2e272341f89ccfcd303a2eb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
