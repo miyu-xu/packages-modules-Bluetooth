@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ed30203_05e66f33",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-02T18:52:12Z",
+      "side": 1,
+      "message": "Why do we need to clearInvocations ?\nIf there is multiples call to setActive, shouldn\u0027t we enforce them all ?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 47
+      },
+      "revId": "dba9f0b6f4cd851554296f220fe163ce3c2956e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc31308d_a4a692ff",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-02T18:52:12Z",
+      "side": 1,
+      "message": "Same",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 50
+      },
+      "revId": "dba9f0b6f4cd851554296f220fe163ce3c2956e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e9baa5a_28bbbd6b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-02T18:52:12Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 458,
+        "startChar": 16,
+        "endLine": 458,
+        "endChar": 32
+      },
+      "revId": "dba9f0b6f4cd851554296f220fe163ce3c2956e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "342e1e6d_eb008f7d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-02T18:52:12Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 588,
+        "startChar": 16,
+        "endLine": 588,
+        "endChar": 32
+      },
+      "revId": "dba9f0b6f4cd851554296f220fe163ce3c2956e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
