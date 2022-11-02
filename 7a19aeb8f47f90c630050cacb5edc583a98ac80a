@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28fd1249_34d339d4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bas/BatteryStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-02T06:43:39Z",
+      "side": 1,
+      "message": "to an illegal state",
+      "range": {
+        "startLine": 247,
+        "startChar": 46,
+        "endLine": 247,
+        "endChar": 48
+      },
+      "revId": "7a19aeb8f47f90c630050cacb5edc583a98ac80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89adacb2_6d9f85ac",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bas/BatteryStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-02T06:43:39Z",
+      "side": 1,
+      "message": "minor) Can we move this method to L333?",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 5
+      },
+      "revId": "7a19aeb8f47f90c630050cacb5edc583a98ac80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
