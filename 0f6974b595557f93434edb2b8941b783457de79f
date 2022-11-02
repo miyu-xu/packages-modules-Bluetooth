@@ -22,6 +22,30 @@
       },
       "revId": "0f6974b595557f93434edb2b8941b783457de79f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7638d6cf_dabf6d82",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/RequestGetImageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-02T02:57:02Z",
+      "side": 1,
+      "message": "I\u0027m not sure at this point :( I simply followed what the author did in BipImageDescriptor test, since this test was for RequestImage and I didn\u0027t want to spend time on thinking about BipImageDescriptor. Should I still look into converting the string to xml to compare it?\n\nhttps://source.corp.google.com/tm-dev/packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/BipImageDescriptorTest.java?q\u003dbipimagedescriptortest\u0026sq\u003dpackage:%20android",
+      "parentUuid": "067f551f_3bf71947",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 84
+      },
+      "revId": "0f6974b595557f93434edb2b8941b783457de79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
