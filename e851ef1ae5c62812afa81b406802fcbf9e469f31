@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57706eed_338db5b9",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-02T18:06:50Z",
+      "side": 1,
+      "message": "nit: I\u0027m not sure to understand why we are adding this if this is falling through the default",
+      "revId": "e851ef1ae5c62812afa81b406802fcbf9e469f31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
