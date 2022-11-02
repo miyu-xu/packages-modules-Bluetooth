@@ -41,7 +41,11 @@
         <option name="profile" value="HID/HOS" />
         <option name="profile" value="HOGP" />
         <option name="profile" value="L2CAP/LE" />
+<<<<<<< HEAD
         <option name="profile" value="RFCOMM" />
+=======
+        <option name="profile" value="L2CAP/COS" />
+>>>>>>> 7386b21d2a ([PTS-Bot] Add L2CAP/COS Tests)
         <option name="profile" value="SDP" />
         <option name="profile" value="SM" />
     </test>
