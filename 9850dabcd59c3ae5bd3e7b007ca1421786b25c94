@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa50b322_ef8a5e0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-02T07:35:29Z",
+      "side": 1,
+      "message": "PRESUBMIT said code conflicts in quite a few build targets. So I repo synced, rebased, and re-submitted the patches to retry PRESUMBMIT.",
+      "revId": "9850dabcd59c3ae5bd3e7b007ca1421786b25c94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
