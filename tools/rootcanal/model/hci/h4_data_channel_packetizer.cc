@@ -27,7 +27,6 @@
 #include <vector>       // for vector
 
 #include "model/hci/h4_parser.h"     // for H4Parser, ClientDisconnectCa...
-#include "model/hci/hci_protocol.h"  // for PacketReadCallback, AsyncDataChannel
 #include "net/async_data_channel.h"  // for AsyncDataChannel
 #include "os/log.h"                  // for LOG_ERROR, LOG_ALWAYS_FATAL
 

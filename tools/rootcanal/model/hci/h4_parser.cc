@@ -23,7 +23,6 @@
 #include <utility>     // for move
 #include <vector>      // for vector
 
-#include "model/hci/hci_protocol.h"  // for PacketReadCallback
 #include "os/log.h"                  // for LOG_ALWAYS_FATAL, LOG_INFO
 
 namespace rootcanal {
