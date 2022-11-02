@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "113dd470_f5f2cc4c",
+        "filename": "android/pandora/server/AndroidManifest.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-02T21:11:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b175d73_98ca663e",
+      "revId": "97a6e90736f42d086d1ca38ee67ae3f4a1774cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88e721f0_317ddd3e",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-01T19:32:04Z",
       "side": 1,
       "message": "This should not be commited",
+      "revId": "97a6e90736f42d086d1ca38ee67ae3f4a1774cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fa32e55_fafcaae3",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-02T21:11:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88e721f0_317ddd3e",
       "revId": "97a6e90736f42d086d1ca38ee67ae3f4a1774cbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
