@@ -42,6 +42,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioDeviceCallback;
+import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Handler;
@@ -115,6 +117,8 @@ public class LeAudioService extends ProfileService {
     private LeAudioCodecConfig mLeAudioCodecConfig;
     private Object mGroupLock = new Object();
     ServiceFactory mServiceFactory = new ServiceFactory();
+    private AudioDeviceChangedCallback mAudioDeviceChangedCallback;
+    private Intent mPendingActiveIntent = null;
 
     LeAudioNativeInterface mLeAudioNativeInterface;
     boolean mLeAudioNativeIsInitialized = false;
@@ -273,6 +277,12 @@ public class LeAudioService extends ProfileService {
         // before we start accepting connections
         mHandler.post(this::init);
 
+        if (mAudioDeviceChangedCallback == null)  {
+            mAudioDeviceChangedCallback = new AudioDeviceChangedCallback();
+        }
+        mAudioManager.registerAudioDeviceCallback(mAudioDeviceChangedCallback, mLeAudioServiceHandler);
+        mPendingActiveIntent = null;
+
         return true;
     }
 
@@ -383,6 +393,9 @@ public class LeAudioService extends ProfileService {
         mAdapterService = null;
         mAudioManager = null;
         mVolumeControlService = null;
+
+        mAudioManager.unregisterAudioDeviceCallback(mAudioDeviceChangedCallback);
+        mAudioDeviceChangedCallback = null;
 
         return true;
     }
@@ -926,7 +939,15 @@ public class LeAudioService extends ProfileService {
             intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mActiveAudioOutDevice);
             intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                     | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-            sendBroadcast(intent, BLUETOOTH_CONNECT);
+            HeadsetService headsetService = mServiceFactory.getHeadsetService();
+            if (isActive && headsetService != null && headsetService.isInCall()) {
+                mPendingActiveIntent = intent;
+            } else {
+                if (mPendingActiveIntent != null) {
+                    mPendingActiveIntent = null;
+                }
+                sendBroadcast(intent, BLUETOOTH_CONNECT);
+            }
         }
 
         return mActiveAudioOutDevice != null;
@@ -1688,6 +1709,26 @@ public class LeAudioService extends ProfileService {
                     service.unmuteGroup(activeGroupId);
                 }
             }
+        }
+    }
+
+    class AudioDeviceChangedCallback extends AudioDeviceCallback {
+        @Override
+        public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
+            if (mPendingActiveIntent != null) {
+                for (AudioDeviceInfo deviceInfo : addedDevices) {
+                    if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_HEADSET) {
+                        sendBroadcast(mPendingActiveIntent, BLUETOOTH_CONNECT);
+                        mPendingActiveIntent = null;
+                        return;
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onAudioDevicesRemoved(AudioDeviceInfo[] devices) {
+            Log.d(TAG, "onAudioDevicesRemoved");
         }
     }
 

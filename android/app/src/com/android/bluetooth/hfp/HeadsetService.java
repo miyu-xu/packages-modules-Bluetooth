@@ -1889,6 +1889,10 @@ public class HeadsetService extends ProfileService {
                 DISABLE_INBAND_RINGING_PROPERTY, false) && !mInbandRingingRuntimeDisable;
     }
 
+    public boolean isInCall() {
+        return mSystemInterface.isInCall();
+    }
+
     /**
      * Called from {@link HeadsetStateMachine} in state machine thread when there is a connection
      * state change
