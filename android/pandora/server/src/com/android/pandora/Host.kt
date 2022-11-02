@@ -41,9 +41,9 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
-import java.io.IOException
 import java.time.Duration
 import java.util.UUID
+import kotlinx.coroutines.async
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.awaitCancellation
@@ -246,9 +246,10 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       if (!bluetoothDevice.isConnected()) {
         if (request.skipPairing) {
           // do an SDP request to trigger a temporary BREDR connection
+          val job = scope.async { bluetoothDevice.createRfcommSocket(3).connect() }
           try {
-            withTimeout(1500) { bluetoothDevice.createRfcommSocket(3).connect() }
-          } catch (e: IOException) {
+            withTimeout(1500) { job.await() }
+          } catch (e: Exception) {
             // ignore
           }
         } else {
