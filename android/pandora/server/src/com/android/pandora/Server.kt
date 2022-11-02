@@ -37,9 +37,8 @@ class Server(context: Context) {
   private var hfp: Hfp
   private var hid: Hid
   private var l2cap: L2cap
-  private var mediaplayer: MediaPlayer
   private var security: Security
-  private var androidInternal: AndroidInternal
+  private var androidInternal : AndroidInternal
   private var grpcServer: GrpcServer
 
   init {
@@ -49,7 +48,6 @@ class Server(context: Context) {
     hfp = Hfp(context)
     hid = Hid(context)
     l2cap = L2cap(context)
-    mediaplayer = MediaPlayer(context)
     security = Security(context)
     androidInternal = AndroidInternal()
 
@@ -61,7 +59,6 @@ class Server(context: Context) {
         .addService(hfp)
         .addService(hid)
         .addService(l2cap)
-        .addService(mediaplayer)
         .addService(security)
         .addService(androidInternal)
 
@@ -95,7 +92,6 @@ class Server(context: Context) {
     hfp.deinit()
     hid.deinit()
     l2cap.deinit()
-    mediaplayer.deinit()
     security.deinit()
     androidInternal.deinit()
   }

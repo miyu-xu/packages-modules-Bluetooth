@@ -52,8 +52,7 @@ class ExampleTest(base_test.BaseTestClass):
 if __name__ == '__main__':
     # MoblyBinaryHostTest pass test_runner arguments after a "--"
     # to make it work with rewrite argv to skip the "--"
-    if '--' in sys.argv:
-        index = sys.argv.index('--')
-        sys.argv = sys.argv[:1] + sys.argv[index + 1:]
+    index = sys.argv.index('--')
+    sys.argv = sys.argv[:1] + sys.argv[index + 1:]
     logging.basicConfig(level=logging.DEBUG)
     test_runner.main()
