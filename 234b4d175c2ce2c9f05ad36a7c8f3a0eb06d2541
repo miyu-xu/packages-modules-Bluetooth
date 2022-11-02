@@ -128,6 +128,24 @@
       "parentUuid": "9b9e2a0a_90a87f7b",
       "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f366ae7_d2549e48",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1628,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-02T10:24:28Z",
+      "side": 1,
+      "message": "OK - I guess you mean line 1568. \nHope nobody will forget that that log says also \"UUIDs will be just cached and not sent up to the java layer.",
+      "parentUuid": "2200e198_18f9ee3f",
+      "revId": "234b4d175c2ce2c9f05ad36a7c8f3a0eb06d2541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
