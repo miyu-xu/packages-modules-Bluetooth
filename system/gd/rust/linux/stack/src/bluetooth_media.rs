@@ -862,6 +862,8 @@ impl IBluetoothMedia for BluetoothMedia {
 
         let available_profiles = self.adapter_get_audio_profiles(addr);
 
+        info!("[{}]: Connecting to device, available profiles: {:?}.", address, available_profiles);
+
         let connected_profiles = self.connected_profiles.entry(addr).or_insert_with(HashSet::new);
 
         let missing_profiles =
