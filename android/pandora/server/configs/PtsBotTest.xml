@@ -40,6 +40,7 @@
         <option name="profile" value="HFP/AG" />
         <option name="profile" value="HID/HOS" />
         <option name="profile" value="HOGP" />
+        <option name="profile" value="L2CAP/COS" />
         <option name="profile" value="L2CAP/LE" />
         <option name="profile" value="RFCOMM" />
         <option name="profile" value="SDP" />
