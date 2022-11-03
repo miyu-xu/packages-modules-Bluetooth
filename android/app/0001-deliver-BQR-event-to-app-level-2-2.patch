@@ -1,0 +1,240 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From a83f993c6ffb05378afd91b0015856f175568acc Mon Sep 17 00:00:00 2001
+From: Mingbo Zhang <quic_mingboz@quicinc.com>
+Date: Mon, 24 Oct 2022 12:01:42 +0800
+Subject: [PATCH] deliver BQR event to app level(2/2)
+
+Support delivering BQR event to app level.
+
+Change-Id: I7b33cc0d85575fd13b265878df5565fb49320af9
+CRs-Fixed: 2472644
+---
+ .../jni/com_android_bluetooth_btservice_vendor.cpp | 31 ++++++++++++++++
+ .../src/btservice/Vendor.java                      | 26 ++++++++++++++
+ system_bt_ext/btif/src/btif_vendor.cc              | 41 ++++++++++++++++++++++
+ vhal/include/hardware/vendor.h                     |  5 +++
+ 4 files changed, 103 insertions(+)
+
+diff --git a/packages_apps_bluetooth_ext/jni/com_android_bluetooth_btservice_vendor.cpp b/packages_apps_bluetooth_ext/jni/com_android_bluetooth_btservice_vendor.cpp
+index 0a05b7d..f3acfc5 100644
+--- a/packages_apps_bluetooth_ext/jni/com_android_bluetooth_btservice_vendor.cpp
++++ b/packages_apps_bluetooth_ext/jni/com_android_bluetooth_btservice_vendor.cpp
+@@ -65,6 +65,7 @@ int load_bt_configstore_lib();
+ 
+ static jmethodID method_onBredrCleanup;
+ static jmethodID method_iotDeviceBroadcast;
++static jmethodID method_bqrDeliver;
+ static jmethodID method_devicePropertyChangedCallback;
+ static jmethodID method_adapterPropertyChangedCallback;
+ static jmethodID method_ssrCleanupCallback;
+@@ -159,6 +160,34 @@ static void iot_device_broadcast_callback(RawAddress* bd_addr, uint16_t error,
+                     (jint)glitch_count);
+ }
+ 
++static void bqr_delivery_callback(RawAddress* bd_addr, uint8_t lmp_ver, uint16_t lmp_subver,
++        uint16_t manufacturer_id, std::vector<uint8_t> bqr_raw_data) {
++  ALOGI("%s", __func__);
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++
++  ScopedLocalRef<jbyteArray> addr(
++      sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(RawAddress)));
++  if (!addr.get()) {
++    ALOGE("Error while allocation byte array for addr in %s", __func__);
++    return;
++  }
++  sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
++      (jbyte*)bd_addr->address);
++
++  ScopedLocalRef<jbyteArray> raw_data(
++      sCallbackEnv.get(), sCallbackEnv->NewByteArray(bqr_raw_data.size()));
++  if (!raw_data.get()) {
++    ALOGE("Error while allocation byte array for bqr raw data in %s", __func__);
++    return;
++  }
++  sCallbackEnv->SetByteArrayRegion(raw_data.get(), 0, bqr_raw_data.size(),
++      (jbyte*)bqr_raw_data.data());
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_bqrDeliver, addr.get(),
++      (jint)lmp_ver, (jint)lmp_subver, (jint)manufacturer_id, raw_data.get());
++}
++
+ static void adapter_vendor_properties_callback(bt_status_t status,
+                           int num_properties,
+                           bt_vendor_property_t *properties) {
+@@ -255,6 +284,7 @@ static btvendor_callbacks_t sBluetoothVendorCallbacks = {
+     sizeof(sBluetoothVendorCallbacks),
+     bredr_cleanup_callback,
+     iot_device_broadcast_callback,
++    bqr_delivery_callback,
+     remote_device_properties_callback,
+     NULL,
+     adapter_vendor_properties_callback,
+@@ -265,6 +295,7 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
+ 
+     method_onBredrCleanup = env->GetMethodID(clazz, "onBredrCleanup", "(Z)V");
+     method_iotDeviceBroadcast = env->GetMethodID(clazz, "iotDeviceBroadcast", "([BIIIIIIIIII)V");
++    method_bqrDeliver = env->GetMethodID(clazz, "bqrDeliver", "([BIII[B)V");
+     method_devicePropertyChangedCallback = env->GetMethodID(
+       clazz, "devicePropertyChangedCallback", "([B[I[[B)V");
+     method_adapterPropertyChangedCallback = env->GetMethodID(
+diff --git a/packages_apps_bluetooth_ext/src/btservice/Vendor.java b/packages_apps_bluetooth_ext/src/btservice/Vendor.java
+index 685807a..31338db 100644
+--- a/packages_apps_bluetooth_ext/src/btservice/Vendor.java
++++ b/packages_apps_bluetooth_ext/src/btservice/Vendor.java
+@@ -56,6 +56,7 @@ import android.util.Log;
+ import android.bluetooth.BluetoothAdapter;
+ import android.bluetooth.BluetoothDevice;
+ import android.bluetooth.BluetoothClass;
++import android.bluetooth.BluetoothQualityReport;
+ import com.android.bluetooth.Utils;
+ 
+ import android.content.Intent;
+@@ -184,6 +185,31 @@ final class Vendor {
+         mService.sendBroadcast(intent, AdapterService.BLUETOOTH_PERM);
+     }
+ 
++    private void bqrDeliver(byte[] remoteAddr,
++            int lmpVer, int lmpSubVer, int manufacturerId, byte[] bqrRawData) {
++        String remoteName = "";
++        int remoteCoD = 0;
++        String addr = Utils.getAddressStringFromByte(remoteAddr);
++        if (addr != null) {
++            BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(addr);
++            remoteName = mService.getRemoteName(device);
++            remoteCoD = mService.getRemoteClass(device);
++        }
++
++        BluetoothQualityReport bqr;
++        try {
++            bqr = new BluetoothQualityReport(addr, lmpVer, lmpSubVer,
++                    manufacturerId, remoteName, remoteCoD, bqrRawData);
++        } catch (Exception e) {
++            Log.e(TAG, "bqrDeliver: failed to create bqr", e);
++            return;
++        }
++        Log.d(TAG, "" + bqr);
++        Intent intent = new Intent(BluetoothDevice.ACTION_REMOTE_ISSUE_OCCURRED);
++        intent.putExtra(BluetoothDevice.EXTRA_BQR, bqr);
++        mService.sendBroadcast(intent, AdapterService.BLUETOOTH_PERM);
++    }
++
+     void ssr_cleanup_callback() {
+         Log.e(TAG,"ssr_cleanup_callback");
+         mService.ssrCleanupCallback();
+diff --git a/system_bt_ext/btif/src/btif_vendor.cc b/system_bt_ext/btif/src/btif_vendor.cc
+index b5d0172..b8dbcf8 100644
+--- a/system_bt_ext/btif/src/btif_vendor.cc
++++ b/system_bt_ext/btif/src/btif_vendor.cc
+@@ -62,10 +62,14 @@
+ #include <hardware/vendor.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <vector>
+ 
+ #define LOG_TAG "bt_btif_vendor"
+ 
+ #include <cutils/properties.h>
++#include <base/bind.h>
++#include <base/callback.h>
++#include <base/location.h>
+ #include "bt_utils.h"
+ #include "btif_common.h"
+ #include "btif_util.h"
+@@ -297,6 +301,43 @@ void btif_vendor_iot_device_broadcast_event(RawAddress* bd_addr,
+             manufacturer_id, power_level, rssi, link_quality,
+             glitch_count);
+ }
++
++void btif_vendor_bqr_delivery_event(const RawAddress* bd_addr, const uint8_t* bqr_raw_data,
++        uint32_t bqr_raw_data_len)
++{
++    if (bd_addr == NULL) {
++        LOG_ERROR(LOG_TAG, "%s: addr is null", __func__);
++        return;
++    }
++
++    if (bqr_raw_data == NULL) {
++        LOG_ERROR(LOG_TAG, "%s: bqr data is null", __func__);
++        return;
++    }
++
++    std::vector<uint8_t> raw_data;
++    raw_data.insert(raw_data.begin(), bqr_raw_data, bqr_raw_data + bqr_raw_data_len);
++
++    uint8_t lmp_ver = 0;
++    uint16_t lmp_subver = 0;
++    uint16_t manufacturer_id = 0;
++    btif_vendor_get_remote_version(bd_addr, &lmp_ver, &manufacturer_id, &lmp_subver);
++
++    LOG_INFO(LOG_TAG, "%s: len: %d, addr: %s, lmp_ver: %d, manufacturer_id: %d, lmp_subver: %d",
++            __func__, bqr_raw_data_len, bd_addr->ToString().c_str(), lmp_ver,
++            manufacturer_id, lmp_subver);
++
++    do_in_jni_thread(
++        FROM_HERE,
++        base::Bind(
++            [](RawAddress addr, uint8_t lmp_ver, uint16_t lmp_subver, uint16_t manufacturer_id,
++                std::vector<uint8_t> raw_data) {
++                HAL_CBACK(bt_vendor_callbacks, bqr_delivery_cb, &addr,
++                    lmp_ver, lmp_subver, manufacturer_id, std::move(raw_data));
++            },
++            *bd_addr, lmp_ver, lmp_subver, manufacturer_id, std::move(raw_data)));
++}
++
+ static void bredrstartup(void)
+ {
+     LOG_INFO(LOG_TAG,"bredrstartup");
+diff --git a/vhal/include/hardware/vendor.h b/vhal/include/hardware/vendor.h
+index ccddf2d..32668ab 100644
+--- a/vhal/include/hardware/vendor.h
++++ b/vhal/include/hardware/vendor.h
+@@ -53,6 +53,7 @@
+ #define ANDROID_INCLUDE_BT_VENDOR_H
+ 
+ #include <hardware/bluetooth.h>
++#include <vector>
+ 
+ __BEGIN_DECLS
+ 
+@@ -120,6 +121,9 @@ typedef void (*  btvendor_iot_device_broadcast_callback)(RawAddress* remote_bd_a
+                         uint16_t error_info, uint32_t event_mask, uint8_t lmp_ver, uint16_t lmp_subver,
+                         uint16_t manufacturer_id, uint8_t power_level, int8_t rssi, uint8_t link_quality,
+                         uint16_t glitch_count );
++typedef void (* btvendor_bqr_delivery_callback)(RawAddress* remote_bd_addr,
++                        uint8_t lmp_ver, uint16_t lmp_subver, uint16_t manufacturer_id,
++                        std::vector<uint8_t> bqr_raw_data);
+ typedef void (* btvendor_bredr_cleanup_callback)(bool status);
+ 
+ /** Callback to notify the remote device vendor properties.
+@@ -147,6 +151,7 @@ typedef struct {
+     size_t      size;
+     btvendor_bredr_cleanup_callback  bredr_cleanup_cb;
+     btvendor_iot_device_broadcast_callback iot_device_broadcast_cb;
++    btvendor_bqr_delivery_callback bqr_delivery_cb;
+     remote_dev_prop_callback         rmt_dev_prop_cb;
+     hci_event_recv_callback  hci_event_recv_cb;
+     adapter_vendor_prop_callback     adapter_vendor_prop_cb;
+-- 
+2.7.4
+

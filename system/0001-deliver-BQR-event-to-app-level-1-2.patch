@@ -1,0 +1,260 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From a171170a884ca59ff82145bc373bb1c12e9ae66a Mon Sep 17 00:00:00 2001
+From: Mingbo Zhang <quic_mingboz@quicinc.com>
+Date: Mon, 24 Oct 2022 11:55:02 +0800
+Subject: [PATCH] deliver BQR event to app level(1/2)
+
+* support connect fail event mask.
+* support setting a2dp/sco choppy threshold
+* support delivering bqr to app level.
+
+Change-Id: Ife6cd8b95f988c14d1e11f18d53f5a1602edc6a8
+CRs-Fixed: 2472644
+
+BQR: filter out the new report events in V2 spec
+
+Filter out the new report events which is not needed to parse
+at stack and app layer.
+
+Change-Id: I160a8af75fb629d93401e05a1ce6838e392925e8
+CRs-Fixed: 2560259
+---
+ btif/include/btif_bqr.h | 28 +++++++++++++++--
+ btif/src/btif_bqr.cc    | 81 ++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 105 insertions(+), 4 deletions(-)
+
+diff --git a/btif/include/btif_bqr.h b/btif/include/btif_bqr.h
+index 24eea7a..ed07fd7 100644
+--- a/btif/include/btif_bqr.h
++++ b/btif/include/btif_bqr.h
+@@ -26,7 +26,7 @@ namespace bqr {
+ // Bluetooth Quality Report (BQR)
+ //
+ // It is a feature to start the mechanism in the Bluetooth controller to report
+-// Bluetooth Quality event to the host and there are four options could be
++// Bluetooth Quality event to the host and there are five options could be
+ // enabled:
+ //   [Quality Monitoring Mode]
+ //     The controller shall periodically send Bluetooth Quality Report sub-event
+@@ -44,6 +44,13 @@ namespace bqr {
+ //   [(e)SCO Voice Choppy]
+ //     When the controller detects the factors which will cause voice choppy,
+ //     the controller shall report (e)SCO Voice Choppy event to the host.
++//
++//   [Connect Fail]
++//     When the controller fails to create connection with remote side,
++//     and remote responds for at least one time, the controller shall report
++//     connection fail event to the host. However, if remote doesn't respond
++//     at all(most likely remote is powered off or out of range), controller
++//     will not report this event.
+ 
+ // Bit masks for the selected quality event reporting.
+ static constexpr uint32_t kQualityEventMaskAllOff = 0;
+@@ -51,9 +58,11 @@ static constexpr uint32_t kQualityEventMaskMonitorMode = 0x00000001;
+ static constexpr uint32_t kQualityEventMaskApproachLsto = 0x00000002;
+ static constexpr uint32_t kQualityEventMaskA2dpAudioChoppy = 0x00000004;
+ static constexpr uint32_t kQualityEventMaskScoVoiceChoppy = 0x00000008;
++static constexpr uint32_t kQualityEventMaskConnectFail = 0x80000000;
+ static constexpr uint32_t kQualityEventMaskAll =
+     kQualityEventMaskMonitorMode | kQualityEventMaskApproachLsto |
+-    kQualityEventMaskA2dpAudioChoppy | kQualityEventMaskScoVoiceChoppy;
++    kQualityEventMaskA2dpAudioChoppy | kQualityEventMaskScoVoiceChoppy |
++    kQualityEventMaskConnectFail;
+ // Define the minimum time interval (in ms) of quality event reporting for the
+ // selected quality event(s). Controller Firmware should not report the next
+ // event within the defined time interval.
+@@ -74,6 +83,14 @@ static constexpr const char* kpPropertyEventMask =
+ static constexpr const char* kpPropertyMinReportIntervalMs =
+     "persist.bluetooth.bqr.min_interval_ms";
+ 
++// The Property of BQR a2dp choppy report and sco choppy report thresholds.
++// A2dp choppy will be reported only when a2dp choppy times is >= a2dp_choppy_threshold.
++// The default value in firmware side is 1.
++// It is same for sco choppy.
++// value format is a2dp_choppy_threshold,sco_choppy_threshold
++static constexpr const char* kpPropertyChoppyThreshold =
++    "persist.bluetooth.bqr.choppy_threshold";
++
+ // Action definition
+ //
+ // Action to Add, Delete or Clear the reporting of quality event(s).
+@@ -90,7 +107,9 @@ enum BqrQualityReportId : uint8_t {
+   QUALITY_REPORT_ID_MONITOR_MODE = 0x01,
+   QUALITY_REPORT_ID_APPROACH_LSTO = 0x02,
+   QUALITY_REPORT_ID_A2DP_AUDIO_CHOPPY = 0x03,
+-  QUALITY_REPORT_ID_SCO_VOICE_CHOPPY = 0x04
++  QUALITY_REPORT_ID_SCO_VOICE_CHOPPY = 0x04,
++  //Vendor Specific Report IDs from 0x20
++  QUALITY_REPORT_ID_CONNECT_FAIL = 0x20,
+ };
+ 
+ // Packet Type definition
+@@ -205,6 +224,9 @@ class BqrVseSubEvt {
+   uint32_t buffer_underflow_bytes_ = 0;
+   // Local wall clock timestamp of receiving BQR VSE sub-event
+   std::tm tm_timestamp_ = {};
++
++ private:
++  bool IsEvtToBeParsed(uint8_t quality_report_id);
+ };
+ 
+ // Get a string representation of the Quality Report ID.
+diff --git a/btif/src/btif_bqr.cc b/btif/src/btif_bqr.cc
+index 6c78531..d1caa28 100644
+--- a/btif/src/btif_bqr.cc
++++ b/btif/src/btif_bqr.cc
+@@ -14,11 +14,16 @@
+  * limitations under the License.
+  */
+ 
++#include <stdio.h>
+ #include "btif_bqr.h"
+ #include "btif_dm.h"
+ #include "osi/include/leaky_bonded_queue.h"
+ #include "osi/include/properties.h"
+ #include "stack/btm/btm_int.h"
++#include "raw_address.h"
++
++void btif_vendor_bqr_delivery_event(const RawAddress* bd_addr, const uint8_t* bqr_raw_data,
++    uint32_t bqr_raw_data_len);
+ 
+ namespace bluetooth {
+ namespace bqr {
+@@ -30,7 +35,32 @@ using std::chrono::system_clock;
+ static std::unique_ptr<LeakyBondedQueue<BqrVseSubEvt>> kpBqrEventQueue(
+     new LeakyBondedQueue<BqrVseSubEvt>(kBqrEventQueueSize));
+ 
++bool BqrVseSubEvt::IsEvtToBeParsed(uint8_t quality_report_id) {
++  switch (quality_report_id) {
++    case QUALITY_REPORT_ID_MONITOR_MODE:
++    case QUALITY_REPORT_ID_APPROACH_LSTO:
++    case QUALITY_REPORT_ID_A2DP_AUDIO_CHOPPY:
++    case QUALITY_REPORT_ID_SCO_VOICE_CHOPPY:
++    case QUALITY_REPORT_ID_CONNECT_FAIL:
++      return true;
++    default:
++      return false;
++  }
++}
++
+ bool BqrVseSubEvt::ParseBqrEvt(uint8_t length, uint8_t* p_param_buf) {
++  if (length < 1) {
++    LOG(FATAL) << __func__ << ": BQR event doesn't contain report id";
++    return false;
++  }
++
++  STREAM_TO_UINT8(quality_report_id_, p_param_buf);
++
++  if (!IsEvtToBeParsed(quality_report_id_)) {
++    LOG(WARNING) << __func__ << ": not need to parse report(" << loghex(quality_report_id_) << ")";
++    return false;
++  }
++
+   if (length < kBqrParamTotalLen) {
+     LOG(FATAL) << __func__
+                << ": Parameter total length: " << std::to_string(length)
+@@ -39,7 +69,6 @@ bool BqrVseSubEvt::ParseBqrEvt(uint8_t length, uint8_t* p_param_buf) {
+     return false;
+   }
+ 
+-  STREAM_TO_UINT8(quality_report_id_, p_param_buf);
+   STREAM_TO_UINT8(packet_types_, p_param_buf);
+   STREAM_TO_UINT16(connection_handle_, p_param_buf);
+   STREAM_TO_UINT8(connection_role_, p_param_buf);
+@@ -96,6 +125,8 @@ std::string QualityReportIdToString(uint8_t quality_report_id) {
+       return "A2DP Choppy";
+     case QUALITY_REPORT_ID_SCO_VOICE_CHOPPY:
+       return "SCO Choppy ";
++    case QUALITY_REPORT_ID_CONNECT_FAIL:
++      return "CONNECT_FAIL ";
+     default:
+       return "Invalid    ";
+   }
+@@ -172,9 +203,53 @@ void AddBqrEventToQueue(uint8_t length, uint8_t* p_stream) {
+   }
+ 
+   LOG(WARNING) << *p_bqr_event;
++
++  if (length >= kBqrParamTotalLen + BD_ADDR_LEN) {
++    RawAddress bd_addr;
++    uint8_t* p_addr = p_stream + kBqrParamTotalLen;
++    STREAM_TO_BDADDR(bd_addr, p_addr);
++    btif_vendor_bqr_delivery_event(&bd_addr, p_stream, length);
++  } else {
++    LOG(WARNING) << __func__ << ": BQR event doesn't contain remote address";
++  }
++
+   kpBqrEventQueue->Enqueue(p_bqr_event.release());
+ }
+ 
++void ConfigBqrA2dpScoThreshold() {
++  uint8_t param[20] = {0};
++  uint8_t sub_opcode = 0x16;
++  uint8_t *p_param = param;
++  uint16_t a2dp_choppy_threshold = 0;
++  uint16_t sco_choppy_threshold = 0;
++
++  char bqr_prop_threshold[PROPERTY_VALUE_MAX] = {0};
++  osi_property_get(kpPropertyChoppyThreshold, bqr_prop_threshold, "");
++
++  sscanf(bqr_prop_threshold, "%hu,%hu", &a2dp_choppy_threshold, &sco_choppy_threshold);
++
++  LOG(WARNING) << __func__<< ": a2dp_choppy_threshold: " << a2dp_choppy_threshold
++               << ", sco_choppy_threshold: " << sco_choppy_threshold;
++
++  UINT8_TO_STREAM(p_param, sub_opcode);
++
++  // A2dp glitch ID
++  UINT8_TO_STREAM(p_param, QUALITY_REPORT_ID_A2DP_AUDIO_CHOPPY);
++  // A2dp glitch config data length
++  UINT8_TO_STREAM(p_param, 2);
++  // A2dp glitch threshold
++  UINT16_TO_STREAM(p_param, a2dp_choppy_threshold == 0 ? 1 : a2dp_choppy_threshold);
++
++  // Sco glitch ID
++  UINT8_TO_STREAM(p_param, QUALITY_REPORT_ID_SCO_VOICE_CHOPPY);
++  // Sco glitch config data length
++  UINT8_TO_STREAM(p_param, 2);
++  // Sco glitch threshold
++  UINT16_TO_STREAM(p_param, sco_choppy_threshold == 0 ? 1 : sco_choppy_threshold);
++
++  BTM_VendorSpecificCommand(HCI_VS_HOST_LOG_OPCODE, p_param - param, param, NULL);
++}
++
+ void ConfigureBqrCmpl(uint32_t current_evt_mask) {
+   LOG(INFO) << __func__ << ": current_evt_mask: " << loghex(current_evt_mask);
+   // (Un)Register for VSE of Bluetooth Quality Report sub event
+@@ -185,6 +260,10 @@ void ConfigureBqrCmpl(uint32_t current_evt_mask) {
+     LOG(ERROR) << __func__ << ": Fail to (un)register VSE of BQR sub event."
+                << " status: " << btm_status;
+   }
++
++  if (current_evt_mask > kQualityEventMaskAllOff) {
++    ConfigBqrA2dpScoThreshold();
++  }
+ }
+ 
+ void EnableBtQualityReport(bool is_enable) {
+-- 
+2.7.4
+
