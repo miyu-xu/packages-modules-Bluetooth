@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c88de884_d5c050d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c4ade2d_a8a0cadb",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f1932de_4abbebcf",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-31T07:26:12Z",
       "side": 1,
       "message": "Can you please mention in comment that it\u0027s sink from Bluetooth perspective as you wrote in commit message?",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8c133e7_2b034f64",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_hal_client.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f1932de_4abbebcf",
       "range": {
         "startLine": 106,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "881e9806_d61ea672",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_hal_client.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be328ef0_4eae1057",
+      "range": {
+        "startLine": 139,
+        "startChar": 8,
+        "endLine": 139,
+        "endChar": 21
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c30a380c_a0839da9",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-31T07:26:12Z",
       "side": 1,
       "message": "Since this object is owned here, use unique_ptr",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 8
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d60f0db_78c84260",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c30a380c_a0839da9",
       "range": {
         "startLine": 70,
         "startChar": 0,
@@ -110,6 +206,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96d098e5_1ff1c5c8",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "For this one, the LeAudioClientInterface in le_audio_software.cc is the owner and  it manages its lifetime.",
+      "parentUuid": "58363fb0_695c4adf",
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec4708c9_991dbda1",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-10-31T07:26:12Z",
       "side": 1,
       "message": "If it\u0027s owned, use unique_ptr.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c657f27d_02721fc3",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec4708c9_991dbda1",
       "range": {
         "startLine": 96,
         "startChar": 0,
@@ -158,6 +296,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ac1226c_17bce0fb",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "If on Acquire() we pass the instance ownership to the caller like you suggest in one of the other comments, we could most likely get rid of the Release().",
+      "parentUuid": "40871a9d_98ca6a68",
+      "range": {
+        "startLine": 479,
+        "startChar": 21,
+        "endLine": 479,
+        "endChar": 28
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90cd1f5a_7e07a1c8",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 8
@@ -169,6 +331,30 @@
       "writtenOn": "2022-10-31T07:26:12Z",
       "side": 1,
       "message": "Since you Acquire() and Release() here maybe we should own the instance here, rather than having it as public variable in audio_source_hal_client.cc ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 23,
+        "endLine": 122,
+        "endChar": 30
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f469e46_c6a40e21",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:05:33Z",
+      "side": 1,
+      "message": "Yes, that was my feeling as well, but I thought I should cleanup and clearly define the existing scheme instead of completely changing the ownership model. But now it feels more natural do this next step. I\u0027ll do that by introducing the smart pointers already.",
+      "parentUuid": "90cd1f5a_7e07a1c8",
       "range": {
         "startLine": 122,
         "startChar": 23,
