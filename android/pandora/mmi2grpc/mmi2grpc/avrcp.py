@@ -375,6 +375,11 @@ class AVRCPProxy(ProfileProxy):
         self.connection = self.host.Connect(address=pts_addr).connection
         if ("TG" in test and "TG/VLH" not in test) or "CT/VLH" in test:
             self.source = self.a2dp.OpenSource(connection=self.connection).source
+        else:
+            try:
+                self.sink = self.a2dp.WaitSink(connection=self.connection).sink
+            except RpcError:
+                pass
 
         return "OK"
 
@@ -815,4 +820,29 @@ class AVRCPProxy(ProfileProxy):
         """
         self.mediaplayer.Play()
 
+        return "OK"
+
+    def _mmi_915(self, **kwargs):
+        """
+        Quickly press and release the [PLAY] passthrough command.
+    
+        Action: Press
+        the corresponding button.
+    
+        Description: Verify that the Implementation
+        Under Test (IUT) is capable of sending a passthrough press, followed by
+        a passthrough release within 2 seconds.
+        """
+        self.mediaplayer.Play()
+        return "OK"
+
+    @assert_description
+    def _mmi_1016(self, **kwargs):
+        """
+        Create an AVDTP signaling channel.
+    
+        Action: Create an audio or video
+        connection with PTS.
+        """
+        self.a2dp.Start(sink=self.sink)
         return "OK"
