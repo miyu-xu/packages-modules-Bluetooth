@@ -1,0 +1,49 @@
+From 629ef49ae3351c648cb1ba314c20803cdc938d89 Mon Sep 17 00:00:00 2001
+From: Subramanian Srinivasan <subrsrin@codeaurora.org>
+Date: Wed, 2 Sep 2020 12:07:34 -0700
+Subject: [PATCH] GATT: Close only valid native access socket
+
+Close only valid native access socket that is
+used for routing certain notifications from
+BT stack to intended process.
+
+Change-Id: I93a0a08d6a4e607da9e0ee40b6d3b33b7ecdbcdb
+---
+ bta/gatt/bta_gattc_act.cc | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/bta/gatt/bta_gattc_act.cc b/bta/gatt/bta_gattc_act.cc
+index 37fa1ab..33a54ae 100644
+--- a/bta/gatt/bta_gattc_act.cc
++++ b/bta/gatt/bta_gattc_act.cc
+@@ -175,7 +175,8 @@ void bta_gattc_disable() {
+     bta_gattc_cb.state = BTA_GATTC_STATE_DISABLED;
+   }
+ 
+-  close(bta_gattc_cb.gatt_skt_fd);
++  if (bta_gattc_cb.gatt_skt_fd > -1)
++    close(bta_gattc_cb.gatt_skt_fd);
+   bta_gattc_cb.is_gatt_skt_connected = false;
+   bta_gattc_cb.gatt_skt_fd = -1;
+   bta_gattc_cb.native_access_uuid_list.clear();
+@@ -1092,7 +1093,8 @@ static void bta_gattc_conn_cback(tGATT_IF gattc_if, const RawAddress& bdaddr,
+   else {
+     btif_debug_conn_state(bdaddr, BTIF_DEBUG_DISCONNECTED, reason);
+     //close native socket during disconnection.
+-    close(bta_gattc_cb.gatt_skt_fd);
++    if (bta_gattc_cb.gatt_skt_fd > -1)
++      close(bta_gattc_cb.gatt_skt_fd);
+     bta_gattc_cb.is_gatt_skt_connected = false;
+     bta_gattc_cb.gatt_skt_fd = -1;
+   }
+@@ -1288,7 +1290,6 @@ bool bta_gattc_write_to_socket(tGATT_CL_COMPLETE* p_data, Uuid char_uuid) {
+     if (bta_gattc_cb.gatt_skt_fd < 0) {
+       VLOG(1) << __func__ << " failed to create socket";
+       bta_gattc_cb.is_gatt_skt_connected = false;
+-      close(bta_gattc_cb.gatt_skt_fd);
+       bta_gattc_cb.gatt_skt_fd = -1;
+       return false;
+     }
+-- 
+2.7.4
+

@@ -1,0 +1,47 @@
+From e2925473a50ae069722905440eafad2cee049ac7 Mon Sep 17 00:00:00 2001
+From: Subramanian Srinivasan <subrsrin@codeaurora.org>
+Date: Mon, 2 Nov 2020 12:59:13 -0800
+Subject: [PATCH] Close valid GATT native access socket before cleanup
+
+Close valid GATT native access socket used for routing
+certain notifications from BT stack to intended process
+before BTA GATT clean up.
+
+CRs-Fixed: 2808814
+Change-Id: I2db453ffdbf75944d907a6def4cf6da382d296e3
+---
+ bta/gatt/bta_gattc_act.cc | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/bta/gatt/bta_gattc_act.cc b/bta/gatt/bta_gattc_act.cc
+index f6a234d..4b89f88 100644
+--- a/bta/gatt/bta_gattc_act.cc
++++ b/bta/gatt/bta_gattc_act.cc
+@@ -169,18 +169,18 @@ void bta_gattc_disable() {
+ #endif
+   }
+ 
+-  /* no registered apps, indicate disable completed */
+-  if (bta_gattc_cb.state != BTA_GATTC_STATE_DISABLING) {
+-    bta_gattc_cb = tBTA_GATTC_CB();
+-    bta_gattc_cb.state = BTA_GATTC_STATE_DISABLED;
+-  }
+-
+   if (bta_gattc_cb.gatt_skt_fd > -1)
+     close(bta_gattc_cb.gatt_skt_fd);
+   bta_gattc_cb.is_gatt_skt_connected = false;
+   bta_gattc_cb.gatt_skt_fd = -1;
+   bta_gattc_cb.native_access_uuid_list.clear();
+   bta_gattc_cb.native_access_notif_enabled = false;
++
++  /* no registered apps, indicate disable completed */
++  if (bta_gattc_cb.state != BTA_GATTC_STATE_DISABLING) {
++    bta_gattc_cb = tBTA_GATTC_CB();
++    bta_gattc_cb.state = BTA_GATTC_STATE_DISABLED;
++  }
+ }
+ 
+ /** start an application interface */
+-- 
+2.7.4
+
