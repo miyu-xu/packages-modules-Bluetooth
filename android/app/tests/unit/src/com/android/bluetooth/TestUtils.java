@@ -186,6 +186,7 @@ public class TestUtils {
         verify(adapterService, timeout(SERVICE_TOGGLE_TIMEOUT_MS)).onProfileServiceStateChanged(
                 profile.capture(), eq(BluetoothAdapter.STATE_OFF));
         Assert.assertEquals(profileServiceClass.getName(), profile.getValue().getClass().getName());
+        verify(adapterService, timeout(SERVICE_TOGGLE_TIMEOUT_MS)).removeProfile(profile.capture());
     }
 
     /**
