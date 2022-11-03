@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9502c810_c5dbffdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-11-03T15:12:21Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nHave uploaded files for AVRCP and AVCTP CT test case execution example. I am setting it to WIP as TC fail.\n\nI have tried AVDTP SNK, AVRCP CT and AVCTP CT 1 TC each to verify.\nSNK is not enabled in AVRCP and AVCTP adb logs.\n\nRequest you to suggest us if we have missed any step.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "19cb4ac46d7b61cfdeafeff1e2ea285556514f5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
