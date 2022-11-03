@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6f8cbe_be3d7cc4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a205302_a4daa69a",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fea6e2e0_169c5684",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-31T07:48:04Z",
       "side": 1,
       "message": "avaliable ? maybe \"git grep\" and check where it\u0027s left ?",
+      "range": {
+        "startLine": 724,
+        "startChar": 28,
+        "endLine": 724,
+        "endChar": 34
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca43660a_04afef2f",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fea6e2e0_169c5684",
       "range": {
         "startLine": 724,
         "startChar": 28,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "768191d0_9294c3c9",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b89f950d_1ae75546",
+      "range": {
+        "startLine": 304,
+        "startChar": 13,
+        "endLine": 304,
+        "endChar": 18
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6084daef_89602079",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed1c345_2a182779",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6084daef_89602079",
+      "range": {
+        "startLine": 305,
+        "startChar": 7,
+        "endLine": 305,
+        "endChar": 46
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dd5eb6a_570589bf",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-10-31T07:48:04Z",
       "side": 1,
       "message": "Should this go to previous patch ?",
+      "range": {
+        "startLine": 404,
+        "startChar": 2,
+        "endLine": 404,
+        "endChar": 78
+      },
+      "revId": "2f7db8e42a0a046c85dc5714f5adc97d7a150f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5634be4a_bf9e6e89",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dd5eb6a_570589bf",
       "range": {
         "startLine": 404,
         "startChar": 2,
