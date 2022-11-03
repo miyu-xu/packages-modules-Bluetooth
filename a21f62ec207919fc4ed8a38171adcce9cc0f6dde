@@ -39,6 +39,30 @@
       },
       "revId": "a21f62ec207919fc4ed8a38171adcce9cc0f6dde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfd4a1a0_4e94e7c2",
+        "filename": "tools/rootcanal/model/devices/hci_device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-03T16:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4d1aeff_60a16d74",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "a21f62ec207919fc4ed8a38171adcce9cc0f6dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
