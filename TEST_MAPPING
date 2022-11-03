@@ -64,6 +64,18 @@
     },
     {
       "name" : "net_test_stack_btm"
+    },
+    {
+      "name" : "BluetoothInstrumentationTests"
+    },
+    {
+      "name" : "BluetoothTests"
+    },
+    {
+      "name" : "FrameworkBluetoothTests"
+    },
+    {
+      "name" : "ServiceBluetoothTests"
     }
   ]
 }
