@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7505baeb_6d8c5913",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c61e57d_84cfc1af",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1832a3cf_dc02ce65",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-31T07:35:47Z",
       "side": 1,
       "message": "the parameter \u0027contexts\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n  void UpdateStreamingContextTypeOnAllSubgroups(AudioContexts contexts) {\n                                                              ^\n                                                const        \u0026",
+      "range": {
+        "startLine": 174,
+        "startChar": 48,
+        "endLine": 174,
+        "endChar": 61
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04118e7f_b444a783",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1832a3cf_dc02ce65",
       "range": {
         "startLine": 174,
         "startChar": 48,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b80f9481_365caffd",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:30Z",
+      "side": 1,
+      "message": "For now lets not change the logic.",
+      "parentUuid": "7a4db0b4_7f514710",
+      "range": {
+        "startLine": 657,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 36
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf5bc705_8365e1a6",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-31T07:35:47Z",
       "side": 1,
       "message": "Does that belong to this patch ?\nDoesn\u0027t look like context type related change",
+      "range": {
+        "startLine": 3389,
+        "startChar": 2,
+        "endLine": 3389,
+        "endChar": 18
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1c3a7ed_01dcf4d2",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3389,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf5bc705_8365e1a6",
       "range": {
         "startLine": 3389,
         "startChar": 2,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efd10ce5_82782882",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff5555c9_b94752a2",
+      "range": {
+        "startLine": 420,
+        "startChar": 24,
+        "endLine": 420,
+        "endChar": 32
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f46dec2_84cfd63f",
@@ -133,6 +253,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a213e91a_9b5e8fd1",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f46dec2_84cfd63f",
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fad6039_43a2be62",
@@ -146,6 +284,30 @@
       "writtenOn": "2022-10-31T07:35:47Z",
       "side": 1,
       "message": "can we have some helper, i.e. LeAudioContextType.fromRaw ? or LeAudioContextType.fromUint16 ? would be shorter than always doing static cast.",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 42
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1034e229_edefc0bc",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-03T16:06:30Z",
+      "side": 1,
+      "message": "Nope. LeAudioContextType is an enum class and enum class methods are not supported. I\u0027m not sure exactly why we define new values here instead of directly using the enum values. Validating one values against other values which can also be invalid seems weird.\n\nBTW: I noticed now that the commented-out values are outdated and invalid. I\u0027ll remove them.",
+      "parentUuid": "9fad6039_43a2be62",
       "range": {
         "startLine": 67,
         "startChar": 4,
