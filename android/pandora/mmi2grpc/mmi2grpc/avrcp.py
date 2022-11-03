@@ -744,3 +744,44 @@ class AVRCPProxy(ProfileProxy):
         self.mediaplayer.SetLargeMetadata()
 
         return "OK"
+
+    def _mmi_915(self, **kwargs):
+        """
+        Quickly press and release the [PLAY] passthrough command.
+    
+        Action: Press
+        the corresponding button.
+    
+        Description: Verify that the Implementation
+        Under Test (IUT) is capable of sending a passthrough press, followed by
+        a passthrough release within 2 seconds.
+        """
+        self.mediaplayer.Play()
+        return "OK"
+
+    @assert_description
+    def _mmi_1016(self, **kwargs):
+        """
+        Create an AVDTP signaling channel.
+    
+        Action: Create an audio or video
+        connection with PTS.
+        """
+        self.a2dp.Start(sink=self.sink)
+        return "OK"
+
+    @assert_description
+    def _mmi_840(self, **kwargs):
+        """
+        Send a [PLAY] passthrough press and release to PTS.
+    
+        Action: Press the
+        corresponding button on the IUT.
+    
+        Description: Verify that the
+        Implementation Under Test (IUT) is capable of sending a passthrough
+        press, followed by a passthrough release.
+        """
+        self.mediaplayer.Play()
+
+        return "OK"
