@@ -16,13 +16,14 @@
 
 #pragma once
 
-#include <unordered_map>
-
 #include <unistd.h>
+
+#include <unordered_map>
 
 #include "base/logging.h"  // LOG() stdout and android log
 #include "include/hardware/bluetooth.h"
 #include "test/headless/get_options.h"
+#include "test/headless/messenger.h"
 
 extern bt_interface_t bluetoothInterface;
 
@@ -58,6 +59,7 @@ class HeadlessStack {
 
   void SetUp();
   void TearDown();
+
   const char** StackInitFlags() const { return stack_init_flags_; }
 
  private:
