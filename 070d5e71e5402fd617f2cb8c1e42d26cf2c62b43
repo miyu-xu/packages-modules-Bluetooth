@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7a13666_65a651e2",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-03T15:24:38Z",
+      "side": 1,
+      "message": "Can you sort the flag in the list ?",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 53
+      },
+      "revId": "070d5e71e5402fd617f2cb8c1e42d26cf2c62b43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfc26b08_56f8e01d",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-03T15:24:38Z",
+      "side": 1,
+      "message": "\u003d false is not needed as the flag is defaulted to be false.",
+      "range": {
+        "startLine": 189,
+        "startChar": 53,
+        "endLine": 189,
+        "endChar": 61
+      },
+      "revId": "070d5e71e5402fd617f2cb8c1e42d26cf2c62b43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
