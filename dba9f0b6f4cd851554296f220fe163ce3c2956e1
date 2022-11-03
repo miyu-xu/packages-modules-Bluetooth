@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc88674e_92dfdc09",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-03T01:24:55Z",
+      "side": 1,
+      "message": "To make clearer that the test is checking setActiveDeivce with mA2dpDevice is called after a2dpDisconnected(mSecondaryAudioDevice).\n\nPrevious test is wrong since it should check whether it called two times since it should be called by L231 (1st) and by L238 (2nd).",
+      "parentUuid": "5ed30203_05e66f33",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 47
+      },
+      "revId": "dba9f0b6f4cd851554296f220fe163ce3c2956e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc31308d_a4a692ff",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 1
