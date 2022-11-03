@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64544785_79d478d6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-03T19:44:22Z",
+      "side": 1,
+      "message": "can these be `log::debug!`? If you need it to be `info` for the short term, I recommend to change this to `debug` as follow up, after the issue is resolved.",
+      "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
