@@ -64,6 +64,22 @@
     },
     {
       "name" : "net_test_stack_btm"
+    },
+    {
+      "name" : "BluetoothInstrumentationTests",
+      "options" : [{
+        "exclude-filter" : [
+          // Broken tests
+          "AdapterServiceTest#testObfuscateBluetoothAddress_PersistentBetweenAdapterServiceInitialization",
+          "BluetoothOppUtilityTest#isBluetoothShareUri_correctlyCheckUri"
+        ]
+      }]
+    },
+    {
+      "name" : "FrameworkBluetoothTests"
+    },
+    {
+      "name" : "ServiceBluetoothTests"
     }
   ]
 }
