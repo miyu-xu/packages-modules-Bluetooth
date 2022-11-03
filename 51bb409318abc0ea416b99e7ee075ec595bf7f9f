@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e66504f0_ff40f77c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-03T10:40:42Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI have checked in the 6 AVRCP test cases for Media Content Navigation. All 6 TC passes when run in batch with only these 6 test cases.\nWe see the inconsistent failure randomly due to BT stack crash in a batch run(48 TC). 50% times it passes. Request you to verify the CL at your setup.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "51bb409318abc0ea416b99e7ee075ec595bf7f9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
