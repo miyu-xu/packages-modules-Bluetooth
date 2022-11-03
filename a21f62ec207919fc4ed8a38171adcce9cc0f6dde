@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "116c1a4c_a33e5795",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-03T16:21:24Z",
+      "side": 1,
+      "message": "Thanks!  Without the clang-format change, +2",
+      "revId": "a21f62ec207919fc4ed8a38171adcce9cc0f6dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4d1aeff_60a16d74",
+        "filename": "tools/rootcanal/model/devices/hci_device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-03T16:21:24Z",
+      "side": 1,
+      "message": "It\u0027s not worth it.  Whether it\u0027s ugly or not, we just use clang-format.",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "a21f62ec207919fc4ed8a38171adcce9cc0f6dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
