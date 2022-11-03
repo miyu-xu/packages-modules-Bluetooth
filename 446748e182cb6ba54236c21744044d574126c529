@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad88e68_fe0c38e0",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1623,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-03T00:07:40Z",
+      "side": 1,
+      "message": "clib_it did not increment when continue is called\n\nthis will enter an infinite loop",
+      "range": {
+        "startLine": 1623,
+        "startChar": 31,
+        "endLine": 1623,
+        "endChar": 42
+      },
+      "revId": "446748e182cb6ba54236c21744044d574126c529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
