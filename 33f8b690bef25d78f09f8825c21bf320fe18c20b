@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6a9988c_9ed27d93",
+        "filename": "android/pandora/server/src/com/android/pandora/Hfp.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-04T21:44:03Z",
+      "side": 1,
+      "message": "Should we checked if there is any device connected first ?",
+      "range": {
+        "startLine": 134,
+        "startChar": 7,
+        "endLine": 134,
+        "endChar": 69
+      },
+      "revId": "33f8b690bef25d78f09f8825c21bf320fe18c20b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
