@@ -356,7 +356,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
      */
 
     if (!group) {
-      LOG_ERROR(", group is null");
+      LOG_ERROR("Group ID: %d, is null", cig_id);
       return;
     }
 
