@@ -15,25 +15,23 @@
  */
 
 #define LOG_TAG "BluetoothServiceJni"
-#include "com_android_bluetooth.h"
-#include "hardware/bt_sock.h"
-#include "utils/Log.h"
-#include "utils/misc.h"
-
 #include <dlfcn.h>
 #include <errno.h>
+#include <fcntl.h>
+#include <hardware/bluetooth.h>
+#include <nativehelper/JNIPlatformHelp.h>
 #include <pthread.h>
 #include <string.h>
-
-#include <fcntl.h>
 #include <sys/prctl.h>
 #include <sys/stat.h>
 
-#include <hardware/bluetooth.h>
-#include <nativehelper/JNIPlatformHelp.h>
 #include <mutex>
 
-#include <pthread.h>
+#include "com_android_bluetooth.h"
+#include "hardware/bt_sock.h"
+#include "os/logging/log_redaction.h"
+#include "utils/Log.h"
+#include "utils/misc.h"
 
 using bluetooth::Uuid;
 #ifndef DYNAMIC_LOAD_BLUETOOTH
@@ -1816,6 +1814,11 @@ static jboolean allowLowLatencyAudioNative(JNIEnv* env, jobject obj,
   return true;
 }
 
+static jboolean isLogRedactionEnabled(JNIEnv* env, jobject obj) {
+  ALOGV("%s", __func__);
+  return bluetooth::os::should_log_be_redacted();
+}
+
 static JNINativeMethod sMethods[] = {
     /* name, signature, funcPtr */
     {"classInitNative", "()V", (void*)classInitNative},
@@ -1858,6 +1861,7 @@ static JNINativeMethod sMethods[] = {
     {"requestMaximumTxDataLengthNative", "([B)V",
      (void*)requestMaximumTxDataLengthNative},
     {"allowLowLatencyAudioNative", "(Z[B)Z", (void*)allowLowLatencyAudioNative},
+    {"isLogRedactionEnabled", "()Z", (void*)isLogRedactionEnabled},
 };
 
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
