@@ -16,6 +16,24 @@
       "message": "can these be `log::debug!`? If you need it to be `info` for the short term, I recommend to change this to `debug` as follow up, after the issue is resolved.",
       "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e969ec_da93686c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-11-04T03:17:04Z",
+      "side": 1,
+      "message": "Hi Sonny,\n\nIs it feasible for the stack to set default log verbose to debug for dev image? or is it already the case? I think we want to add these logs to triage issues that are difficult to repro but seen on the feedback report.",
+      "parentUuid": "64544785_79d478d6",
+      "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
