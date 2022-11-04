@@ -34,6 +34,24 @@
       "parentUuid": "64544785_79d478d6",
       "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baeaccc4_e12903a7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-04T16:29:00Z",
+      "side": 1,
+      "message": "verbose log is not possible to be default for dev image. You can change the log level manually like:\n```\n# echo \u0027env BTADAPTERD_FLAGS\u003d\"-d\"\u0027 \u003e /etc/init/btadapterd.override\n```\n\nIf you need this to be the default for the short-term to fix this issue, it\u0027s okay but I recommend marking it with a TODO to convert to debug.",
+      "parentUuid": "16e969ec_da93686c",
+      "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
