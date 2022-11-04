@@ -87,6 +87,8 @@ class TestCommandHandler {
 
   void Reset(const std::vector<std::string>& args);
 
+  void SetFeatures(const std::vector<std::string>& args);
+
   // For manual testing
   void AddDefaults();
 

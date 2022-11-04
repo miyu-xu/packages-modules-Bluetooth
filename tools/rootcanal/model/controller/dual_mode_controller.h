@@ -104,6 +104,9 @@ class DualModeController : public Device {
       const std::function<void(std::shared_ptr<std::vector<uint8_t>>)>&
           send_iso);
 
+  // Management commands to configure the device (e.g. via Test Channel)
+  bool SetLmpFeature(uint8_t page, uint8_t index, bool value);
+
   // Controller commands. For error codes, see the Bluetooth Core Specification,
   // Version 4.2, Volume 2, Part D (page 370).
 
