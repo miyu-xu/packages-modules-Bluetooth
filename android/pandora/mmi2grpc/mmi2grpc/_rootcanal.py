@@ -169,3 +169,15 @@ class RootCanal:
             raise Exception("cannot reconnect_phy before disconnect_phy")
 
         self.reconnect_phy_if_needed()
+
+    def set_feature_bit(self, page, index, value, *, pts):
+        devices = self.channel.send_command("list", [])
+        devices = self._parse_device_list(devices)
+        for phy in devices["Phys"]:
+            transport, idxs = self._parse_phy(phy)
+            if transport == "BR_EDR":
+                if pts:
+                    # this is hopefully the PTS...
+                    idxs = [max(idxs)]
+                for idx in idxs:
+                    self.channel.send_command("set_features", [idx, page, index, int(value)])

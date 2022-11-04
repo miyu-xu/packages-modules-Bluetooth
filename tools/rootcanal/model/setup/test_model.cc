@@ -86,6 +86,14 @@ size_t TestModel::Add(std::shared_ptr<Device> new_dev) {
   return devices_.size() - 1;
 }
 
+std::shared_ptr<Device> TestModel::Get(size_t dev_index) {
+  if (dev_index >= devices_.size() || devices_[dev_index] == nullptr) {
+    LOG_WARN("Unknown device %zu", dev_index);
+    return nullptr;
+  }
+  return devices_[dev_index];
+}
+
 void TestModel::Del(size_t dev_index) {
   if (dev_index >= devices_.size() || devices_[dev_index] == nullptr) {
     LOG_WARN("Unknown device %zu", dev_index);

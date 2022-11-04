@@ -61,6 +61,9 @@ class TestModel {
   // Add a device, return its index
   size_t Add(std::shared_ptr<Device> device);
 
+  // Get a device by its index
+  std::shared_ptr<Device> Get(size_t dev_index);
+
   // Remove devices by index
   void Del(size_t device_index);
 
@@ -68,7 +71,8 @@ class TestModel {
   size_t AddPhy(Phy::Type phy_type);
 
   // Allow derived classes to use custom phy layer
-  virtual std::unique_ptr<PhyLayerFactory> CreatePhy(Phy::Type phy_type, size_t phy_index);
+  virtual std::unique_ptr<PhyLayerFactory> CreatePhy(Phy::Type phy_type,
+                                                     size_t phy_index);
 
   // Remove phy by index
   void DelPhy(size_t phy_index);
