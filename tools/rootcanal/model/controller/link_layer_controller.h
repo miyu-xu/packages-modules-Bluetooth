@@ -767,6 +767,8 @@ class LinkLayerController {
     le_suggested_max_tx_time_ = max_tx_time;
   }
 
+  AsyncTaskId StartScoStream(Address address);
+
  private:
   const Address& address_;
   const ControllerProperties& properties_;

@@ -773,15 +773,17 @@ void DualModeController::EnhancedSetupSynchronousConnection(
 
   // Root-Canal does not implement audio data transport paths other than the
   // default HCI transport.
-  if (command_view.GetInputDataPath() != bluetooth::hci::ScoDataPath::HCI ||
-      command_view.GetOutputDataPath() != bluetooth::hci::ScoDataPath::HCI) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: rejected Input_Data_Path (%u)"
-        " and/or Output_Data_Path (%u) as they are un-implemented",
-        static_cast<unsigned>(command_view.GetInputDataPath()),
-        static_cast<unsigned>(command_view.GetOutputDataPath()));
-    status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
-  }
+  //   if (command_view.GetInputDataPath() != bluetooth::hci::ScoDataPath::HCI
+  //   ||
+  //       command_view.GetOutputDataPath() != bluetooth::hci::ScoDataPath::HCI)
+  //       {
+  //     LOG_INFO(
+  //         "EnhancedSetupSynchronousConnection: rejected Input_Data_Path (%u)"
+  //         " and/or Output_Data_Path (%u) as they are un-implemented",
+  //         static_cast<unsigned>(command_view.GetInputDataPath()),
+  //         static_cast<unsigned>(command_view.GetOutputDataPath()));
+  //     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
+  //   }
 
   // Either both the Transmit_Coding_Format and Input_Coding_Format shall be
   // “transparent” or neither shall be. If both are “transparent”, the
@@ -919,16 +921,17 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
 
   // Root-Canal does not implement audio data transport paths other than the
   // default HCI transport.
-  if (command_view.GetInputDataPath() != bluetooth::hci::ScoDataPath::HCI ||
-      command_view.GetOutputDataPath() != bluetooth::hci::ScoDataPath::HCI) {
-    LOG_INFO("EnhancedAcceptSynchronousConnection: rejected Input_Data_Path
-                     (% u) " " and
-                     /
-                 or Output_Data_Path(% u) as they are un - implemented ",
-                        static_cast<unsigned>(command_view.GetInputDataPath()),
-             static_cast<unsigned>(command_view.GetOutputDataPath()));
-    status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
-  }
+  //   if (command_view.GetInputDataPath() != bluetooth::hci::ScoDataPath::HCI
+  //   ||
+  //       command_view.GetOutputDataPath() != bluetooth::hci::ScoDataPath::HCI)
+  //       {
+  //     LOG_INFO(
+  //         "EnhancedAcceptSynchronousConnection: rejected Input_Data_Path
+  //         (%u)" " and/or Output_Data_Path (%u) as they are un-implemented",
+  //         static_cast<unsigned>(command_view.GetInputDataPath()),
+  //         static_cast<unsigned>(command_view.GetOutputDataPath()));
+  //     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
+  //   }
 
   // Either both the Transmit_Coding_Format and Input_Coding_Format shall be
   // “transparent” or neither shall be. If both are “transparent”, the
