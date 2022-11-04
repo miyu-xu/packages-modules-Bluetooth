@@ -318,6 +318,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a911af6_798bdfc8",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-04T11:39:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7ac1226c_17bce0fb",
+      "range": {
+        "startLine": 479,
+        "startChar": 21,
+        "endLine": 479,
+        "endChar": 28
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90cd1f5a_7e07a1c8",
@@ -355,6 +379,30 @@
       "side": 1,
       "message": "Yes, that was my feeling as well, but I thought I should cleanup and clearly define the existing scheme instead of completely changing the ownership model. But now it feels more natural do this next step. I\u0027ll do that by introducing the smart pointers already.",
       "parentUuid": "90cd1f5a_7e07a1c8",
+      "range": {
+        "startLine": 122,
+        "startChar": 23,
+        "endLine": 122,
+        "endChar": 30
+      },
+      "revId": "3e1b1a4cf79f3f58ea3ccbc74607ca10f28b0fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "216589cc_7b93e91b",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-04T11:39:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f469e46_c6a40e21",
       "range": {
         "startLine": 122,
         "startChar": 23,
