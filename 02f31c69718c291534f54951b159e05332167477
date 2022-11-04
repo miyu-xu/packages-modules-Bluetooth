@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd2e7090_a7d6c014",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-04T16:40:14Z",
+      "side": 1,
+      "message": "nit: already cloned when `collect`-ing above, so no need to clone again",
+      "range": {
+        "startLine": 1040,
+        "startChar": 64,
+        "endLine": 1040,
+        "endChar": 72
+      },
+      "revId": "02f31c69718c291534f54951b159e05332167477",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
