@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9509df8e_f2f51730",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-04T21:30:56Z",
+      "side": 1,
+      "message": "nit: Can you move this to the misc fixes CL ? It is unrelated to the context of this commit.",
+      "range": {
+        "startLine": 854,
+        "startChar": 8,
+        "endLine": 854,
+        "endChar": 49
+      },
+      "revId": "03895226d15229a476887cc0f66f3a56d2bc146b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8079899_1b85e946",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-04T21:30:56Z",
+      "side": 1,
+      "message": "nit: I think your local formatter broke this.",
+      "range": {
+        "startLine": 924,
+        "startChar": 0,
+        "endLine": 929,
+        "endChar": 70
+      },
+      "revId": "03895226d15229a476887cc0f66f3a56d2bc146b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f74cd6_94182941",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1000,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-04T21:30:56Z",
+      "side": 1,
+      "message": "Same, unrelated fix",
+      "range": {
+        "startLine": 1000,
+        "startChar": 38,
+        "endLine": 1000,
+        "endChar": 79
+      },
+      "revId": "03895226d15229a476887cc0f66f3a56d2bc146b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
