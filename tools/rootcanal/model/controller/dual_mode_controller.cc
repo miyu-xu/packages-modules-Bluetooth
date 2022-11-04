@@ -481,6 +481,21 @@ void DualModeController::RegisterIsoChannel(
   link_layer_controller_.RegisterIsoChannel(send_iso_);
 }
 
+bool DualModeController::SetLmpFeature(uint8_t page, uint8_t index,
+                                       bool value) {
+  if (page != 0 && page != 2) {
+    LOG_ERROR("Properties can only be set on LMP pages 0 and 2");
+    return false;
+  }
+  if (value) {
+    properties_.lmp_features[page] |= (1U << index);
+  } else {
+    properties_.lmp_features[page] &= ~(1U << index);
+  }
+  LOG_INFO("properties[%d] -> 0x%08lx", page, properties_.lmp_features[page]);
+  return true;
+}
+
 void DualModeController::Reset(CommandView command) {
   auto command_view = gd_hci::ResetView::Create(command);
   ASSERT(command_view.IsValid());
