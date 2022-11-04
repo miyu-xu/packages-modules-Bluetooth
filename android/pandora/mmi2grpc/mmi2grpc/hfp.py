@@ -19,6 +19,7 @@ from mmi2grpc._proxy import ProfileProxy
 from pandora_experimental.hfp_grpc import HFP
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.security_grpc import Security
+from pandora_experimental.hfp_pb2 import AudioPath
 
 import sys
 import threading
@@ -30,16 +31,43 @@ WAIT_DELAY_BEFORE_CONNECTION = 2
 # The tests needs the MMI to accept pairing confirmation request.
 NEEDS_WAIT_CONNECTION_BEFORE_TEST = {'HFP/AG/WBS/BV-01-I', 'HFP/AG/SLC/BV-05-I'}
 
+IXIT_PHONE_NUMBER = 42
+
 
 class HFPProxy(ProfileProxy):
 
-    def __init__(self, channel):
+    def __init__(self, test, channel, rootcanal, modem):
         super().__init__(channel)
         self.hfp = HFP(channel)
         self.host = Host(channel)
         self.security = Security(channel)
+        self.rootcanal = rootcanal
+        self.modem = modem
 
         self.connection = None
+
+        self._auto_confirm_requests()
+
+        # eSCO is always enabled on the DUT
+        self.enable_esco(True, for_pts=False)
+
+        if test == "HFP/AG/ACC/BV-08-I":
+            # eSCO should be ENABLED on PTS
+            self.enable_esco(True, for_pts=True)
+        else:
+            # eSCO should be DISABLED on PTS
+            self.enable_esco(False, for_pts=True)
+
+    def enable_esco(self, enabled, for_pts):
+        self.rootcanal.set_feature_bit(0, 31, enabled, pts=for_pts)  # EXTENDED_SCO_LINK
+        self.rootcanal.set_feature_bit(0, 32, enabled, pts=for_pts)  # EV4_PACKETS
+        self.rootcanal.set_feature_bit(0, 33, enabled, pts=for_pts)  # EV5_PACKETS
+
+        self.rootcanal.set_feature_bit(0, 45, enabled, pts=for_pts)  # ENHANCED_DATA_RATE_ESCO_2_MB_S_MODE
+        self.rootcanal.set_feature_bit(0, 46, enabled, pts=for_pts)  # ENHANCED_DATA_RATE_ESCO_3_MB_S_MODE
+        self.rootcanal.set_feature_bit(0, 47, enabled, pts=for_pts)  # LMP_3_SLOT_ENHANCED_DATA_RATE_ESCO_PACKETS
+
+        self.rootcanal.set_feature_bit(2, 8, enabled, pts=for_pts)  # SECURE_CONNECTIONS_CONTROLLER_SUPPORT
 
     def asyncWaitConnection(self, pts_addr, delay=WAIT_DELAY_BEFORE_CONNECTION):
         """
@@ -97,7 +125,12 @@ class HFPProxy(ProfileProxy):
         Implementation Under Test (IUT).
         """
 
-        self.connection = self.host.Connect(address=pts_addr).connection
+        def go():
+            time.sleep(2)
+            self.connection = self.host.Connect(address=pts_addr).connection
+
+        threading.Thread(target=go).start()
+
         return "OK"
 
     @assert_description
@@ -117,6 +150,8 @@ class HFPProxy(ProfileProxy):
         Click Ok, then disable the service level connection using the
         Implementation Under Test (IUT).
         """
+
+        self.connection = self.host.GetConnection(address=pts_addr).connection
 
         def go():
             time.sleep(2)
@@ -147,3 +182,88 @@ class HFPProxy(ProfileProxy):
         self.hfp.SetBatteryLevel(connection=self.connection, battery_percentage=42)
 
         return "OK"
+
+    @assert_description
+    def TSC_ag_iut_enable_call(self, **kwargs):
+        """
+        Click Ok, then place a call from an external line to the Implementation
+        Under Test (IUT). Do not answer the call unless prompted to do so.
+        """
+
+        def go():
+            time.sleep(2)
+            self.modem.call(IXIT_PHONE_NUMBER)
+
+        threading.Thread(target=go).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_verify_audio(self, **kwargs):
+        """
+        Verify the presence of an audio connection, then click Ok.
+        """
+
+        # TODO
+
+        return "OK"
+
+    @assert_description
+    def TSC_ag_iut_disable_call_external(self, **kwargs):
+        """
+        Click Ok, then end the call using the external terminal.
+        """
+
+        def go():
+            time.sleep(2)
+            self.hfp.DeclineCall()
+
+        threading.Thread(target=go).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_iut_enable_audio_using_codec(self, **kwargs):
+        """
+        Click OK, then initiate an audio connection using the Codec Connection
+        Setup procedure.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_iut_disable_audio(self, **kwargs):
+        """
+        Click Ok, then close the audio connection (SCO) between the
+        Implementation Under Test (IUT) and the PTS.  Do not close the serivice
+        level connection (SLC) or power-off the IUT.
+        """
+
+        def go():
+            time.sleep(2)
+            self.hfp.SetAudioPath(audio_path=AudioPath.AUDIO_PATH_SPEAKERS)
+
+        threading.Thread(target=go).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_verify_no_audio(self, **kwargs):
+        """
+        Verify the absence of an audio connection (SCO), then click Ok.
+        """
+
+        return "OK"
+
+    def _auto_confirm_requests(self, times=None):
+
+        def task():
+            cnt = 0
+            pairing_events = self.security.OnPairing()
+            for event in pairing_events:
+                if event.WhichOneof('method') in {"just_works", "numeric_comparison"}:
+                    if times is None or cnt < times:
+                        cnt += 1
+                        pairing_events.send(event=event, confirm=True)
+
+        threading.Thread(target=task).start()
