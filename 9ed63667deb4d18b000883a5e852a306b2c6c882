@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f62f57_4fc2efb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-04T21:02:57Z",
+      "side": 1,
+      "message": "Shall we not rather wait for FW fix ?",
+      "revId": "9ed63667deb4d18b000883a5e852a306b2c6c882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
