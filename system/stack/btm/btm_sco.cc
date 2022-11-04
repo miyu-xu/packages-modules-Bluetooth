@@ -70,7 +70,6 @@ const bluetooth::legacy::hci::Interface& GetLegacyHciInterface() {
 /*               L O C A L    D A T A    D E F I N I T I O N S                */
 /******************************************************************************/
 
-/* MACROs to convert from SCO packet types mask to ESCO and back */
 #define BTM_SCO_PKT_TYPE_MASK \
   (HCI_PKT_TYPES_MASK_HV1 | HCI_PKT_TYPES_MASK_HV2 | HCI_PKT_TYPES_MASK_HV3)
 
@@ -78,6 +77,7 @@ const bluetooth::legacy::hci::Interface& GetLegacyHciInterface() {
 #define BTM_ESCO_PKT_TYPE_MASK \
   (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 | ESCO_PKT_TYPES_MASK_HV3)
 
+/* MACROs to convert from SCO packet types mask to ESCO and back */
 #define BTM_ESCO_2_SCO(escotype) \
   ((uint16_t)(((escotype)&BTM_ESCO_PKT_TYPE_MASK) << 5))
 
@@ -412,6 +412,8 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
     uint8_t saved_retransmission_effort = p_setup->retransmission_effort;
     uint16_t saved_max_latency_ms = p_setup->max_latency_ms;
 
+    LOG(INFO) << __func__ << "SCO packet types = " << saved_packet_types;
+
     uint16_t temp_packet_types =
         (p_setup->packet_types &
          static_cast<uint16_t>(BTM_SCO_SUPPORTED_PKTS_MASK) &
@@ -438,8 +440,12 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
       }
       if (!sco_peer_supports_esco_ev3(bd_addr)) {
         BTM_TRACE_DEBUG("BTM Remote does not support EV3 eSCO");
-        // If EV3 is not supported, EV4 and EV% are not supported, either.
-        temp_packet_types &= ~BTM_ESCO_LINK_ONLY_MASK;
+        // If EV3 is not supported, EV4 and EV5 are not supported, either.
+        if (bluetooth::common::init_flags::fix_sco_packet_masks_is_enabled()) {
+          temp_packet_types &= ~BTM_ESCO_LINK_ONLY_MASK;
+        } else {
+          temp_packet_types &= ~BTM_SCO_PKT_TYPE_MASK;
+        }
         p_setup->retransmission_effort = ESCO_RETRANSMISSION_OFF;
         p_setup->max_latency_ms = 10;
       }
@@ -453,7 +459,7 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
           BTM_PeerSupportsSecureConnections(bd_addr);
 
       if (local_supports_sc && remote_supports_sc) {
-        temp_packet_types &= ~(BTM_SCO_PKT_TYPE_MASK);
+        temp_packet_types &= ~(BTM_ESCO_PKT_TYPE_MASK);
         if (temp_packet_types == 0) {
           LOG_ERROR(
               "SCO connection cannot support any packet types for "
