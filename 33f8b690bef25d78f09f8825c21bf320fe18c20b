@@ -46,6 +46,30 @@
       },
       "revId": "33f8b690bef25d78f09f8825c21bf320fe18c20b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a47fef38_f0633d9c",
+        "filename": "android/pandora/server/src/com/android/pandora/Hfp.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-04T22:45:25Z",
+      "side": 1,
+      "message": "The things is I don\u0027t event know if we can set the audio route to BT if there isn\u0027t any connected bluetooth device. But I guess we should throw an error in that case",
+      "parentUuid": "faa66aee_843d87a9",
+      "range": {
+        "startLine": 134,
+        "startChar": 7,
+        "endLine": 134,
+        "endChar": 69
+      },
+      "revId": "33f8b690bef25d78f09f8825c21bf320fe18c20b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
