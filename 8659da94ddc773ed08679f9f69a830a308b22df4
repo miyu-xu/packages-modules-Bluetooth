@@ -106,6 +106,24 @@
       "parentUuid": "b43b17c2_94ce7c82",
       "revId": "8659da94ddc773ed08679f9f69a830a308b22df4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca383b2_a8078eb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-04T22:01:13Z",
+      "side": 1,
+      "message": "```\n#define BTM_ESCO_2_SCO(escotype) \\\n  ((uint16_t)(((escotype)\u0026BTM_ESCO_PKT_TYPE_MASK) \u003c\u003c 5))\n```",
+      "parentUuid": "b07a9de8_12da0755",
+      "revId": "8659da94ddc773ed08679f9f69a830a308b22df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
