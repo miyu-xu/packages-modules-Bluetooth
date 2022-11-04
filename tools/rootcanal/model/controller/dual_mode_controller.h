@@ -607,6 +607,28 @@ class DualModeController : public Device {
   void LeAdvertisingFilter(CommandView args);
   void LeExtendedScanParams(CommandView args);
 
+  // CSR vendor command.
+  // Implement the command specific to the CSR controller
+  // used specifically by the PTS tool to pass certification tests.
+
+  enum CsrVarid : uint16_t {
+    CSR_VARID_BUILDID = 0x2819,
+    CSR_VARID_PS = 0x7003,
+  };
+
+  enum CsrPskey : uint16_t {
+    CSR_PSKEY_ENC_KEY_LMIN = 0x00da,
+    CSR_PSKEY_ENC_KEY_LMAX = 0x00db,
+    CSR_PSKEY_LOCAL_SUPPORTED_FEATURES = 0x00ef,
+    CSR_PSKEY_HCI_LMP_LOCAL_VERSION = 0x010d,
+  };
+
+  void CsrVendorCommand(CommandView args);
+  void CsrReadVarid(CsrVarid varid, std::vector<uint8_t>& value);
+  void CsrWriteVarid(CsrVarid varid, std::vector<uint8_t> const& value);
+  void CsrReadPskey(CsrPskey pskey, std::vector<uint8_t>& value);
+  void CsrWritePskey(CsrPskey pskey, std::vector<uint8_t> const& value);
+
   // Required commands for handshaking with hci driver
   void ReadClassOfDevice(CommandView args);
   void ReadVoiceSetting(CommandView args);
