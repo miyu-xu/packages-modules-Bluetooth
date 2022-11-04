@@ -481,6 +481,21 @@ void DualModeController::RegisterIsoChannel(
   link_layer_controller_.RegisterIsoChannel(send_iso_);
 }
 
+bool DualModeController::SetLmpFeature(uint8_t page, uint8_t index,
+                                       bool value) {
+  if (page != 0 && page != 2) {
+    LOG_ERROR("Properties can only be set on LMP pages 0 and 2");
+    return false;
+  }
+  if (value) {
+    properties_.lmp_features[page] |= (1U << index);
+  } else {
+    properties_.lmp_features[page] &= ~(1U << index);
+  }
+  LOG_INFO("properties[%d] -> 0x%08lx", page, properties_.lmp_features[page]);
+  return true;
+}
+
 void DualModeController::Reset(CommandView command) {
   auto command_view = gd_hci::ResetView::Create(command);
   ASSERT(command_view.IsValid());
@@ -835,7 +850,8 @@ void DualModeController::EnhancedSetupSynchronousConnection(
   if (status == ErrorCode::SUCCESS) {
     status = link_layer_controller_.SetupSynchronousConnection(
         command_view.GetConnectionHandle(), transmit_bandwidth,
-        receive_bandwidth, command_view.GetMaxLatency(), 0 /* Voice_Setting */,
+        receive_bandwidth, command_view.GetMaxLatency(),
+        link_layer_controller_.GetVoiceSetting(),
         static_cast<uint8_t>(command_view.GetRetransmissionEffort()),
         command_view.GetPacketType());
   }
@@ -905,11 +921,12 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
   // default HCI transport.
   if (command_view.GetInputDataPath() != bluetooth::hci::ScoDataPath::HCI ||
       command_view.GetOutputDataPath() != bluetooth::hci::ScoDataPath::HCI) {
-    LOG_INFO(
-        "EnhancedAcceptSynchronousConnection: rejected Input_Data_Path (%u)"
-        " and/or Output_Data_Path (%u) as they are un-implemented",
-        static_cast<unsigned>(command_view.GetInputDataPath()),
-        static_cast<unsigned>(command_view.GetOutputDataPath()));
+    LOG_INFO("EnhancedAcceptSynchronousConnection: rejected Input_Data_Path
+                     (% u) " " and
+                     /
+                 or Output_Data_Path(% u) as they are un - implemented ",
+                        static_cast<unsigned>(command_view.GetInputDataPath()),
+             static_cast<unsigned>(command_view.GetOutputDataPath()));
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -980,7 +997,7 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
   if (status == ErrorCode::SUCCESS) {
     status = link_layer_controller_.AcceptSynchronousConnection(
         command_view.GetBdAddr(), transmit_bandwidth, receive_bandwidth,
-        command_view.GetMaxLatency(), 0 /* Voice_Setting */,
+        command_view.GetMaxLatency(), link_layer_controller_.GetVoiceSetting(),
         static_cast<uint8_t>(command_view.GetRetransmissionEffort()),
         command_view.GetPacketType());
   }
