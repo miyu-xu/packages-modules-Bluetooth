@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d90a074_e73f75f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-04T23:54:33Z",
+      "side": 1,
+      "message": "A lot of comment are mark as done but there is not the associated code",
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61df72a9_0d2a7d45",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 6
