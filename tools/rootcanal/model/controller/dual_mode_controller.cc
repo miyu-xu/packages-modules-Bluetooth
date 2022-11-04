@@ -838,7 +838,8 @@ void DualModeController::EnhancedSetupSynchronousConnection(
   if (status == ErrorCode::SUCCESS) {
     status = link_layer_controller_.SetupSynchronousConnection(
         command_view.GetConnectionHandle(), transmit_bandwidth,
-        receive_bandwidth, command_view.GetMaxLatency(), 0 /* Voice_Setting */,
+        receive_bandwidth, command_view.GetMaxLatency(),
+        link_layer_controller_.GetVoiceSetting(),
         static_cast<uint8_t>(command_view.GetRetransmissionEffort()),
         command_view.GetPacketType(), datapath);
   }
@@ -983,7 +984,7 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
   if (status == ErrorCode::SUCCESS) {
     status = link_layer_controller_.AcceptSynchronousConnection(
         command_view.GetBdAddr(), transmit_bandwidth, receive_bandwidth,
-        command_view.GetMaxLatency(), 0 /* Voice_Setting */,
+        command_view.GetMaxLatency(), link_layer_controller_.GetVoiceSetting(),
         static_cast<uint8_t>(command_view.GetRetransmissionEffort()),
         command_view.GetPacketType());
   }
