@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff89f395_f0bbcb91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Thanks a lot William for the review. I updated the code by \nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2220841\nbecause this is cherry-picked CL.",
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61df72a9_0d2a7d45",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-11-01T21:31:12Z",
       "side": 1,
       "message": "Please fix error_prone warning:\n```\n  Did you mean \u0027static final ThreadLocal\u003cDateFormat\u003e dateFormat \u003d ThreadLocal.withInitial(() -\u003e new SimpleDateFormat(\"MM-dd HH:mm:ss\"));\u0027 or \u0027static final DateFormat dateFormat \u003d new SimpleDateFormat(\"MM-dd HH:mm:ss\");\u0027?\n```",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 81
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa048dc1_86cc7d65",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61df72a9_0d2a7d45",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -47,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7797717_744b2170",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ed70753_f95f02e2",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb7611d5_edd92a81",
@@ -60,6 +125,30 @@
       "writtenOn": "2022-11-01T21:31:12Z",
       "side": 1,
       "message": "static class",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b759d31_84c2fab1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb7611d5_edd92a81",
       "range": {
         "startLine": 68,
         "startChar": 0,
@@ -93,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26a2f6ca_5010874b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "It will be used for BT Metrics API call which I\u0027m planing to add soon.",
+      "parentUuid": "85e35871_d027c5fc",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 24
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "699937c0_a13f094f",
@@ -106,6 +219,30 @@
       "writtenOn": "2022-11-01T21:31:12Z",
       "side": 1,
       "message": "ArrayList",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 26
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "581e99fd_c2e9ccdf",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "699937c0_a13f094f",
       "range": {
         "startLine": 97,
         "startChar": 16,
@@ -139,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8018567_4ca0fd9e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b872765_331e6746",
+      "range": {
+        "startLine": 361,
+        "startChar": 33,
+        "endLine": 361,
+        "endChar": 37
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1daaa849_37efe37f",
@@ -152,6 +313,30 @@
       "writtenOn": "2022-11-01T21:31:12Z",
       "side": 1,
       "message": "prefer java.time.Instant or LocalDate.",
+      "range": {
+        "startLine": 371,
+        "startChar": 41,
+        "endLine": 371,
+        "endChar": 45
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1794156e_295164fd",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1daaa849_37efe37f",
       "range": {
         "startLine": 371,
         "startChar": 41,
@@ -185,6 +370,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "035f532a_6dbe5c6e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be5070df_ea3f86e6",
+      "range": {
+        "startLine": 186,
+        "startChar": 22,
+        "endLine": 186,
+        "endChar": 27
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f552d1aa_e9400bea",
@@ -208,6 +417,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fd05768_d06c7940",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f552d1aa_e9400bea",
+      "range": {
+        "startLine": 238,
+        "startChar": 22,
+        "endLine": 238,
+        "endChar": 27
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca4de998_9866a2b3",
@@ -221,6 +454,30 @@
       "writtenOn": "2022-11-01T21:31:12Z",
       "side": 1,
       "message": "static class",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 227,
+        "endChar": 9
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bc43584_6793cbbb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca4de998_9866a2b3",
       "range": {
         "startLine": 227,
         "startChar": 4,
@@ -268,6 +525,30 @@
       "side": 1,
       "message": "Or maybe we can pass it as a argument when creating the AdvertiseManager ?",
       "parentUuid": "9c233979_0bbc1d0b",
+      "range": {
+        "startLine": 229,
+        "startChar": 18,
+        "endLine": 229,
+        "endChar": 32
+      },
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5cc822a_4a224c8e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:10Z",
+      "side": 1,
+      "message": "Yes, right. While scan result callbacks are handled in GattService, AdvertiseManage handles most of works. Makes it private and passes it as a argument to AdvertiseManager. Done.",
+      "parentUuid": "536b11bc_52c857f9",
       "range": {
         "startLine": 229,
         "startChar": 18,
