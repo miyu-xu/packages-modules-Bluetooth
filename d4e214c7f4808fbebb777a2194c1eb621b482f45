@@ -316,6 +316,30 @@
       },
       "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9fb37b5_fc6b15c1",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-04T11:41:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1034e229_edefc0bc",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 42
+      },
+      "revId": "d4e214c7f4808fbebb777a2194c1eb621b482f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
