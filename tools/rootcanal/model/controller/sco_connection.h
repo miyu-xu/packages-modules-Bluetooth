@@ -20,6 +20,7 @@
 #include <optional>
 
 #include "hci/address.h"
+#include "model/setup/async_manager.h"
 
 namespace rootcanal {
 
@@ -90,6 +91,10 @@ class ScoConnection {
   Address GetAddress() const { return address_; }
   ScoState GetState() const { return state_; }
   void SetState(ScoState state) { state_ = state; }
+  std::optional<AsyncTaskId> GetStreamHandle() const { return stream_handle_; }
+  void SetStreamHandle(AsyncTaskId stream_handle) {
+    stream_handle_ = stream_handle;
+  }
 
   ScoConnectionParameters GetConnectionParameters() const {
     return parameters_;
@@ -109,6 +114,10 @@ class ScoConnection {
   ScoConnectionParameters parameters_;
   ScoLinkParameters link_parameters_;
   ScoState state_;
+
+  // The handle of the async task managing the SCO stream, used to simulate
+  // offloaded input. None if HCI is used for input packets.
+  std::optional<AsyncTaskId> stream_handle_{};
 
   // Mark connections opened with the HCI command Add SCO Connection.
   // The connection status is reported with HCI Connection Complete event

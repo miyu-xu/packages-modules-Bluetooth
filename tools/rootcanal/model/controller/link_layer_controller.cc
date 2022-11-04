@@ -2073,7 +2073,7 @@ void LinkLayerController::IncomingDisconnectPacket(
 #ifdef ROOTCANAL_LMP
   auto is_br_edr = connections_.GetPhyType(handle) == Phy::Type::BR_EDR;
 #endif
-  ASSERT_LOG(connections_.Disconnect(handle),
+  ASSERT_LOG(connections_.Disconnect(handle, cancel_task_),
              "GetHandle() returned invalid handle %hx", handle);
 
   uint8_t reason = disconnect.GetReason();
@@ -3610,7 +3610,12 @@ void LinkLayerController::IncomingScoConnectionResponse(
         response.GetAirMode(),
         extended,
     };
-    connections_.AcceptPendingScoConnection(address, link_parameters);
+
+    connections_.AcceptPendingScoConnection(
+        address, link_parameters, [this, address] {
+          return LinkLayerController::StartScoStream(address);
+        });
+
     if (is_legacy) {
       send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
           ErrorCode::SUCCESS, connections_.GetScoHandle(address), address,
@@ -3659,7 +3664,7 @@ void LinkLayerController::IncomingScoDisconnect(
       incoming.GetSourceAddress().ToString().c_str());
 
   if (handle != kReservedHandle) {
-    connections_.Disconnect(handle);
+    connections_.Disconnect(handle, cancel_task_);
     SendDisconnectionCompleteEvent(handle, ErrorCode(reason));
   }
 }
@@ -5322,8 +5327,10 @@ ErrorCode LinkLayerController::AcceptConnectionRequest(const Address& bd_addr,
     ScoConnectionParameters connection_parameters =
         connections_.GetScoConnectionParameters(bd_addr);
 
-    if (!connections_.AcceptPendingScoConnection(bd_addr,
-                                                 connection_parameters)) {
+    if (!connections_.AcceptPendingScoConnection(
+            bd_addr, connection_parameters, [this, bd_addr] {
+              return LinkLayerController::StartScoStream(bd_addr);
+            })) {
       connections_.CancelPendingScoConnection(bd_addr);
       status = ErrorCode::SCO_INTERVAL_REJECTED;  // TODO: proper status code
     } else {
@@ -5456,7 +5463,7 @@ ErrorCode LinkLayerController::Disconnect(uint16_t handle, ErrorCode reason) {
     SendLinkLayerPacket(model::packets::ScoDisconnectBuilder::Create(
         GetAddress(), remote, static_cast<uint8_t>(reason)));
 
-    connections_.Disconnect(handle);
+    connections_.Disconnect(handle, cancel_task_);
     SendDisconnectionCompleteEvent(handle, reason);
     return ErrorCode::SUCCESS;
   }
@@ -5476,7 +5483,7 @@ ErrorCode LinkLayerController::Disconnect(uint16_t handle, ErrorCode reason) {
       SendLinkLayerPacket(model::packets::ScoDisconnectBuilder::Create(
           GetAddress(), remote.GetAddress(), static_cast<uint8_t>(reason)));
 
-      connections_.Disconnect(sco_handle);
+      connections_.Disconnect(sco_handle, cancel_task_);
       SendDisconnectionCompleteEvent(sco_handle, reason);
     }
 
@@ -5490,7 +5497,7 @@ ErrorCode LinkLayerController::Disconnect(uint16_t handle, ErrorCode reason) {
         static_cast<uint8_t>(reason)));
   }
 
-  connections_.Disconnect(handle);
+  connections_.Disconnect(handle, cancel_task_);
   SendDisconnectionCompleteEvent(handle, ErrorCode(reason));
 #ifdef ROOTCANAL_LMP
   if (is_br_edr) {
@@ -6229,8 +6236,10 @@ ErrorCode LinkLayerController::AcceptSynchronousConnection(
       transmit_bandwidth, receive_bandwidth,     max_latency,
       voice_setting,      retransmission_effort, packet_types};
 
-  if (!connections_.AcceptPendingScoConnection(bd_addr,
-                                               connection_parameters)) {
+  if (!connections_.AcceptPendingScoConnection(
+          bd_addr, connection_parameters, [this, bd_addr] {
+            return LinkLayerController::StartScoStream(bd_addr);
+          })) {
     connections_.CancelPendingScoConnection(bd_addr);
     status = ErrorCode::STATUS_UNKNOWN;  // TODO: proper status code
   } else {
@@ -6325,4 +6334,22 @@ void LinkLayerController::IncomingPingRequest(
       packet.GetDestinationAddress(), packet.GetSourceAddress()));
 }
 
+AsyncTaskId LinkLayerController::StartScoStream(Address address) {
+  auto sco_builder = bluetooth::hci::ScoBuilder::Create(
+      connections_.GetScoHandle(address), PacketStatusFlag::CORRECTLY_RECEIVED,
+      {0, 0, 0, 0, 0});
+
+  auto bytes = std::make_shared<std::vector<uint8_t>>();
+  bluetooth::packet::BitInserter bit_inserter(*bytes);
+  sco_builder->Serialize(bit_inserter);
+  auto raw_view =
+      bluetooth::hci::PacketView<bluetooth::hci::kLittleEndian>(bytes);
+  auto sco_view = bluetooth::hci::ScoView::Create(raw_view);
+  ASSERT(sco_view.IsValid());
+
+  return ScheduleTask(100ms, [this, address, sco_view]() {
+    LOG_INFO("SCO sending...");
+    SendScoToRemote(sco_view);
+  });
+}
 }  // namespace rootcanal
