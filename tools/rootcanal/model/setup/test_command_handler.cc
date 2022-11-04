@@ -49,6 +49,7 @@ TestCommandHandler::TestCommandHandler(TestModel& test_model)
   SET_HANDLER("start_timer", StartTimer);
   SET_HANDLER("stop_timer", StopTimer);
   SET_HANDLER("reset", Reset);
+  SET_HANDLER("set_lmp_features", SetFeatures)
 #undef SET_HANDLER
 }
 
@@ -302,6 +303,66 @@ void TestCommandHandler::Reset(const std::vector<std::string>& args) {
   model_.Reset();
   response_string_ = "model reset";
   send_response_(response_string_);
+}
+
+void TestCommandHandler::SetFeatures(const std::vector<std::string>& args) {
+  if (args.size() != 4) {
+    response_string_ =
+        "TestCommandHandler 'set_lmp_features' takes four arguments: the index "
+        "of the device, the feature page number, the bit index, and the new "
+        "value";
+    send_response_(response_string_);
+    return;
+  }
+
+  LOG_INFO("SetFeatures(%s, %s, %s, %s)", args[0].c_str(), args[1].c_str(),
+           args[2].c_str(), args[3].c_str());
+
+  size_t dev_index = std::stoi(args[0]);
+  uint8_t page = std::stoi(args[1]);
+  uint8_t bit_index = std::stoi(args[2]);
+  uint8_t value = std::stoi(args[3]);
+
+  if (value >= 2) {
+    response_string_ =
+        "TestCommandHandler 'set_lmp_features' can only set bits to 0 or 1";
+    send_response_(response_string_);
+    return;
+  }
+
+  auto device = model_.Get(dev_index);
+  if (device == nullptr) {
+    response_string_ =
+        "TestCommandHandler 'set_lmp_features' requires a valid device";
+    send_response_(response_string_);
+    return;
+  }
+
+  if (device->GetTypeString() != "hci_device") {
+    response_string_ =
+        "TestCommandHandler 'set_lmp_features' can only be applied to an HCI "
+        "device";
+    send_response_(response_string_);
+    return;
+  }
+  auto hci_device = static_cast<HciDevice*>(device.get());
+
+  auto ok = hci_device->SetLmpFeature(page, bit_index, value);
+  if (!ok) {
+    response_string_ =
+        "TestCommandHandler 'set_lmp_features' failed to set feature " +
+        std::to_string(bit_index) + " on page " + std::to_string(page) +
+        " to " + std::to_string(value);
+    send_response_(response_string_);
+    return;
+  }
+
+  response_string_ =
+      "TestCommandHandler 'set_lmp_features' successfully set feature " +
+      std::to_string(bit_index) + " on page " + std::to_string(page) + " to " +
+      std::to_string(value);
+  send_response_(response_string_);
+  return;
 }
 
 }  // namespace rootcanal
