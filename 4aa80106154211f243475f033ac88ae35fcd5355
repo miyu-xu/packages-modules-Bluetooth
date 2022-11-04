@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d5506ad_5f23696c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-04T23:28:25Z",
+      "side": 1,
+      "message": "Does that still work with `atest GoogleBluetoothInstrumentationTests` on internal branches?",
+      "revId": "4aa80106154211f243475f033ac88ae35fcd5355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
