@@ -16,25 +16,9 @@
 
 #include "gd/rust/topshim/common/utils.h"
 
-#include "src/btif.rs.h"
-
-using bluetooth::topshim::rust::RustRawAddress;
-
 namespace bluetooth {
 namespace topshim {
 namespace rust {
-
-RustRawAddress CopyToRustAddress(const RawAddress& address) {
-  RustRawAddress raddr;
-  std::copy(std::begin(address.address), std::end(address.address), std::begin(raddr.address));
-  return raddr;
-}
-
-RawAddress CopyFromRustAddress(const RustRawAddress& rust_address) {
-  RawAddress addr;
-  addr.FromOctets(rust_address.address.data());
-  return addr;
-}
 
 }  // namespace rust
 }  // namespace topshim

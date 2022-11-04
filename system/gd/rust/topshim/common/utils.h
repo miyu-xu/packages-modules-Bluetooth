@@ -16,16 +16,9 @@
 #ifndef GD_RUST_TOPSHIM_COMMON_UTILS_H
 #define GD_RUST_TOPSHIM_COMMON_UTILS_H
 
-#include "types/raw_address.h"
-
 namespace bluetooth {
 namespace topshim {
 namespace rust {
-
-struct RustRawAddress;
-
-RustRawAddress CopyToRustAddress(const RawAddress& address);
-RawAddress CopyFromRustAddress(const RustRawAddress& rust_address);
 
 }  // namespace rust
 }  // namespace topshim
