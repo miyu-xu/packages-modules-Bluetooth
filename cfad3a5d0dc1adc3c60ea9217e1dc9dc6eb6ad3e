@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c668dd_71a135ce",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-04T21:50:27Z",
+      "side": 1,
+      "message": "nit: lmp_features",
+      "range": {
+        "startLine": 495,
+        "startChar": 12,
+        "endLine": 495,
+        "endChar": 22
+      },
+      "revId": "cfad3a5d0dc1adc3c60ea9217e1dc9dc6eb6ad3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c1499ed_d857d79c",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-04T21:50:27Z",
+      "side": 1,
+      "message": "nit: You might have to rename this to set_lmp_features, there might be a case for having set_ll_features to disable extended advertising or privacy. But it is probably fine to keep it like this for now.",
+      "range": {
+        "startLine": 52,
+        "startChar": 15,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "cfad3a5d0dc1adc3c60ea9217e1dc9dc6eb6ad3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
