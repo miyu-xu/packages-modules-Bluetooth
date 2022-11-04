@@ -300,7 +300,11 @@ void init() {
 // Check if wideband speech is supported on local device
 bool get_wbs_supported() {
   for (cached_codec_info c : cached_codecs) {
-    if (c.inner.codec == MSBC || c.inner.codec == MSBC_TRANSPARENT) {
+    // The kernel treats MSBC and MSBC_TRANSPARENT differently.
+    // MSBC is supported only when the codec capabilities data size > 0.
+    // MSBC_TRANSPARENT is supported if the MSBC_TRANSPARENT codec entry exists.
+    if ((c.inner.codec == MSBC && c.inner.data.size() > 0) ||
+        c.inner.codec == MSBC_TRANSPARENT) {
       return true;
     }
   }
