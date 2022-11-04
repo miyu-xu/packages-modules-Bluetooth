@@ -3514,7 +3514,7 @@ void LinkLayerController::IncomingScoConnectionRequest(
 
   // Send connection request event and wait for Accept or Reject command.
   send_event_(bluetooth::hci::ConnectionRequestBuilder::Create(
-      address, ClassOfDevice(),
+      address, request.GetClassOfDevice(),
       extended ? bluetooth::hci::ConnectionRequestLinkType::ESCO
                : bluetooth::hci::ConnectionRequestLinkType::SCO));
 }
@@ -6072,7 +6072,7 @@ ErrorCode LinkLayerController::AddScoConnection(uint16_t connection_handle,
       connection_parameters.receive_bandwidth,
       connection_parameters.max_latency, connection_parameters.voice_setting,
       connection_parameters.retransmission_effort,
-      connection_parameters.packet_type));
+      connection_parameters.packet_type, class_of_device_));
   return ErrorCode::SUCCESS;
 }
 
@@ -6105,7 +6105,7 @@ ErrorCode LinkLayerController::SetupSynchronousConnection(
   // Send eSCO connection request to peer.
   SendLinkLayerPacket(model::packets::ScoConnectionRequestBuilder::Create(
       GetAddress(), bd_addr, transmit_bandwidth, receive_bandwidth, max_latency,
-      voice_setting, retransmission_effort, packet_types));
+      voice_setting, retransmission_effort, packet_types, class_of_device_));
   return ErrorCode::SUCCESS;
 }
 
