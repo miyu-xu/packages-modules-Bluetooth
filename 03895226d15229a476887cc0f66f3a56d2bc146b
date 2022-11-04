@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "825cd5f7_8be5220a",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-04T21:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9509df8e_f2f51730",
+      "range": {
+        "startLine": 854,
+        "startChar": 8,
+        "endLine": 854,
+        "endChar": 49
+      },
+      "revId": "03895226d15229a476887cc0f66f3a56d2bc146b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8079899_1b85e946",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec27a41_b59aa195",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-04T21:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8079899_1b85e946",
+      "range": {
+        "startLine": 924,
+        "startChar": 0,
+        "endLine": 929,
+        "endChar": 70
+      },
+      "revId": "03895226d15229a476887cc0f66f3a56d2bc146b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23f74cd6_94182941",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-11-04T21:30:56Z",
       "side": 1,
       "message": "Same, unrelated fix",
+      "range": {
+        "startLine": 1000,
+        "startChar": 38,
+        "endLine": 1000,
+        "endChar": 79
+      },
+      "revId": "03895226d15229a476887cc0f66f3a56d2bc146b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3cb16a_0f9ff021",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1000,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-04T21:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23f74cd6_94182941",
       "range": {
         "startLine": 1000,
         "startChar": 38,
