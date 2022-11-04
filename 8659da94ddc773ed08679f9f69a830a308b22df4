@@ -16,6 +16,24 @@
       "message": "Did you find this while running pts-bot ?",
       "revId": "8659da94ddc773ed08679f9f69a830a308b22df4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77c85519_5f787e7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-04T21:36:13Z",
+      "side": 1,
+      "message": "No, but I was reading this code and noticed that it didn\u0027t make sense.",
+      "parentUuid": "01c2513d_f5b3862d",
+      "revId": "8659da94ddc773ed08679f9f69a830a308b22df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
