@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f52df942_e93ded83",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "import android.annotation.Nullable;",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 33
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1580d3_f81c9cbd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "1) Why are we sending this? Where is this used in the test code?\n\n2) If we need to send an intent to the test package, only send it to the package, not broadcast.",
+      "range": {
+        "startLine": 1473,
+        "startChar": 16,
+        "endLine": 1478,
+        "endChar": 17
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19fa8c6b_6dccf423",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1740,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "Is `public` needed?",
+      "range": {
+        "startLine": 1740,
+        "startChar": 4,
+        "endLine": 1740,
+        "endChar": 10
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f4577eb_a0127c1c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1751,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 1746,
+        "startChar": 12,
+        "endLine": 1751,
+        "endChar": 13
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5233376e_9addc487",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2048,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "No need to be public?",
+      "range": {
+        "startLine": 2048,
+        "startChar": 4,
+        "endLine": 2048,
+        "endChar": 10
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2594d8a4_692447cf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2051,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "Import this and remove the package name prefix",
+      "range": {
+        "startLine": 2051,
+        "startChar": 37,
+        "endLine": 2051,
+        "endChar": 68
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99bbbcc6_17996723",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2055,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "minor) The javadoc on methods may not be needed since they are quite obvious..?",
+      "range": {
+        "startLine": 2055,
+        "startChar": 8,
+        "endLine": 2055,
+        "endChar": 73
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9f9b1d2_110a99f1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2061,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "Just @Nullable?",
+      "range": {
+        "startLine": 2061,
+        "startChar": 8,
+        "endLine": 2061,
+        "endChar": 53
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec1a2bf9_61b90e0f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "util",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b21fa7c1_0944bc66",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "range": {
+        "startLine": 69,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 59
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e39eec_1af892b2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "Let\u0027s use Truth (not Assert.assertThat):\n\n`import static com.google.common.truth.Truth.assertThat;`\n\n`assertThat(state).isInstanceOf(BassClientStateMachine.Disconnected.class);`\n\nHere and others",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 232,
+        "endChar": 0
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7399b5e3_0b4a5672",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-04T00:05:58Z",
+      "side": 1,
+      "message": "We are checking `service.sendBroadcast()` is called to check the state transition happened, but this can lead to future error. \n\nFor example, one day BassClientStateMachine starts to send some other broadcasts before state is changing, then this test is affected.\n\nDid the checking `enter()` not work?",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 55
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
