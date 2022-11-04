@@ -173,6 +173,7 @@ init_flags!(
     flags: {
         btaa_hci = true,
         finite_att_timeout = true,
+        fix_sco_packet_masks_is_enabled = true,
         gatt_robust_caching_client = true,
         gatt_robust_caching_server,
         gd_core,
