@@ -188,8 +188,8 @@ std::optional<ScoLinkParameters> ScoConnectionParameters::GetLinkParameters() {
   unsigned latency = 1250;
   uint8_t air_coding = voice_setting & 0x3;
 
-  if (max_latency != 0xffff && max_latency < latency) {
-    LOG_WARN("SCO Max latency must be less than 1250 us");
+  if (max_latency != 0xffff && max_latency >= latency) {
+    LOG_WARN("SCO Max latency must be less than 1250 ms");
     return {};
   }
 
@@ -233,7 +233,9 @@ bool ScoConnection::NegotiateLinkParameters(
     return false;
   }
 
-  if (peer.voice_setting != parameters_.voice_setting) {
+  // mask out the air coding format bits beore comparison, as per 5.3 Vol
+  // 4E 6.12
+  if ((peer.voice_setting & ~0x3) != (parameters_.voice_setting & ~0x3)) {
     LOG_WARN("Voice setting requirements cannot be met");
     LOG_WARN("Remote voice setting: 0x%04x",
              static_cast<unsigned>(parameters_.voice_setting));
