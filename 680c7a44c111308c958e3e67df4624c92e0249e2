@@ -34,6 +34,24 @@
       "parentUuid": "5949df31_f5e214be",
       "revId": "680c7a44c111308c958e3e67df4624c92e0249e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa5e93c8_8e2173ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:29:15Z",
+      "side": 1,
+      "message": "Thanks Jakub for the comments. I thought privacy aspect but the referenced Scanner Map included Service UUID and configuration info.\n\n@Reference \nGATT Scanner Map\n  Entries: 1\n\n  com.google.uid.shared:10153 (Registered)\n  LE scans (started/stopped)                                  : 16 / 12\n  Scan time in ms (active/suspend/total)                      : 1127428 / 0 / 1127428\n  Scan time with mode in ms (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery):560824 / 5259 / 286855 / 80496 / 98345\n  Scan mode counter (Opp/LowPower/Balanced/LowLatency/AmbientDiscovery):3 / 2 / 1 / 8 / 95651\n  Score                                                       : 172404\n  Total number of results                                     : 81\n  Last 5 scans                                                :\n    09-21 21:42:27 - 3863ms Filter 2 results (4) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dLOW_LATENCY, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ServiceData\u003d[0] ServiceDataMask\u003d[0] ]\n    09-21 21:42:31 - 17ms Filter 1 results (4) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dLOW_POWER, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ServiceData\u003d[0] ServiceDataMask\u003d[0] ]\n    09-21 21:42:35 - 5242ms Filter 6 results (4) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dLOW_POWER, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ServiceData\u003d[0] ServiceDataMask\u003d[0] ]\n    09-21 21:42:40 - 46269ms Filter 47 results (4) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dLOW_LATENCY, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ServiceData\u003d[0] ServiceDataMask\u003d[0] ]\n    09-21 21:43:26 - 6022ms Filter 0 results (5) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dLOW_LATENCY, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fe2c-0000-1000-8000-00805f9b34fb ServiceData\u003d[-4, 18, -114] ]\n  Ongoing scans                                               :\n    09-21 21:40:21 - 286855ms Filter 0 results (1) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dBALANCED, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fe2c-0000-1000-8000-00805f9b34fb ServiceData\u003d[0] ServiceDataMask\u003d[0] ]\n    09-21 21:40:50 - 257509ms Opp Filter 25 results (2) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dOPPORTUNISTIC, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ManufacturerId\u003d224 ManufacturerData\u003d[0, 0, 0] ManufacturerDataMask\u003d[0, 0, -1] ]\n      └ BluetoothLeScanFilter [ ServiceUuid\u003d0000fef3-0000-1000-8000-00805f9b34fb ]\n      └ BluetoothLeScanFilter [ ServiceUuid\u003d0000feaa-0000-1000-8000-00805f9b34fb ]\n      └ BluetoothLeScanFilter [ ServiceUuid\u003d0000fea0-0000-1000-8000-00805f9b34fb ]\n      └ BluetoothLeScanFilter [ ManufacturerId\u003d76 ManufacturerData\u003d[2, 21] ManufacturerDataMask\u003d[-1, -1] ]\n    09-21 21:40:25 - 282577ms Opp Filter 0 results (3) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dOPPORTUNISTIC, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fe2c-0000-1000-8000-00805f9b34fb ServiceData\u003d[-4, 18, -114] ]\n    09-21 21:43:32 - 95649ms Filter 0 results (4) CB Regular Scan\n      └ Scan Config: [ ScanMode\u003dAMBIENT_DISCOVERY, callbackType\u003dALL_MATCHES ]\n      └ BluetoothLeScanFilter [ ServiceDataUuid\u003d0000fe2c-0000-1000-8000-00805f9b34fb ServiceData\u003d[-4, 18, -114] ]\n  Application ID                     : 1\n  UUID                               : 5b333e41-e08d-4b26-9783-d9485524e6ed\n  Connections: 0",
+      "parentUuid": "e15408ae_54f90888",
+      "revId": "680c7a44c111308c958e3e67df4624c92e0249e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
