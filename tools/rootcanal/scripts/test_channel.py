@@ -267,6 +267,13 @@ class TestChannelShell(cmd.Cmd):
         print('Goodbye.')
         return True
 
+    def do_set_lmp_features(self, args):
+        """Arguments: None.
+
+    Sets an LMP feature bit on a HCI device.
+    """
+        self._test_channel.send_command('set_lmp_features', args.split())
+
     def do_help(self, args):
         """Arguments: [dev_num [attr]] List the commands available, optionally filtered by device and attr.
 
