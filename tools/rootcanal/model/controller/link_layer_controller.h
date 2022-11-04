@@ -744,6 +744,8 @@ class LinkLayerController {
     }
   }
 
+  AsyncTaskId StartScoStream(Address address);
+
  private:
   const Address& address_;
   const ControllerProperties& properties_;
