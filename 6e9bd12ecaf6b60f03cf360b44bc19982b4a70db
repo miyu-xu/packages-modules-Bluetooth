@@ -22,6 +22,30 @@
       },
       "revId": "6e9bd12ecaf6b60f03cf360b44bc19982b4a70db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48fe9531_cf718e45",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-04T21:11:36Z",
+      "side": 1,
+      "message": "I will handle it in different CL for the scanner part because current CL is for advertiser only.",
+      "parentUuid": "3bf70d83_763a03e5",
+      "range": {
+        "startLine": 264,
+        "startChar": 26,
+        "endLine": 264,
+        "endChar": 38
+      },
+      "revId": "6e9bd12ecaf6b60f03cf360b44bc19982b4a70db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
