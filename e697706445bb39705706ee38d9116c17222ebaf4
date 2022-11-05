@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b12abd1f_0900d0b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-05T00:20:54Z",
+      "side": 1,
+      "message": "Thanks a lot William for the review. I updated the code by\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2220841\nbecause this is cherry-picked CL.\nCan you check it?",
+      "parentUuid": "6d90a074_e73f75f3",
+      "revId": "e697706445bb39705706ee38d9116c17222ebaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61df72a9_0d2a7d45",
