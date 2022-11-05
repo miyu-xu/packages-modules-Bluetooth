@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa59d3d8_72cff7bb",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-05T06:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64a394b2_5b98aae9",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee156aed_afedc766",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-31T21:29:34Z",
       "side": 1,
       "message": "pass as reference if you want to propagate the `SafeCloseSocket` call",
+      "range": {
+        "startLine": 105,
+        "startChar": 34,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da13cdda_f72306f8",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-05T06:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee156aed_afedc766",
       "range": {
         "startLine": 105,
         "startChar": 34,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe4f7398_8301d1e7",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-05T06:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f830c64f_a9ee0e69",
+      "range": {
+        "startLine": 107,
+        "startChar": 35,
+        "endLine": 107,
+        "endChar": 55
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99638465_7e2b4393",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-31T21:29:34Z",
       "side": 1,
       "message": "`return client_socket !\u003d INVALID_FD` in case the above Write failed and closed the fd",
+      "range": {
+        "startLine": 257,
+        "startChar": 9,
+        "endLine": 257,
+        "endChar": 10
+      },
+      "revId": "d0cab8870f45026f5d97edbab4d9345b392ec2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27011ccf_1281773f",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-05T06:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99638465_7e2b4393",
       "range": {
         "startLine": 257,
         "startChar": 9,
