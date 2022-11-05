@@ -52,6 +52,24 @@
       "parentUuid": "e15408ae_54f90888",
       "revId": "680c7a44c111308c958e3e67df4624c92e0249e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a264df6_6480a46b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-11-05T00:29:26Z",
+      "side": 1,
+      "message": "Updated to print the UUID 32bits only and removed to print manufacturer data.\n\n  Total number of ongoing advertising                   : 1\n  Ongoing advertising:\n    com.google.android.gms.test.chre\n     Advertising ID                                     : 0\n      1:\n        └Start time                                     : 11-04 23:31:24\n        └Elapsed time                                   : 72424ms\n        └Duration(10ms unit)                            : 0\n        └Maximum number of extended advertising events  : 0\n      └Advertising:\n        └Interval(0.625ms)                              : 1600\n        └TX POWER(dbm)                                  : -7\n        └Primary Phy                                    : LE_1M\n        └Secondary Phy                                  : LE_1M\n        └Legacy                                         : true\n        └Anonymous                                      : false\n        └Connectable                                    : false\n        └Scannable                                      : false\n        └Advertise Data:\n          └Include Device Name                          : false\n          └Include Tx Power Level                       : false\n          └Service Data(UUID, length of data)           : \n            [0000fcf1-xxxx-xxxx-xxxx-xxxxxxxxxxxx, 7]",
+      "parentUuid": "fa5e93c8_8e2173ab",
+      "revId": "680c7a44c111308c958e3e67df4624c92e0249e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
