@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14f42e36_506e97cf",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-07T21:15:55Z",
+      "side": 1,
+      "message": "it\u0027s False in line 52",
+      "parentUuid": "03f1176c_62dd164f",
+      "range": {
+        "startLine": 61,
+        "startChar": 35,
+        "endLine": 61,
+        "endChar": 42
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6247029_e6c89e85",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-07T21:04:01Z",
       "side": 1,
       "message": "I am not a huge fan of this \"go()\" syntax. I\u0027d rather us to use the timer in the Thread such as:\n```\n th \u003d threading.Timer(interval\u003ddelay, function\u003dwaitConnectionCallback, args\u003d(self, pts_addr))\n th.start()\n```",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 25
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4652e3b7_e5bdd9dc",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-07T21:15:55Z",
+      "side": 1,
+      "message": "I feel this makes the logic more clear, since the timing is explicit, and it\u0027s obvious that there\u0027s a new thread. Whereas threading.Timer hides the new thread and hides the sleep in an argument, rathe than making it obvious.\n\nI\u0027ll change it if you have strong opinions though.",
+      "parentUuid": "e6247029_e6c89e85",
       "range": {
         "startLine": 128,
         "startChar": 8,
