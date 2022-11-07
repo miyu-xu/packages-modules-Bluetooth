@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f576c8_a82083d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-07T22:48:09Z",
+      "side": 1,
+      "message": "I would prefer us to not use that and still give a bit more time to use the CSR command implementation instead",
+      "revId": "e0efe5cf99b4aca3c892b566ce0cfc0a3db7793a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
