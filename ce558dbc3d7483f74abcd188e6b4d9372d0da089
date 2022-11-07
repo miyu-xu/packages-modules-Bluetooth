@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c8e2077_23c2e8d3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-07T21:30:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea90f402_80e04724",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 25
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32332d7a_c09c2807",
@@ -179,6 +203,30 @@
       "writtenOn": "2022-11-07T21:04:01Z",
       "side": 1,
       "message": "nit: Can you put them in the Alphabetical order please ?",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 25
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3dae70_b4c836fe",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-07T21:30:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c214cbd0_59cefcab",
       "range": {
         "startLine": 241,
         "startChar": 0,
