@@ -342,6 +342,14 @@ public class HeadsetService extends ProfileService {
         }
     }
 
+    private void doForEachConnectedOrConnectingStateMachine(StateMachineTask task) {
+        synchronized (mStateMachines) {
+            for (BluetoothDevice device : getConnectedOrConnectingDevices()) {
+                task.execute(mStateMachines.get(device));
+            }
+        }
+    }
+
     void onDeviceStateChanged(HeadsetDeviceState deviceState) {
         doForEachConnectedStateMachine(
                 stateMachine -> stateMachine.sendMessage(HeadsetStateMachine.DEVICE_STATE_CHANGED,
@@ -1826,7 +1834,7 @@ public class HeadsetService extends ProfileService {
                 mSystemInterface.getAudioManager().setA2dpSuspended(true);
             }
         });
-        doForEachConnectedStateMachine(
+        doForEachConnectedOrConnectingStateMachine(
                 stateMachine -> stateMachine.sendMessage(HeadsetStateMachine.CALL_STATE_CHANGED,
                         new HeadsetCallState(numActive, numHeld, callState, number, type, name)));
         getStateMachinesThreadHandler().post(() -> {
