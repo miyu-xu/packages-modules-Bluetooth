@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa122e52_3383e21f",
+        "filename": "tools/rootcanal/model/controller/sco_connection.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:42:40Z",
+      "side": 1,
+      "message": "This looks wrong (maybe just the warning needs to be updated?",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 58
+      },
+      "revId": "770d6a10d81968f7a9e40dd9b2dcd96edb776144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
