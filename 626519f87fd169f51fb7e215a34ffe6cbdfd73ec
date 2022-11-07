@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38dca2df_c07aba87",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3667,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-07T07:03:11Z",
+      "side": 0,
+      "message": "is the bad cig_id coming from the local BT controller or remote device? \n\nWe shouldn\u0027t crash if it is coming from remote device, but crash if it is coming from local controller",
+      "range": {
+        "startLine": 3667,
+        "startChar": 61,
+        "endLine": 3667,
+        "endChar": 67
+      },
+      "revId": "626519f87fd169f51fb7e215a34ffe6cbdfd73ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4ae0db0_2bb0a93e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3668,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-07T07:03:11Z",
+      "side": 0,
+      "message": "If the stack doesn\u0027t crash, can we still recover from the bad state? if not, we should still crash and make sure controller fixes it in firmware",
+      "revId": "626519f87fd169f51fb7e215a34ffe6cbdfd73ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
