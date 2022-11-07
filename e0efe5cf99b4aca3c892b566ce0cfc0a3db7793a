@@ -16,6 +16,24 @@
       "message": "I would prefer us to not use that and still give a bit more time to use the CSR command implementation instead",
       "revId": "e0efe5cf99b4aca3c892b566ce0cfc0a3db7793a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f45d752_f330ec98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-07T22:53:10Z",
+      "side": 1,
+      "message": "I would like to avoid blocking all the HFP tests, if we have a way to get them to work, and we can simply remove this CL in the future once the CSP commands start working.",
+      "parentUuid": "27f576c8_a82083d5",
+      "revId": "e0efe5cf99b4aca3c892b566ce0cfc0a3db7793a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
