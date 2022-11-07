@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62c03b6a_fa14c8b8",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T21:26:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f8e3dcb_660ad72a",
+      "range": {
+        "startLine": 775,
+        "startChar": 1,
+        "endLine": 777,
+        "endChar": 1
+      },
+      "revId": "3a3d5eb58e87018a831c3b3e68e3a0e4114cac2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58d963b5_29603da9",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-07T18:40:53Z",
       "side": 1,
       "message": "remove?",
+      "range": {
+        "startLine": 921,
+        "startChar": 0,
+        "endLine": 923,
+        "endChar": 4
+      },
+      "revId": "3a3d5eb58e87018a831c3b3e68e3a0e4114cac2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83c47742_351108e9",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T21:26:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58d963b5_29603da9",
       "range": {
         "startLine": 921,
         "startChar": 0,
