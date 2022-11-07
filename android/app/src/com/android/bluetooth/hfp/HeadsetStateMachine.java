@@ -594,7 +594,8 @@ public class HeadsetStateMachine extends StateMachine {
                     break;
                 }
                 case CALL_STATE_CHANGED:
-                    stateLogD("ignoring CALL_STATE_CHANGED event");
+                    stateLogW("CALL_STATE_CHANGED: defer CALL_STATE_CHANGED message");
+                    deferMessage(message);
                     break;
                 case DEVICE_STATE_CHANGED:
                     stateLogD("ignoring DEVICE_STATE_CHANGED event");

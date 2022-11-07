@@ -1045,6 +1045,8 @@ bt_status_t HeadsetInterface::CindResponse(int svc, int num_active,
            roam,                                     /* Roaming indicator */
            batt_chg,                                 /* Battery level */
            ((num_held == 0) ? 0 : ((num_active == 0) ? 2 : 1))); /* Call held */
+
+  UpdateCallStates(&btif_hf_cb[idx], num_active, num_held, call_setup_state);
   BTA_AgResult(btif_hf_cb[idx].handle, BTA_AG_CIND_RES, ag_res);
   return BT_STATUS_SUCCESS;
 }
