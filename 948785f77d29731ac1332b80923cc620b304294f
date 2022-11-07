@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b9a4dc4_c46c19d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-07T05:23:43Z",
+      "side": 1,
+      "message": "7 tests failed. They were all about boot test / health check. The failed reason was an exception during device flashing. This P0 bug looks related -- b/257865131: Broken test: DeviceBootTest.DeviceBootTest#DeviceBootTest.",
+      "revId": "948785f77d29731ac1332b80923cc620b304294f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
