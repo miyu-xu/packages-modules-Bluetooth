@@ -174,6 +174,7 @@ init_flags!(
         btaa_hci = true,
         btm_dm_flush_discovery_queue_on_search_cancel,
         finite_att_timeout = true,
+        fix_secure_connections_sco_mask = true,
         gatt_robust_caching_client = true,
         gatt_robust_caching_server,
         gd_core,
