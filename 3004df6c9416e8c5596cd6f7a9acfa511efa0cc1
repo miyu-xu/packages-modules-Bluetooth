@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b92e73c_62f2b733",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:49:51Z",
+      "side": 1,
+      "message": "Can we file a bug to remove this flag in _ Months?",
+      "range": {
+        "startLine": 445,
+        "startChar": 43,
+        "endLine": 445,
+        "endChar": 74
+      },
+      "revId": "3004df6c9416e8c5596cd6f7a9acfa511efa0cc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
