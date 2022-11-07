@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d5a817c_931f598d",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:27:57Z",
+      "side": 1,
+      "message": "This could be defined there, too.",
+      "range": {
+        "startLine": 242,
+        "startChar": 22,
+        "endLine": 242,
+        "endChar": 27
+      },
+      "revId": "27403fe0f65ce3b95d9a73c7f4a926d65c87f4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f41fcf97_19029892",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:27:57Z",
+      "side": 1,
+      "message": "I\u0027d prefer to have this in a separate file for csr-specific things.",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 4
+      },
+      "revId": "27403fe0f65ce3b95d9a73c7f4a926d65c87f4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
