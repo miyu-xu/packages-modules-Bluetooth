@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0e0cf69_b222005d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-07T13:51:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "509e66b0_fdf8db0a",
+      "range": {
+        "startLine": 1473,
+        "startChar": 16,
+        "endLine": 1478,
+        "endChar": 17
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19fa8c6b_6dccf423",
@@ -471,6 +495,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf1ad66d_58b1cd1f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-07T13:51:26Z",
+      "side": 1,
+      "message": "If you want to remove this, call MockitoAnnotations.initMocks() in setUp().",
+      "parentUuid": "3dfb38ea_39ec5b90",
+      "range": {
+        "startLine": 69,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 59
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4e39eec_1af892b2",
@@ -555,6 +603,30 @@
       "side": 1,
       "message": "Checking `enter()` require the inner state classes to be spied, i.e. `spy(state)`, but it will cause error because of the interaction with `addState(state)`. There are ways to work around, but they are more complicated and worse for readability.\n\nfor the checking `service.sendBroadcast()`, I simply follow what Sungsoo did in here: https://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/hap/HapClientStateMachineTest.java;l\u003d379;bpv\u003d1;bpt\u003d1;rcl\u003db3370acc279c39e98823a2dbb9835fe0db615579?q\u003dsendMessageAndVerifyTransition. Also, as he mentioned before in a sync up, if there is any changed behavior that break the test, we can fix the test later accordingly.",
       "parentUuid": "7399b5e3_0b4a5672",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 55
+      },
+      "revId": "aa5f69a47ea37b973c6ad58827cb9a329871b9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b81fc11a_0cd007fb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-07T13:51:26Z",
+      "side": 1,
+      "message": "Ack. \n\n(minor, don\u0027t need to do this but just for FYI) For more precise test, you can define a package-private String variable for Intent Action, and check the intent with the same action has arrived.",
+      "parentUuid": "a8ba70c7_98666bbe",
       "range": {
         "startLine": 343,
         "startChar": 8,
