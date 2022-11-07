@@ -34,6 +34,23 @@
       "parentUuid": "f3a1d8e4_deba827f",
       "revId": "e2cac89430d1474bdec1e0ad8661047cab296b84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8f1c2e1_60991815",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-11-07T18:17:52Z",
+      "side": 1,
+      "message": "Hi, ping for owner approval. Thanks!",
+      "revId": "e2cac89430d1474bdec1e0ad8661047cab296b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
