@@ -582,8 +582,8 @@ extern void bta_dm_set_event_filter_inquiry_result_all_devices();
 
 extern void bta_dm_ble_reset_id(void);
 
-uint8_t bta_dm_search_get_state();
-void bta_dm_search_set_state(uint8_t state);
+tBTA_DM_STATE bta_dm_search_get_state();
+void bta_dm_search_set_state(tBTA_DM_STATE state);
 
 void bta_dm_eir_update_uuid(uint16_t uuid16, bool adding);
 void bta_dm_eir_update_cust_uuid(const tBTA_CUSTOM_UUID &curr, bool adding);
