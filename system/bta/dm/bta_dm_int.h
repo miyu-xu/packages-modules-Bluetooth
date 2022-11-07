@@ -356,6 +356,27 @@ typedef struct {
   alarm_t* switch_delay_timer;
 } tBTA_DM_CB;
 
+/* DM search state */
+typedef enum {
+
+  BTA_DM_SEARCH_IDLE,
+  BTA_DM_SEARCH_ACTIVE,
+  BTA_DM_SEARCH_CANCELLING,
+  BTA_DM_DISCOVER_ACTIVE
+
+} tBTA_DM_STATE;
+
+inline std::string bta_dm_state_text(const tBTA_DM_STATE& state) {
+  switch (state) {
+    CASE_RETURN_TEXT(BTA_DM_SEARCH_IDLE);
+    CASE_RETURN_TEXT(BTA_DM_SEARCH_ACTIVE);
+    CASE_RETURN_TEXT(BTA_DM_SEARCH_CANCELLING);
+    CASE_RETURN_TEXT(BTA_DM_DISCOVER_ACTIVE);
+    default:
+      return base::StringPrintf("UNKNOWN[%d]", state);
+  }
+}
+
 /* DM search control block */
 typedef struct {
   tBTA_DM_SEARCH_CBACK* p_search_cback;
@@ -364,7 +385,7 @@ typedef struct {
   tBTA_SERVICE_MASK services_to_search;
   tBTA_SERVICE_MASK services_found;
   tSDP_DISCOVERY_DB* p_sdp_db;
-  uint16_t state;
+  tBTA_DM_STATE state;
   RawAddress peer_bdaddr;
   bool name_discover_done;
   BD_NAME peer_name;
@@ -394,27 +415,6 @@ typedef struct {
   uint32_t di_handle[BTA_DI_NUM_MAX]; /* local DI record handle, the first one
                                          is primary record */
 } tBTA_DM_DI_CB;
-
-/* DM search state */
-typedef enum {
-
-  BTA_DM_SEARCH_IDLE,
-  BTA_DM_SEARCH_ACTIVE,
-  BTA_DM_SEARCH_CANCELLING,
-  BTA_DM_DISCOVER_ACTIVE
-
-} tBTA_DM_STATE;
-
-inline std::string bta_dm_state_text(const tBTA_DM_STATE& state) {
-  switch (state) {
-    CASE_RETURN_TEXT(BTA_DM_SEARCH_IDLE);
-    CASE_RETURN_TEXT(BTA_DM_SEARCH_ACTIVE);
-    CASE_RETURN_TEXT(BTA_DM_SEARCH_CANCELLING);
-    CASE_RETURN_TEXT(BTA_DM_DISCOVER_ACTIVE);
-    default:
-      return base::StringPrintf("UNKNOWN[%d]", state);
-  }
-}
 
 typedef struct {
   uint16_t page_timeout; /* timeout for page in slots */
