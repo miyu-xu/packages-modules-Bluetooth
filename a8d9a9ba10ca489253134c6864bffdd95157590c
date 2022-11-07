@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adfa9d00_51ea6c46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-11-07T12:14:18Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nWe performed repo sync, and with few alterations in PtsBotTest.xml file we were able to see \nAdapterServiceConfig: init: profile\u003dA2dpService, enabled\u003dfalse\nAdapterServiceConfig: init: profile\u003dA2dpSinkService, enabled\u003dtrue\nAdapterServiceConfig: init: profile\u003dAvrcpTargetService, enabled\u003dfalse\nAdapterServiceConfig: init: profile\u003dAvrcpControllerService, enabled\u003dtrue\n\nBut observing permission related issue while we accept/initiate SNK connection. Attached SNK_error snapshot for reference.\n\nRequest you to confirm if we have missed any step for AVRCP Controller cases.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "a8d9a9ba10ca489253134c6864bffdd95157590c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
