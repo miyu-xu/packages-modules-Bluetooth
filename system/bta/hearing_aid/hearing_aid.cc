@@ -279,16 +279,19 @@ class HearingAidImpl : public HearingAid {
     BTA_GATTC_AppRegister(
         hearingaid_gattc_callback,
         base::Bind(
-            [](Closure initCb, uint8_t client_id, uint8_t status) {
+            [function_name = __func__](Closure initCb, uint8_t client_id,
+                                       uint8_t status) {
               if (status != GATT_SUCCESS) {
-                LOG(ERROR) << "Can't start Hearing Aid profile - no gatt "
+                LOG(ERROR) << function_name
+                           << "Can't start Hearing Aid profile - no gatt "
                               "clients left!";
                 return;
               }
               instance->gatt_if = client_id;
               initCb.Run();
             },
-            initCb), false);
+            initCb),
+        false);
   }
 
   uint16_t UpdateBleConnParams(const RawAddress& address) {
