@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6247029_e6c89e85",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-07T21:04:01Z",
+      "side": 1,
+      "message": "I am not a huge fan of this \"go()\" syntax. I\u0027d rather us to use the timer in the Thread such as:\n```\n th \u003d threading.Timer(interval\u003ddelay, function\u003dwaitConnectionCallback, args\u003d(self, pts_addr))\n th.start()\n```",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 25
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32332d7a_c09c2807",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-07T21:04:01Z",
+      "side": 1,
+      "message": "Same logic for this one and the others",
+      "range": {
+        "startLine": 193,
+        "startChar": 7,
+        "endLine": 194,
+        "endChar": 25
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c214cbd0_59cefcab",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-07T21:04:01Z",
+      "side": 1,
+      "message": "nit: Can you put them in the Alphabetical order please ?",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 25
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
