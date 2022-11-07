@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23c82c8a_4da143c9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3667,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-07T08:39:03Z",
+      "side": 0,
+      "message": "Yeah it\u0027s from local controller.",
+      "parentUuid": "38dca2df_c07aba87",
+      "range": {
+        "startLine": 3667,
+        "startChar": 61,
+        "endLine": 3667,
+        "endChar": 67
+      },
+      "revId": "626519f87fd169f51fb7e215a34ffe6cbdfd73ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4ae0db0_2bb0a93e",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 1
@@ -37,6 +61,24 @@
       "writtenOn": "2022-11-07T07:03:11Z",
       "side": 0,
       "message": "If the stack doesn\u0027t crash, can we still recover from the bad state? if not, we should still crash and make sure controller fixes it in firmware",
+      "revId": "626519f87fd169f51fb7e215a34ffe6cbdfd73ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc554328_9b06762e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3668,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-07T08:39:03Z",
+      "side": 0,
+      "message": "I think it should be possible to recover. This would need to \"guess\" the CIG ID that we should remove before creating a new one. Currently the CIG ID is invalid - there is no such CIG configured/created in controller. But most probably for current state there should be only one CIG with established CISes. I\u0027ll update CL to do it.",
+      "parentUuid": "d4ae0db0_2bb0a93e",
       "revId": "626519f87fd169f51fb7e215a34ffe6cbdfd73ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -16,6 +16,24 @@
       "message": "Shall we not rather wait for FW fix ?",
       "revId": "9ed63667deb4d18b000883a5e852a306b2c6c882",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b172a144_7e6e9d42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-07T08:39:03Z",
+      "side": 1,
+      "message": "If we should crash if internal controller will send response with invalid CIG ID then yes - there should be no workaround - only FW fix.",
+      "parentUuid": "67f62f57_4fc2efb3",
+      "revId": "9ed63667deb4d18b000883a5e852a306b2c6c882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
