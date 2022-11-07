@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03f1176c_62dd164f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-07T21:08:48Z",
+      "side": 1,
+      "message": "Is that usefull ? It is always set to true. Otherwise you can make it at True by default",
+      "range": {
+        "startLine": 61,
+        "startChar": 35,
+        "endLine": 61,
+        "endChar": 42
+      },
+      "revId": "ce558dbc3d7483f74abcd188e6b4d9372d0da089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6247029_e6c89e85",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
         "patchSetId": 7
