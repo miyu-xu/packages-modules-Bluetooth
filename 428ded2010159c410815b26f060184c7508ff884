@@ -16,6 +16,23 @@
       "message": "Nice refactor!",
       "revId": "428ded2010159c410815b26f060184c7508ff884",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3471212d_80738b49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-07T23:22:44Z",
+      "side": 1,
+      "message": "Btw, Android also uses topshim for testing (via the facade layer). That\u0027s all the presubmit errors you\u0027re seeing. Please fix before submitting.",
+      "revId": "428ded2010159c410815b26f060184c7508ff884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
