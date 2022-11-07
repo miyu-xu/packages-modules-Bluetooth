@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "142f690a_544ab3f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-07T18:22:17Z",
+      "side": 1,
+      "message": "Do we know why libchrome logs don\u0027t appear in Chrome OS logs? That itself looks like an issue.",
+      "revId": "b83d635dc54ade97b3a99ce4e73e961ff6044b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
