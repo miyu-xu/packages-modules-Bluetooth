@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf78bc6_e5c564b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-07T21:40:33Z",
+      "side": 1,
+      "message": "Waiting for the pandora presubmit to success to +2",
+      "revId": "06f4b6f278e8341fa0dcffaa19d481870c73c889",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
