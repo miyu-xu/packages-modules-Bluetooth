@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76314d96_15283f61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-11-07T07:44:08Z",
+      "side": 1,
+      "message": "@jrwu@google.com, please proceed with a TODO to revert the log\u0027s verbose.",
+      "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64544785_79d478d6",
