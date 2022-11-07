@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9719638f_2343c09c",
+        "filename": "system/gd/rust/linux/client/src/bt_adv.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-07T22:55:11Z",
+      "side": 1,
+      "message": "remove old line?",
+      "revId": "73c91a168fed6075853d727294e48ad0c47517be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d409461b_a2ab2efe",
+        "filename": "system/gd/rust/linux/client/src/bt_adv.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-07T22:55:11Z",
+      "side": 1,
+      "message": "Passing `Arc` by reference looks odd to me. Because it\u0027s a reference count, this is better to be `Arc\u003cMutex\u003cClientContext\u003e\u003e` and cloning the `Arc` when passing is cheap since it only clones a reference.\n\nAlternatively, if we still want to avoid cloning `Arc`, just pass `\u0026mut ClientContext` directly.",
+      "range": {
+        "startLine": 90,
+        "startChar": 36,
+        "endLine": 90,
+        "endChar": 62
+      },
+      "revId": "73c91a168fed6075853d727294e48ad0c47517be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
