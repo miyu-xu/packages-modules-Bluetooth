@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505d81c9_e51458c8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-07T09:05:15Z",
+      "side": 1,
+      "message": "if (DBG) {\nLog.d(TAG, \" onAudioDevicesRemoved: device type: \" + deviceInfo.getType());\n}",
+      "revId": "732b22b3da0b321652e2f87428398add56b9301c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c7e2aef_0a1c2dec",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-07T09:05:15Z",
+      "side": 1,
+      "message": "if (DBG) {\nLog.d(TAG, \" onAudioDevicesAdded: device type: \" + deviceInfo.getType());\n}",
+      "revId": "732b22b3da0b321652e2f87428398add56b9301c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc6a566_754c02df",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-07T09:05:15Z",
+      "side": 1,
+      "message": "lines 943 and 944 are not needed. Looks like you could just change the name outReplaced-\u003eisNewActiveOutDevice and keep declaration in old place",
+      "revId": "732b22b3da0b321652e2f87428398add56b9301c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc07461_16fa31e7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-07T09:05:15Z",
+      "side": 1,
+      "message": "could you add here one debug log?\n\nif (DBG) {\nLog.d(TAG, \" isNewActiveOutDevice: \"\n                        + isNewActiveOutDevice + \", \" + mActiveAudioOutDevice +\n\", isNewActiveInDevice: \" + isNewActiveInDevice + \", \" + mActiveAudioInDevice);\n\n}",
+      "revId": "732b22b3da0b321652e2f87428398add56b9301c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
