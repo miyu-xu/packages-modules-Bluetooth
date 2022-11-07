@@ -399,7 +399,6 @@ class LeAudioDeviceGroups {
   LeAudioDeviceGroup* Add(int group_id);
   void Remove(const int group_id);
   LeAudioDeviceGroup* FindById(int group_id);
-  std::vector<int> GetGroupsIds(void);
   size_t Size();
   bool IsAnyInTransition();
   void Cleanup(void);
