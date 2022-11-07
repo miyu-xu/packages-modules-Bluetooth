@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83fed417_b12a26bd",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:54:04Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/tools/rootcanal/model/setup/test_command_handler.cc\npackages/modules/Bluetooth/tools/rootcanal/model/setup/test_command_handler.cc:341:21: error: use of dynamic_cast requires -frtti",
+      "range": {
+        "startLine": 341,
+        "startChar": 2,
+        "endLine": 341,
+        "endChar": 68
+      },
+      "revId": "89c5162aca45ee06c55eb6fb61d0f4f2811c5fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
