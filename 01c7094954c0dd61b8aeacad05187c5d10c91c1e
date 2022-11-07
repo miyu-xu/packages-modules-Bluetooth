@@ -52,6 +52,24 @@
       "parentUuid": "16e969ec_da93686c",
       "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1c7b706_944cd59b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-11-07T07:42:58Z",
+      "side": 1,
+      "message": "Got it. Knowing the timing of the config update in callback is pretty helpful when triaging racing issues we are working on. I think adding a TODO to make this a `debug` log SGTM.",
+      "parentUuid": "baeaccc4_e12903a7",
+      "revId": "01c7094954c0dd61b8aeacad05187c5d10c91c1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
