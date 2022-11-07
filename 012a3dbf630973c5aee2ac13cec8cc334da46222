@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553161cf_e0dd9188",
+        "filename": "android/pandora/server/AndroidManifest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-07T21:43:33Z",
+      "side": 1,
+      "message": "Is this needed ? We are granting the permissions while installing the apk, going through the manifest should not be needed",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "012a3dbf630973c5aee2ac13cec8cc334da46222",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
