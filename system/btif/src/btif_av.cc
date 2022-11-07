@@ -1005,6 +1005,7 @@ bt_status_t BtifAvSource::Init(
 void BtifAvSource::Cleanup() {
   LOG_INFO("%s", __PRETTY_FUNCTION__);
   if (!enabled_) return;
+  enabled_ = false;
 
   btif_queue_cleanup(UUID_SERVCLASS_AUDIO_SOURCE);
 
@@ -1020,7 +1021,6 @@ void BtifAvSource::Cleanup() {
   CleanupAllPeers();
 
   callbacks_ = nullptr;
-  enabled_ = false;
 }
 
 BtifAvPeer* BtifAvSource::FindPeer(const RawAddress& peer_address) {
@@ -1210,6 +1210,7 @@ bt_status_t BtifAvSink::Init(btav_sink_callbacks_t* callbacks,
 void BtifAvSink::Cleanup() {
   LOG_INFO("%s", __PRETTY_FUNCTION__);
   if (!enabled_) return;
+  enabled_ = false;
 
   btif_queue_cleanup(UUID_SERVCLASS_AUDIO_SINK);
 
@@ -1225,7 +1226,6 @@ void BtifAvSink::Cleanup() {
   CleanupAllPeers();
 
   callbacks_ = nullptr;
-  enabled_ = false;
 }
 
 BtifAvPeer* BtifAvSink::FindPeer(const RawAddress& peer_address) {
