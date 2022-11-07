@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830e5d88_d25b0e64",
+        "filename": "system/embdrv/encoder_for_aptx/src/CodewordPacker.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:32:14Z",
+      "side": 1,
+      "message": "static_cast ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d517af1_b212dce1",
+        "filename": "system/embdrv/encoder_for_aptx/src/QuantiseDifference.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:32:14Z",
+      "side": 1,
+      "message": "This seems odd.",
+      "range": {
+        "startLine": 216,
+        "startChar": 2,
+        "endLine": 216,
+        "endChar": 38
+      },
+      "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
