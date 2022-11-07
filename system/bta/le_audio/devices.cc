@@ -2584,16 +2584,6 @@ bool LeAudioDeviceGroups::IsAnyInTransition(void) {
 
 size_t LeAudioDeviceGroups::Size() { return (groups_.size()); }
 
-std::vector<int> LeAudioDeviceGroups::GetGroupsIds(void) {
-  std::vector<int> result;
-
-  for (auto const& group : groups_) {
-    result.push_back(group->group_id_);
-  }
-
-  return result;
-}
-
 /* LeAudioDevices Class methods implementation */
 void LeAudioDevices::Add(const RawAddress& address, DeviceConnectState state,
                          int group_id) {
