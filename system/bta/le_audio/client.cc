@@ -3665,7 +3665,22 @@ class LeAudioClientImpl : public LeAudioClient {
       case bluetooth::hci::iso_manager::kIsoEventCigOnCreateCmpl: {
         auto* evt = static_cast<cig_create_cmpl_evt*>(data);
         LeAudioDeviceGroup* group = aseGroups_.FindById(evt->cig_id);
-        ASSERT_LOG(group, "Group id: %d is null", evt->cig_id);
+
+        if (!group) {
+          std::vector<int> groupIds = aseGroups_.GetGroupWithCreatedCigIds();
+
+          LOG_WARN("Wrong group ID in response to create CIG: %d", evt->cig_id);
+
+          /* Take first group which has created CIG */
+          if (!groupIds.empty()) {
+            group = aseGroups_.FindById(groupIds.front());
+          }
+
+          if (!group) {
+            ASSERT_LOG(group, "Group id: %d is null", evt->cig_id);
+          }
+        }
+
         groupStateMachine_->ProcessHciNotifOnCigCreate(
             group, evt->status, evt->cig_id, evt->conn_handles);
       } break;

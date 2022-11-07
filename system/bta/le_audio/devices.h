@@ -402,6 +402,7 @@ class LeAudioDeviceGroups {
   std::vector<int> GetGroupsIds(void);
   size_t Size();
   bool IsAnyInTransition();
+  std::vector<int> GetGroupWithCreatedCigIds(void);
   void Cleanup(void);
   void Dump(int fd, int active_group_id);
 

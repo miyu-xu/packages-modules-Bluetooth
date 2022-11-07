@@ -355,11 +355,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
      * conn_handle.size() != active ases in group
      */
 
-    if (!group) {
-      LOG_ERROR(", group is null");
-      return;
-    }
-
     if (status != HCI_SUCCESS) {
       if (status == HCI_ERR_COMMAND_DISALLOWED) {
         /*

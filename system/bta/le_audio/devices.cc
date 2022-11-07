@@ -48,6 +48,7 @@ using le_audio::types::AudioContexts;
 using le_audio::types::AudioLocations;
 using le_audio::types::AudioStreamDataPathState;
 using le_audio::types::BidirectAsesPair;
+using le_audio::types::CigState;
 using le_audio::types::CisType;
 using le_audio::types::LeAudioCodecId;
 using le_audio::types::LeAudioContextType;
@@ -2522,6 +2523,18 @@ bool LeAudioDevice::IsMetadataChanged(AudioContexts context_type,
   }
 
   return false;
+}
+
+std::vector<int> LeAudioDeviceGroups::GetGroupWithCreatedCigIds(void) {
+  std::vector<int> result;
+
+  for (auto const& group : groups_) {
+    if (group->GetCigState() != CigState::NONE &&
+        group->GetCigState() != CigState::CREATING) {
+      result.push_back(group->group_id_);
+    }
+  }
+  return result;
 }
 
 LeAudioDeviceGroup* LeAudioDeviceGroups::Add(int group_id) {
