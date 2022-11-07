@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50e4f19d_8d8b9137",
+        "filename": "system/embdrv/tests/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:24:23Z",
+      "side": 1,
+      "message": "Maybe encoder_tests, and keep adding to it?  Is there a benefit to having an executable per test class?",
+      "range": {
+        "startLine": 2,
+        "startChar": 11,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "459b99d3f912bbd90b67f0ddac397412133b1975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65ab521f_dcdeded5",
+        "filename": "system/embdrv/tests/src/aptxhd.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:24:23Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 58,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 2
+      },
+      "revId": "459b99d3f912bbd90b67f0ddac397412133b1975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47e0efdf_8bd9460b",
+        "filename": "system/embdrv/tests/src/aptxhd.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-07T18:24:23Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 92,
+        "startChar": 1,
+        "endLine": 93,
+        "endChar": 1
+      },
+      "revId": "459b99d3f912bbd90b67f0ddac397412133b1975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
