@@ -21,7 +21,6 @@ import static org.mockito.Mockito.doReturn;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.BluetoothMetricsProto.BluetoothLog;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
@@ -44,8 +43,6 @@ import java.util.List;
 @RunWith(AndroidJUnit4.class)
 public class MetricsLoggerTest {
     private TestableMetricsLogger mTestableMetricsLogger;
-    @Mock
-    private AdapterService mMockAdapterService;
 
     public class TestableMetricsLogger extends MetricsLogger {
         public HashMap<Integer, Long> mTestableCounters = new HashMap<>();
@@ -71,8 +68,6 @@ public class MetricsLoggerTest {
         // Dump metrics to clean up internal states
         MetricsLogger.dumpProto(BluetoothLog.newBuilder());
         mTestableMetricsLogger = new TestableMetricsLogger();
-        doReturn(null)
-                .when(mMockAdapterService).registerReceiver(any(), any());
     }
 
     @After
@@ -141,7 +136,7 @@ public class MetricsLoggerTest {
      */
     @Test
     public void testAddAndSendCountersNormalCases() {
-        mTestableMetricsLogger.init(mMockAdapterService);
+        mTestableMetricsLogger.init();
         mTestableMetricsLogger.cacheCount(1, 10);
         mTestableMetricsLogger.cacheCount(1, 10);
         mTestableMetricsLogger.cacheCount(2, 5);
@@ -165,7 +160,7 @@ public class MetricsLoggerTest {
 
     @Test
     public void testAddAndSendCountersCornerCases() {
-        mTestableMetricsLogger.init(mMockAdapterService);
+        mTestableMetricsLogger.init();
         Assert.assertTrue(mTestableMetricsLogger.isInitialized());
         mTestableMetricsLogger.cacheCount(1, -1);
         mTestableMetricsLogger.cacheCount(3, 0);
@@ -181,7 +176,7 @@ public class MetricsLoggerTest {
 
     @Test
     public void testMetricsLoggerClose() {
-        mTestableMetricsLogger.init(mMockAdapterService);
+        mTestableMetricsLogger.init();
         mTestableMetricsLogger.cacheCount(1, 1);
         mTestableMetricsLogger.cacheCount(2, 10);
         mTestableMetricsLogger.cacheCount(2, Long.MAX_VALUE);
@@ -203,8 +198,8 @@ public class MetricsLoggerTest {
 
     @Test
     public void testAddAndSendCountersDoubleInit() {
-        Assert.assertTrue(mTestableMetricsLogger.init(mMockAdapterService));
+        Assert.assertTrue(mTestableMetricsLogger.init());
         Assert.assertTrue(mTestableMetricsLogger.isInitialized());
-        Assert.assertFalse(mTestableMetricsLogger.init(mMockAdapterService));
+        Assert.assertFalse(mTestableMetricsLogger.init());
     }
 }
