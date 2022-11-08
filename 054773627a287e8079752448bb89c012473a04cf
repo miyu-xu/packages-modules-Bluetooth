@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6575a3fc_9371879a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-08T17:15:54Z",
+      "side": 1,
+      "message": "Please change the commit message to be more friendly with bug number and tests\n\"Pandora: Add more hfps tests [...]\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "054773627a287e8079752448bb89c012473a04cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
