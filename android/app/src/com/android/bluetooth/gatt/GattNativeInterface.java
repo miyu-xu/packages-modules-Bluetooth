@@ -345,6 +345,8 @@ public class GattNativeInterface {
             byte[] val);
     private native void gattServerSendResponseNative(int serverIf, int connId, int transId,
             int status, int handle, int offset, byte[] val, int authReq);
+    private native void gattSubrateRequestNative(int clientIf, String address, int subrateMin,
+            int subrateMax, int maxLatency, int contNumber, int supervisionTimeout);
     private native void gattTestNative(int command, long uuid1Lsb, long uuid1Msb, String bda1,
             int p1, int p2, int p3, int p4, int p5);
 
@@ -532,6 +534,15 @@ public class GattNativeInterface {
             int maxConnectionEventLen) {
         gattConnectionParameterUpdateNative(clientIf, address, minInterval, maxInterval, latency,
                 timeout, minConnectionEventLen, maxConnectionEventLen);
+    }
+
+    /**
+     * Update connection parameter.
+     */
+    public void gattSubrateRequest(int clientIf, String address, int subrateMin, int subrateMax,
+            int maxLatency, int contNumber, int supervisionTimeout) {
+        gattSubrateRequestNative(clientIf, address, subrateMin, subrateMax, maxLatency, contNumber,
+                supervisionTimeout);
     }
 
     /**
