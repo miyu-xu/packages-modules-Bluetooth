@@ -16,6 +16,52 @@
       "message": "Could you please have a look at the change?",
       "revId": "40b98ab51de89bcde3b3db1a9a2e4a0c01ee70e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e53260b5_18ad2763",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T01:15:30Z",
+      "side": 1,
+      "message": "It seems `uniq` is used by the kernel as an identifier\n\nThere is a low probability for 2 devices to have the same last 2 digit in the address but still it can happens.\n\nI don\u0027t know how this can impact us",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 53
+      },
+      "revId": "40b98ab51de89bcde3b3db1a9a2e4a0c01ee70e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbf43f2f_1a02c337",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T01:15:30Z",
+      "side": 1,
+      "message": "Recently introduced by aosp/2243827\nI am not sure we can mask our own address for this event\n@abhishekpandit@google.com Can you take a look ?",
+      "range": {
+        "startLine": 572,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 65
+      },
+      "revId": "40b98ab51de89bcde3b3db1a9a2e4a0c01ee70e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
