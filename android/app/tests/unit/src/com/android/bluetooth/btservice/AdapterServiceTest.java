@@ -310,7 +310,7 @@ public class AdapterServiceTest {
         when(mMockService.getName()).thenReturn("Service1");
         when(mMockService2.getName()).thenReturn("Service2");
 
-        when(mMockMetricsLogger.init(any())).thenReturn(true);
+        when(mMockMetricsLogger.init()).thenReturn(true);
         when(mMockMetricsLogger.close()).thenReturn(true);
 
         configureEnabledProfiles();
