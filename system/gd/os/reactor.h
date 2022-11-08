@@ -71,7 +71,7 @@ class Reactor {
   bool WaitForIdle(std::chrono::milliseconds timeout);
 
   // Modify the registration for a reactable with given reactable
-  void ModifyRegistration(Reactable* reactable, common::Closure on_read_ready, common::Closure on_write_ready);
+  void ModifyRegistration(Reactable* reactable, bool react_on_read, bool react_on_write);
 
   class Event {
    public:
