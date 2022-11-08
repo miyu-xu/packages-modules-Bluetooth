@@ -63,6 +63,30 @@
       },
       "revId": "d8b472bbd14868c3224bd3139a9237b0d3e29ce0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65e7561_d2756caa",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T04:33:47Z",
+      "side": 1,
+      "message": "I meant that we don\u0027t need to log twice the address",
+      "parentUuid": "ff1b2233_5bc5b416",
+      "range": {
+        "startLine": 513,
+        "startChar": 18,
+        "endLine": 513,
+        "endChar": 56
+      },
+      "revId": "d8b472bbd14868c3224bd3139a9237b0d3e29ce0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
