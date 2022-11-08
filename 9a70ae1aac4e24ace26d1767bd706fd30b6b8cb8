@@ -16,6 +16,52 @@
       "message": "Could you please have a look at the change?",
       "revId": "9a70ae1aac4e24ace26d1767bd706fd30b6b8cb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a64b2d2_9f8c9006",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T01:28:59Z",
+      "side": 1,
+      "message": "Isn\u0027t it easier to keep the toString here and just implement like this:\n\n```\nss \u003c\u003c ADDRESS_TO_LOGGABLE(address_) \u003c\u003c \"[\" \u003c\u003c FilterAcceptListAddressTypeText(type_) \u003c\u003c \"]\";\n```\nwithout extending the IRedactableLoggable",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 3
+      },
+      "revId": "9a70ae1aac4e24ace26d1767bd706fd30b6b8cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45af9be5_96946557",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T01:28:59Z",
+      "side": 1,
+      "message": "ToRedactedStringForLogging ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 19,
+        "endLine": 102,
+        "endChar": 37
+      },
+      "revId": "9a70ae1aac4e24ace26d1767bd706fd30b6b8cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
