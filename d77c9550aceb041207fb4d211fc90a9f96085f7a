@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7961c52b_7d0e6324",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-08T10:19:17Z",
+      "side": 1,
+      "message": "Should this be handling broadcast device as well? Maybe we should use  isLeAudioDeviceType() from https://cs.android.com/android/platform/superproject/+/master:frameworks/base/media/java/android/media/AudioSystem.java;drc\u003da9739b791dd9282e76f73a252561c25d9b18e857;l\u003d2383",
+      "range": {
+        "startLine": 907,
+        "startChar": 20,
+        "endLine": 908,
+        "endChar": 83
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcb48d03_7968bf1b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-08T10:19:17Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 924,
+        "startChar": 20,
+        "endLine": 925,
+        "endChar": 83
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96e9e21a_7fce85e2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-08T10:19:17Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be `\u0026\u0026`? What if device first becomes an Out device and then becomes also an In device. Would we register the same callback twice?",
+      "range": {
+        "startLine": 968,
+        "startChar": 46,
+        "endLine": 968,
+        "endChar": 48
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e11c985_9afd62cb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-08T10:19:17Z",
+      "side": 1,
+      "message": "Could you clarify if this should be `if both(In and Out) active devices` or rather `if any active device`?",
+      "range": {
+        "startLine": 973,
+        "startChar": 46,
+        "endLine": 973,
+        "endChar": 55
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
