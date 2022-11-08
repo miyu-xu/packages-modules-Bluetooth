@@ -71,8 +71,6 @@ public class MetricsLoggerTest {
         // Dump metrics to clean up internal states
         MetricsLogger.dumpProto(BluetoothLog.newBuilder());
         mTestableMetricsLogger = new TestableMetricsLogger();
-        doReturn(null)
-                .when(mMockAdapterService).registerReceiver(any(), any());
     }
 
     @After
