@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b4ade2_7e1ce302",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-08T00:48:03Z",
+      "side": 1,
+      "message": "LGTM but needs mylesgw@ for OWNERS",
+      "revId": "2b2d80e0c1cdd09da8ad268a302c6f796adea41a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b3dff92_07f77976",
+        "filename": "system/include/hardware/ble_scanner.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-08T00:48:03Z",
+      "side": 1,
+      "message": "nit: Consistency in this file would have:\n```\nbase::Callback\u003cvoid(uint8_t /* monitor_handle */, ...\n```\n\nI actually prefer the new way. Can you clean up the old instances in this file (and put it at the end of this series for review?)",
+      "revId": "2b2d80e0c1cdd09da8ad268a302c6f796adea41a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fac9296_6b6ca102",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-08T00:48:03Z",
+      "side": 1,
+      "message": "nit: While consistent with this file, the documentation pattern we should be following is docstring in header files and implementation specific details in cc files.\n\nExample:\n\nfoo.h\n```\n/** \n * This function does something.\n */\nvoid DoSomething();\n```\n\nfoo.cc\n```\nvoid DoSomething() {\n  // We did something not because it was easy but because we thought it would be\n  // easy...\n}\n```\n\nSame as my other comment, I think you should add a new commit to do this cleanup at the end of this series.",
+      "revId": "2b2d80e0c1cdd09da8ad268a302c6f796adea41a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
