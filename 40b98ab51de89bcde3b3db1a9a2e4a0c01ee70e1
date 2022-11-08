@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f75f4cc6_ac6434a6",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-08T01:20:04Z",
+      "side": 1,
+      "message": "This is not a log statement -- keep this as the raw value.\n\nIf there\u0027s a \"ADDRESS_TO_RAW_CSTR\" to indicate that we really want the raw value, we should use that.",
+      "parentUuid": "e53260b5_18ad2763",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 53
+      },
+      "revId": "40b98ab51de89bcde3b3db1a9a2e4a0c01ee70e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbf43f2f_1a02c337",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 20
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-08T01:15:30Z",
       "side": 1,
       "message": "Recently introduced by aosp/2243827\nI am not sure we can mask our own address for this event\n@abhishekpandit@google.com Can you take a look ?",
+      "range": {
+        "startLine": 572,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 65
+      },
+      "revId": "40b98ab51de89bcde3b3db1a9a2e4a0c01ee70e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e929bf75_43a06ded",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-08T01:20:04Z",
+      "side": 1,
+      "message": "We should not mask the address here.",
+      "parentUuid": "bbf43f2f_1a02c337",
       "range": {
         "startLine": 572,
         "startChar": 0,
