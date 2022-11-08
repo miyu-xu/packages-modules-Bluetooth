@@ -609,7 +609,7 @@ public class BluetoothInCallService extends InCallService {
             mBluetoothCallHashMap.remove(call.getId());
         }
 
-        mClccIndexMap.remove(getClccMapKey(call));
+        // mClccIndexMap.remove(getClccMapKey(call));
         updateHeadsetWithCallState(false /* force */);
 
         if (mBluetoothLeCallControl != null) {
