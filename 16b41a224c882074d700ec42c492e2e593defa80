@@ -16,6 +16,24 @@
       "message": "Prefer something like:\n\n```\nstd::copy(bytes.begin(), bytes.end(), std::back_inserter(converted));\n```\n\nSee https://cxx.rs/binding/vec.html",
       "revId": "16b41a224c882074d700ec42c492e2e593defa80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e467dd0_fe69c68d",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-08T00:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f14cabf_425a8aba",
+      "revId": "16b41a224c882074d700ec42c492e2e593defa80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
