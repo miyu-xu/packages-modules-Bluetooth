@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e02dd9fa_1a4eecf5",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-08T02:49:07Z",
+      "side": 1,
+      "message": "Restored",
+      "parentUuid": "f75f4cc6_ac6434a6",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 53
+      },
+      "revId": "40b98ab51de89bcde3b3db1a9a2e4a0c01ee70e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbf43f2f_1a02c337",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "We should not mask the address here.",
       "parentUuid": "bbf43f2f_1a02c337",
+      "range": {
+        "startLine": 572,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 65
+      },
+      "revId": "40b98ab51de89bcde3b3db1a9a2e4a0c01ee70e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "589cb860_a90831c4",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-08T02:49:07Z",
+      "side": 1,
+      "message": "Restored",
+      "parentUuid": "e929bf75_43a06ded",
       "range": {
         "startLine": 572,
         "startChar": 0,
