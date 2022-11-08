@@ -2,13 +2,17 @@ use std::collections::HashMap;
 use std::fmt::{Display, Formatter, Result};
 use std::sync::{Arc, Mutex};
 
+use hex;
+
 use crate::bt_adv::AdvSet;
+use crate::bt_gatt::AuthReq;
 use crate::callbacks::BtGattCallback;
 use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
 use bt_topshim::btif::{BtConnectionState, BtStatus, BtTransport};
 use bt_topshim::profiles::gatt::LePhy;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth, IBluetoothQA};
+use btstack::bluetooth_gatt::GattWriteType;
 use btstack::bluetooth_gatt::{
     IBluetoothGatt, ScanFilter, ScanFilterCondition, ScanSettings, ScanType,
 };
@@ -143,6 +147,14 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("gatt client-discover-services <address>"),
                 String::from("gatt client-disconnect <address>"),
                 String::from("gatt configure-mtu <address> <mtu>"),
+                String::from("gatt set-direct-connect <true|false>"),
+                String::from("gatt set-connect-transport <Bredr|LE|Auto>"),
+                String::from("gatt set-connect-opportunistic <true|false>"),
+                String::from("gatt set-connect-phy <Phy1m|Phy2m|PhyCoded>"),
+                String::from("gatt set-write-type <NoRsp|Write|Prepare>"),
+                String::from("gatt set-auth-req <MITM|SIGNED> <enable|disable>"),
+                String::from("gatt write-characteristic <address> <handle> <value>"),
+                String::from("gatt read-characteristic <address> <handle>"),
             ],
             description: String::from("GATT tools"),
             function_pointer: CommandHandler::cmd_gatt,
@@ -746,20 +758,33 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
-                if client_id.is_none() {
-                    println!("GATT client is not yet registered.");
-                    return;
-                }
+                let client_id = match self.context.lock().unwrap().gatt_client_context.client_id {
+                    Some(id) => id,
+                    None => {
+                        println!("GATT client is not yet registered.");
+                        return;
+                    }
+                };
 
                 let addr = String::from(&args[1]);
+
+                let is_direct = self.context.lock().unwrap().gatt_client_context.is_connect_direct;
+                let transport = self.context.lock().unwrap().gatt_client_context.connect_transport;
+                let oppurtunistic =
+                    self.context.lock().unwrap().gatt_client_context.connect_opportunistic;
+                let phy = self.context.lock().unwrap().gatt_client_context.connect_phy;
+
+                println!("Initiating GATT client connect. client_id: {}, addr: {}, is_direct: {},"
+                         " transport: {:?}, oppurtunistic: {}, phy: {:?}",
+                         client_id, addr, is_direct, ransport, oppurtunistic, phy);
+
                 self.context.lock().unwrap().gatt_dbus.as_ref().unwrap().client_connect(
-                    client_id.unwrap(),
+                    client_id,
                     addr,
-                    false,
-                    BtTransport::Le,
-                    false,
-                    LePhy::Phy1m,
+                    is_direct,
+                    transport,
+                    oppurtunistic,
+                    phy,
                 );
             }
             "client-disconnect" => {
@@ -768,11 +793,13 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
-                if client_id.is_none() {
-                    println!("GATT client is not yet registered.");
-                    return;
-                }
+                let client_id = match self.context.lock().unwrap().gatt_client_context.client_id {
+                    Some(id) => id,
+                    None => {
+                        println!("GATT client is not yet registered.");
+                        return;
+                    }
+                };
 
                 let addr = String::from(&args[1]);
                 self.context
@@ -781,7 +808,7 @@ impl CommandHandler {
                     .gatt_dbus
                     .as_ref()
                     .unwrap()
-                    .client_disconnect(client_id.unwrap(), addr);
+                    .client_disconnect(client_id, addr);
             }
             "client-read-phy" => {
                 if args.len() < 2 {
@@ -789,11 +816,13 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
-                if client_id.is_none() {
-                    println!("GATT client is not yet registered.");
-                    return;
-                }
+                let client_id = match self.context.lock().unwrap().gatt_client_context.client_id {
+                    Some(id) => id,
+                    None => {
+                        println!("GATT client is not yet registered.");
+                        return;
+                    }
+                };
 
                 let addr = String::from(&args[1]);
                 self.context
@@ -802,7 +831,7 @@ impl CommandHandler {
                     .gatt_dbus
                     .as_mut()
                     .unwrap()
-                    .client_read_phy(client_id.unwrap(), addr);
+                    .client_read_phy(client_id, addr);
             }
             "client-discover-services" => {
                 if args.len() < 2 {
@@ -810,11 +839,13 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
-                if client_id.is_none() {
-                    println!("GATT client is not yet registered.");
-                    return;
-                }
+                let client_id = match self.context.lock().unwrap().gatt_client_context.client_id {
+                    Some(id) => id,
+                    None => {
+                        println!("GATT client is not yet registered.");
+                        return;
+                    }
+                };
 
                 let addr = String::from(&args[1]);
                 self.context
@@ -823,7 +854,7 @@ impl CommandHandler {
                     .gatt_dbus
                     .as_ref()
                     .unwrap()
-                    .discover_services(client_id.unwrap(), addr);
+                    .discover_services(client_id, addr);
             }
             "configure-mtu" => {
                 if args.len() < 3 {
@@ -831,23 +862,212 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
-                if client_id.is_none() {
-                    println!("GATT client is not yet registered.");
-                    return;
-                }
+                let client_id = match self.context.lock().unwrap().gatt_client_context.client_id {
+                    Some(id) => id,
+                    None => {
+                        println!("GATT client is not yet registered.");
+                        return;
+                    }
+                };
 
                 let addr = String::from(&args[1]);
                 let mtu = String::from(&args[2]).parse::<i32>();
                 if let Ok(m) = mtu {
-                    self.context.lock().unwrap().gatt_dbus.as_ref().unwrap().configure_mtu(
-                        client_id.unwrap(),
-                        addr,
-                        m,
-                    );
+                    self.context
+                        .lock()
+                        .unwrap()
+                        .gatt_dbus
+                        .as_ref()
+                        .unwrap()
+                        .configure_mtu(client_id, addr, m);
                 } else {
                     print_error!("Failed parsing mtu");
                 }
+            }
+            "set-direct-connect" => {
+                if args.len() < 2 {
+                    println!("usage: gatt set-direct-connect <true|false>");
+                    return;
+                }
+
+                let is_direct = match String::from(&args[1]).parse::<bool>() {
+                    Ok(b) => b,
+                    _ => {
+                        println!("Failed to parse {}", args[1]);
+                        return;
+                    }
+                };
+
+                self.context.lock().unwrap().gatt_client_context.is_connect_direct = is_direct;
+            }
+            "set-connect-transport" => {
+                if args.len() < 2 {
+                    println!("usage: gatt set-connect-transport <Bredr|LE|Auto>");
+                    return;
+                }
+
+                let transport = match &args[1][0..] {
+                    "Bredr" => BtTransport::Bredr,
+                    "LE" => BtTransport::Le,
+                    "Auto" => BtTransport::Auto,
+                    _ => {
+                        println!("Failed to parse {}", args[1]);
+                        return;
+                    }
+                };
+                self.context.lock().unwrap().gatt_client_context.connect_transport = transport;
+            }
+            "set-connect-opportunistic" => {
+                if args.len() < 2 {
+                    println!("usage: gatt set-connect-opportunistic <true|false>");
+                    return;
+                }
+
+                let opportunistic = match String::from(&args[1]).parse::<bool>() {
+                    Ok(b) => b,
+                    _ => {
+                        println!("Failed to parse {}", args[1]);
+                        return;
+                    }
+                };
+
+                self.context.lock().unwrap().gatt_client_context.connect_opportunistic =
+                    opportunistic;
+            }
+            "set-connect-phy" => {
+                if args.len() < 2 {
+                    println!("usage: gatt set-connect-phy <Phy1m|Phy2m|PhyCoded>");
+                    return;
+                }
+
+                let phy = match &args[1][0..] {
+                    "Phy1m" => LePhy::Phy1m,
+                    "Phy2m" => LePhy::Phy2m,
+                    "PhyCoded" => LePhy::PhyCoded,
+                    _ => {
+                        println!("Failed to parse {}", args[1]);
+                        return;
+                    }
+                };
+
+                self.context.lock().unwrap().gatt_client_context.connect_phy = phy;
+            }
+            "set-write-type" => {
+                if args.len() < 2 {
+                    println!("usage: gatt set-write-type <NoRsp|Write|Prepare>");
+                    return;
+                }
+
+                let write_type = match &args[1][0..] {
+                    "NoRsp" => GattWriteType::WriteNoRsp,
+                    "Write" => GattWriteType::Write,
+                    "Prepare" => GattWriteType::WritePrepare,
+                    _ => GattWriteType::Invalid,
+                };
+
+                self.context.lock().unwrap().gatt_client_context.write_type = write_type;
+                println!(
+                    "WriteType: {:?}",
+                    self.context.lock().unwrap().gatt_client_context.write_type
+                );
+            }
+            "set-auth-req" => {
+                if args.len() < 3 {
+                    println!("usage: gatt set-auth-req <MITM|SIGNED> <enable|disable>");
+                    return;
+                }
+
+                let flag = match &args[1][0..] {
+                    "MITM" => AuthReq::MITM,
+                    "SIGNED" => AuthReq::SIGNED,
+                    _ => AuthReq::empty(),
+                };
+
+                let enable = match &args[2][0..] {
+                    "enable" => true,
+                    _ => false,
+                };
+
+                self.context.lock().unwrap().gatt_client_context.auth_req.set(flag, enable);
+                println!(
+                    "AuthReq: {:?}",
+                    self.context.lock().unwrap().gatt_client_context.auth_req
+                );
+            }
+            "write-characteristic" => {
+                if args.len() < 4 {
+                    println!("usage: gatt write-characteristic <address> <handle> <value>");
+                    return;
+                }
+
+                let addr = String::from(&args[1]);
+                let handle = match String::from(&args[2]).parse::<i32>() {
+                    Ok(handle) => handle,
+                    _ => {
+                        println!("Failed to parse handle from {}", &args[2]);
+                        return;
+                    }
+                };
+
+                let value = match hex::decode(&args[3]) {
+                    Ok(value) => value,
+                    _ => {
+                        println!("Failed to parse value from {}", &args[3]);
+                        return;
+                    }
+                };
+
+                let client_id = match self.context.lock().unwrap().gatt_client_context.client_id {
+                    Some(id) => id,
+                    None => {
+                        println!("GATT client is not yet registered.");
+                        return;
+                    }
+                };
+
+                let write_type = self.context.lock().unwrap().gatt_client_context.write_type;
+                let auth_req = self.context.lock().unwrap().gatt_client_context.get_auth_req_bits();
+
+                self.context
+                    .lock()
+                    .unwrap()
+                    .gatt_dbus
+                    .as_ref()
+                    .unwrap()
+                    .write_characteristic(client_id, addr, handle, write_type, auth_req, value);
+            }
+            "read-characteristic" => {
+                if args.len() < 3 {
+                    println!("usage: gatt read-characteristic <address> <handle>");
+                    return;
+                }
+
+                let addr = String::from(&args[1]);
+                let handle = match String::from(&args[2]).parse::<i32>() {
+                    Ok(handle) => handle,
+                    _ => {
+                        println!("Failed to parse handle from {}", &args[2]);
+                        return;
+                    }
+                };
+
+                let client_id = match self.context.lock().unwrap().gatt_client_context.client_id {
+                    Some(id) => id,
+                    None => {
+                        println!("GATT client is not yet registered.");
+                        return;
+                    }
+                };
+
+                let auth_req = self.context.lock().unwrap().gatt_client_context.get_auth_req_bits();
+
+                self.context
+                    .lock()
+                    .unwrap()
+                    .gatt_dbus
+                    .as_ref()
+                    .unwrap()
+                    .read_characteristic(client_id, addr, handle, auth_req);
             }
             _ => {
                 println!("Invalid argument '{}'", args[0]);
