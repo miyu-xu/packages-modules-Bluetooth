@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f22b49d9_ffbb5068",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-08T23:48:23Z",
+      "side": 1,
+      "message": "nit: I wouldn\u0027t add the bit to enable a new event before adding the event handler.",
+      "range": {
+        "startLine": 206,
+        "startChar": 54,
+        "endLine": 206,
+        "endChar": 55
+      },
+      "revId": "dc0a7e0cff7e00a4bd048ab4bfa8c81a3d207042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
