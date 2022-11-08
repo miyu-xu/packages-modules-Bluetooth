@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18acfd92_4cbf1a5e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-08T12:31:37Z",
+      "side": 1,
+      "message": "This includes Broadcast device which is not expected to be added/removed.\n\nThis is very important for conversational cases in which broadcast is not participating, so I\u0027ve decide to leave it as is for now.",
+      "parentUuid": "7961c52b_7d0e6324",
+      "range": {
+        "startLine": 907,
+        "startChar": 20,
+        "endLine": 908,
+        "endChar": 83
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fcb48d03_7968bf1b",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-08T10:19:17Z",
       "side": 1,
       "message": "Ditto",
+      "range": {
+        "startLine": 924,
+        "startChar": 20,
+        "endLine": 925,
+        "endChar": 83
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0ea7137_5035fb2a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-08T12:31:37Z",
+      "side": 1,
+      "message": "This includes Broadcast device which is not expected to be added/removed.\n\nThis is very important for conversational cases in which broadcast is not participating, so I\u0027ve decide to leave it as is for now.",
+      "parentUuid": "fcb48d03_7968bf1b",
       "range": {
         "startLine": 924,
         "startChar": 20,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f65089a3_76669a00",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-08T12:31:37Z",
+      "side": 1,
+      "message": "Let me explain this logic:\n1) #966 line\n  Step into if there is change of active in or out device.\n2) #968 line\n  Step into if any of those devices is non null \u003d changed or become new active device.\n  LE Audio active device is represented only by single device, no matter if it\u0027s output or input.\n3) #974 Only in case it both of devices would be null it means that the LE Audio device is null.\n\nReplying to your comment:\n\"Shouldn\u0027t this be \u0026\u0026? What if device first becomes an Out device and then becomes also an In device. Would we register the same callback twice?\"\n\nThis is intentionally \"||\" because if device is OUT or IN or OUT \u0026\u0026 IN it means that device is represented in system only as single active device. There should be only single registration for callback:\n1) Device -\u003e NULL (removing active LE Audio device)\n2) NULL -\u003e Device || Device -\u003e Device (adding new active LE Audio device)",
+      "parentUuid": "96e9e21a_7fce85e2",
+      "range": {
+        "startLine": 968,
+        "startChar": 46,
+        "endLine": 968,
+        "endChar": 48
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e11c985_9afd62cb",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 4
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-08T10:19:17Z",
       "side": 1,
       "message": "Could you clarify if this should be `if both(In and Out) active devices` or rather `if any active device`?",
+      "range": {
+        "startLine": 973,
+        "startChar": 46,
+        "endLine": 973,
+        "endChar": 55
+      },
+      "revId": "d77c9550aceb041207fb4d211fc90a9f96085f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d68b6e_fc2ca583",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-08T12:31:37Z",
+      "side": 1,
+      "message": "LE Audio is only represented by single device and can be represented by single device out/in/out\u0026in direction.",
+      "parentUuid": "0e11c985_9afd62cb",
       "range": {
         "startLine": 973,
         "startChar": 46,
