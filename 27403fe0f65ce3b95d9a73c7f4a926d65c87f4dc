@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26d2cc66_f74f9553",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-08T18:56:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d5a817c_931f598d",
+      "range": {
+        "startLine": 242,
+        "startChar": 22,
+        "endLine": 242,
+        "endChar": 27
+      },
+      "revId": "27403fe0f65ce3b95d9a73c7f4a926d65c87f4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f41fcf97_19029892",
@@ -84,6 +108,30 @@
       "writtenOn": "2022-11-08T18:46:42Z",
       "side": 1,
       "message": "I agree for the implementation, but these defines can already live in the right place.",
+      "parentUuid": "253e7a6b_ee96d089",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 4
+      },
+      "revId": "27403fe0f65ce3b95d9a73c7f4a926d65c87f4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c93f922_47218bf0",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-08T18:56:12Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "253e7a6b_ee96d089",
       "range": {
         "startLine": 614,
