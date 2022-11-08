@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e1a2dd_63a900bc",
+        "filename": "system/btif/src/btif_dm.cc.orig",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-08T02:47:39Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "a1d7f611_33a91123",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 79
+      },
+      "revId": "cd2b052044e440b25e8f3190c8635127cb1424b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2b3d0c3_6a0b742a",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-08T00:44:04Z",
       "side": 1,
       "message": "I think the identation is not correct here",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 4
+      },
+      "revId": "cd2b052044e440b25e8f3190c8635127cb1424b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e7dec65_e1895ae5",
+        "filename": "system/gd/os/Android.bp",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-08T02:47:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2b3d0c3_6a0b742a",
       "range": {
         "startLine": 98,
         "startChar": 0,
