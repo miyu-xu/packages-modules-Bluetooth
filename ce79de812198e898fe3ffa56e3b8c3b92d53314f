@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "606c6dd3_c73213fc",
+        "filename": "tools/pdl/src/bin/generate-canonical-tests.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-11-08T16:33:55Z",
+      "side": 1,
+      "message": "Okay, should be fixed now!",
+      "parentUuid": "097dba78_c72b53f5",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "ce79de812198e898fe3ffa56e3b8c3b92d53314f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc190eb1_c0de578e",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-03T23:03:41Z",
       "side": 1,
       "message": "You might be able to get a nicer implementation using https://doc.rust-lang.org/stable/std/primitive.slice.html#method.array_chunks",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 5
+      },
+      "revId": "ce79de812198e898fe3ffa56e3b8c3b92d53314f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14cb1759_1fdf3d87",
+        "filename": "tools/pdl/src/bin/generate-canonical-tests.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-11-08T16:33:55Z",
+      "side": 1,
+      "message": "It seems I will need to go over `as_bytes()` to do that, but it\u0027s still a little nicer overall 😊",
+      "parentUuid": "fc190eb1_c0de578e",
       "range": {
         "startLine": 23,
         "startChar": 0,
