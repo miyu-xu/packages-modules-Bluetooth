@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0edae2a9_d6355aaf",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-08T18:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b4ceb06_599d4c78",
+      "revId": "70da565ef826ec3be6293f9a23029357bcb69852",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86c2bcaa_48c153ab",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-11-08T03:46:30Z",
       "side": 1,
       "message": "```\n[BoxedPrimitiveConstructor] valueOf or autoboxing provides better time and space performance\n            ProfileServiceConnections psc \u003d mProfileServices.get(new Integer(bluetoothProfile));\n                                                                 ^\n    (see https://errorprone.info/bugpattern/BoxedPrimitiveConstructor)\n  Did you mean \u0027ProfileServiceConnections psc \u003d mProfileServices.get(Integer.valueOf(bluetoothProfile));\u0027?\n```",
+      "range": {
+        "startLine": 1555,
+        "startChar": 0,
+        "endLine": 1555,
+        "endChar": 96
+      },
+      "revId": "70da565ef826ec3be6293f9a23029357bcb69852",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4437e747_40eba085",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1555,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-08T18:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86c2bcaa_48c153ab",
       "range": {
         "startLine": 1555,
         "startChar": 0,
