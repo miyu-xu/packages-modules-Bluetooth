@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b73b343_d1784776",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpCoverArtProviderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-08T06:53:39Z",
+      "side": 1,
+      "message": "I followed the setup process in AvrcpControllerServiceTest (https://source.corp.google.com/tm-dev/packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java?q\u003davrcpcontrollerservicetest), to enable AvrcpControllerService. I looked a bit into it but couldn\u0027t understand why is is needed, but when I remove \u0027false\u0027, an error occurs and the code doesn\u0027t run :( Will leave it for now!",
+      "parentUuid": "6a7ae229_adb2d225",
+      "range": {
+        "startLine": 69,
+        "startChar": 23,
+        "endLine": 69,
+        "endChar": 28
+      },
+      "revId": "88b0aee1e631d1a1c298e6b7e9ea1f544e721901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fa62a03_9b134559",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-04T04:46:20Z",
       "side": 1,
       "message": "Where is the IOException thrown?",
+      "range": {
+        "startLine": 83,
+        "startChar": 29,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "88b0aee1e631d1a1c298e6b7e9ea1f544e721901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b783d69a_121d7b3c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpCoverArtProviderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-08T06:53:39Z",
+      "side": 1,
+      "message": "After logging, seems like it wasn\u0027t IOException, but actually FileNotFoundException that I expected to be thrown when given a valid device address and image uuid, but no image corresponding stored. Will change the test name to when FileNotFoundException is caught.",
+      "parentUuid": "5fa62a03_9b134559",
       "range": {
         "startLine": 83,
         "startChar": 29,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "851f0383_74eeeec7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpCoverArtProviderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-08T06:53:39Z",
+      "side": 1,
+      "message": "Talked offline. It\u0027s too complex to test :(",
+      "parentUuid": "f2b7661c_5e1b7dbe",
+      "range": {
+        "startLine": 99,
+        "startChar": 16,
+        "endLine": 99,
+        "endChar": 25
+      },
+      "revId": "88b0aee1e631d1a1c298e6b7e9ea1f544e721901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eee8be56_0cb2b8fd",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-04T04:46:20Z",
       "side": 1,
       "message": "Could you make a variable `expected` for this ?",
+      "range": {
+        "startLine": 118,
+        "startChar": 16,
+        "endLine": 119,
+        "endChar": 92
+      },
+      "revId": "88b0aee1e631d1a1c298e6b7e9ea1f544e721901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be07fe7d_58a86e2e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpCoverArtProviderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-08T06:53:39Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "eee8be56_0cb2b8fd",
       "range": {
         "startLine": 118,
         "startChar": 16,
