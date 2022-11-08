@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65431a11_666d2549",
+        "filename": "system/embdrv/encoder_for_aptx/src/CodewordPacker.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T00:13:52Z",
+      "side": 1,
+      "message": "All the cast in the aptx and aptxHD encoder are C style cast.\nI don\u0027t plan to change all of them",
+      "parentUuid": "830e5d88_d25b0e64",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d517af1_b212dce1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-07T18:32:14Z",
       "side": 1,
       "message": "This seems odd.",
+      "range": {
+        "startLine": 216,
+        "startChar": 2,
+        "endLine": 216,
+        "endChar": 38
+      },
+      "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2642fb28_9568c728",
+        "filename": "system/embdrv/encoder_for_aptx/src/QuantiseDifference.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T00:13:52Z",
+      "side": 1,
+      "message": "```\nThe result of the left shift is undefined because the left operand is negative [clang-analyzer-core.UndefinedBinaryOperatorResult]\n```\n\nThe cast only helps to stabilize the behavior.",
+      "parentUuid": "6d517af1_b212dce1",
       "range": {
         "startLine": 216,
         "startChar": 2,
