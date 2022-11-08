@@ -618,7 +618,7 @@ public class AdapterService extends Service {
             return false;
         }
         mMetricsLogger = MetricsLogger.getInstance();
-        return mMetricsLogger.init(this);
+        return mMetricsLogger.init();
     }
 
     private boolean closeMetricsLogger() {
