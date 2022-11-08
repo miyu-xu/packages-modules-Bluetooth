@@ -2,13 +2,17 @@ use std::collections::HashMap;
 use std::fmt::{Display, Formatter, Result};
 use std::sync::{Arc, Mutex};
 
+use hex;
+
 use crate::bt_adv::AdvSet;
+use crate::bt_gatt::AuthReq;
 use crate::callbacks::BtGattCallback;
 use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
 use bt_topshim::btif::{BtConnectionState, BtStatus, BtTransport};
 use bt_topshim::profiles::gatt::LePhy;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth, IBluetoothQA};
+use btstack::bluetooth_gatt::GattWriteType;
 use btstack::bluetooth_gatt::{
     IBluetoothGatt, ScanFilter, ScanFilterCondition, ScanSettings, ScanType,
 };
@@ -143,6 +147,10 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("gatt client-discover-services <address>"),
                 String::from("gatt client-disconnect <address>"),
                 String::from("gatt configure-mtu <address> <mtu>"),
+                String::from("gatt set-write-type <NoRsp|Write|Prepare>"),
+                String::from("gatt set-auth-req <MITM|SIGNED> <enable|disable>"),
+                String::from("gatt write-characteristic <address> <handle> <value>"),
+                String::from("gatt read-characteristic <address> <handle>"),
             ],
             description: String::from("GATT tools"),
             function_pointer: CommandHandler::cmd_gatt,
@@ -746,7 +754,7 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
+                let client_id = self.context.lock().unwrap().gatt_client_context.client_id;
                 if client_id.is_none() {
                     println!("GATT client is not yet registered.");
                     return;
@@ -768,7 +776,7 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
+                let client_id = self.context.lock().unwrap().gatt_client_context.client_id;
                 if client_id.is_none() {
                     println!("GATT client is not yet registered.");
                     return;
@@ -789,7 +797,7 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
+                let client_id = self.context.lock().unwrap().gatt_client_context.client_id;
                 if client_id.is_none() {
                     println!("GATT client is not yet registered.");
                     return;
@@ -810,7 +818,7 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
+                let client_id = self.context.lock().unwrap().gatt_client_context.client_id;
                 if client_id.is_none() {
                     println!("GATT client is not yet registered.");
                     return;
@@ -831,7 +839,7 @@ impl CommandHandler {
                     return;
                 }
 
-                let client_id = self.context.lock().unwrap().gatt_client_id;
+                let client_id = self.context.lock().unwrap().gatt_client_context.client_id;
                 if client_id.is_none() {
                     println!("GATT client is not yet registered.");
                     return;
@@ -848,6 +856,113 @@ impl CommandHandler {
                 } else {
                     print_error!("Failed parsing mtu");
                 }
+            }
+            "set-write-type" => {
+                if args.len() < 2 {
+                    println!("usage: gatt set-write-type <NoRsp|Write|Prepare>");
+                    return;
+                }
+
+                let write_type = match &args[1][0..] {
+                    "NoRsp" => GattWriteType::WriteNoRsp,
+                    "Write" => GattWriteType::Write,
+                    "Prepare" => GattWriteType::WritePrepare,
+                    _ => GattWriteType::Invalid,
+                };
+
+                self.context.lock().unwrap().gatt_client_context.write_type = write_type;
+                println!(
+                    "WriteType: {:?}",
+                    self.context.lock().unwrap().gatt_client_context.write_type
+                );
+            }
+            "set-auth-req" => {
+                if args.len() < 3 {
+                    println!("usage: gatt set-auth-req <MITM|SIGNED> <enable|disable>");
+                    return;
+                }
+
+                let flag = match &args[1][0..] {
+                    "MITM" => AuthReq::MITM,
+                    "SIGNED" => AuthReq::SIGNED,
+                    _ => AuthReq::empty(),
+                };
+
+                let enable = match &args[2][0..] {
+                    "enable" => true,
+                    _ => false,
+                };
+
+                self.context.lock().unwrap().gatt_client_context.auth_req.set(flag, enable);
+                println!(
+                    "AuthReq: {:?}",
+                    self.context.lock().unwrap().gatt_client_context.auth_req
+                );
+            }
+            "write-characteristic" => {
+                if args.len() < 4 {
+                    println!("usage: gatt write-characteristic <address> <handle> <value>");
+                    return;
+                }
+
+                let addr = String::from(&args[1]);
+                let handle = String::from(&args[2]).parse::<i32>();
+
+                if !handle.is_ok() {
+                    println!("Failed to parse handle from {}", &args[2]);
+                    return;
+                }
+
+                let value = hex::decode(&args[3]);
+
+                if !value.is_ok() {
+                    println!("Failed to parse value from {}", &args[3]);
+                }
+
+                let client_id = self.context.lock().unwrap().gatt_client_context.client_id;
+                if client_id.is_none() {
+                    println!("GATT client is not yet registered.");
+                    return;
+                }
+                let write_type = self.context.lock().unwrap().gatt_client_context.write_type;
+                let auth_req = self.context.lock().unwrap().gatt_client_context.get_auth_req_bits();
+
+                self.context.lock().unwrap().gatt_dbus.as_ref().unwrap().write_characteristic(
+                    client_id.unwrap(),
+                    addr,
+                    handle.unwrap(),
+                    write_type,
+                    auth_req,
+                    value.unwrap(),
+                );
+            }
+            "read-characteristic" => {
+                if args.len() < 3 {
+                    println!("usage: gatt read-characteristic <address> <handle>");
+                    return;
+                }
+
+                let addr = String::from(&args[1]);
+                let handle = String::from(&args[2]).parse::<i32>();
+
+                if !handle.is_ok() {
+                    println!("Failed to parse handle from {}", &args[2]);
+                    return;
+                }
+
+                let client_id = self.context.lock().unwrap().gatt_client_context.client_id;
+                if client_id.is_none() {
+                    println!("GATT client is not yet registered.");
+                    return;
+                }
+                let auth_req = self.context.lock().unwrap().gatt_client_context.get_auth_req_bits();
+
+                self.context.lock().unwrap().gatt_dbus.as_ref().unwrap().read_characteristic(
+                    client_id.unwrap(),
+                    addr,
+                    handle.unwrap(),
+                    auth_req,
+                );
             }
             _ => {
                 println!("Invalid argument '{}'", args[0]);
