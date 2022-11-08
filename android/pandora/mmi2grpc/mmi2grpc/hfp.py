@@ -29,7 +29,7 @@ import time
 WAIT_DELAY_BEFORE_CONNECTION = 2
 
 # The tests needs the MMI to accept pairing confirmation request.
-NEEDS_WAIT_CONNECTION_BEFORE_TEST = {'HFP/AG/WBS/BV-01-I', 'HFP/AG/SLC/BV-05-I'}
+NEEDS_WAIT_CONNECTION_BEFORE_TEST = {"HFP/AG/WBS/BV-01-I", "HFP/AG/SLC/BV-05-I"}
 
 IXIT_PHONE_NUMBER = 42
 
@@ -56,7 +56,7 @@ class HFPProxy(ProfileProxy):
         def waitConnectionCallback(self, pts_addr):
             self.connection = self.host.WaitConnection(address=pts_addr).connection
 
-        print(f'HFP placeholder mmi: asyncWaitConnection', file=sys.stderr)
+        print(f"HFP placeholder mmi: asyncWaitConnection", file=sys.stderr)
         th = threading.Timer(interval=delay, function=waitConnectionCallback, args=(self, pts_addr))
         th.start()
 
@@ -234,13 +234,46 @@ class HFPProxy(ProfileProxy):
 
         return "OK"
 
+    @assert_description
+    def TSC_iut_enable_audio(self, **kwargs):
+        """
+        Click Ok, then initiate an audio connection (SCO) from the
+        Implementation Under Test (IUT) to the PTS.
+        """
+
+        def enable_audio():
+            time.sleep(2)
+            self.hfp.SetAudioPath(audio_path=AudioPath.AUDIO_PATH_HANDSFREE)
+
+        threading.Thread(target=enable_audio).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_iut_disable_audio_slc_down_ok(self, pts_addr: bytes, **kwargs):
+        """
+        Click OK, then close the audio connection (SCO) between the
+        Implementation Under Test (IUT) and the PTS.  If necessary, it is OK to
+        close the service level connection. Do not power-off the IUT.
+        """
+
+        self.connection = self.host.GetConnection(address=pts_addr).connection
+
+        def disable_slc():
+            time.sleep(2)
+            self.hfp.DisableSlc(connection=self.connection)
+
+        threading.Thread(target=disable_slc).start()
+
+        return "OK"
+
     def _auto_confirm_requests(self, times=None):
 
         def task():
             cnt = 0
             pairing_events = self.security.OnPairing()
             for event in pairing_events:
-                if event.WhichOneof('method') in {"just_works", "numeric_comparison"}:
+                if event.WhichOneof("method") in {"just_works", "numeric_comparison"}:
                     if times is None or cnt < times:
                         cnt += 1
                         pairing_events.send(event=event, confirm=True)
