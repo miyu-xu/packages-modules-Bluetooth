@@ -288,20 +288,15 @@ bool Reactor::WaitForIdle(std::chrono::milliseconds timeout) {
   return idle_status == std::future_status::ready;
 }
 
-void Reactor::ModifyRegistration(Reactor::Reactable* reactable, Closure on_read_ready, Closure on_write_ready) {
+void Reactor::ModifyRegistration(Reactor::Reactable* reactable, bool react_on_read, bool react_on_write) {
   ASSERT(reactable != nullptr);
 
   uint32_t poll_event_type = 0;
-  if (!on_read_ready.is_null()) {
+  if (react_on_read) {
     poll_event_type |= (EPOLLIN | EPOLLRDHUP);
   }
-  if (!on_write_ready.is_null()) {
+  if (react_on_write) {
     poll_event_type |= EPOLLOUT;
-  }
-  {
-    std::lock_guard<std::mutex> reactable_lock(reactable->mutex_);
-    reactable->on_read_ready_ = std::move(on_read_ready);
-    reactable->on_write_ready_ = std::move(on_write_ready);
   }
   epoll_event event = {
       .events = poll_event_type,
