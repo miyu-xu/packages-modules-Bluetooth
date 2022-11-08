@@ -22,6 +22,30 @@
       },
       "revId": "dc0a7e0cff7e00a4bd048ab4bfa8c81a3d207042",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44c653e2_45165374",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T23:59:06Z",
+      "side": 1,
+      "message": "Solve per offline chat.\nThis is a mask value that is not used yet.",
+      "parentUuid": "f22b49d9_ffbb5068",
+      "range": {
+        "startLine": 206,
+        "startChar": 54,
+        "endLine": 206,
+        "endChar": 55
+      },
+      "revId": "dc0a7e0cff7e00a4bd048ab4bfa8c81a3d207042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
