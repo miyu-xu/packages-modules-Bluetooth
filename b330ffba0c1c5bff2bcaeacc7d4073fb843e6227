@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbe504da_f082da86",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-08T22:14:25Z",
+      "side": 1,
+      "message": "we need to make sure this timer wakes up the system to report the metrics\n\nDo we have any tests to verify this is the case?",
+      "range": {
+        "startLine": 142,
+        "startChar": 15,
+        "endLine": 142,
+        "endChar": 23
+      },
+      "revId": "b330ffba0c1c5bff2bcaeacc7d4073fb843e6227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
