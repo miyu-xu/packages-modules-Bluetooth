@@ -1203,6 +1203,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onClientConnUpdate", "(IIIII)V");
   method_onServiceChanged =
       env->GetMethodID(clazz, "onServiceChanged", "(I)V");
+  method_onClientSubrateChange =
+      env->GetMethodID(clazz, "onClientSubrateChange", "(IIIIII)V");
 
   // Server callbacks
 
@@ -1239,6 +1241,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onServerPhyUpdate", "(IIII)V");
   method_onServerConnUpdate =
       env->GetMethodID(clazz, "onServerConnUpdate", "(IIIII)V");
+  method_onServerSubrateChange =
+      env->GetMethodID(clazz, "onServerSubrateChange", "(IIIIII)V");
 
   info("classInitNative: Success!");
 }
@@ -2627,6 +2631,8 @@ static JNINativeMethod sMethods[] = {
      (void*)gattServerSendNotificationNative},
     {"gattServerSendResponseNative", "(IIIIII[BI)V",
      (void*)gattServerSendResponseNative},
+    {"gattSubrateRequestNative", "(ILjava/lang/String;IIIII)V",
+     (void*)gattSubrateRequestNative},
 
     {"gattTestNative", "(IJJLjava/lang/String;IIIII)V", (void*)gattTestNative},
 };
