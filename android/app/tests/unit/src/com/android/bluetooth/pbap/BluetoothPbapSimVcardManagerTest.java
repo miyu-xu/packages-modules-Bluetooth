@@ -241,6 +241,7 @@ public class BluetoothPbapSimVcardManagerTest {
     @Test
     public void testGetSIMPhonebookNameList_orderByIndexed() {
         final String localPhoneName = "test_local_phone_name";
+        BluetoothPbapService.setLocalPhoneName(localPhoneName);
         Cursor cursor = initManager();
         List<String> nameList = Arrays.asList("D", "C", "A", "B");
 
