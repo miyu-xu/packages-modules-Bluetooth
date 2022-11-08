@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c13136bf_ebf199a1",
+        "filename": "system/embdrv/tests/src/aptxhd.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65ab521f_dcdeded5",
+      "range": {
+        "startLine": 58,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 2
+      },
+      "revId": "459b99d3f912bbd90b67f0ddac397412133b1975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47e0efdf_8bd9460b",
@@ -84,6 +108,30 @@
       "writtenOn": "2022-11-07T18:24:23Z",
       "side": 1,
       "message": "remove?",
+      "range": {
+        "startLine": 92,
+        "startChar": 1,
+        "endLine": 93,
+        "endChar": 1
+      },
+      "revId": "459b99d3f912bbd90b67f0ddac397412133b1975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1415edd_906a65f1",
+        "filename": "system/embdrv/tests/src/aptxhd.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47e0efdf_8bd9460b",
       "range": {
         "startLine": 92,
         "startChar": 1,
