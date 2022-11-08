@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b4ceb06_599d4c78",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-11-08T07:38:00Z",
+      "side": 1,
+      "message": "How about adding the debug message here if the profile is not supported",
+      "revId": "70da565ef826ec3be6293f9a23029357bcb69852",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86c2bcaa_48c153ab",
