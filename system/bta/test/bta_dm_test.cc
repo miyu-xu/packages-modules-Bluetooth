@@ -210,6 +210,10 @@ namespace legacy {
 namespace testing {
 tBTA_DM_PEER_DEVICE* allocate_device_for(const RawAddress& bd_addr,
                                          tBT_TRANSPORT transport);
+
+tBT_TRANSPORT bta_dm_determine_discovery_transport(
+    const RawAddress& remote_bd_addr);
+
 }  // namespace testing
 }  // namespace legacy
 }  // namespace bluetooth
@@ -361,4 +365,31 @@ TEST_F(BtaDmTest, bta_dm_state_text) {
                bta_dm_state_text(
                    static_cast<tBTA_DM_STATE>(std::numeric_limits<int>::max()))
                    .c_str());
+}
+
+TEST_F(BtaDmTest, bta_dm_determine_discovery_transport__BT_TRANSPORT_BR_EDR) {
+  const RawAddress bd_addr{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};
+  bta_dm_search_cb.transport = BT_TRANSPORT_BR_EDR;
+
+  ASSERT_EQ(BT_TRANSPORT_BR_EDR,
+            bluetooth::legacy::testing::bta_dm_determine_discovery_transport(
+                bd_addr));
+}
+
+TEST_F(BtaDmTest, bta_dm_determine_discovery_transport__BT_TRANSPORT_LE) {
+  const RawAddress bd_addr{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};
+  bta_dm_search_cb.transport = BT_TRANSPORT_LE;
+
+  ASSERT_EQ(BT_TRANSPORT_LE,
+            bluetooth::legacy::testing::bta_dm_determine_discovery_transport(
+                bd_addr));
+}
+
+TEST_F(BtaDmTest, bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO) {
+  const RawAddress bd_addr{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};
+  bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
+
+  ASSERT_EQ(BT_TRANSPORT_BR_EDR,
+            bluetooth::legacy::testing::bta_dm_determine_discovery_transport(
+                bd_addr));
 }
