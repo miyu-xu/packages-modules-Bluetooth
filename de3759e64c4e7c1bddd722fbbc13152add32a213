@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d8431ca_5edaefa6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-08T21:50:45Z",
+      "side": 1,
+      "message": "Given that gatt can be `None`, there are a lot of naked unwraps in bluetooth_gatt.rs.\n\nWe may want to get rid of the `Option\u003cGatt\u003e` entirely and just add a check in each gatt call whether it is initialized and to call initialize first.\n\nThis could be pulled into the `ccall!` and `cxxcall!` macros. Something else to consider adding to the end of this series.",
+      "revId": "de3759e64c4e7c1bddd722fbbc13152add32a213",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
