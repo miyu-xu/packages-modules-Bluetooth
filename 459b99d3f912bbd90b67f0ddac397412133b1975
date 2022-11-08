@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20111fc1_6bef6472",
+        "filename": "system/embdrv/tests/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T00:13:44Z",
+      "side": 1,
+      "message": "The issue with \u0027encoder_tests\u0027 is that these test are only testing aptx and not the others codec.\nI am letting this as it is for now",
+      "parentUuid": "50e4f19d_8d8b9137",
+      "range": {
+        "startLine": 2,
+        "startChar": 11,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "459b99d3f912bbd90b67f0ddac397412133b1975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65ab521f_dcdeded5",

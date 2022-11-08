@@ -16,6 +16,24 @@
       "message": "Should we remove the executable bit here?",
       "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68e41ecc_d625bea3",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T00:13:44Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "03e9e759_87ff5ae5",
+      "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
