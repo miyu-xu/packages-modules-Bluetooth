@@ -51,6 +51,23 @@
       "message": "Thanks for fixing this!",
       "revId": "4aa80106154211f243475f033ac88ae35fcd5355",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cdf4f06_810a880d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-08T01:36:50Z",
+      "side": 1,
+      "message": "Hi David, is it okay for you to submit this CL first?",
+      "revId": "4aa80106154211f243475f033ac88ae35fcd5355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
