@@ -93,6 +93,30 @@
       },
       "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd657c01_51dab90f",
+        "filename": "system/embdrv/encoder_for_aptx/src/QuantiseDifference.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-08T18:45:21Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "2642fb28_9568c728",
+      "range": {
+        "startLine": 216,
+        "startChar": 2,
+        "endLine": 216,
+        "endChar": 38
+      },
+      "revId": "7d9ba5433aabec364b62741b10b4d64abd38b4c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
