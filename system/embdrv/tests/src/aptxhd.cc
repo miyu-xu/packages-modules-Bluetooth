@@ -55,6 +55,14 @@ class LibAptxHdEncTest : public ::testing::Test {
     ASSERT_EQ(encoded_sample[0], codeword[0]);
     ASSERT_EQ(encoded_sample[1], codeword[1]);
   }
+  void open_non_blocking(const char* filename, int& fd) {
+    int tmp_fd = open(filename, O_RDONLY | O_CLOEXEC);
+    ASSERT_NE(tmp_fd, -1);
+    int flags = fcntl(tmp_fd, F_GETFL, 0);
+    ASSERT_NE(flags, -1);
+    ASSERT_NE(fcntl(tmp_fd, F_SETFL, flags | O_NONBLOCK), -1);
+    fd = tmp_fd;
+  }
 };
 
 TEST_F(LibAptxHdEncTest, encoder_size) { ASSERT_EQ(SizeofAptxhdbtenc(), 5256); }
@@ -79,4 +87,30 @@ TEST_F(LibAptxHdEncTest, encode_fake_data) {
     codeword_cmp(pcm, aptxhd_codeword + idx * 2);
     ++idx;
   }
+}
+
+TEST_F(LibAptxHdEncTest, encode_sample_wav_data) {
+  int pcm_fd;
+  open_non_blocking("raw_data/pcm_24bit.raw", pcm_fd);
+  int aptxhd_fd;
+  open_non_blocking("raw_data/sample.aptxhd", aptxhd_fd);
+
+  for (;;) {
+    uint8_t buf[BYTES_PER_CODEWORD];
+    const size_t read_length = read(pcm_fd, buf, BYTES_PER_CODEWORD);
+    // success no more data to read
+    if (read_length == 0) {
+      break;
+    }
+    ASSERT_EQ(read_length, BYTES_PER_CODEWORD);
+    uint32_t channel1 = 0;
+    uint32_t channel2 = 0;
+    ASSERT_EQ(read(aptxhd_fd, &channel1, 3), 3);
+    ASSERT_EQ(read(aptxhd_fd, &channel2, 3), 3);
+    const uint32_t aptxhd_codeword[2] = {channel1, channel2};
+    codeword_cmp(buf, aptxhd_codeword);
+  }
+
+  close(pcm_fd);
+  close(aptxhd_fd);
 }

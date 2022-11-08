@@ -52,6 +52,15 @@ class LibAptxEncTest : public ::testing::Test {
     aptxbtenc_encodestereo(aptxbtenc, &pcmL, &pcmR, &encoded_sample);
     ASSERT_EQ(encoded_sample, codeword);
   }
+
+  void open_non_blocking(const char* filename, int& fd) {
+    int tmp_fd = open(filename, O_RDONLY | O_CLOEXEC);
+    ASSERT_NE(tmp_fd, -1);
+    int flags = fcntl(tmp_fd, F_GETFL, 0);
+    ASSERT_NE(flags, -1);
+    ASSERT_NE(fcntl(tmp_fd, F_SETFL, flags | O_NONBLOCK), -1);
+    fd = tmp_fd;
+  }
 };
 
 TEST_F(LibAptxEncTest, encoder_size) { ASSERT_EQ(SizeofAptxbtenc(), 5008); }
@@ -76,4 +85,31 @@ TEST_F(LibAptxEncTest, encode_fake_data) {
     codeword_cmp(pcm, aptx_codeword[idx]);
     ++idx;
   }
+}
+
+TEST_F(LibAptxEncTest, encode_sample_wav_data) {
+  int pcm_fd;
+  open_non_blocking("raw_data/pcm_16bit.raw", pcm_fd);
+  int aptx_fd;
+  open_non_blocking("raw_data/sample.aptx", aptx_fd);
+
+  for (;;) {
+    char buf[BYTES_PER_CODEWORD];
+    const size_t read_length = read(pcm_fd, buf, BYTES_PER_CODEWORD);
+    // success no more data to read
+    if (read_length == 0) {
+      break;
+    }
+    ASSERT_EQ(read_length, BYTES_PER_CODEWORD);
+    uint32_t aptx_codeword = 0;
+    ASSERT_EQ(read(aptx_fd, &aptx_codeword, sizeof(uint32_t)),
+              sizeof(uint32_t));
+    codeword_cmp((uint16_t*)buf, aptx_codeword);
+  }
+  // There should not be any more encoded data to read
+  uint32_t aptx_codeword;
+  ASSERT_EQ(read(aptx_fd, &aptx_codeword, sizeof(uint32_t)), 0);
+
+  close(pcm_fd);
+  close(aptx_fd);
 }
