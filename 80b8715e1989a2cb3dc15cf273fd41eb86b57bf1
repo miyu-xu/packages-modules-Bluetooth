@@ -16,6 +16,29 @@
       "message": "Could you please have a look at the change?",
       "revId": "80b8715e1989a2cb3dc15cf273fd41eb86b57bf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e37e84_6d149ce6",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T01:32:11Z",
+      "side": 1,
+      "message": "ADDRESS_TO_LOGGABLE_CSTR ?",
+      "range": {
+        "startLine": 1105,
+        "startChar": 22,
+        "endLine": 1105,
+        "endChar": 27
+      },
+      "revId": "80b8715e1989a2cb3dc15cf273fd41eb86b57bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
