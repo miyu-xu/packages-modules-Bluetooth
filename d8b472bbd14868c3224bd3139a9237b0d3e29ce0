@@ -16,6 +16,29 @@
       "message": "Could you please have a look at the change?",
       "revId": "d8b472bbd14868c3224bd3139a9237b0d3e29ce0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54228ad2_df84415a",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T00:47:52Z",
+      "side": 1,
+      "message": "nit: Remove this as the DEVICE_VLOG already log the device address",
+      "range": {
+        "startLine": 513,
+        "startChar": 18,
+        "endLine": 513,
+        "endChar": 56
+      },
+      "revId": "d8b472bbd14868c3224bd3139a9237b0d3e29ce0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
