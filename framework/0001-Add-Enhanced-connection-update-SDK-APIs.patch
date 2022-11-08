@@ -1,0 +1,1358 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From 283c2542904d17e67b4b7405d078ecc8b2f19c10 Mon Sep 17 00:00:00 2001
+From: Subramanian Srinivasan <quic_subrsrin@quicinc.com>
+Date: Wed, 23 Feb 2022 20:34:36 -0800
+Subject: [PATCH] Add Enhanced connection update SDK APIs
+
+Add support for following ECU support.
+1. Enhanced connection update SDK APIs
+   support.
+2. Enhanced connection update support
+   in Bluetooth apk and stack.
+
+CRs-Fixed: 3127801
+Change-Id: I29a8d10aad4c797f7b082297dabaa3049bad5462
+---
+ .../app/jni/com_android_bluetooth_gatt.cpp    |  84 ++++++++-
+ android/app/res/values/config.xml             |  58 ++++++
+ .../android/bluetooth/gatt/GattService.java   | 174 ++++++++++++++++++
+ .../java/android/bluetooth/BluetoothGatt.java | 148 +++++++++++++++
+ .../bluetooth/BluetoothGattCallback.java      |  53 ++++++
+ .../bluetooth/BluetoothGattServer.java        |  56 ++++++
+ .../BluetoothGattServerCallback.java          |  53 ++++++
+ .../android/bluetooth/IBluetoothGatt.aidl     |  40 ++++
+ .../bluetooth/IBluetoothGattCallback.aidl     |  37 ++++
+ .../IBluetoothGattServerCallback.aidl         |  37 ++++
+ system/btif/src/btif_gatt_client.cc           |  45 ++++-
+ system/gd/rust/topshim/src/profiles/gatt.rs   |   2 +
+ system/include/hardware/bt_gatt_client.h      |  49 +++++
+ system/include/hardware/bt_gatt_server.h      |  43 +++++
+ system/service/gatt_server_old.cc             |   2 +
+ .../service/hal/bluetooth_gatt_interface.cc   |   2 +
+ .../hal/fake_bluetooth_gatt_interface.cc      |   1 +
+ 17 files changed, 882 insertions(+), 2 deletions(-)
+
+diff --git a/android/app/jni/com_android_bluetooth_gatt.cpp b/android/app/jni/com_android_bluetooth_gatt.cpp
+index 0f2b22b442..b555f588ef 100644
+--- a/android/app/jni/com_android_bluetooth_gatt.cpp
++++ b/android/app/jni/com_android_bluetooth_gatt.cpp
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ #define LOG_TAG "BtGatt.JNI"
+@@ -141,6 +176,7 @@ static jmethodID method_onClientPhyUpdate;
+ static jmethodID method_onClientPhyRead;
+ static jmethodID method_onClientConnUpdate;
+ static jmethodID method_onServiceChanged;
++static jmethodID method_onClientSubrateChange;
+ 
+ /**
+  * Server callback methods
+@@ -162,6 +198,7 @@ static jmethodID method_onServerMtuChanged;
+ static jmethodID method_onServerPhyUpdate;
+ static jmethodID method_onServerPhyRead;
+ static jmethodID method_onServerConnUpdate;
++static jmethodID method_onServerSubrateChange;
+ 
+ /**
+  * Advertiser callback methods
+@@ -558,6 +595,19 @@ void btgattc_service_changed_cb(int conn_id) {
+   sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onServiceChanged, conn_id);
+ }
+ 
++void btgattc_subrate_change_cb(int conn_id, uint16_t subrate_factor, uint16_t latency,
++                               uint16_t cont_num, uint16_t timeout, uint8_t status) {
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++  if (!mCallbacksObj) {
++    ALOGE("mCallbacksObj is NULL. Return.");
++    return;
++  }
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onClientSubrateChange,
++                               conn_id, subrate_factor, latency, cont_num, timeout, status);
++}
++
+ static const btgatt_scanner_callbacks_t sGattScannerCallbacks = {
+     btgattc_scan_result_cb,
+     btgattc_batchscan_reports_cb,
+@@ -586,6 +636,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
+     btgattc_phy_updated_cb,
+     btgattc_conn_updated_cb,
+     btgattc_service_changed_cb,
++    btgattc_subrate_change_cb,
+ };
+ 
+ /**
+@@ -766,6 +817,19 @@ void btgatts_conn_updated_cb(int conn_id, uint16_t interval, uint16_t latency,
+                                conn_id, interval, latency, timeout, status);
+ }
+ 
++void btgatts_subrate_change_cb(int conn_id, uint16_t subrate_factor, uint16_t latency,
++                               uint16_t cont_num, uint16_t timeout, uint8_t status) {
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++  if (!mCallbacksObj) {
++    ALOGE("mCallbacksObj is NULL. Return.");
++    return;
++  }
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onServerSubrateChange,
++                               conn_id, subrate_factor, latency, cont_num, timeout, status);
++}
++
+ static const btgatt_server_callbacks_t sGattServerCallbacks = {
+     btgatts_register_app_cb,
+     btgatts_connection_cb,
+@@ -782,7 +846,8 @@ static const btgatt_server_callbacks_t sGattServerCallbacks = {
+     btgatts_congestion_cb,
+     btgatts_mtu_changed_cb,
+     btgatts_phy_updated_cb,
+-    btgatts_conn_updated_cb};
++    btgatts_conn_updated_cb,
++    btgatts_subrate_change_cb};
+ 
+ /**
+  * GATT callbacks
+@@ -1068,6 +1133,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
+       env->GetMethodID(clazz, "onClientConnUpdate", "(IIIII)V");
+   method_onServiceChanged =
+       env->GetMethodID(clazz, "onServiceChanged", "(I)V");
++  method_onClientSubrateChange =
++      env->GetMethodID(clazz, "onClientSubrateChange", "(IIIIII)V");
+ 
+   // Server callbacks
+ 
+@@ -1104,6 +1171,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
+       env->GetMethodID(clazz, "onServerPhyUpdate", "(IIII)V");
+   method_onServerConnUpdate =
+       env->GetMethodID(clazz, "onServerConnUpdate", "(IIIII)V");
++  method_onServerSubrateChange =
++        env->GetMethodID(clazz, "onServerSubrateChange", "(IIIIII)V");
+ 
+   info("classInitNative: Success!");
+ }
+@@ -1675,6 +1744,17 @@ static void gattConnectionParameterUpdateNative(JNIEnv* env, jobject object,
+       (uint16_t)min_ce_len, (uint16_t)max_ce_len);
+ }
+ 
++static void gattSubrateRequestNative(JNIEnv* env, jobject object,
++                                     jint client_if, jstring address,
++                                     jint subrate_min, jint subrate_max,
++                                     jint max_latency, jint cont_num,
++                                     jint sup_timeout) {
++  if (!sGattIf) return;
++  sGattIf->client->subrate_request(
++      str2addr(env, address), subrate_min, subrate_max, max_latency, cont_num,
++      sup_timeout);
++}
++
+ void batchscan_cfg_storage_cb(uint8_t client_if, uint8_t status) {
+   CallbackEnv sCallbackEnv(__func__);
+   if (!sCallbackEnv.valid()) return;
+@@ -2518,6 +2598,8 @@ static JNINativeMethod sMethods[] = {
+      (void*)gattServerSendNotificationNative},
+     {"gattServerSendResponseNative", "(IIIIII[BI)V",
+      (void*)gattServerSendResponseNative},
++    {"gattSubrateRequestNative", "(ILjava/lang/String;IIIII)V",
++     (void*)gattSubrateRequestNative},
+ 
+     {"gattTestNative", "(IJJLjava/lang/String;IIIII)V", (void*)gattTestNative},
+ };
+diff --git a/android/app/res/values/config.xml b/android/app/res/values/config.xml
+index bd4c838049..9fdb679bb1 100644
+--- a/android/app/res/values/config.xml
++++ b/android/app/res/values/config.xml
+@@ -11,6 +11,41 @@
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
++
++   Changes from Qualcomm Innovation Center are provided under the following license:
++
++   Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++
++   Redistribution and use in source and binary forms, with or without
++   modification, are permitted (subject to the limitations in the
++   disclaimer below) provided that the following conditions are met:
++
++   Redistributions of source code must retain the above copyright
++   notice, this list of conditions and the following disclaimer.
++
++   Redistributions in binary form must reproduce the above
++   copyright notice, this list of conditions and the following
++   disclaimer in the documentation and/or other materials provided
++   with the distribution.
++
++   Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++   contributors may be used to endorse or promote products derived
++   from this software without specific prior written permission.
++
++   NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++   GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++   HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++   WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++   IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++   ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++   DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++   GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++   IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++   OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++   IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++
+ -->
+ <resources>
+     <bool name="profile_supported_a2dp">true</bool>
+@@ -66,6 +101,29 @@
+     <integer name="gatt_balanced_priority_latency">0</integer>
+     <integer name="gatt_low_power_latency">2</integer>
+ 
++    <!-- Specifies the min/max subrate factor parameters for high priority,
++         balanced and low power subrate request configurations. -->
++    <integer name="subrate_mode_high_priority_min_subrate">2</integer>
++    <integer name="subrate_mode_high_priority_max_subrate">4</integer>
++    <integer name="subrate_mode_balanced_min_subrate">5</integer>
++    <integer name="subrate_mode_balanced_max_subrate">7</integer>
++    <integer name="subrate_mode_low_power_min_subrate">8</integer>
++    <integer name="subrate_mode_low_power_max_subrate">10</integer>
++
++    <!-- Specifies max latency parameters for high priority, balanced
++         and low power subrate request configurations. These values
++         represents the number of subrate events a peripheral device
++         is allowed to skip. -->
++    <integer name="subrate_mode_high_priority_latency">0</integer>
++    <integer name="subrate_mode_balanced_latency">1</integer>
++    <integer name="subrate_mode_low_power_latency">1</integer>
++
++    <!-- Specifies continuation number parameters for high priority,
++         balanced and low power subrate request configurations. -->
++    <integer name="subrate_mode_high_priority_cont_number">2</integer>
++    <integer name="subrate_mode_balanced_cont_number">2</integer>
++    <integer name="subrate_mode_low_power_cont_number">2</integer>
++
+     <bool name="headset_client_initial_audio_route_allowed">true</bool>
+ 
+     <!-- @deprecated: use a2dp_absolute_volume_initial_threshold_percent
+diff --git a/android/app/src/com/android/bluetooth/gatt/GattService.java b/android/app/src/com/android/bluetooth/gatt/GattService.java
+index 063b752f3f..c423e198d0 100644
+--- a/android/app/src/com/android/bluetooth/gatt/GattService.java
++++ b/android/app/src/com/android/bluetooth/gatt/GattService.java
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ package com.android.bluetooth.gatt;
+@@ -1143,6 +1178,30 @@ public class GattService extends ProfileService {
+                                        maxConnectionEventLen, attributionSource);
+         }
+ 
++        @Override
++        public void subrateModeRequest(int clientIf, String address,
++                int subrateMode, AttributionSource attributionSource) {
++            GattService service = getService();
++            if (service == null) {
++                return;
++            }
++            service.subrateModeRequest(clientIf, address, subrateMode,
++                                       attributionSource);
++        }
++
++        @Override
++        public void leSubrateRequest(int clientIf, String address,
++                int subrateMin, int subrateMax, int maxLatency,
++                int contNumber, int supervisionTimeout,
++                AttributionSource attributionSource) {
++            GattService service = getService();
++            if (service == null) {
++                return;
++            }
++            service.leSubrateRequest(clientIf, address, subrateMin, subrateMax, maxLatency,
++                                     contNumber, supervisionTimeout, attributionSource);
++        }
++
+         @Override
+         public void registerServer(ParcelUuid uuid, IBluetoothGattServerCallback callback,
+                 boolean eattSupport, AttributionSource attributionSource,
+@@ -2123,6 +2182,24 @@ public class GattService extends ProfileService {
+         app.callback.onServiceChanged(address);
+     }
+ 
++    void onClientSubrateChange(int connId, int subrateFactor, int latency, int contNum,
++            int timeout, int status)
++            throws RemoteException {
++        Log.d(TAG, "onClientSubrateChange() - connId=" + connId + ", status=" + status);
++
++        String address = mClientMap.addressByConnId(connId);
++        if (address == null) {
++            return;
++        }
++
++        ClientMap.App app = mClientMap.getByConnId(connId);
++        if (app == null) {
++            return;
++        }
++
++        app.callback.onSubrateChange(address, subrateFactor, latency, contNum, timeout, status);
++    }
++
+     void onServerPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {
+         if (DBG) {
+             Log.d(TAG, "onServerPhyUpdate() - connId=" + connId + ", status=" + status);
+@@ -2180,6 +2257,25 @@ public class GattService extends ProfileService {
+         app.callback.onConnectionUpdated(address, interval, latency, timeout, status);
+     }
+ 
++    void onServerSubrateChange(int connId, int subrateFactor, int latency, int contNum,
++            int timeout, int status)
++            throws RemoteException {
++        Log.d(TAG, "onServerSubrateChange() - connId=" + connId + ", status=" + status);
++
++        String address = mServerMap.addressByConnId(connId);
++        if (address == null) {
++            return;
++        }
++
++        ServerMap.App app = mServerMap.getByConnId(connId);
++        if (app == null) {
++            return;
++        }
++
++        app.callback.onSubrateChange(address, subrateFactor, latency, contNum, timeout, status);
++    }
++
++
+     void onSearchCompleted(int connId, int status) throws RemoteException {
+         if (DBG) {
+             Log.d(TAG, "onSearchCompleted() - connId=" + connId + ", status=" + status);
+@@ -3868,6 +3964,81 @@ public class GattService extends ProfileService {
+                                             minConnectionEventLen, maxConnectionEventLen);
+     }
+ 
++    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
++    public void subrateModeRequest(int clientIf, String address,
++            int subrateMode, AttributionSource attributionSource) {
++        if (!Utils.checkConnectPermissionForDataDelivery(
++                this, attributionSource, "GattService subrateModeRequest")) {
++            return;
++        }
++
++        int subrateMin;
++        int subrateMax;
++        int maxLatency;
++        int contNumber;
++        // Link supervision timeout is measured in N * 10ms
++        int supervisionTimeout = 500; // 5s
++
++        switch (subrateMode) {
++            case BluetoothGatt.SUBRATE_REQ_HIGH:
++                subrateMin =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_min_subrate);
++                subrateMax =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_max_subrate);
++                maxLatency =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_latency);
++                contNumber =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_cont_number);
++                break;
++
++            case BluetoothGatt.SUBRATE_REQ_LOW_POWER:
++                subrateMin =
++                        getResources().getInteger(R.integer.subrate_mode_low_power_min_subrate);
++                subrateMax =
++                        getResources().getInteger(R.integer.subrate_mode_low_power_max_subrate);
++                maxLatency = getResources().getInteger(R.integer.subrate_mode_low_power_latency);
++                contNumber = getResources().getInteger(R.integer.subrate_mode_low_power_cont_number);
++                break;
++
++            default:
++                // Using the values for SUBRATE_REQ_BALANCED.
++                subrateMin =
++                        getResources().getInteger(R.integer.subrate_mode_balanced_min_subrate);
++                subrateMax =
++                        getResources().getInteger(R.integer.subrate_mode_balanced_max_subrate);
++                maxLatency = getResources().getInteger(R.integer.subrate_mode_balanced_latency);
++                contNumber = getResources().getInteger(R.integer.subrate_mode_balanced_cont_number);
++                break;
++        }
++
++        if (DBG) {
++            Log.d(TAG, "subrateModeRequest() - address=" + address + ", subrate min/max="
++                  + subrateMin + "/" + subrateMax + ", maxLatency=" + maxLatency
++                  + " continuation Number=" + contNumber +", timeout=" + supervisionTimeout);
++        }
++
++        gattSubrateRequestNative(clientIf, address, subrateMin, subrateMax, maxLatency,
++                                 contNumber, supervisionTimeout);
++    }
++
++    void leSubrateRequest(int clientIf, String address, int subrateMin, int subrateMax,
++            int maxLatency, int contNumber, int supervisionTimeout,
++            AttributionSource attributionSource) {
++        if (!Utils.checkConnectPermissionForDataDelivery(
++                this, attributionSource, "GattService leSubrateRequest")) {
++            return;
++        }
++
++        if (DBG) {
++            Log.d(TAG, "leSubrateRequest() - address=" + address + ", subrate min/max="
++                  + subrateMin + "/" + subrateMax + ", maxLatency=" + maxLatency
++                  + " continuation Number=" + contNumber +", timeout=" + supervisionTimeout);
++        }
++
++        gattSubrateRequestNative(clientIf, address, subrateMin, subrateMax, maxLatency,
++                                 contNumber, supervisionTimeout);
++    }
++
+     /**************************************************************************
+      * Callback functions - SERVER
+      *************************************************************************/
+@@ -4762,4 +4933,7 @@ public class GattService extends ProfileService {
+ 
+     private native void gattServerSendResponseNative(int serverIf, int connId, int transId,
+             int status, int handle, int offset, byte[] val, int authReq);
++
++    private native void gattSubrateRequestNative(int clientIf, String address, int subrateMin,
++            int subrateMax, int maxLatency, int contNumber, int supervisionTimeout);
+ }
+diff --git a/framework/java/android/bluetooth/BluetoothGatt.java b/framework/java/android/bluetooth/BluetoothGatt.java
+index 8036311c20..edfd8ba91f 100644
+--- a/framework/java/android/bluetooth/BluetoothGatt.java
++++ b/framework/java/android/bluetooth/BluetoothGatt.java
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ package android.bluetooth;
+@@ -149,6 +184,27 @@ public final class BluetoothGatt implements BluetoothProfile {
+     /** Connection parameter update - Request low power, reduced data rate connection parameters. */
+     public static final int CONNECTION_PRIORITY_LOW_POWER = 2;
+ 
++    /**
++     * Connection subrate request - Balanced.
++     *
++     * @hide
++     */
++    public static final int SUBRATE_REQ_BALANCED = 0;
++
++    /**
++     * Connection subrate request - High.
++     *
++     * @hide
++     */
++    public static final int SUBRATE_REQ_HIGH = 1;
++
++    /**
++     * Connection Subrate Request - Low Power.
++     *
++     * @hide
++     */
++    public static final int SUBRATE_REQ_LOW_POWER = 2;
++
+     /**
+      * No authentication required.
+      *
+@@ -769,6 +825,34 @@ public final class BluetoothGatt implements BluetoothProfile {
+                         }
+                     });
+                 }
++
++                /**
++                 * Callback invoked when the given connection's subrate is changed
++                 * @hide
++                 */
++                @Override
++                public void onSubrateChange(String address, int subrateFactor, int latency,
++                        int contNum, int timeout, int status) {
++                    Log.d(TAG, "onSubrateChange() - Device=" + address
++                            + " subrateFactor=" + subrateFactor + " latency=" + latency
++                            + " contNum=" + contNum + " timeout=" + timeout + " status=" + status);
++
++                    if (!address.equals(mDevice.getAddress())) {
++                        return;
++                    }
++
++                    runOrQueueCallback(new Runnable() {
++                        @Override
++                        public void run() {
++                            final BluetoothGattCallback callback = mCallback;
++                            if (callback != null) {
++                                callback.onSubrateChange(BluetoothGatt.this, subrateFactor, latency,
++                                        contNum, timeout, status);
++                            }
++                        }
++                    });
++                }
++
+             };
+ 
+     /* package */ BluetoothGatt(IBluetoothGatt iGatt, BluetoothDevice device, int transport,
+@@ -1910,6 +1994,70 @@ public final class BluetoothGatt implements BluetoothProfile {
+         return true;
+     }
+ 
++    /**
++     * Request LE subrate mode.
++     *
++     * <p>This function will send a LE subrate request to the
++     * remote device.
++     *
++     * @param subrateMode Request a specific subrate mode. Must be one of {@link
++     * BluetoothGatt#SUBRATE_REQ_BALANCED}, {@link BluetoothGatt#SUBRATE_REQ_HIGH}
++     * or {@link BluetoothGatt#SUBRATE_REQ_LOW_POWER}.
++     * @throws IllegalArgumentException If the parameters are outside of their specified range.
++     * @hide
++     */
++    @RequiresBluetoothConnectPermission
++    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
++    public boolean requestSubrateMode(int subrateMode) {
++        if (subrateMode < SUBRATE_REQ_BALANCED
++                || subrateMode > SUBRATE_REQ_LOW_POWER) {
++            throw new IllegalArgumentException(" Subrate Mode not within valid range");
++        }
++
++        Log.d(TAG, "requestsubrateMode() - params: " + subrateMode);
++        if (mService == null || mClientIf == 0) return false;
++
++        try {
++            mService.subrateModeRequest(
++                    mClientIf, mDevice.getAddress(), subrateMode, mAttributionSource);
++        } catch (RemoteException e) {
++            Log.e(TAG, "", e);
++            return false;
++        }
++
++        return true;
++    }
++
++    /**
++     * Request a LE subrate request.
++     *
++     * <p>This function will send a LE subrate request to the remote device.
++     *
++     * @return true, if the request is send to the Bluetooth stack.
++     * @hide
++     */
++    public boolean bleSubrateRequest(int subrateMin, int subrateMax,
++                                     int maxLatency, int contNumber,
++                                     int supervisionTimeout) {
++        Log.d(TAG, "bleSubrateRequest() - subrateMin=" + subrateMin
++                   + " subrateMax=" + (subrateMax)
++                   + " maxLatency= " + maxLatency + "contNumber="
++                   + contNumber + " supervisionTimeout=" + supervisionTimeout);
++        if (mService == null || mClientIf == 0) return false;
++
++        try {
++            mService.leSubrateRequest(mClientIf, mDevice.getAddress(),
++                                      subrateMin, subrateMax, maxLatency,
++                                      contNumber, supervisionTimeout,
++                                      mAttributionSource);
++        } catch (RemoteException e) {
++            Log.e(TAG, "", e);
++            return false;
++        }
++
++        return true;
++    }
++
+     /**
+      * @deprecated Not supported - please use {@link BluetoothManager#getConnectedDevices(int)}
+      * with {@link BluetoothProfile#GATT} as argument
+diff --git a/framework/java/android/bluetooth/BluetoothGattCallback.java b/framework/java/android/bluetooth/BluetoothGattCallback.java
+index 3852d508c0..5d8b047394 100644
+--- a/framework/java/android/bluetooth/BluetoothGattCallback.java
++++ b/framework/java/android/bluetooth/BluetoothGattCallback.java
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ package android.bluetooth;
+@@ -267,4 +302,22 @@ public abstract class BluetoothGattCallback {
+      */
+     public void onServiceChanged(@NonNull BluetoothGatt gatt) {
+     }
++
++    /**
++     * Callback indicating LE connection's subrate parameters have changed.
++     *
++     * @param gatt GATT client involved
++     * @param subrate factor for the LE connection.
++     * @param peripheral latency for the LE connection in number of subrated connection events.
++     * Valid range is from 0 to 499
++     * @param continuation number. Valid range is from 0 to 499.
++     * @param timeout Supervision timeout for this connection, in 10ms unit. Valid range is from 10
++     * (0.1s) to 3200 (32s)
++     * @param status {@link BluetoothGatt#GATT_SUCCESS} if LE connection subrating has been changed
++     * successfully.
++     * @hide
++     */
++    public void onSubrateChange(BluetoothGatt gatt, int subrateFactor, int latency, int contNum,
++            int timeout, int status) {
++    }
+ }
+diff --git a/framework/java/android/bluetooth/BluetoothGattServer.java b/framework/java/android/bluetooth/BluetoothGattServer.java
+index 8b84505e36..e2410aab96 100644
+--- a/framework/java/android/bluetooth/BluetoothGattServer.java
++++ b/framework/java/android/bluetooth/BluetoothGattServer.java
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ package android.bluetooth;
+@@ -389,6 +424,27 @@ public final class BluetoothGattServer implements BluetoothProfile {
+                     }
+                 }
+ 
++                /**
++                 * Callback invoked when the given connection's subrate parameters are changed
++                 * @hide
++                 */
++                @Override
++                public void onSubrateChange(String address, int subrateFactor, int latency,
++                        int contNum, int timeout, int status) {
++                    Log.d(TAG, "onSubrateChange() - Device=" + address
++                               + " subrateFactor=" + subrateFactor + " latency=" + latency
++                               + " contNum=" + contNum + " timeout=" + timeout + " status=" + status);
++                    BluetoothDevice device = mAdapter.getRemoteDevice(address);
++                    if (device == null) return;
++
++                    try {
++                        mCallback.onSubrateChange(device, subrateFactor, latency,
++                                contNum, timeout, status);
++                    } catch (Exception ex) {
++                        Log.w(TAG, "Unhandled exception: " + ex);
++                    }
++                }
++
+             };
+ 
+     /**
+diff --git a/framework/java/android/bluetooth/BluetoothGattServerCallback.java b/framework/java/android/bluetooth/BluetoothGattServerCallback.java
+index 0ead5f57e8..f07ce3e13f 100644
+--- a/framework/java/android/bluetooth/BluetoothGattServerCallback.java
++++ b/framework/java/android/bluetooth/BluetoothGattServerCallback.java
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ package android.bluetooth;
+@@ -199,4 +234,22 @@ public abstract class BluetoothGattServerCallback {
+             int status) {
+     }
+ 
++    /**
++     * Callback indicating the LE connection's subrate parameters were updated.
++     *
++     * @param device The remote device involved
++     * @param subrate factor for the LE connection.
++     * @param peripheral latency for the LE connection in number of subrated connection events.
++     * Valid range is from 0 to 499.
++     * @param continuation number. Valid range is from 0 to 499.
++     * @param timeout Supervision timeout for this connection, in 10ms unit. Valid range is from 10
++     * (0.1s) to 3200 (32s)
++     * @param status {@link BluetoothGatt#GATT_SUCCESS} if LE connection subrating has been changed
++     * successfully.
++     * @hide
++     */
++    public void onSubrateChange(BluetoothDevice device, int subrateFactor, int latency, int contNum,
++            int timeout, int status) {
++    }
++
+ }
+diff --git a/system/binder/android/bluetooth/IBluetoothGatt.aidl b/system/binder/android/bluetooth/IBluetoothGatt.aidl
+index 8cc6e6d80e..75ab9d84fb 100644
+--- a/system/binder/android/bluetooth/IBluetoothGatt.aidl
++++ b/system/binder/android/bluetooth/IBluetoothGatt.aidl
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ package android.bluetooth;
+@@ -177,4 +212,9 @@ oneway interface IBluetoothGatt {
+     void unregAll(in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+     void numHwTrackFiltersAvailable(in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
++    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
++    void leSubrateRequest(in int clientIf, in String address, in int subrateMin, in int subrateMax, in int maxLatency,
++                          in int contNumber, in int supervisionTimeout, in AttributionSource attributionSource);
++    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
++    void subrateModeRequest(in int clientIf, in String address, in int subrateMode, in AttributionSource attributionSource);
+ }
+diff --git a/system/binder/android/bluetooth/IBluetoothGattCallback.aidl b/system/binder/android/bluetooth/IBluetoothGattCallback.aidl
+index a140ea98d3..dc197e143e 100644
+--- a/system/binder/android/bluetooth/IBluetoothGattCallback.aidl
++++ b/system/binder/android/bluetooth/IBluetoothGattCallback.aidl
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ package android.bluetooth;
+ 
+@@ -40,4 +75,6 @@ oneway interface IBluetoothGattCallback {
+     void onConnectionUpdated(in String address, in int interval, in int latency,
+                              in int timeout, in int status);
+     void onServiceChanged(in String address);
++    void onSubrateChange(in String address, in int subrateFactor, in int latency,
++                         in int contNum, in int timeout, in int status);
+ }
+diff --git a/system/binder/android/bluetooth/IBluetoothGattServerCallback.aidl b/system/binder/android/bluetooth/IBluetoothGattServerCallback.aidl
+index 3f0ee20f2d..d9f1a764be 100644
+--- a/system/binder/android/bluetooth/IBluetoothGattServerCallback.aidl
++++ b/system/binder/android/bluetooth/IBluetoothGattServerCallback.aidl
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ package android.bluetooth;
+ 
+@@ -44,4 +79,6 @@ oneway interface IBluetoothGattServerCallback {
+     void onPhyRead(in String address, in int txPhy, in int rxPhy, in int status);
+     void onConnectionUpdated(in String address, in int interval, in int latency,
+                              in int timeout, in int status);
++    void onSubrateChange(in String address, in int subrateFactor, in int latency,
++                         in int contNum, in int timeout, in int status);
+ }
+diff --git a/system/btif/src/btif_gatt_client.cc b/system/btif/src/btif_gatt_client.cc
+index 393c2a8044..5f8cb3ffc8 100644
+--- a/system/btif/src/btif_gatt_client.cc
++++ b/system/btif/src/btif_gatt_client.cc
+@@ -14,6 +14,40 @@
+  *  See the License for the specific language governing permissions and
+  *  limitations under the License.
+  *
++ *  Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ *  Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ *  Redistribution and use in source and binary forms, with or without
++ *  modification, are permitted (subject to the limitations in the
++ *  disclaimer below) provided that the following conditions are met:
++ *
++ *  Redistributions of source code must retain the above copyright
++ *  notice, this list of conditions and the following disclaimer.
++ *
++ *  Redistributions in binary form must reproduce the above
++ *  copyright notice, this list of conditions and the following
++ *  disclaimer in the documentation and/or other materials provided
++ *  with the distribution.
++ *
++ *  Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ *  contributors may be used to endorse or promote products derived
++ *  from this software without specific prior written permission.
++ *
++ *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  ******************************************************************************/
+ 
+ /*******************************************************************************
+@@ -648,6 +682,14 @@ static bt_status_t btif_gattc_test_command(int command,
+   return btif_gattc_test_command_impl(command, &params);
+ }
+ 
++bt_status_t btif_gattc_subrate_request(const RawAddress& bd_addr,
++                                       int subrate_min, int subrate_max,
++                                       int max_latency, int cont_num,
++                                       int sup_timeout) {
++  CHECK_BTGATT_INIT();
++  return BT_STATUS_SUCCESS;
++}
++
+ }  // namespace
+ 
+ const btgatt_client_interface_t btgattClientInterface = {
+@@ -673,4 +715,5 @@ const btgatt_client_interface_t btgattClientInterface = {
+     btif_gattc_set_preferred_phy,
+     btif_gattc_read_phy,
+     btif_gattc_test_command,
+-    btif_gattc_get_gatt_db};
++    btif_gattc_get_gatt_db,
++    btif_gattc_subrate_request};
+diff --git a/system/gd/rust/topshim/src/profiles/gatt.rs b/system/gd/rust/topshim/src/profiles/gatt.rs
+index d615a85b35..ba9f2b19e4 100644
+--- a/system/gd/rust/topshim/src/profiles/gatt.rs
++++ b/system/gd/rust/topshim/src/profiles/gatt.rs
+@@ -1656,6 +1656,7 @@ impl Gatt {
+             // TODO(b/200073464): Remove these.
+             services_removed_cb: None,
+             services_added_cb: None,
++            subrate_chg_cb: None,
+         });
+ 
+         let mut gatt_server_callbacks = Box::new(btgatt_server_callbacks_t {
+@@ -1675,6 +1676,7 @@ impl Gatt {
+             mtu_changed_cb: Some(gs_mtu_changed_cb),
+             phy_updated_cb: Some(gs_phy_updated_cb),
+             conn_updated_cb: Some(gs_conn_updated_cb),
++            subrate_chg_cb : None,
+         });
+ 
+         let mut gatt_scanner_callbacks = Box::new(btgatt_scanner_callbacks_t {
+diff --git a/system/include/hardware/bt_gatt_client.h b/system/include/hardware/bt_gatt_client.h
+index 2cd6df7974..18c554d1d2 100644
+--- a/system/include/hardware/bt_gatt_client.h
++++ b/system/include/hardware/bt_gatt_client.h
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ #ifndef ANDROID_INCLUDE_BT_GATT_CLIENT_H
+@@ -186,6 +221,13 @@ typedef void (*conn_updated_callback)(int conn_id, uint16_t interval,
+ /** Callback when services are changed */
+ typedef void (*service_changed_callback)(int conn_id);
+ 
++/** Callback invoked when the subrate change event for a given connection
++ * is received */
++typedef void (*subrate_change_callback)(int conn_id, uint16_t subrate_factor,
++                                        uint16_t latency, uint16_t cont_num,
++                                        uint16_t timeout, uint8_t status);
++
++
+ typedef struct {
+   register_client_callback register_client_cb;
+   connect_callback open_cb;
+@@ -207,6 +249,7 @@ typedef struct {
+   phy_updated_callback phy_updated_cb;
+   conn_updated_callback conn_updated_cb;
+   service_changed_callback service_changed_cb;
++  subrate_change_callback subrate_chg_cb;
+ } btgatt_client_callbacks_t;
+ 
+ /** Represents the standard BT-GATT client interface. */
+@@ -312,6 +355,12 @@ typedef struct {
+   /** Get gatt db content */
+   bt_status_t (*get_gatt_db)(int conn_id);
+ 
++  /** Request a BLE subrate request procedure */
++  bt_status_t (*subrate_request)(const RawAddress& bd_addr,
++                                 int subrate_min, int subrate_max,
++                                 int max_latency, int cont_num,
++                                 int timeout);
++
+ } btgatt_client_interface_t;
+ 
+ __END_DECLS
+diff --git a/system/include/hardware/bt_gatt_server.h b/system/include/hardware/bt_gatt_server.h
+index 0e9b03942b..82a93c556b 100644
+--- a/system/include/hardware/bt_gatt_server.h
++++ b/system/include/hardware/bt_gatt_server.h
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ #ifndef ANDROID_INCLUDE_BT_GATT_SERVER_H
+@@ -117,6 +152,13 @@ typedef void (*phy_updated_callback)(int conn_id, uint8_t tx_phy,
+ typedef void (*conn_updated_callback)(int conn_id, uint16_t interval,
+                                       uint16_t latency, uint16_t timeout,
+                                       uint8_t status);
++
++/** Callback invoked when the connection's subrate parameters for a given connection
++ * changes */
++typedef void (*subrate_change_callback)(int conn_id, uint16_t subrate_factor,
++                                        uint16_t latency, uint16_t cont_num, 
++                                        uint16_t timeout, uint8_t status);
++
+ typedef struct {
+   register_server_callback register_server_cb;
+   connection_callback connection_cb;
+@@ -134,6 +176,7 @@ typedef struct {
+   mtu_changed_callback mtu_changed_cb;
+   phy_updated_callback phy_updated_cb;
+   conn_updated_callback conn_updated_cb;
++  subrate_change_callback subrate_chg_cb;
+ } btgatt_server_callbacks_t;
+ 
+ /** Represents the standard BT-GATT server interface. */
+diff --git a/system/service/gatt_server_old.cc b/system/service/gatt_server_old.cc
+index c4d3790e3b..8bb81e4297 100644
+--- a/system/service/gatt_server_old.cc
++++ b/system/service/gatt_server_old.cc
+@@ -424,6 +424,7 @@ const btgatt_server_callbacks_t gatt_server_callbacks = {
+     nullptr, /* mtu_changed_cb */
+     nullptr, /* phy_update_cb */
+     nullptr, /* conn_update_cb */
++    nullptr, /* subrate_chg_cb */
+ };
+ 
+ // TODO(eisenbach): Refactor GATT interface to not require servers
+@@ -449,6 +450,7 @@ const btgatt_client_callbacks_t gatt_client_callbacks = {
+     nullptr, /* phy_update_cb */
+     nullptr, /* conn_update_cb */
+     nullptr, /* service_changed_cb*/
++    nullptr, /* subrate_chg_cb */
+ };
+ 
+ const btgatt_scanner_callbacks_t gatt_scanner_callbacks = {
+diff --git a/system/service/hal/bluetooth_gatt_interface.cc b/system/service/hal/bluetooth_gatt_interface.cc
+index 76cf5c9361..403786e507 100644
+--- a/system/service/hal/bluetooth_gatt_interface.cc
++++ b/system/service/hal/bluetooth_gatt_interface.cc
+@@ -410,6 +410,7 @@ const btgatt_client_callbacks_t gatt_client_callbacks = {
+     nullptr,
+     nullptr,
+     nullptr,  // service_changed_cb
++    nullptr,  // subrate_chg_cb
+ };
+ 
+ const btgatt_server_callbacks_t gatt_server_callbacks = {
+@@ -429,6 +430,7 @@ const btgatt_server_callbacks_t gatt_server_callbacks = {
+     MtuChangedCallback,
+     nullptr,
+     nullptr,
++    nullptr,
+ };
+ 
+ const btgatt_callbacks_t gatt_callbacks = {
+diff --git a/system/service/hal/fake_bluetooth_gatt_interface.cc b/system/service/hal/fake_bluetooth_gatt_interface.cc
+index 8b77424167..eb3d8152e6 100644
+--- a/system/service/hal/fake_bluetooth_gatt_interface.cc
++++ b/system/service/hal/fake_bluetooth_gatt_interface.cc
+@@ -134,6 +134,7 @@ btgatt_client_interface_t fake_btgattc_iface = {
+     nullptr,  // read_phy
+     nullptr,  // test_command
+     nullptr,  // get_gatt_db
++    nullptr,  // subrate_request
+ };
+ 
+ btgatt_server_interface_t fake_btgatts_iface = {
+-- 
+2.25.1
+

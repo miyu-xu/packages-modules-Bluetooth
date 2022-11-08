@@ -1,0 +1,495 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From 122598ab169a098794c855018afaeb265b1ff62c Mon Sep 17 00:00:00 2001
+From: Subramanian Srinivasan <quic_subrsrin@quicinc.com>
+Date: Sun, 16 May 2021 22:39:43 -0700
+Subject: [PATCH] Enhanced connection update changes
+
+Change-Id: If5e93ad326e3494b8d003f2a3d98149134030423
+---
+ jni/com_android_bluetooth_gatt.cpp            |  84 ++++++++-
+ res/values/config.xml                         |  58 ++++++
+ .../android/bluetooth/gatt/GattService.java   | 174 ++++++++++++++++++
+ 3 files changed, 315 insertions(+), 1 deletion(-)
+
+diff --git a/jni/com_android_bluetooth_gatt.cpp b/jni/com_android_bluetooth_gatt.cpp
+index a67f2faa0..6e948bc06 100644
+--- a/jni/com_android_bluetooth_gatt.cpp
++++ b/jni/com_android_bluetooth_gatt.cpp
+@@ -12,6 +12,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ #define LOG_TAG "BtGatt.JNI"
+@@ -143,6 +178,7 @@ static jmethodID method_onClientPhyUpdate;
+ static jmethodID method_onClientPhyRead;
+ static jmethodID method_onClientConnUpdate;
+ static jmethodID method_onServiceChanged;
++static jmethodID method_onClientSubrateChange;
+ 
+ /**
+  * Server callback methods
+@@ -164,6 +200,7 @@ static jmethodID method_onServerMtuChanged;
+ static jmethodID method_onServerPhyUpdate;
+ static jmethodID method_onServerPhyRead;
+ static jmethodID method_onServerConnUpdate;
++static jmethodID method_onServerSubrateChange;
+ 
+ /**
+  * Advertiser callback methods
+@@ -641,6 +678,19 @@ void btgattc_service_changed_cb(int conn_id) {
+   sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onServiceChanged, conn_id);
+ }
+ 
++void btgattc_subrate_change_cb(int conn_id, uint16_t subrate_factor, uint16_t latency,
++                               uint16_t cont_num, uint16_t timeout, uint8_t status) {
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++  if (!mCallbacksObj) {
++    ALOGE("mCallbacksObj is NULL. Return.");
++    return;
++  }
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onClientSubrateChange,
++                               conn_id, subrate_factor, latency, cont_num, timeout, status);
++}
++
+ static const btgatt_scanner_callbacks_t sGattScannerCallbacks = {
+     btgattc_scan_result_cb,
+     btgattc_batchscan_reports_cb,
+@@ -669,6 +719,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
+     btgattc_phy_updated_cb,
+     btgattc_conn_updated_cb,
+     btgattc_service_changed_cb,
++    btgattc_subrate_change_cb,
+ };
+ 
+ /**
+@@ -913,6 +964,19 @@ void btgatts_conn_updated_cb(int conn_id, uint16_t interval, uint16_t latency,
+                                conn_id, interval, latency, timeout, status);
+ }
+ 
++void btgatts_subrate_change_cb(int conn_id, uint16_t subrate_factor, uint16_t latency,
++                               uint16_t cont_num, uint16_t timeout, uint8_t status) {
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++  if (!mCallbacksObj) {
++    ALOGE("mCallbacksObj is NULL. Return.");
++    return;
++  }
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onServerSubrateChange,
++                               conn_id, subrate_factor, latency, cont_num, timeout, status);
++}
++
+ static const btgatt_server_callbacks_t sGattServerCallbacks = {
+     btgatts_register_app_cb,
+     btgatts_connection_cb,
+@@ -929,7 +993,8 @@ static const btgatt_server_callbacks_t sGattServerCallbacks = {
+     btgatts_congestion_cb,
+     btgatts_mtu_changed_cb,
+     btgatts_phy_updated_cb,
+-    btgatts_conn_updated_cb};
++    btgatts_conn_updated_cb,
++    btgatts_subrate_change_cb};
+ 
+ /**
+  * GATT callbacks
+@@ -1102,6 +1167,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
+       env->GetMethodID(clazz, "onClientConnUpdate", "(IIIII)V");
+   method_onServiceChanged =
+       env->GetMethodID(clazz, "onServiceChanged", "(I)V");
++  method_onClientSubrateChange =
++      env->GetMethodID(clazz, "onClientSubrateChange", "(IIIIII)V");
+ 
+   // Server callbacks
+ 
+@@ -1138,6 +1205,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
+       env->GetMethodID(clazz, "onServerPhyUpdate", "(IIII)V");
+   method_onServerConnUpdate =
+       env->GetMethodID(clazz, "onServerConnUpdate", "(IIIII)V");
++  method_onServerSubrateChange =
++        env->GetMethodID(clazz, "onServerSubrateChange", "(IIIIII)V");
+ 
+   info("classInitNative: Success!");
+ }
+@@ -1747,6 +1816,17 @@ static void gattConnectionParameterUpdateNative(JNIEnv* env, jobject object,
+       (uint16_t)min_ce_len, (uint16_t)max_ce_len);
+ }
+ 
++static void gattSubrateRequestNative(JNIEnv* env, jobject object,
++                                     jint client_if, jstring address,
++                                     jint subrate_min, jint subrate_max,
++                                     jint max_latency, jint cont_num,
++                                     jint sup_timeout) {
++  if (!sGattIf) return;
++  sGattIf->client->subrate_request(
++      str2addr(env, address), subrate_min, subrate_max, max_latency, cont_num,
++      sup_timeout);
++}
++
+ void batchscan_cfg_storage_cb(uint8_t client_if, uint8_t status) {
+   CallbackEnv sCallbackEnv(__func__);
+   if (!sCallbackEnv.valid()) return;
+@@ -2630,6 +2710,8 @@ static JNINativeMethod sMethods[] = {
+      (void*)gattServerSendNotificationNative},
+     {"gattServerSendResponseNative", "(IIIIII[BI)V",
+      (void*)gattServerSendResponseNative},
++    {"gattSubrateRequestNative", "(ILjava/lang/String;IIIII)V",
++     (void*)gattSubrateRequestNative},
+ 
+     {"gattTestNative", "(IJJLjava/lang/String;IIIII)V", (void*)gattTestNative},
+ };
+diff --git a/res/values/config.xml b/res/values/config.xml
+index a6c25a058..8dc7dd4ca 100644
+--- a/res/values/config.xml
++++ b/res/values/config.xml
+@@ -11,6 +11,41 @@
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
++
++   Changes from Qualcomm Innovation Center are provided under the following license:
++
++   Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++
++   Redistribution and use in source and binary forms, with or without
++   modification, are permitted (subject to the limitations in the
++   disclaimer below) provided that the following conditions are met:
++
++   Redistributions of source code must retain the above copyright
++   notice, this list of conditions and the following disclaimer.
++
++   Redistributions in binary form must reproduce the above
++   copyright notice, this list of conditions and the following
++   disclaimer in the documentation and/or other materials provided
++   with the distribution.
++
++   Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++   contributors may be used to endorse or promote products derived
++   from this software without specific prior written permission.
++
++   NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++   GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++   HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++   WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++   IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++   ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++   DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++   GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++   IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++   OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++   IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++
+ -->
+ <resources>
+     <bool name="profile_supported_a2dp">true</bool>
+@@ -68,6 +103,29 @@
+     <integer name="gatt_balanced_priority_latency">0</integer>
+     <integer name="gatt_low_power_latency">2</integer>
+ 
++    <!-- Specifies the min/max subrate factor parameters for high priority,
++         balanced and low power subrate request configurations. -->
++    <integer name="subrate_mode_high_priority_min_subrate">2</integer>
++    <integer name="subrate_mode_high_priority_max_subrate">4</integer>
++    <integer name="subrate_mode_balanced_min_subrate">5</integer>
++    <integer name="subrate_mode_balanced_max_subrate">7</integer>
++    <integer name="subrate_mode_low_power_min_subrate">8</integer>
++    <integer name="subrate_mode_low_power_max_subrate">10</integer>
++
++    <!-- Specifies max latency parameters for high priority, balanced
++         and low power subrate request configurations. These values
++         represents the number of subrate events a peripheral device
++         is allowed to skip. -->
++    <integer name="subrate_mode_high_priority_latency">0</integer>
++    <integer name="subrate_mode_balanced_latency">1</integer>
++    <integer name="subrate_mode_low_power_latency">1</integer>
++
++    <!-- Specifies continuation number parameters for high priority,
++         balanced and low power subrate request configurations. -->
++    <integer name="subrate_mode_high_priority_cont_number">2</integer>
++    <integer name="subrate_mode_balanced_cont_number">2</integer>
++    <integer name="subrate_mode_low_power_cont_number">2</integer>
++
+     <bool name="headset_client_initial_audio_route_allowed">true</bool>
+ 
+     <!-- @deprecated: use a2dp_absolute_volume_initial_threshold_percent
+diff --git a/src/com/android/bluetooth/gatt/GattService.java b/src/com/android/bluetooth/gatt/GattService.java
+index d6db85f50..0b1f9fc7d 100644
+--- a/src/com/android/bluetooth/gatt/GattService.java
++++ b/src/com/android/bluetooth/gatt/GattService.java
+@@ -16,6 +16,41 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ *
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ *
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted (subject to the limitations in the
++ * disclaimer below) provided that the following conditions are met:
++ *
++ * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ *
++ * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ *
++ * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
++ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
++ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
++ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
++ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
++ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
++ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
++ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
++ *
+  */
+ 
+ package com.android.bluetooth.gatt;
+@@ -1174,6 +1209,30 @@ public class GattService extends ProfileService {
+                                        maxConnectionEventLen, attributionSource);
+         }
+ 
++        @Override
++        public void subrateModeRequest(int clientIf, String address,
++                int subrateMode, AttributionSource attributionSource) {
++            GattService service = getService();
++            if (service == null) {
++                return;
++            }
++            service.subrateModeRequest(clientIf, address, subrateMode,
++                                       attributionSource);
++        }
++
++        @Override
++        public void leSubrateRequest(int clientIf, String address,
++                int subrateMin, int subrateMax, int maxLatency,
++                int contNumber, int supervisionTimeout,
++                AttributionSource attributionSource) {
++            GattService service = getService();
++            if (service == null) {
++                return;
++            }
++            service.leSubrateRequest(clientIf, address, subrateMin, subrateMax, maxLatency,
++                                     contNumber, supervisionTimeout, attributionSource);
++        }
++
+         @Override
+         public void registerServer(ParcelUuid uuid, IBluetoothGattServerCallback callback,
+                 boolean eattSupport, AttributionSource attributionSource,
+@@ -2192,6 +2251,24 @@ public class GattService extends ProfileService {
+         app.callback.onServiceChanged(address);
+     }
+ 
++    void onClientSubrateChange(int connId, int subrateFactor, int latency, int contNum,
++            int timeout, int status)
++            throws RemoteException {
++        Log.d(TAG, "onClientSubrateChange() - connId=" + connId + ", status=" + status);
++
++        String address = mClientMap.addressByConnId(connId);
++        if (address == null) {
++            return;
++        }
++
++        ClientMap.App app = mClientMap.getByConnId(connId);
++        if (app == null) {
++            return;
++        }
++
++        app.callback.onSubrateChange(address, subrateFactor, latency, contNum, timeout, status);
++    }
++
+     void onServerPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {
+         if (DBG) {
+             Log.d(TAG, "onServerPhyUpdate() - connId=" + connId + ", status=" + status);
+@@ -2249,6 +2326,25 @@ public class GattService extends ProfileService {
+         app.callback.onConnectionUpdated(address, interval, latency, timeout, status);
+     }
+ 
++    void onServerSubrateChange(int connId, int subrateFactor, int latency, int contNum,
++            int timeout, int status)
++            throws RemoteException {
++        Log.d(TAG, "onServerSubrateChange() - connId=" + connId + ", status=" + status);
++
++        String address = mServerMap.addressByConnId(connId);
++        if (address == null) {
++            return;
++        }
++
++        ServerMap.App app = mServerMap.getByConnId(connId);
++        if (app == null) {
++            return;
++        }
++
++        app.callback.onSubrateChange(address, subrateFactor, latency, contNum, timeout, status);
++    }
++
++
+     void onSearchCompleted(int connId, int status) throws RemoteException {
+         if (DBG) {
+             Log.d(TAG, "onSearchCompleted() - connId=" + connId + ", status=" + status);
+@@ -3960,6 +4056,81 @@ public class GattService extends ProfileService {
+                                             minConnectionEventLen, maxConnectionEventLen);
+     }
+ 
++    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
++    public void subrateModeRequest(int clientIf, String address,
++            int subrateMode, AttributionSource attributionSource) {
++        if (!Utils.checkConnectPermissionForDataDelivery(
++                this, attributionSource, "GattService subrateModeRequest")) {
++            return;
++        }
++
++        int subrateMin;
++        int subrateMax;
++        int maxLatency;
++        int contNumber;
++        // Link supervision timeout is measured in N * 10ms
++        int supervisionTimeout = 500; // 5s
++
++        switch (subrateMode) {
++            case BluetoothGatt.SUBRATE_REQ_HIGH:
++                subrateMin =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_min_subrate);
++                subrateMax =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_max_subrate);
++                maxLatency =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_latency);
++                contNumber =
++                        getResources().getInteger(R.integer.subrate_mode_high_priority_cont_number);
++                break;
++
++            case BluetoothGatt.SUBRATE_REQ_LOW_POWER:
++                subrateMin =
++                        getResources().getInteger(R.integer.subrate_mode_low_power_min_subrate);
++                subrateMax =
++                        getResources().getInteger(R.integer.subrate_mode_low_power_max_subrate);
++                maxLatency = getResources().getInteger(R.integer.subrate_mode_low_power_latency);
++                contNumber = getResources().getInteger(R.integer.subrate_mode_low_power_cont_number);
++                break;
++
++            default:
++                // Using the values for SUBRATE_REQ_BALANCED.
++                subrateMin =
++                        getResources().getInteger(R.integer.subrate_mode_balanced_min_subrate);
++                subrateMax =
++                        getResources().getInteger(R.integer.subrate_mode_balanced_max_subrate);
++                maxLatency = getResources().getInteger(R.integer.subrate_mode_balanced_latency);
++                contNumber = getResources().getInteger(R.integer.subrate_mode_balanced_cont_number);
++                break;
++        }
++
++        if (DBG) {
++            Log.d(TAG, "subrateModeRequest() - address=" + address + ", subrate min/max="
++                  + subrateMin + "/" + subrateMax + ", maxLatency=" + maxLatency
++                  + " continuation Number=" + contNumber +", timeout=" + supervisionTimeout);
++        }
++
++        gattSubrateRequestNative(clientIf, address, subrateMin, subrateMax, maxLatency,
++                                 contNumber, supervisionTimeout);
++    }
++
++    void leSubrateRequest(int clientIf, String address, int subrateMin, int subrateMax,
++            int maxLatency, int contNumber, int supervisionTimeout,
++            AttributionSource attributionSource) {
++        if (!Utils.checkConnectPermissionForDataDelivery(
++                this, attributionSource, "GattService leSubrateRequest")) {
++            return;
++        }
++
++        if (DBG) {
++            Log.d(TAG, "leSubrateRequest() - address=" + address + ", subrate min/max="
++                  + subrateMin + "/" + subrateMax + ", maxLatency=" + maxLatency
++                  + " continuation Number=" + contNumber +", timeout=" + supervisionTimeout);
++        }
++
++        gattSubrateRequestNative(clientIf, address, subrateMin, subrateMax, maxLatency,
++                                 contNumber, supervisionTimeout);
++    }
++
+     /**************************************************************************
+      * Callback functions - SERVER
+      *************************************************************************/
+@@ -4875,4 +5046,7 @@ public class GattService extends ProfileService {
+ 
+     private native void gattServerSendResponseNative(int serverIf, int connId, int transId,
+             int status, int handle, int offset, byte[] val, int authReq);
++
++    private native void gattSubrateRequestNative(int clientIf, String address, int subrateMin,
++            int subrateMax, int maxLatency, int contNumber, int supervisionTimeout);
+ }
+-- 
+2.25.1
+
