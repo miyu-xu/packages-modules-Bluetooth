@@ -16,6 +16,24 @@
       "message": "Given that gatt can be `None`, there are a lot of naked unwraps in bluetooth_gatt.rs.\n\nWe may want to get rid of the `Option\u003cGatt\u003e` entirely and just add a check in each gatt call whether it is initialized and to call initialize first.\n\nThis could be pulled into the `ccall!` and `cxxcall!` macros. Something else to consider adding to the end of this series.",
       "revId": "de3759e64c4e7c1bddd722fbbc13152add32a213",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e61aff1_74f331ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-08T22:34:41Z",
+      "side": 1,
+      "message": "Yeah, I already add that as a todo: https://r.android.com/c/platform/packages/modules/Bluetooth/+/2264223/9/system/gd/rust/linux/stack/src/bluetooth_gatt.rs#727",
+      "parentUuid": "9d8431ca_5edaefa6",
+      "revId": "de3759e64c4e7c1bddd722fbbc13152add32a213",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
