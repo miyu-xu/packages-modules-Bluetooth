@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8efa3602_178db1af",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T08:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df350943_6b3ad3d6",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 20
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e5b7851_66da41b6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-05T06:20:10Z",
       "side": 1,
       "message": "`ret` will never be \u003c 0 here\nSorry my last comment on InitializeClientSocket made you change it\u0027s return value.",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 20
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36fb0ea1_4dc7876e",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T08:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e5b7851_66da41b6",
       "range": {
         "startLine": 184,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a95102af_288bcf7a",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T08:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1d8a35e_43888afb",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 60
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4b728e1_43482507",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-05T06:20:10Z",
       "side": 1,
       "message": "Please keep the list sorted",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 34
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2f9ae31_6e652e7c",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-08T08:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b728e1_43482507",
       "range": {
         "startLine": 184,
         "startChar": 8,
