@@ -456,6 +456,24 @@
       "parentUuid": "ed550bc2_60225f67",
       "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eae40d09_cec7e4db",
+        "filename": "system/test/headless/tools/build_timestamp.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T23:27:22Z",
+      "side": 1,
+      "message": "I\u0027m aware and I agree that it\u0027s more human friendly to have a `date`.\n\n\u003e A per-build SHA would also make this not reproducible, no ?\n\nA per-build SHA no, but the git commit SHA yes, as you would have the same as long as you build the same commit.\n\nIt was mostly a heads up, I\u0027m totally fine disregarding it 😊",
+      "parentUuid": "336a3050_098ff395",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
