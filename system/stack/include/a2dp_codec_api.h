@@ -523,6 +523,13 @@ typedef struct {
   void (*set_transmit_queue_length)(size_t transmit_queue_length);
 } tA2DP_ENCODER_INTERFACE;
 
+// Gets peer sink endpoint codec type.
+// |p_codec_info| contains information about the codec capabilities.
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+int A2DP_IotGetPeerSinkCodecType(const uint8_t* p_codec_info);
+#endif
+
 // Prototype for a callback to receive decoded audio data from a
 // tA2DP_DECODER_INTERFACE|.
 // |buf| is a pointer to the data.
