@@ -284,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "225e45c3_1ddda443",
+        "filename": "system/test/headless/interface.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T23:24:22Z",
+      "side": 1,
+      "message": "I don\u0027t understand the relation between `packed` struct(s) and interfacing with `C` code as it\u0027s the same abi.",
+      "parentUuid": "74bfbfaf_ea37c8fd",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80014f7a_4c7b2f6e",
         "filename": "system/test/headless/interface.h",
         "patchSetId": 20
