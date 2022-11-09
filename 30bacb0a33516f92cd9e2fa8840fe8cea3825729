@@ -16,6 +16,23 @@
       "message": "Bypass presubmit - Unrelated failure in apct/device_boot_health (known issue) + all other builds+tests passing",
       "revId": "30bacb0a33516f92cd9e2fa8840fe8cea3825729",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29140c88_9af5f14f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-09T01:22:45Z",
+      "side": 1,
+      "message": "Will cherry-pick directly to CrOS and wait for OMG to be over instead of bypassing presubmit",
+      "revId": "30bacb0a33516f92cd9e2fa8840fe8cea3825729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
