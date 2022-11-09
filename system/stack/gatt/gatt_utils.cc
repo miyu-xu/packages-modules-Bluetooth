@@ -983,6 +983,7 @@ tGATT_CLCB* gatt_clcb_alloc(uint16_t conn_id) {
   tGATT_TCB* p_tcb = gatt_get_tcb_by_idx(tcb_idx);
   tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
 
+  memset(&clcb, 0, sizeof(clcb));
   clcb.conn_id = conn_id;
   clcb.p_reg = p_reg;
   clcb.p_tcb = p_tcb;
