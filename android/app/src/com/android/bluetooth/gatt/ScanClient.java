@@ -117,4 +117,27 @@ import java.util.Objects;
                 .build();
         return true;
     }
+
+    /**
+     * Update scan settings with the new report delay.
+     * @param newReportDelayMillis
+     * @return true if scan settings are updated, false otherwise.
+     */
+    public boolean updateReportDelay(long newReportDelayMillis) {
+        if (settings.getReportDelayMillis() == newReportDelayMillis) {
+            return false;
+        }
+
+        ScanSettings.Builder builder = new ScanSettings.Builder();
+        settings = builder.setScanMode(settings.getScanMode())
+                .setCallbackType(settings.getCallbackType())
+                .setScanResultType(settings.getScanResultType())
+                .setReportDelay(newReportDelayMillis)
+                .setNumOfMatches(settings.getNumOfMatches())
+                .setMatchMode(settings.getMatchMode())
+                .setLegacy(settings.getLegacy())
+                .setPhy(settings.getPhy())
+                .build();
+        return true;
+    }
 }
