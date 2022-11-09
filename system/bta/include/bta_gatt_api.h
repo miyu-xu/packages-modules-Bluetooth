@@ -345,6 +345,7 @@ typedef struct {
 typedef enum : uint8_t {
   BTA_GATT_DIRECT_CONNECTION = 0x00,
   BTA_GATT_BKG_CONNECT_ALLOW_LIST = 0x01,
+  BTA_GATT_BKG_CONNECT_TARGETED_ANNOUNCEMENTS = 0x02,
 } tBTA_GATT_CONN_TYPE;
 
 typedef struct {
