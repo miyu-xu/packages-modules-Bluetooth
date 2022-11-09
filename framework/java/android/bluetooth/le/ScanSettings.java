@@ -96,6 +96,12 @@ public final class ScanSettings implements Parcelable {
      */
     public static final int CALLBACK_TYPE_MATCH_LOST = 4;
 
+    /**
+     * TODO: Trigger a callback in auto batch
+     * @hide
+     */
+    public static final int CALLBACK_TYPE_AUTO_BATCH = 8;
+
 
     /**
      * Determines how many advertisements to match per filter, as this is scarce hw resource
@@ -337,6 +343,7 @@ public final class ScanSettings implements Parcelable {
         // Returns true if the callbackType is valid.
         private boolean isValidCallbackType(int callbackType) {
             if (callbackType == CALLBACK_TYPE_ALL_MATCHES
+                    || callbackType == (CALLBACK_TYPE_ALL_MATCHES | CALLBACK_TYPE_AUTO_BATCH)
                     || callbackType == CALLBACK_TYPE_FIRST_MATCH
                     || callbackType == CALLBACK_TYPE_MATCH_LOST) {
                 return true;
