@@ -460,6 +460,20 @@ extern void BTM_ReadDevInfo(const RawAddress& remote_bda,
                             tBT_DEVICE_TYPE* p_dev_type,
                             tBLE_ADDR_TYPE* p_addr_type);
 
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+/*******************************************************************************
+ *
+ * Function         BTM_GetRemoteDeviceName
+ *
+ * Description      This function is called to get the dev name of remote device
+ *                  from NV
+ *
+ * Returns          true if success; otherwise failed.
+ *
+ *******************************************************************************/
+extern bool BTM_GetRemoteDeviceName(const RawAddress& bda, BD_NAME bd_name);
+#endif
+
 /*******************************************************************************
  *
  * Function         BTM_ReadConnectedTransportAddress

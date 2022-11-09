@@ -1025,6 +1025,11 @@
 #define BTSNOOP_MEM TRUE
 #endif
 
+/* Enable iot info logging */
+#ifndef BT_IOT_LOGGING_ENABLED
+#define BT_IOT_LOGGING_ENABLED TRUE
+#endif
+
 #include "bt_trace.h"
 
 #ifndef BTM_DELAY_AUTH_MS
