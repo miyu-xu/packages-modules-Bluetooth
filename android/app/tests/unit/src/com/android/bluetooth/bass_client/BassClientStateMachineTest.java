@@ -13,233 +13,245 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.android.bluetooth.opp;
 
-package com.android.bluetooth.bass_client;
+import static com.android.bluetooth.opp.BluetoothOppTransfer.TRANSPORT_CONNECTED;
+import static com.android.bluetooth.opp.BluetoothOppTransfer.TRANSPORT_ERROR;
 
-import static android.bluetooth.BluetoothGatt.GATT_SUCCESS;
+import static com.google.common.truth.Truth.assertThat;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.after;
-import static org.mockito.Mockito.timeout;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.reset;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothProfile;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.HandlerThread;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Looper;
+import android.os.Message;
 
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
-import com.android.bluetooth.TestUtils;
-import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.BluetoothMethodProxy;
+import com.android.bluetooth.BluetoothObexTransport;
+import com.android.obex.ObexTransport;
 
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
-import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 @MediumTest
-@RunWith(JUnit4.class)
-public class BassClientStateMachineTest {
-    @Rule
-    public final MockitoRule mockito = MockitoJUnit.rule();
+@RunWith(AndroidJUnit4.class)
+public class BluetoothOppTransferTest {
+    private final Uri mUri = Uri.parse("file://Idontknow/Justmadeitup");
+    private final String mHintString = "this is a object that take 4 bytes";
+    private final String mFilename = "random.jpg";
+    private final String mMimetype = "image/jpeg";
+    private final int mDirection = BluetoothShare.DIRECTION_INBOUND;
+    private final String mDestination = "01:23:45:67:89:AB";
+    private final int mVisibility = BluetoothShare.VISIBILITY_VISIBLE;
+    private final int mConfirm = BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED;
+    private final int mStatus = BluetoothShare.STATUS_PENDING;
+    private final int mTotalBytes = 1023;
+    private final int mCurrentBytes = 42;
+    private final int mTimestamp = 123456789;
+    private final boolean mMediaScanned = false;
 
-    private BluetoothAdapter mAdapter;
-    private HandlerThread mHandlerThread;
-    private StubBassClientStateMachine mBassClientStateMachine;
-    private static final int CONNECTION_TIMEOUT_MS = 1_000;
-    private static final int TIMEOUT_MS = 2_000;
-    private static final int WAIT_MS = 1_200;
-
-    private BluetoothDevice mTestDevice;
-    @Mock private AdapterService mAdapterService;
-    @Mock private BassClientService mBassClientService;
+    @Mock
+    BluetoothOppObexSession mSession;
+    @Spy
+    BluetoothMethodProxy mCallProxy = BluetoothMethodProxy.getInstance();
+    Context mContext;
+    BluetoothOppBatch mBluetoothOppBatch;
+    BluetoothOppTransfer mTransfer;
+    BluetoothOppTransfer.EventHandler mEventHandler;
+    BluetoothOppShareInfo mInitShareInfo;
 
     @Before
     public void setUp() throws Exception {
-        TestUtils.setAdapterService(mAdapterService);
+        MockitoAnnotations.initMocks(this);
+        BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
 
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        // Get a device for testing
-        mTestDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
-
-        // Set up thread and looper
-        mHandlerThread = new HandlerThread("BassClientStateMachineTestHandlerThread");
-        mHandlerThread.start();
-        mBassClientStateMachine = new StubBassClientStateMachine(mTestDevice,
-                mBassClientService, mHandlerThread.getLooper(), CONNECTION_TIMEOUT_MS);
-        mBassClientStateMachine.start();
+        mInitShareInfo = new BluetoothOppShareInfo(123, mUri, mHintString, mFilename, mMimetype,
+                mDirection, mDestination, mVisibility, mConfirm, mStatus, mTotalBytes,
+                mCurrentBytes,
+                mTimestamp, mMediaScanned);
+        mContext = spy(
+                new ContextWrapper(
+                        InstrumentationRegistry.getInstrumentation().getTargetContext()));
+        mBluetoothOppBatch = spy(new BluetoothOppBatch(mContext, mInitShareInfo));
+        mTransfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch, mSession);
+        mEventHandler = mTransfer.new EventHandler(Looper.getMainLooper());
     }
 
     @After
-    public void tearDown() throws Exception {
-        mBassClientStateMachine.doQuit();
-        mHandlerThread.quit();
-        TestUtils.clearAdapterService(mAdapterService);
-    }
-
-    /**
-     * Test that default state is disconnected
-     */
-    @Test
-    public void testDefaultDisconnectedState() {
-        Assert.assertEquals(BluetoothProfile.STATE_DISCONNECTED,
-                mBassClientStateMachine.getConnectionState());
-    }
-
-    /**
-     * Allow/disallow connection to any device.
-     *
-     * @param allow if true, connection is allowed
-     */
-    private void allowConnection(boolean allow) {
-        when(mBassClientService.okToConnect(any(BluetoothDevice.class))).thenReturn(allow);
-    }
-
-    private void allowConnectGatt(boolean allow) {
-        mBassClientStateMachine.mShouldAllowGatt = allow;
-    }
-
-    /**
-     * Test that an incoming connection with policy forbidding connection is rejected
-     */
-    @Test
-    public void testOkToConnectFails() {
-        allowConnection(false);
-        allowConnectGatt(true);
-
-        // Inject an event for when incoming connection is requested
-        mBassClientStateMachine.sendMessage(BassClientStateMachine.CONNECT);
-
-        // Verify that no connection state broadcast is executed
-        verify(mBassClientService, after(WAIT_MS).never()).sendBroadcast(any(Intent.class),
-                anyString());
-
-        // Check that we are in Disconnected state
-        Assert.assertThat(mBassClientStateMachine.getCurrentState(),
-                IsInstanceOf.instanceOf(BassClientStateMachine.Disconnected.class));
+    public void tearDown() {
+        BluetoothMethodProxy.setInstanceForTesting(null);
     }
 
     @Test
-    public void testFailToConnectGatt() {
-        allowConnection(true);
-        allowConnectGatt(false);
+    public void onShareAdded_checkFirstPendingShare() {
+        BluetoothOppShareInfo newShareInfo = new BluetoothOppShareInfo(1, mUri, mHintString,
+                mFilename, mMimetype, BluetoothShare.DIRECTION_INBOUND, mDestination, mVisibility,
+                BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED, mStatus, mTotalBytes,
+                mCurrentBytes,
+                mTimestamp, mMediaScanned);
 
-        // Inject an event for when incoming connection is requested
-        mBassClientStateMachine.sendMessage(BassClientStateMachine.CONNECT);
+        doAnswer(invocation -> {
+            assertThat((BluetoothOppShareInfo) invocation.getArgument(0))
+                    .isEqualTo(mInitShareInfo);
+            return null;
+        }).when(mSession).addShare(any(BluetoothOppShareInfo.class));
 
-        // Verify that no connection state broadcast is executed
-        verify(mBassClientService, after(WAIT_MS).never()).sendBroadcast(any(Intent.class),
-                anyString());
-
-        // Check that we are in Disconnected state
-        Assert.assertThat(mBassClientStateMachine.getCurrentState(),
-                IsInstanceOf.instanceOf(BassClientStateMachine.Disconnected.class));
-        assertNull(mBassClientStateMachine.mBluetoothGatt);
+        // This will trigger mTransfer.onShareAdded(), which will call mTransfer
+        // .processCurrentShare(),
+        // which will add the first pending share to the session
+        mBluetoothOppBatch.addShare(newShareInfo);
+        verify(mSession).addShare(any(BluetoothOppShareInfo.class));
     }
 
     @Test
-    public void testSuccessfullyConnected() {
-        allowConnection(true);
-        allowConnectGatt(true);
-
-        // Inject an event for when incoming connection is requested
-        mBassClientStateMachine.sendMessage(BassClientStateMachine.CONNECT);
-
-        // Verify that one connection state broadcast is executed
-        ArgumentCaptor<Intent> intentArgument1 = ArgumentCaptor.forClass(Intent.class);
-        verify(mBassClientService, timeout(TIMEOUT_MS).times(1)).sendBroadcast(
-                intentArgument1.capture(), anyString(), any(Bundle.class));
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING,
-                intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
-
-        Assert.assertThat(mBassClientStateMachine.getCurrentState(),
-                IsInstanceOf.instanceOf(BassClientStateMachine.Connecting.class));
-
-        assertNotNull(mBassClientStateMachine.mGattCallback);
-        mBassClientStateMachine.notifyConnectionStateChanged(
-                GATT_SUCCESS, BluetoothProfile.STATE_CONNECTED);
-
-        // Verify that the expected number of broadcasts are executed:
-        // - two calls to broadcastConnectionState(): Disconnected -> Connecting -> Connected
-        ArgumentCaptor<Intent> intentArgument2 = ArgumentCaptor.forClass(Intent.class);
-        verify(mBassClientService, timeout(TIMEOUT_MS).times(2)).sendBroadcast(
-                intentArgument2.capture(), anyString(), any(Bundle.class));
-
-        Assert.assertThat(mBassClientStateMachine.getCurrentState(),
-                IsInstanceOf.instanceOf(BassClientStateMachine.Connected.class));
+    public void onBatchCanceled_checkStatus() {
+        doReturn(0).when(mCallProxy).contentResolverDelete(any(), any(), any(), any());
+        // This will trigger mTransfer.onBatchCanceled(),
+        // which will then change the status of the batch accordingly
+        mBluetoothOppBatch.cancelBatch();
+        assertThat(mBluetoothOppBatch.mStatus).isEqualTo(Constants.BATCH_STATUS_FINISHED);
     }
 
     @Test
-    public void testConnectGattTimeout() {
-        allowConnection(true);
-        allowConnectGatt(true);
-
-        // Inject an event for when incoming connection is requested
-        mBassClientStateMachine.sendMessage(BassClientStateMachine.CONNECT);
-
-        // Verify that one connection state broadcast is executed
-        ArgumentCaptor<Intent> intentArgument1 = ArgumentCaptor.forClass(Intent.class);
-        verify(mBassClientService, timeout(TIMEOUT_MS).times(1)).sendBroadcast(
-                intentArgument1.capture(), anyString(), any(Bundle.class));
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING,
-                intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
-
-        Assert.assertThat(mBassClientStateMachine.getCurrentState(),
-                IsInstanceOf.instanceOf(BassClientStateMachine.Connecting.class));
-
-        // Verify that one connection state broadcast is executed
-        ArgumentCaptor<Intent> intentArgument2 = ArgumentCaptor.forClass(Intent.class);
-        verify(mBassClientService, timeout(TIMEOUT_MS).times(
-                2)).sendBroadcast(intentArgument2.capture(), anyString(), any(Bundle.class));
-        Assert.assertEquals(BluetoothProfile.STATE_DISCONNECTED,
-                intentArgument2.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
-
-        Assert.assertThat(mBassClientStateMachine.getCurrentState(),
-                IsInstanceOf.instanceOf(BassClientStateMachine.Disconnected.class));
+    public void start_bluetoothDisabled_batchFail() {
+        mTransfer.start();
+        // Since Bluetooth is disabled, the batch will fail
+        assertThat(mBluetoothOppBatch.mStatus).isEqualTo(Constants.BATCH_STATUS_FAILED);
     }
 
-    // It simulates GATT connection for testing.
-    public static class StubBassClientStateMachine extends BassClientStateMachine {
-        boolean mShouldAllowGatt = true;
+    @Test
+    public void start_receiverRegistered() {
+        doReturn(true).when(mCallProxy).bluetoothAdapterIsEnabled(any());
+        mTransfer.start();
+        verify(mContext).registerReceiver(any(), any(IntentFilter.class));
+        // need this, or else the handler thread might throw in middle of the next test
+        mTransfer.stop();
+    }
 
-        StubBassClientStateMachine(BluetoothDevice device, BassClientService service, Looper looper,
-                int connectTimeout) {
-            super(device, service, looper, connectTimeout);
-        }
+    @Test
+    public void stop_unregisterRegistered() {
+        doReturn(true).when(mCallProxy).bluetoothAdapterIsEnabled(any());
+        mTransfer.start();
+        mTransfer.stop();
+        verify(mContext).unregisterReceiver(any());
+    }
 
-        @Override
-        public boolean connectGatt(Boolean autoConnect) {
-            mGattCallback = new GattCallback();
-            return mShouldAllowGatt;
-        }
+    @Test
+    public void eventHandler_handleMessage_TRANSPORT_ERROR_connectThreadIsNull() {
+        Message message = Message.obtain(mEventHandler, TRANSPORT_ERROR);
+        mEventHandler.handleMessage(message);
+        assertThat(mTransfer.mConnectThread).isNull();
+        assertThat(mBluetoothOppBatch.mStatus).isEqualTo(Constants.BATCH_STATUS_FAILED);
+    }
 
-        public void notifyConnectionStateChanged(int status, int newState) {
-            if (mGattCallback != null) {
-                mGattCallback.onConnectionStateChange(mBluetoothGatt, status, newState);
-            }
-        }
+// TODO: try to use ShadowBluetoothDevice
+//    @Test
+//    public void eventHandler_handleMessage_SOCKET_ERROR_RETRY_connectThreadInitiated() {
+//        BluetoothDevice bluetoothDevice = ShadowBluetoothDevice();
+//        Message message = Message.obtain(mEventHandler, SOCKET_ERROR_RETRY, bluetoothDevice);
+//        mEventHandler.handleMessage(message);
+//        assertThat(mTransfer.mConnectThread).isNotNull();
+//    }
+
+    @Test
+    public void eventHandler_handleMessage_TRANSPORT_CONNECTED_obexSessionStarted() {
+        ObexTransport transport = mock(BluetoothObexTransport.class);
+        Message message = Message.obtain(mEventHandler, TRANSPORT_CONNECTED, transport);
+        mEventHandler.handleMessage(message);
+        assertThat(mBluetoothOppBatch.mStatus).isEqualTo(Constants.BATCH_STATUS_RUNNING);
+    }
+
+    @Test
+    public void eventHandler_handleMessage_MSG_SHARE_COMPLETE_shareAdded() {
+        Message message = Message.obtain(mEventHandler, BluetoothOppObexSession.MSG_SHARE_COMPLETE);
+
+        mInitShareInfo = new BluetoothOppShareInfo(123, mUri, mHintString, mFilename, mMimetype,
+                BluetoothShare.DIRECTION_OUTBOUND, mDestination, mVisibility, mConfirm, mStatus,
+                mTotalBytes, mCurrentBytes, mTimestamp, mMediaScanned);
+        mContext = spy(
+                new ContextWrapper(
+                        InstrumentationRegistry.getInstrumentation().getTargetContext()));
+        mBluetoothOppBatch = spy(new BluetoothOppBatch(mContext, mInitShareInfo));
+        mTransfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch, mSession);
+        mEventHandler = mTransfer.new EventHandler(Looper.getMainLooper());
+        mEventHandler.handleMessage(message);
+
+        // Since there is still a share in mBluetoothOppBatch, it will be added into session
+        verify(mSession).addShare(any(BluetoothOppShareInfo.class));
+    }
+
+    @Test
+    public void eventHandler_handleMessage_MSG_SESSION_COMPLETE_batchFinished() {
+        BluetoothOppShareInfo info = mock(BluetoothOppShareInfo.class);
+        Message message = Message.obtain(mEventHandler,
+                BluetoothOppObexSession.MSG_SESSION_COMPLETE,
+                info);
+        mEventHandler.handleMessage(message);
+
+        assertThat(mBluetoothOppBatch.mStatus).isEqualTo(Constants.BATCH_STATUS_FINISHED);
+    }
+
+    @Test
+    public void eventHandler_handleMessage_MSG_SESSION_ERROR_batchFailed() {
+        BluetoothOppShareInfo info = mock(BluetoothOppShareInfo.class);
+        Message message = Message.obtain(mEventHandler, BluetoothOppObexSession.MSG_SESSION_ERROR,
+                info);
+        mEventHandler.handleMessage(message);
+
+        assertThat(mBluetoothOppBatch.mStatus).isEqualTo(Constants.BATCH_STATUS_FAILED);
+    }
+
+    @Test
+    public void eventHandler_handleMessage_MSG_SHARE_INTERRUPTED_batchFailed() {
+
+        mInitShareInfo = new BluetoothOppShareInfo(123, mUri, mHintString, mFilename, mMimetype,
+                BluetoothShare.DIRECTION_OUTBOUND, mDestination, mVisibility, mConfirm, mStatus,
+                mTotalBytes, mCurrentBytes, mTimestamp, mMediaScanned);
+        mBluetoothOppBatch = spy(new BluetoothOppBatch(mContext, mInitShareInfo));
+        mTransfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch, mSession);
+        mEventHandler = mTransfer.new EventHandler(Looper.getMainLooper());
+
+        BluetoothOppShareInfo info = mock(BluetoothOppShareInfo.class);
+        Message message = Message.obtain(mEventHandler,
+                BluetoothOppObexSession.MSG_SHARE_INTERRUPTED,
+                info);
+        mEventHandler.handleMessage(message);
+
+        assertThat(mBluetoothOppBatch.mStatus).isEqualTo(Constants.BATCH_STATUS_FAILED);
+    }
+
+    @Test
+    public void eventHandler_handleMessage_MSG_CONNECT_TIMEOUT() {
+        Message message = Message.obtain(mEventHandler,
+                BluetoothOppObexSession.MSG_CONNECT_TIMEOUT);
+        BluetoothOppShareInfo newInfo = new BluetoothOppShareInfo(321, mUri, mHintString,
+                mFilename, mMimetype, mDirection, mDestination, mVisibility, mConfirm, mStatus,
+                mTotalBytes, mCurrentBytes, mTimestamp, mMediaScanned);
+        // Adding new info will assign value to mCurrentShare
+        mBluetoothOppBatch.addShare(newInfo);
+        mEventHandler.handleMessage(message);
+
+        verify(mContext).sendBroadcast(argThat(
+                arg -> arg.getAction().equals(BluetoothShare.USER_CONFIRMATION_TIMEOUT_ACTION)));
     }
 }
