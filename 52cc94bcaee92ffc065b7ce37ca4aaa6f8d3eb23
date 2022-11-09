@@ -1,0 +1,210 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "377bc121_6bfa7eb7",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "Could we use `-Wall -Wextra -Werror` ? or does it enable to much errors ?",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8622a55d_775b9583",
+        "filename": "system/test/headless/connect/connect.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "Why not use LOG_CONSOLE here ?",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f9ed2f_b93d348c",
+        "filename": "system/test/headless/discovery/discovery.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "It seems wrong, should it not be\n```\n  for (int i \u003d 0; i \u003c params.num_properties; i++) {\n    process_property(params.bd_addr, params.properties + i);\n  }\n```\n?\n\nNotice the `+ i` after `params.properties`\n\n(And same for the other occurrences of this code)",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 3
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1331df9e_2e4cd293",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "Why not use utf-8 version of it directly and put it directly in the format string ?\nThis would make this more visual.",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e8a41a3_7defe94c",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "nit: Why not assign the iterator returned from `find` and use it directly ?\n```\nauto callback_list \u003d interface_api_callback_map_.find(__func__);\nif (callback_list !\u003d interface_api_callback_map_.end()) {\n}\n```\n\n(And same for the other occurrences of this pattern)",
+      "range": {
+        "startLine": 166,
+        "startChar": 25,
+        "endLine": 166,
+        "endChar": 65
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e91754_00ec33c0",
+        "filename": "system/test/headless/interface.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "Do it really need to be packed ?\n(same for all the other packed)",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80014f7a_4c7b2f6e",
+        "filename": "system/test/headless/interface.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "Could we use the default c++ copy constructor ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 70
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba510678_7d0514ca",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "`STDERR_FILENO`",
+      "range": {
+        "startLine": 116,
+        "startChar": 23,
+        "endLine": 116,
+        "endChar": 24
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bc791b0_36051803",
+        "filename": "system/test/headless/timeout.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "Why not use `std::chrono::milliseconds` ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 75
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed550bc2_60225f67",
+        "filename": "system/test/headless/tools/build_timestamp.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T19:25:33Z",
+      "side": 1,
+      "message": "nit: Using the date here make the build non reproducible.\nI don\u0027t know how much Android values reproducible build hence the nitpick.\nWould not a git commit sha/short rev do the job here ?",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
