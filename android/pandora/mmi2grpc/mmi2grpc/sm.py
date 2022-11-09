@@ -23,7 +23,7 @@ from mmi2grpc._streaming import StreamWrapper
 
 from pandora_experimental.security_grpc import Security
 from pandora_experimental.host_grpc import Host
-from pandora_experimental.host_pb2 import ConnectabilityMode, AddressType
+from pandora_experimental.host_pb2 import ConnectabilityMode, OwnAddressType
 
 
 def debug(*args, **kwargs):
@@ -46,7 +46,7 @@ class SMProxy(ProfileProxy):
         """
         Initiate an connection from the IUT to the PTS.
         """
-        self.connection = self.host.ConnectLE(address=pts_addr).connection
+        self.connection = self.host.ConnectLE(public=pts_addr).connection
         return "OK"
 
     @assert_description
@@ -82,7 +82,7 @@ class SMProxy(ProfileProxy):
         """
         Please reset your device.
         """
-        self.host.SoftReset()
+        self.host.Reset()
         return "OK"
 
     @assert_description
@@ -91,8 +91,8 @@ class SMProxy(ProfileProxy):
         Action: Place the IUT in connectable mode
         """
         self.host.StartAdvertising(
-            connectability_mode=ConnectabilityMode.CONNECTABILITY_CONNECTABLE,
-            own_address_type=AddressType.PUBLIC,
+            connectable=True,
+            own_address_type=OwnAddressType.PUBLIC,
         )
         return "OK"
 
