@@ -1,0 +1,1314 @@
+/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From 0a58eaca2017cfe6f03be2bbc03479b102657968 Mon Sep 17 00:00:00 2001
+From: Mingbo Zhang <quic_mingboz@quicinc.com>
+Date: Tue, 25 Oct 2022 17:16:57 +0800
+Subject: [PATCH] device_iot_config: Add new iot config apis to store remote
+ info(1/2)
+
+device_iot_config apis are used to store remote device info
+to local conf file. For the remote info, please refer to
+device_iot_conf_defs.h
+
+CRs-Fixed: 2333805
+Change-Id: I2f0249bf12612b1abcb0a24749c1730108871a75
+
+device_iot_config: store iot device info
+
+Store remote basic info (e.g. name, dev class, dev type, etc.)
+and profile info (a2dp/hfp/avrcp/gap) to local conf file.
+
+CRs-Fixed: 2333805
+Change-Id: Ia05144c8353036fc8819b25a4eb87d3b9fc2b2ef
+---
+ bta/ag/bta_ag_act.cc            | 14 ++++++++++
+ bta/av/bta_av_aact.cc           | 21 ++++++++++++--
+ bta/av/bta_av_act.cc            | 60 ++++++++++++++++++++++++++++++++++++++--
+ bta/dm/bta_dm_act.cc            | 14 ++++++++++
+ btif/Android.bp                 |  1 +
+ btif/co/bta_av_co.cc            | 21 ++++++++++++++
+ btif/src/bluetooth.cc           |  4 +++
+ btif/src/btif_av.cc             | 27 +++++++++++++++++-
+ btif/src/btif_core.cc           |  7 +++++
+ btif/src/btif_dm.cc             | 11 ++++++--
+ btif/src/btif_hf.cc             | 61 +++++++++++++++++++++++++++++++++++++++++
+ btif/src/stack_manager.cc       | 13 +++++++++
+ internal_include/bt_target.h    |  5 ++++
+ osi/include/config.h            |  9 ++++++
+ osi/src/config.cc               | 40 +++++++++++++++++++++++++++
+ stack/a2dp/a2dp_codec_config.cc | 47 +++++++++++++++++++++++++++++++
+ stack/avct/avct_lcb.cc          |  6 ++++
+ stack/avct/avct_lcb_act.cc      | 16 ++++++++++-
+ stack/btm/btm_acl.cc            | 34 +++++++++++++++++++++++
+ stack/btm/btm_ble_gap.cc        | 10 +++++++
+ stack/btm/btm_sco.cc            | 12 +++++++-
+ stack/btm/btm_sec.cc            |  7 +++++
+ stack/btu/btu_hcif.cc           |  8 ++++++
+ stack/hcic/hcicmds.cc           |  4 +++
+ stack/include/a2dp_codec_api.h  |  7 +++++
+ stack/include/btm_ble_api.h     | 14 ++++++++++
+ stack/l2cap/l2c_link.cc         | 37 +++++++++++++++++++++++++
+ 27 files changed, 500 insertions(+), 10 deletions(-)
+
+diff --git a/bta/ag/bta_ag_act.cc b/bta/ag/bta_ag_act.cc
+index 932f016..8d104a0 100644
+--- a/bta/ag/bta_ag_act.cc
++++ b/bta/ag/bta_ag_act.cc
+@@ -74,6 +74,7 @@
+ #include "bta_ag_twsp_dev.h"
+ #include "bta_ag_twsp.h"
+ #endif
++#include "device/include/device_iot_config.h"
+ 
+ /*****************************************************************************
+  *  Constants
+@@ -307,6 +308,11 @@ void bta_ag_disc_int_res(tBTA_AG_SCB* p_scb, tBTA_AG_DATA* p_data) {
+ 
+       /* send ourselves sdp ok event */
+       event = BTA_AG_DISC_OK_EVT;
++
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_set_hex_if_greater(p_scb->peer_addr,
++              IOT_CONF_KEY_HFP_VERSION, p_scb->peer_version, IOT_CONF_BYTE_NUM_2);
++#endif
+     }
+   }
+ 
+@@ -355,6 +361,10 @@ void bta_ag_disc_acp_res(tBTA_AG_SCB* p_scb, tBTA_AG_DATA* p_data) {
+       p_data->disc_result.status == SDP_DB_FULL) {
+     /* get attributes */
+     bta_ag_sdp_find_attr(p_scb, bta_ag_svc_mask[p_scb->conn_service]);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    device_iot_config_addr_set_hex_if_greater(p_scb->peer_addr,
++            IOT_CONF_KEY_HFP_VERSION, p_scb->peer_version, IOT_CONF_BYTE_NUM_2);
++#endif
+   }
+ 
+   /* free discovery db */
+@@ -693,6 +703,10 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, tBTA_AG_DATA* p_data) {
+          interop_database_add_addr(INTEROP_HFP_1_7_BLACKLIST,
+                           &p_scb->peer_addr, 3);
+       }
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    device_iot_config_addr_set_hex_if_greater(p_scb->peer_addr,
++        IOT_CONF_KEY_HFP_VERSION, p_scb->peer_version, IOT_CONF_BYTE_NUM_2);
++#endif
+   } else {
+       //do service discovery to get features for HSP and also for HFP
+       //if the peer version can't be fetched from the config file
+diff --git a/bta/av/bta_av_aact.cc b/bta/av/bta_av_aact.cc
+index f20f6ef..115d4bd 100644
+--- a/bta/av/bta_av_aact.cc
++++ b/bta/av/bta_av_aact.cc
+@@ -85,6 +85,7 @@
+ #if (BTA_AR_INCLUDED == TRUE)
+ #include "bta_ar_api.h"
+ #endif
++#include "device/include/device_iot_config.h"
+ 
+ /*****************************************************************************
+  *  Constants
+@@ -847,8 +848,13 @@ static void bta_av_a2dp_sdp_cback(bool found, tA2DP_Service* p_service) {
+   } else {
+     p_msg->hdr.event =
+         (found) ? BTA_AV_SDP_DISC_OK_EVT : BTA_AV_SDP_DISC_FAIL_EVT;
+-    if (found && (p_service != NULL))
++    if (found && (p_service != NULL)) {
+       p_scb->avdt_version = p_service->avdt_version;
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_set_hex_if_greater(p_scb->peer_addr,
++              IOT_CONF_KEY_A2DP_VERSION, p_scb->avdt_version, IOT_CONF_BYTE_NUM_2);
++#endif
++    }
+     else
+       p_scb->avdt_version = 0x00;
+   }
+@@ -1421,10 +1427,19 @@ void bta_av_config_ind(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
+     p_info->seid = p_data->str_msg.msg.config_ind.int_seid;
+ 
+     /* Sep type of Peer will be oppsite role to our local sep */
+-    if (local_sep == AVDT_TSEP_SRC)
++    if (local_sep == AVDT_TSEP_SRC) {
+       p_info->tsep = AVDT_TSEP_SNK;
+-    else if (local_sep == AVDT_TSEP_SNK)
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_set_int(p_scb->peer_addr,
++          IOT_CONF_KEY_A2DP_ROLE, IOT_CONF_VAL_A2DP_ROLE_SINK);
++#endif
++    } else if (local_sep == AVDT_TSEP_SNK) {
+       p_info->tsep = AVDT_TSEP_SRC;
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_set_int(p_scb->peer_addr,
++          IOT_CONF_KEY_A2DP_ROLE, IOT_CONF_VAL_A2DP_ROLE_SOURCE);
++#endif
++    }
+ 
+     p_scb->role |= BTA_AV_ROLE_AD_ACP;
+     p_scb->cur_psc_mask = p_evt_cfg->psc_mask;
+diff --git a/bta/av/bta_av_act.cc b/bta/av/bta_av_act.cc
+index ceb558d..1769eb0 100644
+--- a/bta/av/bta_av_act.cc
++++ b/bta/av/bta_av_act.cc
+@@ -77,6 +77,7 @@
+ #include <hardware/vendor.h>
+ #include "device/include/interop.h"
+ #include "device/include/profile_config.h"
++#include "device/include/device_iot_config.h"
+ 
+ #if (BTA_AR_INCLUDED == TRUE)
+ #include "bta_ar_api.h"
+@@ -417,7 +418,7 @@ uint8_t bta_av_rc_create(tBTA_AV_CB* p_cb, uint8_t role, uint8_t shdl,
+   tAVRC_CONN_CB ccb;
+   RawAddress bda = RawAddress::kAny;
+   uint8_t status = BTA_AV_RC_ROLE_ACP;
+-  tBTA_AV_SCB* p_scb;
++  tBTA_AV_SCB* p_scb = NULL;
+   int i;
+   uint8_t rc_handle;
+   tBTA_AV_RCB* p_rcb;
+@@ -426,6 +427,9 @@ uint8_t bta_av_rc_create(tBTA_AV_CB* p_cb, uint8_t role, uint8_t shdl,
+     p_scb = p_cb->p_scb[shdl - 1];
+     bda = p_scb->peer_addr;
+     status = BTA_AV_RC_ROLE_INT;
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    device_iot_config_addr_int_add_one(p_scb->peer_addr, IOT_CONF_KEY_AVRCP_CONN_COUNT);
++#endif
+   } else {
+     p_rcb = bta_av_get_rcb_by_shdl(shdl);
+     if (p_rcb != NULL) {
+@@ -443,8 +447,13 @@ uint8_t bta_av_rc_create(tBTA_AV_CB* p_cb, uint8_t role, uint8_t shdl,
+   ccb.control = p_cb->features & (BTA_AV_FEAT_RCTG | BTA_AV_FEAT_RCCT |
+                                   BTA_AV_FEAT_METADATA | AVRC_CT_PASSIVE);
+ 
+-  if (AVRC_Open(&rc_handle, &ccb, bda) != AVRC_SUCCESS)
++  if (AVRC_Open(&rc_handle, &ccb, bda) != AVRC_SUCCESS) {
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    if (p_scb != NULL)
++      device_iot_config_addr_int_add_one(p_scb->peer_addr, IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
++#endif
+     return BTA_AV_RC_HANDLE_NONE;
++  }
+ 
+   i = rc_handle;
+   p_rcb = &p_cb->rcb[i];
+@@ -1903,6 +1912,39 @@ uint16_t bta_get_dut_avrcp_version() {
+     return profile_version;
+ }
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++static void bta_av_store_peer_rc_version() {
++  tBTA_AV_CB* p_cb = &bta_av_cb;
++  tSDP_DISC_REC* p_rec = NULL;
++  uint16_t peer_rc_version = 0; /*Assuming Default peer version as 1.3*/
++
++  if ((p_rec = SDP_FindServiceInDb(
++      p_cb->p_disc_db, UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL)) != NULL) {
++    if ((SDP_FindAttributeInRec(p_rec, ATTR_ID_BT_PROFILE_DESC_LIST)) != NULL) {
++      /* get profile version (if failure, version parameter is not updated) */
++      SDP_FindProfileVersionInRec(p_rec, UUID_SERVCLASS_AV_REMOTE_CONTROL,
++                                 &peer_rc_version);
++    }
++    if (peer_rc_version != 0)
++      device_iot_config_addr_set_hex_if_greater(p_rec->remote_bd_addr,
++              IOT_CONF_KEY_AVRCP_CTRL_VERSION, peer_rc_version, IOT_CONF_BYTE_NUM_2);
++  }
++
++  peer_rc_version = 0;
++  if ((p_rec = SDP_FindServiceInDb(
++      p_cb->p_disc_db, UUID_SERVCLASS_AV_REM_CTRL_TARGET, NULL)) != NULL) {
++    if ((SDP_FindAttributeInRec(p_rec, ATTR_ID_BT_PROFILE_DESC_LIST)) != NULL) {
++      /* get profile version (if failure, version parameter is not updated) */
++      SDP_FindProfileVersionInRec(p_rec, UUID_SERVCLASS_AV_REMOTE_CONTROL,
++                                 &peer_rc_version);
++    }
++    if (peer_rc_version != 0)
++      device_iot_config_addr_set_hex_if_greater(p_rec->remote_bd_addr,
++              IOT_CONF_KEY_AVRCP_TG_VERSION, peer_rc_version, IOT_CONF_BYTE_NUM_2);
++  }
++}
++#endif
++
+ /*******************************************************************************
+  *
+  * Function         bta_av_check_peer_features
+@@ -2163,6 +2205,10 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
+     }
+   }
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  bta_av_store_peer_rc_version();
++#endif
++
+   p_cb->disc = 0;
+   osi_free_and_reset((void**)&p_cb->p_disc_db);
+ 
+@@ -2206,6 +2252,11 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
+         bta_av_data.rc_open = rc_open;
+         (*p_cb->p_cback)(BTA_AV_RC_OPEN_EVT, &bta_av_data);
+       }
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      if (peer_features != 0)
++        device_iot_config_addr_set_hex(p_scb->peer_addr,
++                IOT_CONF_KEY_AVRCP_FEATURES, peer_features, IOT_CONF_BYTE_NUM_2);
++#endif
+     }
+   } else {
+     tBTA_AV_RC_FEAT rc_feat;
+@@ -2226,6 +2277,11 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
+     tBTA_AV bta_av_data;
+     bta_av_data.rc_feat = rc_feat;
+     (*p_cb->p_cback)(BTA_AV_RC_FEAT_EVT, &bta_av_data);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    if (peer_features != 0)
++      device_iot_config_addr_set_hex(rc_feat.peer_addr,
++              IOT_CONF_KEY_AVRCP_FEATURES, peer_features, IOT_CONF_BYTE_NUM_2);
++#endif
+   }
+ }
+ 
+diff --git a/bta/dm/bta_dm_act.cc b/bta/dm/bta_dm_act.cc
+index 6590696..3f8303f 100644
+--- a/bta/dm/bta_dm_act.cc
++++ b/bta/dm/bta_dm_act.cc
+@@ -57,6 +57,7 @@
+ #include "stack/sdp/sdpint.h"
+ #include <inttypes.h>
+ #include "btif/include/btif_config.h"
++#include "device/include/device_iot_config.h"
+ 
+ #if (GAP_INCLUDED == TRUE)
+ #include "gap_api.h"
+@@ -1693,6 +1694,15 @@ static void bta_dm_store_profiles_version() {
+     MAP_MCE_VERSION_CONFIG_KEY,
+   };
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  const char* iot_profile_keys[] = {
++    IOT_CONF_KEY_A2DP_VERSION,
++    IOT_CONF_KEY_HFP_VERSION,
++    IOT_CONF_KEY_AVRCP_CTRL_VERSION,
++    IOT_CONF_KEY_AVRCP_TG_VERSION,
++  };
++#endif
++
+   int profile_num = sizeof(servclass_uuids)/sizeof(servclass_uuids[0]);
+ 
+   APPL_TRACE_DEBUG("%s", __func__);
+@@ -1722,6 +1732,10 @@ static void bta_dm_store_profiles_version() {
+         APPL_TRACE_WARNING("%s: Failed to store peer profile version for %s",
+                            __func__, sdp_rec->remote_bd_addr.ToString().c_str());
+       }
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_set_hex(sdp_rec->remote_bd_addr,
++          iot_profile_keys[i], profile_version, IOT_CONF_BYTE_NUM_2);
++#endif
+     }
+ 
+     if (servclass_uuids[i] == UUID_SERVCLASS_AUDIO_SINK) {
+diff --git a/btif/Android.bp b/btif/Android.bp
+index b3be31a..4c66247 100644
+--- a/btif/Android.bp
++++ b/btif/Android.bp
+@@ -22,6 +22,7 @@ btifCommonIncludes = [
+     "vendor/qcom/opensource/commonsys/system/bt/embdrv/sbc/decoder/include",
+     "vendor/qcom/opensource/commonsys/system/bt/utils/include",
+     "vendor/qcom/opensource/commonsys/bluetooth_ext/system_bt_ext/btif/include",
++    "vendor/qcom/opensource/commonsys/bluetooth_ext/system_bt_ext",
+ 
+     "vendor/qcom/opensource/commonsys/bluetooth/hal/include",
+     "vendor/qcom/opensource/commonsys/bluetooth_ext/vhal/include",
+diff --git a/btif/co/bta_av_co.cc b/btif/co/bta_av_co.cc
+index bce0f9e..e12a6c5 100644
+--- a/btif/co/bta_av_co.cc
++++ b/btif/co/bta_av_co.cc
+@@ -78,6 +78,7 @@
+ #include "btif/include/btif_storage.h"
+ #include <hardware/bt_gatt.h>
+ #include "btif/include/btif_a2dp_source.h"
++#include "device/include/device_iot_config.h"
+ 
+ #define MAX_2MBPS_AVDTP_MTU 663
+ extern const btgatt_interface_t* btif_gatt_get_interface();
+@@ -502,6 +503,23 @@ static tA2DP_STATUS bta_av_audio_sink_getconfig(
+   }
+   return result;
+ }
++
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++static void bta_av_co_store_peer_codectype(const tBTA_AV_CO_PEER* p_peer)
++{
++  int index, peer_codec_type = 0;
++  const tBTA_AV_CO_SINK* p_sink;
++  APPL_TRACE_DEBUG("%s", __func__);
++  for (index = 0; index < p_peer->num_sup_sinks; index++) {
++    p_sink = &p_peer->sinks[index];
++    peer_codec_type |= A2DP_IotGetPeerSinkCodecType(p_sink->codec_caps);
++  }
++
++  device_iot_config_addr_set_hex(p_peer->addr,
++          IOT_CONF_KEY_A2DP_CODECTYPE, peer_codec_type, IOT_CONF_BYTE_NUM_1);
++}
++#endif
++
+ /*******************************************************************************
+  **
+  ** Function         bta_av_co_audio_getconfig
+@@ -572,6 +590,9 @@ tA2DP_STATUS bta_av_co_audio_getconfig(tBTA_AV_HNDL hndl, uint8_t* p_codec_info,
+     return A2DP_FAIL;
+   }
+   APPL_TRACE_DEBUG("%s: last sink reached", __func__);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  bta_av_co_store_peer_codectype(p_peer);
++#endif
+ 
+   const tBTA_AV_CO_SINK* p_sink = bta_av_co_audio_set_codec(p_peer);
+   if (p_sink == NULL) {
+diff --git a/btif/src/bluetooth.cc b/btif/src/bluetooth.cc
+index b102c1a..0db847b 100644
+--- a/btif/src/bluetooth.cc
++++ b/btif/src/bluetooth.cc
+@@ -65,6 +65,7 @@
+ #include "device/include/controller.h"
+ #include "btif_debug.h"
+ #include "btif_storage.h"
++#include "device/include/device_iot_config.h"
+ #include "btsnoop.h"
+ #include "btsnoop_mem.h"
+ #include "common/address_obfuscator.h"
+@@ -335,6 +336,9 @@ static void dump(int fd, const char** arguments) {
+   btif_debug_bond_event_dump(fd);
+   btif_debug_a2dp_dump(fd);
+   btif_debug_config_dump(fd);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  device_debug_iot_config_dump(fd);
++#endif
+   BTA_HfClientDumpStatistics(fd);
+   wakelock_debug_dump(fd);
+   osi_allocator_debug_dump(fd);
+diff --git a/btif/src/btif_av.cc b/btif/src/btif_av.cc
+index 73b15fc..63c88b9 100644
+--- a/btif/src/btif_av.cc
++++ b/btif/src/btif_av.cc
+@@ -81,6 +81,7 @@
+ #include "device/include/controller.h"
+ #include "btif_bat.h"
+ #include "bta/av/bta_av_int.h"
++#include "device/include/device_iot_config.h"
+ 
+ extern bool isDevUiReq;
+ bool isBitRateChange = false;
+@@ -833,6 +834,13 @@ static bool btif_av_state_idle_handler(btif_sm_event_t event, void* p_data, int
+         btif_av_cb[index].peer_bda = *connect_req_p->target_bda;
+         BTA_AvOpen(btif_av_cb[index].peer_bda, btif_av_cb[index].bta_handle, true,
+                    BTA_SEC_AUTHENTICATE, connect_req_p->uuid);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++        device_iot_config_addr_set_int(btif_av_cb[index].peer_bda, IOT_CONF_KEY_A2DP_ROLE,
++            (connect_req_p->uuid == UUID_SERVCLASS_AUDIO_SOURCE) ? IOT_CONF_VAL_A2DP_ROLE_SINK :
++            IOT_CONF_VAL_A2DP_ROLE_SOURCE);
++        device_iot_config_addr_int_add_one(btif_av_cb[index].peer_bda,
++            IOT_CONF_KEY_A2DP_CONN_COUNT);
++#endif
+ #if (TWS_ENABLED == TRUE)
+       BTIF_TRACE_EVENT("update tws device status");
+       btif_av_cb[index].tws_device = BTM_SecIsTwsPlusDev(btif_av_cb[index].peer_bda.address);
+@@ -878,8 +886,13 @@ static bool btif_av_state_idle_handler(btif_sm_event_t event, void* p_data, int
+         btif_av_cb[index].peer_bda = ((tBTA_AV*)p_data)->pend.bd_addr;
+ 
+       // Only for AVDTP connection request move to opening state
+-      if (event == BTA_AV_PENDING_EVT)
++      if (event == BTA_AV_PENDING_EVT) {
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++        device_iot_config_addr_int_add_one(btif_av_cb[index].peer_bda,
++            IOT_CONF_KEY_A2DP_CONN_COUNT);
++#endif
+         btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_OPENING);
++      }
+ 
+       if (bt_av_src_callbacks != NULL) {
+         BTIF_TRACE_DEBUG("Calling connection priority callback ");
+@@ -1085,6 +1098,10 @@ static bool btif_av_state_opening_handler(btif_sm_event_t event, void* p_data,
+       btif_report_connection_state(BTAV_CONNECTION_STATE_DISCONNECTED,
+                                    &(btif_av_cb[index].peer_bda));
+       btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_IDLE);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_int_add_one(btif_av_cb[index].peer_bda,
++          IOT_CONF_KEY_A2DP_CONN_FAIL_COUNT);
++#endif
+       break;
+ 
+     case BTA_AV_OPEN_EVT: {
+@@ -1158,6 +1175,10 @@ static bool btif_av_state_opening_handler(btif_sm_event_t event, void* p_data,
+         }
+         state = BTAV_CONNECTION_STATE_DISCONNECTED;
+         av_state = BTIF_AV_STATE_IDLE;
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++        device_iot_config_addr_int_add_one(btif_av_cb[index].peer_bda,
++            IOT_CONF_KEY_A2DP_CONN_FAIL_COUNT);
++#endif
+       }
+       if (p_bta_data->open.status != BTA_AV_SUCCESS &&
+               p_bta_data->open.status != BTA_AV_FAIL_SDP) {
+@@ -1294,6 +1315,10 @@ static bool btif_av_state_opening_handler(btif_sm_event_t event, void* p_data,
+       btif_av_check_and_start_collission_timer(index);
+       btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_IDLE);
+       btif_report_connection_state_to_ba(BTAV_CONNECTION_STATE_DISCONNECTED);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_int_add_one(btif_av_cb[index].peer_bda,
++          IOT_CONF_KEY_A2DP_CONN_FAIL_COUNT);
++#endif
+       } break;
+ 
+     case BTIF_AV_DISCONNECT_REQ_EVT: {
+diff --git a/btif/src/btif_core.cc b/btif/src/btif_core.cc
+index c732304..b35a3ad 100644
+--- a/btif/src/btif_core.cc
++++ b/btif/src/btif_core.cc
+@@ -65,6 +65,7 @@
+ #include "osi/include/properties.h"
+ #include "osi/include/thread.h"
+ #include "stack_manager.h"
++#include "device/include/device_iot_config.h"
+ 
+ using bluetooth::Uuid;
+ /*******************************************************************************
+@@ -412,6 +413,12 @@ void btif_enable_bluetooth_evt(tBTA_STATUS status) {
+ 
+   std::string bdstr = local_bd_addr.ToString();
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  //save bd addr to iot conf file
++  device_iot_config_set_str(IOT_CONF_KEY_SECTION_ADAPTER,
++          IOT_CONF_KEY_ADDRESS, bdstr.c_str());
++#endif
++
+   char val[PROPERTY_VALUE_MAX] = "";
+   int val_size = 0;
+   if ((btif_config_get_str("Adapter", "Address", val, &val_size) == 0) ||
+diff --git a/btif/src/btif_dm.cc b/btif/src/btif_dm.cc
+index e3031cd..9d7e4fe 100644
+--- a/btif/src/btif_dm.cc
++++ b/btif/src/btif_dm.cc
+@@ -111,7 +111,7 @@
+ 
+ #include "stack/sdp/sdpint.h"
+ #include "btif_tws_plus.h"
+-
++#include "device/include/device_iot_config.h"
+ 
+ 
+ using bluetooth::Uuid;
+@@ -325,7 +325,10 @@ extern void btif_vendor_iot_device_broadcast_event(RawAddress* bd_addr,
+                 uint16_t glitch_count);
+ extern bluetooth::hearing_aid::HearingAidInterface*
+ btif_hearing_aid_get_interface();
+-
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++extern void btif_iot_update_remote_info(tBTA_DM_AUTH_CMPL* p_auth_cmpl,
++                bool is_ble, bool is_ssp);
++#endif
+ /******************************************************************************
+  *  Functions
+  *****************************************************************************/
+@@ -1284,6 +1287,10 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
+ 
+   // Skip SDP for certain  HID Devices
+   if (p_auth_cmpl->success) {
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    //save remote info to iot conf file
++    btif_iot_update_remote_info(p_auth_cmpl, false, pairing_cb.is_ssp);
++#endif
+ 
+     // We could have received a new link key without going through the pairing
+     // flow.  If so, we don't want to perform SDP or any other operations on the
+diff --git a/btif/src/btif_hf.cc b/btif/src/btif_hf.cc
+index eaa382e..6ca3041 100644
+--- a/btif/src/btif_hf.cc
++++ b/btif/src/btif_hf.cc
+@@ -82,6 +82,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include "btif_tws_plus.h"
+ #include "btif_twsp_hf.h"
+ #endif
++#include "device/include/device_iot_config.h"
+ 
+ namespace bluetooth {
+ namespace headset {
+@@ -523,6 +524,14 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
+       BTIF_TRACE_DEBUG("%s: service_id: %d", __func__, p_data->open.service_id);
+       if (p_data->open.status == BTA_AG_SUCCESS) {
+         btif_hf_cb[idx].connected_bda = p_data->open.bd_addr;
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++        if (btif_hf_cb[idx].state != BTHF_CONNECTION_STATE_CONNECTING) {
++          device_iot_config_addr_set_int(btif_hf_cb[idx].connected_bda,
++              IOT_CONF_KEY_HFP_ROLE, IOT_CONF_VAL_HFP_ROLE_CLIENT);
++          device_iot_config_addr_int_add_one(btif_hf_cb[idx].connected_bda,
++              IOT_CONF_KEY_HFP_SLC_CONN_COUNT);
++        }
++#endif
+         btif_hf_cb[idx].state = BTHF_CONNECTION_STATE_CONNECTED;
+         btif_hf_cb[idx].peer_feat = 0;
+         clear_phone_state_multihf(idx);
+@@ -539,6 +548,13 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
+                         __func__, btif_hf_cb[idx].connected_bda.ToString().c_str());
+           ignore_rfc_fail = true;
+         }
++
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++        if (!ignore_rfc_fail) {
++          device_iot_config_addr_int_add_one(btif_hf_cb[idx].connected_bda,
++              IOT_CONF_KEY_HFP_SLC_CONN_FAIL_COUNT);
++        }
++#endif
+         LOG(ERROR) << __func__ << ": AG open failed for "
+                    << btif_hf_cb[idx].connected_bda << ", status "
+                    << unsigned(p_data->open.status);
+@@ -583,6 +599,13 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
+       break;
+ 
+     case BTA_AG_CLOSE_EVT:
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      if (btif_hf_cb[idx].state == BTHF_CONNECTION_STATE_CONNECTED) {
++        device_iot_config_addr_int_add_one(btif_hf_cb[idx].connected_bda,
++            IOT_CONF_KEY_HFP_SLC_CONN_FAIL_COUNT);
++      }
++#endif
++
+       btif_hf_cb[idx].state = BTHF_CONNECTION_STATE_DISCONNECTED;
+ 
+       BTIF_TRACE_DEBUG("%s: Moving the audio_state to DISCONNECTED for device %s",
+@@ -645,6 +668,15 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
+ 
+     case BTA_AG_CONN_EVT:
+       BTIF_TRACE_DEBUG("%s: BTA_AG_CONN_EVT, idx = %d ", __func__, idx);
++
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_set_hex(btif_hf_cb[idx].connected_bda, IOT_CONF_KEY_HFP_CODECTYPE,
++          p_data->conn.peer_codec == 0x03 ? IOT_CONF_VAL_HFP_CODECTYPE_CVSDMSBC :
++          IOT_CONF_VAL_HFP_CODECTYPE_CVSD, IOT_CONF_BYTE_NUM_1);
++      device_iot_config_addr_set_hex(btif_hf_cb[idx].connected_bda, IOT_CONF_KEY_HFP_FEATURES,
++          p_data->conn.peer_feat, IOT_CONF_BYTE_NUM_2);
++#endif
++
+       btif_hf_cb[idx].peer_feat = p_data->conn.peer_feat;
+       btif_hf_cb[idx].state = BTHF_CONNECTION_STATE_SLC_CONNECTED;
+ 
+@@ -672,6 +704,12 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
+     case BTA_AG_AUDIO_CLOSE_EVT:
+       BTIF_TRACE_DEBUG("%s: Moving the audio_state to DISCONNECTED for device %s",
+                        __FUNCTION__, btif_hf_cb[idx].connected_bda.ToString().c_str());
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      if (btif_hf_cb[idx].audio_state != BTHF_AUDIO_STATE_CONNECTED) {
++        device_iot_config_addr_int_add_one(btif_hf_cb[idx].connected_bda,
++            IOT_CONF_KEY_HFP_SCO_CONN_FAIL_COUNT);
++      }
++#endif
+       btif_hf_cb[idx].audio_state = BTHF_AUDIO_STATE_DISCONNECTED;
+       HAL_HF_CBACK(bt_hf_callbacks, AudioStateCallback, BTHF_AUDIO_STATE_DISCONNECTED,
+                 &btif_hf_cb[idx].connected_bda);
+@@ -1062,6 +1100,13 @@ static bt_status_t connect_int(RawAddress* bd_addr, uint16_t uuid) {
+ 
+   BTA_AgOpen(btif_hf_cb[i].handle, btif_hf_cb[i].connected_bda,
+                BTIF_HF_SECURITY, BTIF_HF_SERVICES);
++
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  device_iot_config_addr_set_int(btif_hf_cb[i].connected_bda,
++      IOT_CONF_KEY_HFP_ROLE, IOT_CONF_VAL_HFP_ROLE_CLIENT);
++  device_iot_config_addr_int_add_one(btif_hf_cb[i].connected_bda,
++      IOT_CONF_KEY_HFP_SLC_CONN_COUNT);
++#endif
+   return BT_STATUS_SUCCESS;
+ }
+ 
+@@ -1160,6 +1205,11 @@ bt_status_t HeadsetInterface::ConnectAudio(RawAddress* bd_addr) {
+   if (idx != BTIF_HF_INVALID_IDX) {
+     BTA_AgAudioOpen(btif_hf_cb[idx].handle);
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    if (btif_hf_cb[idx].audio_state != BTHF_AUDIO_STATE_CONNECTING)
++      device_iot_config_addr_int_add_one(*bd_addr, IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
++#endif
++
+     /* Inform the application that the audio connection has been initiated
+      * successfully */
+     btif_transfer_context(btif_in_hf_generic_evt, BTIF_HFP_CB_AUDIO_CONNECTING,
+@@ -1612,6 +1662,10 @@ bt_status_t HeadsetInterface::PhoneStateChange(
+                        bd_addr->ToString().c_str());
+     return BT_STATUS_FAIL;
+   }
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  bthf_audio_state_t current_audio_state;
++  current_audio_state = btif_hf_cb[idx].audio_state;
++#endif
+ 
+   btif_hf_cb_t& control_block = btif_hf_cb[idx];
+   if (!IsSlcConnected(bd_addr)) {
+@@ -1905,6 +1959,13 @@ bt_status_t HeadsetInterface::PhoneStateChange(
+   }
+ 
+   UpdateCallStates(&btif_hf_cb[idx], num_active, num_held, call_setup_state);
++
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  if (current_audio_state != BTHF_AUDIO_STATE_CONNECTING &&
++      btif_hf_cb[idx].audio_state == BTHF_AUDIO_STATE_CONNECTING)
++    device_iot_config_addr_int_add_one(btif_hf_cb[idx].connected_bda,
++        IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
++#endif
+   return status;
+ }
+ 
+diff --git a/btif/src/stack_manager.cc b/btif/src/stack_manager.cc
+index d00ff36..3f03931 100644
+--- a/btif/src/stack_manager.cc
++++ b/btif/src/stack_manager.cc
+@@ -35,6 +35,7 @@
+ // Temp includes
+ #include "bt_utils.h"
+ #include "btif_config.h"
++#include "device/include/device_iot_config.h"
+ #include "btif_profile_queue.h"
+ 
+ static thread_t* management_thread;
+@@ -113,6 +114,9 @@ static void event_init_stack(void* context) {
+ 
+     module_init(get_module(OSI_MODULE));
+     module_init(get_module(BT_UTILS_MODULE));
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    module_init(get_module(DEVICE_IOT_CONFIG_MODULE));
++#endif
+     module_init(get_module(BTIF_CONFIG_MODULE));
+ 
+     future_t* local_hack_future = future_new();
+@@ -154,6 +158,9 @@ static void event_start_up_stack(UNUSED_ATTR void* context) {
+ 
+   // Include this for now to put btif config into a shutdown-able state
+   module_start_up(get_module(BTIF_CONFIG_MODULE));
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  module_start_up(get_module(DEVICE_IOT_CONFIG_MODULE));
++#endif
+   bte_main_enable();
+ 
+   if (future_await(local_hack_future) != FUTURE_SUCCESS) {
+@@ -182,6 +189,9 @@ static void event_shut_down_stack(UNUSED_ATTR void* context) {
+ 
+   btif_disable_bluetooth();
+   module_shut_down(get_module(BTIF_CONFIG_MODULE));
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  module_shut_down(get_module(DEVICE_IOT_CONFIG_MODULE));
++#endif
+ 
+   future_await(local_hack_future);
+   module_shut_down(get_module(CONTROLLER_MODULE));  // Doesn't do any work, just
+@@ -219,6 +229,9 @@ static void event_clean_up_stack(void* context) {
+   btif_vendor_cleanup_iot_broadcast_timer();
+   btif_cleanup_bluetooth();
+   module_clean_up(get_module(BTIF_CONFIG_MODULE));
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  module_clean_up(get_module(DEVICE_IOT_CONFIG_MODULE));
++#endif
+   module_clean_up(get_module(BT_UTILS_MODULE));
+   module_clean_up(get_module(OSI_MODULE));
+   module_management_stop();
+diff --git a/internal_include/bt_target.h b/internal_include/bt_target.h
+index 6467c6d..5ddcd5b 100644
+--- a/internal_include/bt_target.h
++++ b/internal_include/bt_target.h
+@@ -1474,6 +1474,11 @@ incoming connection
+ #define BTSNOOP_MEM TRUE
+ #endif
+ 
++/* Enable iot info logging */
++#ifndef BT_IOT_LOGGING_ENABLED
++#define BT_IOT_LOGGING_ENABLED TRUE
++#endif
++
+ #include "bt_trace.h"
+ 
+ #endif /* BT_TARGET_H */
+diff --git a/osi/include/config.h b/osi/include/config.h
+index b8ddb3b..0e2af99 100644
+--- a/osi/include/config.h
++++ b/osi/include/config.h
+@@ -18,6 +18,7 @@
+ 
+ #include <stdbool.h>
+ #include "stack/include/bt_types.h"
++#include "bt_target.h"
+ 
+ // The default section name to use if a key/value pair is not defined within
+ // a section.
+@@ -25,6 +26,9 @@
+ 
+ typedef struct config_t config_t;
+ typedef struct config_section_node_t config_section_node_t;
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++typedef int (*compare_func)(const char* first, const char* second);
++#endif
+ 
+ // Creates a new config object with no entries (i.e. not backed by a file).
+ // This function returns a config object or NULL on error. Clients must call
+@@ -161,6 +165,11 @@ const config_section_node_t* config_section_next(
+ // NULL and must not equal the value returned by |config_section_end|.
+ const char* config_section_name(const config_section_node_t* iter);
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++// Sorts the entries in each section of config by entry key.
++void config_sections_sort_by_entry_key(config_t* config, compare_func comp);
++#endif
++
+ // Saves |config| to a file given by |filename|. Note that this could be a
+ // destructive operation: if |filename| already exists, it will be overwritten.
+ // The config module does not preserve comments or formatting so if a config
+diff --git a/osi/src/config.cc b/osi/src/config.cc
+index 44c07ec..b94729e 100644
+--- a/osi/src/config.cc
++++ b/osi/src/config.cc
+@@ -36,6 +36,7 @@
+ #include "osi/include/log.h"
+ #include "osi/include/compat.h"
+ #include "log/log.h"
++#include "bt_target.h"
+ #include <inttypes.h>
+ 
+ typedef struct {
+@@ -345,6 +346,45 @@ const char* config_section_name(const config_section_node_t* node) {
+   return section->name;
+ }
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++void config_sections_sort_by_entry_key(config_t* config, compare_func comp) {
++  CHECK(config != NULL);
++
++  for (list_node_t* node = list_begin(config->sections);
++      node != list_end(config->sections);
++      node = list_next(node)) {
++    section_t* sec = (section_t*)list_node(node);
++    if (list_length(sec->entries) <= 1)
++      continue;
++    list_node_t* p = list_end(sec->entries);
++    list_node_t* head_next = list_next(list_begin(sec->entries));
++    bool changed = true;
++
++    while (p != head_next && changed) {
++      list_node_t* q = list_begin(sec->entries);
++      changed = false;
++      for (;list_next(q) && list_next(q) != p; q = list_next(q)) {
++        entry_t* first = (entry_t*)list_node(q);
++        entry_t* second = (entry_t*)list_node(list_next(q));
++        char* tmp_key;
++        char* tmp_value;
++        if (comp(first->key, second->key) > 0) {
++          tmp_key = first->key;
++          tmp_value = first->value;
++          first->key = second->key;
++          first->value = second->value;
++          second->key = tmp_key;
++          second->value = tmp_value;
++          changed = true;
++        }
++      }
++      p = q;
++    }
++
++  }
++}
++#endif
++
+ bool config_save(const config_t* config, const char* filename) {
+   CHECK(config != NULL);
+   CHECK(filename != NULL);
+diff --git a/stack/a2dp/a2dp_codec_config.cc b/stack/a2dp/a2dp_codec_config.cc
+index 58c2e1a..927c744 100644
+--- a/stack/a2dp/a2dp_codec_config.cc
++++ b/stack/a2dp/a2dp_codec_config.cc
+@@ -72,6 +72,8 @@
+ #include "bt_vendor_av.h"
+ #include "device/include/controller.h"
+ #include "btif_av_co.h"
++#include "device/include/device_iot_config.h"
++
+ /* The Media Type offset within the codec info byte array */
+ #define A2DP_MEDIA_TYPE_OFFSET 1
+ 
+@@ -925,6 +927,51 @@ void A2dpCodecs::debug_codec_dump(int fd) {
+   }
+ }
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++int A2DP_IotGetPeerSinkCodecType(const uint8_t* p_codec_info) {
++  int peer_codec_type = 0;
++  tA2DP_CODEC_TYPE codec_type = A2DP_GetCodecType(p_codec_info);
++  LOG_VERBOSE(LOG_TAG, "%s: codec_type = 0x%x", __func__, codec_type);
++  switch (codec_type) {
++  case A2DP_MEDIA_CT_SBC:
++    peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_SBC;
++    break;
++  case A2DP_MEDIA_CT_NON_A2DP:
++    {
++      uint16_t codec_id = A2DP_VendorCodecGetCodecId(p_codec_info);
++      uint32_t vendor_id = A2DP_VendorCodecGetVendorId(p_codec_info);
++
++      LOG_VERBOSE(LOG_TAG, "%s codec_id = %d", __func__, codec_id );
++      LOG_VERBOSE(LOG_TAG, "%s vendor_id = %x", __func__, vendor_id );
++
++      if (codec_id == A2DP_APTX_CODEC_ID_BLUETOOTH &&
++          vendor_id == A2DP_APTX_VENDOR_ID) {
++        peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_APTX;
++      } else if (codec_id ==  A2DP_APTX_HD_CODEC_ID_BLUETOOTH &&
++          vendor_id == A2DP_APTX_HD_VENDOR_ID) {
++        peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_APTXHD;
++      } else if (codec_id == A2DP_APTX_ADAPTIVE_CODEC_ID_BLUETOOTH &&
++          vendor_id == A2DP_APTX_ADAPTIVE_VENDOR_ID) {
++        peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_APTXADAPTIVE;
++      } else if (codec_id == A2DP_APTX_TWS_CODEC_ID_BLUETOOTH &&
++          vendor_id == A2DP_APTX_TWS_VENDOR_ID) {
++        peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_APTXTWS;
++      } else if (codec_id ==  A2DP_LDAC_CODEC_ID &&
++          vendor_id == A2DP_LDAC_VENDOR_ID) {
++        peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_LDAC;
++      }
++      break;
++    }
++  case A2DP_MEDIA_CT_AAC:
++    peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_AAC;
++    break;
++  default:
++    break;
++  }
++  return peer_codec_type;
++}
++#endif
++
+ tA2DP_CODEC_TYPE A2DP_GetCodecType(const uint8_t* p_codec_info) {
+   LOG_DEBUG(LOG_TAG, "%s: ", __func__);
+   return (tA2DP_CODEC_TYPE)(p_codec_info[AVDT_CODEC_TYPE_INDEX]);
+diff --git a/stack/avct/avct_lcb.cc b/stack/avct/avct_lcb.cc
+index 3527245..7f6f93e 100644
+--- a/stack/avct/avct_lcb.cc
++++ b/stack/avct/avct_lcb.cc
+@@ -36,6 +36,7 @@
+ #include "bt_types.h"
+ #include "bt_utils.h"
+ #include "osi/include/osi.h"
++#include "device/include/device_iot_config.h"
+ 
+ /*****************************************************************************
+  * state machine constants and types
+@@ -176,6 +177,11 @@ void avct_lcb_event(tAVCT_LCB* p_lcb, uint8_t event, tAVCT_LCB_EVT* p_data) {
+   /* look up the state table for the current state */
+   state_table = avct_lcb_st_tbl[p_lcb->state];
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  if (p_lcb->state == AVCT_LCB_IDLE_ST && event == AVCT_LCB_LL_OPEN_EVT)
++    device_iot_config_addr_int_add_one(p_lcb->peer_addr, IOT_CONF_KEY_AVRCP_CONN_COUNT);
++#endif
++
+   /* set next state */
+   p_lcb->state = state_table[event][AVCT_LCB_NEXT_STATE];
+ 
+diff --git a/stack/avct/avct_lcb_act.cc b/stack/avct/avct_lcb_act.cc
+index e2ce9db..033e27a 100644
+--- a/stack/avct/avct_lcb_act.cc
++++ b/stack/avct/avct_lcb_act.cc
+@@ -31,6 +31,7 @@
+ #include "bt_utils.h"
+ #include "btm_api.h"
+ #include "osi/include/osi.h"
++#include "device/include/device_iot_config.h"
+ 
+ /* packet header length lookup table */
+ const uint8_t avct_lcb_pkt_type_len[] = {AVCT_HDR_LEN_SINGLE,
+@@ -236,6 +237,9 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
+ 
+   /* if no ccbs bound to this lcb, disconnect */
+   if (bind == false) {
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    device_iot_config_addr_int_add_one(p_lcb->peer_addr, IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
++#endif
+     avct_lcb_event(p_lcb, AVCT_LCB_INT_CLOSE_EVT, p_data);
+   }
+ }
+@@ -259,6 +263,9 @@ void avct_lcb_open_fail(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
+     if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb)) {
+       avct_ccb_dealloc(p_ccb, AVCT_CONNECT_CFM_EVT, p_data->result,
+                        &p_lcb->peer_addr);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      device_iot_config_addr_int_add_one(p_lcb->peer_addr, IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
++#endif
+     }
+   }
+ }
+@@ -396,8 +403,15 @@ void avct_lcb_chnl_disc(tAVCT_LCB* p_lcb, UNUSED_ATTR tAVCT_LCB_EVT* p_data) {
+  * Returns          Nothing.
+  *
+  ******************************************************************************/
+-void avct_lcb_bind_fail(UNUSED_ATTR tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
++void avct_lcb_bind_fail(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
++#ifndef BT_IOT_LOGGING_ENABLED
++  (void)(p_lcb);
++#endif
++
+   avct_ccb_dealloc(p_data->p_ccb, AVCT_CONNECT_CFM_EVT, AVCT_RESULT_FAIL, NULL);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  device_iot_config_addr_int_add_one(p_lcb->peer_addr, IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
++#endif
+ }
+ 
+ /*******************************************************************************
+diff --git a/stack/btm/btm_acl.cc b/stack/btm/btm_acl.cc
+index 14ac483..8cde1a0 100644
+--- a/stack/btm/btm_acl.cc
++++ b/stack/btm/btm_acl.cc
+@@ -53,12 +53,17 @@
+ #include "btif_av_co.h"
+ #include "btif_av.h"
+ #include <hardware/bt_av.h>
++#include "device/include/device_iot_config.h"
+ 
+ static void btm_read_remote_features(uint16_t handle);
+ static void btm_read_remote_ext_features(uint16_t handle, uint8_t page_number);
+ static void btm_process_remote_ext_features(tACL_CONN* p_acl_cb,
+                                             uint8_t num_read_pages);
+ static void btm_enable_link_PL10_adaptive_ctrl(uint16_t handle, bool enable);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++extern void btm_iot_save_remote_properties(tACL_CONN *p_acl_cb);
++extern void btm_iot_save_remote_versions(tACL_CONN *p_acl_cb);
++#endif
+ 
+ /* 3 seconds timeout waiting for responses */
+ #define BTM_DEV_REPLY_TIMEOUT_MS (3 * 1000)
+@@ -272,6 +277,11 @@ void btm_acl_created(const RawAddress& bda, DEV_CLASS dc, BD_NAME bdn,
+            p->remote_name[BTM_MAX_REM_BD_NAME_LEN] = '\0';
+       }
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      //save remote properties to iot conf file
++      btm_iot_save_remote_properties(p);
++#endif
++
+       /* if BR/EDR do something more */
+       if (transport == BT_TRANSPORT_BR_EDR) {
+         int soc_type = get_soc_type();
+@@ -1019,6 +1029,10 @@ void btm_read_remote_version_complete(uint8_t* p) {
+         VLOG(2) << __func__ << " btm_read_remote_version_complete: BDA: " << p_acl_cb->remote_addr;
+         BTM_TRACE_WARNING ("btm_read_remote_version_complete lmp_version %d manufacturer %d lmp_subversion %d",
+                                        p_acl_cb->lmp_version,p_acl_cb->manufacturer, p_acl_cb->lmp_subversion);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      //save remote versions to iot conf file
++      btm_iot_save_remote_versions(p_acl_cb);
++#endif
+       break;
+     }
+   }
+@@ -1179,6 +1193,16 @@ void btm_read_remote_features_complete(uint8_t* p) {
+   STREAM_TO_ARRAY(p_acl_cb->peer_lmp_feature_pages[0], p,
+                   HCI_FEATURE_BYTES_PER_PAGE);
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  /* save remote supported features to iot conf file */
++  char key[64];
++  snprintf(key, sizeof(key), "%s%s%x", IOT_CONF_KEY_RT_SUPP_FEATURES,
++          "_", 0);
++
++  device_iot_config_addr_set_bin(p_acl_cb->remote_addr, key,
++          p_acl_cb->peer_lmp_feature_pages[0], BD_FEATURES_LEN);
++#endif
++
+   if ((HCI_LMP_EXTENDED_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[0])) &&
+       (controller_get_interface()
+            ->supports_reading_remote_extended_features())) {
+@@ -1241,6 +1265,16 @@ void btm_read_remote_ext_features_complete(uint8_t* p) {
+   STREAM_TO_ARRAY(p_acl_cb->peer_lmp_feature_pages[page_num], p,
+                   HCI_FEATURE_BYTES_PER_PAGE);
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  /* save remote extended features to iot conf file */
++  char key[64];
++  snprintf(key, sizeof(key), "%s%s%x", IOT_CONF_KEY_RT_EXT_FEATURES,
++          "_", page_num);
++
++  device_iot_config_addr_set_bin(p_acl_cb->remote_addr, key,
++          p_acl_cb->peer_lmp_feature_pages[page_num], BD_FEATURES_LEN);
++#endif
++
+   /* If there is the next remote features page and
+    * we have space to keep this page data - read this page */
+   if ((page_num < max_page) && (page_num < HCI_EXT_FEATURES_PAGE_MAX)) {
+diff --git a/stack/btm/btm_ble_gap.cc b/stack/btm/btm_ble_gap.cc
+index 1d000be..9d309e7 100644
+--- a/stack/btm/btm_ble_gap.cc
++++ b/stack/btm/btm_ble_gap.cc
+@@ -51,6 +51,7 @@
+ #include "gattdefs.h"
+ #include "l2c_int.h"
+ #include "osi/include/log.h"
++#include "device/include/device_iot_config.h"
+ 
+ #define BTM_BLE_NAME_SHORT 0x01
+ #define BTM_BLE_NAME_CMPL 0x02
+@@ -2449,6 +2450,15 @@ void btm_ble_read_remote_features_complete(uint8_t* p) {
+ 
+   if (status == HCI_SUCCESS) {
+     STREAM_TO_ARRAY(btm_cb.acl_db[idx].peer_le_features, p, BD_FEATURES_LEN);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    /* save LE remote supported features to iot conf file */
++    char key[64];
++    snprintf(key, sizeof(key), "%s%s%x", IOT_CONF_KEY_LE_RT_FEATURES,
++            "_", 0);
++
++    device_iot_config_addr_set_bin(btm_cb.acl_db[idx].remote_addr, key,
++            btm_cb.acl_db[idx].peer_le_features, BD_FEATURES_LEN);
++#endif
+   }
+ 
+   btsnd_hcic_rmt_ver_req(handle);
+diff --git a/stack/btm/btm_sco.cc b/stack/btm/btm_sco.cc
+index 23b899b..8c16bb7 100644
+--- a/stack/btm/btm_sco.cc
++++ b/stack/btm/btm_sco.cc
+@@ -40,6 +40,7 @@
+ #include "hcimsgs.h"
+ #include "osi/include/osi.h"
+ #include "osi/include/properties.h"
++#include "device/include/device_iot_config.h"
+ 
+ #if (BTM_SCO_INCLUDED == TRUE)
+ 
+@@ -845,6 +846,10 @@ void btm_sco_conn_req(const RawAddress& bda, DEV_CLASS dev_class,
+   uint16_t xx;
+   tBTM_ESCO_CONN_REQ_EVT_DATA evt_data;
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    device_iot_config_addr_int_add_one(bda, IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
++#endif
++
+   for (xx = 0; xx < BTM_MAX_SCO_LINKS; xx++, p++) {
+     /*
+      * If the sco state is in the SCO_ST_CONNECTING state, we still need
+@@ -982,8 +987,13 @@ void btm_sco_connected(uint8_t hci_status, const RawAddress* bda,
+           if (p->state == SCO_ST_CONNECTING) {
+             p->state = SCO_ST_UNUSED;
+             (*p->p_disc_cb)(xx);
+-          } else
++          } else {
+             p->state = SCO_ST_LISTENING;
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++            if (bda)
++              device_iot_config_addr_int_add_one(*bda, IOT_CONF_KEY_HFP_SCO_CONN_FAIL_COUNT);
++#endif
++          }
+         }
+ 
+         return;
+diff --git a/stack/btm/btm_sec.cc b/stack/btm/btm_sec.cc
+index 40cfda5..f32f5e1 100644
+--- a/stack/btm/btm_sec.cc
++++ b/stack/btm/btm_sec.cc
+@@ -42,6 +42,7 @@
+ #include "l2c_int.h"
+ 
+ #include "gatt_int.h"
++#include "device/include/device_iot_config.h"
+ 
+ #define BTM_SEC_MAX_COLLISION_DELAY (5000)
+ 
+@@ -4730,6 +4731,12 @@ void btm_sec_disconnected(uint16_t handle, uint8_t reason) {
+       } else if (old_pairing_flags & BTM_PAIR_FLAGS_WE_STARTED_DD) {
+         result = HCI_ERR_HOST_REJECT_SECURITY;
+       }
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++      else {
++        device_iot_config_addr_int_add_one(p_dev_rec->bd_addr,
++           IOT_CONF_KEY_GAP_DISC_AUTHFAIL_COUNT);
++      }
++#endif
+       trigger_auth_callback = true;
+     }
+   }
+diff --git a/stack/btu/btu_hcif.cc b/stack/btu/btu_hcif.cc
+index cf51751..0f3a204 100644
+--- a/stack/btu/btu_hcif.cc
++++ b/stack/btu/btu_hcif.cc
+@@ -49,6 +49,7 @@
+ #include "l2c_int.h"
+ #include "osi/include/log.h"
+ #include "osi/include/osi.h"
++#include "device/include/device_iot_config.h"
+ 
+ using base::Location;
+ 
+@@ -614,6 +615,10 @@ static void btu_hcif_connection_comp_evt(uint8_t* p) {
+     btm_sec_connected(bda, handle, status, enc_mode);
+ 
+     l2c_link_hci_conn_comp(status, handle, bda);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    if (status != HCI_SUCCESS)
++      device_iot_config_addr_int_add_one(bda, IOT_CONF_KEY_GAP_CONN_FAIL_COUNT);
++#endif
+   }
+ #if (BTM_SCO_INCLUDED == TRUE)
+   else {
+@@ -647,6 +652,9 @@ static void btu_hcif_connection_request_evt(uint8_t* p) {
+   /* passing request to l2cap */
+   if (link_type == HCI_LINK_TYPE_ACL) {
+     btm_sec_conn_req(bda, dc);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    device_iot_config_addr_int_add_one(bda, IOT_CONF_KEY_GAP_CONN_COUNT);
++#endif
+   }
+ #if (BTM_SCO_INCLUDED == TRUE)
+   else {
+diff --git a/stack/hcic/hcicmds.cc b/stack/hcic/hcicmds.cc
+index a43122d..3d7d075 100644
+--- a/stack/hcic/hcicmds.cc
++++ b/stack/hcic/hcicmds.cc
+@@ -33,6 +33,7 @@
+ #include <string.h>
+ 
+ #include "btm_int.h" /* Included for UIPC_* macro definitions */
++#include "device/include/device_iot_config.h"
+ 
+ void btsnd_hcic_inquiry(const LAP inq_lap, uint8_t duration,
+                         uint8_t response_cnt) {
+@@ -125,6 +126,9 @@ void btsnd_hcic_create_conn(const RawAddress& dest, uint16_t packet_types,
+   UINT8_TO_STREAM(pp, allow_switch);
+ #endif
+   btm_acl_paging(p, dest);
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++  device_iot_config_addr_int_add_one(dest, IOT_CONF_KEY_GAP_CONN_COUNT);
++#endif
+ }
+ 
+ void btsnd_hcic_disconnect(uint16_t handle, uint8_t reason) {
+diff --git a/stack/include/a2dp_codec_api.h b/stack/include/a2dp_codec_api.h
+index a87f813..3230240 100644
+--- a/stack/include/a2dp_codec_api.h
++++ b/stack/include/a2dp_codec_api.h
+@@ -39,6 +39,7 @@
+ #include "audio_a2dp_hw/include/audio_a2dp_hw.h"
+ #include "avdt_api.h"
+ #include "osi/include/time.h"
++#include "bt_target.h"
+ 
+ /**
+  * Structure used to initialize the A2DP encoder with A2DP peer information
+@@ -498,6 +499,12 @@ typedef struct {
+   void (*set_transmit_queue_length)(size_t transmit_queue_length);
+ } tA2DP_ENCODER_INTERFACE;
+ 
++// Gets peer sink endpoint codec type.
++// |p_codec_info| contains information about the codec capabilities.
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++int A2DP_IotGetPeerSinkCodecType(const uint8_t* p_codec_info);
++#endif
++
+ // Gets the A2DP codec type.
+ // |p_codec_info| contains information about the codec capabilities.
+ tA2DP_CODEC_TYPE A2DP_GetCodecType(const uint8_t* p_codec_info);
+diff --git a/stack/include/btm_ble_api.h b/stack/include/btm_ble_api.h
+index 09a61ed..4411a54 100644
+--- a/stack/include/btm_ble_api.h
++++ b/stack/include/btm_ble_api.h
+@@ -641,6 +641,20 @@ extern bool BTM_GetLeSecurityState(const RawAddress& bd_addr,
+                                    uint8_t* p_le_dev_sec_flags,
+                                    uint8_t* p_le_key_size);
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++/*******************************************************************************
++*
++* Function         BTM_GetRemoteDeviceName
++*
++* Description      This function is called to get the dev name of remote device
++*                  from NV
++*
++* Returns          true if success; otherwise failed.
++*
++*******************************************************************************/
++extern bool BTM_GetRemoteDeviceName(const RawAddress& bda, BD_NAME bd_name);
++#endif
++
+ /*******************************************************************************
+  *
+  * Function         BTM_BleSecurityProcedureIsRunning
+diff --git a/stack/l2cap/l2c_link.cc b/stack/l2cap/l2c_link.cc
+index 5135304..16c625f 100644
+--- a/stack/l2cap/l2c_link.cc
++++ b/stack/l2cap/l2c_link.cc
+@@ -42,6 +42,7 @@
+ #include "l2c_int.h"
+ #include "l2cdefs.h"
+ #include "osi/include/osi.h"
++#include "device/include/device_iot_config.h"
+ 
+ static bool l2c_link_send_to_lower(tL2C_LCB* p_lcb, BT_HDR* p_buf,
+                                    tL2C_TX_COMPLETE_CB_INFO* p_cbi);
+@@ -343,6 +344,39 @@ void l2c_link_sec_comp2(const RawAddress& p_bda,
+   }
+ }
+ 
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++/*******************************************************************************
++**
++** Function         l2c_link_iot_store_disc_reason
++**
++** Description      iot store disconnection reason to local conf file
++**
++** Returns          void
++**
++*******************************************************************************/
++static void l2c_link_iot_store_disc_reason(RawAddress& bda, uint8_t reason) {
++  const char* disc_keys[] = {
++      IOT_CONF_KEY_GAP_DISC_CONNTIMEOUT_COUNT,
++    };
++  const uint8_t disc_reasons[] = {
++      HCI_ERR_CONNECTION_TOUT,
++    };
++  int i = 0;
++  int num = sizeof(disc_keys)/sizeof(disc_keys[0]);
++
++  if (reason == (uint8_t) -1)
++    return;
++
++  device_iot_config_addr_int_add_one(bda, IOT_CONF_KEY_GAP_DISC_COUNT);
++  for (i = 0; i < num; i++) {
++    if (disc_reasons[i] == reason) {
++      device_iot_config_addr_int_add_one(bda, disc_keys[i]);
++      break;
++    }
++  }
++}
++#endif
++
+ /*******************************************************************************
+  *
+  * Function         l2c_link_hci_disc_comp
+@@ -367,6 +401,9 @@ bool l2c_link_hci_disc_comp(uint16_t handle, uint8_t reason) {
+   if (!p_lcb) {
+     status = false;
+   } else {
++#if (BT_IOT_LOGGING_ENABLED == TRUE)
++    l2c_link_iot_store_disc_reason(p_lcb->remote_bd_addr, reason);
++#endif
+     /* There can be a case when we rejected PIN code authentication */
+     /* otherwise save a new reason */
+     if (btm_cb.acl_disc_reason != HCI_ERR_HOST_REJECT_SECURITY)
+-- 
+2.7.4
+
