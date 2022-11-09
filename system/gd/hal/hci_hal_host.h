@@ -55,5 +55,7 @@ class HciHalHostRootcanalConfig {
   std::string server_address_ = "127.0.0.1";  // Default server address
 };
 
+uint16_t GetMsftOpcode();
+
 }  // namespace hal
 }  // namespace bluetooth

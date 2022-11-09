@@ -30,6 +30,7 @@
 
 #include "gd/common/init_flags.h"
 #include "hal/hci_hal.h"
+#include "hal/mgmt.h"
 #include "hal/snoop_logger.h"
 #include "metrics/counter_metrics.h"
 #include "os/log.h"
@@ -468,7 +469,29 @@ class HciHalHost : public HciHal {
   }
 };
 
+class HciHalHostMsftConfig {
+ public:
+  HciHalHostMsftConfig() {
+    opcode_ = Mgmt().get_vs_opcode(MGMT_VS_OPCODE_MSFT);
+  }
+
+  HciHalHostMsftConfig(const HciHalHostMsftConfig&) = delete;
+
+  uint16_t GetMsftOpcode() {
+    return opcode_;
+  }
+
+ private:
+  uint16_t opcode_ = 0;
+};
+
 const ModuleFactory HciHal::Factory = ModuleFactory([]() { return new HciHalHost(); });
+
+HciHalHostMsftConfig* msft_config = new HciHalHostMsftConfig();
+
+uint16_t GetMsftOpcode() {
+  return msft_config->GetMsftOpcode();
+}
 
 }  // namespace hal
 }  // namespace bluetooth
