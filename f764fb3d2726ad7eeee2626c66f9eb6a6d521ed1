@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598563fb_31f3da6c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-09T18:55:16Z",
+      "side": 1,
+      "message": "why does this need to be mut? can we change this to not mut?",
+      "range": {
+        "startLine": 1865,
+        "startChar": 8,
+        "endLine": 1865,
+        "endChar": 12
+      },
+      "revId": "f764fb3d2726ad7eeee2626c66f9eb6a6d521ed1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3e28c7c_7eaf868a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1867,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-09T18:55:16Z",
+      "side": 1,
+      "message": "can this also be not mut?",
+      "range": {
+        "startLine": 1867,
+        "startChar": 8,
+        "endLine": 1867,
+        "endChar": 11
+      },
+      "revId": "f764fb3d2726ad7eeee2626c66f9eb6a6d521ed1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
