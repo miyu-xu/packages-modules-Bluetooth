@@ -30,6 +30,7 @@
 #include "bt_utils.h"
 #include "bta/include/bta_api.h"
 #include "btm_api.h"
+#include "device/include/device_iot_config.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
@@ -251,6 +252,10 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
 
   /* if no ccbs bound to this lcb, disconnect */
   if (!bind) {
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+    device_iot_config_addr_int_add_one(p_lcb->peer_addr,
+                                       IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
+#endif
     avct_lcb_event(p_lcb, AVCT_LCB_INT_CLOSE_EVT, p_data);
   }
 }
@@ -274,6 +279,10 @@ void avct_lcb_open_fail(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
     if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb)) {
       avct_ccb_dealloc(p_ccb, AVCT_CONNECT_CFM_EVT, p_data->result,
                        &p_lcb->peer_addr);
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+      device_iot_config_addr_int_add_one(p_lcb->peer_addr,
+                                         IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
+#endif
     }
   }
 }
@@ -409,7 +418,15 @@ void avct_lcb_chnl_disc(tAVCT_LCB* p_lcb, UNUSED_ATTR tAVCT_LCB_EVT* p_data) {
  *
  ******************************************************************************/
 void avct_lcb_bind_fail(UNUSED_ATTR tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
+#ifndef BT_IOT_LOGGING_ENABLED
+  (void)(p_lcb);
+#endif
+
   avct_ccb_dealloc(p_data->p_ccb, AVCT_CONNECT_CFM_EVT, AVCT_RESULT_FAIL, NULL);
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  device_iot_config_addr_int_add_one(p_lcb->peer_addr,
+                                     IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
+#endif
 }
 
 /*******************************************************************************
