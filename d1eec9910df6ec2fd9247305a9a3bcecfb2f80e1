@@ -16,6 +16,24 @@
       "message": "Our pattern for handling async things like this has been the following:\n\n* You create a mpsc channel and implement an async handler.\n* The topshim dispatcher will send the enum variant via the provided dispatch function. You can forward via tx.send(...)\n* Use the caller id to invoke the callback.\n\nDoes this new async helper provide a benefit over this? Looking through the code, it just looks different (not necessarily better).",
       "revId": "d1eec9910df6ec2fd9247305a9a3bcecfb2f80e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb4181e2_f581b9c5",
+        "filename": "system/gd/rust/linux/stack/src/async_helper.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-09T03:03:11Z",
+      "side": 1,
+      "message": "This part is trying to establish a pattern of calling btif function that directly accepts a callback, like `BleScannerInterfaceImpl::ScanFilterAdd`. I don\u0027t see there is a pattern like this yet, did I miss it (is there an example I can follow)? \n\nThis makes implementing async abstraction more easily: https://r.android.com/c/platform/packages/modules/Bluetooth/+/2264224/10/system/gd/rust/linux/stack/src/bluetooth_gatt.rs#742\n\nwhich in turn makes composing async operations more conveniently, e.g. https://r.android.com/c/platform/packages/modules/Bluetooth/+/2264224/10/system/gd/rust/linux/stack/src/bluetooth_gatt.rs#1180 where we can express \"do A until done, and then do B until done, do C until done\" and it\u0027s also possible to compose async operations differently like \"do both A and B together until done and then do C\".",
+      "parentUuid": "9576531b_22186c5b",
+      "revId": "d1eec9910df6ec2fd9247305a9a3bcecfb2f80e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
