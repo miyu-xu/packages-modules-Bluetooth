@@ -30,6 +30,7 @@
 
 #include "gd/common/init_flags.h"
 #include "hal/hci_hal.h"
+#include "hal/mgmt.h"
 #include "hal/snoop_logger.h"
 #include "metrics/counter_metrics.h"
 #include "os/log.h"
@@ -207,6 +208,20 @@ int ConnectToSocket() {
 namespace bluetooth {
 namespace hal {
 
+class HciHalHostMsftConfig {
+ public:
+  HciHalHostMsftConfig() {
+    opcode_ = Mgmt().get_vs_opcode(MGMT_VS_OPCODE_MSFT);
+  }
+
+  uint16_t GetMsftOpcode() {
+    return opcode_;
+  }
+
+ private:
+  uint16_t opcode_ = 0;
+};
+
 class HciHalHost : public HciHal {
  public:
   void registerIncomingPacketCallback(HciHalCallbacks* callback) override {
@@ -266,6 +281,10 @@ class HciHalHost : public HciHal {
     write_to_fd(packet);
   }
 
+  uint16_t getMsftOpcode() override {
+    return msft_config_->GetMsftOpcode();
+  }
+
  protected:
   void ListDependencies(ModuleList* list) const {
     list->add<metrics::CounterMetrics>();
@@ -319,6 +338,7 @@ class HciHalHost : public HciHal {
   bluetooth::os::Reactor::Reactable* reactable_ = nullptr;
   std::queue<std::vector<uint8_t>> hci_outgoing_queue_;
   SnoopLogger* btsnoop_logger_ = nullptr;
+  HciHalHostMsftConfig* msft_config_ = new HciHalHostMsftConfig();
 
   void write_to_fd(HciPacket packet) {
     // TODO: replace this with new queue when it's ready
