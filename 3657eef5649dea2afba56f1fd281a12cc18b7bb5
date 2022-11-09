@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c30ae5_8c8231e2",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1917,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-09T09:47:14Z",
+      "side": 1,
+      "message": "So 1 or 0 as in line 1920? :)",
+      "revId": "3657eef5649dea2afba56f1fd281a12cc18b7bb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
