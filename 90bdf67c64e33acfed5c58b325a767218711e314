@@ -16,6 +16,24 @@
       "message": "Since you\u0027ve inserted this in the middle, please make sure this doesn\u0027t break Android JNI. Otherwise, they may call `get_report_reply` when trying to call `set_report`.\n\nIt may be a good idea to convert this to this format as well to avoid any mismatches:\n```\nstatic const bthh_interface_t bthhInterface \u003d {\n  .size \u003d sizeof(bthhInterface),\n  .init \u003d init,\n  .connect \u003d connect,\n  ...\n};\n```",
       "revId": "90bdf67c64e33acfed5c58b325a767218711e314",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b965e6a_2e3dbec3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1831,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T19:02:00Z",
+      "side": 1,
+      "message": "good point...I prefer the explicit mapping too.\n\nThis is slightly more work up front but makes significantly more readable code for both human and compiler",
+      "parentUuid": "b3e72c27_bfbb079d",
+      "revId": "90bdf67c64e33acfed5c58b325a767218711e314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
