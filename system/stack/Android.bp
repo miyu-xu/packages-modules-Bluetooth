@@ -1303,6 +1303,7 @@ cc_test {
     ],
     srcs: [
         ":TestCommonMockFunctions",
+        ":TestMockBta",
         ":TestMockBtif",
         ":TestMockOsi",
         ":TestMockStackL2cap",

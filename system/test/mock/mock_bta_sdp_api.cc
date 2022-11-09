@@ -54,3 +54,4 @@ tBTA_SDP_STATUS BTA_SdpSearch(const RawAddress& bd_addr,
   mock_function_count_map[__func__]++;
   return BTA_SDP_SUCCESS;
 }
+void BTA_SdpDumpsys(int fd) { mock_function_count_map[__func__]++; }
