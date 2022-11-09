@@ -82,7 +82,7 @@ class SMProxy(ProfileProxy):
         """
         Please reset your device.
         """
-        self.host.SoftReset()
+        self.host.Reset()
         return "OK"
 
     @assert_description
