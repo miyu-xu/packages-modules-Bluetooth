@@ -6,7 +6,7 @@ from mmi2grpc._helpers import match_description
 from mmi2grpc._proxy import ProfileProxy
 
 from pandora_experimental.host_grpc import Host
-from pandora_experimental.host_pb2 import Connection, ConnectabilityMode, AddressType
+from pandora_experimental.host_pb2 import Connection, OwnAddressType
 from pandora_experimental.l2cap_grpc import L2CAP
 
 from typing import Optional
@@ -91,8 +91,8 @@ class L2CAPProxy(ProfileProxy):
         Place the IUT into LE connectable mode.
         """
         self.host.StartAdvertising(
-            connectability_mode=ConnectabilityMode.CONNECTABILITY_CONNECTABLE,
-            own_address_type=AddressType.PUBLIC,
+            connectable=True,
+            own_address_type=OwnAddressType.PUBLIC,
         )
         # not strictly necessary, but can save time on waiting connection
         tests_to_open_bluetooth_server_socket = [

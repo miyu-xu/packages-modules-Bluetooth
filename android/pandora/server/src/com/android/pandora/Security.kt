@@ -19,14 +19,9 @@ package com.android.pandora
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothDevice.ACTION_PAIRING_REQUEST
-import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.bluetooth.BluetoothDevice.DEVICE_TYPE_CLASSIC
-import android.bluetooth.BluetoothDevice.DEVICE_TYPE_DUAL
 import android.bluetooth.BluetoothDevice.DEVICE_TYPE_LE
 import android.bluetooth.BluetoothDevice.EXTRA_PAIRING_VARIANT
-import android.bluetooth.BluetoothDevice.TRANSPORT_AUTO
-import android.bluetooth.BluetoothDevice.TRANSPORT_BREDR
-import android.bluetooth.BluetoothDevice.TRANSPORT_LE
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
@@ -80,13 +75,8 @@ class Security(private val context: Context) : SecurityImplBase() {
         TAG,
         "pair: ${bluetoothDevice.address} (current bond state: ${bluetoothDevice.bondState})"
       )
-      bluetoothDevice.createBond(
-        when (request.connection.transport!!) {
-          Transport.TRANSPORT_LE -> TRANSPORT_LE
-          Transport.TRANSPORT_BREDR -> TRANSPORT_BREDR
-          Transport.UNRECOGNIZED -> TRANSPORT_AUTO
-        }
-      )
+      bluetoothDevice.createBond(request.connection.transport)
+
       Empty.getDefaultInstance()
     }
   }
@@ -150,8 +140,7 @@ class Security(private val context: Context) : SecurityImplBase() {
           val device = intent.getBluetoothDeviceExtra()
           val variant = intent.getIntExtra(EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
           Log.i(TAG, "OnPairing: Handling PairingEvent ${variant} for device ${device.address}")
-          val eventBuilder =
-            PairingEvent.newBuilder().setAddress(device.toByteString())
+          val eventBuilder = PairingEvent.newBuilder().setAddress(device.toByteString())
           when (variant) {
             // SSP / LE Just Works
             BluetoothDevice.PAIRING_VARIANT_CONSENT ->
