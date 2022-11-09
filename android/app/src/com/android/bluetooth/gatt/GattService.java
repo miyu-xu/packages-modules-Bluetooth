@@ -94,7 +94,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 
 /**
@@ -2526,6 +2525,7 @@ public class GattService extends ProfileService {
 
             ScanClient client = findBatchScanClientById(scannerId);
             if (client == null) {
+                Log.d(TAG, "onBatchScanReports() - empty batch scan client");
                 return;
             }
 
@@ -2571,9 +2571,25 @@ public class GattService extends ProfileService {
 
     private void sendBatchScanResults(ScannerMap.App app, ScanClient client,
             ArrayList<ScanResult> results) {
+        if (DBG) {
+            Log.d(TAG, "sendBatchScanResults() " + client + ", results " + results);
+        }
         try {
             if (app.callback != null) {
-                app.callback.onBatchScanResults(results);
+                if (mScanManager.isAutoBatchScanClient(client)) {
+                    for (ScanResult result : results) {
+                        if (DBG) {
+                            Log.d(TAG, "send batch scan record to regular scan callback" + result);
+                        }
+                        app.appScanStats.addResult(client.scannerId);
+                        app.callback.onScanResult(result);
+                    }
+                } else {
+                    if (DBG) {
+                        Log.d(TAG, "send batch scan record to batch scan callback" + results);
+                    }
+                    app.callback.onBatchScanResults(results);
+                }
             } else {
                 sendResultsByPendingIntent(app.info, results,
                         ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
@@ -2609,7 +2625,6 @@ public class GattService extends ProfileService {
                 return;
             }
         }
-
         if (client.filters == null || client.filters.isEmpty()) {
             sendBatchScanResults(app, client, permittedResults);
             // TODO: Question to reviewer: Shouldn't there be a return here?

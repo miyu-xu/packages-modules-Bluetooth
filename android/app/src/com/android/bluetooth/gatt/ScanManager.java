@@ -115,6 +115,9 @@ public class ScanManager {
     // Timeout for each controller operation.
     private static final int OPERATION_TIME_OUT_MILLIS = 500;
     private static final int MAX_IS_UID_FOREGROUND_MAP_SIZE = 500;
+    // Report delay (ms) and notify threshold (percent) for auto batch scan.
+    private static final long AUTO_BATCH_SCAN_REPORT_DELAY_MS = 6000000;
+    private static final int AUTO_BATCH_SCAN_NOTIFY_THRESHOLD = 2;
 
     private int mLastConfiguredScanSetting = Integer.MIN_VALUE;
     // Scan parameters for batch scan.
@@ -364,6 +367,10 @@ public class ScanManager {
         return mBluetoothAdapterProxy.isOffloadedScanFilteringSupported();
     }
 
+    boolean isAutoBatchScanClient(ScanClient client) {
+        return mScanNative.isAutoBatchScanClient(client);
+    }
+
     // Handler class that handles BLE scan operations.
     private class ClientHandler extends Handler {
 
@@ -522,7 +529,13 @@ public class ScanManager {
         }
 
         void handleFlushBatchResults(ScanClient client) {
+            if (DBG) {
+                Log.d(TAG, "handleFlushBatchResults() " + client.scannerId);
+            }
             if (!mBatchClients.contains(client)) {
+                if (DBG) {
+                    Log.d(TAG, "There is no batch scan client to flush " + client.scannerId);
+                }
                 return;
             }
             mScanNative.flushBatchResults(client.scannerId);
@@ -559,6 +572,7 @@ public class ScanManager {
             }
             handleSuspendScans();
             updateRegularScanClientsScreenOff();
+            updateRegularScanToBatchScanClients();
         }
 
         void handleConnectingState() {
@@ -628,6 +642,75 @@ public class ScanManager {
             }
         }
 
+        private void updateRegularScanToBatchScanClients() {
+            // Don't disturb normal batch scan
+            BatchScanParams batchScanParams = mScanNative.getBatchScanParams();
+            if (batchScanParams != null && !batchScanParams.isAutoBatchScan) {
+                return;
+            }
+            boolean updatedScanParams = false;
+            for (ScanClient client : mRegularScanClients) {
+                if (!mScanNative.isExemptFromAutoBatchScanUpdate(client)) {
+                    if (updateRegularScanToBatchScanClient(client)) {
+                        updatedScanParams = true;
+                        if (DBG) {
+                            Log.d(TAG, "Updated regular scan to batch scan" + client);
+                        }
+                    }
+                }
+            }
+            if (updatedScanParams) {
+                mScanNative.configureRegularScanParams();
+            }
+        }
+
+        private boolean updateRegularScanToBatchScanClient(ScanClient client) {
+            int priority = mPriorityMap.get(client.settings.getScanMode());
+            if (priority > mPriorityMap.get(ScanSettings.SCAN_MODE_LOW_POWER)) {
+                return false;
+            }
+            if (DBG) {
+                Log.d(TAG, "Updating regular scan to batch scan" + client);
+            }
+            handleStopScan(client);
+            setAutoBatchScanClient(client);
+            handleStartScan(client);
+            return true;
+        }
+
+        private void updateBatchScanToRegularScanClients() {
+            BatchScanParams batchScanParams = mScanNative.getBatchScanParams();
+            if (batchScanParams == null || !batchScanParams.isAutoBatchScan) {
+                return;
+            }
+            boolean updatedScanParams = false;
+            for (ScanClient client : mBatchClients) {
+                if (updateBatchScanToRegularScanClient(client)) {
+                    updatedScanParams = true;
+                    if (DBG) {
+                        Log.d(TAG, "Updated batch scan to regular scan" + client);
+                    }
+                }
+            }
+            if (updatedScanParams) {
+                mScanNative.configureRegularScanParams();
+            }
+        }
+
+        private boolean updateBatchScanToRegularScanClient(ScanClient client) {
+            if (!mScanNative.isAutoBatchScanClient(client)) {
+                return false;
+            }
+            if (DBG) {
+                Log.d(TAG, "Updating batch scan to regular scan" + client);
+            }
+            handleFlushBatchResults(client);
+            handleStopScan(client);
+            clearAutoBatchScanClient(client);
+            handleStartScan(client);
+            return true;
+        }
+
         private void updateRegularScanClientsScreenOff() {
             boolean updatedScanParams = false;
             for (ScanClient client : mRegularScanClients) {
@@ -640,6 +723,23 @@ public class ScanManager {
             }
             if (updatedScanParams) {
                 mScanNative.configureRegularScanParams();
+            }
+        }
+
+        private void setAutoBatchScanClient(ScanClient client) {
+            // TODO: supports configurable report delay for the auto batch scan
+            // Prevents host from waking up by alarm manager frequently.
+            // Instead, storage threshold breach event will wake up host.
+            client.updateReportDelay(AUTO_BATCH_SCAN_REPORT_DELAY_MS);
+            if (client.stats != null) {
+                client.stats.setAutoBatchScan(client.scannerId, true);
+            }
+        }
+
+        private void clearAutoBatchScanClient(ScanClient client) {
+            client.updateReportDelay(0);
+            if (client.stats != null) {
+                client.stats.setAutoBatchScan(client.scannerId, false);
             }
         }
 
@@ -792,6 +892,7 @@ public class ScanManager {
             if (DBG) {
                 Log.d(TAG, "handleScreenOn()");
             }
+            updateBatchScanToRegularScanClients();
             handleResumeScans();
             updateRegularScanClientsScreenOn();
         }
@@ -832,11 +933,13 @@ public class ScanManager {
         public int scanMode;
         public int fullScanscannerId;
         public int truncatedScanscannerId;
+        public boolean isAutoBatchScan;
 
         BatchScanParams() {
             scanMode = -1;
             fullScanscannerId = -1;
             truncatedScanscannerId = -1;
+            isAutoBatchScan = false;
         }
 
         @Override
@@ -849,8 +952,8 @@ public class ScanManager {
             }
             BatchScanParams other = (BatchScanParams) obj;
             return scanMode == other.scanMode && fullScanscannerId == other.fullScanscannerId
-                    && truncatedScanscannerId == other.truncatedScanscannerId;
-
+                    && truncatedScanscannerId == other.truncatedScanscannerId
+                    && isAutoBatchScan == other.isAutoBatchScan;
         }
     }
 
@@ -1041,6 +1144,10 @@ public class ScanManager {
             return isOpportunisticScanClient(client) || isFirstMatchScanClient(client);
         }
 
+        private boolean isExemptFromAutoBatchScanUpdate(ScanClient client) {
+            return isOpportunisticScanClient(client) || !isAllMatchesScanClient(client);
+        }
+
         private boolean isOpportunisticScanClient(ScanClient client) {
             return client.settings.getScanMode() == ScanSettings.SCAN_MODE_OPPORTUNISTIC;
         }
@@ -1057,12 +1164,21 @@ public class ScanManager {
             return isTimeoutScanClient(client) || isDowngradedScanClient(client);
         }
 
+        private boolean isAutoBatchScanClient(ScanClient client) {
+            return client.stats != null && client.stats.isAutoBatchScan(client.scannerId);
+        }
+
         private boolean isFirstMatchScanClient(ScanClient client) {
             return (client.settings.getCallbackType() & ScanSettings.CALLBACK_TYPE_FIRST_MATCH)
                     != 0;
         }
 
+        private boolean isAllMatchesScanClient(ScanClient client) {
+            return client.settings.getCallbackType() == ScanSettings.CALLBACK_TYPE_ALL_MATCHES;
+        }
+
         private void resetBatchScan(ScanClient client) {
+            int notifyThreshold;
             int scannerId = client.scannerId;
             BatchScanParams batchScanParams = getBatchScanParams();
             // Stop batch if batch scan params changed and previous params is not null.
@@ -1079,7 +1195,11 @@ public class ScanManager {
             }
             // Start batch if batchScanParams changed and current params is not null.
             if (batchScanParams != null && (!batchScanParams.equals(mBatchScanParms))) {
-                int notifyThreshold = 95;
+                if (batchScanParams.isAutoBatchScan) {
+                    notifyThreshold = AUTO_BATCH_SCAN_NOTIFY_THRESHOLD;
+                } else {
+                    notifyThreshold = 95;
+                }
                 if (DBG) {
                     Log.d(TAG, "Starting BLE batch scan");
                 }
@@ -1087,7 +1207,8 @@ public class ScanManager {
                 int fullScanPercent = getFullScanStoragePercent(resultType);
                 resetCountDownLatch();
                 if (DBG) {
-                    Log.d(TAG, "configuring batch scan storage, appIf " + client.scannerId);
+                    Log.d(TAG, "configuring batch scan storage, notify threshold " + notifyThreshold
+                            + ", appIf " + client.scannerId);
                 }
                 gattClientConfigBatchScanStorageNative(client.scannerId, fullScanPercent,
                         100 - fullScanPercent, notifyThreshold);
@@ -1126,6 +1247,7 @@ public class ScanManager {
             ScanClient winner = getAggressiveClient(mBatchClients);
             if (winner != null) {
                 params.scanMode = winner.settings.getScanMode();
+                params.isAutoBatchScan = isAutoBatchScanClient(winner);
             }
             // TODO: split full batch scan results and truncated batch scan results to different
             // collections.

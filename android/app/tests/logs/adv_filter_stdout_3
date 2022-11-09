@@ -1,0 +1,54 @@
+
+Reading config: /usr/local/google/home/jaydenk/.atest/config
+
+==================
+[1;31mNotice:[0m
+[1;32m   We collect usage statistics in accordance with our Content Licenses (https://source.android.com/setup/start/licenses), Contributor License Agreement (https://cla.developers.google.com/), Privacy Policy (https://policies.google.com/privacy) and Terms of Service (https://policies.google.com/terms).[0m
+==================
+
+
+Finding Tests...
+Found 'BluetoothInstrumentationTests:AdvtFilterOnFoundOnLostInfoTes' as MODULE_CLASS
+(Test info has been cached for speeding up the next run, if test info need to be updated, please add -c to clean the old cache.)
+
+Building Dependencies...
+android.hardware.thermal-V2.0-java, android.hardware.radio-V1.1-java, android.hardware.gnss.measurement_corrections-V1.0-java, android.hardware.vibrator-V1.2-java, framework-minus-apex, telephony-common, framework-protos, framework-res, android.se.omapi-V1-java, android.hardware.radio.sim-V1-java, guava-android-annotation-stubs, compatibility-host-util, sdkparcelables, truth-prebuilt, android.hardware.radio.config-V1-java, android.hardware.radio-V1.5-java, updatable-driver-protos, android.hardware.radio.network-V1-java, android.test.base, android.hardware.gnss.measurement_corrections-V1.1-java, android.hardware.common.fmq-V1-java, tradefed, android.test.mock, android.media.soundtrigger.types-V1-java, turbine, junit, kotlinx_coroutines, android.hardware.thermal-V1.0-java, metalava, android.hardware.radio.config-V1.1-java, android.hidl.base-V1.0-java, RecoveryImageGenerator, android.test.runner, audiopolicy-types-aidl-java, android.hardware.usb.gadget-V1.2-java, hamcrest-library, guava-both, jsr305, android.hardware.cas-V1.1-java, android.hardware.radio-V1.0-java, packagemanager_aidl-java, android.hardware.contexthub-V1-java, framework-annotations-lib, libprotobuf-java-micro, android.hardware.vibrator-V1.3-java, bouncycastle-repackaged-unbundled, android.hardware.radio-V1.6-java, android.hardware.radio.deprecated-V1.0-java-shallow, MODULES-IN-packages-modules-Bluetooth-android-app-tests-unit, androidx.annotation_annotation, unsupportedappusage, cts-tradefed, xsdc, media_permission-aidl-java, android.hardware.common-V2-java, android.hardware.vibrator-V1.0-java, android.hardware.radio.config-V1.1-java-shallow, kotlinx_atomicfu, android.hardware.radio.config-V1.0-java-shallow, android.hardware.gnss-V1.0-java, guava, tagsoup, audioclient-types-aidl-java, android.hardware.vibrator-V1.1-java, av-types-aidl-java, android.hardware.usb.gadget-V1.1-java, android.media.audio.common.types-V2-java, android.hardware.soundtrigger3-V1-java, android.hardware.radio.config-V1.0-java, android.hardware.radio-V1.4-java, guava-jre, ims-common, framework-permission-aidl-java, d8, libprotobuf-java-nano, gson, android.hardware.radio.messaging-V1-java, resourceshrinker, objenesis, android.hardware.radio.config-V1.3-java-shallow, BugReport, tradefed-core, android.hardware.radio.config-V1.2-java-shallow, tradefed-test-framework, signapk, android.hardware.thermal-V1.1-java, voip-common, jsr330, android.system.suspend.control.internal-java, android.hardware.cas-V1.0-java, ota_metadata_proto_java, tv_tuner_resource_manager_aidl_interface-java, mockito, ahat, apksigner, android.hidl.safe_union-V1.0-java, android.hardware.radio.data-V1-java, stub-annotations, ext, atest-tradefed, android.hardware.radio-V1.3-java, android.hardware.contexthub-V1.0-java, android.hardware.radio.config-V1.2-java, boot_signer, android.hardware.gnss-V2.0-java, android.hardware.gnss-V2.1-java, hamcrest, soundtrigger_middleware-aidl-java, android.hardware.radio-V1-java, manifest-merger, androidx.room_room-common, class2nonsdklist, android.hardware.radio-V1.2-java, android.hardware.gnss.visibility_control-V1.0-java, android.hardware.contexthub-V1.2-java, android.hardware.contexthub-V1.1-java, androidx.room_room-migration, android.hardware.radio.voice-V1-java, r8, jetifier, android.hardware.cas-V1.2-java, android.hardware.vibrator-V2-java, app-compat-annotations, android.hardware.usb.gadget-V1.0-java, tradefed-contrib, out/target/product/cheetah/module-info.json, android.hardware.radio.modem-V1-java, apex_aidl_interface-java, jarjar, spatializer-aidl-java, BluetoothInstrumentationTests, javax.obex, android.hardware.gnss-V1.1-java
+
+                                                                                ============================================                                                                                PLATFORM_VERSION_CODENAME=UpsideDownCake                                                                                PLATFORM_VERSION=UpsideDownCake                                                                                TARGET_PRODUCT=aosp_cheetah                                                                                TARGET_BUILD_VARIANT=userdebug                                                                                TARGET_ARCH=arm64                                                                                TARGET_ARCH_VARIANT=armv8-2a                                                                                TARGET_CPU_VARIANT=cortex-a55                                                                                TARGET_2ND_ARCH=arm                                                                                TARGET_2ND_ARCH_VARIANT=armv8-a                                                                                TARGET_2ND_CPU_VARIANT=generic                                                                                HOST_OS=linux                                                                                HOST_OS_EXTRA=Linux-5.18.16-1rodete1-amd64-x86_64-Debian-GNU/Linux-rodete                                                                                HOST_CROSS_OS=windows                                                                                BUILD_ID=AOSP.MASTER                                                                                OUT_DIR=out                                                                                ============================================                                                                                ninja: no work to do.                                                                                No need to regenerate ninja file                                                                                No need to regenerate ninja file                                                                                No need to regenerate ninja file                                                                                Starting ninja...                                                                                ninja: no work to do.                                                                                                                                                                RBE Stats: Downloaded: 0 B, Uploaded: 0 B                                                                                [0m
+
+Running Tests...
+
+arm64-v8a BluetoothInstrumentationTests
+---------------------------------------
+com.android.bluetooth.tests (1 Test)
+RUNNER ERROR: Runner reported an invalid method 'initializationError' (AdvtFilterOnFoundOnLostInfoTes#initializationError). Something went wrong, Skipping its reporting. Stack:java.lang.RuntimeException: Failed loading specified test class 'AdvtFilterOnFoundOnLostInfoTes'
+	at androidx.test.internal.runner.DirectTestLoader.doCreateRunner(DirectTestLoader.java:50)
+	at androidx.test.internal.runner.TestLoader.getRunnersFor(TestLoader.java:64)
+	at androidx.test.internal.runner.TestRequestBuilder.build(TestRequestBuilder.java:835)
+	at androidx.test.runner.AndroidJUnitRunner.buildRequest(AndroidJUnitRunner.java:650)
+	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:418)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2322)
+Caused by: java.lang.ClassNotFoundException: AdvtFilterOnFoundOnLostInfoTes
+	at java.lang.Class.classForName(Native Method)
+	at java.lang.Class.forName(Class.java:529)
+	at androidx.test.internal.runner.DirectTestLoader.doCreateRunner(DirectTestLoader.java:44)
+	... 5 more
+Caused by: java.lang.ClassNotFoundException: AdvtFilterOnFoundOnLostInfoTes
+	... 8 more
+
+
+Summary (Test executed with 1 devices.)
+-------
+arm64-v8a BluetoothInstrumentationTests: Passed: 0, Failed: 0, Ignored: 0, Assumption Failed: 0,   (Completed With ERRORS) 
+
+1 test failed
+-------------
+Test Logs have saved in /tmp/atest_result/20221031_013243_emx8glqz/log
+Run 'atest --history' to review test result history.
+[Suggestion] Please reflash the device(s).
+[Suggestion] Please reflash the device(s).
+[Suggestion] Please reflash the device(s).
+
+To access logs, press "ctrl" and click on
+file:///tmp/atest_result/20221031_013243_emx8glqz/log/test_logs.html
+

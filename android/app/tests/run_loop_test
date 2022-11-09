@@ -1,0 +1,11 @@
+#!/bin/bash
+for i in {0..10}
+do
+atest BluetoothInstrumentationTests:AdvertiseHelperTest >logs/adv_stdout_$i 2>logs/adv_stderr_$i
+atest BluetoothInstrumentationTests:AdvtFilterOnFoundOnLostInfoTes >logs/adv_filter_stdout_$i 2>logs/adv_filter_stderr_$i
+atest BluetoothInstrumentationTests:CallbackInfoTest >logs/callback_stdout_$i 2>logs/callback_stderr_$i
+atest BluetoothInstrumentationTests:FilterParamsTest >logs/filter_params_stdout_$i 2>logs/filter_params_stderr_$i
+atest BluetoothInstrumentationTests:GattServiceTest >logs/gatt_stdout_$i 2>logs/gatt_stderr_$i
+atest BluetoothInstrumentationTests:ScanFilterQueueTest >logs/scan_filter_stdout_$i 2>logs/scan_filter_stderr_$i
+atest BluetoothInstrumentationTests:ScanManagerTest >logs/scan_stdout_$i 2>logs/scan_stderr_$i
+done

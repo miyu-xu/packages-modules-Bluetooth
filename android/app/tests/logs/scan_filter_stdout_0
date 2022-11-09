@@ -1,0 +1,40 @@
+
+Reading config: /usr/local/google/home/jaydenk/.atest/config
+
+==================
+[1;31mNotice:[0m
+[1;32m   We collect usage statistics in accordance with our Content Licenses (https://source.android.com/setup/start/licenses), Contributor License Agreement (https://cla.developers.google.com/), Privacy Policy (https://policies.google.com/privacy) and Terms of Service (https://policies.google.com/terms).[0m
+==================
+
+
+Finding Tests...
+Found 'BluetoothInstrumentationTests:ScanFilterQueueTest' as CACHE
+(Test info has been cached for speeding up the next run, if test info need to be updated, please add -c to clean the old cache.)
+
+Building Dependencies...
+spatializer-aidl-java, android.hardware.radio.network-V1-java, android.hardware.radio.config-V1.0-java-shallow, android.hardware.cas-V1.1-java, android.hardware.vibrator-V1.2-java, android.test.mock, android.hardware.vibrator-V1.1-java, android.hardware.radio-V1.5-java, android.media.soundtrigger.types-V1-java, ahat, android.hardware.gnss-V2.1-java, atest-tradefed, jarjar, android.hardware.radio-V1.0-java, android.hardware.contexthub-V1.0-java, android.hardware.gnss-V1.0-java, metalava, android.hardware.thermal-V1.0-java, android.hardware.radio-V1.6-java, ext, tradefed-test-framework, kotlinx_coroutines, hamcrest, android.hardware.radio.sim-V1-java, guava, bouncycastle-repackaged-unbundled, android.test.runner, android.hardware.vibrator-V1.3-java, android.hardware.usb.gadget-V1.2-java, resourceshrinker, out/target/product/cheetah/module-info.json, gson, tagsoup, r8, updatable-driver-protos, android.hardware.soundtrigger3-V1-java, tradefed, android.hardware.vibrator-V1.0-java, android.hardware.radio.messaging-V1-java, android.hardware.radio.config-V1.2-java-shallow, guava-android-annotation-stubs, android.hardware.common-V2-java, tv_tuner_resource_manager_aidl_interface-java, av-types-aidl-java, cts-tradefed, framework-annotations-lib, android.hidl.safe_union-V1.0-java, android.hardware.gnss.measurement_corrections-V1.1-java, framework-permission-aidl-java, guava-both, android.hardware.radio.config-V1.0-java, tradefed-contrib, android.hardware.contexthub-V1.2-java, android.hardware.radio.config-V1.3-java-shallow, audioclient-types-aidl-java, class2nonsdklist, MODULES-IN-packages-modules-Bluetooth-android-app-tests-unit, android.test.base, android.media.audio.common.types-V2-java, RecoveryImageGenerator, media_permission-aidl-java, BugReport, android.hardware.usb.gadget-V1.1-java, audiopolicy-types-aidl-java, android.hardware.common.fmq-V1-java, androidx.room_room-migration, android.hardware.radio-V1-java, manifest-merger, android.hardware.gnss-V2.0-java, androidx.annotation_annotation, app-compat-annotations, xsdc, android.hardware.gnss.visibility_control-V1.0-java, android.hardware.radio.config-V1-java, android.hardware.contexthub-V1.1-java, android.hardware.cas-V1.2-java, apex_aidl_interface-java, android.hardware.usb.gadget-V1.0-java, android.hardware.gnss.measurement_corrections-V1.0-java, ims-common, voip-common, android.hardware.radio.data-V1-java, android.hardware.radio.config-V1.1-java-shallow, android.hardware.radio-V1.2-java, framework-protos, libprotobuf-java-micro, guava-jre, android.hardware.radio.deprecated-V1.0-java-shallow, mockito, android.hardware.gnss-V1.1-java, packagemanager_aidl-java, android.hardware.radio.voice-V1-java, android.se.omapi-V1-java, objenesis, framework-minus-apex, d8, BluetoothInstrumentationTests, jetifier, android.hidl.base-V1.0-java, stub-annotations, turbine, signapk, soundtrigger_middleware-aidl-java, truth-prebuilt, android.system.suspend.control.internal-java, compatibility-host-util, android.hardware.thermal-V1.1-java, android.hardware.radio-V1.3-java, framework-res, boot_signer, apksigner, android.hardware.cas-V1.0-java, android.hardware.vibrator-V2-java, jsr330, android.hardware.radio.config-V1.1-java, androidx.room_room-common, android.hardware.contexthub-V1-java, android.hardware.radio.config-V1.2-java, jsr305, telephony-common, android.hardware.radio-V1.4-java, ota_metadata_proto_java, javax.obex, android.hardware.thermal-V2.0-java, hamcrest-library, tradefed-core, junit, unsupportedappusage, android.hardware.radio-V1.1-java, android.hardware.radio.modem-V1-java, kotlinx_atomicfu, sdkparcelables, libprotobuf-java-nano
+
+                                                                                ============================================                                                                                PLATFORM_VERSION_CODENAME=UpsideDownCake                                                                                PLATFORM_VERSION=UpsideDownCake                                                                                TARGET_PRODUCT=aosp_cheetah                                                                                TARGET_BUILD_VARIANT=userdebug                                                                                TARGET_ARCH=arm64                                                                                TARGET_ARCH_VARIANT=armv8-2a                                                                                TARGET_CPU_VARIANT=cortex-a55                                                                                TARGET_2ND_ARCH=arm                                                                                TARGET_2ND_ARCH_VARIANT=armv8-a                                                                                TARGET_2ND_CPU_VARIANT=generic                                                                                HOST_OS=linux                                                                                HOST_OS_EXTRA=Linux-5.18.16-1rodete1-amd64-x86_64-Debian-GNU/Linux-rodete                                                                                HOST_CROSS_OS=windows                                                                                BUILD_ID=AOSP.MASTER                                                                                OUT_DIR=out                                                                                ============================================                                                                                ninja: no work to do.                                                                                No need to regenerate ninja file                                                                                No need to regenerate ninja file                                                                                No need to regenerate ninja file                                                                                Starting ninja...                                                                                ninja: no work to do.                                                                                                                                                                RBE Stats: Downloaded: 0 B, Uploaded: 0 B                                                                                [0m
+
+Running Tests...
+
+arm64-v8a BluetoothInstrumentationTests
+---------------------------------------
+com.android.bluetooth.tests (5 Tests)
+[1/5] com.android.bluetooth.gatt.ScanFilterQueueTest#queueAddScanFilter: PASSED (1ms)
+[2/5] com.android.bluetooth.gatt.ScanFilterQueueTest#checkFeatureSelection: PASSED (1ms)
+[3/5] com.android.bluetooth.gatt.ScanFilterQueueTest#scanFilterQueueParams: PASSED (0ms)
+[4/5] com.android.bluetooth.gatt.ScanFilterQueueTest#convertQueueToArray: PASSED (0ms)
+[5/5] com.android.bluetooth.gatt.ScanFilterQueueTest#popFromQueue: PASSED (1ms)
+
+Summary (Test executed with 1 devices.)
+-------
+arm64-v8a BluetoothInstrumentationTests: Passed: 5, Failed: 0, Ignored: 0, Assumption Failed: 0,    
+
+All tests passed!
+Test Logs have saved in /tmp/atest_result/20221031_011147_705hpzbr/log
+Run 'atest --history' to review test result history.
+
+To access logs, press "ctrl" and click on
+file:///tmp/atest_result/20221031_011147_705hpzbr/log/test_logs.html
+
