@@ -39,6 +39,7 @@
 #include "stack/include/bt_hdr.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "device/include/device_iot_config.h"
 
 #include <base/logging.h>
 
@@ -910,6 +911,8 @@ void BtaAvCo::ProcessDiscoveryResult(tBTA_AV_HNDL bta_av_handle,
   }
 }
 
+static void bta_av_co_store_peer_codectype(const BtaAvCoPeer* p_peer);
+
 tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
     tBTA_AV_HNDL bta_av_handle, const RawAddress& peer_address,
     uint8_t* p_codec_info, uint8_t* p_sep_info_idx, uint8_t seid,
@@ -967,6 +970,10 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
   APPL_TRACE_DEBUG("%s: last Sink codec reached for peer %s (local %s)",
                    __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
                    p_peer->acceptor ? "acceptor" : "initiator");
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  bta_av_co_store_peer_codectype(p_peer);
+#endif
 
   // Select the Source codec
   const BtaAvCoSep* p_sink = nullptr;
@@ -2114,6 +2121,22 @@ void bta_av_co_audio_disc_res(tBTA_AV_HNDL bta_av_handle,
   bta_av_co_cb.ProcessDiscoveryResult(bta_av_handle, peer_address, num_seps,
                                       num_sinks, num_sources, uuid_local);
 }
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+static void bta_av_co_store_peer_codectype(const BtaAvCoPeer* p_peer)
+{
+  int index, peer_codec_type = 0;
+  const BtaAvCoSep* p_sink;
+  APPL_TRACE_DEBUG("%s", __func__);
+  for (index = 0; index < p_peer->num_sup_sinks; index++) {
+    p_sink = &p_peer->sinks[index];
+    peer_codec_type |= A2DP_IotGetPeerSinkCodecType(p_sink->codec_caps);
+  }
+
+  device_iot_config_addr_set_hex(p_peer->addr,
+          IOT_CONF_KEY_A2DP_CODECTYPE, peer_codec_type, IOT_CONF_BYTE_NUM_1);
+}
+#endif
 
 tA2DP_STATUS bta_av_co_audio_getconfig(tBTA_AV_HNDL bta_av_handle,
                                        const RawAddress& peer_address,

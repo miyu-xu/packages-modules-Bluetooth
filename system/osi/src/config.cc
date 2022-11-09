@@ -262,6 +262,17 @@ bool config_remove_key(config_t* config, const std::string& section,
   return false;
 }
 
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+void config_sections_sort_by_entry_key(config_t* config, compare_func comp) {
+  CHECK(config != NULL);
+
+  for (auto entry = config->sections.begin(); entry != config->sections.end();
+       ++entry) {
+    entry->entries.sort(comp);
+  }
+}
+#endif
+
 bool config_save(const config_t& config, const std::string& filename) {
   CHECK(!filename.empty());
 

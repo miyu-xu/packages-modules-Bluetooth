@@ -84,6 +84,7 @@
 #include "stack/include/bt_octets.h"
 #include "stack_config.h"
 #include "types/raw_address.h"
+#include "device/include/device_iot_config.h"
 
 bool btif_get_device_type(const RawAddress& bda, int* p_device_type);
 
@@ -278,6 +279,10 @@ static void btif_stats_add_bond_event(const RawAddress& bd_addr,
  *  Externs
  *****************************************************************************/
 extern bt_status_t btif_sdp_execute_service(bool b_enable);
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+extern void btif_iot_update_remote_info(tBTA_DM_AUTH_CMPL* p_auth_cmpl,
+                bool is_ble, bool is_ssp);
+#endif
 
 /******************************************************************************
  *  Functions
@@ -1044,6 +1049,11 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
   }
 
   if (p_auth_cmpl->success) {
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+    // save remote info to iot conf file
+    btif_iot_update_remote_info(p_auth_cmpl, false, pairing_cb.is_ssp);
+#endif
+
     // We could have received a new link key without going through the pairing
     // flow.  If so, we don't want to perform SDP or any other operations on the
     // authenticated device. Also, make sure that the link key is not derived

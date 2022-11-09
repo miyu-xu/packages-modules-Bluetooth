@@ -59,6 +59,7 @@
 #include "stack/include/btm_ble_api.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "device/include/device_iot_config.h"
 
 using base::PlatformThread;
 using bluetooth::Uuid;
@@ -270,6 +271,12 @@ void btif_enable_bluetooth_evt() {
   RawAddress local_bd_addr = *controller_get_interface()->get_address();
 
   std::string bdstr = local_bd_addr.ToString();
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  // save bd addr to iot conf file
+  device_iot_config_set_str(IOT_CONF_KEY_SECTION_ADAPTER, IOT_CONF_KEY_ADDRESS,
+                            bdstr.c_str());
+#endif
 
   char val[PROPERTY_VALUE_MAX] = "";
   int val_size = PROPERTY_VALUE_MAX;

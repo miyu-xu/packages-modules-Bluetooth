@@ -63,6 +63,7 @@
 #include "stack/include/srvc_api.h"  // DIS_ReadDISInfo
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "device/include/device_iot_config.h"
 
 #if (GAP_INCLUDED == TRUE)
 #include "gap_api.h"

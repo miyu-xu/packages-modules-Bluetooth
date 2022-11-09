@@ -56,6 +56,7 @@
 #include "stack/include/stack_metrics_logging.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
+#include "device/include/device_iot_config.h"
 
 using base::Location;
 using bluetooth::hci::IsoManager;

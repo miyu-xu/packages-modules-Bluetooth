@@ -44,6 +44,10 @@ struct config_t {
   bool Has(const std::string& section);
 };
 
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+typedef bool (*compare_func)(const entry_t& first, const entry_t& second);
+#endif
+
 // Creates a new config object with no entries (i.e. not backed by a file).
 // This function returns a unique pointer to config object.
 std::unique_ptr<config_t> config_new_empty(void);
@@ -133,6 +137,11 @@ bool config_remove_section(config_t* config, const std::string& section);
 // |config|may not be NULL.
 bool config_remove_key(config_t* config, const std::string& section,
                        const std::string& key);
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+// Sorts the entries in each section of config by entry key.
+void config_sections_sort_by_entry_key(config_t* config, compare_func comp);
+#endif
 
 // Saves |config| to a file given by |filename|. Note that this could be a
 // destructive operation: if |filename| already exists, it will be overwritten.

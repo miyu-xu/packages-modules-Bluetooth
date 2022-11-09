@@ -58,6 +58,7 @@
 #include "stack/include/inq_hci_link_interface.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
+#include "device/include/device_iot_config.h"
 
 extern tBTM_CB btm_cb;
 

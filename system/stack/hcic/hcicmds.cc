@@ -37,6 +37,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "types/raw_address.h"
+#include "device/include/device_iot_config.h"
 
 void bte_main_hci_send(BT_HDR* p_msg, uint16_t event);
 
@@ -567,6 +568,9 @@ void btsnd_hcic_create_conn(const RawAddress& dest, uint16_t packet_types,
   acl_cache_role(dest, HCI_ROLE_CENTRAL, /*overwrite_cache=*/false);
 
   btm_acl_paging(p, dest);
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  device_iot_config_addr_int_add_one(dest, IOT_CONF_KEY_GAP_CONN_COUNT);
+#endif
 }
 
 static void btsnd_hcic_disconnect(uint16_t handle, uint8_t reason) {
