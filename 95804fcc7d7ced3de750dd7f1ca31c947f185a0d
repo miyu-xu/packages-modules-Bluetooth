@@ -16,6 +16,24 @@
       "message": "Maybe use an enum here?\n\ni.e.\n```\nenum ReactOn {\n  REACT_ON_READ,\n  REACT_ON_WRITE\n};\n\nvoid ModifyRegistration(Reactable* reactable, ReactOn react_on);\n```",
       "revId": "95804fcc7d7ced3de750dd7f1ca31c947f185a0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3528bc6c_d29da56a",
+        "filename": "system/gd/os/reactor.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T01:40:25Z",
+      "side": 1,
+      "message": "enum ReactOn {\n  REACT_ON_READ,\n  REACT_ON_WRITE,\n  REACT_ON_BOTH_READ_WRITE,\n};\n\nOr maybe a bitmask ?",
+      "parentUuid": "44215db9_c4adce52",
+      "revId": "95804fcc7d7ced3de750dd7f1ca31c947f185a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
