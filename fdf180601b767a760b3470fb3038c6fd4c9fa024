@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d3e542_fe3e91b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-11-09T21:54:57Z",
+      "side": 1,
+      "message": "Can you please provide a btsnoop_hci.log indicating the problem that this CL claims to fix? Please attach it to the bug that is referred to in this CL.\n\nYou can enable bluetooth hci snoop logs from Developer Options on Android. Make sure \"Enable Bluetooth HCI snoop log\" is set to \"Enabled\". Repro the issue and attach the logs that contain the problem indicating the exact time at which the issue occurred.",
+      "revId": "fdf180601b767a760b3470fb3038c6fd4c9fa024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
