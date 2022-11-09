@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c75f26_142aecb1",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-09T19:25:29Z",
+      "side": 1,
+      "message": "to avoid naked unwrap of `client_id.unwrap()`, you can do:\n\n```\nlet client_id \u003d match self.context.lock().unwrap().gatt_client_context.client_id {\n    None \u003d\u003e {// print error and return},\n    Some(id) \u003d\u003e id,\n};\n```\n\nSimilar to `handle` above we can avoid naked unwrap this way.",
+      "range": {
+        "startLine": 954,
+        "startChar": 0,
+        "endLine": 957,
+        "endChar": 17
+      },
+      "revId": "31091643bd6e4ed5c2890c0239cec01d729b84de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a4675f2_300a7f11",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-09T19:25:29Z",
+      "side": 1,
+      "message": "I don\u0027t see the `bt_gatt.rs`, not yet committed?",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "31091643bd6e4ed5c2890c0239cec01d729b84de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
