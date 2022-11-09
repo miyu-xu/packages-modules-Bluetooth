@@ -42,6 +42,7 @@
 #include "btif/include/btif_acl.h"
 #include "common/metrics.h"
 #include "device/include/controller.h"
+#include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "include/l2cap_hci_link_interface.h"
 #include "main/shim/acl_api.h"
@@ -89,6 +90,10 @@ void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle,
 void BTM_db_reset(void);
 
 extern tBTM_CB btm_cb;
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+extern void btm_iot_save_remote_properties(tACL_CONN* p_acl_cb);
+extern void btm_iot_save_remote_versions(tACL_CONN* p_acl_cb);
+#endif
 
 struct StackAclBtmAcl {
   tACL_CONN* acl_allocate_connection();
@@ -422,6 +427,12 @@ void btm_acl_created(const RawAddress& bda, uint16_t hci_handle,
     btm_ble_refresh_local_resolvable_private_addr(
         bda, btm_cb.ble_ctr_cb.addr_mgnt_cb.private_addr);
   }
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  // save remote properties to iot conf file
+  btm_iot_save_remote_properties(p_acl);
+#endif
+
   /* if BR/EDR do something more */
   if (transport == BT_TRANSPORT_BR_EDR) {
     btsnd_hcic_read_rmt_clk_offset(hci_handle);
@@ -817,6 +828,11 @@ static void maybe_chain_more_commands_after_read_remote_version_complete(
                 bt_transport_text(p_acl_cb->transport).c_str(),
                 PRIVATE_ADDRESS(p_acl_cb->remote_addr));
   }
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  // save remote versions to iot conf file
+  btm_iot_save_remote_versions(p_acl_cb);
+#endif
 }
 
 void btm_process_remote_version_complete(uint8_t status, uint16_t handle,
@@ -918,6 +934,16 @@ void btm_read_remote_features_complete(uint16_t handle, uint8_t* features) {
                   HCI_FEATURE_BYTES_PER_PAGE);
   p_acl_cb->peer_lmp_feature_valid[0] = true;
 
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  /* save remote supported features to iot conf file */
+  char key[64];
+  snprintf(key, sizeof(key), "%s%s%x", IOT_CONF_KEY_RT_SUPP_FEATURES, "_", 0);
+
+  device_iot_config_addr_set_bin(p_acl_cb->remote_addr, key,
+                                 p_acl_cb->peer_lmp_feature_pages[0],
+                                 BD_FEATURES_LEN);
+#endif
+
   if ((HCI_LMP_EXTENDED_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[0])) &&
       (controller_get_interface()
            ->supports_reading_remote_extended_features())) {
@@ -992,6 +1018,17 @@ void btm_read_remote_ext_features_complete(uint16_t handle, uint8_t page_num,
   STREAM_TO_ARRAY(p_acl_cb->peer_lmp_feature_pages[page_num], features,
                   HCI_FEATURE_BYTES_PER_PAGE);
   p_acl_cb->peer_lmp_feature_valid[page_num] = true;
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  /* save remote extended features to iot conf file */
+  char key[64];
+  snprintf(key, sizeof(key), "%s%s%x", IOT_CONF_KEY_RT_EXT_FEATURES, "_",
+           page_num);
+
+  device_iot_config_addr_set_bin(p_acl_cb->remote_addr, key,
+                                 p_acl_cb->peer_lmp_feature_pages[page_num],
+                                 BD_FEATURES_LEN);
+#endif
 
   /* If there is the next remote features page and
    * we have space to keep this page data - read this page */
@@ -2546,6 +2583,15 @@ bool acl_set_peer_le_features_from_handle(uint16_t hci_handle,
   STREAM_TO_ARRAY(p_acl->peer_le_features, p, BD_FEATURES_LEN);
   p_acl->peer_le_features_valid = true;
   LOG_DEBUG("Completed le feature read request");
+
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  /* save LE remote supported features to iot conf file */
+  char key[64];
+  snprintf(key, sizeof(key), "%s%s%x", IOT_CONF_KEY_LE_RT_FEATURES, "_", 0);
+
+  device_iot_config_addr_set_bin(p_acl->remote_addr, key,
+                                 p_acl->peer_le_features, BD_FEATURES_LEN);
+#endif
   return true;
 }
 

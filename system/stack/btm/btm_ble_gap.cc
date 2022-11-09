@@ -36,6 +36,7 @@
 #include "bta/include/bta_api.h"
 #include "common/time_util.h"
 #include "device/include/controller.h"
+#include "device/include/device_iot_config.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/shim.h"

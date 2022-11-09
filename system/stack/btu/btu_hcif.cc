@@ -36,6 +36,7 @@
 #include "btif/include/btif_config.h"
 #include "common/metrics.h"
 #include "device/include/controller.h"
+#include "device/include/device_iot_config.h"
 #include "main/shim/hci_layer.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"

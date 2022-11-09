@@ -37,6 +37,7 @@
 #include "btif/include/btif_storage.h"
 #include "btif/include/stack_manager.h"
 #include "device/include/controller.h"
+#include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "gd/common/init_flags.h"
 #include "main/shim/acl_api.h"
@@ -59,7 +60,7 @@
 #include "stack/include/bt_octets.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_client_interface.h"
-#include "stack/include/btu.h"  // do_in_main_thread
+#include "stack/include/btu.h"       // do_in_main_thread
 #include "stack/include/srvc_api.h"  // DIS_ReadDISInfo
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"

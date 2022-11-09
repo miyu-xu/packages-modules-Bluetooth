@@ -82,6 +82,7 @@
 #include "common/metric_id_allocator.h"
 #include "common/metrics.h"
 #include "common/os_utils.h"
+#include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "gd/common/init_flags.h"
 #include "gd/os/parameter_provider.h"
@@ -760,6 +761,9 @@ static void dump(int fd, const char** arguments) {
   stack_debug_avdtp_api_dump(fd);
   bluetooth::avrcp::AvrcpService::DebugDump(fd);
   btif_debug_config_dump(fd);
+#if (BT_IOT_LOGGING_ENABLED == TRUE)
+  device_debug_iot_config_dump(fd);
+#endif
   BTA_HfClientDumpStatistics(fd);
   wakelock_debug_dump(fd);
   osi_allocator_debug_dump(fd);
