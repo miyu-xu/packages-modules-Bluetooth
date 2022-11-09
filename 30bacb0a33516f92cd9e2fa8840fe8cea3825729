@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d28e9456_94596134",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-09T01:20:17Z",
+      "side": 1,
+      "message": "Bypass presubmit - Unrelated failure in apct/device_boot_health (known issue) + all other builds+tests passing",
+      "revId": "30bacb0a33516f92cd9e2fa8840fe8cea3825729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
