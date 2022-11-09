@@ -172,6 +172,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7ba540f_ead3f757",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-09T22:13:13Z",
+      "side": 1,
+      "message": "Directly use the utf-8 emoji inside the sources, so for example change\n```\nLOG_CONSOLE(\"%lc Headless stack has started up successfully\", kHeadlessIcon);\n```\nto\n```\nLOG_CONSOLE(\"🗣 Headless stack has started up successfully\");\n```",
+      "parentUuid": "2bfcf4f4_fd435ad2",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e8a41a3_7defe94c",
         "filename": "system/test/headless/headless.cc",
         "patchSetId": 20
