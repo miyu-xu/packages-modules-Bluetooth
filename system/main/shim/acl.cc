@@ -1280,6 +1280,7 @@ void shim::legacy::Acl::Dump(int fd) const {
   DumpsysRecord(fd);
   DumpsysAcl(fd);
   DumpsysL2cap(fd);
+  SDP_Dumpsys(fd);
   DumpsysBtm(fd);
 }
 
