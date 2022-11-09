@@ -31,7 +31,8 @@ class BtaGattInterface {
                            BtaAppRegisterCallback cb, bool eatt_support) = 0;
   virtual void AppDeregister(tGATT_IF client_if) = 0;
   virtual void Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                    bool is_direct, tBT_TRANSPORT transport, bool opportunistic,
+                    tBTA_GATT_CONN_TYPE connection_type,
+                    tBT_TRANSPORT transport, bool opportunistic,
                     uint8_t initiating_phys) = 0;
   virtual void Open(tGATT_IF client_if, const RawAddress& remote_bda,
                     bool is_direct, bool opportunistic) = 0;
@@ -63,9 +64,9 @@ class MockBtaGattInterface : public BtaGattInterface {
               (override));
   MOCK_METHOD((void), AppDeregister, (tGATT_IF client_if), (override));
   MOCK_METHOD((void), Open,
-              (tGATT_IF client_if, const RawAddress& remote_bda, bool is_direct,
-               tBT_TRANSPORT transport, bool opportunistic,
-               uint8_t initiating_phys),
+              (tGATT_IF client_if, const RawAddress& remote_bda,
+               tBTA_GATT_CONN_TYPE connection_type, tBT_TRANSPORT transport,
+               bool opportunistic, uint8_t initiating_phys),
               (override));
   MOCK_METHOD((void), Open,
               (tGATT_IF client_if, const RawAddress& remote_bda, bool is_direct,

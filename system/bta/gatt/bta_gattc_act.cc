@@ -279,7 +279,7 @@ void bta_gattc_process_api_open(const tBTA_GATTC_DATA* p_msg) {
     return;
   }
 
-  if (!p_msg->api_conn.is_direct) {
+  if (p_msg->api_conn.connection_type != BTA_GATT_DIRECT_CONNECTION) {
     bta_gattc_init_bk_conn(&p_msg->api_conn, p_clreg);
     return;
   }

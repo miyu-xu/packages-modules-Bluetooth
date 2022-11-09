@@ -342,6 +342,11 @@ typedef struct {
   tBT_TRANSPORT transport;
 } tBTA_GATTS_CONN;
 
+typedef enum : uint8_t {
+  BTA_GATT_DIRECT_CONNECTION = 0x00,
+  BTA_GATT_BKG_CONNECT_ALLOW_LIST = 0x01,
+} tBTA_GATT_CONN_TYPE;
+
 typedef struct {
   uint16_t conn_id;
   bool congested; /* report channel congestion indicator */
@@ -445,15 +450,17 @@ extern void BTA_GATTC_AppDeregister(tGATT_IF client_if);
  *
  * Parameters       client_if: server interface.
  *                  remote_bda: remote device BD address.
- *                  is_direct: direct connection or background auto connection
+ *                  connection_type: connection type used for the peer device
  *                  initiating_phys: LE PHY to use, optional
  *
  ******************************************************************************/
 extern void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                           bool is_direct, bool opportunistic);
+                           tBTA_GATT_CONN_TYPE connection_type,
+                           bool opportunistic);
 extern void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                           bool is_direct, tBT_TRANSPORT transport,
-                           bool opportunistic, uint8_t initiating_phys);
+                           tBTA_GATT_CONN_TYPE connection_type,
+                           tBT_TRANSPORT transport, bool opportunistic,
+                           uint8_t initiating_phys);
 
 /*******************************************************************************
  *
