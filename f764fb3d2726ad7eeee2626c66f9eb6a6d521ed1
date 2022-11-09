@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d588e2_353872ef",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-09T19:04:36Z",
+      "side": 1,
+      "message": "Ack.\nWill update in the later patch to convert everything to const to get rid of the mut.",
+      "parentUuid": "598563fb_31f3da6c",
+      "range": {
+        "startLine": 1865,
+        "startChar": 8,
+        "endLine": 1865,
+        "endChar": 12
+      },
+      "revId": "f764fb3d2726ad7eeee2626c66f9eb6a6d521ed1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3e28c7c_7eaf868a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-09T18:55:16Z",
       "side": 1,
       "message": "can this also be not mut?",
+      "range": {
+        "startLine": 1867,
+        "startChar": 8,
+        "endLine": 1867,
+        "endChar": 11
+      },
+      "revId": "f764fb3d2726ad7eeee2626c66f9eb6a6d521ed1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5304f81_ae20c3ed",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1867,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-09T19:04:36Z",
+      "side": 1,
+      "message": "Ack.\nAck.\nWill update in the later patch to convert everything to const to get rid of the mut.",
+      "parentUuid": "e3e28c7c_7eaf868a",
       "range": {
         "startLine": 1867,
         "startChar": 8,
