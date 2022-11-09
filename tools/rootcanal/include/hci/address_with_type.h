@@ -51,7 +51,9 @@ class AddressWithType final {
   /* Is this an Resolvable Private Address, that was generated from given irk ?
    */
   bool IsRpaThatMatchesIrk(const rootcanal::crypto::Octet16& irk) const {
-    if (!IsRpa()) return false;
+    if (!IsRpa()) {
+      return false;
+    }
 
     /* use the 3 MSB of bd address as prand */
     uint8_t prand[3];
@@ -65,12 +67,7 @@ class AddressWithType final {
     hash[0] = address_.address[5];
     hash[1] = address_.address[4];
     hash[2] = address_.address[3];
-    if (memcmp(computed_hash.data(), &hash[0], 3) == 0) {
-      // match
-      return true;
-    }
-    // not a match
-    return false;
+    return memcmp(computed_hash.data(), &hash[0], 3) == 0;
   }
 
   bool operator<(const AddressWithType& rhs) const {
