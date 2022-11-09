@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9576531b_22186c5b",
+        "filename": "system/gd/rust/linux/stack/src/async_helper.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-09T00:10:45Z",
+      "side": 1,
+      "message": "Our pattern for handling async things like this has been the following:\n\n* You create a mpsc channel and implement an async handler.\n* The topshim dispatcher will send the enum variant via the provided dispatch function. You can forward via tx.send(...)\n* Use the caller id to invoke the callback.\n\nDoes this new async helper provide a benefit over this? Looking through the code, it just looks different (not necessarily better).",
+      "revId": "d1eec9910df6ec2fd9247305a9a3bcecfb2f80e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
