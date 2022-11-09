@@ -16,6 +16,24 @@
       "message": "Please add the fix in the same topic so both CL land simultaneously !",
       "revId": "414216ab19a05dbde2f043ac0ab0887feb9e8636",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa719a11_f8ffda37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-09T07:01:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "db3de77c_a97a191c",
+      "revId": "414216ab19a05dbde2f043ac0ab0887feb9e8636",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
