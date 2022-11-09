@@ -28,7 +28,9 @@
 #include <base/location.h>
 
 #include "bt_target.h"  // Must be first to define build configuration
+#include "bta/dm/bta_dm_int.h"
 #include "bta/sdp/bta_sdp_int.h"
+#include "main/shim/dumpsys.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
@@ -113,3 +115,13 @@ tBTA_SDP_STATUS BTA_SdpRemoveRecordByUser(void* user_data) {
   do_in_main_thread(FROM_HERE, base::Bind(bta_sdp_remove_record, user_data));
   return BTA_SDP_SUCCESS;
 }
+
+#define DUMPSYS_TAG "shim::legacy::sdp"
+void BTA_SdpDumpsys(int fd) {
+  LOG_DUMPSYS(fd, "active:%c peer:%s is_callback_valid:%c",
+              (bta_sdp_cb.sdp_active) ? 'T' : 'F',
+              PRIVATE_ADDRESS(bta_sdp_cb.remote_addr),
+              (bta_sdp_cb.p_dm_cback) ? 'T' : 'F');
+  LOG_DUMPSYS(fd, "%s", bta_dm_search_cb.ToString().c_str());
+}
+#undef DUMPSYS_TAG
