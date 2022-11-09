@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1a950d_81dcbea5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-09T06:23:33Z",
+      "side": 1,
+      "message": "Tests were failing due to phonebook size difference in different test situations, and the tests only asserting size that was correct for certain situations. Changed to asserting a size that was actually obtained from the phonebook during each test.",
+      "revId": "0fd112149ec7f5c8eebe1843d201f90972ca7e25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
