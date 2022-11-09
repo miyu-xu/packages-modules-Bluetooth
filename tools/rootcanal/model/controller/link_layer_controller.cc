@@ -1331,7 +1331,7 @@ void LinkLayerController::SetSecureConnectionsSupport(bool enable) {
 }
 
 void LinkLayerController::SetLocalName(
-    std::array<uint8_t, 248> const& local_name) {
+    std::array<uint8_t, kLocalNameSize> const& local_name) {
   std::copy(local_name.begin(), local_name.end(), local_name_.begin());
 }
 
@@ -5985,7 +5985,7 @@ void LinkLayerController::LeRemoveIsoDataPath(
 
 void LinkLayerController::HandleLeEnableEncryption(
     uint16_t handle, std::array<uint8_t, 8> rand, uint16_t ediv,
-    std::array<uint8_t, 16> ltk) {
+    std::array<uint8_t, kLtkSize> ltk) {
   // TODO: Check keys
   // TODO: Block ACL traffic or at least guard against it
   if (!connections_.HasHandle(handle)) {
@@ -5996,10 +5996,9 @@ void LinkLayerController::HandleLeEnableEncryption(
       connections_.GetAddress(handle).GetAddress(), rand, ediv, ltk));
 }
 
-ErrorCode LinkLayerController::LeEnableEncryption(uint16_t handle,
-                                                  std::array<uint8_t, 8> rand,
-                                                  uint16_t ediv,
-                                                  std::array<uint8_t, 16> ltk) {
+ErrorCode LinkLayerController::LeEnableEncryption(
+    uint16_t handle, std::array<uint8_t, 8> rand, uint16_t ediv,
+    std::array<uint8_t, kLtkSize> ltk) {
   if (!connections_.HasHandle(handle)) {
     LOG_INFO("Unknown handle %04x", handle);
     return ErrorCode::UNKNOWN_CONNECTION;
@@ -6012,7 +6011,7 @@ ErrorCode LinkLayerController::LeEnableEncryption(uint16_t handle,
 }
 
 ErrorCode LinkLayerController::LeLongTermKeyRequestReply(
-    uint16_t handle, std::array<uint8_t, 16> ltk) {
+    uint16_t handle, std::array<uint8_t, kLtkSize> ltk) {
   if (!connections_.HasHandle(handle)) {
     LOG_INFO("Unknown handle %04x", handle);
     return ErrorCode::UNKNOWN_CONNECTION;
@@ -6135,8 +6134,6 @@ void LinkLayerController::SetInquiryScanEnable(bool enable) {
 void LinkLayerController::SetPageScanEnable(bool enable) {
   page_scan_enable_ = enable;
 }
-
-uint16_t LinkLayerController::GetPageTimeout() { return page_timeout_; }
 
 void LinkLayerController::SetPageTimeout(uint16_t page_timeout) {
   page_timeout_ = page_timeout;
