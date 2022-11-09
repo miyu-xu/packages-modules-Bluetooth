@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "332ae9e6_862a0b9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "Thanks for the comments ! They were all good and I will update accordingly.",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "377bc121_6bfa7eb7",
@@ -20,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1519a95a_b4eae108",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "I will look into it",
+      "parentUuid": "377bc121_6bfa7eb7",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8622a55d_775b9583",
         "filename": "system/test/headless/connect/connect.cc",
         "patchSetId": 20
@@ -31,6 +66,24 @@
       "writtenOn": "2022-11-09T19:25:33Z",
       "side": 1,
       "message": "Why not use LOG_CONSOLE here ?",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0357fede_f7a02c12",
+        "filename": "system/test/headless/connect/connect.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "Will fix.\n\nI made LOG_CONSOLE afterwards as convenience but never returned to fix",
+      "parentUuid": "8622a55d_775b9583",
       "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -60,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa225d5f_63d4e767",
+        "filename": "system/test/headless/discovery/discovery.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "Yes, I believe you are correct...I changed the loop structure last minute",
+      "parentUuid": "e4f9ed2f_b93d348c",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 3
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1331df9e_2e4cd293",
         "filename": "system/test/headless/headless.cc",
         "patchSetId": 20
@@ -77,6 +154,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2bfcf4f4_fd435ad2",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "I broke it out as a constant just as convention.  What do you mean \u0027more visual\u0027 ?",
+      "parentUuid": "1331df9e_2e4cd293",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e8a41a3_7defe94c",
         "filename": "system/test/headless/headless.cc",
         "patchSetId": 20
@@ -88,6 +183,30 @@
       "writtenOn": "2022-11-09T19:25:33Z",
       "side": 1,
       "message": "nit: Why not assign the iterator returned from `find` and use it directly ?\n```\nauto callback_list \u003d interface_api_callback_map_.find(__func__);\nif (callback_list !\u003d interface_api_callback_map_.end()) {\n}\n```\n\n(And same for the other occurrences of this pattern)",
+      "range": {
+        "startLine": 166,
+        "startChar": 25,
+        "endLine": 166,
+        "endChar": 65
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e19ff98_7d570051",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "Earlier versions didn\u0027t check for API entry, but you are correct",
+      "parentUuid": "4e8a41a3_7defe94c",
       "range": {
         "startLine": 166,
         "startChar": 25,
@@ -123,6 +242,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74bfbfaf_ea37c8fd",
+        "filename": "system/test/headless/interface.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "Unsure...I feel better since it interfaces with `C` code if it is packed",
+      "parentUuid": "13e91754_00ec33c0",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80014f7a_4c7b2f6e",
         "filename": "system/test/headless/interface.h",
         "patchSetId": 20
@@ -146,6 +289,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c14a7c02_9bcf35f2",
+        "filename": "system/test/headless/interface.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "We should be able to...earlier versions there was a little more logic but I think it\u0027s can be done.  I will look into it.",
+      "parentUuid": "80014f7a_4c7b2f6e",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 70
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba510678_7d0514ca",
         "filename": "system/test/headless/main.cc",
         "patchSetId": 20
@@ -157,6 +324,30 @@
       "writtenOn": "2022-11-09T19:25:33Z",
       "side": 1,
       "message": "`STDERR_FILENO`",
+      "range": {
+        "startLine": 116,
+        "startChar": 23,
+        "endLine": 116,
+        "endChar": 24
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e81cbcd_56e16e91",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "ba510678_7d0514ca",
       "range": {
         "startLine": 116,
         "startChar": 23,
@@ -203,6 +394,24 @@
       "writtenOn": "2022-11-09T19:25:33Z",
       "side": 1,
       "message": "nit: Using the date here make the build non reproducible.\nI don\u0027t know how much Android values reproducible build hence the nitpick.\nWould not a git commit sha/short rev do the job here ?",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "336a3050_098ff395",
+        "filename": "system/test/headless/tools/build_timestamp.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-09T21:06:22Z",
+      "side": 1,
+      "message": "Yes, I\u0027m aware of the controversy of making \u0027reproducible\u0027 builds...Generally I believe it\u0027s a good idea, but as is, many targets are actually not reproducible anyway so the point is moot.\n\nI put a `date` to advise the human running the program when it was built; I found myself that I would be running an older version and it didn\u0027t pick up either my test changes, or the production code changes.\n\nA per-build SHA would also make this not reproducible, no ?\n\nAnyway, I picked `date` because of it\u0027s ordering property, versus a SHA which is unordered.  My use case is \u0027unexpected results ? Oh I built this yesterday and need to rebuild\u0027 versus \u0027What is this SHA and how do I interpret it ?\u0027",
+      "parentUuid": "ed550bc2_60225f67",
       "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
