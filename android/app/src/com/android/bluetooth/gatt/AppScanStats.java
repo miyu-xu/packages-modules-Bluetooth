@@ -76,6 +76,7 @@ import java.util.Objects;
         public boolean isOpportunisticScan;
         public boolean isTimeout;
         public boolean isDowngraded;
+        public boolean isAutoBatchScan;
         public boolean isBackgroundScan;
         public boolean isFilterScan;
         public boolean isCallbackScan;
@@ -93,6 +94,7 @@ import java.util.Objects;
             this.isOpportunisticScan = false;
             this.isTimeout = false;
             this.isDowngraded = false;
+            this.isAutoBatchScan = false;
             this.isBackgroundScan = false;
             this.isFilterScan = isFilterScan;
             this.isCallbackScan = isCallbackScan;
@@ -187,6 +189,14 @@ import java.util.Objects;
             return false;
         }
         return scan.isDowngraded;
+    }
+
+    synchronized boolean isAutoBatchScan(int scannerId) {
+        LastScan scan = getScanFromScannerId(scannerId);
+        if (scan == null) {
+            return false;
+        }
+        return scan.isAutoBatchScan;
     }
 
     synchronized void recordScanStart(ScanSettings settings, List<ScanFilter> filters,
@@ -360,6 +370,13 @@ import java.util.Objects;
         LastScan scan = getScanFromScannerId(scannerId);
         if (scan != null) {
             scan.isDowngraded = isDowngrade;
+        }
+    }
+
+    synchronized void setAutoBatchScan(int scannerId, boolean isBatchScan) {
+        LastScan scan = getScanFromScannerId(scannerId);
+        if (scan != null) {
+            scan.isAutoBatchScan = isBatchScan;
         }
     }
 

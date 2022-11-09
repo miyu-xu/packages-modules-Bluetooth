@@ -5312,6 +5312,12 @@ public class AdapterService extends Service {
     @GuardedBy("mDeviceConfigLock")
     private int mScreenOffBalancedIntervalMillis =
             ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS;
+    @GuardedBy("mDeviceConfigLock")
+    private long mAutoBatchScanReportDelayMillis =
+            DeviceConfigListener.DEFAULT_AUTO_BATCH_SCAN_REPORT_DELAY_MILLIS;
+    @GuardedBy("mDeviceConfigLock")
+    private int mAutoBatchScanNotifyThreshold =
+            DeviceConfigListener.DEFAULT_AUTO_BATCH_SCAN_NOTIFY_THRESHOLD;
 
     public @NonNull Predicate<String> getLocationDenylistName() {
         synchronized (mDeviceConfigLock) {
@@ -5412,6 +5418,24 @@ public class AdapterService extends Service {
         }
     }
 
+    /**
+     * Returns auto batch scan report delay in millis.
+     */
+    public long getAutoBatchScanReportDelayMillis() {
+        synchronized (mDeviceConfigLock) {
+            return mAutoBatchScanReportDelayMillis;
+        }
+    }
+
+    /**
+     * Returns auto batch scan notify threshould in percents.
+     */
+    public int getAutoBatchScanNotifyThreshold() {
+        synchronized (mDeviceConfigLock) {
+            return mAutoBatchScanNotifyThreshold;
+        }
+    }
+
     private final DeviceConfigListener mDeviceConfigListener = new DeviceConfigListener();
 
     private class DeviceConfigListener implements DeviceConfig.OnPropertiesChangedListener {
@@ -5439,6 +5463,10 @@ public class AdapterService extends Service {
                 "screen_off_balanced_window_millis";
         private static final String SCREEN_OFF_BALANCED_INTERVAL_MILLIS =
                 "screen_off_balanced_interval_millis";
+        private static final String AUTO_BATCH_SCAN_REPORT_DELAY_MS =
+                "auto_batch_scan_report_delay_millis";
+        private static final String AUTO_BATCH_SCAN_NOTIFY_THRESHOLD =
+                "auto_batch_scan_notify_threshold";
 
         /**
          * Default denylist which matches Eddystone and iBeacon payloads.
@@ -5452,6 +5480,9 @@ public class AdapterService extends Service {
         private static final int DEFAULT_SCAN_UPGRADE_DURATION_MILLIS = (int) SECOND_IN_MILLIS * 6;
         private static final int DEFAULT_SCAN_DOWNGRADE_DURATION_BT_CONNECTING_MILLIS =
                 (int) SECOND_IN_MILLIS * 6;
+        private static final long DEFAULT_AUTO_BATCH_SCAN_REPORT_DELAY_MILLIS =
+                MINUTE_IN_MILLIS * 60;
+        private static final int DEFAULT_AUTO_BATCH_SCAN_NOTIFY_THRESHOLD = 50;
 
         @RequiresPermission(android.Manifest.permission.READ_DEVICE_CONFIG)
         public void start() {
@@ -5494,6 +5525,12 @@ public class AdapterService extends Service {
                 mScreenOffBalancedIntervalMillis = properties.getInt(
                         SCREEN_OFF_BALANCED_INTERVAL_MILLIS,
                         ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS);
+                mAutoBatchScanReportDelayMillis = properties.getLong(
+                        AUTO_BATCH_SCAN_REPORT_DELAY_MS,
+                        DEFAULT_AUTO_BATCH_SCAN_REPORT_DELAY_MILLIS);
+                mAutoBatchScanNotifyThreshold = properties.getInt(
+                        AUTO_BATCH_SCAN_NOTIFY_THRESHOLD,
+                        DEFAULT_AUTO_BATCH_SCAN_NOTIFY_THRESHOLD);
             }
         }
     }
