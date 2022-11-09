@@ -637,4 +637,17 @@ uint8_t SDP_SetTraceLevel(uint8_t new_level);
 bool SDP_FindServiceUUIDInRec(const tSDP_DISC_REC* p_rec,
                               bluetooth::Uuid* p_uuid);
 
+/*******************************************************************************
+ *
+ * Function         SDP_Dumpsys
+ *
+ * Description      Dumps readable content of the module to the filedescriptor
+ *
+ * Parameters:      fd        - Valid file descriptor
+ *
+ * Returns          None
+ *
+ ******************************************************************************/
+void SDP_Dumpsys(int fd);
+
 #endif /* SDP_API_H */

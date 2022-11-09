@@ -63,6 +63,7 @@ struct SDP_GetDiRecord SDP_GetDiRecord;
 struct SDP_SetLocalDiRecord SDP_SetLocalDiRecord;
 struct SDP_GetNumDiRecords SDP_GetNumDiRecords;
 struct SDP_SetTraceLevel SDP_SetTraceLevel;
+struct SDP_Dumpsys SDP_Dumpsys;
 
 }  // namespace stack_sdp_api
 }  // namespace mock
@@ -178,6 +179,10 @@ uint8_t SDP_GetNumDiRecords(const tSDP_DISCOVERY_DB* p_db) {
 uint8_t SDP_SetTraceLevel(uint8_t new_level) {
   mock_function_count_map[__func__]++;
   return test::mock::stack_sdp_api::SDP_SetTraceLevel(new_level);
+}
+void SDP_Dumpsys(int fd) {
+  mock_function_count_map[__func__]++;
+  return test::mock::stack_sdp_api::SDP_Dumpsys(fd);
 }
 
 // END mockcify generation
