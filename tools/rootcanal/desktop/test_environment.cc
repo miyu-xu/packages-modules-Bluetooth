@@ -145,7 +145,9 @@ void TestEnvironment::SetUpLinkLayerServer() {
 std::shared_ptr<Device> TestEnvironment::ConnectToRemoteServer(
     const std::string& server, int port, Phy::Type phy_type) {
   auto socket = connector_->ConnectToRemoteServer(server, port);
-  if (!socket->Connected()) return nullptr;
+  if (!socket->Connected()) {
+    return nullptr;
+  }
   return LinkLayerSocketDevice::Create(socket, phy_type);
 }
 
