@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3e72c27_bfbb079d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1831,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-09T18:59:35Z",
+      "side": 1,
+      "message": "Since you\u0027ve inserted this in the middle, please make sure this doesn\u0027t break Android JNI. Otherwise, they may call `get_report_reply` when trying to call `set_report`.\n\nIt may be a good idea to convert this to this format as well to avoid any mismatches:\n```\nstatic const bthh_interface_t bthhInterface \u003d {\n  .size \u003d sizeof(bthhInterface),\n  .init \u003d init,\n  .connect \u003d connect,\n  ...\n};\n```",
+      "revId": "90bdf67c64e33acfed5c58b325a767218711e314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
