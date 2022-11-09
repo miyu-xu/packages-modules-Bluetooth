@@ -394,6 +394,7 @@ bluetooth::hci::ErrorCode AclConnectionHandler::RemoveCig(uint8_t cig_id) {
 }
 
 bool AclConnectionHandler::HasPendingCisConnection(uint16_t handle) const {
+  // NOLINTNEXTLINE(readability-use-anyofallof)
   for (const auto& config : pending_streams_) {
     if (config.cis_handle_ == handle) {
       return true;
@@ -407,6 +408,7 @@ bool AclConnectionHandler::HasPendingCis() const {
 }
 
 bool AclConnectionHandler::HasConnectedCis(uint16_t handle) const {
+  // NOLINTNEXTLINE(readability-use-anyofallof)
   for (const auto& cs : connected_streams_) {
     if (handle == cs.cis_handle_) {
       return true;
