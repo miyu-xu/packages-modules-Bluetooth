@@ -43,12 +43,9 @@ class ConnectedIsochronousGroup {
   virtual ~ConnectedIsochronousGroup() = default;
 
   bool HasConnectedStream() const {
-    for (auto& stream : streams_) {
-      if (stream.IsConnected()) {
-        return true;
-      }
-    }
-    return false;
+    return std::any_of(
+        streams_.begin(), streams_.end(),
+        [&](const ConnectedIsochronousStream& s) { return s.IsConnected(); });
   }
 
   bool StreamIsConnected(uint16_t handle) const {
