@@ -886,6 +886,7 @@ void bta_dm_search_start(tBTA_DM_MSG* p_data) {
  ******************************************************************************/
 void bta_dm_search_cancel() {
   if (BTM_IsInquiryActive()) {
+    LOG_DEBUG("Cancelling ongoing inquiry for devices");
     BTM_CancelInquiry();
     bta_dm_search_cancel_notify();
     bta_dm_search_cmpl();
@@ -893,9 +894,11 @@ void bta_dm_search_cancel() {
   /* If no Service Search going on then issue cancel remote name in case it is
      active */
   else if (!bta_dm_search_cb.name_discover_done) {
+    LOG_DEBUG("Cancelling remote name request if there is one ongoing");
     BTM_CancelRemoteDeviceName();
     bta_dm_search_cmpl();
   } else {
+    LOG_DEBUG("Indicating inquiry is complete");
     bta_dm_inq_cmpl(0);
   }
 }
@@ -1664,16 +1667,20 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
         bta_dm_search_cb.service_index = BTA_MAX_SERVICE_ID;
 
       } else {
+        LOG_DEBUG("Started service discovery peer:%s index:0x%x",
+                  PRIVATE_ADDRESS(bd_addr), bta_dm_search_cb.service_index);
         bta_dm_search_cb.service_index++;
         return;
       }
     }
-
+    LOG_DEBUG("Started service discovery peer:%s index:0x%x",
+              PRIVATE_ADDRESS(bd_addr), bta_dm_search_cb.service_index);
     bta_dm_search_cb.service_index++;
   }
 
   /* no more services to be discovered */
   if (bta_dm_search_cb.service_index >= BTA_MAX_SERVICE_ID) {
+    LOG_DEBUG("Complete service discovery peer:%s", PRIVATE_ADDRESS(bd_addr));
     tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
     /* initialize the data structure */
     memset(&(p_msg->disc_result.result), 0, sizeof(tBTA_DM_DISC_RES));
