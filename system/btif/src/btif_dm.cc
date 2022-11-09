@@ -1513,11 +1513,23 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
 
         for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
           Uuid uuid = existing_uuids[i];
+          if (uuid.IsEmpty()) {
+            LOG_DEBUG("Ignoring empty UUID index:%d UUID:%s", i,
+                      uuid.ToString().c_str());
+            continue;
+          }
+          if (uuid.IsBase()) {
+            LOG_DEBUG("Ignoring base UUID index:%d UUID:%s", i,
+                      uuid.ToString().c_str());
+            continue;
+          }
           if (btif_should_ignore_uuid(uuid)) {
+            LOG_DEBUG("Second pass ignoring index:%d UUID:%s", i,
+                      uuid.ToString().c_str());
             continue;
           }
           if (btif_is_interesting_le_service(uuid)) {
-            LOG_INFO("interesting le service %s insert",
+            LOG_INFO("Adding interesting le service index:%d UUID:%s", i,
                      uuid.ToString().c_str());
             uuids.insert(uuid);
           }
