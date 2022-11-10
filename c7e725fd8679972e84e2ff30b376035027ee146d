@@ -70,6 +70,30 @@
       },
       "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1285774a_a39027b2",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-10T15:51:53Z",
+      "side": 1,
+      "message": "Will remove it. Thanks!",
+      "parentUuid": "4939556f_9506a3c9",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
