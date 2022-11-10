@@ -48,7 +48,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
+import com.android.internal.annotations.VisibleForTesting;
 
 /**
  * This class is designed to show BT enabling progress.
@@ -62,9 +64,13 @@ public class BluetoothOppBtEnablingActivity extends AlertActivity {
 
     private static final int BT_ENABLING_TIMEOUT = 0;
 
-    private static final int BT_ENABLING_TIMEOUT_VALUE = 20000;
+    @VisibleForTesting
+    static int sBtEnablingTimeoutValue = 20000;
 
     private boolean mRegistered = false;
+
+    @VisibleForTesting
+    static final String EVENT_ONDESTROY = "BluetoothOppBtEnablingActivity.onDestroy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +79,7 @@ public class BluetoothOppBtEnablingActivity extends AlertActivity {
         getWindow().addSystemFlags(SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS);
         // If BT is already enabled jus return.
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-        if (adapter.isEnabled()) {
+        if (BluetoothMethodProxy.getInstance().bluetoothAdapterIsEnabled(adapter)) {
             finish();
             return;
         }
@@ -88,7 +94,7 @@ public class BluetoothOppBtEnablingActivity extends AlertActivity {
 
         // Add timeout for enabling progress
         mTimeoutHandler.sendMessageDelayed(mTimeoutHandler.obtainMessage(BT_ENABLING_TIMEOUT),
-                BT_ENABLING_TIMEOUT_VALUE);
+                sBtEnablingTimeoutValue);
     }
 
     private View createView() {
@@ -117,9 +123,12 @@ public class BluetoothOppBtEnablingActivity extends AlertActivity {
         if (mRegistered) {
             unregisterReceiver(mBluetoothReceiver);
         }
+        BluetoothMethodProxy.getInstance()
+                .eventTriggered(EVENT_ONDESTROY);
     }
 
-    private final Handler mTimeoutHandler = new Handler() {
+    @VisibleForTesting
+    final Handler mTimeoutHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -160,6 +169,7 @@ public class BluetoothOppBtEnablingActivity extends AlertActivity {
         if (mOppManager.mSendingFlag) {
             mOppManager.mSendingFlag = false;
         }
+
         finish();
     }
 }

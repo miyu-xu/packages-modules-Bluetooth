@@ -16,6 +16,7 @@
 
 package com.android.bluetooth;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -93,6 +94,13 @@ public class BluetoothMethodProxy {
     }
 
     /**
+     * Proxies {@link BluetoothAdapter#isEnabled()}.
+     */
+    public boolean bluetoothAdapterIsEnabled(BluetoothAdapter adapter) {
+        return adapter.isEnabled();
+    }
+
+    /**
      * Proxies {@link HeaderSet#getHeader}.
      */
     public Object getHeader(HeaderSet headerSet, int headerId) throws IOException {
@@ -104,5 +112,11 @@ public class BluetoothMethodProxy {
      */
     public <T> T getSystemService(Context context, Class<T> serviceClass) {
         return context.getSystemService(serviceClass);
+    }
+
+    /**
+     * Used with Mockito to verify whether an event happened
+     */
+    public void eventTriggered(String eventName) {
     }
 }
