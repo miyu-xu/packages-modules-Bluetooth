@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81c2aece_f2d57953",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-11-10T10:50:02Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nMoved AVCTP/TG/NFR/BV-02-C to skip list.\nRequest you to share feedback.\n\nThanks,\nFahad",
+      "revId": "93fb2b6c02564bec4b0a04c56c7be8dbbd0ec715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
