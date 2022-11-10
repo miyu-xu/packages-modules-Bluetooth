@@ -46,6 +46,30 @@
       },
       "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4939556f_9506a3c9",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T15:42:08Z",
+      "side": 1,
+      "message": "The group with hci_hal_host.cc\n\nIt won\u0027t hurt to have this, but I can\u0027t find where it\u0027s used.",
+      "parentUuid": "a8e6bdae_11d33589",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

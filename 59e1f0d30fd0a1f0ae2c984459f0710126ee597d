@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97de5cc2_816c2977",
+        "filename": "system/gd/hal/BUILD.gn",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T15:42:08Z",
+      "side": 1,
+      "message": "This is up to the Floss team, but I would have expected mgmt.cc to go in this group.",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "59e1f0d30fd0a1f0ae2c984459f0710126ee597d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
