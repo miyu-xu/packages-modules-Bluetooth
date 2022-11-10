@@ -87,6 +87,30 @@
       },
       "revId": "d8b472bbd14868c3224bd3139a9237b0d3e29ce0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c9fe7a_980f74a5",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-10T18:45:19Z",
+      "side": 1,
+      "message": "This patch only transforms the patch. \nSo it is better not to modify the content of the log.",
+      "parentUuid": "c65e7561_d2756caa",
+      "range": {
+        "startLine": 513,
+        "startChar": 18,
+        "endLine": 513,
+        "endChar": 56
+      },
+      "revId": "d8b472bbd14868c3224bd3139a9237b0d3e29ce0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
