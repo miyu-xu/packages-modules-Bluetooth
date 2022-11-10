@@ -61,6 +61,7 @@ class AVRCPProxy(ProfileProxy):
         the IUT connects to PTS to establish pairing.
 
         """
+        time.sleep(3)
         self.connection = self.host.WaitConnection(address=pts_addr).connection
         if ("TG" in test and "TG/VLH" not in test) or "CT/VLH" in test:
             try:
