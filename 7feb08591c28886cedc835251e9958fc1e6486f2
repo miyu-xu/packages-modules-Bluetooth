@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4152d017_5223c347",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-10T15:09:02Z",
+      "side": 1,
+      "message": "You are right. The prefix should be registered so that VendorSpecificEventManager knows how to recognize a MSFT vendor event and calls its event handler.\n\nHere, the statement is more like a place holder. No MSFT vendor events are received yet. (So far we issue a MSFT command and receive a generic command complete event to tell us the vendor prefix.) I will modify the RegisterEventHandler() here when the vendor event classifier is implemented in the VendorSpecificEventManager later.\n\nCurrently, no events are registered yet.",
+      "parentUuid": "4b88a502_0b5845aa",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adbc58fb_6f90f08b",
         "filename": "system/gd/hci/msft_interface.h",
         "patchSetId": 10
@@ -61,6 +85,30 @@
       "writtenOn": "2022-11-10T00:36:17Z",
       "side": 1,
       "message": "This file isn\u0027t needed, since the event prefix isn\u0027t known at build time.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "231a80bb_aff04c9f",
+        "filename": "system/gd/hci/msft_interface.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-10T15:09:02Z",
+      "side": 1,
+      "message": "Although the event prefix is not known at build time, I think we still need to register the MSFT sub-events so that VendorSpecificEventManager can call the MSFT event handler properly to handle the MSFT vendor events.  One of the TODOs would be to add a vendor event classifer in VendorSpecificEventManager to distinguish the vendor events with and without the vendor prefixes. If a vendor event comes with a vendor prefix and it matches the MSFT event prefix, the MSFT event handler would be called.",
+      "parentUuid": "adbc58fb_6f90f08b",
       "range": {
         "startLine": 1,
         "startChar": 0,
