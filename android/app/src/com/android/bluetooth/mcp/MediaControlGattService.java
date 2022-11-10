@@ -894,10 +894,10 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
 
         if (req.getOpcode() == Request.Opcodes.PLAY) {
             if (mAdapterService.getActiveDevices(BluetoothProfile.A2DP).size() > 0) {
-                A2dpService.getA2dpService().setActiveDevice(null);
+                A2dpService.getA2dpService().setActiveDevice(null, true);
             }
             if (mAdapterService.getActiveDevices(BluetoothProfile.HEARING_AID).size() > 0) {
-                HearingAidService.getHearingAidService().setActiveDevice(null);
+                HearingAidService.getHearingAidService().setActiveDevice(null, true);
             }
             if (mLeAudioService == null) {
                 mLeAudioService = LeAudioService.getLeAudioService();
