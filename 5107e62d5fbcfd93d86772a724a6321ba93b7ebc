@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d2a290b_8c6efd63",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4631,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-10T08:32:45Z",
+      "side": 1,
+      "message": "This is actually a bit field, or mask, not enum. I don\u0027t see bit fields being defined in .pdl, with exception of ApcfFilterType which is just defined but not used anywhere. So I decided to leave it as is.",
+      "parentUuid": "86119ce7_106e4c53",
+      "range": {
+        "startLine": 4631,
+        "startChar": 1,
+        "endLine": 4631,
+        "endChar": 20
+      },
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78c73553_e2e9520d",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-09T22:45:51Z",
       "side": 1,
       "message": "These all max out at 0x1F3\n\nCan we reserve the upper bits?\n\nsubrate_min : 9,\n_reserved_ : 7,",
+      "range": {
+        "startLine": 4639,
+        "startChar": 0,
+        "endLine": 4641,
+        "endChar": 19
+      },
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8c07628_fe490527",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4641,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-10T08:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78c73553_e2e9520d",
       "range": {
         "startLine": 4639,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "884e76c5_68a073cc",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4643,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-10T08:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d4bb726_7df256f8",
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1a8660b_4611ac14",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-11-09T22:45:51Z",
       "side": 1,
       "message": "same comment about reserved bits.",
+      "range": {
+        "startLine": 4653,
+        "startChar": 0,
+        "endLine": 4653,
+        "endChar": 18
+      },
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b83141ae_c6295a41",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4653,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-10T08:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1a8660b_4611ac14",
       "range": {
         "startLine": 4653,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81256c1b_4b7c1389",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4660,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-10T08:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6484dde7_ce53433f",
+      "range": {
+        "startLine": 4660,
+        "startChar": 23,
+        "endLine": 4660,
+        "endChar": 31
+      },
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "208737bf_44367b29",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-11-09T22:45:51Z",
       "side": 1,
       "message": "same comment",
+      "range": {
+        "startLine": 6043,
+        "startChar": 7,
+        "endLine": 6043,
+        "endChar": 22
+      },
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6500de97_85be9c74",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 6043,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-10T08:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "208737bf_44367b29",
       "range": {
         "startLine": 6043,
         "startChar": 7,
