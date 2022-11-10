@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24357886_46650e7f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1683110
+      },
+      "writtenOn": "2022-11-10T14:52:16Z",
+      "side": 1,
+      "message": "It looks like there are more changes needed for adding a metadata.\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1998179",
+      "range": {
+        "startLine": 513,
+        "startChar": 12,
+        "endLine": 513,
+        "endChar": 29
+      },
+      "revId": "0558edde5f624d5582ac4d5f2ae77844b076b745",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
