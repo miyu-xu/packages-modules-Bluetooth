@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c24030e_d9417782",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-11-10T17:34:50Z",
+      "side": 1,
+      "message": "At the minimum, this code needs to be flag protected.\n\nThis code is making changes to the core parts of the stack. The Bluetooth stack does not need/use the simultaneous source/sink functionality. Since this is something that Android TV needs, it must be flag protected because we do not want this new functionality to impact the rest of the Bluetooth stack in any way.\n\nPlease add a flag here:\n\nhttps://source.corp.google.com/aosp-master/packages/modules/Bluetooth/system/gd/rust/common/src/init_flags.rs;rcl\u003db45a2ea782074944f79fc388df20b06e01f265f7;l\u003d77\n\nUse that flag to protect this code. With that, you will be able to set the flag and enable this functionality for Android TV only.\n\nAlso, please split this CL into multiple pieces that cab be reviewed one at a time.",
+      "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
