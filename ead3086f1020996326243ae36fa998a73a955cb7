@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b74587_9fa1f1b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2022-11-10T02:17:05Z",
+      "side": 1,
+      "message": "Do we plan to send this patch to be manually tested before merging?",
+      "revId": "ead3086f1020996326243ae36fa998a73a955cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
