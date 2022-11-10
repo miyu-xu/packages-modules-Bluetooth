@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0da94eab_b97120e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-10T18:24:19Z",
+      "side": 1,
+      "message": "Waiting for regression testing",
+      "revId": "c3bbf1aa1225fb2206a5bcd970f96778ec2d0094",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
