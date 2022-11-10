@@ -160,8 +160,10 @@ public class GattService extends ProfileService {
             UUID.fromString("00002A4D-0000-1000-8000-00805F9B34FB")
     };
 
-    private static final UUID ANDROID_TV_REMOTE_SERVICE_UUID =
-            UUID.fromString("AB5E0001-5A21-4F05-BC7D-AF01F617B664");
+    private static final UUID[] GOOGLE_PRIVATE_SERVICE_UUID = {
+            UUID.fromString("0000FCCF-0000-1000-8000-00805F9B34FB"),
+            UUID.fromString("AB5E0001-5A21-4F05-BC7D-AF01F617B664"),
+    };
 
     private static final UUID FIDO_SERVICE_UUID =
             UUID.fromString("0000FFFD-0000-1000-8000-00805F9B34FB"); // U2F
@@ -4447,8 +4449,13 @@ public class GattService extends ProfileService {
         return false;
     }
 
-    private boolean isAndroidTvRemoteSrvcUuid(final UUID uuid) {
-        return ANDROID_TV_REMOTE_SERVICE_UUID.equals(uuid);
+    private boolean isGooglePrivateSrvcUuid(final UUID uuid) {
+        for (UUID googleUuid : GOOGLE_PRIVATE_SERVICE_UUID) {
+            if (googleUuid.equals(uuid)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isFidoSrvcUuid(final UUID uuid) {
@@ -4466,7 +4473,7 @@ public class GattService extends ProfileService {
 
     private boolean isRestrictedSrvcUuid(final UUID uuid) {
         return isFidoSrvcUuid(uuid)
-                || isAndroidTvRemoteSrvcUuid(uuid)
+                || isGooglePrivateSrvcUuid(uuid)
                 || isLeAudioSrvcUuid(uuid);
     }
 
