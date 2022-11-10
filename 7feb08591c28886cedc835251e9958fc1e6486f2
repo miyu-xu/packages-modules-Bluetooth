@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b88a502_0b5845aa",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T00:36:17Z",
+      "side": 1,
+      "message": "Here, you want to register for the prefix you just received from the msft_read_supported_features() call.  You stored it in prefix.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adbc58fb_6f90f08b",
+        "filename": "system/gd/hci/msft_interface.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T00:36:17Z",
+      "side": 1,
+      "message": "This file isn\u0027t needed, since the event prefix isn\u0027t known at build time.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
