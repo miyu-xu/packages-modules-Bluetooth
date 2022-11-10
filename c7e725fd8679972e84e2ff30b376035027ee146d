@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b9cb84_324e879c",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T14:55:04Z",
+      "side": 1,
+      "message": "Do we need this file group?  We aren\u0027t currently building hci_hal_host.cc in Android.bp.\n\nI would have expected this to be in the same file group.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
