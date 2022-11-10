@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7aa52c2_b0d12016",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-10T21:08:00Z",
+      "side": 1,
+      "message": "Please run :\n`atest GoogleBluetoothInstrumentationTests` on an internal target and branch",
+      "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
