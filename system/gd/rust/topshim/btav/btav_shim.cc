@@ -20,6 +20,7 @@
 #include <memory>
 
 #include "base/callback.h"
+#include "gd/rust/topshim/common/utils.h"
 #include "include/hardware/avrcp/avrcp.h"
 #include "include/hardware/bluetooth.h"
 #include "rust/cxx.h"
@@ -69,7 +70,8 @@ class AvrcpMediaInterfaceImpl : public MediaInterface {
       [[maybe_unused]] bool now_playing,
       [[maybe_unused]] std::string media_id) override {}
 
-  void SetActiveDevice(const RawAddress& addr) override {
+  void SetActiveDevice(const RawAddress& address) override {
+    topshim::rust::RustRawAddress addr = rusty::CopyToRustAddress(address);
     rusty::avrcp_set_active_device(addr);
   }
 
@@ -109,16 +111,19 @@ class AvrcpMediaInterfaceImpl : public MediaInterface {
 
 class VolumeInterfaceImpl : public VolumeInterface {
  public:
-  void DeviceConnected(const RawAddress& addr) override {
+  void DeviceConnected(const RawAddress& bdaddr) override {
+    topshim::rust::RustRawAddress addr = rusty::CopyToRustAddress(bdaddr);
     rusty::avrcp_device_connected(addr, /*absolute_volume_enabled=*/false);
   }
 
-  void DeviceConnected(const RawAddress& addr, VolumeChangedCb cb) override {
+  void DeviceConnected(const RawAddress& bdaddr, VolumeChangedCb cb) override {
+    topshim::rust::RustRawAddress addr = rusty::CopyToRustAddress(bdaddr);
     volumeCb = std::move(cb);
     rusty::avrcp_device_connected(addr, /*absolute_volume_enabled=*/true);
   }
 
-  void DeviceDisconnected(const RawAddress& addr) override {
+  void DeviceDisconnected(const RawAddress& bdaddr) override {
+    topshim::rust::RustRawAddress addr = rusty::CopyToRustAddress(bdaddr);
     volumeCb.Reset();
     rusty::avrcp_device_disconnected(addr);
   }
@@ -197,24 +202,28 @@ static A2dpError to_rust_error(const btav_error_t& error) {
   return a2dp_error;
 }
 
-static void connection_state_cb(const RawAddress& addr, btav_connection_state_t state, const btav_error_t& error) {
+static void connection_state_cb(const RawAddress& bd_addr, btav_connection_state_t state, const btav_error_t& error) {
+  RustRawAddress addr = rusty::CopyToRustAddress(bd_addr);
   A2dpError a2dp_error = to_rust_error(error);
   rusty::connection_state_callback(addr, state, a2dp_error);
 }
-static void audio_state_cb(const RawAddress& addr, btav_audio_state_t state) {
+static void audio_state_cb(const RawAddress& bd_addr, btav_audio_state_t state) {
+  RustRawAddress addr = rusty::CopyToRustAddress(bd_addr);
   rusty::audio_state_callback(addr, state);
 }
 static void audio_config_cb(
-    const RawAddress& addr,
+    const RawAddress& bd_addr,
     btav_a2dp_codec_config_t codec_config,
     std::vector<btav_a2dp_codec_config_t> codecs_local_capabilities,
     std::vector<btav_a2dp_codec_config_t> codecs_selectable_capabilities) {
+  RustRawAddress addr = rusty::CopyToRustAddress(bd_addr);
   A2dpCodecConfig cfg = to_rust_codec_config(codec_config);
   ::rust::Vec<A2dpCodecConfig> lcaps = to_rust_codec_config_vec(codecs_local_capabilities);
   ::rust::Vec<A2dpCodecConfig> scaps = to_rust_codec_config_vec(codecs_selectable_capabilities);
   rusty::audio_config_callback(addr, cfg, lcaps, scaps);
 }
-static bool mandatory_codec_preferred_cb(const RawAddress& addr) {
+static bool mandatory_codec_preferred_cb(const RawAddress& bd_addr) {
+  RustRawAddress addr = rusty::CopyToRustAddress(bd_addr);
   rusty::mandatory_codec_preferred_callback(addr);
   return true;
 }
@@ -249,19 +258,24 @@ int A2dpIntf::init() const {
   return intf_->init(&internal::g_callbacks, 1, a, b);
 }
 
-uint32_t A2dpIntf::connect(RawAddress addr) const {
+uint32_t A2dpIntf::connect(RustRawAddress bt_addr) const {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->connect(addr);
 }
-uint32_t A2dpIntf::disconnect(RawAddress addr) const {
+uint32_t A2dpIntf::disconnect(RustRawAddress bt_addr) const {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->disconnect(addr);
 }
-int A2dpIntf::set_silence_device(RawAddress addr, bool silent) const {
+int A2dpIntf::set_silence_device(RustRawAddress bt_addr, bool silent) const {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->set_silence_device(addr, silent);
 }
-int A2dpIntf::set_active_device(RawAddress addr) const {
+int A2dpIntf::set_active_device(RustRawAddress bt_addr) const {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->set_active_device(addr);
 }
-int A2dpIntf::config_codec(RawAddress addr, ::rust::Vec<A2dpCodecConfig> codec_preferences) const {
+int A2dpIntf::config_codec(RustRawAddress bt_addr, ::rust::Vec<A2dpCodecConfig> codec_preferences) const {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   std::vector<btav_a2dp_codec_config_t> prefs;
   for (size_t i = 0; i < codec_preferences.size(); ++i) {
     prefs.push_back(internal::from_rust_codec_config(codec_preferences[i]));
@@ -322,10 +336,12 @@ void AvrcpIntf::cleanup() {
   intf_->Cleanup();
 }
 
-uint32_t AvrcpIntf::connect(RawAddress addr) {
+uint32_t AvrcpIntf::connect(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->ConnectDevice(addr);
 }
-uint32_t AvrcpIntf::disconnect(RawAddress addr) {
+uint32_t AvrcpIntf::disconnect(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->DisconnectDevice(addr);
 }
 
