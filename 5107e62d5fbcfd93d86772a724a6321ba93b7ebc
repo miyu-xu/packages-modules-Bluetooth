@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5926c389_9b58d624",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4631,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T18:57:16Z",
+      "side": 1,
+      "message": "True.  We could also just name the bits and reserve the rest.  That can be a future change.",
+      "parentUuid": "4d2a290b_8c6efd63",
+      "range": {
+        "startLine": 4631,
+        "startChar": 1,
+        "endLine": 4631,
+        "endChar": 20
+      },
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78c73553_e2e9520d",
