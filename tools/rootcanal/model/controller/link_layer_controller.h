@@ -1033,4 +1033,7 @@ class LinkLayerController {
   uint8_t inquiry_max_responses_{};
 };
 
+// Generate a resolvable private address using the specified IRK.
+Address generate_rpa(std::array<uint8_t, LinkLayerController::kIrkSize> irk);
+
 }  // namespace rootcanal
