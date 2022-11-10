@@ -16,6 +16,24 @@
       "message": "Please run :\n`atest GoogleBluetoothInstrumentationTests` on an internal target and branch",
       "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e161f9_432e760e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-10T21:24:42Z",
+      "side": 1,
+      "message": "all looks good [1703/1703] tests no FAIL",
+      "parentUuid": "e7aa52c2_b0d12016",
+      "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
