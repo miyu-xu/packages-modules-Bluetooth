@@ -123,9 +123,6 @@ public class BluetoothInCallService extends InCallService {
     @VisibleForTesting
     public final HashMap<Integer, BluetoothCall> mBluetoothCallHashMap = new HashMap<>();
 
-    // A map from Calls to indexes used to identify calls for CLCC (C* List Current Calls).
-    private final Map<String, Integer> mClccIndexMap = new HashMap<>();
-
     private static BluetoothInCallService sInstance = null;
 
     public CallInfo mCallInfo = new CallInfo();
@@ -609,7 +606,6 @@ public class BluetoothInCallService extends InCallService {
             mBluetoothCallHashMap.remove(call.getId());
         }
 
-        mClccIndexMap.remove(getClccMapKey(call));
         updateHeadsetWithCallState(false /* force */);
 
         if (mBluetoothLeCallControl != null) {
@@ -674,7 +670,6 @@ public class BluetoothInCallService extends InCallService {
         sInstance = null;
         mCallbacks.clear();
         mBluetoothCallHashMap.clear();
-        mClccIndexMap.clear();
     }
 
     private static boolean isConferenceWithNoChildren(BluetoothCall call) {
@@ -685,6 +680,7 @@ public class BluetoothInCallService extends InCallService {
 
     private void sendListOfCalls(boolean shouldLog) {
         Collection<BluetoothCall> calls = mCallInfo.getBluetoothCalls();
+        int indexOfCall = 1;
         for (BluetoothCall call : calls) {
             // We don't send the parent conference BluetoothCall to the bluetooth device.
             // We do, however want to send conferences that have no children to the bluetooth
@@ -693,7 +689,8 @@ public class BluetoothInCallService extends InCallService {
             Log.i(TAG, "sendListOfCalls isConferenceWithNoChildren " + isConferenceWithNoChildren 
                 + ", call.getChildrenIds() size " + call.getChildrenIds().size());
             if (!call.isConference() || isConferenceWithNoChildren) {
-                sendClccForCall(call, shouldLog);
+                sendClccForCall(call, indexOfCall, shouldLog);
+                indexOfCall++;
             }
         }
         sendClccEndMarker();
@@ -709,7 +706,7 @@ public class BluetoothInCallService extends InCallService {
     /**
      * Sends a single clcc (C* List Current Calls) event for the specified call.
      */
-    private void sendClccForCall(BluetoothCall call, boolean shouldLog) {
+    private void sendClccForCall(BluetoothCall call, int indexOfCall, boolean shouldLog) {
         boolean isForeground = mCallInfo.getForegroundCall() == call;
         int state = getBtCallState(call, isForeground);
         boolean isPartOfConference = false;
@@ -771,7 +768,6 @@ public class BluetoothInCallService extends InCallService {
             isPartOfConference = true;
         }
 
-        int index = getIndexForCall(call);
         int direction = call.isIncoming() ? 1 : 0;
         final Uri addressUri;
         if (call.getGatewayInfo() != null) {
@@ -789,7 +785,7 @@ public class BluetoothInCallService extends InCallService {
 
         if (shouldLog) {
             Log.i(TAG, "sending clcc for BluetoothCall "
-                            + index + ", "
+                            + indexOfCall + ", "
                             + direction + ", "
                             + state + ", "
                             + isPartOfConference + ", "
@@ -798,49 +794,15 @@ public class BluetoothInCallService extends InCallService {
 
         if (mBluetoothHeadset == null) {
             Log.w(TAG, "mBluetoothHeasdset is null when sending clcc for BluetoothCall "
-                    + index + ", "
+                    + indexOfCall + ", "
                     + direction + ", "
                     + state + ", "
                     + isPartOfConference + ", "
                     + addressType);
         } else {
             mBluetoothHeadset.clccResponse(
-                    index, direction, state, 0, isPartOfConference, address, addressType);
+                    indexOfCall, direction, state, 0, isPartOfConference, address, addressType);
         }
-    }
-
-    private String getClccMapKey(BluetoothCall call) {
-        if (mCallInfo.isNullCall(call) || call.getHandle() == null) {
-            return "";
-        }
-        Uri handle = call.getHandle();
-        String key;
-        if (call.hasProperty(Call.Details.PROPERTY_SELF_MANAGED)) {
-            key = handle.toString() + " self managed " + call.getId();
-        } else {
-            key = handle.toString();
-        }
-        return key;
-    }
-
-    /**
-     * Returns the caches index for the specified call.  If no such index exists, then an index is
-     * given (smallest number starting from 1 that isn't already taken).
-     */
-    private int getIndexForCall(BluetoothCall call) {
-        String key = getClccMapKey(call);
-        if (mClccIndexMap.containsKey(key)) {
-            return mClccIndexMap.get(key);
-        }
-
-        int i = 1;  // Indexes for bluetooth clcc are 1-based.
-        while (mClccIndexMap.containsValue(i)) {
-            i++;
-        }
-
-        // NOTE: Indexes are removed in {@link #onCallRemoved}.
-        mClccIndexMap.put(key, i);
-        return i;
     }
 
     private boolean _processChld(int chld) {
