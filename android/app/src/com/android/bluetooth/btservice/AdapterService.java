@@ -4626,7 +4626,9 @@ public class AdapterService extends Service {
             mCsipSetCoordinatorService.disconnect(device);
         }
         if (mLeAudioService != null && mLeAudioService.getConnectionState(device)
-                == BluetoothProfile.STATE_CONNECTED) {
+                == BluetoothProfile.STATE_CONNECTED
+                || mLeAudioService.getConnectionState(device)
+                == BluetoothProfile.STATE_CONNECTING) {
             Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting LeAudio profile (BAP)");
             mLeAudioService.disconnect(device);
         }
