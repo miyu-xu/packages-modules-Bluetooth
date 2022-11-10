@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4750b772_c6e83d2e",
+        "filename": "tools/rootcanal/test/controller/le/le_set_extended_scan_enable_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-10T00:16:08Z",
+      "side": 1,
+      "message": "fIx",
+      "range": {
+        "startLine": 97,
+        "startChar": 17,
+        "endLine": 97,
+        "endChar": 38
+      },
+      "revId": "4112a3afec9c83b30df8acf4751f127069d84649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
