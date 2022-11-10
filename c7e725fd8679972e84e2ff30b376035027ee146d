@@ -22,6 +22,30 @@
       },
       "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e6bdae_11d33589",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-10T15:16:11Z",
+      "side": 1,
+      "message": "\u003e I would have expected this to be in the same file group.\n\nWhich group do you mean?",
+      "parentUuid": "d8b9cb84_324e879c",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
