@@ -61,7 +61,7 @@ void btm_free(void) {
 }
 
 constexpr size_t kMaxLogHistoryTagLength = 6;
-constexpr size_t kMaxLogHistoryMsgLength = 25;
+constexpr size_t kMaxLogHistoryMsgLength = 100;
 
 static void btm_log_history(const std::string& tag, const char* addr,
                             const std::string& msg, const std::string& extra) {
