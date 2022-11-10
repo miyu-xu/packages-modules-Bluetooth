@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d87d454c_f706a7af",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T23:43:24Z",
+      "side": 1,
+      "message": "Why not put it in the class?",
+      "range": {
+        "startLine": 1037,
+        "startChar": 0,
+        "endLine": 1037,
+        "endChar": 7
+      },
+      "revId": "f3853edc5c4c7235603b701275153d02d9e3f79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fe0e9b6_c8f48b17",
+        "filename": "tools/rootcanal/py/controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T23:43:24Z",
+      "side": 1,
+      "message": "It might make sense to do this before checking the local queues.  Otherwise, it seems like it could be a race.",
+      "range": {
+        "startLine": 68,
+        "startChar": 7,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "f3853edc5c4c7235603b701275153d02d9e3f79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
