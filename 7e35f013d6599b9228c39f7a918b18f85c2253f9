@@ -33,6 +33,24 @@
       "message": "How is lead device defined ?\nIs it first connected device, or always Right device ?\nSo after this patch, if non-lead device is connected, we would return null on position 0 and non-lead device at position 1 ?\n\nWould consumers of this API be happy about this situation ?",
       "revId": "7e35f013d6599b9228c39f7a918b18f85c2253f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0840e758_6bcc6740",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-10T14:52:09Z",
+      "side": 1,
+      "message": "Lead device is described here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeAudio.java;l\u003d801?q\u003dbluetoothleaudio.java\u0026ss\u003dandroid%2Fplatform%2Fsuperproject\n\n\nDuring streaming, Lead device remains connected for LeAudioService and is reconnecting under the hood.\n\nIf any device is connected from the group, there will be always a lead device.",
+      "parentUuid": "681f90d5_9b177ed9",
+      "revId": "7e35f013d6599b9228c39f7a918b18f85c2253f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
