@@ -15,10 +15,16 @@ service HFP {
   rpc DisableSlc(DisableSlcRequest) returns (google.protobuf.Empty);
   // Change the battery level to the one requested
   rpc SetBatteryLevel(SetBatteryLevelRequest) returns (google.protobuf.Empty);
+  // Answer a call
+  rpc AnswerCall(AnswerCallRequest) returns (AnswerCallResponse);
   // Decline a call
   rpc DeclineCall(DeclineCallRequest) returns (DeclineCallResponse);
   // Set the audio path
   rpc SetAudioPath(SetAudioPathRequest) returns (SetAudioPathResponse);
+  // Swap the active and held call
+  rpc SwapActiveCall(SwapActiveCallRequest) returns (SwapActiveCallResponse);
+  // Set in-band ringtone
+  rpc SetInBandRingtone(SetInBandRingtoneRequest) returns (SetInBandRingtoneResponse);
 }
 
 // Request of the `EnableSlc` method.
@@ -41,6 +47,10 @@ message SetBatteryLevelRequest {
   int32 battery_percentage = 2;
 }
 
+message AnswerCallRequest {}
+
+message AnswerCallResponse {}
+
 message DeclineCallRequest {}
 
 message DeclineCallResponse {}
@@ -56,3 +66,13 @@ message SetAudioPathRequest {
 }
 
 message SetAudioPathResponse {}
+
+message SwapActiveCallRequest {}
+
+message SwapActiveCallResponse {}
+
+message SetInBandRingtoneRequest {
+  bool enabled = 1;
+}
+
+message SetInBandRingtoneResponse {}

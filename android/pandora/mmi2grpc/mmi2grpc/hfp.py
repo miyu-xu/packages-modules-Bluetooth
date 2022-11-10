@@ -13,7 +13,7 @@
 # limitations under the License.
 """HFP proxy module."""
 
-from mmi2grpc._helpers import assert_description
+from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 
 from pandora_experimental.hfp_grpc import HFP
@@ -29,13 +29,13 @@ import time
 WAIT_DELAY_BEFORE_CONNECTION = 2
 
 # The tests needs the MMI to accept pairing confirmation request.
-NEEDS_WAIT_CONNECTION_BEFORE_TEST = {'HFP/AG/WBS/BV-01-I', 'HFP/AG/SLC/BV-05-I'}
+NEEDS_WAIT_CONNECTION_BEFORE_TEST = {"HFP/AG/WBS/BV-01-I", "HFP/AG/SLC/BV-05-I"}
 
 IXIT_PHONE_NUMBER = 42
+IXIT_SECOND_PHONE_NUMBER = 43
 
 
 class HFPProxy(ProfileProxy):
-
     def __init__(self, test, channel, rootcanal, modem):
         super().__init__(channel)
         self.hfp = HFP(channel)
@@ -56,8 +56,10 @@ class HFPProxy(ProfileProxy):
         def waitConnectionCallback(self, pts_addr):
             self.connection = self.host.WaitConnection(address=pts_addr).connection
 
-        print(f'HFP placeholder mmi: asyncWaitConnection', file=sys.stderr)
-        th = threading.Timer(interval=delay, function=waitConnectionCallback, args=(self, pts_addr))
+        print(f"HFP placeholder mmi: asyncWaitConnection", file=sys.stderr)
+        th = threading.Timer(
+            interval=delay, function=waitConnectionCallback, args=(self, pts_addr)
+        )
         th.start()
 
     def test_started(self, test: str, pts_addr: bytes, **kwargs):
@@ -234,13 +236,226 @@ class HFPProxy(ProfileProxy):
 
         return "OK"
 
-    def _auto_confirm_requests(self, times=None):
+    @assert_description
+    def TSC_iut_enable_audio(self, **kwargs):
+        """
+        Click Ok, then initiate an audio connection (SCO) from the
+        Implementation Under Test (IUT) to the PTS.
+        """
 
+        def enable_audio():
+            time.sleep(2)
+            self.hfp.SetAudioPath(audio_path=AudioPath.AUDIO_PATH_HANDSFREE)
+
+        threading.Thread(target=enable_audio).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_iut_disable_audio_slc_down_ok(self, pts_addr: bytes, **kwargs):
+        """
+        Click OK, then close the audio connection (SCO) between the
+        Implementation Under Test (IUT) and the PTS.  If necessary, it is OK to
+        close the service level connection. Do not power-off the IUT.
+        """
+
+        self.connection = self.host.GetConnection(address=pts_addr).connection
+
+        def disable_slc():
+            time.sleep(2)
+            self.hfp.DisableSlc(connection=self.connection)
+
+        threading.Thread(target=disable_slc).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_ag_iut_call_no_slc(self, **kwargs):
+        """
+        Place a call from an external line to the Implementation Under Test
+        (IUT).  When the call is active, click Ok.
+        """
+
+        self.modem.call(IXIT_PHONE_NUMBER)
+        time.sleep(5)  # there's a delay before Android registers the call
+        self.hfp.AnswerCall()
+        time.sleep(2)
+
+        return "OK"
+
+    @assert_description
+    def TSC_ag_iut_enable_second_call(self, **kwargs):
+        """
+        Click Ok, then place a second call from an external line to the
+        Implementation Under Test (IUT). Do not answer the call unless prompted
+        to do so.
+        """
+
+        def enable_second_call():
+            time.sleep(2)
+            self.modem.call(IXIT_SECOND_PHONE_NUMBER)
+
+        threading.Thread(target=enable_second_call).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_ag_iut_call_swap(self, **kwargs):
+        """
+        Click Ok, then place the current call on hold and make the incoming/held
+        call active using the Implementation Under Test (IUT).
+        """
+
+        self.hfp.SwapActiveCall()
+
+        return "OK"
+
+    @assert_description
+    def TSC_verify_audio_second_call(self, **kwargs):
+        """
+        Verify the audio is returned to the 2nd call and then click Ok.  Resume
+        action may be needed.  If the audio is not returned to the 2nd call,
+        click Cancel.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_ag_iut_disable_call_after_verdict(self, **kwargs):
+        """
+        After the test verdict  is given, end all active calls using the
+        external line or the Implementation Under Test (IUT).  Click OK to
+        continue.
+        """
+
+        self.hfp.DeclineCall()
+
+        return "OK"
+
+    @assert_description
+    def TSC_verify_no_ecnr(self, **kwargs):
+        """
+        Verify that EC and NR functionality is disabled, then click Ok.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_disable_inband_ring(self, **kwargs):
+        """
+        Click Ok, then disable the in-band ringtone using the Implemenation
+        Under Test (IUT).
+        """
+
+        self.hfp.SetInBandRingtone(enabled=False)
+        self.host.SoftReset()
+
+        return "OK"
+
+    @assert_description
+    def TSC_wait_until_ringing(self, **kwargs):
+        """
+        When the Implementation Under Test (IUT) alerts the incoming call, click
+        Ok.
+        """
+
+        # we are triggering a call from modem_simulator, so the alert is immediate
+
+        return "OK"
+
+    @assert_description
+    def TSC_verify_incoming_call_ag(self, **kwargs):
+        """
+        Verify that there is an incoming call on the Implementation Under Test
+        (IUT).
+        """
+
+        # we are triggering a call from modem_simulator, so this is guaranteed
+
+        return "OK"
+
+    @assert_description
+    def TSC_disable_ag_cellular_network_expect_notification(
+        self, pts_addr: bytes, **kwargs
+    ):
+        """
+        Click OK. Then, disable the control channel, such that the AG is de-
+        registered.
+        """
+
+        self.connection = self.host.GetConnection(address=pts_addr).connection
+
+        def disable_slc():
+            time.sleep(2)
+            self.hfp.DisableSlc(connection=self.connection)
+
+        threading.Thread(target=disable_slc).start()
+
+        return "OK"
+
+    @assert_description
+    def TSC_adjust_ag_battery_level_expect_no_notification(self, **kwargs):
+        """
+        Adjust the battery level on the AG to a level that should cause a
+        battery level indication to be sent to HF. Then, click OK.
+        """
+
+        self.hfp.SetBatteryLevel(connection=self.connection, battery_percentage=42)
+
+        return "OK"
+
+    @assert_description
+    def TSC_verify_subscriber_number(self, **kwargs):
+        """
+        Using the Implementation Under Test (IUT), verify that the following is
+        a valid Audio Gateway (AG) subscriber number, then click
+        Ok."+15551234567"nnNOTE: Subscriber service type is 145
+        """
+
+        return "OK"
+
+    @match_description
+    def TSC_ag_prepare_at_bldn(self, **kwargs):
+        r"""
+        Place the Implemenation Under Test \(IUT\) in a state which will accept an
+        outgoing call set-up request from the PTS, then click OK. ?
+
+        Note:  The
+        PTS will send a request to establish an outgoing call from the IUT to
+        the last dialed number.  Answer the incoming call when alerted.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_ag_iut_prepare_for_atd(self, **kwargs):
+        """
+        Place the Implementation Under Test (IUT) in a mode that will allow an
+        outgoing call initiated by the PTS, and click Ok.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_terminal_answer_call(self, **kwargs):
+        """
+        Click Ok, then answer the incoming call on the external terminal.
+        """
+
+        def answer_call():
+            time.sleep(2)
+            self.hfp.AnswerCall()
+
+        threading.Thread(target=answer_call).start()
+
+        return "OK"
+
+    def _auto_confirm_requests(self, times=None):
         def task():
             cnt = 0
             pairing_events = self.security.OnPairing()
             for event in pairing_events:
-                if event.WhichOneof('method') in {"just_works", "numeric_comparison"}:
+                if event.WhichOneof("method") in {"just_works", "numeric_comparison"}:
                     if times is None or cnt < times:
                         cnt += 1
                         pairing_events.send(event=event, confirm=True)
