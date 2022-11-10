@@ -89,6 +89,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6484dde7_ce53433f",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4660,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-10T00:11:58Z",
+      "side": 1,
+      "message": "LeSubrateRequestStatus ?",
+      "range": {
+        "startLine": 4660,
+        "startChar": 23,
+        "endLine": 4660,
+        "endChar": 31
+      },
+      "revId": "5107e62d5fbcfd93d86772a724a6321ba93b7ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "208737bf_44367b29",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 1
