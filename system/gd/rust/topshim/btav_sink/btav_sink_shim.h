@@ -27,6 +27,8 @@ namespace bluetooth {
 namespace topshim {
 namespace rust {
 
+struct RustRawAddress;
+
 class A2dpSinkIntf {
  public:
   A2dpSinkIntf(const btav_sink_interface_t* intf) : intf_(intf){};
@@ -34,9 +36,9 @@ class A2dpSinkIntf {
 
   // interface for Settings
   int init() const;
-  int connect(RawAddress addr) const;
-  int disconnect(RawAddress addr) const;
-  int set_active_device(RawAddress addr) const;
+  int connect(RustRawAddress bt_addr) const;
+  int disconnect(RustRawAddress bt_addr) const;
+  int set_active_device(RustRawAddress bt_addr) const;
   void cleanup() const;
 
  private:
