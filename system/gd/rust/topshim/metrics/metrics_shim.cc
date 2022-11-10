@@ -17,6 +17,7 @@
 #include "gd/rust/topshim/metrics/metrics_shim.h"
 
 #include "gd/metrics/metrics.h"
+#include "gd/rust/topshim/common/utils.h"
 #include "src/metrics.rs.h"
 #include "types/raw_address.h"
 
@@ -30,17 +31,21 @@ void adapter_state_changed(uint32_t state) {
   metrics::LogMetricsAdapterStateChanged(state);
 }
 
-void bond_create_attempt(RawAddress addr, uint32_t device_type) {
+void bond_create_attempt(RustRawAddress bt_addr, uint32_t device_type) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+
   metrics::LogMetricsBondCreateAttempt(&addr, device_type);
 }
 
 void bond_state_changed(
-    RawAddress addr, uint32_t device_type, uint32_t status, uint32_t bond_state, int32_t fail_reason) {
+    RustRawAddress bt_addr, uint32_t device_type, uint32_t status, uint32_t bond_state, int32_t fail_reason) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+
   metrics::LogMetricsBondStateChanged(&addr, device_type, status, bond_state, fail_reason);
 }
 
 void device_info_report(
-    RawAddress addr,
+    RustRawAddress bt_addr,
     uint32_t device_type,
     uint32_t class_of_device,
     uint32_t appearance,
@@ -48,20 +53,33 @@ void device_info_report(
     uint32_t vendor_id_src,
     uint32_t product_id,
     uint32_t version) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+
   metrics::LogMetricsDeviceInfoReport(
       &addr, device_type, class_of_device, appearance, vendor_id, vendor_id_src, product_id, version);
 }
 
-void profile_connection_state_changed(RawAddress addr, uint32_t profile, uint32_t status, uint32_t state) {
+void profile_connection_state_changed(RustRawAddress bt_addr, uint32_t profile, uint32_t status, uint32_t state) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+
   metrics::LogMetricsProfileConnectionStateChanged(&addr, profile, status, state);
 }
 
-void acl_connect_attempt(RawAddress addr, uint32_t acl_state) {
+void acl_connect_attempt(RustRawAddress bt_addr, uint32_t acl_state) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+
   metrics::LogMetricsAclConnectAttempt(&addr, acl_state);
 }
 
 void acl_connection_state_changed(
-    RawAddress addr, uint32_t transport, uint32_t status, uint32_t acl_state, uint32_t direction, uint32_t hci_reason) {
+    RustRawAddress bt_addr,
+    uint32_t transport,
+    uint32_t status,
+    uint32_t acl_state,
+    uint32_t direction,
+    uint32_t hci_reason) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+
   metrics::LogMetricsAclConnectionStateChanged(&addr, transport, status, acl_state, direction, hci_reason);
 }
 

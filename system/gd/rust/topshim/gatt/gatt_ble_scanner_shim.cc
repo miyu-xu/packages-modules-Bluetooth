@@ -25,6 +25,7 @@
 #include <vector>
 
 #include "bind_helpers.h"
+#include "gd/rust/topshim/common/utils.h"
 #include "include/hardware/bt_common_types.h"
 #include "rust/cxx.h"
 #include "src/profiles/gatt.rs.h"
@@ -39,6 +40,8 @@ namespace rusty = ::bluetooth::topshim::rust;
 
 namespace internal {
 ApcfCommand ConvertApcfFromRust(const RustApcfCommand& command) {
+  RawAddress address = rusty::CopyFromRustAddress(command.address);
+
   // Copy vectors + arrays
   std::vector<uint8_t> name, data, data_mask;
   std::array<uint8_t, 16> irk;
@@ -49,7 +52,7 @@ ApcfCommand ConvertApcfFromRust(const RustApcfCommand& command) {
 
   ApcfCommand converted = {
       .type = command.type_,
-      .address = command.address,
+      .address = address,
       .addr_type = command.addr_type,
       .uuid = bluetooth::Uuid::From128BitBE(command.uuid.uu),
       .uuid_mask = bluetooth::Uuid::From128BitBE(command.uuid_mask.uu),
@@ -106,7 +109,7 @@ void BleScannerIntf::OnSetScannerParameterComplete(uint8_t scannerId, uint8_t st
 void BleScannerIntf::OnScanResult(
     uint16_t event_type,
     uint8_t addr_type,
-    RawAddress addr,
+    RawAddress bda,
     uint8_t primary_phy,
     uint8_t secondary_phy,
     uint8_t advertising_sid,
@@ -114,10 +117,11 @@ void BleScannerIntf::OnScanResult(
     int8_t rssi,
     uint16_t periodic_adv_int,
     std::vector<uint8_t> adv_data) {
+  RustRawAddress raw_address = rusty::CopyToRustAddress(bda);
   rusty::gdscan_on_scan_result(
       event_type,
       addr_type,
-      &addr,
+      reinterpret_cast<const signed char*>(&raw_address),
       primary_phy,
       secondary_phy,
       advertising_sid,
@@ -129,12 +133,13 @@ void BleScannerIntf::OnScanResult(
 }
 
 void BleScannerIntf::OnTrackAdvFoundLost(AdvertisingTrackInfo ati) {
+  rusty::RustRawAddress addr = rusty::CopyToRustAddress(ati.advertiser_address);
   rusty::RustAdvertisingTrackInfo rust_info = {
       .scanner_id = ati.scanner_id,
       .filter_index = ati.filter_index,
       .advertiser_state = ati.advertiser_state,
       .advertiser_info_present = ati.advertiser_info_present,
-      .advertiser_address = ati.advertiser_address,
+      .advertiser_address = addr,
       .advertiser_address_type = ati.advertiser_address_type,
       .tx_power = ati.tx_power,
       .rssi = ati.rssi,
@@ -246,28 +251,33 @@ void BleScannerIntf::BatchscanReadReports(uint8_t scanner_id, int32_t scan_mode)
   scanner_intf_->BatchscanReadReports(scanner_id, scan_mode);
 }
 
-void BleScannerIntf::StartSync(uint8_t sid, RawAddress addr, uint16_t skip, uint16_t timeout) {
-  scanner_intf_->StartSync(sid, addr, skip, timeout, 0 /* place holder */);
+void BleScannerIntf::StartSync(uint8_t sid, RustRawAddress address, uint16_t skip, uint16_t timeout) {
+  RawAddress converted = rusty::CopyFromRustAddress(address);
+  scanner_intf_->StartSync(sid, converted, skip, timeout, 0 /* place holder */);
 }
 
 void BleScannerIntf::StopSync(uint16_t handle) {
   scanner_intf_->StopSync(handle);
 }
 
-void BleScannerIntf::CancelCreateSync(uint8_t sid, RawAddress addr) {
-  scanner_intf_->CancelCreateSync(sid, addr);
+void BleScannerIntf::CancelCreateSync(uint8_t sid, RustRawAddress address) {
+  RawAddress converted = rusty::CopyFromRustAddress(address);
+  scanner_intf_->CancelCreateSync(sid, converted);
 }
 
-void BleScannerIntf::TransferSync(RawAddress addr, uint16_t service_data, uint16_t sync_handle) {
-  scanner_intf_->TransferSync(addr, service_data, sync_handle, 0 /* place holder */);
+void BleScannerIntf::TransferSync(RustRawAddress address, uint16_t service_data, uint16_t sync_handle) {
+  RawAddress converted = rusty::CopyFromRustAddress(address);
+  scanner_intf_->TransferSync(converted, service_data, sync_handle, 0 /* place holder */);
 }
 
-void BleScannerIntf::TransferSetInfo(RawAddress addr, uint16_t service_data, uint8_t adv_handle) {
-  scanner_intf_->TransferSetInfo(addr, service_data, adv_handle, 0 /* place holder */);
+void BleScannerIntf::TransferSetInfo(RustRawAddress address, uint16_t service_data, uint8_t adv_handle) {
+  RawAddress converted = rusty::CopyFromRustAddress(address);
+  scanner_intf_->TransferSetInfo(converted, service_data, adv_handle, 0 /* place holder */);
 }
 
-void BleScannerIntf::SyncTxParameters(RawAddress addr, uint8_t mode, uint16_t skip, uint16_t timeout) {
-  scanner_intf_->SyncTxParameters(addr, mode, skip, timeout, 0 /* place holder */);
+void BleScannerIntf::SyncTxParameters(RustRawAddress address, uint8_t mode, uint16_t skip, uint16_t timeout) {
+  RawAddress converted = rusty::CopyFromRustAddress(address);
+  scanner_intf_->SyncTxParameters(converted, mode, skip, timeout, 0 /* place holder */);
 }
 
 void BleScannerIntf::OnRegisterCallback(RustUuid uuid, uint8_t scanner_id, uint8_t btm_status) {
@@ -298,10 +308,11 @@ void BleScannerIntf::OnPeriodicSyncStarted(
     uint16_t sync_handle,
     uint8_t advertising_sid,
     uint8_t address_type,
-    RawAddress addr,
+    RawAddress address,
     uint8_t phy,
     uint16_t interval) {
-  rusty::gdscan_start_sync_callback(status, sync_handle, advertising_sid, address_type, &addr, phy, interval);
+  RustRawAddress converted = rusty::CopyToRustAddress(address);
+  rusty::gdscan_start_sync_callback(status, sync_handle, advertising_sid, address_type, &converted, phy, interval);
 }
 
 void BleScannerIntf::OnPeriodicSyncReport(
@@ -313,8 +324,9 @@ void BleScannerIntf::OnPeriodicSyncLost(uint16_t sync_handle) {
   rusty::gdscan_sync_lost_callback(sync_handle);
 }
 
-void BleScannerIntf::OnPeriodicSyncTransferred(int, uint8_t status, RawAddress addr) {
-  rusty::gdscan_sync_transfer_callback(status, &addr);
+void BleScannerIntf::OnPeriodicSyncTransferred(int, uint8_t status, RawAddress address) {
+  RustRawAddress converted = rusty::CopyToRustAddress(address);
+  rusty::gdscan_sync_transfer_callback(status, &converted);
 }
 
 void BleScannerIntf::RegisterCallbacks() {
