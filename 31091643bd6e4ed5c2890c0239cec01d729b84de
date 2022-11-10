@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba58a27e_dafd43d1",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-10T10:55:27Z",
+      "side": 1,
+      "message": "Thanks for the suggestion! Done",
+      "parentUuid": "f6c75f26_142aecb1",
+      "range": {
+        "startLine": 954,
+        "startChar": 0,
+        "endLine": 957,
+        "endChar": 17
+      },
+      "revId": "31091643bd6e4ed5c2890c0239cec01d729b84de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a4675f2_300a7f11",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-09T19:25:29Z",
       "side": 1,
       "message": "I don\u0027t see the `bt_gatt.rs`, not yet committed?",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "31091643bd6e4ed5c2890c0239cec01d729b84de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8883e3c7_241cefdd",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-10T10:55:27Z",
+      "side": 1,
+      "message": "Forgot to upload :(",
+      "parentUuid": "7a4675f2_300a7f11",
       "range": {
         "startLine": 32,
         "startChar": 4,

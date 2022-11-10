@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f338ea0c_468ad329",
+        "filename": "system/gd/rust/linux/client/src/bt_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-10T10:55:27Z",
+      "side": 1,
+      "message": "This is interesting but it has been used a lot in aosp...",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
