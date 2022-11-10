@@ -26,12 +26,14 @@ namespace bluetooth {
 namespace topshim {
 namespace rust {
 
+struct RustRawAddress;
+
 class GattClientIntf {
  public:
   GattClientIntf(const btgatt_client_interface_t* client_intf) : client_intf_(client_intf){};
   ~GattClientIntf() = default;
 
-  int read_phy(int client_if, RawAddress bt_addr);
+  int read_phy(int client_if, RustRawAddress bt_addr);
 
  private:
   const btgatt_client_interface_t* client_intf_;

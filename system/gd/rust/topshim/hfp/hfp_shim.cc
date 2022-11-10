@@ -18,6 +18,7 @@
 
 #include "btif/include/btif_hf.h"
 #include "gd/os/log.h"
+#include "gd/rust/topshim/common/utils.h"
 #include "include/hardware/bt_hf.h"
 #include "src/profiles/hfp.rs.h"
 #include "types/raw_address.h"
@@ -31,15 +32,18 @@ namespace internal {
 static HfpIntf* g_hfpif;
 
 static void connection_state_cb(bluetooth::headset::bthf_connection_state_t state, RawAddress* addr) {
-  rusty::hfp_connection_state_callback(state, *addr);
+  RustRawAddress raddr = rusty::CopyToRustAddress(*addr);
+  rusty::hfp_connection_state_callback(state, raddr);
 }
 
 static void audio_state_cb(bluetooth::headset::bthf_audio_state_t state, RawAddress* addr) {
-  rusty::hfp_audio_state_callback(state, *addr);
+  RustRawAddress raddr = rusty::CopyToRustAddress(*addr);
+  rusty::hfp_audio_state_callback(state, raddr);
 }
 
 static void volume_update_cb(uint8_t volume, RawAddress* addr) {
-  rusty::hfp_volume_update_callback(volume, *addr);
+  RustRawAddress raddr = rusty::CopyToRustAddress(*addr);
+  rusty::hfp_volume_update_callback(volume, raddr);
 }
 }  // namespace internal
 
@@ -97,9 +101,10 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
   void NoiseReductionCallback(
       [[maybe_unused]] headset::bthf_nrec_t nrec, [[maybe_unused]] RawAddress* bd_addr) override {}
 
-  void WbsCallback(headset::bthf_wbs_config_t wbs, RawAddress* addr) override {
-    LOG_INFO("WbsCallback %d from %s", wbs, addr->ToString().c_str());
-    rusty::hfp_caps_update_callback(wbs == headset::BTHF_WBS_YES, *addr);
+  void WbsCallback(headset::bthf_wbs_config_t wbs, RawAddress* bd_addr) override {
+    LOG_INFO("WbsCallback %d from %s", wbs, bd_addr->ToString().c_str());
+    RustRawAddress raddr = rusty::CopyToRustAddress(*bd_addr);
+    rusty::hfp_caps_update_callback(wbs == headset::BTHF_WBS_YES, raddr);
   }
 
   void AtChldCallback([[maybe_unused]] headset::bthf_chld_type_t chld, [[maybe_unused]] RawAddress* bd_addr) override {}
@@ -205,28 +210,34 @@ int HfpIntf::init() {
   return intf_->Init(DBusHeadsetCallbacks::GetInstance(intf_), 1, false);
 }
 
-uint32_t HfpIntf::connect(RawAddress addr) {
+uint32_t HfpIntf::connect(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->Connect(&addr);
 }
 
-int HfpIntf::connect_audio(RawAddress addr, bool sco_offload, bool force_cvsd) {
+int HfpIntf::connect_audio(RustRawAddress bt_addr, bool sco_offload, bool force_cvsd) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   intf_->SetScoOffloadEnabled(sco_offload);
   return intf_->ConnectAudio(&addr, force_cvsd);
 }
 
-int HfpIntf::set_active_device(RawAddress addr) {
+int HfpIntf::set_active_device(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->SetActiveDevice(&addr);
 }
 
-int HfpIntf::set_volume(int8_t volume, RawAddress addr) {
+int HfpIntf::set_volume(int8_t volume, RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->VolumeControl(headset::bthf_volume_type_t::BTHF_VOLUME_TYPE_SPK, volume, &addr);
 }
 
-uint32_t HfpIntf::disconnect(RawAddress addr) {
+uint32_t HfpIntf::disconnect(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->Disconnect(&addr);
 }
 
-int HfpIntf::disconnect_audio(RawAddress addr) {
+int HfpIntf::disconnect_audio(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->DisconnectAudio(&addr);
 }
 
