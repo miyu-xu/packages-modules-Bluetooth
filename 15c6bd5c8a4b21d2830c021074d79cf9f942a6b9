@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4adca1d8_5d0191aa",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T14:54:56Z",
+      "side": 1,
+      "message": "This should override the virtual function from hci_hal.h  I don\u0027t think we need an extra class.",
+      "range": {
+        "startLine": 492,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 1
+      },
+      "revId": "15c6bd5c8a4b21d2830c021074d79cf9f942a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ce7ac3_b6d307c6",
+        "filename": "system/gd/hal/hci_hal_host.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T14:54:56Z",
+      "side": 1,
+      "message": "Please add this to hci_hal.h with a default implementation returning 0 for the opcode.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "15c6bd5c8a4b21d2830c021074d79cf9f942a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
