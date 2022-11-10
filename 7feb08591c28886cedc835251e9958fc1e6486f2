@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7cd4fef_19d23154",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T15:51:39Z",
+      "side": 1,
+      "message": "Let\u0027s just remove all the event registration until it\u0027s needed.  It will make it easier to focus on what\u0027s important.",
+      "parentUuid": "4152d017_5223c347",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adbc58fb_6f90f08b",
         "filename": "system/gd/hci/msft_interface.h",
         "patchSetId": 10
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Although the event prefix is not known at build time, I think we still need to register the MSFT sub-events so that VendorSpecificEventManager can call the MSFT event handler properly to handle the MSFT vendor events.  One of the TODOs would be to add a vendor event classifer in VendorSpecificEventManager to distinguish the vendor events with and without the vendor prefixes. If a vendor event comes with a vendor prefix and it matches the MSFT event prefix, the MSFT event handler would be called.",
       "parentUuid": "adbc58fb_6f90f08b",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "038aa9a0_2ddbf49e",
+        "filename": "system/gd/hci/msft_interface.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T15:51:39Z",
+      "side": 1,
+      "message": "When you know the prefix, you\u0027ll register the first byte of that.  You don\u0027t need this interface.",
+      "parentUuid": "231a80bb_aff04c9f",
       "range": {
         "startLine": 1,
         "startChar": 0,

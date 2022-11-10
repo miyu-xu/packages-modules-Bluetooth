@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21fdaaff_084e4bdd",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T15:51:39Z",
+      "side": 1,
+      "message": "supports_msft_extensions()\n\nor something like that?",
+      "range": {
+        "startLine": 83,
+        "startChar": 7,
+        "endLine": 83,
+        "endChar": 10
+      },
+      "revId": "f379ec35de8d1681234c3090950c14dd728dfb29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a33d7a6_80204078",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T15:51:39Z",
+      "side": 1,
+      "message": "I don\u0027t see the Controller being used.  Can we remove it until it is used?",
+      "range": {
+        "startLine": 178,
+        "startChar": 1,
+        "endLine": 178,
+        "endChar": 31
+      },
+      "revId": "f379ec35de8d1681234c3090950c14dd728dfb29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
