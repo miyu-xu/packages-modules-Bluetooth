@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19740767_e993323c",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T15:44:06Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think you need a class for this.  It can just go in the HalHost",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 28
+      },
+      "revId": "3166e6fd44a0f85c80f466e1b4d3e86dc553cac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
