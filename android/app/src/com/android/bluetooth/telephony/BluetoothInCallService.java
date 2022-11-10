@@ -832,15 +832,20 @@ public class BluetoothInCallService extends InCallService {
         if (mClccIndexMap.containsKey(key)) {
             return mClccIndexMap.get(key);
         }
-
-        int i = 1;  // Indexes for bluetooth clcc are 1-based.
-        while (mClccIndexMap.containsValue(i)) {
-            i++;
+        int index = 1; // Indexes for bluetooth clcc are 1-based.
+        if (call.isConference()) {
+            index = call.getChildrenIds().size() + 1; // Make sure children calls start from 1.
+            Log.i(TAG, 
+                  "getIndexForCall for conference call with children number " 
+                  + call.getChildrenIds().size());
+        }
+        while (mClccIndexMap.containsValue(index)) {
+            index++;
         }
 
         // NOTE: Indexes are removed in {@link #onCallRemoved}.
-        mClccIndexMap.put(key, i);
-        return i;
+        mClccIndexMap.put(key, index);
+        return index;
     }
 
     private boolean _processChld(int chld) {
