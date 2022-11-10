@@ -84,7 +84,6 @@ import java.util.concurrent.TimeoutException;
 public class LeAudioServiceTest {
     private static final int ASYNC_CALL_TIMEOUT_MILLIS = 250;
     private static final int TIMEOUT_MS = 1000;
-    private static final int AUDIO_MANAGER_DEVICE_ADD_TIMEOUT_MS = 3000;
     private static final int MAX_LE_AUDIO_CONNECTIONS = 5;
     private static final int LE_AUDIO_GROUP_ID_INVALID = -1;
 
@@ -1320,7 +1319,7 @@ public class LeAudioServiceTest {
                         any(BluetoothProfileConnectionInfo.class));
 
         doReturn(BluetoothDevice.BOND_BONDED).when(mAdapterService).getBondState(leadDevice);
-        verifyActiveDeviceStateIntent(AUDIO_MANAGER_DEVICE_ADD_TIMEOUT_MS, leadDevice);
+        verifyActiveDeviceStateIntent(TIMEOUT_MS, leadDevice);
         injectNoVerifyDeviceDisconnected(leadDevice);
 
         // We should not change the audio device
@@ -1384,7 +1383,7 @@ public class LeAudioServiceTest {
         verify(mAudioManager, times(1)).handleBluetoothActiveDeviceChanged(eq(leadDevice), any(),
                         any(BluetoothProfileConnectionInfo.class));
 
-        verifyActiveDeviceStateIntent(AUDIO_MANAGER_DEVICE_ADD_TIMEOUT_MS, leadDevice);
+        verifyActiveDeviceStateIntent(TIMEOUT_MS, leadDevice);
         /* We don't want to distribute DISCONNECTION event, instead will try to reconnect
          * (in native)
          */
