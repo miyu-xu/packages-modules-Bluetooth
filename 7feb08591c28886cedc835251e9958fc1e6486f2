@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd4f7db2_5ecb3b97",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-10T14:56:09Z",
+      "side": 1,
+      "message": "You may only be able to register the first byte, but that\u0027s OK.",
+      "parentUuid": "4b88a502_0b5845aa",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adbc58fb_6f90f08b",
         "filename": "system/gd/hci/msft_interface.h",
         "patchSetId": 10
