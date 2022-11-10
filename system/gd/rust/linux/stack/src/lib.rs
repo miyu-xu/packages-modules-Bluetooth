@@ -28,7 +28,7 @@ use tokio::sync::mpsc::{Receiver, Sender};
 
 use crate::battery_manager::{BatteryManager, BatterySet};
 use crate::battery_provider_manager::BatteryProviderManager;
-use crate::battery_service::{BatteryService, GattBatteryCallbacks};
+use crate::battery_service::{BatteryService, BatteryServiceActions};
 use crate::bluetooth::{
     dispatch_base_callbacks, dispatch_hid_host_callbacks, dispatch_sdp_callbacks, Bluetooth,
     BluetoothDevice, IBluetooth,
@@ -84,6 +84,7 @@ pub enum Message {
     // Sent whenever a device connects. Follows IBluetooth's on_device_connected
     // callback but doesn't require depening on Bluetooth.
     OnDeviceConnected(BluetoothDevice),
+    OnDeviceDisconnected(BluetoothDevice),
 
     // Suspend related
     SuspendCallbackRegistered(u32),
@@ -104,7 +105,7 @@ pub enum Message {
     BatteryProviderManagerCallbackDisconnected(u32),
     BatteryProviderManagerBatteryUpdated(String, BatterySet),
     BatteryServiceCallbackDisconnected(u32),
-    BatteryServiceCallbacks(GattBatteryCallbacks),
+    BatteryService(BatteryServiceActions),
     BatteryServiceRefresh,
     BatteryManagerCallbackDisconnected(u32),
 
@@ -238,7 +239,17 @@ impl Stack {
                 // update method triggered from here rather than needing a
                 // reference to Bluetooth.
                 Message::OnDeviceConnected(device) => {
-                    battery_service.lock().unwrap().device_connected(device);
+                    battery_service
+                        .lock()
+                        .unwrap()
+                        .handle_callback(BatteryServiceActions::Connect(device));
+                }
+
+                Message::OnDeviceDisconnected(device) => {
+                    battery_service
+                        .lock()
+                        .unwrap()
+                        .handle_callback(BatteryServiceActions::Disconnect(device));
                 }
 
                 Message::SuspendCallbackRegistered(id) => {
@@ -283,8 +294,8 @@ impl Stack {
                 Message::BatteryServiceCallbackDisconnected(id) => {
                     battery_service.lock().unwrap().remove_callback(id);
                 }
-                Message::BatteryServiceCallbacks(callback) => {
-                    battery_service.lock().unwrap().handle_callback(callback);
+                Message::BatteryService(action) => {
+                    battery_service.lock().unwrap().handle_callback(action);
                 }
                 Message::BatteryServiceRefresh => {
                     battery_service.lock().unwrap().refresh_all_devices();
