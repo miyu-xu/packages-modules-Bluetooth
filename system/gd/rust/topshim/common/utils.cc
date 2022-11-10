@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 The Android Open Source Project
+ * Copyright (C) 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,37 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef GD_RUST_TOPSHIM_CONTROLLER_SHIM
-#define GD_RUST_TOPSHIM_CONTROLLER_SHIM
 
-#include <memory>
+#include "gd/rust/topshim/common/utils.h"
 
-#include "main/shim/controller.h"
-#include "rust/cxx.h"
-#include "types/raw_address.h"
+#include "src/btif.rs.h"
+
+using bluetooth::topshim::rust::RustRawAddress;
 
 namespace bluetooth {
 namespace topshim {
 namespace rust {
 
-struct RustRawAddress;
+RustRawAddress CopyToRustAddress(const RawAddress& address) {
+  RustRawAddress raddr;
+  std::copy(std::begin(address.address), std::end(address.address), std::begin(raddr.address));
+  return raddr;
+}
 
-class ControllerIntf {
- public:
-  ControllerIntf() : controller_(controller_get_interface()) {}
-  ~ControllerIntf();
-
-  RustRawAddress read_local_addr() const;
-
- private:
-  const controller_t* controller_;
-};
-
-// ControllerIntf* GetControllerInterface();
-std::unique_ptr<ControllerIntf> GetControllerInterface();
+RawAddress CopyFromRustAddress(const RustRawAddress& rust_address) {
+  RawAddress addr;
+  addr.FromOctets(rust_address.address.data());
+  return addr;
+}
 
 }  // namespace rust
 }  // namespace topshim
 }  // namespace bluetooth
-
-#endif  // GD_RUST_TOPSHIM_CONTROLLER_SHIM

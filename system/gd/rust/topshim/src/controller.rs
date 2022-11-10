@@ -1,8 +1,7 @@
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 mod ffi {
-    unsafe extern "C++" {
-        include!("gd/rust/topshim/common/type_alias.h");
-        type RawAddress = crate::btif::RawAddress;
+    pub struct RustRawAddress {
+        address: [u8; 6],
     }
 
     unsafe extern "C++" {
@@ -11,7 +10,7 @@ mod ffi {
         type ControllerIntf;
 
         fn GetControllerInterface() -> UniquePtr<ControllerIntf>;
-        fn read_local_addr(self: &ControllerIntf) -> RawAddress;
+        fn read_local_addr(self: &ControllerIntf) -> RustRawAddress;
     }
 }
 
