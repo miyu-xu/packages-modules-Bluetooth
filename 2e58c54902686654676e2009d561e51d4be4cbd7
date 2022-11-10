@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c83d0d55_de5fdf07",
+        "filename": "system/btif/src/btif_a2dp_control.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-11-10T03:39:33Z",
+      "side": 0,
+      "message": "Rationale behind dropping this one:\n\n|btif_av_stream_started_ready| is almost the same as |btif_a2dp_source_is_streaming|, and it seems fine to let through.\n\nNeed someone familiar around this to double-check.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 40
+      },
+      "revId": "2e58c54902686654676e2009d561e51d4be4cbd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
