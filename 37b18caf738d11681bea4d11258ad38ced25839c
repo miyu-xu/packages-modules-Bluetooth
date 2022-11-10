@@ -16,6 +16,24 @@
       "message": "I think this will this work ?\n\nclcb \u003d {}\n\nThis is lighter weight init-to-default and if somebody puts a Cpp structure (container) it won\u0027t get crushed.\n\nA quick look at tGATT_CLCB seems to indicate to me that this may work",
       "revId": "37b18caf738d11681bea4d11258ad38ced25839c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "116906dc_16617701",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 986,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-10T17:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6c6ab95_c3128489",
+      "revId": "37b18caf738d11681bea4d11258ad38ced25839c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
