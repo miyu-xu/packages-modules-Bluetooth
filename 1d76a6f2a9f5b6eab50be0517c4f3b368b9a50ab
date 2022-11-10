@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ada2d1f_3fec226b",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-11-10T03:18:02Z",
+      "side": 0,
+      "message": "Keep inside the skip list because it is flaky inside presubmit (while it works locally).",
+      "range": {
+        "startLine": 397,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 27
+      },
+      "revId": "1d76a6f2a9f5b6eab50be0517c4f3b368b9a50ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
