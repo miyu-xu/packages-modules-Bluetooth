@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b67df34_c26c8f5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1294681
+      },
+      "writtenOn": "2022-11-10T00:32:19Z",
+      "side": 1,
+      "message": "Hi @sungsoo@google.com, in a future release, the platform will require that all receivers registering for non-system broadcasts be flagged with a flag indicating the exported state of the receiver. I saw you updated this receiver in aosp/2257421 to also listen for HAP_CONNECTION_STATE_CHANGED broadcasts, but this action is the only one in the filter that is not declared as a protected-broadcast in the platform\u0027s manifest. Do you know if this action should be protected? If not, this flag will be required to prevent a SecurityException when registering for these broadcasts. Thanks!",
+      "revId": "336186a45030249ab0c07789226e5b47a1b7be68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
