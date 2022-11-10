@@ -5,11 +5,12 @@ use std::vec::Vec;
 
 use crate::bindings::root as bindings;
 use crate::btif::{
-    ascii_to_string, ptr_to_vec, BluetoothInterface, BtStatus, RawAddress, SupportedProfiles, Uuid,
+    ascii_to_string, ptr_to_vec, BluetoothInterface, BtStatus, FfiAddress, RawAddress,
+    SupportedProfiles, Uuid,
 };
-use crate::ccall;
 use crate::topstack::get_dispatchers;
 use crate::utils::{LTCheckedPtr, LTCheckedPtrMut};
+use crate::{cast_to_ffi_address, ccall, deref_const_ffi_address};
 use topshim_macros::cb_variant;
 
 #[derive(Clone, Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
@@ -342,9 +343,9 @@ type SdpCb = Arc<Mutex<SdpCallbacksDispatcher>>;
 
 cb_variant!(SdpCb, sdp_search_cb -> SdpCallbacks::SdpSearch,
 bindings::bt_status_t -> BtStatus,
-*const RawAddress, *const Uuid, i32,
+*const FfiAddress, *const Uuid, i32,
 *mut bindings::bluetooth_sdp_record, {
-    let _1 = unsafe { *_1 };
+    let _1 = unsafe { deref_const_ffi_address!(_1) };
     let _2 = unsafe { *_2 };
     let _4 = ptr_to_vec(_4, _3 as usize);
 });
@@ -395,8 +396,8 @@ impl Sdp {
     }
 
     pub fn sdp_search(&self, address: &mut RawAddress, uuid: &Uuid) -> BtStatus {
-        let addr_ptr = LTCheckedPtrMut::from_ref(address);
-        BtStatus::from(ccall!(self, sdp_search, addr_ptr.into(), uuid))
+        let ffi_addr = cast_to_ffi_address!(address as *mut RawAddress);
+        BtStatus::from(ccall!(self, sdp_search, ffi_addr, uuid))
     }
 
     pub fn create_sdp_record(&self, record: &mut BtSdpRecord, handle: &mut i32) -> BtStatus {

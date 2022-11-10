@@ -5,25 +5,25 @@ use crate::btif::{
 
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 mod ffi {
-    unsafe extern "C++" {
-        include!("gd/rust/topshim/common/type_alias.h");
-        type RawAddress = crate::btif::RawAddress;
+    #[derive(Debug, Copy, Clone)]
+    pub struct RustRawAddress {
+        address: [u8; 6],
     }
 
     unsafe extern "C++" {
         include!("metrics/metrics_shim.h");
 
         fn adapter_state_changed(state: u32);
-        fn bond_create_attempt(bt_addr: RawAddress, device_type: u32);
+        fn bond_create_attempt(bt_addr: RustRawAddress, device_type: u32);
         fn bond_state_changed(
-            bt_addr: RawAddress,
+            bt_addr: RustRawAddress,
             device_type: u32,
             status: u32,
             bond_state: u32,
             fail_reason: i32,
         );
         fn device_info_report(
-            bt_addr: RawAddress,
+            bt_addr: RustRawAddress,
             device_type: u32,
             class_of_device: u32,
             appearance: u32,
@@ -33,14 +33,14 @@ mod ffi {
             version: u32,
         );
         fn profile_connection_state_changed(
-            bt_addr: RawAddress,
+            bt_addr: RustRawAddress,
             profile: u32,
             status: u32,
             state: u32,
         );
-        fn acl_connect_attempt(addr: RawAddress, acl_state: u32);
+        fn acl_connect_attempt(addr: RustRawAddress, acl_state: u32);
         fn acl_connection_state_changed(
-            bt_addr: RawAddress,
+            bt_addr: RustRawAddress,
             transport: u32,
             status: u32,
             acl_state: u32,
@@ -50,12 +50,24 @@ mod ffi {
     }
 }
 
+impl From<RawAddress> for ffi::RustRawAddress {
+    fn from(addr: RawAddress) -> Self {
+        ffi::RustRawAddress { address: addr.val }
+    }
+}
+
+impl Into<RawAddress> for ffi::RustRawAddress {
+    fn into(self) -> RawAddress {
+        RawAddress { val: self.address }
+    }
+}
+
 pub fn adapter_state_changed(state: BtState) {
     ffi::adapter_state_changed(state as u32);
 }
 
 pub fn bond_create_attempt(addr: RawAddress, device_type: BtDeviceType) {
-    ffi::bond_create_attempt(addr, device_type as u32);
+    ffi::bond_create_attempt(addr.into(), device_type as u32);
 }
 
 pub fn bond_state_changed(
@@ -66,7 +78,7 @@ pub fn bond_state_changed(
     fail_reason: i32,
 ) {
     ffi::bond_state_changed(
-        addr,
+        addr.into(),
         device_type as u32,
         status as u32,
         bond_state as u32,
@@ -85,7 +97,7 @@ pub fn device_info_report(
     version: u16,
 ) {
     ffi::device_info_report(
-        addr,
+        addr.into(),
         device_type as u32,
         class_of_device as u32,
         appearance as u32,
@@ -102,11 +114,11 @@ pub fn profile_connection_state_changed(
     status: BtStatus,
     state: u32,
 ) {
-    ffi::profile_connection_state_changed(addr, profile, status as u32, state);
+    ffi::profile_connection_state_changed(addr.into(), profile, status as u32, state);
 }
 
 pub fn acl_connect_attempt(addr: RawAddress, acl_state: BtAclState) {
-    ffi::acl_connect_attempt(addr, acl_state as u32);
+    ffi::acl_connect_attempt(addr.into(), acl_state as u32);
 }
 
 pub fn acl_connection_state_changed(
@@ -118,7 +130,7 @@ pub fn acl_connection_state_changed(
     hci_reason: BtHciErrorCode,
 ) {
     ffi::acl_connection_state_changed(
-        addr,
+        addr.into(),
         transport as u32,
         status as u32,
         acl_state as u32,

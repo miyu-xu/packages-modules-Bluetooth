@@ -18,6 +18,7 @@
 
 #include <memory>
 
+#include "gd/rust/topshim/common/utils.h"
 #include "rust/cxx.h"
 #include "src/controller.rs.h"
 #include "types/raw_address.h"
@@ -38,9 +39,9 @@ std::unique_ptr<ControllerIntf> GetControllerInterface() {
   return controller_intf;
 }
 
-RawAddress ControllerIntf::read_local_addr() const {
+RustRawAddress ControllerIntf::read_local_addr() const {
   if (!controller_) std::abort();
-  return *controller_->get_address();
+  return CopyToRustAddress(*controller_->get_address());
 }
 
 }  // namespace rust
