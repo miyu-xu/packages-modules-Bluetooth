@@ -47,6 +47,9 @@ class AVRCPProxy(ProfileProxy):
         self.avrcp = AVRCP(channel)
         self.mediaplayer = MediaPlayer(channel)
 
+    def test_started(self):
+        time.sleep(3)
+
     @assert_description
     def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
         """
