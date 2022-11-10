@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6b07a56_af2a4cc5",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-10T15:21:03Z",
+      "side": 1,
+      "message": "Done. In the new patchset, it overrides the virtual function. Please check it out. Thanks!",
+      "parentUuid": "4adca1d8_5d0191aa",
+      "range": {
+        "startLine": 492,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 1
+      },
+      "revId": "15c6bd5c8a4b21d2830c021074d79cf9f942a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79ce7ac3_b6d307c6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-10T14:54:56Z",
       "side": 1,
       "message": "Please add this to hci_hal.h with a default implementation returning 0 for the opcode.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "15c6bd5c8a4b21d2830c021074d79cf9f942a6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d3a3b1f_a8a793d5",
+        "filename": "system/gd/hal/hci_hal_host.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-10T15:21:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79ce7ac3_b6d307c6",
       "range": {
         "startLine": 57,
         "startChar": 0,
