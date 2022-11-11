@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f2ec92c_67f8a1d0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4616,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-11T11:38:13Z",
+      "side": 1,
+      "message": "This is based on the LE audio profile, please help to set disconnect too when the LE audio profile disconnect.",
+      "range": {
+        "startLine": 4612,
+        "startChar": 0,
+        "endLine": 4616,
+        "endChar": 9
+      },
+      "revId": "c085f40edb65aba7f9462ffa66403c40a8a19947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7700450_8d03fac2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4624,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-11T11:38:13Z",
+      "side": 1,
+      "message": "This is based on the LE audio profile, please help to set disconnect too when the LE audio profile disconnect.",
+      "range": {
+        "startLine": 4622,
+        "startChar": 12,
+        "endLine": 4624,
+        "endChar": 59
+      },
+      "revId": "c085f40edb65aba7f9462ffa66403c40a8a19947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5cac366_6f6c2e36",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 1
