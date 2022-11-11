@@ -16,6 +16,24 @@
       "message": "We don\u0027t have an API here, yet.  What API should this module have?  Right now, it\u0027s just being initialized.",
       "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0cc5326_430855de",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T13:29:53Z",
+      "side": 1,
+      "message": "These are the APIs that I am going to implement next -- https://learn.microsoft.com/en-us/windows-hardware/drivers/bluetooth/microsoft-defined-bluetooth-hci-commands-and-events#microsoft-defined-hci-commands.\n\nCould we have separate CLs to implement them?",
+      "parentUuid": "08fee5b6_7fe639a9",
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
