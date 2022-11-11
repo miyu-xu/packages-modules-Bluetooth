@@ -16,6 +16,29 @@
       "message": "Great!",
       "revId": "4325362d6db35bfd692f71975dd42795e6b6e142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fbb8b3c_b0df24b6",
+        "filename": "android/app/tests/unit/AndroidTest.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-11T05:14:17Z",
+      "side": 1,
+      "message": "Please put this before the teardown-command.\n\nAlso, do we need to run teardown-command `setprop bluetooth.profile.hfp.hf.enabled false` when the test ended?",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 91
+      },
+      "revId": "4325362d6db35bfd692f71975dd42795e6b6e142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
