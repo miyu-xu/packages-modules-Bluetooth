@@ -46,6 +46,30 @@
       },
       "revId": "59e1f0d30fd0a1f0ae2c984459f0710126ee597d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cd4f234_a487fb51",
+        "filename": "system/gd/hal/BUILD.gn",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T11:23:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "374854e8_f06a234d",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "59e1f0d30fd0a1f0ae2c984459f0710126ee597d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

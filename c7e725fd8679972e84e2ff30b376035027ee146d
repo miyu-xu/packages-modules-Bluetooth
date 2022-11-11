@@ -94,6 +94,30 @@
       },
       "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1498231f_3abe60df",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T11:23:53Z",
+      "side": 1,
+      "message": "Done. The filegroup is removed since hci_hal_host is not included in Android.bp.",
+      "parentUuid": "1285774a_a39027b2",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "c7e725fd8679972e84e2ff30b376035027ee146d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
