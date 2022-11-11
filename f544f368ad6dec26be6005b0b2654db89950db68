@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c3d4fc6_95be2c77",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T14:40:28Z",
+      "side": 1,
+      "message": "I will fix the code and resubmit the patch. Thanks!",
+      "parentUuid": "d2e32f2e_357cb085",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08fee5b6_7fe639a9",
         "filename": "system/gd/hci/msft.h",
         "patchSetId": 12
