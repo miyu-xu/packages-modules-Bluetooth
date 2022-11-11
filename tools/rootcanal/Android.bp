@@ -39,6 +39,14 @@ cc_defaults {
     ],
 }
 
+filegroup {
+    name: "crypto_sources",
+    srcs: [
+        "model/controller/crypto/crypto.cc",
+        "model/controller/crypto/aes.cc",
+    ],
+}
+
 // This library should be added as `whole_static_libs`
 // as it uses static registration and all object
 // files needs to be linked
@@ -80,9 +88,9 @@ cc_library_static {
         "net/posix/posix_async_socket.cc",
         "net/posix/posix_async_socket_connector.cc",
         "net/posix/posix_async_socket_server.cc",
+        ":crypto_sources",
         ":BluetoothPacketSources",
         ":BluetoothHciClassSources",
-        ":BluetoothCryptoToolboxSources",
     ],
     export_include_dirs: [
         "include",
