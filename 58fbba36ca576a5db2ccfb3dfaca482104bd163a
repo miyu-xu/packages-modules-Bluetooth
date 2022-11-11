@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "926f51d4_c442e18e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-11T01:35:32Z",
+      "side": 1,
+      "message": "Why can\u0027t we use bool for is_direct? \n\nIt only has two states and having a enum is a quite unnecessary. \n\nIf we want readability, we can add in-line comments with our code\n\n/* is_direct */ true",
+      "revId": "58fbba36ca576a5db2ccfb3dfaca482104bd163a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
