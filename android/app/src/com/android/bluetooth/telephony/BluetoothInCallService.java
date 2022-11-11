@@ -684,7 +684,7 @@ public class BluetoothInCallService extends InCallService {
     }
 
     private void sendListOfCalls(boolean shouldLog) {
-        Collection<BluetoothCall> calls = mCallInfo.getBluetoothCalls();
+        Collection<BluetoothCall> calls = mCallInfo.getBluetoothCallsForClcc();
         for (BluetoothCall call : calls) {
             // We don't send the parent conference BluetoothCall to the bluetooth device.
             // We do, however want to send conferences that have no children to the bluetooth
@@ -1229,6 +1229,23 @@ public class BluetoothInCallService extends InCallService {
 
         public List<BluetoothCall> getBluetoothCalls() {
             return getBluetoothCallsByIds(BluetoothCall.getIds(getCalls()));
+        }
+
+        public List<BluetoothCall> getBluetoothCallsForClcc() {
+            List<BluetoothCall> calls = getBluetoothCalls();
+            List<BluetoothCall> result = new ArrayList<>();
+
+            for (BluetoothCall call : calls) {
+                if (!call.isConference()) {
+                    result.add(call);
+                }
+            }
+            for (BluetoothCall call : calls) {
+                if (call.isConference()) {
+                    result.add(call);
+                }
+            }
+            return result;
         }
 
         public BluetoothCall getOutgoingCall() {
