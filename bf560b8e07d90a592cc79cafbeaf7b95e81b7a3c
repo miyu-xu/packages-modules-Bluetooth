@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41e52a5d_ac16d4ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-11T04:05:12Z",
+      "side": 1,
+      "message": "Bug: 258434265",
+      "revId": "bf560b8e07d90a592cc79cafbeaf7b95e81b7a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
