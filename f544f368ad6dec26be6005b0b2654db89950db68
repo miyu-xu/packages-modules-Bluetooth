@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5dc78bb_b6f0a264",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T14:19:06Z",
+      "side": 1,
+      "message": "It actually does two things instead of one thing.\n1. It reads and saves msft opcode from the kernel at the first time in supports_msft_extensions().\n2. It reads the supported features.\n\nIs msft_read_opcode_and_supported_features() okay? (It is kind of long.)",
+      "parentUuid": "a5803b1e_91aac545",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08fee5b6_7fe639a9",
         "filename": "system/gd/hci/msft.h",
         "patchSetId": 12
