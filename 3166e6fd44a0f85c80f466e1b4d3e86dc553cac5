@@ -22,6 +22,30 @@
       },
       "revId": "3166e6fd44a0f85c80f466e1b4d3e86dc553cac5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "092ddfbf_99b4a76f",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T11:24:12Z",
+      "side": 1,
+      "message": "Done. Remove it to simplify the code.",
+      "parentUuid": "19740767_e993323c",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 28
+      },
+      "revId": "3166e6fd44a0f85c80f466e1b4d3e86dc553cac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
