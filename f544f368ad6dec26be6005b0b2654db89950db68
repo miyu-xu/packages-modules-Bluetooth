@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5803b1e_91aac545",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-11T14:11:37Z",
+      "side": 1,
+      "message": "The only thing it does is read_supported features\n\nMaybe those two should be combined.  I\u0027m worried that there is too much encapsulation, so it takes longer than it should to understand what the code does.",
+      "parentUuid": "096b0e0c_0aaeff50",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08fee5b6_7fe639a9",
         "filename": "system/gd/hci/msft.h",
         "patchSetId": 12
@@ -115,6 +139,24 @@
       "side": 1,
       "message": "I think it does not matter.\n\nI tested it on a ChromeOS device. I do not observe issues in this regard.",
       "parentUuid": "33ae4372_794c951d",
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e41a1a2_c74607a6",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-11T14:11:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "726d53c2_295b6f77",
       "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
