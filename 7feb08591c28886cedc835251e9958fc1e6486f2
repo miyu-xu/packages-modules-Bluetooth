@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d79096_68a21cf3",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T11:24:36Z",
+      "side": 1,
+      "message": "Done. Yes, this makes it cleaner. Will register the prefix when implementing the event handler later.",
+      "parentUuid": "a7cd4fef_19d23154",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adbc58fb_6f90f08b",
@@ -157,6 +181,30 @@
       "side": 1,
       "message": "When you know the prefix, you\u0027ll register the first byte of that.  You don\u0027t need this interface.",
       "parentUuid": "231a80bb_aff04c9f",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "7feb08591c28886cedc835251e9958fc1e6486f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6737cd15_a483c1c3",
+        "filename": "system/gd/hci/msft_interface.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T11:24:36Z",
+      "side": 1,
+      "message": "Done. The interface is removed. You are right. A controller vendor is responsible to have the vendor-chosen prefix distinguished from the other sub-event codes including AOSP ones. Hence, registration of the first byte should be sufficient to distinguish them.",
+      "parentUuid": "038aa9a0_2ddbf49e",
       "range": {
         "startLine": 1,
         "startChar": 0,
