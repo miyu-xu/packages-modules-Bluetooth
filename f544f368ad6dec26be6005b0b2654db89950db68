@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08fee5b6_7fe639a9",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-11T13:11:23Z",
+      "side": 1,
+      "message": "We don\u0027t have an API here, yet.  What API should this module have?  Right now, it\u0027s just being initialized.",
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
