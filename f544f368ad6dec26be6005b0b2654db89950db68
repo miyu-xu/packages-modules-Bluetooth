@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "096b0e0c_0aaeff50",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T14:09:14Z",
+      "side": 1,
+      "message": "How about init_msft()?",
+      "parentUuid": "9388efe5_d910bf4e",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08fee5b6_7fe639a9",
         "filename": "system/gd/hci/msft.h",
         "patchSetId": 12
@@ -73,6 +97,24 @@
       "side": 1,
       "message": "I think it\u0027s fine to have separate CLs implement the APIs.  I\u0027m wondering if they should be committed before we start this module.  Maybe it doesn\u0027t matter.",
       "parentUuid": "a0cc5326_430855de",
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "726d53c2_295b6f77",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-11T14:09:14Z",
+      "side": 1,
+      "message": "I think it does not matter.\n\nI tested it on a ChromeOS device. I do not observe issues in this regard.",
+      "parentUuid": "33ae4372_794c951d",
       "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
