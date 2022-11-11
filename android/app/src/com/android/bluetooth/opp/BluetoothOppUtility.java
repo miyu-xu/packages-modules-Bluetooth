@@ -233,8 +233,7 @@ public class BluetoothOppUtility {
             if (V) {
                 Log.d(TAG, "This uri will be deleted: " + uri);
             }
-            BluetoothMethodProxy.getInstance().contentResolverDelete(context.getContentResolver(),
-                    uri, null, null);
+            context.getContentResolver().delete(uri, null, null);
             return;
         }
 
@@ -273,8 +272,7 @@ public class BluetoothOppUtility {
         String readOnlyMode = "r";
         ParcelFileDescriptor pfd = null;
         try {
-            pfd = BluetoothMethodProxy.getInstance()
-                    .contentResolverOpenFileDescriptor(resolver, uri, readOnlyMode);
+            pfd = resolver.openFileDescriptor(uri, readOnlyMode);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
