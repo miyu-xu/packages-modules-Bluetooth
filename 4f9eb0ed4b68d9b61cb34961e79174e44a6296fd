@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e0db692_ab1f25f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-11T05:46:11Z",
+      "side": 1,
+      "message": "Oops. Cleaned up imports a bit too much :) Fixed, thank you.",
+      "parentUuid": "8dc01fb4_47298229",
+      "revId": "4f9eb0ed4b68d9b61cb34961e79174e44a6296fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a2e7e61_cc6fd3d4",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f14bfc3c_94ef3076",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-11T05:46:11Z",
+      "side": 1,
+      "message": "I\u0027ve added additional asserts. Please let me know if it\u0027s not enough.",
+      "parentUuid": "5a2e7e61_cc6fd3d4",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 18
+      },
+      "revId": "4f9eb0ed4b68d9b61cb34961e79174e44a6296fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8aa6876_97506f0e",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-11-11T05:15:45Z",
       "side": 1,
       "message": "Is there any assertion that the stop has been processed?",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 61
+      },
+      "revId": "4f9eb0ed4b68d9b61cb34961e79174e44a6296fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31599f2b_1ee99a8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-11T05:46:11Z",
+      "side": 1,
+      "message": "I\u0027ve added a way to check after start and another check after stop. Please let me know if it\u0027s not enough.",
+      "parentUuid": "a8aa6876_97506f0e",
       "range": {
         "startLine": 91,
         "startChar": 8,
