@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5cac366_6f6c2e36",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4629,
+      "author": {
+        "id": 1041639
+      },
+      "writtenOn": "2022-11-11T08:26:21Z",
+      "side": 1,
+      "message": "looks good. what about other leaudio profiles? maybe you could cover it as well?",
+      "revId": "c085f40edb65aba7f9462ffa66403c40a8a19947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
