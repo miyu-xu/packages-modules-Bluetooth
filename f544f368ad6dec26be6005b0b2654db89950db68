@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2e32f2e_357cb085",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-11T14:28:24Z",
+      "side": 1,
+      "message": "If we need the encapsulation, the name is maybe less important.  I feel like it would be simpler to understand what\u0027s happening without the encapsulation.\n\n  void start(\n      os::Handler* handler,\n      hal::HciHal* hal,\n      hci::HciLayer* hci_layer,\n      hci::VendorSpecificEventManager* vendor_specific_event_manager) {\n    LOG_INFO(\"MsftExtensionManager start()\");\n    module_handler_ \u003d handler;\n    hal_ \u003d hal;\n    hci_layer_ \u003d hci_layer;\n    vendor_specific_event_manager_ \u003d vendor_specific_event_manager;\n    // msft_start();  // Remove this call\n    \n    /*\n     * The MSFT opcode is assigned by Bluetooth controller vendors.\n     * Query the kernel/drivers to derive the MSFT opcode so that\n     * we can issue MSFT vendor specific commands.\n     */\n    if (!supports_msft_extensions()) {\n      LOG_INFO(\"MSFT extension is not supported.\");\n      return;\n    }\n\n    /*\n     * The vendor prefix is required to distinguish among the vendor events\n     * of different vendor specifications. Read the supported features to\n     * derive the vendor prefix as well as other supported features.\n     */\n    \n    hci_layer_-\u003eEnqueueCommand(\n        MsftReadSupportedFeaturesBuilder::Create(static_cast\u003cOpCode\u003e(msft_.opcode.value())),\n        module_handler_-\u003eBindOnceOn(this, \u0026impl::on_msft_read_supported_features_complete));\n  }\n  \n  \n  Start is still manageable, but now no one is tempted to call msft_read_supported_features more than once, and all of the initialization is in one place.",
+      "parentUuid": "e5dc78bb_b6f0a264",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "f544f368ad6dec26be6005b0b2654db89950db68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08fee5b6_7fe639a9",
         "filename": "system/gd/hci/msft.h",
         "patchSetId": 12
