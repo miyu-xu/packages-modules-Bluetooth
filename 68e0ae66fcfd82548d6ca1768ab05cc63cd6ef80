@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25a13977_389c1440",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-13T05:56:01Z",
+      "side": 1,
+      "message": "mPanService",
+      "range": {
+        "startLine": 45,
+        "startChar": 23,
+        "endLine": 45,
+        "endChar": 33
+      },
+      "revId": "68e0ae66fcfd82548d6ca1768ab05cc63cd6ef80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3e5200d_d5e3850e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-13T05:56:01Z",
+      "side": 1,
+      "message": "mContext",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "68e0ae66fcfd82548d6ca1768ab05cc63cd6ef80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c9767c_3959e194",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-13T05:56:01Z",
+      "side": 1,
+      "message": "How about make the service return a BluetoothDevice when `getConnectedDevices()` is called, and check `panService.disconnect(device)` is called?\n\nOr maybe verifying the `ConnectivityManager.unregisterNetworkProvider()` is called (but it is somewhat indirect). \n\nhttps://source.corp.google.com/android/frameworks/libs/net/common/device/android/net/NetworkFactoryLegacyImpl.java;rcl\u003dHEAD;l\u003d152",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 59
+      },
+      "revId": "68e0ae66fcfd82548d6ca1768ab05cc63cd6ef80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
