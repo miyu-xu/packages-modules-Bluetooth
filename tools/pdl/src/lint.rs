@@ -213,7 +213,8 @@ impl<'d> PacketScope<'d> {
                             ]),
                     )
                 })
-            }
+            },
+            _ => unreachable!()
         };
     }
 
@@ -632,6 +633,7 @@ impl Field {
             Field::Array { .. } => "array",
             Field::Scalar { .. } => "scalar",
             Field::Typedef { .. } => "typedef",
+            _ => unreachable!(),
         }
     }
 }
@@ -1114,7 +1116,7 @@ fn lint_field(
         | Field::Scalar { .. }
         | Field::Body { .. }
         | Field::Payload { .. } => (),
-        Field::Group { .. } => unreachable!(),
+        _ => unreachable!(),
     }
 }
 

@@ -109,7 +109,7 @@ class ArrayField(Field):
     type_id: Optional[str]
     size_modifier: Optional[str]
     size: Optional[int]
-    padded_size: Optional[int] = field(init=False, default=None)
+    padded_size: Optional[int]
 
     @property
     def type(self) -> Optional['Declaration']:
@@ -132,11 +132,14 @@ class TypedefField(Field):
         return self.parent.file.typedef_scope[self.type_id]
 
 
-@node('group_field')
-class GroupField(Field):
+@node('group_start')
+class GroupStart(Field):
     group_id: str
     constraints: List[Constraint]
 
+@node('group_end')
+class GroupEnd(Field):
+    group_id: str
 
 @dataclass
 class Declaration(Node):

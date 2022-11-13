@@ -357,7 +357,8 @@ fn parse_field(node: Node<'_>, context: &Context) -> Result<ast::Field, String> 
                 }
                 None => (None, None),
             };
-            ast::Field::Array { loc, id, type_id, width, size, size_modifier }
+            let padded_size = None;
+            ast::Field::Array { loc, id, type_id, width, size, size_modifier, padded_size }
         }
         Rule::scalar_field => {
             let id = parse_identifier(&mut children)?;

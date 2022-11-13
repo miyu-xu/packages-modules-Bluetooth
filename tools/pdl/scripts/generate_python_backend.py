@@ -494,6 +494,10 @@ class FieldParser:
         elif isinstance(field, ast.ChecksumField):
             self.parse_checksum_field_(field)
 
+        # Markers
+        elif isinstance(field, (ast.GroupStart, ast.GroupEnd)):
+            pass
+
         else:
             raise Exception(f'Unimplemented field type {field.kind}')
 
@@ -718,6 +722,10 @@ class FieldSerializer:
         elif isinstance(field, ast.ChecksumField):
             self.serialize_checksum_field_(field)
 
+        # Markers
+        elif isinstance(field, (ast.GroupStart, ast.GroupEnd)):
+            pass
+
         else:
             raise Exception(f'Unimplemented field type {field.kind}')
 
@@ -804,6 +812,8 @@ def generate_packet_size_getter(packet: ast.Declaration) -> List[str]:
             variable_width.append(f"len(self.{f.id}) * {f.type.width}")
         elif isinstance(f, ast.ArrayField):
             variable_width.append(f"len(self.{f.id}) * {int(f.width / 8)}")
+        elif isinstance(f, (ast.GroupStart, ast.GroupEnd)):
+            pass
         else:
             raise Exception("Unsupported field type")
 
@@ -932,7 +942,6 @@ def generate_checksum_declaration_check(decl: ast.ChecksumDeclaration) -> str:
 
 def run(input: argparse.FileType, output: argparse.FileType, custom_type_location: Optional[str]):
     file = ast.File.from_json(json.load(input))
-    core.desugar(file)
 
     custom_types = []
     custom_type_checks = ""

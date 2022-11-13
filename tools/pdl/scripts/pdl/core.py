@@ -2,64 +2,6 @@ from typing import Optional, List, Dict, Union, Tuple
 from .ast import *
 
 
-def desugar_field_(field: Field, previous: Field, constraints: Dict[str, Constraint]) -> List[Field]:
-    """Inline group and constrained fields.
-    Constrained fields are transformed into fixed fields.
-    Group fields are inlined and recursively desugared."""
-
-    if isinstance(field, ScalarField) and field.id in constraints:
-        value = constraints[field.id].value
-        fixed = FixedField(kind='fixed_field', loc=field.loc, width=field.width, value=value)
-        fixed.parent = field.parent
-        return [fixed]
-
-    elif isinstance(field, PaddingField):
-        previous.padded_size = field.size
-        field.padded_field = previous
-        return [field]
-
-    elif isinstance(field, TypedefField) and field.id in constraints:
-        tag_id = constraints[field.id].tag_id
-        fixed = FixedField(kind='fixed_field', loc=field.loc, enum_id=field.type_id, tag_id=tag_id)
-        fixed.parent = field.parent
-        return [fixed]
-
-    elif isinstance(field, GroupField):
-        group = field.parent.file.group_scope[field.group_id]
-        constraints = dict([(c.id, c) for c in field.constraints])
-        fields = []
-        for f in group.fields:
-            fields.extend(desugar_field_(f, previous, constraints))
-            previous = f
-        return fields
-
-    else:
-        return [field]
-
-
-def desugar(file: File):
-    """Inline group fields.
-    Constrained fields are transformed into fixed fields.
-    Group declarations are removed from the file object.
-    **The original file object is modified inline.**"""
-
-    declarations = []
-    for d in file.declarations:
-        if isinstance(d, GroupDeclaration):
-            continue
-
-        if isinstance(d, (PacketDeclaration, StructDeclaration)):
-            fields = []
-            for f in d.fields:
-                fields.extend(desugar_field_(f, fields[-1] if len(fields) > 0 else None, {}))
-            d.fields = fields
-
-        declarations.append(d)
-
-    file.declarations = declarations
-    file.group_scope = {}
-
-
 def make_reserved_field(width: int) -> ReservedField:
     """Create a reserved field of specified width."""
     return ReservedField(kind='reserved_field', loc=None, width=width)

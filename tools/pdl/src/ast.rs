@@ -50,7 +50,7 @@ pub struct Endianness {
     pub value: EndiannessValue,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind", rename = "tag")]
 pub struct Tag {
     pub id: String,
@@ -58,7 +58,7 @@ pub struct Tag {
     pub value: usize,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind", rename = "constraint")]
 pub struct Constraint {
     pub id: String,
@@ -67,7 +67,7 @@ pub struct Constraint {
     pub tag_id: Option<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind")]
 pub enum Field {
     #[serde(rename = "checksum_field")]
@@ -100,6 +100,7 @@ pub enum Field {
         type_id: Option<String>,
         size_modifier: Option<String>,
         size: Option<usize>,
+        padded_size: Option<usize>,
     },
     #[serde(rename = "scalar_field")]
     Scalar { loc: SourceRange, id: String, width: usize },
@@ -107,16 +108,27 @@ pub enum Field {
     Typedef { loc: SourceRange, id: String, type_id: String },
     #[serde(rename = "group_field")]
     Group { loc: SourceRange, group_id: String, constraints: Vec<Constraint> },
+    #[serde(rename = "group_start")]
+    GroupStart {
+        group_id: String,
+        loc: SourceRange,
+        constraints: Vec<Constraint>,
+    },
+    #[serde(rename = "group_end")]
+    GroupEnd {
+        group_id: String,
+        loc: SourceRange,
+    },
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind", rename = "test_case")]
 pub struct TestCase {
     pub loc: SourceRange,
     pub input: String,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind")]
 pub enum Decl {
     #[serde(rename = "checksum_declaration")]
@@ -267,7 +279,10 @@ impl Field {
             | Field::Array { loc, .. }
             | Field::Scalar { loc, .. }
             | Field::Typedef { loc, .. }
-            | Field::Group { loc, .. } => loc,
+            | Field::Group { loc, .. }
+            | Field::GroupStart { loc, .. }
+            | Field::GroupEnd { loc, .. }
+            => loc,
         }
     }
 
@@ -281,7 +296,10 @@ impl Field {
             | Field::Payload { .. }
             | Field::Fixed { .. }
             | Field::Reserved { .. }
-            | Field::Group { .. } => None,
+            | Field::Group { .. }
+            | Field::GroupStart { .. }
+            | Field::GroupEnd { .. }
+            => None,
             Field::Array { id, .. } | Field::Scalar { id, .. } | Field::Typedef { id, .. } => {
                 Some(id)
             }

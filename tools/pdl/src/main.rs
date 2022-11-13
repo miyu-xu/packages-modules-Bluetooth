@@ -47,6 +47,108 @@ struct Opt {
     input_file: String,
 }
 
+fn expand_groups_in_fields(file: &ast::File, fields: &[ast::Field]) -> Vec<ast::Field> {
+    fields.iter().flat_map(|field| match field {
+        ast::Field::Group { loc, group_id, constraints } => {
+            let group_fields = file.declarations.iter().find_map(|decl| {
+                if let ast::Decl::Group { id, fields, .. } = decl {
+                    if id == group_id {
+                        return Some(fields)
+                    }
+                }
+                None
+            }).expect("Already linted");
+
+            let middle = group_fields.iter().flat_map(|field| match field {
+                ast::Field::Scalar { loc, id, width } => {
+                    let constraint = constraints.iter().find(|c| c.id == *id);
+
+                    vec![if let Some(constraint) = constraint {
+                        ast::Field::Fixed {
+                            loc: *loc,
+                            width: Some(*width),
+                            value: constraint.value,
+                            enum_id: None,
+                            tag_id: None,
+                        }
+                    } else {
+                        field.clone()
+                    }]
+                },
+                ast::Field::Typedef { loc, id, type_id } => {
+                    let constraint = constraints.iter().find(|c| c.id == *id);
+
+                    vec![if let Some(constraint) = constraint {
+                        ast::Field::Fixed {
+                            loc: *loc,
+                            width: None,
+                            value: None,
+                            enum_id: Some(type_id.clone()),
+                            tag_id: constraint.tag_id.clone(),
+                        }
+                    } else {
+                        field.clone()
+                    }]
+                },
+                f => expand_groups_in_fields(file, &[f.clone()])
+            });
+
+            let start = std::iter::once(ast::Field::GroupStart {
+                group_id: group_id.clone(),
+                loc: *loc,
+                constraints: constraints.clone(),
+            });
+
+            let end = std::iter::once(ast::Field::GroupEnd {
+                group_id: group_id.clone(),
+                loc: *loc,
+            });
+
+            start.chain(middle).chain(end).collect()
+        },
+        v => vec![v.clone()],
+    }).collect()
+}
+
+fn expand_fields(file: &ast::File, fields: &[ast::Field]) -> Vec<ast::Field> {
+    let mut fields = expand_groups_in_fields(file, fields);
+
+    let mut peekable = fields.iter_mut().peekable();
+
+    while let Some(field) = peekable.next() {
+        if let (ast::Field::Array { ref mut padded_size, .. }, Some(ast::Field::Padding { size, .. })) = (field, peekable.peek()) {
+            *padded_size = Some(*size);
+        }
+    }
+
+    fields
+}
+
+fn expand(file: ast::File) -> ast::File {
+    let declarations = file.declarations.iter().map(|declaration| match declaration {
+            ast::Decl::Packet { id, loc, constraints, fields, parent_id } => ast::Decl::Packet {
+                id: id.clone(),
+                loc: *loc,
+                constraints: constraints.clone(),
+                fields: expand_fields(&file, fields),
+                parent_id: parent_id.clone(),
+            },
+            ast::Decl::Struct { id, loc, constraints, fields, parent_id } => ast::Decl::Struct {
+                id: id.clone(),
+                loc: *loc,
+                constraints: constraints.clone(),
+                fields: expand_fields(&file, fields),
+                parent_id: parent_id.clone(),
+            },
+            v => v.clone(),
+    }).collect();
+
+    ast::File {
+        declarations,
+        ..file
+    }
+}
+
 fn main() -> std::process::ExitCode {
     let opt = Opt::from_args();
 
@@ -64,6 +166,8 @@ fn main() -> std::process::ExitCode {
                     .expect("Could not print lint diagnostics");
                 return std::process::ExitCode::FAILURE;
             }
+
+            let file = expand(file);
 
             match opt.output_format {
                 OutputFormat::JSON => {
