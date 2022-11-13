@@ -1434,7 +1434,6 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
                                         tBTA_DM_SEARCH* p_data) {
   switch (event) {
     case BTA_DM_DISC_RES_EVT: {
-      bt_property_t prop;
       uint32_t i = 0;
       bt_status_t ret;
       std::vector<uint8_t> property_value;
@@ -1456,8 +1455,11 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         }
         return;
       }
-      prop.type = BT_PROPERTY_UUIDS;
-      prop.len = 0;
+      bt_property_t prop = {
+          .type = BT_PROPERTY_UUIDS,
+          .len = 0,
+          .val = nullptr,
+      };
       if ((p_data->disc_res.result == BTA_SUCCESS) &&
           (p_data->disc_res.num_uuids > 0)) {
         LOG_INFO("New UUIDs for %s:", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
