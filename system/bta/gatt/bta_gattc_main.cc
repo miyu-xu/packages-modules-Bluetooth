@@ -392,7 +392,8 @@ bool bta_gattc_hdl_event(BT_HDR_RIGID* p_msg) {
         rt = bta_gattc_sm_execute(p_clcb, p_msg->event,
                                   (const tBTA_GATTC_DATA*)p_msg);
       } else {
-        LOG_ERROR("Ignore unknown conn ID: %d", +p_msg->layer_specific);
+        LOG_ERROR("Ignore unknown conn ID: %d event:%u", +p_msg->layer_specific,
+                  p_msg->event);
       }
 
       break;
