@@ -27,6 +27,7 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.times;
@@ -45,6 +46,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioDeviceCallback;
+import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Parcel;
@@ -1110,6 +1113,15 @@ public class LeAudioServiceTest {
 
         String action = BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED;
 
+        ArgumentCaptor<AudioDeviceCallback> audioDeviceCallback =
+                ArgumentCaptor.forClass(AudioDeviceCallback.class);
+        verify(mAudioManager, times(1)).registerAudioDeviceCallback(audioDeviceCallback.capture(),
+                any());
+        AudioDeviceInfo mockAudioDeviceInfo = mock(AudioDeviceInfo.class);
+        when(mockAudioDeviceInfo.getType()).thenReturn(AudioDeviceInfo.TYPE_BLE_HEADSET);
+        audioDeviceCallback.getValue()
+                .onAudioDevicesAdded(new AudioDeviceInfo[]{mockAudioDeviceInfo});
+
         Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mDeviceQueueMap.get(mSingleDevice));
         assertThat(intent).isNotNull();
         assertThat(action).isEqualTo(intent.getAction());
@@ -1321,8 +1333,16 @@ public class LeAudioServiceTest {
         assertThat(mService.getActiveDevices().contains(leadDevice)).isTrue();
         verify(mAudioManager, times(1)).handleBluetoothActiveDeviceChanged(eq(leadDevice), any(),
                         any(BluetoothProfileConnectionInfo.class));
-
         doReturn(BluetoothDevice.BOND_BONDED).when(mAdapterService).getBondState(leadDevice);
+
+        ArgumentCaptor<AudioDeviceCallback> audioDeviceCallback =
+                ArgumentCaptor.forClass(AudioDeviceCallback.class);
+        verify(mAudioManager, times(1)).registerAudioDeviceCallback(audioDeviceCallback.capture(),
+                any());
+        AudioDeviceInfo mockAudioDeviceInfo = mock(AudioDeviceInfo.class);
+        when(mockAudioDeviceInfo.getType()).thenReturn(AudioDeviceInfo.TYPE_BLE_HEADSET);
+        audioDeviceCallback.getValue()
+                .onAudioDevicesAdded(new AudioDeviceInfo[]{mockAudioDeviceInfo});
         verifyActiveDeviceStateIntent(AUDIO_MANAGER_DEVICE_ADD_TIMEOUT_MS, leadDevice);
         injectNoVerifyDeviceDisconnected(leadDevice);
 
@@ -1388,6 +1408,14 @@ public class LeAudioServiceTest {
         verify(mAudioManager, times(1)).handleBluetoothActiveDeviceChanged(eq(leadDevice), any(),
                         any(BluetoothProfileConnectionInfo.class));
 
+        ArgumentCaptor<AudioDeviceCallback> audioDeviceCallback =
+                ArgumentCaptor.forClass(AudioDeviceCallback.class);
+        verify(mAudioManager, times(1)).registerAudioDeviceCallback(audioDeviceCallback.capture(),
+                any());
+        AudioDeviceInfo mockAudioDeviceInfo = mock(AudioDeviceInfo.class);
+        when(mockAudioDeviceInfo.getType()).thenReturn(AudioDeviceInfo.TYPE_BLE_HEADSET);
+        audioDeviceCallback.getValue()
+                .onAudioDevicesAdded(new AudioDeviceInfo[]{mockAudioDeviceInfo});
         verifyActiveDeviceStateIntent(AUDIO_MANAGER_DEVICE_ADD_TIMEOUT_MS, leadDevice);
         /* We don't want to distribute DISCONNECTION event, instead will try to reconnect
          * (in native)
