@@ -915,3 +915,20 @@ cc_library_host_shared {
     ],
     rtti: true,
 }
+
+// Generate the python parser+serializer backend for
+// hci_packets.pdl.
+genrule {
+    name: "gd_hci_packets_python3_gen",
+    defaults: [ "pdl_python_generator_defaults" ],
+    cmd: "$(location :pdl) $(in) |" +
+        " $(location :pdl_python_generator)" +
+        " --output $(out) --custom-type-location blueberry.utils.bluetooth",
+    srcs: [
+        ":BluetoothHciPackets",
+    ],
+    out:  [
+        "hci_packets.py",
+    ],
+}
+
