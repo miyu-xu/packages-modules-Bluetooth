@@ -52,6 +52,40 @@
       "parentUuid": "02e161f9_432e760e",
       "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "920d4bc9_d132b549",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-14T23:40:19Z",
+      "side": 1,
+      "message": "I would recommend changing this to @SystemApi unless we have a good reason for it to be @hide. Even if it\u0027s @hide, the metadata value could still technically be queried via #getMetadata(int) if you pass the integer value of the constant. Being @hide would also prevent FastPair from using it.",
+      "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad4d0f68_4b7c8822",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-14T23:40:19Z",
+      "side": 1,
+      "message": "nit: consider renaming to LE_AUDIO_SUPPORTED or something similar to be a bit more descriptive.",
+      "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
