@@ -495,7 +495,7 @@ class FieldParser:
             self.parse_checksum_field_(field)
 
         # Markers
-        elif isinstance(field, (ast.GroupStart, ast.GroupEnd)):
+        elif isinstance(field, (ast.GroupStart, ast.GroupEnd, ast.SizeCheck, ast.BitfieldStart, ast.BitfieldEnd)):
             pass
 
         else:
@@ -723,7 +723,7 @@ class FieldSerializer:
             self.serialize_checksum_field_(field)
 
         # Markers
-        elif isinstance(field, (ast.GroupStart, ast.GroupEnd)):
+        elif isinstance(field, (ast.GroupStart, ast.GroupEnd, ast.SizeCheck, ast.BitfieldStart, ast.BitfieldEnd)):
             pass
 
         else:
@@ -759,21 +759,154 @@ def generate_packet_parser(packet: ast.Declaration) -> List[str]:
     """Generate the parse() function for a toplevel Packet or Struct
        declaration."""
 
+    byteorder = packet.file.byteorder
+
     packet_shift = core.get_packet_shift(packet)
-    if packet_shift and packet.file.byteorder == 'big':
+    if packet_shift and byteorder == 'big':
         raise Exception(f"Big-endian packet {packet.id} has an unsupported body shift")
 
-    parser = FieldParser(byteorder=packet.file.byteorder, shift=packet_shift)
-    for f in packet.fields:
-        parser.parse(f)
-    parser.done()
+    code = []
+    checked_size = 0
+    def check_size(size: int):
+        nonlocal checked_size, code
+        if checked_size:
+            checked_size -= size
+            assert checked_size >= 0
+        else:
+            code.append(f"if len(span) < {size}:")
+            code.append(f"    raise Exception('Invalid packet size')")
+
+    #parser = FieldParser(byteorder=packet.file.byteorder, shift=packet_shift)
+    i = 0
+    while i < len(packet.fields):
+        field = packet.fields[i]
+
+        if isinstance(field, ast.SizeCheck):
+            if field.width != 0:
+                rounded_size = int((field.width + 7) / 8)
+                check_size(rounded_size)
+                checked_size += size
+
+        elif isinstance(field, ast.BitfieldStart):
+            end = i
+            while not isinstance(packet.fields[end], ast.BitfieldEnd):
+                end += 1
+            fields = packet.fields[i+1:end]
+            i = end
+
+            rounded_size = int((field.width + 7) / 8)
+            check_size(rounded_size)
+
+            if field.width == 8:
+                value = f"span[0]"
+            else:
+                span = f"span[:{rounded_size}]"
+                code.append(f"value_ = int.from_bytes({span}, byteorder='{byteorder}')")
+                value = "value_"
+
+            shift = 0
+            for field in fields:
+                width = core.get_field_size(field)
+                if width is None:
+                    print(field.id, field.loc)
+
+                v = (value if width == (rounded_size * 8) and shift == 0 else f"({value} >> {shift}) & {mask(width)}")
+                shift += width
+
+                if isinstance(field, ast.ScalarField):
+                    code.append(f"fields['{field.id}'] = {v}")
+                elif isinstance(field, ast.FixedField) and field.enum_id:
+                    code.append(f"if {v} != {field.enum_id}.{field.tag_id}:")
+                    code.append(f"    raise Exception('Unexpected fixed field value')")
+                elif isinstance(field, ast.FixedField):
+                    code.append(f"if {v} != {hex(field.value)}:")
+                    code.append(f"    raise Exception('Unexpected fixed field value')")
+                elif isinstance(field, ast.TypedefField):
+                    if isinstance(field.type, ast.EnumDeclaration):
+                        code.append(f"fields['{field.id}'] = {field.type_id}({v})")
+                    else:
+                        code.append(f"fields['{field.id}'] = {field.type_id}.parse_all({v})")
+                elif isinstance(field, ast.SizeField):
+                    code.append(f"{field.field_id}_size = {v}")
+                elif isinstance(field, ast.CountField):
+                    code.append(f"{field.field_id}_count = {v}")
+                elif isinstance(field, ast.ReservedField):
+                    pass
+                elif isinstance(field, ast.ChecksumField):
+                    # TODO
+                    pass
+                elif isinstance(field, ast.ArrayField):
+                    pass
+                elif isinstance(field, ast.PaddingField):
+                    pass
+                else:
+                    raise Exception(f'Unsupported bit field type {field.kind}')
+
+            code.append(f"span = span[{rounded_size}:]")
+
+        # Array fields.
+        elif isinstance(field, ast.ArrayField):
+            pass
+            #self.parse_array_field_(field)
+
+        # Other typedef fields.
+        elif isinstance(field, ast.TypedefField):
+            pass
+            #self.parse_typedef_field_(field)
+
+        # Payload and body fields.
+        elif isinstance(field, (ast.PayloadField, ast.BodyField)):
+            """Parse body and payload fields."""
+
+            payload_size = core.get_payload_field_size(field)
+            offset_from_end = core.get_field_offset_from_end(field)
+
+            # The payload or body has a known size.
+            # Consume the payload and update the span in case
+            # fields are placed after the payload.
+            if payload_size:
+                if getattr(field, 'size_modifier', None):
+                    code.append(f"{field.id}_size -= {field.size_modifier}")
+                code.append(f"if len(span) < {field.id}_size:")
+                code.append(f"    raise Exception('Invalid packet size')")
+                code.append(f"payload = span[:{field.id}_size]")
+                code.append(f"span = span[{field.id}_size:]")
+            # The payload or body is the last field of a packet,
+            # consume the remaining span.
+            elif offset_from_end == 0:
+                code.append(f"payload = span")
+                code.append(f"span = bytes([])")
+            # The payload or body is followed by fields of static size.
+            # Consume the span that is not reserved for the following fields.
+            elif offset_from_end is not None:
+                if (offset_from_end % 8) != 0:
+                    raise Exception('Payload field offset from end of packet is not a multiple of 8')
+                offset_from_end = int(offset_from_end / 8)
+                if offset_from_end != 0:
+                    code.append(f"if len(span) < {offset_from_end}:")
+                    code.append(f"    raise Exception('Invalid packet size')")
+                code.append(f"payload = span[:-{offset_from_end}]")
+                code.append(f"span = span[-{offset_from_end}:]")
+            code.append(f"fields['payload'] = payload")
+
+        # Markers
+        elif isinstance(field, (ast.GroupStart, ast.GroupEnd)):
+            pass
+
+        else:
+            raise Exception(f'Unimplemented field type {field.kind} {field.loc}')
+
+        i += 1
+
     children = core.get_derived_packets(packet)
     decl = [] if packet.parent_id else ['fields = {\'payload\': None}']
+
+    parser_code = code
 
     if len(children) != 0:
         # Generate dissector on constrained fields, continue parsing the
         # child packets.
-        code = decl + parser.code
+        code = decl + parser_code
         op = 'if'
         for constraints, child in children:
             cond = []
@@ -792,7 +925,7 @@ def generate_packet_parser(packet: ast.Declaration) -> List[str]:
         code.append(f"    return {packet.id}(**fields), span")
         return code
     else:
-        return decl + parser.code + [f"return {packet.id}(**fields), span"]
+        return decl + parser_code + [f"return {packet.id}(**fields), span"]
 
 
 def generate_packet_size_getter(packet: ast.Declaration) -> List[str]:
@@ -812,7 +945,7 @@ def generate_packet_size_getter(packet: ast.Declaration) -> List[str]:
             variable_width.append(f"len(self.{f.id}) * {f.type.width}")
         elif isinstance(f, ast.ArrayField):
             variable_width.append(f"len(self.{f.id}) * {int(f.width / 8)}")
-        elif isinstance(f, (ast.GroupStart, ast.GroupEnd)):
+        elif isinstance(f, (ast.GroupStart, ast.GroupEnd, ast.SizeCheck, ast.BitfieldStart, ast.BitfieldEnd)):
             pass
         else:
             raise Exception("Unsupported field type")

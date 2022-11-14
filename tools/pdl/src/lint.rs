@@ -213,8 +213,8 @@ impl<'d> PacketScope<'d> {
                             ]),
                     )
                 })
-            },
-            _ => unreachable!()
+            }
+            _ => unreachable!(),
         };
     }
 

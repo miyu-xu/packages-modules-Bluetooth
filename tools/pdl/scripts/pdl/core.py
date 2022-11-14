@@ -39,7 +39,7 @@ def get_packet_shift(packet: Union[PacketDeclaration, StructDeclaration]) -> int
 
     # Traverse empty parents.
     parent = packet.parent
-    while parent and len(parent.fields) == 1:
+    while parent and len(parent.fields) == 2:
         parent = parent.parent
 
     if not parent:
@@ -80,7 +80,7 @@ def get_derived_packets(decl: Union[PacketDeclaration, StructDeclaration]
     children = []
     for d in decl.file.declarations:
         if type(d) is type(decl) and d.parent_id == decl.id:
-            if (len(d.fields) == 1 and isinstance(d.fields[0], (PayloadField, BodyField))):
+            if (len(d.fields) == 2 and isinstance(d.fields[1], (PayloadField, BodyField))):
                 children.extend([(d.constraints + sub_constraints, sub_child)
                                  for (sub_constraints, sub_child) in get_derived_packets(d)])
             else:
@@ -115,6 +115,10 @@ def get_field_size(field: Field, skip_payload: bool = False) -> Optional[int]:
         return get_declaration_size(field.type)
 
     elif isinstance(field, ChecksumField):
+        return 0
+
+    # Markers
+    elif isinstance(field, (GroupStart, GroupEnd, SizeCheck, BitfieldStart, BitfieldEnd)):
         return 0
 
     elif isinstance(field, (PayloadField, BodyField)) and skip_payload:

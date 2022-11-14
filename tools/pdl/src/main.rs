@@ -48,66 +48,119 @@ struct Opt {
 }
 
 fn expand_groups_in_fields(file: &ast::File, fields: &[ast::Field]) -> Vec<ast::Field> {
-    fields.iter().flat_map(|field| match field {
-        ast::Field::Group { loc, group_id, constraints } => {
-            let group_fields = file.declarations.iter().find_map(|decl| {
-                if let ast::Decl::Group { id, fields, .. } = decl {
-                    if id == group_id {
-                        return Some(fields)
+    fields
+        .iter()
+        .flat_map(|field| match field {
+            ast::Field::Group { loc, group_id, constraints } => {
+                let group_fields = file
+                    .declarations
+                    .iter()
+                    .find_map(|decl| {
+                        if let ast::Decl::Group { id, fields, .. } = decl {
+                            if id == group_id {
+                                return Some(fields);
+                            }
+                        }
+                        None
+                    })
+                    .expect("Already linted");
+
+                let middle = group_fields.iter().flat_map(|field| match field {
+                    ast::Field::Scalar { loc, id, width } => {
+                        let constraint = constraints.iter().find(|c| c.id == *id);
+
+                        vec![if let Some(constraint) = constraint {
+                            ast::Field::Fixed {
+                                loc: *loc,
+                                width: Some(*width),
+                                value: constraint.value,
+                                enum_id: None,
+                                tag_id: None,
+                            }
+                        } else {
+                            field.clone()
+                        }]
                     }
+                    ast::Field::Typedef { loc, id, type_id } => {
+                        let constraint = constraints.iter().find(|c| c.id == *id);
+
+                        vec![if let Some(constraint) = constraint {
+                            ast::Field::Fixed {
+                                loc: *loc,
+                                width: None,
+                                value: None,
+                                enum_id: Some(type_id.clone()),
+                                tag_id: constraint.tag_id.clone(),
+                            }
+                        } else {
+                            field.clone()
+                        }]
+                    }
+                    f => expand_groups_in_fields(file, &[f.clone()]),
+                });
+
+                let start = std::iter::once(ast::Field::GroupStart {
+                    group_id: group_id.clone(),
+                    loc: *loc,
+                    constraints: constraints.clone(),
+                });
+
+                let end =
+                    std::iter::once(ast::Field::GroupEnd { group_id: group_id.clone(), loc: *loc });
+
+                start.chain(middle).chain(end).collect()
+            }
+            v => vec![v.clone()],
+        })
+        .collect()
+}
+
+fn mark_sizechecks(file: &ast::File, fields: &[ast::Field]) -> Vec<ast::Field> {
+    fields
+        .split_inclusive(|field| field.width(file, false).is_none())
+        .flat_map(|chunks| {
+            let width = chunks.iter().map(|field| field.width(file, false).unwrap_or(0)).sum();
+
+            std::iter::once(ast::Field::SizeCheck { loc: Default::default(), width })
+                .chain(chunks.iter().cloned())
+        })
+        .collect()
+}
+
+fn mark_bitfields(file: &ast::File, fields: &[ast::Field]) -> Vec<ast::Field> {
+    let mut acc = 0;
+    fields
+        .split_inclusive(|field| {
+            if let Some(width) = field.width(file, false) {
+                acc = (acc + width) % 8;
+                acc == 0
+            } else {
+                true
+            }
+        })
+        .flat_map(|chunks| {
+            match chunks {
+                [] => vec![],
+                [field] if field.width(file, false).is_none() => vec![field.clone()],
+                [fields @ .., last] if last.width(file, false).is_none() => {
+                    let width = fields.iter().map(|field| field.width(file, false).unwrap()).sum();
+
+                    std::iter::once(ast::Field::BitfieldStart { loc: Default::default(), width })
+                        .chain(fields.iter().cloned())
+                        .chain(std::iter::once(ast::Field::BitfieldEnd { loc: Default::default() }))
+                        .chain(std::iter::once(last.clone()))
+                        .collect()
                 }
-                None
-            }).expect("Already linted");
-
-            let middle = group_fields.iter().flat_map(|field| match field {
-                ast::Field::Scalar { loc, id, width } => {
-                    let constraint = constraints.iter().find(|c| c.id == *id);
-
-                    vec![if let Some(constraint) = constraint {
-                        ast::Field::Fixed {
-                            loc: *loc,
-                            width: Some(*width),
-                            value: constraint.value,
-                            enum_id: None,
-                            tag_id: None,
-                        }
-                    } else {
-                        field.clone()
-                    }]
-                },
-                ast::Field::Typedef { loc, id, type_id } => {
-                    let constraint = constraints.iter().find(|c| c.id == *id);
-
-                    vec![if let Some(constraint) = constraint {
-                        ast::Field::Fixed {
-                            loc: *loc,
-                            width: None,
-                            value: None,
-                            enum_id: Some(type_id.clone()),
-                            tag_id: constraint.tag_id.clone(),
-                        }
-                    } else {
-                        field.clone()
-                    }]
-                },
-                f => expand_groups_in_fields(file, &[f.clone()])
-            });
-
-            let start = std::iter::once(ast::Field::GroupStart {
-                group_id: group_id.clone(),
-                loc: *loc,
-                constraints: constraints.clone(),
-            });
-
-            let end = std::iter::once(ast::Field::GroupEnd {
-                group_id: group_id.clone(),
-                loc: *loc,
-            });
-
-            start.chain(middle).chain(end).collect()
-        },
-        v => vec![v.clone()],
-    }).collect()
+                fields => {
+                    let width = fields.iter().map(|field| field.width(file, false).unwrap()).sum();
+                    std::iter::once(ast::Field::BitfieldStart { loc: Default::default(), width })
+                        .chain(fields.iter().cloned())
+                        .chain(std::iter::once(ast::Field::BitfieldEnd { loc: Default::default() }))
+                        .collect()
+                }
+            }
+        })
+        .collect()
 }
 
 fn expand_fields(file: &ast::File, fields: &[ast::Field]) -> Vec<ast::Field> {
@@ -116,16 +169,24 @@ fn expand_fields(file: &ast::File, fields: &[ast::Field]) -> Vec<ast::Field> {
     let mut peekable = fields.iter_mut().peekable();
 
     while let Some(field) = peekable.next() {
-        if let (ast::Field::Array { ref mut padded_size, .. }, Some(ast::Field::Padding { size, .. })) = (field, peekable.peek()) {
+        if let (
+            ast::Field::Array { ref mut padded_size, .. },
+            Some(ast::Field::Padding { size, .. }),
+        ) = (field, peekable.peek())
+        {
             *padded_size = Some(*size);
         }
     }
 
-    fields
+    let fields = mark_sizechecks(file, &fields);
+    mark_bitfields(file, &fields)
 }
 
 fn expand(file: ast::File) -> ast::File {
-    let declarations = file.declarations.iter().map(|declaration| match declaration {
+    let declarations = file
+        .declarations
+        .iter()
+        .map(|declaration| match declaration {
             ast::Decl::Packet { id, loc, constraints, fields, parent_id } => ast::Decl::Packet {
                 id: id.clone(),
                 loc: *loc,
@@ -141,12 +202,10 @@ fn expand(file: ast::File) -> ast::File {
                 parent_id: parent_id.clone(),
             },
             v => v.clone(),
-    }).collect();
+        })
+        .collect();
 
-    ast::File {
-        declarations,
-        ..file
-    }
+    ast::File { declarations, ..file }
 }
 
 fn main() -> std::process::ExitCode {

@@ -109,16 +109,15 @@ pub enum Field {
     #[serde(rename = "group_field")]
     Group { loc: SourceRange, group_id: String, constraints: Vec<Constraint> },
     #[serde(rename = "group_start")]
-    GroupStart {
-        group_id: String,
-        loc: SourceRange,
-        constraints: Vec<Constraint>,
-    },
+    GroupStart { group_id: String, loc: SourceRange, constraints: Vec<Constraint> },
     #[serde(rename = "group_end")]
-    GroupEnd {
-        group_id: String,
-        loc: SourceRange,
-    },
+    GroupEnd { group_id: String, loc: SourceRange },
+    #[serde(rename = "bitfield_start")]
+    BitfieldStart { loc: SourceRange, width: usize },
+    #[serde(rename = "bitfield_end")]
+    BitfieldEnd { loc: SourceRange },
+    #[serde(rename = "size_check")]
+    SizeCheck { loc: SourceRange, width: usize },
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -263,6 +262,31 @@ impl Decl {
             | Decl::Group { id, .. } => Some(id),
         }
     }
+
+    pub fn width(&self, file: &File, skip_payload: bool) -> Option<usize> {
+        match self {
+            Decl::Enum { width, .. } | Decl::Checksum { width, .. } => Some(*width),
+            Decl::CustomField { width, .. } => *width,
+            Decl::Packet { parent_id, fields, .. } | Decl::Struct { parent_id, fields, .. } => {
+                let parent_size = if let Some(parent_id) = parent_id {
+                    let parent =
+                        file.declarations.iter().find(|decl| decl.id() == Some(parent_id)).unwrap();
+
+                    parent.width(file, true)?
+                } else {
+                    0
+                };
+
+                let fields_size = fields
+                    .iter()
+                    .map(|field| field.width(file, skip_payload))
+                    .try_fold(0, |last, size| size.map(|size| last + size))?;
+
+                Some(parent_size + fields_size)
+            }
+            Decl::Test { .. } | Decl::Group { .. } => None,
+        }
+    }
 }
 
 impl Field {
@@ -282,7 +306,9 @@ impl Field {
             | Field::Group { loc, .. }
             | Field::GroupStart { loc, .. }
             | Field::GroupEnd { loc, .. }
-            => loc,
+            | Field::BitfieldStart { loc, .. }
+            | Field::BitfieldEnd { loc, .. }
+            | Field::SizeCheck { loc, .. } => loc,
         }
     }
 
@@ -299,10 +325,57 @@ impl Field {
             | Field::Group { .. }
             | Field::GroupStart { .. }
             | Field::GroupEnd { .. }
-            => None,
+            | Field::BitfieldStart { .. }
+            | Field::BitfieldEnd { .. }
+            | Field::SizeCheck { .. } => None,
             Field::Array { id, .. } | Field::Scalar { id, .. } | Field::Typedef { id, .. } => {
                 Some(id)
             }
+        }
+    }
+
+    pub fn width(&self, file: &File, skip_payload: bool) -> Option<usize> {
+        match self {
+            Field::Scalar { width, .. }
+            | Field::Size { width, .. }
+            | Field::Count { width, .. }
+            | Field::Reserved { width, .. } => Some(*width),
+            Field::Fixed { width, enum_id, .. } => {
+                if let Some(type_id) = enum_id {
+                    let decl =
+                        file.declarations.iter().find(|decl| decl.id() == Some(type_id)).unwrap();
+
+                    decl.width(file, false)
+                } else {
+                    *width
+                }
+            }
+            Field::Typedef { type_id, .. } => {
+                let decl =
+                    file.declarations.iter().find(|decl| decl.id() == Some(type_id)).unwrap();
+                decl.width(file, false)
+            }
+            Field::Array { padded_size, width, size, .. } => {
+                if let Some(padded_size) = padded_size {
+                    Some(padded_size * 8)
+                } else {
+                    width.zip(size.as_ref()).map(|(width, size)| width * size)
+                }
+            }
+            Field::Padding { .. } | Field::Checksum { .. } => Some(0),
+            Field::Payload { .. } | Field::Body { .. } => {
+                if skip_payload {
+                    Some(0)
+                } else {
+                    None
+                }
+            }
+            Field::Group { .. }
+            | Field::GroupStart { .. }
+            | Field::GroupEnd { .. }
+            | Field::BitfieldStart { .. }
+            | Field::BitfieldEnd { .. }
+            | Field::SizeCheck { .. } => None,
         }
     }
 }

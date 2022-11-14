@@ -141,6 +141,18 @@ class GroupStart(Field):
 class GroupEnd(Field):
     group_id: str
 
+@node('size_check')
+class SizeCheck(Field):
+    width: int
+
+@node('bitfield_start')
+class BitfieldStart(Field):
+    width: int
+
+@node('bitfield_end')
+class BitfieldEnd(Field):
+    pass
+
 @dataclass
 class Declaration(Node):
     file: 'File' = field(init=False)
