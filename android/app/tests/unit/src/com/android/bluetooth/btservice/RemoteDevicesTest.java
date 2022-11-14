@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.os.TestLooperManager;
 
 import androidx.test.InstrumentationRegistry;
@@ -38,16 +39,23 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class RemoteDevicesTest {
     private static final String TEST_BT_ADDR_1 = "00:11:22:33:44:55";
+    private static final String TEST_BT_ADDR_2 = "00:11:22:33:66:77";
+    private static final String TEST_BT_ADDR_3 = "00:11:22:33:88:99";
 
     private ArgumentCaptor<Intent> mIntentArgument = ArgumentCaptor.forClass(Intent.class);
     private ArgumentCaptor<String> mStringArgument = ArgumentCaptor.forClass(String.class);
+
     private BluetoothDevice mDevice1;
+    private BluetoothDevice mDevice2;
+    private BluetoothDevice mDevice3;
     private RemoteDevices mRemoteDevices;
     private HandlerThread mHandlerThread;
     private TestLooperManager mTestLooperManager;
@@ -63,6 +71,8 @@ public class RemoteDevicesTest {
 
         MockitoAnnotations.initMocks(this);
         mDevice1 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR_1);
+        mDevice2 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR_2);
+        mDevice3 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR_3);
         mHandlerThread = new HandlerThread("RemoteDevicesTestHandlerThread");
         mHandlerThread.start();
         mTestLooperManager = InstrumentationRegistry.getInstrumentation()
@@ -86,16 +96,228 @@ public class RemoteDevicesTest {
     }
 
     @Test
-    public void testSendUuidIntent() {
-        // Verify that a handler message is sent by the method call
-        mRemoteDevices.updateUuids(mDevice1);
-        Message msg = mTestLooperManager.next();
-        Assert.assertNotNull(msg);
+    public void testFetchUuids_isBondingNoUuids() {
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+
+        // Set state for device that it is bonding
+        mRemoteDevices.addDeviceProperties(Utils.getBytesFromAddress(TEST_BT_ADDR_1));
+        DeviceProperties prop = mRemoteDevices.getDeviceProperties(mDevice1);
+        prop.setBondState(BluetoothDevice.BOND_BONDING);
+
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
+
+        Assert.assertFalse(mRemoteDevices.isSdpActive(mDevice1));
+        Assert.assertTrue(mTestLooperManager.getMessageQueue().isIdle());
+    }
+
+    @Test
+    public void testFetchUuids_isBondingWithUuids() {
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+
+        // Set state for device that it is bonding
+        mRemoteDevices.addDeviceProperties(Utils.getBytesFromAddress(TEST_BT_ADDR_1));
+        DeviceProperties prop = mRemoteDevices.getDeviceProperties(mDevice1);
+        prop.setBondState(BluetoothDevice.BOND_BONDING);
+
+        // Create cached UUID
+        final UUID uuid = UUID.randomUUID();
+        final ParcelUuid[] parcelUuids = { new ParcelUuid(uuid), };
+        prop.setUuids(parcelUuids);
+
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
 
         // Verify that executing that message results in a broadcast intent
+        verify(mAdapterService, times(1))
+                .sendBroadcast(
+                        mIntentArgument.capture(), mStringArgument.capture(), any(Bundle.class));
+        Assert.assertEquals(BLUETOOTH_CONNECT, mStringArgument.getValue());
+        Assert.assertEquals(BluetoothDevice.ACTION_UUID, mIntentArgument.getValue().getAction());
+
+        final BluetoothDevice device =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+        Assert.assertNotNull(device);
+        Assert.assertEquals(mDevice1, device);
+
+        final ParcelUuid[] intent_uuids =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID, ParcelUuid.class);
+        Assert.assertNotNull(intent_uuids);
+        final UUID intent_uuid = intent_uuids[0].getUuid();
+        Assert.assertEquals(uuid, intent_uuid);
+
+        Assert.assertFalse(mRemoteDevices.isSdpActive(mDevice1));
+        Assert.assertTrue(mTestLooperManager.getMessageQueue().isIdle());
+    }
+
+    @Test
+    public void testFetchUuids_noBondingNoUuids_NativeTimeout() {
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+
+        // Ensure there are no cached properties for this device
+        DeviceProperties prop = mRemoteDevices.getDeviceProperties(mDevice1);
+        Assert.assertNull(prop);
+
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
+
+        Assert.assertTrue(mRemoteDevices.isSdpActive(mDevice1));
+        verify(mAdapterService, times(1))
+                .getRemoteServicesNative(any(), eq(BluetoothDevice.TRANSPORT_BREDR));
+
+        // Ensure that the delayed intent has been set
+        final Message msg = mTestLooperManager.next();
+        Assert.assertNotNull(msg);
         mTestLooperManager.execute(msg);
-        verify(mAdapterService).sendBroadcast(any(), anyString(), any());
-        verifyNoMoreInteractions(mAdapterService);
+
+        // Verify that executing that message results in a broadcast intent
+        verify(mAdapterService, times(1))
+                .sendBroadcast(
+                        mIntentArgument.capture(), mStringArgument.capture(), any(Bundle.class));
+        Assert.assertEquals(BLUETOOTH_CONNECT, mStringArgument.getValue());
+        Assert.assertEquals(BluetoothDevice.ACTION_UUID, mIntentArgument.getValue().getAction());
+
+        final BluetoothDevice device =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+        Assert.assertNotNull(device);
+        Assert.assertEquals(mDevice1, device);
+
+        final ParcelUuid[] intent_uuids =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID, ParcelUuid.class);
+        Assert.assertNull(intent_uuids);
+
+        Assert.assertFalse(mRemoteDevices.isSdpActive(mDevice1));
+        Assert.assertTrue(mTestLooperManager.getMessageQueue().isIdle());
+    }
+
+    @Test
+    public void testFetchUuids_noBondingNoUuids_NativeReturnsCallback() {
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+
+        DeviceProperties prop = mRemoteDevices.getDeviceProperties(mDevice1);
+        Assert.assertNull(prop);
+
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
+
+        Assert.assertTrue(mRemoteDevices.isSdpActive(mDevice1));
+        verify(mAdapterService, times(1))
+                .getRemoteServicesNative(any(), eq(BluetoothDevice.TRANSPORT_BREDR));
+
+        // Return a single UUID property
+        final UUID uuid = UUID.randomUUID();
+        final int[] types = { AbstractionLayer.BT_PROPERTY_UUIDS, };
+        final byte[][] values = { uuidToBytes(uuid), };
+        mRemoteDevices.devicePropertyChangedCallback(
+                Utils.getBytesFromAddress(TEST_BT_ADDR_1), types, values);
+
+        // Verify that executing that message results in a broadcast intent
+        verify(mAdapterService, times(1))
+                .sendBroadcast(
+                        mIntentArgument.capture(), mStringArgument.capture(), any(Bundle.class));
+        Assert.assertEquals(BluetoothDevice.ACTION_UUID, mIntentArgument.getValue().getAction());
+        Assert.assertEquals(BLUETOOTH_CONNECT, mStringArgument.getValue());
+
+        final BluetoothDevice device =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+        Assert.assertNotNull(device);
+        Assert.assertEquals(mDevice1, device);
+
+        final ParcelUuid[] uuids =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID, ParcelUuid.class);
+        Assert.assertNotNull(uuids);
+        final UUID intent_uuid = uuids[0].getUuid();
+
+        Assert.assertEquals(uuid, intent_uuid);
+
+        Assert.assertFalse(mRemoteDevices.isSdpActive(mDevice1));
+        Assert.assertTrue(mTestLooperManager.getMessageQueue().isIdle());
+    }
+
+    @Test
+    public void testFetchUuids_multipleRequestsSameDevice() {
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+
+        // Call API multiple times for same device
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
+
+        Assert.assertTrue(mRemoteDevices.isSdpActive(mDevice1));
+        // Native layer should only be called once
+        verify(mAdapterService, times(1))
+                .getRemoteServicesNative(any(), eq(BluetoothDevice.TRANSPORT_BREDR));
+    }
+
+    @Test
+    public void testFetchUuids_multipleRequestsDifferentDevice() {
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+
+        // Call API multiple times for difference devices
+        mRemoteDevices.fetchUuids(mDevice1, BluetoothDevice.TRANSPORT_BREDR);
+        mRemoteDevices.fetchUuids(mDevice2, BluetoothDevice.TRANSPORT_BREDR);
+        mRemoteDevices.fetchUuids(mDevice3, BluetoothDevice.TRANSPORT_BREDR);
+
+        Assert.assertTrue(mRemoteDevices.isSdpActive(mDevice1));
+        Assert.assertTrue(mRemoteDevices.isSdpActive(mDevice2));
+        Assert.assertTrue(mRemoteDevices.isSdpActive(mDevice3));
+
+        // Native layer call count
+        verify(mAdapterService, times(3))
+                .getRemoteServicesNative(any(), eq(BluetoothDevice.TRANSPORT_BREDR));
+    }
+
+    @Test
+    public void testBroadcastUuidsWhileBonding() {
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+
+        // Set state for device that it is bonding
+        mRemoteDevices.addDeviceProperties(Utils.getBytesFromAddress(TEST_BT_ADDR_1));
+        DeviceProperties prop = mRemoteDevices.getDeviceProperties(mDevice1);
+        prop.setBondState(BluetoothDevice.BOND_BONDING);
+
+        Assert.assertFalse(mRemoteDevices.isSdpActive(mDevice1));
+        // Return a single UUID property after bonding
+        final UUID uuid = UUID.randomUUID();
+        final int[] types = { AbstractionLayer.BT_PROPERTY_UUIDS, };
+        final byte[][] values = { uuidToBytes(uuid), };
+        mRemoteDevices.devicePropertyChangedCallback(
+                Utils.getBytesFromAddress(TEST_BT_ADDR_1), types, values);
+
+        // Verify that executing that message results in a broadcast intent
+        verify(mAdapterService, times(1))
+                .sendBroadcast(
+                        mIntentArgument.capture(), mStringArgument.capture(), any(Bundle.class));
+        Assert.assertEquals(BluetoothDevice.ACTION_UUID, mIntentArgument.getValue().getAction());
+        Assert.assertEquals(BLUETOOTH_CONNECT, mStringArgument.getValue());
+
+        final BluetoothDevice device =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+        Assert.assertNotNull(device);
+        Assert.assertEquals(mDevice1, device);
+
+        final ParcelUuid[] uuids =
+                mIntentArgument
+                        .getValue()
+                        .getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID, ParcelUuid.class);
+        Assert.assertNotNull(uuids);
+        final UUID intent_uuid = uuids[0].getUuid();
+        Assert.assertEquals(uuid, intent_uuid);
+
+        verify(mAdapterService, times(0))
+                .getRemoteServicesNative(any(), eq(BluetoothDevice.TRANSPORT_BREDR));
+        Assert.assertFalse(mRemoteDevices.isSdpActive(mDevice1));
+        Assert.assertTrue(mTestLooperManager.getMessageQueue().isIdle());
     }
 
     @Test
@@ -736,5 +958,13 @@ public class RemoteDevicesTest {
 
     private static void clearBatteryServiceForTesting(BatteryService service) {
         BatteryService.setBatteryService(service);
+    }
+
+    private static byte[] uuidToBytes(UUID uuid) {
+        long lsb = uuid.getLeastSignificantBits();
+        long msb = uuid.getMostSignificantBits();
+
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES * 2);
+        return buffer.putLong(msb).putLong(lsb).array();
     }
 }
