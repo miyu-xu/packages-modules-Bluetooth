@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "262095bb_b66cdd1a",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-14T21:44:02Z",
+      "side": 1,
+      "message": "May want to also check GattStatus::kSuccess:\n```\nif !connected || status !\u003d GattStatus::kSuccess {\n```",
+      "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b8bddfa_658e39df",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-14T21:44:02Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer this gets renamed to `OnAclDisconnected` to reflect when this actually occurs.\n\n@sonnysasaka@google.com opinions?",
+      "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3d61f0d_e2587e45",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-14T21:44:02Z",
+      "side": 1,
+      "message": "This seems like it would never occur for battery service since `OnDeviceDisconnected` is actually `OnAclDisconnected` and that won\u0027t occur until Battery disconnects.\n\nDoes this work if you remove the code in `DisconnectAllEnabledProfiles`? I would guess no. May want to add a comment to that regard like:\n```\n// For battery service, use this to clean up internal handles. GATT connection\n// is already dropped if ACL disconnect has occurred.\n```",
+      "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
