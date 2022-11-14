@@ -50,6 +50,24 @@
       "message": "This seems like it would never occur for battery service since `OnDeviceDisconnected` is actually `OnAclDisconnected` and that won\u0027t occur until Battery disconnects.\n\nDoes this work if you remove the code in `DisconnectAllEnabledProfiles`? I would guess no. May want to add a comment to that regard like:\n```\n// For battery service, use this to clean up internal handles. GATT connection\n// is already dropped if ACL disconnect has occurred.\n```",
       "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a660d44b_9001ec66",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-11-14T22:54:47Z",
+      "side": 1,
+      "message": "You are correct.\n\n1. Just drop this section entirely in favor of always tearing down everything in `BatteryService` whenever `DisconnectAllEnabledProfiles` is called, or\n2. Split disconnecting GATT (`DisconnectAllEnabledProfiles`) from cleaning up (`OnAclDisconnected`)\n\n(2) is probably the most \"correct\" but I doubt it really makes any difference other than that we probably don\u0027t want to be delaying the completion of a disconnect for reasons not related to releasing the GATT connection. Lacking a preference for (1) I will do (2).",
+      "parentUuid": "b3d61f0d_e2587e45",
+      "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
