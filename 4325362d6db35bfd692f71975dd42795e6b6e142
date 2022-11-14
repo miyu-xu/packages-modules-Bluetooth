@@ -63,6 +63,30 @@
       },
       "revId": "4325362d6db35bfd692f71975dd42795e6b6e142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9241130_736b8427",
+        "filename": "android/app/tests/unit/AndroidTest.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-14T06:06:53Z",
+      "side": 1,
+      "message": "I added the teardown command to make it false after the test.",
+      "parentUuid": "3d34c789_cd9bb920",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 91
+      },
+      "revId": "4325362d6db35bfd692f71975dd42795e6b6e142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
