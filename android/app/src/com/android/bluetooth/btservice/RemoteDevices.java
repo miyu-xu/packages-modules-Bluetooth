@@ -57,7 +57,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 final class RemoteDevices {
-    private static final boolean DBG = false;
+    private static final boolean DBG = true;
     private static final String TAG = "BluetoothRemoteDevices";
 
     // Maximum number of device properties to remember
@@ -805,18 +805,48 @@ final class RemoteDevices {
                             debugLog("Remote class is:" + newBluetoothClass);
                             break;
                         case AbstractionLayer.BT_PROPERTY_UUIDS:
+                            int numUuids = val.length / AbstractionLayer.BT_UUID_SIZE;
                             final ParcelUuid[] newUuids = Utils.byteArrayToUuid(val);
-                            if (areUuidsEqual(newUuids, deviceProperties.getUuids())) {
-                                debugLog( "Skip uuids update for " + bdDevice.getAddress());
-                                break;
-                            }
-                            deviceProperties.setUuids(newUuids);
-                            if (mAdapterService.getState() == BluetoothAdapter.STATE_ON) {
-                                mAdapterService.deviceUuidUpdated(bdDevice);
-                                sendUuidIntent(bdDevice, deviceProperties);
-                            } else if (mAdapterService.getState()
-                                    == BluetoothAdapter.STATE_BLE_ON) {
-                                mAdapterService.deviceUuidUpdated(bdDevice);
+                            if (areUuidsEqual(newUuids, device.mUuids)) {
+                                if (sSdpTracker.contains(device)) {
+                                    if (sAdapterService.getState() == BluetoothAdapter.STATE_ON) {
+                                        debugLog("New uuids same as existing but responded to"
+                                                + " outstanding intent for device:"
+                                                + Utils.getLoggableAddress(bdDevice) + " numUuids:"
+                                                + numUuids);
+                                        sendUuidIntent(bdDevice, device);
+                                    } else {
+                                        Log.i("Bluetooth adapter is NOT ON prevented ACTION_UUID"
+                                                + "from being sent peer:"
+                                                + Utils.getLoggableAddress(bdDevice) + " numUuids:"
+                                                + numUuids);
+                                    }
+                                } else {
+                                    debugLog("Skipped update uuids for device:"
+                                              + Utils.getLoggableAddress(bdDevice)
+                                              + " numUuids:" + numUuids);
+                                }
+                            } else {
+                              // Update the device properties Uuids
+                                device.mUuids = newUuids;
+                                if (sAdapterService.getState() == BluetoothAdapter.STATE_ON) {
+                                    sAdapterService.deviceUuidUpdated(bdDevice);
+                                    sendUuidIntent(bdDevice, device);
+                                    debugLog("Presented uuids for peer:"
+                                            + Utils.getLoggableAddress(bdDevice)
+                                            + " numUuids:" + numUuids);
+                                } else if (sAdapterService.getState()
+                                        == BluetoothAdapter.STATE_BLE_ON) {
+                                    sAdapterService.deviceUuidUpdated(bdDevice);
+                                    debugLog("Presented uuids for peer:"
+                                            + Utils.getLoggableAddress(bdDevice)
+                                            + " numUuids:" + numUuids);
+                                } else {
+                                    Log.w("Withheld uuids due to adapter state:"
+                                            + sAdapterService.getState()
+                                            + " peer:" + Utils.getLoggableAddress(bdDevice)
+                                            + " numUuids:" + numUuids);
+                                }
                             }
                             break;
                         case AbstractionLayer.BT_PROPERTY_TYPE_OF_DEVICE:
@@ -1050,7 +1080,9 @@ final class RemoteDevices {
 
 
     void fetchUuids(BluetoothDevice device, int transport) {
-        if (mSdpTracker.contains(device)) {
+        if (sSdpTracker.contains(device)) {
+            Log.i(TAG, "SDP Skipping service discovery as one is progress peer:"
+                    + Utils.getLoggableAddress(device));
             return;
         }
 
@@ -1058,6 +1090,8 @@ final class RemoteDevices {
         DeviceProperties deviceProperties = getDeviceProperties(device);
         if (deviceProperties != null && deviceProperties.isBonding()
                 && getDeviceProperties(device).getUuids() == null) {
+            Log.i(TAG, "SDP Bonding in progress will send delayed intent peer:"
+                    + Utils.getLoggableAddress(device));
             return;
         }
 
@@ -1071,6 +1105,11 @@ final class RemoteDevices {
         if (deviceProperties == null || !deviceProperties.isBonding()) {
             mAdapterService.getRemoteServicesNative(Utils.getBytesFromAddress(device.getAddress()),
                     transport);
+            Log.i(TAG, "SDP Starting discovery service to peer:"
+                    + Utils.getLoggableAddress(device));
+        } else {
+            Log.i(TAG, "SDP Skipping getting UUIDs and will allow the watchdog to expire peer:"
+                    + Utils.getLoggableAddress(device));
         }
     }
 
