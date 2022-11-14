@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "def4abc9_92fbb302",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-14T23:47:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30cef363_bb361e1f",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 34
+      },
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25dcc2f9_e4551c50",
@@ -81,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3309cca_4e23761a",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-14T23:47:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1425c11_ea426d62",
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2ffc31c_61994682",
@@ -94,6 +136,30 @@
       "writtenOn": "2022-10-21T12:56:46Z",
       "side": 1,
       "message": "remove?",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0880e9e_f061889a",
+        "filename": "system/build/BUILD.gn",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-14T23:47:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2ffc31c_61994682",
       "range": {
         "startLine": 37,
         "startChar": 7,
