@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7b1bc86_a240a2c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-14T17:58:04Z",
+      "side": 1,
+      "message": "Not sure what bug you are referencing here",
+      "parentUuid": "1dd9c172_c7123632",
+      "revId": "0860081a6890f93d86bcbd93ba6183cbc2a53c17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4a889eb_d0b7ebee",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2022-11-14T17:45:01Z",
       "side": 1,
       "message": "Can you fix this one while you\u0027re here?",
+      "range": {
+        "startLine": 4443,
+        "startChar": 0,
+        "endLine": 4443,
+        "endChar": 23
+      },
+      "revId": "0860081a6890f93d86bcbd93ba6183cbc2a53c17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b5f0c1_e705fe29",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 4443,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-14T17:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4a889eb_d0b7ebee",
       "range": {
         "startLine": 4443,
         "startChar": 0,
