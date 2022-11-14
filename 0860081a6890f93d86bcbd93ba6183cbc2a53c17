@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a889eb_d0b7ebee",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 4443,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-14T17:45:01Z",
+      "side": 1,
+      "message": "Can you fix this one while you\u0027re here?",
+      "range": {
+        "startLine": 4443,
+        "startChar": 0,
+        "endLine": 4443,
+        "endChar": 23
+      },
+      "revId": "0860081a6890f93d86bcbd93ba6183cbc2a53c17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
