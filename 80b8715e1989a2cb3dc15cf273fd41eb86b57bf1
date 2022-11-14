@@ -39,6 +39,30 @@
       },
       "revId": "80b8715e1989a2cb3dc15cf273fd41eb86b57bf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4164db56_63c42d3e",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-14T17:42:28Z",
+      "side": 1,
+      "message": "This one is addressed by replacing  `PRIVATE_ADDRESS` here:\n\n\n```   \nreturn PRIVATE_ADDRESS(remote_address_with_type_);\n```\n\n\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/system/main/shim/acl.cc;l\u003d287?q\u003dGetPrivateRemoteAddress\u0026sq\u003dp:android%20-p:android-internal%20f:packages%2Fmodules%2FBluetooth%2F*\n\nSo we do not need to handle it here.",
+      "parentUuid": "98e37e84_6d149ce6",
+      "range": {
+        "startLine": 1105,
+        "startChar": 22,
+        "endLine": 1105,
+        "endChar": 27
+      },
+      "revId": "80b8715e1989a2cb3dc15cf273fd41eb86b57bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
