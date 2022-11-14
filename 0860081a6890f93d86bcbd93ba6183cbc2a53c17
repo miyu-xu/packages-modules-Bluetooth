@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ea2296e_b90cb716",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-14T19:22:48Z",
+      "side": 1,
+      "message": "b/259113178",
+      "parentUuid": "35641f22_81bc2861",
+      "revId": "0860081a6890f93d86bcbd93ba6183cbc2a53c17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4a889eb_d0b7ebee",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 2
