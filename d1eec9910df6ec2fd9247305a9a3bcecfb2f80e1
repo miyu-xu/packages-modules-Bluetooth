@@ -34,6 +34,24 @@
       "parentUuid": "9576531b_22186c5b",
       "revId": "d1eec9910df6ec2fd9247305a9a3bcecfb2f80e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6656ab1_203651ab",
+        "filename": "system/gd/rust/linux/stack/src/async_helper.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-14T22:14:37Z",
+      "side": 1,
+      "message": "I feel like the example you showed (second one) can be subtly wrong and I disagree with the approach. Namely, my concern stems from the following: awaiting an async block yields to any other active job in the same pool.\n\nThis means that if you wanted to make decisions based on a shared state, you would have to acquire a lock inside the async block for protection. It would be better to instead use a single sync block for all receive operations so that\u0027s not the case. \n\nOur current dispatcher (in stack/lib.rs) already supports this. You can add a function like \"handle_advmon_callbacks\" to do this. So let me suggest the following refactor:\n\n```\nfn start_scan(...) -\u003e GattStatus {\n  ...\n  \n  let next_id \u003d self.get_next_msft_id();\n  let ret \u003d gatt.lock().msft_adv_monitor_add((\u0026next_id, \u0026filter);\n  if ret !\u003d GattStatus::kSuccess {\n    return ret;\n  }\n  \n  self.add_advmon_timeout_for(\u0026next_id, MsftCallbacks::AdvMonitorAdded);\n}\n\nfn handle_advmon_callback(...) {\n  match callback {\n    MsftCallbacks::AdvMonitorAdded(pseudo_id, monitor_id) \u003d\u003e {\n      self.monitors.insert(monitor_id);\n      self.msft_advmon_enable();\n    },\n    \n    MsftCallbacks::AdvMonitorRemoved(monitor_id) \u003d\u003e {\n      self.monitors.remove(monitor_id);\n      if self.monitors.size() \u003d\u003d 0 {\n        self.msft_advmon_disable();\n      }\n    }\n    \n    MsftCallbacks::OnTimeout(pseudo_id, api_called) \u003d\u003e {\n      // Error recovery for call\n    }\n  }\n}\n```",
+      "parentUuid": "cb4181e2_f581b9c5",
+      "revId": "d1eec9910df6ec2fd9247305a9a3bcecfb2f80e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
