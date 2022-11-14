@@ -30,12 +30,6 @@
 
 #define LOG_TAG "bt_btif_storage"
 
-constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
-#define PRIVATE_ADDRESS(addr)                                            \
-  (addr.ToString()                                                       \
-       .replace(0, strlen(kPrivateAddressPrefix), kPrivateAddressPrefix) \
-       .c_str())
-
 #include "btif_storage.h"
 
 #include <alloca.h>
@@ -48,17 +42,8 @@ constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
 #include <unordered_set>
 #include <vector>
 
-#include "bta_csis_api.h"
-#include "bta_groups.h"
-#include "bta_has_api.h"
-#include "bta_hd_api.h"
-#include "bta_hearing_aid_api.h"
-#include "bta_hh_api.h"
-#include "bta_le_audio_api.h"
 #include "btif_api.h"
 #include "btif_config.h"
-#include "btif_hd.h"
-#include "btif_hh.h"
 #include "btif_util.h"
 #include "core_callbacks.h"
 #include "device/include/controller.h"
@@ -76,8 +61,6 @@ constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
 
 using base::Bind;
 using bluetooth::Uuid;
-using bluetooth::csis::CsisClient;
-using bluetooth::groups::DeviceGroups;
 
 /*******************************************************************************
  *  Constants & Macros
@@ -86,18 +69,16 @@ using bluetooth::groups::DeviceGroups;
 // TODO(armansito): Find a better way than using a hardcoded path.
 #define BTIF_STORAGE_PATH_BLUEDROID "/data/misc/bluedroid"
 
-//#define BTIF_STORAGE_PATH_ADAPTER_INFO "adapter_info"
-//#define BTIF_STORAGE_PATH_REMOTE_DEVICES "remote_devices"
+// #define BTIF_STORAGE_PATH_ADAPTER_INFO "adapter_info"
+// #define BTIF_STORAGE_PATH_REMOTE_DEVICES "remote_devices"
 #define BTIF_STORAGE_PATH_REMOTE_DEVTIME "Timestamp"
 #define BTIF_STORAGE_PATH_REMOTE_DEVCLASS "DevClass"
 #define BTIF_STORAGE_PATH_REMOTE_DEVTYPE "DevType"
 #define BTIF_STORAGE_PATH_REMOTE_NAME "Name"
 #define BTIF_STORAGE_PATH_REMOTE_APPEARANCE "Appearance"
 
-//#define BTIF_STORAGE_PATH_REMOTE_LINKKEYS "remote_linkkeys"
+// #define BTIF_STORAGE_PATH_REMOTE_LINKKEYS "remote_linkkeys"
 #define BTIF_STORAGE_PATH_REMOTE_ALIASE "Aliase"
-#define BTIF_STORAGE_PATH_REMOTE_SERVICE "Service"
-#define BTIF_STORAGE_PATH_REMOTE_HIDINFO "HidInfo"
 #define BTIF_STORAGE_KEY_ADAPTER_NAME "Name"
 #define BTIF_STORAGE_KEY_ADAPTER_SCANMODE "ScanMode"
 #define BTIF_STORAGE_KEY_LOCAL_IO_CAPS "LocalIOCaps"
@@ -106,20 +87,6 @@ using bluetooth::groups::DeviceGroups;
 #define BTIF_STORAGE_KEY_GATT_CLIENT_SUPPORTED "GattClientSupportedFeatures"
 #define BTIF_STORAGE_KEY_GATT_CLIENT_DB_HASH "GattClientDatabaseHash"
 #define BTIF_STORAGE_KEY_GATT_SERVER_SUPPORTED "GattServerSupportedFeatures"
-#define BTIF_STORAGE_DEVICE_GROUP_BIN "DeviceGroupBin"
-#define BTIF_STORAGE_CSIS_AUTOCONNECT "CsisAutoconnect"
-#define BTIF_STORAGE_CSIS_SET_INFO_BIN "CsisSetInfoBin"
-#define BTIF_STORAGE_LEAUDIO_AUTOCONNECT "LeAudioAutoconnect"
-#define BTIF_STORAGE_LEAUDIO_HANDLES_BIN "LeAudioHandlesBin"
-#define BTIF_STORAGE_LEAUDIO_SINK_PACS_BIN "SinkPacsBin"
-#define BTIF_STORAGE_LEAUDIO_SOURCE_PACS_BIN "SourcePacsBin"
-#define BTIF_STORAGE_LEAUDIO_ASES_BIN "AsesBin"
-#define BTIF_STORAGE_LEAUDIO_SINK_AUDIOLOCATION "SinkAudioLocation"
-#define BTIF_STORAGE_LEAUDIO_SOURCE_AUDIOLOCATION "SourceAudioLocation"
-#define BTIF_STORAGE_LEAUDIO_SINK_SUPPORTED_CONTEXT_TYPE \
-  "SinkSupportedContextType"
-#define BTIF_STORAGE_LEAUDIO_SOURCE_SUPPORTED_CONTEXT_TYPE \
-  "SourceSupportedContextType"
 
 #define BTIF_STORAGE_PATH_VENDOR_ID_SOURCE "VendorIdSource"
 #define BTIF_STORAGE_PATH_VENDOR_ID "VendorId"
@@ -128,24 +95,6 @@ using bluetooth::groups::DeviceGroups;
 
 /* This is a local property to add a device found */
 #define BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP 0xFF
-
-#define STORAGE_BDADDR_STRING_SZ (18) /* 00:11:22:33:44:55 */
-#define STORAGE_UUID_STRING_SIZE \
-  (36 + 1) /* 00001200-0000-1000-8000-00805f9b34fb; */
-#define STORAGE_PINLEN_STRING_MAX_SIZE (2)  /* ascii pinlen max chars */
-#define STORAGE_KEYTYPE_STRING_MAX_SIZE (1) /* ascii keytype max chars */
-
-#define STORAGE_KEY_TYPE_MAX (10)
-
-#define STORAGE_HID_ATRR_MASK_SIZE (4)
-#define STORAGE_HID_SUB_CLASS_SIZE (2)
-#define STORAGE_HID_APP_ID_SIZE (2)
-#define STORAGE_HID_VENDOR_ID_SIZE (4)
-#define STORAGE_HID_PRODUCT_ID_SIZE (4)
-#define STORAGE_HID_VERSION_SIZE (4)
-#define STORAGE_HID_CTRY_CODE_SIZE (2)
-#define STORAGE_HID_DESC_LEN_SIZE (4)
-#define STORAGE_HID_DESC_MAX_SIZE (2 * 512)
 
 /* <18 char bd addr> <space> LIST< <36 char uuid> <;> > <keytype (dec)> <pinlen>
  */
@@ -156,19 +105,6 @@ using bluetooth::groups::DeviceGroups;
 
 #define STORAGE_REMOTE_LINKKEYS_ENTRY_SIZE (LINK_KEY_LEN * 2 + 1 + 2 + 1 + 2)
 
-/* <18 char bd addr> <space>LIST <attr_mask> <space> > <sub_class> <space>
-   <app_id> <space>
-                                <vendor_id> <space> > <product_id> <space>
-   <version> <space>
-                                <ctry_code> <space> > <desc_len> <space>
-   <desc_list> <space> */
-#define BTIF_HID_INFO_ENTRY_SIZE_MAX                                  \
-  (STORAGE_BDADDR_STRING_SZ + 1 + STORAGE_HID_ATRR_MASK_SIZE + 1 +    \
-   STORAGE_HID_SUB_CLASS_SIZE + 1 + STORAGE_HID_APP_ID_SIZE + 1 +     \
-   STORAGE_HID_VENDOR_ID_SIZE + 1 + STORAGE_HID_PRODUCT_ID_SIZE + 1 + \
-   STORAGE_HID_VERSION_SIZE + 1 + STORAGE_HID_CTRY_CODE_SIZE + 1 +    \
-   STORAGE_HID_DESC_LEN_SIZE + 1 + STORAGE_HID_DESC_MAX_SIZE + 1)
-
 /* currently remote services is the potentially largest entry */
 #define BTIF_STORAGE_MAX_LINE_SZ BTIF_REMOTE_SERVICES_ENTRY_SIZE_MAX
 
@@ -176,14 +112,6 @@ using bluetooth::groups::DeviceGroups;
 #if (BTIF_STORAGE_ENTRY_MAX_SIZE > UNV_MAXLINE_LENGTH)
 #error "btif storage entry size exceeds unv max line size"
 #endif
-
-/*******************************************************************************
- *  Local type definitions
- ******************************************************************************/
-typedef struct {
-  uint32_t num_devices;
-  RawAddress devices[BTM_SEC_MAX_DEVICE_RECORDS];
-} btif_bonded_devices_t;
 
 /*******************************************************************************
  *  External functions
@@ -194,11 +122,6 @@ extern void btif_gatts_add_bonded_dev_from_nv(const RawAddress& bda);
 /*******************************************************************************
  *  Internal Functions
  ******************************************************************************/
-
-static bt_status_t btif_in_fetch_bonded_ble_device(
-    const std::string& remote_bd_addr, int add,
-    btif_bonded_devices_t* p_bonded_devices);
-static bt_status_t btif_in_fetch_bonded_device(const std::string& bdstr);
 
 static bool btif_has_ble_keys(const std::string& bdstr);
 
@@ -474,13 +397,13 @@ static int cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
  *
  * Function         btif_in_fetch_bonded_devices
  *
- * Description      Internal helper function to fetch the bonded devices
+ * Description      Helper function to fetch the bonded devices
  *                  from NVRAM
  *
  * Returns          BT_STATUS_SUCCESS if successful, BT_STATUS_FAIL otherwise
  *
  ******************************************************************************/
-static bt_status_t btif_in_fetch_bonded_device(const std::string& bdstr) {
+bt_status_t btif_in_fetch_bonded_device(const std::string& bdstr) {
   bool bt_linkkey_file_found = false;
 
   LinkKey link_key;
@@ -553,7 +476,8 @@ static bt_status_t btif_in_fetch_bonded_devices(
         bt_linkkey_file_found = false;
       }
     }
-    if (!btif_in_fetch_bonded_ble_device(name, add, p_bonded_devices) && !bt_linkkey_file_found) {
+    if (!btif_in_fetch_bonded_ble_device(name, add, p_bonded_devices) &&
+        !bt_linkkey_file_found) {
       LOG_VERBOSE("No link key or ble key found for device:%s", name.c_str());
     }
   }
@@ -780,11 +704,13 @@ bt_status_t btif_storage_get_adapter_property(bt_property_t* property) {
             num_uuids++;
           } break;
           case BTA_MAP_SERVICE_ID: {
-            *(p_uuid + num_uuids) = Uuid::From16Bit(UUID_SERVCLASS_MESSAGE_ACCESS);
+            *(p_uuid + num_uuids) =
+                Uuid::From16Bit(UUID_SERVCLASS_MESSAGE_ACCESS);
             num_uuids++;
           } break;
           case BTA_MN_SERVICE_ID: {
-            *(p_uuid + num_uuids) = Uuid::From16Bit(UUID_SERVCLASS_MESSAGE_NOTIFICATION);
+            *(p_uuid + num_uuids) =
+                Uuid::From16Bit(UUID_SERVCLASS_MESSAGE_NOTIFICATION);
             num_uuids++;
           } break;
           case BTA_PCE_SERVICE_ID: {
@@ -1452,7 +1378,7 @@ bt_status_t btif_storage_remove_ble_local_keys(void) {
   return ret ? BT_STATUS_SUCCESS : BT_STATUS_FAIL;
 }
 
-static bt_status_t btif_in_fetch_bonded_ble_device(
+bt_status_t btif_in_fetch_bonded_ble_device(
     const std::string& remote_bd_addr, int add,
     btif_bonded_devices_t* p_bonded_devices) {
   int device_type;
@@ -1572,382 +1498,6 @@ bool btif_storage_get_remote_device_type(const RawAddress& remote_bd_addr,
   return ret;
 }
 
-/*******************************************************************************
- *
- * Function         btif_storage_add_hid_device_info
- *
- * Description      BTIF storage API - Adds the hid information of bonded hid
- *                  devices-to NVRAM
- *
- * Returns          BT_STATUS_SUCCESS if the store was successful,
- *                  BT_STATUS_FAIL otherwise
- *
- ******************************************************************************/
-
-bt_status_t btif_storage_add_hid_device_info(
-    RawAddress* remote_bd_addr, uint16_t attr_mask, uint8_t sub_class,
-    uint8_t app_id, uint16_t vendor_id, uint16_t product_id, uint16_t version,
-    uint8_t ctry_code, uint16_t ssr_max_latency, uint16_t ssr_min_tout,
-    uint16_t dl_len, uint8_t* dsc_list) {
-  BTIF_TRACE_DEBUG("btif_storage_add_hid_device_info:");
-  std::string bdstr = remote_bd_addr->ToString();
-  btif_config_set_int(bdstr, "HidAttrMask", attr_mask);
-  btif_config_set_int(bdstr, "HidSubClass", sub_class);
-  btif_config_set_int(bdstr, "HidAppId", app_id);
-  btif_config_set_int(bdstr, "HidVendorId", vendor_id);
-  btif_config_set_int(bdstr, "HidProductId", product_id);
-  btif_config_set_int(bdstr, "HidVersion", version);
-  btif_config_set_int(bdstr, "HidCountryCode", ctry_code);
-  btif_config_set_int(bdstr, "HidSSRMaxLatency", ssr_max_latency);
-  btif_config_set_int(bdstr, "HidSSRMinTimeout", ssr_min_tout);
-  if (dl_len > 0) btif_config_set_bin(bdstr, "HidDescriptor", dsc_list, dl_len);
-  btif_config_save();
-  return BT_STATUS_SUCCESS;
-}
-
-/*******************************************************************************
- *
- * Function         btif_storage_load_bonded_hid_info
- *
- * Description      BTIF storage API - Loads hid info for all the bonded devices
- *                  from NVRAM and adds those devices  to the BTA_HH.
- *
- * Returns          BT_STATUS_SUCCESS if successful, BT_STATUS_FAIL otherwise
- *
- ******************************************************************************/
-bt_status_t btif_storage_load_bonded_hid_info(void) {
-  for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    auto name = bd_addr.ToString();
-
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-
-    int value;
-    if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
-    uint16_t attr_mask = (uint16_t)value;
-
-    if (btif_in_fetch_bonded_device(name) != BT_STATUS_SUCCESS) {
-      btif_storage_remove_hid_info(bd_addr);
-      continue;
-    }
-
-    tBTA_HH_DEV_DSCP_INFO dscp_info;
-    memset(&dscp_info, 0, sizeof(dscp_info));
-
-    btif_config_get_int(name, "HidSubClass", &value);
-    uint8_t sub_class = (uint8_t)value;
-
-    btif_config_get_int(name, "HidAppId", &value);
-    uint8_t app_id = (uint8_t)value;
-
-    btif_config_get_int(name, "HidVendorId", &value);
-    dscp_info.vendor_id = (uint16_t)value;
-
-    btif_config_get_int(name, "HidProductId", &value);
-    dscp_info.product_id = (uint16_t)value;
-
-    btif_config_get_int(name, "HidVersion", &value);
-    dscp_info.version = (uint8_t)value;
-
-    btif_config_get_int(name, "HidCountryCode", &value);
-    dscp_info.ctry_code = (uint8_t)value;
-
-    value = 0;
-    btif_config_get_int(name, "HidSSRMaxLatency", &value);
-    dscp_info.ssr_max_latency = (uint16_t)value;
-
-    value = 0;
-    btif_config_get_int(name, "HidSSRMinTimeout", &value);
-    dscp_info.ssr_min_tout = (uint16_t)value;
-
-    size_t len = btif_config_get_bin_length(name, "HidDescriptor");
-    if (len > 0) {
-      dscp_info.descriptor.dl_len = (uint16_t)len;
-      dscp_info.descriptor.dsc_list = (uint8_t*)alloca(len);
-      btif_config_get_bin(name, "HidDescriptor",
-                          (uint8_t*)dscp_info.descriptor.dsc_list, &len);
-    }
-
-    // add extracted information to BTA HH
-    if (btif_hh_add_added_dev(bd_addr, attr_mask)) {
-      BTA_HhAddDev(bd_addr, attr_mask, sub_class, app_id, dscp_info);
-    }
-  }
-
-  return BT_STATUS_SUCCESS;
-}
-
-/*******************************************************************************
- *
- * Function         btif_storage_remove_hid_info
- *
- * Description      BTIF storage API - Deletes the bonded hid device info from
- *                  NVRAM
- *
- * Returns          BT_STATUS_SUCCESS if the deletion was successful,
- *                  BT_STATUS_FAIL otherwise
- *
- ******************************************************************************/
-bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr) {
-  std::string bdstr = remote_bd_addr.ToString();
-
-  btif_config_remove(bdstr, "HidAttrMask");
-  btif_config_remove(bdstr, "HidSubClass");
-  btif_config_remove(bdstr, "HidAppId");
-  btif_config_remove(bdstr, "HidVendorId");
-  btif_config_remove(bdstr, "HidProductId");
-  btif_config_remove(bdstr, "HidVersion");
-  btif_config_remove(bdstr, "HidCountryCode");
-  btif_config_remove(bdstr, "HidSSRMaxLatency");
-  btif_config_remove(bdstr, "HidSSRMinTimeout");
-  btif_config_remove(bdstr, "HidDescriptor");
-  btif_config_save();
-  return BT_STATUS_SUCCESS;
-}
-
-/*******************************************************************************
- *
- * Function         btif_storage_get_hid_device_addresses
- *
- * Description      BTIF storage API - Finds all bonded HID devices
- *
- * Returns          std::vector of RawAddress
- *
- ******************************************************************************/
-
-extern bool btif_get_address_type(const RawAddress& bda,
-                                  tBLE_ADDR_TYPE* p_addr_type);
-
-std::vector<std::pair<RawAddress, uint8_t>>
-btif_storage_get_hid_device_addresses(void) {
-  std::vector<std::pair<RawAddress, uint8_t>> hid_addresses;
-  for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    auto name = bd_addr.ToString();
-    int value;
-    if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
-
-    tBLE_ADDR_TYPE type = BLE_ADDR_PUBLIC;
-    btif_get_address_type(bd_addr, &type);
-
-    hid_addresses.push_back({bd_addr, type});
-    LOG_DEBUG("Remote device: %s", PRIVATE_ADDRESS(bd_addr));
-  }
-  return hid_addresses;
-}
-
-constexpr char HEARING_AID_READ_PSM_HANDLE[] = "HearingAidReadPsmHandle";
-constexpr char HEARING_AID_CAPABILITIES[] = "HearingAidCapabilities";
-constexpr char HEARING_AID_CODECS[] = "HearingAidCodecs";
-constexpr char HEARING_AID_AUDIO_CONTROL_POINT[] =
-    "HearingAidAudioControlPoint";
-constexpr char HEARING_AID_VOLUME_HANDLE[] = "HearingAidVolumeHandle";
-constexpr char HEARING_AID_AUDIO_STATUS_HANDLE[] =
-    "HearingAidAudioStatusHandle";
-constexpr char HEARING_AID_AUDIO_STATUS_CCC_HANDLE[] =
-    "HearingAidAudioStatusCccHandle";
-constexpr char HEARING_AID_SERVICE_CHANGED_CCC_HANDLE[] =
-    "HearingAidServiceChangedCccHandle";
-constexpr char HEARING_AID_SYNC_ID[] = "HearingAidSyncId";
-constexpr char HEARING_AID_RENDER_DELAY[] = "HearingAidRenderDelay";
-constexpr char HEARING_AID_PREPARATION_DELAY[] = "HearingAidPreparationDelay";
-constexpr char HEARING_AID_IS_ACCEPTLISTED[] = "HearingAidIsAcceptlisted";
-
-void btif_storage_add_hearing_aid(const HearingDevice& dev_info) {
-  do_in_jni_thread(
-      FROM_HERE,
-      Bind(
-          [](const HearingDevice& dev_info) {
-            std::string bdstr = dev_info.address.ToString();
-            VLOG(2) << "saving hearing aid device: "
-                    << ADDRESS_TO_LOGGABLE_STR(dev_info.address);
-            btif_config_set_int(bdstr, HEARING_AID_SERVICE_CHANGED_CCC_HANDLE,
-                                dev_info.service_changed_ccc_handle);
-            btif_config_set_int(bdstr, HEARING_AID_READ_PSM_HANDLE,
-                                dev_info.read_psm_handle);
-            btif_config_set_int(bdstr, HEARING_AID_CAPABILITIES,
-                                dev_info.capabilities);
-            btif_config_set_int(bdstr, HEARING_AID_CODECS, dev_info.codecs);
-            btif_config_set_int(bdstr, HEARING_AID_AUDIO_CONTROL_POINT,
-                                dev_info.audio_control_point_handle);
-            btif_config_set_int(bdstr, HEARING_AID_VOLUME_HANDLE,
-                                dev_info.volume_handle);
-            btif_config_set_int(bdstr, HEARING_AID_AUDIO_STATUS_HANDLE,
-                                dev_info.audio_status_handle);
-            btif_config_set_int(bdstr, HEARING_AID_AUDIO_STATUS_CCC_HANDLE,
-                                dev_info.audio_status_ccc_handle);
-            btif_config_set_uint64(bdstr, HEARING_AID_SYNC_ID,
-                                   dev_info.hi_sync_id);
-            btif_config_set_int(bdstr, HEARING_AID_RENDER_DELAY,
-                                dev_info.render_delay);
-            btif_config_set_int(bdstr, HEARING_AID_PREPARATION_DELAY,
-                                dev_info.preparation_delay);
-            btif_config_set_int(bdstr, HEARING_AID_IS_ACCEPTLISTED, true);
-            btif_config_save();
-          },
-          dev_info));
-}
-
-/** Loads information about bonded hearing aid devices */
-void btif_storage_load_bonded_hearing_aids() {
-  for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    const std::string& name = bd_addr.ToString();
-
-    int size = STORAGE_UUID_STRING_SIZE * HEARINGAID_MAX_NUM_UUIDS;
-    char uuid_str[size];
-    bool isHearingaidDevice = false;
-    if (btif_config_get_str(name, BTIF_STORAGE_PATH_REMOTE_SERVICE, uuid_str,
-                            &size)) {
-      Uuid p_uuid[HEARINGAID_MAX_NUM_UUIDS];
-      size_t num_uuids =
-          btif_split_uuids_string(uuid_str, p_uuid, HEARINGAID_MAX_NUM_UUIDS);
-      for (size_t i = 0; i < num_uuids; i++) {
-        if (p_uuid[i] == Uuid::FromString("FDF0")) {
-          isHearingaidDevice = true;
-          break;
-        }
-      }
-    }
-    if (!isHearingaidDevice) {
-      continue;
-    }
-
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-
-    if (btif_in_fetch_bonded_device(name) != BT_STATUS_SUCCESS) {
-      btif_storage_remove_hearing_aid(bd_addr);
-      continue;
-    }
-
-    int value;
-    uint8_t capabilities = 0;
-    if (btif_config_get_int(name, HEARING_AID_CAPABILITIES, &value))
-      capabilities = value;
-
-    uint16_t codecs = 0;
-    if (btif_config_get_int(name, HEARING_AID_CODECS, &value)) codecs = value;
-
-    uint16_t audio_control_point_handle = 0;
-    if (btif_config_get_int(name, HEARING_AID_AUDIO_CONTROL_POINT, &value))
-      audio_control_point_handle = value;
-
-    uint16_t audio_status_handle = 0;
-    if (btif_config_get_int(name, HEARING_AID_AUDIO_STATUS_HANDLE, &value))
-      audio_status_handle = value;
-
-    uint16_t audio_status_ccc_handle = 0;
-    if (btif_config_get_int(name, HEARING_AID_AUDIO_STATUS_CCC_HANDLE, &value))
-      audio_status_ccc_handle = value;
-
-    uint16_t service_changed_ccc_handle = 0;
-    if (btif_config_get_int(name, HEARING_AID_SERVICE_CHANGED_CCC_HANDLE,
-                            &value))
-      service_changed_ccc_handle = value;
-
-    uint16_t volume_handle = 0;
-    if (btif_config_get_int(name, HEARING_AID_VOLUME_HANDLE, &value))
-      volume_handle = value;
-
-    uint16_t read_psm_handle = 0;
-    if (btif_config_get_int(name, HEARING_AID_READ_PSM_HANDLE, &value))
-      read_psm_handle = value;
-
-    uint64_t lvalue;
-    uint64_t hi_sync_id = 0;
-    if (btif_config_get_uint64(name, HEARING_AID_SYNC_ID, &lvalue))
-      hi_sync_id = lvalue;
-
-    uint16_t render_delay = 0;
-    if (btif_config_get_int(name, HEARING_AID_RENDER_DELAY, &value))
-      render_delay = value;
-
-    uint16_t preparation_delay = 0;
-    if (btif_config_get_int(name, HEARING_AID_PREPARATION_DELAY, &value))
-      preparation_delay = value;
-
-    uint16_t is_acceptlisted = 0;
-    if (btif_config_get_int(name, HEARING_AID_IS_ACCEPTLISTED, &value))
-      is_acceptlisted = value;
-
-    // add extracted information to BTA Hearing Aid
-    do_in_main_thread(
-        FROM_HERE,
-        Bind(&HearingAid::AddFromStorage,
-             HearingDevice(bd_addr, capabilities, codecs,
-                           audio_control_point_handle, audio_status_handle,
-                           audio_status_ccc_handle, service_changed_ccc_handle,
-                           volume_handle, read_psm_handle, hi_sync_id,
-                           render_delay, preparation_delay),
-             is_acceptlisted));
-  }
-}
-
-/** Deletes the bonded hearing aid device info from NVRAM */
-void btif_storage_remove_hearing_aid(const RawAddress& address) {
-  std::string addrstr = address.ToString();
-  btif_config_remove(addrstr, HEARING_AID_READ_PSM_HANDLE);
-  btif_config_remove(addrstr, HEARING_AID_CAPABILITIES);
-  btif_config_remove(addrstr, HEARING_AID_CODECS);
-  btif_config_remove(addrstr, HEARING_AID_AUDIO_CONTROL_POINT);
-  btif_config_remove(addrstr, HEARING_AID_VOLUME_HANDLE);
-  btif_config_remove(addrstr, HEARING_AID_AUDIO_STATUS_HANDLE);
-  btif_config_remove(addrstr, HEARING_AID_AUDIO_STATUS_CCC_HANDLE);
-  btif_config_remove(addrstr, HEARING_AID_SERVICE_CHANGED_CCC_HANDLE);
-  btif_config_remove(addrstr, HEARING_AID_SYNC_ID);
-  btif_config_remove(addrstr, HEARING_AID_RENDER_DELAY);
-  btif_config_remove(addrstr, HEARING_AID_PREPARATION_DELAY);
-  btif_config_remove(addrstr, HEARING_AID_IS_ACCEPTLISTED);
-  btif_config_save();
-}
-
-/** Set/Unset the hearing aid device HEARING_AID_IS_ACCEPTLISTED flag. */
-void btif_storage_set_hearing_aid_acceptlist(const RawAddress& address,
-                                             bool add_to_acceptlist) {
-  std::string addrstr = address.ToString();
-
-  btif_config_set_int(addrstr, HEARING_AID_IS_ACCEPTLISTED, add_to_acceptlist);
-  btif_config_save();
-}
-
-/** Get the hearing aid device properties. */
-bool btif_storage_get_hearing_aid_prop(
-    const RawAddress& address, uint8_t* capabilities, uint64_t* hi_sync_id,
-    uint16_t* render_delay, uint16_t* preparation_delay, uint16_t* codecs) {
-  std::string addrstr = address.ToString();
-
-  int value;
-  if (btif_config_get_int(addrstr, HEARING_AID_CAPABILITIES, &value)) {
-    *capabilities = value;
-  } else {
-    return false;
-  }
-
-  if (btif_config_get_int(addrstr, HEARING_AID_CODECS, &value)) {
-    *codecs = value;
-  } else {
-    return false;
-  }
-
-  if (btif_config_get_int(addrstr, HEARING_AID_RENDER_DELAY, &value)) {
-    *render_delay = value;
-  } else {
-    return false;
-  }
-
-  if (btif_config_get_int(addrstr, HEARING_AID_PREPARATION_DELAY, &value)) {
-    *preparation_delay = value;
-  } else {
-    return false;
-  }
-
-  uint64_t lvalue;
-  if (btif_config_get_uint64(addrstr, HEARING_AID_SYNC_ID, &lvalue)) {
-    *hi_sync_id = lvalue;
-  } else {
-    return false;
-  }
-
-  return true;
-}
-
 /** Stores information about GATT server supported features */
 void btif_storage_set_gatt_sr_supp_feat(const RawAddress& addr, uint8_t feat) {
   do_in_jni_thread(
@@ -1982,8 +1532,8 @@ void btif_storage_set_leaudio_autoconnect(const RawAddress& addr,
   do_in_jni_thread(FROM_HERE, Bind(
                                   [](const RawAddress& addr, bool autoconnect) {
                                     std::string bdstr = addr.ToString();
-                                    VLOG(2) << "saving le audio device: "
-                                            << ADDRESS_TO_LOGGABLE_STR(addr);
+                                    VLOG(2)
+                                        << "saving le audio device: " << bdstr;
                                     btif_config_set_int(
                                         bdstr, BTIF_STORAGE_LEAUDIO_AUTOCONNECT,
                                         autoconnect);
@@ -2069,8 +1619,7 @@ void btif_storage_set_leaudio_audio_location(const RawAddress& addr,
       Bind(
           [](const RawAddress& addr, int sink_location, int source_location) {
             std::string bdstr = addr.ToString();
-            LOG_DEBUG("saving le audio device: %s",
-                      ADDRESS_TO_LOGGABLE_CSTR(addr));
+            LOG_DEBUG("saving le audio device: %s", bdstr.c_str());
             btif_config_set_int(bdstr, BTIF_STORAGE_LEAUDIO_SINK_AUDIOLOCATION,
                                 sink_location);
             btif_config_set_int(bdstr,
@@ -2091,8 +1640,7 @@ void btif_storage_set_leaudio_supported_context_types(
           [](const RawAddress& addr, int sink_supported_context_type,
              int source_supported_context_type) {
             std::string bdstr = addr.ToString();
-            LOG_DEBUG("saving le audio device: %s",
-                      ADDRESS_TO_LOGGABLE_CSTR(addr));
+            LOG_DEBUG("saving le audio device: %s", bdstr.c_str());
             btif_config_set_int(
                 bdstr, BTIF_STORAGE_LEAUDIO_SINK_SUPPORTED_CONTEXT_TYPE,
                 sink_supported_context_type);
@@ -2128,7 +1676,7 @@ void btif_storage_load_bonded_leaudio() {
       continue;
     }
 
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
 
     int value;
     bool autoconnect = false;
@@ -2376,7 +1924,7 @@ void btif_storage_load_bonded_groups(void) {
         btif_config_get_bin_length(name, BTIF_STORAGE_DEVICE_GROUP_BIN);
     if (buffer_size == 0) continue;
 
-    BTIF_TRACE_DEBUG("Grouped device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    BTIF_TRACE_DEBUG("Grouped device:%s", name.c_str());
 
     std::vector<uint8_t> in(buffer_size);
     if (btif_config_get_bin(name, BTIF_STORAGE_DEVICE_GROUP_BIN, in.data(),
@@ -2392,8 +1940,7 @@ void btif_storage_set_csis_autoconnect(const RawAddress& addr,
   do_in_jni_thread(FROM_HERE, Bind(
                                   [](const RawAddress& addr, bool autoconnect) {
                                     std::string bdstr = addr.ToString();
-                                    VLOG(2) << "Storing CSIS device: "
-                                            << ADDRESS_TO_LOGGABLE_STR(addr);
+                                    VLOG(2) << "Storing CSIS device: " << bdstr;
                                     btif_config_set_int(
                                         bdstr, BTIF_STORAGE_CSIS_AUTOCONNECT,
                                         autoconnect);
@@ -2425,8 +1972,7 @@ void btif_storage_load_bonded_csis_devices(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Loading CSIS device:%s",
-                     ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    BTIF_TRACE_DEBUG("Loading CSIS device:%s", name.c_str());
 
     int value;
     bool autoconnect = false;
@@ -2487,7 +2033,7 @@ bt_status_t btif_storage_load_hidd(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
     int value;
     if (btif_in_fetch_bonded_device(name) == BT_STATUS_SUCCESS) {
       if (btif_config_get_int(name, "HidDeviceCabled", &value)) {
