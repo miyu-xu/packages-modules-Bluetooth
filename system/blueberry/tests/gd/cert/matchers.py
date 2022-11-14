@@ -239,7 +239,8 @@ class HciMatchers(object):
 
     @staticmethod
     def LoopbackOf(packet):
-        return HciMatchers.Exactly(hci_packets.LoopbackCommandBuilder(packet))
+        return HciMatchers.Exactly(hci_packets.LoopbackCommandBuilder(
+            hci_packets.BasePacketBuilder(packet)))
 
     @staticmethod
     def Exactly(packet):

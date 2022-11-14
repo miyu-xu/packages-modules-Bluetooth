@@ -45,7 +45,7 @@ from bluetooth_packets_python3.hci_packets import EnabledSet
 from bluetooth_packets_python3.hci_packets import OpCode
 from bluetooth_packets_python3.hci_packets import AclBuilder
 from bluetooth_packets_python3 import RawBuilder
-
+import hci_packets
 
 class PyHciAclConnection(IEventStream):
 
@@ -187,7 +187,10 @@ class PyHci(Closable):
             self.device.hci.RequestLeSubevent(hci_facade.EventRequest(code=int(event_code)))
 
     def send_command(self, command):
-        self.device.hci.SendCommand(common.Data(payload=bytes(command.Serialize())))
+        if isinstance(command, hci_packets.Packet):
+            self.device.hci.SendCommand(common.Data(payload=command.serialize()))
+        else:
+            self.device.hci.SendCommand(common.Data(payload=bytes(command.Serialize())))
 
     def enable_inquiry_and_page_scan(self):
         self.send_command(hci_packets.WriteScanEnableBuilder(hci_packets.ScanEnable.INQUIRY_AND_PAGE_SCAN))

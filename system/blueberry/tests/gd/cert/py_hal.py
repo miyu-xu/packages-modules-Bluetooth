@@ -52,7 +52,7 @@ from bluetooth_packets_python3.hci_packets import LeSetAdvertisingParametersBuil
 from bluetooth_packets_python3.hci_packets import LeSetScanResponseDataBuilder
 from bluetooth_packets_python3.hci_packets import AdvertisingType
 from blueberry.facade import common_pb2 as common
-
+import hci_packets
 
 class PyHalAclConnection(IEventStream):
 
@@ -160,7 +160,10 @@ class PyHal(Closable):
         return self.acl_stream
 
     def send_hci_command(self, command):
-        self.device.hal.SendCommand(common.Data(payload=bytes(command.Serialize())))
+        if isinstance(command, hci_packets.Packet):
+            self.device.hal.SendCommand(common.Data(payload=command.serialize()))
+        else:
+            self.device.hal.SendCommand(common.Data(payload=bytes(command.Serialize())))
 
     def send_acl(self, handle, pb_flag, b_flag, data):
         acl = AclBuilder(handle, pb_flag, b_flag, RawBuilder(data))
