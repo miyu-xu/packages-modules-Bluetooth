@@ -1737,6 +1737,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private boolean createBondInternal(int transport, @Nullable OobData remoteP192Data,
             @Nullable OobData remoteP256Data) {
+
         if (DBG) log("createBondOutOfBand()");
         final IBluetooth service = getService();
         final boolean defaultValue = false;
@@ -3155,6 +3156,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     })
     public boolean setMetadata(@MetadataKey int key, @NonNull byte[] value) {
         if (DBG) log("setMetadata()");
+
         final IBluetooth service = getService();
         final boolean defaultValue = false;
         if (service == null || !isBluetoothEnabled()) {
