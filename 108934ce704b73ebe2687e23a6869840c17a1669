@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b54132e9_bcfac1a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-14T18:44:39Z",
+      "side": 1,
+      "message": "this probably won\u0027t be submitted since LE Audio stuff is being CP\u0027d into QPR2 - instead I will move everything into a btif_profile_storage.cc file.\n\nIt\u0027s not as nice of a change, but much safer",
+      "revId": "108934ce704b73ebe2687e23a6869840c17a1669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
