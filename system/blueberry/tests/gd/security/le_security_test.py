@@ -13,7 +13,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from bluetooth_packets_python3 import hci_packets
+import hci_packets as hci
 from bluetooth_packets_python3.security_packets import PairingFailedReason
 from blueberry.tests.gd.cert.matchers import SecurityMatchers
 from blueberry.tests.gd.cert.metadata import metadata
@@ -88,10 +88,10 @@ class LeSecurityTest(gd_base_test.GdBaseTestClass):
 
     def _prepare_cert_for_connection(self):
         # DUT Advertises
-        gap_name = hci_packets.GapData()
-        gap_name.data_type = hci_packets.GapDataType.COMPLETE_LOCAL_NAME
-        gap_name.data = list(bytes(b'Im_The_CERT'))
-        gap_data = le_advertising_facade.GapDataMsg(data=bytes(gap_name.Serialize()))
+        gap_name = hci.GapData(
+            data_type=hci.GapDataType.COMPLETE_LOCAL_NAME,
+            data = list(bytes(b'Im_The_CERT')))
+        gap_data = le_advertising_facade.GapDataMsg(data=gap_name.serialize())
         config = le_advertising_facade.AdvertisingConfig(
             advertisement=[gap_data],
             interval_min=512,
@@ -105,10 +105,10 @@ class LeSecurityTest(gd_base_test.GdBaseTestClass):
 
     def _prepare_dut_for_connection(self):
         # DUT Advertises
-        gap_name = hci_packets.GapData()
-        gap_name.data_type = hci_packets.GapDataType.COMPLETE_LOCAL_NAME
-        gap_name.data = list(bytes(b'Im_The_DUT'))
-        gap_data = le_advertising_facade.GapDataMsg(data=bytes(gap_name.Serialize()))
+        gap_name = hci.GapData(
+            data_type=hci.GapDataType.COMPLETE_LOCAL_NAME,
+            data = list(bytes(b'Im_The_DUT')))
+        gap_data = le_advertising_facade.GapDataMsg(data=gap_name.serialize())
         config = le_advertising_facade.AdvertisingConfig(
             advertisement=[gap_data],
             interval_min=512,

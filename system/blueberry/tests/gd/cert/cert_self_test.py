@@ -28,8 +28,8 @@ from blueberry.tests.gd.cert.behavior import ReplyStage
 from blueberry.tests.gd.cert.event_stream import EventStream, FilteringEventStream
 from blueberry.tests.gd.cert.metadata import metadata
 from blueberry.tests.gd.cert.truth import assertThat
-from bluetooth_packets_python3 import hci_packets
 from bluetooth_packets_python3 import l2cap_packets
+import hci_packets as hci
 
 from mobly import asserts
 from mobly import signals
@@ -179,12 +179,14 @@ class CertSelfTest(base_test.BaseTestClass):
 
     def test_nested_packets(self):
         handle = 123
-        inside = hci_packets.ReadScanEnableBuilder()
+        inside = hci.ReadScanEnable()
         logging.debug(inside.Serialize())
         logging.debug("building outside")
-        outside = hci_packets.AclBuilder(handle, hci_packets.PacketBoundaryFlag.FIRST_NON_AUTOMATICALLY_FLUSHABLE,
-                                         hci_packets.BroadcastFlag.POINT_TO_POINT, inside)
-        logging.debug(outside.Serialize())
+        outside = hci.Acl(handle=handle,
+            packet_boundary_flag=hci.PacketBoundaryFlag.FIRST_NON_AUTOMATICALLY_FLUSHABLE,
+            broadcast_flag=hci.BroadcastFlag.POINT_TO_POINT,
+            payload=inside.serialize())
+        logging.debug(outside.serialize())
         logging.debug("Done!")
 
     def test_l2cap_config_options(self):
@@ -199,8 +201,10 @@ class CertSelfTest(base_test.BaseTestClass):
             [mtu_opt, fcs_opt])
         request_b_frame = l2cap_packets.BasicFrameBuilder(0x01, request)
         handle = 123
-        wrapped = hci_packets.AclBuilder(handle, hci_packets.PacketBoundaryFlag.FIRST_NON_AUTOMATICALLY_FLUSHABLE,
-                                         hci_packets.BroadcastFlag.POINT_TO_POINT, request_b_frame)
+        wrapped = hci.Acl(handle=handle,
+            packet_boundary_flag=hci.PacketBoundaryFlag.FIRST_NON_AUTOMATICALLY_FLUSHABLE,
+            broadcast_flag=hci.BroadcastFlag.POINT_TO_POINT,
+            payload=request_b_frame)
         # Size is ACL (4) + L2CAP (4) + Configure (8) + MTU (4) + FCS (3)
         asserts.assert_true(len(wrapped.Serialize()) == 23, "Packet serialized incorrectly")
 

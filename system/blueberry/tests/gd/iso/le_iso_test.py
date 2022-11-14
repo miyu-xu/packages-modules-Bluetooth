@@ -13,7 +13,6 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from bluetooth_packets_python3 import hci_packets
 from blueberry.tests.gd.cert.matchers import IsoMatchers
 from blueberry.tests.gd.cert.metadata import metadata
 from blueberry.tests.gd.cert.py_l2cap import PyLeL2cap
@@ -29,7 +28,7 @@ from blueberry.facade.hci import le_advertising_manager_facade_pb2 as le_adverti
 from blueberry.facade.hci import le_initiator_address_facade_pb2 as le_initiator_address_facade
 from mobly import asserts
 from mobly import test_runner
-
+import hci_packets as hci
 
 class LeIsoTest(gd_base_test.GdBaseTestClass):
 
@@ -74,10 +73,10 @@ class LeIsoTest(gd_base_test.GdBaseTestClass):
     #cert becomes central of connection, dut peripheral
     def _setup_link_from_cert(self):
         # DUT Advertises
-        gap_name = hci_packets.GapData()
-        gap_name.data_type = hci_packets.GapDataType.COMPLETE_LOCAL_NAME
-        gap_name.data = list(bytes(b'Im_The_DUT'))
-        gap_data = le_advertising_facade.GapDataMsg(data=bytes(gap_name.Serialize()))
+        gap_name = hci.GapData(
+            data_type=hci.GapDataType.COMPLETE_LOCAL_NAME,
+            data = list(bytes(b'Im_The_DUT')))
+        gap_data = le_advertising_facade.GapDataMsg(data=gap_name.serialize())
         config = le_advertising_facade.AdvertisingConfig(
             advertisement=[gap_data],
             interval_min=512,
@@ -111,7 +110,7 @@ class LeIsoTest(gd_base_test.GdBaseTestClass):
 
     def skip_if_iso_not_supported(self):
         supported = self.dut.hci_controller.IsSupportedCommand(
-            controller_facade.OpCodeMsg(op_code=int(hci_packets.OpCode.LE_SET_CIG_PARAMETERS)))
+            controller_facade.OpCodeMsg(op_code=int(hci.OpCode.LE_SET_CIG_PARAMETERS)))
         if (not supported.supported):
             asserts.skip("Skipping this test.  The chip doesn't support LE ISO")
 
