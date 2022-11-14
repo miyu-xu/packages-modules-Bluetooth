@@ -791,7 +791,7 @@ def generate_packet_parser(packet: ast.Declaration) -> List[str]:
         # is given for specialization.
         for _, child in children:
             specialization.append("try:")
-            specialization.append(f"    return {child.id}.parse(fields, payload)")
+            specialization.append(f"    return {child.id}.parse(fields.copy(), payload)")
             specialization.append("except Exception as exn:")
             specialization.append("    pass")
 
