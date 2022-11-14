@@ -2150,6 +2150,7 @@ static PeriodicAdvertisingParameters parsePeriodicParams(JNIEnv* env,
   uint16_t interval = env->CallIntMethod(i, methodId);
 
   p.enable = true;
+  p.include_adi = false;
   p.min_interval = interval;
   p.max_interval = interval + 16; /* 20ms difference betwen min and max */
   uint16_t props = 0;
@@ -2347,8 +2348,9 @@ static void setPeriodicAdvertisingEnableNative(JNIEnv* env, jobject object,
                                                jboolean enable) {
   if (!sGattIf) return;
 
+  bool include_adi = false;
   sGattIf->advertiser->SetPeriodicAdvertisingEnable(
-      advertiser_id, enable,
+      advertiser_id, enable, include_adi,
       base::Bind(&enablePeriodicSetCb, advertiser_id, enable));
 }
 
