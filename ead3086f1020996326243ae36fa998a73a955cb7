@@ -16,6 +16,24 @@
       "message": "Do we plan to send this patch to be manually tested before merging?",
       "revId": "ead3086f1020996326243ae36fa998a73a955cb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef904425_4397380e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-11-14T08:36:57Z",
+      "side": 1,
+      "message": "Yes, test done with Phonak device. There is no volume level issue. You can check bug issue for more details. Thanks.",
+      "parentUuid": "75b74587_9fa1f1b0",
+      "revId": "ead3086f1020996326243ae36fa998a73a955cb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
