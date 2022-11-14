@@ -156,7 +156,7 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
+    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(name));
 
     int value;
     if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
@@ -294,7 +294,8 @@ void btif_storage_add_hearing_aid(const HearingDevice& dev_info) {
       Bind(
           [](const HearingDevice& dev_info) {
             std::string bdstr = dev_info.address.ToString();
-            VLOG(2) << "saving hearing aid device: " << bdstr;
+            VLOG(2) << "saving hearing aid device: "
+                    << ADDRESS_TO_LOGGABLE_CSTR(bdstr);
             btif_config_set_int(bdstr, HEARING_AID_SERVICE_CHANGED_CCC_HANDLE,
                                 dev_info.service_changed_ccc_handle);
             btif_config_set_int(bdstr, HEARING_AID_READ_PSM_HANDLE,
@@ -346,7 +347,7 @@ void btif_storage_load_bonded_hearing_aids() {
       continue;
     }
 
-    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
+    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(name));
 
     if (btif_in_fetch_bonded_device(name) != BT_STATUS_SUCCESS) {
       btif_storage_remove_hearing_aid(bd_addr);
@@ -490,8 +491,8 @@ void btif_storage_set_leaudio_autoconnect(const RawAddress& addr,
   do_in_jni_thread(FROM_HERE, Bind(
                                   [](const RawAddress& addr, bool autoconnect) {
                                     std::string bdstr = addr.ToString();
-                                    VLOG(2)
-                                        << "saving le audio device: " << bdstr;
+                                    VLOG(2) << "saving le audio device: "
+                                            << ADDRESS_TO_LOGGABLE_CSTR(bdstr);
                                     btif_config_set_int(
                                         bdstr, BTIF_STORAGE_LEAUDIO_AUTOCONNECT,
                                         autoconnect);
@@ -577,7 +578,8 @@ void btif_storage_set_leaudio_audio_location(const RawAddress& addr,
       Bind(
           [](const RawAddress& addr, int sink_location, int source_location) {
             std::string bdstr = addr.ToString();
-            LOG_DEBUG("saving le audio device: %s", bdstr.c_str());
+            LOG_DEBUG("saving le audio device: %s",
+                      ADDRESS_TO_LOGGABLE_CSTR(bdstr));
             btif_config_set_int(bdstr, BTIF_STORAGE_LEAUDIO_SINK_AUDIOLOCATION,
                                 sink_location);
             btif_config_set_int(bdstr,
@@ -598,7 +600,8 @@ void btif_storage_set_leaudio_supported_context_types(
           [](const RawAddress& addr, int sink_supported_context_type,
              int source_supported_context_type) {
             std::string bdstr = addr.ToString();
-            LOG_DEBUG("saving le audio device: %s", bdstr.c_str());
+            LOG_DEBUG("saving le audio device: %s",
+                      ADDRESS_TO_LOGGABLE_CSTR(bdstr));
             btif_config_set_int(
                 bdstr, BTIF_STORAGE_LEAUDIO_SINK_SUPPORTED_CONTEXT_TYPE,
                 sink_supported_context_type);
@@ -634,7 +637,7 @@ void btif_storage_load_bonded_leaudio() {
       continue;
     }
 
-    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
+    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(name));
 
     int value;
     bool autoconnect = false;
@@ -882,7 +885,7 @@ void btif_storage_load_bonded_groups(void) {
         btif_config_get_bin_length(name, BTIF_STORAGE_DEVICE_GROUP_BIN);
     if (buffer_size == 0) continue;
 
-    BTIF_TRACE_DEBUG("Grouped device:%s", name.c_str());
+    BTIF_TRACE_DEBUG("Grouped device:%s", ADDRESS_TO_LOGGABLE_CSTR(name));
 
     std::vector<uint8_t> in(buffer_size);
     if (btif_config_get_bin(name, BTIF_STORAGE_DEVICE_GROUP_BIN, in.data(),
@@ -898,7 +901,8 @@ void btif_storage_set_csis_autoconnect(const RawAddress& addr,
   do_in_jni_thread(FROM_HERE, Bind(
                                   [](const RawAddress& addr, bool autoconnect) {
                                     std::string bdstr = addr.ToString();
-                                    VLOG(2) << "Storing CSIS device: " << bdstr;
+                                    VLOG(2) << "Storing CSIS device: "
+                                            << ADDRESS_TO_LOGGABLE_CSTR(bdstr);
                                     btif_config_set_int(
                                         bdstr, BTIF_STORAGE_CSIS_AUTOCONNECT,
                                         autoconnect);
@@ -930,7 +934,7 @@ void btif_storage_load_bonded_csis_devices(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Loading CSIS device:%s", name.c_str());
+    BTIF_TRACE_DEBUG("Loading CSIS device:%s", ADDRESS_TO_LOGGABLE_CSTR(name));
 
     int value;
     bool autoconnect = false;

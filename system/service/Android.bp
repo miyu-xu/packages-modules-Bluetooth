@@ -104,6 +104,7 @@ cc_binary {
         "libbtdevice",
         "libbte",
         "libbt-hci",
+        "libbthalutils",
         "libbtif",
         "lib-bt-packets",
         "lib-bt-packets-avrcp",
