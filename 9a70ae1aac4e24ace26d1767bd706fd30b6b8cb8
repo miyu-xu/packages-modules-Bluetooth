@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee26e71e_03fa8bb6",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-14T17:09:37Z",
+      "side": 1,
+      "message": "I agree that rewriting ToString result in a smaller change.\nBut after talking with Jack, he decided that adding a separate method that returns a string for logging makes it easier to understand, same as RawAddress and hci::Address.",
+      "parentUuid": "2a64b2d2_9f8c9006",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 3
+      },
+      "revId": "9a70ae1aac4e24ace26d1767bd706fd30b6b8cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45af9be5_96946557",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-08T01:28:59Z",
       "side": 1,
       "message": "ToRedactedStringForLogging ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 19,
+        "endLine": 102,
+        "endChar": 37
+      },
+      "revId": "9a70ae1aac4e24ace26d1767bd706fd30b6b8cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "957c2c80_62db98b4",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-14T17:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45af9be5_96946557",
       "range": {
         "startLine": 102,
         "startChar": 19,
