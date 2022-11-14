@@ -282,6 +282,9 @@ fluoride_defaults {
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
     ],
+    whole_static_libs: [
+        "libbluetooth-core",
+    ]
 }
 
 fluoride_defaults {
