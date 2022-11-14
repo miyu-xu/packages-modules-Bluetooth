@@ -3155,6 +3155,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     })
     public boolean setMetadata(@MetadataKey int key, @NonNull byte[] value) {
         if (DBG) log("setMetadata()");
+
         final IBluetooth service = getService();
         final boolean defaultValue = false;
         if (service == null || !isBluetoothEnabled()) {
