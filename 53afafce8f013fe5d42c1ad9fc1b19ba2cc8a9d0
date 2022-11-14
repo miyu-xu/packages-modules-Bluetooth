@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e242e53_0a739a64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-14T16:11:22Z",
+      "side": 1,
+      "message": "These mocks should allow you to write a targetted test.  I have the base test written too that may follow this CL for bta_av",
+      "revId": "53afafce8f013fe5d42c1ad9fc1b19ba2cc8a9d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
