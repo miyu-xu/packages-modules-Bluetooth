@@ -5978,7 +5978,7 @@ ErrorCode LinkLayerController::LeTerminateBig(uint8_t /* big_handle */,
 ErrorCode LinkLayerController::LeBigCreateSync(
     uint8_t /* big_handle */, uint16_t /* sync_handle */,
     bluetooth::hci::Enable /* encryption */,
-    std::vector<uint16_t> /* broadcast_code */, uint8_t /* mse */,
+    std::array<uint8_t, 16> /* broadcast_code */, uint8_t /* mse */,
     uint16_t /* big_sync_timeout */, std::vector<uint8_t> /* bis */) {
   return ErrorCode::SUCCESS;
 }
