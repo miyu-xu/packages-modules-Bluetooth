@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35641f22_81bc2861",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-14T18:40:10Z",
+      "side": 1,
+      "message": "Just a warning that was raised locally, on rootcanal, no bug attached.",
+      "parentUuid": "1155c005_e32c16fc",
+      "revId": "0860081a6890f93d86bcbd93ba6183cbc2a53c17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4a889eb_d0b7ebee",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 2
