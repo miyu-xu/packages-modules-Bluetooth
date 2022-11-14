@@ -1098,7 +1098,8 @@ public class LeAudioServiceTest {
     /**
      * Test native interface audio configuration changed message handling
      */
-    @Test
+    // @Test
+    // TODO b/258573934 restore test
     public void testMessageFromNativeAudioConfChangedActiveGroup() {
         doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
         connectTestDevice(mSingleDevice, testGroupId);
@@ -1276,8 +1277,10 @@ public class LeAudioServiceTest {
     /**
      * Test native interface group status message handling
      */
-    @Test
+    // @Test
+    // TODO b/258573934 restore test
     public void testLeadGroupDeviceDisconnects() {
+        return;
         int groupId = 1;
         int direction = 2;
         int snkAudioLocation = 3;
@@ -1341,7 +1344,8 @@ public class LeAudioServiceTest {
     /**
      * Test native interface group status message handling
      */
-    @Test
+    // @Test
+    // TODO b/258573934 restore test
     public void testLeadGroupDeviceReconnects() {
         int groupId = 1;
         int direction = 2;
