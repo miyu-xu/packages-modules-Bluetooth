@@ -43,11 +43,11 @@ class Device {
   // Return the string representation of the device.
   virtual std::string ToString() const;
 
-  // Set the device's Bluetooth address.
-  void SetAddress(Address address) { address_ = address; }
-
   // Get the device's Bluetooth address.
   const Address& GetAddress() const { return address_; }
+
+  // Set the device's Bluetooth address.
+  void SetAddress(Address address) { address_.address = address.address; }
 
   // Let the device know that time has passed.
   virtual void TimerTick() {}
