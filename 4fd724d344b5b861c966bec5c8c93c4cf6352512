@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d765cc3_ced651a1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-15T05:25:03Z",
+      "side": 1,
+      "message": "Fixed, thank you.",
+      "parentUuid": "3dd7fd5d_295b0e14",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 18
+      },
+      "revId": "4fd724d344b5b861c966bec5c8c93c4cf6352512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32c98a42_586f2806",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-15T05:02:21Z",
       "side": 1,
       "message": "Please use when(...).doReturn() if possible:\n\nhttps://source.corp.google.com/android/external/mockito/src/main/java/org/mockito/Mockito.java;rcl\u003d9312406fdda385368d96aa4af2af4819bd4290a9;l\u003d2437",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 75
+      },
+      "revId": "4fd724d344b5b861c966bec5c8c93c4cf6352512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e967f9dc_152db72e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-15T05:25:03Z",
+      "side": 1,
+      "message": "Fixed, thank you.",
+      "parentUuid": "32c98a42_586f2806",
       "range": {
         "startLine": 112,
         "startChar": 8,
