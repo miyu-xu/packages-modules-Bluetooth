@@ -22,6 +22,30 @@
       },
       "revId": "18c5ace16d725ba7120f78f6edbbb9a2e73e1bc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83db4d92_8b7f1115",
+        "filename": "system/blueberry/tests/gd/hci/direct_hci_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-15T17:56:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "91f853f5_fdb74e2d",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 25
+      },
+      "revId": "18c5ace16d725ba7120f78f6edbbb9a2e73e1bc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
