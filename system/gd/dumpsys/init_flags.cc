@@ -52,6 +52,7 @@ flatbuffers::Offset<bluetooth::common::InitFlagsData> bluetooth::dumpsys::InitFl
   builder.add_periodic_advertising_adi_is_enabled(bluetooth::common::init_flags::periodic_advertising_adi_is_enabled());
   builder.add_redact_log_is_enabled(initFlags::redact_log_is_enabled());
   builder.add_sdp_serialization_is_enabled(initFlags::sdp_serialization_is_enabled());
+  builder.add_set_min_encryption_is_enabled(bluetooth::common::init_flags::set_min_encryption_is_enabled());
 
   return builder.Finish();
 }
