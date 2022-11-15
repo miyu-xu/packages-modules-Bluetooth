@@ -46,6 +46,8 @@ enum class DeviceConnectState : uint8_t {
   REMOVING,
   /* Disconnecting */
   DISCONNECTING,
+  /* Device would be removed when receiver/sender became IDLE */
+  REMOVE_PENDING,
   /* 2 states below are used when user creates connection. Connect API is
      called. */
   CONNECTING_BY_USER,
