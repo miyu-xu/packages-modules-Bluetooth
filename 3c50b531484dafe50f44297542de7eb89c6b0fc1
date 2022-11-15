@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae3fcfc8_61df0a50",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnableActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-15T17:23:07Z",
+      "side": 1,
+      "message": "To use intended, we need to initialize Espresso\u0027s Intents",
+      "parentUuid": "02bf40e3_7bbb5ba8",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 23
+      },
+      "revId": "3c50b531484dafe50f44297542de7eb89c6b0fc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c894a6d_3e08b793",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-15T01:54:45Z",
       "side": 1,
       "message": "Q) what does this assert?",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 79
+      },
+      "revId": "3c50b531484dafe50f44297542de7eb89c6b0fc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11be90dc_221fbf2c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnableActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-15T17:23:07Z",
+      "side": 1,
+      "message": "To see if BluetoothOppBtEnableActivity launch BluetoothOppBtEnablingActivity or not. You can read more in this example: https://github.com/android/testing-samples/tree/main/ui/espresso/IntentsBasicSample",
+      "parentUuid": "5c894a6d_3e08b793",
       "range": {
         "startLine": 78,
         "startChar": 8,
