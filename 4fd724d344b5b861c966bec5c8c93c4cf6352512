@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dd7fd5d_295b0e14",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-15T05:02:21Z",
+      "side": 1,
+      "message": "I couldn\u0027t find the related doc for now, but the `\u003d` should be in the same line (like L97).\n\nAlso let\u0027s make the `.getAdapter()` be the same line with `getSystemService`",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 18
+      },
+      "revId": "4fd724d344b5b861c966bec5c8c93c4cf6352512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32c98a42_586f2806",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-15T05:02:21Z",
+      "side": 1,
+      "message": "Please use when(...).doReturn() if possible:\n\nhttps://source.corp.google.com/android/external/mockito/src/main/java/org/mockito/Mockito.java;rcl\u003d9312406fdda385368d96aa4af2af4819bd4290a9;l\u003d2437",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 75
+      },
+      "revId": "4fd724d344b5b861c966bec5c8c93c4cf6352512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
