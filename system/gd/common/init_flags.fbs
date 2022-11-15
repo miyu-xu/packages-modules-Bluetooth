@@ -13,6 +13,7 @@ table InitFlagsData {
     gd_core_enabled:bool (privacy:"Any");
     btaa_hci_log_enabled:bool (privacy:"Any");
     btm_dm_flush_discovery_queue_on_search_cancel_enabled:bool (privacy:"Any");
+    sydney_5_3_gatt_periodic_advertising_adi_is_enabled:bool (privacy:"Any");
 }
 
 root_type InitFlagsData;
