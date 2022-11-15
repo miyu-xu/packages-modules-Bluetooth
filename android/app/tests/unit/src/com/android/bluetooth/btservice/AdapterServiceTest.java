@@ -349,12 +349,8 @@ public class AdapterServiceTest {
     }
 
     private void verifyStateChange(int prevState, int currState, int callNumber, int timeoutMs) {
-        try {
-            verify(mIBluetoothCallback, timeout(timeoutMs)
-                    .times(callNumber)).onBluetoothStateChange(prevState, currState);
-        } catch (Exception e) {
-            // the mocked onBluetoothStateChange doesn't throw exceptions
-        }
+        verify(mIBluetoothCallback, timeout(timeoutMs).times(callNumber))
+            .onBluetoothStateChange(prevState, currState);
     }
 
     private void doEnable(int invocationNumber, boolean onlyGatt) {
