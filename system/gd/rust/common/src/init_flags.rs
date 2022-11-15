@@ -187,6 +187,7 @@ init_flags!(
         irk_rotation,
         logging_debug_enabled_for_all,
         pass_phy_update_callback = true,
+        periodic_advertising_adi = true,
         redact_log = true,
         sdp_serialization = true,
     }
