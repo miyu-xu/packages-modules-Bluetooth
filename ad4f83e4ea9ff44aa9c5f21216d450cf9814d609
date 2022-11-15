@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "183b01f0_d09147b2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-15T05:51:31Z",
+      "side": 1,
+      "message": "Could you try waitForLooperToBeIdel instead?\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/TestUtils.java;l\u003d267?q\u003dwaitForLooperToFinishScheduledTask\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "range": {
+        "startLine": 100,
+        "startChar": 15,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "ad4f83e4ea9ff44aa9c5f21216d450cf9814d609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28eec7bf_1bc8af16",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-15T05:51:31Z",
+      "side": 1,
+      "message": "Please fix.",
+      "revId": "ad4f83e4ea9ff44aa9c5f21216d450cf9814d609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
