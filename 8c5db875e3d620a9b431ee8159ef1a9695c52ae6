@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6950a9d7_51c10244",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-15T09:18:01Z",
+      "side": 1,
+      "message": "I spied CallInfo just to mock the getBluetoothCalls() function only, which tries to get actual calls from a phone with a function from a parent class that is hard to control.",
+      "revId": "8c5db875e3d620a9b431ee8159ef1a9695c52ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
