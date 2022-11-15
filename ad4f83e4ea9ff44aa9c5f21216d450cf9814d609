@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a33dcfd5_1f941ab4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-15T23:17:00Z",
+      "side": 1,
+      "message": "Just tried. `waitForLooperToBeIdle` doesn\u0027t work because the Activity UI thread will get into idle state when waiting for Bluetooth enabling to be timeout.",
+      "parentUuid": "183b01f0_d09147b2",
+      "range": {
+        "startLine": 100,
+        "startChar": 15,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "ad4f83e4ea9ff44aa9c5f21216d450cf9814d609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28eec7bf_1bc8af16",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-11-15T05:51:31Z",
       "side": 1,
       "message": "Please fix.",
+      "revId": "ad4f83e4ea9ff44aa9c5f21216d450cf9814d609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d0d200_21a19100",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-15T23:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28eec7bf_1bc8af16",
       "revId": "ad4f83e4ea9ff44aa9c5f21216d450cf9814d609",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
