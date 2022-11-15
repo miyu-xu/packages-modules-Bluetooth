@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "855e351d_5eca3a76",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-11-15T23:12:51Z",
+      "side": 1,
+      "message": "should this really be cleared here?  how will it ever be un-cleared?",
+      "revId": "af44fdd45017ff3424144b9c3d67ae1a5a5ba792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
