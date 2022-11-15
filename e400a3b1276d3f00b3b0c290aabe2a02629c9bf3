@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f56fd6bd_6e38b0c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-15T00:15:46Z",
+      "side": 1,
+      "message": "please double-check that they actually show up in the dumpsys now",
+      "revId": "e400a3b1276d3f00b3b0c290aabe2a02629c9bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
