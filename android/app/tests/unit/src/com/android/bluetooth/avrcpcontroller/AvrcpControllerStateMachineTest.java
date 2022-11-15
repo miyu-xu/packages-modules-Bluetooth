@@ -1429,6 +1429,7 @@ public class AvrcpControllerStateMachineTest {
      * Test receiving an audio focus loss event. A pause should be sent
      */
     @Test
+    @FlakyTest
     public void testOnAudioFocusLoss_pauseSent() {
         setUpConnectedState(true, true);
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
