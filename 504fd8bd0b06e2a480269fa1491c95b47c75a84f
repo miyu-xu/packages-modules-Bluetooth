@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef0a8b55_0751e9ad",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-15T09:11:29Z",
+      "side": 1,
+      "message": "Looking above, we have both @SystemApi and @hide on METADATA_* values, so I\u0027m guessing I should add @SystemApi, and also keep @hide ?\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2302481",
+      "parentUuid": "920d4bc9_d132b549",
+      "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad4d0f68_4b7c8822",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 3
@@ -84,6 +102,24 @@
       "writtenOn": "2022-11-14T23:40:19Z",
       "side": 1,
       "message": "nit: consider renaming to LE_AUDIO_SUPPORTED or something similar to be a bit more descriptive.",
+      "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7019629d_a11a85c5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-15T09:11:29Z",
+      "side": 1,
+      "message": "Metadata is exchanged just with fast pair, and this value might not be just boolean, what will be included in it is still to be decided.\ni.e. we might want to include fact that device can also do CTKD and on what transports.",
+      "parentUuid": "ad4d0f68_4b7c8822",
       "revId": "504fd8bd0b06e2a480269fa1491c95b47c75a84f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
