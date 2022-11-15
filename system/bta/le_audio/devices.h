@@ -86,6 +86,7 @@ class LeAudioDevice {
   int group_id_;
   bool csis_member_;
   std::bitset<16> tmap_role_;
+  bool remove_pending_from_group_flag_;
 
   uint8_t audio_directions_;
   types::AudioLocations snk_audio_locations_;
@@ -118,6 +119,7 @@ class LeAudioDevice {
         encrypted_(false),
         group_id_(group_id),
         csis_member_(false),
+        remove_pending_from_group_flag_(false),
         audio_directions_(0),
         link_quality_timer(nullptr) {}
   ~LeAudioDevice(void);
@@ -179,6 +181,12 @@ class LeAudioDevice {
                                    const std::vector<uint8_t>& ccid_list);
   bool IsMetadataChanged(types::AudioContexts context_type,
                          const std::vector<uint8_t>& ccid_list);
+  void SetDeviceAsRemoveFromGroupPendingFlag(bool value) {
+    remove_pending_from_group_flag_ = value;
+  }
+  bool IsRemoveFromGroupPending(void) {
+    return remove_pending_from_group_flag_;
+  }
 
  private:
   types::AudioContexts avail_snk_contexts_;
