@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eca10d82_a5c1ab53",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-11-15T19:53:06Z",
+      "side": 1,
+      "message": "Yes, added a comment.",
+      "parentUuid": "1779c253_3f7df3b8",
+      "revId": "d50b9db0dc38e693e282c8a04294fb17a1b6a490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43d899ff_81904628",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-15T19:22:11Z",
       "side": 1,
       "message": "spelling: depending",
+      "revId": "d50b9db0dc38e693e282c8a04294fb17a1b6a490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ad80429_01e818ef",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-11-15T19:53:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43d899ff_81904628",
       "revId": "d50b9db0dc38e693e282c8a04294fb17a1b6a490",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
