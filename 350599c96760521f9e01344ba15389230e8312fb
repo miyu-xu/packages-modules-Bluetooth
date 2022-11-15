@@ -152,6 +152,24 @@
       "parentUuid": "da00f2b1_899ccfa6",
       "revId": "350599c96760521f9e01344ba15389230e8312fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14b59578_fb6b51fc",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-15T20:45:49Z",
+      "side": 1,
+      "message": "I\u0027d like to get this finally merged, since Łukasz is out this week, we\u0027ll continue discussion once he\u0027s back, and if needed have a foollow-up patch.",
+      "parentUuid": "69f2823f_8e6902c9",
+      "revId": "350599c96760521f9e01344ba15389230e8312fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
