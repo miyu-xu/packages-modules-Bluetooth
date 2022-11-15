@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "846e7b47_b8f1eb49",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-11-15T19:18:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "262095bb_b66cdd1a",
+      "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b8bddfa_658e39df",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-14T21:44:02Z",
       "side": 1,
       "message": "I think I\u0027d prefer this gets renamed to `OnAclDisconnected` to reflect when this actually occurs.\n\n@sonnysasaka@google.com opinions?",
+      "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6176b443_efe4cf5c",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-11-15T19:18:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b8bddfa_658e39df",
       "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -84,6 +120,24 @@
       "side": 1,
       "message": "I think the comment I mentioned is enough. It may still be prudent to have this code in case an ACL disconnect is emitted but the gatt disconnect is not (i.e. a partial stack shutdown), which may result in a weird internal state.",
       "parentUuid": "a660d44b_9001ec66",
+      "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8493613b_93ebd732",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-11-15T19:18:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22cbb5cc_d76e9c4b",
       "revId": "a9bf8d668bebdb6797ce1190528fec583addf2d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
