@@ -67,6 +67,7 @@
 #include "btif_sdp.h"
 #include "btif_storage.h"
 #include "btif_util.h"
+#include "common/lru.h"
 #include "common/metrics.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
@@ -190,6 +191,11 @@ typedef struct {
   bt_oob_data_t p256_data; /* P256 Data or empty */
 } btif_dm_oob_cb_t;
 
+typedef struct {
+  bluetooth::common::LegacyLruCache<RawAddress, std::vector<uint8_t>>
+      le_audio_cache;
+} btif_dm_metadata_cb_t;
+
 typedef struct { unsigned int manufact_id; } skip_sdp_entry_t;
 
 typedef enum {
@@ -246,6 +252,8 @@ static void btif_dm_remove_ble_bonding_keys(void);
 static void btif_dm_save_ble_bonding_keys(RawAddress& bd_addr);
 static btif_dm_pairing_cb_t pairing_cb;
 static btif_dm_oob_cb_t oob_cb;
+static btif_dm_metadata_cb_t metadata_cb{
+    .le_audio_cache{40, "BTIF_DM_METADATA"}};
 static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport);
 static void btif_update_remote_properties(const RawAddress& bd_addr,
@@ -648,9 +656,32 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
 /* If device is LE Audio capable, we prefer LE connection first, this speeds
  * up LE profile connection, and limits all possible service discovery
  * ordering issues (first Classic, GATT over SDP, etc) */
-static bool is_device_le_audio_capable(const RawAddress bd_addr) {
-  if (!LeAudioClient::IsLeAudioClientRunning() ||
-      !check_cod_le_audio(bd_addr)) {
+static bool le_audio_force_le_transport(const RawAddress bd_addr) {
+  if (!LeAudioClient::IsLeAudioClientRunning()) {
+    /* If LE Audio profile is not enabled, do nothing. */
+    return false;
+  }
+
+  /* Check if device was discovered by Fast Pair, if yes give it special
+   * treatment */
+  std::vector<uint8_t>* le_audio_metadata_from_fp =
+      metadata_cb.le_audio_cache.Find(bd_addr);
+  if (le_audio_metadata_from_fp != nullptr) {
+    std::vector value = *le_audio_metadata_from_fp;
+    if (value.size() > 1 && value.at(1) == 1) {
+      /* if bit 1 is set, CTKD from Classic to LE is supported, we can use
+       * Classic transport to Bond */
+      return false;
+    } else {
+      /* TODO: shall we bother about no CTKD support case at all ? */
+      /* CTKD from Classic to LE is not supported, must bond on LE transport.
+       * Fast Pair should make sure device is discoverable on LE */
+      return true;
+    }
+  }
+
+  if (!check_cod_le_audio(bd_addr)) {
+    /* CoD says device is not LE Audio capable, no special treatment */
     return false;
   }
 
@@ -658,6 +689,9 @@ static bool is_device_le_audio_capable(const RawAddress bd_addr) {
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
   BTM_ReadDevInfo(bd_addr, &tmp_dev_type, &addr_type);
   if (tmp_dev_type & BT_DEVICE_TYPE_BLE) {
+    /* LE Audio capable device is discoverable over both LE and Classic using
+     * same address. Prefer to use LE transport, as we don't know if it can do
+     * CTKD from Classic to LE */
     return true;
   }
 
@@ -679,8 +713,8 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
   bool is_hid = check_cod(&bd_addr, COD_HID_POINTING);
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
 
-  if (transport == BT_TRANSPORT_AUTO && is_device_le_audio_capable(bd_addr)) {
-    LOG_INFO("LE Audio && advertising over LE, use LE transport for Bonding");
+  if (transport == BT_TRANSPORT_AUTO && le_audio_force_le_transport(bd_addr)) {
+    LOG_INFO("LE Audio capable, forcing LE transport for Bonding");
     transport = BT_TRANSPORT_LE;
   }
 
@@ -1525,8 +1559,16 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       bool skip_reporting_wait_for_le = false;
       if (bd_addr == pairing_cb.bd_addr ||
           bd_addr == pairing_cb.static_bdaddr) {
-        bool le_audio_capable = LeAudioClient::IsLeAudioClientRunning() &&
-                                check_cod_le_audio(bd_addr);
+        bool le_audio_capable = LeAudioClient::IsLeAudioClientRunning();
+        if (le_audio_capable) {
+          /* Check if device was discovered as LE capable by Fast Pair or have
+           * LE Audio in CoD. If neither, it's not LE Audio capable */
+          if ((metadata_cb.le_audio_cache.Find(bd_addr) == nullptr) &&
+              !check_cod_le_audio(bd_addr)) {
+            le_audio_capable = false;
+          }
+        }
+
         if (le_audio_capable && a2dp_sink_capable &&
             pairing_cb.gatt_on_le !=
                 btif_dm_pairing_cb_t::service_discovery_state::FINISHED) {
@@ -3686,4 +3728,12 @@ void btif_dm_set_event_filter_inquiry_result_all_devices() {
 }
 
 void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
-                              std::vector<uint8_t> value) {}
+                              std::vector<uint8_t> value) {
+  static const int METADATA_LE_AUDIO = 26;
+  /* For now just knowing device is LE Audio capable is enough, don't even parse
+   * the value */
+  if (key == METADATA_LE_AUDIO) {
+    LOG_INFO("Device is LE Audio Capable!!");
+    metadata_cb.le_audio_cache.Put(remote_bd_addr, value);
+  }
+}
