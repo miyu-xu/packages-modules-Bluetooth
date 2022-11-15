@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5be86e89_d864dde0",
+        "filename": "system/btif/include/btif_profile_storage.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-15T19:28:43Z",
+      "side": 1,
+      "message": "nit: New file, new license header",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 80
+      },
+      "revId": "409b65d7a99f2a54d097a4fdb7fcfa15976f428a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
