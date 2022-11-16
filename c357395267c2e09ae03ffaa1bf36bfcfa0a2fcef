@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a27120_5e0e9779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-16T08:09:34Z",
+      "side": 1,
+      "message": "This need way more code to work.\n\nSetting the native interface of mA2dpServce cannot be done before startService.\n\nThis is achieved for HFP by doing a objectFactory \u0026 co.\nexample [here](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java;l\u003d144?q\u003dheadsetservicetest\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master)",
+      "revId": "c357395267c2e09ae03ffaa1bf36bfcfa0a2fcef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
