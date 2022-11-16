@@ -190,6 +190,7 @@ init_flags!(
         periodic_advertising_adi = true,
         redact_log = true,
         sdp_serialization = true,
+        set_min_encryption = true,
     }
     // extra_fields are not a 1 to 1 match with "INIT_*" flags
     extra_fields: {
