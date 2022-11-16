@@ -349,6 +349,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9767bd52_07eb12e6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/CallInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-16T02:26:39Z",
+      "side": 1,
+      "message": "Then I think it okay to use this constructor. But let\u0027s change the string as something like \"com.placeholder.(package|class).name\" to indicate that they are not used.",
+      "parentUuid": "797476f7_2b31b18a",
+      "range": {
+        "startLine": 322,
+        "startChar": 33,
+        "endLine": 323,
+        "endChar": 72
+      },
+      "revId": "8c5db875e3d620a9b431ee8159ef1a9695c52ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa3d5492_1b09083c",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/CallInfoTest.java",
         "patchSetId": 1
