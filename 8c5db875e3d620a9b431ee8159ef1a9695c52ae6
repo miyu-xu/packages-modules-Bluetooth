@@ -371,6 +371,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3065174_7192433f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/CallInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-16T10:12:34Z",
+      "side": 1,
+      "message": "Got it. changed!",
+      "parentUuid": "9767bd52_07eb12e6",
+      "range": {
+        "startLine": 322,
+        "startChar": 33,
+        "endLine": 323,
+        "endChar": 72
+      },
+      "revId": "8c5db875e3d620a9b431ee8159ef1a9695c52ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3d5492_1b09083c",
