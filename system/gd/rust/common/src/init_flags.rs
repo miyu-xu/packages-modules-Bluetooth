@@ -224,6 +224,7 @@ init_flags!(
         redact_log = true,
         sdp_serialization = true,
         sdp_skip_rnr_if_known = true,
+        set_min_encryption = true,
     }
     // extra_fields are not a 1 to 1 match with "INIT_*" flags
     extra_fields: {
