@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6f3ad6c_35dbf858",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4616,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-16T15:39:03Z",
+      "side": 1,
+      "message": "Yes. As there is possibility to trigger disconnection of connecting device, there is need to disconnect all profiles from that device.",
+      "parentUuid": "6f2ec92c_67f8a1d0",
+      "range": {
+        "startLine": 4612,
+        "startChar": 0,
+        "endLine": 4616,
+        "endChar": 9
+      },
+      "revId": "c085f40edb65aba7f9462ffa66403c40a8a19947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7700450_8d03fac2",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "645cd456_983424be",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4624,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-16T15:39:03Z",
+      "side": 1,
+      "message": "Yes. As there is possibility to trigger disconnection of connecting device, there is need to disconnect all profiles from that device.",
+      "parentUuid": "b7700450_8d03fac2",
+      "range": {
+        "startLine": 4622,
+        "startChar": 12,
+        "endLine": 4624,
+        "endChar": 59
+      },
+      "revId": "c085f40edb65aba7f9462ffa66403c40a8a19947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5cac366_6f6c2e36",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-11-11T08:26:21Z",
       "side": 1,
       "message": "looks good. what about other leaudio profiles? maybe you could cover it as well?",
+      "revId": "c085f40edb65aba7f9462ffa66403c40a8a19947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c29de91d_f9857d97",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4629,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-11-16T15:39:03Z",
+      "side": 1,
+      "message": "Yes. As there is possibility to trigger disconnection of connecting device, there is need to disconnect all profiles from that device.",
+      "parentUuid": "a5cac366_6f6c2e36",
       "revId": "c085f40edb65aba7f9462ffa66403c40a8a19947",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
