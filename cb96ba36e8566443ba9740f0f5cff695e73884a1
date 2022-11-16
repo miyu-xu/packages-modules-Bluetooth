@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6c8c338_f184183d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-16T07:30:40Z",
+      "side": 1,
+      "message": "Please add tests for writing the class to parcel and restoring it:\n\nhttps://source.corp.google.com/android/cts/tests/tests/media/bettertogether/src/android/media/bettertogether/cts/MediaMetadataTest.java;rcl\u003d98256c3b62ace0b60b7a601fe74c6e02daa21629;l\u003d214\n\nAlso please add call toString()  (just for coverage)",
+      "revId": "cb96ba36e8566443ba9740f0f5cff695e73884a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
