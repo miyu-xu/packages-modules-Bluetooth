@@ -31,6 +31,7 @@ table InitFlagsData {
     redact_log_is_enabled:bool (privacy:"Any");
     sdp_serialization_is_enabled:bool (privacy:"Any");
     sydney_5_3_gatt_periodic_advertising_adi_is_enabled:bool (privacy:"Any");
+    sydney_5_3_set_min_encryption_is_enabled:bool (privacy:"Any");
 }
 // LINT.ThenChange(/system/gd/dumpsys/init_flags.cc)
 
