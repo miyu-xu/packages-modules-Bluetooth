@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef5d10c5_7f0b6148",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-16T01:12:48Z",
+      "side": 1,
+      "message": "Thanks for the comments Hyundo! I copied the settings for creating a BluetoothInCallService object from BluetoothInCallServiceTest, and didn\u0027t look at it since I thought they would be needed to create BluetoothInCallService, but after looking at your comments and spending some time, I realized most of them were not needed to test CallInfo, so I removed most of them and added a simple constructor for BluetoothInCallService :)\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java?q\u003dbluetoothInCallServiceTest\u0026sq\u003dpackage:%20android",
+      "revId": "0eb7b230bce80c6ae9003f82bbc6de78810dcdbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
