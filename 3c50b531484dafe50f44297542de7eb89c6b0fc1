@@ -93,6 +93,30 @@
       },
       "revId": "3c50b531484dafe50f44297542de7eb89c6b0fc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e42429ea_6bb8e8dd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnableActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-16T02:33:59Z",
+      "side": 1,
+      "message": "Thanks for the info. Good to know!",
+      "parentUuid": "11be90dc_221fbf2c",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 79
+      },
+      "revId": "3c50b531484dafe50f44297542de7eb89c6b0fc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
