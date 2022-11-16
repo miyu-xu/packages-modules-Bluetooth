@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e633467_ee7c0a63",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1683110
+      },
+      "writtenOn": "2022-11-16T13:57:43Z",
+      "side": 1,
+      "message": "IIUC, it should be byte (not bit).\n\nAnd, could we comment some where for the meaning of each byte?",
+      "range": {
+        "startLine": 672,
+        "startChar": 12,
+        "endLine": 672,
+        "endChar": 15
+      },
+      "revId": "aa6b37c40563488b633f443d1e476c76713e548e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
