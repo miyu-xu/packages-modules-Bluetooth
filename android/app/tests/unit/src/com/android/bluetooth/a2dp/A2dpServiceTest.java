@@ -98,8 +98,8 @@ public class A2dpServiceTest {
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        startService();
         mA2dpService.mA2dpNativeInterface = mA2dpNativeInterface;
+        startService();
 
         // Override the timeout value to speed up the test
         A2dpStateMachine.sConnectTimeoutMs = TIMEOUT_MS;    // 1s
