@@ -190,6 +190,7 @@ init_flags!(
         redact_log = true,
         sdp_serialization = true,
         sydney_5_3_gatt_periodic_advertising_adi = true,
+        sydney_5_3_set_min_encryption = true,
     }
     // extra_fields are not a 1 to 1 match with "INIT_*" flags
     extra_fields: {
