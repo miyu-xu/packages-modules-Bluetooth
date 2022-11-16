@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e470dad4_29b28c53",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-16T08:48:10Z",
+      "side": 1,
+      "message": "Changed?",
+      "range": {
+        "startLine": 942,
+        "startChar": 33,
+        "endLine": 942,
+        "endChar": 40
+      },
+      "revId": "3b6948756928a6225bd8d631b7c6147a63597ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f195de21_2346d4c9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-16T08:48:10Z",
+      "side": 1,
+      "message": "Why all the tests are using anyBoolean()? \nShouldn\u0027t there be `eq(true)` for disconnecting the device when a fallback device exists?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "3b6948756928a6225bd8d631b7c6147a63597ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c60582_116e098e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-16T08:48:10Z",
+      "side": 1,
+      "message": "How about adding @NotNull?",
+      "range": {
+        "startLine": 274,
+        "startChar": 60,
+        "endLine": 274,
+        "endChar": 75
+      },
+      "revId": "3b6948756928a6225bd8d631b7c6147a63597ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
