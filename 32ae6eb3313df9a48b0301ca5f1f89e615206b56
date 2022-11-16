@@ -88,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b0cf899_7f77cd42",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-16T00:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25dcc2f9_e4551c50",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 6
+      },
+      "revId": "32ae6eb3313df9a48b0301ca5f1f89e615206b56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1425c11_ea426d62",
