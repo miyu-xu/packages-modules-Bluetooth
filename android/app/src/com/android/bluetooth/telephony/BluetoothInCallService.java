@@ -47,6 +47,7 @@ import android.util.Log;
 
 import androidx.annotation.VisibleForTesting;
 
+import com.android.bluetooth.Utils;
 import com.android.bluetooth.hfp.BluetoothHeadsetProxy;
 import com.android.bluetooth.tbs.BluetoothLeCallControlProxy;
 
@@ -104,11 +105,17 @@ public class BluetoothInCallService extends InCallService {
     private BluetoothCall mOldHeldCall = null;
     private boolean mHeadsetUpdatedRecently = false;
     private boolean mIsDisconnectedTonePlaying = false;
-    private boolean mIsTerminatedByClient = false;
+
+    @VisibleForTesting
+    boolean mIsTerminatedByClient = false;
 
     private static final Object LOCK = new Object();
-    private BluetoothHeadsetProxy mBluetoothHeadset;
-    private BluetoothLeCallControlProxy mBluetoothLeCallControl;
+
+    @VisibleForTesting
+    BluetoothHeadsetProxy mBluetoothHeadset;
+
+    @VisibleForTesting
+    BluetoothLeCallControlProxy mBluetoothLeCallControl;
     private ExecutorService mExecutor;
 
     @VisibleForTesting
@@ -639,13 +646,17 @@ public class BluetoothInCallService extends InCallService {
     public void onCreate() {
         Log.d(TAG, "onCreate");
         super.onCreate();
-        BluetoothAdapter.getDefaultAdapter()
-                .getProfileProxy(this, mProfileListener, BluetoothProfile.HEADSET);
-        BluetoothAdapter.getDefaultAdapter().
-                getProfileProxy(this, mProfileListener, BluetoothProfile.LE_CALL_CONTROL);
+        if (!Utils.isInstrumentationTestMode()) {
+            BluetoothAdapter.getDefaultAdapter()
+                    .getProfileProxy(this, mProfileListener, BluetoothProfile.HEADSET);
+            BluetoothAdapter.getDefaultAdapter()
+                    .getProfileProxy(this, mProfileListener, BluetoothProfile.LE_CALL_CONTROL);
+        }
         mBluetoothAdapterReceiver = new BluetoothAdapterReceiver();
         IntentFilter intentFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
-        registerReceiver(mBluetoothAdapterReceiver, intentFilter);
+        if (!Utils.isInstrumentationTestMode()) {
+            registerReceiver(mBluetoothAdapterReceiver, intentFilter);
+        }
         mOnCreateCalled = true;
     }
 
@@ -657,10 +668,13 @@ public class BluetoothInCallService extends InCallService {
         super.onDestroy();
     }
 
-    private void clear() {
+    @VisibleForTesting
+    void clear() {
         Log.d(TAG, "clear");
         if (mBluetoothAdapterReceiver != null) {
-            unregisterReceiver(mBluetoothAdapterReceiver);
+            if (!Utils.isInstrumentationTestMode()) {
+                unregisterReceiver(mBluetoothAdapterReceiver);
+            }
             mBluetoothAdapterReceiver = null;
         }
         if (mBluetoothHeadset != null) {
@@ -1340,7 +1354,8 @@ public class BluetoothInCallService extends InCallService {
         return null;
     }
 
-    private int getTbsTerminationReason(BluetoothCall call) {
+    @VisibleForTesting
+    int getTbsTerminationReason(BluetoothCall call) {
         DisconnectCause cause = call.getDisconnectCause();
         if (cause == null) {
             Log.w(TAG, " termination cause is null");
