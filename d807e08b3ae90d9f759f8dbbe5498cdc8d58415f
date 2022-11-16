@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b411681a_6b001c04",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5087,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-16T18:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57c2172e_e1fa143d",
+      "revId": "d807e08b3ae90d9f759f8dbbe5498cdc8d58415f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffed789b_e3945bb8",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "896324ce_a76350ce",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5092,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-16T18:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffed789b_e3945bb8",
+      "revId": "d807e08b3ae90d9f759f8dbbe5498cdc8d58415f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12b6fce5_07fc0dd2",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-11-16T18:24:22Z",
       "side": 1,
       "message": "AttributionSource doesn\u0027t seem to be used in both of these, so we can remove it",
+      "revId": "d807e08b3ae90d9f759f8dbbe5498cdc8d58415f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4dc425_35b19fd6",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3360,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-16T18:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12b6fce5_07fc0dd2",
       "revId": "d807e08b3ae90d9f759f8dbbe5498cdc8d58415f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
