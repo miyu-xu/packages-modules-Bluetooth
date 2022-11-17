@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c1f623c_a81d38e9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4549,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "BluetoothProfile.STATE_CONNECTING",
+      "range": {
+        "startLine": 4549,
+        "startChar": 36,
+        "endLine": 4549,
+        "endChar": 51
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a5dd107_9fe5c071",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4549,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"\nif (mA2dpService !\u003d null \u0026\u0026 (mA2dpService.getConnectionState(device)\n                \u003d\u003d BluetoothProfile.STATE_CONNECTED\n                || mA2dpService.getConnectionState(device)\n                \u003d\u003d BluetoothProfile.STATE_CONNECTING)) {",
+      "range": {
+        "startLine": 4546,
+        "startChar": 8,
+        "endLine": 4549,
+        "endChar": 52
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc95740f_e6bd14c3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4556,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4553,
+        "startChar": 37,
+        "endLine": 4556,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb8a4890_e6b0b9fd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4563,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4560,
+        "startChar": 36,
+        "endLine": 4563,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e50243_803c1720",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4571,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4568,
+        "startChar": 45,
+        "endLine": 4571,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6428b4c7_115cd887",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4578,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4575,
+        "startChar": 38,
+        "endLine": 4578,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b73a68_0734c161",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4585,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4582,
+        "startChar": 32,
+        "endLine": 4585,
+        "endChar": 54
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c44d0839_38769d29",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4592,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4589,
+        "startChar": 38,
+        "endLine": 4592,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489b62a2_ca13af28",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4599,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4596,
+        "startChar": 36,
+        "endLine": 4599,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "439e4220_2be6d04f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4606,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4603,
+        "startChar": 35,
+        "endLine": 4606,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6535438_63995084",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4613,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4610,
+        "startChar": 39,
+        "endLine": 4613,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbf676ea_bdeddb07",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4620,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "BluetoothProfile.STATE_CONNECTING",
+      "range": {
+        "startLine": 4620,
+        "startChar": 36,
+        "endLine": 4620,
+        "endChar": 51
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd558c03_b98b9a75",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4620,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4617,
+        "startChar": 33,
+        "endLine": 4620,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3528f1a_2fa95205",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4627,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4624,
+        "startChar": 39,
+        "endLine": 4627,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b07ff92a_63a73eb1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4634,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4631,
+        "startChar": 38,
+        "endLine": 4634,
+        "endChar": 54
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd3418af_2fa3111e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4641,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4638,
+        "startChar": 42,
+        "endLine": 4641,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09013a37_c58018b2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4648,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4645,
+        "startChar": 32,
+        "endLine": 4648,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ddd4ac1_28dd86f3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4656,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4653,
+        "startChar": 16,
+        "endLine": 4656,
+        "endChar": 54
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e515cbd5_2b1a8a48",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4663,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4660,
+        "startChar": 36,
+        "endLine": 4663,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2513b038_48795a64",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4670,
+      "author": {
+        "id": 1308560
+      },
+      "writtenOn": "2022-11-17T03:14:55Z",
+      "side": 1,
+      "message": "it should be \"if(service!\u003dnull \u0026\u0026 (connection check))\"",
+      "range": {
+        "startLine": 4667,
+        "startChar": 39,
+        "endLine": 4670,
+        "endChar": 53
+      },
+      "revId": "7bfe195a06deefabe204c81669b709a055b0b07c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
