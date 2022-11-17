@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f44eaae2_4f98c852",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivity.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-17T05:22:25Z",
+      "side": 1,
+      "message": "how about non-static value `mBtEnablingTimeoutValue`? \nThen we can make sure it is initialized every time the Activity instance is created, even when recreated within the same process.",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 38
+      },
+      "revId": "b906ba893a418b0459ac1f628db28acfe594626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ea128f_fb64427e",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivity.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-17T05:22:25Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "b906ba893a418b0459ac1f628db28acfe594626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d32e461d_629885c7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivityTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-17T05:22:25Z",
+      "side": 1,
+      "message": "Let\u0027s create a variable for this and use it in L100.",
+      "range": {
+        "startLine": 90,
+        "startChar": 65,
+        "endLine": 90,
+        "endChar": 68
+      },
+      "revId": "b906ba893a418b0459ac1f628db28acfe594626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
