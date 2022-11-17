@@ -34,6 +34,7 @@
 #include "bta/include/bta_gatt_api.h"
 #include "bta/sys/bta_sys.h"
 #include "main/shim/dumpsys.h"
+#include "osi/include/fixed_queue.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "types/bluetooth/uuid.h"
@@ -385,6 +386,23 @@ typedef struct {
   uint16_t conn_id;
   alarm_t* gatt_close_timer; /* GATT channel close delay timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
+
+  std::string ToString() const {
+    return base::StringPrintf(
+        "p_search_cback:%p p_btm_inq_info:%p services:0x%x "
+        "services_to_search:%x services_found:%x state:%hu peer_bdaddr:%s "
+        "name_discover_done:%u peer_name:%s p_pending_search:%p "
+        "pending_discovery_queue_sz:%zu wait_disc:%u sdp_results:%u uuid:%s "
+        "peer_scn:%hhu transport:%s client_if:%hu uuid_to_search:%u "
+        "gatt_disc_active:%u conn_id:%hu pending_close_bda:%s",
+        p_search_cback, p_btm_inq_info, services, services_to_search,
+        services_found, state, ADDRESS_TO_LOGGABLE_CSTR(peer_bdaddr),
+        name_discover_done, peer_name, p_pending_search,
+        fixed_queue_length(pending_discovery_queue), wait_disc, sdp_results,
+        uuid.ToString().c_str(), peer_scn, bt_transport_text(transport).c_str(),
+        client_if, uuid_to_search, gatt_disc_active, conn_id,
+        ADDRESS_TO_LOGGABLE_CSTR(pending_close_bda));
+  }
 
 } tBTA_DM_SEARCH_CB;
 
