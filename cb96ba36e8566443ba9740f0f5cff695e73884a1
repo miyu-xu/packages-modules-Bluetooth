@@ -33,6 +33,24 @@
       "message": "Hi William,\n\nSorry for adding you directly. I chose you from the list of OWNERS for `Android.bp`. Please let me know if you are not the right person for this.",
       "revId": "cb96ba36e8566443ba9740f0f5cff695e73884a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb22a3c_3486b728",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-17T00:58:33Z",
+      "side": 1,
+      "message": "Looks good.\nand BluetoothInstrumentationTests had a success run in the presubmit 🎉",
+      "parentUuid": "2bfd91c6_524f8fa8",
+      "revId": "cb96ba36e8566443ba9740f0f5cff695e73884a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
