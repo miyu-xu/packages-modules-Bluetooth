@@ -8,6 +8,7 @@ use crate::utils::{LTCheckedPtr, LTCheckedPtrMut};
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 use std::cmp;
 use std::convert::TryFrom;
+use std::ffi::CString;
 use std::fmt::{Debug, Display, Formatter, Result};
 use std::hash::{Hash, Hasher};
 use std::mem;
@@ -697,28 +698,12 @@ impl From<BluetoothProperty> for (Box<[u8]>, bindings::bt_property_t) {
 }
 
 pub enum SupportedProfiles {
-    HidHost,
-    Hfp,
-    A2dp,
-    Gatt,
-    Sdp,
-    Socket,
-}
-
-impl From<SupportedProfiles> for Vec<u8> {
-    fn from(item: SupportedProfiles) -> Self {
-        match item {
-            SupportedProfiles::HidHost => "hidhost",
-            SupportedProfiles::Hfp => "hfp",
-            SupportedProfiles::A2dp => "a2dp",
-            SupportedProfiles::Gatt => "gatt",
-            SupportedProfiles::Sdp => "sdp",
-            SupportedProfiles::Socket => "socket",
-        }
-        .bytes()
-        .chain("\0".bytes())
-        .collect::<Vec<u8>>()
-    }
+    HidHost = CString::new("hidhost"),
+    Hfp = CString::new("hfp"),
+    A2dp = CString::new("a2dp"),
+    Gatt = CString::new("gatt"),
+    Sdp = CString::new("dsp"),
+    Socket = CString::new("socket"),
 }
 
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
@@ -1199,9 +1184,7 @@ impl BluetoothInterface {
         &self,
         profile: SupportedProfiles,
     ) -> *const std::os::raw::c_void {
-        let cprofile = Vec::<u8>::from(profile);
-        let cprofile_ptr = LTCheckedPtr::from(&cprofile);
-        ccall!(self, get_profile_interface, cprofile_ptr.cast_into::<std::os::raw::c_char>())
+        ccall!(self, get_profile_interface, profile.as_ptr())
     }
 
     pub(crate) fn as_raw_ptr(&self) -> *const u8 {
