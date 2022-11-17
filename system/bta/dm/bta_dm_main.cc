@@ -65,6 +65,11 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
                    bta_dm_search_cb.state, p_msg->event);
 
   tBTA_DM_MSG* message = (tBTA_DM_MSG*)p_msg;
+  const tBTA_DM_STATE state =
+      static_cast<const tBTA_DM_STATE>(bta_dm_search_cb.state);
+  const tBTA_DM_EVT event = static_cast<const tBTA_DM_EVT>(p_msg->event);
+  LOG_INFO("SEARCH_ENTRY BEG state:%s event:%s",
+           bta_dm_state_text(state).c_str(), bta_dm_event_text(event).c_str());
   switch (bta_dm_search_cb.state) {
     case BTA_DM_SEARCH_IDLE:
       switch (p_msg->event) {
@@ -82,15 +87,23 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
           bta_dm_close_gatt_conn(message);
           break;
-        default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+        case BTA_DM_INQUIRY_CMPL_EVT:
+        case BTA_DM_REMT_NAME_EVT:
+        case BTA_DM_SEARCH_CMPL_EVT:
+        case BTA_DM_DISCOVERY_RESULT_EVT:
+          LOG_ERROR("Received unexpected event:%s in state:%s",
+                    bta_dm_event_text(event).c_str(),
+                    bta_dm_state_text(state).c_str());
+          break;
       }
       break;
     case BTA_DM_SEARCH_ACTIVE:
       switch (p_msg->event) {
         case BTA_DM_REMT_NAME_EVT:
           bta_dm_rmt_name(message);
+          break;
+        case BTA_DM_SDP_RESULT_EVT:
+          bta_dm_sdp_result(message);
           break;
         case BTA_DM_SEARCH_CMPL_EVT:
           bta_dm_search_cmpl();
@@ -104,9 +117,12 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_API_DISCOVER_EVT:
           bta_dm_queue_disc(message);
           break;
-        default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+        case BTA_DM_API_SEARCH_EVT:
+        case BTA_DM_INQUIRY_CMPL_EVT:
+          LOG_ERROR("Received unexpected event:%s in state:%s",
+                    bta_dm_event_text(event).c_str(),
+                    bta_dm_state_text(state).c_str());
+          break;
       }
       break;
     case BTA_DM_SEARCH_CANCELLING:
@@ -126,9 +142,12 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_search_cancel_notify();
           bta_dm_execute_queued_request();
           break;
-        default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+        case BTA_DM_INQUIRY_CMPL_EVT:
+        case BTA_DM_DISC_CLOSE_TOUT_EVT:
+          LOG_ERROR("Received unexpected event:%s in state:%s",
+                    bta_dm_event_text(event).c_str(),
+                    bta_dm_state_text(state).c_str());
+          break;
       }
       break;
     case BTA_DM_DISCOVER_ACTIVE:
@@ -151,11 +170,17 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_API_DISCOVER_EVT:
           bta_dm_queue_disc(message);
           break;
-        default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+        case BTA_DM_INQUIRY_CMPL_EVT:
+        case BTA_DM_DISC_CLOSE_TOUT_EVT:
+          LOG_ERROR("Received unexpected event:%s in state:%s",
+                    bta_dm_event_text(event).c_str(),
+                    bta_dm_state_text(state).c_str());
+          break;
       }
       break;
   }
+
+  LOG_INFO("SEARCH_ENTRY END state:%s event:%s",
+           bta_dm_state_text(state).c_str(), bta_dm_event_text(event).c_str());
   return true;
 }
