@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd2c173_dcd3c6b3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppLauncherActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-17T09:39:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3f6127b_c2d94433",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "45df9ad594172a6a34a2645c0b9b3d8da7214e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1115701d_e2c3274b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-17T05:37:02Z",
       "side": 1,
       "message": "How about checking the action?",
+      "range": {
+        "startLine": 127,
+        "startChar": 57,
+        "endLine": 127,
+        "endChar": 62
+      },
+      "revId": "45df9ad594172a6a34a2645c0b9b3d8da7214e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6637f9a_1da6cc92",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppLauncherActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-17T09:39:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1115701d_e2c3274b",
       "range": {
         "startLine": 127,
         "startChar": 57,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f26042a_2548c4d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppLauncherActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-17T09:39:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dfc15c8_11a0d50a",
+      "range": {
+        "startLine": 131,
+        "startChar": 55,
+        "endLine": 131,
+        "endChar": 69
+      },
+      "revId": "45df9ad594172a6a34a2645c0b9b3d8da7214e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8adba01_d3fe959e",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-17T05:37:02Z",
       "side": 1,
       "message": "Since the code block passed to onActivity runs in main thread, we\u0027d better not using assertion in the block. Instead store the variables in the outside, and check after the block has ended.",
+      "range": {
+        "startLine": 168,
+        "startChar": 12,
+        "endLine": 168,
+        "endChar": 70
+      },
+      "revId": "45df9ad594172a6a34a2645c0b9b3d8da7214e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4250148c_e2a397fa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppLauncherActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-17T09:39:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8adba01_d3fe959e",
       "range": {
         "startLine": 168,
         "startChar": 12,
