@@ -131,6 +131,7 @@ extern void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 extern void btif_dm_hh_open_failed(RawAddress* bdaddr);
 extern void btif_hd_service_registration();
 extern void btif_hh_timer_timeout(void* data);
+extern void btif_hh_close_poll_thread(btif_hh_device_t* p_dev);
 
 /*******************************************************************************
  *  Functions
@@ -469,9 +470,7 @@ void btif_hh_remove_device(RawAddress bd_addr) {
   } else {
     BTIF_TRACE_WARNING("%s: device_num = 0", __func__);
   }
-
-  p_dev->hh_keep_polling = 0;
-  p_dev->hh_poll_thread_id = -1;
+  btif_hh_close_poll_thread(p_dev);
   BTIF_TRACE_DEBUG("%s: uhid fd = %d", __func__, p_dev->fd);
   if (p_dev->fd >= 0) {
     bta_hh_co_destroy(p_dev->fd);
@@ -1824,8 +1823,7 @@ static void cleanup(void) {
         bta_hh_co_destroy(p_dev->fd);
         p_dev->fd = -1;
       }
-      p_dev->hh_keep_polling = 0;
-      p_dev->hh_poll_thread_id = -1;
+      btif_hh_close_poll_thread(p_dev);
     }
   }
 }
