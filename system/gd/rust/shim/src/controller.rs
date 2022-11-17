@@ -87,6 +87,8 @@ le_feature_getters! {
     connected_iso_stream_peripheral,
     iso_broadcaster,
     synchronized_receiver,
+    ble_connection_subrating,
+    ble_connection_subrating_host,
 }
 
 macro_rules! opcode_getters {
