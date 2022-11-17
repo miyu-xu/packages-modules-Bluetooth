@@ -22,6 +22,7 @@
 #include <array>
 #include <future>
 #include <vector>
+#include <fcntl.h>
 
 #include "bta/hh/bta_hh_int.h"
 #include "bta/include/bta_ag_api.h"
@@ -291,6 +292,23 @@ TEST_F(BtifHhWithDevice, BTA_HH_GET_RPT_EVT) {
   }
 }
 
+<<<<<<< PATCH SET (364d8d Fix BT Stack crash when power off)
+TEST_F(BtifHhWithDevice, test_btif_hh_remove_device) {
+  btif_hh_remove_device(kDeviceAddress);
+
+  ASSERT_EQ(0, btif_hh_cb.devices[0].hh_keep_polling);
+  ASSERT_EQ((pthread_t)-1, btif_hh_cb.devices[0].hh_poll_thread_id);
+}
+
+TEST_F(BtifHhWithDevice, test_cleanup) {
+  btif_hh_cb.status = BTIF_HH_DEV_CONNECTED;
+  btif_hh_cb.devices[0].fd = open("/dev/null", O_RDWR | O_CLOEXEC);
+  btif_hh_get_interface()->cleanup();
+
+  ASSERT_EQ(0, btif_hh_cb.devices[0].hh_keep_polling);
+  ASSERT_EQ((pthread_t)-1, btif_hh_cb.devices[0].hh_poll_thread_id);
+  close(btif_hh_cb.devices[0].fd);
+=======
 class BtifHHVirtualUnplugTest : public BtifHhAdapterReady {
  protected:
   void SetUp() override {
@@ -337,4 +355,5 @@ TEST_F(BtifHHVirtualUnplugTest, test_btif_hh_virtual_unplug_device_not_open) {
   ASSERT_STREQ(kDeviceAddressConnecting.ToString().c_str(),
                res.raw_address.ToString().c_str());
   ASSERT_EQ(BTHH_CONN_STATE_DISCONNECTED, res.state);
+>>>>>>> BASE      (78fcd2 Merge "Fix address consolidation in SDP lookup and BT Obex T)
 }
