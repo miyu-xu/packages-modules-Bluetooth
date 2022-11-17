@@ -35,7 +35,9 @@
 #include "l2c_api.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/allocator.h"
+#include "osi/include/list.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_dev.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_hdr.h"
@@ -1478,4 +1480,34 @@ bool GATT_GetConnIdIfConnected(tGATT_IF gatt_if, const RawAddress& bd_addr,
 
   LOG_DEBUG("status=%d", status);
   return status;
+}
+
+static void gatt_bonded_check_add_address(const RawAddress& bda) {
+  if (!gatt_is_bda_in_the_srv_chg_clt_list(bda)) {
+    gatt_add_a_bonded_dev_for_srv_chg(bda);
+  }
+}
+
+/* Initialize GATTS list of bonded device service change updates.
+ *
+ * Addresses for bonded devices (publict for BR/EDR or pseudo for BLE) are added
+ * to GATTS service change control list so that updates are sent to bonded
+ * devices on next connect after any handles for GATTS services change due to
+ * services added/removed.
+ */
+void gatt_load_bonded(void) {
+  LOG_INFO();
+  for (tBTM_SEC_DEV_REC* p_dev_rec : btm_get_sec_dev_rec()) {
+    if (p_dev_rec->is_link_key_known()) {
+      LOG_VERBOSE("Add bonded BR/EDR transport %s",
+                  ADDRESS_TO_LOGGABLE_CSTR(p_dev_rec->bd_addr));
+      gatt_bonded_check_add_address(p_dev_rec->bd_addr);
+    }
+    if (p_dev_rec->is_le_link_key_known()) {
+      VLOG(1) << " add bonded BLE " << p_dev_rec->ble.pseudo_addr;
+      LOG_VERBOSE("Add bonded BLE %s",
+                  ADDRESS_TO_LOGGABLE_CSTR(p_dev_rec->ble.pseudo_addr));
+      gatt_bonded_check_add_address(p_dev_rec->ble.pseudo_addr);
+    }
+  }
 }
