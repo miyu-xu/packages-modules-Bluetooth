@@ -22,6 +22,30 @@
       },
       "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ddc3d5_a5dc7f21",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1601,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-17T18:21:47Z",
+      "side": 1,
+      "message": "```\nThe Controller shall not negotiate a key size smaller than this value for any subsequent connection over the BR/EDR transport\n```\nLooks like it affect BR/EDR connection only.\n\n\u003e Should this check stay for BLE connections \n\nI am not sure I understand this. There is a `|| BTM_IsBleConnection` just before, so if we are a BLE connection we will never hit this.",
+      "parentUuid": "bac796d0_a9c6c675",
+      "range": {
+        "startLine": 1600,
+        "startChar": 5,
+        "endLine": 1601,
+        "endChar": 72
+      },
+      "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
