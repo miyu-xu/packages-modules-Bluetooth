@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3bd7d50_fefb1674",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-17T10:33:27Z",
+      "side": 1,
+      "message": "Hi Katherine,\n\nThis is less important but it\u0027s friendly to the testers because there is no such UI confirmation in UI. We can only use btmon + dbus command to confirm the passkey.\n\nIt looks like a large change but most of them was done by rustfmt.\n\nThanks",
+      "revId": "d98397b1b0d9c092bfce2f63bbee1d2c672f6cca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
