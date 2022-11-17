@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c86303f_0a2c8c8e",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-17T05:43:40Z",
+      "side": 1,
+      "message": "Removed!",
+      "parentUuid": "5fd6a830_cafa6d85",
+      "range": {
+        "startLine": 649,
+        "startChar": 8,
+        "endLine": 649,
+        "endChar": 49
+      },
+      "revId": "27aa7b7af2eed2b40b0590051b36a941584664c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19291b89_68a5eba9",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-17T01:39:58Z",
       "side": 1,
       "message": "Didn\u0027t we agreed to use attachBaseContext() instead of this?",
+      "range": {
+        "startLine": 657,
+        "startChar": 8,
+        "endLine": 657,
+        "endChar": 49
+      },
+      "revId": "27aa7b7af2eed2b40b0590051b36a941584664c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba94772f_74f00f11",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-17T05:43:40Z",
+      "side": 1,
+      "message": "Talked offline. Thanks so much for providing the solution! I added overriding attachBaseContext, and mocked a context accordingly to make the test work :)",
+      "parentUuid": "19291b89_68a5eba9",
       "range": {
         "startLine": 657,
         "startChar": 8,
