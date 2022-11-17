@@ -118,6 +118,15 @@ struct semaphore_wait {
 };
 extern struct semaphore_wait semaphore_wait;
 
+// Name: semaphore_wait
+// Params: semaphore_t* semaphore, long usec
+// Return: void
+struct semaphore_wait_timeout {
+  std::function<void(semaphore_t* semaphore, long usec)> body{
+      [](semaphore_t* semaphore, long usec) {}};
+  void operator()(semaphore_t* semaphore, long usec) { body(semaphore, usec); };
+};
+extern struct semaphore_wait_timeout semaphore_wait_timeout;
 }  // namespace osi_semaphore
 }  // namespace mock
 }  // namespace test

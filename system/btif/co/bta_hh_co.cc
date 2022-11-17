@@ -39,6 +39,9 @@
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
 #include "types/raw_address.h"
+/** Fix HOGP mouse connect fail after unpair  @{ */
+#include "osi/include/semaphore.h"
+/** @} */
 
 const char* dev_path = "/dev/uhid";
 
@@ -355,6 +358,23 @@ void bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
     p_dev = &btif_hh_cb.devices[i];
     if (p_dev->dev_status != BTHH_CONN_STATE_UNKNOWN &&
         p_dev->dev_handle == dev_handle) {
+        /** Fix HOGP mouse connect fail after unpair  @{ */
+      if (BTHH_CONN_STATE_DISCONNECTED == p_dev->dev_status) {
+        // need read semaphore for close post
+        APPL_TRACE_DEBUG("%s: semaphore_wait_timeout hh status 1ms fd= %d",
+          __func__, (p_dev->status_sema)->fd);
+        if (p_dev->sema_inited == TRUE) {
+          semaphore_wait_timeout(p_dev->status_sema, 1*1000);
+        }
+      }
+      else {
+        // need read semaphore for close post
+        APPL_TRACE_DEBUG("%s: semaphore_wait_timeout hh status 500ms fd= %d", __func__, (p_dev->status_sema)->fd);
+        if (p_dev->sema_inited == TRUE) {
+          semaphore_wait_timeout(p_dev->status_sema, 500*1000);
+        }
+      }
+      /** @} */
       // We found a device with the same handle. Must be a device reconnected.
       APPL_TRACE_WARNING(
           "%s: Found an existing device with the same handle dev_status=%d, "
@@ -390,6 +410,11 @@ void bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
         p_dev->sub_class = sub_class;
         p_dev->app_id = app_id;
         p_dev->local_vup = false;
+        /** Fix HOGP mouse connect fail after unpair  @{ */
+        p_dev->sema_inited = TRUE;
+        p_dev->status_sema = semaphore_new(0);
+        APPL_TRACE_DEBUG("%s: init semaphore.fd = %d", __func__, (p_dev->status_sema)->fd);
+        /** @} */
 
         btif_hh_cb.device_num++;
         // This is a new device,open the uhid driver now.
