@@ -1,0 +1,556 @@
+﻿/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From 2b355e4aa4de848e5c53f048e38fb5f97ffdbfd9 Mon Sep 17 00:00:00 2001
+From: Sagar Verma <sagarv@codeaurora.org>
+Date: Sat, 12 Aug 2017 17:13:01 +0530
+Subject: [PATCH] AVRCP: Optional v1.3 Player Application Setting Features
+ (2/3)
+
+-PDU 0x11 List Player App Setting Atttributes
+-PDU 0x12 List Player App Setting Values
+-PDU 0x13 Get Current Player App Setting Values
+-PDU 0x14 Set Player App Setting Values
+-PDU 0x15 Set Player App Setting Atrribute Text
+-PDU 0x16 Get Plaeyr App Setting Value Text
+
+CRs-Fixed: 2077256
+Change-Id: I6c7def5c3cb8ba479122be5c27d1e63da0c9fdb9
+---
+ bta/av/bta_av_act.cc |   3 +
+ bta/av/bta_av_cfg.cc |  17 ++-
+ btif/src/btif_rc.cc  | 397 +++++++++++++++++++++++++++++++++++++++++++++++++--
+ include/bt_target.h  |   3 +
+ 4 files changed, 402 insertions(+), 18 deletions(-)
+
+diff --git a/bta/av/bta_av_act.cc b/bta/av/bta_av_act.cc
+index 5ca115b..b9d2bf3 100644
+--- a/bta/av/bta_av_act.cc
++++ b/bta/av/bta_av_act.cc
+@@ -1804,6 +1804,9 @@ tBTA_AV_FEAT bta_av_check_peer_features(uint16_t service_uuid) {
+ 
+       if (peer_rc_version >= AVRC_REV_1_3)
+         peer_features |= (BTA_AV_FEAT_VENDOR | BTA_AV_FEAT_METADATA);
++#if (defined(AVRC_QTI_V1_3_OPTIONAL_FEAT) && AVRC_QTI_V1_3_OPTIONAL_FEAT == TRUE)
++        peer_features |= (BTA_AV_FEAT_APP_SETTING);
++#endif
+ 
+       if (peer_rc_version >= AVRC_REV_1_4) {
+         /* get supported categories */
+diff --git a/bta/av/bta_av_cfg.cc b/bta/av/bta_av_cfg.cc
+index 5fc75ba..758ca14 100644
+--- a/bta/av/bta_av_cfg.cc
++++ b/bta/av/bta_av_cfg.cc
+@@ -74,17 +74,20 @@ const uint16_t bta_av_audio_flush_to[] = {
+ /* Note: if AVRC_SUPF_TG_GROUP_NAVI is set, bta_av_cfg.avrc_group should be true
+  */
+ #ifndef BTA_AV_RC_SUPF_TG
+-#if (AVRC_METADATA_INCLUDED == TRUE)
+-#define BTA_AV_RC_SUPF_TG                          \
+-  (AVRC_SUPF_TG_CAT1 | AVRC_SUPF_TG_MULTI_PLAYER | \
+-   AVRC_SUPF_TG_BROWSE) /* TODO: | AVRC_SUPF_TG_APP_SETTINGS) */
++#if ((AVRC_METADATA_INCLUDED == TRUE) && (defined(AVRC_QTI_V1_3_OPTIONAL_FEAT)) \
++&& (AVRC_QTI_V1_3_OPTIONAL_FEAT == TRUE))
++#define BTA_AV_RC_SUPF_TG (AVRC_SUPF_TG_CAT1|AVRC_SUPF_TG_MULTI_PLAYER|         \
++AVRC_SUPF_TG_BROWSE|AVRC_SUPF_TG_APP_SETTINGS)
++#elif (AVRC_METADATA_INCLUDED == TRUE)
++#define BTA_AV_RC_SUPF_TG (AVRC_SUPF_TG_CAT1 | AVRC_SUPF_TG_MULTI_PLAYER | AVRC_SUPF_TG_BROWSE)
+ #else
+ #define BTA_AV_RC_SUPF_TG (AVRC_SUPF_TG_CAT1)
+ #endif
+ #endif
+ 
++
+ /*
+- * If the number of event IDs is changed in this array, BTA_AV_ NUM_RC_EVT_IDS
++ * If the number of event IDs is changed in this array, BTA_AV_NUM_RC_EVT_IDS
+  * also needs to be changed.
+  */
+ const uint8_t bta_av_meta_caps_evt_ids[] = {
+@@ -92,9 +95,9 @@ const uint8_t bta_av_meta_caps_evt_ids[] = {
+     AVRC_EVT_PLAY_POS_CHANGED,   AVRC_EVT_AVAL_PLAYERS_CHANGE,
+     AVRC_EVT_ADDR_PLAYER_CHANGE, AVRC_EVT_UIDS_CHANGE,
+     AVRC_EVT_NOW_PLAYING_CHANGE,
+-    /* TODO: Add support for these events
++#if (defined(AVRC_QTI_V1_3_OPTIONAL_FEAT) && AVRC_QTI_V1_3_OPTIONAL_FEAT == TRUE)
+     AVRC_EVT_APP_SETTING_CHANGE,
+-    */
++#endif
+ };
+ #ifndef BTA_AV_NUM_RC_EVT_IDS
+ #define BTA_AV_NUM_RC_EVT_IDS \
+diff --git a/btif/src/btif_rc.cc b/btif/src/btif_rc.cc
+index caa74e9..f1c2bd9 100644
+--- a/btif/src/btif_rc.cc
++++ b/btif/src/btif_rc.cc
+@@ -1653,21 +1653,138 @@ static void btif_rc_upstreams_evt(uint16_t event, tAVRC_COMMAND* pavrc_cmd,
+ 
+   bdcpy(rc_addr.address, p_dev->rc_addr);
+ 
++  if (!(p_dev->rc_features & BTA_AV_FEAT_APP_SETTING) && ((event == AVRC_PDU_LIST_PLAYER_APP_ATTR)
++      || (event == AVRC_PDU_LIST_PLAYER_APP_VALUES) || (event == AVRC_PDU_GET_CUR_PLAYER_APP_VALUE)
++      || (event == AVRC_PDU_SET_PLAYER_APP_VALUE) || (event == AVRC_PDU_GET_PLAYER_APP_ATTR_TEXT)
++      || (event == AVRC_PDU_GET_PLAYER_APP_VALUE_TEXT)))
++  {
++      BTIF_TRACE_EVENT("Player application settings feature is not enabled");
++      send_reject_response(p_dev->rc_handle, label, pavrc_cmd->pdu,
++                           AVRC_STS_BAD_CMD, pavrc_cmd->cmd.opcode);
++      return;
++  }
++
+   switch (event) {
+     case AVRC_PDU_GET_PLAY_STATUS: {
+       fill_pdu_queue(IDX_GET_PLAY_STATUS_RSP, ctype, label, true, p_dev);
+       HAL_CBACK(bt_rc_callbacks, get_play_status_cb, &rc_addr);
+     } break;
+     case AVRC_PDU_LIST_PLAYER_APP_ATTR:
++    {
++        BTIF_TRACE_DEBUG("AVRC_PDU_LIST_PLAYER_APP_ATTR ");
++        fill_pdu_queue(IDX_LIST_APP_ATTR_RSP, ctype, label, true, p_dev);
++        HAL_CBACK(bt_rc_callbacks, list_player_app_attr_cb, &rc_addr);
++    }
++    break;
+     case AVRC_PDU_LIST_PLAYER_APP_VALUES:
++    {
++        BTIF_TRACE_DEBUG("AVRC_PDU_LIST_PLAYER_APP_VALUES =%d" ,pavrc_cmd->list_app_values.attr_id);
++        if (pavrc_cmd->list_app_values.attr_id == 0)
++        {
++            send_reject_response (p_dev->rc_handle, label, pavrc_cmd->pdu,
++                                AVRC_STS_BAD_PARAM, pavrc_cmd->cmd.opcode);
++            break;
++        }
++        fill_pdu_queue(IDX_LIST_APP_VALUE_RSP, ctype, label, true, p_dev);
++        HAL_CBACK(bt_rc_callbacks, list_player_app_values_cb,
++                (btrc_player_attr_t) pavrc_cmd->list_app_values.attr_id,
++                &rc_addr);
++    }
++    break;
+     case AVRC_PDU_GET_CUR_PLAYER_APP_VALUE:
++    {
++        btrc_player_attr_t player_attr[BTRC_MAX_ELEM_ATTR_SIZE];
++        uint8_t player_attr_num;
++        BTIF_TRACE_DEBUG("PLAYER_APP_VALUE PDU 0x13 = %d",pavrc_cmd->get_cur_app_val.num_attr);
++        if ((pavrc_cmd->get_cur_app_val.num_attr == 0) ||
++              (pavrc_cmd->get_cur_app_val.num_attr > BTRC_MAX_ELEM_ATTR_SIZE))
++        {
++            send_reject_response (p_dev->rc_handle, label, pavrc_cmd->pdu,
++                                AVRC_STS_BAD_PARAM, pavrc_cmd->cmd.opcode);
++            break;
++        }
++        memset( player_attr, 0, sizeof(player_attr));
++        for (player_attr_num = 0 ; player_attr_num < pavrc_cmd->get_cur_app_val.num_attr;
++                                                                        ++player_attr_num)
++        {
++            player_attr[player_attr_num] =
++                    (btrc_player_attr_t )pavrc_cmd->get_cur_app_val.attrs[player_attr_num];
++        }
++        fill_pdu_queue(IDX_GET_CURR_APP_VAL_RSP, ctype, label, true, p_dev);
++        HAL_CBACK(bt_rc_callbacks, get_player_app_value_cb ,
++                pavrc_cmd->get_cur_app_val.num_attr, player_attr, &rc_addr);
++    }
++    break;
+     case AVRC_PDU_SET_PLAYER_APP_VALUE:
++    {
++        btrc_player_settings_t attr;
++        uint8_t count;
++        if ((pavrc_cmd->set_app_val.num_val== 0) ||
++                          (pavrc_cmd->set_app_val.num_val > BTRC_MAX_ELEM_ATTR_SIZE))
++        {
++            send_reject_response (p_dev->rc_handle, label,
++                                   pavrc_cmd->pdu, AVRC_STS_BAD_PARAM, pavrc_cmd->cmd.opcode);
++            break;
++        }
++        else
++        {
++            for(count = 0; count < pavrc_cmd->set_app_val.num_val ; ++count)
++            {
++                attr.attr_ids[count] = pavrc_cmd->set_app_val.p_vals[count].attr_id ;
++                attr.attr_values[count]= pavrc_cmd->set_app_val.p_vals[count].attr_val;
++            }
++            attr.num_attr  =  pavrc_cmd->set_app_val.num_val ;
++            fill_pdu_queue(IDX_SET_APP_VAL_RSP, ctype, label, true, p_dev);
++            HAL_CBACK(bt_rc_callbacks, set_player_app_value_cb, &attr, &rc_addr);
++        }
++    }
++    break;
+     case AVRC_PDU_GET_PLAYER_APP_ATTR_TEXT:
+-    case AVRC_PDU_GET_PLAYER_APP_VALUE_TEXT: {
+-      /* TODO: Add support for Application Settings */
+-      send_reject_response(p_dev->rc_handle, label, pavrc_cmd->pdu,
+-                           AVRC_STS_BAD_CMD, pavrc_cmd->cmd.opcode);
+-    } break;
++    {
++        btrc_player_attr_t player_attr_txt [BTRC_MAX_ELEM_ATTR_SIZE];
++        uint8_t count_txt = 0 ;
++        if ((pavrc_cmd->get_app_attr_txt.num_attr == 0) ||
++               (pavrc_cmd->get_app_attr_txt.num_attr > BTRC_MAX_ELEM_ATTR_SIZE))
++        {
++            send_reject_response (p_dev->rc_handle, label, pavrc_cmd->pdu,
++                                   AVRC_STS_BAD_PARAM, pavrc_cmd->cmd.opcode);
++        }
++        else
++        {
++            for (count_txt = 0;count_txt < pavrc_cmd->get_app_attr_txt.num_attr ; ++count_txt)
++            {
++                player_attr_txt[count_txt] =
++                        (btrc_player_attr_t) pavrc_cmd->get_app_attr_txt.attrs[count_txt];
++            }
++            fill_pdu_queue(IDX_GET_APP_ATTR_TXT_RSP, ctype, label, true, p_dev);
++            HAL_CBACK(bt_rc_callbacks, get_player_app_attrs_text_cb,
++                        pavrc_cmd->get_app_attr_txt.num_attr, player_attr_txt, &rc_addr);
++        }
++    }
++    break;
++    case AVRC_PDU_GET_PLAYER_APP_VALUE_TEXT:
++    {
++        if (pavrc_cmd->get_app_val_txt.attr_id == 0 ||
++                 pavrc_cmd->get_app_val_txt.attr_id > AVRC_PLAYER_VAL_GROUP_REPEAT)
++        {
++            send_reject_response (p_dev->rc_handle, label, pavrc_cmd->pdu,
++                                   AVRC_STS_BAD_PARAM, pavrc_cmd->cmd.opcode);
++            break;
++        }
++        if (pavrc_cmd->get_app_val_txt.num_val == 0)
++        {
++            send_reject_response (p_dev->rc_handle, label, pavrc_cmd->pdu,
++                                   AVRC_STS_BAD_PARAM, pavrc_cmd->cmd.opcode);
++        }
++        else
++        {
++            fill_pdu_queue(IDX_GET_APP_VAL_TXT_RSP, ctype, label, true, p_dev);
++            HAL_CBACK(bt_rc_callbacks, get_player_app_values_text_cb,
++                      pavrc_cmd->get_app_val_txt.attr_id, pavrc_cmd->get_app_val_txt.num_val,
++                      pavrc_cmd->get_app_val_txt.vals, &rc_addr);
++        }
++    }
++    break;
+     case AVRC_PDU_GET_ELEMENT_ATTR: {
+       btrc_media_attr_t element_attrs[BTRC_MAX_ELEM_ATTR_SIZE];
+       uint8_t num_attr = fill_attribute_id_array(
+@@ -2142,6 +2259,257 @@ static bt_status_t get_play_status_rsp(bt_bdaddr_t* bd_addr,
+   return BT_STATUS_SUCCESS;
+ }
+ 
++/**************************************************************************
++**
++** Function         list_player_app_attr_rsp
++**
++** Description      ListPlayerApplicationSettingAttributes (PDU ID: 0x11)
++**                  This method is callled in response to PDU 0x11
++**
++** Returns          bt_status_t
++**
++****************************************************************************/
++static bt_status_t  list_player_app_attr_rsp(bt_bdaddr_t *bd_addr, int num_attr, btrc_player_attr_t *p_attrs)
++{
++    tAVRC_RESPONSE avrc_rsp;
++    int i;
++    btif_rc_device_cb_t* p_dev = btif_rc_get_device_by_bda(bd_addr);
++    CHECK_RC_CONNECTED(p_dev);
++
++    memset(&(avrc_rsp.list_app_attr), 0, sizeof(tAVRC_LIST_APP_ATTR_RSP));
++    if (num_attr == 0)
++    {
++        avrc_rsp.list_app_attr.status = AVRC_STS_BAD_PARAM;
++    }
++    else
++    {
++        avrc_rsp.list_app_attr.num_attr = num_attr;
++        for (i = 0 ; i < num_attr ; ++i)
++        {
++            avrc_rsp.list_app_attr.attrs[i] = p_attrs[i];
++        }
++        avrc_rsp.list_app_attr.status = AVRC_STS_NO_ERROR;
++    }
++    avrc_rsp.list_app_attr.pdu  = AVRC_PDU_LIST_PLAYER_APP_ATTR ;
++    avrc_rsp.list_app_attr.opcode = opcode_from_pdu(AVRC_PDU_LIST_PLAYER_APP_ATTR);
++    /* Send the response */
++    send_metamsg_rsp(p_dev, IDX_LIST_APP_ATTR_RSP,
++            p_dev->rc_pdu_info[IDX_LIST_APP_ATTR_RSP].label,
++            p_dev->rc_pdu_info[IDX_LIST_APP_ATTR_RSP].ctype,
++            &avrc_rsp);
++    return BT_STATUS_SUCCESS;
++}
++
++/**********************************************************************
++**
++** Function list_player_app_value_rsp
++**
++** Description      ListPlayerApplicationSettingValues (PDU ID: 0x12)
++                    This method is called in response to PDU 0x12
++************************************************************************/
++static bt_status_t  list_player_app_value_rsp(bt_bdaddr_t *bd_addr, int num_val, uint8_t *value)
++{
++    tAVRC_RESPONSE avrc_rsp;
++    int i;
++    btif_rc_device_cb_t* p_dev = btif_rc_get_device_by_bda(bd_addr);
++    CHECK_RC_CONNECTED(p_dev);
++
++    memset(&(avrc_rsp.list_app_values), 0, sizeof(tAVRC_LIST_APP_VALUES_RSP));
++    if ((num_val == 0) || (num_val > AVRC_MAX_APP_ATTR_SIZE))
++    {
++        avrc_rsp.list_app_values.status = AVRC_STS_BAD_PARAM;
++    }
++    else
++    {
++        avrc_rsp.list_app_values.num_val = num_val;
++        for (i = 0; i < num_val; ++i)
++        {
++            avrc_rsp.list_app_values.vals[i] = value[i];
++        }
++        avrc_rsp.list_app_values.status = AVRC_STS_NO_ERROR;
++    }
++    avrc_rsp.list_app_values.pdu   = AVRC_PDU_LIST_PLAYER_APP_VALUES;
++    avrc_rsp.list_app_attr.opcode  = opcode_from_pdu(AVRC_PDU_LIST_PLAYER_APP_VALUES);
++    /* Send the response */
++    send_metamsg_rsp(p_dev, IDX_LIST_APP_VALUE_RSP,
++            p_dev->rc_pdu_info[IDX_LIST_APP_VALUE_RSP].label,
++            p_dev->rc_pdu_info[IDX_LIST_APP_VALUE_RSP].ctype,
++            &avrc_rsp);
++    return BT_STATUS_SUCCESS;
++}
++
++/**********************************************************************
++**
++** Function  get_player_app_value_rsp
++**
++** Description  This methos is called in response to PDU ID 0x13
++**
++***********************************************************************/
++static bt_status_t get_player_app_value_rsp(bt_bdaddr_t *bd_addr, btrc_player_settings_t *p_vals)
++{
++    tAVRC_RESPONSE avrc_rsp;
++    uint32_t i;
++    btif_rc_device_cb_t* p_dev = btif_rc_get_device_by_bda(bd_addr);
++    CHECK_RC_CONNECTED(p_dev);
++    tAVRC_APP_SETTING app_sett[AVRC_MAX_APP_ATTR_SIZE];
++
++    memset(&(avrc_rsp.get_cur_app_val) ,0 , sizeof(tAVRC_GET_CUR_APP_VALUE_RSP));
++    avrc_rsp.get_cur_app_val.p_vals   = app_sett ;
++    //Check for Error Condition
++    if ((p_vals == NULL) || (p_vals->num_attr== 0) || (p_vals->num_attr > AVRC_MAX_APP_ATTR_SIZE))
++    {
++        avrc_rsp.get_cur_app_val.status = AVRC_STS_BAD_PARAM;
++    }
++    else if (p_vals->num_attr <= BTRC_MAX_APP_SETTINGS)
++    {
++        memset(app_sett, 0, sizeof(tAVRC_APP_SETTING)*p_vals->num_attr );
++        //update num_val
++        avrc_rsp.get_cur_app_val.num_val  = p_vals->num_attr ;
++        avrc_rsp.get_cur_app_val.p_vals   = app_sett ;
++        for (i = 0; i < p_vals->num_attr; ++i)
++        {
++            app_sett[i].attr_id  = p_vals->attr_ids[i] ;
++            app_sett[i].attr_val = p_vals->attr_values[i];
++            BTIF_TRACE_DEBUG("%s attr_id:0x%x, charset_id:0x%x, num_element:%d",
++                           __FUNCTION__, (unsigned int)app_sett[i].attr_id,
++                              app_sett[i].attr_val ,p_vals->num_attr );
++        }
++        //Update PDU , status aind
++        avrc_rsp.get_cur_app_val.status = AVRC_STS_NO_ERROR;
++    }
++    avrc_rsp.get_cur_app_val.pdu = AVRC_PDU_GET_CUR_PLAYER_APP_VALUE;
++    avrc_rsp.get_cur_app_val.opcode = opcode_from_pdu(AVRC_PDU_GET_CUR_PLAYER_APP_VALUE);
++    send_metamsg_rsp(p_dev, IDX_GET_CURR_APP_VAL_RSP,
++            p_dev->rc_pdu_info[IDX_GET_CURR_APP_VAL_RSP].label,
++            p_dev->rc_pdu_info[IDX_GET_CURR_APP_VAL_RSP].ctype,
++            &avrc_rsp);
++    return BT_STATUS_SUCCESS;
++}
++
++/********************************************************************
++**
++** Function     set_player_app_value_rsp
++**
++** Description  This method is called in response to
++**              application value
++**
++** Return       bt_staus_t
++**
++*******************************************************************/
++static bt_status_t set_player_app_value_rsp (bt_bdaddr_t *bd_addr, btrc_status_t rsp_status)
++{
++    tAVRC_RESPONSE avrc_rsp;
++    btif_rc_device_cb_t* p_dev = btif_rc_get_device_by_bda(bd_addr);
++    CHECK_RC_CONNECTED(p_dev);
++
++    avrc_rsp.set_app_val.opcode = opcode_from_pdu(AVRC_PDU_SET_PLAYER_APP_VALUE);
++    avrc_rsp.set_app_val.pdu    =  AVRC_PDU_SET_PLAYER_APP_VALUE ;
++    avrc_rsp.set_app_val.status =  rsp_status ;
++    send_metamsg_rsp(p_dev, IDX_SET_APP_VAL_RSP,
++            p_dev->rc_pdu_info[IDX_SET_APP_VAL_RSP].label,
++            p_dev->rc_pdu_info[IDX_SET_APP_VAL_RSP].ctype,
++            &avrc_rsp);
++    return BT_STATUS_SUCCESS;
++}
++
++/********************************************************************
++**
++** Function      get_player_app_attr_text_rsp
++**
++** Description   This method is called in response to get player
++**               applicaton attribute text response
++**
++**
++*******************************************************************/
++static bt_status_t get_player_app_attr_text_rsp(bt_bdaddr_t *bd_addr, int num_attr,
++                                                btrc_player_setting_text_t *p_attrs)
++{
++    tAVRC_RESPONSE avrc_rsp;
++    tAVRC_APP_SETTING_TEXT attr_txt[AVRC_MAX_APP_ATTR_SIZE];
++    int i;
++    btif_rc_device_cb_t* p_dev = btif_rc_get_device_by_bda(bd_addr);
++    CHECK_RC_CONNECTED(p_dev);
++
++    if (num_attr == 0)
++    {
++        avrc_rsp.get_app_attr_txt.status = AVRC_STS_BAD_PARAM;
++    }
++    else
++    {
++        for (i =0; i< num_attr; ++i)
++        {
++            attr_txt[i].charset_id = AVRC_CHARSET_ID_UTF8;
++            attr_txt[i].attr_id = p_attrs[i].id ;
++            attr_txt[i].str_len = (uint8_t)strnlen((char *)p_attrs[i].text, BTRC_MAX_ATTR_STR_LEN);
++            attr_txt[i].p_str       = p_attrs[i].text ;
++            BTIF_TRACE_DEBUG("%s attr_id:0x%x, charset_id:0x%x, str_len:%d, str:%s",
++                                  __FUNCTION__, (unsigned int)attr_txt[i].attr_id,
++                                  attr_txt[i].charset_id , attr_txt[i].str_len, attr_txt[i].p_str);
++        }
++        avrc_rsp.get_app_attr_txt.status = AVRC_STS_NO_ERROR;
++    }
++
++    avrc_rsp.get_app_attr_txt.p_attrs = attr_txt ;
++    avrc_rsp.get_app_attr_txt.num_attr = (uint8_t)num_attr;
++    avrc_rsp.get_app_attr_txt.pdu = AVRC_PDU_GET_PLAYER_APP_ATTR_TEXT;
++    avrc_rsp.get_app_attr_txt.opcode = opcode_from_pdu(AVRC_PDU_GET_PLAYER_APP_ATTR_TEXT);
++    /* Send the response */
++    send_metamsg_rsp(p_dev, IDX_GET_APP_ATTR_TXT_RSP,
++            p_dev->rc_pdu_info[IDX_GET_APP_ATTR_TXT_RSP].label,
++            p_dev->rc_pdu_info[IDX_GET_APP_ATTR_TXT_RSP].ctype,
++            &avrc_rsp);
++    return BT_STATUS_SUCCESS;
++}
++
++/********************************************************************
++**
++** Function      get_player_app_value_text_rsp
++**
++** Description   This method is called in response to Player application
++**               value text
++**
++** Return        bt_status_t
++**
++*******************************************************************/
++static bt_status_t get_player_app_value_text_rsp(bt_bdaddr_t *bd_addr, int num_attr, btrc_player_setting_text_t *p_attrs)
++{
++    tAVRC_RESPONSE avrc_rsp;
++    tAVRC_APP_SETTING_TEXT attr_txt[AVRC_MAX_APP_ATTR_SIZE];
++    int i;
++    btif_rc_device_cb_t* p_dev = btif_rc_get_device_by_bda(bd_addr);
++    CHECK_RC_CONNECTED(p_dev);
++
++    if (num_attr == 0)
++    {
++        avrc_rsp.get_app_val_txt.status = AVRC_STS_BAD_PARAM;
++    }
++    else
++    {
++        for (i =0; i< num_attr; ++i)
++        {
++            attr_txt[i].charset_id = AVRC_CHARSET_ID_UTF8;
++            attr_txt[i].attr_id  = p_attrs[i].id ;
++            attr_txt[i].str_len  = (uint8_t)strnlen((char *)p_attrs[i].text ,BTRC_MAX_ATTR_STR_LEN );
++            attr_txt[i].p_str    = p_attrs[i].text ;
++            BTIF_TRACE_DEBUG("%s attr_id:0x%x, charset_id:0x%x, str_len:%d, str:%s",
++                                  __FUNCTION__, (unsigned int)attr_txt[i].attr_id,
++                                 attr_txt[i].charset_id , attr_txt[i].str_len,attr_txt[i].p_str);
++        }
++        avrc_rsp.get_app_val_txt.status = AVRC_STS_NO_ERROR;
++    }
++    avrc_rsp.get_app_val_txt.p_attrs = attr_txt;
++    avrc_rsp.get_app_val_txt.num_attr = (uint8_t)num_attr;
++    avrc_rsp.get_app_val_txt.pdu = AVRC_PDU_GET_PLAYER_APP_VALUE_TEXT;
++    avrc_rsp.get_app_val_txt.opcode = opcode_from_pdu(AVRC_PDU_GET_PLAYER_APP_VALUE_TEXT);
++    /* Send the response */
++    send_metamsg_rsp(p_dev, IDX_GET_APP_VAL_TXT_RSP,
++            p_dev->rc_pdu_info[IDX_GET_APP_VAL_TXT_RSP].label,
++            p_dev->rc_pdu_info[IDX_GET_APP_VAL_TXT_RSP].ctype,
++            &avrc_rsp);
++    return BT_STATUS_SUCCESS;
++}
++
++
+ /***************************************************************************
+  *
+  * Function         get_element_attr_rsp
+@@ -2386,6 +2754,13 @@ static bt_status_t register_notification_rsp(
+         memcpy(&(avrc_rsp.reg_notif.param.track), &(p_param->track),
+                sizeof(btrc_uid_t));
+         break;
++      case BTRC_EVT_APP_SETTINGS_CHANGED:
++        avrc_rsp.reg_notif.param.player_setting.num_attr = p_param->player_setting.num_attr;
++        memcpy(&avrc_rsp.reg_notif.param.player_setting.attr_id,
++                                   p_param->player_setting.attr_ids, 2);
++        memcpy(&avrc_rsp.reg_notif.param.player_setting.attr_value,
++                                   p_param->player_setting.attr_values, 2);
++        break;
+       case BTRC_EVT_PLAY_POS_CHANGED:
+         avrc_rsp.reg_notif.param.play_pos = p_param->song_pos;
+         break;
+@@ -5805,13 +6180,13 @@ static const btrc_interface_t bt_rc_interface = {
+     sizeof(bt_rc_interface),
+     init,
+     get_play_status_rsp,
+-    NULL, /* list_player_app_attr_rsp */
+-    NULL, /* list_player_app_value_rsp */
+-    NULL, /* get_player_app_value_rsp */
+-    NULL, /* get_player_app_attr_text_rsp */
+-    NULL, /* get_player_app_value_text_rsp */
++    list_player_app_attr_rsp,     /* list_player_app_attr_rsp */
++    list_player_app_value_rsp,    /* list_player_app_value_rsp */
++    get_player_app_value_rsp,     /* get_player_app_value_rsp PDU 0x13*/
++    get_player_app_attr_text_rsp, /* get_player_app_attr_text_rsp */
++    get_player_app_value_text_rsp,/* get_player_app_value_text_rsp */
+     get_element_attr_rsp,
+-    NULL, /* set_player_app_value_rsp */
++    set_player_app_value_rsp,     /* set_player_app_value_rsp */
+     register_notification_rsp,
+     set_volume,
+     set_addressed_player_rsp,
+diff --git a/include/bt_target.h b/include/bt_target.h
+index d0d2683..15fb501 100644
+--- a/include/bt_target.h
++++ b/include/bt_target.h
+@@ -1364,6 +1364,9 @@
+  * AVRCP
+  *
+  *****************************************************************************/
++#ifndef AVRC_QTI_V1_3_OPTIONAL_FEAT
++#define AVRC_QTI_V1_3_OPTIONAL_FEAT TRUE
++#endif
+ 
+ #ifndef AVRC_METADATA_INCLUDED
+ #define AVRC_METADATA_INCLUDED TRUE
+-- 
+2.7.4
+

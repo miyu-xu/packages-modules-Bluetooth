@@ -1,0 +1,1222 @@
+﻿/******************************************************************************
+ *
+ *  Copyright (c) 2014-2015, 2020-2021 The Linux Foundation. All rights reserved
+ *  Copyright (C) 2003-2012 Broadcom Corporation
+ *  Copyright (C) 2008, 2011-2012, 2016-2018 The Android Open Source Project
+ *  Copyright (C) 2014 Google, Inc
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+From 3ad48c12c6a75fcf671962d0631499e76113bcb7 Mon Sep 17 00:00:00 2001
+From: Sagar Verma <sagarv@codeaurora.org>
+Date: Sat, 12 Aug 2017 17:21:32 +0530
+Subject: [PATCH] AVRCP: Optional v1.3 Player Application Setting Features
+ (1/3)
+
+-PDU 0x11 List Player App Setting Atttributes
+-PDU 0x12 List Player App Setting Values
+-PDU 0x13 Get Current Player App Setting Values
+-PDU 0x14 Set Player App Setting Values
+-PDU 0x15 Set Player App Setting Atrribute Text
+-PDU 0x16 Get Plaeyr App Setting Value Text
+
+CRs-Fixed: 2077256
+Change-Id: Id3854f72ea28bb230943876c1792f88a9f6416c3
+---
+ jni/com_android_bluetooth_avrcp.cpp                | 582 ++++++++++++++++++++-
+ src/com/android/bluetooth/avrcp/Avrcp.java         | 307 ++++++++++-
+ .../android/bluetooth/avrcp/AvrcpConstants.java    |  10 +
+ .../avrcp/AvrcpPlayerAppSettingsRspInterface.java  |  54 ++
+ 4 files changed, 945 insertions(+), 8 deletions(-)
+ create mode 100644 src/com/android/bluetooth/avrcp/AvrcpPlayerAppSettingsRspInterface.java
+
+diff --git a/jni/com_android_bluetooth_avrcp.cpp b/jni/com_android_bluetooth_avrcp.cpp
+index 3413ad1..abc86d8 100644
+--- a/jni/com_android_bluetooth_avrcp.cpp
++++ b/jni/com_android_bluetooth_avrcp.cpp
+@@ -43,6 +43,12 @@ static jmethodID method_setBrowsedPlayerCallback;
+ static jmethodID method_changePathCallback;
+ static jmethodID method_searchCallback;
+ static jmethodID method_playItemCallback;
++static jmethodID method_onListPlayerAttributeRequest;
++static jmethodID method_onListPlayerAttributeValues;
++static jmethodID method_onGetPlayerAttributeValues;
++static jmethodID method_setPlayerAppSetting;
++static jmethodID method_getplayerattribute_text;
++static jmethodID method_getplayervalue_text;
+ static jmethodID method_getItemAttrCallback;
+ static jmethodID method_addToPlayListCallback;
+ static jmethodID method_getTotalNumOfItemsCallback;
+@@ -107,6 +113,189 @@ static void btavrcp_get_play_status_callback(bt_bdaddr_t* bd_addr) {
+   sCallbackEnv->CallVoidMethod(mCallbacksObj, method_getPlayStatus, addr.get());
+ }
+ 
++static void btavrcp_get_player_seeting_value_callback(btrc_player_attr_t player_att,
++                                                     bt_bdaddr_t* bd_addr) {
++  ALOGI("%s", __FUNCTION__);
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++
++  if (!mCallbacksObj) {
++    ALOGE("%s: mCallbacksObj is null", __func__);
++    return;
++  }
++
++  ScopedLocalRef<jbyteArray> addr(
++      sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdaddr_t)));
++  if (!addr.get()) {
++    ALOGE("Fail to new jbyteArray bd addr for get_play_status command");
++    return;
++  }
++
++  sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(bt_bdaddr_t), (jbyte*) bd_addr);
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj ,method_onListPlayerAttributeValues,
++                              (jbyte)player_att, addr.get());
++}
++
++static void btavrcp_get_player_attribute_id_callback(bt_bdaddr_t* bd_addr) {
++  ALOGI("%s", __FUNCTION__);
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++
++  if (!mCallbacksObj) {
++    ALOGE("%s: mCallbacksObj is null", __func__);
++    return;
++  }
++
++  ScopedLocalRef<jbyteArray> addr(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdaddr_t)));
++  if (!addr.get()) {
++    ALOGE("Fail to new jbyteArray bd addr for get_play_status command");
++    return;
++  }
++
++  sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(bt_bdaddr_t), (jbyte*) bd_addr);
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj,method_onListPlayerAttributeRequest, addr.get());
++}
++
++static void btavrcp_getcurrent_player_app_setting_values( uint8_t num_attr,
++                                                          btrc_player_attr_t *p_attrs,
++                                                          bt_bdaddr_t* bd_addr) {
++  ALOGI("%s", __FUNCTION__);
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++
++  if (!mCallbacksObj) {
++    ALOGE("%s: mCallbacksObj is null", __func__);
++    return;
++  }
++
++  ScopedLocalRef<jbyteArray> addr(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdaddr_t)));
++  if (!addr.get()) {
++    ALOGE("Fail to new jbyteArray bd addr for get_play_status command");
++    return;
++  }
++
++  sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(bt_bdaddr_t), (jbyte*) bd_addr);
++
++  ScopedLocalRef<jintArray> attrs(
++  sCallbackEnv.get(), (jintArray) sCallbackEnv->NewIntArray(sizeof(bt_bdaddr_t)));
++  if (!attrs.get()) {
++    ALOGE("Fail to new jintArray for attrs");
++    return;
++  }
++  sCallbackEnv->SetIntArrayRegion(attrs.get(), 0, num_attr, (jint *)p_attrs);
++
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onGetPlayerAttributeValues,
++                               (jbyte)num_attr, attrs.get(), addr.get());
++}
++
++static void btavrcp_set_playerapp_setting_value_callback(btrc_player_settings_t *attr,
++                                                         bt_bdaddr_t* bd_addr)
++{
++  ALOGI("%s", __FUNCTION__);
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++
++  if (!mCallbacksObj) {
++    ALOGE("%s: mCallbacksObj is null", __func__);
++    return;
++  }
++
++  ScopedLocalRef<jbyteArray> addr(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdaddr_t)));
++  if (!addr.get()) {
++    ALOGE("Fail to new jbyteArray bd addr for get_play_status command");
++    return;
++  }
++
++  sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(bt_bdaddr_t), (jbyte*) bd_addr);
++
++  ScopedLocalRef<jbyteArray> attrs_ids(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(attr->num_attr)));
++  if (!attrs_ids.get()) {
++    ALOGE("Fail to new jbyteArray bd addr for get_play_status command");
++    return;
++  }
++  sCallbackEnv->SetByteArrayRegion(attrs_ids.get(), 0, attr->num_attr, (jbyte *)attr->attr_ids);
++
++  ScopedLocalRef<jbyteArray> attrs_value(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(attr->num_attr)));
++  if (!attrs_value.get()) {
++    ALOGE("Fail to new jintArray for attrs");
++    return;
++  }
++  sCallbackEnv->SetByteArrayRegion(attrs_value.get(), 0, attr->num_attr, (jbyte *)attr->attr_values);
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_setPlayerAppSetting,
++                            (jbyte)attr->num_attr ,attrs_ids.get() ,attrs_value.get(), addr.get());
++}
++
++static void btavrcp_getPlayer_app_attribute_text(uint8_t num , btrc_player_attr_t *att,
++                                                 bt_bdaddr_t* bd_addr)
++{
++  ALOGI("%s", __FUNCTION__);
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++
++  if (!mCallbacksObj) {
++    ALOGE("%s: mCallbacksObj is null", __func__);
++    return;
++  }
++
++  ScopedLocalRef<jbyteArray> addr(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdaddr_t)));
++  if (!addr.get()) {
++    ALOGE("Fail to new jbyteArray bd addr for getPlayer_app_attribute_text command");
++    return;
++  }
++
++  sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(bt_bdaddr_t), (jbyte*) bd_addr);
++
++  ScopedLocalRef<jbyteArray> attrs(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(num));
++  if (!attrs.get()) {
++    ALOGE("Fail to new jintArray for attrs");
++    return;
++  }
++  sCallbackEnv->SetByteArrayRegion(attrs.get(), 0, num, (jbyte *)att);
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_getplayerattribute_text,
++                               (jbyte) num ,attrs.get(), addr.get());
++}
++
++static void btavrcp_getPlayer_app_value_text(uint8_t attr_id , uint8_t num_val , uint8_t *value,
++                                             bt_bdaddr_t* bd_addr)
++{
++  ALOGI("%s", __FUNCTION__);
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return;
++
++  if (!mCallbacksObj) {
++    ALOGE("%s: mCallbacksObj is null", __func__);
++    return;
++  }
++
++  ScopedLocalRef<jbyteArray> addr(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdaddr_t)));
++  if (!addr.get()) {
++    ALOGE("Fail to new jbyteArray bd addr for getPlayer_app_value_text command");
++    return;
++  }
++
++  sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(bt_bdaddr_t), (jbyte*) bd_addr);
++
++  ScopedLocalRef<jbyteArray> Attr_Value(
++  sCallbackEnv.get(), sCallbackEnv->NewByteArray(num_val));
++  if (!Attr_Value.get()) {
++    ALOGE("Fail to new jintArray for attrs");
++    return;
++  }
++  sCallbackEnv->SetByteArrayRegion(Attr_Value.get(), 0, num_val, (jbyte *)value);
++  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_getplayervalue_text,(jbyte) attr_id,
++                               (jbyte) num_val, Attr_Value.get(), addr.get());
++}
++
+ static void btavrcp_get_element_attr_callback(uint8_t num_attr,
+                                               btrc_media_attr_t* p_attrs,
+                                               bt_bdaddr_t* bd_addr) {
+@@ -520,12 +709,12 @@ static btrc_callbacks_t sBluetoothAvrcpCallbacks = {
+     sizeof(sBluetoothAvrcpCallbacks),
+     btavrcp_remote_features_callback,
+     btavrcp_get_play_status_callback,
+-    NULL,
+-    NULL,
+-    NULL,
+-    NULL,
+-    NULL,
+-    NULL,
++    btavrcp_get_player_attribute_id_callback,
++    btavrcp_get_player_seeting_value_callback,
++    btavrcp_getcurrent_player_app_setting_values,
++    btavrcp_getPlayer_app_attribute_text,
++    btavrcp_getPlayer_app_value_text,
++    btavrcp_set_playerapp_setting_value_callback,
+     btavrcp_get_element_attr_callback,
+     btavrcp_register_notification_callback,
+     btavrcp_volume_change_callback,
+@@ -551,6 +740,24 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
+   method_getElementAttr =
+       env->GetMethodID(clazz, "getElementAttrRequestFromNative", "([BB[I)V");
+ 
++  method_onListPlayerAttributeRequest =
++      env->GetMethodID(clazz , "onListPlayerAttributeRequest" , "([B)V");
++
++  method_onListPlayerAttributeValues =
++      env->GetMethodID(clazz , "onListPlayerAttributeValues" , "(B[B)V");
++
++  method_setPlayerAppSetting =
++      env->GetMethodID(clazz, "setPlayerAppSetting","(B[B[B[B)V");
++
++  method_getplayerattribute_text =
++      env->GetMethodID(clazz, "getplayerattribute_text" , "(B[B[B)V");
++
++  method_getplayervalue_text =
++      env->GetMethodID(clazz, "getplayervalue_text" , "(BB[B[B)V");
++
++  method_onGetPlayerAttributeValues =
++      env->GetMethodID(clazz, "onGetPlayerAttributeValues", "(B[I[B)V");
++
+   method_registerNotification = env->GetMethodID(
+       clazz, "registerNotificationRequestFromNative", "([BII)V");
+ 
+@@ -673,6 +880,305 @@ static jboolean getPlayStatusRspNative(JNIEnv* env, jobject object,
+   return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
+ }
+ 
++static jboolean getListPlayerappAttrRspNative(JNIEnv *env ,jobject object , jbyte numAttr,
++                                              jbyteArray attrIds , jbyteArray address) {
++    bt_status_t status;
++    jbyte *addr;
++    btrc_player_attr_t *pAttrs = NULL;
++    int i;
++    jbyte *attr;
++
++    if (!sBluetoothAvrcpInterface) return JNI_FALSE;
++
++    addr = env->GetByteArrayElements(address, NULL);
++    if (!addr) {
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++
++    if( numAttr > BTRC_MAX_APP_ATTR_SIZE) {
++        ALOGE("get_element_attr_rsp: number of attributes exceed maximum");
++        return JNI_FALSE;
++    }
++    ALOGI("getListPlayerappAttrRspNative");
++    pAttrs = new btrc_player_attr_t[numAttr];
++    if (!pAttrs) {
++        ALOGE("getListPlayerappAttrRspNative: not have enough memeory");
++        return JNI_FALSE;
++    }
++    attr = env->GetByteArrayElements(attrIds, NULL);
++    if( !attr) {
++        delete[] pAttrs;
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE ;
++    }
++    for (i = 0; i < numAttr; ++i) {
++        pAttrs[i] = (btrc_player_attr_t)attr[i];
++    }
++    if (i < numAttr) {
++        delete[] pAttrs;
++        env->ReleaseByteArrayElements(attrIds, attr, 0);
++        return JNI_FALSE;
++    }
++    //Call Stack Method
++    if ((status = sBluetoothAvrcpInterface->list_player_app_attr_rsp((bt_bdaddr_t*)addr,
++                                            numAttr, pAttrs)) != BT_STATUS_SUCCESS) {
++        ALOGE("Failed list_player_app_attr_rsp, status: %d", status);
++    }
++    delete[] pAttrs;
++    env->ReleaseByteArrayElements(attrIds, attr, 0);
++    env->ReleaseByteArrayElements(address, addr, 0);
++    return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
++}
++
++static jboolean getPlayerAppValueRspNative(JNIEnv *env ,jobject object , jbyte numvalue,
++                                           jbyteArray value ,jbyteArray address)
++{
++    bt_status_t status;
++    jbyte *addr;
++    uint8_t *pAttrs = NULL;
++    int i;
++    jbyte *attr;
++
++    if (!sBluetoothAvrcpInterface) return JNI_FALSE;
++
++    if( numvalue > BTRC_MAX_APP_ATTR_SIZE) {
++        ALOGE("get_element_attr_rsp: number of attributes exceed maximum");
++        return JNI_FALSE;
++    }
++    pAttrs = new uint8_t[numvalue];
++    /* Klockwork Fix for below
++     * Possible memory leak. Dynamic memory stored in 'pAttrs' allocated
++     * through function 'new[]' at line 887 can be lost at line 897*/
++    if (!pAttrs) {
++        ALOGE("getPlayerAppValueRspNative: not have enough memeory");
++        return JNI_FALSE;
++    }
++    attr = env->GetByteArrayElements(value, NULL);
++
++    addr = env->GetByteArrayElements(address, NULL);
++    if (!addr) {
++        delete[] pAttrs;
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++
++    if (!attr) {
++        delete[] pAttrs;
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    for (i = 0; i < numvalue; ++i) {
++        pAttrs[i] = (uint8_t)attr[i];
++    }
++    if (i < numvalue) {
++        delete[] pAttrs;
++        env->ReleaseByteArrayElements(value, attr, 0);
++        return JNI_FALSE;
++    }
++    if ((status = sBluetoothAvrcpInterface->list_player_app_value_rsp((bt_bdaddr_t *)addr,
++                                            numvalue, pAttrs)) != BT_STATUS_SUCCESS) {
++        ALOGE("Failed list_player_app_value_rsp, status: %d", status);
++    }
++    delete[] pAttrs;
++    env->ReleaseByteArrayElements(value, attr, 0);
++    env->ReleaseByteArrayElements(address, addr, 0);
++    return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
++}
++
++static jboolean SendCurrentPlayerValueRspNative(JNIEnv *env, jobject object ,
++                                                jbyte numattr ,jbyteArray value ,jbyteArray address) {
++    btrc_player_settings_t *pAttrs = NULL ;
++    bt_status_t status;
++    jbyte *addr;
++    int i;
++    jbyte *attr;
++
++    if (!sBluetoothAvrcpInterface) return JNI_FALSE;
++
++    addr = env->GetByteArrayElements(address, NULL);
++    if (!addr) {
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    if( numattr > BTRC_MAX_APP_ATTR_SIZE || numattr == 0) {
++        ALOGE("SendCurrentPlayerValueRspNative: number of attributes exceed maximum");
++        return JNI_FALSE;
++    }
++    pAttrs = new btrc_player_settings_t;
++    if (!pAttrs) {
++        ALOGE("SendCurrentPlayerValueRspNative: not have enough memeory");
++        return JNI_FALSE;
++    }
++    attr = env->GetByteArrayElements(value, NULL);
++    if (!attr) {
++        delete pAttrs;
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    pAttrs->num_attr = numattr/2 ;
++    for(i =0 ; i < numattr; i+=2)
++    {
++        pAttrs->attr_ids[i/2]    =  attr[i];
++        pAttrs->attr_values[i/2] =  attr[i+1];
++    }
++    if ((status = sBluetoothAvrcpInterface->get_player_app_value_rsp((bt_bdaddr_t *)addr,
++                                            pAttrs)) != BT_STATUS_SUCCESS) {
++        ALOGE("Failed get_player_app_value_rsp, status: %d", status);
++    }
++    delete pAttrs;
++    env->ReleaseByteArrayElements(value, attr, 0);
++    env->ReleaseByteArrayElements(address, addr, 0);
++    return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
++}
++
++//JNI Method called to Respond to PDU 0x14
++static jboolean SendSetPlayerAppRspNative(JNIEnv *env, jobject object,
++                                        jint attr_status, jbyteArray address)
++{
++    bt_status_t status;
++    jbyte *addr;
++    btrc_status_t player_rsp = (btrc_status_t) attr_status;
++
++    if (!sBluetoothAvrcpInterface) return JNI_FALSE;
++
++    addr = env->GetByteArrayElements(address, NULL);
++    if (!addr) {
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    if ((status = sBluetoothAvrcpInterface->set_player_app_value_rsp((bt_bdaddr_t *)addr,
++                                            player_rsp)) != BT_STATUS_SUCCESS) {
++        ALOGE("Failed set_player_app_value_rsp, status: %d", status);
++    }
++    env->ReleaseByteArrayElements(address, addr, 0);
++    return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
++}
++
++//JNI Method Called to Respond to PDU 0x15
++static jboolean sendSettingsTextRspNative(JNIEnv *env, jobject object, jint num_attr,
++                                jbyteArray attr,jint length , jobjectArray textArray,
++                                jbyteArray address) {
++    btrc_player_setting_text_t *pAttrs = NULL;
++    bt_status_t status;
++    jbyte *addr;
++    int i;
++    jstring text;
++    const char* textStr;
++    jbyte *arr ;
++
++    if (!sBluetoothAvrcpInterface) return JNI_FALSE;
++
++    addr = env->GetByteArrayElements(address, NULL);
++    if (!addr) {
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    if (num_attr > BTRC_MAX_ELEM_ATTR_SIZE) {
++        ALOGE("get_element_attr_rsp: number of attributes exceed maximum");
++        return JNI_FALSE;
++    }
++    pAttrs = new btrc_player_setting_text_t[num_attr];
++    if (!pAttrs) {
++        ALOGE("sendSettingsTextRspNative: not have enough memeory");
++        return JNI_FALSE;
++    }
++    arr = env->GetByteArrayElements(attr, NULL);
++    if (!arr) {
++        delete[] pAttrs;
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    for (i = 0; i < num_attr ; ++i) {
++        text = (jstring) env->GetObjectArrayElement(textArray, i);
++        textStr = env->GetStringUTFChars(text, NULL);
++        if (!textStr) {
++            ALOGE("get_element_attr_rsp: GetStringUTFChars return NULL");
++            env->DeleteLocalRef(text);
++            break;
++        }
++        pAttrs[i].id = arr[i];
++        if (strlen(textStr) >= BTRC_MAX_ATTR_STR_LEN) {
++            ALOGE("sendSettingsTextRspNative: string length exceed maximum");
++        }
++        strlcpy((char *)pAttrs[i].text, textStr, BTRC_MAX_ATTR_STR_LEN);
++        //Check out if release need to be done in for loop
++        env->ReleaseStringUTFChars(text, textStr);
++        env->DeleteLocalRef(text);
++    }
++    //Call Stack Methos to Respond PDU 0x16
++    if ((status = sBluetoothAvrcpInterface->get_player_app_attr_text_rsp((bt_bdaddr_t *)addr,
++                                            num_attr, pAttrs)) !=  BT_STATUS_SUCCESS) {
++        ALOGE("Failed get_player_app_attr_text_rsp, status: %d", status);
++    }
++    delete[] pAttrs;
++    env->ReleaseByteArrayElements(attr, arr, 0);
++    env->ReleaseByteArrayElements(address, addr, 0);
++    return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
++}
++
++//JNI Method Called to respond to PDU 0x16
++static jboolean sendValueTextRspNative(JNIEnv *env, jobject object, jint num_attr,
++                                       jbyteArray attr, jint length , jobjectArray textArray,
++                                       jbyteArray address) {
++    btrc_player_setting_text_t *pAttrs = NULL;
++    bt_status_t status;
++    jbyte *addr;
++    int i;
++    jstring text ;
++    const char* textStr;
++    jbyte *arr ;
++
++    //ALOGE("sendValueTextRspNative");
++    if (!sBluetoothAvrcpInterface) return JNI_FALSE;
++
++    addr = env->GetByteArrayElements(address, NULL);
++    if (!addr) {
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    if (num_attr > BTRC_MAX_ELEM_ATTR_SIZE) {
++        ALOGE("sendValueTextRspNative: number of attributes exceed maximum");
++        return JNI_FALSE;
++    }
++    pAttrs = new btrc_player_setting_text_t[num_attr];
++    if (!pAttrs) {
++        ALOGE("sendValueTextRspNative: not have enough memeory");
++        return JNI_FALSE;
++    }
++    arr = env->GetByteArrayElements(attr, NULL);
++    if (!arr) {
++        delete[] pAttrs;
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    for (i = 0; i < num_attr ; ++i) {
++        text = (jstring) env->GetObjectArrayElement(textArray, i);
++        textStr = env->GetStringUTFChars(text, NULL);
++        if (!textStr) {
++            ALOGE("sendValueTextRspNative: GetStringUTFChars return NULL");
++            env->DeleteLocalRef(text);
++            break;
++        }
++        pAttrs[i].id = arr[i];
++        if (strlen(textStr) >= BTRC_MAX_ATTR_STR_LEN) {
++           ALOGE("sendValueTextRspNative: string length exceed maximum");
++        }
++        strlcpy((char *)pAttrs[i].text, textStr, BTRC_MAX_ATTR_STR_LEN);
++        env->ReleaseStringUTFChars(text, textStr);
++        env->DeleteLocalRef(text);
++    }
++    //Call Stack Method to Respond to PDU 0x16
++    if ((status = sBluetoothAvrcpInterface->get_player_app_value_text_rsp((bt_bdaddr_t *)addr,
++                                            num_attr, pAttrs)) != BT_STATUS_SUCCESS) {
++        ALOGE("Failed get_player_app_value_text_rsp, status: %d", status);
++    }
++    delete[] pAttrs;
++    env->ReleaseByteArrayElements(attr, arr, 0);
++    env->ReleaseByteArrayElements(address, addr, 0);
++    return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
++}
++
+ static jboolean getElementAttrRspNative(JNIEnv* env, jobject object,
+                                         jbyteArray address, jbyte numAttr,
+                                         jintArray attrIds,
+@@ -804,6 +1310,58 @@ static jboolean getItemAttrRspNative(JNIEnv* env, jobject object,
+   return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
+ }
+ 
++static jboolean registerNotificationPlayerAppRspNative(JNIEnv *env, jobject object ,jint type,
++                                                jbyte numattr ,jbyteArray value ,
++                                                jbyteArray address) {
++    bt_status_t status;
++    jbyte *addr;
++    int i;
++    jbyte *attr;
++    btrc_register_notification_t *param= NULL;
++
++    if (!sBluetoothAvrcpInterface) return JNI_FALSE;
++
++    addr = env->GetByteArrayElements(address, NULL);
++    if (!addr) {
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    if( numattr > BTRC_MAX_APP_ATTR_SIZE || numattr == 0) {
++        ALOGE("registerNotificationPlayerAppRspNative: number of attributes exceed maximum");
++        return JNI_FALSE;
++    }
++    param = new btrc_register_notification_t;
++
++    if (!param) {
++        ALOGE("registerNotificationPlayerAppRspNative: not have enough memeory");
++        return JNI_FALSE;
++    }
++    attr = env->GetByteArrayElements(value, NULL);
++    if (!attr) {
++        delete param;
++        jniThrowIOException(env, EINVAL);
++        return JNI_FALSE;
++    }
++    param->player_setting.num_attr  = numattr/2;
++    for(i =0 ; i < numattr; i+=2)
++    {
++        param->player_setting.attr_ids[i/2] = attr[i];
++        param->player_setting.attr_values[i/2] =  attr[i+1];
++    }
++    //Call Stack Method
++    if ((status =
++                sBluetoothAvrcpInterface->register_notification_rsp(
++                BTRC_EVT_APP_SETTINGS_CHANGED,
++                (btrc_notification_type_t)type,param,
++                (bt_bdaddr_t *)addr)) != BT_STATUS_SUCCESS) {
++        ALOGE("Failed register_notification_rsp, status: %d", status);
++    }
++    delete param;
++    env->ReleaseByteArrayElements(value, attr, 0);
++    env->ReleaseByteArrayElements(address, addr, 0);
++    return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
++}
++
+ static jboolean registerNotificationRspPlayStatusNative(JNIEnv* env,
+                                                         jobject object,
+                                                         jint type,
+@@ -1519,6 +2077,18 @@ static JNINativeMethod sMethods[] = {
+     {"getPlayStatusRspNative", "([BIII)Z", (void*)getPlayStatusRspNative},
+     {"getElementAttrRspNative", "([BB[I[Ljava/lang/String;)Z",
+      (void*)getElementAttrRspNative},
++    {"getListPlayerappAttrRspNative", "(B[B[B)Z", (void *) getListPlayerappAttrRspNative},
++    {"getPlayerAppValueRspNative", "(B[B[B)Z", (void *) getPlayerAppValueRspNative},
++    {"SendCurrentPlayerValueRspNative", "(B[B[B)Z",
++     (void *) SendCurrentPlayerValueRspNative},
++    {"registerNotificationPlayerAppRspNative", "(IB[B[B)Z",
++     (void *) registerNotificationPlayerAppRspNative},
++    {"SendSetPlayerAppRspNative", "(I[B)Z",
++     (void *) SendSetPlayerAppRspNative},
++    {"sendSettingsTextRspNative" , "(I[BI[Ljava/lang/String;[B)Z",
++     (void *) sendSettingsTextRspNative},
++    {"sendValueTextRspNative" , "(I[BI[Ljava/lang/String;[B)Z",
++     (void *) sendValueTextRspNative},
+     {"registerNotificationRspPlayStatusNative", "(II[B)Z",
+      (void*)registerNotificationRspPlayStatusNative},
+     {"registerNotificationRspTrackChangeNative", "(I[B[B)Z",
+diff --git a/src/com/android/bluetooth/avrcp/Avrcp.java b/src/com/android/bluetooth/avrcp/Avrcp.java
+index 0d1ceb3..91fc52b 100644
+--- a/src/com/android/bluetooth/avrcp/Avrcp.java
++++ b/src/com/android/bluetooth/avrcp/Avrcp.java
+@@ -77,7 +77,6 @@ import java.util.SortedMap;
+ import java.util.TreeMap;
+ import android.os.SystemProperties;
+ import com.android.bluetooth.hfp.HeadsetService;
+-
+ /******************************************************************************
+  * support Bluetooth AVRCP profile. support metadata, play status, event
+  * notifications, address player selection and browse feature implementation.
+@@ -110,6 +109,7 @@ public final class Avrcp {
+     private @NonNull PlaybackState mCurrentPlayerState;
+     private long mLastStateUpdate;
+     private int mPlayStatusChangedNT;
++    private int mPlayerStatusChangeNT;
+     private int mReportedPlayStatus;
+     private int mTrackChangedNT;
+     private int mPlayPosChangedNT;
+@@ -149,6 +149,7 @@ public final class Avrcp {
+     private int mCurrBrowsePlayerID;
+     private int mLastUsedPlayerID;
+     private AvrcpMediaRsp mAvrcpMediaRsp;
++    private AvrcpPlayerAppSettingsRsp mAvrcpPlayerAppSettingsRsp;
+     private int maxAvrcpConnections = 1; // Max Avrcp connections at any time
+     private static final int INVALID_DEVICE_INDEX = 0xFF;
+     private boolean pts_test = false;
+@@ -196,6 +197,7 @@ public final class Avrcp {
+     private static final int MSG_UPDATE_MEDIA = 20;
+     private static final int MESSAGE_DEVICE_RC_CLEANUP = 21;
+     private static final int MSG_PLAY_INTERVAL_TIMEOUT_2 = 22;
++    private final static int MESSAGE_PLAYERSETTINGS_TIMEOUT = 23;
+ 
+     private static final int STACK_CLEANUP = 0;
+     private static final int APP_CLEANUP = 1;
+@@ -223,6 +225,9 @@ public final class Avrcp {
+     /* Manage browsed players */
+     private AvrcpBrowseManager mAvrcpBrowseManager;
+ 
++    /* Player Application Settings */
++    private AvrcpPlayerAppSettings mAvrcpPlayerAppSettings;
++
+     /* BIP Responder */
+     static private AvrcpBipRsp mAvrcpBipRsp;
+ 
+@@ -276,6 +281,7 @@ public final class Avrcp {
+         private BluetoothDevice mCurrentDevice;
+         private @NonNull PlaybackState mCurrentPlayState;
+         private int mPlayStatusChangedNT;
++        private int mPlayerStatusChangeNT;
+         private int mNowPlayingChangedNT;
+         private int mTrackChangedNT;
+         private long mNextPosMs;
+@@ -285,6 +291,7 @@ public final class Avrcp {
+         private int mPlayPosChangedNT;
+         private int mFeatures;
+         private int mLastDirection;
++        private HashMap<Integer, Integer> mMusicAppCmdResponsePending;
+         private int mAbsoluteVolume;
+         private int mLastSetVolume;
+         private boolean mVolCmdSetInProgress;
+@@ -315,6 +322,7 @@ public final class Avrcp {
+             mPlayStatusChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+             mNowPlayingChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+             mTrackChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
++            mPlayerStatusChangeNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+             mNextPosMs = -1;
+             mPrevPosMs = -1;
+             mPlaybackIntervalMs = 0L;
+@@ -331,6 +339,7 @@ public final class Avrcp {
+             mAbsVolRetryTimes = 0;
+             keyPressState = AvrcpConstants.KEY_STATE_RELEASE; //Key release state
+             mRemoteVolume = -1;
++            mMusicAppCmdResponsePending = new HashMap<Integer, Integer>();
+             mAvailablePlayersChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+             mAddrPlayerChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+             mLastStateUpdate = -1;
+@@ -366,6 +375,7 @@ public final class Avrcp {
+         mReportedPlayStatus = PLAYSTATUS_ERROR;
+         mA2dpState = BluetoothA2dp.STATE_NOT_PLAYING;
+         mPlayStatusChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
++        mPlayerStatusChangeNT  = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+         mTrackChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+         mPlayPosChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+         mAddrPlayerChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+@@ -389,6 +399,7 @@ public final class Avrcp {
+         mLastUsedPlayerID = 0;
+         mAddressedMediaPlayer = null;
+         mAvrcpBipRsp = null;
++        mAvrcpPlayerAppSettings = null;
+         mA2dpService = svc;
+         maxAvrcpConnections = maxConnections;
+         deviceFeatures = new DeviceDependentFeature[maxAvrcpConnections];
+@@ -442,6 +453,7 @@ public final class Avrcp {
+         mHandler = new AvrcpMessageHandler(looper);
+         mMediaControllerCb = new MediaControllerListener();
+         mAvrcpMediaRsp = new AvrcpMediaRsp();
++        mAvrcpPlayerAppSettingsRsp = new AvrcpPlayerAppSettingsRsp();
+         mMediaPlayerInfoList = new TreeMap<Integer, MediaPlayerInfo>();
+         mAvailablePlayerViewChanged = false;
+         mBrowsePlayerInfoList = Collections.synchronizedList(new ArrayList<BrowsePlayerInfo>());
+@@ -468,6 +480,13 @@ public final class Avrcp {
+             if (DEBUG) Log.d(TAG, "Starting AVRCP BIP Responder Service");
+             mAvrcpBipRsp.start();
+         }
++
++        mAvrcpPlayerAppSettings = new AvrcpPlayerAppSettings(mContext, mAvrcpPlayerAppSettingsRsp);
++        if (mAvrcpPlayerAppSettings != null) {
++            if (DEBUG) Log.d(TAG, "Starting AVRCP AvrcpPlayerAppSetting Service");
++            mAvrcpPlayerAppSettings.start();
++        }
++
+         /* create object to communicate with addressed player */
+         mAddressedMediaPlayer = new AddressedMediaPlayer(mAvrcpMediaRsp);
+ 
+@@ -505,6 +524,11 @@ public final class Avrcp {
+             mMediaSessionManager.removeOnActiveSessionsChangedListener(mActiveSessionListener);
+         }
+ 
++        if (mAvrcpPlayerAppSettings != null) {
++            mAvrcpPlayerAppSettings.cleanup();
++            mAvrcpPlayerAppSettings = null;
++        }
++
+         mHandler.removeCallbacksAndMessages(null);
+         Looper looper = mHandler.getLooper();
+         if (looper != null) {
+@@ -534,6 +558,8 @@ public final class Avrcp {
+                 AvrcpConstants.KEY_STATE_RELEASE; //Key release state
+             if (deviceFeatures[i].mVolumeMapping != null)
+                 deviceFeatures[i].mVolumeMapping.clear();
++            if (deviceFeatures[i].mMusicAppCmdResponsePending != null)
++                deviceFeatures[i].mMusicAppCmdResponsePending.clear();
+         }
+         Log.d(TAG, "Exit clearDeviceDependentFeature()");
+     }
+@@ -595,6 +621,22 @@ public final class Avrcp {
+             if (DEBUG) Log.v(TAG, "AvrcpMessageHandler: received message=" + msg.what);
+ 
+             switch (msg.what) {
++            case MESSAGE_PLAYERSETTINGS_TIMEOUT:
++            {
++                Log.e(TAG, "**MESSAGE_PLAYSTATUS_TIMEOUT: Addr: " +
++                            (String)msg.obj + " Msg: " + msg.arg1);
++                BluetoothDevice currdevice;
++                currdevice = mAdapter.getRemoteDevice((String) msg.obj);
++                deviceIndex = getIndexForDevice(currdevice);
++                if (deviceIndex == INVALID_DEVICE_INDEX) {
++                    Log.e(TAG,"Invalid device index for send response");
++                    break;
++                }
++                int rsp = msg.arg1;
++                CreateMusicSettingsAppCmdLookupOrUpdate(rsp, deviceIndex, false);
++                mAvrcpPlayerAppSettings.handlerMsgTimeout(msg.arg1, currdevice);
++                break;
++            }
+             case MSG_NATIVE_REQ_GET_RC_FEATURES:
+             {
+                 String address = (String) msg.obj;
+@@ -1491,6 +1533,17 @@ public final class Avrcp {
+             if (addr != null &&
+                 deviceFeatures[i].mAddrPlayerChangedNT == AvrcpConstants.NOTIFICATION_TYPE_INTERIM
+                     && mReportedPlayerID != mCurrAddrPlayerID) {
++
++                if (deviceFeatures[i].mPlayerStatusChangeNT ==
++                        AvrcpConstants.NOTIFICATION_TYPE_INTERIM) {
++                    deviceFeatures[i].mPlayerStatusChangeNT =
++                            AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
++                    String address = Utils.getAddressStringFromByte(addr);
++                    BluetoothDevice dev = mAdapter.getRemoteDevice(address);
++                    mAvrcpPlayerAppSettings.sendPlayerAppChangedRsp(
++                            AvrcpConstants.NOTIFICATION_TYPE_CHANGED, dev);
++                }
++
+                 registerNotificationRspAddrPlayerChangedNative(
+                         AvrcpConstants.NOTIFICATION_TYPE_CHANGED, mCurrAddrPlayerID, sUIDCounter, addr);
+                 deviceFeatures[i].mAddrPlayerChangedNT = AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
+@@ -1732,10 +1785,18 @@ public final class Avrcp {
+                       " index " + deviceIndex);
+                 break;
+ 
++            case EVT_APP_SETTINGS_CHANGED:
++                deviceFeatures[deviceIndex].mPlayerStatusChangeNT =
++                        AvrcpConstants.NOTIFICATION_TYPE_INTERIM;
++                mAvrcpPlayerAppSettings.sendPlayerAppChangedRsp(
++                        deviceFeatures[deviceIndex].mPlayerStatusChangeNT, device);
++                break;
++
+             case EVT_AVBL_PLAYERS_CHANGED:
+                 /* Notify remote available players changed */
+                 if (DEBUG) Log.d(TAG, "Available Players notification enabled");
+-                deviceFeatures[deviceIndex].mAvailablePlayersChangedNT = AvrcpConstants.NOTIFICATION_TYPE_INTERIM;
++                deviceFeatures[deviceIndex].mAvailablePlayersChangedNT =
++                        AvrcpConstants.NOTIFICATION_TYPE_INTERIM;
+                 registerNotificationRspAvalPlayerChangedNative(
+                         AvrcpConstants.NOTIFICATION_TYPE_INTERIM,
+                         getByteAddress(deviceFeatures[deviceIndex].mCurrentDevice));
+@@ -2168,6 +2229,158 @@ public final class Avrcp {
+         return (int) Math.ceil((double) volume*AVRCP_MAX_VOL/mAudioStreamMax);
+     }
+ 
++    //PDU ID 0x11
++    private void onListPlayerAttributeRequest(byte[] address) {
++        if (DEBUG)
++            Log.v(TAG, "onListPlayerAttributeRequest");
++        int deviceIndex =
++                getIndexForDevice(mAdapter.getRemoteDevice(
++                        Utils.getAddressStringFromByte(address)));
++        if (deviceIndex == INVALID_DEVICE_INDEX) {
++            Log.e(TAG,"invalid index for device");
++            return;
++        }
++        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_ATTRIBUTE_IDS,
++                deviceIndex, true);
++        mAvrcpPlayerAppSettings.onListPlayerAttributeRequest(address);
++        SendPlayerSettingMsg(AvrcpConstants.GET_ATTRIBUTE_IDS, address);
++   }
++
++    //PDU ID 0x12
++    private void onListPlayerAttributeValues (byte attr, byte[] address) {
++        if (DEBUG)Log.v(TAG, "onListPlayerAttributeValues");
++        int deviceIndex =
++                getIndexForDevice(mAdapter.getRemoteDevice(
++                Utils.getAddressStringFromByte(address)));
++        if (deviceIndex == INVALID_DEVICE_INDEX) {
++            Log.e(TAG,"invalid index for device");
++            return;
++        }
++        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_VALUE_IDS, deviceIndex, true);
++        mAvrcpPlayerAppSettings.onListPlayerAttributeValues(attr, address);
++        SendPlayerSettingMsg(AvrcpConstants.GET_VALUE_IDS, address);
++    }
++
++    //PDU ID 0x13
++    private void onGetPlayerAttributeValues (byte attr ,int[] arr ,
++            byte[] address)
++    {
++        if (DEBUG)
++            Log.v(TAG, "onGetPlayerAttributeValues: num of attrib " + attr );
++        int deviceIndex =
++                getIndexForDevice(mAdapter.getRemoteDevice(
++                Utils.getAddressStringFromByte(address)));
++        if (deviceIndex == INVALID_DEVICE_INDEX) {
++            Log.e(TAG,"invalid index for device");
++            return;
++        }
++        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_ATTRIBUTE_VALUES,
++                deviceIndex, true);
++        mAvrcpPlayerAppSettings.onGetPlayerAttributeValues(attr, arr, address);
++        SendPlayerSettingMsg(AvrcpConstants.GET_ATTRIBUTE_VALUES, address);
++    }
++
++    //PDU 0x14
++    private void setPlayerAppSetting( byte num, byte [] attr_id, byte [] attr_val,
++            byte[] address)
++    {
++        if (DEBUG)
++            Log.v(TAG, "setPlayerAppSetting: number of attributes" + num );
++        int deviceIndex =
++                getIndexForDevice(mAdapter.getRemoteDevice(
++                Utils.getAddressStringFromByte(address)));
++        if (deviceIndex == INVALID_DEVICE_INDEX) {
++            Log.e(TAG,"invalid index for device");
++            return;
++        }
++        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.SET_ATTRIBUTE_VALUES,
++                deviceIndex, true);
++        mAvrcpPlayerAppSettings.setPlayerAppSetting(num, attr_id, attr_val, address);
++        SendPlayerSettingMsg(AvrcpConstants.SET_ATTRIBUTE_VALUES, address);
++    }
++
++    //PDU 0x15
++    private void getplayerattribute_text(byte attr , byte [] attrIds,
++            byte[] address)
++    {
++        if(DEBUG) Log.d(TAG, "getplayerattribute_text " + attr +" attrIDsNum "
++                                                        + attrIds.length);
++        int deviceIndex =
++                getIndexForDevice(mAdapter.getRemoteDevice(
++                Utils.getAddressStringFromByte(address)));
++        if (deviceIndex == INVALID_DEVICE_INDEX) {
++            Log.e(TAG,"invalid index for device");
++            return;
++        }
++        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_ATTRIBUTE_TEXT,
++                deviceIndex, true);
++        mAvrcpPlayerAppSettings.getplayerattribute_text(attr, attrIds, address);
++        SendPlayerSettingMsg(AvrcpConstants.GET_ATTRIBUTE_TEXT, address);
++    }
++
++    //PDU 0x16
++    private void getplayervalue_text(byte attr_id , byte num_value , byte [] value,
++            byte[] address)
++    {
++        int deviceIndex =
++                getIndexForDevice(mAdapter.getRemoteDevice(
++                Utils.getAddressStringFromByte(address)));
++        if (deviceIndex == INVALID_DEVICE_INDEX) {
++            Log.e(TAG,"invalid index for device");
++            return;
++        }
++        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_VALUE_TEXT, deviceIndex, true);
++        mAvrcpPlayerAppSettings.getplayervalue_text(attr_id, num_value, value, address);
++        SendPlayerSettingMsg(AvrcpConstants.GET_VALUE_TEXT, address);
++    }
++
++    private void SendPlayerSettingMsg(Integer cmd, byte[] address) {
++        Message msg = mHandler.obtainMessage();
++        msg.what = MESSAGE_PLAYERSETTINGS_TIMEOUT;
++        msg.arg1 = cmd;
++        msg.arg2 = 0;
++        msg.obj = Utils.getAddressStringFromByte(address);
++        mHandler.sendMessageDelayed(msg, 500);
++    }
++
++    private void CreateMusicSettingsAppCmdLookupOrUpdate(Integer cmd,
++            int deviceIndex, boolean entry_new) {
++        if (deviceIndex == INVALID_DEVICE_INDEX) {
++           Log.e(TAG,"invalid index for device");
++           return;
++        }
++        Log.v(TAG,"Cmd = " + cmd + "on index = " + deviceIndex + "new entry" + entry_new);
++
++        if (entry_new) {
++            if (deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.
++                    containsKey(cmd)) {
++                int cmdCount =
++                        deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.get(cmd);
++                Log.v(TAG,"cmdCount = " + cmdCount + "for command type = " + cmd);
++                deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.put
++                        (cmd, cmdCount + 1);
++            } else {
++                deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.put
++                        (cmd, 1);
++            }
++        } else {
++            if (deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.
++                    containsKey(cmd)) {
++                int PendingCmds =
++                        deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.get(cmd);
++                Log.v(TAG,"PendingCmds = " + PendingCmds + "for resoponse type = " + cmd);
++                if (PendingCmds > 1) {
++                    deviceFeatures[deviceIndex].mMusicAppCmdResponsePending
++                            .put(cmd, PendingCmds - 1);
++                } else if (PendingCmds == 1) {
++                    deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.remove(cmd);
++                } else {
++                    Log.e(TAG,"Invalid Player Setting Cmd count entry in lookup");
++                }
++            }
++        }
++    }
++
+     private void blackListCurrentDevice(int i) {
+         String mAddress = null;
+         if (deviceFeatures[i].mCurrentDevice == null) {
+@@ -3453,6 +3666,83 @@ public final class Avrcp {
+         }
+     }
+ 
++    private class AvrcpPlayerAppSettingsRsp implements AvrcpPlayerAppSettingsRspInterface {
++        private static final String TAG = "AvrcpPlayerAppSettingsRsp";
++
++        public void getListPlayerappAttrRsp(byte attr, byte[] attrIds, byte[] address) {
++            if (!getListPlayerappAttrRspNative(attr, attrIds, address)) {
++                Log.e(TAG, "getListPlayerappAttrRspNative failed!");
++            }
++        }
++
++        public void getPlayerAppValueRsp(byte numberattr, byte[]values, byte[] address) {
++            if (!getPlayerAppValueRspNative(numberattr, values, address)) {
++                Log.e(TAG, "getPlayerAppValueRspNative failed!");
++            }
++        }
++
++        public void SendCurrentPlayerValueRsp(byte numberattr, byte[]attr, byte[] address) {
++            if (!SendCurrentPlayerValueRspNative(numberattr, attr, address)) {
++                Log.e(TAG, "SendCurrentPlayerValueRspNative failed!");
++            }
++        }
++
++        public void SendSetPlayerAppRsp(int attr_status, byte[] address) {
++            for (int i = 0; i < maxAvrcpConnections; i++) {
++                if (deviceFeatures[i].mPlayerStatusChangeNT ==
++                        AvrcpConstants.NOTIFICATION_TYPE_INTERIM) {
++                    Log.v(TAG,"device has registered for mPlayerAppSettingStatusChangeNT");
++                    deviceFeatures[i].mPlayerStatusChangeNT =
++                            AvrcpConstants.NOTIFICATION_TYPE_CHANGED;
++                    mAvrcpPlayerAppSettings.sendPlayerAppChangedRsp(
++                            deviceFeatures[i].mPlayerStatusChangeNT,
++                            deviceFeatures[i].mCurrentDevice);
++                 } else {
++                    Log.v(TAG,"Drop Set Attr Val update from media player");
++                 }
++            }
++            if ((address != null) && (!SendSetPlayerAppRspNative(attr_status, address))) {
++                Log.e(TAG, "SendSetPlayerAppRspNative failed!");
++            }
++
++        }
++
++        public void sendSettingsTextRsp(int num_attr, byte[] attr, int length, String[] text,
++                byte[] address) {
++            if (!sendSettingsTextRspNative(num_attr, attr, length, text, address)) {
++                Log.e(TAG, "sendSettingsTextRspNative failed!");
++            }
++        }
++
++        public void sendValueTextRsp(int num_attr, byte[] attr, int length, String[] text,
++                byte[] address) {
++            if (!sendValueTextRspNative(num_attr, attr, length, text, address)) {
++                Log.e(TAG, "sendValueTextRspNative failed!");
++            }
++        }
++
++        public void registerNotificationPlayerAppRsp(int type, byte numberattr, byte[] attr,
++                byte[] address) {
++            if (!registerNotificationPlayerAppRspNative(type, numberattr, attr, address)) {
++                Log.e(TAG, "registerNotificationPlayerAppRspNative failed!");
++            }
++        }
++
++        public BluetoothDevice GetPlayerSettingCmdPendingDevice(Integer reponse) {
++            BluetoothDevice device = null;
++            mHandler.removeMessages(MESSAGE_PLAYERSETTINGS_TIMEOUT);
++            for (int i = 0; i < maxAvrcpConnections; i++) {
++                if ((deviceFeatures[i].mMusicAppCmdResponsePending
++                        .containsKey(reponse))) {
++                    CreateMusicSettingsAppCmdLookupOrUpdate(reponse, i, false);
++                    device = deviceFeatures[i].mCurrentDevice;
++                    break;
++                }
++            }
++            return device;
++        }
++
++    }
+     /*
+      * private class which handles responses from AvrcpMediaManager. Maps responses to native
+      * responses. This class implements the AvrcpMediaRspInterface interface.
+@@ -3895,6 +4185,19 @@ public final class Avrcp {
+             byte scope, int numItems, byte[] folderTypes, byte[] playable, byte[] itemTypes,
+             byte[] itemUidArray, String[] textArray, int[] AttributesNum, int[] AttributesIds,
+             String[] attributesArray);
++    private native boolean getListPlayerappAttrRspNative(byte attr,
++            byte[] attrIds, byte[] address);
++    private native boolean getPlayerAppValueRspNative(byte numberattr,
++            byte[]values, byte[] address );
++    private native boolean SendCurrentPlayerValueRspNative(byte numberattr,
++            byte[]attr, byte[] address );
++    private native boolean SendSetPlayerAppRspNative(int attr_status, byte[] address);
++    private native boolean sendSettingsTextRspNative(int num_attr, byte[] attr,
++        int length, String[]text, byte[] address);
++    private native boolean sendValueTextRspNative(int num_attr, byte[] attr,
++        int length, String[]text, byte[] address);
++    private native boolean registerNotificationPlayerAppRspNative(int type,
++        byte numberattr, byte[]attr, byte[] address);
+     private native boolean changePathRspNative(byte[] address, int rspStatus, int numItems);
+     private native boolean getItemAttrRspNative(byte[] address, int rspStatus, byte numAttr,
+             int[] attrIds, String[] textArray);
+diff --git a/src/com/android/bluetooth/avrcp/AvrcpConstants.java b/src/com/android/bluetooth/avrcp/AvrcpConstants.java
+index 8bdf72b..c4afb32 100644
+--- a/src/com/android/bluetooth/avrcp/AvrcpConstants.java
++++ b/src/com/android/bluetooth/avrcp/AvrcpConstants.java
+@@ -147,4 +147,14 @@ final class AvrcpConstants {
+ 
+     static final int KEY_STATE_PRESS = 1;
+     static final int KEY_STATE_RELEASE = 0;
++
++    static final int GET_ATTRIBUTE_IDS = 0;
++    static final int GET_VALUE_IDS = 1;
++    static final int GET_ATTRIBUTE_TEXT = 2;
++    static final int GET_VALUE_TEXT     = 3;
++    static final int GET_ATTRIBUTE_VALUES = 4;
++    static final int NOTIFY_ATTRIBUTE_VALUES = 5;
++    static final int SET_ATTRIBUTE_VALUES  = 6;
++    static final int GET_INVALID = 0xff;
++
+ }
+diff --git a/src/com/android/bluetooth/avrcp/AvrcpPlayerAppSettingsRspInterface.java b/src/com/android/bluetooth/avrcp/AvrcpPlayerAppSettingsRspInterface.java
+new file mode 100644
+index 0000000..e56e40e
+--- /dev/null
++++ b/src/com/android/bluetooth/avrcp/AvrcpPlayerAppSettingsRspInterface.java
+@@ -0,0 +1,54 @@
++/*
++*Copyright (c) 2017, The Linux Foundation. All rights reserved.
++*
++*Redistribution and use in source and binary forms, with or without
++*modification, are permitted provided that the following conditions are
++*met:
++*    * Redistributions of source code must retain the above copyright
++*      notice, this list of conditions and the following disclaimer.
++*    * Redistributions in binary form must reproduce the above
++*      copyright notice, this list of conditions and the following
++*      disclaimer in the documentation and/or other materials provided
++*      with the distribution.
++*    * Neither the name of The Linux Foundation nor the names of its
++*      contributors may be used to endorse or promote products derived
++*      from this software without specific prior written permission.
++*
++*THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
++*WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++*MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
++*ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
++*BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++*CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++*SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++*BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++*WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++*OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++*IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++*/
++
++package com.android.bluetooth.avrcp;
++
++import android.bluetooth.BluetoothDevice;
++
++public interface AvrcpPlayerAppSettingsRspInterface {
++
++    public void getListPlayerappAttrRsp(byte attr, byte[] attrIds, byte[] address);
++
++    public void getPlayerAppValueRsp(byte numberattr, byte[]values, byte[] address);
++
++    public void SendCurrentPlayerValueRsp(byte numberattr, byte[]attr, byte[] address);
++
++    public void SendSetPlayerAppRsp(int attr_status, byte[] address);
++
++    public void sendSettingsTextRsp(int num_attr, byte[] attr, int length, String[]text, byte[] address);
++
++    public void sendValueTextRsp(int num_attr, byte[] attr, int length, String[]text, byte[] address);
++
++    public void registerNotificationPlayerAppRsp(int type, byte numberattr, byte[]attr, byte[] address);
++
++    public BluetoothDevice GetPlayerSettingCmdPendingDevice(Integer reponse);
++
++}
++
++
+-- 
+2.7.4
+
