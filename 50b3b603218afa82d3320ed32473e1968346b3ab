@@ -16,6 +16,24 @@
       "message": "I\u0027d expect advertising_exit_suspend is always invoked while system resumes.",
       "revId": "50b3b603218afa82d3320ed32473e1968346b3ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3943a6_233f4fc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-11-17T17:40:12Z",
+      "side": 1,
+      "message": "Do you want to know if it was a wakeful suspend or not?  Does it matter for the UX?",
+      "parentUuid": "b576728b_cf80ce26",
+      "revId": "50b3b603218afa82d3320ed32473e1968346b3ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
