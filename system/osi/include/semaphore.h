@@ -20,7 +20,12 @@
 
 #include <stdbool.h>
 
-struct semaphore_t;
+/** Fix HOGP mouse connect fail after unpair  @{ */
+struct semaphore_t {
+  int fd;
+};
+/** @} */
+
 typedef struct semaphore_t semaphore_t;
 
 // Creates a new semaphore with an initial value of |value|.
@@ -40,6 +45,10 @@ void semaphore_wait(semaphore_t* semaphore);
 // decremented, false if the value was 0. This function never blocks.
 // |semaphore| may not be NULL.
 bool semaphore_try_wait(semaphore_t* semaphore);
+
+/** Fix HOGP mouse connect fail after unpair  @{ */
+void semaphore_wait_timeout(semaphore_t* semaphore, long usec);
+/** @} */
 
 // Increments the value of |semaphore|. |semaphore| may not be NULL.
 void semaphore_post(semaphore_t* semaphore);
