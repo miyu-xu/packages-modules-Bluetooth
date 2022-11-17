@@ -328,6 +328,8 @@ supported_le_features! {
     connected_iso_stream_peripheral => 29,
     iso_broadcaster => 30,
     synchronized_receiver => 31,
+    ble_connection_subrating => 37,
+    ble_connection_subrating_host => 38,
 }
 
 /// Convert a null terminated C string into a Rust String
