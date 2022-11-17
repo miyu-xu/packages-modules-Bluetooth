@@ -22,6 +22,30 @@
       },
       "revId": "27ada52d9fa35721f973286e543144cf30905803",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00562495_2dd44c63",
+        "filename": "apex/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-17T22:35:45Z",
+      "side": 1,
+      "message": "Cherry picked",
+      "parentUuid": "9d390b35_44f38b21",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "27ada52d9fa35721f973286e543144cf30905803",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
