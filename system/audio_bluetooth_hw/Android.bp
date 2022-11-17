@@ -51,6 +51,7 @@ cc_library_shared {
 
 cc_test {
     name: "audio_bluetooth_hw_test",
+    host_supported: true,
     defaults: ["audio_bluetooth_hw_defaults"],
     srcs: [
         "utils.cc",

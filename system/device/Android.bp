@@ -32,6 +32,7 @@ cc_library_static {
 // Bluetooth device unit tests for target
 cc_test {
     name: "net_test_device",
+    host_supported: true,
     test_suites: ["device-tests"],
     defaults: [
         "fluoride_defaults",
@@ -41,17 +42,8 @@ cc_test {
     srcs: [
         "test/interop_test.cc",
     ],
-    shared_libs: [
-        "android.hardware.bluetooth@1.0",
-        "android.hardware.bluetooth@1.1",
-        "liblog",
-        "libdl",
-    ],
     static_libs: [
         "libbtdevice",
-        "libbtcore",
         "libosi",
-        "libosi-AllocationTestHarness",
-        "libbluetooth-types",
     ],
 }
