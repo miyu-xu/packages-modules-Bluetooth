@@ -29,7 +29,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
+/** Fix BT Stack crash when power off  @{ */
+#include <mutex>
+/** @} */
 #include "bta_api.h"
 #include "bta_hh_api.h"
 #include "btif_hh.h"
@@ -41,6 +43,11 @@
 #include "types/raw_address.h"
 
 const char* dev_path = "/dev/uhid";
+/** Fix BT Stack crash when power off  @{ */
+using LockGuard = std::lock_guard<std::mutex>;
+static std::mutex s_hid_poll_thread_mutex;
+void btif_hh_close_poll_thread(btif_hh_device_t* p_dev);
+/** @} */
 
 #include "btif_config.h"
 #define BTA_HH_NV_LOAD_MAX 16
@@ -263,7 +270,9 @@ static void* btif_hh_poll_event_thread(void* arg) {
   sched_params.sched_priority = THREAD_NORMAL_PRIORITY;
   if (sched_setscheduler(gettid(), SCHED_OTHER, &sched_params)) {
     APPL_TRACE_ERROR("%s: Failed to set thread priority to normal", __func__);
-    p_dev->hh_poll_thread_id = -1;
+    /** Fix BT Stack crash when power off  @{ */
+    //p_dev->hh_poll_thread_id = -1;
+    /** @} */
     return 0;
   }
   p_dev->pid = gettid();
@@ -292,17 +301,22 @@ static void* btif_hh_poll_event_thread(void* arg) {
     }
   }
 
-  p_dev->hh_poll_thread_id = -1;
-  p_dev->pid = -1;
+  /** Fix BT Stack crash when power off  @{ */
+  //p_dev->hh_poll_thread_id = -1;
+  //p_dev->pid = -1;
+  /** @} */
   return 0;
 }
 
-static inline void btif_hh_close_poll_thread(btif_hh_device_t* p_dev) {
+/** Fix BT Stack crash when power off  @{ */
+void btif_hh_close_poll_thread(btif_hh_device_t* p_dev) {
   APPL_TRACE_DEBUG("%s", __func__);
+  LockGuard lock(s_hid_poll_thread_mutex);
   p_dev->hh_keep_polling = 0;
-  if (p_dev->hh_poll_thread_id > 0)
+  if (p_dev->hh_poll_thread_id != (pthread_t)(-1))
     pthread_join(p_dev->hh_poll_thread_id, NULL);
-
+  p_dev->hh_poll_thread_id = -1;
+  /** @} */
   return;
 }
 
