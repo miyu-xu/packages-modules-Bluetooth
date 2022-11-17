@@ -16,6 +16,23 @@
       "message": "Please add tests for writing the class to parcel and restoring it:\n\nhttps://source.corp.google.com/android/cts/tests/tests/media/bettertogether/src/android/media/bettertogether/cts/MediaMetadataTest.java;rcl\u003d98256c3b62ace0b60b7a601fe74c6e02daa21629;l\u003d214\n\nAlso please add call toString()  (just for coverage)",
       "revId": "cb96ba36e8566443ba9740f0f5cff695e73884a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bfd91c6_524f8fa8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-17T00:55:55Z",
+      "side": 1,
+      "message": "Hi William,\n\nSorry for adding you directly. I chose you from the list of OWNERS for `Android.bp`. Please let me know if you are not the right person for this.",
+      "revId": "cb96ba36e8566443ba9740f0f5cff695e73884a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
