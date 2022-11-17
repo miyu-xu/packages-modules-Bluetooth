@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d390b35_44f38b21",
+        "filename": "apex/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-17T21:32:50Z",
+      "side": 1,
+      "message": "FYI this specific change has been reverted on tm-qpr-dev.\ncf b/257759587",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "27ada52d9fa35721f973286e543144cf30905803",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
