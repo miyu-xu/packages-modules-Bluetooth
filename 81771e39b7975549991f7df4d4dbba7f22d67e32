@@ -16,6 +16,24 @@
       "message": "Could you add unit test for this failure case?",
       "revId": "81771e39b7975549991f7df4d4dbba7f22d67e32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "643bca91_7b20279c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-11-17T13:14:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dcd3f46_aa052245",
+      "revId": "81771e39b7975549991f7df4d4dbba7f22d67e32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
