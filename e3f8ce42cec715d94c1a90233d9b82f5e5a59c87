@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6523a6d_88054b5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-17T18:29:57Z",
+      "side": 1,
+      "message": "Can you do a abtd run to retry flakiness on this ?",
+      "revId": "e3f8ce42cec715d94c1a90233d9b82f5e5a59c87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ef84faf_7a474f4a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-17T18:29:57Z",
+      "side": 1,
+      "message": "You should remove this in order to restore the test.\nYou can simply do a revert of the CL that put it in.",
+      "range": {
+        "startLine": 1107,
+        "startChar": 5,
+        "endLine": 1107,
+        "endChar": 11
+      },
+      "revId": "e3f8ce42cec715d94c1a90233d9b82f5e5a59c87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
