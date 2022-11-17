@@ -291,6 +291,89 @@ TEST_F(BtifHhWithDevice, BTA_HH_GET_RPT_EVT) {
   }
 }
 
+<<<<<<< PATCH SET (052e65 Fix HOGP mouse connect fail after unpair)
+TEST_F(BtifHhWithDevice, test_BTA_HH_CLOSE_EVT) {
+  tBTA_HH data;
+  memset(&data, 0, sizeof(data));
+  data.conn.bda = kDeviceAddress;
+  data.conn.handle = kHhHandle;
+  data.dev_status.status = BTA_HH_OK;
+  data.dev_status.handle = kHhHandle;
+
+  btif_hh_cb.status = BTIF_HH_DEV_CONNECTED;
+  btif_hh_cb.devices[0].fd = -1;
+  btif_hh_cb.devices[0].status_sema = semaphore_new(0);
+  btif_hh_cb.devices[0].sema_inited = TRUE;
+
+  bthh_callbacks.connection_state_cb = [](RawAddress* bd_addr,
+                                    bthh_connection_state_t state) {
+    connection_state_cb_t connection_state = {
+        .state = state,
+    };
+    g_bthh_connection_state_promise.set_value(connection_state);
+  };
+
+  g_bthh_connection_state_promise = std::promise<connection_state_cb_t>();
+  auto future = g_bthh_connection_state_promise.get_future();
+  bte_hh_evt(BTA_HH_CLOSE_EVT, &data);
+  ASSERT_EQ(std::future_status::ready, future.wait_for(2s));
+  auto res = future.get();
+  ASSERT_EQ(BTHH_CONN_STATE_DISCONNECTING, res.state);
+
+  g_bthh_connection_state_promise = std::promise<connection_state_cb_t>();
+  future = g_bthh_connection_state_promise.get_future();
+  ASSERT_EQ(std::future_status::ready, future.wait_for(2s));
+  res = future.get();
+  ASSERT_EQ(BTHH_CONN_STATE_DISCONNECTED, res.state);
+  ASSERT_EQ(TRUE, btif_hh_cb.devices[0].sema_inited);
+
+  g_bthh_connection_state_promise = std::promise<connection_state_cb_t>();
+  future = g_bthh_connection_state_promise.get_future();
+  bte_hh_evt(BTA_HH_CLOSE_EVT, &data);
+  ASSERT_EQ(std::future_status::ready, future.wait_for(2s));
+  res = future.get();
+  ASSERT_EQ(BTHH_CONN_STATE_DISCONNECTING, res.state);
+  ASSERT_EQ(TRUE, btif_hh_cb.devices[0].sema_inited);
+
+  semaphore_free(btif_hh_cb.devices[0].status_sema);
+}
+
+TEST_F(BtifHhWithDevice, test_btif_hh_remove_device) {
+  btif_hh_cb.status = BTIF_HH_DEV_CONNECTED;
+  btif_hh_cb.devices[0].fd = -1;
+  btif_hh_cb.devices[0].status_sema = semaphore_new(0);
+  btif_hh_cb.devices[0].sema_inited = TRUE;
+
+  bthh_callbacks.connection_state_cb = [](RawAddress* bd_addr,
+                                    bthh_connection_state_t state) {
+    connection_state_cb_t connection_state = {
+        .state = state,
+    };
+    g_bthh_connection_state_promise.set_value(connection_state);
+  };
+
+  g_bthh_connection_state_promise = std::promise<connection_state_cb_t>();
+  auto future = g_bthh_connection_state_promise.get_future();
+  btif_hh_remove_device(kDeviceAddress);
+  ASSERT_EQ(std::future_status::ready, future.wait_for(2s));
+  auto res = future.get();
+  ASSERT_EQ(BTHH_CONN_STATE_DISCONNECTED, res.state);
+  ASSERT_EQ(FALSE, btif_hh_cb.devices[0].sema_inited);
+
+  semaphore_free(btif_hh_cb.devices[0].status_sema);
+}
+
+TEST_F(BtifHhWithDevice, test_cleanup) {
+  btif_hh_cb.status = BTIF_HH_DEV_CONNECTED;
+  btif_hh_cb.devices[0].fd = -1;
+  btif_hh_cb.devices[0].status_sema = semaphore_new(0);
+  btif_hh_cb.devices[0].sema_inited = TRUE;
+
+  btif_hh_get_interface()->cleanup();
+  ASSERT_EQ(FALSE, btif_hh_cb.devices[0].sema_inited);
+
+  semaphore_free(btif_hh_cb.devices[0].status_sema);
+=======
 class BtifHHVirtualUnplugTest : public BtifHhAdapterReady {
  protected:
   void SetUp() override {
@@ -337,4 +420,5 @@ TEST_F(BtifHHVirtualUnplugTest, test_btif_hh_virtual_unplug_device_not_open) {
   ASSERT_STREQ(kDeviceAddressConnecting.ToString().c_str(),
                res.raw_address.ToString().c_str());
   ASSERT_EQ(BTHH_CONN_STATE_DISCONNECTED, res.state);
+>>>>>>> BASE      (ff9608 Merge "Remove descriptors of unbonded device")
 }

@@ -29,6 +29,9 @@
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "types/raw_address.h"
+/** Fix HOGP mouse connect fail after unpair  @{ */
+#include "osi/include/semaphore.h"
+/** @} */
 
 /*******************************************************************************
  *  Constants & Macros
@@ -107,6 +110,10 @@ typedef struct {
 #endif  // ENSABLE_UHID_SET_REPORT
   uint8_t get_rpt_snt;
   bool local_vup;  // Indicated locally initiated VUP
+  /** Fix HOGP mouse connect fail after unpair  @{ */
+  bool sema_inited;
+  semaphore_t* status_sema;
+  /** @} */
 } btif_hh_device_t;
 
 /* Control block to maintain properties of devices */
@@ -137,6 +144,9 @@ extern btif_hh_cb_t btif_hh_cb;
 
 extern btif_hh_device_t* btif_hh_find_connected_dev_by_handle(uint8_t handle);
 extern void btif_hh_remove_device(RawAddress bd_addr);
+/** Fix HOGP mouse connect fail after unpair  @{ */
+extern btif_hh_device_t* btif_hh_find_dev_by_handle(uint8_t handle);
+/** @} */
 extern bool btif_hh_add_added_dev(const RawAddress& bda,
                                   tBTA_HH_ATTR_MASK attr_mask);
 extern bt_status_t btif_hh_virtual_unplug(const RawAddress* bd_addr);
