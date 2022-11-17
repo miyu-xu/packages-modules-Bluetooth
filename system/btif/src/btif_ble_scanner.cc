@@ -74,6 +74,61 @@ std::set<RawAddress> remote_bdaddr_cache;
 std::queue<RawAddress> remote_bdaddr_cache_ordered;
 const size_t remote_bdaddr_cache_max_size = 1024;
 
+/** Fix RC reconnect failed because of COD error. @{ */
+void btif_ble_scanner_update_COD(tBTA_DM_SEARCH* p_data) {
+  bt_property_t properties[1];
+  RawAddress bdaddr;
+  bt_status_t status;
+  uint32_t cod = 0;
+  uint32_t old_cod = 0;
+  uint8_t num_properties = 0;
+
+  memset(properties, 0, sizeof(properties));
+  if (p_data) {
+    bdaddr = p_data->inq_res.bd_addr;
+
+    cod = devclass2uint(p_data->inq_res.dev_class);
+    BTIF_TRACE_DEBUG("%s %s cod is 0x%06x", __func__, bdaddr.ToString().c_str(), cod);
+
+    BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                              BT_PROPERTY_CLASS_OF_DEVICE, sizeof(uint32_t), &old_cod);
+    status = btif_storage_get_remote_device_property(&bdaddr, &properties[num_properties]);
+    BTIF_TRACE_DEBUG("%s cod in config 0x%06x, status=%d", __func__, old_cod, status);
+
+    /* some device adv appearance is reserved, and it will be set as
+       * 0x1F00, and when it report to upper layer. the EIR cod may be overwritten
+       * by this cod. And when upper layer want to connect the profile, the cod
+       * is useless, then upper layer will drop the connection.
+       */
+    if ((cod == 0) || (cod == 0x1f00)) {
+      /* Try to retrieve cod from storage */
+      BTIF_TRACE_DEBUG("%s invalid cod 0x%x, use cod 0x%x in config", __func__, cod, old_cod);
+      cod = old_cod;
+
+      if (cod == 0) {
+        BTIF_TRACE_DEBUG("%s cod is again 0, set as unclassified", __func__);
+        cod = 0x1f00;
+      }
+    }
+
+    /* some device is dual mode, and it will send ble adv and it will cause
+       * device update the cod and flush the config file.
+       * so if there is no any change, don't update.
+       * if not cod in config, save it too.
+       */
+    if ((cod != old_cod) || (status != BT_STATUS_SUCCESS)) {
+      BTIF_TRACE_DEBUG("%s cod change 0x%x=>0x%x, update config",
+          __func__, old_cod, cod);
+      BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                                  BT_PROPERTY_CLASS_OF_DEVICE, sizeof(uint32_t), &cod);
+      status = btif_storage_set_remote_device_property(&bdaddr, &properties[num_properties]);
+      ASSERTC(status == BT_STATUS_SUCCESS, "failed to save remote device class", status);
+      num_properties++;
+    }
+  }
+}
+/** @} */
+
 void btif_address_cache_add(const RawAddress& p_bda, uint8_t addr_type) {
   // Remove the oldest entries
   while (remote_bdaddr_cache.size() >= remote_bdaddr_cache_max_size) {
@@ -172,6 +227,10 @@ void bta_scan_results_cb(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {
     BTIF_TRACE_WARNING("%s : Unknown event 0x%x", __func__, event);
     return;
   }
+
+  /** Fix RC reconnect failed because of COD error. @{ */
+  btif_ble_scanner_update_COD(p_data);
+  /** @} */
 
   vector<uint8_t> value;
   if (p_data->inq_res.p_eir) {
