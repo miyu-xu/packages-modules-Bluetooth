@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be8b741c_78839b68",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivity.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-17T08:21:38Z",
+      "side": 1,
+      "message": "Then we have to intercept onCreate to modify this value. I think this way is more readable. It\u0027s not modified outside of tests so it\u0027s pretty safe too",
+      "parentUuid": "f44eaae2_4f98c852",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 38
+      },
+      "revId": "b906ba893a418b0459ac1f628db28acfe594626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06ea128f_fb64427e",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d1b644d_6566399f",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivity.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-17T08:21:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06ea128f_fb64427e",
+      "revId": "b906ba893a418b0459ac1f628db28acfe594626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d32e461d_629885c7",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-11-17T05:22:25Z",
       "side": 1,
       "message": "Let\u0027s create a variable for this and use it in L100.",
+      "range": {
+        "startLine": 90,
+        "startChar": 65,
+        "endLine": 90,
+        "endChar": 68
+      },
+      "revId": "b906ba893a418b0459ac1f628db28acfe594626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0685bf73_853ffe53",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivityTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-17T08:21:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d32e461d_629885c7",
       "range": {
         "startLine": 90,
         "startChar": 65,
