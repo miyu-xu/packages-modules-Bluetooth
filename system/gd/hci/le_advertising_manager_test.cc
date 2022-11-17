@@ -587,11 +587,17 @@ class LeExtendedAdvertisingAPITest : public LeExtendedAdvertisingManagerTest {
   AdvertiserId advertiser_id_;
 };
 
-TEST_F(LeAdvertisingManagerTest, startup_teardown) {}
+TEST_F(LeAdvertisingManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
-TEST_F(LeAndroidHciAdvertisingManagerTest, startup_teardown) {}
+TEST_F(LeAndroidHciAdvertisingManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
-TEST_F(LeExtendedAdvertisingManagerTest, startup_teardown) {}
+TEST_F(LeExtendedAdvertisingManagerTest, startup_teardown) {
+  ASSERT_TRUE(false);
+}
 
 TEST_F(LeAdvertisingManagerTest, create_advertiser_test) {
   ExtendedAdvertisingConfig advertising_config{};
