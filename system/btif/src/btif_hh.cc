@@ -906,6 +906,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         BTIF_TRACE_WARNING("Error: cannot find device with handle %d",
                            p_data->hs_data.handle);
       }
+      /** Fix HID_GET_REPORT error  @{ */
+      if (hdr != NULL) {
+         osi_free_and_reset((void **)&hdr);
+      }
+      /** @} */
       break;
     }
 
