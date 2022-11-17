@@ -16,6 +16,24 @@
       "message": "The patch has already passed the presubmit tests.\nCould you guys have a look at it?",
       "revId": "8484863be35c4a8f8749722108fe2aa9408465da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1182f9b4_31a7134b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-17T18:35:15Z",
+      "side": 1,
+      "message": "[Here](https://fusion.corp.googleusercontent.com/file/autoview?fileUri\u003dgooglefile%3A%2Fcns%2Feh-d%2Fhome%2Fmobileharness%2Fgateway%2F20221116%2Fs_b35efa98-739f-4237-8114-7593bdc33f1b%2Fj_c9a92cef-dc05-46c7-aa4b-8c06feb0e35b%2Ft_63532b8f-40cb-407e-be76-26951dfc52ee%2FFloss.BuildFloss%2Ffloss-build.log\u0026filename\u003d%2Fcns%2Feh-d%2Fhome%2Fmobileharness%2Fgateway%2F20221116%2Fs_b35efa98-739f-4237-8114-7593bdc33f1b%2Fj_c9a92cef-dc05-46c7-aa4b-8c06feb0e35b%2Ft_63532b8f-40cb-407e-be76-26951dfc52ee%2FFloss.BuildFloss%2Ffloss-build.log\u0026operation\u003dVIEW) the floss build logs :\n\n\n```\n../../../staging/bt/system/stack/gatt/att_protocol.cc:314:11: error: use of undeclared identifier \u0027WARNING\u0027\n      LOG(WARNING) \u003c\u003c StringPrintf(\n          ^\n../../../staging/bt/system/stack/gatt/att_protocol.cc:345:9: error: use of undeclared identifier \u0027ERROR\u0027\n    LOG(ERROR) \u003c\u003c __func__ \u003c\u003c \": failed to write data to L2CAP\";\n        ^\n../../../staging/bt/system/stack/gatt/att_protocol.cc:348:5: error: use of undeclared identifier \u0027VLOG\u0027\n    VLOG(1) \u003c\u003c StringPrintf(\"ATT congested, message accepted\");\n    ^\n../../../staging/bt/system/stack/gatt/att_protocol.cc:362:7: error: use of undeclared identifier \u0027VLOG\u0027\n      VLOG(1) \u003c\u003c StringPrintf(\n      ^\n../../../staging/bt/system/stack/gatt/att_protocol.cc:389:11: error: use of undeclared identifier \u0027FATAL\u0027\n      LOG(FATAL) \u003c\u003c \"attp_build_sr_msg: unknown op code \u003d \" \u003c\u003c +op_code;\n          ^\n5 errors generated.\n```\n\nand you changed the import of `system/stack/gatt/att_protocol.cc` so it may be related",
+      "parentUuid": "71fde4a3_3a68c7a0",
+      "revId": "8484863be35c4a8f8749722108fe2aa9408465da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
