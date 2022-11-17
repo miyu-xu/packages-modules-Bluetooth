@@ -1013,6 +1013,7 @@ final class RemoteDevices {
                 connectionState,
                 metricId,
                 transportLinkType);
+        Log.w(TAG, "aaaaaaaaaaa ACL state: " + connectionState);
 
         BluetoothClass deviceClass = device.getBluetoothClass();
         int classOfDevice = deviceClass == null ? 0 : deviceClass.getClassOfDevice();

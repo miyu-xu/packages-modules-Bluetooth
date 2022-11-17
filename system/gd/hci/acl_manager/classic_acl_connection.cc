@@ -144,6 +144,9 @@ class AclConnectionTracker : public ConnectionManagementCallbacks {
       hci::ErrorCode hci_status, uint8_t lmp_version, uint16_t manufacturer_name, uint16_t sub_version) override {
     bluetooth::os::LogMetricRemoteVersionInfo(
         connection_handle_, static_cast<uint8_t>(hci_status), lmp_version, manufacturer_name, sub_version);
+    LOG_WARN("aaaaaaaaaaa local version from classic %d, %d, %d, %d", 
+  connection_handle_, lmp_version, manufacturer_name,sub_version);
+ 
     SAVE_OR_CALL(OnReadRemoteVersionInformationComplete, hci_status, lmp_version, manufacturer_name, sub_version);
   }
   void OnReadRemoteSupportedFeaturesComplete(uint64_t features) override {
