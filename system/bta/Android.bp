@@ -285,6 +285,7 @@ cc_test {
 // bta hf client add record tests for target
 cc_test {
     name: "net_test_hf_client_add_record",
+    host_supported: true,
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
@@ -312,7 +313,10 @@ cc_test {
         "libbluetooth-types",
         "libosi",
     ],
-    cflags: ["-DBUILDCFG"],
+    // Force -flto as this test doesn't work
+    // without as it need the link to discard
+    // unused symbols
+    cflags: ["-DBUILDCFG", "-flto"],
 }
 
 // csis unit tests for host
