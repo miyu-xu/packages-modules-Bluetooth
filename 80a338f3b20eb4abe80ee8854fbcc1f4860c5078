@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac796d0_a9c6c675",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1601,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-17T11:13:26Z",
+      "side": 1,
+      "message": "when we send \"set mint encryption key size\" does it affect Classic connections only, or also LE connections ?\n\nShould this check stay for BLE connections ?",
+      "range": {
+        "startLine": 1600,
+        "startChar": 5,
+        "endLine": 1601,
+        "endChar": 72
+      },
+      "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
