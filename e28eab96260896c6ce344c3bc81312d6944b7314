@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc41bb6a_f34aaa67",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/CallInfoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-17T01:00:20Z",
+      "side": 1,
+      "message": "I meant \"com.placeholder.connectionservice.package.name\" haha",
+      "range": {
+        "startLine": 280,
+        "startChar": 34,
+        "endLine": 280,
+        "endChar": 69
+      },
+      "revId": "e28eab96260896c6ce344c3bc81312d6944b7314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
