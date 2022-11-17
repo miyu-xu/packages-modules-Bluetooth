@@ -226,6 +226,19 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.device.action.BOND_STATE_CHANGED";
 
     /**
+     * Broadcast Action: Broadcast details of IOT device when an IOT
+     * related issue is observed.
+     * <p>Always contains the extra fields {@link #EXTRA_NAME}.
+     * <p>Requires {@link android.Manifest.permission#BLUETOOTH} to receive.
+     * @hide
+     **/
+    // @RequiresBluetoothConnectPermission
+    // @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
+    public static final String ACTION_REMOTE_ISSUE_OCCURRED =
+            "android.bluetooth.device.action.REMOTE_ISSUE_OCCURRED";
+
+    /**
      * Broadcast Action: Indicates the battery level of a remote device has
      * been retrieved for the first time, or changed since the last retrieval
      * <p>Always contains the extra fields {@link #EXTRA_DEVICE} and {@link
@@ -304,6 +317,13 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * #ACTION_FOUND} intents. It contains the friendly Bluetooth name.
      */
     public static final String EXTRA_NAME = "android.bluetooth.device.extra.NAME";
+
+    /**
+     * Used as a Parcelable {@link BluetoothQualityReport} extra field in
+     * {@link #ACTION_REMOTE_ISSUE_OCCURRED} intent. It contains the {@link BluetoothQualityReport}.
+     * @hide
+     */
+    public static final String EXTRA_BQR = "android.bluetooth.qti.extra.EXTRA_BQR";
 
     /**
      * Used as an optional short extra field in {@link #ACTION_FOUND} intents.
