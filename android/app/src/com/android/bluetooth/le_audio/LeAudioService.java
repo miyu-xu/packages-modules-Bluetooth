@@ -386,6 +386,9 @@ public class LeAudioService extends ProfileService {
             }
         }
 
+        mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAddAudioDeviceCallback);
+        mAudioManager.unregisterAudioDeviceCallback(mAudioManagerRemoveAudioDeviceCallback);
+
         mAdapterService = null;
         mAudioManager = null;
         mVolumeControlService = null;
