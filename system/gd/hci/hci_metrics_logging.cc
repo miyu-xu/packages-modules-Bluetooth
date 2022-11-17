@@ -1108,6 +1108,9 @@ void log_remote_device_information(
       device.GetLmpVersion().value_or(-1),
       device.GetManufacturerCode().value_or(-1),
       device.GetLmpSubVersion().value_or(-1));
+  LOG_WARN("aaaaaaaaaaa local version from storage %d, %d, %d, %d", 
+  connection_handle, device.GetLmpVersion().value_or(-1), device.GetManufacturerCode().value_or(-1),device.GetLmpSubVersion().value_or(-1));
+  
 }
 
 }  // namespace hci

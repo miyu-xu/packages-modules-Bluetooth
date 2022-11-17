@@ -68,9 +68,9 @@ void LogMetricLinkLayerConnectionEvent(
       cmd_status,
       reason_code,
       metric_id);
-  if (ret < 0) {
+  if (ret >= 0) {
     LOG_WARN(
-        "Failed to log status %s , reason %s, from cmd %s, event %s,  ble_event %s, for %s, handle %d, type %s, "
+        "aaaaaaaaa link layer connection status %s , reason %s, from cmd %s, event %s,  ble_event %s, for %s, handle %d, type %s, "
         "error %d",
         common::ToHexString(cmd_status).c_str(),
         common::ToHexString(reason_code).c_str(),
