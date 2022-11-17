@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1834fe23_dc400c26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-17T18:26:06Z",
+      "side": 1,
+      "message": "+1 to unblock code owner but looks like this depend on another unlisted CL not yet merged ?",
+      "revId": "1daf2dd0bb49750dad84241ee120cef808a71b13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
