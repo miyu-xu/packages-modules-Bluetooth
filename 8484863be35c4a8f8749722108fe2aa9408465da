@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71fde4a3_3a68c7a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-17T07:38:04Z",
+      "side": 1,
+      "message": "The patch has already passed the presubmit tests.\nCould you guys have a look at it?",
+      "revId": "8484863be35c4a8f8749722108fe2aa9408465da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
