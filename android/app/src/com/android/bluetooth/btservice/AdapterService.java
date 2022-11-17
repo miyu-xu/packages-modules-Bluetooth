@@ -335,6 +335,7 @@ public class AdapterService extends Service {
     private LeAudioService mLeAudioService;
     private BassClientService mBassClientService;
     private BatteryService mBatteryService;
+    private BluetoothQualityReportNativeInterface mBluetoothQualityReportNativeInterface;
 
     private volatile boolean mTestModeEnabled = false;
 
@@ -535,6 +536,11 @@ public class AdapterService extends Service {
         mCompanionDeviceManager = getSystemService(CompanionDeviceManager.class);
 
         mBluetoothKeystoreService.initJni();
+
+        mBluetoothQualityReportNativeInterface = Objects.requireNonNull(
+                BluetoothQualityReportNativeInterface.getInstance(),
+                "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
+        mBluetoothQualityReportNativeInterface.init();
 
         mSdpManager = SdpManager.init(this);
         registerReceiver(mAlarmBroadcastReceiver, new IntentFilter(ACTION_ALARM_WAKEUP));

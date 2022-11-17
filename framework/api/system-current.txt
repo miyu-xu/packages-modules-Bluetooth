@@ -703,6 +703,131 @@ package android.bluetooth {
     field public static final int VOLUME_CONTROL = 23; // 0x17
   }
 
+  public final class BluetoothQualityReport implements android.os.Parcelable {
+    ctor public BluetoothQualityReport(@Nullable String, int, int, int, @Nullable String, int, @Nullable byte[]);
+    method public int describeContents();
+    method @Nullable public String getAddress();
+    method public int getBluetoothClass();
+    method @Nullable public android.bluetooth.BluetoothQualityReport.BqrCommon getBqrCommon();
+    method @Nullable public android.bluetooth.BluetoothQualityReport.BqrConnectFail getBqrConnectFail();
+    method @Nullable public android.bluetooth.BluetoothQualityReport.BqrVsA2dpChoppy getBqrVsA2dpChoppy();
+    method @Nullable public android.bluetooth.BluetoothQualityReport.BqrVsCommon getBqrVsCommon();
+    method @Nullable public android.bluetooth.BluetoothQualityReport.BqrVsLsto getBqrVsLsto();
+    method @Nullable public android.bluetooth.BluetoothQualityReport.BqrVsScoChoppy getBqrVsScoChoppy();
+    method public int getLmpSubVersion();
+    method public int getLmpVersion();
+    method public int getManufacturerId();
+    method @Nullable public String getName();
+    method public int getQualityReportId();
+    method @NonNull public String getQualityReportIdStr();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport> CREATOR;
+    field public static final int QUALITY_REPORT_ID_A2DP_CHOPPY = 3; // 0x3
+    field public static final int QUALITY_REPORT_ID_APPROACH_LSTO = 2; // 0x2
+    field public static final int QUALITY_REPORT_ID_CONN_FAIL = 8; // 0x8
+    field public static final int QUALITY_REPORT_ID_MONITOR = 1; // 0x1
+    field public static final int QUALITY_REPORT_ID_SCO_CHOPPY = 4; // 0x4
+  }
+
+  public static final class BluetoothQualityReport.BqrCommon implements android.os.Parcelable {
+    method public int describeContents();
+    method public int getAfhSelectUnidealChannelCount();
+    method public int getConnectionHandle();
+    method @NonNull public String getConnectionRole();
+    method public long getFlowOffCount();
+    method public long getLastFlowOnTimestamp();
+    method public long getLastTxAckTimestamp();
+    method public int getLsto();
+    method public long getNakCount();
+    method public long getNoRxCount();
+    method public long getOverflowCount();
+    method public int getPacketType();
+    method @Nullable public String getPacketTypeStr();
+    method public long getPiconetClock();
+    method public long getRetransmissionCount();
+    method public int getRssi();
+    method public int getSnr();
+    method public int getTxPowerLevel();
+    method public long getUnderflowCount();
+    method public int getUnusedAfhChannelCount();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrCommon> CREATOR;
+  }
+
+  public static final class BluetoothQualityReport.BqrConnectFail implements android.os.Parcelable {
+    method public int describeContents();
+    method @NonNull public String getConnectFailIdStr(int);
+    method public int getFailReason();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field public static final int CONNECT_FAIL_ID_ACL_ALREADY_EXIST = 11; // 0xb
+    field public static final int CONNECT_FAIL_ID_CONNECTION_TIMEOUT = 8; // 0x8
+    field public static final int CONNECT_FAIL_ID_CONTROLLER_BUSY = 58; // 0x3a
+    field public static final int CONNECT_FAIL_ID_NO_ERROR = 0; // 0x0
+    field public static final int CONNECT_FAIL_ID_PAGE_TIMEOUT = 4; // 0x4
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrConnectFail> CREATOR;
+  }
+
+  public static final class BluetoothQualityReport.BqrVsA2dpChoppy implements android.os.Parcelable {
+    method public int describeContents();
+    method public int getAclTxQueueLength();
+    method public long getArrivalTime();
+    method public int getGlitchCount();
+    method public int getLinkQuality();
+    method @Nullable public String getLinkQualityStr();
+    method public int getRxCxmDenials();
+    method public long getScheduleTime();
+    method public int getTxCxmDenials();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrVsA2dpChoppy> CREATOR;
+  }
+
+  public static final class BluetoothQualityReport.BqrVsCommon implements android.os.Parcelable {
+    method public int describeContents();
+    method public int getCalFailedItemCount();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrVsCommon> CREATOR;
+  }
+
+  public static final class BluetoothQualityReport.BqrVsLsto implements android.os.Parcelable {
+    method public int describeContents();
+    method public long getBasebandStats();
+    method public int getConnState();
+    method @Nullable public String getConnStateStr();
+    method public int getCxmDenials();
+    method public long getLastTxAckTimestamp();
+    method public long getNativeClock();
+    method public int getRfLoss();
+    method public long getSlotsUsed();
+    method public int getTxSkipped();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrVsLsto> CREATOR;
+  }
+
+  public static final class BluetoothQualityReport.BqrVsScoChoppy implements android.os.Parcelable {
+    method public int describeContents();
+    method public int getAirFormat();
+    method @Nullable public String getAirFormatStr();
+    method public int getGlitchCount();
+    method public int getGoodRxFrameCount();
+    method public int getInstanceCount();
+    method public int getIntervalEsco();
+    method public int getLateDispatch();
+    method public int getLpaIntrMiss();
+    method public int getMicIntrMiss();
+    method public int getMissedInstanceCount();
+    method public int getPlcDiscardCount();
+    method public int getPlcFillCount();
+    method public int getRxCxmDenials();
+    method public int getRxRetransmitSlotCount();
+    method public int getSprIntrMiss();
+    method public int getTxAbortCount();
+    method public int getTxCxmDenials();
+    method public int getTxRetransmitSlotCount();
+    method public int getWindowEsco();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrVsScoChoppy> CREATOR;
+  }
+
   public final class BluetoothSap implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice, int);
