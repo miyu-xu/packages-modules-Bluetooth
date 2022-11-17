@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b56662e_c39abcba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-11-17T14:35:06Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI have checked in PBAP changes with 39 test cases passed. \nPlease have a look into it and provide your comments.\n\nThanks,\nFahad",
+      "revId": "e7295110c26c0944335bfcfbf1c52b5e956eee01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
