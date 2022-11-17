@@ -27,6 +27,9 @@
 #include <string.h>
 #include <sys/eventfd.h>
 #include <unistd.h>
+/** Fix HOGP mouse connect fail after unpair  @{ */
+#include <time.h>
+/** @} */
 
 #include "check.h"
 #include "osi/include/allocator.h"
@@ -37,9 +40,9 @@
 #define EFD_SEMAPHORE (1 << 0)
 #endif
 
-struct semaphore_t {
-  int fd;
-};
+/** Fix HOGP mouse connect fail after unpair  @{ */
+struct semaphore_t;
+/** @} */
 
 semaphore_t* semaphore_new(unsigned int value) {
   semaphore_t* ret = static_cast<semaphore_t*>(osi_malloc(sizeof(semaphore_t)));
@@ -67,6 +70,33 @@ void semaphore_wait(semaphore_t* semaphore) {
   if (eventfd_read(semaphore->fd, &value) == -1)
     LOG_ERROR("%s unable to wait on semaphore: %s", __func__, strerror(errno));
 }
+
+/** Fix HOGP mouse connect fail after unpair  @{ */
+void semaphore_wait_timeout(semaphore_t* semaphore, long usec) {
+  CHECK(semaphore != NULL);
+  CHECK(semaphore->fd != INVALID_FD);
+  int retval;
+  eventfd_t value;
+  struct timeval tv;
+  fd_set rfds;
+  FD_ZERO(&rfds);
+  FD_SET(semaphore->fd, &rfds);
+  tv.tv_sec = usec / 1000000;
+  tv.tv_usec = usec % 1000000;
+  retval = select(semaphore->fd + 1, &rfds, NULL, NULL, &tv);
+  if (retval == -1) {
+    LOG_ERROR("%s select return fail for semaphore fd: %s", __func__, strerror(errno));
+  }
+  else if (retval == 0) {
+    LOG_ERROR("%s select say no data is available , and timeout", __func__);
+  }
+  else if (retval > 0) {
+    LOG_ERROR("%s select say data is available now", __func__);
+    if (eventfd_read(semaphore->fd, &value) == -1)
+    LOG_ERROR("%s unable to wait on semaphore: %s", __func__, strerror(errno));
+  }
+}
+/** @} */
 
 bool semaphore_try_wait(semaphore_t* semaphore) {
   CHECK(semaphore != NULL);

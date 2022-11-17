@@ -44,6 +44,7 @@ struct semaphore_new semaphore_new;
 struct semaphore_post semaphore_post;
 struct semaphore_try_wait semaphore_try_wait;
 struct semaphore_wait semaphore_wait;
+struct semaphore_wait_timeout semaphore_wait_timeout;
 
 }  // namespace osi_semaphore
 }  // namespace mock
@@ -74,5 +75,10 @@ void semaphore_wait(semaphore_t* semaphore) {
   mock_function_count_map[__func__]++;
   test::mock::osi_semaphore::semaphore_wait(semaphore);
 }
+void semaphore_wait_timeout(semaphore_t* semaphore, long usec) {
+    mock_function_count_map[__func__]++;
+    test::mock::osi_semaphore::semaphore_wait_timeout(semaphore, usec);
+}
+
 // Mocked functions complete
 // END mockcify generation
