@@ -755,8 +755,13 @@ void bta_hh_ctrl_dat_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   (*bta_hh_cb.p_cback)(p_cb->w4_evt, (tBTA_HH*)&hs_data);
 
+  /** Fix HID_GET_REPORT error  @{ */
+  if (BTA_HH_GET_RPT_EVT != p_cb->w4_evt) {
+    APPL_TRACE_DEBUG("osi_free_and_reset pdata=%p", pdata);
+    osi_free_and_reset((void**)&pdata);
+  }
   p_cb->w4_evt = 0;
-  osi_free_and_reset((void**)&pdata);
+  /** @} */
 }
 
 /*******************************************************************************
