@@ -602,4 +602,16 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       GetDeviceNameResponse.newBuilder().setName(device.name).build()
     }
   }
+  override fun setAccessPermission(
+    request: EnableAccessRequest,
+    responseObserver: StreamObserver<Empty>
+  ) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
+      Log.i(TAG, "setAccessPermission: for {request.accessType} device=$bluetoothDevice")
+      setRequiredAccessPermission(bluetoothDevice, request.accessType)
+
+      Empty.getDefaultInstance()
+    }
+  }
 }
