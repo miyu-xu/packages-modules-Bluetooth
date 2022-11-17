@@ -395,7 +395,9 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
         ContentValues updateValues = new ContentValues();
         updateValues.put(BluetoothShare.USER_CONFIRMATION,
                 BluetoothShare.USER_CONFIRMATION_TIMEOUT);
-        mContext.getContentResolver().update(contentUri, updateValues, null, null);
+        if (!Utils.isInstrumentationTestMode()) {
+            mContext.getContentResolver().update(contentUri, updateValues, null, null);
+        }
     }
 
     private void markBatchFailed(int failReason) {
