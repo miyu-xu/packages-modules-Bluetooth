@@ -16,6 +16,23 @@
       "message": "Tested on ChromeOS over several automated tests (LE connections, Classic connections, etc.)\n\nSee b/259585527#comment9 for more analysis of why this fix is needed. Logically it seems correct but I\u0027d love some input on whether I\u0027m missing anything.",
       "revId": "f5e5963b8895be1793079da46a3a89bec1dc658c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "770e0857_b98e48fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-18T23:43:54Z",
+      "side": 1,
+      "message": "I\u0027m not surprised that this could cause crashes at tear down, but it\u0027s really surprising that it would happen on startup.  I don\u0027t disagree with this test, but I think it would be good to understand why we are getting data from the remote before the AclManager is completely started (there shouldn\u0027t be any connections yet)\n\nI read the description in the bug, and they are talking about starting and stopping HFP and A2DP, not enabling and disabling Bluetooth.",
+      "revId": "f5e5963b8895be1793079da46a3a89bec1dc658c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
