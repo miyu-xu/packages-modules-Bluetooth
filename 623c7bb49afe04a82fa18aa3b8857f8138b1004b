@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "558d4afa_fa278b0b",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 22
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T20:52:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e0e0b7a_c810a6df",
+      "revId": "623c7bb49afe04a82fa18aa3b8857f8138b1004b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87c9f276_59c402e8",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-18T19:18:52Z",
       "side": 1,
       "message": "nit: Remove comment",
+      "revId": "623c7bb49afe04a82fa18aa3b8857f8138b1004b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc06d7d_662bd043",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T20:52:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87c9f276_59c402e8",
       "revId": "623c7bb49afe04a82fa18aa3b8857f8138b1004b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
