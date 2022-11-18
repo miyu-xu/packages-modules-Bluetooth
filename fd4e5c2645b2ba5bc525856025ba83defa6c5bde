@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dbe7e29_478c9d8a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1515,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-11-18T16:18:20Z",
+      "side": 1,
+      "message": "don\u0027t we want to keep ADDRESS_TO_LOGGABLE_CSTR(bd_addr)?",
+      "range": {
+        "startLine": 1515,
+        "startChar": 36,
+        "endLine": 1515,
+        "endChar": 43
+      },
+      "revId": "fd4e5c2645b2ba5bc525856025ba83defa6c5bde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
