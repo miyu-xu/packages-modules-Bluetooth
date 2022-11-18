@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13f48a03_77f3bcb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-18T23:05:53Z",
+      "side": 1,
+      "message": "Tested on ChromeOS over several automated tests (LE connections, Classic connections, etc.)\n\nSee b/259585527#comment9 for more analysis of why this fix is needed. Logically it seems correct but I\u0027d love some input on whether I\u0027m missing anything.",
+      "revId": "f5e5963b8895be1793079da46a3a89bec1dc658c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
