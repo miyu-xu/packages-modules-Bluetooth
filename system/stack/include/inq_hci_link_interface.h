@@ -32,5 +32,13 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
 void btm_process_inq_complete(tHCI_STATUS status, uint8_t mode);
 void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode);
 
+<<<<<<< PATCH SET (e84f23 Fix BR/EDR device may be flush by ble device)
+extern void btm_acl_process_sca_cmpl_pkt(uint8_t len, uint8_t* data);
+extern tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda);
+/** Bug fix for EIR being flushed by too much adv @{ */
+extern tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda, bool is_ble);
+/** @} */
+=======
 void btm_acl_process_sca_cmpl_pkt(uint8_t len, uint8_t* data);
 tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda);
+>>>>>>> BASE      (c8964f search_module: Shift to using gatt interface)
