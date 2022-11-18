@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96299e05_d70506fe",
+        "filename": "system/bta/include/bta_gatt_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T03:13:33Z",
+      "side": 0,
+      "message": "Why is this default removed ?\n\nThis breaks the contract of the guaranteed return of a string object",
+      "revId": "a8f8b39d35634e0a7e639858a3fe93470bf55eb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
