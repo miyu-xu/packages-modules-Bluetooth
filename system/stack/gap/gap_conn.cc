@@ -102,6 +102,9 @@ static tGAP_CCB* gap_find_ccb_by_handle(uint16_t handle);
 static tGAP_CCB* gap_allocate_ccb(void);
 static void gap_release_ccb(tGAP_CCB* p_ccb);
 static void gap_checks_con_flags(tGAP_CCB* p_ccb);
+/** Fix L2CAP PTS issue @{ */
+extern bool BTM_UseLeLink(const RawAddress& bd_addr);
+/** @} */
 
 /*******************************************************************************
  *
@@ -619,7 +622,9 @@ static void gap_connect_ind(const RawAddress& bd_addr, uint16_t l2cap_cid,
     LOG(WARNING) << "*******";
 
     /* Disconnect because it is an unexpected connection */
-    if (p_ccb->transport == BT_TRANSPORT_LE) {
+    /** Fix L2CAP PTS issue @{ */
+    if (BTM_UseLeLink(bd_addr)) {
+    /** @} */
       L2CA_DisconnectLECocReq(l2cap_cid);
     } else {
       L2CA_DisconnectReq(l2cap_cid);
