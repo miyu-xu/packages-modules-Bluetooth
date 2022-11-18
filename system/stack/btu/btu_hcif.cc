@@ -99,8 +99,6 @@ static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p);
 static void btu_ble_data_length_change_evt(uint8_t* p, uint16_t evt_len);
 static void btu_ble_rc_param_req_evt(uint8_t* p);
 
-static void btu_ble_subrate_change_evt(uint8_t* p, uint16_t evt_len);
-
 /**
  * Log HCI event metrics that are not handled in special functions
  * @param evt_code event code
@@ -392,13 +390,10 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
           btm_ble_biginfo_adv_report_rcvd(p, hci_evt_len);
           break;
 
-        case HCI_LE_SUBRATE_CHANGE_EVT:
-          btu_ble_subrate_change_evt(p, hci_evt_len);
-          break;
-
           // Events are now captured by gd/hci/le_acl_connection_interface.h
         case HCI_BLE_CONN_COMPLETE_EVT:  // SubeventCode::CONNECTION_COMPLETE
         case HCI_BLE_ENHANCED_CONN_COMPLETE_EVT:  // SubeventCode::ENHANCED_CONNECTION_COMPLETE
+        case HCI_LE_SUBRATE_CHANGE_EVT:  // SubeventCode::LE_SUBRATE_CHANGE
         default:
           LOG_ERROR(
               "Unexpectedly received LE sub_event_code:0x%02x that should not "
@@ -1688,28 +1683,6 @@ static void btu_ble_rc_param_req_evt(uint8_t* p) {
 
   l2cble_process_rc_param_request_evt(handle, int_min, int_max, latency,
                                       timeout);
-}
-
-static void btu_ble_subrate_change_evt(uint8_t* p, uint16_t evt_len) {
-  uint8_t status;
-  uint16_t handle;
-  uint16_t subrate_factor;
-  uint16_t peripheral_latency;
-  uint16_t cont_num;
-  uint16_t timeout;
-
-  STREAM_TO_UINT8(status, p);
-  STREAM_TO_UINT16(handle, p);
-  STREAM_TO_UINT16(subrate_factor, p);
-  STREAM_TO_UINT16(peripheral_latency, p);
-  STREAM_TO_UINT16(cont_num, p);
-  STREAM_TO_UINT16(timeout, p);
-
-  l2cble_process_subrate_change_evt(handle, status, subrate_factor,
-                                    peripheral_latency, cont_num, timeout);
-
-  gatt_notify_subrate_change(handle & 0x0FFF, subrate_factor,
-                             peripheral_latency, cont_num, timeout, status);
 }
 
 void btm_ble_subrate_req_cmd_status(uint8_t status, uint16_t handle) {
