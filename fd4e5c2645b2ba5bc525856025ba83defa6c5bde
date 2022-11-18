@@ -22,6 +22,30 @@
       },
       "revId": "fd4e5c2645b2ba5bc525856025ba83defa6c5bde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01341956_339c5465",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1515,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T21:10:53Z",
+      "side": 1,
+      "message": "Right...I just targeted the data type but will also update the address string value too\n\nDone",
+      "parentUuid": "3dbe7e29_478c9d8a",
+      "range": {
+        "startLine": 1515,
+        "startChar": 36,
+        "endLine": 1515,
+        "endChar": 43
+      },
+      "revId": "fd4e5c2645b2ba5bc525856025ba83defa6c5bde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
