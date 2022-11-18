@@ -327,6 +327,10 @@ typedef enum {
   INTEROP_DISABLE_ROBUST_CACHING,
 
   INTEROP_HFP_1_7_ALLOWLIST,
+
+  // Some device cannot work normal as a peripheral
+  INTEROP_L2CAP_ACCEPT_CONN_AS_PERIPHERAL,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
