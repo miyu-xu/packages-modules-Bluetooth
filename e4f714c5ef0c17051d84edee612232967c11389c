@@ -67,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ac8261a_282e9892",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-18T23:20:38Z",
+      "side": 1,
+      "message": "This is how our developer website announces to others.\n```\nMonaural (0) / Binaural (1). Indicates whether the device is stand-alone and receives mono data, or if the device is part of a set.\n```\nref: https://source.android.com/docs/core/connect/bluetooth/asha#devicecapabilities\n\nCould @yuyangh@google.com help to confirm is our ASHA is BINAURAL single channel or BINAURAL two channels?",
+      "parentUuid": "3eaa2f17_a94312dd",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0beb6aeb_cebc7b68",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 3
@@ -95,6 +113,24 @@
       "writtenOn": "2022-11-18T22:30:32Z",
       "side": 1,
       "message": "I have concerns about defaulting to left side. Is this what we return if the device is not a hearing aid? What if the side is unknown? We should have return values that map for these cases. The same applies for device mode below.",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe2188c_13360838",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-18T23:20:38Z",
+      "side": 1,
+      "message": "Yes, I also has concern when calling these APIs. What if we add the INVALID value to them?\n`SIDE_INVALID \u003d -1`, add `MODE_INVALID \u003d -1`",
+      "parentUuid": "5cc30c17_767987fb",
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
