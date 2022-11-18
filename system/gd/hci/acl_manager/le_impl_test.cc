@@ -417,6 +417,15 @@ class MockLeConnectionManagementCallbacks : public LeConnectionManagementCallbac
   MOCK_METHOD(void, OnLeReadRemoteFeaturesComplete, (hci::ErrorCode hci_status, uint64_t features), (override));
   MOCK_METHOD(void, OnPhyUpdate, (hci::ErrorCode hci_status, uint8_t tx_phy, uint8_t rx_phy), (override));
   MOCK_METHOD(void, OnLocalAddressUpdate, (AddressWithType address_with_type), (override));
+  MOCK_METHOD(
+      void,
+      OnLeSubrateChange,
+      (hci::ErrorCode hci_status,
+       uint16_t subrate_factor,
+       uint16_t peripheral_latency,
+       uint16_t continuation_number,
+       uint16_t supervision_timeout),
+      (override));
 };
 
 class LeImplTest : public ::testing::Test {
@@ -1310,6 +1319,42 @@ TEST_F(LeImplWithConnectionTest, on_le_event__PHY_UPDATE_COMPLETE) {
   ASSERT_EQ(ErrorCode::SUCCESS, hci_status);
   ASSERT_EQ(PhyType::LE_1M, tx_phy);
   ASSERT_EQ(PhyType::LE_2M, rx_phy);
+}
+
+TEST_F(LeImplWithConnectionTest, on_le_event__SUBRATE_CHANGE_EVENT) {
+  hci::ErrorCode hci_status{ErrorCode::STATUS_UNKNOWN};
+  uint16_t subrate_factor{0};
+  uint16_t peripheral_latency{0};
+  uint16_t continuation_number{0};
+  uint16_t supervision_timeout{0};
+
+  // Send a subrate event
+  {
+    EXPECT_CALL(connection_management_callbacks_, OnLeSubrateChange(_, _, _, _, _))
+        .WillOnce([&](hci::ErrorCode _hci_status,
+                      uint16_t _subrate_factor,
+                      uint16_t _peripheral_latency,
+                      uint16_t _continuation_number,
+                      uint16_t _supervision_timeout) {
+          hci_status = _hci_status;
+          subrate_factor = _subrate_factor;
+          peripheral_latency = _peripheral_latency;
+          continuation_number = _continuation_number;
+          supervision_timeout = _supervision_timeout;
+        });
+    auto command = LeSubrateChangeBuilder::Create(ErrorCode::SUCCESS, kHciHandle, 0x01, 0x02, 0x03, 0x04);
+    auto bytes = Serialize<LeSubrateChangeBuilder>(std::move(command));
+    auto view = CreateLeEventView<hci::LeSubrateChangeView>(bytes);
+    ASSERT_TRUE(view.IsValid());
+    le_impl_->on_le_event(view);
+  }
+
+  sync_handler();
+  ASSERT_EQ(ErrorCode::SUCCESS, hci_status);
+  ASSERT_EQ(0x01, subrate_factor);
+  ASSERT_EQ(0x02, peripheral_latency);
+  ASSERT_EQ(0x03, continuation_number);
+  ASSERT_EQ(0x04, supervision_timeout);
 }
 
 TEST_F(LeImplWithConnectionTest, on_le_event__DATA_LENGTH_CHANGE) {
