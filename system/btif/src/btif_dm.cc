@@ -524,6 +524,15 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
     dev_type = BT_DEVICE_TYPE_BREDR;
   }
 
+  /** Avoid reset other bonding device's state. @{*/
+  if (state == BT_BOND_STATE_NONE && (pairing_cb.bd_addr != bd_addr)
+      && is_bonding_or_sdp()) {
+    BTIF_TRACE_DEBUG("%s: %s is not the bonding device.",
+                      __func__, bd_addr.ToString().c_str());
+    return;
+  }
+  /** @} */
+
   if (state == BT_BOND_STATE_BONDING ||
       (state == BT_BOND_STATE_BONDED &&
        (pairing_cb.sdp_attempts > 0 ||
