@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a8baf5c_0f255b5a",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-18T21:24:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69bcfca2_b615fc72",
+      "revId": "a5e153c40cd9024755c51ebc55e9b227d50cf792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfe35def_5ed06872",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-18T20:47:38Z",
       "side": 1,
       "message": "If `n\u003d4` and channel_bytes is [0 0 0 0], shouldn\u0027t we send back `BtStatus::Fail`? We would hit this branch but send BtStatus::Success.",
+      "revId": "a5e153c40cd9024755c51ebc55e9b227d50cf792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8602c82_2f785d82",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-18T21:24:00Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "bfe35def_5ed06872",
       "revId": "a5e153c40cd9024755c51ebc55e9b227d50cf792",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
