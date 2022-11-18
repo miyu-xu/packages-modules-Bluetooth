@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61059b3c_bcf5c499",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1977140
+      },
+      "writtenOn": "2022-11-18T17:11:20Z",
+      "side": 1,
+      "message": "Yess",
+      "tag": "mailMessageId\u003d\u003cCAKutmsvnApF736ZFUwSYPoL-HHZ1SeUvZhH1fK0pmrToW56rug@mail.gmail.com\u003e",
+      "revId": "9b7ac100df5024badd1098283676d4364d7f91ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
