@@ -27,11 +27,7 @@ pub mod ffi {
     unsafe extern "C++" {
         include!("gd/rust/topshim/common/type_alias.h");
         type RawAddress = crate::btif::RawAddress;
-    }
-
-    #[derive(Debug, Copy, Clone)]
-    pub struct RustUuid {
-        uu: [u8; 16],
+        type Uuid = crate::btif::Uuid;
     }
 
     #[derive(Debug, Clone)]
@@ -72,8 +68,8 @@ pub mod ffi {
         type_: u8,
         address: RawAddress,
         addr_type: u8,
-        uuid: RustUuid,
-        uuid_mask: RustUuid,
+        uuid: Uuid,
+        uuid_mask: Uuid,
         name: Vec<u8>,
         company: u16,
         company_mask: u16,
@@ -127,7 +123,7 @@ pub mod ffi {
 
         unsafe fn GetBleScannerIntf(gatt: *const u8) -> UniquePtr<BleScannerIntf>;
 
-        fn RegisterScanner(self: Pin<&mut BleScannerIntf>, uuid: RustUuid);
+        fn RegisterScanner(self: Pin<&mut BleScannerIntf>, uuid: Uuid);
         fn Unregister(self: Pin<&mut BleScannerIntf>, scanner_id: u8);
         fn Scan(self: Pin<&mut BleScannerIntf>, start: bool);
         fn ScanFilterParamSetup(
@@ -233,7 +229,7 @@ pub mod ffi {
         unsafe fn gdscan_on_batch_scan_threshold_crossed(client_if: i32);
 
         // Static cb_variant! callbacks using base::Callback
-        unsafe fn gdscan_register_callback(uuid: RustUuid, scanner_id: u8, btm_status: u8);
+        unsafe fn gdscan_register_callback(uuid: Uuid, scanner_id: u8, btm_status: u8);
         unsafe fn gdscan_status_callback(scanner_id: u8, btm_status: u8);
         unsafe fn gdscan_enable_callback(action: u8, btm_status: u8);
         unsafe fn gdscan_filter_param_setup_callback(
@@ -378,18 +374,6 @@ impl Default for PeriodicAdvertisingParameters {
             max_interval: 0,
             periodic_advertising_properties: 0,
         }
-    }
-}
-
-impl From<ffi::RustUuid> for Uuid {
-    fn from(item: ffi::RustUuid) -> Self {
-        Uuid::from(item.uu)
-    }
-}
-
-impl From<Uuid> for ffi::RustUuid {
-    fn from(item: Uuid) -> Self {
-        ffi::RustUuid { uu: item.uu }
     }
 }
 
@@ -919,9 +903,7 @@ pub struct GattScannerInbandCallbacksDispatcher {
 
 type GDScannerInbandCb = Arc<Mutex<GattScannerInbandCallbacksDispatcher>>;
 
-cb_variant!(GDScannerInbandCb, gdscan_register_callback -> GattScannerInbandCallbacks::RegisterCallback,
-    ffi::RustUuid -> Uuid, u8, u8);
-
+cb_variant!(GDScannerInbandCb, gdscan_register_callback -> GattScannerInbandCallbacks::RegisterCallback, Uuid, u8, u8);
 cb_variant!(GDScannerInbandCb, gdscan_status_callback -> GattScannerInbandCallbacks::StatusCallback, u8, u8);
 cb_variant!(GDScannerInbandCb, gdscan_enable_callback -> GattScannerInbandCallbacks::EnableCallback, u8, u8);
 cb_variant!(GDScannerInbandCb,

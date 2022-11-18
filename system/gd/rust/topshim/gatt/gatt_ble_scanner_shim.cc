@@ -51,8 +51,8 @@ ApcfCommand ConvertApcfFromRust(const RustApcfCommand& command) {
       .type = command.type_,
       .address = command.address,
       .addr_type = command.addr_type,
-      .uuid = bluetooth::Uuid::From128BitBE(command.uuid.uu),
-      .uuid_mask = bluetooth::Uuid::From128BitBE(command.uuid_mask.uu),
+      .uuid = command.uuid,
+      .uuid_mask = command.uuid_mask,
       .name = name,
       .company = command.company,
       .company_mask = command.company_mask,
@@ -162,10 +162,8 @@ void BleScannerIntf::OnBatchScanThresholdCrossed(int client_if) {
 
 // BleScannerInterface implementations
 
-void BleScannerIntf::RegisterScanner(RustUuid uuid) {
-  bluetooth::Uuid converted = bluetooth::Uuid::From128BitBE(uuid.uu);
-  scanner_intf_->RegisterScanner(
-      converted, base::Bind(&BleScannerIntf::OnRegisterCallback, base::Unretained(this), uuid));
+void BleScannerIntf::RegisterScanner(Uuid uuid) {
+  scanner_intf_->RegisterScanner(uuid, base::Bind(&BleScannerIntf::OnRegisterCallback, base::Unretained(this), uuid));
 }
 
 void BleScannerIntf::Unregister(uint8_t scanner_id) {
@@ -270,7 +268,7 @@ void BleScannerIntf::SyncTxParameters(RawAddress addr, uint8_t mode, uint16_t sk
   scanner_intf_->SyncTxParameters(addr, mode, skip, timeout, 0 /* place holder */);
 }
 
-void BleScannerIntf::OnRegisterCallback(RustUuid uuid, uint8_t scanner_id, uint8_t btm_status) {
+void BleScannerIntf::OnRegisterCallback(Uuid uuid, uint8_t scanner_id, uint8_t btm_status) {
   rusty::gdscan_register_callback(uuid, scanner_id, btm_status);
 }
 

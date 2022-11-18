@@ -28,7 +28,6 @@ namespace rust {
 
 struct RustApcfCommand;
 struct RustGattFilterParam;
-struct RustUuid;
 
 class BleScannerIntf : public ScanningCallbacks {
  public:
@@ -79,7 +78,7 @@ class BleScannerIntf : public ScanningCallbacks {
 
   // Register a scanner for a Uuid. Response comes back via
   // |OnRegisterCallback|.
-  void RegisterScanner(RustUuid uuid);
+  void RegisterScanner(Uuid uuid);
 
   // Unregister a scanner with a |scanner_id|.
   void Unregister(uint8_t scanner_id);
@@ -155,7 +154,7 @@ class BleScannerIntf : public ScanningCallbacks {
   // callbacks don't have all the parameters coming back in the original
   // callback and will need the values to be base::Bind at the callsite.
 
-  void OnRegisterCallback(RustUuid uuid, uint8_t scanner_id, uint8_t btm_status);
+  void OnRegisterCallback(Uuid uuid, uint8_t scanner_id, uint8_t btm_status);
   void OnStatusCallback(uint8_t scanner_id, uint8_t btm_status);
   void OnEnableCallback(uint8_t action, uint8_t btm_status);
   void OnFilterParamSetupCallback(uint8_t scanner_id, uint8_t avbl_space, uint8_t action_type, uint8_t btm_status);

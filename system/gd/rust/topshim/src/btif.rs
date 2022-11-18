@@ -329,8 +329,28 @@ pub type BtLocalLeFeatures = bindings::bt_local_le_features_t;
 pub type BtPinCode = bindings::bt_pin_code_t;
 pub type BtRemoteVersion = bindings::bt_remote_version_t;
 pub type BtVendorProductInfo = bindings::bt_vendor_product_info_t;
+
+/// The Uuid directly exported from the bindings.
+///
+/// To make use of Uuid in cxx::bridge C++ blocks,
+/// include the following snippet in the ffi module.
+/// ```ignore
+/// #[cxx::bridge(namespace = bluetooth::topshim::rust)]
+/// mod ffi {
+///     unsafe extern "C++" {
+///         include!("gd/rust/topshim/common/type_alias.h");
+///         type Uuid = crate::btif::Uuid;
+///     }
+///     // Place you shared stuff here.
+/// }
+/// ```
 pub type Uuid = bindings::bluetooth::Uuid;
 pub type Uuid128Bit = bindings::bluetooth::Uuid_UUID128Bit;
+
+unsafe impl ExternType for Uuid {
+    type Id = type_id!("bluetooth::topshim::rust::Uuid");
+    type Kind = cxx::kind::Trivial;
+}
 
 impl TryFrom<Uuid> for Vec<u8> {
     type Error = &'static str;

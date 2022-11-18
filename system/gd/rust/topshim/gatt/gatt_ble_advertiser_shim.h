@@ -28,7 +28,6 @@ namespace rust {
 
 struct RustAdvertiseParameters;
 struct RustPeriodicAdvertisingParameters;
-struct RustUuid;
 
 // See include/hardware/ble_advertiser.h for more documentation.
 //
