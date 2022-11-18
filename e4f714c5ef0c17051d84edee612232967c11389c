@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdcae6f8_e2a7d275",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-11-18T23:35:07Z",
+      "side": 1,
+      "message": "Binaural is left side HA only receives left channel audio, right side HA only receives right side audio\nMonaural is one side receives a combined audio.\nHere is how our code implements: https://source.corp.google.com/android/packages/modules/Bluetooth/system/bta/hearing_aid/hearing_aid.cc;l\u003d1284",
+      "parentUuid": "6ac8261a_282e9892",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0beb6aeb_cebc7b68",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 3
