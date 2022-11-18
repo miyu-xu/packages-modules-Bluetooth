@@ -16,6 +16,23 @@
       "message": "Hi Katherine,\n\nThis is less important but it\u0027s friendly to the testers because there is no such UI confirmation in UI. We can only use btmon + dbus command to confirm the passkey.\n\nIt looks like a large change but most of them was done by rustfmt.\n\nThanks",
       "revId": "d98397b1b0d9c092bfce2f63bbee1d2c672f6cca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "935d8876_ecfd9160",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-18T23:24:29Z",
+      "side": 1,
+      "message": "Nit: Instead of reusing this print, can we just print more info below? Since it would be confusing to say that the device wants to pair again when really we are confirming the passkey",
+      "revId": "d98397b1b0d9c092bfce2f63bbee1d2c672f6cca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
