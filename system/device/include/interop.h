@@ -118,7 +118,10 @@ typedef enum {
   INTEROP_SLC_SKIP_BIND_COMMAND,
 
   // Respond AVRCP profile version only 1.3 for some device.
-  INTEROP_AVRCP_1_3_ONLY
+  INTEROP_AVRCP_1_3_ONLY,
+
+  // Some device cannot work normal as a slave
+  INTEROP_L2CAP_ACCEPT_CONN_AS_SLAVE
 } interop_feature_t;
 
 // Check if a given |addr| matches a known interoperability workaround as
