@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e221e119_ed7df42b",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2022-11-18T21:10:58Z",
+      "side": 1,
+      "message": "How come we need a new SELinux permission for all bluetooth properties if we already try reading them from this file? What usually sets the other ones if we don\u0027t set any others here?",
+      "revId": "0ebfb20d7bd71d8b234aff9a141449f99678fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce2354e8_ca2470db",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3392,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2022-11-18T21:10:58Z",
+      "side": 1,
+      "message": "is this feature entirely in the framework, or does it require changing the driver, and if so, how does the driver implement this?",
+      "revId": "0ebfb20d7bd71d8b234aff9a141449f99678fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
