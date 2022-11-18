@@ -391,6 +391,12 @@
 #define BTM_BLE_CONFORMANCE_TESTING FALSE
 #endif
 
+/** Bug fix for EIR being flushed by too much adv @{ */
+#ifndef BTM_INQ_DB_SIZE
+#define BTM_INQ_DB_SIZE 80
+#endif
+/** @} */
+
 /******************************************************************************
  *
  * L2CAP
