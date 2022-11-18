@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0aa52c14_9dbb4a6b",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-18T19:09:38Z",
+      "side": 1,
+      "message": "The request should be named `SetAccessPermissionRequest`",
+      "range": {
+        "startLine": 62,
+        "startChar": 26,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "2bcdc923bb8df1ecedb190e208311ce4d68904be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "812cf08d_7d2e376f",
         "filename": "pandora/interfaces/pandora_experimental/host.proto",
         "patchSetId": 1
