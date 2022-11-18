@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc03d8f_6c34ca09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1977140
+      },
+      "writtenOn": "2022-11-18T16:16:34Z",
+      "side": 1,
+      "message": "2301125: Add dumpsys::ticks_to_milliseconds | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2301125",
+      "revId": "3c170c3f029066b7cfec2bab0ea2d42b592a993d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
