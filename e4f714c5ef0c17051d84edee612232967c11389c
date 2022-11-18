@@ -22,6 +22,98 @@
       },
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b4ead8a_a59c0ce1",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-18T22:30:32Z",
+      "side": 1,
+      "message": "Nope, IntDefs are strange in that they should be left @hide. It\u0027s confusing, but using the corresponding annotation still inserts the possible values into the docs. :)",
+      "parentUuid": "f87e7cb5_a16d38b9",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eaa2f17_a94312dd",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-18T22:30:32Z",
+      "side": 1,
+      "message": "I think we need a pass over these docs. I would think monaural is only left or right while binaural is both left \u0026 right audio.",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0beb6aeb_cebc7b68",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-18T22:30:32Z",
+      "side": 1,
+      "message": "Remove the current summary and replace it with what the return value represents (e.g. \"@return whether this device is a left side or right side hearing aid\")",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc30c17_767987fb",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-18T22:30:32Z",
+      "side": 1,
+      "message": "I have concerns about defaulting to left side. Is this what we return if the device is not a hearing aid? What if the side is unknown? We should have return values that map for these cases. The same applies for device mode below.",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e080485_4742f937",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-18T22:30:32Z",
+      "side": 1,
+      "message": "Same feedback as above",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
