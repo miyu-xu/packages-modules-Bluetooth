@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1edbeba8_77367c25",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-18T21:17:46Z",
+      "side": 1,
+      "message": "These properties aren\u0027t of the same property context as the snoop_log ones, these properties are from bluetooth_config_prop and are set by vendors",
+      "parentUuid": "e221e119_ed7df42b",
+      "revId": "0ebfb20d7bd71d8b234aff9a141449f99678fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce2354e8_ca2470db",
         "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 8
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-18T21:10:58Z",
       "side": 1,
       "message": "is this feature entirely in the framework, or does it require changing the driver, and if so, how does the driver implement this?",
+      "revId": "0ebfb20d7bd71d8b234aff9a141449f99678fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3534b379_f1bd9588",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3392,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-11-18T21:17:46Z",
+      "side": 1,
+      "message": "This feature is in the Bluetooth stack, we\u0027re just adding APIs so privileged apps can enable it without having to send the user in the developer settings",
+      "parentUuid": "ce2354e8_ca2470db",
       "revId": "0ebfb20d7bd71d8b234aff9a141449f99678fa87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
