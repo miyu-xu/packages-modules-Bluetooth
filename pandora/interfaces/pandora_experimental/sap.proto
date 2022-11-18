@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_outer_classname = "SapProto";
+
+import "google/protobuf/empty.proto";
+import "pandora_experimental/host.proto";
+package pandora;
+
+service SAP {
+}

@@ -340,3 +340,12 @@ fun buildAudioTrack(): AudioTrack? {
     .setBufferSizeInBytes(44100 * 2 * 2)
     .build()
 }
+
+fun setRequiredAccessPermission(bluetoothDevice: BluetoothDevice, service: String) {
+  /* Setting the required access permission for the Bluetooth Device */
+  when (service) {
+    "Message" -> bluetoothDevice.setMessageAccessPermission(BluetoothDevice.ACCESS_ALLOWED)
+    "Phonebook" -> bluetoothDevice.setPhonebookAccessPermission(BluetoothDevice.ACCESS_ALLOWED)
+    "SIM" -> bluetoothDevice.setSimAccessPermission(BluetoothDevice.ACCESS_ALLOWED)
+  }
+}

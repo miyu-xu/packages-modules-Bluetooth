@@ -58,6 +58,8 @@ service Host {
   rpc SetDiscoverabilityMode(SetDiscoverabilityModeRequest) returns (SetDiscoverabilityModeResponse);
   // Get device name from connection
   rpc GetDeviceName(GetDeviceNameRequest) returns (GetDeviceNameResponse);
+  // Set Message, PhoneBook and SIM access permission
+  rpc SetAccessPermission(EnableAccessRequest) returns (google.protobuf.Empty);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -296,4 +298,11 @@ message GetDeviceNameRequest {
 
 message GetDeviceNameResponse {
   string name = 1;
+}
+
+message EnableAccessRequest {
+  // Peer Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+  // Set AccessType to Message, PhoneBook and SIM access permission
+  string access_type = 2;
 }

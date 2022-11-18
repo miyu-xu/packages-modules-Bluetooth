@@ -39,6 +39,7 @@ class Server(context: Context) {
   private var l2cap: L2cap
   private var mediaplayer: MediaPlayer
   private var rfcomm: Rfcomm
+  private var sap: Sap
   private var security: Security
   private var androidInternal: AndroidInternal
   private var grpcServer: GrpcServer
@@ -52,6 +53,7 @@ class Server(context: Context) {
     l2cap = L2cap(context)
     mediaplayer = MediaPlayer(context)
     rfcomm = Rfcomm(context)
+    sap = Sap(context)
     security = Security(context)
     androidInternal = AndroidInternal()
 
@@ -65,6 +67,7 @@ class Server(context: Context) {
         .addService(l2cap)
         .addService(mediaplayer)
         .addService(rfcomm)
+        .addService(sap)
         .addService(security)
         .addService(androidInternal)
 
@@ -100,6 +103,7 @@ class Server(context: Context) {
     l2cap.deinit()
     mediaplayer.deinit()
     rfcomm.deinit()
+    sap.deinit()
     security.deinit()
     androidInternal.deinit()
   }
