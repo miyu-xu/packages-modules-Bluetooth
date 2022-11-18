@@ -2195,7 +2195,9 @@ void btif_dm_cancel_discovery(void) {
 }
 
 bool btif_dm_pairing_is_busy() {
-  return pairing_cb.state != BT_BOND_STATE_NONE;
+/** Fix bond SDP interrupt by second bond from BLE autoPair apk  @{ */
+  return ((pairing_cb.state != BT_BOND_STATE_NONE) || (pairing_cb.sdp_attempts != 0));
+/** @} */
 }
 
 /*******************************************************************************
