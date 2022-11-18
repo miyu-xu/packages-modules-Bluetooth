@@ -377,8 +377,12 @@ static const char* interop_feature_string_(const interop_feature_t feature) {
     CASE_RETURN_STR(INTEROP_DISABLE_AVDTP_SUSPEND)
     CASE_RETURN_STR(INTEROP_SLC_SKIP_BIND_COMMAND)
     CASE_RETURN_STR(INTEROP_AVRCP_1_3_ONLY)
+<<<<<<< PATCH SET (088c4f Fix IOT device issue with master role)
+    CASE_RETURN_STR(INTEROP_L2CAP_ACCEPT_CONN_AS_SLAVE);
+=======
     CASE_RETURN_STR(INTEROP_DISABLE_ROBUST_CACHING);
     CASE_RETURN_STR(INTEROP_HFP_1_7_ALLOWLIST);
+>>>>>>> BASE      (f25a88 Merge "Close cursor with try resource statement in CallLogPu)
   }
   return UNKNOWN_INTEROP_FEATURE;
 }
