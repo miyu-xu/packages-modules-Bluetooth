@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f87e7cb5_a16d38b9",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-11-18T18:21:41Z",
+      "side": 1,
+      "message": "@rahulsabnis@google.com Do we need SystemApi here, also for DeviceMode?",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
