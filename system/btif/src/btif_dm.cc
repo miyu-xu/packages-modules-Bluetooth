@@ -1299,7 +1299,9 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
         /* DEV_CLASS */
         uint32_t cod = devclass2uint(p_search_data->inq_res.dev_class);
         BTIF_TRACE_DEBUG("%s cod is 0x%06x", __func__, cod);
-        if (cod != 0) {
+        /** Fix connect speaker with ble adv @{ */
+        if (cod != 0 && cod != COD_UNCLASSIFIED) {
+        /** @} */
           BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
                                      BT_PROPERTY_CLASS_OF_DEVICE, sizeof(cod),
                                      &cod);
@@ -1311,12 +1313,14 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
 
         /* Verify if the device is dual mode in NVRAM */
         int stored_device_type = 0;
-        if (btif_get_device_type(bdaddr, &stored_device_type) &&
-            ((stored_device_type != BT_DEVICE_TYPE_BREDR &&
-              p_search_data->inq_res.device_type == BT_DEVICE_TYPE_BREDR) ||
-             (stored_device_type != BT_DEVICE_TYPE_BLE &&
-              p_search_data->inq_res.device_type == BT_DEVICE_TYPE_BLE))) {
-          dev_type = (bt_device_type_t)BT_DEVICE_TYPE_DUMO;
+        /** Fix connect speaker with ble adv @{ */
+        /* don't need care the actual value, just OR it
+         * because when it's DUMO, the orig check will fail
+         * and it will be set as new dev type
+         */
+        if (btif_get_device_type(bdaddr, &stored_device_type)) {
+          dev_type = (bt_device_type_t)(stored_device_type | p_search_data->inq_res.device_type);
+        /** @} */
         } else {
           dev_type = (bt_device_type_t)p_search_data->inq_res.device_type;
         }
