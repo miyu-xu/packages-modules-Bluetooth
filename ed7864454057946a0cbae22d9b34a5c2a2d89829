@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac810f2_271a0ecc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-18T00:58:05Z",
+      "side": 1,
+      "message": "According to pre-submit of aosp/2307193, the test are still not passing.\ncf https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI46200010109431359\u0026testResultId\u003dTR78928377702433009",
+      "revId": "ed7864454057946a0cbae22d9b34a5c2a2d89829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
