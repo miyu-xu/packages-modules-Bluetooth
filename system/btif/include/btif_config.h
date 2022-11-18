@@ -71,3 +71,8 @@ std::vector<RawAddress> btif_config_get_paired_devices();
 
 bool btif_config_clear(void);
 void btif_debug_config_dump(int fd);
+
+/** Bug fix connect device with clock_offset=0  @{ */
+bool btif_get_device_clockoffset(const RawAddress& bda, int* p_clock_offset);
+bool btif_set_device_clockoffset(const RawAddress& bda, int clock_offset);
+/** @} */
