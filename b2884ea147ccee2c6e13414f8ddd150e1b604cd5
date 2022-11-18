@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5693f8c_8339d872",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-18T22:55:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1fe49966_5a881f8a",
+      "range": {
+        "startLine": 369,
+        "startChar": 4,
+        "endLine": 369,
+        "endChar": 12
+      },
+      "revId": "b2884ea147ccee2c6e13414f8ddd150e1b604cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe6f754c_3b97b9a2",
