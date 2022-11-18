@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a0971b_28ee2408",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-18T11:33:45Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nAs discussed we have created CL for SAP. Observed that SAP service is not enabled. Kindly enable to proceed.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "c038d8cc77864b64392f29dc1397f477b685e586",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
