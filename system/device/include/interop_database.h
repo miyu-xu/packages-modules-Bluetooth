@@ -190,6 +190,13 @@ static const interop_addr_entry_t interop_addr_database[] = {
 
     // BMW Carkit
     {{{0x00, 0x0a, 0x08, 0, 0, 0}}, 3, INTEROP_AVRCP_1_3_ONLY},
+
+    // {0xb0, 0xe1, 0x7e},  /* Mate 10 */
+    // {0x00, 0x0e, 0x9f},  /* old PCM */
+    // {0x9c, 0xdf, 0x03},  /* old PCM other */
+    {{{0xb0, 0xe1, 0x7e, 0, 0, 0}}, 3, INTEROP_L2CAP_ACCEPT_CONN_AS_SLAVE},
+    {{{0x00, 0x0e, 0x9f, 0, 0, 0}}, 3, INTEROP_L2CAP_ACCEPT_CONN_AS_SLAVE},
+    {{{0x9c, 0xdf, 0x03, 0, 0, 0}}, 3, INTEROP_L2CAP_ACCEPT_CONN_AS_SLAVE},
 };
 
 typedef struct {
