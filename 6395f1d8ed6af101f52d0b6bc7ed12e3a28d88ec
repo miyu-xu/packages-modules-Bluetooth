@@ -39,6 +39,74 @@
       },
       "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f7793e2_22d83316",
+        "filename": "system/gd/rust/linux/client/src/bt_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-18T23:15:39Z",
+      "side": 1,
+      "message": "Since all these below are only used in the command_handler. Does it make sense to keep the definition and creation there?",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117d34f0_5aa67f7b",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-18T23:15:39Z",
+      "side": 1,
+      "message": "Nit: Why not fail here and return instead of setting invalid and logging below so we are consistent with above?",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5974d6e8_7dc407ca",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-18T23:15:39Z",
+      "side": 1,
+      "message": "Nit: same here?",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "688cac3c_03659d98",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-18T23:15:39Z",
+      "side": 1,
+      "message": "Since write_type is only used here. Does it make more sense to pass it as a arg instead of having a separate func to set write type?",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
