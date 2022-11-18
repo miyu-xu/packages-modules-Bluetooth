@@ -379,6 +379,10 @@
 #define BTM_BLE_CONFORMANCE_TESTING FALSE
 #endif
 
+#ifndef BTM_INQ_DB_SIZE
+#define BTM_INQ_DB_SIZE 80
+#endif
+
 /******************************************************************************
  *
  * L2CAP
