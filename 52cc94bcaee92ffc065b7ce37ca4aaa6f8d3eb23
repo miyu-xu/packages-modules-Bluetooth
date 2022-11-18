@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "809ebf83_4bfd8d9a",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1519a95a_b4eae108",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8622a55d_775b9583",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Will fix.\n\nI made LOG_CONSOLE afterwards as convenience but never returned to fix",
       "parentUuid": "8622a55d_775b9583",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe861280_18989cea",
+        "filename": "system/test/headless/connect/connect.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0357fede_f7a02c12",
       "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -125,6 +161,30 @@
       "side": 1,
       "message": "Yes, I believe you are correct...I changed the loop structure last minute",
       "parentUuid": "e4f9ed2f_b93d348c",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 3
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32518e3b_4ab2ac2b",
+        "filename": "system/test/headless/discovery/discovery.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa225d5f_63d4e767",
       "range": {
         "startLine": 78,
         "startChar": 0,
@@ -188,6 +248,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73729a53_8e97eacf",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7ba540f_ead3f757",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e8a41a3_7defe94c",
@@ -225,6 +303,30 @@
       "side": 1,
       "message": "Earlier versions didn\u0027t check for API entry, but you are correct",
       "parentUuid": "4e8a41a3_7defe94c",
+      "range": {
+        "startLine": 166,
+        "startChar": 25,
+        "endLine": 166,
+        "endChar": 65
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a6f3478_af6d4d08",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e19ff98_7d570051",
       "range": {
         "startLine": 166,
         "startChar": 25,
@@ -306,6 +408,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceda45ee_1eec00b2",
+        "filename": "system/test/headless/interface.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "225e45c3_1ddda443",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80014f7a_4c7b2f6e",
@@ -343,6 +469,30 @@
       "side": 1,
       "message": "We should be able to...earlier versions there was a little more logic but I think it\u0027s can be done.  I will look into it.",
       "parentUuid": "80014f7a_4c7b2f6e",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 70
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "427a24b9_bd4d4c1f",
+        "filename": "system/test/headless/interface.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c14a7c02_9bcf35f2",
       "range": {
         "startLine": 51,
         "startChar": 2,
@@ -400,6 +550,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0001ee97_a9255089",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e81cbcd_56e16e91",
+      "range": {
+        "startLine": 116,
+        "startChar": 23,
+        "endLine": 116,
+        "endChar": 24
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bc791b0_36051803",
@@ -413,6 +587,30 @@
       "writtenOn": "2022-11-09T19:25:33Z",
       "side": 1,
       "message": "Why not use `std::chrono::milliseconds` ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 75
+      },
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "150a0c5a_26869f89",
+        "filename": "system/test/headless/timeout.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bc791b0_36051803",
       "range": {
         "startLine": 21,
         "startChar": 16,
@@ -472,6 +670,24 @@
       "side": 1,
       "message": "I\u0027m aware and I agree that it\u0027s more human friendly to have a `date`.\n\n\u003e A per-build SHA would also make this not reproducible, no ?\n\nA per-build SHA no, but the git commit SHA yes, as you would have the same as long as you build the same commit.\n\nIt was mostly a heads up, I\u0027m totally fine disregarding it 😊",
       "parentUuid": "336a3050_098ff395",
+      "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef0defbf_63b2d59c",
+        "filename": "system/test/headless/tools/build_timestamp.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-11-18T19:09:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eae40d09_cec7e4db",
       "revId": "52cc94bcaee92ffc065b7ce37ca4aaa6f8d3eb23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
