@@ -3331,7 +3331,10 @@ void btm_ble_update_mode_operation(uint8_t link_role, const RawAddress* bd_addr,
      now in order */
   if (btm_cb.ble_ctr_cb.is_connection_state_idle() &&
       status != HCI_ERR_HOST_REJECT_RESOURCES &&
-      status != HCI_ERR_MAX_NUM_OF_CONNECTIONS) {
+      status != HCI_ERR_MAX_NUM_OF_CONNECTIONS
+  /** Add judgement to avoid dead loop when stack trigger le create connection twice @{ */
+      && status != HCI_ERR_COMMAND_DISALLOWED) {
+  /** @} */
     LOG_DEBUG("Resuming le background connections");
     btm_ble_resume_bg_conn();
   }
