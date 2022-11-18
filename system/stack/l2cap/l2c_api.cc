@@ -1316,6 +1316,12 @@ bool L2CA_ConnectFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
       return false;
     }
 
+    // Connect fail when it's connecting
+    if (p_lcb->link_state == LST_CONNECTING) {
+      L2CAP_TRACE_WARNING("%s(0x%04x) connecting, reject", __func__, fixed_cid);
+      return false;
+    }
+
     // Get a CCB and link the lcb to it
     if (!l2cu_initialize_fixed_ccb(p_lcb, fixed_cid)) {
       LOG_WARN("Unable to allocate fixed channel resource fixed_cid:0x%04x",
