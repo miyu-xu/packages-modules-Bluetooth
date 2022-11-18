@@ -149,7 +149,17 @@ void bta_scan_results_cb_impl(RawAddress bd_addr, tBT_DEVICE_TYPE device_type,
     }
   }
 
-  dev_type = (bt_device_type_t)device_type;
+  /** Fix connect speaker with ble adv @{ */
+  /* device type */
+  uint32_t remote_dev_type = 0;
+  BTIF_STORAGE_FILL_PROPERTY(&properties, BT_PROPERTY_TYPE_OF_DEVICE,
+                 sizeof(remote_dev_type), &remote_dev_type);
+  if (btif_storage_get_remote_device_property(&bd_addr, &properties) == BT_STATUS_SUCCESS)
+    dev_type = (bt_device_type_t)(remote_dev_type | device_type);
+  else
+    dev_type = (bt_device_type_t)device_type;
+  /** @} */
+
   BTIF_STORAGE_FILL_PROPERTY(&properties, BT_PROPERTY_TYPE_OF_DEVICE,
                              sizeof(dev_type), &dev_type);
   btif_storage_set_remote_device_property(&(bd_addr), &properties);
