@@ -1066,6 +1066,42 @@ tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda) {
   return (p_old);
 }
 
+/** Bug fix for EIR being flushed by too much adv @{ */
+tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda, bool is_ble) {
+  uint16_t xx = 0, yy = 0;
+  uint32_t ot = 0xFFFFFFFF;
+
+  if (is_ble) yy = BTM_INQ_DB_SIZE / 2;
+  else yy = 0;
+
+  tINQ_DB_ENT* p_ent = &btm_cb.btm_inq_vars.inq_db[yy];
+  tINQ_DB_ENT* p_old = &btm_cb.btm_inq_vars.inq_db[yy];
+
+  for (xx = 0; xx < BTM_INQ_DB_SIZE / 2; xx++, p_ent++) {
+    if (!p_ent->in_use) {
+      memset(p_ent, 0, sizeof(tINQ_DB_ENT));
+      p_ent->inq_info.results.remote_bd_addr = p_bda;
+      p_ent->in_use = true;
+
+      return (p_ent);
+    }
+
+    if (p_ent->time_of_resp < ot) {
+      p_old = p_ent;
+      ot = p_ent->time_of_resp;
+    }
+  }
+
+  /* If here, no free entry found. Return the oldest. */
+
+  memset(p_old, 0, sizeof(tINQ_DB_ENT));
+  p_old->inq_info.results.remote_bd_addr = p_bda;
+  p_old->in_use = true;
+
+  return (p_old);
+}
+/** @} */
+
 /*******************************************************************************
  *
  * Function         btm_process_inq_results
@@ -1188,7 +1224,10 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
     /* If existing entry, use that, else get a new one (possibly reusing the
      * oldest) */
     if (p_i == NULL) {
-      p_i = btm_inq_db_new(bda);
+      /* p_i = btm_inq_db_new(bda); */
+      /** Bug fix for EIR being flushed by too much adv @{ */
+      p_i = btm_inq_db_new(bda, false);
+      /** @} */
       is_new = true;
     }
 
