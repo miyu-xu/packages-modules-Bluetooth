@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e0e0b7a_c810a6df",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 22
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-18T19:18:52Z",
+      "side": 1,
+      "message": "nit: \"-Wunused-parameter\" should be included with \"-Wall -Wextra\", so I think we can remove it",
+      "revId": "623c7bb49afe04a82fa18aa3b8857f8138b1004b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c9f276_59c402e8",
+        "filename": "system/test/headless/headless.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-18T19:18:52Z",
+      "side": 1,
+      "message": "nit: Remove comment",
+      "revId": "623c7bb49afe04a82fa18aa3b8857f8138b1004b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
