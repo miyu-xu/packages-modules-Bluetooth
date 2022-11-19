@@ -16,6 +16,8 @@
 
 package android.bluetooth;
 
+import android.annotation.SystemApi;
+
 /**
  * Bluetooth Assigned Numbers.
  * <p>
@@ -1168,4 +1170,31 @@ public class BluetoothAssignedNumbers {
     private BluetoothAssignedNumbers() {
     }
 
+    /**
+     * The values of {@code OrganizationId} are assigned by Bluetooth SIG. For more
+     * details refer to Transport Discovery Service Organization IDs.
+     * (https://www.bluetooth.com/specifications/assigned-numbers/)
+     *
+     * @hide
+     */
+    @SystemApi
+    public class OrganizationId {
+        /*
+         * This is for Bluetooth SIG Organization Id .
+         */
+        public static final int BLUETOOTH_SIG = 0x01;
+
+        /*
+         * This is for WiFi Alliance Neighbor Awareness Networking Organization Id.
+         */
+        public static final int WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING = 0x02;
+
+        /**
+         * This is for WiFi Alliance Service Advertisement Organization Id.
+         */
+        public static final int WIFI_ALLIANCE_SERVICE_ADVERTISEMENT = 0x03;
+
+        private OrganizationId() {
+        }
+    }
 }
