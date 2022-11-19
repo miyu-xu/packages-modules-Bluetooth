@@ -33,6 +33,24 @@
       "message": "I\u0027m not surprised that this could cause crashes at tear down, but it\u0027s really surprising that it would happen on startup.  I don\u0027t disagree with this test, but I think it would be good to understand why we are getting data from the remote before the AclManager is completely started (there shouldn\u0027t be any connections yet)\n\nI read the description in the bug, and they are talking about starting and stopping HFP and A2DP, not enabling and disabling Bluetooth.",
       "revId": "f5e5963b8895be1793079da46a3a89bec1dc658c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8181ca73_facdb002",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-11-19T01:03:59Z",
+      "side": 1,
+      "message": "There\u0027s additional crashes happening on the system. I think this is happening on the recovery path of one of the crashes.\n\nNot sure why we would have packets on the StartUp path either. This was just a low-hanging fruit on the bug investigation -- will keep you updated with new analysis.",
+      "parentUuid": "770e0857_b98e48fa",
+      "revId": "f5e5963b8895be1793079da46a3a89bec1dc658c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
