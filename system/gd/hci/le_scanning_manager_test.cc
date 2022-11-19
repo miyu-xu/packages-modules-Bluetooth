@@ -78,7 +78,13 @@ hci::AdvertisingPacketContentFilterCommand make_filter(const hci::ApcfFilterType
       filter.data = {0x12, 0x34, 0x56, 0x78};
       filter.data_mask = {0xff, 0xff, 0xff, 0xff};
       break;
-    default:
+     case hci::ApcfFilterType::TDS_DATA:
+      filter.org_id = 0x02;
+      filter.tds_flags = 0x01;
+      filter.tds_flags_mask = 0xFF;
+      filter.data = {0x4B, 0x4B, 0x14, 0x96, 0x96, 0x96, 0x5E, 0xA6, 0x33};
+      break;
+     default:
       break;
   }
   return filter;
@@ -651,6 +657,23 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_service_data_test) {
   EXPECT_CALL(mock_callbacks_, OnFilterConfigCallback);
   test_hci_layer_->IncomingEvent(
       LeAdvFilterServiceDataCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS, ApcfAction::ADD, 0x0a));
+}
+
+TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_tds_data_test) {
+  test_hci_layer_->SetCommandFuture();
+  std::vector<AdvertisingPacketContentFilterCommand> filters = {};
+  filters.push_back(make_filter(hci::ApcfFilterType::TDS_DATA));
+  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  auto commandView = test_hci_layer_->GetCommand();
+  ASSERT_EQ(OpCode::LE_ADV_FILTER, commandView.GetOpCode());
+  auto filter_command_view =
+      LeAdvFilterTdsDataView::Create(LeAdvFilterView::Create(LeScanningCommandView::Create(commandView)));
+  ASSERT_TRUE(filter_command_view.IsValid());
+  ASSERT_EQ(filter_command_view.GetApcfOpcode(), ApcfOpcode::TDS_DATA);
+
+  EXPECT_CALL(mock_callbacks_, OnFilterConfigCallback);
+  test_hci_layer_->IncomingEvent(
+      LeAdvFilterTdsDataCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS, ApcfAction::ADD, 0x0a));
 }
 
 TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_ad_type_test) {

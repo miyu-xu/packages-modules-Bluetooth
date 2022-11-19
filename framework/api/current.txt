@@ -1271,6 +1271,10 @@ package android.bluetooth.le {
     method @Nullable public byte[] getManufacturerData();
     method @Nullable public byte[] getManufacturerDataMask();
     method public int getManufacturerId();
+    method public int getOrgId();
+    method public int getTdsFlags();
+    method public int getTdsFlagsMask();
+    method @Nullable public byte[] getWifiNanHash();
     method @Nullable public byte[] getServiceData();
     method @Nullable public byte[] getServiceDataMask();
     method @Nullable public android.os.ParcelUuid getServiceDataUuid();
@@ -1281,7 +1285,8 @@ package android.bluetooth.le {
     method public boolean matches(android.bluetooth.le.ScanResult);
     method public void writeToParcel(android.os.Parcel, int);
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.le.ScanFilter> CREATOR;
-  }
+    field @NonNull public static final int WIFI_ALLIANCE_ORG_ID = 2;
+   }
 
   public static final class ScanFilter.Builder {
     ctor public ScanFilter.Builder();
@@ -1298,7 +1303,8 @@ package android.bluetooth.le {
     method @NonNull public android.bluetooth.le.ScanFilter.Builder setServiceSolicitationUuid(@Nullable android.os.ParcelUuid, @Nullable android.os.ParcelUuid);
     method public android.bluetooth.le.ScanFilter.Builder setServiceUuid(android.os.ParcelUuid);
     method public android.bluetooth.le.ScanFilter.Builder setServiceUuid(android.os.ParcelUuid, android.os.ParcelUuid);
-  }
+    method public android.bluetooth.le.ScanFilter.Builder setTransportDiscoveryData(int, int, int, byte[]);
+   }
 
   public final class ScanRecord {
     method public int getAdvertiseFlags();
