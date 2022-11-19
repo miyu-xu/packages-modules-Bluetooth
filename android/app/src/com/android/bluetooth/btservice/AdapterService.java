@@ -4462,6 +4462,33 @@ public class AdapterService extends Service {
             }
             return BluetoothStatusCodes.SUCCESS;
         }
+
+        @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
+        @Override
+        public void isOffloadedTransportDiscoveryDataScanSupported(
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(isOffloadedTransportDiscoveryDataScanSupported(source));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private int isOffloadedTransportDiscoveryDataScanSupported(
+                AttributionSource attributionSource) {
+            AdapterService service = getService();
+            if (service == null
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG,
+                            "isOffloadedTransportDiscoveryDataScanSupported")
+                    || !Utils.checkScanPermissionForDataDelivery(
+                            service, attributionSource,
+                            "isOffloadedTransportDiscoveryDataScanSupported")) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_SCAN_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+
+            return service.isOffloadedTransportDiscoveryDataScanSupported();
+        }
+
     }
 
     /**
@@ -5682,6 +5709,13 @@ public class AdapterService extends Service {
 
     public int getTotalNumOfTrackableAdvertisements() {
         return mAdapterProperties.getTotalNumOfTrackableAdvertisements();
+    }
+
+    public int isOffloadedTransportDiscoveryDataScanSupported() {
+        if (mAdapterProperties.isOffloadedTransportDiscoveryDataScanSupported()) {
+            return BluetoothStatusCodes.FEATURE_SUPPORTED;
+        }
+        return BluetoothStatusCodes.FEATURE_NOT_SUPPORTED;
     }
 
     /**
