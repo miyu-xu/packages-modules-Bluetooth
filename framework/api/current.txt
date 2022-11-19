@@ -1308,6 +1308,7 @@ package android.bluetooth.le {
     method @Nullable public byte[] getServiceData(android.os.ParcelUuid);
     method @NonNull public java.util.List<android.os.ParcelUuid> getServiceSolicitationUuids();
     method public java.util.List<android.os.ParcelUuid> getServiceUuids();
+    method @Nullable public android.bluetooth.le.TransportDiscoveryData getTransportDiscoveryData();
     method public int getTxPowerLevel();
     field public static final int DATA_TYPE_3D_INFORMATION_DATA = 61; // 0x3d
     field public static final int DATA_TYPE_ADVERTISING_INTERVAL = 26; // 0x1a
