@@ -46,6 +46,30 @@
       },
       "revId": "736fe832506938610e4b17d95edb0128baa18408",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "337ed15b_56619506",
+        "filename": "system/gd/l2cap/fuzz/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-19T00:58:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3ab4926b_96e651b1",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "736fe832506938610e4b17d95edb0128baa18408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
