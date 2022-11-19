@@ -337,6 +337,9 @@ public final class ScanRecord {
 
     private final HashMap<Integer, byte[]> mAdvertisingDataMap;
 
+    // Transport Discovery data.
+    private final TransportDiscoveryData mTransportDiscoveryData;
+
     /**
      * Returns the advertising flags indicating the discoverable mode and capability of the device.
      * Returns -1 if the flag field is not set.
@@ -431,6 +434,14 @@ public final class ScanRecord {
     }
 
     /**
+     * Returns Transport Discovery data
+     */
+    @Nullable
+    public TransportDiscoveryData getTransportDiscoveryData() {
+        return mTransportDiscoveryData;
+    }
+
+    /**
      * Returns raw bytes of scan record.
      */
     public byte[] getBytes() {
@@ -463,7 +474,8 @@ public final class ScanRecord {
             SparseArray<byte[]> manufacturerData,
             Map<ParcelUuid, byte[]> serviceData,
             int advertiseFlags, int txPowerLevel,
-            String localName, HashMap<Integer, byte[]> advertisingDataMap, byte[] bytes) {
+            String localName, HashMap<Integer, byte[]> advertisingDataMap,
+            TransportDiscoveryData transportDiscoveryData, byte[] bytes) {
         mServiceSolicitationUuids = serviceSolicitationUuids;
         mServiceUuids = serviceUuids;
         mManufacturerSpecificData = manufacturerData;
@@ -472,6 +484,7 @@ public final class ScanRecord {
         mAdvertiseFlags = advertiseFlags;
         mTxPowerLevel = txPowerLevel;
         mAdvertisingDataMap = advertisingDataMap;
+        mTransportDiscoveryData = transportDiscoveryData;
         mBytes = bytes;
     }
 
@@ -502,6 +515,8 @@ public final class ScanRecord {
         SparseArray<byte[]> manufacturerData = new SparseArray<byte[]>();
         Map<ParcelUuid, byte[]> serviceData = new ArrayMap<ParcelUuid, byte[]>();
         HashMap<Integer, byte[]> advertisingDataMap = new HashMap<Integer, byte[]>();
+
+        TransportDiscoveryData transportDiscoveryData = null;
 
         try {
             while (currentPos < scanRecord.length) {
@@ -582,6 +597,14 @@ public final class ScanRecord {
                                 dataLength - 2);
                         manufacturerData.put(manufacturerId, manufacturerDataBytes);
                         break;
+                    case DATA_TYPE_TRANSPORT_DISCOVERY_DATA:
+                        // -1 / +1 to include the type in the extract
+                        byte[] transportDiscoveryDataBytes =
+                                extractBytes(scanRecord, currentPos - 1, dataLength + 1);
+                        transportDiscoveryData =
+                                new TransportDiscoveryData(transportDiscoveryDataBytes);
+                        break;
+
                     default:
                         // Just ignore, we don't handle such data type.
                         break;
@@ -594,13 +617,13 @@ public final class ScanRecord {
             }
             return new ScanRecord(serviceUuids, serviceSolicitationUuids, manufacturerData,
                     serviceData, advertiseFlag, txPowerLevel, localName, advertisingDataMap,
-                    scanRecord);
+                    transportDiscoveryData, scanRecord);
         } catch (Exception e) {
             Log.e(TAG, "unable to parse scan record: " + Arrays.toString(scanRecord));
             // As the record is invalid, ignore all the parsed results for this packet
             // and return an empty record with raw scanRecord bytes in results
             return new ScanRecord(null, null, null, null, -1, Integer.MIN_VALUE, null,
-                    advertisingDataMap, scanRecord);
+                    advertisingDataMap, null, scanRecord);
         }
     }
 
@@ -608,10 +631,11 @@ public final class ScanRecord {
     public String toString() {
         return "ScanRecord [mAdvertiseFlags=" + mAdvertiseFlags + ", mServiceUuids=" + mServiceUuids
                 + ", mServiceSolicitationUuids=" + mServiceSolicitationUuids
-                + ", mManufacturerSpecificData=" + BluetoothLeUtils.toString(
-                mManufacturerSpecificData)
+                + ", mManufacturerSpecificData="
+                + BluetoothLeUtils.toString(mManufacturerSpecificData)
                 + ", mServiceData=" + BluetoothLeUtils.toString(mServiceData)
-                + ", mTxPowerLevel=" + mTxPowerLevel + ", mDeviceName=" + mDeviceName + "]";
+                + ", mTxPowerLevel=" + mTxPowerLevel + ", mDeviceName=" + mDeviceName
+                + ", mTransportDiscoveryData=" + mTransportDiscoveryData + "]";
     }
 
     // Parse service UUIDs.
