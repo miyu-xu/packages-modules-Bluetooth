@@ -834,6 +834,11 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           update_service_data_filter(apcf_action, filter_index, filter.data, filter.data_mask);
           break;
         }
+        case ApcfFilterType::TDS_DATA: {
+          update_tds_data_filter(apcf_action, filter_index, filter.org_id, filter.tds_flags,
+          filter.tds_flags_mask, filter.data);
+          break;
+        }
         case ApcfFilterType::AD_TYPE: {
           update_ad_type_filter(apcf_action, filter_index, filter.ad_type, filter.data, filter.data_mask);
           break;
@@ -1025,6 +1030,40 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
     le_scanning_interface_->EnqueueCommand(
         LeAdvFilterServiceDataBuilder::Create(action, filter_index, combined_data),
+        module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
+  }
+
+  void update_tds_data_filter(
+      ApcfAction action,
+      uint8_t filter_index,
+      uint8_t org_id,
+      uint8_t tds_flags,
+      uint8_t tds_flags_mask,
+      std::vector<uint8_t> wifi_nan_hash) {
+    std::vector<uint8_t> combined_data = {};
+
+    LocalVersionInformation local_version_information =
+        controller_->GetLocalVersionInformation();
+
+    // QTI controller, TDS data filter are supported by default. Check is added
+    // to keep backward comptiblity.
+    if (!is_tds_data_filter_supported_ &&
+        !(local_version_information.manufacturer_name_ == LMP_COMPID_QTI)) {
+      LOG_ERROR("TDS data filter isn't supported");
+      return;
+    }
+
+    if (action != ApcfAction::CLEAR) {
+      combined_data.push_back((uint8_t)org_id);
+      combined_data.push_back((uint8_t)tds_flags);
+      combined_data.push_back((uint8_t)tds_flags_mask);
+      if (wifi_nan_hash.size() != 0) {
+        combined_data.insert(combined_data.end(), wifi_nan_hash.begin(), wifi_nan_hash.end());
+      }
+    }
+
+    le_scanning_interface_->EnqueueCommand(
+        LeAdvFilterTdsDataBuilder::Create(action, filter_index, combined_data),
         module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
   }
 
@@ -1415,6 +1454,15 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             complete_view.GetApcfAction(),
             (uint8_t)complete_view.GetStatus());
       } break;
+      case ApcfOpcode::TDS_DATA: {
+        auto complete_view = LeAdvFilterTdsDataCompleteView::Create(status_view);
+        ASSERT(complete_view.IsValid());
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::TDS_DATA,
+            complete_view.GetApcfAvailableSpaces(),
+            complete_view.GetApcfAction(),
+            (uint8_t)complete_view.GetStatus());
+      } break;
       case ApcfOpcode::AD_TYPE: {
         auto complete_view = LeAdvFilterADTypeCompleteView::Create(status_view);
         ASSERT(complete_view.IsValid());
@@ -1445,8 +1493,11 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
     auto complete_view = LeAdvFilterReadExtendedFeaturesCompleteView::Create(status_view);
     ASSERT(complete_view.IsValid());
+    is_tds_data_filter_supported_ = complete_view.GetTdsDataFilter() == 1;
     is_ad_type_filter_supported_ = complete_view.GetAdTypeFilter() == 1;
-    LOG_INFO("set is_ad_type_filter_supported_ to %d", is_ad_type_filter_supported_);
+    LOG_INFO("set is_ad_type_filter_supported_ to %d & "
+             "is_tds_data_filter_supported_ to %d",
+             is_ad_type_filter_supported_, is_tds_data_filter_supported_);
   }
 
   void on_batch_scan_complete(CommandCompleteView view) {
@@ -1603,6 +1654,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   bool is_ad_type_filter_supported_ = false;
   bool is_batch_scan_supported_ = false;
   bool is_periodic_advertising_sync_transfer_sender_supported_ = false;
+  bool is_tds_data_filter_supported_ = false;
 
   LeScanType le_scan_type_ = LeScanType::ACTIVE;
   uint32_t interval_ms_{1000};
