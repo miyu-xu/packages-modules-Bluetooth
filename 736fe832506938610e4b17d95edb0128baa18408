@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "853a2593_dc5a11cd",
+        "filename": "system/audio_hal_interface/fuzzer/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-19T01:06:46Z",
+      "side": 1,
+      "message": "Not the right component id, should be 27441",
+      "range": {
+        "startLine": 104,
+        "startChar": 21,
+        "endLine": 104,
+        "endChar": 30
+      },
+      "revId": "736fe832506938610e4b17d95edb0128baa18408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38bb4fc3_8430ae6a",
         "filename": "system/gd/l2cap/fuzz/Android.bp",
         "patchSetId": 1
