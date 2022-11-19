@@ -1078,11 +1078,18 @@ package android.bluetooth.le {
   public final class ScanFilter implements android.os.Parcelable {
     method public int getAddressType();
     method @Nullable public byte[] getIrk();
+    method public int getOrgId();
+    method public int getTdsFlags();
+    method public int getTdsFlagsMask();
+    method @Nullable public byte[] getTransportData();
+    method @Nullable public byte[] getTransportDataMask();
+    field public static final int WIFI_ALLIANCE_NAN_ORG_ID = 2; // 0x2
   }
 
   public static final class ScanFilter.Builder {
     method @NonNull public android.bluetooth.le.ScanFilter.Builder setDeviceAddress(@NonNull String, int);
     method @NonNull public android.bluetooth.le.ScanFilter.Builder setDeviceAddress(@NonNull String, int, @NonNull byte[]);
+    method @NonNull public android.bluetooth.le.ScanFilter.Builder setTransportDiscoveryData(int, int, int, @Nullable byte[], @Nullable byte[]);
     field public static final int LEN_IRK_OCTETS = 16; // 0x10
   }
 
