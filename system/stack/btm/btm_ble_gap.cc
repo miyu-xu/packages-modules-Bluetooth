@@ -704,6 +704,17 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
       }
     }
   }
+
+  if (btm_cb.cmn_ble_vsc_cb.filter_support == 1 &&
+      controller_get_interface()->get_bt_version()->manufacturer ==
+          LMP_COMPID_QTI) {
+    // QTI controller, TDS data filter are supported by default. Check is added
+    // to keep backward compatibility.
+    btm_cb.cmn_ble_vsc_cb.extended_filter_features_mask = 0x01;
+  } else {
+    btm_cb.cmn_ble_vsc_cb.extended_filter_features_mask = 0x00;
+  }
+
   btm_cb.cmn_ble_vsc_cb.values_read = true;
 
   BTM_TRACE_DEBUG(

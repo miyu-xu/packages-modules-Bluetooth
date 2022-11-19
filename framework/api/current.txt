@@ -50,6 +50,7 @@ package android.bluetooth {
     method public boolean isMultipleAdvertisementSupported();
     method public boolean isOffloadedFilteringSupported();
     method public boolean isOffloadedScanBatchingSupported();
+    method public boolean isOffloadedTdsDataScanSupported();
     method @NonNull @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothServerSocket listenUsingInsecureL2capChannel() throws java.io.IOException;
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothServerSocket listenUsingInsecureRfcommWithServiceRecord(String, java.util.UUID) throws java.io.IOException;
     method @NonNull @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.bluetooth.BluetoothServerSocket listenUsingL2capChannel() throws java.io.IOException;
@@ -1279,6 +1280,7 @@ package android.bluetooth.le {
     method @Nullable public byte[] getManufacturerData();
     method @Nullable public byte[] getManufacturerDataMask();
     method public int getManufacturerId();
+    method public int getOrgId();
     method @Nullable public byte[] getServiceData();
     method @Nullable public byte[] getServiceDataMask();
     method @Nullable public android.os.ParcelUuid getServiceDataUuid();
@@ -1286,9 +1288,15 @@ package android.bluetooth.le {
     method @Nullable public android.os.ParcelUuid getServiceSolicitationUuidMask();
     method @Nullable public android.os.ParcelUuid getServiceUuid();
     method @Nullable public android.os.ParcelUuid getServiceUuidMask();
+    method public int getTdsFlags();
+    method public int getTdsFlagsMask();
+    method @Nullable public byte[] getTransportData();
+    method @Nullable public byte[] getTransportDataMask();
+    method @Nullable public byte[] getWifiNanHash();
     method public boolean matches(android.bluetooth.le.ScanResult);
     method public void writeToParcel(android.os.Parcel, int);
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.le.ScanFilter> CREATOR;
+    field public static final int WIFI_ALLIANCE_NAN_ORG_ID = 2; // 0x2
   }
 
   public static final class ScanFilter.Builder {
@@ -1306,6 +1314,7 @@ package android.bluetooth.le {
     method @NonNull public android.bluetooth.le.ScanFilter.Builder setServiceSolicitationUuid(@Nullable android.os.ParcelUuid, @Nullable android.os.ParcelUuid);
     method public android.bluetooth.le.ScanFilter.Builder setServiceUuid(android.os.ParcelUuid);
     method public android.bluetooth.le.ScanFilter.Builder setServiceUuid(android.os.ParcelUuid, android.os.ParcelUuid);
+    method @NonNull public android.bluetooth.le.ScanFilter.Builder setTransportDiscoveryData(int, int, int, @Nullable byte[], @Nullable byte[]);
   }
 
   public final class ScanRecord {
@@ -1319,6 +1328,7 @@ package android.bluetooth.le {
     method @Nullable public byte[] getServiceData(android.os.ParcelUuid);
     method @NonNull public java.util.List<android.os.ParcelUuid> getServiceSolicitationUuids();
     method public java.util.List<android.os.ParcelUuid> getServiceUuids();
+    method @Nullable public byte[] getTdsData();
     method public int getTxPowerLevel();
     field public static final int DATA_TYPE_3D_INFORMATION_DATA = 61; // 0x3d
     field public static final int DATA_TYPE_ADVERTISING_INTERVAL = 26; // 0x1a
