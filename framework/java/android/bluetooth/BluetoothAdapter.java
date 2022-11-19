@@ -5549,4 +5549,30 @@ public final class BluetoothAdapter {
         }
         return BT_SNOOP_LOG_MODE_DISABLED;
     }
+
+    /**
+     * Check if offloaded transport discovery data scan is supported or not.
+     *
+     * @return true if chipset supports on-chip tds filter scan
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresNoPermission
+    public boolean isOffloadedTransportDiscoveryDataScanSupported() {
+        if (!getLeAccess()) {
+            return false;
+        }
+        try {
+            mServiceLock.readLock().lock();
+            if (mService != null) {
+                final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
+                mService.isOffloadedTransportDiscoveryDataScanSupported(recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(false);
+            }
+        } catch (RemoteException | TimeoutException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
+    }
 }
