@@ -320,6 +320,12 @@ package android.bluetooth {
     field public static final int ZSCAN_SOFTWARE = 141; // 0x8d
   }
 
+  public class BluetoothAssignedNumbers.OrganizationId {
+    field public static final int BLUETOOTH_SIG = 1; // 0x1
+    field public static final int WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING = 2; // 0x2
+    field public static final int WIFI_ALLIANCE_SERVICE_ADVERTISEMENT = 3; // 0x3
+  }
+
   public final class BluetoothClass implements android.os.Parcelable {
     method public int describeContents();
     method public boolean doesClassMatch(int);
