@@ -4352,6 +4352,24 @@ public class AdapterService extends Service {
             }
             return BluetoothStatusCodes.SUCCESS;
         }
+
+        @Override
+        public void isOffloadedTdsDataScanSupported(SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(isOffloadedTdsDataScanSupported());
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private boolean isOffloadedTdsDataScanSupported() {
+            AdapterService service = getService();
+            if (service == null) {
+                return false;
+            }
+
+            return service.isOffloadedTdsDataScanSupported();
+        }
+
     }
 
     /**
@@ -5528,6 +5546,10 @@ public class AdapterService extends Service {
 
     public int getTotalNumOfTrackableAdvertisements() {
         return mAdapterProperties.getTotalNumOfTrackableAdvertisements();
+    }
+
+    public boolean isOffloadedTdsDataScanSupported() {
+        return mAdapterProperties.isOffloadedTdsDataScanSupported();
     }
 
     /**
