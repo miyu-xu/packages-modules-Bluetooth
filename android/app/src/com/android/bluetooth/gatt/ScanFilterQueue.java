@@ -39,7 +39,8 @@ import java.util.UUID;
     public static final int TYPE_LOCAL_NAME = 4;
     public static final int TYPE_MANUFACTURER_DATA = 5;
     public static final int TYPE_SERVICE_DATA = 6;
-    public static final int TYPE_ADVERTISING_DATA_TYPE = 7;
+    public static final int TYPE_TRANSPORT_DISCOVERY_DATA = 7;
+    public static final int TYPE_ADVERTISING_DATA_TYPE = 8;
 
     // Max length is 31 - 3(flags) - 2 (one byte for length and one byte for type).
     private static final int MAX_LEN_PER_FIELD = 26;
@@ -60,6 +61,9 @@ import java.util.UUID;
         public int ad_type;
         public byte[] data;
         public byte[] data_mask;
+        public int org_id;
+        public int tds_flags;
+        public int tds_flags_mask;
     }
 
     private Set<Entry> mEntries = new HashSet<Entry>();
@@ -144,6 +148,16 @@ import java.util.UUID;
         entry.type = TYPE_SERVICE_DATA;
         entry.data = data;
         entry.data_mask = dataMask;
+        mEntries.add(entry);
+    }
+
+    void addTransportDiscoveryData(int orgId, int tdsFlags, int tdsFlagsMask, byte[] wifiNanHash) {
+        Entry entry = new Entry();
+        entry.type = TYPE_TRANSPORT_DISCOVERY_DATA;
+        entry.org_id = orgId;
+        entry.tds_flags = tdsFlags;
+        entry.tds_flags_mask = tdsFlagsMask;
+        entry.data = wifiNanHash;
         mEntries.add(entry);
     }
 
@@ -240,6 +254,10 @@ import java.util.UUID;
         if (filter.getAdvertisingDataType() > 0) {
             addAdvertisingDataType(filter.getAdvertisingDataType(),
                     filter.getAdvertisingData(), filter.getAdvertisingDataMask());
+        }
+        if (filter.getOrgId() >= 0) {
+            addTransportDiscoveryData(filter.getOrgId(), filter.getTdsFlags(),
+                filter.getTdsFlagsMask(), filter.getWifiNanHash());
         }
     }
 
