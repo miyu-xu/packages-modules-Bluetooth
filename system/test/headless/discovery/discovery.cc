@@ -52,6 +52,12 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
   auto check_point = messenger::sdp::get_check_point();
   ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
          BT_STATUS_SUCCESS);
+  ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
+         BT_STATUS_SUCCESS);
+  ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
+         BT_STATUS_SUCCESS);
+  ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
+         BT_STATUS_SUCCESS);
 
   if (!messenger::acl::await_connected(8s)) {
     LOG_CONSOLE("TIMEOUT waiting for connection to %s",
