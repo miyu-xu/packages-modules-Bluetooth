@@ -337,6 +337,9 @@ public final class ScanRecord {
 
     private final HashMap<Integer, byte[]> mAdvertisingDataMap;
 
+    // Transport Discovery data.
+    private final byte[] mTdsData;
+
     /**
      * Returns the advertising flags indicating the discoverable mode and capability of the device.
      * Returns -1 if the flag field is not set.
@@ -431,6 +434,14 @@ public final class ScanRecord {
     }
 
     /**
+     * @hide
+     * Returns Transport Discovery data
+     */
+    public byte[] getTdsData() {
+        return mTdsData;
+    }
+
+    /**
      * Returns raw bytes of scan record.
      */
     public byte[] getBytes() {
@@ -463,7 +474,8 @@ public final class ScanRecord {
             SparseArray<byte[]> manufacturerData,
             Map<ParcelUuid, byte[]> serviceData,
             int advertiseFlags, int txPowerLevel,
-            String localName, HashMap<Integer, byte[]> advertisingDataMap, byte[] bytes) {
+            String localName, HashMap<Integer, byte[]> advertisingDataMap,
+            byte[] TdsData, byte[] bytes) {
         mServiceSolicitationUuids = serviceSolicitationUuids;
         mServiceUuids = serviceUuids;
         mManufacturerSpecificData = manufacturerData;
@@ -472,6 +484,7 @@ public final class ScanRecord {
         mAdvertiseFlags = advertiseFlags;
         mTxPowerLevel = txPowerLevel;
         mAdvertisingDataMap = advertisingDataMap;
+        mTdsData = TdsData;
         mBytes = bytes;
     }
 
@@ -502,6 +515,8 @@ public final class ScanRecord {
         SparseArray<byte[]> manufacturerData = new SparseArray<byte[]>();
         Map<ParcelUuid, byte[]> serviceData = new ArrayMap<ParcelUuid, byte[]>();
         HashMap<Integer, byte[]> advertisingDataMap = new HashMap<Integer, byte[]>();
+
+        byte[] TdsData = null;
 
         try {
             while (currentPos < scanRecord.length) {
@@ -582,6 +597,10 @@ public final class ScanRecord {
                                 dataLength - 2);
                         manufacturerData.put(manufacturerId, manufacturerDataBytes);
                         break;
+                    case DATA_TYPE_TRANSPORT_DISCOVERY_DATA:
+                        TdsData = extractBytes(scanRecord, currentPos, dataLength);
+                        break;
+
                     default:
                         // Just ignore, we don't handle such data type.
                         break;
@@ -594,13 +613,13 @@ public final class ScanRecord {
             }
             return new ScanRecord(serviceUuids, serviceSolicitationUuids, manufacturerData,
                     serviceData, advertiseFlag, txPowerLevel, localName, advertisingDataMap,
-                    scanRecord);
+                    TdsData, scanRecord);
         } catch (Exception e) {
             Log.e(TAG, "unable to parse scan record: " + Arrays.toString(scanRecord));
             // As the record is invalid, ignore all the parsed results for this packet
             // and return an empty record with raw scanRecord bytes in results
             return new ScanRecord(null, null, null, null, -1, Integer.MIN_VALUE, null,
-                    advertisingDataMap, scanRecord);
+                    advertisingDataMap, null, scanRecord);
         }
     }
 
@@ -611,7 +630,8 @@ public final class ScanRecord {
                 + ", mManufacturerSpecificData=" + BluetoothLeUtils.toString(
                 mManufacturerSpecificData)
                 + ", mServiceData=" + BluetoothLeUtils.toString(mServiceData)
-                + ", mTxPowerLevel=" + mTxPowerLevel + ", mDeviceName=" + mDeviceName + "]";
+                + ", mTxPowerLevel=" + mTxPowerLevel + ", mDeviceName=" + mDeviceName
+                + ", mTdsData=" + BluetoothLeUtils.toString(mTdsData) +"]";
     }
 
     // Parse service UUIDs.
