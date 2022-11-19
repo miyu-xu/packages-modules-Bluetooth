@@ -103,6 +103,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "72263f25_3fc3388c",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-19T04:07:43Z",
+      "side": 1,
+      "message": "Seems like developer website need to be updated because the change the implementation will have compatibility problem.",
+      "parentUuid": "bdcae6f8_e2a7d275",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0beb6aeb_cebc7b68",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 3
@@ -149,6 +167,24 @@
       "side": 1,
       "message": "Yes, I also has concern when calling these APIs. What if we add the INVALID value to them?\n`SIDE_INVALID \u003d -1`, add `MODE_INVALID \u003d -1`",
       "parentUuid": "5cc30c17_767987fb",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f34f8d4_7f6e2701",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-19T04:07:43Z",
+      "side": 1,
+      "message": "I will update it later and need to touch the implementation in HearingAidService.",
+      "parentUuid": "abe2188c_13360838",
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
