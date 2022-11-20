@@ -45,48 +45,63 @@ const char* kShortArgs = "d:l:";
 
 int start_discovery([[maybe_unused]] unsigned int num_loops,
                     const RawAddress& raw_address) {
+  //  ASSERT_LOG(pass >= 0, "The passed in variable must be 0 or larger");
+
   RawAddress bd_addr{raw_address};
 
   Stopwatch acl_stopwatch("ACL_connection");
   Stopwatch sdp_stopwatch("SDP_discovery");
 
   LOG_CONSOLE("Started service discovery");
-  auto check_point = messenger::sdp::get_check_point();
-  ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
-         BT_STATUS_SUCCESS);
-  ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
-         BT_STATUS_SUCCESS);
-  ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
-         BT_STATUS_SUCCESS);
-  ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
-         BT_STATUS_SUCCESS);
+  for (int i = 0; i < pass; i++) {
+    auto check_point = messenger::sdp::get_check_point();
+    ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
+           BT_STATUS_SUCCESS);
 
-  if (!messenger::acl::await_connected(8s)) {
-    LOG_CONSOLE("TIMEOUT waiting for connection to %s",
-                raw_address.ToString().c_str());
-    return -1;
+    if (!messenger::acl::await_connected(8s)) {
+      LOG_CONSOLE("TIMEOUT waiting for connection to %s",
+                  raw_address.ToString().c_str());
+      return -1;
+    }
+    LOG_CONSOLE("ACL connected to %s :%s", STR(raw_address),
+                STR(acl_stopwatch));
+
+    if (!messenger::sdp::await_service_discovery(8s, check_point, 1UL)) {
+      LOG_CONSOLE("TIMEOUT waiting for service discovery to %s",
+                  raw_address.ToString().c_str());
+      return -1;
+    }
+    //    check_point = messenger::sdp::get_check_point();
+
+    auto callback_queue = messenger::sdp::collect_from(check_point);
+    const size_t queue_size = callback_queue.size();
+    LOG_CONSOLE("queue size:%zu", queue_size);
+    ASSERT_LOG(queue_size == 1, "Received unexpected number of SDP queries");
+
+    auto params = callback_queue.front();
+    callback_queue.pop_front();
+
+    LOG_CONSOLE("got remote services :%s", params.ToString().c_str());
+
+    ASSERT_LOG(params.properties.size() == 1,
+               "This callback only returns a single property");
+
+    property::uuid_t* uuid_property =
+        get_property_type<property::uuid_t>(params.properties[0]);
+    auto uuids = uuid_property->get_uuids();
+
+    // auto uuids =
+    // get_property_type<bluetooth::test::headless::property::uuid_property_t*>((&params.properties[0]))->get_uuids();
+
+    //      static_cast<bluetooth::test::headless::property::uuid_property_t*>(
+    //          params.properties[0])
+    //          ->get_uuids();
+    for (const auto& uuid : uuids) {
+      LOG_CONSOLE(" Uuid:%s", uuid.ToString().c_str());
+    }
   }
-  LOG_CONSOLE("ACL connected to %s :%sms", STR(raw_address),
-              STR(acl_stopwatch));
 
-  if (!messenger::sdp::await_service_discovery(8s, check_point, 1UL)) {
-    LOG_CONSOLE("TIMEOUT waiting for service discovery to %s",
-                raw_address.ToString().c_str());
-    return -1;
-  }
-  auto callback_queue = messenger::sdp::collect_from(check_point);
-  ASSERT_LOG(callback_queue.size() == 1,
-             "Received unexpected number of SDP queries");
-
-  auto params = callback_queue.front();
-  callback_queue.pop_front();
-
-  LOG_CONSOLE("got remote services :%s", params.ToString().c_str());
-
-  for (int i = 0; i < params.num_properties; i++) {
-    process_property(params.bd_addr, params.properties + i);
-  }
-
+#if 0
   // Run a second fetch SDP
   {
     LOG_CONSOLE("Sending second SDP request");
@@ -156,7 +171,7 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
       process_property(params.bd_addr, params.properties + i);
     }
   }
-
+#endif
   LOG_CONSOLE("Awaiting disconnect");
   if (!messenger::acl::await_disconnected(6s)) {
     LOG_CONSOLE("TIMEOUT waiting for disconnection to %s",
@@ -187,6 +202,6 @@ int bluetooth::test::headless::Discovery::Run() {
     return -1;
   }
   return RunOnHeadlessStack<int>([this]() {
-    return start_discovery(options_.loop_, options_.device_.front());
+    return start_discovery(options_.pass_, options_.device_.front());
   });
 }
