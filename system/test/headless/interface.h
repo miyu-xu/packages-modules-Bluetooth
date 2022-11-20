@@ -9,7 +9,9 @@
 #include <string>
 
 #include "include/hardware/bluetooth.h"
+#include "test/headless/dump.h"
 #include "test/headless/log.h"
+#include "test/headless/property.h"
 #include "types/raw_address.h"
 
 struct callback_data_t {
@@ -21,6 +23,8 @@ struct callback_data_t {
  protected:
   callback_data_t(const char* name)
       : name_(name), timestamp_ms_(GetTimestampMs()) {}
+  callback_data_t(const callback_data_t& data)
+      : name_(data.name_), timestamp_ms_(data.timestamp_ms_) {}
   virtual ~callback_data_t() = default;
 
  private:
@@ -31,6 +35,10 @@ struct callback_data_t {
 struct callback_params_t : public callback_data_t {
  protected:
   callback_params_t(const char* name) : callback_data_t(name) {}
+  // Copy constructor
+  callback_params_t(const callback_params_t& params)
+      : callback_data_t(params.Name().c_str()) {}
+
   virtual ~callback_params_t() = default;
   virtual std::string ToString() const = 0;
 };
@@ -92,22 +100,34 @@ struct remote_device_properties_params_t : public callback_params_t {
                                     bt_property_t* properties)
       : callback_params_t("remote_device_properties"),
         status(status),
-        bd_addr(bd_addr),
-        num_properties(num_properties),
-        properties(properties) {}
-  remote_device_properties_params_t(
-      const remote_device_properties_params_t& params) = default;
+        bd_addr(bd_addr) {
+    ASSERT_LOG(num_properties > -1, "Property count is less than zero");
+    for (int i = 0; i < num_properties; i++) {
+      this->properties.push_back(
+          bluetooth::test::headless::property_factory(properties[i]));
+    }
+  }
 
-  virtual ~remote_device_properties_params_t() {}
+  remote_device_properties_params_t(
+      const remote_device_properties_params_t& params)
+      : callback_params_t("remote_device_properties"),
+        status(params.status),
+        bd_addr(params.bd_addr) {
+    for (const auto& it : params.properties) {
+      this->properties.push_back(it);
+    }
+  }
+
+  virtual ~remote_device_properties_params_t() = default;
+
   bt_status_t status;
   RawAddress bd_addr;
-  int num_properties;
-  bt_property_t* properties;
+  std::deque<bluetooth::test::headless::bt_property_t*> properties;
+
   std::string ToString() const override {
-    return base::StringPrintf(
-        "status:%s bd_addr:%s num_properties:%d properties:%p",
-        bt_status_text(status).c_str(), bd_addr.ToString().c_str(),
-        num_properties, properties);
+    return base::StringPrintf("status:%s bd_addr:%s num_properties:%zu",
+                              bt_status_text(status).c_str(),
+                              bd_addr.ToString().c_str(), properties.size());
   }
 };
 
