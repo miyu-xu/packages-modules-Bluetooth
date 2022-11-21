@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6736df5_8ac650a8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:03:22Z",
+      "side": 1,
+      "message": "The `shortened_local_name` and `complete_local_name` are optional and I\u0027d like to not rely on them to get the name but either use the `GetRemoteName` rpc method and be sure to deal with reliable informations. What do you think ?",
+      "parentUuid": "853af786_d571b386",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d0d7342_ac95fdda",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
         "patchSetId": 20
