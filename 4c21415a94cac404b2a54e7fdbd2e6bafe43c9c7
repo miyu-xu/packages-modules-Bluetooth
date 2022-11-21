@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cae09ad7_a07dc347",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-21T08:04:42Z",
+      "side": 1,
+      "message": "Q) Can we remove this if statement?",
+      "range": {
+        "startLine": 261,
+        "startChar": 28,
+        "endLine": 261,
+        "endChar": 67
+      },
+      "revId": "4c21415a94cac404b2a54e7fdbd2e6bafe43c9c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c767bdc2_badf8103",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-21T08:04:42Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 334,
+        "startChar": 28,
+        "endLine": 334,
+        "endChar": 66
+      },
+      "revId": "4c21415a94cac404b2a54e7fdbd2e6bafe43c9c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
