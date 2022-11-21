@@ -1,0 +1,169 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "853af786_d571b386",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "May be the name is available in the scan response data ?",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d0d7342_ac95fdda",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "`inquiry_responses` then `response` instead of `event` ?",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 21
+      },
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d64150c9_6f2f23e7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "`le_discoverability_mode\u003dDiscoverabilityMode.DISCOVERABILITY_GENERAL` in `StartAdvertising` ?",
+      "range": {
+        "startLine": 356,
+        "startChar": 8,
+        "endLine": 357,
+        "endChar": 58
+      },
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7aeaef9c_991f6134",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ff2546_36a8ccd3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8609b2b_e5a07903",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a61044_c7075a03",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f019956_d850b66d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79513cf7_3de282aa",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-21T18:33:16Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
