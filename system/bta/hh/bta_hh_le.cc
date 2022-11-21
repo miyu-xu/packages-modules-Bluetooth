@@ -35,6 +35,9 @@
 #include "osi/include/osi.h"    // ARRAY_SIZE
 #include "stack/btm/btm_sec.h"  // BTM_
 #include "stack/include/bt_hdr.h"
+/** add for handle encryption fail(LE link key unknown), do unpair @{ */
+#include "stack/btm/btm_dev.h"
+/** @} */
 #include "stack/include/bt_octets.h"
 #include "stack/include/btu.h"       // post_on_bt_main
 #include "stack/include/l2c_api.h"   // L2CA_
@@ -978,6 +981,9 @@ static void bta_hh_le_encrypt_cback(const RawAddress* bd_addr,
 void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
                           UNUSED_ATTR const tBTA_HH_DATA* p_buf) {
   APPL_TRACE_DEBUG("%s", __func__);
+  /** add for handle encryption fail(LE link key unknown), do unapir @{ */
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(p_cb->addr);
+  /** @} */
   if (p_cb->status == BTA_HH_OK) {
     if (!p_cb->hid_srvc.in_use) {
       APPL_TRACE_DEBUG("bta_hh_security_cmpl no reports loaded, try to load");
@@ -1004,7 +1010,10 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
       bta_hh_le_pri_service_discovery(p_cb);
     }
   }
-  else if(p_cb->btm_status == BTM_ERR_KEY_MISSING) {
+  /** add for handle encryption fail(LE link key unknown), do unpair @{ */
+  else if(p_cb->btm_status == BTM_ERR_KEY_MISSING ||
+          p_dev_rec->sec_status == HCI_ERR_KEY_MISSING) {
+  /** @} */
     LOG_ERROR("Received encryption failed status:%s btm_status:%s",
               bta_hh_status_text(p_cb->status).c_str(),
               btm_status_text(p_cb->btm_status).c_str());
