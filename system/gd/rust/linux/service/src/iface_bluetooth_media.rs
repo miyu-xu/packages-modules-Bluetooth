@@ -201,7 +201,7 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("StartAudioRequest")]
-    fn start_audio_request(&mut self) {
+    fn start_audio_request(&mut self, address: String) -> u8 {
         dbus_generated!()
     }
 
@@ -211,12 +211,12 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("StopAudioRequest")]
-    fn stop_audio_request(&mut self) {
+    fn stop_audio_request(&mut self, address: String) {
         dbus_generated!()
     }
 
     #[dbus_method("StartScoCall")]
-    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) {
+    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) -> u8 {
         dbus_generated!()
     }
 
