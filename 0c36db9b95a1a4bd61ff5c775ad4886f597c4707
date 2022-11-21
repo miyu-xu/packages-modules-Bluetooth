@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d840a1a4_be396793",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppLauncherActivityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-21T07:14:44Z",
+      "side": 1,
+      "message": "remove this (unused)",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 38
+      },
+      "revId": "0c36db9b95a1a4bd61ff5c775ad4886f597c4707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
