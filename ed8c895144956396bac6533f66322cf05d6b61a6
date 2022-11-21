@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d96494_0df2e491",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T18:11:21Z",
+      "side": 1,
+      "message": "Can you please add the failing tests into the \"skip\" sectio in pts_bot_tests_config.json ?",
+      "revId": "ed8c895144956396bac6533f66322cf05d6b61a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
