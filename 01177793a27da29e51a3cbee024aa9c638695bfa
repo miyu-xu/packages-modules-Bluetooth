@@ -16,6 +16,24 @@
       "message": "Is it necessary to derive this ?  Multiple inheritance makes things more complicated",
       "revId": "01177793a27da29e51a3cbee024aa9c638695bfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56306608_f61a4155",
+        "filename": "system/gd/l2cap/classic/internal/fixed_channel_impl.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-21T23:44:40Z",
+      "side": 1,
+      "message": "IRedactableLoggable is intended to work as an interface between the logger and data structures, Implementing the interface enforces the APIs defined in the interface. \n\nAdding a method ad-hoc makes it hard to control.",
+      "parentUuid": "bcab76bc_c225151a",
+      "revId": "01177793a27da29e51a3cbee024aa9c638695bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
