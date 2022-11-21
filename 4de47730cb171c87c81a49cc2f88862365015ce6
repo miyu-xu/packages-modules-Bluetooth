@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd4ac7d3_e3c0497d",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-21T18:57:31Z",
+      "side": 1,
+      "message": "nit: conforms might do more check than just the size, like checking fixed values.\nSo the previous code might be more convenient for thoses cases.",
+      "revId": "4de47730cb171c87c81a49cc2f88862365015ce6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
