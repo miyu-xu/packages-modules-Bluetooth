@@ -16,6 +16,24 @@
       "message": "Hi Charlie,\n\nWe have resolved the comments. Kindly review the same.\n\nThanks \u0026 Regards,\nDhananjaya",
       "revId": "630f304fcc967c093b25779837a53a078614a609",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36b61ba_2cae29dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T16:24:42Z",
+      "side": 1,
+      "message": "Hi,\n\nLooks good, I will run the presubmit to check the status of pts-bot",
+      "parentUuid": "b3d675f5_3f1c58a0",
+      "revId": "630f304fcc967c093b25779837a53a078614a609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
