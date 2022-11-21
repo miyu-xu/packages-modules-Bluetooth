@@ -409,6 +409,7 @@ cc_test {
 // Bluetooth stack multi-advertising unit tests for target
 cc_test {
     name: "net_test_stack_multi_adv",
+    host_supported: true,
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
@@ -442,6 +443,7 @@ cc_test {
         "liblog",
         "libgmock",
     ],
+    cflags: ["-flto"],
     sanitize: {
         cfi: false,
     },
