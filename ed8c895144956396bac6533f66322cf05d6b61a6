@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b42cd51_7bad210b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2022-11-21T20:02:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d96494_0df2e491",
+      "revId": "ed8c895144956396bac6533f66322cf05d6b61a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99c2f55e_a3e1bd40",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-11-21T18:13:46Z",
       "side": 1,
       "message": "Why is the RFCOMM is added here ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 48
+      },
+      "revId": "ed8c895144956396bac6533f66322cf05d6b61a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a08b5f_c0813f60",
+        "filename": "android/pandora/server/configs/PtsBotTestMts.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2022-11-21T20:02:55Z",
+      "side": 1,
+      "message": "I don\u0027t know, so I removed it.",
+      "parentUuid": "99c2f55e_a3e1bd40",
       "range": {
         "startLine": 45,
         "startChar": 8,
