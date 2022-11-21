@@ -1087,7 +1087,11 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         case (AdvertisingApiType::LEGACY): {
           le_advertising_interface_->EnqueueCommand(
               hci::LeSetAdvertisingEnableBuilder::Create(Enable::ENABLED),
-              module_handler_->BindOnce(impl::check_status<LeSetAdvertisingEnableCompleteView>));
+              module_handler_->BindOnceOn(
+                  this,
+                  &impl::on_set_advertising_enable_complete<LeSetAdvertisingEnableCompleteView>,
+                  true,
+                  enabled_sets));
         } break;
         case (AdvertisingApiType::ANDROID_HCI): {
           for (size_t i = 0; i < enabled_sets_.size(); i++) {
@@ -1095,7 +1099,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
             if (id != kInvalidHandle) {
               le_advertising_interface_->EnqueueCommand(
                   hci::LeMultiAdvtSetEnableBuilder::Create(Enable::ENABLED, id),
-                  module_handler_->BindOnce(impl::check_status<LeMultiAdvtCompleteView>));
+                  module_handler_->BindOnceOn(
+                      this, &impl::on_set_advertising_enable_complete<LeMultiAdvtCompleteView>, true, enabled_sets));
             }
           }
         } break;
@@ -1103,7 +1108,11 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           if (enabled_sets.size() != 0) {
             le_advertising_interface_->EnqueueCommand(
                 hci::LeSetExtendedAdvertisingEnableBuilder::Create(Enable::ENABLED, enabled_sets),
-                module_handler_->BindOnce(impl::check_status<LeSetExtendedAdvertisingEnableCompleteView>));
+                module_handler_->BindOnceOn(
+                    this,
+                    &impl::on_set_extended_advertising_enable_complete<LeSetExtendedAdvertisingEnableCompleteView>,
+                    true,
+                    enabled_sets));
           }
         } break;
       }
@@ -1173,20 +1182,20 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         continue;
       }
 
-      if (id_map_[id] == kIdLocal) {
-        if (!advertising_sets_[enabled_set.advertising_handle_].status_callback.is_null()) {
-          advertising_sets_[enabled_set.advertising_handle_].status_callback.Run(advertising_status);
-          advertising_sets_[enabled_set.advertising_handle_].status_callback.Reset();
-        }
-        continue;
-      }
-
       if (started) {
         advertising_callbacks_->OnAdvertisingEnabled(id, enable, advertising_status);
       } else {
         int reg_id = id_map_[id];
         advertising_sets_[enabled_set.advertising_handle_].started = true;
-        advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, le_physical_channel_tx_power_, advertising_status);
+        if (reg_id == kIdLocal) {
+          if (!advertising_sets_[enabled_set.advertising_handle_].status_callback.is_null()) {
+            advertising_sets_[enabled_set.advertising_handle_].status_callback.Run(advertising_status);
+            advertising_sets_[enabled_set.advertising_handle_].status_callback.Reset();
+          }
+        } else {
+          advertising_callbacks_->OnAdvertisingSetStarted(
+              reg_id, id, le_physical_channel_tx_power_, advertising_status);
+        }
       }
     }
   }
@@ -1215,20 +1224,19 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         continue;
       }
 
-      if (id_map_[id] == kIdLocal) {
-        if (!advertising_sets_[enabled_set.advertising_handle_].status_callback.is_null()) {
-          advertising_sets_[enabled_set.advertising_handle_].status_callback.Run(advertising_status);
-          advertising_sets_[enabled_set.advertising_handle_].status_callback.Reset();
-        }
-        continue;
-      }
-
       if (started) {
         advertising_callbacks_->OnAdvertisingEnabled(id, enable, advertising_status);
       } else {
         int reg_id = id_map_[id];
         advertising_sets_[enabled_set.advertising_handle_].started = true;
-        advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, tx_power, advertising_status);
+        if (reg_id == kIdLocal) {
+          if (!advertising_sets_[enabled_set.advertising_handle_].status_callback.is_null()) {
+            advertising_sets_[enabled_set.advertising_handle_].status_callback.Run(advertising_status);
+            advertising_sets_[enabled_set.advertising_handle_].status_callback.Reset();
+          }
+        } else {
+          advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, tx_power, advertising_status);
+        }
       }
     }
   }
