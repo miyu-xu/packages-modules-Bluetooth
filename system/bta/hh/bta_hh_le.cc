@@ -1998,9 +1998,19 @@ void bta_hh_le_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  *
  ******************************************************************************/
 void bta_hh_le_get_dscp_act(tBTA_HH_DEV_CB* p_cb) {
+<<<<<<< PATCH SET (567e6f Fix BTLE percision mouse can not use issue)
+  if (p_cb->hid_srvc.in_use) {
+    if (p_cb->hid_srvc.descriptor.dl_len != 0) {
+      p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvc.descriptor.dl_len;
+      p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvc.descriptor.dsc_list;
+    } else {
+      LOG_WARN("%s hid_srvc.descriptor.dl_len is 0", __func__);
+    }
+=======
   if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
     p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvc.descriptor.dl_len;
     p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvc.descriptor.dsc_list;
+>>>>>>> BASE      (de99ef Merge "bluetooth.rs: Avoid logging complete address")
 
     (*bta_hh_cb.p_cback)(BTA_HH_GET_DSCP_EVT, (tBTA_HH*)&p_cb->dscp_info);
   }
