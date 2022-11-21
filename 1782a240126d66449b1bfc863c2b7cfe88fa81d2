@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fed778c_f9dd01bf",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "nit: why not just use c++ style like: ServiceDiscoveryState ? it is shorter",
+      "range": {
+        "startLine": 161,
+        "startChar": 7,
+        "endLine": 161,
+        "endChar": 30
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ffc0ee8_6f3da63c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "this is a bit ambiguous when being used, rename to\n\ngatt_discovery_state_over_le?",
+      "range": {
+        "startLine": 163,
+        "startChar": 26,
+        "endLine": 163,
+        "endChar": 36
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb1a7259_c9ccbb07",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "sdp_discovery_state_over_classic?",
+      "range": {
+        "startLine": 164,
+        "startChar": 26,
+        "endLine": 164,
+        "endChar": 40
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f36055_ba77f5b2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "print out the device address? \n\nADDRESS_TO_LOGGABLE_CSTR(bd_addr)?",
+      "range": {
+        "startLine": 1124,
+        "startChar": 0,
+        "endLine": 1124,
+        "endChar": 37
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfd6f446_b632f1f6",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "same as above, add ADDRESS_TO_LOGGABLE_CSTR(bd_addr)?",
+      "range": {
+        "startLine": 1478,
+        "startChar": 0,
+        "endLine": 1478,
+        "endChar": 33
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81e1f10_60e9091f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "same here add ADDRESS_TO_LOGGABLE_CSTR(bd_addr)?",
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab03573b_440993d2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3059,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "same here add ADDRESS_TO_LOGGABLE_CSTR(bd_addr)?",
+      "range": {
+        "startLine": 3059,
+        "startChar": 0,
+        "endLine": 3059,
+        "endChar": 52
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723558d9_3ca8a113",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3060,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-21T23:29:37Z",
+      "side": 1,
+      "message": "see above, this is a bit ambiguous on what you mean by `pairing_cb.gatt_on_le`",
+      "range": {
+        "startLine": 3060,
+        "startChar": 19,
+        "endLine": 3060,
+        "endChar": 29
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
