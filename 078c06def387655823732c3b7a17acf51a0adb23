@@ -22,6 +22,30 @@
       },
       "revId": "078c06def387655823732c3b7a17acf51a0adb23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52fa587e_06f36d91",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-21T08:07:06Z",
+      "side": 1,
+      "message": "Talked offline. The added line in the other bp file solves the problem, and this one is to simply update the dependency from legacy_legacy_support-v4 to media_media.",
+      "parentUuid": "ff6dfe5e_f12619be",
+      "range": {
+        "startLine": 111,
+        "startChar": 9,
+        "endLine": 111,
+        "endChar": 29
+      },
+      "revId": "078c06def387655823732c3b7a17acf51a0adb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
