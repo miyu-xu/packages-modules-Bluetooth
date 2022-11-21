@@ -73,20 +73,20 @@ pub trait IBluetoothMedia {
     // Set the HFP speaker volume. Valid volume specified by the HFP spec should
     // be in the range of 0-15.
     fn set_hfp_volume(&mut self, volume: u8, address: String);
-    fn start_audio_request(&mut self);
+    fn start_audio_request(&mut self) -> bool;
     fn stop_audio_request(&mut self);
 
-    /// Returns non-zero value iff A2DP audio has started.
-    fn get_a2dp_audio_started(&mut self, address: String) -> u8;
+    /// Returns true iff A2DP audio has started.
+    fn get_a2dp_audio_started(&mut self, address: String) -> bool;
 
     /// Returns the negotiated codec (CVSD=1, mSBC=2) to use if HFP audio has started.
     /// Returns 0 if HFP audio hasn't started.
-    fn get_hfp_audio_started(&mut self, address: String) -> u8;
+    fn get_hfp_audio_final_codecs(&mut self, address: String) -> u8;
 
     fn get_presentation_position(&mut self) -> PresentationPosition;
 
-    // Start the SCO setup to connect audio
-    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool);
+    /// Start the SCO setup to connect audio
+    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) -> bool;
     fn stop_sco_call(&mut self, address: String);
 
     /// Set the current playback status: e.g., playing, paused, stopped, etc. The method is a copy
@@ -1201,22 +1201,20 @@ impl IBluetoothMedia for BluetoothMedia {
         };
     }
 
-    fn start_audio_request(&mut self) {
+    fn start_audio_request(&mut self) -> bool {
         // TODO(b/254808917): revert to debug log once fixed
         info!("Start audio request");
 
         match self.a2dp.as_mut() {
             Some(a2dp) => a2dp.start_audio_request(),
-            None => warn!("Uninitialized A2DP to start audio request"),
-        };
+            None => {
+                warn!("Uninitialized A2DP to start audio request");
+                false
+            }
+        }
     }
 
     fn stop_audio_request(&mut self) {
-        if !self.a2dp_audio_state.values().any(|state| *state == BtavAudioState::Started) {
-            info!("No active stream on A2DP device, ignoring request to stop audio.");
-            return;
-        }
-
         // TODO(b/254808917): revert to debug log once fixed
         info!("Stop audio request");
 
@@ -1226,11 +1224,11 @@ impl IBluetoothMedia for BluetoothMedia {
         };
     }
 
-    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) {
+    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) -> bool {
         let addr = match RawAddress::from_string(address.clone()) {
             None => {
                 warn!("Can't start sco call with: {}", address);
-                return;
+                return false;
             }
             Some(addr) => addr,
         };
@@ -1239,7 +1237,7 @@ impl IBluetoothMedia for BluetoothMedia {
         let hfp = match self.hfp.as_mut() {
             None => {
                 warn!("Uninitialized HFP to start the sco call");
-                return;
+                return false;
             }
             Some(hfp) => hfp,
         };
@@ -1247,11 +1245,13 @@ impl IBluetoothMedia for BluetoothMedia {
         match hfp.connect_audio(addr, sco_offload, force_cvsd) {
             0 => {
                 info!("SCO connect_audio status success.");
+                true
             }
             x => {
                 warn!("SCO connect_audio status failed: {}", x);
+                false
             }
-        };
+        }
     }
 
     fn stop_sco_call(&mut self, address: String) {
@@ -1264,6 +1264,7 @@ impl IBluetoothMedia for BluetoothMedia {
         };
 
         info!("Stop sco call for {}", address);
+
         match self.hfp.as_mut() {
             Some(hfp) => {
                 hfp.disconnect_audio(addr);
@@ -1272,22 +1273,22 @@ impl IBluetoothMedia for BluetoothMedia {
         };
     }
 
-    fn get_a2dp_audio_started(&mut self, address: String) -> u8 {
+    fn get_a2dp_audio_started(&mut self, address: String) -> bool {
         let addr = match RawAddress::from_string(address.clone()) {
             None => {
                 warn!("Invalid device address {}", address);
-                return 0;
+                return false;
             }
             Some(addr) => addr,
         };
 
         match self.a2dp_audio_state.get(&addr) {
-            Some(BtavAudioState::Started) => 1,
-            _ => 0,
+            Some(BtavAudioState::Started) => true,
+            _ => false,
         }
     }
 
-    fn get_hfp_audio_started(&mut self, address: String) -> u8 {
+    fn get_hfp_audio_final_codecs(&mut self, address: String) -> u8 {
         let addr = match RawAddress::from_string(address.clone()) {
             None => {
                 warn!("Invalid device address {}", address);
