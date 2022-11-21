@@ -137,29 +137,72 @@ struct codec_manager_impl {
     return &context_type_offload_config_map_[ctx_type];
   }
 
+  void UpdateSupportedBroadcastConfig(
+      const std::vector<AudioSetConfiguration>& adsp_capabilities) {
+    LOG(INFO) << __func__;
+
+    for (const auto& adsp_audio_set_conf : adsp_capabilities) {
+      if (adsp_audio_set_conf.confs.size() != 1 ||
+          adsp_audio_set_conf.confs[0].device_cnt != 0) {
+        continue;
+      }
+      auto& adsp_config = adsp_audio_set_conf.confs[0];
+      const types::LeAudioLc3Config lc3_config =
+          std::get<types::LeAudioLc3Config>(adsp_config.codec.config);
+      le_audio::broadcast_offload_config broadcast_config;
+      broadcast_config.stream_map.resize(lc3_config.channel_count);
+      broadcast_config.bits_per_sample =
+          LeAudioCodecConfiguration::kBitsPerSample16;
+      broadcast_config.sampling_rate = lc3_config.GetSamplingFrequencyHz();
+      broadcast_config.frame_duration = lc3_config.GetFrameDurationUs();
+      broadcast_config.octets_per_frame = *(lc3_config.octets_per_codec_frame);
+      broadcast_config.blocks_per_sdu = 1;
+      // Per LC3 spec, bitrate = (8000 * nbytes) / (frame duration in
+      // milliseconds)
+      broadcast_config.codec_bitrate =
+          (8000 * broadcast_config.octets_per_frame) /
+          (broadcast_config.frame_duration / 1000);
+      broadcast_config.retransmission_number = 4;
+      broadcast_config.max_transport_latency = 60;
+
+      supported_broadcast_config.push_back(broadcast_config);
+
+      LOG(INFO) << __func__ << ", broadcast_config sampling_rate: "
+                << broadcast_config.sampling_rate;
+    }
+  }
+
   const broadcast_offload_config* GetBroadcastOffloadConfig() {
-    // TODO: Need to check the offload capabilities and audio policy further
-    // Use 48_1_2 for the media quality as default by now.
-    broadcast_config.stream_map.resize(
-        LeAudioCodecConfiguration::kChannelNumberStereo);
-    broadcast_config.bits_per_sample =
-        LeAudioCodecConfiguration::kBitsPerSample16;
-    broadcast_config.sampling_rate =
-        LeAudioCodecConfiguration::kSampleRate48000;
-    broadcast_config.frame_duration =
-        LeAudioCodecConfiguration::kInterval7500Us;
-    broadcast_config.octets_per_frame = 75;
-    broadcast_config.blocks_per_sdu = 1;
-    broadcast_config.codec_bitrate = 80000;
-    broadcast_config.retransmission_number = 4;
-    broadcast_config.max_transport_latency = 60;
-    return &broadcast_config;
+    if (supported_broadcast_config.empty()) {
+      LOG(ERROR) << __func__ << ": There is no valid broadcast offload config";
+      return nullptr;
+    }
+
+    LOG(INFO) << __func__ << ", stream_map.size(): "
+              << supported_broadcast_config[0].stream_map.size()
+              << ", sampling_rate: "
+              << supported_broadcast_config[0].sampling_rate
+              << ", frame_duration(us): "
+              << supported_broadcast_config[0].frame_duration
+              << ", octets_per_frame: "
+              << supported_broadcast_config[0].octets_per_frame
+              << ", blocks_per_sdu: "
+              << (int)supported_broadcast_config[0].blocks_per_sdu
+              << ", codec_bitrate: "
+              << (int)supported_broadcast_config[0].codec_bitrate
+              << ", retransmission_number: "
+              << (int)supported_broadcast_config[0].retransmission_number
+              << ", max_transport_latency: "
+              << supported_broadcast_config[0].max_transport_latency;
+
+    return &supported_broadcast_config[0];
   }
 
   void UpdateBroadcastConnHandle(
       const std::vector<uint16_t>& conn_handle,
       std::function<void(const ::le_audio::broadcast_offload_config& config)>
           update_receiver) {
+    auto broadcast_config = supported_broadcast_config[0];
     LOG_ASSERT(conn_handle.size() == broadcast_config.stream_map.size());
 
     if (broadcast_config.stream_map.size() ==
@@ -308,13 +351,15 @@ struct codec_manager_impl {
         }
       }
     }
+
+    UpdateSupportedBroadcastConfig(adsp_capabilities);
   }
 
   CodecLocation codec_location_ = CodecLocation::HOST;
   bool offload_enable_ = false;
   le_audio::offload_config sink_config;
   le_audio::offload_config source_config;
-  le_audio::broadcast_offload_config broadcast_config;
+  std::vector<le_audio::broadcast_offload_config> supported_broadcast_config;
   std::unordered_map<types::LeAudioContextType, AudioSetConfigurations>
       context_type_offload_config_map_;
   std::unordered_map<btle_audio_codec_index_t, uint8_t>
