@@ -50,9 +50,8 @@ pub fn mask_bits(n: usize) -> syn::LitInt {
 
 /// Generate code for an `ast::Decl::Packet` enum value.
 fn generate_packet_decl(
+    ctx: &Context<'_>,
     file: &ast::File,
-    packets: &HashMap<&str, &ast::Decl>,
-    child_ids: &[&str],
     id: &str,
     fields: &[Field],
     parent_id: &Option<String>,
@@ -61,6 +60,8 @@ fn generate_packet_decl(
     // `FooBar` and `foo_bar` in the code below.
     let mut code = String::new();
 
+    let empty = Vec::new();
+    let child_ids = ctx.child_ids.get(id).unwrap_or(&empty);
     let has_children = !child_ids.is_empty();
     let child_idents = child_ids.iter().map(|id| format_ident!("{id}")).collect::<Vec<_>>();
 
@@ -111,16 +112,17 @@ fn generate_packet_decl(
         }
     });
 
-    let parent = parent_id.as_ref().map(|parent_id| match packets.get(parent_id.as_str()) {
-        Some(ast::Decl::Packet { id, .. }) => {
-            let parent_ident = format_ident!("{}", id.to_lowercase());
-            let parent_data = format_ident!("{id}Data");
-            quote! {
-                #parent_ident: Arc<#parent_data>,
+    let parent =
+        parent_id.as_ref().map(|parent_id| match ctx.packet_scope.get(parent_id.as_str()) {
+            Some(ast::Decl::Packet { id, .. }) => {
+                let parent_ident = format_ident!("{}", id.to_lowercase());
+                let parent_data = format_ident!("{id}Data");
+                quote! {
+                    #parent_ident: Arc<#parent_data>,
+                }
             }
-        }
-        _ => panic!("Could not find {parent_id}"),
-    });
+            _ => panic!("Could not find {parent_id}"),
+        });
 
     let packet_name = format_ident!("{id}Packet");
     code.push_str(&quote_block! {
@@ -299,27 +301,43 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> String {
     code.to_string()
 }
 
-fn generate_decl(
-    file: &ast::File,
-    packets: &HashMap<&str, &ast::Decl>,
-    children: &HashMap<&str, Vec<&str>>,
-    decl: &ast::Decl,
-) -> String {
-    let empty: Vec<&str> = vec![];
+fn generate_decl(ctx: &Context<'_>, file: &ast::File, decl: &ast::Decl) -> String {
     match decl {
         ast::Decl::Packet { id, fields, parent_id, .. } => {
             let fields = fields.iter().map(Field::from).collect::<Vec<_>>();
-            generate_packet_decl(
-                file,
-                packets,
-                children.get(id.as_str()).unwrap_or(&empty),
-                id,
-                &fields,
-                parent_id,
-            )
+            generate_packet_decl(ctx, file, id, &fields, parent_id)
         }
         ast::Decl::Enum { id, tags, .. } => generate_enum_decl(id, tags),
         _ => todo!("unsupported Decl::{:?}", decl),
+    }
+}
+
+/// Code generation context.
+///
+/// This struct holds data which we need to refer to repeatedly while
+/// generating Rust code.
+struct Context<'a> {
+    /// All packets, indexed by their `id`.
+    packet_scope: HashMap<&'a str, &'a ast::Decl>,
+    /// The child packets for a given `ast::Decl::Packet`.
+    child_ids: HashMap<&'a str, Vec<&'a str>>,
+}
+
+impl Context<'_> {
+    fn new(file: &ast::File) -> Context<'_> {
+        let mut packet_scope = HashMap::new();
+        let mut child_ids: HashMap<&str, Vec<&str>> = HashMap::new();
+
+        for decl in &file.declarations {
+            if let ast::Decl::Packet { id, parent_id, .. } = decl {
+                packet_scope.insert(id.as_str(), decl);
+                if let Some(parent_id) = parent_id {
+                    child_ids.entry(parent_id.as_str()).or_default().push(id.as_str());
+                }
+            }
+        }
+
+        Context { packet_scope, child_ids }
     }
 }
 
@@ -328,25 +346,14 @@ fn generate_decl(
 /// The code is not formatted, pipe it through `rustfmt` to get
 /// readable source code.
 pub fn generate(sources: &ast::SourceDatabase, file: &ast::File) -> String {
-    let source = sources.get(file.file).expect("could not read source");
-
-    let mut children = HashMap::new();
-    let mut packets = HashMap::new();
-    for decl in &file.declarations {
-        if let ast::Decl::Packet { id, parent_id, .. } = decl {
-            packets.insert(id.as_str(), decl);
-            if let Some(parent_id) = parent_id {
-                children.entry(parent_id.as_str()).or_insert_with(Vec::new).push(id.as_str());
-            }
-        }
-    }
-
     let mut code = String::new();
 
+    let source = sources.get(file.file).expect("could not read source");
     code.push_str(&preamble::generate(Path::new(source.name())));
 
+    let ctx = Context::new(file);
     for decl in &file.declarations {
-        code.push_str(&generate_decl(file, &packets, &children, decl));
+        code.push_str(&generate_decl(&ctx, file, decl));
         code.push_str("\n\n");
     }
 
@@ -378,10 +385,9 @@ mod tests {
               packet Foo {}
             "#,
         );
-        let packets = HashMap::new();
-        let children = HashMap::new();
+        let ctx = Context::new(&file);
         let decl = &file.declarations[0];
-        let actual_code = generate_decl(&file, &packets, &children, decl);
+        let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq("tests/generated/packet_decl_empty.rs", &rustfmt(&actual_code));
     }
 
@@ -398,10 +404,9 @@ mod tests {
               }
             "#,
         );
-        let packets = HashMap::new();
-        let children = HashMap::new();
+        let ctx = Context::new(&file);
         let decl = &file.declarations[0];
-        let actual_code = generate_decl(&file, &packets, &children, decl);
+        let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq(
             "tests/generated/packet_decl_simple_little_endian.rs",
             &rustfmt(&actual_code),
@@ -421,10 +426,9 @@ mod tests {
               }
             "#,
         );
-        let packets = HashMap::new();
-        let children = HashMap::new();
+        let ctx = Context::new(&file);
         let decl = &file.declarations[0];
-        let actual_code = generate_decl(&file, &packets, &children, decl);
+        let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq(
             "tests/generated/packet_decl_simple_big_endian.rs",
             &rustfmt(&actual_code),
@@ -433,7 +437,7 @@ mod tests {
 
     #[test]
     fn test_generate_packet_decl_complex_little_endian() {
-        let grammar = parse_str(
+        let file = parse_str(
             r#"
               little_endian_packets
 
@@ -447,10 +451,9 @@ mod tests {
               }
             "#,
         );
-        let packets = HashMap::new();
-        let children = HashMap::new();
-        let decl = &grammar.declarations[0];
-        let actual_code = generate_decl(&grammar, &packets, &children, decl);
+        let ctx = Context::new(&file);
+        let decl = &file.declarations[0];
+        let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq(
             "tests/generated/packet_decl_complex_little_endian.rs",
             &rustfmt(&actual_code),
@@ -459,7 +462,7 @@ mod tests {
 
     #[test]
     fn test_generate_packet_decl_complex_big_endian() {
-        let grammar = parse_str(
+        let file = parse_str(
             r#"
               big_endian_packets
 
@@ -473,10 +476,9 @@ mod tests {
               }
             "#,
         );
-        let packets = HashMap::new();
-        let children = HashMap::new();
-        let decl = &grammar.declarations[0];
-        let actual_code = generate_decl(&grammar, &packets, &children, decl);
+        let ctx = Context::new(&file);
+        let decl = &file.declarations[0];
+        let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq(
             "tests/generated/packet_decl_complex_big_endian.rs",
             &rustfmt(&actual_code),
@@ -495,10 +497,9 @@ mod tests {
               }
             "#,
         );
-        let packets = HashMap::new();
-        let children = HashMap::new();
+        let ctx = Context::new(&file);
         let decl = &file.declarations[0];
-        let actual_code = generate_decl(&file, &packets, &children, decl);
+        let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq(
             "tests/generated/enum_decl_simple_little_endian.rs",
             &rustfmt(&actual_code),
@@ -517,10 +518,9 @@ mod tests {
               }
             "#,
         );
-        let packets = HashMap::new();
-        let children = HashMap::new();
+        let ctx = Context::new(&file);
         let decl = &file.declarations[0];
-        let actual_code = generate_decl(&file, &packets, &children, decl);
+        let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq(
             "tests/generated/enum_decl_simple_big_endian.rs",
             &rustfmt(&actual_code),
