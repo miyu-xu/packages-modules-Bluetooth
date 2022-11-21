@@ -34,6 +34,24 @@
       "parentUuid": "bcab76bc_c225151a",
       "revId": "01177793a27da29e51a3cbee024aa9c638695bfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1ee3905_5fb21ac4",
+        "filename": "system/gd/l2cap/classic/internal/fixed_channel_impl.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-21T23:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56306608_f61a4155",
+      "revId": "01177793a27da29e51a3cbee024aa9c638695bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
