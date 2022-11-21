@@ -1414,9 +1414,8 @@ static void bta_hh_le_search_hid_chars(tBTA_HH_DEV_CB* p_dev_cb,
           APPL_TRACE_ERROR("%s: Add report entry failed !!!", __func__);
           break;
         }
-
-        if (p_rpt->rpt_type != BTA_HH_RPTT_INPUT) break;
-
+        if ((p_rpt->rpt_type != BTA_HH_RPTT_INPUT) && (p_rpt->rpt_type != BTA_HH_RPTT_OUTPUT))
+          break;
         bta_hh_le_read_char_descriptor(p_dev_cb, charac.value_handle,
                                        GATT_UUID_RPT_REF_DESCR,
                                        read_report_ref_desc_cb, p_dev_cb);
