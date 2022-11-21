@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f465262_38436fb2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppLauncherActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-21T00:35:06Z",
+      "side": 1,
+      "message": "Can we use getInstrumentation().waitForIdleSync() instead?",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 28
+      },
+      "revId": "7c9cf96b0db4b5d5356ee51c58a78ed32049c46e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
