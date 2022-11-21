@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a24bdf6_4bbaf516",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-21T23:08:41Z",
+      "side": 1,
+      "message": "I am not sure about the component ID.\nCould you please either give me a link to the reference of it?\nOr ask Jack to decide?",
+      "revId": "736fe832506938610e4b17d95edb0128baa18408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "853a2593_dc5a11cd",
         "filename": "system/audio_hal_interface/fuzzer/Android.bp",
         "patchSetId": 1
