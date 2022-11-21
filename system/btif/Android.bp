@@ -200,6 +200,7 @@ cc_library_static {
 // btif unit tests for target
 cc_test {
     name: "net_test_btif",
+    host_supported: true,
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
@@ -207,57 +208,17 @@ cc_test {
     test_suites: ["device-tests"],
     include_dirs: btifCommonIncludes,
     srcs: [
+        "src/btif_storage.cc",
         "test/btif_storage_test.cc",
     ],
     header_libs: ["libbluetooth_headers"],
-    shared_libs: [
-        "android.hardware.bluetooth@1.0",
-        "android.hardware.bluetooth@1.1",
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
-        "libaaudio",
-        "libbinder_ndk",
-        "libcrypto",
-        "libfmq",
-        "libhidlbase",
-        "libprotobuf-cpp-lite",
-        "libprocessgroup",
-    ],
     static_libs: [
-        "android.hardware.bluetooth.a2dp@1.0",
-        "android.system.suspend.control-V1-ndk",
-        "libbluetooth-types",
-        "libbt-audio-hal-interface",
-        "libbt-bta",
-        "libbt-common",
-        "libbtcore",
-        "libbtdevice",
-        "libbt-hci",
-        "libbt-protos-lite",
-        "libbt-sbc-decoder",
-        "libbt-sbc-encoder",
-        "libbt-stack",
-        "libbt-utils",
-        "libFraunhoferAAC",
-        "libg722codec",
-        "liblc3",
-        "libosi",
-        "libudrv-uipc",
-   ],
-    whole_static_libs: [
-        "libbtif",
-        "libbluetooth-dumpsys",
-        "libbluetooth-for-tests",
+        "libbluetooth_gd",
     ],
-    target: {
-        android: {
-            shared_libs: [
-                "libbinder_ndk",
-                "android.hardware.bluetooth.audio-V2-ndk",
-            ],
-        },
-    },
-    cflags: ["-DBUILDCFG"],
+    // Force -flto as this test doesn't work
+    // without as it need the linker to discard
+    // unused symbols
+    cflags: ["-flto"],
     sanitize: {
         integer_overflow: true,
     },
