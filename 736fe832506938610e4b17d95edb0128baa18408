@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6b486fc_927cc4ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-21T23:36:29Z",
+      "side": 1,
+      "message": "The current component id is wrong, should be 27441 which is https://b.corp.google.com/components/27441\nShould we put another component ?",
+      "parentUuid": "4a24bdf6_4bbaf516",
+      "revId": "736fe832506938610e4b17d95edb0128baa18408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "853a2593_dc5a11cd",
         "filename": "system/audio_hal_interface/fuzzer/Android.bp",
         "patchSetId": 1
