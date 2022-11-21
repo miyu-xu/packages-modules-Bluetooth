@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d04130_cf5c72f2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Yep, I\u0027ve did the same for scan_events.",
+      "parentUuid": "9d0d7342_ac95fdda",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 21
+      },
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d64150c9_6f2f23e7",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-21T18:33:16Z",
       "side": 1,
       "message": "`le_discoverability_mode\u003dDiscoverabilityMode.DISCOVERABILITY_GENERAL` in `StartAdvertising` ?",
+      "range": {
+        "startLine": 356,
+        "startChar": 8,
+        "endLine": 357,
+        "endChar": 58
+      },
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4c48e11_9ed0c94c",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d64150c9_6f2f23e7",
       "range": {
         "startLine": 356,
         "startChar": 8,
@@ -81,6 +129,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0d7cdc9_aaa784da",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aeaef9c_991f6134",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91ff2546_36a8ccd3",
@@ -94,6 +160,24 @@
       "writtenOn": "2022-11-21T18:33:16Z",
       "side": 1,
       "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11595053_f0e7dbae",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91ff2546_36a8ccd3",
       "revId": "719218bb0539e747400f9093444adb25ab4579d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -115,6 +199,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "385dfe1a_0bd11163",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8609b2b_e5a07903",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83a61044_c7075a03",
@@ -128,6 +230,24 @@
       "writtenOn": "2022-11-21T18:33:16Z",
       "side": 1,
       "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe814bda_f6250f05",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83a61044_c7075a03",
       "revId": "719218bb0539e747400f9093444adb25ab4579d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -149,6 +269,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fed3940_53524876",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f019956_d850b66d",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79513cf7_3de282aa",
@@ -162,6 +300,24 @@
       "writtenOn": "2022-11-21T18:33:16Z",
       "side": 1,
       "message": "Same as above",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c1d7f1c_adc8b313",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T21:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79513cf7_3de282aa",
       "revId": "719218bb0539e747400f9093444adb25ab4579d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
