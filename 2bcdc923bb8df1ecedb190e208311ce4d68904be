@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73d82bae_84fbf383",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-21T11:41:20Z",
+      "side": 1,
+      "message": "Hi All,\n\nWe have resolved the comments. Kindly review the same.\n\nThanks \u0026 Regards,\nDHananjaya",
+      "parentUuid": "d7edef0f_0fc4c4c0",
+      "revId": "2bcdc923bb8df1ecedb190e208311ce4d68904be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0aa52c14_9dbb4a6b",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-11-18T19:09:38Z",
       "side": 1,
       "message": "The request should be named `SetAccessPermissionRequest`",
+      "range": {
+        "startLine": 62,
+        "startChar": 26,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "2bcdc923bb8df1ecedb190e208311ce4d68904be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed271e0f_d9eaca0e",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-21T11:41:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0aa52c14_9dbb4a6b",
       "range": {
         "startLine": 62,
         "startChar": 26,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76ec5a29_84e84b93",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-21T11:41:20Z",
+      "side": 1,
+      "message": "Moved to _android.proto",
+      "parentUuid": "812cf08d_7d2e376f",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 63,
+        "endChar": 0
+      },
+      "revId": "2bcdc923bb8df1ecedb190e208311ce4d68904be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd49016b_43c13d2a",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-11-18T19:08:05Z",
       "side": 1,
       "message": "We should use the existing `Connection` artifact here",
+      "range": {
+        "startLine": 305,
+        "startChar": 2,
+        "endLine": 305,
+        "endChar": 20
+      },
+      "revId": "2bcdc923bb8df1ecedb190e208311ce4d68904be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "438eea49_3b178e2e",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-21T11:41:20Z",
+      "side": 1,
+      "message": "Moved to _android.proto. Setting permission requires only pts-address.",
+      "parentUuid": "fd49016b_43c13d2a",
       "range": {
         "startLine": 305,
         "startChar": 2,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "becddfc9_c540aac2",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-21T11:41:20Z",
+      "side": 1,
+      "message": "Created enum for distinct values of access_type",
+      "parentUuid": "411d2ac1_f0e99560",
+      "range": {
+        "startLine": 307,
+        "startChar": 2,
+        "endLine": 307,
+        "endChar": 25
+      },
+      "revId": "2bcdc923bb8df1ecedb190e208311ce4d68904be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91a58072_cf08a388",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-11-18T19:08:05Z",
       "side": 1,
       "message": "If the interface is empty, we can remove it. We can also remove Map.kt",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 1
+      },
+      "revId": "2bcdc923bb8df1ecedb190e208311ce4d68904be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7ce0874_14c7b855",
+        "filename": "pandora/interfaces/pandora_experimental/map.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-21T11:41:20Z",
+      "side": 1,
+      "message": "Currently we have removed both Map.kt and map.proto files.",
+      "parentUuid": "91a58072_cf08a388",
       "range": {
         "startLine": 1,
         "startChar": 0,
