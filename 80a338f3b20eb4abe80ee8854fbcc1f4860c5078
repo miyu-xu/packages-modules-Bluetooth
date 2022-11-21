@@ -46,6 +46,30 @@
       },
       "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e522a0c_c9758e71",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1601,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-21T09:45:13Z",
+      "side": 1,
+      "message": "I missed that, thanks!",
+      "parentUuid": "04ddc3d5_a5dc7f21",
+      "range": {
+        "startLine": 1600,
+        "startChar": 5,
+        "endLine": 1601,
+        "endChar": 72
+      },
+      "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
