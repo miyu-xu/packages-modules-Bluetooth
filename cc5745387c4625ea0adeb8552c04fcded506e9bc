@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b478ba7_f3d40c95",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2022-11-21T20:10:21Z",
+      "side": 1,
+      "message": "Overall LGTM!\nminor nit ... update the spelling",
+      "range": {
+        "startLine": 568,
+        "startChar": 65,
+        "endLine": 568,
+        "endChar": 75
+      },
+      "revId": "cc5745387c4625ea0adeb8552c04fcded506e9bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
