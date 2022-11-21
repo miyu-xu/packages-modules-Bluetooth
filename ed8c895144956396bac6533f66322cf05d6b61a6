@@ -16,6 +16,29 @@
       "message": "Can you please add the failing tests into the \"skip\" sectio in pts_bot_tests_config.json ?",
       "revId": "ed8c895144956396bac6533f66322cf05d6b61a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c2f55e_a3e1bd40",
+        "filename": "android/pandora/server/configs/PtsBotTestMts.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-21T18:13:46Z",
+      "side": 1,
+      "message": "Why is the RFCOMM is added here ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 48
+      },
+      "revId": "ed8c895144956396bac6533f66322cf05d6b61a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
