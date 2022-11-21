@@ -121,6 +121,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a99f565_35239016",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-21T21:20:24Z",
+      "side": 1,
+      "message": "Ah right because in ASHA, you have 2 separate devices, so that makes sense. I think this is good!",
+      "parentUuid": "72263f25_3fc3388c",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0beb6aeb_cebc7b68",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 3
@@ -185,6 +203,24 @@
       "side": 1,
       "message": "I will update it later and need to touch the implementation in HearingAidService.",
       "parentUuid": "abe2188c_13360838",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e842141b_52c27b54",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-21T21:20:24Z",
+      "side": 1,
+      "message": "Maybe consider using UNKNOWN values instead (e.g. SIDE_UNKNOWN or MODE_UNKNOWN). It would indicate that we\u0027re not sure what it should be instead of the known value being invalid :)",
+      "parentUuid": "8f34f8d4_7f6e2701",
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
