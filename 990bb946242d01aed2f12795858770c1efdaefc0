@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6274d082_1d5deb91",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T19:46:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92f54cb_d6737e69",
+      "range": {
+        "startLine": 1528,
+        "startChar": 10,
+        "endLine": 1529,
+        "endChar": 46
+      },
+      "revId": "990bb946242d01aed2f12795858770c1efdaefc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a83edbfd_160a3d8f",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-11-22T15:04:24Z",
       "side": 1,
       "message": "could you please mention here in this comment, where and when le discovery will be scheduled?",
+      "revId": "990bb946242d01aed2f12795858770c1efdaefc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fe195f5_40c57e5b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1590,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T19:46:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a83edbfd_160a3d8f",
       "revId": "990bb946242d01aed2f12795858770c1efdaefc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
