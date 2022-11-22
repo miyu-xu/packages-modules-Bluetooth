@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eae205fe_7a7c62fc",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-22T17:18:23Z",
+      "side": 1,
+      "message": "A user of this variable will not see the type name all the time right? \n\ne.g. if I see `pairing_cb.gatt_on_le`, how do I know it is GATT service discovery over LE status?",
+      "parentUuid": "0a5ccdf8_31a76b43",
+      "range": {
+        "startLine": 163,
+        "startChar": 26,
+        "endLine": 163,
+        "endChar": 36
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb1a7259_c9ccbb07",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 8
