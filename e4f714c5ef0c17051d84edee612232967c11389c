@@ -139,6 +139,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e3f5089_213d8b9e",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-22T07:23:48Z",
+      "side": 1,
+      "message": "@rahulsabnis@google.com\nSo this developer website description `Indicates whether the device is stand-alone and receives mono data` means \u0027Binaural\u0027. Does it need to change the order to meet the order of Monaural(0) then Binaural(1)?",
+      "parentUuid": "3a99f565_35239016",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0beb6aeb_cebc7b68",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 3
@@ -150,6 +168,24 @@
       "writtenOn": "2022-11-18T22:30:32Z",
       "side": 1,
       "message": "Remove the current summary and replace it with what the return value represents (e.g. \"@return whether this device is a left side or right side hearing aid\")",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5746dcf9_f1a527ae",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-22T07:23:48Z",
+      "side": 1,
+      "message": "Since the added state SIDE_UNKOWN, it is not whether case anymore. I change the description. Please take a look.",
+      "parentUuid": "0beb6aeb_cebc7b68",
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -225,6 +261,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd04762_51761e2a",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-22T07:23:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e842141b_52c27b54",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e080485_4742f937",
@@ -238,6 +292,24 @@
       "writtenOn": "2022-11-18T22:30:32Z",
       "side": 1,
       "message": "Same feedback as above",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdcf2acc_508a589a",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2022-11-22T07:23:48Z",
+      "side": 1,
+      "message": "Since the added state MODE_UNKOWN, it is not whether case anymore. I change the description. Please take a look.",
+      "parentUuid": "7e080485_4742f937",
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
