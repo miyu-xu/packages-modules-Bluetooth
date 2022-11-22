@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbe286b1_0921a52a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-11-22T07:21:31Z",
+      "side": 1,
+      "message": "Change looks fine for me.\nCan we also capture snoop logs for reference?\n\nThanks.",
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
