@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3b8b2f0_9a4a24f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1137906
+      },
+      "writtenOn": "2022-11-22T20:18:50Z",
+      "side": 1,
+      "message": "+1 with one more minor thing.",
+      "revId": "948329740f87d4bebb5fdb70cef7157c7fc6e358",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f594634b_f81304f9",
+        "filename": "system/embdrv/g722/fuzzer/g722_fuzzer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1137906
+      },
+      "writtenOn": "2022-11-22T20:18:50Z",
+      "side": 1,
+      "message": "Can we add a check to make sure decoded_size is smaller or equal than the output buffer size, and abort if it violates the assumption. (you can\u0027t use assert here, because it might be optimized)",
+      "range": {
+        "startLine": 108,
+        "startChar": 24,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "948329740f87d4bebb5fdb70cef7157c7fc6e358",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
