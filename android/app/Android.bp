@@ -70,6 +70,9 @@ cc_library_shared {
         "libbluetooth",
         "libc++fs",
     ],
+    whole_static_libs: [
+        "libbluetooth_jni_rs",
+    ],
     sanitize: {
         scs: true,
     },

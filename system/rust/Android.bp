@@ -1,0 +1,94 @@
+rust_library {
+  name: "libbluetooth_core_rs",
+  crate_name: "bluetooth_core",
+  min_sdk_version: "Tiramisu",
+  srcs: ["lib.rs"],
+  rustlibs: [
+    "liblog_rust",
+    "libandroid_logger",
+    "libcxx",
+  ],
+  proc_macros: [
+    "libpaste",
+  ],
+  static_libs: [
+      "libbluetooth_core_rs_bridge",
+  ],
+  apex_available: ["com.android.btservices"],
+}
+
+cc_library_static {
+    name: "libbluetooth_core_rs_bridge",
+    defaults: [
+        "libchrome_support_defaults"
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    static_libs: [
+        "libbt_shim_bridge",
+
+        "libbluetooth-core",
+    ],
+    shared_libs: [
+        "libflatbuffers-cpp",
+    ],
+    generated_headers: [
+        "cxx-bridge-header",
+        "libbluetooth_core_rs_bridge_codegen_header",
+
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    export_generated_headers: [
+        "libbluetooth_core_rs_bridge_codegen_header",
+    ],
+    generated_sources: ["libbluetooth_core_rs_bridge_codegen"],
+    apex_available: ["com.android.btservices"],
+    min_sdk_version: "33",
+}
+
+/// FFI codegen
+/// 
+/// We generate the static library libbluetooth_core_rs_bridge that is included by libbluetooth_core_rs,
+/// and depends on libbluetooth-core. libbluetooth depends on libbluetooth_core_rs.
+///
+/// Thus, FFI can be either Rust -> C++ calls, or C++ -> Rust. Core C++ -> Rust calls can only be made via
+/// injected callbacks (as libbluetooth-core does not depend on libbluetooth_core_rs), while
+/// Profile C++ -> Rust calls can be made directly (as libbluetooth *does* depend on libbluetooth_core_rs).
+///
+/// To add FFI for a new module, create an ffi.rs file, and add it to the "out" .cc and .h files below.
+
+genrule {
+    name: "libbluetooth_core_rs_bridge_codegen",
+    tools: ["cxxbridge"],
+    cmd: "INPUTS=($(in)); OUTPUTS=($(out)); for (( i = 0; i < $${#INPUTS[*]}; ++i )); do $(location cxxbridge) $${INPUTS[$$i]} -o $${OUTPUTS[$$i]}; done",
+    srcs: ["./**/ffi.rs"],
+    out: [
+        "core.rs.cc",
+        "keystore.rs.cc",
+        "parameter_provider.rs.cc",
+        "storage.rs.cc",
+    ],
+}
+
+// Note: please keep the order of files the same in srcs and out, thanks!
+genrule {
+    name: "libbluetooth_core_rs_bridge_codegen_header",
+    tools: ["cxxbridge"],
+    cmd: "INPUTS=($(in)); OUTPUTS=($(out)); for (( i = 0; i < $${#INPUTS[*]}; ++i )); do $(location cxxbridge) $${INPUTS[$$i]} -o $${OUTPUTS[$$i]}; done",
+    srcs: [
+        "core/ffi.rs",
+        "keystore/ffi.rs",
+        "parameter_provider/ffi.rs",
+        "storage/ffi.rs",
+    ],
+    out: [
+        "core.rs.h",
+        "keystore.rs.h",
+        "parameter_provider.rs.h",
+        "storage.rs.h",
+    ],
+}

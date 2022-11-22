@@ -96,6 +96,9 @@ class ClassicDevice {
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(SdpDiModel, uint16_t, "SdpDiModel");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(SdpDiHardwareVersion, uint16_t, "SdpDiHardwareVersion");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(SdpDiVendorIdSource, uint16_t, "SdpDiVendorIdSource");
+
+  // used for Keystore redaction of LinkKey
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER(RawLinkKey, std::string, "LinkKey");
 };
 
 }  // namespace storage
