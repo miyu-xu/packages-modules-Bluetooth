@@ -38,9 +38,7 @@ namespace bluetooth {
 namespace test {
 namespace headless {
 
-void process_property(const RawAddress& bd_addr, const bt_property_t* prop) {
-  LOG_INFO("%s bt_property type:%d len:%d val:%p", STR(bd_addr), prop->type,
-           prop->len, prop->val);
+void process_property(const RawAddress& bd_addr, const ::bt_property_t* prop) {
   switch (prop->type) {
     case BT_PROPERTY_BDNAME: {
       ASSERT(prop->len >= 0);
@@ -110,12 +108,15 @@ void process_property(const RawAddress& bd_addr, const bt_property_t* prop) {
       LOG_CONSOLE("BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER");
       break;
     default: {
+      ASSERT_LOG(false, "Found bad property");
+#if 0
       LOG_CONSOLE("Unable to find BT property bd_addr:%s type:%d ptr:%p",
                   STR(bd_addr), prop->type, prop);
       const uint8_t* p = reinterpret_cast<const uint8_t*>(prop);
       for (size_t i = 0; i < sizeof(bt_property_t); i++, p++) {
         LOG_CONSOLE("  %p:0x%02x", p, *p);
       }
+#endif
     } break;
   }
 }
