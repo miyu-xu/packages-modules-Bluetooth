@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccfa45ab_85f8cf07",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-22T21:08:27Z",
+      "side": 1,
+      "message": "keep that `r`",
+      "revId": "4c3c786d9fa62e8f58ed422cbd956a5b08553bc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
