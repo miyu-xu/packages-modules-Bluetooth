@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9140053d_b8ba1e3b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-22T06:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d43b008e_bb4f825a",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 83
+      },
+      "revId": "4fa969b41530a1af51cb7a87664c5fd0d0f4fd3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b240b28_10c3d79a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-22T01:04:41Z",
       "side": 1,
       "message": "1. more than 100 chars here and other places\n2. be sure that the status in the shared preferences are the same between before the test and after the test.",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 47
+      },
+      "revId": "4fa969b41530a1af51cb7a87664c5fd0d0f4fd3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7723423_34071d7f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-22T06:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b240b28_10c3d79a",
       "range": {
         "startLine": 74,
         "startChar": 28,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b5db18_1d73a636",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-22T06:16:06Z",
+      "side": 1,
+      "message": "Because if init is not working correctly, then getInstance will return the same instance anyway (which will pass all the assertion). Make it equal to null will test if the init (aka. restoreApplicationData) work correctly or not",
+      "parentUuid": "6dbdab0f_856e410a",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 45
+      },
+      "revId": "4fa969b41530a1af51cb7a87664c5fd0d0f4fd3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78e418d7_4a45671b",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-22T01:04:41Z",
       "side": 1,
       "message": "What about split it into two tests like follows?\nisAcceptedList_inAcceptList_returnsTrue\nisAcceptedList_notInAcceptList_returnsFalse",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 120,
+        "endChar": 61
+      },
+      "revId": "4fa969b41530a1af51cb7a87664c5fd0d0f4fd3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f4fe00_1b8a13ad",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-22T06:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78e418d7_4a45671b",
       "range": {
         "startLine": 120,
         "startChar": 16,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42bde645_408874f2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-22T06:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "941b49a6_d411a8a5",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 23
+      },
+      "revId": "4fa969b41530a1af51cb7a87664c5fd0d0f4fd3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ae49241_955e8266",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-11-22T01:04:41Z",
       "side": 1,
       "message": "unacceptedAddress?",
+      "range": {
+        "startLine": 124,
+        "startChar": 15,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "4fa969b41530a1af51cb7a87664c5fd0d0f4fd3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a98cd700_1f6d92ac",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-22T06:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ae49241_955e8266",
       "range": {
         "startLine": 124,
         "startChar": 15,
