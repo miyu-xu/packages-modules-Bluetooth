@@ -39,7 +39,7 @@ cc_binary {
         "HeadlessBuildTimestamp",
     ],
     srcs: [
-        "bt_property.cc",
+//        "bt_property.cc",
         "connect/connect.cc",
         "get_options.cc",
         "headless.cc",
