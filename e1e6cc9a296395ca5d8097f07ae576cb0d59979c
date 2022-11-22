@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f01febfd_38f631ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 31
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T23:31:06Z",
+      "side": 1,
+      "message": "Merged-In: I131eb7cce64254796dff777c00728a3f08942d2a\nChange-Id: I131eb7cce64254796dff777c00728a3f08942d2a",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "e1e6cc9a296395ca5d8097f07ae576cb0d59979c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
