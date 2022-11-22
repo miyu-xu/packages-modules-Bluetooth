@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fb608d8_0518b4bd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fed778c_f9dd01bf",
+      "range": {
+        "startLine": 161,
+        "startChar": 7,
+        "endLine": 161,
+        "endChar": 30
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ffc0ee8_6f3da63c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-21T23:29:37Z",
       "side": 1,
       "message": "this is a bit ambiguous when being used, rename to\n\ngatt_discovery_state_over_le?",
+      "range": {
+        "startLine": 163,
+        "startChar": 26,
+        "endLine": 163,
+        "endChar": 36
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35014bfa_ef0e7c1f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "\"discovery\" and \"state\" are already used in type name, so I think gatt_on_le is not ambigous\nAlso every value check and assignment operation, says \"ServiceDiscoveryState\". Can\u0027t be more clear.",
+      "parentUuid": "3ffc0ee8_6f3da63c",
       "range": {
         "startLine": 163,
         "startChar": 26,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "307e48c6_8d8f119b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "cb1a7259_c9ccbb07",
+      "range": {
+        "startLine": 164,
+        "startChar": 26,
+        "endLine": 164,
+        "endChar": 40
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56f36055_ba77f5b2",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-21T23:29:37Z",
       "side": 1,
       "message": "print out the device address? \n\nADDRESS_TO_LOGGABLE_CSTR(bd_addr)?",
+      "range": {
+        "startLine": 1124,
+        "startChar": 0,
+        "endLine": 1124,
+        "endChar": 37
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f59fd28a_ed989dda",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56f36055_ba77f5b2",
       "range": {
         "startLine": 1124,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "313dbdc3_71dd6e87",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfd6f446_b632f1f6",
+      "range": {
+        "startLine": 1478,
+        "startChar": 0,
+        "endLine": 1478,
+        "endChar": 33
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c81e1f10_60e9091f",
@@ -129,6 +249,24 @@
       "writtenOn": "2022-11-21T23:29:37Z",
       "side": 1,
       "message": "same here add ADDRESS_TO_LOGGABLE_CSTR(bd_addr)?",
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dac08af9_c285496b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c81e1f10_60e9091f",
       "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95e8b2bf_a4cebc14",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3059,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab03573b_440993d2",
+      "range": {
+        "startLine": 3059,
+        "startChar": 0,
+        "endLine": 3059,
+        "endChar": 52
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "723558d9_3ca8a113",
@@ -169,6 +331,30 @@
       "writtenOn": "2022-11-21T23:29:37Z",
       "side": 1,
       "message": "see above, this is a bit ambiguous on what you mean by `pairing_cb.gatt_on_le`",
+      "range": {
+        "startLine": 3060,
+        "startChar": 19,
+        "endLine": 3060,
+        "endChar": 29
+      },
+      "revId": "1782a240126d66449b1bfc863c2b7cfe88fa81d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8ddfd4_71af315b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3060,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T12:44:13Z",
+      "side": 1,
+      "message": "see comment above.",
+      "parentUuid": "723558d9_3ca8a113",
       "range": {
         "startLine": 3060,
         "startChar": 19,
