@@ -56,7 +56,6 @@ cc_binary {
     ],
     srcs: [
         ":TestHeadlessModules",
-        "bt_property.cc",
         "get_options.cc",
         "handler.cc",
         "headless.cc",
