@@ -144,7 +144,7 @@ uint16_t AVRC_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
 
     if (!result) {
       AVRC_TRACE_ERROR("%s: Failed to init SDP for peer %s", __func__,
-                       ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+                       bd_addr.ToString().c_str());
       avrc_sdp_cback(SDP_GENERIC_ERROR);
     }
   }

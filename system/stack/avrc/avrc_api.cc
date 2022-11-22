@@ -1399,9 +1399,9 @@ void AVRC_SaveControllerVersion(const RawAddress& bdaddr,
                  (const uint8_t*)&new_version, sizeof(new_version))) {
     btif_config_save();
     LOG_INFO("store AVRC controller version %x for %s into config.",
-             new_version, ADDRESS_TO_LOGGABLE_CSTR(bdaddr));
+             new_version, bdaddr.ToString().c_str());
   } else {
     LOG_WARN("Failed to store AVRC controller version for %s",
-             ADDRESS_TO_LOGGABLE_CSTR(bdaddr));
+             bdaddr.ToString().c_str());
   }
 }
