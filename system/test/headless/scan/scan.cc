@@ -83,9 +83,10 @@ int start_scan([[maybe_unused]] unsigned int num_loops) {
         remote_device_properties_params_t params = callback_queue.front();
         callback_queue.pop_front();
         LOG_CONSOLE("Received remote inquiry :%s", STR(params));
-        bt_property_t* prop = params.properties;
-        for (int i = 0; i < params.num_properties; ++i, prop++) {
-          process_property(params.bd_addr, prop);
+
+        for (const auto& property : params.properties) {
+          if (property == nullptr) continue;
+          LOG_CONSOLE(" Property: %s", property->ToString().c_str());
         }
       }
     }
