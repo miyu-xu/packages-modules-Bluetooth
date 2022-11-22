@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c01f861_6786b262",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-22T15:40:17Z",
+      "side": 1,
+      "message": "this seems to be part of other patch.",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4bc73e2_6b0e4403",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-22T15:40:17Z",
+      "side": 1,
+      "message": "this seems to be part of other patch.",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "570cbf06_5d23b02b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1539,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-22T15:40:17Z",
+      "side": 1,
+      "message": "seems to be not part of this patch",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f49ea1e_65022727",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1602,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-22T15:40:17Z",
+      "side": 1,
+      "message": "seems to be not related",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7048fbe_b7a740b9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3714,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-22T15:40:17Z",
+      "side": 1,
+      "message": "even value is not parsed, where this is defined?",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
