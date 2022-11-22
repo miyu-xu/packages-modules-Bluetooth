@@ -1,0 +1,15 @@
+rust_ffi {
+    name: "libbluetooth_jni_rs",
+    crate_name: "bluetooth_jni_rs",
+    min_sdk_version: "Tiramisu",
+    srcs: ["lib.rs"],
+    rustlibs: [
+        "libjni",
+        "liblog_rust",
+        "libandroid_logger",
+
+        "libbluetooth_core_rs",
+    ],
+
+    apex_available: ["com.android.btservices"],
+}

@@ -1,0 +1,67 @@
+rust_library {
+  name: "libbluetooth_core_rs",
+  crate_name: "libbluetooth_core",
+  min_sdk_version: "Tiramisu",
+  srcs: ["lib.rs"],
+  rustlibs: [
+    "liblog_rust",
+    "libandroid_logger",
+    "libcxx",
+  ],
+  proc_macros: [
+    "libpaste",
+  ],
+  static_libs: [
+      "libbluetooth_core_rs_bridge",
+  ],
+  apex_available: ["com.android.btservices"],
+}
+
+cc_library_static {
+    name: "libbluetooth_core_rs_bridge",
+    defaults: [
+        "libchrome_support_defaults"
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    static_libs: [
+        "libbt_shim_bridge",
+
+        "libbluetooth-core",
+    ],
+    shared_libs: [
+        "libflatbuffers-cpp",
+    ],
+    generated_headers: [
+        "cxx-bridge-header",
+        "libbluetooth_core_rs_bridge_codegen_header",
+
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    export_generated_headers: [
+        "libbluetooth_core_rs_bridge_codegen_header",
+    ],
+    generated_sources: ["libbluetooth_core_rs_bridge_codegen"],
+    apex_available: ["com.android.btservices"],
+    min_sdk_version: "33",
+}
+
+genrule {
+    name: "libbluetooth_core_rs_bridge_codegen",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) >> $(out)",
+    srcs: ["./**/ffi.rs"],
+    out: ["libbluetooth_core_rs_bridge_codegen.cc"],
+}
+
+genrule {
+    name: "libbluetooth_core_rs_bridge_codegen_header",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) --header >> $(out)",
+    srcs: ["./**/ffi.rs"],
+    out: ["ffi.rs.h"],
+}
