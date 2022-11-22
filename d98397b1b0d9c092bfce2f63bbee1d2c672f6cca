@@ -33,6 +33,24 @@
       "message": "Nit: Instead of reusing this print, can we just print more info below? Since it would be confusing to say that the device wants to pair again when really we are confirming the passkey",
       "revId": "d98397b1b0d9c092bfce2f63bbee1d2c672f6cca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c607e3_4cd192f8",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-22T10:42:32Z",
+      "side": 1,
+      "message": "IIUC, this function should only be called once for each pairing attempt. The authentication method is decided by the IO capabilities of both devices. This can be found in https://www.bluetooth.com/blog/bluetooth-pairing-part-2-key-generation-methods.",
+      "parentUuid": "935d8876_ecfd9160",
+      "revId": "d98397b1b0d9c092bfce2f63bbee1d2c672f6cca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
