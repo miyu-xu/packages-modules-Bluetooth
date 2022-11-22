@@ -37,19 +37,21 @@ enum OptionType {
   kOptionStdErr = 4,
   kOptionFlags = 5,
   kOptionClear = 6,
+  kOptionPass = 7,
 };
 
 constexpr struct option long_options[] = {
     {"device", required_argument, 0, 0},  // kOptionDevice
-    {"loop", required_argument, 0, 0},    // kOptionLoop/
+    {"loop", required_argument, 0, 0},    // kOptionLoop
     {"uuid", required_argument, 0, 0},    // kOptionUuid
     {"msleep", required_argument, 0, 0},  // kOptionMsleep
     {"stderr", no_argument, 0, 0},        // kOptionStdErr
     {"flags", required_argument, 0, 0},   // kOptionFlags
     {"clear", no_argument, 0, 0},         // kOptionDevice
+    {"pass", required_argument, 0, 0},    // kOptionPass
     {0, 0, 0, 0}};
 
-const char* kShortArgs = "cd:l:u:";
+const char* kShortArgs = "cd:l:p:u:";
 
 }  // namespace
 
@@ -67,6 +69,8 @@ void bluetooth::test::headless::GetOpt::Usage() const {
   fprintf(stdout, "%s  --loop=<loop>       Number of loops\n", name_);
   fprintf(stdout, "%s  --msleep=<msecs>    Sleep msec between loops\n", name_);
   fprintf(stdout, "%s  --stderr            Dump stderr to stdout\n", name_);
+  fprintf(stdout, "%s  --pass=<val>        Pass argument(s) to submodule\n",
+          name_);
   fflush(nullptr);
 }
 
@@ -142,6 +146,10 @@ void bluetooth::test::headless::GetOpt::ProcessOption(int option_index,
     case kOptionClear:
       clear_logcat_ = true;
       break;
+    case kOptionPass:
+      if (!optarg) return;
+      mod_opt_ = ModOpt(optarg);
+      break;
     default:
       fflush(nullptr);
       valid_ = false;
@@ -196,4 +204,24 @@ bluetooth::test::headless::GetOpt::GetOpt(int argc, char** argv)
   fflush(nullptr);
 }
 
-bluetooth::test::headless::GetOpt::~GetOpt() { free(stack_init_flags_); }
+bluetooth::test::headless::GetOpt::~GetOpt() {}
+
+bluetooth::test::headless::ModOpt::ModOpt(const char* optarg) {
+  if (optarg == nullptr) {
+    return;
+  }
+
+  GetOpt::ParseValue(const_cast<char*>(optarg), string_list_);
+  for (const auto& arg : string_list_) {
+    arg_map_[arg.substr(0, 2)] = arg.substr(2);
+  }
+}
+
+std::string bluetooth::test::headless::ModOpt::GetArg(
+    std::string arg_key, std::string arg_default) const {
+  auto it = arg_map_.find(arg_key);
+  if (it != arg_map_.end()) {
+    return it->second;
+  }
+  return arg_default;
+}
