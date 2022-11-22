@@ -241,6 +241,9 @@ class LeAudioClientImpl : public LeAudioClient {
         lc3_decoder_right(nullptr),
         le_audio_source_hal_client_(nullptr),
         le_audio_sink_hal_client_(nullptr),
+        fake_context_type(0),
+        pFileOut(nullptr),
+        pFileIn(nullptr),
         suspend_timeout_(alarm_new("LeAudioSuspendTimeout")),
         disable_timer_(alarm_new("LeAudioDisableTimer")) {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
@@ -429,6 +432,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (audio_receiver_state_ >= AudioState::READY_TO_START) {
       le_audio_sink_hal_client_->CancelStreamingRequest();
+      audio_receiver_state_ = AudioState::IDLE;
+    } else if (fake_context_type) {
       audio_receiver_state_ = AudioState::IDLE;
     }
   }
@@ -651,6 +656,12 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG_DEBUG("Converting to single context type: %s",
               metadata_context_type.to_string().c_str());
 
+    LOG(INFO) << __func__ << " fake_context_type " << loghex(fake_context_type);
+
+    if (fake_context_type) {
+      return AudioContexts(static_cast<LeAudioContextType>(fake_context_type));
+    }
+
     /* Mini policy */
     if (metadata_context_type.any()) {
       LeAudioContextType context_priority_list[] = {
@@ -852,19 +863,27 @@ class LeAudioClientImpl : public LeAudioClient {
     /* We use same frame duration for sink/source */
     audio_framework_sink_config.data_interval_us = frame_duration_us;
 
+    auto context_type = group->GetConfigurationContextType();
     /* If group supports more than 16kHz for the microphone in converstional
      * case let's use that also for Audio Framework.
      */
-    std::optional<LeAudioCodecConfiguration> sink_configuration =
-        group->GetCodecConfigurationByDirection(
-            LeAudioContextType::CONVERSATIONAL,
-            le_audio::types::kLeAudioDirectionSource);
-    if (sink_configuration &&
-        sink_configuration->sample_rate >
-            bluetooth::audio::le_audio::kSampleRate16000) {
-      audio_framework_sink_config.sample_rate = sink_configuration->sample_rate;
+    if ((context_type == LeAudioContextType::CONVERSATIONAL) ||
+        (context_type == LeAudioContextType::VOICEASSISTANTS)) {
+      std::optional<LeAudioCodecConfiguration> sink_configuration =
+          group->GetCodecConfigurationByDirection(
+              context_type, le_audio::types::kLeAudioDirectionSource);
+      if (sink_configuration &&
+          sink_configuration->sample_rate >
+              bluetooth::audio::le_audio::kSampleRate16000) {
+        audio_framework_sink_config.sample_rate =
+            sink_configuration->sample_rate;
+        LOG(INFO) << __func__
+                  << " updated audio_framework_sink_config.sample_rate: "
+                  << loghex(audio_framework_sink_config.sample_rate);
+      }
     }
-
+    LOG(INFO) << __func__ << " audio_framework_sink_config.sample_rate: "
+              << loghex(audio_framework_sink_config.sample_rate);
     le_audio_sink_hal_client_->Start(audio_framework_sink_config,
                                      audioSourceReceiver);
   }
@@ -2380,6 +2399,10 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
+    if (pFileOut != nullptr) {
+      fwrite(data.data(), sizeof(uint8_t), data.size(), pFileOut);
+    }
+
     std::vector<uint8_t> chan_left_enc(byte_count, 0);
     std::vector<uint8_t> chan_right_enc(byte_count, 0);
 
@@ -2438,6 +2461,11 @@ class LeAudioClientImpl : public LeAudioClient {
       LOG(ERROR) << __func__ << "Missing samples";
       return;
     }
+
+    if (pFileOut != nullptr) {
+      fwrite(data.data(), sizeof(uint8_t), data.size(), pFileOut);
+    }
+
     std::vector<uint8_t> chan_encoded(num_channels * byte_count, 0);
 
     if (num_channels == 1) {
@@ -2598,6 +2626,17 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
+    if (pFileIn != nullptr) {
+      fwrite(pcm_data_decoded.data(), sizeof(int16_t), pcm_data_decoded.size(),
+             pFileIn);
+    }
+
+    if (fake_context_type) {
+      LOG(INFO) << " Faked Context Type, " << loghex(fake_context_type)
+                << " no need to send to AF";
+      return;
+    }
+
     /* AF == Audio Framework */
     bool af_is_stereo = (audio_framework_sink_config.num_channels == 2);
 
@@ -2722,6 +2761,8 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG_ASSERT(device) << __func__
                        << " Shouldn't be called without an active device.";
 
+    LOG(INFO) << __func__ << " fake_context_type " << loghex(fake_context_type);
+
     /* Assume 2 ases max just for now. */
     auto* stream_conf = GetStreamSinkConfiguration(group);
     if (stream_conf == nullptr) {
@@ -2740,6 +2781,17 @@ class LeAudioClientImpl : public LeAudioClient {
     for (auto stream : stream_conf->source_streams) {
       LOG_DEBUG("Cis handle: 0x%02x, allocation 0x%04x\n", stream.first,
                 stream.second);
+      if (osi_property_get_bool(kAudioPcmDumpEnabledProp, false)) {
+        pFileOut = fopen(audioPcmOut, "wb");
+        if (pFileOut == nullptr) {
+          LOG(ERROR) << __func__ << " could not open: " << audioPcmOut;
+        } else {
+          LOG(INFO) << __func__
+                    << " opened audio_data_in.pcm for writing Tx data";
+        }
+      } else {
+        LOG(INFO) << __func__ << " persist.bluetooth.leaudio.pcmdump is false";
+      }
     }
 
     uint16_t remote_delay_ms =
@@ -2778,6 +2830,13 @@ class LeAudioClientImpl : public LeAudioClient {
      * different */
     updateOffloaderIfNeeded(group);
 
+    if ((fake_context_type ==
+         (static_cast<uint16_t>(LeAudioContextType::CONVERSATIONAL))) ||
+        (fake_context_type ==
+         (static_cast<uint16_t>(LeAudioContextType::VOICEASSISTANTS)))) {
+      StartReceivingAudio(group_id);
+    }
+
     return true;
   }
 
@@ -2808,6 +2867,18 @@ class LeAudioClientImpl : public LeAudioClient {
         group->GetRemoteDelay(le_audio::types::kLeAudioDirectionSource);
 
     CleanCachedMicrophoneData();
+
+    if (osi_property_get_bool(kAudioPcmDumpEnabledProp, false)) {
+      pFileIn = fopen(audioPcmIn, "wb");
+      if (pFileIn == nullptr) {
+        LOG(ERROR) << __func__ << " could not open: " << audioPcmIn;
+      } else {
+        LOG(INFO) << __func__
+                  << " opened audio_data_in.pcm for writing Rx data";
+      }
+    } else {
+      LOG(INFO) << __func__ << " persist.bluetooth.le_audio.pcmdump is false";
+    }
 
     if (CodecManager::GetInstance()->GetCodecLocation() ==
         le_audio::types::CodecLocation::HOST) {
@@ -2859,6 +2930,13 @@ class LeAudioClientImpl : public LeAudioClient {
       free(lc3_decoder_right_mem);
       lc3_decoder_right_mem = nullptr;
     }
+
+    fake_context_type = 0;
+
+    if (pFileOut != nullptr) fclose(pFileOut);
+    if (pFileIn != nullptr) fclose(pFileIn);
+    pFileOut = nullptr;
+    pFileIn = nullptr;
   }
 
   void StopAudio(void) { SuspendAudio(); }
@@ -2957,6 +3035,20 @@ class LeAudioClientImpl : public LeAudioClient {
                  << ", Invalid group: " << static_cast<int>(group_id);
       return AudioReconfigurationResult::RECONFIGURATION_NOT_NEEDED;
     }
+
+    fake_context_type = 0;
+    uint16_t fake_context_type_temp =
+        osi_property_get_int32(kAudioFakeContextTypeProp, /*default=*/0);
+    if ((context_type == LeAudioContextType::MEDIA) &&
+        ((fake_context_type_temp ==
+          static_cast<uint16_t>(LeAudioContextType::CONVERSATIONAL)) ||
+         (fake_context_type_temp ==
+          static_cast<uint16_t>(LeAudioContextType::VOICEASSISTANTS)))) {
+      fake_context_type = fake_context_type_temp;
+      context_type = static_cast<LeAudioContextType>(fake_context_type);
+    }
+
+    LOG(INFO) << __func__ << " fake_context_type " << loghex(fake_context_type);
 
     std::optional<LeAudioCodecConfiguration> source_configuration =
         group->GetCodecConfigurationByDirection(
@@ -3239,6 +3331,15 @@ class LeAudioClientImpl : public LeAudioClient {
     DLOG(INFO) << __func__
                << " OUT: audio_receiver_state_: " << audio_receiver_state_
                << " audio_sender_state_: " << audio_sender_state_;
+
+    LOG(INFO) << __func__ << " fake_context_type " << loghex(fake_context_type);
+
+    if ((fake_context_type ==
+         (static_cast<uint16_t>(LeAudioContextType::CONVERSATIONAL))) ||
+        (fake_context_type ==
+         (static_cast<uint16_t>(LeAudioContextType::VOICEASSISTANTS)))) {
+      OnLocalAudioSourceSuspend();
+    }
   }
 
   bool IsAudioSourceAvailableForCurrentConfiguration() {
@@ -3356,10 +3457,26 @@ class LeAudioClientImpl : public LeAudioClient {
         /* Wait until releasing is completed */
         break;
     }
+
+    LOG(INFO) << __func__ << " fake_context_type " << loghex(fake_context_type);
+
+    if (fake_context_type &&
+        ((fake_context_type ==
+          (static_cast<uint16_t>(LeAudioContextType::CONVERSATIONAL))) ||
+         (fake_context_type ==
+          (static_cast<uint16_t>(LeAudioContextType::VOICEASSISTANTS))))) {
+      OnLocalAudioSourceResume();
+    }
   }
 
   LeAudioContextType ChooseConfigurationContextType(
       le_audio::types::AudioContexts available_contexts) {
+    LOG(INFO) << __func__ << " fake_context_type " << loghex(fake_context_type);
+
+    if (fake_context_type) {
+      return static_cast<LeAudioContextType>(fake_context_type);
+    }
+
     if (in_call_) {
       LOG_DEBUG(" In Call preference used.");
       return LeAudioContextType::CONVERSATIONAL;
@@ -4006,6 +4123,17 @@ class LeAudioClientImpl : public LeAudioClient {
   static constexpr uint64_t kAudioDisableTimeoutMs = 3000;
   static constexpr char kAudioSuspentKeepIsoAliveTimeoutMsProp[] =
       "persist.bluetooth.leaudio.audio.suspend.timeoutms";
+  static constexpr char kAudioFakeContextTypeProp[] =
+      "persist.bluetooth.leaudio.audio.fake_context_type";
+  static constexpr char kAudioPcmDumpEnabledProp[] =
+      "persist.bluetooth.leaudio.pcmdump";
+  static constexpr char audioPcmOut[] =
+      "/data/misc/bluetooth/logs/audio_data_out.pcm";
+  static constexpr char audioPcmIn[] =
+      "/data/misc/bluetooth/logs/audio_data_in.pcm";
+  uint16_t fake_context_type;
+  FILE* pFileOut;
+  FILE* pFileIn;
   alarm_t* suspend_timeout_;
   alarm_t* disable_timer_;
   static constexpr uint64_t kDeviceAttachDelayMs = 500;
