@@ -29,7 +29,6 @@
 
 #include "internal_include/bt_trace.h"
 #include "main/shim/shim.h"
-#include "os/log.h"
 #include "osi/include/alarm.h"
 #include "osi/include/log.h"
 #include "stack/btm/btm_ble_bgconn.h"
@@ -87,7 +86,7 @@ bool anyone_connecting(
 /** background connection device from the list. Returns pointer to the device
  * record, or nullptr if not found */
 std::set<tAPP_ID> get_apps_connecting_to(const RawAddress& address) {
-  LOG_DEBUG("address=%s", ADDRESS_TO_LOGGABLE_CSTR(address));
+  LOG_DEBUG("address=%s", address.ToString().c_str());
   auto it = bgconn_dev.find(address);
   return (it != bgconn_dev.end()) ? it->second.doing_bg_conn
                                   : std::set<tAPP_ID>();
@@ -97,7 +96,7 @@ std::set<tAPP_ID> get_apps_connecting_to(const RawAddress& address) {
  * added to the list, or already in list, false otherwise */
 bool background_connect_add(uint8_t app_id, const RawAddress& address) {
   LOG_DEBUG("app_id=%d, address=%s", static_cast<int>(app_id),
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address.ToString().c_str());
   if (bluetooth::shim::is_gd_l2cap_enabled()) {
     return L2CA_ConnectFixedChnl(L2CAP_ATT_CID, address);
   }
@@ -108,14 +107,14 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
     // device already in the acceptlist, just add interested app to the list
     if (it->second.doing_bg_conn.count(app_id)) {
       LOG_DEBUG("app_id=%d, already doing background connection to address=%s",
-                static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+                static_cast<int>(app_id), address.ToString().c_str());
       return true;
     }
 
     // Already in acceptlist ?
     if (anyone_connecting(it)) {
       LOG_DEBUG("app_id=%d, address=%s, already in accept list",
-                static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+                static_cast<int>(app_id), address.ToString().c_str());
       in_acceptlist = true;
     }
   }
@@ -124,7 +123,7 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
     // the device is not in the acceptlist
     if (!BTM_AcceptlistAdd(address)) {
       LOG_WARN("Failed to add device %s to accept list for app %d",
-               ADDRESS_TO_LOGGABLE_CSTR(address), static_cast<int>(app_id));
+               address.ToString().c_str(), static_cast<int>(app_id));
       return false;
     }
   }
@@ -138,10 +137,10 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
 /** Removes all registrations for connection for given device.
  * Returns true if anything was removed, false otherwise */
 bool remove_unconditional(const RawAddress& address) {
-  LOG_DEBUG("address=%s", ADDRESS_TO_LOGGABLE_CSTR(address));
+  LOG_DEBUG("address=%s", address.ToString().c_str());
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
-    LOG_WARN("address %s is not found", ADDRESS_TO_LOGGABLE_CSTR(address));
+    LOG_WARN("address %s is not found", address.ToString().c_str());
     return false;
   }
 
@@ -155,22 +154,22 @@ bool remove_unconditional(const RawAddress& address) {
  * successfully removed */
 bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
   LOG_DEBUG("app_id=%d, address=%s", static_cast<int>(app_id),
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address.ToString().c_str());
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
-    LOG_WARN("address %s is not found", ADDRESS_TO_LOGGABLE_CSTR(address));
+    LOG_WARN("address %s is not found", address.ToString().c_str());
     return false;
   }
 
   if (!it->second.doing_bg_conn.erase(app_id)) {
     LOG_WARN("Failed to remove background connection app %d for address %s",
-             static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+             static_cast<int>(app_id), address.ToString().c_str());
     return false;
   }
 
   if (anyone_connecting(it)) {
     LOG_DEBUG("some device is still connecting, app_id=%d, address=%s",
-              static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+              static_cast<int>(app_id), address.ToString().c_str());
     return true;
   }
 
@@ -203,7 +202,7 @@ void on_app_deregistered(uint8_t app_id) {
 
 static void remove_all_clients_with_pending_connections(
     const RawAddress& address) {
-  LOG_DEBUG("address=%s", ADDRESS_TO_LOGGABLE_CSTR(address));
+  LOG_DEBUG("address=%s", address.ToString().c_str());
   auto it = bgconn_dev.find(address);
   while (it != bgconn_dev.end() && !it->second.doing_direct_conn.empty()) {
     uint8_t app_id = it->second.doing_direct_conn.begin()->first;
@@ -213,8 +212,7 @@ static void remove_all_clients_with_pending_connections(
 }
 
 void on_connection_complete(const RawAddress& address) {
-  LOG_INFO("Le connection completed to device:%s",
-           ADDRESS_TO_LOGGABLE_CSTR(address));
+  LOG_INFO("Le connection completed to device:%s", address.ToString().c_str());
 
   remove_all_clients_with_pending_connections(address);
 }
@@ -232,7 +230,7 @@ void reset(bool after_reset) {
 
 void wl_direct_connect_timeout_cb(uint8_t app_id, const RawAddress& address) {
   LOG_DEBUG("app_id=%d, address=%s", static_cast<int>(app_id),
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address.ToString().c_str());
   on_connection_timed_out(app_id, address);
 
   // TODO: this would free the timer, from within the timer callback, which is
@@ -244,7 +242,7 @@ void wl_direct_connect_timeout_cb(uint8_t app_id, const RawAddress& address) {
  * added to the list, false otherwise */
 bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
   LOG_DEBUG("app_id=%d, address=%s", static_cast<int>(app_id),
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address.ToString().c_str());
   if (bluetooth::shim::is_gd_l2cap_enabled()) {
     return L2CA_ConnectFixedChnl(L2CAP_ATT_CID, address);
   }
@@ -298,7 +296,7 @@ static bool any_direct_connect_left() {
 
 bool direct_connect_remove(uint8_t app_id, const RawAddress& address) {
   LOG_DEBUG("app_id=%d, address=%s", static_cast<int>(app_id),
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address.ToString().c_str());
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
     LOG_WARN("Unable to find background connection to remove");
@@ -339,8 +337,7 @@ void dump(int fd) {
 
   dprintf(fd, "\tdevices attempting connection: %d", (int)bgconn_dev.size());
   for (const auto& entry : bgconn_dev) {
-    // TODO: confirm whether we need to replace this
-    dprintf(fd, "\n\t * %s: ", ADDRESS_TO_LOGGABLE_CSTR(entry.first));
+    dprintf(fd, "\n\t * %s: ", entry.first.ToString().c_str());
 
     if (!entry.second.doing_direct_conn.empty()) {
       dprintf(fd, "\n\t\tapps doing direct connect: ");
