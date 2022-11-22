@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97b272c3_97d833a5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-22T20:44:41Z",
+      "side": 1,
+      "message": "can you just use the GD LruCache instead?",
+      "range": {
+        "startLine": 197,
+        "startChar": 21,
+        "endLine": 197,
+        "endChar": 35
+      },
+      "revId": "4a8ca40da210c4d48d8ff294b72d109ceda95b99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
