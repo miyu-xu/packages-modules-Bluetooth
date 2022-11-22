@@ -41,6 +41,8 @@ using namespace std::chrono_literals;
 
 namespace {
 
+const char* kShortArgs = "d:l:";
+
 int start_discovery([[maybe_unused]] unsigned int num_loops,
                     const RawAddress& raw_address) {
   RawAddress bd_addr{raw_address};
