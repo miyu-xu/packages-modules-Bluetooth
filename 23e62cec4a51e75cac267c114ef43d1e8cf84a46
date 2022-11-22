@@ -45,6 +45,30 @@
       },
       "revId": "23e62cec4a51e75cac267c114ef43d1e8cf84a46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ddfecc4_24a129db",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1682,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T20:14:18Z",
+      "side": 1,
+      "message": "yes, but that\u0027s harmles, and actually must stay for LE only devices, i.e. HID and Hearing Aids",
+      "parentUuid": "8b5733d7_51b8144b",
+      "range": {
+        "startLine": 1682,
+        "startChar": 8,
+        "endLine": 1682,
+        "endChar": 24
+      },
+      "revId": "23e62cec4a51e75cac267c114ef43d1e8cf84a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
