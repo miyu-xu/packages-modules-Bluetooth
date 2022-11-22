@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92f54cb_d6737e69",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-22T15:04:24Z",
+      "side": 1,
+      "message": "the comment above does not match what is actually checked.\ne.g. this is not clear why bd_addr is compared here.",
+      "range": {
+        "startLine": 1528,
+        "startChar": 10,
+        "endLine": 1529,
+        "endChar": 46
+      },
+      "revId": "990bb946242d01aed2f12795858770c1efdaefc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a83edbfd_160a3d8f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1590,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-22T15:04:24Z",
+      "side": 1,
+      "message": "could you please mention here in this comment, where and when le discovery will be scheduled?",
+      "revId": "990bb946242d01aed2f12795858770c1efdaefc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
