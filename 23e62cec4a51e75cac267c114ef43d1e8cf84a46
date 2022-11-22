@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb54e321_a578f7f2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1528,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-11-22T20:10:55Z",
+      "side": 1,
+      "message": "this condition will clear pairing_cb at line 1559",
+      "range": {
+        "startLine": 1526,
+        "startChar": 6,
+        "endLine": 1528,
+        "endChar": 67
+      },
+      "revId": "23e62cec4a51e75cac267c114ef43d1e8cf84a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b5733d7_51b8144b",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 10
