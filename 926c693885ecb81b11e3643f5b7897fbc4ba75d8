@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9aef3261_a185da60",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-22T17:51:03Z",
+      "side": 1,
+      "message": "The problem is, if we start advertising in Java but are currently paused, then we don\u0027t ever send the callbacks up to Java layer.\n\nI will add a bit tracking whether this is the \"first\" time the set is enabled, and only invoke the callback if so.",
+      "parentUuid": "be29c72d_3eba5e9a",
+      "range": {
+        "startLine": 1092,
+        "startChar": 25,
+        "endLine": 1092,
+        "endChar": 59
+      },
+      "revId": "926c693885ecb81b11e3643f5b7897fbc4ba75d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f5c06ea_c1e1b7ef",
         "filename": "system/gd/hci/le_advertising_manager.cc",
         "patchSetId": 3
