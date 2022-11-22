@@ -339,6 +339,10 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
 
       // ASHA
       .GetHearingAidDeviceCount = HearingAid::GetDeviceCount};
+
+      // LE Audio
+      .IsLeAudioClientRunning = LeAudioClient::IsLeAudioClientRunning};
+
   static auto interfaceForCore =
       CoreInterfaceImpl(&eventCallbacks, &configInterface, &msbcCodecInterface,
                         &profileInterface);
