@@ -53,7 +53,7 @@ java_library {
 
 // Bluetooth JNI
 
-cc_library_shared {
+cc_library {
     name: "libbluetooth_jni",
     defaults: ["fluoride_full_defaults"],
     srcs: ["jni/**/*.cpp"],
@@ -69,6 +69,9 @@ cc_library_shared {
         "libbluetooth-types",
         "libbluetooth",
         "libc++fs",
+    ],
+    whole_static_libs: [
+        "libbluetooth_jni_rs",
     ],
     sanitize: {
         scs: true,
