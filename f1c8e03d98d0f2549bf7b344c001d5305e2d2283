@@ -182,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a1cc758_546ac9a6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T11:59:41Z",
+      "side": 1,
+      "message": "It handles the mentioned scenario.",
+      "parentUuid": "1395ef55_9134218b",
+      "range": {
+        "startLine": 864,
+        "startChar": 20,
+        "endLine": 864,
+        "endChar": 43
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36f5cb81_239e36f4",
@@ -289,6 +313,30 @@
       "side": 1,
       "message": "This is not the HFPC API. AdapterService has a reference of the HeadsetClientService. AdapterService is calling these methods of HeadsetClientService when the BluetoothDevice APIs are invoked.",
       "parentUuid": "dc464788_7fd926bb",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 17
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44e13fe8_c698c2bc",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T11:59:41Z",
+      "side": 1,
+      "message": "Removing the binders",
+      "parentUuid": "839cc059_bfec800d",
       "range": {
         "startLine": 466,
         "startChar": 0,
@@ -698,6 +746,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae129bd_07aa00da",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T11:59:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69f64512_6db7d0ef",
+      "range": {
+        "startLine": 158,
+        "startChar": 32,
+        "endLine": 158,
+        "endChar": 51
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d85977b6_66d0daee",
@@ -758,6 +830,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "Can we move them to the BluetoothAudioPolicy since the API is in BluetoothDevice instead of HFPC?",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 747,
+        "endChar": 60
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "951b98d5_249d9844",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T11:59:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5d28c66_8033e29d",
       "range": {
         "startLine": 731,
         "startChar": 0,
