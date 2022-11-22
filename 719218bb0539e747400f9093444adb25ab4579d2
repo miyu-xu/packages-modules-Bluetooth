@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c585b2_39bc94b8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-22T18:36:32Z",
+      "side": 1,
+      "message": "I\u0027ve tested to read the name in the datatype but it doesn\u0027t work. I\u0027ll let the GetRemoteName",
+      "parentUuid": "15fb961f_69527b92",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d0d7342_ac95fdda",
