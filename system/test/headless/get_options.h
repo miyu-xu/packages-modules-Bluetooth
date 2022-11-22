@@ -18,13 +18,33 @@
 
 #include <cstddef>
 #include <list>
+#include <map>
 #include <string>
+
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
 namespace bluetooth {
 namespace test {
 namespace headless {
+
+class ModOpt {
+ public:
+  ModOpt() = default;
+  ModOpt(const char* optarg);
+  virtual ~ModOpt() {}
+
+  std::list<std::string> GetStringList() const { return string_list_; }
+  std::map<std::string, std::string> GetDefaultShortArgMap() const {
+    return arg_map_;
+  }
+
+  std::string GetArg(std::string arg_key, std::string arg_default) const;
+
+ protected:
+  std::list<std::string> string_list_;
+  std::map<std::string, std::string> arg_map_;
+};
 
 class GetOpt {
  public:
@@ -42,11 +62,17 @@ class GetOpt {
 
   const char** StackInitFlags() const;
 
+  template <typename T>
+  const T* get_module_options() const {
+    return static_cast<const T*>(&mod_opt_);
+  }
+
   std::list<RawAddress> device_;
   std::list<std::string> init_flags_;
   std::list<bluetooth::Uuid> uuid_;
   unsigned long loop_{1};
   unsigned long msec_{0};
+  std::string pass_;
 
   bool close_stderr_{true};
   bool clear_logcat_{false};
@@ -55,13 +81,15 @@ class GetOpt {
 
   static std::vector<std::string> Split(std::string);
 
+  static void ParseValue(char* optarg, std::list<std::string>& my_list);
+
  private:
-  void ParseValue(char* optarg, std::list<std::string>& my_list);
   void ProcessOption(int option_index, char* optarg);
   void ParseStackInitFlags();
   const char* name_{nullptr};
   const char** stack_init_flags_{nullptr};
   bool valid_{true};
+  ModOpt mod_opt_;
 };
 
 }  // namespace headless
