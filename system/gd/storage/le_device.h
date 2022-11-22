@@ -88,10 +88,13 @@ class LeDevice {
   // Get LE address type of the key address
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(AddressType, hci::AddressType, "AddrType");
   // IRK + Identity Address Type + Identity Address
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LocalId, std::string, "LE_KEY_LID");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(PeerId, std::string, "LE_KEY_PID");
   // LTK + RAND + EDIV + Security Level + Key Length
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LocalEncryptionKeys, std::string, "LE_KEY_LENC");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(PeerEncryptionKeys, std::string, "LE_KEY_PENC");
   // counter + CSRK (connection signature resolving key) + security level
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LocalSignatureResolvingKeys, std::string, "LE_KEY_LCSRK");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(PeerSignatureResolvingKeys, std::string, "LE_KEY_PCSRK");
 
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LegacyPseudoAddress, hci::Address, "LeLegacyPseudoAddr");

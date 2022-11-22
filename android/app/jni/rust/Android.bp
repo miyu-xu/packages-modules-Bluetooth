@@ -1,0 +1,20 @@
+rust_ffi {
+    name: "libbluetooth_jni_rs",
+    crate_name: "bluetooth_jni_rs",
+    defaults: ["libbluetooth_core_rs_defaults"],
+    srcs: ["lib.rs"],
+    prefer_rlib: true,
+    rustlibs: [
+        "libjni",
+        "liblog_rust",
+        "libandroid_logger",
+
+        "libbluetooth_core_rs",
+    ],
+    static_libs: [
+        "libbluetooth_core_rs_bridge",
+    ],
+    ld_flags: [
+        "-flto",
+    ],
+}
