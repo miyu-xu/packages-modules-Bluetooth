@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa04f39_22ecc33c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-22T21:47:29Z",
+      "side": 1,
+      "message": "Can you try again to pass this test AVCTP/CT/CCM/BV-02-C ?\n\nIt doesn\u0027t pass in presubmit",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "234332d3bbf495acf5c88fbe7f0be3c223b6f48e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
