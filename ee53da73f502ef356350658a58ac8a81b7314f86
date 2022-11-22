@@ -16,6 +16,24 @@
       "message": "Keep as Option\u003cGatt\u003e and use this for stack init:\n```\nself.gatt \u003d Gatt::new().and_then(|gatt| Some(Arc::new(Mutex::new(gatt))));\n```",
       "revId": "ee53da73f502ef356350658a58ac8a81b7314f86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd8990a3_a02bbe64",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1706,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-22T22:31:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "859cac35_14681ae3",
+      "revId": "ee53da73f502ef356350658a58ac8a81b7314f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
