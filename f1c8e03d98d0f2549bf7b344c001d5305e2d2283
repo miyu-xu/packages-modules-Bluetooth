@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1afa4632_ba504554",
+        "filename": "android/app/jni/com_android_bluetooth_hfpclient.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "254093c0_df2947de",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 51
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56392531_459151a2",
@@ -77,6 +101,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "This can be null if HFP state machine is empty",
+      "range": {
+        "startLine": 798,
+        "startChar": 27,
+        "endLine": 798,
+        "endChar": 48
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27c6b81b_8eac1b75",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56392531_459151a2",
       "range": {
         "startLine": 798,
         "startChar": 27,
@@ -112,6 +160,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1395ef55_9134218b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "There\u0027s a logic inside setHfpActiveDevice method that checks what is the connecting audio policy. Shouldn\u0027t this prevent that?",
+      "parentUuid": "54a39f6c_f40265cb",
+      "range": {
+        "startLine": 864,
+        "startChar": 20,
+        "endLine": 864,
+        "endChar": 43
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36f5cb81_239e36f4",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 8
@@ -123,6 +195,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "Is this for AG or HF?",
+      "range": {
+        "startLine": 602,
+        "startChar": 12,
+        "endLine": 602,
+        "endChar": 24
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "151372fd_a89949de",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "audio policy send by the HF device. Updated method name.",
+      "parentUuid": "36f5cb81_239e36f4",
       "range": {
         "startLine": 602,
         "startChar": 12,
@@ -181,6 +277,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "839cc059_bfec800d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "This is not the HFPC API. AdapterService has a reference of the HeadsetClientService. AdapterService is calling these methods of HeadsetClientService when the BluetoothDevice APIs are invoked.",
+      "parentUuid": "dc464788_7fd926bb",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 17
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d06037ba_a32af29d",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
         "patchSetId": 8
@@ -192,6 +312,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "This will create log spamming",
+      "range": {
+        "startLine": 86,
+        "startChar": 39,
+        "endLine": 86,
+        "endChar": 43
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe2c6b52_aa2faf32",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d06037ba_a32af29d",
       "range": {
         "startLine": 86,
         "startChar": 39,
@@ -225,6 +369,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "713f7a9d_0db526f7",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/NativeInterface.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da00fa57_db4ac39c",
+      "range": {
+        "startLine": 38,
+        "startChar": 39,
+        "endLine": 38,
+        "endChar": 43
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7138829f_42e34d10",
@@ -238,6 +406,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "HF/CT",
+      "range": {
+        "startLine": 29,
+        "startChar": 45,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61dd8a7_3d46e288",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7138829f_42e34d10",
       "range": {
         "startLine": 29,
         "startChar": 45,
@@ -271,6 +463,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8964fd08_a71a9779",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e6f9459_465a9709",
+      "range": {
+        "startLine": 31,
+        "startChar": 74,
+        "endLine": 31,
+        "endChar": 76
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19c13bda_7d45f5b1",
@@ -284,6 +500,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "is preferred",
+      "range": {
+        "startLine": 64,
+        "startChar": 27,
+        "endLine": 64,
+        "endChar": 47
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28207638_a68ead8a",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c13bda_7d45f5b1",
       "range": {
         "startLine": 64,
         "startChar": 27,
@@ -317,6 +557,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae2feab8_754e6080",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa83c2fc_f6da6eaa",
+      "range": {
+        "startLine": 66,
+        "startChar": 27,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33ef7ff1_14e43608",
@@ -340,6 +604,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec733992_4ecde8bb",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33ef7ff1_14e43608",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 55
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ae5b1f2_519f9214",
@@ -353,6 +641,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "I don\u0027t see anywhere using it",
+      "range": {
+        "startLine": 116,
+        "startChar": 32,
+        "endLine": 116,
+        "endChar": 51
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be312fbb_6c06be3b",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "It is getting used in the HeadsetSystemInterface#answerCall method.",
+      "parentUuid": "9ae5b1f2_519f9214",
       "range": {
         "startLine": 116,
         "startChar": 32,
@@ -409,6 +721,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad699442_560e19c2",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3252,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d85977b6_66d0daee",
+      "range": {
+        "startLine": 3252,
+        "startChar": 47,
+        "endLine": 3252,
+        "endChar": 54
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5d28c66_8033e29d",
@@ -455,6 +791,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "baa445ca_31ed992f",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1673,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "These were the HFP APIs. I thought I removed them but I might have accidentally brought them back. Thanks for pointing out.",
+      "parentUuid": "1d7694e1_ee45ef8a",
+      "range": {
+        "startLine": 1673,
+        "startChar": 15,
+        "endLine": 1673,
+        "endChar": 44
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc9ffef0_40440dd3",
@@ -468,6 +828,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "Please change it back if this is for debugging during the development",
+      "range": {
+        "startLine": 127,
+        "startChar": 2,
+        "endLine": 127,
+        "endChar": 20
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c16c2758_ae8c9b8c",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc9ffef0_40440dd3",
       "range": {
         "startLine": 127,
         "startChar": 2,
@@ -501,6 +885,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b3a704a_234b186d",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "315815e8_d2233444",
+      "range": {
+        "startLine": 172,
+        "startChar": 2,
+        "endLine": 172,
+        "endChar": 20
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff65f90a_00995ec8",
@@ -514,6 +922,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "Does this need to be warning?",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 200,
+        "endChar": 20
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c11a988_2bc28e24",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff65f90a_00995ec8",
       "range": {
         "startLine": 200,
         "startChar": 2,
@@ -547,6 +979,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6bb88d4_84412c43",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a5720ea_51337e9a",
+      "range": {
+        "startLine": 207,
+        "startChar": 2,
+        "endLine": 207,
+        "endChar": 10
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecfb8d39_0b53a7d3",
@@ -560,6 +1016,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "Please change it back if this is for debugging during the development",
+      "range": {
+        "startLine": 244,
+        "startChar": 2,
+        "endLine": 244,
+        "endChar": 10
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c520cd55_b4fff3af",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecfb8d39_0b53a7d3",
       "range": {
         "startLine": 244,
         "startChar": 2,
@@ -593,6 +1073,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "924473e7_c60e0bb7",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c0b0340_51dd2325",
+      "range": {
+        "startLine": 289,
+        "startChar": 2,
+        "endLine": 289,
+        "endChar": 10
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0640211_98439018",
@@ -616,6 +1120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce5c42f5_78285678",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1887,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0640211_98439018",
+      "range": {
+        "startLine": 1887,
+        "startChar": 2,
+        "endLine": 1887,
+        "endChar": 20
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2432beb_3d69951b",
@@ -629,6 +1157,30 @@
       "writtenOn": "2022-11-22T03:42:52Z",
       "side": 1,
       "message": "Please change it back if this is for debugging during the development",
+      "range": {
+        "startLine": 2247,
+        "startChar": 2,
+        "endLine": 2247,
+        "endChar": 20
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "441cb031_5a898b21",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2247,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-22T07:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2432beb_3d69951b",
       "range": {
         "startLine": 2247,
         "startChar": 2,
