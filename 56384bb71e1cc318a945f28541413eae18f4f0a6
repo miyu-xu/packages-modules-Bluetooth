@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76f3e5c8_da413160",
+        "filename": "system/embdrv/g722/fuzzer/g722_fuzzer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1117108
+      },
+      "writtenOn": "2022-11-22T18:20:56Z",
+      "side": 1,
+      "message": "Done.\n\nThey are doing `\u0026 G722_FORMAT_DAC12`, and G722_FORMAT_DAC12\u003d4, but an `int` is more future proof!",
+      "parentUuid": "6b593ea1_8b91f2f1",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 59
+      },
+      "revId": "56384bb71e1cc318a945f28541413eae18f4f0a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "471aded2_c6b3d126",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-22T17:36:19Z",
       "side": 1,
       "message": "You can apply the same input to both encode and decode, no need separate process.",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 22
+      },
+      "revId": "56384bb71e1cc318a945f28541413eae18f4f0a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "758b3b82_72cb2e43",
+        "filename": "system/embdrv/g722/fuzzer/g722_fuzzer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1117108
+      },
+      "writtenOn": "2022-11-22T18:20:56Z",
+      "side": 1,
+      "message": "I see value in decoupling the encoding and decoding into separate coverage flows.\n\nOne example case where it make difference is when the first fuzz call, for example fuzz_encode, crashes. If we call fuzz_encode and fuzz_decode successively on the same data, this would not let fuzzer to call fuzz_decode, and this may prevent fuzzer from discovering some new branch in decoding.\n\nWhereas selecting either encode or decode lets fuzzer explore coverage for encode and decode independently of each other.",
+      "parentUuid": "471aded2_c6b3d126",
       "range": {
         "startLine": 120,
         "startChar": 2,
