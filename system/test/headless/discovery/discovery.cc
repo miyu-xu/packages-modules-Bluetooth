@@ -24,7 +24,7 @@
 #include "btif/include/btif_api.h"
 #include "osi/include/log.h"  // android log only
 #include "stack/include/sdp_api.h"
-#include "test/headless/bt_property.h"
+// #include "test/headless/bt_property.h"
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"
 #include "test/headless/interface.h"
