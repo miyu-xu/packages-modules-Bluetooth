@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f97970d5_aee6f938",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T19:55:36Z",
+      "side": 1,
+      "message": "I would prefer to not have separate patch for just adding comment here and below, can we please keep it ?",
+      "parentUuid": "9c01f861_6786b262",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4bc73e2_6b0e4403",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-22T15:40:17Z",
       "side": 1,
       "message": "this seems to be part of other patch.",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e87956b6_11a1a217",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T19:55:36Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "b4bc73e2_6b0e4403",
       "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bad576d0_c1c2c810",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1539,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T19:55:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "570cbf06_5d23b02b",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f49ea1e_65022727",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b6ed25a_75665494",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1602,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T19:55:36Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "9f49ea1e_65022727",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7048fbe_b7a740b9",
@@ -82,6 +154,24 @@
       "writtenOn": "2022-11-22T15:40:17Z",
       "side": 1,
       "message": "even value is not parsed, where this is defined?",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0491eca6_d2b22e70",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3714,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-22T19:55:36Z",
+      "side": 1,
+      "message": "Now the value is undefined, we can add fields as we with. If this metadata is present, I will assume device is LE Audio capable. Value of bits we can use as we please in future.",
+      "parentUuid": "a7048fbe_b7a740b9",
       "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
