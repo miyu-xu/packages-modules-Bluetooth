@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15fb961f_69527b92",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-22T03:16:44Z",
+      "side": 1,
+      "message": "Sounds good to me but you should always use the public address since `GetRemoteName` in classic only: `GetRemoteName(address\u003dscan.public)`",
+      "parentUuid": "c6736df5_8ac650a8",
+      "revId": "719218bb0539e747400f9093444adb25ab4579d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d0d7342_ac95fdda",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
         "patchSetId": 20
