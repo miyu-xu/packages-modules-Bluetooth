@@ -16,6 +16,24 @@
       "message": "+1 to unblock code owner but looks like this depend on another unlisted CL not yet merged ?",
       "revId": "1daf2dd0bb49750dad84241ee120cef808a71b13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d2bc758_7c737f06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1944185
+      },
+      "writtenOn": "2022-11-22T11:14:17Z",
+      "side": 1,
+      "message": "I\u0027ve merged it separately, aosp/2308000",
+      "parentUuid": "1834fe23_dc400c26",
+      "revId": "1daf2dd0bb49750dad84241ee120cef808a71b13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
