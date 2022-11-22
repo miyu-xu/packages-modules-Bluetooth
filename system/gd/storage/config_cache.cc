@@ -158,8 +158,8 @@ std::optional<std::string> ConfigCache::GetProperty(const std::string& section, 
     auto property_iter = section_iter->second.find(property);
     if (property_iter != section_iter->second.end()) {
       std::string value = property_iter->second;
-      if (os::ParameterProvider::GetBtKeystoreInterface() != nullptr && value == kEncryptedStr) {
-        return os::ParameterProvider::GetBtKeystoreInterface()->get_key(section + "-" + property);
+      if (keystore_interface_ != nullptr && value == kEncryptedStr) {
+        keystore_interface_->GetKey(section + "-" + property);
       }
       return value;
     }
@@ -202,12 +202,10 @@ void ConfigCache::SetProperty(std::string section, std::string property, std::st
   }
   if (section_iter != persistent_devices_.end()) {
     bool is_encrypted = value == kEncryptedStr;
-    if ((!value.empty()) && os::ParameterProvider::GetBtKeystoreInterface() != nullptr &&
-        os::ParameterProvider::IsCommonCriteriaMode() && InEncryptKeyNameList(property) && !is_encrypted) {
-      if (os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(
-              section + "-" + property, value)) {
-        value = kEncryptedStr;
-      }
+    if (!value.empty() && keystore_interface_ != nullptr && os::ParameterProvider::IsCommonCriteriaMode() &&
+        InEncryptKeyNameList(property) && !is_encrypted) {
+      keystore_interface_->StoreKey(section + "-" + property, value);
+      value = kEncryptedStr;
     }
     section_iter->second.insert_or_assign(property, std::move(value));
     PersistentConfigChangedCallback();
@@ -261,9 +259,8 @@ bool ConfigCache::RemoveProperty(const std::string& section, const std::string& 
     }
     if (value.has_value()) {
       PersistentConfigChangedCallback();
-      if (os::ParameterProvider::GetBtKeystoreInterface() != nullptr && os::ParameterProvider::IsCommonCriteriaMode() &&
-          InEncryptKeyNameList(property)) {
-        os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(section + "-" + property, "");
+      if (keystore_interface_ != nullptr && os::ParameterProvider::IsCommonCriteriaMode() && InEncryptKeyNameList(property)) {
+        keystore_interface_->StoreKey(section + "-" + property, "");
       }
       return true;
     } else {
@@ -281,33 +278,9 @@ bool ConfigCache::RemoveProperty(const std::string& section, const std::string& 
   return false;
 }
 
-void ConfigCache::ConvertEncryptOrDecryptKeyIfNeeded() {
+void ConfigCache::ProvideKeystoreInterface(BluetoothKeystoreInterface *interface) {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
-  LOG_INFO("%s", __func__);
-  auto persistent_sections = GetPersistentSections();
-  for (const auto& section : persistent_sections) {
-    auto section_iter = persistent_devices_.find(section);
-    for (const auto& property : kEncryptKeyNameList) {
-      auto property_iter = section_iter->second.find(std::string(property));
-      if (property_iter != section_iter->second.end()) {
-        bool is_encrypted = property_iter->second == kEncryptedStr;
-        if ((!property_iter->second.empty()) && os::ParameterProvider::GetBtKeystoreInterface() != nullptr &&
-            os::ParameterProvider::IsCommonCriteriaMode() && !is_encrypted) {
-          if (os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(
-                  section + "-" + std::string(property), property_iter->second)) {
-            SetProperty(section, std::string(property), kEncryptedStr);
-          }
-        }
-        if (os::ParameterProvider::GetBtKeystoreInterface() != nullptr && is_encrypted) {
-          std::string value_str =
-              os::ParameterProvider::GetBtKeystoreInterface()->get_key(section + "-" + std::string(property));
-          if (!os::ParameterProvider::IsCommonCriteriaMode()) {
-            SetProperty(section, std::string(property), value_str);
-          }
-        }
-      }
-    }
-  }
+  keystore_interface_ = interface;
 }
 
 bool ConfigCache::IsDeviceSection(const std::string& section) {

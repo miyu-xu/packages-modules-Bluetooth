@@ -52,19 +52,6 @@ class BluetoothKeystoreInterfaceImpl
 
     bluetooth::os::ParameterProvider::SetCommonCriteriaConfigCompareResult(
         CONFIG_COMPARE_ALL_PASS);
-    ConvertEncryptOrDecryptKeyIfNeeded();
-  }
-
-  void ConvertEncryptOrDecryptKeyIfNeeded() {
-    VLOG(2) << __func__;
-    if (!callbacks) {
-      LOG(INFO) << __func__ << " callback isn't ready.";
-      return;
-    }
-    do_in_jni_thread(
-        FROM_HERE, base::Bind([]() {
-          shim::BtifConfigInterface::ConvertEncryptOrDecryptKeyIfNeeded();
-        }));
   }
 
   bool set_encrypt_key_or_remove_key(std::string prefix,

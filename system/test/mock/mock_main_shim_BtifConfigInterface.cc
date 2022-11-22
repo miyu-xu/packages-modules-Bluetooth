@@ -85,8 +85,6 @@ std::vector<std::string>
 bluetooth::shim::BtifConfigInterface::GetPersistentDevices() {
   return std::vector<std::string>();
 }
-void bluetooth::shim::BtifConfigInterface::
-    ConvertEncryptOrDecryptKeyIfNeeded(){};
 void bluetooth::shim::BtifConfigInterface::Save(){};
 void bluetooth::shim::BtifConfigInterface::Flush(){};
 void bluetooth::shim::BtifConfigInterface::Clear(){};

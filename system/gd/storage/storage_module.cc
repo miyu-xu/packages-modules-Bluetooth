@@ -99,6 +99,7 @@ struct StorageModule::impl {
   ConfigCache cache_;
   ConfigCache memory_only_cache_;
   bool has_pending_config_save_ = false;
+  std::unique_ptr<BluetoothKeystoreInterface> keystore_interface_{};
 };
 
 Mutation StorageModule::Modify() {
@@ -106,7 +107,7 @@ Mutation StorageModule::Modify() {
   return Mutation(&pimpl_->cache_, &pimpl_->memory_only_cache_);
 }
 
-ConfigCache* StorageModule::GetConfigCache() {
+ConfigCache* StorageModule::GetConfigCache() const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   return &pimpl_->cache_;
 }
@@ -141,15 +142,13 @@ void StorageModule::SaveImmediately() {
   // 3. now write back up to disk as well
   ASSERT(LegacyConfigFile::FromPath(config_backup_path_).Write(pimpl_->cache_));
   // 4. save checksum if it is running in common criteria mode
-  if (bluetooth::os::ParameterProvider::GetBtKeystoreInterface() != nullptr &&
-      bluetooth::os::ParameterProvider::IsCommonCriteriaMode()) {
-    bluetooth::os::ParameterProvider::GetBtKeystoreInterface()->set_encrypt_key_or_remove_key(
-        kConfigFilePrefix, kConfigFileHash);
+  if (pimpl_->keystore_interface_ != nullptr && bluetooth::os::ParameterProvider::IsCommonCriteriaMode()) {
+    pimpl_->keystore_interface_->StoreKey(kConfigFilePrefix, kConfigFileHash);
   }
 }
 
 void StorageModule::ListDependencies(ModuleList* list) const {
-    list->add<metrics::CounterMetrics>();
+  list->add<metrics::CounterMetrics>();
 }
 
 void StorageModule::Start() {
@@ -199,17 +198,11 @@ void StorageModule::Start() {
   // TODO (b/158035889) Migrate metrics module to GD
   pimpl_ = std::make_unique<impl>(GetHandler(), std::move(config.value()), temp_devices_capacity_);
   SaveDelayed();
-  if (bluetooth::os::ParameterProvider::GetBtKeystoreInterface() != nullptr) {
-    bluetooth::os::ParameterProvider::GetBtKeystoreInterface()->ConvertEncryptOrDecryptKeyIfNeeded();
-  }
 }
 
 void StorageModule::Stop() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   SaveImmediately();
-  if (bluetooth::os::ParameterProvider::GetBtKeystoreInterface() != nullptr) {
-    bluetooth::os::ParameterProvider::GetBtKeystoreInterface()->clear_map();
-  }
   pimpl_.reset();
 }
 
@@ -249,7 +242,7 @@ AdapterConfig StorageModule::GetAdapterConfig() {
   return AdapterConfig(&pimpl_->cache_, &pimpl_->memory_only_cache_, kAdapterSection);
 }
 
-std::vector<Device> StorageModule::GetBondedDevices() {
+std::vector<Device> StorageModule::GetBondedDevices() const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   auto persistent_sections = GetConfigCache()->GetPersistentSections();
   std::vector<Device> result;
@@ -258,6 +251,12 @@ std::vector<Device> StorageModule::GetBondedDevices() {
     result.emplace_back(&pimpl_->cache_, &pimpl_->memory_only_cache_, section);
   }
   return result;
+}
+
+void StorageModule::ProvideKeystoreInterface(std::unique_ptr<BluetoothKeystoreInterface> interface) {
+  std::lock_guard<std::recursive_mutex> lock(mutex_);
+  pimpl_->keystore_interface_ = std::move(interface);
+  pimpl_->cache_.ProvideKeystoreInterface(pimpl_->keystore_interface_.get());
 }
 
 bool StorageModule::is_config_checksum_pass(int check_bit) {

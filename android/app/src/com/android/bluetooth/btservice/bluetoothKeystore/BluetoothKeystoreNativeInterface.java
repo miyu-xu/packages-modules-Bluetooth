@@ -57,6 +57,7 @@ final class BluetoothKeystoreNativeInterface {
      */
     public void init() {
         initNative();
+        testLoggingInRust();
     }
 
     /**
@@ -101,4 +102,6 @@ final class BluetoothKeystoreNativeInterface {
     private static native void classInitNative();
     private native void initNative();
     private native void cleanupNative();
+
+    private native void testLoggingInRust();
 }

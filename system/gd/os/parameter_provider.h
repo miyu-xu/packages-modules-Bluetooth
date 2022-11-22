@@ -45,10 +45,6 @@ class ParameterProvider {
 
   static void OverrideSyspropsFilePath(const std::string& path);
 
-  static bluetooth_keystore::BluetoothKeystoreInterface* GetBtKeystoreInterface();
-
-  static void SetBtKeystoreInterface(bluetooth_keystore::BluetoothKeystoreInterface* bt_keystore);
-
   static bool IsCommonCriteriaMode();
 
   static void SetCommonCriteriaMode(bool enable);

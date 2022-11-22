@@ -34,6 +34,7 @@ public class AdapterApp extends Application {
             Log.d(TAG, "Loading JNI Library");
         }
         System.loadLibrary("bluetooth_jni");
+        System.loadLibrary("bluetooth_jni_rs");
     }
 
     public AdapterApp() {

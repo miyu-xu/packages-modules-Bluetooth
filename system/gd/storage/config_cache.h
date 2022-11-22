@@ -30,6 +30,7 @@
 #include "common/lru_cache.h"
 #include "hci/address.h"
 #include "os/utils.h"
+#include "storage/keystore_interface.h"
 #include "storage/mutation_entry.h"
 
 namespace bluetooth {
@@ -57,6 +58,10 @@ class ConfigCache {
   ConfigCache& operator=(const ConfigCache&) = delete;
 
   virtual ~ConfigCache() = default;
+
+  // Supply the Keystore interface, if in use. Then, key retrieval / storage will be done through this interface
+  // rather than writing to disk. This should be done after the module starts, but before any reads/writes take place.
+  void ProvideKeystoreInterface(BluetoothKeystoreInterface* interface);
 
   // no copy
 
@@ -103,7 +108,6 @@ class ConfigCache {
   virtual void SetProperty(std::string section, std::string property, std::string value);
   virtual bool RemoveSection(const std::string& section);
   virtual bool RemoveProperty(const std::string& section, const std::string& property);
-  virtual void ConvertEncryptOrDecryptKeyIfNeeded();
   // TODO: have a systematic way of doing this instead of specialized methods
   // Remove sections with |property| set
   virtual void RemoveSectionWithProperty(const std::string& property);
@@ -113,8 +117,8 @@ class ConfigCache {
   virtual void SetPersistentConfigChangedCallback(std::function<void()> persistent_config_changed_callback);
 
   // Device config specific methods
-  // TODO: methods here should be moved to a device specific config cache if this config cache is supposed to be generic
-  // Legacy stack has device type inconsistencies, this method is trying to fix it
+  // TODO: methods here should be moved to a device specific config cache if this config cache is supposed to be
+  // generic Legacy stack has device type inconsistencies, this method is trying to fix it
   virtual bool FixDeviceTypeInconsistencies();
 
   // static methods
@@ -135,9 +139,12 @@ class ConfigCache {
   common::ListMap<std::string, common::ListMap<std::string, std::string>> information_sections_;
   // Information about persistent devices, normally paired, will be written to disk
   common::ListMap<std::string, common::ListMap<std::string, std::string>> persistent_devices_;
-  // Information about temporary devices, normally unpaired, will not be written to disk, will be evicted automatically
-  // if capacity exceeds given value during initialization
+  // Information about temporary devices, normally unpaired, will not be written to disk, will be evicted
+  // automatically if capacity exceeds given value during initialization
   common::LruCache<std::string, common::ListMap<std::string, std::string>> temporary_devices_;
+  // Interface to the Keystore module (if active), where we store and load encrypted keys (rather than writing them to
+  // disk)
+  BluetoothKeystoreInterface* keystore_interface_{};
 
   // Convenience method to check if the callback is valid before calling it
   inline void PersistentConfigChangedCallback() const {

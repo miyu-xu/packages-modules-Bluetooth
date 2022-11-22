@@ -399,8 +399,6 @@ static int init(bt_callbacks_t* callbacks, bool start_restricted,
 
   restricted_mode = start_restricted;
 
-  bluetooth::os::ParameterProvider::SetBtKeystoreInterface(
-      bluetooth::bluetooth_keystore::getBluetoothKeystoreInterface());
   bluetooth::os::ParameterProvider::SetCommonCriteriaMode(
       is_common_criteria_mode);
   if (is_bluetooth_uid() && is_common_criteria_mode) {

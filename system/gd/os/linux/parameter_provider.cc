@@ -92,12 +92,6 @@ void ParameterProvider::OverrideSyspropsFilePath(const std::string& path) {
   sysprops_file_path = path;
 }
 
-bluetooth_keystore::BluetoothKeystoreInterface* ParameterProvider::GetBtKeystoreInterface() {
-  return nullptr;
-}
-
-void ParameterProvider::SetBtKeystoreInterface(bluetooth_keystore::BluetoothKeystoreInterface* bt_keystore) {}
-
 bool ParameterProvider::IsCommonCriteriaMode() {
   return false;
 }

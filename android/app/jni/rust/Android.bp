@@ -1,0 +1,102 @@
+rust_ffi {
+    name: "libbluetooth_jni_rs",
+    crate_name: "bluetooth_jni_rs",
+    min_sdk_version: "Tiramisu",
+    srcs: ["lib.rs"],
+    rustlibs: [
+        "libjni",
+        "liblog_rust",
+        "libandroid_logger",
+        "libcxx",
+    ],
+    proc_macros: [
+        "libpaste",
+    ],
+
+    // this library is the generated bridge from Rust JNI into libbluetooth
+    // at a future date we will move it out of app/JNI - there should only be one generated bridge in the whole stack
+    static_libs: [
+        "libbluetooth_jni_rs_bridge",
+    ],
+
+    apex_available: ["com.android.btservices"],
+}
+
+cc_library_static {
+    name: "libbluetooth_jni_rs_bridge",
+    defaults: [
+        "libchrome_support_defaults"
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/android/app/jni/rust",
+    ],
+    static_libs: [
+        "libbt_shim_bridge",
+
+        // these should be replaced with libbluetooth-core once Invisalign is merged into AOSP
+        "avrcp-target-service",
+        "lib-bt-packets",
+        "lib-bt-packets-avrcp",
+        "lib-bt-packets-base",
+        "libbt-bta",
+        "libbt-common",
+        "libbtdevice",
+        "libbtif",
+        "libbt-hci",
+        "libbt-stack",
+        "libbt-utils",
+        "libbtcore",
+        "libosi",
+        "libbt-protos-lite",
+        "libbte",
+        "libbt-sbc-decoder",
+        "libbt-sbc-encoder",
+        "libFraunhoferAAC",
+        "libg722codec",
+        "liblc3",
+        "libudrv-uipc",
+        "libbluetooth_gd", // Gabeldorsche
+        "libbluetooth-dumpsys",
+        "libbluetooth-types",
+        "libflatbuffers-cpp",
+        "libbt_shim_bridge",
+        "libbt-audio-hal-interface",
+        "libaudio-a2dp-hw-utils",
+        "libc++fs",
+    ],
+    shared_libs: [
+        "libflatbuffers-cpp",
+    ],
+    generated_headers: [
+        "cxx-bridge-header",
+        "libbluetooth_jni_rs_bridge_codegen_header",
+
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    export_generated_headers: [
+        "libbluetooth_jni_rs_bridge_codegen_header",
+    ],
+    generated_sources: ["libbluetooth_jni_rs_bridge_codegen"],
+    apex_available: ["com.android.btservices"],
+    min_sdk_version: "33",
+}
+
+genrule {
+    name: "libbluetooth_jni_rs_bridge_codegen",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) >> $(out)",
+    srcs: ["keystore.rs"],
+    out: ["libbluetooth_jni_rs_bridge_codegen.cc"],
+}
+
+genrule {
+    name: "libbluetooth_jni_rs_bridge_codegen_header",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) --header >> $(out)",
+    srcs: ["keystore.rs"],
+    out: ["keystore.rs.h"],
+}

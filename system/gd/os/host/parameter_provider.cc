@@ -100,12 +100,6 @@ std::string ParameterProvider::SyspropsFilePath() {
   return "";
 }
 
-bluetooth_keystore::BluetoothKeystoreInterface* ParameterProvider::GetBtKeystoreInterface() {
-  return nullptr;
-}
-
-void ParameterProvider::SetBtKeystoreInterface(bluetooth_keystore::BluetoothKeystoreInterface* bt_keystore) {}
-
 bool ParameterProvider::IsCommonCriteriaMode() {
   return false;
 }
