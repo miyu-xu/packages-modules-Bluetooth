@@ -83,9 +83,26 @@ int start_scan([[maybe_unused]] unsigned int num_loops) {
         remote_device_properties_params_t params = callback_queue.front();
         callback_queue.pop_front();
         LOG_CONSOLE("Received remote inquiry :%s", STR(params));
-        bt_property_t* prop = params.properties;
-        for (int i = 0; i < params.num_properties; ++i, prop++) {
-          process_property(params.bd_addr, prop);
+
+        for (const auto& property : params.properties) {
+          if (property == nullptr) continue;
+          LOG_CONSOLE(" Property: %s", property->ToString().c_str());
+#if 0
+          switch (property->Type()) {
+            case BT_PROPERTY_BDNAME:
+              LOG_CONSOLE("Name:%s", get_property_type<property::name_t>(property)->get_name().c_str());
+              break;
+            case BT_PROPERTY_CLASS_OF_DEVICE:
+              LOG_CONSOLE("cod:0x%04x", get_property_type<property::class_of_device_t>(property)->get_class_of_device());
+              break;
+            case BT_PROPERTY_TYPE_OF_DEVICE:
+              LOG_CONSOLE("cod:0x%04x", get_property_type<property::type_of_device_t>(property)->get_type_of_device());
+              break;
+            default:
+              LOG_CONSOLE("Received unknown property id:%d", property->Type());
+              break;
+          }
+#endif
         }
       }
     }
