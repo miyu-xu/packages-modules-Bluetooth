@@ -1875,7 +1875,7 @@ jint JNI_OnLoad(JavaVM* jvm, void* reserved) {
   JNIEnv* e;
   int status;
 
-  ALOGV("Bluetooth Adapter Service : loading JNI\n");
+  ALOGI("Bluetooth Adapter Service : loading JNI\n");
 
   // Check JNI version
   if (jvm->GetEnv((void**)&e, JNI_VERSION_1_6)) {
