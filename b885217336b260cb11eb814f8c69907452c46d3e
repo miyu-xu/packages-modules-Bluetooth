@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "846e94ca_173ebdc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-22T06:45:11Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nI have rebased this branch to master. Please check.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "b885217336b260cb11eb814f8c69907452c46d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

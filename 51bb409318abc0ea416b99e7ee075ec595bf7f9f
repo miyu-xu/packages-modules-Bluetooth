@@ -33,6 +33,24 @@
       "message": "Tests are passing locally, please rebase to resolve merge conflict",
       "revId": "51bb409318abc0ea416b99e7ee075ec595bf7f9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f0b1ce_f82ba195",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-11-22T06:45:11Z",
+      "side": 1,
+      "message": "Rebased to master now",
+      "parentUuid": "4dc6f727_654e148d",
+      "revId": "51bb409318abc0ea416b99e7ee075ec595bf7f9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
