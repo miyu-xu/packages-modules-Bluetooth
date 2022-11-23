@@ -21,6 +21,7 @@ import static com.android.bluetooth.opp.BluetoothOppManager.OPP_PREFERENCE_FILE;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.nullable;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.timeout;
@@ -51,6 +52,7 @@ import java.util.List;
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppManagerTest {
     Context mContext;
+    Uri mCursorUri = Uri.parse("content:///not/important");
     @Spy
     BluetoothMethodProxy mCallProxy = BluetoothMethodProxy.getInstance();
 
@@ -156,8 +158,9 @@ public class BluetoothOppManagerTest {
                         Uri.parse("content:///123/456.txt"))), false, true);
         BluetoothDevice device = (mContext.getSystemService(BluetoothManager.class))
                 .getAdapter().getRemoteDevice(address);
+        doReturn(mCursorUri).when(mCallProxy).contentResolverInsert(any(),
+                nullable(Uri.class), nullable(ContentValues.class));
         bluetoothOppManager.startTransfer(device);
-        // add 2 files
         verify(mCallProxy, timeout(5_000)
                 .times(3)).contentResolverInsert(any(), nullable(Uri.class),
                 nullable(ContentValues.class));
@@ -171,8 +174,9 @@ public class BluetoothOppManagerTest {
                 false, true);
         BluetoothDevice device = (mContext.getSystemService(BluetoothManager.class))
                 .getAdapter().getRemoteDevice(address);
+        doReturn(mCursorUri).when(mCallProxy).contentResolverInsert(any(),
+                nullable(Uri.class), nullable(ContentValues.class));
         bluetoothOppManager.startTransfer(device);
-        // add 2 files
         verify(mCallProxy, timeout(5_000).times(1)).contentResolverInsert(any(),
                 nullable(Uri.class), nullable(ContentValues.class));
     }
