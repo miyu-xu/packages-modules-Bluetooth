@@ -16,6 +16,24 @@
       "message": "nit: Prefer to use UNIPUT_SUFFIX.len() instead of hardcoding this size (since it depends on the string below)",
       "revId": "1af4ec16632e14669e80d543c2b5c6d4f0130f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b38f746_14967c13",
+        "filename": "system/gd/rust/linux/utils/src/uinput.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-23T06:38:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c5f6500_67af3fb2",
+      "revId": "1af4ec16632e14669e80d543c2b5c6d4f0130f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
