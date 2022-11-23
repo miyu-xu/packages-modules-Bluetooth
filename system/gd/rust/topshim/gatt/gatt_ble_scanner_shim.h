@@ -102,6 +102,9 @@ class BleScannerIntf : public ScanningCallbacks {
   // Enable/disable scan filter. Gets responses via |OnEnableCallback|.
   void ScanFilterEnable(bool enable);
 
+  // Is MSFT Extension supported?
+  bool IsMsftSupported();
+
   // Adds an MSFT filter. Gets responses via |OnMsftAdvMonitorAddCallback|.
   void MsftAdvMonitorAdd(uint32_t call_id, const RustMsftAdvMonitor& monitor);
 
@@ -171,9 +174,9 @@ class BleScannerIntf : public ScanningCallbacks {
   void OnFilterParamSetupCallback(uint8_t scanner_id, uint8_t avbl_space, uint8_t action_type, uint8_t btm_status);
   void OnFilterConfigCallback(
       uint8_t filt_index, uint8_t filt_type, uint8_t avbl_space, uint8_t action, uint8_t btm_status);
-  void OnMsftAdvMonitorAddCallback(uint32_t call_id, uint8_t monitor_handle, uint8_t status);
-  void OnMsftAdvMonitorRemoveCallback(uint32_t call_id, uint8_t status);
-  void OnMsftAdvMonitorEnableCallback(uint32_t call_id, uint8_t status);
+  void OnMsftAdvMonitorAddCallback(uint32_t call_id, uint8_t monitor_handle, hci::ErrorCode status);
+  void OnMsftAdvMonitorRemoveCallback(uint32_t call_id, hci::ErrorCode status);
+  void OnMsftAdvMonitorEnableCallback(uint32_t call_id, hci::ErrorCode status);
 
   BleScannerInterface* scanner_intf_;
 };

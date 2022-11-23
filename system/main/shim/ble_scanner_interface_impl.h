@@ -52,6 +52,7 @@ class BleScannerInterfaceImpl : public ::BleScannerInterface,
                      FilterConfigCallback cb) override;
   void ScanFilterClear(int filter_index, FilterConfigCallback cb) override;
   void ScanFilterEnable(bool enable, EnableCallback cb) override;
+  bool IsMsftSupported() override;
   void MsftAdvMonitorAdd(MsftAdvMonitor monitor,
                          MsftAdvMonitorAddCallback cb) override;
   void MsftAdvMonitorRemove(uint8_t monitor_handle,

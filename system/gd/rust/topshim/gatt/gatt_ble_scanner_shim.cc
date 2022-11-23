@@ -25,6 +25,7 @@
 #include <vector>
 
 #include "bind_helpers.h"
+#include "hci/hci_packets.h"
 #include "include/hardware/bt_common_types.h"
 #include "rust/cxx.h"
 #include "src/profiles/gatt.rs.h"
@@ -245,6 +246,10 @@ void BleScannerIntf::ScanFilterEnable(bool enable) {
   scanner_intf_->ScanFilterEnable(enable, base::Bind(&BleScannerIntf::OnEnableCallback, base::Unretained(this)));
 }
 
+bool BleScannerIntf::IsMsftSupported() {
+  return scanner_intf_->IsMsftSupported();
+}
+
 void BleScannerIntf::MsftAdvMonitorAdd(uint32_t call_id, const RustMsftAdvMonitor& monitor) {
   scanner_intf_->MsftAdvMonitorAdd(
       internal::ConvertAdvMonitor(monitor),
@@ -347,16 +352,17 @@ void BleScannerIntf::OnFilterConfigCallback(
   rusty::gdscan_filter_config_callback(filter_index, filt_type, avbl_space, action, btm_status);
 }
 
-void BleScannerIntf::OnMsftAdvMonitorAddCallback(uint32_t call_id, uint8_t monitor_handle, uint8_t status) {
-  rusty::gdscan_msft_adv_monitor_add_callback(call_id, monitor_handle, status);
+void BleScannerIntf::OnMsftAdvMonitorAddCallback(
+    uint32_t call_id, uint8_t monitor_handle, hci::ErrorCode status) {
+  rusty::gdscan_msft_adv_monitor_add_callback(call_id, monitor_handle, (uint8_t)status);
 }
 
-void BleScannerIntf::OnMsftAdvMonitorRemoveCallback(uint32_t call_id, uint8_t status) {
-  rusty::gdscan_msft_adv_monitor_remove_callback(call_id, status);
+void BleScannerIntf::OnMsftAdvMonitorRemoveCallback(uint32_t call_id, hci::ErrorCode status) {
+  rusty::gdscan_msft_adv_monitor_remove_callback(call_id, (uint8_t)status);
 }
 
-void BleScannerIntf::OnMsftAdvMonitorEnableCallback(uint32_t call_id, uint8_t status) {
-  rusty::gdscan_msft_adv_monitor_enable_callback(call_id, status);
+void BleScannerIntf::OnMsftAdvMonitorEnableCallback(uint32_t call_id, hci::ErrorCode status) {
+  rusty::gdscan_msft_adv_monitor_enable_callback(call_id, (uint8_t)status);
 }
 
 void BleScannerIntf::OnPeriodicSyncStarted(

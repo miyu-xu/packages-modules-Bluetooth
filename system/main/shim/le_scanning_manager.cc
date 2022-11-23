@@ -30,6 +30,7 @@
 #include "btif/include/btif_common.h"
 #include "hci/address.h"
 #include "hci/le_scanning_manager.h"
+#include "hci/msft.h"
 #include "include/hardware/ble_scanner.h"
 #include "main/shim/ble_scanner_interface_impl.h"
 #include "main/shim/dumpsys.h"
@@ -241,47 +242,33 @@ void BleScannerInterfaceImpl::ScanFilterEnable(bool enable, EnableCallback cb) {
                    base::Bind(cb, action, btm_status_value(BTM_SUCCESS)));
 }
 
+/** Is MSFT Extension supported? */
+bool BleScannerInterfaceImpl::IsMsftSupported() {
+  LOG_INFO("%s in shim layer", __func__);
+
+  return bluetooth::shim::GetMsftExtensionManager()->SupportsMsftExtensions();
+}
+
 /** Adds MSFT filter */
 void BleScannerInterfaceImpl::MsftAdvMonitorAdd(MsftAdvMonitor monitor,
                                                 MsftAdvMonitorAddCallback cb) {
-  // Placeholder implementation.
-  // TODO(b/246404026): Wire with real MSFT HCI commands.
-  get_jni_message_loop()->task_runner()->PostDelayedTask(
-      FROM_HERE,
-      base::Bind(cb, /*monitor_handle=*/1, btm_status_value(BTM_SUCCESS)),
-#if BASE_VER < 931007
-      base::TimeDelta::FromMilliseconds(1000));
-#else
-      base::Milliseconds(1000));
-#endif
+  LOG_INFO("%s in shim layer", __func__);
+  bluetooth::shim::GetMsftExtensionManager()->MsftAdvMonitorAdd(monitor, cb);
 }
 
 /** Removes MSFT filter */
 void BleScannerInterfaceImpl::MsftAdvMonitorRemove(
     uint8_t monitor_handle, MsftAdvMonitorRemoveCallback cb) {
-  // Placeholder implementation.
-  // TODO(b/246404026): Wire with real MSFT HCI commands.
-  get_jni_message_loop()->task_runner()->PostDelayedTask(
-      FROM_HERE, base::Bind(cb, btm_status_value(BTM_SUCCESS)),
-#if BASE_VER < 931007
-      base::TimeDelta::FromMilliseconds(1000));
-#else
-      base::Milliseconds(1000));
-#endif
+  LOG_INFO("%s in shim layer", __func__);
+  bluetooth::shim::GetMsftExtensionManager()->MsftAdvMonitorRemove(
+      monitor_handle, cb);
 }
 
 /** Enable / disable MSFT scan filter */
 void BleScannerInterfaceImpl::MsftAdvMonitorEnable(
     bool enable, MsftAdvMonitorEnableCallback cb) {
-  // Placeholder implementation.
-  // TODO(b/246404026): Wire with real MSFT HCI commands.
-  get_jni_message_loop()->task_runner()->PostDelayedTask(
-      FROM_HERE, base::Bind(cb, btm_status_value(BTM_SUCCESS)),
-#if BASE_VER < 931007
-      base::TimeDelta::FromMilliseconds(1000));
-#else
-      base::Milliseconds(1000));
-#endif
+  LOG_INFO("%s in shim layer", __func__);
+  bluetooth::shim::GetMsftExtensionManager()->MsftAdvMonitorEnable(enable, cb);
 }
 
 /** Sets the LE scan interval and window in units of N*0.625 msec */

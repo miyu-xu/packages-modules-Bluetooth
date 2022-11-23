@@ -52,6 +52,7 @@ class AclManager;
 class LeAdvertisingManager;
 class LeScanningManager;
 class VendorSpecificEventManager;
+class MsftExtensionManager;
 }
 
 namespace l2cap {
@@ -98,6 +99,7 @@ hci::AclManager* GetAclManager();
 hci::VendorSpecificEventManager* GetVendorSpecificEventManager();
 activity_attribution::ActivityAttribution* GetActivityAttribution();
 metrics::CounterMetrics* GetCounterMetrics();
+hci::MsftExtensionManager* GetMsftExtensionManager();
 
 }  // namespace shim
 }  // namespace bluetooth
