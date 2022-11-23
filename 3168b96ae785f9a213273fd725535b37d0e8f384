@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cee04a3_125bc412",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-23T01:56:05Z",
+      "side": 1,
+      "message": "Echoing comments from our meeting, let\u0027s put all of these behind a flag",
+      "revId": "3168b96ae785f9a213273fd725535b37d0e8f384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
