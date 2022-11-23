@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ea34785_50dfe4d5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-23T06:42:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a4bbb43_86576d91",
+      "range": {
+        "startLine": 799,
+        "startChar": 0,
+        "endLine": 800,
+        "endChar": 61
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "047f06f1_351a22c6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-23T02:01:09Z",
       "side": 1,
       "message": "Please implement tests in AdapterServiceTest for the added methods.",
+      "range": {
+        "startLine": 5676,
+        "startChar": 15,
+        "endLine": 5676,
+        "endChar": 44
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0da229c0_37d0c2cf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 5676,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-23T06:42:39Z",
+      "side": 1,
+      "message": "This is the service method for the API in BluetoothDevice. There\u0027s no other use case of it. Shouldn\u0027t the test fall under CTS test?",
+      "parentUuid": "047f06f1_351a22c6",
       "range": {
         "startLine": 5676,
         "startChar": 15,
