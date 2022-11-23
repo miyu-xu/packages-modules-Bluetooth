@@ -4393,7 +4393,7 @@ public class AdapterService extends Service {
     }
 
     /**
-     * Sets device as the active devices for the profiles passed into the function
+     * Sets device as the active devices for the profiles passed into the function.
      *
      * @param device is the remote bluetooth device
      * @param profiles is a constant that references for which profiles we'll be setting the remote
@@ -4427,16 +4427,17 @@ public class AdapterService extends Service {
                 return false;
         }
 
-        if (mLeAudioService != null && (device == null
-                || mLeAudioService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
-            Log.i(TAG, "setActiveDevice: Setting active Le Audio device " + device);
-            mLeAudioService.setActiveDevice(device);
-        }
-
-        if (setA2dp && mA2dpService != null && (device == null
+        boolean a2dpSupported = mA2dpService != null && (device == null
                 || mA2dpService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean hfpSupported = mHeadsetService != null && (device == null
+                || mHeadsetService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean leAudioSupported = mLeAudioService != null && (device == null
+                || mLeAudioService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        if (setA2dp && a2dpSupported) {
             Log.i(TAG, "setActiveDevice: Setting active A2dp device " + device);
             mA2dpService.setActiveDevice(device);
         }
@@ -4448,11 +4449,22 @@ public class AdapterService extends Service {
             mHearingAidService.setActiveDevice(device);
         }
 
-        if (setHeadset && mHeadsetService != null && (device == null
-                || mHeadsetService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
+        if (setHeadset && hfpSupported) {
             Log.i(TAG, "setActiveDevice: Setting active Headset " + device);
             mHeadsetService.setActiveDevice(device);
+        }
+
+        if (leAudioSupported) {
+            // For dual mode audio devices, only make le audio active if it's active for a2dp & hfp
+            if (hfpSupported && a2dpSupported
+                    && (!mHeadsetService.getActiveDevice().equals(device)
+                    || !mA2dpService.getActiveDevice().equals(device))) {
+                Log.i(TAG, "Cannot set device: " + device + " as active for Le Audio because "
+                        + "it is not active for a2dp and hfp");
+            } else {
+                Log.i(TAG, "setActiveDevice: Setting active Le Audio device " + device);
+                mLeAudioService.setActiveDevice(device);
+            }
         }
 
         return true;
