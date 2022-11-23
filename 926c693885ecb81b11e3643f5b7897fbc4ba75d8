@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fee0238_0b85156d",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-23T01:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aef3261_a185da60",
+      "range": {
+        "startLine": 1092,
+        "startChar": 25,
+        "endLine": 1092,
+        "endChar": 59
+      },
+      "revId": "926c693885ecb81b11e3643f5b7897fbc4ba75d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f5c06ea_c1e1b7ef",
@@ -61,6 +85,30 @@
       "writtenOn": "2022-11-22T07:58:49Z",
       "side": 1,
       "message": "This will trigger call back to Java layer if reg_id \u003d\u003d kIdLocal \u0026\u0026 started.",
+      "range": {
+        "startLine": 1186,
+        "startChar": 32,
+        "endLine": 1186,
+        "endChar": 52
+      },
+      "revId": "926c693885ecb81b11e3643f5b7897fbc4ba75d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a17e41f_0f3920f8",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-11-23T01:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f5c06ea_c1e1b7ef",
       "range": {
         "startLine": 1186,
         "startChar": 32,
