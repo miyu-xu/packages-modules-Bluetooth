@@ -67,8 +67,8 @@ class SDPProxy(ProfileProxy):
         Are all browsable service classes listed below?
 
         0x1800, 0x110A, 0x110C,
-        0x110E, 0x1112, 0x1203, 0x111F, 0x1203, 0x1132, 0x1116, 0x1115, 0x112F,
-        0x1105
+        0x110E, 0x110F, 0x1112, 0x1203, 0x111F, 0x1203, 0x1132, 0x1116, 0x1115,
+        0x112F, 0x1105
         """
         """
         This is the decoded list of UUIDs:
@@ -76,6 +76,7 @@ class SDPProxy(ProfileProxy):
             Service Classes and Profiles 0x110A AudioSource
             Service Classes and Profiles 0x110C A/V_RemoteControlTarget
             Service Classes and Profiles 0x110E A/V_RemoteControl
+            Service Classes and Profiles 0x110F A/V_RemoteControlController
             Service Classes and Profiles 0x1112 Headset - Audio Gateway
             Service Classes and Profiles 0x1115 PANU
             Service Classes and Profiles 0x1116 NAP
