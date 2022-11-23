@@ -39,6 +39,30 @@
       },
       "revId": "948329740f87d4bebb5fdb70cef7157c7fc6e358",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28386e2b_1acc3fa3",
+        "filename": "system/embdrv/g722/fuzzer/g722_fuzzer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1117108
+      },
+      "writtenOn": "2022-11-23T14:38:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f594634b_f81304f9",
+      "range": {
+        "startLine": 108,
+        "startChar": 24,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "948329740f87d4bebb5fdb70cef7157c7fc6e358",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
