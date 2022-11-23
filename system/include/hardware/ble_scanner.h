@@ -109,6 +109,12 @@ class ScanningCallbacks {
                                          RawAddress address) = 0;
 };
 
+namespace bluetooth {
+namespace hci {
+enum class ErrorCode : uint8_t;
+}  // namespace hci
+}  // namespace bluetooth
+
 class BleScannerInterface {
  public:
   virtual ~BleScannerInterface() = default;
@@ -129,14 +135,14 @@ class BleScannerInterface {
       base::Callback<void(uint8_t /* filt_type */, uint8_t /* avbl_space */,
                           uint8_t /* action */, uint8_t /* btm_status */)>;
 
-  using MsftAdvMonitorAddCallback =
-      base::Callback<void(uint8_t /* monitor_handle */, uint8_t /* status */)>;
+  using MsftAdvMonitorAddCallback = base::Callback<void(
+      uint8_t /* monitor_handle */, bluetooth::hci::ErrorCode /* status */)>;
 
   using MsftAdvMonitorRemoveCallback =
-      base::Callback<void(uint8_t /* status */)>;
+      base::Callback<void(bluetooth::hci::ErrorCode /* status */)>;
 
   using MsftAdvMonitorEnableCallback =
-      base::Callback<void(uint8_t /* status */)>;
+      base::Callback<void(bluetooth::hci::ErrorCode /* status */)>;
 
   /** Registers a scanner with the stack */
   virtual void RegisterScanner(const bluetooth::Uuid& app_uuid,
