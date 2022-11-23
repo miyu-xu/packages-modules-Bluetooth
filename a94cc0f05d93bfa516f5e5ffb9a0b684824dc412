@@ -93,6 +93,30 @@
       },
       "revId": "a94cc0f05d93bfa516f5e5ffb9a0b684824dc412",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55cfb638_75ea0ebb",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T17:11:26Z",
+      "side": 1,
+      "message": "Ack. Thanks for the education.",
+      "parentUuid": "26595615_f469782e",
+      "range": {
+        "startLine": 113,
+        "startChar": 46,
+        "endLine": 113,
+        "endChar": 90
+      },
+      "revId": "a94cc0f05d93bfa516f5e5ffb9a0b684824dc412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
