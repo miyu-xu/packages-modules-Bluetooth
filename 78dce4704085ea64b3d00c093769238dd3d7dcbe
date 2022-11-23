@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e4375e_5142bb7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1137906
+      },
+      "writtenOn": "2022-11-23T16:33:18Z",
+      "side": 1,
+      "message": "lgtm, i will let bluetooth team do the final +2s.",
+      "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
