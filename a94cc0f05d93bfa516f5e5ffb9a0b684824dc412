@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7e5dd38_e5b54242",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-23T00:32:46Z",
+      "side": 1,
+      "message": "....jusat cont speal...",
+      "parentUuid": "116c081a_1dd5843d",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "a94cc0f05d93bfa516f5e5ffb9a0b684824dc412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98807056_e1b13a40",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-23T00:09:17Z",
       "side": 1,
       "message": "why are these changed? could you educate me what these attributes mean?",
+      "range": {
+        "startLine": 113,
+        "startChar": 46,
+        "endLine": 113,
+        "endChar": 90
+      },
+      "revId": "a94cc0f05d93bfa516f5e5ffb9a0b684824dc412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26595615_f469782e",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-23T00:32:46Z",
+      "side": 1,
+      "message": "This will not affecting test neither user facing behavior.\n\nlibbluetooth categorize media info into 3 class: track change, play state change, and queue related change. And they corresponding to different AVRCP notifications: track changed, play status changed, and Now playing changed.\n\nIn BlueZ context, we used to follow the MPRIS convention where: metadata is consisted of {title, artist, album, length}, so when I first implement this, I consider the length as part of the metadata change (track_changed). However, libbluetooth handle length in play_state. So I updated it here.",
+      "parentUuid": "98807056_e1b13a40",
       "range": {
         "startLine": 113,
         "startChar": 46,
