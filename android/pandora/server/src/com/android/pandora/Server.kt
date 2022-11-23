@@ -40,6 +40,7 @@ class Server(context: Context) {
   private var mediaplayer: MediaPlayer
   private var rfcomm: Rfcomm
   private var security: Security
+  private var securityStorage: SecurityStorage
   private var androidInternal: AndroidInternal
   private var grpcServer: GrpcServer
 
@@ -53,6 +54,7 @@ class Server(context: Context) {
     mediaplayer = MediaPlayer(context)
     rfcomm = Rfcomm(context)
     security = Security(context)
+    securityStorage = SecurityStorage(context)
     androidInternal = AndroidInternal(context)
 
     val grpcServerBuilder =
@@ -66,6 +68,7 @@ class Server(context: Context) {
         .addService(mediaplayer)
         .addService(rfcomm)
         .addService(security)
+        .addService(securityStorage)
         .addService(androidInternal)
 
     val bluetoothAdapter = context.getSystemService(BluetoothManager::class.java)!!.adapter
@@ -101,6 +104,7 @@ class Server(context: Context) {
     mediaplayer.deinit()
     rfcomm.deinit()
     security.deinit()
+    securityStorage.deinit()
     androidInternal.deinit()
   }
 }
