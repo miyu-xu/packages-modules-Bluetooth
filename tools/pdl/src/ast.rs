@@ -50,7 +50,7 @@ pub struct Endianness {
     pub value: EndiannessValue,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Clone, Serialize)]
 #[serde(tag = "kind", rename = "tag")]
 pub struct Tag {
     pub id: String,
