@@ -557,10 +557,13 @@ cc_fuzz {
     srcs: [
         "hci/fuzz/acl_manager_fuzz_test.cc",
     ],
+<<<<<<< PATCH SET (977d52 Cleanup OWNERS and Android.bp files)
+=======
     fuzz_config: {
        cc: ["android-bluetooth-security@google.com"],
        componentid: 27441,
     },
+>>>>>>> BASE      (7792e1 Merge changes I1b09f805,I82861bd9,Id51c1821,Ib3a3f68a)
 }
 
 cc_benchmark {
