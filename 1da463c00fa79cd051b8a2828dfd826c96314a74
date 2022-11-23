@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81db0147_44fad9a9",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2022-11-23T09:40:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "df350943_6b3ad3d6",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 20
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e5b7851_66da41b6",
@@ -84,6 +108,30 @@
       "writtenOn": "2022-11-08T08:05:57Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "7e5b7851_66da41b6",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 20
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1dcfe62_154268f5",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2022-11-23T09:40:30Z",
+      "side": 1,
+      "message": "Ack",
       "parentUuid": "7e5b7851_66da41b6",
       "range": {
         "startLine": 184,
@@ -142,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18325c13_0d8349ac",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2022-11-23T09:40:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c1d8a35e_43888afb",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 60
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4b728e1_43482507",
@@ -176,6 +248,30 @@
         "id": 1881060
       },
       "writtenOn": "2022-11-08T08:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b728e1_43482507",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 34
+      },
+      "revId": "1da463c00fa79cd051b8a2828dfd826c96314a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78c24070_12e1af00",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2022-11-23T09:40:30Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "b4b728e1_43482507",
