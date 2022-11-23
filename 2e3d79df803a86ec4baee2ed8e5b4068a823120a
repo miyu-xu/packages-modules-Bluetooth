@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca2fe831_f96afa73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-11-23T09:15:17Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nWe have resolved the comments. Kindly review the same.\n\nAlso added 5 more test cases.\n\nThanks,\nFahad",
+      "revId": "2e3d79df803a86ec4baee2ed8e5b4068a823120a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

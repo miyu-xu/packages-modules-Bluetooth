@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0afbc4d6_2e818490",
+        "filename": "android/pandora/server/src/com/android/pandora/Pbap.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-11-23T09:15:17Z",
+      "side": 1,
+      "message": "Taken care.",
+      "parentUuid": "6fc82f5b_82754eea",
+      "range": {
+        "startLine": 119,
+        "startChar": 34,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "e7295110c26c0944335bfcfbf1c52b5e956eee01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dca3b35a_be99149b",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-18T19:27:24Z",
       "side": 1,
       "message": "Same comments as in aosp/2308848, this function should be defined in _android.proto.\n\nBoth this CL and aosp/2308848 are having this change, I think we can rebase them to avoid having the same modification twice",
+      "range": {
+        "startLine": 62,
+        "startChar": 2,
+        "endLine": 62,
+        "endChar": 79
+      },
+      "revId": "e7295110c26c0944335bfcfbf1c52b5e956eee01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e5a49c_f3f84cbd",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-11-23T09:15:17Z",
+      "side": 1,
+      "message": "Changes are taken care in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2308848",
+      "parentUuid": "dca3b35a_be99149b",
       "range": {
         "startLine": 62,
         "startChar": 2,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e97d08ca_c7681bcf",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-11-23T09:15:17Z",
+      "side": 1,
+      "message": "Changes are taken care in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2308848",
+      "parentUuid": "4301e9aa_95758ec7",
+      "range": {
+        "startLine": 305,
+        "startChar": 2,
+        "endLine": 305,
+        "endChar": 20
+      },
+      "revId": "e7295110c26c0944335bfcfbf1c52b5e956eee01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de1493a4_4eb69c47",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-11-18T19:27:24Z",
       "side": 1,
       "message": "Looking at the code the access_type can have three distincts values and then should be an enum",
+      "range": {
+        "startLine": 307,
+        "startChar": 2,
+        "endLine": 307,
+        "endChar": 25
+      },
+      "revId": "e7295110c26c0944335bfcfbf1c52b5e956eee01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fdaaf41_248e2f7c",
+        "filename": "pandora/interfaces/pandora_experimental/host.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-11-23T09:15:17Z",
+      "side": 1,
+      "message": "Changes are taken care in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2308848",
+      "parentUuid": "de1493a4_4eb69c47",
       "range": {
         "startLine": 307,
         "startChar": 2,
