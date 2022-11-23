@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "041082f7_0f6994ab",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1532,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-23T09:06:15Z",
+      "side": 1,
+      "message": "Ok, so if this comparison is true, it means the  device is just bonded?\n\nIf so, please consider another path which creates some bool value which will keep this information in a clear way and can simplify the code - as in this function there are 3 places doing same comparison:\n1) line 1479\n2) line 1531\n3) line 1548 (here even p_data is used instead of bd_addr already taken from p_data in line 1461).",
+      "range": {
+        "startLine": 1531,
+        "startChar": 10,
+        "endLine": 1532,
+        "endChar": 46
+      },
+      "revId": "f1480a77054632e38c6f42576d651449c05f5146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
