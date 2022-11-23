@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46d56d0f_1fd27c62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T23:07:59Z",
+      "side": 1,
+      "message": "Holding off submit after thanksgiving since this needs to be coordinated with Chrome change",
+      "revId": "68dee96e933d0831f225ae9d1bc86de7820440ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
