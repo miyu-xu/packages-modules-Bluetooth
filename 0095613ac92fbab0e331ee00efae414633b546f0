@@ -22,6 +22,30 @@
       },
       "revId": "0095613ac92fbab0e331ee00efae414633b546f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0614fd93_d06051ad",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T17:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8606fc7_76b23da5",
+      "range": {
+        "startLine": 252,
+        "startChar": 6,
+        "endLine": 252,
+        "endChar": 39
+      },
+      "revId": "0095613ac92fbab0e331ee00efae414633b546f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

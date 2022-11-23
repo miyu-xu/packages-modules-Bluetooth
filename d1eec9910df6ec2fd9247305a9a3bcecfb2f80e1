@@ -52,6 +52,24 @@
       "parentUuid": "cb4181e2_f581b9c5",
       "revId": "d1eec9910df6ec2fd9247305a9a3bcecfb2f80e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53d500a_3ea0a33e",
+        "filename": "system/gd/rust/linux/stack/src/async_helper.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T17:05:43Z",
+      "side": 1,
+      "message": "As discussed offline, the refactor will be a follow up. For now I moved the lock so that the multiple operations happen one after another and not interleave with other MSFT operations.",
+      "parentUuid": "e6656ab1_203651ab",
+      "revId": "d1eec9910df6ec2fd9247305a9a3bcecfb2f80e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
