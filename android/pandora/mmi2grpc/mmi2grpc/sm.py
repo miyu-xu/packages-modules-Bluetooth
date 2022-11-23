@@ -22,6 +22,7 @@ from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._streaming import StreamWrapper
 
 from pandora_experimental.security_grpc import Security
+from pandora_experimental.security_pb2 import LESecurityLevel
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.host_pb2 import ConnectabilityMode, OwnAddressType
 
@@ -55,7 +56,7 @@ class SMProxy(ProfileProxy):
         Please start pairing process.
         """
         if self.connection:
-            self.security.Pair(connection=self.connection)
+            self.security.Secure(connection=connection, le=LESecurityLevel.LE_LEVEL3)
         return "OK"
 
     @assert_description
