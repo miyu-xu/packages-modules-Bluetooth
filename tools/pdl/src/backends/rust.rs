@@ -297,7 +297,7 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> String {
 fn generate_decl(scope: &lint::Scope<'_>, file: &ast::File, decl: &ast::Decl) -> String {
     match decl {
         ast::Decl::Packet { id, fields, parent_id, .. } => {
-            let fields = fields.iter().map(Field::from).collect::<Vec<_>>();
+            let fields = fields.iter().map(|f| Field::from_ast(scope, f)).collect::<Vec<_>>();
             generate_packet_decl(scope, file, id, &fields, parent_id)
         }
         ast::Decl::Enum { id, tags, .. } => generate_enum_decl(id, tags),
@@ -487,6 +487,58 @@ mod tests {
         let actual_code = generate_decl(&scope, &file, decl);
         assert_snapshot_eq(
             "tests/generated/enum_decl_simple_big_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_packet_enum_decl_little_endian() {
+        let file = parse_str(
+            r#"
+              little_endian_packets
+
+              enum Enum7 : 7 {
+                  A = 1,
+                  B = 2,
+              }
+
+              packet Packet_Enum_Field {
+                  a: Enum7,
+                  c: 57,
+              }
+            "#,
+        );
+        let scope = lint::Scope::new(&file).unwrap();
+        let decl = &file.declarations[1];
+        let actual_code = generate_decl(&scope, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_enum_decl_little_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_packet_enum_decl_big_endian() {
+        let file = parse_str(
+            r#"
+              big_endian_packets
+
+              enum Enum7 : 7 {
+                  A = 1,
+                  B = 2,
+              }
+
+              packet Packet_Enum_Field {
+                  a: Enum7,
+                  c: 57,
+              }
+            "#,
+        );
+        let scope = lint::Scope::new(&file).unwrap();
+        let decl = &file.declarations[1];
+        let actual_code = generate_decl(&scope, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_enum_decl_big_endian.rs",
             &rustfmt(&actual_code),
         );
     }
