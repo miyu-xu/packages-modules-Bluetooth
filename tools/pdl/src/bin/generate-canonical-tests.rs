@@ -63,8 +63,12 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
                     .as_u64()
                     .unwrap_or_else(|| panic!("Expected u64 for {key:?} key, got {value}"));
                 let value = proc_macro2::Literal::u64_unsuffixed(value_u64);
+                // The "as u64" cast is there to convert enum values
+                // to integers. We don't have type information
+                // available, so we convert everything to u64 even
+                // fields that are already of type u64.
                 quote! {
-                    assert_eq!(actual.#getter(), #value);
+                    assert_eq!(actual.#getter() as u64, #value);
                 }
             });
 
@@ -89,5 +93,5 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
 fn main() {
     let input_path = std::env::args().nth(1).expect("Need path to input test vectors");
     let module_name = std::env::args().nth(2).expect("Need name for the generated module");
-    generate_unit_tests(&input_path, &["Packet_Scalar_Field"], &module_name);
+    generate_unit_tests(&input_path, &["Packet_Scalar_Field", "Packet_Enum_Field"], &module_name);
 }
