@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a093ec2d_8368f2ea",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothCallTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-23T08:42:01Z",
+      "side": 1,
+      "message": "How about adding postfix \u0027_whenInnerCallIsNull_throwsNPE\u0027 to all methods?",
+      "range": {
+        "startLine": 82,
+        "startChar": 16,
+        "endLine": 82,
+        "endChar": 44
+      },
+      "revId": "efef4fc04e900dfedcefcddfdeaba2d29866319c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
