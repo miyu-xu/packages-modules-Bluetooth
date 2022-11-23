@@ -308,13 +308,6 @@ void AvrcpService::Init(MediaInterface* media_interface,
                              profile_version, 0);
   bta_sys_add_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
 
-  ct_sdp_record_handle = SDP_CreateRecord();
-
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL,
-                             "AV Remote Control", NULL, AVRCP_SUPF_TG_CT,
-                             ct_sdp_record_handle, false, AVRC_REV_1_3, 0);
-  bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
-
   media_interface_ = new MediaInterfaceWrapper(media_interface);
   media_interface->RegisterUpdateCallback(instance_);
 
