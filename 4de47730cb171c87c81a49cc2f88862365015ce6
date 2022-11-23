@@ -16,6 +16,24 @@
       "message": "nit: conforms might do more check than just the size, like checking fixed values.\nSo the previous code might be more convenient for thoses cases.",
       "revId": "4de47730cb171c87c81a49cc2f88862365015ce6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36d94f59_950d8e88",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-11-23T10:50:06Z",
+      "side": 1,
+      "message": "Oh, I see what you mean... I guess I\u0027ve only looked at simple packets so far and that makes the code look odd.\n\nI suggest we simplify it for now and then we can easy make it more complex later (when needed).",
+      "parentUuid": "fd4ac7d3_e3c0497d",
+      "revId": "4de47730cb171c87c81a49cc2f88862365015ce6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
