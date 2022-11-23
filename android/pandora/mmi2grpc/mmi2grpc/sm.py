@@ -15,13 +15,14 @@
 from queue import Empty, Queue
 from threading import Thread
 import sys
-import time
+import asyncio
 
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._streaming import StreamWrapper
 
 from pandora_experimental.security_grpc import Security
+from pandora_experimental.security_pb2 import LESecurityLevel
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.host_pb2 import ConnectabilityMode, OwnAddressType
 
@@ -54,8 +55,10 @@ class SMProxy(ProfileProxy):
         """
         Please start pairing process.
         """
-        if self.connection:
-            self.security.Pair(connection=self.connection)
+        def secure():
+            if self.connection:
+                self.security.Secure(connection=self.connection, le=LESecurityLevel.LE_LEVEL3)
+        Thread(target=secure).start()
         return "OK"
 
     @assert_description
@@ -166,7 +169,7 @@ class SMProxy(ProfileProxy):
     def _handle_pairing_requests(self):
 
         def task():
-            pairing_events = self.security.OnPairing()
+            pairing_events = self.security.OnPairing(asyncio.Queue())
             for event in pairing_events:
                 if event.just_works or event.numeric_comparison:
                     pairing_events.send(event=event, confirm=True)
