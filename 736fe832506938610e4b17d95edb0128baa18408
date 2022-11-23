@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "060b5800_288241ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-23T21:40:00Z",
+      "side": 1,
+      "message": "No. I think this should be fine.\nAs I am new, not sure where these info is from. \nThanks!",
+      "parentUuid": "b6b486fc_927cc4ed",
+      "revId": "736fe832506938610e4b17d95edb0128baa18408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "853a2593_dc5a11cd",
