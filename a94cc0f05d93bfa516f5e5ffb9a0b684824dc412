@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "116c081a_1dd5843d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T00:09:17Z",
+      "side": 1,
+      "message": "nit: typo: \"respond to additional\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "a94cc0f05d93bfa516f5e5ffb9a0b684824dc412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98807056_e1b13a40",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T00:09:17Z",
+      "side": 1,
+      "message": "why are these changed? could you educate me what these attributes mean?",
+      "range": {
+        "startLine": 113,
+        "startChar": 46,
+        "endLine": 113,
+        "endChar": 90
+      },
+      "revId": "a94cc0f05d93bfa516f5e5ffb9a0b684824dc412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
