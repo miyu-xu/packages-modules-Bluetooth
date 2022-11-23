@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5454649b_ba9cad6b",
+        "filename": "android/app/src/com/android/bluetooth/pbap/HandlerForStringBuffer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "s/onInit/init?",
+      "range": {
+        "startLine": 45,
+        "startChar": 19,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34dee2dd_eba1c161",
+        "filename": "android/app/src/com/android/bluetooth/pbap/HandlerForStringBuffer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "Remove this method and make write() public",
+      "range": {
+        "startLine": 58,
+        "startChar": 19,
+        "endLine": 58,
+        "endChar": 33
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1873fe4d_1dbefd70",
+        "filename": "android/app/src/com/android/bluetooth/pbap/HandlerForStringBuffer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "s/onTerminate/terminate?",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 27
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3864ad7_fff8086c",
+        "filename": "android/app/src/com/android/bluetooth/pbap/HandlerForStringBuffer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "s/write/writeVCard?",
+      "range": {
+        "startLine": 73,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 25
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7033f3ee_640a0a25",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/HandlerForStringBufferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "init_withNonNullOwnerVCard_returnsTrue",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 44
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72fd925d_a0b15c55",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/HandlerForStringBufferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "init_withNullOwnerVCard_returnsTrue",
+      "range": {
+        "startLine": 74,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 65
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b4fb44_170359a5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/HandlerForStringBufferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "init_withIOExceptionWhenOpenOutputStream_returnsFalse",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 75
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a5604e_f727d673",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/HandlerForStringBufferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:23:01Z",
+      "side": 1,
+      "message": "This can be handled for testing write() method.",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 77
+      },
+      "revId": "0a4870b62c4f221edcad099a62a3c2e380368940",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
