@@ -629,19 +629,30 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
           bta_ar_reg_avct();
           bta_av_rc_create(&bta_av_cb, AVCT_ACP, 0, BTA_AV_NUM_LINKS + 1);
         }
-        /* create an SDP record as AVRC CT. We create 1.3 for SOURCE
-         * because we rely on feature bits being scanned by external
-         * devices more than the profile version itself.
-         *
-         * We create 1.4 for SINK since we support browsing.
+        /* When the audio sink profile is initialized, we serve as the AVRCP
+         * target, and the AVRCP target service SDP is handled at the AVRCP
+         * service initialization time. Here we register the overall AVRCP
+         * Remote Control, which includes the AVRCP Remote Control Controller,
+         * to the SDP record to maximize the interoperability, as many
+         * peripherals do not proceed correctly to the AVRCP capabilities
+         * negotiation phase without seeing this record. Choose the minimum
+         * suitable version AVRCP v1.4 here to support absolute volume.
          */
-        if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE &&
-            !is_new_avrcp_enabled()) {
-          bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                          p_bta_av_cfg->avrc_ct_cat,
-                          (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
-                          AVRC_REV_1_3);
+        if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
+          bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+          if (is_new_avrcp_enabled()) {
+            bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                            p_bta_av_cfg->avrc_ct_cat,
+                            (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
+                            AVRC_REV_1_4);
+          } else {
+            bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                            p_bta_av_cfg->avrc_ct_cat,
+                            (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
+                            AVRC_REV_1_3);
+          }
         } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK) {
+          /* Force to use version v1.6 as we support browsing */
           bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
                           p_bta_av_cfg->avrc_ct_cat,
                           (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
