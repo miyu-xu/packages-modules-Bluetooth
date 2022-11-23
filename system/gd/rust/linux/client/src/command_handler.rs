@@ -1133,6 +1133,76 @@ impl CommandHandler {
                 }
                 print_info!("Requested for listening using l2cap channel on socket {}", id);
             }
+            "connect" => {
+                // socket connect l2cap <psm>
+                // socket connect rfcomm <uuid>
+                if args.len() != 4 {
+                    print_error!(
+                        "Wrong number of params. Usage: {}",
+                        "socket connect <addr> <l2cap|rfcomm> <psm|uuid>"
+                    );
+                    return;
+                }
+
+                let (addr, sock_type, psm_or_uuid) = (&args[1], &args[2], &args[3]);
+                let device = BluetoothDevice {
+                    address: addr.clone().into(),
+                    name: String::from("Socket Connect Device"),
+                };
+
+                let SocketResult { status, id } = match &sock_type[0..] {
+                    "l2cap" => {
+                        let psm = match psm_or_uuid.clone().parse::<i32>() {
+                            Ok(v) => v,
+                            Err(e) => {
+                                print_error!("Bad PSM given. Error={}", e);
+                                return;
+                            }
+                        };
+
+                        self.context
+                            .lock()
+                            .unwrap()
+                            .socket_manager_dbus
+                            .as_mut()
+                            .unwrap()
+                            .create_insecure_l2cap_channel(callback_id, device, psm)
+                    }
+                    "rfcomm" => {
+                        let uuid = match UuidHelper::parse_string(psm_or_uuid.clone()) {
+                            Some(uu) => uu,
+                            None => {
+                                print_error!("Could not parse given uuid.");
+                                return;
+                            }
+                        };
+
+                        self.context
+                            .lock()
+                            .unwrap()
+                            .socket_manager_dbus
+                            .as_mut()
+                            .unwrap()
+                            .create_insecure_rfcomm_socket_to_service_record(
+                                callback_id,
+                                device,
+                                uuid,
+                            )
+                    }
+                    _ => {
+                        print_error!("Unknown socket type: {}", sock_type);
+                        return;
+                    }
+                };
+
+                if status != BtStatus::Success {
+                    print_error!("Failed to create socket with status={:?} against {}, type {}, with psm/uuid {}",
+                        status, addr, sock_type, psm_or_uuid);
+                } else {
+                    print_info!("Called create socket with result ({:?}, {}) against {}, type {}, with psm/uuid {}",
+                    status, id, addr, sock_type, psm_or_uuid);
+                }
+            }
             _ => {
                 println!("Invalid argument '{}'", args[0]);
             }
