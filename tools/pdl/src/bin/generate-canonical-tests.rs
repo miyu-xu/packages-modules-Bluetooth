@@ -133,5 +133,5 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
 fn main() {
     let input_path = std::env::args().nth(1).expect("Need path to input test vectors");
     let module_name = std::env::args().nth(2).expect("Need name for the generated module");
-    generate_unit_tests(&input_path, &["Packet_Scalar_Field"], &module_name);
+    generate_unit_tests(&input_path, &["Packet_Scalar_Field", "Packet_Enum_Field"], &module_name);
 }

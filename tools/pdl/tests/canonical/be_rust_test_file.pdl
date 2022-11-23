@@ -14,6 +14,13 @@ enum Enum7 : 7 {
     B = 2,
 }
 
+// The parser must be able to handle bit fields with enum values
+// up to 64 bits wide.  The parser should generate a static size guard.
+packet Packet_Enum_Field {
+    a: Enum7,
+    c: 57,
+}
+
 enum MaxDiscriminantEnum : 64 {
      Max = 0xffffffffffffffff,
 }
