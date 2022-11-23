@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa38580_4540563c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-23T22:36:58Z",
+      "side": 1,
+      "message": "How about checking `BluetoothOppManager#startTransfer` is called?\n\nYou will need to add a static method `BluetoothOppManager#setInstanceForTesting()` or something like that.",
+      "range": {
+        "startLine": 83,
+        "startChar": 11,
+        "endLine": 83,
+        "endChar": 58
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a686f606_f50e92c8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-23T22:36:58Z",
+      "side": 1,
+      "message": "Do we need this `(`?",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 9
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58d87efc_e299a8b9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-23T22:36:58Z",
+      "side": 1,
+      "message": "Can we reduce this time? Why this should be 5 seconds?",
+      "range": {
+        "startLine": 87,
+        "startChar": 35,
+        "endLine": 87,
+        "endChar": 40
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "768a810f_b85a9dc4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-23T22:36:58Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 61
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc7ca97_e826f23d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-23T22:36:58Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 109,
+        "startChar": 35,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e06ded_85ae0f7b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-23T22:36:58Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 122,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 61
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
