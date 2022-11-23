@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dfbc579_c6c148a6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:33:15Z",
+      "side": 1,
+      "message": "Please fix",
+      "range": {
+        "startLine": 702,
+        "startChar": 24,
+        "endLine": 702,
+        "endChar": 29
+      },
+      "revId": "95ae7f4787f5c15a2e7e3d7fa01762bc6bd3543f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e38b63_3dea3b64",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:33:15Z",
+      "side": 1,
+      "message": "pushHeader_returnsObexHttpOk",
+      "range": {
+        "startLine": 707,
+        "startChar": 16,
+        "endLine": 707,
+        "endChar": 26
+      },
+      "revId": "95ae7f4787f5c15a2e7e3d7fa01762bc6bd3543f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a76d07d5_1a95cac8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:33:15Z",
+      "side": 1,
+      "message": "pushHeader_withExceptionWhenOpeningOutputStream_returnsObexHttpInternalError\nand ditto for others",
+      "range": {
+        "startLine": 718,
+        "startChar": 16,
+        "endLine": 718,
+        "endChar": 65
+      },
+      "revId": "95ae7f4787f5c15a2e7e3d7fa01762bc6bd3543f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "306fc040_22cb9e94",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:33:15Z",
+      "side": 1,
+      "message": "parseApplicationParameter_withInvalidTripletTagid_retrunsFalse",
+      "range": {
+        "startLine": 740,
+        "startChar": 16,
+        "endLine": 740,
+        "endChar": 56
+      },
+      "revId": "95ae7f4787f5c15a2e7e3d7fa01762bc6bd3543f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "022050d0_94da6d88",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:33:15Z",
+      "side": 1,
+      "message": "Please define this as a constant for this, TRIPLET_TAGID_INVALID",
+      "range": {
+        "startLine": 741,
+        "startChar": 38,
+        "endLine": 741,
+        "endChar": 42
+      },
+      "revId": "95ae7f4787f5c15a2e7e3d7fa01762bc6bd3543f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c111bf61_bb73bfed",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-23T00:33:15Z",
+      "side": 1,
+      "message": "parseApplicationParameter_withPropertySelectorTagid?\nditto for others",
+      "range": {
+        "startLine": 748,
+        "startChar": 16,
+        "endLine": 748,
+        "endChar": 65
+      },
+      "revId": "95ae7f4787f5c15a2e7e3d7fa01762bc6bd3543f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
