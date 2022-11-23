@@ -1406,7 +1406,7 @@ static void bta_ag_hsp_result(tBTA_AG_SCB* p_scb,
         /* if audio connected to this scb AND sco is not opened, open sco */
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
             !bta_ag_sco_is_open(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          // bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
         } else if (result.data.audio_handle == BTA_AG_HANDLE_NONE &&
                    bta_ag_sco_is_open(p_scb)) {
           /* else if no audio at call close sco */
