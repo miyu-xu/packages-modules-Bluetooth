@@ -21,6 +21,7 @@ import static com.android.bluetooth.opp.BluetoothOppManager.OPP_PREFERENCE_FILE;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.nullable;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.timeout;
@@ -157,7 +158,8 @@ public class BluetoothOppManagerTest {
         BluetoothDevice device = (mContext.getSystemService(BluetoothManager.class))
                 .getAdapter().getRemoteDevice(address);
         bluetoothOppManager.startTransfer(device);
-        // add 2 files
+        doReturn("content:///not/important").when(mCallProxy).contentResolverInsert(any(),
+                nullable(Uri.class), nullable(ContentValues.class));
         verify(mCallProxy, timeout(5_000)
                 .times(3)).contentResolverInsert(any(), nullable(Uri.class),
                 nullable(ContentValues.class));
@@ -172,7 +174,8 @@ public class BluetoothOppManagerTest {
         BluetoothDevice device = (mContext.getSystemService(BluetoothManager.class))
                 .getAdapter().getRemoteDevice(address);
         bluetoothOppManager.startTransfer(device);
-        // add 2 files
+        doReturn("content:///not/important").when(mCallProxy).contentResolverInsert(any(),
+                nullable(Uri.class), nullable(ContentValues.class));
         verify(mCallProxy, timeout(5_000).times(1)).contentResolverInsert(any(),
                 nullable(Uri.class), nullable(ContentValues.class));
     }
