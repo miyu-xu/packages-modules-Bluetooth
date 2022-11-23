@@ -303,7 +303,7 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> String {
 fn generate_decl(ctx: &Context<'_>, file: &ast::File, decl: &ast::Decl) -> String {
     match decl {
         ast::Decl::Packet { id, fields, parent_id, .. } => {
-            let fields = fields.iter().map(Field::from).collect::<Vec<_>>();
+            let fields = fields.iter().map(|f| Field::from_ast(ctx, f)).collect::<Vec<_>>();
             generate_packet_decl(ctx, file, id, &fields, parent_id)
         }
         ast::Decl::Enum { id, tags, .. } => generate_enum_decl(id, tags),
@@ -315,9 +315,12 @@ fn generate_decl(ctx: &Context<'_>, file: &ast::File, decl: &ast::Decl) -> Strin
 ///
 /// This struct holds data which we need to refer to repeatedly while
 /// generating Rust code.
-struct Context<'a> {
+#[derive(Debug)]
+pub struct Context<'a> {
     /// All packets, indexed by their `id`.
     packet_scope: HashMap<&'a str, &'a ast::Decl>,
+    /// All enums, indexed by their `id`.
+    enum_scope: HashMap<&'a str, &'a ast::Decl>,
     /// The child packets for a given `ast::Decl::Packet`.
     child_ids: HashMap<&'a str, Vec<&'a str>>,
 }
@@ -325,18 +328,25 @@ struct Context<'a> {
 impl Context<'_> {
     fn new(file: &ast::File) -> Context<'_> {
         let mut packet_scope = HashMap::new();
+        let mut enum_scope = HashMap::new();
         let mut child_ids: HashMap<&str, Vec<&str>> = HashMap::new();
 
         for decl in &file.declarations {
-            if let ast::Decl::Packet { id, parent_id, .. } = decl {
-                packet_scope.insert(id.as_str(), decl);
-                if let Some(parent_id) = parent_id {
-                    child_ids.entry(parent_id.as_str()).or_default().push(id.as_str());
+            match decl {
+                ast::Decl::Packet { id, parent_id, .. } => {
+                    packet_scope.insert(id.as_str(), decl);
+                    if let Some(parent_id) = parent_id {
+                        child_ids.entry(parent_id.as_str()).or_default().push(id.as_str());
+                    }
                 }
+                ast::Decl::Enum { id, .. } => {
+                    enum_scope.insert(id.as_str(), decl);
+                }
+                _ => todo!("unsupported Decl::{:?}", decl),
             }
         }
 
-        Context { packet_scope, child_ids }
+        Context { packet_scope, enum_scope, child_ids }
     }
 }
 
@@ -522,6 +532,58 @@ mod tests {
         let actual_code = generate_decl(&ctx, &file, decl);
         assert_snapshot_eq(
             "tests/generated/enum_decl_simple_big_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_packet_enum_decl_little_endian() {
+        let file = parse_str(
+            r#"
+              little_endian_packets
+
+              enum Enum7 : 7 {
+                  A = 1,
+                  B = 2,
+              }
+
+              packet Packet_Enum_Field {
+                  a: Enum7,
+                  c: 57,
+              }
+            "#,
+        );
+        let ctx = Context::new(&file);
+        let decl = &file.declarations[1];
+        let actual_code = generate_decl(&ctx, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_enum_decl_little_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_packet_enum_decl_big_endian() {
+        let file = parse_str(
+            r#"
+              big_endian_packets
+
+              enum Enum7 : 7 {
+                  A = 1,
+                  B = 2,
+              }
+
+              packet Packet_Enum_Field {
+                  a: Enum7,
+                  c: 57,
+              }
+            "#,
+        );
+        let ctx = Context::new(&file);
+        let decl = &file.declarations[1];
+        let actual_code = generate_decl(&ctx, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_enum_decl_big_endian.rs",
             &rustfmt(&actual_code),
         );
     }
