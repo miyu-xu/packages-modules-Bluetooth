@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8606fc7_76b23da5",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-11-23T08:39:06Z",
+      "side": 1,
+      "message": "Please refer to the following patch\n\n https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/1964917\n\nand use something like\n\n```\n#if BASE_VER \u003c 931007\n      base::TimeDelta::FromMilliseconds(\n#else\n      base::Milliseconds(\n#endif\n```",
+      "range": {
+        "startLine": 252,
+        "startChar": 6,
+        "endLine": 252,
+        "endChar": 39
+      },
+      "revId": "0095613ac92fbab0e331ee00efae414633b546f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
