@@ -1115,8 +1115,8 @@ impl Into<MsftAdvMonitor> for &ScanFilter {
 
 impl IBluetoothGatt for BluetoothGatt {
     fn is_msft_supported(&self) -> bool {
-        // TODO(b/244505567): Wire the real capability from lower layer.
-        false
+        log::info!("## is_msft_supported in bluetooth_gatt.rs");
+        self.gatt.as_ref().unwrap().lock().unwrap().scanner.is_msft_supported()
     }
 
     fn register_scanner_callback(&mut self, callback: Box<dyn IScannerCallback + Send>) -> u32 {
@@ -1166,6 +1166,12 @@ impl IBluetoothGatt for BluetoothGatt {
         // and stop_scan maintains the state of all registered scanners and based on the states
         // update the scanning and/or filter states of libbluetooth.
         // TODO(b/217274432): Honor settings and filters.
+        if !self.is_msft_supported() {
+            log::info!("Microsoft Extension is not supported.");
+            return BtStatus::Unsupported;
+        }
+        log::info!("## Microsoft Extension is supported.");
+
         {
             let mut scanners_lock = self.scanners.lock().unwrap();
 
@@ -1179,6 +1185,7 @@ impl IBluetoothGatt for BluetoothGatt {
         }
 
         let gatt_async = self.gatt_async.clone();
+        let scanners = self.scanners.clone();
         tokio::spawn(async move {
             // The three operations below (monitor add, monitor enable, update scan) happen one
             // after another, and cannot be interleaved with other GATT async operations.
@@ -1196,6 +1203,16 @@ impl IBluetoothGatt for BluetoothGatt {
                         return;
                     }
                 };
+
+                {
+                    // Save the monitor_handle which is needed in stop_scan().
+                    let mut scanners_lock = scanners.lock().unwrap();
+                    if let Some(scanner) = Self::find_scanner_by_id(&mut scanners_lock, scanner_id)
+                    {
+                        scanner.monitor_handle = Some(monitor_handle);
+                        log::info!("## scanner: Added adv monitor handle = {}", monitor_handle);
+                    }
+                }
 
                 log::debug!("Added adv monitor handle = {}", monitor_handle);
 
