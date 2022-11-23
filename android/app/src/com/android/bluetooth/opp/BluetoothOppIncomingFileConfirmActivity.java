@@ -52,6 +52,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 
 /**
@@ -107,6 +108,7 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
             return;
         }
 
+        Log.d("TestRunner", "view set up start");
         mAlertBuilder.setTitle(getString(R.string.incoming_file_confirm_content));
         mAlertBuilder.setView(createView());
         mAlertBuilder.setPositiveButton(R.string.incoming_file_confirm_ok,
@@ -126,6 +128,7 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
             Log.v(TAG, "BluetoothIncomingFileConfirmActivity: Got uri:" + mUri);
         }
 
+        Log.d("TestRunner", "view set up done");
         registerReceiver(mReceiver,
                 new IntentFilter(BluetoothShare.USER_CONFIRMATION_TIMEOUT_ACTION));
     }
@@ -149,23 +152,27 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
     }
 
     private void onIncomingFileConfirmOk() {
+        Log.d("TestRunner", "incoming file confirm clicked");
         if (!mTimeout) {
             // Update database
             mUpdateValues = new ContentValues();
             mUpdateValues.put(BluetoothShare.USER_CONFIRMATION,
                     BluetoothShare.USER_CONFIRMATION_CONFIRMED);
-            this.getContentResolver().update(mUri, mUpdateValues, null, null);
+            BluetoothMethodProxy.getInstance().contentResolverUpdate(this.getContentResolver(),
+                    mUri, mUpdateValues, null, null);
 
             Toast.makeText(this, getString(R.string.bt_toast_1), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void onIncomingFileConfirmCancel() {
+        Log.d("TestRunner", "incoming file cancel clicked");
         // Update database
         mUpdateValues = new ContentValues();
         mUpdateValues.put(BluetoothShare.USER_CONFIRMATION,
                 BluetoothShare.USER_CONFIRMATION_DENIED);
-        this.getContentResolver().update(mUri, mUpdateValues, null, null);
+        BluetoothMethodProxy.getInstance().contentResolverUpdate(this.getContentResolver(),
+                mUri, mUpdateValues, null, null);
     }
 
     @Override
