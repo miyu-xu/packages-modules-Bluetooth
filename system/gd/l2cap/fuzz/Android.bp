@@ -39,7 +39,4 @@ cc_fuzz {
     static_libs: [
         "libbte",
     ],
-    fuzz_config: {
-       cc: ["zachoverflow@google.com"],
-    },
 }

@@ -16,9 +16,4 @@ cc_fuzz {
     static_libs: [
         "libg722codec",
     ],
-    fuzz_config: {
-        cc: [
-            "hsz@google.com",
-        ],
-    },
 }
