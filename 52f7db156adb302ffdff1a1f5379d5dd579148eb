@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af6891f7_39b701e2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-23T09:36:41Z",
+      "side": 1,
+      "message": "That\u0027s fine, just put some note in commit message that this patch also adds some value comments for the scenarion. Then nobody has doubts that his is intended.",
+      "parentUuid": "f114abd7_98c01c3b",
+      "revId": "52f7db156adb302ffdff1a1f5379d5dd579148eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4bc73e2_6b0e4403",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 3
