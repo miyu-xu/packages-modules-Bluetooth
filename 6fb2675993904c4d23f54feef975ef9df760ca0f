@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4bbb43_86576d91",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Please have a test to cover this condition",
+      "range": {
+        "startLine": 799,
+        "startChar": 0,
+        "endLine": 800,
+        "endChar": 61
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "047f06f1_351a22c6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 5676,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Please implement tests in AdapterServiceTest for the added methods.",
+      "range": {
+        "startLine": 5676,
+        "startChar": 15,
+        "endLine": 5676,
+        "endChar": 44
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b82524a_d9901303",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Please have a test for the getter and setter",
+      "range": {
+        "startLine": 601,
+        "startChar": 20,
+        "endLine": 601,
+        "endChar": 36
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9a47cdb_34c00ed6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Please have a test for the getter and setter",
+      "range": {
+        "startLine": 291,
+        "startChar": 19,
+        "endLine": 291,
+        "endChar": 41
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfab9c41_debd9aa6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1903,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Please have a unit test to check if mInbandRingingRuntimeDisable will be set to false when the non-preferred device has disconnected",
+      "range": {
+        "startLine": 1903,
+        "startChar": 0,
+        "endLine": 1903,
+        "endChar": 45
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12cc83e7_8d213acb",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1906,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Changing a parameter in its getter doesn\u0027t make too much sense to me.\n\nCan the statemachine set the flag to true when it receives the audio policy change command?",
+      "range": {
+        "startLine": 1906,
+        "startChar": 13,
+        "endLine": 1906,
+        "endChar": 41
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "243e40af_0d3adb9e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1923,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Please add tests for the new methods",
+      "range": {
+        "startLine": 1923,
+        "startChar": 17,
+        "endLine": 1923,
+        "endChar": 33
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09e1e30a_fb97b622",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Please add unit tests for EVENT_TYPE_CMD_RESULT and EVENT_TYPE_UNKNOWN_EVENT",
+      "range": {
+        "startLine": 1150,
+        "startChar": 0,
+        "endLine": 1150,
+        "endChar": 62
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8989d1e3_215879a3",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "Need a test for the state transition.",
+      "range": {
+        "startLine": 1249,
+        "startChar": 0,
+        "endLine": 1252,
+        "endChar": 21
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1a2d2a_7d5ada4f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like a warning to me.",
+      "range": {
+        "startLine": 1635,
+        "startChar": 0,
+        "endLine": 1635,
+        "endChar": 88
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3050026_9ae99133",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-23T02:01:09Z",
+      "side": 1,
+      "message": "testSetGetCallAudioPolicy, than verify the value from the getter is equal to the data you have set",
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
