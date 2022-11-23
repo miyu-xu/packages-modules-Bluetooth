@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac300ae6_4643caa9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T23:02:47Z",
+      "side": 1,
+      "message": "Add the new command here.\n\nI propose that we use a single place to define rules which is here in CommandOption. After https://r.android.com/2315860 refactor series it will be easier.",
+      "revId": "b7b92465149e8180977d4914a6da6d8e967c885b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a530a218_87ced165",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1139,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-23T23:02:47Z",
+      "side": 1,
+      "message": "Argument counting has been error prone in the past, and also unsafe `args[index]` is panic prone. I propose to refactor the way we do this by using a safe `get_arg` helper that is both safe and convenient. Could you try rebasing this CL on https://r.android.com/2315860?",
+      "revId": "b7b92465149e8180977d4914a6da6d8e967c885b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
