@@ -194,7 +194,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       .first()
   }
 
-  private suspend fun waitBondIntent(bluetoothDevice: BluetoothDevice) {
+  suspend fun waitBondIntent(bluetoothDevice: BluetoothDevice) {
     // We only wait for bonding to be completed since we only need the ACL connection to be
     // established with the peer device (on Android state connected is sent when all profiles
     // have been connected).
