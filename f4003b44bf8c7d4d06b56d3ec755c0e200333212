@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29baafd0_335e117b",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2022-11-24T15:26:18Z",
+      "side": 1,
+      "message": "Just found that `supportedChannel` naming style is different from below params, maybe can changed to supported_channel to follow c++ style, same as `hal_ucast_capability_to_stack_format()`",
+      "range": {
+        "startLine": 510,
+        "startChar": 7,
+        "endLine": 510,
+        "endChar": 23
+      },
+      "revId": "f4003b44bf8c7d4d06b56d3ec755c0e200333212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
