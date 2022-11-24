@@ -93,6 +93,30 @@
       },
       "revId": "23e62cec4a51e75cac267c114ef43d1e8cf84a46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35f4fd6e_2d23f297",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1682,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-24T21:55:51Z",
+      "side": 1,
+      "message": "Turns out this is very needed. I discovered that doing regression testing before merging to release branch.\nWithout clearing whole block, pairing would get stuck, and we can\u0027t start next pairing after LE Audio device is paired.\nThis must stay as it was in patchset 10, and merge this way to release branch.\n\nFix in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2317674",
+      "parentUuid": "4ddfecc4_24a129db",
+      "range": {
+        "startLine": 1682,
+        "startChar": 8,
+        "endLine": 1682,
+        "endChar": 24
+      },
+      "revId": "23e62cec4a51e75cac267c114ef43d1e8cf84a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
