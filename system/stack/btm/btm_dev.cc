@@ -133,7 +133,7 @@ bool BTM_SecAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class,
 void wipe_secrets_and_remove(tBTM_SEC_DEV_REC* p_dev_rec) {
   p_dev_rec->link_key.fill(0);
   memset(&p_dev_rec->ble.keys, 0, sizeof(tBTM_SEC_BLE_KEYS));
-  list_remove(btm_cb.sec_dev_rec, p_dev_rec);
+  btm_cb.sec_dev_rec.remove(p_dev_rec);
 }
 
 /** Removes the device from acceptlist */
@@ -313,16 +313,6 @@ bool btm_dev_support_role_switch(const RawAddress& bd_addr) {
   return false;
 }
 
-bool is_handle_equal(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-  uint16_t* handle = static_cast<uint16_t*>(context);
-
-  if (p_dev_rec->hci_handle == *handle || p_dev_rec->ble_hci_handle == *handle)
-    return false;
-
-  return true;
-}
-
 /*******************************************************************************
  *
  * Function         btm_find_dev_by_handle
@@ -334,22 +324,13 @@ bool is_handle_equal(void* data, void* context) {
  *
  ******************************************************************************/
 tBTM_SEC_DEV_REC* btm_find_dev_by_handle(uint16_t handle) {
-  list_node_t* n = list_foreach(btm_cb.sec_dev_rec, is_handle_equal, &handle);
-  if (n) return static_cast<tBTM_SEC_DEV_REC*>(list_node(n));
+  for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
+    if (p_dev_rec->hci_handle == handle) {
+      return p_dev_rec;
+    }
+  }
 
-  return NULL;
-}
-
-bool is_address_equal(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-  const RawAddress* bd_addr = ((RawAddress*)context);
-
-  if (p_dev_rec->bd_addr == *bd_addr) return false;
-  // If a LE random address is looking for device record
-  if (p_dev_rec->ble.pseudo_addr == *bd_addr) return false;
-
-  if (btm_ble_addr_resolvable(*bd_addr, p_dev_rec)) return false;
-  return true;
+  return nullptr;
 }
 
 /*******************************************************************************
@@ -363,13 +344,15 @@ bool is_address_equal(void* data, void* context) {
  *
  ******************************************************************************/
 tBTM_SEC_DEV_REC* btm_find_dev(const RawAddress& bd_addr) {
-  if (btm_cb.sec_dev_rec == nullptr) return nullptr;
+  for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
+    if (p_dev_rec->bd_addr == bd_addr ||
+        p_dev_rec->ble.pseudo_addr == bd_addr ||
+        btm_ble_addr_resolvable(bd_addr, p_dev_rec)) {
+      return p_dev_rec;
+    }
+  }
 
-  list_node_t* n =
-      list_foreach(btm_cb.sec_dev_rec, is_address_equal, (void*)&bd_addr);
-  if (n) return static_cast<tBTM_SEC_DEV_REC*>(list_node(n));
-
-  return NULL;
+  return nullptr;
 }
 
 /*******************************************************************************
@@ -386,15 +369,7 @@ void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
 
   BTM_TRACE_DEBUG("%s", __func__);
 
-  list_node_t* end = list_end(btm_cb.sec_dev_rec);
-  list_node_t* node = list_begin(btm_cb.sec_dev_rec);
-  while (node != end) {
-    tBTM_SEC_DEV_REC* p_dev_rec =
-        static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
-
-    // we do list_remove in some cases, must grab next before removing
-    node = list_next(node);
-
+  for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
     if (p_target_rec == p_dev_rec) continue;
 
     if (p_dev_rec->bd_addr == p_target_rec->bd_addr) {
@@ -467,12 +442,7 @@ static tBTM_SEC_DEV_REC* btm_find_oldest_dev_rec(void) {
   tBTM_SEC_DEV_REC* p_oldest_paired = NULL;
   uint32_t ts_oldest_paired = 0xFFFFFFFF;
 
-  list_node_t* end = list_end(btm_cb.sec_dev_rec);
-  for (list_node_t* node = list_begin(btm_cb.sec_dev_rec); node != end;
-       node = list_next(node)) {
-    tBTM_SEC_DEV_REC* p_dev_rec =
-        static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
-
+  for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
     if ((p_dev_rec->sec_flags &
          (BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LE_LINK_KEY_KNOWN)) == 0) {
       // Device is not paired
@@ -510,14 +480,14 @@ static tBTM_SEC_DEV_REC* btm_find_oldest_dev_rec(void) {
 tBTM_SEC_DEV_REC* btm_sec_allocate_dev_rec(void) {
   tBTM_SEC_DEV_REC* p_dev_rec = NULL;
 
-  if (list_length(btm_cb.sec_dev_rec) > BTM_SEC_MAX_DEVICE_RECORDS) {
+  if (btm_cb.sec_dev_rec.size() > BTM_SEC_MAX_DEVICE_RECORDS) {
     p_dev_rec = btm_find_oldest_dev_rec();
     wipe_secrets_and_remove(p_dev_rec);
   }
 
   p_dev_rec =
       static_cast<tBTM_SEC_DEV_REC*>(osi_calloc(sizeof(tBTM_SEC_DEV_REC)));
-  list_append(btm_cb.sec_dev_rec, p_dev_rec);
+  btm_cb.sec_dev_rec.push_back(p_dev_rec);
 
   // Initialize defaults
   p_dev_rec->sec_flags = BTM_SEC_IN_USE;

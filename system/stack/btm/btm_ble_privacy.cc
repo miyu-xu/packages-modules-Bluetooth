@@ -206,12 +206,6 @@ static void btm_ble_update_resolving_list(const RawAddress& pseudo_bda,
   }
 }
 
-static bool clear_resolving_list_bit(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-  p_dev_rec->ble.in_controller_list &= ~BTM_RESOLVING_LIST_BIT;
-  return true;
-}
-
 /*******************************************************************************
  *
  * Function         btm_ble_clear_resolving_list_complete
@@ -252,7 +246,9 @@ void btm_ble_clear_resolving_list_complete(uint8_t* p, uint16_t evt_len) {
     BTM_TRACE_DEBUG("%s resolving_list_avail_size=%d", __func__,
                     btm_cb.ble_ctr_cb.resolving_list_avail_size);
 
-    list_foreach(btm_cb.sec_dev_rec, clear_resolving_list_bit, NULL);
+    for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
+      p_dev_rec->ble.in_controller_list &= ~BTM_RESOLVING_LIST_BIT;
+    }
   }
 }
 

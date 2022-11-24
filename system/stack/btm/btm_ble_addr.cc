@@ -154,37 +154,19 @@ bool btm_ble_addr_resolvable(const RawAddress& rpa,
   return false;
 }
 
-/** This function match the random address to the appointed device record,
- * starting from calculating IRK. If the record index exceeds the maximum record
- * number, matching failed and send a callback. */
-static bool btm_ble_match_random_bda(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-  RawAddress* random_bda = static_cast<RawAddress*>(context);
-
-  if (!(p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) ||
-      !(p_dev_rec->ble.key_type & BTM_LE_KEY_PID))
-    // Match fails preconditions
-    return true;
-
-  if (rpa_matches_irk(*random_bda, p_dev_rec->ble.keys.irk)) {
-    // Matched
-    return false;
-  }
-
-  // This item not a match, continue iteration
-  return true;
-}
-
 /** This function is called to resolve a random address.
  * Returns pointer to the security record of the device whom a random address is
  * matched to.
  */
 tBTM_SEC_DEV_REC* btm_ble_resolve_random_addr(const RawAddress& random_bda) {
-  if (btm_cb.sec_dev_rec == nullptr) return nullptr;
-  list_node_t* n = list_foreach(btm_cb.sec_dev_rec, btm_ble_match_random_bda,
-                                (void*)&random_bda);
-  return (n == nullptr) ? (nullptr)
-                        : (static_cast<tBTM_SEC_DEV_REC*>(list_node(n)));
+  for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
+    if (p_dev_rec->is_device_type_has_ble() &&
+        (p_dev_rec->ble.key_type & BTM_LE_KEY_PID) &&
+        rpa_matches_irk(random_bda, p_dev_rec->ble.keys.irk)) {
+      return p_dev_rec;
+    }
+  }
+  return nullptr;
 }
 
 /*******************************************************************************
@@ -193,13 +175,7 @@ tBTM_SEC_DEV_REC* btm_ble_resolve_random_addr(const RawAddress& random_bda) {
 /** Find the security record whose LE identity address is matching */
 static tBTM_SEC_DEV_REC* btm_find_dev_by_identity_addr(
     const RawAddress& bd_addr, uint8_t addr_type) {
-  if (btm_cb.sec_dev_rec == nullptr) return nullptr;
-
-  list_node_t* end = list_end(btm_cb.sec_dev_rec);
-  for (list_node_t* node = list_begin(btm_cb.sec_dev_rec); node != end;
-       node = list_next(node)) {
-    tBTM_SEC_DEV_REC* p_dev_rec =
-        static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
+  for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
     if (p_dev_rec->ble.identity_address_with_type.bda == bd_addr) {
       if ((p_dev_rec->ble.identity_address_with_type.type &
            (~BLE_ADDR_TYPE_ID_BIT)) != (addr_type & (~BLE_ADDR_TYPE_ID_BIT)))
@@ -213,7 +189,7 @@ static tBTM_SEC_DEV_REC* btm_find_dev_by_identity_addr(
     }
   }
 
-  return NULL;
+  return nullptr;
 }
 
 /*******************************************************************************
