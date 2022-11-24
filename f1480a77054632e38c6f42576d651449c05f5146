@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28ad1de4_8d0d5092",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1532,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-24T12:27:21Z",
+      "side": 1,
+      "message": "Java have a state machine that lets just one device for bonding until we return bond state and services UUIDs. So if this is true, I\u0027m confident it\u0027s same device that\u0027s just getting bonded.\n\nI wouldn\u0027t enclose it in helper, as I\u0027m not sure that logic for clearing the pairing_cb is solid. It\u0027s good enough while we bond.",
+      "parentUuid": "041082f7_0f6994ab",
+      "range": {
+        "startLine": 1531,
+        "startChar": 10,
+        "endLine": 1532,
+        "endChar": 46
+      },
+      "revId": "f1480a77054632e38c6f42576d651449c05f5146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed837418_5ee7eb2d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-23T09:18:14Z",
       "side": 1,
       "message": "this looks like typo",
+      "range": {
+        "startLine": 1535,
+        "startChar": 16,
+        "endLine": 1535,
+        "endChar": 37
+      },
+      "revId": "f1480a77054632e38c6f42576d651449c05f5146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e38a9f24_702247ca",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-24T12:27:21Z",
+      "side": 1,
+      "message": "No, this is not a typo, typos don\u0027t compile, \"git grep profileSpecific_HACK\" to see  what it\u0027s about.",
+      "parentUuid": "ed837418_5ee7eb2d",
       "range": {
         "startLine": 1535,
         "startChar": 16,
