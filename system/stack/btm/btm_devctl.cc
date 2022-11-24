@@ -162,20 +162,15 @@ void BTM_db_reset(void) {
   }
 }
 
-static bool set_sec_state_idle(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
-  return true;
-}
-
 void BTM_reset_complete() {
   const controller_t* controller = controller_get_interface();
 
   /* Tell L2CAP that all connections are gone */
   l2cu_device_reset();
 
-  /* Clear current security state */
-  list_foreach(btm_cb.sec_dev_rec, set_sec_state_idle, NULL);
+  for (auto* p_dev_rec : btm_cb.sec_dev_rec) {
+    p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  }
 
   /* After the reset controller should restore all parameters to defaults. */
   btm_cb.btm_inq_vars.inq_counter = 1;

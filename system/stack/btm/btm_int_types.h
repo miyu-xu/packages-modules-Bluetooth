@@ -19,13 +19,13 @@
 #define BTM_INT_TYPES_H
 
 #include <cstdint>
+#include <list>
 #include <memory>
 #include <string>
 
 #include "gd/common/circular_buffer.h"
 #include "osi/include/allocator.h"
 #include "osi/include/fixed_queue.h"
-#include "osi/include/list.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/btm_sco.h"
@@ -278,7 +278,7 @@ typedef struct tBTM_CB {
   uint16_t disc_handle{0};          /* for legacy devices */
   uint8_t disc_reason{0};           /* for legacy devices */
   tBTM_SEC_SERV_REC sec_serv_rec[BTM_SEC_MAX_SERVICE_RECORDS];
-  list_t* sec_dev_rec{nullptr}; /* list of tBTM_SEC_DEV_REC */
+  std::list<tBTM_SEC_DEV_REC*> sec_dev_rec; /* list of tBTM_SEC_DEV_REC */
   tBTM_SEC_SERV_REC* p_out_serv{nullptr};
   tBTM_MKEY_CALLBACK* mkey_cback{nullptr};
 
@@ -341,7 +341,7 @@ typedef struct tBTM_CB {
 #endif
     security_mode = initial_security_mode;
     pairing_bda = RawAddress::kAny;
-    sec_dev_rec = list_new(osi_free);
+    sec_dev_rec.clear();
 
     /* Initialize BTM component structures */
     btm_inq_vars.Init(); /* Inquiry Database and Structures */
@@ -368,8 +368,7 @@ typedef struct tBTM_CB {
     fixed_queue_free(sec_pending_q, nullptr);
     sec_pending_q = nullptr;
 
-    list_free(sec_dev_rec);
-    sec_dev_rec = nullptr;
+    sec_dev_rec.clear();
 
     alarm_free(sec_collision_timer);
     sec_collision_timer = nullptr;

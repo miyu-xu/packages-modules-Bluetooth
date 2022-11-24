@@ -851,15 +851,6 @@ bool BTM_BleLocalPrivacyEnabled(void) {
   return (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_NONE);
 }
 
-static bool is_resolving_list_bit_set(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-
-  if ((p_dev_rec->ble.in_controller_list & BTM_RESOLVING_LIST_BIT) != 0)
-    return false;
-
-  return true;
-}
-
 /*******************************************************************************
  * PAST and Periodic Sync helper functions
  ******************************************************************************/
@@ -1544,15 +1535,19 @@ static uint8_t btm_set_conn_mode_adv_init_addr(
   if ((btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_1_2 &&
        p_cb->afp != AP_SCAN_CONN_ALL) ||
       btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_MIXED) {
-    list_node_t* n =
-        list_foreach(btm_cb.sec_dev_rec, is_resolving_list_bit_set, NULL);
-    if (n) {
+    tBTM_SEC_DEV_REC* p_matched_dev_rec = nullptr;
+    for (auto& p_dev_rec : btm_cb.sec_dev_rec) {
+      if (p_dev_rec->ble.in_controller_list & BTM_RESOLVING_LIST_BIT) {
+        p_matched_dev_rec = p_dev_rec;
+        break;
+      }
+    }
+    if (p_matched_dev_rec != nullptr) {
       /* if enhanced privacy is required, set Identity address and matching IRK
        * peer */
-      tBTM_SEC_DEV_REC* p_dev_rec =
-          static_cast<tBTM_SEC_DEV_REC*>(list_node(n));
-      p_peer_addr_ptr = p_dev_rec->ble.identity_address_with_type.bda;
-      *p_peer_addr_type = p_dev_rec->ble.identity_address_with_type.type;
+      p_peer_addr_ptr = p_matched_dev_rec->ble.identity_address_with_type.bda;
+      *p_peer_addr_type =
+          p_matched_dev_rec->ble.identity_address_with_type.type;
 
       *p_own_addr_type = BLE_ADDR_RANDOM_ID;
     } else {
