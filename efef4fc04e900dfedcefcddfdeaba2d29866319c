@@ -22,6 +22,30 @@
       },
       "revId": "efef4fc04e900dfedcefcddfdeaba2d29866319c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceaa643b_27fb5f2d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothCallTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-11-24T07:21:41Z",
+      "side": 1,
+      "message": "Sounds good! Added.",
+      "parentUuid": "a093ec2d_8368f2ea",
+      "range": {
+        "startLine": 82,
+        "startChar": 16,
+        "endLine": 82,
+        "endChar": 44
+      },
+      "revId": "efef4fc04e900dfedcefcddfdeaba2d29866319c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
