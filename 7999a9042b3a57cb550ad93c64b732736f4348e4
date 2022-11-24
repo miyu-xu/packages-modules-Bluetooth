@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2027fdc8_dd0f9c1d",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2022-11-24T10:07:52Z",
+      "side": 1,
+      "message": "in `hal_ucast_capability_to_stack_format()` we have `hal_lc3_capability \u003d ...`\n\nis there any reason here using `lc3_capabilities` instead of `hal_lc3_capabilities`?",
+      "range": {
+        "startLine": 502,
+        "startChar": 8,
+        "endLine": 502,
+        "endChar": 24
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1b7580_4aec0ed1",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2022-11-24T10:07:52Z",
+      "side": 1,
+      "message": "Just curious why we check size here and not check in `hal_ucast_capability_to_stack_format()`",
+      "range": {
+        "startLine": 505,
+        "startChar": 6,
+        "endLine": 505,
+        "endChar": 62
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fba36315_32537672",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2022-11-24T10:07:52Z",
+      "side": 1,
+      "message": "ISO C++ requires field designators to be specified in declaration order; maybe we can change the order? though it still can pass build, same as `hal_ucast_capability_to_stack_format()`",
+      "range": {
+        "startLine": 535,
+        "startChar": 12,
+        "endLine": 536,
+        "endChar": 76
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99123273_ea1a1ded",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2022-11-24T10:07:52Z",
+      "side": 1,
+      "message": "May I know why supported_broadcast_config size always be one?",
+      "range": {
+        "startLine": 198,
+        "startChar": 12,
+        "endLine": 198,
+        "endChar": 42
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
