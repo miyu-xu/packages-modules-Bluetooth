@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c5536d5_faa17676",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapVcardManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-24T07:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c99e0ca_e3db3540",
+      "range": {
+        "startLine": 1225,
+        "startChar": 22,
+        "endLine": 1225,
+        "endChar": 29
+      },
+      "revId": "6042d98f4f7972eb6456bf294d09e0f9b0f7d5bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c780398_7740fb7a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-24T01:15:44Z",
       "side": 1,
       "message": "doesVCardHaveProperty?",
+      "range": {
+        "startLine": 1239,
+        "startChar": 31,
+        "endLine": 1239,
+        "endChar": 47
+      },
+      "revId": "6042d98f4f7972eb6456bf294d09e0f9b0f7d5bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "292d3534_3a81f4f9",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapVcardManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-24T07:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c780398_7740fb7a",
       "range": {
         "startLine": 1239,
         "startChar": 31,
