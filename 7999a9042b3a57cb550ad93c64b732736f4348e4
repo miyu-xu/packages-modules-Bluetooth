@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbae476c_9a82c107",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-11-24T11:37:40Z",
+      "side": 1,
+      "message": "changes to `hal_lc3_capabilities`",
+      "parentUuid": "2027fdc8_dd0f9c1d",
+      "range": {
+        "startLine": 502,
+        "startChar": 8,
+        "endLine": 502,
+        "endChar": 24
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a1b7580_4aec0ed1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-24T10:07:52Z",
       "side": 1,
       "message": "Just curious why we check size here and not check in `hal_ucast_capability_to_stack_format()`",
+      "range": {
+        "startLine": 505,
+        "startChar": 6,
+        "endLine": 505,
+        "endChar": 62
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fbd5577_e8ee29a3",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-11-24T11:37:40Z",
+      "side": 1,
+      "message": "For unicast, the encode \u0026 decode only have one config at a time.\nBased on the `BroadcastCapability` definition, the capabilities type is a vector. \nSo the checking logic is different",
+      "parentUuid": "8a1b7580_4aec0ed1",
       "range": {
         "startLine": 505,
         "startChar": 6,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e15189a1_db141100",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-11-24T11:37:40Z",
+      "side": 1,
+      "message": "updated the order",
+      "parentUuid": "fba36315_32537672",
+      "range": {
+        "startLine": 535,
+        "startChar": 12,
+        "endLine": 536,
+        "endChar": 76
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99123273_ea1a1ded",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-24T10:07:52Z",
       "side": 1,
       "message": "May I know why supported_broadcast_config size always be one?",
+      "range": {
+        "startLine": 198,
+        "startChar": 12,
+        "endLine": 198,
+        "endChar": 42
+      },
+      "revId": "7999a9042b3a57cb550ad93c64b732736f4348e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a66ad13f_d9eff74a",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-11-24T11:37:40Z",
+      "side": 1,
+      "message": "The size may not always be one, but we use the first setting as the prefer config for now.",
+      "parentUuid": "99123273_ea1a1ded",
       "range": {
         "startLine": 198,
         "startChar": 12,
