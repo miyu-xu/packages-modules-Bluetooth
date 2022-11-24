@@ -16,6 +16,23 @@
       "message": "This is just for testing as for now.",
       "revId": "f5b858e977801c8de928f42e2df9ce692e9efde6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7516c9a9_40c89b16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-11-24T10:05:39Z",
+      "side": 1,
+      "message": "Ok to remove it. QA Pass.",
+      "revId": "f5b858e977801c8de928f42e2df9ce692e9efde6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
