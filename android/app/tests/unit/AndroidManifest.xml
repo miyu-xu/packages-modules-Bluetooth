@@ -58,6 +58,12 @@
                  android:autoRevokePermissions="disallowed">
         <uses-library android:name="android.test.runner" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <!-- Workaround for OOOActivityTest failures (b/260295342) -->
+        <activity
+            android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+            android:label="InstrumentationActivityInvoker$BootstrapActivity" />
+
     </application>
     <!--
     This declares that this application uses the instrumentation test runner targeting
