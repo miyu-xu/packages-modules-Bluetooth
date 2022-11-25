@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1b8a021_eef485e3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-25T09:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b82524a_d9901303",
+      "range": {
+        "startLine": 601,
+        "startChar": 20,
+        "endLine": 601,
+        "endChar": 36
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9a47cdb_34c00ed6",
@@ -131,6 +155,30 @@
       "writtenOn": "2022-11-23T02:01:09Z",
       "side": 1,
       "message": "Please have a test for the getter and setter",
+      "range": {
+        "startLine": 291,
+        "startChar": 19,
+        "endLine": 291,
+        "endChar": 41
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9f6ab2e_bcd09549",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-25T09:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9a47cdb_34c00ed6",
       "range": {
         "startLine": 291,
         "startChar": 19,
@@ -164,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61792af_7d8bd61c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1903,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-25T09:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfab9c41_debd9aa6",
+      "range": {
+        "startLine": 1903,
+        "startChar": 0,
+        "endLine": 1903,
+        "endChar": 45
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12cc83e7_8d213acb",
@@ -177,6 +249,30 @@
       "writtenOn": "2022-11-23T02:01:09Z",
       "side": 1,
       "message": "Changing a parameter in its getter doesn\u0027t make too much sense to me.\n\nCan the statemachine set the flag to true when it receives the audio policy change command?",
+      "range": {
+        "startLine": 1906,
+        "startChar": 13,
+        "endLine": 1906,
+        "endChar": 41
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad07b464_bd95d12f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1906,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-25T09:03:16Z",
+      "side": 1,
+      "message": "That would mean adding another intent or callback. Let\u0027s keep the definition same for this variable and also add condition checking for the audioPolicy in this method.",
+      "parentUuid": "12cc83e7_8d213acb",
       "range": {
         "startLine": 1906,
         "startChar": 13,
@@ -210,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dacc642_95847a74",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1923,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-25T09:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "243e40af_0d3adb9e",
+      "range": {
+        "startLine": 1923,
+        "startChar": 17,
+        "endLine": 1923,
+        "endChar": 33
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09e1e30a_fb97b622",
@@ -223,6 +343,30 @@
       "writtenOn": "2022-11-23T02:01:09Z",
       "side": 1,
       "message": "Please add unit tests for EVENT_TYPE_CMD_RESULT and EVENT_TYPE_UNKNOWN_EVENT",
+      "range": {
+        "startLine": 1150,
+        "startChar": 0,
+        "endLine": 1150,
+        "endChar": 62
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d029168_216f7cbb",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-25T09:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09e1e30a_fb97b622",
       "range": {
         "startLine": 1150,
         "startChar": 0,

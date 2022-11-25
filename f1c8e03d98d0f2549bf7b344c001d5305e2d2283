@@ -276,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f74d559_fc808fe3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-11-25T09:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32401ad6_2a60b3d0",
+      "range": {
+        "startLine": 506,
+        "startChar": 27,
+        "endLine": 506,
+        "endChar": 44
+      },
+      "revId": "f1c8e03d98d0f2549bf7b344c001d5305e2d2283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc464788_7fd926bb",
