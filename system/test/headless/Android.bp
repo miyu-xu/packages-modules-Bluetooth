@@ -41,6 +41,7 @@ cc_binary {
     srcs: [
         "connect/connect.cc",
         "get_options.cc",
+        "handler.cc",
         "headless.cc",
         "log.cc",
         "main.cc",

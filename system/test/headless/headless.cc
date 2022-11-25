@@ -264,6 +264,12 @@ bt_os_callouts_t bt_os_callouts{
     .release_wake_lock = release_wake_lock_co,
 };
 
+void heartbeat(bluetooth::test::headless::Handler* handler) {
+  LOG_CONSOLE("Hello world from heartbeat");
+  sleep(2);
+  handler->Post(bluetooth::common::BindOnce(heartbeat, handler));
+}
+
 void HeadlessStack::SetUp() {
   LOG(INFO) << __func__ << " Entry";
 
@@ -271,6 +277,13 @@ void HeadlessStack::SetUp() {
   const bool is_common_criteria_mode = false;
   const int config_compare_result = 0;
   const bool is_atv = false;
+
+  headless_handler_ = new headless::Handler();
+
+  headless_handler_->Post(
+      common::BindOnce([]() { LOG_CONSOLE("Headless handler started"); }));
+
+  headless_handler_->Post(common::BindOnce(heartbeat, headless_handler_));
 
   int status = bluetoothInterface.init(
       &bt_callbacks, start_restricted, is_common_criteria_mode,
@@ -303,6 +316,8 @@ void HeadlessStack::SetUp() {
 
 void HeadlessStack::TearDown() {
   bluetooth::test::headless::stop_messenger();
+
+  delete headless_handler_;
 
   log_logging();
   LOG_INFO("Stack has disabled");
