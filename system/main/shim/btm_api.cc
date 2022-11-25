@@ -40,6 +40,7 @@
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
+#include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/hci_error_code.h"
@@ -831,7 +832,7 @@ void bluetooth::shim::BTM_CancelInquiry(void) {
 }
 
 tBTM_STATUS bluetooth::shim::BTM_ReadRemoteDeviceName(
-    const RawAddress& raw_address, tBTM_CMPL_CB* callback,
+    const RawAddress& raw_address, tBTM_NAME_CMPL_CB* callback,
     tBT_TRANSPORT transport) {
   CHECK(callback != nullptr);
   tBTM_STATUS status = BTM_NO_RESOURCES;
@@ -1255,7 +1256,8 @@ uint16_t bluetooth::shim::BTM_GetHCIConnHandle(const RawAddress& remote_bda,
   return Stack::GetInstance()->GetBtm()->GetAclHandle(remote_bda, transport);
 }
 
-static void remote_name_request_complete_noop(void* p_name){
+static void remote_name_request_complete_noop(
+    const tBTM_REMOTE_DEV_NAME* callback){
     // Should notify BTM_Sec, but we should use GD SMP.
 };
 

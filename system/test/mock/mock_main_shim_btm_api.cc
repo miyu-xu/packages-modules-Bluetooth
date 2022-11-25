@@ -29,6 +29,7 @@ extern std::map<std::string, int> mock_function_count_map;
 #include <base/callback.h>
 
 #include "main/shim/btm_api.h"
+#include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_ble_api_types.h"
@@ -168,7 +169,7 @@ tBTM_STATUS bluetooth::shim::BTM_ClearInqDb(const RawAddress* p_bda) {
   return BTM_SUCCESS;
 }
 tBTM_STATUS bluetooth::shim::BTM_ReadRemoteDeviceName(
-    const RawAddress& raw_address, tBTM_CMPL_CB* callback,
+    const RawAddress& raw_address, tBTM_NAME_CMPL_CB* callback,
     tBT_TRANSPORT transport) {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;

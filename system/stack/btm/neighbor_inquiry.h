@@ -185,7 +185,7 @@ typedef struct {
 } tBTM_INQUIRY_CMPL;
 
 typedef struct {
-  tBTM_CMPL_CB* p_remname_cmpl_cb;
+  tBTM_NAME_CMPL_CB* p_remname_cmpl_cb;
 
 #define BTM_EXT_RMT_NAME_TIMEOUT_MS (40 * 1000) /* 40 seconds */
 
