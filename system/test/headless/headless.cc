@@ -31,6 +31,7 @@
 #include "test/headless/get_options.h"
 #include "test/headless/interface.h"
 #include "test/headless/log.h"
+#include "test/headless/tamper.h"
 #include "types/raw_address.h"
 
 extern bt_interface_t bluetoothInterface;
@@ -264,12 +265,6 @@ bt_os_callouts_t bt_os_callouts{
     .release_wake_lock = release_wake_lock_co,
 };
 
-void heartbeat(bluetooth::test::headless::Handler* handler) {
-  LOG_CONSOLE("Hello world from heartbeat");
-  sleep(2);
-  handler->Post(bluetooth::common::BindOnce(heartbeat, handler));
-}
-
 void HeadlessStack::SetUp() {
   LOG(INFO) << __func__ << " Entry";
 
@@ -283,7 +278,9 @@ void HeadlessStack::SetUp() {
   headless_handler_->Post(
       common::BindOnce([]() { LOG_CONSOLE("Headless handler started"); }));
 
-  headless_handler_->Post(common::BindOnce(heartbeat, headless_handler_));
+  headless_handler_->Post(common::BindOnce(disconnector, headless_handler_,
+                                           RawAddress::kEmpty,
+                                           BT_TRANSPORT_BR_EDR));
 
   int status = bluetoothInterface.init(
       &bt_callbacks, start_restricted, is_common_criteria_mode,
