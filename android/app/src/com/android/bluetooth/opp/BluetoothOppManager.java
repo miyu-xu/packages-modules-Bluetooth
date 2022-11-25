@@ -46,9 +46,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
-import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -63,8 +61,7 @@ public class BluetoothOppManager {
     private static final String TAG = "BluetoothOppManager";
     private static final boolean V = Constants.VERBOSE;
 
-    @VisibleForTesting
-    static BluetoothOppManager sInstance;
+    private static BluetoothOppManager sInstance;
 
     /** Used when obtaining a reference to the singleton instance. */
     private static final Object INSTANCE_LOCK = new Object();
@@ -75,22 +72,17 @@ public class BluetoothOppManager {
 
     private BluetoothAdapter mAdapter;
 
-    @VisibleForTesting
-    String mMimeTypeOfSendingFile;
+    private String mMimeTypeOfSendingFile;
 
-    @VisibleForTesting
-    String mUriOfSendingFile;
+    private String mUriOfSendingFile;
 
-    @VisibleForTesting
-    String mMimeTypeOfSendingFiles;
+    private String mMimeTypeOfSendingFiles;
 
-    @VisibleForTesting
-    ArrayList<Uri> mUrisOfSendingFiles;
+    private ArrayList<Uri> mUrisOfSendingFiles;
 
     private boolean mIsHandoverInitiated;
 
-    @VisibleForTesting
-    static final String OPP_PREFERENCE_FILE = "OPPMGR";
+    private static final String OPP_PREFERENCE_FILE = "OPPMGR";
 
     private static final String SENDING_FLAG = "SENDINGFLAG";
 
@@ -484,10 +476,8 @@ public class BluetoothOppManager {
                     values.put(BluetoothShare.USER_CONFIRMATION,
                             BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED);
                 }
-                final Uri contentUri = BluetoothMethodProxy.getInstance().contentResolverInsert(
-                        mContext.getContentResolver(), BluetoothShare.CONTENT_URI, values
-                );
-
+                final Uri contentUri =
+                        mContext.getContentResolver().insert(BluetoothShare.CONTENT_URI, values);
                 if (V) {
                     Log.v(TAG, "Insert contentUri: " + contentUri + "  to device: " + getDeviceName(
                             mRemoteDevice));
@@ -507,9 +497,8 @@ public class BluetoothOppManager {
                 values.put(BluetoothShare.USER_CONFIRMATION,
                         BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED);
             }
-            final Uri contentUri = BluetoothMethodProxy.getInstance().contentResolverInsert(
-                    mContext.getContentResolver(), BluetoothShare.CONTENT_URI, values
-            );
+            final Uri contentUri =
+                    mContext.getContentResolver().insert(BluetoothShare.CONTENT_URI, values);
             if (V) {
                 Log.v(TAG, "Insert contentUri: " + contentUri + "  to device: " + getDeviceName(
                         mRemoteDevice));
