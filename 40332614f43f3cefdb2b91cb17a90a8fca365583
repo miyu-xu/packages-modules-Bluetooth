@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6827b2d8_aeccda95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-25T05:48:36Z",
+      "side": 1,
+      "message": "Talked offline about some changes. \nI\u0027ll review this after the new patch set is upload. Will it be okay for you, Sungsoo?",
+      "revId": "40332614f43f3cefdb2b91cb17a90a8fca365583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
