@@ -220,6 +220,7 @@ init_flags!(
         gd_security,
         hci_adapter: i32,
         irk_rotation,
+        leaudio_targeted_announcement_reconnection_mode,
         logging_debug_enabled_for_all,
         pass_phy_update_callback = true,
         redact_log = true,
