@@ -728,6 +728,15 @@ void bluetooth::shim::BTM_BleOpportunisticObserve(
   }
 }
 
+void bluetooth::shim::BTM_BleTargetAnnoucementObserve(
+    bool enable, tBTM_INQ_RESULTS_CB* p_results_cb) {
+  if (enable) {
+    btm_cb.ble_ctr_cb.p_target_annoucement_obs_results_cb = p_results_cb;
+  } else {
+    btm_cb.ble_ctr_cb.p_target_annoucement_obs_results_cb = nullptr;
+  }
+}
+
 void bluetooth::shim::BTM_EnableInterlacedPageScan() {
   Stack::GetInstance()->GetBtm()->SetInterlacedPageScan();
 }
