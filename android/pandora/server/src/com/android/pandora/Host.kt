@@ -687,7 +687,11 @@ class Host(private val context: Context, private val server: Server) : HostImplB
         } else {
           request.address.toBluetoothDevice(bluetoothAdapter)
         }
-      GetRemoteNameResponse.newBuilder().setName(device.name).build()
+      if (device.name == null) {
+        GetRemoteNameResponse.newBuilder().setRemoteNotFound(Empty.getDefaultInstance()).build()
+      } else{
+        GetRemoteNameResponse.newBuilder().setName(device.name).build()
+      }
     }
   }
 }
