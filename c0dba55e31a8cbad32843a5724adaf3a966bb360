@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39db2623_08af8c25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874694
+      },
+      "writtenOn": "2022-11-25T11:26:29Z",
+      "side": 1,
+      "message": "We found some side effect of this code.\nI will re-raise review with another solution.",
+      "revId": "c0dba55e31a8cbad32843a5724adaf3a966bb360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
