@@ -246,6 +246,7 @@ typedef struct {
   RawAddress bd_addr;
   uint16_t length;
   BD_NAME remote_bd_name;
+  tHCI_STATUS hci_status;
 } tBTM_REMOTE_DEV_NAME;
 
 typedef union /* contains the inquiry filter condition */
