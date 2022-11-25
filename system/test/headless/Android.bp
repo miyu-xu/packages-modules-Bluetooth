@@ -39,7 +39,6 @@ cc_binary {
         "HeadlessBuildTimestamp",
     ],
     srcs: [
-//        "bt_property.cc",
         "connect/connect.cc",
         "get_options.cc",
         "headless.cc",
@@ -47,6 +46,7 @@ cc_binary {
         "main.cc",
         "messenger.cc",
         "pairing/pairing.cc",
+        "property.cc",
         "util.cc",
         "discovery/discovery.cc",
         "dumpsys/dumpsys.cc",
