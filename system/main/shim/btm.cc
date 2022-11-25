@@ -42,6 +42,7 @@
 #include "main/shim/shim.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
+#include "stack/btm/neighbor_inquiry.h"
 #include "types/ble_address_with_type.h"
 #include "types/bluetooth/uuid.h"
 #include "types/bt_transport.h"
@@ -483,7 +484,7 @@ bool Btm::UseLeLink(const RawAddress& raw_address) const {
 }
 
 BtmStatus Btm::ReadClassicRemoteDeviceName(const RawAddress& raw_address,
-                                           tBTM_CMPL_CB* callback) {
+                                           tBTM_NAME_CMPL_CB* callback) {
   if (!CheckClassicAclLink(raw_address)) {
     return BTM_UNKNOWN_ADDR;
   }
@@ -501,8 +502,9 @@ BtmStatus Btm::ReadClassicRemoteDeviceName(const RawAddress& raw_address,
       0 /* clock_offset */, hci::ClockOffsetValid::INVALID,
 
       base::Bind(
-          [](tBTM_CMPL_CB* callback, ReadRemoteName* classic_read_remote_name,
-             hci::ErrorCode status, hci::Address address,
+          [](tBTM_NAME_CMPL_CB* callback,
+             ReadRemoteName* classic_read_remote_name, hci::ErrorCode status,
+             hci::Address address,
              std::array<uint8_t, kRemoteDeviceNameLength> remote_name) {
             RawAddress raw_address = ToRawAddress(address);
 
@@ -526,7 +528,7 @@ BtmStatus Btm::ReadClassicRemoteDeviceName(const RawAddress& raw_address,
 }
 
 BtmStatus Btm::ReadLeRemoteDeviceName(const RawAddress& raw_address,
-                                      tBTM_CMPL_CB* callback) {
+                                      tBTM_NAME_CMPL_CB* callback) {
   if (!CheckLeAclLink(raw_address)) {
     return BTM_UNKNOWN_ADDR;
   }
