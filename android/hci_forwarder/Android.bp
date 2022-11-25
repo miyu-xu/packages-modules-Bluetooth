@@ -1,0 +1,48 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_library_static {
+    name: "HciForwarderLib",
+
+    srcs: ["src/**/*.java"],
+
+    sdk_version: "core_platform",
+
+    libs: [
+        "framework"
+    ],
+
+    static_libs: [
+        "android.hardware.bluetooth-V1.0-java",
+        "android.hardware.bluetooth-V1.1-java",
+        "androidx.test.runner",
+        "androidx.test.core",
+        "guava",
+        "opencensus-java-api",
+        "kotlin-test",
+        "kotlinx_coroutines",
+        "opencensus-java-contrib-grpc-metrics",
+    ],
+}
+
+android_test_helper_app {
+    name: "HciForwarder",
+
+    static_libs: [
+        "HciForwarderLib",
+    ],
+
+    dex_preopt: {
+        enabled: false,
+    },
+    optimize: {
+        enabled: false,
+    },
+
+    test_suites: [
+        "general-tests",
+        "device-tests",
+        "mts-bluetooth",
+    ],
+}
