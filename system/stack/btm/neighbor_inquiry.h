@@ -186,7 +186,7 @@ typedef struct {
 
 /* Structure returned with remote name  request */
 typedef struct {
-  uint16_t status;
+  tBTM_STATUS status;
   RawAddress bd_addr;
   uint16_t length;
   BD_NAME remote_bd_name;
