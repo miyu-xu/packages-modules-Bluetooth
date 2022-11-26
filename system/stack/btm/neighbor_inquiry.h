@@ -184,6 +184,16 @@ typedef struct {
   uint8_t num_resp; /* Number of results from the current inquiry */
 } tBTM_INQUIRY_CMPL;
 
+/* Structure returned with remote name  request */
+typedef struct {
+  uint16_t status;
+  RawAddress bd_addr;
+  uint16_t length;
+  BD_NAME remote_bd_name;
+} tBTM_REMOTE_DEV_NAME;
+
+typedef void(tBTM_NAME_CMPL_CB)(const tBTM_REMOTE_DEV_NAME*);
+
 typedef struct {
   tBTM_CMPL_CB* p_remname_cmpl_cb;
 
@@ -239,14 +249,6 @@ typedef struct {
   void Free() { alarm_free(remote_name_timer); }
 
 } tBTM_INQUIRY_VAR_ST;
-
-/* Structure returned with remote name  request */
-typedef struct {
-  uint16_t status;
-  RawAddress bd_addr;
-  uint16_t length;
-  BD_NAME remote_bd_name;
-} tBTM_REMOTE_DEV_NAME;
 
 typedef union /* contains the inquiry filter condition */
 {
