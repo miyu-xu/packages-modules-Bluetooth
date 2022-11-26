@@ -245,7 +245,7 @@ namespace testing {
 tBTA_DM_PEER_DEVICE* allocate_device_for(const RawAddress& bd_addr,
                                          tBT_TRANSPORT transport);
 
-void bta_dm_remname_cback(void* p);
+void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p);
 
 }  // namespace testing
 }  // namespace legacy
@@ -416,7 +416,8 @@ TEST_F(BtaDmTest, bta_dm_remname_cback__typical) {
   strlcpy(reinterpret_cast<char*>(&name.remote_bd_name), kRemoteName,
           strlen(kRemoteName));
 
-  bluetooth::legacy::testing::bta_dm_remname_cback(static_cast<void*>(&name));
+  bluetooth::legacy::testing::bta_dm_remname_cback(
+      static_cast<tBTM_REMOTE_DEV_NAME*>(&name));
 
   sync_main_handler();
 
@@ -440,7 +441,8 @@ TEST_F(BtaDmTest, bta_dm_remname_cback__wrong_address) {
   strlcpy(reinterpret_cast<char*>(&name.remote_bd_name), kRemoteName,
           strlen(kRemoteName));
 
-  bluetooth::legacy::testing::bta_dm_remname_cback(static_cast<void*>(&name));
+  bluetooth::legacy::testing::bta_dm_remname_cback(
+      static_cast<tBTM_REMOTE_DEV_NAME*>(&name));
 
   sync_main_handler();
 
@@ -464,7 +466,8 @@ TEST_F(BtaDmTest, bta_dm_remname_cback__HCI_ERR_CONNECTION_EXISTS) {
   strlcpy(reinterpret_cast<char*>(&name.remote_bd_name), kRemoteName,
           strlen(kRemoteName));
 
-  bluetooth::legacy::testing::bta_dm_remname_cback(static_cast<void*>(&name));
+  bluetooth::legacy::testing::bta_dm_remname_cback(
+      static_cast<tBTM_REMOTE_DEV_NAME*>(&name));
 
   sync_main_handler();
 
