@@ -24,6 +24,9 @@
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_api.h"
+/** Change for HF PTS @{ */
+#include "osi/include/properties.h"
+/** @} */
 
 #define BTA_HF_CLIENT_NO_EDR_ESCO                                \
   (ESCO_PKT_TYPES_MASK_NO_2_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 | \
@@ -114,6 +117,11 @@ static void bta_hf_client_sco_conn_rsp(tBTA_HF_CLIENT_CB* client_cb,
     } else if (client_cb->negotiated_codec == BTM_SCO_CODEC_MSBC) {
       // eSCO mSBC
       resp = esco_parameters_for_codec(ESCO_CODEC_MSBC_T2, true);
+      /** Change for HF PTS: HFP/HF/ACC/BV-06-I @{ */
+      PTS_TEST_IS_ENABLE {
+        resp = esco_parameters_for_codec(ESCO_CODEC_MSBC_T1, true);
+      }
+      /** @} */
     } else if (bta_hf_client_cb_arr.features & BTA_HF_CLIENT_FEAT_ESCO_S4) {
       // eSCO CVSD, HFP 1.7 requires S4
       resp = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, true);
@@ -249,6 +257,14 @@ static void bta_hf_client_sco_create(tBTA_HF_CLIENT_CB* client_cb,
     // eSCO CVSD, S3 is preferred by default(before HFP 1.7)
     params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, true);
   }
+
+  /** Change for HF PTS: AAC/BV-01-I, AAC/BV-03-I and so on. @{ */
+  PTS_TEST_IS_ENABLE {
+    APPL_TRACE_DEBUG("%s: persist.bluetooth.pts.enable on", __func__ );
+    params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, true);
+    params.retransmission_effort = ESCO_RETRANSMISSION_POWER;
+  }
+  /** @} */
 
   /* if initiating set current scb and peer bd addr */
   if (is_orig) {
