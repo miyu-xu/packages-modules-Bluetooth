@@ -100,6 +100,12 @@ btif_hf_client_cb_t* btif_hf_client_get_cb_by_handle(uint16_t handle);
 btif_hf_client_cb_t* btif_hf_client_get_cb_by_bda(const RawAddress& addr);
 bool is_connected(const btif_hf_client_cb_t* cb);
 
+/** Change for HF PTS @{ */
+#include <osi/include/thread.h>
+static thread_t *pts_hfclient_test_thread;
+static void btif_hf_client_pts_test_init(void);
+/** @} */
+
 /*******************************************************************************
  *  Static variables
  ******************************************************************************/
@@ -283,6 +289,13 @@ static bt_status_t init(bthf_client_callbacks_t* callbacks) {
   btif_enable_service(BTA_HFP_HS_SERVICE_ID);
 
   memset(&btif_hf_client_cb_arr, 0, sizeof(btif_hf_client_cb_arr_t));
+
+  /** Change for HF PTS @{ */
+  PTS_TEST_IS_ENABLE {
+    BTIF_TRACE_DEBUG("[hf_client] bluetooth.pts.thread_enable");
+    btif_hf_client_pts_test_init();
+  }
+  /** @} */
 
   return BT_STATUS_SUCCESS;
 }
@@ -1079,3 +1092,181 @@ const bthf_client_interface_t* btif_hf_client_get_interface(void) {
   BTIF_TRACE_EVENT("%s", __func__);
   return &bthfClientInterface;
 }
+
+/** Change for HF PTS @{ */
+static void btif_hfclient_pts_test_thread(UNUSED_ATTR void *context) {
+  char value[PROPERTY_VALUE_MAX] = {0};
+  RawAddress rc_addr;
+
+  /* properties
+     [1]Use "setprop bluetooth.pts.hfclient.chld on" to trigger hfclient chld
+         -- HFP/HF/TWC/BV-01-I/HFP/HF/TWC/BV-03-I/HFP/HF/TWC/BV-04-I
+         -- HFP/HF/TWC/BV-05-I/HFP/HF/TWC/BV-06-I
+  */
+
+  while (1) {
+    if ((osi_property_get("bluetooth.pts.hfclient.bd_addr", value, "0"))
+            && (strcmp(value, "0"))) {
+      int addr[6], i = 0;
+      BTIF_TRACE_DEBUG("[pts] get bd_addr");
+
+      sscanf(value, "%x:%x:%x:%x:%x:%x", &addr[0], &addr[1], &addr[2], &addr[3], &addr[4], &addr[5]);
+
+      for(i = 0; i < 6; i++) {
+        rc_addr.address[i] = addr[i];
+      }
+      BTIF_TRACE_DEBUG("%s: rc_addr: %s", __func__,rc_addr.ToString().c_str());
+      osi_property_set("bluetooth.pts.hfclient.bd_addr", "0");
+    } else if ((osi_property_get("bluetooth.pts.hfclient.callaction", value, "0"))
+            && (strcmp(value, "0"))){
+      int action[2];
+      sscanf(value, "%d:%d", &action[0], &action[1]);
+      BTIF_TRACE_EVENT("[pts] run call action[0]:%d, action[1]:%d", action[0], action[1]);
+      if (action[0] == 0) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHLD_0, 0);
+      } else if (action[0] == 1) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHLD_1, 0);
+      } else if (action[0] == 2) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHLD_2, 0);
+      } else if (action[0] == 3) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHLD_3, 0);
+      } else if (action[0] == 4) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHLD_4, 0);
+      } else if (action[0] == 5) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHLD_1x, action[1]);
+      } else if (action[0] == 6) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHLD_2x, action[1]);
+      } else if (action[0] == 7) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_ATA, 0);
+      } else if (action[0] == 8) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_CHUP, 0);
+      } else if (action[0] == 9) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_BTRH_0, 0);
+      } else if (action[0] == 10) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_BTRH_1, 0);
+      } else if (action[0] == 11) {
+        handle_call_action(&rc_addr, BTHF_CLIENT_CALL_ACTION_BTRH_2, 0);
+      }
+      osi_property_set("bluetooth.pts.hfclient.callaction", "0");
+    } else if((osi_property_get("bluetooth.pts.hfclient.vr", value, "0"))
+                && (strcmp(value, "0"))){
+      int option;
+      sscanf(value, "%d", &option);
+      BTIF_TRACE_EVENT("[pts] run AT+BVRA option:%u", option);
+
+      if (option == 1) {
+        start_voice_recognition(&rc_addr);
+      } else if (option == 2) {
+        stop_voice_recognition(&rc_addr);
+      } else if (option == 3) {
+        request_last_voice_tag_number(&rc_addr);
+      }
+      osi_property_set("bluetooth.pts.hfclient.vr", "0");
+    } else if((osi_property_get("bluetooth.pts.hfclient.dtmf", value, "0"))
+                && (strcmp(value, "0"))){
+      BTIF_TRACE_DEBUG("[pts] run AT+VTS code:%d", *value);
+      send_dtmf(&rc_addr, *value);
+      osi_property_set("bluetooth.pts.hfclient.dtmf", "0");
+    } else if((osi_property_get("bluetooth.pts.hfclient.volume_spk", value, "0"))
+                && (strcmp(value, "0"))){
+      int volume;
+      sscanf(value, "%d", &volume);
+      BTIF_TRACE_EVENT("[pts] run AT+VGS volume:%d", volume);
+      volume_control(&rc_addr, BTHF_CLIENT_VOLUME_TYPE_SPK, volume);
+      osi_property_set("bluetooth.pts.hfclient.volume_spk", "0");
+    } else if((osi_property_get("bluetooth.pts.hfclient.volume_mic", value, "0"))
+                && (strcmp(value, "0"))){
+      int volume;
+      sscanf(value, "%d", &volume);
+      BTIF_TRACE_EVENT("[pts] run AT+VGM volume:%d", volume);
+      volume_control(&rc_addr, BTHF_CLIENT_VOLUME_TYPE_MIC, volume);
+      osi_property_set("bluetooth.pts.hfclient.volume_mic", "0");
+    } else if ((osi_property_get("bluetooth.pts.hfclient.connect", value, "0"))
+        && (strcmp(value, "0"))) {
+      int addr[6], i = 0;
+      BTIF_TRACE_DEBUG("[pts] connect:");
+
+      sscanf(value, "%x:%x:%x:%x:%x:%x", &addr[0], &addr[1], &addr[2], &addr[3], &addr[4], &addr[5]);
+
+      for(i = 0; i < 6; i++) {
+        rc_addr.address[i] = addr[i];
+      }
+      BTIF_TRACE_DEBUG("%s: rc_addr: %s", __func__,rc_addr.ToString().c_str());
+      connect(&rc_addr);
+      osi_property_set("bluetooth.pts.hfclient.connect", "0");
+    } else if ((osi_property_get("bluetooth.pts.hfclient.disconnect", value, "0"))
+        && (strcmp(value, "0"))) {
+      int addr[6], i = 0;
+      BTIF_TRACE_DEBUG("[pts] disconnect:");
+
+      sscanf(value, "%x:%x:%x:%x:%x:%x", &addr[0], &addr[1], &addr[2], &addr[3], &addr[4], &addr[5]);
+
+      for(i = 0; i < 6; i++) {
+        rc_addr.address[i] = addr[i];
+      }
+      BTIF_TRACE_DEBUG("%s: rc_addr: %s", __func__,rc_addr.ToString().c_str());
+      disconnect(&rc_addr);
+      osi_property_set("bluetooth.pts.hfclient.disconnect", "0");
+    } else if ((osi_property_get("bluetooth.pts.hfclient.connect_audio", value, "0"))
+        && (strcmp(value, "0"))) {
+      int addr[6], i = 0;
+      BTIF_TRACE_DEBUG("[pts] connect audio:");
+
+      sscanf(value, "%x:%x:%x:%x:%x:%x", &addr[0], &addr[1], &addr[2], &addr[3], &addr[4], &addr[5]);
+
+      for(i = 0; i < 6; i++) {
+        rc_addr.address[i] = addr[i];
+      }
+      BTIF_TRACE_DEBUG("%s: rc_addr: %s", __func__,rc_addr.ToString().c_str());
+      connect_audio(&rc_addr);
+      osi_property_set("bluetooth.pts.hfclient.connect_audio", "0");
+    } else if ((osi_property_get("bluetooth.pts.hfclient.disconnect_audio", value, "0"))
+        && (strcmp(value, "0"))) {
+      int addr[6], i = 0;
+      BTIF_TRACE_DEBUG("[pts] disconnect audio:");
+
+      sscanf(value, "%x:%x:%x:%x:%x:%x", &addr[0], &addr[1], &addr[2], &addr[3], &addr[4], &addr[5]);
+
+      for(i = 0; i < 6; i++) {
+        rc_addr.address[i] = addr[i];
+      }
+      BTIF_TRACE_DEBUG("%s: rc_addr: %s", __func__,rc_addr.ToString().c_str());
+      disconnect_audio(&rc_addr);
+      osi_property_set("bluetooth.pts.hfclient.disconnect_audio", "0");
+    } else if((osi_property_get("bluetooth.pts.hfclient.dial_memory", value, "0"))
+                && (strcmp(value, "0"))){
+      int location;
+      sscanf(value, "%d", &location);
+      BTIF_TRACE_DEBUG("[pts] location:%d", location);
+      dial_memory(&rc_addr, location);
+      osi_property_set("bluetooth.pts.hfclient.dial_memory", "0");
+    } else if((osi_property_get("bluetooth.pts.hfclient.dial", value, "0"))
+                && (strcmp(value, "0"))){
+      BTIF_TRACE_DEBUG("[pts] dial value:%s", value);
+      if (!strcmp(value, "1")) {
+        dial(&rc_addr, "");
+      } else {
+        dial(&rc_addr, value);
+      }
+      osi_property_set("bluetooth.pts.hfclient.dial", "0");
+    }
+    sleep(1);
+  }
+}
+
+static void btif_hf_client_pts_test_init(void)
+{
+  //1. create a thread to check property
+  // 2. check the property and do sth.
+  if (NULL != pts_hfclient_test_thread)
+  {
+      return;
+  }
+  pts_hfclient_test_thread = thread_new("pts_hfclient_test");
+  BTIF_TRACE_EVENT("[pts] start %s()", __func__);
+
+  thread_post(pts_hfclient_test_thread, btif_hfclient_pts_test_thread, NULL);
+}
+/** @} */
+
+
