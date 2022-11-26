@@ -47,6 +47,12 @@
 /*****************************************************************************
  *  Constants and data types
  ****************************************************************************/
+/** Change for PTS @{ */
+#include "osi/include/properties.h"
+#define PTS_TEST_IS_ENABLE \
+    char _values_[PROPERTY_VALUE_MAX] = {0}; \
+    if ((osi_property_get("persist.bluetooth.pts.enable", _values_, "off")) && (!strcmp(_values_, "on")))
+/** @} */
 
 /* Status Return Value */
 typedef enum : uint8_t {
