@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa97707c_0e493903",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-27T23:46:18Z",
+      "side": 1,
+      "message": "Why don\u0027t you returning null?",
+      "range": {
+        "startLine": 161,
+        "startChar": 17,
+        "endLine": 161,
+        "endChar": 27
+      },
+      "revId": "9088377694c3b2a493e8e7eb514561a6d204f156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
