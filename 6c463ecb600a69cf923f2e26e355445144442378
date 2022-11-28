@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21b6dda4_88260db4",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-28T19:32:02Z",
+      "side": 1,
+      "message": "Terrible mistake. This is carried from a local patch that did not have the parent CL reverted. \n\nI choose to implement this one to minimize any potential interoperability regression it may introduce. What if there is a device have an AVRCP target but not support 1.4?",
+      "parentUuid": "ce962dab_eeaf132a",
+      "range": {
+        "startLine": 642,
+        "startChar": 10,
+        "endLine": 642,
+        "endChar": 62
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de2ffeff_335a0783",
         "filename": "system/bta/av/bta_av_main.cc",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-28T18:21:11Z",
       "side": 1,
       "message": "Why was it necessary to remove ownership of the controller SDP record from avrcp_service? It seems to me like, if you left it there, then the change would be a one line fix of AVRC_REV_1_3 -\u003e AVRC_REV_1_4.",
+      "range": {
+        "startLine": 644,
+        "startChar": 12,
+        "endLine": 647,
+        "endChar": 42
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a37d78a_87440116",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-28T19:32:02Z",
+      "side": 1,
+      "message": "The patch the parent CL of this one was trying to revert was not an ideal fix for the issue it was trying to tackle. The problem was: specific headsets that rely on the host to expose the AVRCP Control profiles to connect correctly. The following if statement don\u0027t have an else arm. So a stack with is_new_avrcp_enabled() will not register the SDP record for AVRCP control.\n```\nif (profile_initialized \u003d\u003d UUID_SERVCLASS_AUDIO_SOURCE \u0026\u0026!is_new_avrcp_enabled())\n```\n\nIn the meantime, the original patch may duplicate the registration if the stack is not is_new_avrcp_enabled(). It will register for AVRCP control at init time and here.",
+      "parentUuid": "de2ffeff_335a0783",
       "range": {
         "startLine": 644,
         "startChar": 12,
@@ -60,6 +108,30 @@
       "writtenOn": "2022-11-28T18:21:11Z",
       "side": 1,
       "message": "I know you moved this from the previous boilerplate comment, buuuut this comment is misleading/unneeded. 1.4 is browsing, 1.6 is cover art (:",
+      "range": {
+        "startLine": 655,
+        "startChar": 10,
+        "endLine": 655,
+        "endChar": 64
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4d3b5be_5d2eece8",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-28T19:32:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbaf735f_9cc6d5e9",
       "range": {
         "startLine": 655,
         "startChar": 10,
