@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79dffaf2_da9456af",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T21:43:28Z",
+      "side": 1,
+      "message": "Remove `sydney` prefix",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 18
+      },
+      "revId": "008e2d3c10d977b4c02f3a9b5eb91812914a39e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
