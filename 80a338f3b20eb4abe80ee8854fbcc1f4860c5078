@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b64cf137_13148255",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T21:40:20Z",
+      "side": 1,
+      "message": "I would prefer that we still read the encryption key size even if we support `set_min_encryption_key_size`.\n\n`read_encryption_key_size` contains a security mitigation that check that the controller indeed negotiated a key that is inside the ranges of the Bluetooth specification (\u003e\u003d 7). Even if a new controller that supports `set_min_encryption_key_size` should not have this bug (As I think it\u0027s tested by the qual program). As a host, I would prefer to not trust the controller here and check twice 😊",
+      "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bac796d0_a9c6c675",
         "filename": "system/stack/btu/btu_hcif.cc",
         "patchSetId": 12
