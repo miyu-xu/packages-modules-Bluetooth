@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a3d1874_5b2a46b4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:35:44Z",
+      "side": 1,
+      "message": "Q) Wasn\u0027t this test exist in the previous CL?",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "0ac5f4eb438bd1ac436069ab02bad1e3674924f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
