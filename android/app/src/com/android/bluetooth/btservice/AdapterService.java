@@ -5881,6 +5881,18 @@ public class AdapterService extends Service {
     }
 
     /**
+     *  get Profile support Info
+     *
+     *  @param feature feature for particular profile
+     *  @return boolean true if feature is supported for particular profile
+     */
+
+    public boolean getProfileFeatureInfo(int profile_feature_info) {
+        Log.d(TAG,"getProfileFeatureInfo profile_feature_info: " + profile_feature_info);
+        return getProfileFeatureInfoNative(profile_feature_info);
+    }
+
+    /**
      * Sets the battery level of the remote device
      */
     public void setBatteryLevel(BluetoothDevice device, int batteryLevel) {
@@ -6020,6 +6032,7 @@ public class AdapterService extends Service {
             String featureName, String address, int length);
     private native void interopDatabaseAddRemoveNameNative(boolean doAdd,
             String featureBame, String name);
+    private native boolean getProfileFeatureInfoNative(int profile_feature_info);
 
     // Returns if this is a mock object. This is currently used in testing so that we may not call
     // System.exit() while finalizing the object. Otherwise GC of mock objects unfortunately ends up

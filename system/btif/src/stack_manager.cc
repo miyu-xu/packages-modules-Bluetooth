@@ -67,6 +67,7 @@
 #include "btif/include/btif_sock.h"
 #include "btm_ble_int.h"
 #include "device/include/interop.h"
+#include "device/include/profile_config.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/controller.h"
 #include "stack/include/smp_api.h"
@@ -216,6 +217,7 @@ extern const module_t gd_shim_module;
 extern const module_t interop_module;
 extern const module_t osi_module;
 extern const module_t stack_config_module;
+extern const module_t profile_config_module;
 
 struct module_lookup {
   const char* name;
@@ -232,6 +234,7 @@ const struct module_lookup module_table[] = {
     {INTEROP_MODULE, &interop_module},
     {OSI_MODULE, &osi_module},
     {STACK_CONFIG_MODULE, &stack_config_module},
+    {PROFILE_CONFIG_MODULE, &profile_config_module},
     {NULL, NULL},
 };
 
@@ -262,6 +265,7 @@ static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
 
   module_init(get_local_module(INTEROP_MODULE));
   bte_main_init();
+  module_init(get_local_module(PROFILE_CONFIG_MODULE));
   module_init(get_local_module(STACK_CONFIG_MODULE));
 
   // stack init is synchronous, so no waiting necessary here
@@ -431,6 +435,7 @@ static void event_clean_up_stack(std::promise<void> promise,
   btif_cleanup_bluetooth();
 
   module_clean_up(get_local_module(STACK_CONFIG_MODULE));
+  module_clean_up(get_local_module(PROFILE_CONFIG_MODULE));
   module_clean_up(get_local_module(INTEROP_MODULE));
 
   module_clean_up(get_local_module(BTIF_CONFIG_MODULE));

@@ -39,6 +39,7 @@ apex {
         "audio_set_scenarios_json",
         "btservices-linker-config",
         "bt_did.conf",
+        "bt_profile.conf",
         "bt_stack.conf",
         "interop_database.conf",
         "privapp_allowlist_com.android.bluetooth.xml",
