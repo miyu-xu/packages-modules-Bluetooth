@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d54fe498_2f934b75",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2516,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-28T10:05:12Z",
+      "side": 1,
+      "message": "NIT: incoming from where ? Controller, or Audio framework ?\n\nWe had same problem in other parts of system, using rx vs tx, ingress vs egresss etc.\n\nI recommend also adding a comment above this methods saying i.e.\"audio data coming from controller, i.e. sent from microphone to us\"",
+      "range": {
+        "startLine": 2516,
+        "startChar": 7,
+        "endLine": 2516,
+        "endChar": 28
+      },
+      "revId": "6b276b115c8c02ba82eb07fd8ce0c15f55cc9c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39f09749_5dbbd681",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3103,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-28T10:05:12Z",
+      "side": 1,
+      "message": "why not LOG_INFO ?\nThere was recently bug about audio source being resumed every 1 or 2 seconds, catched thanks to this log message.",
+      "range": {
+        "startLine": 3103,
+        "startChar": 4,
+        "endLine": 3103,
+        "endChar": 13
+      },
+      "revId": "6b276b115c8c02ba82eb07fd8ce0c15f55cc9c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
