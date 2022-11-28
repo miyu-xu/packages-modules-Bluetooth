@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce962dab_eeaf132a",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-11-28T18:21:11Z",
+      "side": 1,
+      "message": "Why do we need this dereg() call? It wasn\u0027t in there previously. Are there cases where registration is happening twice or something? I\u0027m worried this is a hack to cover up something else weird going on.\n\nAs well, is there any reason why we can\u0027t just use AVRC_REV_1_4 for both \"new avrcp\" and whatever was there prior? (Note: I don\u0027t have the background on why it\u0027s currently different, but I do know that our stack exclusively uses \"new AVRCP\" by default, so much so that \"is_new_avrcp_enabled()\" is equivalent to \"is profile AVRCP Target enabled\" in its implementation. It could simplify the code a bit)",
+      "range": {
+        "startLine": 642,
+        "startChar": 10,
+        "endLine": 642,
+        "endChar": 62
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de2ffeff_335a0783",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-11-28T18:21:11Z",
+      "side": 1,
+      "message": "Why was it necessary to remove ownership of the controller SDP record from avrcp_service? It seems to me like, if you left it there, then the change would be a one line fix of AVRC_REV_1_3 -\u003e AVRC_REV_1_4.",
+      "range": {
+        "startLine": 644,
+        "startChar": 12,
+        "endLine": 647,
+        "endChar": 42
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbaf735f_9cc6d5e9",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-11-28T18:21:11Z",
+      "side": 1,
+      "message": "I know you moved this from the previous boilerplate comment, buuuut this comment is misleading/unneeded. 1.4 is browsing, 1.6 is cover art (:",
+      "range": {
+        "startLine": 655,
+        "startChar": 10,
+        "endLine": 655,
+        "endChar": 64
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
