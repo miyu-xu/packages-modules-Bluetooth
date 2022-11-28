@@ -45,6 +45,30 @@
       },
       "revId": "71ed83962261dd6934728db21641af6e0ad2b898",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcbdd1d_84a5fdd7",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T17:03:05Z",
+      "side": 1,
+      "message": "Also, enum values that needs 64 bits is something we should add a test for 😊",
+      "parentUuid": "f4a33c8c_432cd7a1",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 31
+      },
+      "revId": "71ed83962261dd6934728db21641af6e0ad2b898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
