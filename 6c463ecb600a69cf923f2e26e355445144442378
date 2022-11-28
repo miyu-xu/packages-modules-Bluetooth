@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db500ba8_a62319f9",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-11-28T21:13:26Z",
+      "side": 1,
+      "message": "I guess my point was, as I understand it, if AVRCP Target is enabled then avrcp_service _will_ be used, which _will_ create both it\u0027s SDP records on init of the service. So there\u0027s shouldn\u0027t be an instance where the stack doesn\u0027t support 1.4 (if we\u0027re saying avrcp_service, the default target impl, supports 1.4)",
+      "parentUuid": "21b6dda4_88260db4",
+      "range": {
+        "startLine": 642,
+        "startChar": 10,
+        "endLine": 642,
+        "endChar": 62
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de2ffeff_335a0783",
         "filename": "system/bta/av/bta_av_main.cc",
         "patchSetId": 1
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "The patch the parent CL of this one was trying to revert was not an ideal fix for the issue it was trying to tackle. The problem was: specific headsets that rely on the host to expose the AVRCP Control profiles to connect correctly. The following if statement don\u0027t have an else arm. So a stack with is_new_avrcp_enabled() will not register the SDP record for AVRCP control.\n```\nif (profile_initialized \u003d\u003d UUID_SERVCLASS_AUDIO_SOURCE \u0026\u0026!is_new_avrcp_enabled())\n```\n\nIn the meantime, the original patch may duplicate the registration if the stack is not is_new_avrcp_enabled(). It will register for AVRCP control at init time and here.",
       "parentUuid": "de2ffeff_335a0783",
+      "range": {
+        "startLine": 644,
+        "startChar": 12,
+        "endLine": 647,
+        "endChar": 42
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00b12554_4671feaf",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-11-28T21:13:26Z",
+      "side": 1,
+      "message": "I\u0027m guessing Chrome OS doesn\u0027t use new avrcp and instead uses? You probably enable AVRCP Target but were not in control of your SDP record?\n\nBecause android users of AVRCP Target _should_ have their SDP record made when avrcp_service inits. Or, am I missing something? I\u0027m just trying to figure out the root issue here! Because it still seems to like an Android platform only requires a one liner to set the AVRCP Controller version to 1.4 for a target implementation",
+      "parentUuid": "2a37d78a_87440116",
       "range": {
         "startLine": 644,
         "startChar": 12,
