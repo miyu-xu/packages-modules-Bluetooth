@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3271c47a_8e385a28",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "Please remove logs",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 49
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57d53b14_9dce2d30",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "Q) Does the *ActivityTest pass? It seemed currently they are not working in tm-qpr-dev. (b/260295342)",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 56
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9202df_b4e2f79a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "Q) Are they all necessary?",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 0
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41c80ae2_2c59dd51",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "Do we need to use this for creating activity? Is L143 enough?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 52
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25dcabc_bcaf2b20",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "Add the comment in L171 here too:",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 28
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82cf23e_4ad213f3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "minor) I\u0027m a bit worried about the possible flakiness on using onView.",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 14
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17718c70_477b3290",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "onClick()",
+      "range": {
+        "startLine": 172,
+        "startChar": 15,
+        "endLine": 172,
+        "endChar": 30
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e586af_950af44f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "Q) Why not `isEqualTo(RESUMED)`?",
+      "range": {
+        "startLine": 195,
+        "startChar": 47,
+        "endLine": 195,
+        "endChar": 72
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ceb9e59_f59d48ba",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:45:37Z",
+      "side": 1,
+      "message": "Let\u0027s merge this kind of methods into some Util class:\n\n```\nstatic void enableActivity(Class ActivityClass);\n```",
+      "range": {
+        "startLine": 205,
+        "startChar": 17,
+        "endLine": 205,
+        "endChar": 31
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
