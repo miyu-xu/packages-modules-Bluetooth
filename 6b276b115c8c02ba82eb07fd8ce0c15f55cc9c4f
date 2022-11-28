@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c25311db_588a41f7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2516,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-28T12:23:09Z",
+      "side": 1,
+      "message": "I thought that data handler should be named by the origin of the data it handles and not the purpose of handling the data. When the data comes from CIS (controller thing), then it is CIS Data handler. When the data comes from Audio Framework which then is pushed to CIS (controller), then the handler would be named HandleAudioFrameworkData() and it would call SendDataToCis(...) or something.\nI\u0027ll add the comment.",
+      "parentUuid": "d54fe498_2f934b75",
+      "range": {
+        "startLine": 2516,
+        "startChar": 7,
+        "endLine": 2516,
+        "endChar": 28
+      },
+      "revId": "6b276b115c8c02ba82eb07fd8ce0c15f55cc9c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39f09749_5dbbd681",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-28T10:05:12Z",
       "side": 1,
       "message": "why not LOG_INFO ?\nThere was recently bug about audio source being resumed every 1 or 2 seconds, catched thanks to this log message.",
+      "range": {
+        "startLine": 3103,
+        "startChar": 4,
+        "endLine": 3103,
+        "endChar": 13
+      },
+      "revId": "6b276b115c8c02ba82eb07fd8ce0c15f55cc9c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec927e7_8ce89e42",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3103,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-28T12:23:09Z",
+      "side": 1,
+      "message": "Ok. I\u0027ll make them LOG_INFO gain.",
+      "parentUuid": "39f09749_5dbbd681",
       "range": {
         "startLine": 3103,
         "startChar": 4,
