@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7039d45f_e2b01d08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:00:36Z",
+      "side": 1,
+      "message": "Q) Why did the bug happen? Could you mention in the commit message?",
+      "revId": "2c30c9fbb58f9a580e15f6ce8556a27f7b1d7abd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8feeb32_6169a09f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-28T08:00:36Z",
+      "side": 1,
+      "message": "Let\u0027s move this `);` to L68",
+      "range": {
+        "startLine": 68,
+        "startChar": 60,
+        "endLine": 69,
+        "endChar": 8
+      },
+      "revId": "2c30c9fbb58f9a580e15f6ce8556a27f7b1d7abd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
