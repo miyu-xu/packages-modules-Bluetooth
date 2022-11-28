@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "181e9479_11d667fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T22:07:25Z",
+      "side": 1,
+      "message": "Remove +2 until pre-submit run really the tests",
+      "revId": "8990d5556d06db037e4bb47f62bef91eef5380c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
