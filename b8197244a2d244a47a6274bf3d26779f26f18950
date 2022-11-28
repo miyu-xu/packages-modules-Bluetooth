@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0e1565_0790838e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1369,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-28T12:20:13Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "058a7330_db61154d",
+      "range": {
+        "startLine": 1369,
+        "startChar": 1,
+        "endLine": 1369,
+        "endChar": 51
+      },
+      "revId": "b8197244a2d244a47a6274bf3d26779f26f18950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7805638d_1507027d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-28T09:40:52Z",
       "side": 0,
       "message": "LOG_WARN(\"Can\u0027t find device able to render right channel audio\") ?",
+      "range": {
+        "startLine": 1407,
+        "startChar": 2,
+        "endLine": 1407,
+        "endChar": 51
+      },
+      "revId": "b8197244a2d244a47a6274bf3d26779f26f18950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07962d83_b55da411",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-28T12:20:13Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "7805638d_1507027d",
       "range": {
         "startLine": 1407,
         "startChar": 2,

@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42d7ad5a_71efdc15",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-28T12:20:13Z",
+      "side": 1,
+      "message": "I don\u0027t like it as well, but I didn\u0027t refactor this part of code yet. Maybe next time.",
+      "parentUuid": "ad21c6b2_80319813",
+      "range": {
+        "startLine": 1339,
+        "startChar": 2,
+        "endLine": 1340,
+        "endChar": 54
+      },
+      "revId": "8a522b607de3b2dda3409cf41d067f7fffc4ea1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56586336_0087032e",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a08a995_bc3c6ee9",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-28T12:20:13Z",
+      "side": 1,
+      "message": "\"MONO\" is probably not the best name choice here as we use it in \"DualDev_...\" configurations as well. It rather means single channel per CIS per device... So yes, we need Left and Right devices when we configure group of two devices for one channel per CIS per device.",
+      "parentUuid": "56586336_0087032e",
+      "range": {
+        "startLine": 1423,
+        "startChar": 46,
+        "endLine": 1423,
+        "endChar": 69
+      },
+      "revId": "8a522b607de3b2dda3409cf41d067f7fffc4ea1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b7fbdf2_b708f9c5",
         "filename": "system/bta/le_audio/devices.cc",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2022-11-28T09:40:52Z",
       "side": 1,
       "message": "this alone is a terrible error message I would not understand, unless I read the commit message of this patch.\nMaybe:\n\n\"Can\u0027t find device for left/right channel. Strategy: .... \"",
+      "range": {
+        "startLine": 1447,
+        "startChar": 2,
+        "endLine": 1451,
+        "endChar": 35
+      },
+      "revId": "8a522b607de3b2dda3409cf41d067f7fffc4ea1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a97ab2f_e40c38c3",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1451,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-11-28T12:20:13Z",
+      "side": 1,
+      "message": "Ok I\u0027ll change it. Just to clarify, we assign locations (mostly some flavors of Left and Right) to all the devices in group. If one location was already assigned to one group member but the other member supports only this location, this error gets printed.",
+      "parentUuid": "0b7fbdf2_b708f9c5",
       "range": {
         "startLine": 1447,
         "startChar": 2,
