@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad21c6b2_80319813",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-28T09:40:52Z",
+      "side": 1,
+      "message": "NIT: You have if statement for every entry from kLeAudioLocationAnyLeft.\nI wonder if there is a smarter way to have this list of locations defined just once, and reused in both places ?",
+      "range": {
+        "startLine": 1339,
+        "startChar": 2,
+        "endLine": 1340,
+        "endChar": 54
+      },
+      "revId": "8a522b607de3b2dda3409cf41d067f7fffc4ea1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56586336_0087032e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-28T09:40:52Z",
+      "side": 1,
+      "message": "For mono we also need left and right devices ?",
+      "range": {
+        "startLine": 1423,
+        "startChar": 46,
+        "endLine": 1423,
+        "endChar": 69
+      },
+      "revId": "8a522b607de3b2dda3409cf41d067f7fffc4ea1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7fbdf2_b708f9c5",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1451,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-28T09:40:52Z",
+      "side": 1,
+      "message": "this alone is a terrible error message I would not understand, unless I read the commit message of this patch.\nMaybe:\n\n\"Can\u0027t find device for left/right channel. Strategy: .... \"",
+      "range": {
+        "startLine": 1447,
+        "startChar": 2,
+        "endLine": 1451,
+        "endChar": 35
+      },
+      "revId": "8a522b607de3b2dda3409cf41d067f7fffc4ea1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
