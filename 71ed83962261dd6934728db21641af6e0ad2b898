@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "218ea243_18989c30",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T17:01:51Z",
+      "side": 1,
+      "message": "agree with you",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 49
+      },
+      "revId": "71ed83962261dd6934728db21641af6e0ad2b898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4a33c8c_432cd7a1",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T17:01:51Z",
+      "side": 1,
+      "message": "yes we need to, as the type for the enum discriminator/value is `isize` by default, so we are not able to fit big values in it.\n\nhttps://play.rust-lang.org/?version\u003dstable\u0026mode\u003ddebug\u0026edition\u003d2021\u0026gist\u003d555c5d6d9db8058353a8cbf93ecf353c\n\nWe might make it smarter and choose a more correct type for the enum.\n\nI\u0027m the author of the `#[repr(u64)]` change and I just used the most simple solution at the time.",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 31
+      },
+      "revId": "71ed83962261dd6934728db21641af6e0ad2b898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
