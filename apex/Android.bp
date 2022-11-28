@@ -41,6 +41,7 @@ apex {
         "bt_did.conf",
         "bt_stack.conf",
         "interop_database.conf",
+        "bt_profile.conf",
         "privapp_allowlist_com.android.bluetooth.xml",
     ],
     key: "com.android.btservices.key",

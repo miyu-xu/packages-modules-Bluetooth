@@ -25,6 +25,7 @@ cc_library_static {
         "src/controller.cc",
         "src/esco_parameters.cc",
         "src/interop.cc",
+        "src/profile_config.cc",
     ],
     min_sdk_version: "Tiramisu"
 }
@@ -40,6 +41,7 @@ cc_test {
     include_dirs: ["packages/modules/Bluetooth/system"],
     srcs: [
         "test/interop_test.cc",
+        "test/profile_config_test.cc",
     ],
     shared_libs: [
         "android.hardware.bluetooth@1.0",
