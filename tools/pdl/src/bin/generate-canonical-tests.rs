@@ -63,12 +63,11 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
                     .as_u64()
                     .unwrap_or_else(|| panic!("Expected u64 for {key:?} key, got {value}"));
                 let value = proc_macro2::Literal::u64_unsuffixed(value_u64);
-                // The "as u64" cast is there to convert enum values
-                // to integers. We don't have type information
-                // available, so we convert everything to u64 even
-                // fields that are already of type u64.
+                // We don't have type information available, so we use
+                // ToPrimitive to convert everything to u64 (even
+                // fields that are already of type u64).
                 quote! {
-                    assert_eq!(actual.#getter() as u64, #value);
+                    assert_eq!(actual.#getter().to_u64().unwrap(), #value);
                 }
             });
 
@@ -85,6 +84,7 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
     }
 
     let code = quote! {
+        use num_traits::ToPrimitive;
         #(#tests)*
     };
     println!("{code}");
