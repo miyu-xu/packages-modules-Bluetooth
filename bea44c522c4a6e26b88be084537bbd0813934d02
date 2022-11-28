@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff98917_f0576ceb",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T17:11:05Z",
+      "side": 1,
+      "message": "Do we need getters as they are public ?",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c06786f3_ebc132d0",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T17:11:05Z",
+      "side": 1,
+      "message": "nit: `as_indent` ?",
+      "range": {
+        "startLine": 168,
+        "startChar": 7,
+        "endLine": 168,
+        "endChar": 16
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106011a5_6b17ccf9",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T17:11:05Z",
+      "side": 1,
+      "message": "nit: `as_type` ?",
+      "range": {
+        "startLine": 172,
+        "startChar": 7,
+        "endLine": 172,
+        "endChar": 15
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b7f28ec_a2a5ca69",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-28T17:11:05Z",
+      "side": 1,
+      "message": "Can we not use `parse_quote!` for this ?",
+      "range": {
+        "startLine": 207,
+        "startChar": 21,
+        "endLine": 207,
+        "endChar": 64
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
