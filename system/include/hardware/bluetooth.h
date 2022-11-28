@@ -60,6 +60,15 @@
 #define BT_PROFILE_LE_AUDIO_ID "le_audio"
 #define BT_PROFILE_LE_AUDIO_BROADCASTER_ID "le_audio_broadcaster"
 
+// Profile related Enums & function
+
+typedef enum {
+  PBAP_SIM_SUPPORT = 1,
+  PBAP_VERSION_0102_SUPPORT,
+  MAP_VERSION_0104_SUPPORT,
+ } profile_feature_info_t;
+
+
 /** Bluetooth Device Name */
 typedef struct { uint8_t name[249]; } __attribute__((packed)) bt_bdname_t;
 
@@ -917,7 +926,8 @@ typedef struct {
   void (*interop_database_add_remove_name)(bool do_add,
                                            const char* feature_name,
                                            const char* name);
-
+  /** get Profile feature support info*/
+  bool (*get_profile_feature_info)(profile_feature_info_t feature_name);
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"

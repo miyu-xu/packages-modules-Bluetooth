@@ -2025,6 +2025,18 @@ static void interopDatabaseAddRemoveNameNative(JNIEnv* env, jclass clazz,
   env->ReleaseStringUTFChars(feature_name, feature_name_str);
   env->ReleaseStringUTFChars(name, name_str);
 }
+static jboolean getProfileFeatureInfoNative(JNIEnv *env, jobject obj, jint profile_feature_info) {
+
+    ALOGI("%s", __FUNCTION__);
+
+    jboolean result = false;
+
+    if (!sBluetoothInterface) return result;
+
+    result = sBluetoothInterface->get_profile_feature_info((profile_feature_info_t)profile_feature_info);
+
+    return result;
+}
 
 static JNINativeMethod sMethods[] = {
     /* name, signature, funcPtr */
@@ -2081,6 +2093,7 @@ static JNINativeMethod sMethods[] = {
     {"interopDatabaseAddRemoveNameNative",
      "(ZLjava/lang/String;Ljava/lang/String;)V",
      (void*)interopDatabaseAddRemoveNameNative},
+    {"getProfileFeatureInfoNative", "(I)Z", (void*) getProfileFeatureInfoNative},
 };
 
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
