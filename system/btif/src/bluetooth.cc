@@ -109,6 +109,8 @@
 #include "stack_config.h"
 #include "types/raw_address.h"
 
+#include "device/include/profile_config.h"
+
 using bluetooth::csis::CsisClientInterface;
 using bluetooth::has::HasClientInterface;
 using bluetooth::hearing_aid::HearingAidInterface;
@@ -782,6 +784,19 @@ static void dumpMetrics(std::string* output) {
   bluetooth::common::BluetoothMetricsLogger::GetInstance()->WriteString(output);
 }
 
+static bool get_profile_feature_info(profile_feature_info_t feature)
+{
+    LOG_INFO("get_profile_feature_info :%d", feature);
+    if (feature == PBAP_SIM_SUPPORT)
+      return profile_config_get_interface()->is_pbap_sim_enabled();
+    else if(feature == PBAP_VERSION_0102_SUPPORT)
+      return profile_config_get_interface()->is_pbap_0102_enabled();
+    else if(feature == MAP_VERSION_0104_SUPPORT)
+      return profile_config_get_interface()->is_map_0104_enabled();
+
+    return false;
+}
+
 static const void* get_profile_interface(const char* profile_id) {
   LOG_INFO("%s: id = %s", __func__, profile_id);
 
@@ -1119,6 +1134,7 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     .interop_match_addr_or_name = interop_match_addr_or_name,
     .interop_database_add_remove_addr = interop_database_add_remove_addr,
     .interop_database_add_remove_name = interop_database_add_remove_name,
+    .get_profile_feature_info = get_profile_feature_info,
 };
 
 // callback reporting helpers
