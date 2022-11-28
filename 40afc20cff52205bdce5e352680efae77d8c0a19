@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01aa5c6b_683fb15f",
+        "filename": "system/gd/l2cap/classic/internal/fixed_channel_impl.h",
+        "patchSetId": 36
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T20:11:19Z",
+      "side": 1,
+      "message": "Maybe `device_.ToStringForLogging` ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 29,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "40afc20cff52205bdce5e352680efae77d8c0a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "773b04b1_d3575a3c",
+        "filename": "system/gd/l2cap/classic/internal/fixed_channel_impl.h",
+        "patchSetId": 36
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T20:11:19Z",
+      "side": 1,
+      "message": "Maybe device_.ToRedactedStringForLogging() ? because we are already in a `ToObfuscatedAddress`.\n\n---\n\nEven if above comment does not apply:\nDo you need the `GetAddress` ?\nthis `device_` is a `hci::AddressWithType` that implement the  `IRedactableLoggable` interface:\n```\nADDRESS_TO_LOGGABLE_STR(device_)\n```\n\nAnd because of this comment I am starting to think the `ADDRESS_TO_LOGGABLE_STR` can be renamed in `TO_LOGGABLE_STR` in the futur (but we don\u0027t care now)",
+      "range": {
+        "startLine": 67,
+        "startChar": 55,
+        "endLine": 67,
+        "endChar": 65
+      },
+      "revId": "40afc20cff52205bdce5e352680efae77d8c0a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b616ecf_3c2c911e",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 36
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T20:11:19Z",
+      "side": 1,
+      "message": "Add a bug number 🙏",
+      "range": {
+        "startLine": 765,
+        "startChar": 3,
+        "endLine": 765,
+        "endChar": 7
+      },
+      "revId": "40afc20cff52205bdce5e352680efae77d8c0a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
