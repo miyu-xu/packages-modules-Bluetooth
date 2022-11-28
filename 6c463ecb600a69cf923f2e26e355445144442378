@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9bcce4d_ebce64bc",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-28T21:47:56Z",
+      "side": 1,
+      "message": "That\u0027s a missing information for me that New AVRCP \u003d AVRCP Target \u003d avrcp_service. In that case, yeah, I agree a one-liner is the best solution here. Thanks for the info!",
+      "parentUuid": "db500ba8_a62319f9",
+      "range": {
+        "startLine": 642,
+        "startChar": 10,
+        "endLine": 642,
+        "endChar": 62
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de2ffeff_335a0783",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "I\u0027m guessing Chrome OS doesn\u0027t use new avrcp and instead uses? You probably enable AVRCP Target but were not in control of your SDP record?\n\nBecause android users of AVRCP Target _should_ have their SDP record made when avrcp_service inits. Or, am I missing something? I\u0027m just trying to figure out the root issue here! Because it still seems to like an Android platform only requires a one liner to set the AVRCP Controller version to 1.4 for a target implementation",
       "parentUuid": "2a37d78a_87440116",
+      "range": {
+        "startLine": 644,
+        "startChar": 12,
+        "endLine": 647,
+        "endChar": 42
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17427863_3f8373f0",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-11-28T21:47:56Z",
+      "side": 1,
+      "message": "We use new avrcp.\n\nSo we are all aligned as New AVRCP \u003d AVRCP Target \u003d avrcp_service. Patch updated, thanks for the clarification.",
+      "parentUuid": "00b12554_4671feaf",
       "range": {
         "startLine": 644,
         "startChar": 12,
