@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "289981a6_b3cc45b4",
+        "filename": "system/gd/hal/Android.bp",
+        "patchSetId": 41
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "Remove comment",
+      "range": {
+        "startLine": 23,
+        "startChar": 9,
+        "endLine": 23,
+        "endChar": 10
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eff143f_b1d34111",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "Remove comment",
+      "range": {
+        "startLine": 408,
+        "startChar": 5,
+        "endLine": 408,
+        "endChar": 6
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec82887_f033bca2",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "Why are we returning `0` here ? Are they all recoverable error ?",
+      "range": {
+        "startLine": 176,
+        "startChar": 11,
+        "endLine": 176,
+        "endChar": 12
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488f0508_2d69f394",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "socket_fd is added to save_sock_fds_ but it\u0027s never removed from it.\nMaybe we can do it in the SafeCloseSocket method:\n```c\nFD_CLR(fd, \u0026save_sock_fds_);\n```",
+      "range": {
+        "startLine": 225,
+        "startChar": 21,
+        "endLine": 225,
+        "endChar": 30
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8b0d08_de59d242",
+        "filename": "system/gd/hal/snoop_logger_socket_test.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "Naive question:\nDon\u0027t you need `\"INIT_gd_hal_snoop_logger_socket\u003dtrue\"` here ? as well as in the snoop_logger_socket_thread_test.cc",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 46
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848a2978_4cddf79a",
+        "filename": "system/gd/hal/snoop_logger_socket_thread.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "I am wondering if it could be a good idea to have a call here to WaitThreadIsRunning or not. This would match the `Stop` behavior that join the thread.\n\nIf it is, we could pass a futur as argument to `Run` and wait on the future instead. It would remove the need for a cv nor for the WaitThreadIsRunning method",
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b433e8e7_284043c2",
+        "filename": "system/gd/hal/snoop_logger_socket_thread.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "`stop_thread` is put to true when you are notifying the receiver.\nThis loop can be exited either because:\n* the `select` timeout expired and `stop_thread` is true\n* the socket has received a message on the notification listener_fd\n\nI think we can make things simpler by doing only one of them.",
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39dc45bc_ee6840f1",
+        "filename": "system/gd/hal/snoop_logger_socket_thread_test.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "What is the value added by these tests ?\nIt looks like the `socket_repeated_start_stop_test` is enough.\nFeel free to keep them if you want to",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 1
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b61daf_a7689ac3",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "With your change we are now calling the `StopAll` in the `TearDown`.\nDo we still need to call it in the test too? (maybe we do because of the assert below but I needed to ask)",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 27
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc45e496_6dc9d90b",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "remove comment",
+      "range": {
+        "startLine": 445,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 40
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

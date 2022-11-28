@@ -385,6 +385,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10751199_7fcf40bc",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "I guess this can no longer happen in the current implementation.\nLmk if I am wrong",
+      "parentUuid": "d7f3d1cd_ecf56dc6",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "696cc70a_9845d4f5",
@@ -706,6 +730,30 @@
       "side": 1,
       "message": "I will do that.\n[EDIT]\nAfter some reading I think the only way to detect a disconnection is on write and we are doing this (ECONNRESET).",
       "parentUuid": "e405a413_8e9e3452",
+      "range": {
+        "startLine": 170,
+        "startChar": 9,
+        "endLine": 170,
+        "endChar": 15
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54e846fa_da142c1b",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f890e8d4_deec17ad",
       "range": {
         "startLine": 170,
         "startChar": 9,
@@ -1392,6 +1440,30 @@
       "side": 1,
       "message": "I exposed this for testing but after some thinking and some more changes to the code  I\u0027m thinking about a special API for testing purposes (it\u0027s hard to coordinate test with multiple threads running). To be continued.",
       "parentUuid": "b497ab27_6f99b50c",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "e71c563d7cf95edcf3195804784294141b0995b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0116485d_6fa97161",
+        "filename": "system/gd/hal/snoop_logger_socket.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-28T19:53:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1aa9fb5f_73f49065",
       "range": {
         "startLine": 42,
         "startChar": 0,
