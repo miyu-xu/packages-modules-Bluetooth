@@ -222,6 +222,24 @@
       "parentUuid": "400be158_6429b45c",
       "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a50a455_d1eaae66",
+        "filename": "pandora/interfaces/pandora_experimental/security.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-29T21:41:27Z",
+      "side": 1,
+      "message": "After some tests, there is a conflict if I have two host.proto. So I\u0027ll put back pandora_experimental for this Cl then upload a new one to use the final interface in `external/` since it requires a lot of changement",
+      "parentUuid": "c3d1b0ba_2fafbc7a",
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
