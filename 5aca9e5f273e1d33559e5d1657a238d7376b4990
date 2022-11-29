@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f47e74_9112ccd7",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2022-11-29T11:09:19Z",
+      "side": 1,
+      "message": "Should we do similar thing on TBS for call control?\ni.e. HfpService.setActiveDevice(null, true) when we got accept call OP?.",
+      "range": {
+        "startLine": 895,
+        "startChar": 12,
+        "endLine": 895,
+        "endChar": 51
+      },
+      "revId": "5aca9e5f273e1d33559e5d1657a238d7376b4990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
