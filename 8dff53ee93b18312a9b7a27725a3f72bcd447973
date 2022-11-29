@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59a1c656_3a8744f8",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-29T23:10:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure but one of the goals of gd is to not depend on fluoride, we might want to rename the default to not tie it to fluoride",
+      "revId": "8dff53ee93b18312a9b7a27725a3f72bcd447973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
