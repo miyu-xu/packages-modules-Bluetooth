@@ -206,7 +206,8 @@ fn build_commands() -> HashMap<String, CommandOption> {
         CommandOption {
             rules: vec![
                 String::from("socket test"),
-                String::from("socket connect <addr> <l2cap|rfcomm> <psm|uuid>"),
+                String::from("socket connect <address> <l2cap|rfcomm> <psm|uuid>"),
+                String::from("socket disconnect <socket_id>"),
             ],
             description: String::from("Socket manager utilities."),
             function_pointer: CommandHandler::cmd_socket,
@@ -1352,9 +1353,22 @@ impl CommandHandler {
                     return Err(CommandError::Failed(format!("Failed to create socket with status={:?} against {}, type {}, with psm/uuid {}",
                         status, addr, sock_type, psm_or_uuid)));
                 } else {
-                    return Err(CommandError::Failed(format!("Called create socket with result ({:?}, {}) against {}, type {}, with psm/uuid {}",
-                    status, id, addr, sock_type, psm_or_uuid)));
+                    print_info!("Called create socket with result ({:?}, {}) against {}, type {}, with psm/uuid {}",
+                    status, id, addr, sock_type, psm_or_uuid);
                 }
+            }
+            "disconnect" => {
+                let socket_id = String::from(get_arg(args, 1)?)
+                    .parse::<u64>()
+                    .or(Err("Failed to parse socket_id"))?;
+
+                self.context
+                    .lock()
+                    .unwrap()
+                    .socket_manager_dbus
+                    .as_mut()
+                    .unwrap()
+                    .close(callback_id, socket_id);
             }
 
             _ => return Err(CommandError::InvalidArgs),

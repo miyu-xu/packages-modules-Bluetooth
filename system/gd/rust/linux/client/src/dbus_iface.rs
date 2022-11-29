@@ -5,7 +5,7 @@ use bt_topshim::btif::{
     BtTransport, Uuid, Uuid128Bit,
 };
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
-use bt_topshim::profiles::socket::SocketType;
+use bt_topshim::profiles::socket::{L2CAPEtmMode, SocketType};
 
 use btstack::bluetooth::{
     BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback, IBluetoothQA,
@@ -75,6 +75,7 @@ impl_dbus_arg_enum!(SocketType);
 impl_dbus_arg_enum!(SuspendMode);
 impl_dbus_arg_enum!(SuspendType);
 impl_dbus_arg_from_into!(Uuid, Vec<u8>);
+impl_dbus_arg_enum!(L2CAPEtmMode);
 
 impl RefArgToRust for Uuid {
     type RustType = Vec<u8>;
@@ -1521,6 +1522,11 @@ impl IBluetoothSocketManager for BluetoothSocketManagerDBus {
 
     #[dbus_method("Close")]
     fn close(&mut self, callback: CallbackId, id: SocketId) -> BtStatus {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetL2CAPMode")]
+    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
         dbus_generated!()
     }
 }

@@ -84,6 +84,10 @@ l2cap_socket* socks = NULL;
 static uint32_t last_sock_id = 0;
 static uid_set_t* uid_set = NULL;
 static int pth = -1;
+static tL2CAP_CFG_INFO l2cap_etm_cfg{.fcr_present = true,
+                                     .fcr = kDefaultErtmOptions};
+static tL2CAP_ERTM_INFO l2cap_etm_preferred = {.preferred_mode =
+                                                   L2CAP_FCR_ERTM_MODE};
 
 static void btsock_l2cap_cbk(tBTA_JV_EVT event, tBTA_JV* p_data,
                              uint32_t l2cap_socket_id);
@@ -682,9 +686,6 @@ static void btsock_l2cap_cbk(tBTA_JV_EVT event, tBTA_JV* p_data,
   }
 }
 
-const tL2CAP_ERTM_INFO obex_l2c_etm_opt = {L2CAP_FCR_ERTM_MODE,
-                                           /* Mandatory for OBEX over l2cap */};
-
 /**
  * When using a dynamic PSM, a PSM allocation is requested from
  * btsock_l2cap_listen_or_connect().
@@ -719,12 +720,12 @@ static void btsock_l2cap_server_listen(l2cap_socket* sock) {
   }
 
   /* Setup ETM settings: mtu will be set below */
-  std::unique_ptr<tL2CAP_CFG_INFO> cfg = std::make_unique<tL2CAP_CFG_INFO>(
-      tL2CAP_CFG_INFO{.fcr_present = true, .fcr = kDefaultErtmOptions});
+  std::unique_ptr<tL2CAP_CFG_INFO> cfg =
+      std::make_unique<tL2CAP_CFG_INFO>(l2cap_etm_cfg);
 
   std::unique_ptr<tL2CAP_ERTM_INFO> ertm_info;
   if (!sock->is_le_coc) {
-    ertm_info.reset(new tL2CAP_ERTM_INFO(obex_l2c_etm_opt));
+    ertm_info.reset(new tL2CAP_ERTM_INFO(l2cap_etm_preferred));
   }
 
   BTA_JvL2capStartServer(connection_type, sock->security, 0,
@@ -767,12 +768,12 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name,
           sock->is_le_coc ? BTA_JV_CONN_TYPE_L2CAP_LE : BTA_JV_CONN_TYPE_L2CAP;
 
       /* Setup ETM settings: mtu will be set below */
-      std::unique_ptr<tL2CAP_CFG_INFO> cfg = std::make_unique<tL2CAP_CFG_INFO>(
-          tL2CAP_CFG_INFO{.fcr_present = true, .fcr = kDefaultErtmOptions});
+      std::unique_ptr<tL2CAP_CFG_INFO> cfg =
+          std::make_unique<tL2CAP_CFG_INFO>(l2cap_etm_cfg);
 
       std::unique_ptr<tL2CAP_ERTM_INFO> ertm_info;
       if (!sock->is_le_coc) {
-        ertm_info.reset(new tL2CAP_ERTM_INFO(obex_l2c_etm_opt));
+        ertm_info.reset(new tL2CAP_ERTM_INFO(l2cap_etm_preferred));
       }
 
       BTA_JvL2capConnect(
@@ -803,6 +804,38 @@ bt_status_t btsock_l2cap_connect(const RawAddress* bd_addr, int channel,
                                  int* sock_fd, int flags, int app_uid) {
   return btsock_l2cap_listen_or_connect(NULL, bd_addr, channel, sock_fd, flags,
                                         0, app_uid);
+}
+
+bt_status_t btsock_l2cap_set_etm_default_cfg(bt_l2cap_mode mode,
+                                             bool mandatory) {
+  bt_status_t status = BT_STATUS_FAIL;
+
+  switch (mode) {
+    case BT_L2CAP_FCR_BASIC_MODE:
+      l2cap_etm_cfg.fcr_present = mandatory;
+      l2cap_etm_cfg.fcr = kDefaultBasicOptions;
+      l2cap_etm_preferred.preferred_mode = mode;
+      status = BT_STATUS_SUCCESS;
+      break;
+    case BT_L2CAP_FCR_ERTM_MODE:
+      l2cap_etm_cfg.fcr_present = mandatory;
+      l2cap_etm_cfg.fcr = kDefaultErtmOptions;
+      l2cap_etm_preferred.preferred_mode = mode;
+      status = BT_STATUS_SUCCESS;
+      break;
+    case BT_L2CAP_FCR_LE_COC_MODE:
+      l2cap_etm_cfg.fcr_present = mandatory;
+      l2cap_etm_cfg.fcr = kDefaultLECOCOptions;
+      l2cap_etm_preferred.preferred_mode = mode;
+      status = BT_STATUS_SUCCESS;
+      break;
+    default:
+      LOG_ERROR("%s unknown/unsupported L2CAP mode %d", __func__, mode);
+      status = BT_STATUS_UNSUPPORTED;
+      break;
+  }
+
+  return status;
 }
 
 /* return true if we have more to send and should wait for user readiness, false

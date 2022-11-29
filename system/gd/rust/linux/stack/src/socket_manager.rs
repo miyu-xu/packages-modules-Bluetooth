@@ -1,7 +1,7 @@
 //! Implementation of the Socket API (IBluetoothSocketManager).
 
 use bt_topshim::btif::{BluetoothInterface, BtStatus, RawAddress, Uuid};
-use bt_topshim::profiles::socket;
+use bt_topshim::profiles::socket::{self, L2CAPEtmMode};
 use log;
 use nix::sys::socket::{recvmsg, ControlMessageOwned};
 use nix::sys::uio::IoVec;
@@ -330,6 +330,9 @@ pub trait IBluetoothSocketManager {
 
     /// Close a listening socket.
     fn close(&mut self, callback: CallbackId, id: SocketId) -> BtStatus;
+
+    /// Set preferred or required L2CAP mode.
+    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus;
 }
 
 /// Internal listening socket data.
@@ -1241,5 +1244,9 @@ impl IBluetoothSocketManager for BluetoothSocketManager {
         }
 
         BtStatus::InvalidParam
+    }
+
+    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
+        self.sock.as_ref().expect("Socket manager not initialized").set_l2cap_mode(mode, mandatory)
     }
 }
