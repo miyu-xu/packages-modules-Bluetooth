@@ -23,6 +23,7 @@
 #include "base/logging.h"  // LOG() stdout and android log
 #include "include/hardware/bluetooth.h"
 #include "test/headless/get_options.h"
+#include "test/headless/handler.h"
 #include "test/headless/messenger.h"
 
 extern bt_interface_t bluetoothInterface;
@@ -57,6 +58,9 @@ class HeadlessStack {
   void TearDown();
 
   const char** StackInitFlags() const { return stack_init_flags_; }
+
+ protected:
+  headless::Handler* headless_handler_;
 
  private:
   const char** stack_init_flags_;

@@ -29,8 +29,10 @@
 #include "internal_include/bt_trace.h"
 #include "osi/include/log.h"  // android log only
 #include "test/headless/get_options.h"
+#include "test/headless/handler.h"
 #include "test/headless/interface.h"
 #include "test/headless/log.h"
+#include "test/headless/tamper.h"
 #include "types/raw_address.h"
 
 extern bt_interface_t bluetoothInterface;
@@ -272,6 +274,15 @@ void HeadlessStack::SetUp() {
   const int config_compare_result = 0;
   const bool is_atv = false;
 
+  headless_handler_ = new headless::Handler();
+
+  headless_handler_->Post(
+      common::BindOnce([]() { LOG_CONSOLE("Headless handler started"); }));
+
+  headless_handler_->Post(common::BindOnce(disconnector, headless_handler_,
+                                           RawAddress::kEmpty,
+                                           BT_TRANSPORT_BR_EDR));
+
   int status = bluetoothInterface.init(
       &bt_callbacks, start_restricted, is_common_criteria_mode,
       config_compare_result, StackInitFlags(), is_atv, nullptr);
@@ -303,6 +314,8 @@ void HeadlessStack::SetUp() {
 
 void HeadlessStack::TearDown() {
   bluetooth::test::headless::stop_messenger();
+
+  delete headless_handler_;
 
   log_logging();
   LOG_INFO("Stack has disabled");
