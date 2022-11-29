@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10cfc973_726c497a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-29T06:01:07Z",
+      "side": 1,
+      "message": "PROFILE_NOT_DECIDED_YET?",
+      "range": {
+        "startLine": 129,
+        "startChar": 29,
+        "endLine": 129,
+        "endChar": 44
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bde6a83_b1979dca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-29T06:01:07Z",
+      "side": 1,
+      "message": "PROFILE_USE_BUILTIN_AUDIO_DEVICE?",
+      "range": {
+        "startLine": 131,
+        "startChar": 29,
+        "endLine": 131,
+        "endChar": 41
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce9bd26_77546273",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-29T06:01:07Z",
+      "side": 1,
+      "message": "When LE hearing aid device is disconnected, then mActive(Call|Media)Profile was HAP_CLIENT, and now it is not reset. \n\nShouldn\u0027t we also check whether it is HAP_CLIENT?",
+      "range": {
+        "startLine": 540,
+        "startChar": 28,
+        "endLine": 545,
+        "endChar": 29
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39436a6f_bc69295a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-29T06:01:07Z",
+      "side": 1,
+      "message": "Why do we set this again even when the `mActiveMediaProfile` is already `BluetoothProfile.A2DP`? Here and others",
+      "range": {
+        "startLine": 701,
+        "startChar": 27,
+        "endLine": 701,
+        "endChar": 72
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1215c42e_f8f7057a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-29T06:01:07Z",
+      "side": 1,
+      "message": "Q) Is there any `getFallbackDevice()` method in HearingAidService?",
+      "range": {
+        "startLine": 713,
+        "startChar": 37,
+        "endLine": 714,
+        "endChar": 65
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d74304ed_0f2c4ab3",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-29T06:01:07Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be handled in ActiveDeviceManager?\nIf so, how about leaving a TODO comment for that?",
+      "range": {
+        "startLine": 896,
+        "startChar": 12,
+        "endLine": 904,
+        "endChar": 13
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
