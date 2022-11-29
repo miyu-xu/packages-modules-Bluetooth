@@ -2010,11 +2010,17 @@ static void bta_dm_remname_cback(void* p) {
       BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
     }
   } else {
-    // if we got a different response, ignore it
+    // if we got a different response, maybe ignore it
     // we will have made a request directly from BTM_ReadRemoteDeviceName so we
     // expect a dedicated response for us
-    LOG_INFO("ignoring remote name response in DM callback since it's for the wrong bd_addr");
-    return;
+    if (p_remote_name->hci_status == HCI_ERR_CONNECTION_EXISTS) {
+      LOG_INFO("Ignoring bad status with assumption already exists");
+    } else {
+      LOG_INFO(
+          "ignoring remote name response in DM callback since it's for the "
+          "wrong bd_addr");
+      return;
+    }
   }
 
   /* remote name discovery is done but it could be failed */
