@@ -16,6 +16,46 @@
       "message": "lgtm, i will let bluetooth team do the final +2s.",
       "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad646ca_f5519682",
+        "filename": "system/embdrv/g722/fuzzer/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-29T23:10:10Z",
+      "side": 1,
+      "message": "we may need to use a version of libg722codec with sanitizers enabled. \nBut support on our side is not present.\n\nBy when do you want to merge this patch?\n\nIf not in a hurry, we can add some support for building a sanitized version of the library.",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 21
+      },
+      "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f369a38_6986a27f",
+        "filename": "system/embdrv/g722/fuzzer/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-11-29T23:10:10Z",
+      "side": 1,
+      "message": "enable sanitizers here?",
+      "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
