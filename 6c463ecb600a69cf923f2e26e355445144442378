@@ -191,6 +191,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42528711_489b43c7",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-11-29T00:34:27Z",
+      "side": 1,
+      "message": "It\u0027s criminally named, but that\u0027s my understanding! Definitely build your target and check the SDP records though and make sure it\u0027s echoed.\n\nWe\u0027ll want someone from the core/phone team to review too, since I\u0027m not the owner of any of this. I just have some background on it (:",
+      "parentUuid": "17427863_3f8373f0",
+      "range": {
+        "startLine": 644,
+        "startChar": 12,
+        "endLine": 647,
+        "endChar": 42
+      },
+      "revId": "6c463ecb600a69cf923f2e26e355445144442378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbaf735f_9cc6d5e9",
