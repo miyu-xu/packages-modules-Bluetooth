@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "309b1360_bb58fb58",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-29T18:48:08Z",
+      "side": 1,
+      "message": "Sorry for asking again, but I don\u0027t understand why we can return 0 here.",
+      "parentUuid": "bc5ec105_ffab719a",
+      "range": {
+        "startLine": 176,
+        "startChar": 11,
+        "endLine": 176,
+        "endChar": 12
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "488f0508_2d69f394",
         "filename": "system/gd/hal/snoop_logger_socket.cc",
         "patchSetId": 41
@@ -236,6 +260,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef81533f_3d283523",
+        "filename": "system/gd/hal/snoop_logger_socket_test.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-29T18:48:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "070469a8_3a27f8af",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 46
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "848a2978_4cddf79a",
@@ -308,6 +356,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f757926c_b0d1e338",
+        "filename": "system/gd/hal/snoop_logger_socket_thread.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-29T18:48:08Z",
+      "side": 1,
+      "message": "I would have done the opposite behavior to not have to rely on a timeout.\nBut if you prefer this version I am fine with it.",
+      "parentUuid": "0405b0d3_e4134315",
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "39dc45bc_ee6840f1",
         "filename": "system/gd/hal/snoop_logger_socket_thread_test.cc",
         "patchSetId": 41
@@ -366,6 +432,30 @@
       "side": 1,
       "message": "In this particular test the StopAll() is called explicitly to verify behavior after Stop(). In other tests, where this behavior is not verified, we can rely on TearDown().",
       "parentUuid": "b8b61daf_a7689ac3",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 27
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "157f1244_549ac60b",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-29T18:48:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e63b48d1_7844356e",
       "range": {
         "startLine": 175,
         "startChar": 0,
