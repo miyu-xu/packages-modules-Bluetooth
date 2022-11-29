@@ -127,9 +127,29 @@ typedef struct {
   uint16_t mps;
 } tL2CAP_FCR_OPTS;
 
+/* default options for Basic mode */
+constexpr tL2CAP_FCR_OPTS kDefaultBasicOptions = {
+    L2CAP_FCR_BASIC_MODE,
+    0, /* Tx window size */
+    0, /* Maximum transmissions before disconnecting */
+    0, /* Retransmission timeout (2 secs) */
+    0, /* Monitor timeout (12 secs) */
+    0  /* MPS segment size */
+};
+
 /* default options for ERTM mode */
 constexpr tL2CAP_FCR_OPTS kDefaultErtmOptions = {
     L2CAP_FCR_ERTM_MODE,
+    10,    /* Tx window size */
+    20,    /* Maximum transmissions before disconnecting */
+    2000,  /* Retransmission timeout (2 secs) */
+    12000, /* Monitor timeout (12 secs) */
+    1010   /* MPS segment size */
+};
+
+/* default options for LE COC mode */
+constexpr tL2CAP_FCR_OPTS kDefaultLECOCOptions = {
+    L2CAP_FCR_LE_COC_MODE,
     10,    /* Tx window size */
     20,    /* Maximum transmissions before disconnecting */
     2000,  /* Retransmission timeout (2 secs) */
