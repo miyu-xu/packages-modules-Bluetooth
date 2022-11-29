@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a0650e_8e8ea372",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-29T10:23:44Z",
+      "side": 1,
+      "message": "Shouldn\u0027t they be CALL_AUDIO_DEFAULT by default?",
+      "range": {
+        "startLine": 129,
+        "startChar": 37,
+        "endLine": 129,
+        "endChar": 55
+      },
+      "revId": "5c224784553a5ea41d5aba6ffde7a84806f94eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50d9b2b8_03fd1e73",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-29T10:23:44Z",
+      "side": 1,
+      "message": "nint: We can have a 3 by 3 combination test this.",
+      "range": {
+        "startLine": 458,
+        "startChar": 37,
+        "endLine": 458,
+        "endChar": 55
+      },
+      "revId": "5c224784553a5ea41d5aba6ffde7a84806f94eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d944d361_43adc6e1",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 3324,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-11-29T10:23:44Z",
+      "side": 1,
+      "message": "Please mention it gets the latest set policy",
+      "range": {
+        "startLine": 3324,
+        "startChar": 7,
+        "endLine": 3324,
+        "endChar": 40
+      },
+      "revId": "5c224784553a5ea41d5aba6ffde7a84806f94eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
