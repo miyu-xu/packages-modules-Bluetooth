@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e008088_4b10db21",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-29T18:14:22Z",
+      "side": 1,
+      "message": "use `pandora` and not `pandora_experimental` for finalized interfaces",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 70
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e915368d_2e9170f8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-29T18:14:22Z",
+      "side": 1,
+      "message": "use `pandora` and not `pandora_experimental` for finalized interfaces",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 70
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35391e40_9eedd31a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-29T18:14:22Z",
+      "side": 1,
+      "message": "use `pandora` and not `pandora_experimental` for finalized interfaces",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 71
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d974367e_a3f0fc8f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-29T18:14:22Z",
+      "side": 1,
+      "message": "use `pandora` and not `pandora_experimental` for finalized interfaces",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 76
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "400be158_6429b45c",
+        "filename": "pandora/interfaces/pandora_experimental/security.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2022-11-29T18:14:22Z",
+      "side": 1,
+      "message": "move to `pandora` and remove from `pandora_experimental` (same of `host.proto`)",
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
