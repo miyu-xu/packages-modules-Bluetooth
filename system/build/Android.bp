@@ -98,6 +98,15 @@ fluoride_defaults {
     },
 }
 
+// TODO: add common sanitizing options for all fuzzers
+cc_defaults {
+    name: "fluoride_common_fuzz_defaults",
+    fuzz_config: {
+        cc: ["android-bluetooth-security@google.com"],
+        componentid: 27441,
+    },
+}
+
 fluoride_defaults {
     name: "fluoride_types_defaults",
     defaults: [

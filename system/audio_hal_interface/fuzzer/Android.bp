@@ -28,6 +28,7 @@ cc_defaults {
     header_libs: [
         "avrcp_headers",
         "libbluetooth_headers",
+        "fluoride_common_fuzz_defaults"
     ],
     shared_libs: [
         "libz",
@@ -99,10 +100,6 @@ cc_defaults {
     cflags: [
         "-DHAS_NO_BDROID_BUILDCFG",
     ],
-    fuzz_config: {
-        cc: ["android-bluetooth-security@google.com"],
-        componentid: 27441,
-    },
 }
 
 cc_fuzz {
