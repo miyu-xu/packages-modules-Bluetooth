@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77c44444_d8a8c38d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2022-11-29T16:36:00Z",
+      "side": 1,
+      "message": "looks like permissions to find the service are required:\n```\n11-28 22:46:35.189   458   458 I auditd  : avc:  denied  { find } for pid\u003d3005 uid\u003d1002 name\u003dandroid.hardware.bluetooth.IBluetoothHci/default scontext\u003du:r:bluetooth:s0 tcontext\u003du:object_r:default_android_service:s0 tclass\u003dservice_manager permissive\u003d0\n```",
+      "revId": "1cb42bd45b8631033b61a6b368ad05838bf25690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
