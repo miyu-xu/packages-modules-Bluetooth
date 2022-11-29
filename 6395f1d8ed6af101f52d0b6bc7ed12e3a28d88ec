@@ -76,6 +76,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "461c0dbc_29de60cf",
+        "filename": "system/gd/rust/linux/client/src/bt_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-11-29T17:51:41Z",
+      "side": 1,
+      "message": "Sounds good. Thanks",
+      "parentUuid": "bac3be05_a9b97701",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "117d34f0_5aa67f7b",
