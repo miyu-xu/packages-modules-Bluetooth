@@ -69,6 +69,30 @@
       },
       "revId": "71ed83962261dd6934728db21641af6e0ad2b898",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f160e969_c88ee7d0",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-11-29T23:54:36Z",
+      "side": 1,
+      "message": "Thanks, I did not know that the discriminator was limited like this by default. I\u0027ve add a test for this — that made me go on a long hunt to figure out why the code _didn\u0027t_ fail despite the missing `#[repr(u64)]`...\n\nFinally, after a lot of digging, I found that I had disabled all lints with `lints: \"none\"` in the `Android.bp` file. This also disabled the `overflowing_literals` lint. That is also fixed now in an earlier commit.",
+      "parentUuid": "5bcbdd1d_84a5fdd7",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 31
+      },
+      "revId": "71ed83962261dd6934728db21641af6e0ad2b898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
