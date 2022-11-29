@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b29064b_ddbcce35",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-29T23:16:59Z",
+      "side": 1,
+      "message": "Could we add a comment saying what we want to put in this default for the future contributors that will modify it to avoid it becoming like all the other fuzz defaults ?\n\nFor example say that we only want the `fuzz_config` and sanitizing options here.",
+      "revId": "8dff53ee93b18312a9b7a27725a3f72bcd447973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59a1c656_3a8744f8",
         "filename": "system/gd/Android.bp",
         "patchSetId": 1
