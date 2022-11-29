@@ -38,6 +38,13 @@ typedef enum {
   BTSOCK_L2CAP_LE = 4
 } btsock_type_t;
 
+/** Bluetooth L2CAP FCR Mode */
+typedef enum {
+  BT_L2CAP_FCR_BASIC_MODE = 0,
+  BT_L2CAP_FCR_ERTM_MODE = 3,
+  BT_L2CAP_FCR_LE_COC_MODE = 5,
+} bt_l2cap_mode;
+
 /** Represents the standard BT SOCKET interface. */
 typedef struct {
   short size;
@@ -90,6 +97,8 @@ typedef struct {
    */
   void (*request_max_tx_data_length)(const RawAddress& bd_addr);
 
+  /** Set the preferred or required L2CAP ETM mode in configuration phase */
+  bt_status_t (*set_l2cap_mode)(bt_l2cap_mode mode, bool mandatory);
 } btsock_interface_t;
 
 __END_DECLS
