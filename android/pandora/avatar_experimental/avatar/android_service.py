@@ -19,7 +19,7 @@ from mobly.controllers.android_device_lib.services.base_service \
     import BaseService
 
 ANDROID_SERVER_PACKAGE = 'com.android.pandora'
-ANDROID_SERVER_GRPC_PORT = 8999
+ANDROID_SERVER_GRPC_PORT = 8999 # TODO: Use a dynamic port
 
 
 class AndroidService(BaseService):
@@ -35,16 +35,18 @@ class AndroidService(BaseService):
 
     def start(self):
         # Start Pandora Android gRPC server.
-        self.instrumentation = threading.Thread(target=lambda: self._device.adb._exec_adb_cmd(
-            'shell',
-            f'am instrument --no-hidden-api-checks -w {ANDROID_SERVER_PACKAGE}/.Main',
-            shell=False,
-            timeout=None,
-            stderr=None))
+        self.instrumentation = threading.Thread(
+            target=lambda: self._device.adb._exec_adb_cmd(
+                'shell',
+                f'am instrument --no-hidden-api-checks -w {ANDROID_SERVER_PACKAGE}/.Main',
+                shell=False,
+                timeout=None,
+                stderr=None))
 
         self.instrumentation.start()
 
-        self._device.adb.forward([f'tcp:{self.port}', f'tcp:{ANDROID_SERVER_GRPC_PORT}'])
+        self._device.adb.forward(
+            [f'tcp:{self.port}', f'tcp:{ANDROID_SERVER_GRPC_PORT}'])
 
         # Wait a few seconds for the Android gRPC server to be started.
         time.sleep(3)
@@ -53,11 +55,12 @@ class AndroidService(BaseService):
 
     def stop(self):
         # Stop Pandora Android gRPC server.
-        self._device.adb._exec_adb_cmd('shell',
-                                       f'am force-stop {ANDROID_SERVER_PACKAGE}',
-                                       shell=False,
-                                       timeout=None,
-                                       stderr=None)
+        self._device.adb._exec_adb_cmd(
+            'shell',
+            f'am force-stop {ANDROID_SERVER_PACKAGE}',
+            shell=False,
+            timeout=None,
+            stderr=None)
 
         self._device.adb.forward(['--remove', f'tcp:{self.port}'])
 
