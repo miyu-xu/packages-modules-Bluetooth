@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bac3be05_a9b97701",
+        "filename": "system/gd/rust/linux/client/src/bt_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-29T03:00:40Z",
+      "side": 1,
+      "message": "These will need to be carried from commands to commands. So either put them as part of ClientContext, which means the definition will be in main.rs, or put them as static variables in command_handler.rs.\n\nbt_adv.rs did the similar thing so I just followed.",
+      "parentUuid": "3f7793e2_22d83316",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "117d34f0_5aa67f7b",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 3
@@ -71,6 +89,24 @@
       "writtenOn": "2022-11-18T23:15:39Z",
       "side": 1,
       "message": "Nit: Why not fail here and return instead of setting invalid and logging below so we are consistent with above?",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22747919_0c5532d9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-29T03:00:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "117d34f0_5aa67f7b",
       "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +128,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aa2f2f6_be58e423",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-29T03:00:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5974d6e8_7dc407ca",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "688cac3c_03659d98",
@@ -105,6 +159,24 @@
       "writtenOn": "2022-11-18T23:15:39Z",
       "side": 1,
       "message": "Since write_type is only used here. Does it make more sense to pass it as a arg instead of having a separate func to set write type?",
+      "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d474118_4dbf9eda",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-29T03:00:40Z",
+      "side": 1,
+      "message": "Good suggestion. Done.",
+      "parentUuid": "688cac3c_03659d98",
       "revId": "6395f1d8ed6af101f52d0b6bc7ed12e3a28d88ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

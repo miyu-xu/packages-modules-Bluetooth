@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3282e49_043ae9f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-29T03:00:40Z",
+      "side": 1,
+      "message": "Also rebased on Sonny\u0027s change https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2315860",
+      "revId": "0df7c9de33499807d106fbc7c0c7aae239c58d18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
