@@ -34,6 +34,24 @@
       "parentUuid": "b576728b_cf80ce26",
       "revId": "50b3b603218afa82d3320ed32473e1968346b3ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5655a24a_e4384b9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-11-29T04:15:50Z",
+      "side": 1,
+      "message": "Sorry for late response. \n\nFor your questions, \n1. We don\u0027t need to tell it\u0027s a wakeful suspend or not. \n2. AFAKI, Bluetooth UI (Chromium) doesn\u0027t know if it\u0027s a wakeful suspend or not.\n\nHere\u0027re previous discussion:\n\nFrom BlueZ source (kernel [1] and blutoothd[2]), it  doesn’t treat the wakeup capability or wake source differently on advertising.\n\nFrom application perspective, if the underlying Bluetooth stack disables active advertising instances for system suspend but not re-enable them, they might need a notification about the reason and API to enable it. Currently, we don’t provide such an API on chromium [3]. \nIt’s reasonable to maintain existing behavior. Let me know if I overlooked some problems that must be resolved on Floss.\n\n[1] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/third_party/kernel/v5.15/net/bluetooth/hci_sync.c;l\u003d1777?q\u003d%20hci_resume_sync\u0026ss\u003dchromiumos%2Fchromiumos%2Fcodesearch:src%2Fthird_party%2Fkernel%2Fv5.15%2F\n[2] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/third_party/bluez/current/src/adapter.c;l\u003d10037?q\u003dcontroller_resume_callback\u0026ss\u003dchromiumos\n[3]\nhttps://source.chromium.org/chromium/chromium/src/+/main:device/bluetooth/bluetooth_adapter.h;l\u003d612?q\u003dbluetooth_adapter\u0026ss\u003dchromium%2Fchromium%2Fsrc",
+      "parentUuid": "1d3943a6_233f4fc9",
+      "revId": "50b3b603218afa82d3320ed32473e1968346b3ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
