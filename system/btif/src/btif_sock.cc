@@ -55,6 +55,8 @@ static bt_status_t btsock_connect(const RawAddress* bd_addr, btsock_type_t type,
 
 static void btsock_request_max_tx_data_length(const RawAddress& bd_addr);
 
+static bt_status_t btsock_set_l2cap_mode(bt_l2cap_mode mode, bool mandatory);
+
 static void btsock_signaled(int fd, int type, int flags, uint32_t user_id);
 
 static std::atomic_int thread_handle{-1};
@@ -62,10 +64,11 @@ static thread_t* thread;
 
 const btsock_interface_t* btif_sock_get_interface(void) {
   static btsock_interface_t interface = {
-      sizeof(interface), btsock_listen, /* listen */
-      btsock_connect,                   /* connect */
-      btsock_request_max_tx_data_length /* request_max_tx_data_length */
-  };
+      .size = sizeof(interface),
+      .listen = btsock_listen,
+      .connect = btsock_connect,
+      .request_max_tx_data_length = btsock_request_max_tx_data_length,
+      .set_l2cap_mode = btsock_set_l2cap_mode};
 
   return &interface;
 }
@@ -256,6 +259,10 @@ static bt_status_t btsock_connect(const RawAddress* bd_addr, btsock_type_t type,
 
 static void btsock_request_max_tx_data_length(const RawAddress& remote_device) {
   BTA_DmBleRequestMaxTxDataLength(remote_device);
+}
+
+static bt_status_t btsock_set_l2cap_mode(bt_l2cap_mode mode, bool mandatory) {
+  return btsock_l2cap_set_etm_default_cfg(mode, mandatory);
 }
 
 static void btsock_signaled(int fd, int type, int flags, uint32_t user_id) {
