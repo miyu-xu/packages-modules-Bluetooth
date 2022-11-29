@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac5be171_7158efa4",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3271c47a_8e385a28",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 49
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57d53b14_9dce2d30",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-28T08:45:37Z",
       "side": 1,
       "message": "Q) Does the *ActivityTest pass? It seemed currently they are not working in tm-qpr-dev. (b/260295342)",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 56
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59572d7c_773c1cde",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "it pass when I was working on it. But no longer work",
+      "parentUuid": "57d53b14_9dce2d30",
       "range": {
         "startLine": 70,
         "startChar": 13,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64e26945_79c0a36e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "yes, they are for filling the info",
+      "parentUuid": "7c9202df_b4e2f79a",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 0
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41c80ae2_2c59dd51",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-28T08:45:37Z",
       "side": 1,
       "message": "Do we need to use this for creating activity? Is L143 enough?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 52
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bf19f97_236069a0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "This line will wait until the activity is fulled created. L143 is just starting to create",
+      "parentUuid": "41c80ae2_2c59dd51",
       "range": {
         "startLine": 145,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33cfb3ff_fb6db292",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a25dcabc_bcaf2b20",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 28
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a82cf23e_4ad213f3",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-11-28T08:45:37Z",
       "side": 1,
       "message": "minor) I\u0027m a bit worried about the possible flakiness on using onView.",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 14
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1b4ebbd_07f27826",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "Until now there is no empirical sign of flakiness. Let\u0027s just go with it for now",
+      "parentUuid": "a82cf23e_4ad213f3",
       "range": {
         "startLine": 149,
         "startChar": 8,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f272acf6_f8902f0d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17718c70_477b3290",
+      "range": {
+        "startLine": 172,
+        "startChar": 15,
+        "endLine": 172,
+        "endChar": 30
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21e586af_950af44f",
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edeaf2d2_07d81ae5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "It possibly be anything else, so this line seems to be safer for me",
+      "parentUuid": "21e586af_950af44f",
+      "range": {
+        "startLine": 195,
+        "startChar": 47,
+        "endLine": 195,
+        "endChar": 72
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ceb9e59_f59d48ba",
@@ -198,6 +390,30 @@
       "writtenOn": "2022-11-28T08:45:37Z",
       "side": 1,
       "message": "Let\u0027s merge this kind of methods into some Util class:\n\n```\nstatic void enableActivity(Class ActivityClass);\n```",
+      "range": {
+        "startLine": 205,
+        "startChar": 17,
+        "endLine": 205,
+        "endChar": 31
+      },
+      "revId": "6512cd33ca77024696e3a4b85e7dbef4c7430b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01bb04b3_915312de",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-29T05:22:37Z",
+      "side": 1,
+      "message": "will do after https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2319829 is merged",
+      "parentUuid": "4ceb9e59_f59d48ba",
       "range": {
         "startLine": 205,
         "startChar": 17,
