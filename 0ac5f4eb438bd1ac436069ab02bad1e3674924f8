@@ -22,6 +22,30 @@
       },
       "revId": "0ac5f4eb438bd1ac436069ab02bad1e3674924f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b09666d_52db1f05",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactoryTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-29T01:53:34Z",
+      "side": 1,
+      "message": "This is just for additional coverage regarding lines 238:241 `android/app/src/com/android/bluetooth/pan/BluetoothTetheringNetworkFactory.java`. Which is stopping without starting with an empty iface string.",
+      "parentUuid": "6a3d1874_5b2a46b4",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "0ac5f4eb438bd1ac436069ab02bad1e3674924f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
