@@ -74,6 +74,7 @@ cc_library_static {
 cc_test {
     name: "bluetooth-test-audio-hal-interface",
     defaults: ["fluoride_defaults"],
+    test_suites: ["general-tests"],
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
