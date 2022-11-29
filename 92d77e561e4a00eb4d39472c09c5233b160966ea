@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98bee215_41001665",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-29T22:07:51Z",
+      "side": 1,
+      "message": "Overall LGTM, some nits below",
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba792ad4_1d7d8c9c",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-29T22:07:51Z",
+      "side": 1,
+      "message": "This doesn\u0027t actually import any names inside of `hex::`. Not needed and can be removed?",
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25a0faca_5cf92f3d",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-29T22:07:51Z",
+      "side": 1,
+      "message": "nit: This shouldn\u0027t need `format!` but can be simply `String::from`, because there is no need to inline some values in the string. I think you were following my example but I think my examples were the result of mass-editing with a macro so they weren\u0027t good.",
+      "range": {
+        "startLine": 885,
+        "startChar": 56,
+        "endLine": 885,
+        "endChar": 62
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78055b1b_0df37569",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-29T22:07:51Z",
+      "side": 1,
+      "message": "returning a static string is used a lot, so maybe it\u0027s good to have a conversion like\n\n```\nimpl From\u003c\u0026str\u003e for CommandError {\n    fn from(s: \u0026str) -\u003e CommandError {\n        CommandError::Failed(String::from(s))\n    }\n}\n```\n\nso that returning static error message can simply be:\n```\nreturn Err(\"GATT client is not yet registered.\".into());\n```",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 906,
+        "endChar": 28
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee898b57_361f9239",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-29T22:07:51Z",
+      "side": 1,
+      "message": "With implementing `From\u003c\u0026str\u003e for CommandError` above, this can also simply be:\n```\nlet handle \u003d String::from(get_arg(args, 2)?)\n    .parse::\u003ci32\u003e()\n    .or(Err(\"Failed to parse handle\"))?;\n```",
+      "range": {
+        "startLine": 1031,
+        "startChar": 0,
+        "endLine": 1036,
+        "endChar": 18
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6de41de_ee7805a4",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-29T22:07:51Z",
+      "side": 1,
+      "message": "Similarly, this can be more concise with:\n```\nlet value \u003d hex::decode(\u0026get_arg(args, 4)?).or(Err(\"Failed to parse value\"))?;\n```",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1052,
+        "endChar": 18
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cca7be7e_7874b955",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-11-29T22:07:51Z",
+      "side": 1,
+      "message": "Use `ok_or` to be more concise:\n```\nlet client_id \u003d self.context.lock().unwrap().gatt_client_context.client_id.ok_or(\"GATT client is not yet registered.\")?;\n```",
+      "range": {
+        "startLine": 1054,
+        "startChar": 0,
+        "endLine": 1061,
+        "endChar": 18
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
