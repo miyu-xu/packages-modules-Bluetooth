@@ -240,6 +240,24 @@
       "parentUuid": "c3d1b0ba_2fafbc7a",
       "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5bdb67f_4aaac28e",
+        "filename": "pandora/interfaces/pandora_experimental/security.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-29T23:15:26Z",
+      "side": 1,
+      "message": "Offline discussion: This will be done in another CL",
+      "parentUuid": "0a50a455_d1eaae66",
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
