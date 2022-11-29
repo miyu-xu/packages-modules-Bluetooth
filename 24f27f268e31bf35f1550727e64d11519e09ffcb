@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e62c6a53_f904bc57",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-29T08:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10cfc973_726c497a",
+      "range": {
+        "startLine": 129,
+        "startChar": 29,
+        "endLine": 129,
+        "endChar": 44
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bde6a83_b1979dca",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-29T06:01:07Z",
       "side": 1,
       "message": "PROFILE_USE_BUILTIN_AUDIO_DEVICE?",
+      "range": {
+        "startLine": 131,
+        "startChar": 29,
+        "endLine": 131,
+        "endChar": 41
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c03f95e6_edcb61a9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-29T08:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bde6a83_b1979dca",
       "range": {
         "startLine": 131,
         "startChar": 29,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3262fd1e_62053c4b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-29T08:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ce9bd26_77546273",
+      "range": {
+        "startLine": 540,
+        "startChar": 28,
+        "endLine": 545,
+        "endChar": 29
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39436a6f_bc69295a",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-29T06:01:07Z",
       "side": 1,
       "message": "Why do we set this again even when the `mActiveMediaProfile` is already `BluetoothProfile.A2DP`? Here and others",
+      "range": {
+        "startLine": 701,
+        "startChar": 27,
+        "endLine": 701,
+        "endChar": 72
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50527b72_97756176",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-29T08:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39436a6f_bc69295a",
       "range": {
         "startLine": 701,
         "startChar": 27,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25ff613e_c63baa12",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-29T08:47:36Z",
+      "side": 1,
+      "message": "No such method in both LeAudioService and HearingAidService.",
+      "parentUuid": "1215c42e_f8f7057a",
+      "range": {
+        "startLine": 713,
+        "startChar": 37,
+        "endLine": 714,
+        "endChar": 65
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d74304ed_0f2c4ab3",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-11-29T06:01:07Z",
       "side": 1,
       "message": "Shouldn\u0027t this be handled in ActiveDeviceManager?\nIf so, how about leaving a TODO comment for that?",
+      "range": {
+        "startLine": 896,
+        "startChar": 12,
+        "endLine": 904,
+        "endChar": 13
+      },
+      "revId": "24f27f268e31bf35f1550727e64d11519e09ffcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0842617_a400e958",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-29T08:47:36Z",
+      "side": 1,
+      "message": "This is for handling MCP PLAY command from LE audio headset.\nThough I\u0027m not sure whether the active device should be change or not.\nBut seems BT team (before we joined?) already discussed it before.",
+      "parentUuid": "d74304ed_0f2c4ab3",
       "range": {
         "startLine": 896,
         "startChar": 12,
