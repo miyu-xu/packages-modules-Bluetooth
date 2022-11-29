@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf18174e_20bcb87f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivityTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-11-29T07:41:10Z",
+      "side": 1,
+      "message": "Espresso",
+      "range": {
+        "startLine": 148,
+        "startChar": 37,
+        "endLine": 148,
+        "endChar": 46
+      },
+      "revId": "845e8d43c00fa3faee0b4c2b096229396a9fe55d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
