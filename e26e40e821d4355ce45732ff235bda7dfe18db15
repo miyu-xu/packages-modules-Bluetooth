@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a7e164e_345d0679",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-29T20:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e008088_4b10db21",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 70
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e915368d_2e9170f8",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-29T18:14:22Z",
       "side": 1,
       "message": "use `pandora` and not `pandora_experimental` for finalized interfaces",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 70
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b119f655_f409b250",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-29T20:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e915368d_2e9170f8",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba866ee3_4018be6f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-29T20:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35391e40_9eedd31a",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 71
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d974367e_a3f0fc8f",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e533cacd_f55f7043",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-29T20:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d974367e_a3f0fc8f",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 76
+      },
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "400be158_6429b45c",
@@ -106,6 +202,24 @@
       "writtenOn": "2022-11-29T18:14:22Z",
       "side": 1,
       "message": "move to `pandora` and remove from `pandora_experimental` (same of `host.proto`)",
+      "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d1b0ba_2fafbc7a",
+        "filename": "pandora/interfaces/pandora_experimental/security.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-11-29T20:13:10Z",
+      "side": 1,
+      "message": "You\u0027d like to remove host.proto and security.proto from pandora_experimental ? \n\nIf so I\u0027d do it in another CL since it will make a lot of changement in the PandoraServer",
+      "parentUuid": "400be158_6429b45c",
       "revId": "e26e40e821d4355ce45732ff235bda7dfe18db15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
