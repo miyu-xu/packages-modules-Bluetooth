@@ -51,6 +51,24 @@
       "parentUuid": "59a1c656_3a8744f8",
       "revId": "8dff53ee93b18312a9b7a27725a3f72bcd447973",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44905e25_b580095f",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-11-29T23:37:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand your answer.\n\nLooking at all the build files of GD, none of them references fluoride https://cs.android.com/search?q\u003dfluoride%20file:Android.bp\u0026sq\u003d\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2Fsystem%2Fgd%2F\n\nThe only cases where this happen this is a default that you added `fluoride_common_options`.\n\nAll GD defaults and dependencies have been duplicated to fullfil this goal for example: [system/gd/crypto_toolbox](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/crypto_toolbox/) and [system/stack/crypto_toolbox]([https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/crypto_toolbox/)\n\nStopping doing that should be discussed further with the team.\n\nPersonally I think that since we already started to do it to ease the removal of fluoride in the future we should continue to do it as it don\u0027t cost us a lot.",
+      "parentUuid": "bbb0e3fe_3751c0a6",
+      "revId": "8dff53ee93b18312a9b7a27725a3f72bcd447973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
