@@ -727,6 +727,7 @@ typedef struct {
   /* Send any test HCI (vendor-specific) command to the controller. Must be in
    * DUT Mode */
   int (*dut_mode_send)(uint16_t opcode, uint8_t* buf, uint8_t len);
+
   /** BLE Test Mode APIs */
   /* opcode MUST be one of: LE_Receiver_Test, LE_Transmitter_Test, LE_Test_End
    */
