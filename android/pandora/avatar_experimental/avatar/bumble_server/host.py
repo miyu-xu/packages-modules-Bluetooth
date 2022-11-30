@@ -18,9 +18,9 @@ from bumble.core import BT_BR_EDR_TRANSPORT
 from bumble.hci import Address, HCI_REMOTE_USER_TERMINATED_CONNECTION_ERROR
 from bumble.smp import PairingConfig
 
-from pandora_experimental.host_pb2 import ReadLocalAddressResponse, ConnectResponse, \
+from pandora.host_pb2 import ReadLocalAddressResponse, ConnectResponse, \
     Connection, DisconnectResponse, GetConnectionResponse
-from pandora_experimental.host_grpc import HostServicer
+from pandora.host_grpc import HostServicer
 
 
 class HostService(HostServicer):

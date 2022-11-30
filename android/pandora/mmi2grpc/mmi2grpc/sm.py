@@ -21,10 +21,10 @@ from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._streaming import StreamWrapper
 
-from pandora_experimental.security_grpc import Security
-from pandora_experimental.security_pb2 import LESecurityLevel
-from pandora_experimental.host_grpc import Host
-from pandora_experimental.host_pb2 import ConnectabilityMode, OwnAddressType
+from pandora.security_grpc import Security
+from pandora.security_pb2 import LESecurityLevel
+from pandora.host_grpc import Host
+from pandora.host_pb2 import ConnectabilityMode, OwnAddressType
 
 
 def debug(*args, **kwargs):
