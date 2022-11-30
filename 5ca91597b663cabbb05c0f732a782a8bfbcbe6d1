@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8261714_7c6455de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-11-30T19:09:09Z",
+      "side": 1,
+      "message": "Maybe this should go on top of the crypto_toolbox migration CL\n\npackages/modules/Bluetooth/system/gd/crypto_toolbox/crypto_toolbox.h:30:9: error: function \u0027bluetooth::crypto_toolbox::c1\u0027 has a definition with different parameter names [readability-inconsistent-declaration-parameter-name,-warnings-as-errors]\nOctet16 c1(\n        ^\n/mnt/disks/build-disk/src/googleplex-android/master/packages/modules/Bluetooth/system/gd/crypto_toolbox/crypto_toolbox.cc:173:9: note: the definition seen here\nOctet16 c1(\n        ^\n/mnt/disks/build-disk/src/googleplex-android/master/packages/modules/Bluetooth/system/gd/crypto_toolbox/crypto_toolbox.h:30:9: note: differing parameters are named here: (\u0027pres\u0027, \u0027preq\u0027), in definition: (\u0027preq\u0027, \u0027pres\u0027)\nOctet16 c1(",
+      "revId": "5ca91597b663cabbb05c0f732a782a8bfbcbe6d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
