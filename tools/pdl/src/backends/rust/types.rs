@@ -62,6 +62,13 @@ impl quote::ToTokens for Enum<'_> {
     }
 }
 
+/// A Rust array type.
+#[derive(Copy, Clone)]
+pub struct Array<'a> {
+    pub name: &'a str,
+    pub width: usize,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
