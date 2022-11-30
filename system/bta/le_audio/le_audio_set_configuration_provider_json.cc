@@ -593,8 +593,10 @@ void AudioSetConfigurationProvider::Initialize() {
   if (!config_provider)
     config_provider = std::make_unique<AudioSetConfigurationProvider>();
 
-  if (!config_provider->pimpl_->IsRunning())
+  if (!config_provider->pimpl_->IsRunning()) {
     config_provider->pimpl_->Initialize();
+    config_provider->ref_cnt = 1;
+  }
 }
 
 void AudioSetConfigurationProvider::DebugDump(int fd) {
@@ -609,13 +611,22 @@ void AudioSetConfigurationProvider::DebugDump(int fd) {
     return;
   }
   dprintf(fd, "\n AudioSetConfigurationProvider: \n");
+  config_provider->ref_cnt++;
   config_provider->pimpl_->Dump(fd);
+  config_provider->ref_cnt--;
+
+  if (config_provider->ref_cnt == 0) {
+    config_provider.reset();
+  }
 }
 
 void AudioSetConfigurationProvider::Cleanup() {
   if (!config_provider) return;
   if (config_provider->pimpl_->IsRunning()) config_provider->pimpl_->Cleanup();
-  config_provider.reset();
+  config_provider->ref_cnt--;
+  if (config_provider->ref_cnt == 0) {
+    config_provider.reset();
+  }
 }
 
 AudioSetConfigurationProvider* AudioSetConfigurationProvider::Get() {

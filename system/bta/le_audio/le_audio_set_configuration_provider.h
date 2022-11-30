@@ -35,6 +35,7 @@ class AudioSetConfigurationProvider {
 
  private:
   struct impl;
+  int ref_cnt;
   std::unique_ptr<impl> pimpl_;
 };
 
