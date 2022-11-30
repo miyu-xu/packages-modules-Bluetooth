@@ -1433,8 +1433,9 @@ void BtifAvStateMachine::StateIdle::OnExit() {
 
 bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
   BTIF_TRACE_DEBUG(
-      "%s: Peer %s : event=%s flags=%s active_peer=%s", __PRETTY_FUNCTION__,
-      ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      "%s: Peer %s : role=%s event=%s flags=%s active_peer=%s",
+      __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      (peer_.IsSource() ? "Source" : (peer_.IsSink() ? "Sink" : "Unknown")),
       BtifAvEvent::EventName(event).c_str(), peer_.FlagsToString().c_str(),
       logbool(peer_.IsActivePeer()).c_str());
 
@@ -1467,7 +1468,11 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
       // Check whether connection is allowed
       if (peer_.IsSink()) {
         can_connect = btif_av_source.AllowedToConnect(peer_.PeerAddress());
-        if (!can_connect) src_disconnect_sink(peer_.PeerAddress());
+        if (!can_connect) {
+          src_disconnect_sink(peer_.PeerAddress());
+        } else {
+          btif_av_query_mandatory_codec_priority(peer_.PeerAddress());
+        }
       } else if (peer_.IsSource()) {
         can_connect = btif_av_sink.AllowedToConnect(peer_.PeerAddress());
         if (!can_connect) sink_disconnect_src(peer_.PeerAddress());
@@ -1482,7 +1487,6 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
         }
         break;
       }
-      btif_av_query_mandatory_codec_priority(peer_.PeerAddress());
       BTA_AvOpen(peer_.PeerAddress(), peer_.BtaHandle(), true,
                  peer_.LocalUuidServiceClass());
       peer_.StateMachine().TransitionTo(BtifAvStateMachine::kStateOpening);
@@ -1507,10 +1511,26 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
       // Check whether connection is allowed
       if (peer_.IsSink()) {
         can_connect = btif_av_source.AllowedToConnect(peer_.PeerAddress());
-        if (!can_connect) src_disconnect_sink(peer_.PeerAddress());
+        if (!can_connect) {
+          src_disconnect_sink(peer_.PeerAddress());
+        } else {
+          if (btif_av_source.Enabled()) {
+            alarm_set_on_mloop(
+                peer_.AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
+                btif_av_source_initiate_av_open_timer_timeout, &peer_);
+          }
+        }
       } else if (peer_.IsSource()) {
         can_connect = btif_av_sink.AllowedToConnect(peer_.PeerAddress());
-        if (!can_connect) sink_disconnect_src(peer_.PeerAddress());
+        if (!can_connect) {
+          sink_disconnect_src(peer_.PeerAddress());
+        } else {
+          if (btif_av_sink.Enabled()) {
+            alarm_set_on_mloop(
+                peer_.AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
+                btif_av_sink_initiate_av_open_timer_timeout, &peer_);
+          }
+        }
       }
       if (!can_connect) {
         BTIF_TRACE_ERROR(
@@ -1518,15 +1538,6 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
             "peers",
             __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()));
         break;
-      }
-      if (btif_av_source.Enabled()) {
-        alarm_set_on_mloop(
-            peer_.AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
-            btif_av_source_initiate_av_open_timer_timeout, &peer_);
-      } else if (btif_av_sink.Enabled()) {
-        alarm_set_on_mloop(peer_.AvOpenOnRcTimer(),
-                           BtifAvPeer::kTimeoutAvOpenOnRcMs,
-                           btif_av_sink_initiate_av_open_timer_timeout, &peer_);
       }
       if (event == BTA_AV_RC_OPEN_EVT) {
         btif_rc_handler(event, (tBTA_AV*)p_data);
@@ -1671,8 +1682,9 @@ void BtifAvStateMachine::StateOpening::OnExit() {
 bool BtifAvStateMachine::StateOpening::ProcessEvent(uint32_t event,
                                                     void* p_data) {
   BTIF_TRACE_DEBUG(
-      "%s: Peer %s : event=%s flags=%s active_peer=%s", __PRETTY_FUNCTION__,
-      ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      "%s: Peer %s : role=%s event=%s flags=%s active_peer=%s",
+      __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      (peer_.IsSource() ? "Source" : (peer_.IsSink() ? "Sink" : "Unknown")),
       BtifAvEvent::EventName(event).c_str(), peer_.FlagsToString().c_str(),
       logbool(peer_.IsActivePeer()).c_str());
 
@@ -1902,8 +1914,9 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event,
   tBTA_AV* p_av = (tBTA_AV*)p_data;
 
   BTIF_TRACE_DEBUG(
-      "%s: Peer %s : event=%s flags=%s active_peer=%s", __PRETTY_FUNCTION__,
-      ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      "%s: Peer %s : role=%s event=%s flags=%s active_peer=%s",
+      __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      (peer_.IsSource() ? "Source" : (peer_.IsSink() ? "Sink" : "Unknown")),
       BtifAvEvent::EventName(event).c_str(), peer_.FlagsToString().c_str(),
       logbool(peer_.IsActivePeer()).c_str());
 
@@ -2125,8 +2138,9 @@ bool BtifAvStateMachine::StateStarted::ProcessEvent(uint32_t event,
   tBTA_AV* p_av = (tBTA_AV*)p_data;
 
   BTIF_TRACE_DEBUG(
-      "%s: Peer %s : event=%s flags=%s active_peer=%s", __PRETTY_FUNCTION__,
-      ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      "%s: Peer %s : role=%s event=%s flags=%s active_peer=%s",
+      __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      (peer_.IsSource() ? "Source" : (peer_.IsSink() ? "Sink" : "Unknown")),
       BtifAvEvent::EventName(event).c_str(), peer_.FlagsToString().c_str(),
       logbool(peer_.IsActivePeer()).c_str());
 
@@ -2338,8 +2352,9 @@ void BtifAvStateMachine::StateClosing::OnExit() {
 bool BtifAvStateMachine::StateClosing::ProcessEvent(uint32_t event,
                                                     void* p_data) {
   BTIF_TRACE_DEBUG(
-      "%s: Peer %s : event=%s flags=%s active_peer=%s", __PRETTY_FUNCTION__,
-      ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      "%s: Peer %s : role=%s event=%s flags=%s active_peer=%s",
+      __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
+      (peer_.IsSource() ? "Source" : (peer_.IsSink() ? "Sink" : "Unknown")),
       BtifAvEvent::EventName(event).c_str(), peer_.FlagsToString().c_str(),
       logbool(peer_.IsActivePeer()).c_str());
 
