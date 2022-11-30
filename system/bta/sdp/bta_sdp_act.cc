@@ -33,6 +33,7 @@
 #include "stack/include/sdp_api.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+extern void check_and_store_pce_profile_version(tSDP_DISC_REC* p_sdp_rec);
 
 static void bta_create_mns_sdp_record(bluetooth_sdp_record* record,
                                       tSDP_DISC_REC* p_rec) {
@@ -413,6 +414,12 @@ static void bta_sdp_search_cback(tSDP_RESULT result, const void* user_data) {
       } else if (uuid == UUID_SAP) {
         APPL_TRACE_DEBUG("%s() - found SAP uuid", __func__);
         bta_create_sap_sdp_record(&evt_data.records[count], p_rec);
+      } else if (uuid == UUID_PBAP_PCE) {
+        APPL_TRACE_DEBUG("%s() - found PBAP (PCE) uuid", __func__);
+        if (p_rec != NULL)
+            check_and_store_pce_profile_version(p_rec);
+        else
+            APPL_TRACE_DEBUG("%s() - PCE Record is null", __func__);
       } else if (uuid == UUID_DIP) {
         APPL_TRACE_DEBUG("%s() - found DIP uuid", __func__);
         bta_create_dip_sdp_record(&evt_data.records[count], p_rec);

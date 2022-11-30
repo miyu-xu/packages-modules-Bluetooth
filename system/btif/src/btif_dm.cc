@@ -84,6 +84,7 @@
 #include "stack/include/bt_octets.h"
 #include "stack_config.h"
 #include "types/raw_address.h"
+#include "stack/sdp/sdpint.h"
 
 bool btif_get_device_type(const RawAddress& bda, int* p_device_type);
 
@@ -536,6 +537,11 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
     LOG_INFO("clearing btif pairing_cb");
     pairing_cb = {};
   }
+
+  if (state == BT_BOND_STATE_NONE) {
+    // Update Pbap 1.2 entry, set rebonded to true
+    update_pce_entry_after_cancelling_bonding(bd_addr);
+   }
 }
 
 /* store remote version in bt config to always have access
