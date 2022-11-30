@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "526111d1_bb91502e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-11-30T09:53:22Z",
+      "side": 1,
+      "message": "Need to add return value for the dbus call. Without the return value, it cannot report failure due to wrong file permission.",
+      "revId": "310b70f614981fc9535707f4020945f8ac049a9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
