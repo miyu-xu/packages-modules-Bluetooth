@@ -270,3 +270,4 @@ message DeleteBondRequest {
     bytes random = 2;
   }
 }
+
