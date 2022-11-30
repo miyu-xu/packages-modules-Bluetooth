@@ -52,7 +52,6 @@ import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
@@ -116,9 +115,6 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothAdapter.disable()
       stateFlow.filter { it == BluetoothAdapter.STATE_OFF }.first()
     }
-
-    // TODO: b/234892968
-    delay(2000L)
 
     bluetoothAdapter.enable()
     stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
