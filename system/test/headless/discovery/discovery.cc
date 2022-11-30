@@ -43,6 +43,15 @@ using namespace std::chrono_literals;
 
 namespace {
 
+class DiscoveryOpt : public ModOpt {
+ public:
+  unsigned get_num_passes() const {
+    return static_cast<unsigned>(std::stoi(GetArg("-p", "0")));
+  }
+
+  int get_disconnect_time_sec() const { return std::stoi(GetArg("-d", "0")); }
+};
+
 int start_discovery(bluetooth::test::headless::Handler* handler,
                     const DiscoveryOpt* opts, const RawAddress& raw_address) {
   RawAddress bd_addr{raw_address};
@@ -51,11 +60,19 @@ int start_discovery(bluetooth::test::headless::Handler* handler,
   int disconnect_time_sec = opts->get_disconnect_time_sec();
 
   Stopwatch acl_stopwatch("ACL_connection");
-  Stopwatch sdp_stopwatch("SDP_discovery");
+
+  if (disconnect_time_sec != 0) {
+    // Add a random disconnect 4 seconds afterwards
+    handler->Post(bluetooth::common::BindOnce(disconnector, handler, bd_addr,
+                                              BT_TRANSPORT_BR_EDR));
+  }
 
   LOG_CONSOLE("Started service discovery");
+  double total_ms = 0;
+
   for (unsigned i = 0; i < num_passes; i++) {
     LOG_CONSOLE("  Pass:%d", i);
+    Stopwatch sdp_stopwatch("SDP_discovery");
     auto check_point = messenger::sdp::get_check_point();
     ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
            BT_STATUS_SUCCESS);
@@ -63,7 +80,7 @@ int start_discovery(bluetooth::test::headless::Handler* handler,
     if (!messenger::acl::await_connected(8s)) {
       LOG_CONSOLE("TIMEOUT waiting for connection to %s",
                   raw_address.ToString().c_str());
-      return -1;
+      continue;
     }
     LOG_CONSOLE("ACL connected to %s :%s", STR(raw_address),
                 STR(acl_stopwatch));
@@ -71,9 +88,8 @@ int start_discovery(bluetooth::test::headless::Handler* handler,
     if (!messenger::sdp::await_service_discovery(8s, check_point, 1UL)) {
       LOG_CONSOLE("TIMEOUT waiting for service discovery to %s",
                   raw_address.ToString().c_str());
-      return -1;
+      continue;
     }
-    //    check_point = messenger::sdp::get_check_point();
 
     auto callback_queue = messenger::sdp::collect_from(check_point);
     const size_t queue_size = callback_queue.size();
@@ -83,7 +99,10 @@ int start_discovery(bluetooth::test::headless::Handler* handler,
     auto params = callback_queue.front();
     callback_queue.pop_front();
 
-    LOG_CONSOLE("got remote services :%s", params.ToString().c_str());
+    // Throw out the first SDP connection
+    if (i != 0) total_ms += sdp_stopwatch.LapMs();
+    LOG_CONSOLE("got remote services :%s %s", params.ToString().c_str(),
+                STR(sdp_stopwatch));
 
     ASSERT_LOG(params.properties.size() == 1,
                "This callback only returns a single property");
@@ -103,6 +122,9 @@ int start_discovery(bluetooth::test::headless::Handler* handler,
                 raw_address.ToString().c_str());
     return -1;
   }
+
+  LOG_CONSOLE("SDP time cnt:%u avg:%2.3fms", num_passes - 1,
+              total_ms / (num_passes - 1));
 
   LOG_CONSOLE("Dumpsys system");
   bluetoothInterface.dump(2, nullptr);
