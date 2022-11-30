@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "723b38b7_1c424881",
+        "filename": "system/embdrv/g722/fuzzer/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1137906
+      },
+      "writtenOn": "2022-11-30T00:04:07Z",
+      "side": 1,
+      "message": "When Haiku build all the fuzz targets, I think it\u0027s enabling ASAN options globally using environment/build variables. So we shouldn\u0027t need any specific rules for that. We can confirm this with @hamzeh@google.com.",
+      "parentUuid": "1ad646ca_f5519682",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 21
+      },
+      "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f369a38_6986a27f",
         "filename": "system/embdrv/g722/fuzzer/Android.bp",
         "patchSetId": 3
