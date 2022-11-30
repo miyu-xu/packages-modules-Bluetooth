@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8349f6eb_0b59af9e",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothAudioConfigTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-30T22:09:03Z",
+      "side": 1,
+      "message": "nit: \"constructor\" since it is testing the constructor.",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 42
+      },
+      "revId": "309d178c71ac5b30ad511a59c6a0f4ab295f33d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
