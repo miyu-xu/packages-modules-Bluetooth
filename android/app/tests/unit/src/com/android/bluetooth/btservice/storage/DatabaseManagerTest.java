@@ -1209,6 +1209,30 @@ public final class DatabaseManagerTest {
         }
     }
 
+    @Test
+    public void testDatabaseMigration_114_115() throws IOException {
+        // Create a database with version 112
+        SupportSQLiteDatabase db = testHelper.createDatabase(DB_NAME, 114);
+        // insert a device to the database
+        ContentValues device = new ContentValues();
+        device.put("address", TEST_BT_ADDR);
+        device.put("migrated", false);
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
+                CoreMatchers.not(-1));
+        // Migrate database from 114 to 115
+        db.close();
+        db = testHelper.runMigrationsAndValidate(DB_NAME, 115, true,
+                MetadataDatabase.MIGRATION_114_115);
+        Cursor cursor = db.query("SELECT * FROM metadata");
+        assertHasColumn(cursor, "preferred_output_only_profile", true);
+        assertHasColumn(cursor, "preferred_duplex_profile", true);
+        while (cursor.moveToNext()) {
+            // Check the new columns was added with default value
+            assertColumnIntData(cursor, "preferred_output_only_profile", 0);
+            assertColumnIntData(cursor, "preferred_duplex_profile", 0);
+        }
+    }
+
     /**
      * Helper function to check whether the database has the expected column
      */
