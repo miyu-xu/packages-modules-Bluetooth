@@ -49,6 +49,9 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
+#include "sdp_api.h"
+#include "bta_sdp_api.h"
+#include "stack/sdp/sdpint.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
@@ -1664,6 +1667,12 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
         bta_dm_search_cb.service_index = BTA_MAX_SERVICE_ID;
 
       } else {
+        if (uuid == Uuid::From16Bit(UUID_PROTOCOL_L2CAP)) {
+          if (sdpu_is_pbap_0102_enabled() && !is_sdp_pbap_pce_disabled(bd_addr)) {
+            LOG_DEBUG("SDP search for PBAP Client ");
+            BTA_SdpSearch(bd_addr, Uuid::From16Bit(UUID_SERVCLASS_PBAP_PCE));
+          }
+        }
         bta_dm_search_cb.service_index++;
         return;
       }

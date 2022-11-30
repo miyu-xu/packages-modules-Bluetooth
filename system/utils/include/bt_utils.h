@@ -31,6 +31,10 @@ typedef enum {
   TASK_HIGH_MAX
 } tHIGH_PRIORITY_TASK;
 
+/* Runtime configuration file to store PCE version file*/
+#ifndef PCE_PEER_VERSION_CONF_FILE
+#define PCE_PEER_VERSION_CONF_FILE "/data/misc/bluedroid/pce_peer_entries.conf"
+#endif
 /*******************************************************************************
  *  Functions
  ******************************************************************************/
