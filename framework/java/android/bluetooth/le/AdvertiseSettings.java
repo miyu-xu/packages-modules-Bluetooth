@@ -69,6 +69,13 @@ public final class AdvertiseSettings implements Parcelable {
     public static final int ADVERTISE_TX_POWER_HIGH = 3;
 
     /**
+     * Advertise using controller-determined TX power level. According to
+     * BLUETOOTH CORE SPECIFICATION Version 5.3 | Vol 4, Part E page 2455,
+     * This is defined as "Host has no preference" by using 0x7F as Advertising_TX_Power value
+     */
+    public static final int ADVERTISE_TX_POWER_NO_PREFERENCE = 4;
+
+    /**
      * The maximum limited advertisement duration as specified by the Bluetooth SIG
      */
     private static final int LIMITED_ADVERTISING_MAX_MILLIS = 180 * 1000;
@@ -222,12 +229,13 @@ public final class AdvertiseSettings implements Parcelable {
          * {@link AdvertiseSettings#ADVERTISE_TX_POWER_ULTRA_LOW}, {@link
          * AdvertiseSettings#ADVERTISE_TX_POWER_LOW},
          * {@link AdvertiseSettings#ADVERTISE_TX_POWER_MEDIUM}
-         * or {@link AdvertiseSettings#ADVERTISE_TX_POWER_HIGH}.
+         * {@link AdvertiseSettings#ADVERTISE_TX_POWER_HIGH}
+         * or {@link AdvertiseSettings#ADVERTISE_TX_POWER_NO_PREFERENCE}.
          * @throws IllegalArgumentException If the {@code txPowerLevel} is invalid.
          */
         public Builder setTxPowerLevel(int txPowerLevel) {
             if (txPowerLevel < ADVERTISE_TX_POWER_ULTRA_LOW
-                    || txPowerLevel > ADVERTISE_TX_POWER_HIGH) {
+                    || txPowerLevel > ADVERTISE_TX_POWER_NO_PREFERENCE) {
                 throw new IllegalArgumentException("unknown tx power level " + txPowerLevel);
             }
             mTxPowerLevel = txPowerLevel;
