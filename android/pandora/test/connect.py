@@ -27,7 +27,7 @@ import google.protobuf.descriptor_pool
 # a module with the same package
 google.protobuf.descriptor_pool.Default().__init__()
 
-from pandora_experimental.host_grpc import Host
+from pandora.host_grpc import Host
 
 
 class ExampleTest(base_test.BaseTestClass):
