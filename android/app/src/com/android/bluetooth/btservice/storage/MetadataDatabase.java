@@ -526,4 +526,25 @@ public abstract class MetadataDatabase extends RoomDatabase {
             }
         }
     };
+
+    @VisibleForTesting
+    static final Migration MIGRATION_115_116 = new Migration(115, 116) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            try {
+                database.execSQL("ALTER TABLE metadata ADD COLUMN `preferred_output_only_profile` "
+                        + "INTEGER NOT NULL DEFAULT 0");
+                database.execSQL("ALTER TABLE metadata ADD COLUMN `preferred_duplex_profile` "
+                        + "INTEGER NOT NULL DEFAULT 0");
+            } catch (SQLException ex) {
+                // Check if user has new schema, but is just missing the version update
+                Cursor cursor = database.query("SELECT * FROM metadata");
+                if (cursor == null
+                        || cursor.getColumnIndex("preferred_output_only_profile") == -1
+                        || cursor.getColumnIndex("preferred_duplex_profile") == -1) {
+                    throw ex;
+                }
+            }
+        }
+    };
 }
