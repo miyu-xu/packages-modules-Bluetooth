@@ -16,6 +16,24 @@
       "message": "Tag: #refactor",
       "revId": "66267215bf6077e655b961a46f775411366d42aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d65d5c_4ab642ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-11-30T04:51:13Z",
+      "side": 1,
+      "message": "Synced offline regarding this. Thank you Sungsoo.",
+      "parentUuid": "b8de3442_0909ceaf",
+      "revId": "66267215bf6077e655b961a46f775411366d42aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
