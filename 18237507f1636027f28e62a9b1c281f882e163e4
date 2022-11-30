@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92ac8675_562dfbda",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-30T21:14:13Z",
+      "side": 1,
+      "message": "Remove trailing whitespace",
+      "range": {
+        "startLine": 675,
+        "startChar": 0,
+        "endLine": 675,
+        "endChar": 6
+      },
+      "revId": "18237507f1636027f28e62a9b1c281f882e163e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4fd085_8fbad1d6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-30T21:14:13Z",
+      "side": 1,
+      "message": "Remove trailing whitespace",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 747,
+        "endChar": 6
+      },
+      "revId": "18237507f1636027f28e62a9b1c281f882e163e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
