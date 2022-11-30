@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe5523d6_acf8fa15",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1443525
+      },
+      "writtenOn": "2022-11-30T06:36:57Z",
+      "side": 1,
+      "message": "I believe if you are going to trust the Controller to provide the correct response in read_encryption_key_size, you should trust Controller to honor the set_min_encryption_key_size correctly if there is no error returned. If the HOST is anyways going to do read_encryption_key_size, as redundant check all the time, then we don\u0027t need this set_min_encryption_key_size patch to begin with.",
+      "parentUuid": "b64cf137_13148255",
+      "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bac796d0_a9c6c675",
         "filename": "system/stack/btu/btu_hcif.cc",
         "patchSetId": 12
