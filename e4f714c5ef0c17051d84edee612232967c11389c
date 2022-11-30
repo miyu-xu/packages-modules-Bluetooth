@@ -155,6 +155,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "289c5dea_f8466078",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-30T00:22:36Z",
+      "side": 1,
+      "message": "I think that\u0027s okay because a binaural device will only receive left or right channel because there would be 2 BluetoothDevice objects.",
+      "parentUuid": "7e3f5089_213d8b9e",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0beb6aeb_cebc7b68",
@@ -186,6 +204,24 @@
       "side": 1,
       "message": "Since the added state SIDE_UNKOWN, it is not whether case anymore. I change the description. Please take a look.",
       "parentUuid": "0beb6aeb_cebc7b68",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be009eda_5552c39a",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-30T00:22:36Z",
+      "side": 1,
+      "message": "Yeah LGTM",
+      "parentUuid": "5746dcf9_f1a527ae",
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -310,6 +346,24 @@
       "side": 1,
       "message": "Since the added state MODE_UNKOWN, it is not whether case anymore. I change the description. Please take a look.",
       "parentUuid": "7e080485_4742f937",
+      "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76a720f4_55785856",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-11-30T00:22:36Z",
+      "side": 1,
+      "message": "LGTM",
+      "parentUuid": "fdcf2acc_508a589a",
       "revId": "e4f714c5ef0c17051d84edee612232967c11389c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
