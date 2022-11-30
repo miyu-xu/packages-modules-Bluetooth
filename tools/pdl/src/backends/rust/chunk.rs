@@ -15,7 +15,7 @@ fn endianness_suffix(width: usize, endianness_value: ast::EndiannessValue) -> &'
 ///
 /// The generated code requires that `buffer` is a mutable
 /// `bytes::Buf` value.
-fn get_uint(
+pub fn get_uint(
     endianness: ast::EndiannessValue,
     buffer: proc_macro2::Ident,
     width: usize,
@@ -43,7 +43,7 @@ fn get_uint(
 ///
 /// The generated code requires that `buffer` is a mutable
 /// `bytes::BufMut` value.
-fn put_uint(
+pub fn put_uint(
     endianness: ast::EndiannessValue,
     buffer: proc_macro2::Ident,
     value: proc_macro2::TokenStream,
@@ -117,6 +117,10 @@ impl Chunk<'_> {
         packet_name: &str,
         endianness_value: ast::EndiannessValue,
     ) -> proc_macro2::TokenStream {
+        if let &[Field::Array(field)] = &self.fields {
+            return field.read_directly(endianness_value);
+        }
+
         let chunk_name = self.name();
         let chunk_width = self.width();
         assert!(chunk_width % 8 == 0, "Chunks must have a byte size, got width: {chunk_width}");
@@ -157,6 +161,10 @@ impl Chunk<'_> {
         &self,
         endianness_value: ast::EndiannessValue,
     ) -> proc_macro2::TokenStream {
+        if let &[Field::Array(field)] = &self.fields {
+            return field.write_directly(endianness_value);
+        }
+
         let chunk_width = self.width();
         let chunk_name = self.name();
         assert!(chunk_width % 8 == 0, "Chunks must have a byte size, got width: {chunk_width}");

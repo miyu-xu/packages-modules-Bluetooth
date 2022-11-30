@@ -400,6 +400,18 @@ mod tests {
     );
 
     test_decl!(
+        packet_decl_arrays,
+        0,
+        r#"
+          packet Foo {
+            a: 8[4],
+            b: 16[5],
+            c: 24[6],
+          }
+        "#,
+    );
+
+    test_decl!(
         enum_decl_simple,
         0,
         r#"

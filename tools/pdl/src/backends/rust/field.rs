@@ -1,7 +1,7 @@
 use quote::{format_ident, quote};
 
 use crate::backends::rust::mask_bits;
-use crate::backends::rust::types;
+use crate::backends::rust::{chunk, types};
 use crate::{ast, lint};
 
 /// Like [`ast::Field::Scalar`].
@@ -219,12 +219,96 @@ impl EnumField {
     }
 }
 
+/// Like [`ast::Field::Array`].
+#[derive(Debug, Clone)]
+pub struct ArrayField {
+    pub id: String,
+    pub width: usize,
+    pub size: usize,
+}
+
+impl ArrayField {
+    fn new(id: &str, width: usize, size: usize) -> ArrayField {
+        ArrayField { id: String::from(id), width, size }
+    }
+
+    fn width(&self) -> usize {
+        self.width * self.size
+    }
+
+    fn ident(&self) -> proc_macro2::Ident {
+        format_ident!("{}", self.id)
+    }
+
+    fn type_(&self) -> proc_macro2::TokenStream {
+        let element_type = types::Integer::new(self.width);
+        let size = proc_macro2::Literal::usize_unsuffixed(self.size);
+        quote! {
+            [#element_type; #size]
+        }
+    }
+
+    fn generate_decl(&self, visibility: syn::Visibility) -> proc_macro2::TokenStream {
+        let field_name = self.ident();
+        let field_type = self.type_();
+        quote! {
+            #visibility #field_name: #field_type
+        }
+    }
+
+    fn generate_getter(&self, packet_name: &syn::Ident) -> proc_macro2::TokenStream {
+        let field_name = self.ident();
+        let getter_name = format_ident!("get_{}", self.id);
+        let field_type = self.type_();
+        quote! {
+            pub fn #getter_name(&self) -> &#field_type {
+                &self.#packet_name.as_ref().#field_name
+            }
+        }
+    }
+
+    pub fn read_directly(
+        &self,
+        endianness_value: ast::EndiannessValue,
+    ) -> proc_macro2::TokenStream {
+        let field_name = self.ident();
+        let size = proc_macro2::Literal::usize_unsuffixed(self.size);
+        let getter = chunk::get_uint(endianness_value, format_ident!("bytes"), self.width);
+        quote! {
+            let mut #field_name = [0; #size];
+            for i in 0..#size {
+                #field_name[i] = #getter;
+            }
+        }
+    }
+
+    pub fn write_directly(
+        &self,
+        endianness_value: ast::EndiannessValue,
+    ) -> proc_macro2::TokenStream {
+        let size = proc_macro2::Literal::usize_unsuffixed(self.size);
+        let field_name = self.ident();
+        let putter = chunk::put_uint(
+            endianness_value,
+            format_ident!("buffer"),
+            quote! { self.#field_name[i] },
+            self.width,
+        );
+        quote! {
+            for i in 0..#size {
+                #putter;
+            }
+        }
+    }
+}
+
 /// Projection of [`ast::Field`] with the bits needed for the Rust
 /// backend.
 #[derive(Debug, Clone)]
 pub enum Field {
     Scalar(ScalarField),
     Enum(EnumField),
+    Array(ArrayField),
 }
 
 impl Field {
@@ -245,6 +329,15 @@ impl Field {
                     .unwrap_or_else(|| panic!("Missing enum declaration: {type_id}"));
                 Field::Enum(enum_field)
             }
+            ast::Field::Array { id, width, size, .. } => {
+                // TODO(mgeisler): add support for enum arrays and
+                // dynamically sized arrays.
+                Field::Array(ArrayField::new(
+                    id,
+                    width.expect("Enum arrays are not supported"),
+                    size.expect("Dynamically sized arrays are not supported"),
+                ))
+            }
             _ => todo!("Unsupported field: {:?}", field),
         }
     }
@@ -253,6 +346,7 @@ impl Field {
         match self {
             Field::Scalar(field) => field.width,
             Field::Enum(field) => field.width,
+            Field::Array(field) => field.width(),
         }
     }
 
@@ -260,6 +354,7 @@ impl Field {
         match self {
             Field::Scalar(field) => field.ident(),
             Field::Enum(field) => field.ident(),
+            Field::Array(field) => field.ident(),
         }
     }
 
@@ -267,6 +362,7 @@ impl Field {
         match self {
             Field::Scalar(field) => field.generate_decl(visibility),
             Field::Enum(field) => field.generate_decl(visibility),
+            Field::Array(field) => field.generate_decl(visibility),
         }
     }
 
@@ -274,6 +370,7 @@ impl Field {
         match self {
             Field::Scalar(field) => field.generate_getter(packet_name),
             Field::Enum(field) => field.generate_getter(packet_name),
+            Field::Array(field) => field.generate_getter(packet_name),
         }
     }
 
@@ -285,6 +382,7 @@ impl Field {
         match self {
             Field::Scalar(field) => field.generate_read_adjustment(offset, chunk_type),
             Field::Enum(field) => field.generate_read_adjustment(offset, chunk_type),
+            Field::Array(_) => quote! {}, //field.generate_read_adjustment(offset, chunk_type),
         }
     }
 
@@ -296,6 +394,7 @@ impl Field {
         match self {
             Field::Scalar(field) => field.generate_write_adjustment(offset, chunk_type),
             Field::Enum(field) => field.generate_write_adjustment(offset, chunk_type),
+            Field::Array(_) => quote! {}, //field.generate_write_adjustment(offset, chunk_type),
         }
     }
 }

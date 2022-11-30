@@ -60,6 +60,8 @@ rust_test_host {
         "tests/generated/generate_chunk_read_24bit_be.rs",
         "tests/generated/generate_chunk_read_24bit_le.rs",
         "tests/generated/generate_chunk_read_multiple_fields.rs",
+        "tests/generated/packet_decl_arrays_big_endian.rs",
+        "tests/generated/packet_decl_arrays_little_endian.rs",
         "tests/generated/packet_decl_complex_big_endian.rs",
         "tests/generated/packet_decl_complex_little_endian.rs",
         "tests/generated/packet_decl_empty_big_endian.rs",
