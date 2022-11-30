@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edb3d789_73d021ab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapUtilsTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-30T22:06:02Z",
+      "side": 1,
+      "message": "remove this empty line",
+      "revId": "c0d414bf813114fbdc7cf8b028bc43a34391382f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
