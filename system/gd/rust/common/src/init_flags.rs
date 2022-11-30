@@ -272,6 +272,7 @@ init_flags!(
         irk_rotation,
         leaudio_targeted_announcement_reconnection_mode,
         pass_phy_update_callback = true,
+        pbap_pse_dynamic_version_upgrade = true,
         periodic_advertising_adi = true,
         queue_l2cap_coc_while_encrypting = true,
         redact_log = true,
