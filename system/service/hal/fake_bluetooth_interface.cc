@@ -98,6 +98,8 @@ bt_interface_t fake_bt_iface = {
     nullptr, /* interop_match_addr_or_name */
     nullptr, /* interop_database_add_remove_addr */
     nullptr, /* interop_database_add_remove_name */
+    nullptr, /* get_remote_pbap_pce_version */
+    nullptr, /* pbap_pse_dynamic_version_upgrade_is_enabled */
 };
 
 }  // namespace
