@@ -88,12 +88,20 @@ public final class AdvertisingSetParameters implements Parcelable {
     public static final int TX_POWER_HIGH = 1;
 
     /**
-     * Minimum value for TX power.
+     * Advertise using controller-determined TX power level. According to
+     * BLUETOOTH CORE SPECIFICATION Version 5.3 | Vol 4, Part E page 2455,
+     * This is defined as "Host has no preference" by using 0x7F as Advertising_TX_Power value
+     */
+    public static final int TX_POWER_NO_PREFERENCE = 127;
+
+    /**
+     * Minimum value for TX power in dBm.
      */
     public static final int TX_POWER_MIN = -127;
 
     /**
-     * Maximum value for TX power.
+     * Maximum value for TX power in dBm. The only greater value for the TX power setting
+     * allowed is TX_POWER_NO_PREFERENCE
      */
     public static final int TX_POWER_MAX = 1;
 
@@ -442,11 +450,13 @@ public final class AdvertisingSetParameters implements Parcelable {
          * {@link AdvertisingSetParameters#TX_POWER_ULTRA_LOW},
          * {@link AdvertisingSetParameters#TX_POWER_LOW},
          * {@link AdvertisingSetParameters#TX_POWER_MEDIUM},
-         * or {@link AdvertisingSetParameters#TX_POWER_HIGH}.
+         * {@link AdvertisingSetParameters#TX_POWER_HIGH},
+         * or {@link AdvertisingSetParameters#TX_POWER_NO_PREFERENCE}.
          * @throws IllegalArgumentException If the {@code txPowerLevel} is invalid.
          */
         public Builder setTxPowerLevel(int txPowerLevel) {
-            if (txPowerLevel < TX_POWER_MIN || txPowerLevel > TX_POWER_MAX) {
+            if (txPowerLevel < TX_POWER_MIN
+                    || (txPowerLevel > TX_POWER_MAX && txPowerLevel != TX_POWER_NO_PREFERENCE)) {
                 throw new IllegalArgumentException("unknown txPowerLevel " + txPowerLevel);
             }
             mTxPowerLevel = txPowerLevel;

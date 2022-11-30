@@ -1128,6 +1128,7 @@ package android.bluetooth.le {
     field public static final int ADVERTISE_TX_POWER_HIGH = 3; // 0x3
     field public static final int ADVERTISE_TX_POWER_LOW = 1; // 0x1
     field public static final int ADVERTISE_TX_POWER_MEDIUM = 2; // 0x2
+    field public static final int ADVERTISE_TX_POWER_NO_PREFERENCE = 4; // 0x4
     field public static final int ADVERTISE_TX_POWER_ULTRA_LOW = 0; // 0x0
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.le.AdvertiseSettings> CREATOR;
   }
@@ -1193,6 +1194,7 @@ package android.bluetooth.le {
     field public static final int TX_POWER_MAX = 1; // 0x1
     field public static final int TX_POWER_MEDIUM = -7; // 0xfffffff9
     field public static final int TX_POWER_MIN = -127; // 0xffffff81
+    field public static final int TX_POWER_NO_PREFERENCE = 127; // 0x7f
     field public static final int TX_POWER_ULTRA_LOW = -21; // 0xffffffeb
   }
 
