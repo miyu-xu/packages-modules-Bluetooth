@@ -484,3 +484,14 @@ const stack_manager_t* stack_manager_get_interface() {
 }
 
 future_t* stack_manager_get_hack_future() { return hack_future; }
+
+namespace bluetooth {
+namespace testing {
+
+void set_interface_to_profiles(bluetooth::core::CoreInterface* interface) {
+  interfaceToProfiles = interface;
+}
+void clear_interface_to_profiles() { interfaceToProfiles = nullptr; }
+
+}  // namespace testing
+}  // namespace bluetooth
