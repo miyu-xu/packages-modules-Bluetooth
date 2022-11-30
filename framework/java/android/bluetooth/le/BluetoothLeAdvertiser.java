@@ -160,6 +160,9 @@ public final class BluetoothLeAdvertiser {
                 parameters.setTxPowerLevel(-7);
             } else if (settings.getTxPowerLevel() == AdvertiseSettings.ADVERTISE_TX_POWER_HIGH) {
                 parameters.setTxPowerLevel(1);
+            } else if (settings.getTxPowerLevel()
+                    == AdvertiseSettings.ADVERTISE_TX_POWER_NO_PREFERENCE) {
+                parameters.setTxPowerLevel(127);
             }
 
             int duration = 0;

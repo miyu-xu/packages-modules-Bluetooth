@@ -88,6 +88,11 @@ public final class AdvertisingSetParameters implements Parcelable {
     public static final int TX_POWER_HIGH = 1;
 
     /**
+     * Advertise with no preference on TX power level.
+     */
+    public static final int TX_POWER_NO_PREFERENCE = 127;
+
+    /**
      * Minimum value for TX power.
      */
     public static final int TX_POWER_MIN = -127;
@@ -442,11 +447,13 @@ public final class AdvertisingSetParameters implements Parcelable {
          * {@link AdvertisingSetParameters#TX_POWER_ULTRA_LOW},
          * {@link AdvertisingSetParameters#TX_POWER_LOW},
          * {@link AdvertisingSetParameters#TX_POWER_MEDIUM},
-         * or {@link AdvertisingSetParameters#TX_POWER_HIGH}.
+         * {@link AdvertisingSetParameters#TX_POWER_HIGH},
+         * or {@link AdvertisingSetParameters#TX_POWER_NO_PREFERENCE}.
          * @throws IllegalArgumentException If the {@code txPowerLevel} is invalid.
          */
         public Builder setTxPowerLevel(int txPowerLevel) {
-            if (txPowerLevel < TX_POWER_MIN || txPowerLevel > TX_POWER_MAX) {
+            if (txPowerLevel < TX_POWER_MIN
+                    || (txPowerLevel > TX_POWER_MAX && txPowerLevel != TX_POWER_NO_PREFERENCE)) {
                 throw new IllegalArgumentException("unknown txPowerLevel " + txPowerLevel);
             }
             mTxPowerLevel = txPowerLevel;
