@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0138cef7_634a81b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-11-30T08:12:19Z",
+      "side": 1,
+      "message": "Service discovery either succeeds or fails completely.\n\n\nThis is also not a proper thing to do to fix the linked bug.\n\nIn the bug, specific device is unable to respond to \"read by UUID\" that we send to read hash. Reading hash is mandatory thing for 5.0 capable devices.\nIf remote device claims to be 5.0 capable, it\u0027s bug on their side, and we shouldn\u0027t be fixing anything.\nIf the device is \u003c5.0, we should probably add check, and not read HASH for such devices.",
+      "revId": "2e132a46be5df513960e4e31e3cdda2f12bc5168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
