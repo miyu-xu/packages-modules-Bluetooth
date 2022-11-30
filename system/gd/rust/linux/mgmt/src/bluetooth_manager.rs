@@ -172,19 +172,19 @@ impl IBluetoothManager for BluetoothManager {
 
 /// Implementation of IBluetoothExperimental
 impl IBluetoothExperimental for BluetoothManager {
-    fn set_ll_privacy(&mut self, enabled: bool) {
+    fn set_ll_privacy(&mut self, enabled: bool) -> bool {
         let current_status = match config_util::read_floss_ll_privacy_enabled() {
             Ok(true) => true,
             _ => false,
         };
 
         if current_status == enabled {
-            return;
+            return true;
         }
 
         if let Err(e) = config_util::write_floss_ll_privacy_enabled(enabled) {
             error!("Failed to write ll privacy status: {}", e);
-            return;
+            return false;
         }
 
         let hci_interface = self.get_default_adapter();
@@ -193,6 +193,8 @@ impl IBluetoothExperimental for BluetoothManager {
         if self.is_adapter_enabled(virt_hci) {
             self.proxy.restart_bluetooth(virt_hci);
         }
+
+        return true;
     }
 
     fn set_devcoredump(&mut self, enabled: bool) -> bool {
