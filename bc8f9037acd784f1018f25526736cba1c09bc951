@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89fd52e_e05b0fd4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-30T07:16:36Z",
+      "side": 1,
+      "message": "I will do both, since checking how many share inserted is also very important",
+      "parentUuid": "8aa38580_4540563c",
+      "range": {
+        "startLine": 83,
+        "startChar": 11,
+        "endLine": 83,
+        "endChar": 58
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a686f606_f50e92c8",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-23T22:36:58Z",
       "side": 1,
       "message": "Do we need this `(`?",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 9
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "887c8343_5b2ece9c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-30T07:16:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a686f606_f50e92c8",
       "range": {
         "startLine": 85,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1033fa22_62a64e5c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-30T07:16:36Z",
+      "side": 1,
+      "message": "Because it runs in another thread. If the test pass, it will complete in a blink, in the rare case that it does not, it will take 5 seconds. I will change to 3 seconds btw",
+      "parentUuid": "58d87efc_e299a8b9",
+      "range": {
+        "startLine": 87,
+        "startChar": 35,
+        "endLine": 87,
+        "endChar": 40
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "768a810f_b85a9dc4",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-23T22:36:58Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 61
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80be518b_6998cc90",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-30T07:16:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "768a810f_b85a9dc4",
       "range": {
         "startLine": 105,
         "startChar": 8,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "798ef8c9_8df18683",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-30T07:16:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edc7ca97_e826f23d",
+      "range": {
+        "startLine": 109,
+        "startChar": 35,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04e06ded_85ae0f7b",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-11-23T22:36:58Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 122,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 61
+      },
+      "revId": "bc8f9037acd784f1018f25526736cba1c09bc951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4844ea87_3efc20a7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-11-30T07:16:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04e06ded_85ae0f7b",
       "range": {
         "startLine": 122,
         "startChar": 7,
