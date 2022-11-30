@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05ac02fa_f9582cb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-11-30T22:28:00Z",
+      "side": 1,
+      "message": "Already-failing test: very flaky test, not caused by this CL\nFailed build: infra-error, almost certainly not caused by this CL",
+      "revId": "ff9c26bc17b1b2fbde4fbf8df1466279fd132f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
