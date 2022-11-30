@@ -84,6 +84,7 @@
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
+#include "stack/sdp/sdpint.h"
 #include "stack_config.h"
 #include "types/raw_address.h"
 
@@ -540,6 +541,11 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
   } else {
     LOG_INFO("clearing btif pairing_cb");
     pairing_cb = {};
+  }
+
+  if (state == BT_BOND_STATE_NONE) {
+    // Update Pbap 1.2 entry, set rebonded to true
+    update_pce_entry_after_cancelling_bonding(bd_addr);
   }
 }
 

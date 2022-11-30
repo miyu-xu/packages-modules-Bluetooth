@@ -29,6 +29,8 @@
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
+#define BT_CONFIG_KEY_PBAP_PCE_VERSION "PbapPceVersion"
+
 static const char BTIF_CONFIG_MODULE[] = "btif_config_module";
 
 static const std::string BT_CONFIG_KEY_SDP_DI_MANUFACTURER =

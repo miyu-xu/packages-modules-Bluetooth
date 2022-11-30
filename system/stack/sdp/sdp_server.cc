@@ -30,7 +30,9 @@
 #include <cstdint>
 
 #include "btif/include/btif_config.h"
+#include "btif/include/btif_storage.h"
 #include "device/include/interop.h"
+#include "device/include/interop_config.h"
 #include "osi/include/allocator.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/avrc_defs.h"
@@ -38,10 +40,18 @@
 #include "stack/include/sdp_api.h"
 #include "stack/sdp/sdpint.h"
 
+#include <base/logging.h>
+#include "bt_utils.h"
+#include "btif/include/btif_config.h"
+#include "gd/common/init_flags.h"
+#include "osi/include/properties.h"
+
 /* Maximum number of bytes to reserve out of SDP MTU for response data */
 #define SDP_MAX_SERVICE_RSPHDR_LEN 12
 #define SDP_MAX_SERVATTR_RSPHDR_LEN 10
 #define SDP_MAX_ATTR_RSPHDR_LEN 10
+#define PBAP_GOEP_L2CAP_PSM_LEN 0x06
+#define PBAP_SUPP_FEA_LEN 0x08
 
 /******************************************************************************/
 /*            L O C A L    F U N C T I O N     P R O T O T Y P E S            */
@@ -57,6 +67,17 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
                                             uint16_t param_len, uint8_t* p_req,
                                             uint8_t* p_req_end);
+static bool is_device_denylisted_for_pbap(RawAddress remote_address,
+                                          bool check_for_1_2);
+
+static uint16_t sdp_update_pbap_denylist_len(tCONN_CB* p_ccb,
+                                             tSDP_ATTR_SEQ* attr_seq,
+                                             tSDP_UUID_SEQ* uid_seq);
+
+static const tSDP_RECORD* sdp_upgrade_pse_record(const tSDP_RECORD* p_rec,
+                                                 RawAddress remote_address);
+
+static bool check_remote_pbap_version_102(RawAddress remote_addr);
 
 /******************************************************************************/
 /*                E R R O R   T E X T   S T R I N G S                         */
@@ -95,6 +116,18 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 #ifndef SDP_TEXT_BAD_MAX_RECORDS_LIST
 #define SDP_TEXT_BAD_MAX_RECORDS_LIST NULL
 #endif
+
+#ifndef SDP_ENABLE_PTS_PBAP
+#define SDP_ENABLE_PTS_PBAP "bluetooth.pts.pbap"
+#endif
+
+/* Configurable pbap 1.2 version value */
+#ifndef PBAP_PSE_1_2_VERSION_PROPERTY
+#define PBAP_PSE_1_2_VERSION_PROPERTY "persist.bluetooth.pseversion12"
+#endif
+
+#define PBAP_1_2 0x0102
+#define PBAP_1_2_BL_LEN 14
 
 /*******************************************************************************
  *
@@ -363,7 +396,14 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
     sdpu_build_n_send_error(p_ccb, trans_num, SDP_ILLEGAL_PARAMETER, NULL);
     return;
   }
-
+  if (sdpu_is_pbap_0102_enabled()) {
+    if (bluetooth::common::init_flags::
+            pbap_pse_dynamic_version_upgrade_is_enabled()) {
+      p_rec = sdp_upgrade_pse_record(p_rec, p_ccb->device_address);
+    } else {
+      SDP_TRACE_WARNING("PBAP PSE dynamic version upgrade is not enabled");
+    }
+  }
   /* Free and reallocate buffer */
   osi_free(p_ccb->rsp_list);
   p_ccb->rsp_list = (uint8_t*)osi_malloc(max_list_len);
@@ -565,8 +605,9 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
   uint8_t *p_rsp, *p_rsp_start, *p_rsp_param_len;
   uint16_t rsp_param_len, xx;
   const tSDP_RECORD* p_rec;
+  tSDP_RECORD* p_prev_rec;
   tSDP_ATTR_SEQ attr_seq, attr_seq_sav;
-  const tSDP_ATTRIBUTE* p_attr;
+  tSDP_ATTRIBUTE* p_attr;
   bool maxxed_out = false, is_cont = false;
   uint8_t* p_seq_start;
   uint16_t seq_len, attr_len;
@@ -640,14 +681,27 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
     /* Reset continuation parameters in p_ccb */
     p_ccb->cont_info.prev_sdp_rec = NULL;
+    p_ccb->cont_info.curr_sdp_rec = NULL;
     p_ccb->cont_info.next_attr_index = 0;
     p_ccb->cont_info.last_attr_seq_desc_sent = false;
     p_ccb->cont_info.attr_offset = 0;
   }
 
+  bool is_pse_v12_enabled = sdpu_is_pbap_0102_enabled();
   /* Get a list of handles that match the UUIDs given to us */
   for (p_rec = sdp_db_service_search(p_ccb->cont_info.prev_sdp_rec, &uid_seq);
        p_rec; p_rec = sdp_db_service_search(p_rec, &uid_seq)) {
+    p_ccb->cont_info.curr_sdp_rec = (tSDP_RECORD*)p_rec;
+    /* Store the actual record pointer which would be reused later */
+    p_prev_rec = (tSDP_RECORD*)p_rec;
+    if (is_pse_v12_enabled) {
+      if (bluetooth::common::init_flags::
+              pbap_pse_dynamic_version_upgrade_is_enabled()) {
+        p_rec = sdp_upgrade_pse_record(p_rec, p_ccb->device_address);
+      } else {
+        SDP_TRACE_WARNING("PBAP PSE dynamic version upgrade is not enabled");
+      }
+    }
     /* Allow space for attribute sequence type and length */
     p_seq_start = p_rsp;
     if (!p_ccb->cont_info.last_attr_seq_desc_sent) {
@@ -673,8 +727,8 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
     }
     /* Get a list of handles that match the UUIDs given to us */
     for (xx = p_ccb->cont_info.next_attr_index; xx < attr_seq.num_attr; xx++) {
-      p_attr = sdp_db_find_attr_in_rec(p_rec, attr_seq.attr_entry[xx].start,
-                                       attr_seq.attr_entry[xx].end);
+      p_attr = (tSDP_ATTRIBUTE*)sdp_db_find_attr_in_rec(
+          p_rec, attr_seq.attr_entry[xx].start, attr_seq.attr_entry[xx].end);
 
       if (p_attr) {
         if (is_service_avrc_target) {
@@ -761,6 +815,8 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
     /* Reset the next attr index */
     p_ccb->cont_info.next_attr_index = 0;
+    /* restore the record pointer.*/
+    p_rec = p_prev_rec;
     p_ccb->cont_info.prev_sdp_rec = p_rec;
     p_ccb->cont_info.last_attr_seq_desc_sent = false;
   }
@@ -799,18 +855,48 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
   if (!is_cont) {
     /* Get the total list length for requested uid and attribute sequence */
     p_ccb->list_len = sdpu_get_list_len(&uid_seq, &attr_seq_sav) + 3;
+
+    if (bluetooth::common::init_flags::
+            pbap_pse_dynamic_version_upgrade_is_enabled()) {
+      p_rec = sdp_upgrade_pse_record(p_rec, p_ccb->device_address);
+    } else {
+      SDP_TRACE_WARNING("PBAP PSE dynamic version upgrade is not enabled");
+    }
+
+    /* Get the length of denylisted attributes to be updated if device is
+     * denylisted */
+    if (sdpu_is_pbap_0102_enabled()) {
+      if (bluetooth::common::init_flags::
+              pbap_pse_dynamic_version_upgrade_is_enabled()) {
+        p_ccb->bl_update_len =
+            sdp_update_pbap_denylist_len(p_ccb, &attr_seq_sav, &uid_seq);
+      } else {
+        SDP_TRACE_WARNING("PBAP PSE dynamic version upgrade is not enabled");
+        p_ccb->bl_update_len = 0;
+      }
+    } else {
+      // PBAP PSE 1.2 is not enabled
+      p_ccb->bl_update_len = 0;
+    }
+
+    SDP_TRACE_DEBUG("p_ccb->list_len = %d bl_update_len = %d", p_ccb->list_len,
+                    p_ccb->bl_update_len);
+
     /* Put in the sequence header (2 or 3 bytes) */
     if (p_ccb->list_len > 255) {
       p_ccb->rsp_list[0] =
           (uint8_t)((DATA_ELE_SEQ_DESC_TYPE << 3) | SIZE_IN_NEXT_WORD);
-      p_ccb->rsp_list[1] = (uint8_t)((p_ccb->list_len - 3) >> 8);
-      p_ccb->rsp_list[2] = (uint8_t)(p_ccb->list_len - 3);
+      p_ccb->rsp_list[1] =
+          (uint8_t)((p_ccb->list_len - 3 + p_ccb->bl_update_len) >> 8);
+      p_ccb->rsp_list[2] =
+          (uint8_t)(p_ccb->list_len - 3 + p_ccb->bl_update_len);
     } else {
       cont_offset = 1;
 
       p_ccb->rsp_list[1] =
           (uint8_t)((DATA_ELE_SEQ_DESC_TYPE << 3) | SIZE_IN_NEXT_BYTE);
-      p_ccb->rsp_list[2] = (uint8_t)(p_ccb->list_len - 3);
+      p_ccb->rsp_list[2] =
+          (uint8_t)(p_ccb->list_len - 3 + p_ccb->bl_update_len);
 
       p_ccb->list_len--;
       len_to_send--;
@@ -839,14 +925,21 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
   p_ccb->cont_offset += len_to_send;
 
+  SDP_TRACE_DEBUG(
+      "p_ccb->bl_update_len %d, cont_offset = %d, p_ccb->list_len = %d",
+      p_ccb->bl_update_len, p_ccb->cont_offset,
+      p_ccb->list_len + p_ccb->bl_update_len);
   /* If anything left to send, continuation needed */
-  if (p_ccb->cont_offset < p_ccb->list_len) {
+  if (p_ccb->cont_offset < (p_ccb->list_len + p_ccb->bl_update_len)) {
     is_cont = true;
-
     UINT8_TO_BE_STREAM(p_rsp, SDP_CONTINUATION_LEN);
     UINT16_TO_BE_STREAM(p_rsp, p_ccb->cont_offset);
-  } else
+  } else {
     UINT8_TO_BE_STREAM(p_rsp, 0);
+    if (p_ccb->bl_update_len) {
+      p_ccb->bl_update_len = 0;
+    }
+  }
 
   /* Go back and put the parameter length into the buffer */
   rsp_param_len = p_rsp - p_rsp_param_len - 2;
@@ -857,4 +950,322 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
   /* Send the buffer through L2CAP */
   L2CA_DataWrite(p_ccb->connection_id, p_buf);
+}
+
+/*************************************************************************************
+**
+** Function        is_device_denylisted_for_pbap
+**
+** Description     Checks if given PBAP record is for PBAP PSE and denylisted
+**
+** Returns         BOOLEAN
+**
+***************************************************************************************/
+static bool is_device_denylisted_for_pbap(RawAddress remote_address,
+                                          bool check_for_1_2) {
+  if (check_for_1_2 &&
+      interop_match_addr_or_name(INTEROP_ADV_PBAP_VER_1_1, &remote_address,
+                                 &btif_storage_get_remote_device_property)) {
+    SDP_TRACE_DEBUG("device is denylisted for pbap version < 1.2 ");
+    return true;
+  }
+  if (!check_for_1_2 &&
+      interop_match_addr_or_name(INTEROP_ADV_PBAP_VER_1_2, &remote_address,
+                                 &btif_storage_get_remote_device_property)) {
+    SDP_TRACE_DEBUG("device is denylisted for pbap version 1.2 ");
+    return true;
+  }
+  return false;
+}
+
+/*************************************************************************************
+**
+** Function        check_remote_pbap_version_102
+**
+** Description     checks if remote supports PBAP 1.2
+**
+** Returns         true/false depending on remote PBAP version support found in
+*file.
+**                 Returns false if 1.2 entry is stored but device is not
+*re-paired with
+**                 remote.
+**                 Returns true if 1.2 entry is stored and device is re-paired
+*with
+**                 remote.
+**
+***************************************************************************************/
+static bool check_remote_pbap_version_102(RawAddress remote_addr) {
+  bool entry_found = false;
+  // Read and restore the PBAP PCE version from local storage
+  uint16_t pce_version = 0;
+  size_t version_value_size = sizeof(pce_version);
+  if (!btif_config_get_bin(remote_addr.ToString(),
+                           BT_CONFIG_KEY_PBAP_PCE_VERSION,
+                           (uint8_t*)&pce_version, &version_value_size)) {
+    SDP_TRACE_WARNING("%s: Failed to read cached peer PCE version for %s",
+                      __func__, ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
+    return entry_found;
+  }
+
+  if (pce_version == PBAP_1_2) {
+    entry_found = true;
+  }
+
+  SDP_TRACE_WARNING("%s:read cached peer PCE version 0x%04x for %s", __func__,
+                    pce_version, ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
+
+  return entry_found;
+}
+
+/*************************************************************************************
+**
+** Function        sdp_update_pbap_denylist_len
+**
+** Description     Updates the denylist length to be updated from the SDP
+*response
+**
+** Returns         returns the length of denylisted attributes.
+**
+***************************************************************************************/
+static uint16_t sdp_update_pbap_denylist_len(tCONN_CB* p_ccb,
+                                             tSDP_ATTR_SEQ* attr_seq,
+                                             tSDP_UUID_SEQ* uid_seq) {
+  if (!p_ccb || !attr_seq || !uid_seq) return 0;
+  const tSDP_RECORD* p_rec;
+
+  p_ccb->bl_update_len = 0;
+
+  // Check to validate if 1.2 record is getting sent
+  bool is_pbap_102_supported =
+      check_remote_pbap_version_102(p_ccb->device_address);
+  bool is_pbap_101_denylisted =
+      is_device_denylisted_for_pbap(p_ccb->device_address, false);
+  bool is_pbap_102_denylisted =
+      is_device_denylisted_for_pbap(p_ccb->device_address, true);
+  bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
+
+  SDP_TRACE_DEBUG(
+      "remote BD Addr : %s is_pbap_102_supported = %d "
+      "is_pbap_1_1__denylisted = %d is_pbap_1_2__denylisted = %d "
+      "running_pts = %d",
+      ADDRESS_TO_LOGGABLE_CSTR(p_ccb->device_address), is_pbap_102_supported,
+      is_pbap_101_denylisted, is_pbap_102_denylisted, running_pts);
+
+  if (is_pbap_102_denylisted ||
+      (!is_pbap_102_supported && !is_pbap_101_denylisted && !running_pts)) {
+    // Send Length without any update
+    return p_ccb->bl_update_len;
+  }
+
+  int xx;
+  tSDP_ATTRIBUTE attr;
+  if (uid_seq) {
+    for (p_rec = (tSDP_RECORD*)sdp_db_service_search(NULL, uid_seq); p_rec;
+         p_rec = (tSDP_RECORD*)sdp_db_service_search(p_rec, uid_seq)) {
+      attr = p_rec->attribute[1];
+      if ((attr.id == ATTR_ID_SERVICE_CLASS_ID_LIST) &&
+          (((attr.value_ptr[1] << 8) | (attr.value_ptr[2])) ==
+           UUID_SERVCLASS_PBAP_PSE)) {
+        // PBAP PSE Record
+        p_rec = sdp_upgrade_pse_record(p_rec, p_ccb->device_address);
+        SDP_TRACE_DEBUG("response has PBAP PSE record for BL device");
+
+        int att_index;
+        bool l2cap_psm_len_included = false, supp_attr_len_included = false;
+        for (xx = p_ccb->cont_info.next_attr_index; xx < attr_seq->num_attr;
+             xx++) {
+          SDP_TRACE_DEBUG(
+              "xx = %d attr_seq->num_attr = %d, "
+              "attr_seq->attr_entry[xx].start = %d , "
+              "attr_seq->attr_entry[xx].end = %d",
+              xx, attr_seq->num_attr, attr_seq->attr_entry[xx].start,
+              attr_seq->attr_entry[xx].end);
+
+          for (att_index = 0; att_index < p_rec->num_attributes; att_index++) {
+            tSDP_ATTRIBUTE cur_attr = p_rec->attribute[att_index];
+            if (cur_attr.id == ATTR_ID_GOEP_L2CAP_PSM &&
+                !l2cap_psm_len_included &&
+                cur_attr.id >= attr_seq->attr_entry[xx].start &&
+                cur_attr.id <= attr_seq->attr_entry[xx].end) {
+              l2cap_psm_len_included = true;
+              p_ccb->bl_update_len += PBAP_GOEP_L2CAP_PSM_LEN;
+              SDP_TRACE_ERROR(
+                  "ATTR_ID_GOEP_L2CAP_PSM requested,"
+                  " need to change length by %d",
+                  p_ccb->bl_update_len);
+            } else if (cur_attr.id == ATTR_ID_PBAP_SUPPORTED_FEATURES &&
+                       !supp_attr_len_included &&
+                       cur_attr.id >= attr_seq->attr_entry[xx].start &&
+                       cur_attr.id <= attr_seq->attr_entry[xx].end) {
+              supp_attr_len_included = true;
+              p_ccb->bl_update_len += PBAP_SUPP_FEA_LEN;
+              SDP_TRACE_DEBUG(
+                  "ATTR_ID_PBAP_SUPPORTED_FEATURES requested,"
+                  " need to change length by %d",
+                  p_ccb->bl_update_len);
+            }
+          }
+          if (p_ccb->bl_update_len == PBAP_1_2_BL_LEN) break;
+        }
+        break;
+      }
+    }
+  }
+  SDP_TRACE_DEBUG("bl_update_len = %d", p_ccb->bl_update_len);
+  return p_ccb->bl_update_len;
+}
+
+/*************************************************************************************
+**
+** Function        sdp_upgrade_pbap_pse_record
+**
+** Description     updates pbap record to pbap 1.2 record if remote supports
+*pbap 1.2
+**
+** Returns         the address of updated record
+**
+***************************************************************************************/
+static const tSDP_RECORD* sdp_upgrade_pse_record(const tSDP_RECORD* p_rec,
+                                                 RawAddress remote_address) {
+  static bool is_pbap_102_supported = FALSE;
+  tSDP_ATTRIBUTE attr = p_rec->attribute[1];
+  if (!((attr.id == ATTR_ID_SERVICE_CLASS_ID_LIST) &&
+        (((attr.value_ptr[1] << 8) | (attr.value_ptr[2])) ==
+         UUID_SERVCLASS_PBAP_PSE))) {
+    // Not a PBAP PSE Record
+    return p_rec;
+  }
+
+  /* Check if remote supports PBAP 1.2 */
+  is_pbap_102_supported = check_remote_pbap_version_102(remote_address);
+  bool is_pbap_101_denylisted =
+      is_device_denylisted_for_pbap(remote_address, false);
+  bool is_pbap_102_denylisted =
+      is_device_denylisted_for_pbap(remote_address, true);
+  bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
+
+  SDP_TRACE_DEBUG(
+      "%s remote BD Addr : %s is_pbap_102_supported : %d "
+      "is_pbap_1_1__denylisted = %d is_pbap_1_2__denylisted = %d "
+      "running_pts = %d",
+      __func__, ADDRESS_TO_LOGGABLE_CSTR(remote_address), is_pbap_102_supported,
+      is_pbap_101_denylisted, is_pbap_102_denylisted, running_pts);
+
+  if (is_pbap_102_denylisted ||
+      (!is_pbap_102_supported && !is_pbap_101_denylisted && !running_pts)) {
+    // Send 1.1 SDP Record
+    return p_rec;
+  }
+
+  static tSDP_RECORD pbap_102_sdp_rec;
+  memset(&pbap_102_sdp_rec, 0, sizeof(tSDP_RECORD));
+
+  uint32_t supported_features = 0x021F;  // PBAP 1.2 Features
+  uint16_t pbap_0102 = PBAP_1_2;         // Profile version
+  uint32_t pbap_l2cap_psm = 0x1025;      // Fixed L2CAP PSM
+  const tSDP_ATTRIBUTE* p_attr = &p_rec->attribute[0];
+  uint8_t temp[4], j;
+  uint8_t* p_temp = temp;
+  bool status = true;
+
+  /* Copying contents of the PBAP 1.1 PSE record to a new 1.2 record */
+  for (j = 0; j < p_rec->num_attributes; j++, p_attr++) {
+    SDP_AddAttributeToRecord(&pbap_102_sdp_rec, p_attr->id, p_attr->type,
+                             p_attr->len, p_attr->value_ptr);
+  }
+
+  /* Add in the Bluetooth Profile Descriptor List */
+  status &= SDP_AddProfileDescriptorListToRecord(
+      &pbap_102_sdp_rec, UUID_SERVCLASS_PHONE_ACCESS, pbap_0102);
+
+  /* Add PBAP 1.2 supported features 4 */
+  UINT32_TO_BE_STREAM(p_temp, supported_features);
+  status &= SDP_AddAttributeToRecord(&pbap_102_sdp_rec,
+                                     ATTR_ID_PBAP_SUPPORTED_FEATURES,
+                                     UINT_DESC_TYPE, (uint32_t)4, temp);
+
+  /* Add the L2CAP PSM */
+  p_temp = temp;  // The macro modifies p_temp, hence rewind.
+  UINT16_TO_BE_STREAM(p_temp, pbap_l2cap_psm);
+  status &= SDP_AddAttributeToRecord(&pbap_102_sdp_rec, ATTR_ID_GOEP_L2CAP_PSM,
+                                     UINT_DESC_TYPE, (uint32_t)2, temp);
+
+  if (!status) {
+    SDP_TRACE_ERROR("FAILED");
+    return p_rec;
+  }
+  return &pbap_102_sdp_rec;
+}
+
+/*************************************************************************************
+**
+** Function        update_pce_entry_after_cancelling_bonding
+**
+** Description     Update PCE 1.2 entry to dynamic interop database
+**
+***************************************************************************************/
+void update_pce_entry_after_cancelling_bonding(RawAddress remote_addr) {
+  if (!interop_match_addr_or_name(INTEROP_ADV_PBAP_VER_1_2, &remote_addr,
+                                  &btif_storage_get_remote_device_property)) {
+    interop_database_add_addr(INTEROP_ADV_PBAP_VER_1_2, &remote_addr, 3);
+    SDP_TRACE_DEBUG("device: %s is added into interop list",
+                    ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
+  } else {
+    SDP_TRACE_WARNING("device: %s is already found on interop list",
+                      ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
+  }
+}
+
+/*********************************************************************
+ ** Function : save_pce_profile_version
+ **
+ **  Description :
+ **    This function store remote PBAP profile version in config file
+ **
+ **
+ ********************************************************************/
+void save_pce_profile_version(tSDP_DISC_REC* p_sdp_rec) {
+  uint16_t peer_pce_version = 0;
+
+  RawAddress remote_addr = p_sdp_rec->remote_bd_addr;
+  SDP_FindProfileVersionInRec(p_sdp_rec, UUID_SERVCLASS_PHONE_ACCESS,
+                              &peer_pce_version);
+  if (peer_pce_version != 0) {
+    SDP_TRACE_DEBUG("peer_pce_version : 0x%x", peer_pce_version);
+    if (btif_config_set_bin(
+            remote_addr.ToString().c_str(), BT_CONFIG_KEY_PBAP_PCE_VERSION,
+            (const uint8_t*)&peer_pce_version, sizeof(peer_pce_version))) {
+      btif_config_save();
+    } else {
+      SDP_TRACE_WARNING("Failed to store  peer_pce_version for %s",
+                        ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
+    }
+  }
+}
+/*************************************************************************************
+**
+** Function        is_sdp_pbap_pce_disabled
+**
+** Description     Checks if given PBAP record is for PBAP PSE and SDP
+*denylisted
+**
+** Returns         BOOLEAN
+**
+***************************************************************************************/
+bool is_sdp_pbap_pce_disabled(RawAddress remote_address) {
+  if (interop_match_addr_or_name(INTEROP_DISABLE_PCE_SDP_AFTER_PAIRING,
+                                 &remote_address,
+                                 &btif_storage_get_remote_device_property)) {
+    SDP_TRACE_DEBUG("device is denylisted for PCE SDP ");
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool sdpu_is_pbap_0102_enabled() {
+  bool isPse12Enabled =
+      osi_property_get_bool(PBAP_PSE_1_2_VERSION_PROPERTY, true);
+  SDP_TRACE_DEBUG("isEnabled : %d", isPse12Enabled);
+  return isPse12Enabled;
 }
