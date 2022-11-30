@@ -798,6 +798,18 @@ static bool get_profile_feature_info(profile_feature_info_t feature) {
   return false;
 }
 
+static int get_remote_pbap_pce_version(const RawAddress* bd_addr) {
+  // Read and restore the PCE version from local storage
+  uint16_t pce_version = 0;
+  size_t version_value_size = sizeof(pce_version);
+  if (!btif_config_get_bin(bd_addr->ToString(), BT_CONFIG_KEY_PBAP_PCE_VERSION,
+                           (uint8_t*)&pce_version, &version_value_size)) {
+    LOG_WARN("%s: Failed to read cached peer PCE version for %s", __func__,
+             ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
+  }
+  return pce_version;
+}
+
 static const void* get_profile_interface(const char* profile_id) {
   LOG_INFO("%s: id = %s", __func__, profile_id);
 
@@ -1113,6 +1125,7 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     .interop_database_add_remove_addr = interop_database_add_remove_addr,
     .interop_database_add_remove_name = interop_database_add_remove_name,
     .get_profile_feature_info = get_profile_feature_info,
+    .get_remote_pbap_pce_version = get_remote_pbap_pce_version,
 };
 
 // callback reporting helpers

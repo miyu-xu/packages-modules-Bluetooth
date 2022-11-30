@@ -2035,6 +2035,31 @@ static jboolean getProfileFeatureInfoNative(JNIEnv* env, jobject obj,
   return result ? JNI_TRUE : JNI_FALSE;
 }
 
+static int getRemotePbapPceVersionNative(JNIEnv* env, jobject obj,
+                                         jstring address) {
+  ALOGV("%s", __func__);
+
+  if (!sBluetoothInterface) return JNI_FALSE;
+
+  const char* tmp_addr = env->GetStringUTFChars(address, NULL);
+  if (!tmp_addr) {
+    ALOGW("%s: address is null.", __func__);
+    return JNI_FALSE;
+  }
+
+  RawAddress bdaddr;
+  bool success = RawAddress::FromString(tmp_addr, bdaddr);
+
+  env->ReleaseStringUTFChars(address, tmp_addr);
+
+  if (!success) {
+    ALOGW("%s: address is invalid.", __func__);
+    return JNI_FALSE;
+  }
+
+  return sBluetoothInterface->get_remote_pbap_pce_version(&bdaddr);
+}
+
 static JNINativeMethod sMethods[] = {
     /* name, signature, funcPtr */
     {"classInitNative", "()V", (void*)classInitNative},
@@ -2092,6 +2117,8 @@ static JNINativeMethod sMethods[] = {
      "(ZLjava/lang/String;Ljava/lang/String;)V",
      (void*)interopDatabaseAddRemoveNameNative},
     {"getProfileFeatureInfoNative", "(I)Z", (void*)getProfileFeatureInfoNative},
+    {"getRemotePbapPceVersionNative", "(Ljava/lang/String;)I",
+     (void*)getRemotePbapPceVersionNative},
 };
 
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {

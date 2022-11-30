@@ -915,6 +915,9 @@ typedef struct {
                                            const char* name);
   /** get Profile feature support info*/
   bool (*get_profile_feature_info)(profile_feature_info_t feature_name);
+
+  /** get remote Pbap PCE  version*/
+  int (*get_remote_pbap_pce_version)(const RawAddress* bd_addr);
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"
