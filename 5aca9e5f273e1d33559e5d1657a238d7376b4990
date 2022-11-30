@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bc13c32_e82e5295",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-30T04:11:17Z",
+      "side": 1,
+      "message": "I believe that it\u0027s not needed. (This code as well.)\nActiveDeviceManager was added after this code, and it handles the device activation changes.\n\nI have a plan to refactor related code after QPR2 changes.",
+      "parentUuid": "04f47e74_9112ccd7",
+      "range": {
+        "startLine": 895,
+        "startChar": 12,
+        "endLine": 895,
+        "endChar": 51
+      },
+      "revId": "5aca9e5f273e1d33559e5d1657a238d7376b4990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41bb4421_6ab0ebd8",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-29T11:26:00Z",
       "side": 1,
       "message": "How about adding \u0027and\u0027? ...LeAudioForMedia\u0027And\u0027HeadsetForCall\n\nsame for below method",
+      "range": {
+        "startLine": 699,
+        "startChar": 66,
+        "endLine": 699,
+        "endChar": 68
+      },
+      "revId": "5aca9e5f273e1d33559e5d1657a238d7376b4990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06fbb881_9f1ec608",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-11-30T04:11:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41bb4421_6ab0ebd8",
       "range": {
         "startLine": 699,
         "startChar": 66,
