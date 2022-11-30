@@ -553,6 +553,7 @@ cc_test {
         ],
       srcs: [
           ":LibBluetoothSources",
+          ":OsiCompatSources",
           ":TestCommonMainHandler",
           ":TestCommonMockFunctions",
           ":TestCommonCoreInterface",
@@ -582,11 +583,13 @@ cc_test {
           ":TestMockFrameworks",
           ":TestMockHci",
           ":TestMockMainShim",
+          ":TestMockOsi",
           ":TestMockStack",
           ":TestMockSystemLibfmq",
           ":TestMockUdrv",
           ":TestMockUtils",
           "test/btif_core_test.cc",
+          "test/btif_dm_test.cc",
       ],
       generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
@@ -621,7 +624,6 @@ cc_test {
           "libc++fs",
           "libflatbuffers-cpp",
           "libgmock",
-          "libosi",
       ],
       cflags: ["-DBUILDCFG"],
       target: {
