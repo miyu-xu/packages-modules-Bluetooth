@@ -700,7 +700,7 @@ static void btif_report_connection_state(const BtifAvPeer& peer_address,
                                          btav_connection_state_t state,
                                          const bt_status_t status,
                                          uint8_t error_code);
-static void btif_report_audio_state(const RawAddress& peer_address,
+static void btif_report_audio_state(const BtifAvPeer& peer_address,
                                     btav_audio_state_t state);
 static void btif_av_report_sink_audio_config_state(
     const RawAddress& peer_address, int sample_rate, int channel_count);
@@ -2112,7 +2112,7 @@ void BtifAvStateMachine::StateStarted::OnEnter() {
 
   // Report that we have entered the Streaming stage. Usually, this should
   // be followed by focus grant. See update_audio_focus_state()
-  btif_report_audio_state(peer_.PeerAddress(), BTAV_AUDIO_STATE_STARTED);
+  btif_report_audio_state(peer_, BTAV_AUDIO_STATE_STARTED);
 }
 
 void BtifAvStateMachine::StateStarted::OnExit() {
@@ -2230,7 +2230,7 @@ bool BtifAvStateMachine::StateStarted::ProcessEvent(uint32_t event,
         state = BTAV_AUDIO_STATE_STOPPED;
       }
 
-      btif_report_audio_state(peer_.PeerAddress(), state);
+      btif_report_audio_state(peer_, state);
       // Suspend completed, clear local pending flags while entering Opened
       peer_.StateMachine().TransitionTo(BtifAvStateMachine::kStateOpened);
     } break;
@@ -2250,7 +2250,7 @@ bool BtifAvStateMachine::StateStarted::ProcessEvent(uint32_t event,
         btif_a2dp_on_stopped(&p_av->suspend);
       }
 
-      btif_report_audio_state(peer_.PeerAddress(), BTAV_AUDIO_STATE_STOPPED);
+      btif_report_audio_state(peer_, BTAV_AUDIO_STATE_STOPPED);
 
       // If stop was successful, change state to Open
       if (p_av->suspend.status == BTA_AV_SUCCESS)
@@ -2499,19 +2499,25 @@ static void btif_report_connection_state(const BtifAvPeer& peer,
  * @param peer_address the peer address
  * @param state the audio state
  */
-static void btif_report_audio_state(const RawAddress& peer_address,
+static void btif_report_audio_state(const BtifAvPeer& peer,
                                     btav_audio_state_t state) {
-  LOG_INFO("%s: peer_address=%s state=%d", __func__,
-           ADDRESS_TO_LOGGABLE_CSTR(peer_address), state);
+  LOG_INFO("%s: peer=%s roole=%s state=%d", __func__,
+           ADDRESS_TO_LOGGABLE_CSTR(peer.PeerAddress()),
+           (peer.IsSource() ? "Source" : (peer.IsSink() ? "Sink" : "Unknown")),
+           state);
 
-  if (btif_av_source.Enabled()) {
-    do_in_jni_thread(FROM_HERE,
-                     base::Bind(btif_av_source.Callbacks()->audio_state_cb,
-                                peer_address, state));
-  } else if (btif_av_sink.Enabled()) {
-    do_in_jni_thread(FROM_HERE,
-                     base::Bind(btif_av_sink.Callbacks()->audio_state_cb,
-                                peer_address, state));
+  if (peer.IsSink()) {
+    if (btif_av_source.Enabled()) {
+      do_in_jni_thread(FROM_HERE,
+                       base::Bind(btif_av_source.Callbacks()->audio_state_cb,
+                                  peer.PeerAddress(), state));
+    }
+  } else if (peer.IsSource()) {
+    if (btif_av_sink.Enabled()) {
+      do_in_jni_thread(FROM_HERE,
+                       base::Bind(btif_av_sink.Callbacks()->audio_state_cb,
+                                  peer.PeerAddress(), state));
+    }
   }
 
   using android::bluetooth::a2dp::AudioCodingModeEnum;
@@ -2532,7 +2538,8 @@ static void btif_report_audio_state(const RawAddress& peer_address,
           ? AudioCodingModeEnum::AUDIO_CODING_MODE_HARDWARE
           : AudioCodingModeEnum::AUDIO_CODING_MODE_SOFTWARE;
 
-  log_a2dp_playback_event(peer_address, playback_state, audio_coding_mode);
+  log_a2dp_playback_event(peer.PeerAddress(), playback_state,
+                          audio_coding_mode);
 }
 
 void btif_av_report_source_codec_state(
