@@ -637,6 +637,7 @@ cc_test {
           ":TestMockUdrv",
           ":TestMockUtils",
           "test/btif_core_test.cc",
+          "test/btif_dm_test.cc",
       ],
       generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
