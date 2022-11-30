@@ -33,6 +33,24 @@
       "message": "nit: `now_ts` is no longer relevant here, so maybe better to remove it and just use `first_conn_ts`:\n```\nlet mut first_conn_ts \u003d Instant::now();\n```",
       "revId": "cd609fa3ccc6f39a68d2d31550152e946f05b416",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe950b2_6ba334ea",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-11-30T03:56:15Z",
+      "side": 1,
+      "message": "Ack, nice observation",
+      "parentUuid": "bb274604_ac51d63a",
+      "revId": "cd609fa3ccc6f39a68d2d31550152e946f05b416",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
