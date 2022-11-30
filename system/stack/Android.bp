@@ -504,6 +504,7 @@ cc_test {
     srcs: [
         "gatt/connection_manager.cc",
         "test/gatt_connection_manager_test.cc",
+        ":TestCommonMainHandler",
     ],
     shared_libs: [
         "libcutils",
