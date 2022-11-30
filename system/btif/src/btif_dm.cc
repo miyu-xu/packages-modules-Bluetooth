@@ -3928,3 +3928,26 @@ void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
     metadata_cb.le_audio_cache.insert_or_assign(remote_bd_addr, value);
   }
 }
+
+namespace bluetooth {
+namespace testing {
+
+void set_pairing_cb_bd_addr(const RawAddress& bd_addr) {
+  pairing_cb.bd_addr = bd_addr;
+}
+void set_pairing_cb_sdp_attempts(uint8_t sdp_attempts) {
+  pairing_cb.sdp_attempts = sdp_attempts;
+}
+
+void set_pairing_cb_state(const bt_bond_state_t& state) {
+  pairing_cb.state = state;
+}
+bt_bond_state_t get_pairing_cb_state() { return pairing_cb.state; }
+
+void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
+                        bt_bond_state_t state) {
+  ::bond_state_changed(status, bd_addr, state);
+}
+
+}  // namespace testing
+}  // namespace bluetooth
