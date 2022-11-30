@@ -25,7 +25,7 @@ from ..android_service import AndroidService
 from ..bumble_server import BumblePandoraServer
 from ..utils import Address
 
-from pandora_experimental.host_grpc import Host
+from pandora.host_grpc import Host
 
 MOBLY_CONTROLLER_CONFIG_NAME = 'PandoraDevice'
 

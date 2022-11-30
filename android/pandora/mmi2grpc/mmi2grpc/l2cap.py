@@ -5,8 +5,8 @@ from mmi2grpc._helpers import assert_description
 from mmi2grpc._helpers import match_description
 from mmi2grpc._proxy import ProfileProxy
 
-from pandora_experimental.host_grpc import Host
-from pandora_experimental.host_pb2 import Connection, OwnAddressType
+from pandora.host_grpc import Host
+from pandora.host_pb2 import Connection, OwnAddressType
 from pandora_experimental.l2cap_grpc import L2CAP
 
 from typing import Optional

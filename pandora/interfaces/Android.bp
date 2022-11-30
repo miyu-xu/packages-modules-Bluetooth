@@ -3,7 +3,7 @@ package {
 }
 
 java_library {
-    name: "pandora-grpc-java",
+    name: "pandora_experimental-grpc-java",
     visibility: ["//packages/modules/Bluetooth/android/pandora/server"],
     srcs: [
         "pandora_experimental/*.proto",
@@ -14,12 +14,13 @@ java_library {
         "javax_annotation-api_1.3.2",
         "libprotobuf-java-lite",
         "opencensus-java-api",
-        "pandora-proto-java",
+        "pandora_experimental-proto-java",
     ],
     proto: {
         include_dirs: [
             "external/protobuf/src",
             "packages/modules/Bluetooth/pandora/interfaces",
+            "external/pandora/bt-test-interfaces",
         ],
         plugin: "grpc-java-plugin",
         output_params: [
@@ -29,7 +30,7 @@ java_library {
 }
 
 java_library {
-    name: "pandora-proto-java",
+    name: "pandora_experimental-proto-java",
     visibility: ["//packages/modules/Bluetooth/android/pandora/server"],
     srcs: [
         "pandora_experimental/*.proto",
@@ -37,6 +38,7 @@ java_library {
     ],
     static_libs: [
         "libprotobuf-java-lite",
+        "pandora-proto-java",
     ],
     proto: {
         // Disable canonical path as this breaks the identification of
@@ -45,6 +47,7 @@ java_library {
         type: "lite",
         include_dirs: [
             "external/protobuf/src",
+            "external/pandora/bt-test-interfaces",
             "packages/modules/Bluetooth/pandora/interfaces",
         ],
     },
@@ -59,29 +62,25 @@ genrule {
     cmd: "$(location aprotoc)" +
          "    -Ipackages/modules/Bluetooth/pandora/interfaces" +
          "    -Iexternal/protobuf/src" +
+         "    -Iexternal/pandora/bt-test-interfaces" +
          "    --plugin=protoc-gen-grpc=$(location protoc-gen-mmi2grpc-python)" +
          "    --grpc_out=$(genDir)" +
          "    --python_out=$(genDir)" +
          "    $(in)",
     srcs: [
         "pandora_experimental/_android.proto",
-        "pandora_experimental/a2dp.proto",
         "pandora_experimental/avrcp.proto",
         "pandora_experimental/gatt.proto",
         "pandora_experimental/hfp.proto",
         "pandora_experimental/hid.proto",
-        "pandora_experimental/host.proto",
         "pandora_experimental/l2cap.proto",
         "pandora_experimental/mediaplayer.proto",
         "pandora_experimental/pbap.proto",
         "pandora_experimental/rfcomm.proto",
-        "pandora_experimental/security.proto",
     ],
     out: [
         "pandora_experimental/_android_grpc.py",
         "pandora_experimental/_android_pb2.py",
-        "pandora_experimental/a2dp_grpc.py",
-        "pandora_experimental/a2dp_pb2.py",
         "pandora_experimental/avrcp_grpc.py",
         "pandora_experimental/avrcp_pb2.py",
         "pandora_experimental/gatt_grpc.py",
@@ -90,8 +89,6 @@ genrule {
         "pandora_experimental/hfp_pb2.py",
         "pandora_experimental/hid_grpc.py",
         "pandora_experimental/hid_pb2.py",
-        "pandora_experimental/host_grpc.py",
-        "pandora_experimental/host_pb2.py",
         "pandora_experimental/l2cap_grpc.py",
         "pandora_experimental/l2cap_pb2.py",
         "pandora_experimental/mediaplayer_grpc.py",
@@ -100,8 +97,6 @@ genrule {
         "pandora_experimental/pbap_pb2.py",
         "pandora_experimental/rfcomm_grpc.py",
         "pandora_experimental/rfcomm_pb2.py",
-        "pandora_experimental/security_grpc.py",
-        "pandora_experimental/security_pb2.py",
     ]
 }
 
