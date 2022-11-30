@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4bea67f5_c0f091d8",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2022-11-30T09:15:29Z",
+      "side": 1,
+      "message": "This is a code fragment that was taken from the original implementation of the socket feature. I think some of the errors returned by the accept() function are not fatal and that\u0027s why we return 0 here - to try to accept() another connection. Examples of non-fatal errors IMO: ECONNABORTED, EAGAIN, EINTR, EMFILE, ENFILE, ENOBUFS, ENOMEM.",
+      "parentUuid": "309b1360_bb58fb58",
+      "range": {
+        "startLine": 176,
+        "startChar": 11,
+        "endLine": 176,
+        "endChar": 12
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "488f0508_2d69f394",
         "filename": "system/gd/hal/snoop_logger_socket.cc",
         "patchSetId": 41
