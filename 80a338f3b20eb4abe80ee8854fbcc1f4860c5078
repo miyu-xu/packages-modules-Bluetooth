@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e72d5420_70863910",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-30T18:30:28Z",
+      "side": 1,
+      "message": "Ack\n\nI agree that we cannot \u0027not trust\u0027 the controller for one and trust it for another one.",
+      "parentUuid": "fe5523d6_acf8fa15",
+      "revId": "80a338f3b20eb4abe80ee8854fbcc1f4860c5078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bac796d0_a9c6c675",
