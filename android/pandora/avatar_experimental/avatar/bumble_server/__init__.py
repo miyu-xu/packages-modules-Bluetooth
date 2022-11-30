@@ -26,7 +26,7 @@ from bumble.transport import open_transport
 
 from bumble.a2dp import make_audio_sink_service_sdp_records
 
-from pandora_experimental.host_grpc import add_HostServicer_to_server
+from pandora.host_grpc import add_HostServicer_to_server
 from .host import HostService
 
 BUMBLE_SERVER_PORT = 7999
