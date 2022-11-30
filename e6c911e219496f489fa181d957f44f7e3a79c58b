@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5033fc62_bb32f442",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-30T16:48:14Z",
+      "side": 1,
+      "message": "Note: everywhere we make the supposition that struct have a size multiple of 8. It would be a good idea to make that official as well.",
+      "revId": "e6c911e219496f489fa181d957f44f7e3a79c58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566b809c_4b02034e",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-11-30T16:48:14Z",
+      "side": 1,
+      "message": "nit: bit-size.",
+      "range": {
+        "startLine": 437,
+        "startChar": 19,
+        "endLine": 437,
+        "endChar": 23
+      },
+      "revId": "e6c911e219496f489fa181d957f44f7e3a79c58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
