@@ -1520,7 +1520,19 @@ bool LeAudioDevice::ConfigureAses(
     ase->retrans_nb = ent.qos.retransmission_number;
     ase->max_transport_latency = ent.qos.max_transport_latency;
 
-    ase->metadata = GetMetadata(metadata_context_type, ccid_list);
+    /* Filter multidirectional audio context for each ase direction */
+    auto directional_audio_context =
+        metadata_context_type &
+        ((ase->direction == types::kLeAudioDirectionSink)
+             ? avail_snk_contexts_
+             : avail_src_contexts_);
+    if (directional_audio_context.any()) {
+      ase->metadata = GetMetadata(directional_audio_context, ccid_list);
+    } else {
+      ase->metadata =
+          GetMetadata(AudioContexts(LeAudioContextType::UNSPECIFIED),
+                      std::vector<uint8_t>());
+    }
 
     DLOG(INFO) << __func__ << " device=" << address_
                << ", activated ASE id=" << +ase->id
