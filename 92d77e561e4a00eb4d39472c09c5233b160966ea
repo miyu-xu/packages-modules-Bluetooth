@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "226ecbc0_cf8c5aa4",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-30T10:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba792ad4_1d7d8c9c",
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25a0faca_5cf92f3d",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-11-29T22:07:51Z",
       "side": 1,
       "message": "nit: This shouldn\u0027t need `format!` but can be simply `String::from`, because there is no need to inline some values in the string. I think you were following my example but I think my examples were the result of mass-editing with a macro so they weren\u0027t good.",
+      "range": {
+        "startLine": 885,
+        "startChar": 56,
+        "endLine": 885,
+        "endChar": 62
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed0dbe01_121d5451",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-30T10:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25a0faca_5cf92f3d",
       "range": {
         "startLine": 885,
         "startChar": 56,
@@ -81,6 +123,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ace2ddd7_4a068e35",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-30T10:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78055b1b_0df37569",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 906,
+        "endChar": 28
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee898b57_361f9239",
@@ -94,6 +160,30 @@
       "writtenOn": "2022-11-29T22:07:51Z",
       "side": 1,
       "message": "With implementing `From\u003c\u0026str\u003e for CommandError` above, this can also simply be:\n```\nlet handle \u003d String::from(get_arg(args, 2)?)\n    .parse::\u003ci32\u003e()\n    .or(Err(\"Failed to parse handle\"))?;\n```",
+      "range": {
+        "startLine": 1031,
+        "startChar": 0,
+        "endLine": 1036,
+        "endChar": 18
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcb1d473_3dcf7c5a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-30T10:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee898b57_361f9239",
       "range": {
         "startLine": 1031,
         "startChar": 0,
@@ -127,6 +217,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c2ed059_7f858ada",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-30T10:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6de41de_ee7805a4",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1052,
+        "endChar": 18
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cca7be7e_7874b955",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-11-29T22:07:51Z",
       "side": 1,
       "message": "Use `ok_or` to be more concise:\n```\nlet client_id \u003d self.context.lock().unwrap().gatt_client_context.client_id.ok_or(\"GATT client is not yet registered.\")?;\n```",
+      "range": {
+        "startLine": 1054,
+        "startChar": 0,
+        "endLine": 1061,
+        "endChar": 18
+      },
+      "revId": "92d77e561e4a00eb4d39472c09c5233b160966ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a46878_8bce6168",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-11-30T10:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cca7be7e_7874b955",
       "range": {
         "startLine": 1054,
         "startChar": 0,
