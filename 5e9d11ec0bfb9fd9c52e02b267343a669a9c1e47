@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f93db74c_244ed056",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-11-30T18:54:29Z",
+      "side": 1,
+      "message": "Oh I see.\nAnd by returning 0, the ProcessIncomingRequest will return true without adding the connection and we will be back in a waiting state.\nMake sense. Thanks",
+      "parentUuid": "4bea67f5_c0f091d8",
+      "range": {
+        "startLine": 176,
+        "startChar": 11,
+        "endLine": 176,
+        "endChar": 12
+      },
+      "revId": "5e9d11ec0bfb9fd9c52e02b267343a669a9c1e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "488f0508_2d69f394",
