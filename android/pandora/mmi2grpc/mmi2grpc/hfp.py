@@ -17,10 +17,10 @@ from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 
 from pandora_experimental.hfp_grpc import HFP
+from pandora_experimental.hfp_pb2 import AudioPath
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.host_pb2 import ConnectabilityMode
 from pandora_experimental.security_grpc import Security, SecurityStorage
-from pandora_experimental.hfp_pb2 import AudioPath
 
 import sys
 import threading
