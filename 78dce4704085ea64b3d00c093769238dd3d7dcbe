@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd38bd69_d356e2d1",
+        "filename": "system/embdrv/g722/fuzzer/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1117108
+      },
+      "writtenOn": "2022-11-30T15:19:46Z",
+      "side": 1,
+      "message": "That\u0027s not required for a fuzzing run",
+      "parentUuid": "723b38b7_1c424881",
+      "range": {
+        "startLine": 17,
+        "startChar": 9,
+        "endLine": 17,
+        "endChar": 21
+      },
+      "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f369a38_6986a27f",
@@ -78,6 +102,24 @@
       "writtenOn": "2022-11-29T23:10:10Z",
       "side": 1,
       "message": "enable sanitizers here?",
+      "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce61ceb9_280c7291",
+        "filename": "system/embdrv/g722/fuzzer/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1117108
+      },
+      "writtenOn": "2022-11-30T15:19:46Z",
+      "side": 1,
+      "message": "When built with `SANITIZE_TARGET\u003dhwaddress m g722_fuzzer` all appropriate sanitizer option are automatically added by the build system.",
+      "parentUuid": "7f369a38_6986a27f",
       "revId": "78dce4704085ea64b3d00c093769238dd3d7dcbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
