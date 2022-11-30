@@ -148,21 +148,25 @@ public final class BluetoothLeAdvertiser {
             parameters.setScannable(true); // legacy advertisements we support are always scannable
             parameters.setOwnAddressType(settings.getOwnAddressType());
             if (settings.getMode() == AdvertiseSettings.ADVERTISE_MODE_LOW_POWER) {
-                parameters.setInterval(1600); // 1s
+                parameters.setInterval(AdvertisingSetParameters.INTERVAL_HIGH); // 1s
             } else if (settings.getMode() == AdvertiseSettings.ADVERTISE_MODE_BALANCED) {
-                parameters.setInterval(400); // 250ms
+                parameters.setInterval(AdvertisingSetParameters.INTERVAL_MEDIUM); // 250ms
             } else if (settings.getMode() == AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY) {
-                parameters.setInterval(160); // 100ms
+                parameters.setInterval(AdvertisingSetParameters.INTERVAL_LOW); // 100ms
             }
 
             if (settings.getTxPowerLevel() == AdvertiseSettings.ADVERTISE_TX_POWER_ULTRA_LOW) {
-                parameters.setTxPowerLevel(-21);
+                parameters.setTxPowerLevel(AdvertisingSetParameters.TX_POWER_ULTRA_LOW);
             } else if (settings.getTxPowerLevel() == AdvertiseSettings.ADVERTISE_TX_POWER_LOW) {
-                parameters.setTxPowerLevel(-15);
+                parameters.setTxPowerLevel(AdvertisingSetParameters.TX_POWER_LOW);
             } else if (settings.getTxPowerLevel() == AdvertiseSettings.ADVERTISE_TX_POWER_MEDIUM) {
-                parameters.setTxPowerLevel(-7);
+                parameters.setTxPowerLevel(AdvertisingSetParameters.TX_POWER_MEDIUM);
             } else if (settings.getTxPowerLevel() == AdvertiseSettings.ADVERTISE_TX_POWER_HIGH) {
-                parameters.setTxPowerLevel(1);
+                parameters.setTxPowerLevel(AdvertisingSetParameters.TX_POWER_HIGH);
+            } else if (settings.getTxPowerLevel()
+                    == AdvertiseSettings.ADVERTISE_TX_POWER_NO_PREFERENCE) {
+                parameters.setTxPowerLevel(
+                        AdvertisingSetParameters.ADVERTISE_TX_POWER_NO_PREFERENCE);
             }
 
             int duration = 0;
