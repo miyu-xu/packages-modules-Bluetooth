@@ -3,16 +3,9 @@
 //! This crate provides the API implementation of the Fluoride/GD Bluetooth
 //! stack, independent of any RPC projection.
 
-#[macro_use]
-extern crate num_derive;
-#[macro_use]
-extern crate lazy_static;
-
 pub mod async_helper;
 pub mod battery_manager;
 pub mod battery_provider_manager;
-pub mod battery_service;
-pub mod bluetooth;
 pub mod bluetooth_admin;
 pub mod bluetooth_adv;
 pub mod bluetooth_gatt;
@@ -23,6 +16,7 @@ pub mod suspend;
 pub mod uuid;
 
 use log::debug;
+use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::channel;
 use tokio::sync::mpsc::{Receiver, Sender};

@@ -1,7 +1,3 @@
-extern crate clap;
-#[macro_use]
-extern crate lazy_static;
-
 use clap::{App, AppSettings, Arg};
 use dbus::{channel::MatchingReceiver, message::MatchRule};
 use dbus_crossroads::Crossroads;
