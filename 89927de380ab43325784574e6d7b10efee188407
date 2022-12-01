@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21efb3b_2871c8ce",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-01T19:17:24Z",
+      "side": 1,
+      "message": "Don\u0027t we need the exact connect type to cancel the new targeted announcement connect?",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 17
+      },
+      "revId": "89927de380ab43325784574e6d7b10efee188407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
