@@ -38,6 +38,7 @@
         <option name="profile" value="GAP" />
         <option name="profile" value="GATT" />
         <option name="profile" value="HID/HOS" />
+        <option name="profile" value="HID/DEV" />
         <option name="profile" value="HOGP" />
         <option name="profile" value="L2CAP/LE" />
         <option name="profile" value="MAP" />

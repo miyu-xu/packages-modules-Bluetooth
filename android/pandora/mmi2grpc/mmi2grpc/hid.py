@@ -4,19 +4,22 @@ from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 
 from pandora_experimental.hid_grpc import HID
+from pandora_experimental.security_grpc import Security
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.hid_pb2 import HID_REPORT_TYPE_OUTPUT
 from mmi2grpc._rootcanal import RootCanal
 
 
 class HIDProxy(ProfileProxy):
-
     def __init__(self, channel, rootcanal):
         super().__init__(channel)
         self.hid = HID(channel)
         self.host = Host(channel)
+        self.security = Security(channel)
         self.rootcanal = rootcanal
         self.connection = None
+
+        self._auto_confirm_requests()
 
     @assert_description
     def TSC_MMI_iut_enable_connection(self, pts_addr: bytes, **kwargs):
@@ -183,3 +186,24 @@ class HIDProxy(ProfileProxy):
         Thread(target=connect).start()
 
         return "OK"
+
+    @assert_description
+    def TSC_MMI_tester_enable_connection(self, **kwargs):
+        """
+        Place the Implementation Under Test (IUT) in connectable mode, then
+        click Ok.
+        """
+
+        return "OK"
+
+    def _auto_confirm_requests(self, times=None):
+        def task():
+            cnt = 0
+            pairing_events = self.security.OnPairing()
+            for event in pairing_events:
+                if event.WhichOneof("method") in {"just_works", "numeric_comparison"}:
+                    if times is None or cnt < times:
+                        cnt += 1
+                        pairing_events.send(event=event, confirm=True)
+
+        Thread(target=task).start()
