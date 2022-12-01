@@ -5,6 +5,7 @@ use crate::callbacks::Callbacks;
 use crate::{bluetooth_gatt::IBluetoothGatt, BluetoothGatt, Message, RPCProxy};
 use bt_topshim::btif::BluetoothInterface;
 use log::warn;
+use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
