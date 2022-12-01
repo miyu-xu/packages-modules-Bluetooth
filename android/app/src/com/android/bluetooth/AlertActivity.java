@@ -29,6 +29,7 @@ import android.view.Window;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 
+import com.android.bluetooth.BluetoothActivity;
 import com.android.internal.annotations.VisibleForTesting;
 
 /**
@@ -38,8 +39,8 @@ import com.android.internal.annotations.VisibleForTesting;
  * @see #setupAlert()
  */
 @SuppressLint("AndroidFrameworkBluetoothPermission")
-public abstract class AlertActivity extends Activity implements DialogInterface.OnDismissListener,
-        DialogInterface.OnCancelListener {
+public abstract class AlertActivity extends BluetoothActivity
+        implements DialogInterface.OnDismissListener, DialogInterface.OnCancelListener {
 
     /**
      * The model for the alert.

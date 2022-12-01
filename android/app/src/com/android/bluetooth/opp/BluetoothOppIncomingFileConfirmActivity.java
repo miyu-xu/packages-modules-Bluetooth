@@ -58,6 +58,7 @@ import com.android.bluetooth.R;
 /**
  * This class is designed to ask user to confirm if accept incoming file;
  */
+
 public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
     private static final String TAG = "BluetoothIncomingFileConfirmActivity";
     private static final boolean D = Constants.DEBUG;
