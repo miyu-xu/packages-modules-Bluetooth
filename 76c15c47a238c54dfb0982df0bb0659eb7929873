@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1196809_b2083e20",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-01T19:48:35Z",
+      "side": 1,
+      "message": "maybe `doing_targeted_announcements_conn`?",
+      "range": {
+        "startLine": 70,
+        "startChar": 20,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76c2aba6_aabff1a9",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-01T19:48:35Z",
+      "side": 1,
+      "message": "If this module already uses `clients` and `apps` to reference the same concept, than maybe let\u0027s not introduce another `user` alias to the same concept.",
+      "range": {
+        "startLine": 81,
+        "startChar": 34,
+        "endLine": 81,
+        "endChar": 39
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8083bd38_b46fd900",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-01T19:48:35Z",
+      "side": 1,
+      "message": "NIT. `return std::count_if()` would be simpler",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 16
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb08a6c2_61b12fee",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-01T19:48:35Z",
+      "side": 1,
+      "message": "Is there any part of this function that makes it CAP specific?",
+      "range": {
+        "startLine": 120,
+        "startChar": 55,
+        "endLine": 120,
+        "endChar": 58
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
