@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f332a59_24c23bf8",
+        "filename": "android/app/jni/rust/keystore.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-01T20:16:45Z",
+      "side": 1,
+      "message": "As I understand this, you are calling GD directly. I fought we would use existing BTIF interface to keep things simple.",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "86fec7ebf2db6b9b6058d0f9cfef011252684c3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
