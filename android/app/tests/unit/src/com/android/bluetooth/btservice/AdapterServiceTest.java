@@ -97,7 +97,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -1003,5 +1007,29 @@ public class AdapterServiceTest {
         Assert.assertFalse(mAdapterService.getState() == BluetoothAdapter.STATE_ON);
         int id2 = mAdapterService.getMetricId(device);
         Assert.assertEquals(id2, id1);
+    }
+
+    @Test
+    public void testDump() {
+        FileDescriptor fd = new FileDescriptor();
+        PrintWriter writer = mock(PrintWriter.class);
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                String line = invocation.getArgument(0);
+                Log.d("XXX", "line=" + line);
+                return null;
+            }
+        }).when(writer).println(anyString());
+
+        try {
+            mAdapterService.dump(fd, writer, new String[]{});
+            mAdapterService.dump(fd, writer, new String[]{"set-test-mode", "enabled"});
+            mAdapterService.dump(fd, writer, new String[]{"--proto-bin"});
+            mAdapterService.dump(fd, writer, new String[]{"abc, def, ghi"});
+        } catch (Exception e) {
+            Log.d("XXX", "error happened:", e);
+            Assert.fail("Exception should not happen!");
+        }
     }
 }
