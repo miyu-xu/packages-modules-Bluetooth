@@ -22,6 +22,30 @@
       },
       "revId": "309d178c71ac5b30ad511a59c6a0f4ab295f33d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de04bfd2_5cd7d23e",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothAudioConfigTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-01T04:59:05Z",
+      "side": 1,
+      "message": "Noted. Will use `constructor` moving forward. Thank you!",
+      "parentUuid": "8349f6eb_0b59af9e",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 42
+      },
+      "revId": "309d178c71ac5b30ad511a59c6a0f4ab295f33d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
