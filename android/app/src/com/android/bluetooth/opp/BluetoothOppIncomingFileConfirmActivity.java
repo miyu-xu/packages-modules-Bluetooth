@@ -34,7 +34,6 @@ package com.android.bluetooth.opp;
 
 import static android.view.WindowManager.LayoutParams.SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS;
 
-import android.bluetooth.AlertActivity;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -54,11 +53,13 @@ import android.widget.Toast;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
+import com.android.bluetooth.TestableActivities;
 
 /**
  * This class is designed to ask user to confirm if accept incoming file;
  */
-public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
+
+public class BluetoothOppIncomingFileConfirmActivity extends TestableActivities.AlertActivity {
     private static final String TAG = "BluetoothIncomingFileConfirmActivity";
     private static final boolean D = Constants.DEBUG;
     private static final boolean V = Constants.VERBOSE;
