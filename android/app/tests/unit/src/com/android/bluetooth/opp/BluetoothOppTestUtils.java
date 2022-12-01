@@ -25,37 +25,25 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
+
+import androidx.test.runner.lifecycle.Stage;
 
 import org.mockito.internal.util.MockUtil;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BluetoothOppTestUtils {
-
-    /**
-     * A class containing the data to be return by a cursor. Intended to be use with setUpMockCursor
-     *
-     * @attr columnName is name of column to be used as a parameter in cursor.getColumnIndexOrThrow
-     * @attr mIndex should be returned from cursor.getColumnIndexOrThrow
-     * @attr mValue should be returned from cursor.getInt() or cursor.getString() or
-     * cursor.getLong()
-     */
-    public static class CursorMockData {
-        public final String mColumnName;
-        public final int mColumnIndex;
-        public final Object mValue;
-
-        public CursorMockData(String columnName, int index, Object value) {
-            mColumnName = columnName;
-            mColumnIndex = index;
-            mValue = value;
-        }
-    }
+    static ActivityStageObserver mActivityStageObserver = new ActivityStageObserver();
 
     /**
      * Set up a mock single-row Cursor that work for common use cases in the OPP package.
@@ -72,12 +60,12 @@ public class BluetoothOppTestUtils {
      *  int direction = cursor.getInt(index); // This will return BluetoothShare.DIRECTION_INBOUND
      * </pre>
      *
-     * @param cursor a mock/spy cursor to be setup
+     * @param cursor             a mock/spy cursor to be setup
      * @param cursorMockDataList a list representing what cursor will return
      */
     public static void setUpMockCursor(
             Cursor cursor, List<CursorMockData> cursorMockDataList) {
-        assert(MockUtil.isMock(cursor));
+        assert (MockUtil.isMock(cursor));
 
         doAnswer(invocation -> {
             String name = invocation.getArgument(0);
@@ -117,7 +105,7 @@ public class BluetoothOppTestUtils {
     /**
      * Enable/Disable all activities in Opp for testing
      *
-     * @param enable true to enable, false to disable
+     * @param enable         true to enable, false to disable
      * @param mTargetContext target context
      */
     public static void enableOppActivities(boolean enable, Context mTargetContext) {
@@ -143,6 +131,77 @@ public class BluetoothOppTestUtils {
             mTargetContext.getPackageManager().setComponentEnabledSetting(
                     activityName, enabledState, DONT_KILL_APP);
         });
+    }
+
+    /**
+     * A class containing the data to be return by a cursor. Intended to be use with setUpMockCursor
+     *
+     * @attr columnName is name of column to be used as a parameter in cursor.getColumnIndexOrThrow
+     * @attr mIndex should be returned from cursor.getColumnIndexOrThrow
+     * @attr mValue should be returned from cursor.getInt() or cursor.getString() or
+     * cursor.getLong()
+     */
+    public static class CursorMockData {
+        public final String mColumnName;
+        public final int mColumnIndex;
+        public final Object mValue;
+
+        public CursorMockData(String columnName, int index, Object value) {
+            mColumnName = columnName;
+            mColumnIndex = index;
+            mValue = value;
+        }
+    }
+
+    public static class ActivityStageObserver {
+        private final ReentrantLock mStateLock = new ReentrantLock();
+        private final Condition mStateLockCondition = mStateLock.newCondition();
+        public ActivityLifecycleCallback mActivityLifecycleCallback =
+                new ActivityLifecycleCallback();
+        String TAG = "A";
+        private Stage mState = Stage.PRE_ON_CREATE;
+        private Stage mTargetState;
+
+        /**
+         * @return whether {stageToWait} was entered during {timeoutMs}
+         */
+        public boolean waitForStage(Stage stageToWait, int timeoutMs) {
+            mStateLock.lock();
+            long deadline = System.currentTimeMillis() + timeoutMs;
+            mTargetState = stageToWait;
+            try {
+                while (System.currentTimeMillis() < deadline && mState != stageToWait) {
+                    long waitTime = Math.max(deadline - System.currentTimeMillis(), 1);
+                    mStateLockCondition.await(waitTime, TimeUnit.MILLISECONDS);
+                }
+                return mState == stageToWait;
+            } catch (InterruptedException e) {
+                Log.d(TAG, String.valueOf(e));
+                return mState == stageToWait;
+            } finally {
+                mStateLock.unlock();
+            }
+        }
+
+        private void updateState(Stage stageToWait) {
+            mStateLock.lock();
+            mState = stageToWait;
+            try {
+                if (mTargetState == stageToWait) {
+                    mStateLockCondition.signal();
+                }
+            } finally {
+                mStateLock.unlock();
+            }
+        }
+
+        public class ActivityLifecycleCallback implements
+                androidx.test.runner.lifecycle.ActivityLifecycleCallback {
+            @Override
+            public void onActivityLifecycleChanged(Activity activity, Stage stage) {
+                updateState(stage);
+            }
+        }
 
     }
 }
