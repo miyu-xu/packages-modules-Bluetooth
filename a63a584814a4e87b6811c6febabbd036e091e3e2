@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33886716_1fe85dd1",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-12-01T00:52:42Z",
+      "side": 1,
+      "message": "Could it be possible to also add a log in this method before this condition? I\u0027m not sure if you want to do it here but in case you\u0027re adding logs another time it could be a good idea to add one there, thanks!",
+      "revId": "a63a584814a4e87b6811c6febabbd036e091e3e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
