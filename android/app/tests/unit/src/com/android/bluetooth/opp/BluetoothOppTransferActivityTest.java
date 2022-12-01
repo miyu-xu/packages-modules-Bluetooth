@@ -40,13 +40,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.test.ActivityInstrumentationTestCase2;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.runner.MonitoringInstrumentation;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 
 import com.android.bluetooth.BluetoothMethodProxy;
+import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.pbap.BluetoothPbapActivity;
 
 import org.junit.After;
@@ -63,7 +67,13 @@ import java.util.List;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
-public class BluetoothOppTransferActivityTest {
+public class BluetoothOppTransferActivityTest extends
+        ActivityInstrumentationTestCase2<BluetoothOppTransferActivity> {
+
+  public BluetoothOppTransferActivityTest() {
+    super(BluetoothOppTransferActivity.class);
+  }
+
   @Mock
   Cursor mCursor;
   @Spy
@@ -83,6 +93,7 @@ public class BluetoothOppTransferActivityTest {
     Uri dataUrl = Uri.parse("content://com.android.bluetooth.opp.test/random");
 
     mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    injectInstrumentation(InstrumentationRegistry.getInstrumentation());
 
     mIntent = new Intent();
     mIntent.setClass(mTargetContext, BluetoothOppTransferActivity.class);
@@ -112,13 +123,13 @@ public class BluetoothOppTransferActivityTest {
                     BluetoothShare.USER_CONFIRMATION_HANDOVER_CONFIRMED)
     ));
 
-    enableActivity(true);
+    BluetoothOppTestUtils.enableOppActivities(true, mTargetContext);
   }
 
   @After
   public void tearDown() {
     BluetoothMethodProxy.setInstanceForTesting(null);
-    enableActivity(false);
+    BluetoothOppTestUtils.enableOppActivities(false, mTargetContext);
   }
 
   @Test
@@ -132,12 +143,10 @@ public class BluetoothOppTransferActivityTest {
     mCursorMockDataList.add(new CursorMockData(BluetoothShare.CURRENT_BYTES, 4, 0));
     BluetoothOppTestUtils.setUpMockCursor(mCursor, mCursorMockDataList);
 
-    ActivityScenario<BluetoothOppTransferActivity> activityScenario = ActivityScenario.launch(
-            mIntent);
-
-    activityScenario.onActivity(activity -> {
-      assertThat(activity.mWhichDialog).isEqualTo(DIALOG_SEND_ONGOING);
-    });
+    setActivityIntent(mIntent);
+    BluetoothOppTransferActivity activity = getActivity();
+    InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+    assertThat(activity.mWhichDialog).isEqualTo(DIALOG_SEND_ONGOING);
   }
 
   @Test
@@ -153,12 +162,11 @@ public class BluetoothOppTransferActivityTest {
             new CursorMockData(BluetoothShare.CURRENT_BYTES, 4, 100));
     BluetoothOppTestUtils.setUpMockCursor(mCursor, mCursorMockDataList);
 
-    ActivityScenario<BluetoothOppTransferActivity> activityScenario = ActivityScenario.launch(
-            mIntent);
+    setActivityIntent(mIntent);
+    BluetoothOppTransferActivity activity = getActivity();
+    InstrumentationRegistry.getInstrumentation().waitForIdleSync();
 
-    activityScenario.onActivity(activity -> {
-      assertThat(activity.mWhichDialog).isEqualTo(DIALOG_SEND_COMPLETE_SUCCESS);
-    });
+    assertThat(activity.mWhichDialog).isEqualTo(DIALOG_SEND_COMPLETE_SUCCESS);
   }
 
   @Test
@@ -172,11 +180,10 @@ public class BluetoothOppTransferActivityTest {
     mCursorMockDataList.add(new CursorMockData(BluetoothShare.CURRENT_BYTES, 4, 42));
     BluetoothOppTestUtils.setUpMockCursor(mCursor, mCursorMockDataList);
 
-    ActivityScenario<BluetoothOppTransferActivity> activityScenario = ActivityScenario.launch(
-            mIntent);
-
-    activityScenario.onActivity(
-            activity -> assertThat(activity.mWhichDialog).isEqualTo(DIALOG_SEND_COMPLETE_FAIL));
+    setActivityIntent(mIntent);
+    BluetoothOppTransferActivity activity = getActivity();
+    InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+    assertThat(activity.mWhichDialog).isEqualTo(DIALOG_SEND_COMPLETE_FAIL);
   }
 
   @Test
@@ -190,11 +197,10 @@ public class BluetoothOppTransferActivityTest {
     mCursorMockDataList.add(new CursorMockData(BluetoothShare.CURRENT_BYTES, 4, 0));
     BluetoothOppTestUtils.setUpMockCursor(mCursor, mCursorMockDataList);
 
-    ActivityScenario<BluetoothOppTransferActivity> activityScenario = ActivityScenario.launch(
-            mIntent);
-
-    activityScenario.onActivity(
-            activity -> assertThat(activity.mWhichDialog).isEqualTo(DIALOG_RECEIVE_ONGOING));
+    setActivityIntent(mIntent);
+    BluetoothOppTransferActivity activity = getActivity();
+    InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+    assertThat(activity.mWhichDialog).isEqualTo(DIALOG_RECEIVE_ONGOING);
   }
 
   @Test
@@ -228,23 +234,9 @@ public class BluetoothOppTransferActivityTest {
     mCursorMockDataList.add(new CursorMockData(BluetoothShare.CURRENT_BYTES, 4, 42));
 
     BluetoothOppTestUtils.setUpMockCursor(mCursor, mCursorMockDataList);
-    ActivityScenario<BluetoothOppTransferActivity> activityScenario = ActivityScenario.launch(
-            mIntent);
-
-    activityScenario.onActivity(activity -> assertThat(activity.mWhichDialog).isEqualTo(
-            DIALOG_RECEIVE_COMPLETE_FAIL));
-  }
-
-  private void enableActivity(boolean enable) {
-    int enabledState = enable ? COMPONENT_ENABLED_STATE_ENABLED
-            : COMPONENT_ENABLED_STATE_DEFAULT;
-
-    mTargetContext.getPackageManager().setApplicationEnabledSetting(
-            mTargetContext.getPackageName(), enabledState, DONT_KILL_APP);
-
-    ComponentName activityName = new ComponentName(mTargetContext,
-            BluetoothOppTransferActivity.class);
-    mTargetContext.getPackageManager().setComponentEnabledSetting(
-            activityName, enabledState, DONT_KILL_APP);
+    setActivityIntent(mIntent);
+    BluetoothOppTransferActivity activity = getActivity();
+    InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+    assertThat(activity.mWhichDialog).isEqualTo(DIALOG_RECEIVE_COMPLETE_FAIL);
   }
 }

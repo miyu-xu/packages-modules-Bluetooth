@@ -38,8 +38,8 @@ import com.android.internal.annotations.VisibleForTesting;
  * @see #setupAlert()
  */
 @SuppressLint("AndroidFrameworkBluetoothPermission")
-public abstract class AlertActivity extends Activity implements DialogInterface.OnDismissListener,
-        DialogInterface.OnCancelListener {
+public abstract class AlertActivity extends Activity
+        implements DialogInterface.OnDismissListener, DialogInterface.OnCancelListener {
 
     /**
      * The model for the alert.

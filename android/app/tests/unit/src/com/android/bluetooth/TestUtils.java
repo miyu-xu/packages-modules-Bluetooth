@@ -20,6 +20,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -30,12 +31,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.MessageQueue;
 import android.os.Process;
+import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.rule.ServiceTestRule;
+import androidx.test.runner.lifecycle.Stage;
 
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.opp.BluetoothOppTestUtils;
 
 import org.junit.Assert;
 import org.mockito.ArgumentCaptor;
@@ -51,12 +55,16 @@ import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * A set of methods useful in Bluetooth instrumentation tests
  */
 public class TestUtils {
     private static final int SERVICE_TOGGLE_TIMEOUT_MS = 1000;    // 1s
+    public static ActivityStageObserver mActivityStageObserver = new ActivityStageObserver();
+
 
     /**
      * Utility method to replace obj.fieldName with newValue where obj is of type c
@@ -394,6 +402,57 @@ public class TestUtils {
                     } catch (InterruptedException e) {
                     }
                 }
+            }
+        }
+    }
+
+    public static class ActivityStageObserver {
+        private final ReentrantLock mStateLock = new ReentrantLock();
+        private final Condition mStateLockCondition = mStateLock.newCondition();
+        public ActivityLifecycleCallback mActivityLifecycleCallback =
+                new ActivityLifecycleCallback();
+        String TAG = "A";
+        private Stage mState = Stage.PRE_ON_CREATE;
+        private Stage mTargetState;
+
+        /**
+         * @return whether {stageToWait} was entered during {timeoutMs}
+         */
+        public boolean waitForStage(Stage stageToWait, int timeoutMs) {
+            mStateLock.lock();
+            long deadline = System.currentTimeMillis() + timeoutMs;
+            mTargetState = stageToWait;
+            try {
+                while (System.currentTimeMillis() < deadline && mState != stageToWait) {
+                    long waitTime = Math.max(deadline - System.currentTimeMillis(), 1);
+                    mStateLockCondition.await(waitTime, TimeUnit.MILLISECONDS);
+                }
+                return mState == stageToWait;
+            } catch (InterruptedException e) {
+                Log.d(TAG, String.valueOf(e));
+                return mState == stageToWait;
+            } finally {
+                mStateLock.unlock();
+            }
+        }
+
+        private void updateState(Stage stageToWait) {
+            mStateLock.lock();
+            mState = stageToWait;
+            try {
+                if (mTargetState == stageToWait) {
+                    mStateLockCondition.signal();
+                }
+            } finally {
+                mStateLock.unlock();
+            }
+        }
+
+        public class ActivityLifecycleCallback implements
+                androidx.test.runner.lifecycle.ActivityLifecycleCallback {
+            @Override
+            public void onActivityLifecycleChanged(Activity activity, Stage stage) {
+                updateState(stage);
             }
         }
     }
