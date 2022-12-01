@@ -49,7 +49,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class BluetoothPbapActivityTest {
-
     Context mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     Intent mIntent;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.bluetooth.opp;
+        package com.android.bluetooth.opp;
 
 
 import static com.android.bluetooth.opp.BluetoothOppTestUtils.CursorMockData;
