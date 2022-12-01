@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f31540f0_00e1397f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-01T22:37:15Z",
+      "side": 1,
+      "message": "please fix.",
+      "revId": "79c4105882a90350e578caf087a80c434bec4422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a924d1d_f848f617",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-01T22:37:15Z",
+      "side": 1,
+      "message": "What about onReceiver_withActionHandoverSend_callsOppManagerStartTransfer?\nand ditto for others.",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 64
+      },
+      "revId": "79c4105882a90350e578caf087a80c434bec4422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bc2780_04f6858e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiverTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-01T22:37:15Z",
+      "side": 1,
+      "message": "remove this empty line.",
+      "revId": "79c4105882a90350e578caf087a80c434bec4422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
