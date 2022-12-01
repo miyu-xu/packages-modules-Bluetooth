@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b87b3a6f_e73ec97c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963225
+      },
+      "writtenOn": "2022-12-01T08:43:50Z",
+      "side": 1,
+      "message": "Please fix the linter error",
+      "revId": "bd1237bcd4933a140fd7ad3022be3042c6b6dea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
