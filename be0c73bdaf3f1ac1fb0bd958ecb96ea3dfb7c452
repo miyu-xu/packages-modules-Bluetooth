@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b513bde4_5418a3bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1052399
+      },
+      "writtenOn": "2022-12-01T19:22:07Z",
+      "side": 1,
+      "message": "There are some lint warnings about commit message tages.\nCould owner reviewers suggest the best choices for this changes?\nThanks.",
+      "revId": "be0c73bdaf3f1ac1fb0bd958ecb96ea3dfb7c452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
