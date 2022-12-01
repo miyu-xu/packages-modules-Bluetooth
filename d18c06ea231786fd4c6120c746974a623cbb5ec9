@@ -22,6 +22,30 @@
       },
       "revId": "d18c06ea231786fd4c6120c746974a623cbb5ec9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92455919_1fd77118",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5530,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-01T05:11:44Z",
+      "side": 0,
+      "message": "I missed the RAW 😞",
+      "parentUuid": "e4a7f769_fc04887f",
+      "range": {
+        "startLine": 5530,
+        "startChar": 2,
+        "endLine": 5530,
+        "endChar": 34
+      },
+      "revId": "d18c06ea231786fd4c6120c746974a623cbb5ec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
