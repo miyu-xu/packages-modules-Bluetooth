@@ -34,7 +34,6 @@ package com.android.bluetooth.opp;
 
 import static android.view.WindowManager.LayoutParams.SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS;
 
-import android.bluetooth.AlertActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -50,12 +49,13 @@ import android.widget.TextView;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
+import com.android.bluetooth.TestableActivities;
 import com.android.internal.annotations.VisibleForTesting;
 
 /**
  * This class is designed to show BT enabling progress.
  */
-public class BluetoothOppBtEnablingActivity extends AlertActivity {
+public class BluetoothOppBtEnablingActivity extends TestableActivities.AlertActivity {
     private static final String TAG = "BluetoothOppEnablingActivity";
 
     private static final boolean D = Constants.DEBUG;
@@ -74,7 +74,7 @@ public class BluetoothOppBtEnablingActivity extends AlertActivity {
         super.onCreate(savedInstanceState);
 
         getWindow().addSystemFlags(SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS);
-        // If BT is already enabled jus return.
+        // If BT is already enabled just return.
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (BluetoothMethodProxy.getInstance().bluetoothAdapterIsEnabled(adapter)) {
             finish();

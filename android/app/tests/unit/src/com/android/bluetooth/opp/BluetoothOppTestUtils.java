@@ -25,6 +25,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.database.Cursor;
@@ -143,7 +144,6 @@ public class BluetoothOppTestUtils {
             mTargetContext.getPackageManager().setComponentEnabledSetting(
                     activityName, enabledState, DONT_KILL_APP);
         });
-
     }
 }
 

@@ -32,7 +32,6 @@
 
 package com.android.bluetooth.opp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
@@ -53,13 +52,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.bluetooth.R;
+import com.android.bluetooth.TestableActivities;
 
 /**
  * View showing the user's finished bluetooth opp transfers that the user does
  * not confirm. Including outbound and inbound transfers, both successful and
  * failed. *
  */
-public class BluetoothOppTransferHistory extends Activity
+public class BluetoothOppTransferHistory extends TestableActivities.Activity
         implements View.OnCreateContextMenuListener, OnItemClickListener {
     private static final String TAG = "BluetoothOppTransferHistory";
 
