@@ -16,10 +16,6 @@
 
 package com.android.bluetooth.opp;
 
-import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DEFAULT;
-import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
-import static android.content.pm.PackageManager.DONT_KILL_APP;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -31,64 +27,61 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.mockito.Mockito.mock;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.test.ActivityInstrumentationTestCase2;
 
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.R;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
-public class BluetoothOppBtEnableActivityTest {
+@RunWith(AndroidJUnit4.class)
+public class BluetoothOppBtEnableActivityTest extends
+        ActivityInstrumentationTestCase2<BluetoothOppBtEnableActivity> {
 
     Intent mIntent;
     Context mTargetContext;
+
+    public BluetoothOppBtEnableActivityTest() {
+        super(BluetoothOppBtEnableActivity.class);
+    }
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
+
         mIntent = new Intent();
         mIntent.setClass(mTargetContext, BluetoothOppBtEnableActivity.class);
         Intents.init();
-        enableActivity(true);
+        BluetoothOppTestUtils.enableOppActivities(true, mTargetContext);
     }
 
     @After
     public void tearDown() {
         Intents.release();
-        enableActivity(false);
+        BluetoothOppTestUtils.enableOppActivities(false, mTargetContext);
     }
 
     @Test
     public void onCreate_clickOnEnable_launchEnablingActivity() {
-        ActivityScenario<BluetoothOppBtEnableActivity> activityScenario = ActivityScenario.launch(
-                mIntent);
-        activityScenario.onActivity(
-                activity -> activity.mOppManager = mock(BluetoothOppManager.class));
+        setActivityIntent(mIntent);
+        BluetoothOppBtEnableActivity activity = getActivity();
+        activity.mOppManager = mock(BluetoothOppManager.class);
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+
         onView(withText(mTargetContext.getText(R.string.bt_enable_ok).toString())).inRoot(
                 isDialog()).check(matches(isDisplayed())).perform(click());
+
         intended(hasComponent(BluetoothOppBtEnablingActivity.class.getName()));
-    }
-
-
-    private void enableActivity(boolean enable) {
-        int enabledState = enable ? COMPONENT_ENABLED_STATE_ENABLED
-                : COMPONENT_ENABLED_STATE_DEFAULT;
-
-        mTargetContext.getPackageManager().setApplicationEnabledSetting(
-                mTargetContext.getPackageName(), enabledState, DONT_KILL_APP);
-
-        ComponentName activityName = new ComponentName(mTargetContext,
-                BluetoothOppBtEnableActivity.class);
-        mTargetContext.getPackageManager().setComponentEnabledSetting(
-                activityName, enabledState, DONT_KILL_APP);
     }
 }
