@@ -16,6 +16,24 @@
       "message": "Why is this default removed ?\n\nThis breaks the contract of the guaranteed return of a string object",
       "revId": "a8f8b39d35634e0a7e639858a3fe93470bf55eb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a08b480b_d22e88d6",
+        "filename": "system/bta/include/bta_gatt_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-01T19:29:03Z",
+      "side": 0,
+      "message": "Ack -- fixed in a follow up cl aosp/2307994",
+      "parentUuid": "96299e05_d70506fe",
+      "revId": "a8f8b39d35634e0a7e639858a3fe93470bf55eb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
