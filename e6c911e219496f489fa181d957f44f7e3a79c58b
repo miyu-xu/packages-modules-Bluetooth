@@ -39,6 +39,48 @@
       },
       "revId": "e6c911e219496f489fa181d957f44f7e3a79c58b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7795b641_d73dd549",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-01T13:35:53Z",
+      "side": 1,
+      "message": "Thanks. I fixed that by rephrasing it in terms of \"multiples of 8\", like you do above.",
+      "parentUuid": "566b809c_4b02034e",
+      "range": {
+        "startLine": 437,
+        "startChar": 19,
+        "endLine": 437,
+        "endChar": 23
+      },
+      "revId": "e6c911e219496f489fa181d957f44f7e3a79c58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb4a97fa_4bd94309",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-01T13:35:53Z",
+      "side": 1,
+      "message": "Thanks, great point. That\u0027s now made explicit in https://r.android.com/2323433.",
+      "parentUuid": "5033fc62_bb32f442",
+      "revId": "e6c911e219496f489fa181d957f44f7e3a79c58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
