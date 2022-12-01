@@ -16,6 +16,23 @@
       "message": "You should also change it from Google3 (P/H flag). The CL here will only affect U+ devices.",
       "revId": "e1f02d5b1c8dd6270398c1c705fde0054d76525a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab220ed0_2694f761",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-01T21:23:43Z",
+      "side": 1,
+      "message": "Hi Myles and Roopa, If application enable scan longer than the scan timeout, scan mode will be downgraded to low power mode. We want to set scan downgrade timeout as reasonable value from current 30 min to 10 min. Please review this change.",
+      "revId": "e1f02d5b1c8dd6270398c1c705fde0054d76525a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
