@@ -98,6 +98,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -1003,5 +1005,19 @@ public class AdapterServiceTest {
         Assert.assertFalse(mAdapterService.getState() == BluetoothAdapter.STATE_ON);
         int id2 = mAdapterService.getMetricId(device);
         Assert.assertEquals(id2, id1);
+    }
+
+    @Test
+    public void testDump() {
+        FileDescriptor fd = new FileDescriptor();
+        PrintWriter writer = mock(PrintWriter.class);
+        try {
+            mAdapterService.dump(fd, writer, new String[]{});
+            mAdapterService.dump(fd, writer, new String[]{"set-test-mode", "enabled"});
+            mAdapterService.dump(fd, writer, new String[]{"--proto-bin"});
+            mAdapterService.dump(fd, writer, new String[]{"random", "arguments"});
+        } catch (Exception e) {
+            Assert.fail("Exception should not happen!");
+        }
     }
 }
