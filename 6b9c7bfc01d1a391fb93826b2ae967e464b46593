@@ -16,6 +16,24 @@
       "message": "Is it ok to bypass the Open Source licensing lint errors in this case ?",
       "revId": "6b9c7bfc01d1a391fb93826b2ae967e464b46593",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b246727d_8bfa93c5",
+        "filename": "NOTICE",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1359095
+      },
+      "writtenOn": "2022-12-01T22:38:56Z",
+      "side": 1,
+      "message": "I already did that. You are not adding new 3p code here. You are only bringing the existing 3p into compliance.",
+      "parentUuid": "68497072_09ce0a57",
+      "revId": "6b9c7bfc01d1a391fb93826b2ae967e464b46593",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
