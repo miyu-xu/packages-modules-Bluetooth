@@ -128,5 +128,6 @@ TEST_F(BtaDipTest, test_bta_sdp_search_cback) {
 
   memcpy(userdata, &UUID_DIP, sizeof(UUID_DIP));
   bta_sdp_search_cback(SDP_SUCCESS, userdata);
+  free(userdata);
 }
 
