@@ -34,7 +34,6 @@ package com.android.bluetooth.opp;
 
 import static android.view.WindowManager.LayoutParams.SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothDevicePicker;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -48,6 +47,7 @@ import android.widget.Toast;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
+import com.android.bluetooth.BluetoothActivity;
 import com.android.bluetooth.Utils;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -65,7 +65,7 @@ import java.util.regex.Pattern;
  * via BT from other APPs. and also make "Bluetooth" available in sharing method
  * selection dialog.
  */
-public class BluetoothOppLauncherActivity extends Activity {
+public class BluetoothOppLauncherActivity extends BluetoothActivity {
     private static final String TAG = "BluetoothOppLauncherActivity";
     private static final boolean D = Constants.DEBUG;
     private static final boolean V = Constants.VERBOSE;
