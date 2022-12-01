@@ -35,7 +35,6 @@ package com.android.bluetooth.opp;
 import static android.view.WindowManager.LayoutParams.SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS;
 
 import android.app.NotificationManager;
-import android.bluetooth.AlertActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -51,6 +50,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.bluetooth.R;
+import com.android.bluetooth.TestableActivities;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -64,7 +64,7 @@ import com.google.common.annotations.VisibleForTesting;
  * DIALOG_SEND_ONGOING will transition to DIALOG_SEND_COMPLETE_SUCCESS or
  * DIALOG_SEND_COMPLETE_FAIL
  */
-public class BluetoothOppTransferActivity extends AlertActivity
+public class BluetoothOppTransferActivity extends TestableActivities.AlertActivity
         implements DialogInterface.OnClickListener {
     private static final String TAG = "BluetoothOppTransferActivity";
     private static final boolean D = Constants.DEBUG;
