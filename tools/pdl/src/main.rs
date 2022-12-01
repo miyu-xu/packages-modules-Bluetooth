@@ -12,7 +12,7 @@ mod test_utils;
 
 use crate::lint::Lintable;
 
-#[derive(Debug)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum OutputFormat {
     JSON,
     Rust,
@@ -48,7 +48,7 @@ struct Opt {
 }
 
 fn main() -> std::process::ExitCode {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     if opt.version {
         println!("Packet Description Language parser version 1.0");
