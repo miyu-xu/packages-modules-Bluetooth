@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bce9554_6fd37b06",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-01T07:31:41Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "b97c7660_e0f0eb16",
+      "range": {
+        "startLine": 813,
+        "startChar": 43,
+        "endLine": 813,
+        "endChar": 53
+      },
+      "revId": "1e42c511ac8521e837d9f646db7fe5cf25ec7767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6d5863a_55537b4d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be8eee37_018a2888",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-01T07:31:41Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "d6d5863a_55537b4d",
+      "range": {
+        "startLine": 819,
+        "startChar": 43,
+        "endLine": 819,
+        "endChar": 56
+      },
+      "revId": "1e42c511ac8521e837d9f646db7fe5cf25ec7767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d418a1a_84741a55",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-01T07:13:28Z",
       "side": 1,
       "message": "What is this value?",
+      "range": {
+        "startLine": 835,
+        "startChar": 87,
+        "endLine": 835,
+        "endChar": 88
+      },
+      "revId": "1e42c511ac8521e837d9f646db7fe5cf25ec7767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8be9d68e_9f46a0cc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-01T07:31:41Z",
+      "side": 1,
+      "message": "It is an invalid audio state value (anything not 0, 1 or 2) that returns BluetoothAdapter.STATE_DISCONNECTED by default in the function. I made a variable named invalidAudioState and put it in place for 3 to improve readability.",
+      "parentUuid": "4d418a1a_84741a55",
       "range": {
         "startLine": 835,
         "startChar": 87,
