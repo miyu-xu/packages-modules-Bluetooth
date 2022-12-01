@@ -1429,9 +1429,10 @@ public class AvrcpControllerStateMachineTest {
      * Test receiving an audio focus loss event. A pause should be sent
      */
     @Test
-    public void testOnAudioFocusLoss_pauseSent() {
+    public void testOnAudioFocusLossWhilePlaying_pauseSent() {
         setUpConnectedState(true, true);
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
+        setPlaybackState(PlaybackStateCompat.STATE_PLAYING);
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
@@ -1439,7 +1440,23 @@ public class AvrcpControllerStateMachineTest {
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
         verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+    }
 
+    /**
+     * Test receiving an audio focus loss event. A pause should be sent
+     */
+    @Test
+    public void testOnAudioFocusLossWhilePause_pauseNotSent() {
+        setUpConnectedState(true, true);
+        sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
+        setPlaybackState(PlaybackStateCompat.STATE_PAUSED);
+        sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS);
+
+        TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        verify(mAvrcpControllerService, times(0)).sendPassThroughCommandNative(eq(mTestAddress),
+                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
+        verify(mAvrcpControllerService, times(0)).sendPassThroughCommandNative(eq(mTestAddress),
+                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
     }
 
     /**
