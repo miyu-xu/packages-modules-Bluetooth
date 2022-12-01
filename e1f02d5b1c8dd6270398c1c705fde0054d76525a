@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69631a1d_747736ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-01T05:17:12Z",
+      "side": 1,
+      "message": "You should also change it from Google3 (P/H flag). The CL here will only affect U+ devices.",
+      "revId": "e1f02d5b1c8dd6270398c1c705fde0054d76525a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
