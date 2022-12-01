@@ -72,6 +72,7 @@ TEST(BluetoothLegacyLruCacheTest, LegacyLruCacheMainTest1) {
   EXPECT_EQ(*value, 50);
   EXPECT_TRUE(cache.Get(6, value));
   EXPECT_EQ(*value, 60);
+  delete value;
 }
 
 TEST(BluetoothLegacyLruCacheTest, LegacyLruCacheMainTest2) {
@@ -124,6 +125,7 @@ TEST(BluetoothLegacyLruCacheTest, LegacyLruCacheMainTest2) {
   EXPECT_EQ(*value, 1000);
   EXPECT_TRUE(cache.Get(5, value));
   EXPECT_EQ(*value, 50);
+  delete value;
 }
 
 TEST(BluetoothLegacyLruCacheTest, LegacyLruCacheFindTest) {
@@ -237,6 +239,7 @@ TEST(BluetoothLegacyLruCacheTest, LegacyLruCachePressureTest) {
   // always around 750ms on flame. 1400 ms on crosshatch, 6800 ms on presubmit
   // Shouldn't be more than 10000ms
   EXPECT_LT(execution_time, 10000);
+  delete value;
 }
 
 TEST(BluetoothLegacyLruCacheTest, BluetoothLruMultiThreadPressureTest) {
