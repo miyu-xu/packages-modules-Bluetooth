@@ -39,6 +39,30 @@
       },
       "revId": "44665404d296cdc272d45f92372508b53dbeb44a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8eb6482_4c49b636",
+        "filename": "system/gd/rust/linux/client/Cargo.toml",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-01T02:47:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2fd492c_81ffc805",
+      "range": {
+        "startLine": 25,
+        "startChar": 9,
+        "endLine": 25,
+        "endChar": 10
+      },
+      "revId": "44665404d296cdc272d45f92372508b53dbeb44a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
