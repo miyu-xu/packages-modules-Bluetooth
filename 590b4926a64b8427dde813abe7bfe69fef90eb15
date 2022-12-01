@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "930f84a0_9599838d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-01T18:28:08Z",
+      "side": 1,
+      "message": "I wonder if this was overlooked also in other services like A2dp or there was a reason to not disconnect. But I don\u0027t see why we should be keeping the device connected.",
+      "revId": "590b4926a64b8427dde813abe7bfe69fef90eb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
