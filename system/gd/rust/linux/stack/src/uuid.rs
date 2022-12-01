@@ -1,5 +1,6 @@
 //! Collection of Profile UUIDs and helpers to use them.
 
+use num_derive::{FromPrimitive, ToPrimitive};
 use std::collections::{HashMap, HashSet};
 use std::fmt::{Debug, Display, Formatter};
 
