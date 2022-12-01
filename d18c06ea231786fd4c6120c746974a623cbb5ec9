@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a7f769_fc04887f",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5530,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-01T04:47:36Z",
+      "side": 0,
+      "message": "I think this should be GAP data.",
+      "range": {
+        "startLine": 5530,
+        "startChar": 2,
+        "endLine": 5530,
+        "endChar": 34
+      },
+      "revId": "d18c06ea231786fd4c6120c746974a623cbb5ec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
