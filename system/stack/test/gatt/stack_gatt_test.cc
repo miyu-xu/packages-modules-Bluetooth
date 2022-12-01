@@ -103,14 +103,12 @@ TEST_F(StackGattTest, lifecycle_tGATT_REG) {
   }
 
   {
-    tGATT_REG* reg0 = new tGATT_REG();
-    tGATT_REG* reg1 = new tGATT_REG();
-    memset(reg0, 0, sizeof(tGATT_REG));
+    std::unique_ptr<tGATT_REG> reg0(new tGATT_REG());
+    std::unique_ptr<tGATT_REG> reg1(new tGATT_REG());
+    memset(reg0.get(), 0, sizeof(tGATT_REG));
     *reg1 = {};
     reg0->in_use = true;
-    ASSERT_NE(0, memcmp(reg0, reg1, sizeof(tGATT_REG)));
-    delete reg1;
-    delete reg0;
+    ASSERT_NE(0, memcmp(reg0.get(), reg1.get(), sizeof(tGATT_REG)));
   }
 }
 
