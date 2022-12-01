@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b97c7660_e0f0eb16",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-01T07:13:28Z",
+      "side": 1,
+      "message": "NullDevice (seems this has much more search results)",
+      "range": {
+        "startLine": 813,
+        "startChar": 43,
+        "endLine": 813,
+        "endChar": 53
+      },
+      "revId": "1e42c511ac8521e837d9f646db7fe5cf25ec7767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d5863a_55537b4d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-01T07:13:28Z",
+      "side": 1,
+      "message": "NonNullDevice?",
+      "range": {
+        "startLine": 819,
+        "startChar": 43,
+        "endLine": 819,
+        "endChar": 56
+      },
+      "revId": "1e42c511ac8521e837d9f646db7fe5cf25ec7767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d418a1a_84741a55",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-01T07:13:28Z",
+      "side": 1,
+      "message": "What is this value?",
+      "range": {
+        "startLine": 835,
+        "startChar": 87,
+        "endLine": 835,
+        "endChar": 88
+      },
+      "revId": "1e42c511ac8521e837d9f646db7fe5cf25ec7767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
