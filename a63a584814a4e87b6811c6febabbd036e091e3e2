@@ -34,6 +34,24 @@
       "parentUuid": "33886716_1fe85dd1",
       "revId": "a63a584814a4e87b6811c6febabbd036e091e3e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "670455de_df91152e",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-12-01T01:02:28Z",
+      "side": 1,
+      "message": "Good idea. We should log the state of the \"if()\" check so we can know why it is false.",
+      "parentUuid": "425be0f9_72daf61d",
+      "revId": "a63a584814a4e87b6811c6febabbd036e091e3e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
