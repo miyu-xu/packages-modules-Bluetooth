@@ -697,7 +697,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
             try {
                 mgr.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
             } catch (RemoteException e) {
-                Log.e(TAG, "", e);
+                Log.e(TAG, "Can't unregister state change callback: ", e);
             }
         }
 
