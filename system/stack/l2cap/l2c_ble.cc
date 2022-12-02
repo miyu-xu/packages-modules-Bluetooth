@@ -33,6 +33,7 @@
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager.h"
 #include "device/include/controller.h"
+#include "main/shim/acl_api.h"
 #include "main/shim/l2c_api.h"
 #include "main/shim/shim.h"
 #include "osi/include/allocator.h"
@@ -1772,7 +1773,7 @@ static void l2cble_start_subrate_change(tL2C_LCB* p_lcb) {
           acl_peer_supports_ble_connection_subrating_host(
               p_lcb->remote_bd_addr)) {
         L2CAP_TRACE_DEBUG("%s: Sending HCI cmd for subrate req ", __func__);
-        btsnd_hcic_ble_subrate_request(
+        bluetooth::shim::ACL_LeSubrateRequest(
             p_lcb->Handle(), p_lcb->subrate_min, p_lcb->subrate_max,
             p_lcb->max_latency, p_lcb->cont_num, p_lcb->supervision_tout);
 
