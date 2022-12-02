@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58eb13da_1c4e7a0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T11:52:11Z",
+      "side": 1,
+      "message": "on hold, waitin for aosp/2319836 to be merged",
+      "revId": "1f1eac45a5bc7ffe4a2ce2454dbe137635ecd2bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
