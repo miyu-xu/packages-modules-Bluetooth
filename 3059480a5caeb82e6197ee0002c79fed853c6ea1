@@ -16,6 +16,24 @@
       "message": "What about the other states?\nCONNECTED_AUTOCONNECT_GETTING_READY?\n\nIt seems odd to check one state, then the conn_id.  Should we be checking if the state is CONNECTED here?",
       "revId": "3059480a5caeb82e6197ee0002c79fed853c6ea1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeade8f9_b6d01b0c",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2694,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-02T18:53:41Z",
+      "side": 1,
+      "message": "state CONNECTED_AUTOCONNECT_GETTING_READY and CONNECTED_GETTING_READY is when ACL is connected and service is getting profile checks/reads etc.\n\nso maybe what I could do to make it look better is to check if the state is NOT :DISCONNECTED. Let me change that.",
+      "parentUuid": "7c9c35cf_595f2c21",
+      "revId": "3059480a5caeb82e6197ee0002c79fed853c6ea1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
