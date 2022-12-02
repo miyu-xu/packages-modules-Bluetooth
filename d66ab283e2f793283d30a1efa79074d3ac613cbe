@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94ea9d25_cba10266",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1958,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-02T19:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3fc04a2_6b38ca0b",
+      "revId": "d66ab283e2f793283d30a1efa79074d3ac613cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a46cf438_03d54bc6",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "I like this style:\n\ntBTM_REMOTE_DEV_NAME rem_name \u003d {}\n\nOR\n\ntBTM_REMOTE_DEV_NAME rem_name \u003d {\n .x \u003d y,\n .z \u003d a,\n ...\n }",
       "parentUuid": "a46cf438_03d54bc6",
+      "revId": "d66ab283e2f793283d30a1efa79074d3ac613cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8654f13a_c42f7283",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-02T19:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4a802a7_4eae4676",
       "revId": "d66ab283e2f793283d30a1efa79074d3ac613cbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
