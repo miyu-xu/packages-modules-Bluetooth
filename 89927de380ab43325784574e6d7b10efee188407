@@ -22,6 +22,30 @@
       },
       "revId": "89927de380ab43325784574e6d7b10efee188407",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0503f54_c3e600fc",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-02T10:49:19Z",
+      "side": 1,
+      "message": "No, for cancel it does not matter what kind of background type is choosen.",
+      "parentUuid": "c21efb3b_2871c8ce",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 17
+      },
+      "revId": "89927de380ab43325784574e6d7b10efee188407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
