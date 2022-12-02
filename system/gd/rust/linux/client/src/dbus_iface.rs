@@ -23,7 +23,7 @@ use btstack::bluetooth_gatt::{
 };
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, CallbackId, IBluetoothSocketManager,
-    IBluetoothSocketManagerCallbacks, SocketId, SocketResult,
+    IBluetoothSocketManagerCallbacks, IBluetoothSocketManagerQA, SocketId, SocketResult,
 };
 use btstack::{RPCProxy, SuspendMode};
 
@@ -629,6 +629,12 @@ impl IBluetoothQA for BluetoothQADBus {
 
     #[dbus_method("SetConnectable")]
     fn set_connectable(&mut self, mode: bool) -> bool {
+        dbus_generated!()
+    }
+}
+impl IBluetoothSocketManagerQA for BluetoothQADBus {
+    #[dbus_method("SetL2CAPMode")]
+    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
         dbus_generated!()
     }
 }
@@ -1491,11 +1497,6 @@ impl IBluetoothSocketManager for BluetoothSocketManagerDBus {
 
     #[dbus_method("Close")]
     fn close(&mut self, callback: CallbackId, id: SocketId) -> BtStatus {
-        dbus_generated!()
-    }
-
-    #[dbus_method("SetL2CAPMode")]
-    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
         dbus_generated!()
     }
 }

@@ -12,7 +12,8 @@ use btstack::bluetooth::{
 };
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, BluetoothSocketManager, CallbackId,
-    IBluetoothSocketManager, IBluetoothSocketManagerCallbacks, SocketId, SocketResult,
+    IBluetoothSocketManager, IBluetoothSocketManagerCallbacks, IBluetoothSocketManagerQA, SocketId,
+    SocketResult,
 };
 use btstack::suspend::{ISuspend, ISuspendCallback, Suspend, SuspendType};
 use btstack::uuid::Profile;
@@ -21,10 +22,15 @@ use btstack::RPCProxy;
 use dbus::arg::RefArg;
 use dbus::nonblock::SyncConnection;
 use dbus::strings::Path;
-use dbus_macros::{dbus_method, dbus_propmap, dbus_proxy_obj, generate_dbus_exporter};
+use dbus_macros::{
+    dbus_method, dbus_propmap, dbus_proxy_obj, generate_dbus_exporter,
+    generate_dbus_method_registerer,
+};
 
 use dbus_projection::DisconnectWatcher;
-use dbus_projection::{dbus_generated, impl_dbus_arg_enum, impl_dbus_arg_from_into};
+use dbus_projection::{
+    dbus_generated, gen_dbus_exporter_from_registerers, impl_dbus_arg_enum, impl_dbus_arg_from_into,
+};
 
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 
@@ -32,6 +38,7 @@ use std::convert::{TryFrom, TryInto};
 use std::sync::{Arc, Mutex};
 
 use crate::dbus_arg::{DBusArg, DBusArgError, RefArgToRust};
+use dbus_crossroads::IfaceBuilder;
 
 // Represents Uuid as an array in D-Bus.
 impl_dbus_arg_from_into!(Uuid, Vec<u8>);
@@ -540,12 +547,6 @@ impl IBluetoothSocketManager for IBluetoothSocketManagerDBus {
     fn close(&mut self, callback: CallbackId, id: SocketId) -> BtStatus {
         dbus_generated!()
     }
-
-    // TODO(b/261143122) Move this to interface BluetoothQA
-    #[dbus_method("SetL2CAPMode")]
-    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
-        dbus_generated!()
-    }
 }
 
 impl_dbus_arg_enum!(SuspendType);
@@ -603,12 +604,7 @@ impl ISuspendCallback for SuspendCallbackDBus {
 #[allow(dead_code)]
 struct IBluetoothQADBus {}
 
-#[generate_dbus_exporter(
-    export_bluetooth_qa_dbus_intf,
-    "org.chromium.bluetooth.BluetoothQA",
-    BluetoothMixin,
-    qa
-)]
+#[generate_dbus_method_registerer(build_qa_adapter_dbus_methods, BluetoothMixin, qa)]
 impl IBluetoothQA for IBluetoothQADBus {
     #[dbus_method("GetConnectable")]
     fn get_connectable(&self) -> bool {
@@ -620,3 +616,19 @@ impl IBluetoothQA for IBluetoothQADBus {
         dbus_generated!()
     }
 }
+
+#[generate_dbus_method_registerer(build_qa_socket_mgr_dbus_methods, BluetoothMixin, socket_mgr)]
+impl IBluetoothSocketManagerQA for IBluetoothSocketManagerDBus {
+    #[dbus_method("SetL2CAPMode")]
+    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
+        dbus_generated!()
+    }
+}
+
+gen_dbus_exporter_from_registerers!(
+    "org.chromium.BluetoothQA",
+    export_bluetooth_qa_dbus_intf,
+    BluetoothMixin,
+    build_qa_adapter_dbus_methods,
+    build_qa_socket_mgr_dbus_methods
+);
