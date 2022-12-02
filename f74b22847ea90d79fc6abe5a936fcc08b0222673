@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "514c6536_cad96c74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-02T15:14:55Z",
+      "side": 1,
+      "message": "As Android phone doesn\u0027t show battery status for classic keyboard and mouse, this is an immediate solution for Floss. PTAL.",
+      "revId": "f74b22847ea90d79fc6abe5a936fcc08b0222673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
