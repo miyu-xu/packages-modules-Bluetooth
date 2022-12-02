@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f27621d9_22dfc29d",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-02T02:25:30Z",
+      "side": 1,
+      "message": "Could you explain what this fixes and why it fixes it ?\nBecause how I currently understand it is that we don\u0027t have the CLOEXEC flag anymore (And I don\u0027t understand why we don\u0027t want it) and that we fixed the call to fcntl by providing the required argument.",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 62
+      },
+      "revId": "b4889277009186ea5627e30b2ff0f2681a875160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
