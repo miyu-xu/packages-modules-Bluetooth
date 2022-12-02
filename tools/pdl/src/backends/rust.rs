@@ -33,7 +33,7 @@ macro_rules! quote_block {
 }
 
 /// Find byte indices covering `offset..offset+width` bits.
-pub fn get_field_range(offset: usize, width: usize) -> std::ops::Range<usize> {
+pub fn field_range(offset: usize, width: usize) -> std::ops::Range<usize> {
     let start = offset / 8;
     let mut end = (offset + width) / 8;
     if (offset + width) % 8 != 0 {
@@ -147,7 +147,7 @@ fn generate_packet_decl(
 
     let mut chunk_width = 0;
     let chunks = fields.split_inclusive(|field| {
-        chunk_width += field.get_width();
+        chunk_width += field.width();
         chunk_width % 8 == 0
     });
     let mut field_parsers = Vec::new();
@@ -157,12 +157,12 @@ fn generate_packet_decl(
         let chunk = Chunk::new(fields);
         field_parsers.push(chunk.generate_read(id, file.endianness.value, offset));
         field_writers.push(chunk.generate_write(file.endianness.value, offset));
-        offset += chunk.get_width();
+        offset += chunk.width();
     }
 
-    let field_names = fields.iter().map(Field::get_ident).collect::<Vec<_>>();
+    let field_names = fields.iter().map(Field::ident).collect::<Vec<_>>();
 
-    let packet_size_bits = Chunk::new(fields).get_width();
+    let packet_size_bits = Chunk::new(fields).width();
     if packet_size_bits % 8 != 0 {
         panic!("packet {id} does not end on a byte boundary, size: {packet_size_bits} bits",);
     }
@@ -465,24 +465,24 @@ mod tests {
     );
 
     #[test]
-    fn test_get_field_range() {
+    fn test_field_range() {
         // Zero widths will give you an empty slice iff the offset is
         // byte aligned. In both cases, the slice covers the empty
         // width. In practice, PDL doesn't allow zero-width fields.
-        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 0), (0..0));
-        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 0), (0..1));
-        assert_eq!(get_field_range(/*offset=*/ 8, /*width=*/ 0), (1..1));
-        assert_eq!(get_field_range(/*offset=*/ 9, /*width=*/ 0), (1..2));
+        assert_eq!(field_range(/*offset=*/ 0, /*width=*/ 0), (0..0));
+        assert_eq!(field_range(/*offset=*/ 5, /*width=*/ 0), (0..1));
+        assert_eq!(field_range(/*offset=*/ 8, /*width=*/ 0), (1..1));
+        assert_eq!(field_range(/*offset=*/ 9, /*width=*/ 0), (1..2));
 
         // Non-zero widths work as expected.
-        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 1), (0..1));
-        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 5), (0..1));
-        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 8), (0..1));
-        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 20), (0..3));
+        assert_eq!(field_range(/*offset=*/ 0, /*width=*/ 1), (0..1));
+        assert_eq!(field_range(/*offset=*/ 0, /*width=*/ 5), (0..1));
+        assert_eq!(field_range(/*offset=*/ 0, /*width=*/ 8), (0..1));
+        assert_eq!(field_range(/*offset=*/ 0, /*width=*/ 20), (0..3));
 
-        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 1), (0..1));
-        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 3), (0..1));
-        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 4), (0..2));
-        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 20), (0..4));
+        assert_eq!(field_range(/*offset=*/ 5, /*width=*/ 1), (0..1));
+        assert_eq!(field_range(/*offset=*/ 5, /*width=*/ 3), (0..1));
+        assert_eq!(field_range(/*offset=*/ 5, /*width=*/ 4), (0..2));
+        assert_eq!(field_range(/*offset=*/ 5, /*width=*/ 20), (0..4));
     }
 }
