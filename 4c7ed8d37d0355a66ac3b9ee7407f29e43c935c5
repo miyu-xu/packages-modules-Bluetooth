@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bba13d7b_12cba61c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "513ab287_083c80b3",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "24f651bb_796a7d16",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -54,6 +78,30 @@
       "writtenOn": "2022-12-02T06:28:59Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 47
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df3fa093_d9a686e8",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5695fecc_0f1cce71",
       "range": {
         "startLine": 113,
         "startChar": 8,
@@ -111,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b011aa1_f348da88",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b63922c4_5c551ae5",
+      "range": {
+        "startLine": 27,
+        "startChar": 42,
+        "endLine": 27,
+        "endChar": 48
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20620c6f_c7050519",
@@ -124,6 +196,30 @@
       "writtenOn": "2022-12-02T06:28:59Z",
       "side": 1,
       "message": "Instead of having duplicate activity code, how about creating `BluetoothActivity` class which extends from `android.app.Activity` and has this code?\n\nAnd changing `android.bluetooth.AlertActivity` will extend from this BluetoothActivity.\n\nThis way, you don\u0027t need to have these two activity classes, and also can remove `TestableActivities` class.",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7067d672_e274951d",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20620c6f_c7050519",
       "range": {
         "startLine": 31,
         "startChar": 13,
@@ -157,6 +253,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bb35a4e_92fcef40",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "Repo doesn\u0027t allow me to upload with that.",
+      "parentUuid": "59741302_1caaca6f",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1262341_266faac2",
@@ -170,6 +290,30 @@
       "writtenOn": "2022-12-02T06:28:59Z",
       "side": 1,
       "message": "Some problems that I can see:\n\n1) Using `System.currentTimeMillis()` does not seems to be necessary. Refer PollingCheck implementation:\n\nhttps://source.corp.google.com/android-internal/frameworks/base/tests/testables/src/android/testing/PollingCheck.java;l\u003d44?q\u003df:pollingcheck\u0026sq\u003dpackage:android-internal$\n\n2) What is the meaning of waiting for 1ms? How about just skipping when `waitTime \u003c\u003d 0`?\n\n3) Instead of signaling every time when the state is changed, is there any way that only signal in the target state?\n\n4) Does the `mState` really need to be guarded? Why is that?\nHow about using AtomicInteger and remove the locks?\n\nhttps://source.corp.google.com/android-internal/libcore/ojluni/src/main/java/java/util/concurrent/atomic/AtomicInteger.java;l\u003d1?q\u003dAtomicInteger.java\u0026sq\u003dpackage:android-internal$",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78d17c2e_2a27b55f",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "1) There is no guarantee that `Thread.sleep` will sleep for exact `TIME_SLICE` millisecond, so the waiting time can be much more than expected -\u003e slowing down all the test\n2) Originally I try to guarantee that every waitForStage will check the state at least once (in case someone call this function with tiny timeout). But now it\u0027s simpler because I check the result in the return. I will do\n3) It will lead to some more complicated locking scenario. But considering simple usage for test, I will do\n4) It doesn\u0027t need to be guarded, but implementing with lock is convenient for this kind of event driven wait",
+      "parentUuid": "b1262341_266faac2",
       "range": {
         "startLine": 51,
         "startChar": 12,
@@ -203,6 +347,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80307507_9b78e2e3",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9895aa20_26c65210",
+      "range": {
+        "startLine": 57,
+        "startChar": 23,
+        "endLine": 57,
+        "endChar": 36
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98d4163a_69c85db6",
@@ -226,6 +394,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e60958b_2e80f405",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "If I understand correctly, polling check will execute the check every x ms. But the problem is that the state can change multiple times quickly within x ms. In that case we will missed the state change.",
+      "parentUuid": "98d4163a_69c85db6",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 13
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c0a6262_fa01cfb3",
@@ -239,6 +431,30 @@
       "writtenOn": "2022-12-02T06:28:59Z",
       "side": 1,
       "message": "This is not guarded by the lock.",
+      "range": {
+        "startLine": 61,
+        "startChar": 19,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12d2eafd_6731d06e",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-02T10:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c0a6262_fa01cfb3",
       "range": {
         "startLine": 61,
         "startChar": 19,
