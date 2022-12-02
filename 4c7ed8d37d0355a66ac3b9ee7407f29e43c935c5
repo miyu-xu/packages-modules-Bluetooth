@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513ab287_083c80b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "Could you add Bug:260828625 too?",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f651bb_796a7d16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "Good to see that you challenge the problem that could be technically harder. \nGreat job 😊\n\nNote: I only reviewed until TestableActivities.java. \nWill review tests after a new patch set is uploaded.",
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5695fecc_0f1cce71",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 113,
+        "endChar": 47
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb825d64_8c9d9338",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "Is it called `stage`? or `state`? I\u0027d recommend `state` and remove all `stage` usgaes.\n\nhttps://developer.android.com/guide/components/activities/activity-lifecycle?hl\u003den\n\nAccording to the name, please also change the name of methods such as `waitForStage`.",
+      "range": {
+        "startLine": 27,
+        "startChar": 42,
+        "endLine": 27,
+        "endChar": 48
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20620c6f_c7050519",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "Instead of having duplicate activity code, how about creating `BluetoothActivity` class which extends from `android.app.Activity` and has this code?\n\nAnd changing `android.bluetooth.AlertActivity` will extend from this BluetoothActivity.\n\nThis way, you don\u0027t need to have these two activity classes, and also can remove `TestableActivities` class.",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59741302_1caaca6f",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "{@param stageToWait}, also for timeoutMs",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1262341_266faac2",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "Some problems that I can see:\n\n1) Using `System.currentTimeMillis()` does not seems to be necessary. Refer PollingCheck implementation:\n\nhttps://source.corp.google.com/android-internal/frameworks/base/tests/testables/src/android/testing/PollingCheck.java;l\u003d44?q\u003df:pollingcheck\u0026sq\u003dpackage:android-internal$\n\n2) What is the meaning of waiting for 1ms? How about just skipping when `waitTime \u003c\u003d 0`?\n\n3) Instead of signaling every time when the state is changed, is there any way that only signal in the target state?\n\n4) Does the `mState` really need to be guarded? Why is that?\nHow about using AtomicInteger and remove the locks?\n\nhttps://source.corp.google.com/android-internal/libcore/ojluni/src/main/java/java/util/concurrent/atomic/AtomicInteger.java;l\u003d1?q\u003dAtomicInteger.java\u0026sq\u003dpackage:android-internal$",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9895aa20_26c65210",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "Declare a static final String TAG variable and use it in logs:\n\nhttps://source.corp.google.com/android-internal/frameworks/base/core/java/android/provider/Settings.java;l\u003d2878",
+      "range": {
+        "startLine": 57,
+        "startChar": 23,
+        "endLine": 57,
+        "endChar": 36
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d4163a_69c85db6",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "How about using pollingCheck? \n\nhttps://source.corp.google.com/android-internal/frameworks/base/tests/testables/src/android/testing/PollingCheck.java?q\u003df:pollingcheck\u0026sq\u003dpackage:android-internal$\n\nNot only this, but there are many similar PollingCheck classes in code search.",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 13
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c0a6262_fa01cfb3",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:28:59Z",
+      "side": 1,
+      "message": "This is not guarded by the lock.",
+      "range": {
+        "startLine": 61,
+        "startChar": 19,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
