@@ -69,6 +69,10 @@ rust_test_host {
 
 genrule_defaults {
     name: "pdl_rust_generator_defaults",
+    cmd: "" +
+        "set -o pipefail; " +
+        "$(location :pdl) --output-format rust $(in) |" +
+        "  $(location :rustfmt) > $(out)",
     tools: [
         ":pdl",
         ":rustfmt",
@@ -79,7 +83,6 @@ genrule_defaults {
 genrule {
     name: "pdl_le_backend",
     defaults: ["pdl_rust_generator_defaults"],
-    cmd: "$(location :pdl) --output-format rust $(in) | $(location :rustfmt) > $(out)",
     srcs: ["tests/canonical/le_rust_test_file.pdl"],
     out: ["le_backend.rs"],
 }
@@ -87,7 +90,6 @@ genrule {
 genrule {
     name: "pdl_be_backend",
     defaults: ["pdl_rust_generator_defaults"],
-    cmd: "$(location :pdl) --output-format rust $(in) | $(location :rustfmt) > $(out)",
     srcs: ["tests/canonical/be_rust_test_file.pdl"],
     out: ["be_backend.rs"],
 }
@@ -140,7 +142,10 @@ genrule_defaults {
 
 genrule {
     name: "pdl_rust_generator_tests_le_src",
-    cmd: "$(location :pdl_generate_tests) $(in) pdl_le_backend | $(location :rustfmt) > $(out)",
+    cmd: "" +
+        "set -o pipefail; " +
+        "$(location :pdl_generate_tests) $(in) pdl_le_backend |" +
+        "  $(location :rustfmt) > $(out)",
     srcs: ["tests/canonical/le_test_vectors.json"],
     out: ["le_canonical.rs"],
     defaults: ["pdl_rust_generator_src_defaults"],
@@ -148,7 +153,10 @@ genrule {
 
 genrule {
     name: "pdl_rust_generator_tests_be_src",
-    cmd: "$(location :pdl_generate_tests) $(in) pdl_be_backend | $(location :rustfmt) > $(out)",
+    cmd: "" +
+        "set -o pipefail; " +
+        "$(location :pdl_generate_tests) $(in) pdl_be_backend |" +
+        "  $(location :rustfmt) > $(out)",
     srcs: ["tests/canonical/be_test_vectors.json"],
     out: ["be_canonical.rs"],
     defaults: ["pdl_rust_generator_src_defaults"],
@@ -177,6 +185,14 @@ rust_test_host {
 // Defaults for PDL python backend generation.
 genrule_defaults {
     name: "pdl_python_generator_defaults",
+    cmd: "" +
+        "set -o pipefail; " +
+        "$(location :pdl) $(in) |" +
+        "  $(location :pdl_python_generator)" +
+        "    --output $(out) --custom-type-location tests.custom_types",
+    tool_files: [
+        "tests/custom_types.py",
+    ],
     tools: [
         ":pdl",
         ":pdl_python_generator",
@@ -188,12 +204,6 @@ genrule_defaults {
 genrule {
     name: "pdl_python_generator_le_test_gen",
     defaults: ["pdl_python_generator_defaults"],
-    cmd: "$(location :pdl) $(in) |" +
-        " $(location :pdl_python_generator)" +
-        " --output $(out) --custom-type-location tests.custom_types",
-    tool_files: [
-        "tests/custom_types.py",
-    ],
     srcs: [
         "tests/canonical/le_test_file.pdl",
     ],
@@ -207,12 +217,6 @@ genrule {
 genrule {
     name: "pdl_python_generator_be_test_gen",
     defaults: ["pdl_python_generator_defaults"],
-    cmd: "$(location :pdl) $(in) |" +
-        " $(location :pdl_python_generator)" +
-        " --output $(out) --custom-type-location tests.custom_types",
-    tool_files: [
-        "tests/custom_types.py",
-    ],
     srcs: [
         "tests/canonical/be_test_file.pdl",
     ],
