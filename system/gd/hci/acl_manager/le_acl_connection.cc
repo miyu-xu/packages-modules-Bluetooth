@@ -154,6 +154,23 @@ void LeAclConnection::Disconnect(DisconnectReason reason) {
       }));
 }
 
+void LeAclConnection::OnLeSubrateRequestStatus(CommandStatusView status) {
+  auto subrate_request_status = LeSubrateRequestStatusView::Create(status);
+  ASSERT(subrate_request_status.IsValid());
+  auto hci_status = subrate_request_status.GetStatus();
+  if (hci_status != ErrorCode::SUCCESS) {
+    LOG_INFO("LeSubrateRequest status %s", ErrorCodeText(hci_status).c_str());
+    pimpl_->tracker.OnLeSubrateChange(hci_status, 0, 0, 0, 0);
+  }
+}
+
+void LeAclConnection::LeSubrateRequest(
+    uint16_t subrate_min, uint16_t subrate_max, uint16_t max_latency, uint16_t cont_num, uint16_t sup_tout) {
+  pimpl_->tracker.le_acl_connection_interface_->EnqueueCommand(
+      LeSubrateRequestBuilder::Create(handle_, subrate_min, subrate_max, max_latency, cont_num, sup_tout),
+      pimpl_->tracker.client_handler_->BindOnceOn(this, &LeAclConnection::OnLeSubrateRequestStatus));
+}
+
 LeConnectionManagementCallbacks* LeAclConnection::GetEventCallbacks(
     std::function<void(uint16_t)> invalidate_callbacks) {
   return pimpl_->GetEventCallbacks(std::move(invalidate_callbacks));
