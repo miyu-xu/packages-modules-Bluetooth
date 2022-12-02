@@ -21,119 +21,122 @@ import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DEFAULT;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
 import static android.content.pm.PackageManager.DONT_KILL_APP;
 
-import static androidx.lifecycle.Lifecycle.State;
-import static androidx.lifecycle.Lifecycle.State.DESTROYED;
-import static androidx.lifecycle.Lifecycle.State.RESUMED;
-
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.test.ActivityInstrumentationTestCase2;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.runner.lifecycle.Stage;
+
+import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class BluetoothPbapActivityTest {
+public class BluetoothPbapActivityTest extends
+        ActivityInstrumentationTestCase2<BluetoothPbapActivity> {
     Context mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     Intent mIntent;
 
-    ActivityScenario<BluetoothPbapActivity> mActivityScenario;
+    public BluetoothPbapActivityTest() {
+        super(BluetoothPbapActivity.class);
+    }
 
     @Before
     public void setUp() {
         mIntent = new Intent();
         mIntent.setClass(mTargetContext, BluetoothPbapActivity.class);
         mIntent.setAction(BluetoothPbapService.AUTH_CHALL_ACTION);
+        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
 
         enableActivity(true);
-        mActivityScenario = ActivityScenario.launch(mIntent);
     }
 
     @After
     public void tearDown() throws Exception {
-        if (mActivityScenario != null) {
-            // Workaround for b/159805732. Without this, test hangs for 45 seconds.
-            Thread.sleep(1_000);
-            mActivityScenario.close();
-        }
         enableActivity(false);
     }
 
     @Test
-    public void activityIsDestroyed_whenLaunchedWithoutIntentAction() throws Exception {
-        mActivityScenario.close();
-
+    public void activityIsDestroyed_whenLaunchedWithoutIntentAction() {
         mIntent.setAction(null);
-        mActivityScenario = ActivityScenario.launch(mIntent);
+        setActivityIntent(mIntent);
+        BluetoothPbapActivity activity = getActivity();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
 
-        assertActivityState(DESTROYED);
+        assertThat(TestUtils.mActivityStageObserver.waitForStage(Stage.DESTROYED, 0)).isTrue();
     }
 
     @Test
-    public void onPreferenceChange_returnsTrue() throws Exception {
-        AtomicBoolean result = new AtomicBoolean(false);
+    public void onPreferenceChange_returnsTrue() {
+        setActivityIntent(mIntent);
+        BluetoothPbapActivity activity = getActivity();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
 
-        mActivityScenario.onActivity(activity -> result.set(
-                activity.onPreferenceChange(/*preference=*/null, /*newValue=*/null)));
-
-        assertThat(result.get()).isTrue();
+        assertThat(activity.onPreferenceChange(null, null)).isTrue();
     }
 
     @Test
-    public void onPositive_finishesActivity() throws Exception {
-        mActivityScenario.onActivity(activity -> {
-            activity.onPositive();
-        });
+    public void onPositive_finishesActivity() {
+        setActivityIntent(mIntent);
+        BluetoothPbapActivity activity = getActivity();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
 
-        assertActivityState(DESTROYED);
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(activity::onPositive);
+
+        assertThat(TestUtils.mActivityStageObserver.waitForStage(Stage.DESTROYED, 3_000)).isTrue();
     }
 
     @Test
-    public void onNegative_finishesActivity() throws Exception {
-        mActivityScenario.onActivity(activity -> {
-            activity.onNegative();
-        });
+    public void onNegative_finishesActivity() {
+        setActivityIntent(mIntent);
+        BluetoothPbapActivity activity = getActivity();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
 
-        assertActivityState(DESTROYED);
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(activity::onNegative);
+
+        assertThat(TestUtils.mActivityStageObserver.waitForStage(Stage.DESTROYED, 3_000)).isTrue();
     }
 
     @Test
     public void onReceiveTimeoutIntent_finishesActivity() throws Exception {
         Intent intent = new Intent(BluetoothPbapService.USER_CONFIRM_TIMEOUT_ACTION);
+        setActivityIntent(mIntent);
+        BluetoothPbapActivity activity = getActivity();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
 
-        mActivityScenario.onActivity(activity -> {
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
             activity.mReceiver.onReceive(activity, intent);
         });
 
-        assertActivityState(DESTROYED);
+        assertThat(TestUtils.mActivityStageObserver.waitForStage(Stage.DESTROYED, 3_000)).isTrue();
     }
 
     @Test
     public void afterTextChanged() throws Exception {
         Editable editable = new SpannableStringBuilder("An editable text");
-        AtomicBoolean result = new AtomicBoolean(false);
 
-        mActivityScenario.onActivity(activity -> {
+        setActivityIntent(mIntent);
+        BluetoothPbapActivity activity = getActivity();
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
             activity.afterTextChanged(editable);
-            result.set(activity.getButton(BUTTON_POSITIVE).isEnabled());
         });
 
-        assertThat(result.get()).isTrue();
+        assertThat(activity.getButton(BUTTON_POSITIVE).isEnabled()).isTrue();
     }
 
     // TODO: Test onSaveInstanceState and onRestoreInstanceState.
@@ -143,19 +146,17 @@ public class BluetoothPbapActivityTest {
     @Test
     public void emptyMethods_doesNotThrowException() throws Exception {
         try {
-            mActivityScenario.onActivity(activity -> {
+            setActivityIntent(mIntent);
+            BluetoothPbapActivity activity = getActivity();
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+
+            InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
                 activity.beforeTextChanged(null, 0, 0, 0);
                 activity.onTextChanged(null, 0, 0, 0);
             });
         } catch (Exception ex) {
             assertWithMessage("Exception should not happen!").fail();
         }
-    }
-
-    private void assertActivityState(State state) throws Exception {
-        // TODO: Change this into an event driven systems
-        Thread.sleep(3_000);
-        assertThat(mActivityScenario.getState()).isEqualTo(state);
     }
 
     private void enableActivity(boolean enable) {
