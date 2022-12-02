@@ -51,6 +51,24 @@
       "parentUuid": "ab220ed0_2694f761",
       "revId": "e1f02d5b1c8dd6270398c1c705fde0054d76525a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc05a89_8f01d9a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-02T00:15:59Z",
+      "side": 1,
+      "message": "Yes, 10min is still long but we didn\u0027t want to break the existing P0/P1 use case. For more efficient configuration, we need statistics of scanning activity from BT Metrics but BLE scanning metrics is not enabled as of now. We will apply more reasonable value based on LE scan metrics when LE scan metrics are running, but the current 30min is too long.",
+      "parentUuid": "2fc749ac_63c4e316",
+      "revId": "e1f02d5b1c8dd6270398c1c705fde0054d76525a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
