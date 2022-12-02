@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc349d91_710bea9e",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-02T12:42:05Z",
+      "side": 1,
+      "message": "actually we could keep VND_ on top of the list. This is in order to give a chance of for them to configure.",
+      "revId": "df23f13ca1f998332b7fa989eaa2be224946ac0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
