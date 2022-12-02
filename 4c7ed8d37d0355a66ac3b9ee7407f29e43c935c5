@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b63922c4_5c551ae5",
+        "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-02T06:30:56Z",
+      "side": 1,
+      "message": "Correction: remove **stage** usages",
+      "parentUuid": "fb825d64_8c9d9338",
+      "range": {
+        "startLine": 27,
+        "startChar": 42,
+        "endLine": 27,
+        "endChar": 48
+      },
+      "revId": "4c7ed8d37d0355a66ac3b9ee7407f29e43c935c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20620c6f_c7050519",
         "filename": "android/app/src/com/android/bluetooth/TestableActivities.java",
         "patchSetId": 3
