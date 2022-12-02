@@ -20,6 +20,11 @@
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager.h"
 
+// To mock "HACK" interfaces, forward-declare them and bind them
+// to the interface struct:
+
+extern uint16_t AVRC_GetProfileVersion();
+
 namespace {
 
 static bluetooth::core::EventCallbacks eventCallbacks = {
@@ -79,6 +84,9 @@ struct bluetooth::core::HACK_ProfileInterface HACK_profileInterface = {
 
     // LE Audio
     .IsLeAudioClientRunning = nullptr,
+
+    // AVRCP
+    .AVRC_GetProfileVersion = AVRC_GetProfileVersion,
 };
 
 }  // namespace
