@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89d9166e_b7edc1ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-02T10:29:16Z",
+      "side": 1,
+      "message": "This CL is based on David\u0027s comments in https://r.android.com/c/2319914.",
+      "revId": "4187cf92c7046512bb3c6b187db664f31193b300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
