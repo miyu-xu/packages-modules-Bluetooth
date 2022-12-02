@@ -16,6 +16,40 @@
       "message": "As Android phone doesn\u0027t show battery status for classic keyboard and mouse, this is an immediate solution for Floss. PTAL.",
       "revId": "f74b22847ea90d79fc6abe5a936fcc08b0222673",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40489c79_03f3fec2",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-02T18:18:10Z",
+      "side": 1,
+      "message": "Prefer to update the enum variant to also require the address type and do this lookup in `bluetooth.rs` so you don\u0027t have to acquire the lock.",
+      "revId": "f74b22847ea90d79fc6abe5a936fcc08b0222673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "845e3f61_f23541a8",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-02T18:18:10Z",
+      "side": 1,
+      "message": "IMO, this IF statement should be inside the battery service\u0027s `handle_action`.",
+      "revId": "f74b22847ea90d79fc6abe5a936fcc08b0222673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
