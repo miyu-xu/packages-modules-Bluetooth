@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e67fefa_b7ce8460",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2698,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-02T11:53:06Z",
+      "side": 1,
+      "message": "correct.",
+      "parentUuid": "9cef2ea9_1c110fca",
+      "range": {
+        "startLine": 2696,
+        "startChar": 4,
+        "endLine": 2698,
+        "endChar": 6
+      },
+      "revId": "8f5c99b7234f9918f5c2d2db776cd3bb653eaf65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93e349fe_7939b09d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-01T18:40:04Z",
       "side": 1,
       "message": "Shouldn\u0027t this be outside the if() which checks just the GATT connection handle?",
+      "range": {
+        "startLine": 2701,
+        "startChar": 6,
+        "endLine": 2701,
+        "endChar": 30
+      },
+      "revId": "8f5c99b7234f9918f5c2d2db776cd3bb653eaf65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "633fd3f8_f3702ed0",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2701,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-02T11:53:06Z",
+      "side": 1,
+      "message": "we care about ACL only if profile was connected. Also DisconnectAcl check conn_id",
+      "parentUuid": "93e349fe_7939b09d",
       "range": {
         "startLine": 2701,
         "startChar": 6,
