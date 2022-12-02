@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5cc3379_f5b2e0cd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-02T08:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0df351e5_66828d04",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 34
+      },
+      "revId": "8681d425eefa134bf7861021502984510c723fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ef115e2_03a048a4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-02T07:41:12Z",
       "side": 1,
       "message": "getLoggableAddress?",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 37
+      },
+      "revId": "8681d425eefa134bf7861021502984510c723fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dce51f46_af8384a3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-02T08:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ef115e2_03a048a4",
       "range": {
         "startLine": 155,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35dce2c3_f384a4d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-02T08:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cedd1c9b_8f54a184",
+      "range": {
+        "startLine": 156,
+        "startChar": 8,
+        "endLine": 156,
+        "endChar": 98
+      },
+      "revId": "8681d425eefa134bf7861021502984510c723fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "247502f6_4eab2f75",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-02T07:41:12Z",
       "side": 1,
       "message": "How about using device.getAddress() and using the last 5 chars?",
+      "range": {
+        "startLine": 158,
+        "startChar": 63,
+        "endLine": 158,
+        "endChar": 82
+      },
+      "revId": "8681d425eefa134bf7861021502984510c723fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ea0954f_0af1d836",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/UtilsTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-02T08:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "247502f6_4eab2f75",
       "range": {
         "startLine": 158,
         "startChar": 63,
