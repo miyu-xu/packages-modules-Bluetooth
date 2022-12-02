@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d125b4_403a2412",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-02T04:41:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "235d855e_da116f60",
+      "revId": "d985cf545d402808793308cf807ffc723e6d8206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38c44135_c21abd78",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-29T19:09:41Z",
       "side": 1,
       "message": "As you update this, please replace this to be of the format:\n```\nstatic btsock_interface_t interface \u003d {\n  .size \u003d sizeof(interface),\n  .listen \u003d btsock_listen,\n  ...\n  .set_l2cap_mode \u003d btsock_set_l2cap_mode\n}\n```",
+      "revId": "d985cf545d402808793308cf807ffc723e6d8206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c81dcbc3_517b89ab",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-02T04:41:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38c44135_c21abd78",
       "revId": "d985cf545d402808793308cf807ffc723e6d8206",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

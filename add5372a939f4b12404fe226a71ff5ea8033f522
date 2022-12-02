@@ -16,6 +16,24 @@
       "message": "Remove this from this CL.",
       "revId": "add5372a939f4b12404fe226a71ff5ea8033f522",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dd4b58e_30532149",
+        "filename": "tools/rootcanal/Cargo.lock",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-02T04:41:56Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "d45aa131_ae3ced34",
+      "revId": "add5372a939f4b12404fe226a71ff5ea8033f522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
