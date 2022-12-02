@@ -45,9 +45,9 @@ import android.util.Log;
 import android.util.Patterns;
 import android.widget.Toast;
 
+import com.android.bluetooth.BluetoothActivity;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
-import com.android.bluetooth.BluetoothActivity;
 import com.android.bluetooth.Utils;
 import com.android.internal.annotations.VisibleForTesting;
 
