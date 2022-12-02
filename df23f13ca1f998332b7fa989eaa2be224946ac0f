@@ -16,6 +16,24 @@
       "message": "actually we could keep VND_ on top of the list. This is in order to give a chance of for them to configure.",
       "revId": "df23f13ca1f998332b7fa989eaa2be224946ac0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b70c0025_11c589d1",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-02T14:39:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc349d91_710bea9e",
+      "revId": "df23f13ca1f998332b7fa989eaa2be224946ac0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
