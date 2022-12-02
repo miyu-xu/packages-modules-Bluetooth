@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93d89c69_e4051285",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-02T07:10:56Z",
+      "side": 1,
+      "message": "Hi All,\n\nWe have submitted CL for 9 MAP test cases. Kindly review the same and provide your comments.\n\nThanks,\nDhananjaya",
+      "revId": "76d560c3b900e64fa57c39a5e754f03dd4f2b5d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
