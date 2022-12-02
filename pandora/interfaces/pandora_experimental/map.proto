@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_outer_classname = "MapProto";
+
+package pandora;
+
+import "google/protobuf/empty.proto";
+
+service MAP {
+  rpc SendSMS(google.protobuf.Empty) returns (google.protobuf.Empty);
+}

@@ -37,6 +37,7 @@ class Server(context: Context) {
   private var hfp: Hfp
   private var hid: Hid
   private var l2cap: L2cap
+  private var map: Map
   private var mediaplayer: MediaPlayer
   private var pbap: Pbap
   private var rfcomm: Rfcomm
@@ -51,6 +52,7 @@ class Server(context: Context) {
     hfp = Hfp(context)
     hid = Hid(context)
     l2cap = L2cap(context)
+    map = Map(context)
     mediaplayer = MediaPlayer(context)
     pbap = Pbap(context)
     rfcomm = Rfcomm(context)
@@ -65,6 +67,7 @@ class Server(context: Context) {
         .addService(hfp)
         .addService(hid)
         .addService(l2cap)
+        .addService(map)
         .addService(mediaplayer)
         .addService(pbap)
         .addService(rfcomm)
@@ -101,6 +104,7 @@ class Server(context: Context) {
     hfp.deinit()
     hid.deinit()
     l2cap.deinit()
+    map.deinit()
     mediaplayer.deinit()
     pbap.deinit()
     rfcomm.deinit()
