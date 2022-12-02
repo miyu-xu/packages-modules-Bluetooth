@@ -20,6 +20,11 @@ import android.util.Log
 import android.content.Context
 import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
+import android.provider.Telephony.*
+import android.telephony.SmsManager
+import android.telephony.SubscriptionManager
+import android.telephony.TelephonyManager
+import android.net.Uri
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
@@ -32,11 +37,14 @@ import pandora.AndroidProto.*
 private const val TAG = "PandoraAndroidInternal"
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
-class AndroidInternal(context: Context) : AndroidImplBase() {
+class AndroidInternal(val context: Context) : AndroidImplBase() {
 
   private val scope: CoroutineScope = CoroutineScope(Dispatchers.Default)
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
+  private var telephonyManager = context.getSystemService(TelephonyManager::class.java)
+  private val MESSAGE_LEN = 130
+  private val MESSAGE_COUNT = 10
 
   fun deinit() {
     scope.cancel()
@@ -60,5 +68,26 @@ class AndroidInternal(context: Context) : AndroidImplBase() {
       }
       Empty.getDefaultInstance()
     }
+  }
+
+  override fun sendSMS(request: SendSMSRequest, responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      if (getInboxCount() < MESSAGE_COUNT || request.count == 1) {
+        val smsManager = SmsManager.getDefault()
+        val defaultSmsSub = SubscriptionManager.getDefaultSmsSubscriptionId()
+        telephonyManager = telephonyManager.createForSubscriptionId(defaultSmsSub)
+        val avdPhoneNumber = telephonyManager.getLine1Number()
+
+        for (index in 1..request.count) {
+          smsManager.sendTextMessage(avdPhoneNumber, avdPhoneNumber, generateAlphanumericString(MESSAGE_LEN), null, null)
+        }
+      }
+      Empty.getDefaultInstance()
+    }
+  }
+
+  private fun getInboxCount(): Int {
+    val cursor = context.getContentResolver().query(Sms.Inbox.CONTENT_URI, null, null, null, null)
+    return cursor.getCount()
   }
 }

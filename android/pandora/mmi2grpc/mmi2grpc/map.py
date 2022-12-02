@@ -21,7 +21,7 @@ from mmi2grpc._proxy import ProfileProxy
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.host_pb2 import Connection
 from pandora_experimental._android_grpc import Android
-from pandora_experimental._android_pb2 import AccessType
+from pandora_experimental._android_pb2 import AccessType, SendSMSRequest
 
 
 class MAPProxy(ProfileProxy):
@@ -56,14 +56,21 @@ class MAPProxy(ProfileProxy):
 
         self._android.SetAccessPermission(address=pts_addr, access_type=AccessType.ACCESS_MESSAGE)
         self.connection = self.host.WaitConnection(address=pts_addr).connection
+        self._android.SendSMS(count=10)
 
         return "OK"
 
     @assert_description
-    def TSC_OBEX_MMI_iut_accept_connect(self, pts_addr: bytes, **kwargs):
+    def TSC_OBEX_MMI_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
         """
         Please accept the OBEX CONNECT REQ.
         """
+
+        if test in {"MAP/MSE/GOEP/BC/BV-01-I", "MAP/MSE/GOEP/BC/BV-03-I", "MAP/MSE/MMN/BV-02-I"}:
+            if self.connection is None:
+                self._android.SetAccessPermission(address=pts_addr, access_type=AccessType.ACCESS_MESSAGE)
+                self.connection = self.host.WaitConnection(address=pts_addr).connection
+                self._android.SendSMS(count=10)
 
         return "OK"
 
@@ -104,17 +111,20 @@ class MAPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
-    def TSC_OBEX_MMI_iut_accept_set_path(self, **kwargs):
+    def TSC_OBEX_MMI_iut_accept_set_path(self, test: str, **kwargs):
         """
-         Please accept the SET_PATH command.
+        Please accept the SET_PATH command.
         """
+
+        if "MAP/MSE/MMB/BV-15-I" in test:
+            self._android.SendSMS(count=1)
 
         return "OK"
 
     @assert_description
     def TSC_OBEX_MMI_iut_accept_get_srm(self, **kwargs):
         """
-         Please accept the GET REQUEST with an SRM ENABLED header.
+        Please accept the GET REQUEST with an SRM ENABLED header.
         """
 
         return "OK"
@@ -122,7 +132,7 @@ class MAPProxy(ProfileProxy):
     @assert_description
     def TSC_OBEX_MMI_iut_accept_browse_folders(self, **kwargs):
         """
-         Please accept the browse folders (GET) command.
+        Please accept the browse folders (GET) command.
         """
 
         return "OK"
@@ -155,6 +165,9 @@ class MAPProxy(ProfileProxy):
         """
         Send Set Event Report with New GSM Message.
         """
+
+        self._android.SendSMS(count=1)
+
         return "OK"
 
     @assert_description

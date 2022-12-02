@@ -16,6 +16,8 @@ service Android {
   rpc Log(LogRequest) returns (LogResponse);
   // Set Message, PhoneBook and SIM access permission
   rpc SetAccessPermission(SetAccessPermissionRequest) returns (google.protobuf.Empty);
+  // Send SMS
+  rpc SendSMS(SendSMSRequest) returns (google.protobuf.Empty);
 }
 
 message LogRequest {
@@ -28,6 +30,11 @@ enum AccessType {
   ACCESS_MESSAGE = 0;
   ACCESS_PHONEBOOK = 1;
   ACCESS_SIM = 2;
+}
+
+message SendSMSRequest {
+  // Number of sms messages
+  int32 count = 1;
 }
 
 message SetAccessPermissionRequest {
