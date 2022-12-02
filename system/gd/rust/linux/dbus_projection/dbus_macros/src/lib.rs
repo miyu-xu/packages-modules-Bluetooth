@@ -13,7 +13,7 @@ use std::path::Path;
 use syn::parse::Parser;
 use syn::punctuated::Punctuated;
 use syn::token::Comma;
-use syn::{Expr, FnArg, ImplItem, ItemImpl, ItemStruct, Meta, Pat, ReturnType, Type};
+use syn::{Expr, ExprPath, FnArg, ImplItem, ItemImpl, ItemStruct, Meta, Pat, ReturnType, Type};
 
 use crate::proc_macro::TokenStream;
 
@@ -46,59 +46,12 @@ pub fn dbus_method(_attr: TokenStream, item: TokenStream) -> TokenStream {
     gen.into()
 }
 
-/// Generates a function to export a Rust object to D-Bus. The result will provide an IFaceToken
-/// that must then be registered to an object.
-///
-/// Example:
-///   `#[generate_dbus_exporter(export_foo_dbus_intf, "org.example.FooInterface")]`
-///   `#[generate_dbus_exporter(export_foo_dbus_intf, "org.example.FooInterface", FooMixin, foo]`
-///
-/// This generates a method called `export_foo_dbus_intf` that will export a Rust object type into a
-/// interface token for `org.example.FooInterface`. This interface must then be inserted to an
-/// object in order to be exported.
-///
-/// If the mixin parameter is provided, you must provide the mixin class when registering with
-/// crossroads (and that's the one that should be Arc<Mutex<...>>.
-///
-/// # Args
-///
-/// `exporter`: Function name for outputted interface exporter.
-/// `interface`: Name of the interface where this object should be exported.
-/// `mixin_type`: The name of the Mixin struct. Mixins should be used when
-///               exporting multiple interfaces and objects under a single object
-///               path.
-/// `mixin`: Name of this object in the mixin where it's implemented.
-#[proc_macro_attribute]
-pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let ori_item: proc_macro2::TokenStream = item.clone().into();
-
-    let args = Punctuated::<Expr, Comma>::parse_separated_nonempty.parse(attr.clone()).unwrap();
-
-    let fn_ident = if let Expr::Path(p) = &args[0] {
-        p.path.get_ident().unwrap()
-    } else {
-        panic!("function name must be specified");
-    };
-
-    let dbus_iface_name = if let Expr::Lit(lit) = &args[1] {
-        lit
-    } else {
-        panic!("D-Bus interface name must be specified");
-    };
-
-    // Must provide both a mixin type and name.
-    let (mixin_type, mixin_name) = if args.len() > 3 {
-        match (&args[2], &args[3]) {
-            (Expr::Path(t), Expr::Path(n)) => (Some(t), Some(n)),
-            (_, _) => (None, None),
-        }
-    } else {
-        (None, None)
-    };
-
+fn _generate_register_methods(
+    mixin_type: Option<&ExprPath>,
+    mixin_name: Option<&ExprPath>,
+    item: TokenStream,
+) -> proc_macro2::TokenStream {
     let ast: ItemImpl = syn::parse(item.clone()).unwrap();
-    let api_iface_ident = ast.trait_.unwrap().1.to_token_stream();
-
     let mut register_methods = quote! {};
 
     // If the object isn't expected to be part of a mixin, expect the object
@@ -236,11 +189,127 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
         }
     }
 
+    register_methods
+}
+
+/// Generates a function to register methods to IfaceBuilder. This is useful in exporting
+/// methods defined in different traits to the same D-Bus interface.
+///
+/// Example:
+///   `#[generate_dbus_method_registerer(build_foo_dbus_methods, FooMixin, foo)]`
+///
+/// This generates a method called `build_foo_dbus_methods` that will register methods defined
+/// in a trait to an IfaceBuilder object, which can be used later with other registrants to
+/// generate exporter.
+///
+/// # Args
+///
+/// `registerer`: Function name for outputted method registered.
+/// `mixin_type`: The name of the Mixin struct. Mixins should be used when
+///               exporting multiple interfaces and objects under a single object
+///               path.
+/// `mixin`: Name of this object in the mixin where it's implemented.
+#[proc_macro_attribute]
+pub fn generate_dbus_method_registerer(attr: TokenStream, item: TokenStream) -> TokenStream {
+    let args = Punctuated::<Expr, Comma>::parse_separated_nonempty.parse(attr.clone()).unwrap();
+
+    let fn_ident = if let Expr::Path(p) = &args[0] {
+        p.path.get_ident().unwrap()
+    } else {
+        panic!("function name must be specified");
+    };
+
+    // Must provide both a mixin type and name.
+    let (mixin_type, mixin_name) = if let (Expr::Path(t), Expr::Path(n)) = (&args[1], &args[2]) {
+        (t, n)
+    } else {
+        panic!("mixin type and name must be specified");
+    };
+
+    let register_methods = _generate_register_methods(Some(mixin_type), Some(mixin_name), item);
+
+    let gen = quote! {
+        pub fn #fn_ident (
+            conn: std::sync::Arc<dbus::nonblock::SyncConnection>,
+            disconnect_watcher: std::sync::Arc<std::sync::Mutex<dbus_projection::DisconnectWatcher>>,
+            ibuilder:&mut IfaceBuilder<Box<#mixin_type>>) {
+                #register_methods
+        }
+    };
+
+    debug_output_to_file(&gen, format!("out-{}.rs", fn_ident.to_string()));
+
+    gen.into()
+}
+
+/// Generates a function to export a Rust object to D-Bus. The result will provide an IFaceToken
+/// that must then be registered to an object.
+///
+/// Example:
+///   `#[generate_dbus_exporter(export_foo_dbus_intf, "org.example.FooInterface")]`
+///   `#[generate_dbus_exporter(export_foo_dbus_intf, "org.example.FooInterface", FooMixin, foo]`
+///
+/// This generates a method called `export_foo_dbus_intf` that will export a Rust object type into a
+/// interface token for `org.example.FooInterface`. This interface must then be inserted to an
+/// object in order to be exported.
+///
+/// If the mixin parameter is provided, you must provide the mixin class when registering with
+/// crossroads (and that's the one that should be Arc<Mutex<...>>.
+///
+/// # Args
+///
+/// `exporter`: Function name for outputted interface exporter.
+/// `interface`: Name of the interface where this object should be exported.
+/// `mixin_type`: The name of the Mixin struct. Mixins should be used when
+///               exporting multiple interfaces and objects under a single object
+///               path.
+/// `mixin`: Name of this object in the mixin where it's implemented.
+#[proc_macro_attribute]
+pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStream {
+    let ori_item: proc_macro2::TokenStream = item.clone().into();
+
+    let args = Punctuated::<Expr, Comma>::parse_separated_nonempty.parse(attr.clone()).unwrap();
+
+    let fn_ident = if let Expr::Path(p) = &args[0] {
+        p.path.get_ident().unwrap()
+    } else {
+        panic!("function name must be specified");
+    };
+
+    let dbus_iface_name = if let Expr::Lit(lit) = &args[1] {
+        lit
+    } else {
+        panic!("D-Bus interface name must be specified");
+    };
+
+    // Must provide both a mixin type and name.
+    let (mixin_type, mixin_name) = if args.len() > 3 {
+        match (&args[2], &args[3]) {
+            (Expr::Path(t), Expr::Path(n)) => (Some(t), Some(n)),
+            (_, _) => (None, None),
+        }
+    } else {
+        (None, None)
+    };
+
+    let ast: ItemImpl = syn::parse(item.clone()).unwrap();
+    let api_iface_ident = ast.trait_.unwrap().1.to_token_stream();
+
+    // If the object isn't expected to be part of a mixin, expect the object
+    // type to be Arc<Mutex<Box<T>>>. Otherwise, we accept any type T and depend
+    // on the field name lookup to throw an error.
+    let obj_type = match mixin_type {
+        None => quote! { std::sync::Arc<std::sync::Mutex<Box<T>>> },
+        Some(t) => quote! { Box<#t> },
+    };
+
     // If mixin is not given, we enforce the API trait is implemented when exporting.
     let type_t = match mixin_type {
         None => quote! { <T: 'static + #api_iface_ident + Send + ?Sized> },
         Some(_) => quote! {},
     };
+
+    let register_methods = _generate_register_methods(mixin_type, mixin_name, item);
 
     let gen = quote! {
         #ori_item
