@@ -1414,30 +1414,32 @@ bool spdu_is_avrcp_version_valid(const uint16_t version) {
  *                  p_attr: attribute to be modified
  *                  bdaddr: for searching IOP table and BT config
  *
- *
- * Returns          true if service id of attirbute is A/V Remote Control
- *                  Target, else false
+ * Returns          version to store and return to remote from DUT
  *
  ******************************************************************************/
-void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
+uint16_t sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
                                   const RawAddress* bdaddr) {
   // Check attribute is AVRCP profile description list and get AVRC Target
   // version
+  uint16_t negotiated_avrc_version = 0;
   uint16_t avrcp_version = sdpu_is_avrcp_profile_description_list(p_attr);
+  LOG_INFO("SDP AVRCP DB Version %x", avrcp_version);
   if (avrcp_version == 0) {
     LOG_INFO("Not AVRCP version attribute or version not valid for device %s",
              bdaddr->ToString().c_str());
-    return;
+    return negotiated_avrc_version;
   }
 
+  uint16_t dut_avrcp_version = AVRC_GetProfileVersion();
+  LOG_INFO("Current DUT AVRCP Version %x", dut_avrcp_version);
   // Some remote devices will have interoperation issue when receive higher
   // AVRCP version. If those devices are in IOP database and our version higher
   // than device, we reply a lower version to them.
   uint16_t iop_version = 0;
-  if (avrcp_version > AVRC_REV_1_4 &&
+  if (dut_avrcp_version > AVRC_REV_1_4 &&
       interop_match_addr(INTEROP_AVRCP_1_4_ONLY, bdaddr)) {
     iop_version = AVRC_REV_1_4;
-  } else if (avrcp_version > AVRC_REV_1_3 &&
+  } else if (dut_avrcp_version > AVRC_REV_1_3 &&
              interop_match_addr(INTEROP_AVRCP_1_3_ONLY, bdaddr)) {
     iop_version = AVRC_REV_1_3;
   }
@@ -1449,15 +1451,17 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
         bdaddr->ToString().c_str(), iop_version, avrcp_version);
     uint8_t* p_version = p_attr->value_ptr + 6;
     UINT16_TO_BE_FIELD(p_version, iop_version);
-    return;
+    negotiated_avrc_version = iop_version;
+    return negotiated_avrc_version;
   }
 
-  // Dynamic ACRCP version. If our version high than remote device's version,
+  // Dynamic AVRCP version. If our version high than remote device's version,
   // reply version same as its. Otherwise, reply default version.
+  negotiated_avrc_version = dut_avrcp_version;
   if (!osi_property_get_bool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, false)) {
     LOG_INFO(
         "Dynamic AVRCP version feature is not enabled, skipping this method");
-    return;
+    return negotiated_avrc_version;
   }
 
   // Read the remote device's AVRC Controller version from local storage
@@ -1468,7 +1472,7 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
     LOG_ERROR(
         "cached value len wrong, bdaddr=%s. Len is %zu but should be %zu.",
         bdaddr->ToString().c_str(), version_value_size, sizeof(cached_version));
-    return;
+    return negotiated_avrc_version;
   }
 
   if (!btif_config_get_bin(bdaddr->ToString(),
@@ -1476,30 +1480,122 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
                            (uint8_t*)&cached_version, &version_value_size)) {
     LOG_INFO(
         "no cached AVRC Controller version for %s. "
-        "Reply default AVRC Target version %x.",
-        bdaddr->ToString().c_str(), avrcp_version);
-    return;
+        "Reply default AVRC Target version %x."
+        "DUT AVRC Target version %x.",
+        bdaddr->ToString().c_str(), avrcp_version, dut_avrcp_version);
+    return negotiated_avrc_version;
   }
 
   if (!spdu_is_avrcp_version_valid(cached_version)) {
     LOG_ERROR(
         "cached AVRC Controller version %x of %s is not valid. "
-        "Reply default AVRC Target version %x.",
-        cached_version, bdaddr->ToString().c_str(), avrcp_version);
-    return;
+        "Reply default AVRC Target version %x."
+        "DUT AVRC Target version %x.",
+        cached_version, bdaddr->ToString().c_str(), avrcp_version, dut_avrcp_version);
+    return negotiated_avrc_version;
   }
 
-  if (avrcp_version > cached_version) {
+  if (dut_avrcp_version > cached_version) {
     LOG_INFO(
         "read cached AVRC Controller version %x of %s. "
-        "Reply AVRC Target version %x.",
-        cached_version, bdaddr->ToString().c_str(), cached_version);
+        "Reply AVRC Target version %x."
+        "DUT AVRC Target version %x.",
+        cached_version, bdaddr->ToString().c_str(), avrcp_version, dut_avrcp_version);
     uint8_t* p_version = p_attr->value_ptr + 6;
     UINT16_TO_BE_FIELD(p_version, cached_version);
+    negotiated_avrc_version = cached_version;
   } else {
     LOG_INFO(
         "read cached AVRC Controller version %x of %s. "
-        "Reply default AVRC Target version %x.",
-        cached_version, bdaddr->ToString().c_str(), avrcp_version);
+        "Reply default AVRC Target version %x."
+        "DUT AVRC Target version %x.",
+        cached_version, bdaddr->ToString().c_str(), avrcp_version, dut_avrcp_version);
+    negotiated_avrc_version = dut_avrcp_version;
+  }
+  return negotiated_avrc_version;
+}
+/*******************************************************************************
+ *
+ * Function         sdpu_set_avrc_target_features
+ *
+ * Description      This function is to set AVRCP version of A/V Remote Control
+ *                  Target according to IOP table and cached Bluetooth config
+ *
+ *                  p_attr: attribute to be modified
+ *                  bdaddr: for searching IOP table and BT config
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void sdpu_set_avrc_target_features(tSDP_ATTRIBUTE attr, const tSDP_ATTRIBUTE* p_attr,
+                                  const RawAddress* bdaddr, uint16_t avrcp_version) {
+  LOG_INFO("SDP AVRCP Version %x", avrcp_version);
+  bool is_requested_for_avrc_features = false;
+  if ((p_attr->id == ATTR_ID_SUPPORTED_FEATURES) && (attr.id == ATTR_ID_SERVICE_CLASS_ID_LIST) &&
+      (((attr.value_ptr[1] << 8) | (attr.value_ptr[2])) == UUID_SERVCLASS_AV_REM_CTRL_TARGET)) {
+    is_requested_for_avrc_features = true;
+  }
+
+  if (!is_requested_for_avrc_features) {
+    LOG_INFO("Request is not for AVRC feature ignore");
+    return;
+  }
+
+  if (avrcp_version == 0) {
+    LOG_INFO("Not AVRCP version attribute or version not valid for device %s",
+             bdaddr->ToString().c_str());
+    return;
+  }
+
+  // Dynamic AVRCP version. If our version high than remote device's version,
+  // reply version same as its. Otherwise, reply default version.
+  if (!osi_property_get_bool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, false)) {
+    LOG_INFO(
+        "Dynamic AVRCP version feature is not enabled, skipping this method");
+    return;
+  }
+  // Read the remote device's AVRC Controller version from local storage
+  uint16_t avrcp_peer_features = 0;
+  size_t version_value_size = btif_config_get_bin_length(
+      bdaddr->ToString(), AV_REM_CTRL_FEATURES_CONFIG_KEY);
+  if (version_value_size != sizeof(avrcp_peer_features)) {
+    LOG_ERROR(
+        "cached value len wrong, bdaddr=%s. Len is %zu but should be %zu.",
+        bdaddr->ToString().c_str(), version_value_size, sizeof(avrcp_peer_features));
+    return;
+  }
+
+  if (!btif_config_get_bin(bdaddr->ToString(),
+                           AV_REM_CTRL_FEATURES_CONFIG_KEY,
+                           (uint8_t*)&avrcp_peer_features, &version_value_size)) {
+    LOG_ERROR("Unable to fetch cached AVRC features");
+    return;
+  }
+
+  LOG_INFO("SDP AVRCP DB Version %x", avrcp_peer_features);
+
+  bool browsing_supported = ((AVRCP_MASK_BRW_BIT & avrcp_peer_features) == AVRCP_MASK_BRW_BIT);
+  bool coverart_supported = ((AVRCP_MASK_CA_BIT & avrcp_peer_features) == AVRCP_MASK_CA_BIT);
+
+  if (avrcp_version < AVRC_REV_1_4 || !browsing_supported) {
+    LOG_INFO("Reset Browsing Feature ");
+    p_attr->value_ptr[AVRCP_SUPPORTED_FEATURES_POSITION] &= ~AVRCP_BROWSE_SUPPORT_BITMASK;
+    p_attr->value_ptr[AVRCP_SUPPORTED_FEATURES_POSITION] &= ~AVRCP_MULTI_PLAYER_SUPPORT_BITMASK;
+  }
+
+  if (avrcp_version < AVRC_REV_1_6 || !coverart_supported) {
+    LOG_INFO("Reset CoverArt Feature ");
+    p_attr->value_ptr[AVRCP_SUPPORTED_FEATURES_POSITION-1] &= ~AVRCP_CA_SUPPORT_BITMASK;
+  }
+
+  if (avrcp_version >= AVRC_REV_1_4 && browsing_supported) {
+    LOG_INFO("Set Browsing Feature ");
+    p_attr->value_ptr[AVRCP_SUPPORTED_FEATURES_POSITION] |= AVRCP_BROWSE_SUPPORT_BITMASK;
+    p_attr->value_ptr[AVRCP_SUPPORTED_FEATURES_POSITION] |= AVRCP_MULTI_PLAYER_SUPPORT_BITMASK;
+  }
+
+  if (avrcp_version == AVRC_REV_1_6 && coverart_supported) {
+    LOG_INFO("Set CoverArt Feature ");
+    p_attr->value_ptr[AVRCP_SUPPORTED_FEATURES_POSITION-1] |= AVRCP_CA_SUPPORT_BITMASK;
   }
 }
