@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd66904_0d3b640a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-02T14:19:24Z",
+      "side": 1,
+      "message": "I\u0027m not sure it actually solves the problem.",
+      "revId": "54820e17eeaca463efd9383302fb4828e970a566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67768248_498a422d",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-02T14:19:24Z",
+      "side": 1,
+      "message": "std::atomic\u003cint\u003e maybe?",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "54820e17eeaca463efd9383302fb4828e970a566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d74e201_e2b78f25",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-02T14:19:24Z",
+      "side": 1,
+      "message": "I think there\u0027s a chance that Dumpsys will be called from another thread after the Initialize() and will finish before you set the ref_cnt. Smart pointer will be reset by Dumpsys (ref_cnt is probably not initialized to 0 either so this is uncertain) and then `ref_cnt` will be set to 1.",
+      "range": {
+        "startLine": 598,
+        "startChar": 4,
+        "endLine": 598,
+        "endChar": 33
+      },
+      "revId": "54820e17eeaca463efd9383302fb4828e970a566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fab5216_362d61b8",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-02T14:19:24Z",
+      "side": 1,
+      "message": "Managing this pointer from 2 threads seems risky... If Cleanup was called, but one reference is still held by Dumpsys from another thread, the first thread may come again and try doing some stuff, while the Dumpsys finishes, decrements the last ref_cnt and tears it down from another thread.",
+      "range": {
+        "startLine": 619,
+        "startChar": 4,
+        "endLine": 619,
+        "endChar": 28
+      },
+      "revId": "54820e17eeaca463efd9383302fb4828e970a566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79d5977a_e8056759",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-02T14:19:24Z",
+      "side": 1,
+      "message": "What if after this is checked but before the smart pointer is reset, another thread calls DebugDump() ...it increments the ref_cnt but just before it tries to call on config_provider-\u003epimpl_-\u003eDump(fd) this code resets the pointer.",
+      "range": {
+        "startLine": 627,
+        "startChar": 7,
+        "endLine": 627,
+        "endChar": 35
+      },
+      "revId": "54820e17eeaca463efd9383302fb4828e970a566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
