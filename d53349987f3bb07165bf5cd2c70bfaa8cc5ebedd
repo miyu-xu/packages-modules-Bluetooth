@@ -16,6 +16,23 @@
       "message": "Needs OWNERS review",
       "revId": "d53349987f3bb07165bf5cd2c70bfaa8cc5ebedd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e36019_9a0135de",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-02T17:02:22Z",
+      "side": 1,
+      "message": "This takes away the dynamic attributes of this function.  i.e. being able to propagate multiple status codes.\n\nI would have the caller implement the p_data-\u003estatus before passing as a preferred solution.  We should ensure all callers are zero initing their structs and setting this value.\n\nAdditionally, could we assert if the value isn\u0027t passed?",
+      "revId": "d53349987f3bb07165bf5cd2c70bfaa8cc5ebedd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
