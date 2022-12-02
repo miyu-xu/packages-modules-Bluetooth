@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f805f4ba_0f458636",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-02T16:56:33Z",
+      "side": 1,
+      "message": "This CL doesn\u0027t seem related to its parent.  We could rebase it on the top of master if the parent needs more review.",
+      "revId": "1290ebaf6f906781b9b1b01c100ab922ed9cd894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
