@@ -330,9 +330,6 @@ pub trait IBluetoothSocketManager {
 
     /// Close a listening socket.
     fn close(&mut self, callback: CallbackId, id: SocketId) -> BtStatus;
-
-    /// Set preferred or required L2CAP mode.
-    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus;
 }
 
 /// Internal listening socket data.
@@ -1245,7 +1242,14 @@ impl IBluetoothSocketManager for BluetoothSocketManager {
 
         BtStatus::InvalidParam
     }
+}
 
+pub trait IBluetoothSocketManagerQA {
+    /// Set preferred or required L2CAP mode.
+    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus;
+}
+
+impl IBluetoothSocketManagerQA for BluetoothSocketManager {
     fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
         self.sock.as_ref().expect("Socket manager not initialized").set_l2cap_mode(mode, mandatory)
     }

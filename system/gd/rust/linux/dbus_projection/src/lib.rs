@@ -321,3 +321,20 @@ macro_rules! dbus_generated {
         panic!("To be implemented by dbus_projection macros");
     };
 }
+
+#[macro_export]
+macro_rules! gen_dbus_exporter_from_registerers {
+    ( $dbus_iface_name:expr, $fn_ident:ident, $mixin_type:ty, $($build_fn:expr),* ) => {
+            pub fn $fn_ident(
+                conn: std::sync::Arc<dbus::nonblock::SyncConnection>,
+                cr: &mut dbus_crossroads::Crossroads,
+                disconnect_watcher: std::sync::Arc<std::sync::Mutex<dbus_projection::DisconnectWatcher>>,
+            ) -> dbus_crossroads::IfaceToken<Box<$mixin_type>> {
+                cr.register($dbus_iface_name, |ibuilder| {
+                    $(
+                        $build_fn(conn.clone(), disconnect_watcher.clone(), ibuilder);
+                    )*
+                })
+            }
+    };
+}
