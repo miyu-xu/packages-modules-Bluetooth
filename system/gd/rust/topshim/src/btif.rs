@@ -814,6 +814,118 @@ impl RawAddress {
     }
 }
 
+//<<<<<<< Updated upstream
+//=======
+///// A shared address structure that has the same representation as
+///// bindings::bt_oob_data_s. Macros `deref_ffi_address` and `cast_to_ffi_address`
+///// are used for transforming between bindings::bt_oob_data_s at ffi boundaries.
+//#[derive(Copy, Clone, Hash, Eq, PartialEq)]
+//#[repr(C)]
+//pub struct OobData {
+//    pub is_valid: bool,
+//    pub address: [u8; 7],
+//    pub confirmation: [u8; 16],
+//    pub randomizer: [u8; 16],
+//    pub device_name: [u8; 256],
+//    pub oob_data_length: [u8; 2],
+//    pub class_of_device: [u8; 2],
+//    pub le_device_role: u8,
+//    pub sm_tk: [u8; 16],
+//    pub le_flags: u8,
+//    pub le_appearance: [u8; 2],
+//}
+//
+//impl Debug for OobData {
+//    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+//        f.write_fmt(format_args!(
+//            "{:02X}:{:02X}:{:02X}:{:02X}:{:02X}:{:02X} - {:02X}",
+//            self.address[0],
+//            self.address[1],
+//            self.address[2],
+//            self.address[3],
+//            self.address[4],
+//            self.address[5],
+//            self.address[6]
+//        ))
+//    }
+//}
+//
+//impl Default for OobData {
+//    fn default() -> Self {
+//        Self {
+//            is_valid: false,
+//            address: [0; 7],
+//            confirmation: [0; 16],
+//            randomizer: [0; 16],
+//            device_name: [0; 256],
+//            oob_data_length: [0; 2],
+//            class_of_device: [0; 2],
+//            le_device_role: 0,
+//            sm_tk: [0; 16],
+//            le_flags: 0,
+//            le_appearance: [0; 2],
+//        }
+//    }
+//}
+//
+//impl ToString for OobData {
+//    fn to_string(&self) -> String {
+//        String::from(format!(
+//            "{:02X}:{:02X}:{:02X}:{:02X}:{:02X}:{:02X} - {:02X}",
+//            self.address[0],
+//            self.address[1],
+//            self.address[2],
+//            self.address[3],
+//            self.address[4],
+//            self.address[5],
+//            self.address[6]
+//        ))
+//    }
+//}
+//
+//#[macro_export]
+//macro_rules! deref_ffi_address {
+//    ($ffi_addr:ident) => {
+//        *($ffi_addr as *mut RawAddress)
+//    };
+//}
+//
+//#[macro_export]
+//macro_rules! deref_const_ffi_address {
+//    ($ffi_addr:ident) => {
+//        *($ffi_addr as *const RawAddress)
+//    };
+//}
+//
+//#[macro_export]
+//macro_rules! cast_to_ffi_address {
+//    ($raw_addr:expr) => {
+//        $raw_addr as *mut FfiAddress
+//    };
+//}
+//
+//#[macro_export]
+//macro_rules! cast_to_const_ffi_address {
+//    ($raw_addr:expr) => {
+//        $raw_addr as *const RawAddress
+//    };
+//}
+//
+//#[macro_export]
+//macro_rules! cast_to_ffi_oob_data {
+//    ($oob_data:expr) => {
+//        $oob_data as *const OobData
+//    };
+//}
+//
+//#[macro_export]
+//macro_rules! cast_to_ffi_thread_callback_event {
+//    ($thread_callback_event:expr) => {
+//        $thread_callback_event as *const FfiThreadCallbackEvent
+//    };
+//}
+//
+//>>>>>>> Stashed changes
 /// An enum representing `bt_callbacks_t` from btif.
 #[derive(Clone, Debug)]
 pub enum BaseCallbacks {
@@ -828,16 +940,16 @@ pub enum BaseCallbacks {
     AddressConsolidate(RawAddress, RawAddress),
     LeAddressAssociate(RawAddress, RawAddress),
     AclState(BtStatus, RawAddress, BtAclState, BtTransport, BtHciErrorCode, BtConnectionDirection),
+    //    ThreadEventCallback(FfiThreadCallbackEvent),
+    GenerateLocalOobData(u8, OobData),
+    LeRandCallback(u64),
     // Unimplemented so far:
-    // thread_evt_cb
     // dut_mode_recv_cb
     // le_test_mode_cb
     // energy_info_cb
     // link_quality_report_cb
     // switch_buffer_size_cb
     // switch_codec_cb
-    GenerateLocalOobData(u8, OobData),
-    LeRandCallback(u64),
 }
 
 pub struct BaseCallbacksDispatcher {
@@ -897,6 +1009,8 @@ u32 -> BtStatus, *mut RawAddress, bindings::bt_acl_state_t -> BtAclState, i32 ->
 cb_variant!(BaseCb, generate_local_oob_data_cb -> BaseCallbacks::GenerateLocalOobData, u8, OobData);
 
 cb_variant!(BaseCb, le_rand_cb -> BaseCallbacks::LeRandCallback, u64);
+
+//cb_variant!(BaseCb, thread_evt_cb -> BaseCallbacks::ThreadEventCallback, FfiThreadCallbackEvent);
 
 struct RawInterfaceWrapper {
     pub raw: *const bindings::bt_interface_t,
@@ -1009,6 +1123,7 @@ impl BluetoothInterface {
             address_consolidate_cb: Some(address_consolidate_cb),
             le_address_associate_cb: Some(le_address_associate_cb),
             acl_state_changed_cb: Some(acl_state_cb),
+            //thread_evt_cb: Some(thread_evt_cb),
             thread_evt_cb: None,
             dut_mode_recv_cb: None,
             le_test_mode_cb: None,
@@ -1113,6 +1228,20 @@ impl BluetoothInterface {
         let ctransport: i32 = transport.into();
         let addr_ptr = LTCheckedPtr::from_ref(addr);
         ccall!(self, create_bond, addr_ptr.into(), ctransport)
+    }
+
+    pub fn create_bond_oob(
+        &self,
+        addr: &RawAddress,
+        transport: BtTransport,
+        p192_data: OobData,
+        p256_data: OobData,
+    ) -> i32 {
+        let ctransport: i32 = transport.into();
+        let ffi_addr = addr as *const RawAddress;
+        let ffi_p192 = &p192_data as *const OobData;
+        let ffi_p256 = &p256_data as *const OobData;
+        ccall!(self, create_bond_out_of_band, ffi_addr, ctransport, ffi_p192, ffi_p256)
     }
 
     pub fn remove_bond(&self, addr: &RawAddress) -> i32 {

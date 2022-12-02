@@ -745,6 +745,8 @@ void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
             bt_transport_text(transport).c_str(),
             DeviceTypeText(device_type).c_str());
 
+  LOG_ERROR("1");
+
   tBTA_DM_SEC sec_event;
   char* p_name;
 
@@ -754,13 +756,16 @@ void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                                          device_type)
           : BTM_SecBond(bd_addr, addr_type, transport, device_type, 0, NULL);
 
+  LOG_ERROR("2 status=%hhu", status);
   if (bta_dm_cb.p_sec_cback && (status != BTM_CMD_STARTED)) {
+    LOG_ERROR("3");
     memset(&sec_event, 0, sizeof(tBTA_DM_SEC));
     sec_event.auth_cmpl.bd_addr = bd_addr;
     p_name = (bluetooth::shim::is_gd_security_enabled())
                  ? bluetooth::shim::BTM_SecReadDevName(bd_addr)
                  : BTM_SecReadDevName(bd_addr);
     if (p_name != NULL) {
+      LOG_ERROR("4");
       memcpy(sec_event.auth_cmpl.bd_name, p_name, BD_NAME_LEN);
       sec_event.auth_cmpl.bd_name[BD_NAME_LEN] = 0;
     }
@@ -771,13 +776,18 @@ void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
     */
     sec_event.auth_cmpl.fail_reason = HCI_ERR_ILLEGAL_COMMAND;
     if (status == BTM_SUCCESS) {
+      LOG_ERROR("5");
       sec_event.auth_cmpl.success = true;
     } else {
+      LOG_ERROR("6");
       /* delete this device entry from Sec Dev DB */
       bta_dm_remove_sec_dev_entry(bd_addr);
     }
+    LOG_ERROR("7");
     bta_dm_cb.p_sec_cback(BTA_DM_AUTH_CMPL_EVT, &sec_event);
+    LOG_ERROR("8");
   }
+  LOG_ERROR("herp");
 }
 
 /** Cancels bonding with a peer device */

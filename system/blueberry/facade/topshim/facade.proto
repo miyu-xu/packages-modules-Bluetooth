@@ -23,6 +23,7 @@ service AdapterService {
 service SecurityService {
     rpc RemoveBond(RemoveBondRequest) returns (google.protobuf.Empty) {}
     rpc GenerateLocalOobData(GenerateOobDataRequest) returns (google.protobuf.Empty) {}
+    rpc CreateBondOob(OobDataBondRequest) returns (google.protobuf.Empty) {}
 }
 
 service GattService {
@@ -200,4 +201,11 @@ message Connection {
 
 message GenerateOobDataRequest {
   int32 transport = 1;
+}
+
+message OobDataBondRequest {
+  int32 transport = 1;
+  string address = 2;
+  string confirmation = 3;
+  string randomizer = 4;
 }

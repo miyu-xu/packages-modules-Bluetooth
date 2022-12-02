@@ -177,6 +177,8 @@ class TopshimBaseTest(base_test.BaseTestClass):
     async def __teardown_adapter(self):
         await asyncSafeClose(self.__dut)
         await asyncSafeClose(self.__cert)
+        self.__dut.pull_logs(self.log_path_base)
+        self.__cert.pull_logs(self.log_path_base)
 
     def dut(self):
         """

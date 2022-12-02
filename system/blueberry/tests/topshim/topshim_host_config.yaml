@@ -18,6 +18,7 @@ TestBeds:
             - "--root-server-port=$(grpc_root_server_port)"
             - "--rootcanal-port=$(rootcanal_port)"
             - "--signal-port=$(signal_port)"
+            - "--btsnoop=/tmp/logs/cert_btsnoop_hci.log"
         - grpc_port: '8999'
           grpc_root_server_port: '8997'
           signal_port: '8995'
@@ -29,4 +30,5 @@ TestBeds:
             - "--root-server-port=$(grpc_root_server_port)"
             - "--rootcanal-port=$(rootcanal_port)"
             - "--signal-port=$(signal_port)"
+            - "--btsnoop=/tmp/logs/dut_btsnoop_hci.log"
 logpath: "/tmp/logs"

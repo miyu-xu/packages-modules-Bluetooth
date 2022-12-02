@@ -36,6 +36,12 @@ class LeSecurityTest(TopshimBaseTest):
         oob_data = self.dut().generate_local_oob_data(TRANSPORT_LE)
         assertThat(oob_data.is_valid()).isTrue()
 
+    def test_create_bond_oob(self):
+        oob_data = self.cert().generate_local_oob_data(TRANSPORT_LE)
+        assertThat(oob_data.is_valid()).isTrue()
+        self.dut().create_bond_oob(oob_data)
+
 
 if __name__ == "__main__":
+
     test_runner.main()

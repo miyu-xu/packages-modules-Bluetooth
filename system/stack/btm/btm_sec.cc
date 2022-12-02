@@ -715,27 +715,35 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
   tBTM_SEC_DEV_REC* p_dev_rec;
   tBTM_STATUS status;
   VLOG(1) << __func__ << " BDA: " << bd_addr;
+  LOG_ERROR("9");
 
   BTM_TRACE_DEBUG("%s: Transport used %d, bd_addr=%s", __func__, transport,
                   ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+
+  LOG_ERROR("%s: Transport used %d, bd_addr=%s", __func__, transport,
+            bd_addr.ToString().c_str());
 
   /* Other security process is in progress */
   if (btm_cb.pairing_state != BTM_PAIR_STATE_IDLE) {
     BTM_TRACE_ERROR("BTM_SecBond: already busy in state: %s",
                     btm_pair_state_descr(btm_cb.pairing_state));
+    LOG_ERROR("10");
     return (BTM_WRONG_MODE);
   }
 
   p_dev_rec = btm_find_or_alloc_dev(bd_addr);
   if (p_dev_rec == NULL) {
+    LOG_ERROR("11");
     return (BTM_NO_RESOURCES);
   }
 
   if (!controller_get_interface()->get_is_ready()) {
+    LOG_ERROR("12");
     BTM_TRACE_ERROR("%s controller module is not ready", __func__);
     return (BTM_NO_RESOURCES);
   }
 
+  LOG_ERROR("woot");
   BTM_TRACE_DEBUG("before update sec_flags=0x%x", p_dev_rec->sec_flags);
 
   /* Finished if connection is active and already paired */
@@ -746,19 +754,28 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
        transport == BT_TRANSPORT_LE &&
        (p_dev_rec->sec_flags & BTM_SEC_LE_AUTHENTICATED))) {
     BTM_TRACE_WARNING("BTM_SecBond -> Already Paired");
+    LOG_ERROR("13");
     return (BTM_SUCCESS);
   }
 
+  LOG_ERROR("hoot");
   /* Tell controller to get rid of the link key if it has one stored */
-  if ((BTM_DeleteStoredLinkKey(&bd_addr, NULL)) != BTM_SUCCESS)
+  if ((BTM_DeleteStoredLinkKey(&bd_addr, NULL)) != BTM_SUCCESS) {
+    LOG_ERROR("shazbot");
     return (BTM_NO_RESOURCES);
+  }
+  // return (BTM_SUCCESS);
+
+  LOG_ERROR("doot");
 
   /* Save the PIN code if we got a valid one */
   if (p_pin && (pin_len <= PIN_CODE_LEN) && (pin_len != 0)) {
+    LOG_ERROR("15");
     btm_cb.pin_code_len = pin_len;
     p_dev_rec->pin_code_length = pin_len;
     memcpy(btm_cb.pin_code, p_pin, PIN_CODE_LEN);
   }
+  LOG_ERROR("toot");
 
   btm_cb.pairing_bda = bd_addr;
 
@@ -771,20 +788,24 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
                  bt_transport_text(transport));
 
   if (transport == BT_TRANSPORT_LE) {
+    LOG_ERROR("16");
     btm_ble_init_pseudo_addr(p_dev_rec, bd_addr);
     p_dev_rec->sec_flags &= ~BTM_SEC_LE_MASK;
 
     if (SMP_Pair(bd_addr, addr_type) == SMP_STARTED) {
+      LOG_ERROR("17");
       btm_cb.pairing_flags |= BTM_PAIR_FLAGS_LE_ACTIVE;
       p_dev_rec->sec_state = BTM_SEC_STATE_AUTHENTICATING;
       btm_sec_change_pairing_state(BTM_PAIR_STATE_WAIT_AUTH_COMPLETE);
       return BTM_CMD_STARTED;
     }
 
+    LOG_ERROR("18");
     btm_cb.pairing_flags = 0;
     return (BTM_NO_RESOURCES);
   }
 
+  LOG_ERROR("19");
   p_dev_rec->sec_flags &=
       ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED |
         BTM_SEC_ROLE_SWITCHED | BTM_SEC_LINK_KEY_AUTHED);
@@ -794,12 +815,14 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
     /* The special case when we authenticate keyboard.  Set pin type to fixed */
     /* It would be probably better to do it from the application, but it is */
     /* complicated */
+    LOG_ERROR("20");
     if (((p_dev_rec->dev_class[1] & BTM_COD_MAJOR_CLASS_MASK) ==
          BTM_COD_MAJOR_PERIPHERAL) &&
         (p_dev_rec->dev_class[2] & BTM_COD_MINOR_KEYBOARD) &&
         (btm_cb.cfg.pin_type != HCI_PIN_TYPE_FIXED)) {
       btm_cb.pin_type_changed = true;
       btsnd_hcic_write_pin_type(HCI_PIN_TYPE_FIXED);
+      LOG_ERROR("21");
     }
   }
 
@@ -812,6 +835,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
 
   /* If connection already exists... */
   if (BTM_IsAclConnectionUpAndHandleValid(bd_addr, transport)) {
+    LOG_ERROR("22");
     btm_sec_wait_and_start_authentication(p_dev_rec);
 
     btm_sec_change_pairing_state(BTM_PAIR_STATE_WAIT_PIN_REQ);
@@ -826,6 +850,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
       (p_dev_rec->sm4 == BTM_SM4_KNOWN)) {
     if (btm_sec_check_prefetch_pin(p_dev_rec)) return (BTM_CMD_STARTED);
   }
+  LOG_ERROR("23");
   if ((btm_cb.security_mode == BTM_SEC_MODE_SP ||
        btm_cb.security_mode == BTM_SEC_MODE_SC) &&
       BTM_SEC_IS_SM4_UNKNOWN(p_dev_rec->sm4)) {
@@ -836,16 +861,19 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
        * RNR when no ACL causes HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT */
       btm_sec_change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
       status = BTM_ReadRemoteDeviceName(bd_addr, NULL, BT_TRANSPORT_BR_EDR);
+      LOG_ERROR("24");
     } else {
       /* We are accepting connection request from peer */
       btm_sec_change_pairing_state(BTM_PAIR_STATE_WAIT_PIN_REQ);
       status = BTM_CMD_STARTED;
+      LOG_ERROR("25");
     }
     BTM_TRACE_DEBUG("State:%s sm4: 0x%x sec_state:%d",
                     btm_pair_state_descr(btm_cb.pairing_state), p_dev_rec->sm4,
                     p_dev_rec->sec_state);
   } else {
     /* both local and peer are 2.1  */
+    LOG_ERROR("26");
     status = btm_sec_dd_create_conn(p_dev_rec);
   }
 
@@ -853,9 +881,11 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
     BTM_TRACE_ERROR(
         "%s BTM_ReadRemoteDeviceName or btm_sec_dd_create_conn error: 0x%x",
         __func__, (int)status);
+    LOG_ERROR("27");
     btm_sec_change_pairing_state(BTM_PAIR_STATE_IDLE);
   }
 
+  LOG_ERROR("28");
   return status;
 }
 
@@ -877,29 +907,37 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
 tBTM_STATUS BTM_SecBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                         tBT_TRANSPORT transport, tBT_DEVICE_TYPE device_type,
                         uint8_t pin_len, uint8_t* p_pin) {
+  LOG_ERROR("1");
   if (bluetooth::shim::is_gd_shim_enabled()) {
     return bluetooth::shim::BTM_SecBond(bd_addr, addr_type, transport,
                                         device_type);
   }
+  LOG_ERROR("2");
 
   if (transport == BT_TRANSPORT_AUTO) {
+    LOG_ERROR("3");
     if (addr_type == BLE_ADDR_PUBLIC) {
+      LOG_ERROR("4");
       transport =
           BTM_UseLeLink(bd_addr) ? BT_TRANSPORT_LE : BT_TRANSPORT_BR_EDR;
     } else {
+      LOG_ERROR("5");
       LOG_INFO("Forcing transport LE (was auto) because of the address type");
       transport = BT_TRANSPORT_LE;
     }
   }
   tBT_DEVICE_TYPE dev_type;
 
+  LOG_ERROR("6");
   BTM_ReadDevInfo(bd_addr, &dev_type, &addr_type);
   /* LE device, do SMP pairing */
   if ((transport == BT_TRANSPORT_LE && (dev_type & BT_DEVICE_TYPE_BLE) == 0) ||
       (transport == BT_TRANSPORT_BR_EDR &&
        (dev_type & BT_DEVICE_TYPE_BREDR) == 0)) {
+    LOG_ERROR("7");
     return BTM_ILLEGAL_ACTION;
   }
+  LOG_ERROR("8");
   return btm_sec_bond_by_transport(bd_addr, addr_type, transport, pin_len,
                                    p_pin);
 }
