@@ -22,6 +22,7 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
+import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
@@ -35,12 +36,12 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.internal.annotations.GuardedBy;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
@@ -73,7 +74,6 @@ import java.util.concurrent.Executor;
 public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, AutoCloseable {
     private static final String TAG = "BluetoothLeBroadcastAssistant";
     private static final boolean DBG = true;
-    private final Map<Callback, Executor> mCallbackMap = new HashMap<>();
 
     /**
      * This class provides a set of callbacks that are invoked when scanning for Broadcast Sources
@@ -305,6 +305,8 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     private Context mContext;
     private BluetoothAdapter mBluetoothAdapter;
     private final AttributionSource mAttributionSource;
+    private final Object mCallbackLock = new Object();
+    @GuardedBy("mCallbackLock")
     private BluetoothLeBroadcastAssistantCallback mCallback;
 
     private final BluetoothProfileConnector<IBluetoothLeBroadcastAssistant> mProfileConnector =
@@ -313,6 +315,29 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
                 @Override
                 public IBluetoothLeBroadcastAssistant getServiceInterface(IBinder service) {
                     return IBluetoothLeBroadcastAssistant.Stub.asInterface(service);
+                }
+            };
+
+    @SuppressLint("AndroidFrameworkBluetoothPermission")
+    private final IBluetoothStateChangeCallback mBluetoothStateChangeCallback =
+            new IBluetoothStateChangeCallback.Stub() {
+                public void onBluetoothStateChange(boolean up) {
+                    if (DBG) Log.d(TAG, "onBluetoothStateChange: up=" + up);
+                    if (up) {
+                        // re-register the service-to-app callback
+                        synchronized (mCallbackLock) {
+                            if (mCallback != null && mCallback.isAtLeastOneCallbackRegistered()) {
+                                try {
+                                    final IBluetoothLeBroadcastAssistant service = getService();
+                                    if (service != null) {
+                                        service.registerCallback(mCallback);
+                                    }
+                                } catch (RemoteException e) {
+                                    throw e.rethrowFromSystemServer();
+                                }
+                            }
+                        }
+                    }
                 }
             };
 
@@ -327,6 +352,16 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mBluetoothAdapter.getAttributionSource();
         mProfileConnector.connect(context, listener);
+
+        IBluetoothManager mgr = mBluetoothAdapter.getBluetoothManager();
+        if (mgr != null) {
+            try {
+                mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
+            } catch (RemoteException e) {
+                throw e.rethrowFromSystemServer();
+            }
+        }
+
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
@@ -343,6 +378,15 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
      * @hide
      */
     public void close() {
+        IBluetoothManager mgr = mBluetoothAdapter.getBluetoothManager();
+        if (mgr != null) {
+            try {
+                mgr.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Can't unregister state change callback: ", e);
+            }
+        }
+
         mProfileConnector.disconnect();
     }
 
@@ -545,10 +589,13 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             Log.w(TAG, "Proxy not attached to service");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
-            if (mCallback == null) {
-                mCallback = new BluetoothLeBroadcastAssistantCallback(service);
+            synchronized (mCallbackLock) {
+                if (mCallback == null) {
+                    mCallback = new BluetoothLeBroadcastAssistantCallback(service);
+                }
+
+                mCallback.register(executor, callback);
             }
-            mCallback.register(executor, callback);
         }
     }
 
@@ -579,10 +626,13 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             Log.w(TAG, "Proxy not attached to service");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (mBluetoothAdapter.isEnabled()) {
-            if (mCallback == null) {
-                throw new IllegalArgumentException("no callback was ever registered");
+            synchronized (mCallbackLock) {
+                if (mCallback == null) {
+                    throw new IllegalArgumentException("no callback was ever registered");
+                }
+
+                mCallback.unregister(callback);
             }
-            mCallback.unregister(callback);
         }
     }
 
@@ -627,11 +677,13 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     public void startSearchingForSources(@NonNull List<ScanFilter> filters) {
         log("searchForBroadcastSources");
         Objects.requireNonNull(filters, "filters can be empty, but not null");
-        if (mCallback == null) {
-            throw new IllegalStateException("No callback was ever registered");
-        }
-        if (!mCallback.isAtLeastOneCallbackRegistered()) {
-            throw new IllegalStateException("All callbacks are unregistered");
+        synchronized (mCallbackLock) {
+            if (mCallback == null) {
+                throw new IllegalStateException("No callback was ever registered");
+            }
+            if (!mCallback.isAtLeastOneCallbackRegistered()) {
+                throw new IllegalStateException("All callbacks are unregistered");
+            }
         }
         final IBluetoothLeBroadcastAssistant service = getService();
         if (service == null) {
@@ -664,11 +716,13 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     })
     public void stopSearchingForSources() {
         log("stopSearchingForSources:");
-        if (mCallback == null) {
-            throw new IllegalStateException("No callback was ever registered");
-        }
-        if (!mCallback.isAtLeastOneCallbackRegistered()) {
-            throw new IllegalStateException("All callbacks are unregistered");
+        synchronized (mCallbackLock) {
+            if (mCallback == null) {
+                throw new IllegalStateException("No callback was ever registered");
+            }
+            if (!mCallback.isAtLeastOneCallbackRegistered()) {
+                throw new IllegalStateException("All callbacks are unregistered");
+            }
         }
         final IBluetoothLeBroadcastAssistant service = getService();
         if (service == null) {
@@ -784,11 +838,13 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
         log("addBroadcastSource: " + sourceMetadata + " on " + sink);
         Objects.requireNonNull(sink, "sink cannot be null");
         Objects.requireNonNull(sourceMetadata, "sourceMetadata cannot be null");
-        if (mCallback == null) {
-            throw new IllegalStateException("No callback was ever registered");
-        }
-        if (!mCallback.isAtLeastOneCallbackRegistered()) {
-            throw new IllegalStateException("All callbacks are unregistered");
+        synchronized (mCallbackLock) {
+            if (mCallback == null) {
+                throw new IllegalStateException("No callback was ever registered");
+            }
+            if (!mCallback.isAtLeastOneCallbackRegistered()) {
+                throw new IllegalStateException("All callbacks are unregistered");
+            }
         }
         final IBluetoothLeBroadcastAssistant service = getService();
         if (service == null) {
@@ -858,11 +914,13 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
         log("updateBroadcastSource: " + updatedMetadata + " on " + sink);
         Objects.requireNonNull(sink, "sink cannot be null");
         Objects.requireNonNull(updatedMetadata, "updatedMetadata cannot be null");
-        if (mCallback == null) {
-            throw new IllegalStateException("No callback was ever registered");
-        }
-        if (!mCallback.isAtLeastOneCallbackRegistered()) {
-            throw new IllegalStateException("All callbacks are unregistered");
+        synchronized (mCallbackLock) {
+            if (mCallback == null) {
+                throw new IllegalStateException("No callback was ever registered");
+            }
+            if (!mCallback.isAtLeastOneCallbackRegistered()) {
+                throw new IllegalStateException("All callbacks are unregistered");
+            }
         }
         final IBluetoothLeBroadcastAssistant service = getService();
         if (service == null) {
@@ -910,11 +968,13 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     public void removeSource(@NonNull BluetoothDevice sink, int sourceId) {
         log("removeBroadcastSource: " + sourceId + " from " + sink);
         Objects.requireNonNull(sink, "sink cannot be null");
-        if (mCallback == null) {
-            throw new IllegalStateException("No callback was ever registered");
-        }
-        if (!mCallback.isAtLeastOneCallbackRegistered()) {
-            throw new IllegalStateException("All callbacks are unregistered");
+        synchronized (mCallbackLock) {
+            if (mCallback == null) {
+                throw new IllegalStateException("No callback was ever registered");
+            }
+            if (!mCallback.isAtLeastOneCallbackRegistered()) {
+                throw new IllegalStateException("All callbacks are unregistered");
+            }
         }
         final IBluetoothLeBroadcastAssistant service = getService();
         if (service == null) {
