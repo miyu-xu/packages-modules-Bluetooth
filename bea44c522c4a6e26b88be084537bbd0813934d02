@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "596060c5_eff1af0c",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-02T10:28:33Z",
+      "side": 1,
+      "message": "Very fair question... let me take it out for now.",
+      "parentUuid": "7ff98917_f0576ceb",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c06786f3_ebc132d0",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-28T17:11:05Z",
       "side": 1,
       "message": "nit: `as_indent` ?",
+      "range": {
+        "startLine": 168,
+        "startChar": 7,
+        "endLine": 168,
+        "endChar": 16
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff0924a3_7581bbd5",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-02T10:28:33Z",
+      "side": 1,
+      "message": "Good question! I went and looked at the [API Guidelines](https://rust-lang.github.io/api-guidelines/naming.html), which suggests that this should just be `indent`. I\u0027ve put up https://r.android.com/2325354 to rename them all.",
+      "parentUuid": "c06786f3_ebc132d0",
       "range": {
         "startLine": 168,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7ad71b1_ed00b858",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-02T10:28:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "106011a5_6b17ccf9",
+      "range": {
+        "startLine": 172,
+        "startChar": 7,
+        "endLine": 172,
+        "endChar": 15
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b7f28ec_a2a5ca69",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-28T17:11:05Z",
       "side": 1,
       "message": "Can we not use `parse_quote!` for this ?",
+      "range": {
+        "startLine": 207,
+        "startChar": 21,
+        "endLine": 207,
+        "endChar": 64
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128bd2e6_f51d9afe",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-02T10:28:33Z",
+      "side": 1,
+      "message": "To be honest, we could embed the `\u003e\u003e` directly into the `quote!` block. However, that triggers https://github.com/brotzeit/rustic/issues/468 😭\n\nTesting this a bit more, I see that `let op \u003d quote!(\u003e\u003e);` seems to work fine for me -- no indentation weirdness.\n\nWould you like me to just write `\u003e\u003e` directly or add a comment?\n\nI\u0027ll try inlining it for now. Since the code is reformatted on save, the Emacs weirdness is not a total blocker.",
+      "parentUuid": "6b7f28ec_a2a5ca69",
       "range": {
         "startLine": 207,
         "startChar": 21,
