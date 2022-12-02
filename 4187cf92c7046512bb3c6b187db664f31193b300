@@ -16,6 +16,23 @@
       "message": "This CL is based on David\u0027s comments in https://r.android.com/c/2319914.",
       "revId": "4187cf92c7046512bb3c6b187db664f31193b300",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a3b1be_af2187a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-02T10:29:45Z",
+      "side": 1,
+      "message": "If we like this, then we should eventually update the _generated_ code to follow the same convention.",
+      "revId": "4187cf92c7046512bb3c6b187db664f31193b300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
