@@ -38,13 +38,19 @@ impl FooData {
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         for i in 0..4 {
-            buffer.put_u8(self.a[i]);
+            let a = self.a[i];
+            let a = a | self.a;
+            buffer.put_u8(a);
         }
         for i in 0..5 {
-            buffer.put_u16_le(self.b[i]);
+            let b = self.b[i];
+            let b = b | self.b;
+            buffer.put_u16_le(b);
         }
         for i in 0..6 {
-            buffer.put_uint_le(self.c[i] as u64, 3);
+            let c = self.c[i];
+            let c = c | (self.c & 0xffffff);
+            buffer.put_uint_le(c as u64, 3);
         }
     }
     fn get_total_size(&self) -> usize {
