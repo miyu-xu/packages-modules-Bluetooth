@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c0e6e2b_33a39087",
+        "filename": "system/test/headless/dump.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-02T02:27:31Z",
+      "side": 1,
+      "message": "Why not use `LOG_CONSOLE(\"  %s  %p:0x%02x\", comment.c_str(), p + i, p[i]);` ?",
+      "range": {
+        "startLine": 17,
+        "startChar": 51,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "a5fe7348726b431036185e7d5906bab288c7e973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
