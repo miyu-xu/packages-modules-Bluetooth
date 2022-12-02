@@ -1,8 +1,7 @@
 #[derive(Debug)]
 struct FooData {
-    a: [u8; 4],
-    b: [u16; 5],
-    c: [u32; 6],
+    a: [Enum8; 4],
+    b: [Enum24; 5],
 }
 
 #[derive(Debug, Clone)]
@@ -12,14 +11,13 @@ pub struct FooPacket {
 
 #[derive(Debug)]
 pub struct FooBuilder {
-    pub a: [u8; 4],
-    pub b: [u16; 5],
-    pub c: [u32; 6],
+    pub a: [Enum8; 4],
+    pub b: [Enum24; 5],
 }
 
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
-        bytes.len() >= 32
+        bytes.len() >= 19
     }
     fn parse(mut bytes: &[u8]) -> Result<Self> {
         let mut a = [0; 4];
@@ -28,36 +26,27 @@ impl FooData {
         }
         let mut b = [0; 5];
         for i in 0..5 {
-            b[i] = bytes.get_u16();
+            b[i] = bytes.get_uint_le(3) as u32;
         }
-        let mut c = [0; 6];
-        for i in 0..6 {
-            c[i] = bytes.get_uint(3) as u32;
-        }
-        Ok(Self { a, b, c })
+        Ok(Self { a, b })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         for i in 0..4 {
             let a = self.a[i];
-            let a = a | self.a;
+            let a = a | self.a.to_u8().unwrap();
             buffer.put_u8(a);
         }
         for i in 0..5 {
             let b = self.b[i];
-            let b = b | self.b;
-            buffer.put_u16(b);
-        }
-        for i in 0..6 {
-            let c = self.c[i];
-            let c = c | (self.c & 0xffffff);
-            buffer.put_uint(c as u64, 3);
+            let b = b | (self.b.to_u32().unwrap() & 0xffffff);
+            buffer.put_uint_le(b as u64, 3);
         }
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
-        32
+        19
     }
 }
 
@@ -90,20 +79,17 @@ impl FooPacket {
         let foo = root;
         Ok(Self { foo })
     }
-    pub fn get_a(&self) -> &[u8; 4] {
+    pub fn get_a(&self) -> &[Enum8; 4] {
         &self.foo.as_ref().a
     }
-    pub fn get_b(&self) -> &[u16; 5] {
+    pub fn get_b(&self) -> &[Enum24; 5] {
         &self.foo.as_ref().b
-    }
-    pub fn get_c(&self) -> &[u32; 6] {
-        &self.foo.as_ref().c
     }
 }
 
 impl FooBuilder {
     pub fn build(self) -> FooPacket {
-        let foo = Arc::new(FooData { a: self.a, b: self.b, c: self.c });
+        let foo = Arc::new(FooData { a: self.a, b: self.b });
         FooPacket::new(foo).unwrap()
     }
 }
