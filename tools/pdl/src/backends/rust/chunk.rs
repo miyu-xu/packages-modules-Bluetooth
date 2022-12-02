@@ -1,6 +1,6 @@
 use crate::ast;
 use crate::backends::rust::field::Field;
-use crate::backends::rust::get_field_range;
+use crate::backends::rust::field_range;
 use crate::backends::rust::types::Integer;
 use quote::{format_ident, quote};
 
@@ -22,16 +22,16 @@ impl Chunk<'_> {
     /// Generate a name for this chunk.
     ///
     /// The name is `"chunk"` if there is more than one field.
-    pub fn get_name(&self) -> proc_macro2::Ident {
+    pub fn name(&self) -> proc_macro2::Ident {
         match self.fields {
-            [field] => field.get_ident(),
+            [field] => field.ident(),
             _ => format_ident!("chunk"),
         }
     }
 
     /// Return the width in bits.
-    pub fn get_width(&self) -> usize {
-        self.fields.iter().map(|field| field.get_width()).sum()
+    pub fn width(&self) -> usize {
+        self.fields.iter().map(|field| field.width()).sum()
     }
 
     /// Generate length checks for this chunk.
@@ -40,7 +40,7 @@ impl Chunk<'_> {
         packet_name: &str,
         offset: usize,
     ) -> proc_macro2::TokenStream {
-        let range = get_field_range(offset, self.get_width());
+        let range = field_range(offset, self.width());
         let wanted_length = syn::Index::from(range.end);
         quote! {
             if bytes.len() < #wanted_length {
@@ -66,12 +66,12 @@ impl Chunk<'_> {
             ast::EndiannessValue::LittleEndian => format_ident!("from_le_bytes"),
         };
 
-        let chunk_name = self.get_name();
-        let chunk_width = self.get_width();
+        let chunk_name = self.name();
+        let chunk_width = self.width();
         let chunk_type = Integer::new(chunk_width);
         assert!(chunk_width % 8 == 0, "Chunks must have a byte size, got width: {chunk_width}");
 
-        let range = get_field_range(offset, chunk_width);
+        let range = field_range(offset, chunk_width);
         let indices = range.map(syn::Index::from).collect::<Vec<_>>();
         let length_check = self.generate_length_check(packet_name, offset);
 
@@ -109,14 +109,14 @@ impl Chunk<'_> {
             return quote! {};
         }
 
-        let chunk_width = self.get_width();
+        let chunk_width = self.width();
         let chunk_type = Integer::new(chunk_width);
 
         let mut field_parsers = Vec::new();
         let mut field_offset = 0;
         for field in self.fields {
             field_parsers.push(field.generate_read_adjustment(field_offset, chunk_type));
-            field_offset += field.get_width();
+            field_offset += field.width();
         }
 
         quote! {
@@ -134,11 +134,11 @@ impl Chunk<'_> {
             ast::EndiannessValue::LittleEndian => format_ident!("to_le_bytes"),
         };
 
-        let chunk_width = self.get_width();
-        let chunk_name = self.get_name();
+        let chunk_width = self.width();
+        let chunk_name = self.name();
         assert!(chunk_width % 8 == 0, "Chunks must have a byte size, got width: {chunk_width}");
 
-        let range = get_field_range(offset, chunk_width);
+        let range = field_range(offset, chunk_width);
         let start = syn::Index::from(range.start);
         let end = syn::Index::from(range.end);
         // TODO(mgeisler): let slice = (chunk_type_width > chunk_width).then( ... )
@@ -154,20 +154,20 @@ impl Chunk<'_> {
         if let [field] = self.fields {
             // If there is a single field in the chunk, then we don't have to
             // shift, mask, or cast.
-            let field_name = field.get_ident();
+            let field_name = field.ident();
             return quote! {
                 let #field_name = self.#field_name;
             };
         }
 
-        let chunk_width = self.get_width();
+        let chunk_width = self.width();
         let chunk_type = Integer::new(chunk_width);
 
         let mut field_parsers = Vec::new();
         let mut field_offset = 0;
         for field in self.fields {
             field_parsers.push(field.generate_write_adjustment(field_offset, chunk_type));
-            field_offset += field.get_width();
+            field_offset += field.width();
         }
 
         quote! {
