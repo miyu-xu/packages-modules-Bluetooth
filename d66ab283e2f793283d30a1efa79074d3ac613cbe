@@ -16,6 +16,23 @@
       "message": "Do we also want to zero init this struct?",
       "revId": "d66ab283e2f793283d30a1efa79074d3ac613cbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a46cf438_03d54bc6",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-02T17:10:41Z",
+      "side": 1,
+      "message": "maybe here too?  I guess since you\u0027re setting them all it is just a nit.  lmkwyt",
+      "revId": "d66ab283e2f793283d30a1efa79074d3ac613cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
