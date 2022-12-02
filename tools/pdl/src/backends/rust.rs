@@ -412,6 +412,28 @@ mod tests {
     );
 
     test_decl!(
+        packet_decl_enum_arrays,
+        2,
+        r#"
+          enum Enum8 : 8 {
+              A = 1,
+              B = 2,
+          }
+
+          enum Enum24 : 24 {
+              A = 1,
+              B = 10,
+              C = 100,
+          }
+
+          packet Foo {
+            a: Enum8[4],
+            b: Enum24[5],
+          }
+        "#,
+    );
+
+    test_decl!(
         enum_decl_simple,
         0,
         r#"
