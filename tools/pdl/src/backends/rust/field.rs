@@ -16,26 +16,26 @@ impl ScalarField {
         ScalarField { id: String::from(id), width }
     }
 
-    fn get_ident(&self) -> proc_macro2::Ident {
+    fn ident(&self) -> proc_macro2::Ident {
         format_ident!("{}", self.id)
     }
 
-    fn get_type(&self) -> types::Integer {
+    fn type_(&self) -> types::Integer {
         types::Integer::new(self.width)
     }
 
     fn generate_decl(&self, visibility: syn::Visibility) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
-        let field_type = self.get_type();
+        let field_name = self.ident();
+        let field_type = self.type_();
         quote! {
             #visibility #field_name: #field_type
         }
     }
 
     fn generate_getter(&self, packet_name: &syn::Ident) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
+        let field_name = self.ident();
         let getter_name = format_ident!("get_{}", self.id);
-        let field_type = self.get_type();
+        let field_type = self.type_();
         quote! {
             pub fn #getter_name(&self) -> #field_type {
                 self.#packet_name.as_ref().#field_name
@@ -49,8 +49,8 @@ impl ScalarField {
         chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
-        let field_type = self.get_type();
+        let field_name = self.ident();
+        let field_type = self.type_();
         let mut field = quote! {
             #chunk_name
         };
@@ -85,8 +85,8 @@ impl ScalarField {
         chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
-        let field_type = self.get_type();
+        let field_name = self.ident();
+        let field_type = self.type_();
 
         let mut field = quote! {
             self.#field_name
@@ -131,26 +131,26 @@ impl EnumField {
         EnumField { id: String::from(id), enum_id: String::from(enum_id), width }
     }
 
-    fn get_ident(&self) -> proc_macro2::Ident {
+    fn ident(&self) -> proc_macro2::Ident {
         format_ident!("{}", self.id)
     }
 
-    fn get_type(&self) -> types::Enum<'_> {
+    fn type_(&self) -> types::Enum<'_> {
         types::Enum::new(&self.enum_id, self.width)
     }
 
     fn generate_decl(&self, visibility: syn::Visibility) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
-        let field_type = self.get_type();
+        let field_name = self.ident();
+        let field_type = self.type_();
         quote! {
             #visibility #field_name: #field_type
         }
     }
 
     fn generate_getter(&self, packet_name: &syn::Ident) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
+        let field_name = self.ident();
         let getter_name = format_ident!("get_{}", self.id);
-        let field_type = self.get_type();
+        let field_type = self.type_();
         quote! {
             pub fn #getter_name(&self) -> #field_type {
                 self.#packet_name.as_ref().#field_name
@@ -164,8 +164,8 @@ impl EnumField {
         chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
-        let field_type = self.get_type();
+        let field_name = self.ident();
+        let field_type = self.type_();
         let mut field = quote! {
             #chunk_name
         };
@@ -195,8 +195,8 @@ impl EnumField {
         chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
-        let field_name = self.get_ident();
-        let field_type = self.get_type();
+        let field_name = self.ident();
+        let field_type = self.type_();
 
         let to = format_ident!("to_u{}", chunk_type.width);
         let mut field = quote! {
@@ -253,17 +253,17 @@ impl Field {
         }
     }
 
-    pub fn get_width(&self) -> usize {
+    pub fn width(&self) -> usize {
         match self {
             Field::Scalar(field) => field.width,
             Field::Enum(field) => field.width,
         }
     }
 
-    pub fn get_ident(&self) -> proc_macro2::Ident {
+    pub fn ident(&self) -> proc_macro2::Ident {
         match self {
-            Field::Scalar(field) => field.get_ident(),
-            Field::Enum(field) => field.get_ident(),
+            Field::Scalar(field) => field.ident(),
+            Field::Enum(field) => field.ident(),
         }
     }
 
