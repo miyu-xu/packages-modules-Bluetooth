@@ -28,6 +28,7 @@ use btstack::{
     suspend::Suspend,
     Message, Stack,
 };
+use dbus_projection::gen_dbus_exporter_from_builders;
 use dbus_projection::DisconnectWatcher;
 use tokio::sync::mpsc::Sender;
 
@@ -45,6 +46,14 @@ const ADMIN_SETTINGS_FILE_PATH: &str = "/var/lib/bluetooth/admin_policy.json";
 fn make_object_name(idx: i32, name: &str) -> String {
     String::from(format!("/org/chromium/bluetooth/hci{}/{}", idx, name))
 }
+
+gen_dbus_exporter_from_builders!(
+    "org.chromium.BluetoothQA",
+    export_bluetooth_qa_dbus_intf,
+    iface_bluetooth::BluetoothMixin,
+    iface_bluetooth::qa_dbus_builder,
+    iface_bluetooth::qa_socket_mgr_dbus_builder
+);
 
 /// Runs the Bluetooth daemon serving D-Bus IPC.
 fn main() -> Result<(), Box<dyn Error>> {
@@ -218,7 +227,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             &mut cr.lock().unwrap(),
             disconnect_watcher.clone(),
         );
-        let qa_iface = iface_bluetooth::export_bluetooth_qa_dbus_intf(
+        let qa_iface = export_bluetooth_qa_dbus_intf(
             conn.clone(),
             &mut cr.lock().unwrap(),
             disconnect_watcher.clone(),
