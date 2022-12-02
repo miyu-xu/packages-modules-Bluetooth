@@ -16,6 +16,29 @@
       "message": "I wonder if this was overlooked also in other services like A2dp or there was a reason to not disconnect. But I don\u0027t see why we should be keeping the device connected.",
       "revId": "590b4926a64b8427dde813abe7bfe69fef90eb15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd785a5_4062c34e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-02T16:55:29Z",
+      "side": 1,
+      "message": "Could we make this an INFO log instead of a warning, maybe something like: \"Disconnecting device because it was unbonded?\"\n\nWe could also remove the log on 626 in that case.",
+      "range": {
+        "startLine": 639,
+        "startChar": 15,
+        "endLine": 639,
+        "endChar": 62
+      },
+      "revId": "590b4926a64b8427dde813abe7bfe69fef90eb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
