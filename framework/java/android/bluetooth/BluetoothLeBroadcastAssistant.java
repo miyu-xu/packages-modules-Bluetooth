@@ -22,6 +22,7 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
+import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
@@ -316,6 +317,29 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
                 }
             };
 
+    @SuppressLint("AndroidFrameworkBluetoothPermission")
+    private final IBluetoothStateChangeCallback mBluetoothStateChangeCallback =
+            new IBluetoothStateChangeCallback.Stub() {
+                public void onBluetoothStateChange(boolean up) {
+                    if (DBG) Log.d(TAG, "onBluetoothStateChange: up=" + up);
+                    if (up) {
+                        // re-register the service-to-app callback
+                        synchronized (mCallback) {
+                            if (!mCallback.isAtLeastOneCallbackRegistered()) {
+                                try {
+                                    final IBluetoothLeBroadcastAssistant service = getService();
+                                    if (service != null) {
+                                        service.registerCallback(mCallback);
+                                    }
+                                } catch (RemoteException e) {
+                                    throw e.rethrowFromSystemServer();
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
     /**
      * Create a new instance of an LE Audio Broadcast Assistant.
      *
@@ -327,6 +351,16 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mBluetoothAdapter.getAttributionSource();
         mProfileConnector.connect(context, listener);
+
+        IBluetoothManager mgr = mBluetoothAdapter.getBluetoothManager();
+        if (mgr != null) {
+            try {
+                mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
+            } catch (RemoteException e) {
+                throw e.rethrowFromSystemServer();
+            }
+        }
+
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
@@ -343,6 +377,15 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
      * @hide
      */
     public void close() {
+        IBluetoothManager mgr = mBluetoothAdapter.getBluetoothManager();
+        if (mgr != null) {
+            try {
+                mgr.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
+            } catch (RemoteException e) {
+                Log.e(TAG, "", e);
+            }
+        }
+
         mProfileConnector.disconnect();
     }
 
@@ -537,18 +580,20 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     })
     public void registerCallback(@NonNull @CallbackExecutor Executor executor,
             @NonNull Callback callback) {
-        Objects.requireNonNull(executor, "executor cannot be null");
-        Objects.requireNonNull(callback, "callback cannot be null");
-        log("registerCallback");
-        final IBluetoothLeBroadcastAssistant service = getService();
-        if (service == null) {
-            Log.w(TAG, "Proxy not attached to service");
-            if (DBG) log(Log.getStackTraceString(new Throwable()));
-        } else if (mBluetoothAdapter.isEnabled()) {
-            if (mCallback == null) {
-                mCallback = new BluetoothLeBroadcastAssistantCallback(service);
+        synchronized (mCallback) {
+            Objects.requireNonNull(executor, "executor cannot be null");
+            Objects.requireNonNull(callback, "callback cannot be null");
+            log("registerCallback");
+            final IBluetoothLeBroadcastAssistant service = getService();
+            if (service == null) {
+                Log.w(TAG, "Proxy not attached to service");
+                if (DBG) log(Log.getStackTraceString(new Throwable()));
+            } else if (mBluetoothAdapter.isEnabled()) {
+                if (mCallback == null) {
+                    mCallback = new BluetoothLeBroadcastAssistantCallback(service);
+                }
+                mCallback.register(executor, callback);
             }
-            mCallback.register(executor, callback);
         }
     }
 
@@ -572,17 +617,19 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     public void unregisterCallback(@NonNull Callback callback) {
-        Objects.requireNonNull(callback, "callback cannot be null");
-        log("unregisterCallback");
-        final IBluetoothLeBroadcastAssistant service = getService();
-        if (service == null) {
-            Log.w(TAG, "Proxy not attached to service");
-            if (DBG) log(Log.getStackTraceString(new Throwable()));
-        } else if (mBluetoothAdapter.isEnabled()) {
-            if (mCallback == null) {
-                throw new IllegalArgumentException("no callback was ever registered");
+        synchronized (mCallback) {
+            Objects.requireNonNull(callback, "callback cannot be null");
+            log("unregisterCallback");
+            final IBluetoothLeBroadcastAssistant service = getService();
+            if (service == null) {
+                Log.w(TAG, "Proxy not attached to service");
+                if (DBG) log(Log.getStackTraceString(new Throwable()));
+            } else if (mBluetoothAdapter.isEnabled()) {
+                if (mCallback == null) {
+                    throw new IllegalArgumentException("no callback was ever registered");
+                }
+                mCallback.unregister(callback);
             }
-            mCallback.unregister(callback);
         }
     }
 
