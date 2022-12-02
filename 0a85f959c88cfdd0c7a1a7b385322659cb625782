@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0953fe0e_2448a0f6",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-02T23:46:32Z",
+      "side": 1,
+      "message": "Why are we adding this and who is expected to call this?",
+      "revId": "0a85f959c88cfdd0c7a1a7b385322659cb625782",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
