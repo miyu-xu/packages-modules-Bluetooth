@@ -145,15 +145,17 @@ tSMP_STATUS SMP_Pair(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type) {
       << "Legacy SMP API should not be invoked when GD Security is used";
   tSMP_CB* p_cb = &smp_cb;
 
-  SMP_TRACE_EVENT("%s: state=%d br_state=%d flag=0x%x, bd_addr=%s", __func__,
-                  p_cb->state, p_cb->br_state, p_cb->flags,
-                  ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  LOG_ERROR("%s: state=%d br_state=%d flag=0x%x, bd_addr=%s", __func__,
+            p_cb->state, p_cb->br_state, p_cb->flags,
+            ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
   if (p_cb->state != SMP_STATE_IDLE ||
       p_cb->flags & SMP_PAIR_FLAGS_WE_STARTED_DD || p_cb->smp_over_br) {
     /* pending security on going, reject this one */
+    LOG_ERROR("1");
     return SMP_BUSY;
   } else {
+    LOG_ERROR("2");
     p_cb->flags = SMP_PAIR_FLAGS_WE_STARTED_DD;
     p_cb->pairing_bda = bd_addr;
 
@@ -162,6 +164,7 @@ tSMP_STATUS SMP_Pair(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type) {
         .bda = bd_addr,
     };
     if (!L2CA_ConnectFixedChnl(L2CAP_SMP_CID, bd_addr)) {
+      LOG_ERROR("3");
       tSMP_INT_DATA smp_int_data;
       smp_int_data.status = SMP_PAIR_INTERNAL_ERR;
       p_cb->status = SMP_PAIR_INTERNAL_ERR;
@@ -170,6 +173,7 @@ tSMP_STATUS SMP_Pair(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type) {
       return SMP_PAIR_INTERNAL_ERR;
     }
 
+    LOG_ERROR("4");
     return SMP_STARTED;
   }
 }

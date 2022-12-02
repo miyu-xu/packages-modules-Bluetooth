@@ -80,6 +80,7 @@
 
 #define HAL_CBACK(P_CB, P_CBACK, ...)                              \
   do {                                                             \
+    LOG_ERROR("%s: HAL %s->%s", __func__, #P_CB, #P_CBACK);        \
     if ((P_CB) && (P_CB)->P_CBACK) {                               \
       BTIF_TRACE_API("%s: HAL %s->%s", __func__, #P_CB, #P_CBACK); \
       (P_CB)->P_CBACK(__VA_ARGS__);                                \

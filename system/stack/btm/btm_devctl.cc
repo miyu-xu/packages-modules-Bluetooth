@@ -695,8 +695,10 @@ tBTM_STATUS BTM_DeleteStoredLinkKey(const RawAddress* bd_addr,
    */
 #if !defined(TARGET_FLOSS)
   /* Check if the previous command is completed */
+  LOG_ERROR("1");
   if (btm_cb.devcb.p_stored_link_key_cmpl_cb) return (BTM_BUSY);
 
+  LOG_ERROR("2");
   bool delete_all_flag = !bd_addr;
 
   BTM_TRACE_EVENT("BTM: BTM_DeleteStoredLinkKey: delete_all_flag: %s",
@@ -704,11 +706,13 @@ tBTM_STATUS BTM_DeleteStoredLinkKey(const RawAddress* bd_addr,
 
   btm_cb.devcb.p_stored_link_key_cmpl_cb = p_cb;
   if (!bd_addr) {
+    LOG_ERROR("4");
     /* This is to delete all link keys */
     /* We don't care the BD address. Just pass a non zero pointer */
     RawAddress local_bd_addr = RawAddress::kEmpty;
     btsnd_hcic_delete_stored_key(local_bd_addr, delete_all_flag);
   } else {
+    LOG_ERROR("5");
     btsnd_hcic_delete_stored_key(*bd_addr, delete_all_flag);
   }
 #endif

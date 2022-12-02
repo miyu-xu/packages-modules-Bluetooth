@@ -59,3 +59,8 @@ class SecurityClient(AsyncClosable):
         await self.__security.GenerateLocalOobData(facade_pb2.GenerateOobDataRequest(transport=transport))
         future = await self.__adapter._listen_for_event(facade_pb2.EventType.GENERATE_LOCAL_OOB_DATA)
         return future
+
+    async def create_bond_oob(self, oob_data):
+        await self.__security.CreateBondOob(facade_pb2.OobDataBondRequest(transport=oob_data.transport(),
+            address=oob_data.address(), confirmation=oob_data.confirmation(),
+            randomizer=oob_data.randomizer()))

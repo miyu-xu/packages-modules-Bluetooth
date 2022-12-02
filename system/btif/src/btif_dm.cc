@@ -2304,8 +2304,11 @@ void btif_dm_create_bond_out_of_band(const RawAddress bd_addr,
           break;
       }
       pairing_cb.is_local_initiated = true;
+      LOG_INFO("1");
       BTM_SecAddBleDevice(bd_addr, BT_DEVICE_TYPE_BLE, address_type);
+      LOG_INFO("2");
       BTA_DmBond(bd_addr, address_type, transport, BT_DEVICE_TYPE_BLE);
+      LOG_INFO("3");
       break;
     }
     default:

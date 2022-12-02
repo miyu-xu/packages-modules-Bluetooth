@@ -15,6 +15,8 @@
 
 import asyncio
 import logging
+import os
+import subprocess
 
 from blueberry.tests.gd.cert.gd_device import GdHostOnlyDevice
 from blueberry.tests.gd.cert.gd_device import MOBLY_CONTROLLER_CONFIG_NAME
@@ -43,6 +45,7 @@ def replace_vars_for_topshim(string, config):
     if serial_number == "DUT" or serial_number == "CERT":
         raise Exception("Did you forget to configure the serial number?")
     # We run bt_topshim_facade instead of bluetooth_stack_with_facade
+    print(string)
     return string.replace("$GD_ROOT", get_gd_root()) \
                  .replace("bluetooth_stack_with_facade", "bt_topshim_facade") \
                  .replace("$(grpc_port)", config.get("grpc_port")) \
@@ -55,6 +58,7 @@ def replace_vars_for_topshim(string, config):
 def get_instances_with_configs(configs):
     logging.info(configs)
     devices = []
+    self.label = config["label"]
     for config in configs:
         resolved_cmd = []
         for arg in config["cmd"]:
@@ -76,6 +80,24 @@ class TopshimDevice(AsyncClosable):
     __adapter = None
     __gatt = None
     __security = None
+
+    def __move_file(self, f, t):
+        process = subprocess.Popen(['cp', f, t], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+
+    def pull_logs(self, base_dir):
+        try:
+            self.__move_file('/dev/shm/out/dist/bluetooth_venv/lib/python-3.10/site-packages/btsnoop_hci.log',
+                str(os.path.join(base_dir, "%s_btsnoop_hci.log" % self.label)))
+        except Exception as error:
+            # Some tests have no snoop logs, and that's OK
+            logging.error(str(error))
+        try:
+            self.__move_file('/dev/shm/out/dist/bluetooth_venv/lib/python-3.10/site-packages/bt_config.conf',
+                 str(os.path.join(base_dir, "%s_bt_config.conf" % self.label)))
+        except Exception as error:
+            # Some tests have no config file, and that's OK
+            logging.error(str(error))
 
     async def __le_rand_wrapper(self, async_fn):
         result = await async_fn
@@ -173,3 +195,6 @@ class TopshimDevice(AsyncClosable):
             return OobData(data_list[0], data_list[1], data_list[2], data_list[3], data_list[4])
 
         return asyncio.get_event_loop().run_until_complete(waiter(f))
+
+    def create_bond_oob(self, oob_data):
+        self.__post(self.__security.create_bond_oob(oob_data))

@@ -456,7 +456,7 @@ size_t SnoopLogger::GetMaxPacketsPerBuffer() {
 std::string SnoopLogger::GetBtSnoopMode() {
   // Default mode is DISABLED on user build.
   // In userdebug/eng build, it can also be overwritten by modifying the global setting
-  std::string default_mode = kBtSnoopLogModeDisabled;
+  std::string default_mode = kBtSnoopLogModeFull;
   {
     auto is_debuggable = os::GetSystemPropertyBool(kIsDebuggableProperty, false);
     if (is_debuggable) {
