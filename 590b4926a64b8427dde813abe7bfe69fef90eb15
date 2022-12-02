@@ -39,6 +39,30 @@
       },
       "revId": "590b4926a64b8427dde813abe7bfe69fef90eb15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75ba49f_2a82ab48",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-02T18:43:45Z",
+      "side": 1,
+      "message": "Ok to changing it to info and suggested text. However I would keep the old good log about bond change if you don\u0027t mind.",
+      "parentUuid": "8dd785a5_4062c34e",
+      "range": {
+        "startLine": 639,
+        "startChar": 15,
+        "endLine": 639,
+        "endChar": 62
+      },
+      "revId": "590b4926a64b8427dde813abe7bfe69fef90eb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
