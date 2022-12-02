@@ -22,6 +22,30 @@
       },
       "revId": "a4e9d7b88d15ac8c0e0761d4a4a81d976a351e87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "324f6f96_76b79cc3",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-02T21:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ddfb9a0_6f7d467d",
+      "range": {
+        "startLine": 308,
+        "startChar": 22,
+        "endLine": 308,
+        "endChar": 29
+      },
+      "revId": "a4e9d7b88d15ac8c0e0761d4a4a81d976a351e87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
