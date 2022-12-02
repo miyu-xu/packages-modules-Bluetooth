@@ -16,6 +16,23 @@
       "message": "I removed my own `Context` in preference for reusing the existing `Scope` struct. I hope you like it, please take a look 😊\n\nI know that the location isn\u0027t perfect: I suggest we move `Scope` to its own file later. For now, I\u0027m happy enough with using it in its existing place -- the mechanical update of moving it can be done when the dust settles.",
       "revId": "7185eb218b2b060cde12d69f4b67fd1b975c10ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "332e5bd0_f1367fe9",
+        "filename": "tools/pdl/src/lint.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-02T17:17:46Z",
+      "side": 1,
+      "message": "We could return `Result\u003cScope\u003c\u0027_\u003e, LintDiagnostics\u003e`",
+      "revId": "7185eb218b2b060cde12d69f4b67fd1b975c10ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
