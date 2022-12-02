@@ -43,7 +43,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
-@RunWith(AndroidJUnit4.class)
 public class BluetoothOppBtEnableActivityTest extends
         ActivityInstrumentationTestCase2<BluetoothOppBtEnableActivity> {
 
@@ -54,7 +53,7 @@ public class BluetoothOppBtEnableActivityTest extends
         super(BluetoothOppBtEnableActivity.class);
     }
 
-    @Before
+    @Override
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -66,13 +65,12 @@ public class BluetoothOppBtEnableActivityTest extends
         BluetoothOppTestUtils.enableOppActivities(true, mTargetContext);
     }
 
-    @After
+    @Override
     public void tearDown() {
         Intents.release();
         BluetoothOppTestUtils.enableOppActivities(false, mTargetContext);
     }
 
-    @Test
     public void onCreate_clickOnEnable_launchEnablingActivity() {
         setActivityIntent(mIntent);
         BluetoothOppBtEnableActivity activity = getActivity();
