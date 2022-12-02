@@ -64,6 +64,10 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
+#include "stack/include/avrc_api.h"
+#include "include/bta_hfp_api.h"
+#include "stack/include/avdt_api.h"
+
 #if (GAP_INCLUDED == TRUE)
 #include "gap_api.h"
 #endif
@@ -1085,6 +1089,71 @@ void bta_dm_disc_rmt_name(tBTA_DM_MSG* p_data) {
   bta_dm_discover_device(p_data->rem_name.result.disc_res.bd_addr);
 }
 
+static void bta_dm_store_profiles_version() {
+  tSDP_DISC_REC* sdp_rec = NULL;
+  uint16_t profile_version;
+  uint16_t avrcp_features = 0;
+  tSDP_DISC_ATTR* p_attr;
+  int i;
+
+  const uint16_t servclass_uuids[] = {
+    UUID_SERVCLASS_AV_REMOTE_CONTROL
+  };
+
+  const uint16_t btprofile_uuids[] = {
+    UUID_SERVCLASS_AV_REMOTE_CONTROL,
+  };
+
+  const char* profile_keys[] = {
+    AVRCP_CONTROLLER_VERSION_CONFIG_KEY,
+  };
+
+  int profile_num = sizeof(servclass_uuids)/sizeof(servclass_uuids[0]);
+
+  for (i = 0; i < profile_num; i++) {
+    profile_version = 0;
+    if ((sdp_rec =
+         SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, servclass_uuids[i], NULL))
+         == NULL)
+      continue;
+
+    if (SDP_FindAttributeInRec(sdp_rec, ATTR_ID_BT_PROFILE_DESC_LIST) == NULL)
+      continue;
+    /* get profile version (if failure, version parameter is not updated) */
+    SDP_FindProfileVersionInRec(sdp_rec, btprofile_uuids[i], &profile_version);
+    if (profile_version != 0) {
+      if (btif_config_set_bin(sdp_rec->remote_bd_addr.ToString().c_str(),
+                              profile_keys[i], (const uint8_t*)&profile_version,
+                              sizeof(profile_version))) {
+        btif_config_save();
+      } else {
+        LOG_INFO("%s: Failed to store peer profile version for %s",
+                           __func__, sdp_rec->remote_bd_addr.ToString().c_str());
+      }
+    }
+
+    /* find peer supported features for avrcp profile*/
+    if (servclass_uuids[i] == UUID_SERVCLASS_AV_REMOTE_CONTROL) {
+      p_attr = SDP_FindAttributeInRec(sdp_rec, ATTR_ID_SUPPORTED_FEATURES);
+      if (p_attr != NULL) {
+        avrcp_features = p_attr->attr_value.v.u16;
+        if (avrcp_features != 0) {
+          LOG_INFO("avrcp_features: 0x%x", avrcp_features);
+          if (btif_config_set_bin(sdp_rec->remote_bd_addr.ToString().c_str(),
+                           AV_REM_CTRL_FEATURES_CONFIG_KEY,
+                           (const uint8_t*)&avrcp_features, sizeof(avrcp_features))) {
+            LOG_INFO("Saving avrcp_features: 0x%x", avrcp_features);
+            btif_config_save();
+          } else {
+            LOG_INFO("%s: Failed to store avrcp_features for %s",
+                                __func__, sdp_rec->remote_bd_addr.ToString().c_str());
+          }
+        }
+      }
+    }
+  }
+}
+
 /*******************************************************************************
  *
  * Function         bta_dm_sdp_result
@@ -1180,7 +1249,7 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
     } while (bta_dm_search_cb.service_index <= BTA_MAX_SERVICE_ID);
 
-    APPL_TRACE_DEBUG("%s services_found = %04x", __func__,
+    LOG_INFO("%s services_found = %04x", __func__,
                      bta_dm_search_cb.services_found);
 
     /* Collect the 128-bit services here and put them into the list */
@@ -1199,6 +1268,9 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
         }
       } while (p_sdp_rec);
     }
+
+    if (bta_dm_search_cb.services_to_search == 0)
+      bta_dm_store_profiles_version();
 
 #if TARGET_FLOSS
     tSDP_DI_GET_RECORD di_record;
