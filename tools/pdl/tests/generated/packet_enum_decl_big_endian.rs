@@ -19,17 +19,15 @@ impl Packet_Enum_FieldData {
     fn conforms(bytes: &[u8]) -> bool {
         bytes.len() >= 8
     }
-    fn parse(bytes: &[u8]) -> Result<Self> {
-        if bytes.len() < 8 {
+    fn parse(mut bytes: &[u8]) -> Result<Self> {
+        if bytes.remaining() < 8 {
             return Err(Error::InvalidLengthError {
                 obj: "Packet_Enum_Field".to_string(),
                 wanted: 8,
-                got: bytes.len(),
+                got: bytes.remaining(),
             });
         }
-        let chunk = u64::from_be_bytes([
-            bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7],
-        ]);
+        let chunk = bytes.get_u64();
         let a = Enum7::from_u64((chunk & 0x7f)).unwrap();
         let c = ((chunk >> 7) & 0x1ffffffffffffff);
         Ok(Self { a, c })
@@ -38,7 +36,7 @@ impl Packet_Enum_FieldData {
         let chunk = 0;
         let chunk = chunk | (self.a.to_u64().unwrap() & 0x7f);
         let chunk = chunk | ((self.c & 0x1ffffffffffffff) << 7);
-        buffer[0..8].copy_from_slice(&chunk.to_be_bytes()[0..8]);
+        buffer.put_u64(chunk);
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
@@ -50,8 +48,7 @@ impl Packet_Enum_FieldData {
 
 impl Packet for Packet_Enum_FieldPacket {
     fn to_bytes(self) -> Bytes {
-        let mut buffer = BytesMut::new();
-        buffer.resize(self.packet_enum_field.get_total_size(), 0);
+        let mut buffer = BytesMut::with_capacity(self.packet_enum_field.get_total_size());
         self.packet_enum_field.write_to(&mut buffer);
         buffer.freeze()
     }
@@ -71,7 +68,7 @@ impl From<Packet_Enum_FieldPacket> for Vec<u8> {
 }
 
 impl Packet_Enum_FieldPacket {
-    pub fn parse(bytes: &[u8]) -> Result<Self> {
+    pub fn parse(mut bytes: &[u8]) -> Result<Self> {
         Ok(Self::new(Arc::new(Packet_Enum_FieldData::parse(bytes)?)).unwrap())
     }
     fn new(root: Arc<Packet_Enum_FieldData>) -> std::result::Result<Self, &'static str> {
