@@ -1383,15 +1383,6 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
         smp_cancel_start_encryption_attempt();
       }
       break;
-    case HCI_BLE_SUBRATE_REQ:
-      if (status != HCI_SUCCESS) {
-        if (p_cmd != NULL) {
-          p_cmd++; /* bypass length field */
-          STREAM_TO_UINT16(handle, p_cmd);
-          btm_ble_subrate_req_cmd_status(status, handle);
-        }
-      }
-      break;
 
     // Link Policy Commands
     case HCI_EXIT_SNIFF_MODE:
@@ -1615,10 +1606,6 @@ static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p) {
  * BLE Events
  **********************************************/
 
-extern void gatt_notify_subrate_change(uint16_t handle, uint16_t subrate_factor,
-                                       uint16_t latency, uint16_t cont_num,
-                                       uint16_t timeout, uint8_t status);
-
 static void btu_ble_ll_conn_param_upd_evt(uint8_t* p, uint16_t evt_len) {
   /* LE connection update has completed successfully as a central. */
   /* We can enable the update request if the result is a success. */
@@ -1683,20 +1670,4 @@ static void btu_ble_rc_param_req_evt(uint8_t* p) {
 
   l2cble_process_rc_param_request_evt(handle, int_min, int_max, latency,
                                       timeout);
-}
-
-void btm_ble_subrate_req_cmd_status(uint8_t status, uint16_t handle) {
-  uint16_t subrate_factor = 0;
-  uint16_t peripheral_latency = 0;
-  uint16_t cont_num = 0;
-  uint16_t timeout = 0;
-
-  if (status == HCI_SUCCESS) return;
-
-  LOG(ERROR) << "LE Subrate request - cmd status error";
-  l2cble_process_subrate_change_evt(handle, status, subrate_factor,
-                                    peripheral_latency, cont_num, timeout);
-
-  gatt_notify_subrate_change(handle & 0x0FFF, subrate_factor,
-                             peripheral_latency, cont_num, timeout, status);
 }
