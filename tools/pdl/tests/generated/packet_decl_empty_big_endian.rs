@@ -13,7 +13,7 @@ impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
         true
     }
-    fn parse(bytes: &[u8]) -> Result<Self> {
+    fn parse(mut bytes: &[u8]) -> Result<Self> {
         Ok(Self {})
     }
     fn write_to(&self, buffer: &mut BytesMut) {}
@@ -27,8 +27,7 @@ impl FooData {
 
 impl Packet for FooPacket {
     fn to_bytes(self) -> Bytes {
-        let mut buffer = BytesMut::new();
-        buffer.resize(self.foo.get_total_size(), 0);
+        let mut buffer = BytesMut::with_capacity(self.foo.get_total_size());
         self.foo.write_to(&mut buffer);
         buffer.freeze()
     }
@@ -48,7 +47,7 @@ impl From<FooPacket> for Vec<u8> {
 }
 
 impl FooPacket {
-    pub fn parse(bytes: &[u8]) -> Result<Self> {
+    pub fn parse(mut bytes: &[u8]) -> Result<Self> {
         Ok(Self::new(Arc::new(FooData::parse(bytes)?)).unwrap())
     }
     fn new(root: Arc<FooData>) -> std::result::Result<Self, &'static str> {
