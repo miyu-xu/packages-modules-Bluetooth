@@ -1803,8 +1803,8 @@ void L2CA_SetDefaultSubrate(uint16_t subrate_min, uint16_t subrate_max,
           << ", subrate_max=" << subrate_max << ", max_latency=" << max_latency
           << ", cont_num=" << cont_num << ", timeout=" << timeout;
 
-  btsnd_hcic_ble_set_default_subrate(subrate_min, subrate_max, max_latency,
-                                     cont_num, timeout);
+  bluetooth::shim::ACL_LeSetDefaultSubrate(subrate_min, subrate_max,
+                                           max_latency, cont_num, timeout);
 }
 
 /*******************************************************************************

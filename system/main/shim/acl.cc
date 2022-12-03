@@ -993,6 +993,13 @@ struct shim::legacy::Acl::impl {
         subrate_min, subrate_max, max_latency, cont_num, sup_tout);
   }
 
+  void LeSetDefaultSubrate(uint16_t subrate_min, uint16_t subrate_max,
+                           uint16_t max_latency, uint16_t cont_num,
+                           uint16_t sup_tout) {
+    GetAclManager()->LeSetDefaultSubrate(subrate_min, subrate_max, max_latency,
+                                         cont_num, sup_tout);
+  }
+
   void SetConnectionEncryption(HciHandle handle, hci::Enable enable) {
     ASSERT_LOG(IsClassicAcl(handle), "handle %d is not a classic connection",
                handle);
@@ -1717,6 +1724,15 @@ void shim::legacy::Acl::LeSubrateRequest(uint16_t hci_handle,
                                          uint16_t cont_num, uint16_t sup_tout) {
   handler_->CallOn(pimpl_.get(), &Acl::impl::LeSubrateRequest, hci_handle,
                    subrate_min, subrate_max, max_latency, cont_num, sup_tout);
+}
+
+void shim::legacy::Acl::LeSetDefaultSubrate(uint16_t subrate_min,
+                                            uint16_t subrate_max,
+                                            uint16_t max_latency,
+                                            uint16_t cont_num,
+                                            uint16_t sup_tout) {
+  handler_->CallOn(pimpl_.get(), &Acl::impl::LeSetDefaultSubrate, subrate_min,
+                   subrate_max, max_latency, cont_num, sup_tout);
 }
 
 void shim::legacy::Acl::DumpConnectionHistory(int fd) const {
