@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1899b082_71d9bff4",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2759,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-03T02:09:14Z",
+      "side": 1,
+      "message": "Nice finding !",
+      "range": {
+        "startLine": 2758,
+        "startChar": 18,
+        "endLine": 2759,
+        "endChar": 38
+      },
+      "revId": "8b40412544a56189576e5b5255e9b8b6899bbf0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
