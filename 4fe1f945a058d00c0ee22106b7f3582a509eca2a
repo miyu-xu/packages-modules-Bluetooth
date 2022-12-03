@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e601f2e_a4ebac07",
+        "filename": "system/gd/rust/topshim/facade/src/hfp_service.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-03T01:10:29Z",
+      "side": 1,
+      "message": "Prefer:\n\n```\nif let HfpCallbacks::ConnectionState(state, address) \u003d \u0026cb {\n  ...\n}\n\nlet txclone \u003d tx.clone();\ntokio::spawn(async move {\n  let _ \u003d tx.send(cb).await;\n});\n```\n\ntry_send will fail right away if buffer is full but `.send().await` will not.",
+      "revId": "4fe1f945a058d00c0ee22106b7f3582a509eca2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
