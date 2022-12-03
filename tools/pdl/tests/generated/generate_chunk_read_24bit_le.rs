@@ -7,4 +7,5 @@ fn main() {
         });
     }
     let a = u32::from_le_bytes([bytes[10], bytes[11], bytes[12], 0]);
+    let a = (a & 0xffffff);
 }

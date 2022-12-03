@@ -30,6 +30,7 @@ impl FooData {
             });
         }
         let x = u8::from_be_bytes([bytes[0]]);
+        let x = x;
         if bytes.len() < 3 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
@@ -38,6 +39,7 @@ impl FooData {
             });
         }
         let y = u16::from_be_bytes([bytes[1], bytes[2]]);
+        let y = y;
         if bytes.len() < 6 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
@@ -46,14 +48,18 @@ impl FooData {
             });
         }
         let z = u32::from_be_bytes([0, bytes[3], bytes[4], bytes[5]]);
+        let z = (z & 0xffffff);
         Ok(Self { x, y, z })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        let x = self.x;
+        let x = 0;
+        let x = x | self.x;
         buffer[0..1].copy_from_slice(&x.to_be_bytes()[0..1]);
-        let y = self.y;
+        let y = 0;
+        let y = y | self.y;
         buffer[1..3].copy_from_slice(&y.to_be_bytes()[0..2]);
-        let z = self.z;
+        let z = 0;
+        let z = z | (self.z & 0xffffff);
         buffer[3..6].copy_from_slice(&z.to_be_bytes()[0..3]);
     }
     fn get_total_size(&self) -> usize {

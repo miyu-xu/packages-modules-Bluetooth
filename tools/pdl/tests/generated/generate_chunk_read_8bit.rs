@@ -7,4 +7,5 @@ fn main() {
         });
     }
     let a = u8::from_be_bytes([bytes[10]]);
+    let a = a;
 }

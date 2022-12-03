@@ -7,4 +7,5 @@ fn main() {
         });
     }
     let a = u16::from_be_bytes([bytes[10], bytes[11]]);
+    let a = a;
 }
