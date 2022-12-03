@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5ae55de_288d04ee",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-03T00:39:46Z",
+      "side": 1,
+      "message": "Ack. I hit an immutable borrow after mutable borrow error while moving this into bluetooth.rs. Will fix this in another CL.",
+      "parentUuid": "40489c79_03f3fec2",
+      "revId": "f74b22847ea90d79fc6abe5a936fcc08b0222673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "845e3f61_f23541a8",
@@ -65,6 +83,24 @@
       "writtenOn": "2022-12-02T18:18:10Z",
       "side": 1,
       "message": "IMO, this IF statement should be inside the battery service\u0027s `handle_action`.",
+      "revId": "f74b22847ea90d79fc6abe5a936fcc08b0222673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc159bcb_cd614c45",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-03T00:39:46Z",
+      "side": 1,
+      "message": "Ack. Let me fix it in another CL.",
+      "parentUuid": "845e3f61_f23541a8",
       "revId": "f74b22847ea90d79fc6abe5a936fcc08b0222673",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
