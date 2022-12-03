@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7215c17_652d1a55",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2279,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-03T02:04:43Z",
+      "side": 1,
+      "message": "There is a build warning here we may want to investigate more",
+      "range": {
+        "startLine": 2279,
+        "startChar": 0,
+        "endLine": 2279,
+        "endChar": 15
+      },
+      "revId": "985a5e0242bd68daba9f5b6025ab17a78991acb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
