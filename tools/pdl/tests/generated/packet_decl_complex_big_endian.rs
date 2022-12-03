@@ -47,6 +47,7 @@ impl FooData {
             });
         }
         let d = u32::from_be_bytes([0, bytes[2], bytes[3], bytes[4]]);
+        let d = (d & 0xffffff);
         if bytes.len() < 7 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
@@ -65,7 +66,8 @@ impl FooData {
         let chunk = chunk | ((self.b as u16) << 3);
         let chunk = chunk | (((self.c as u16) & 0x1f) << 11);
         buffer[0..2].copy_from_slice(&chunk.to_be_bytes()[0..2]);
-        let d = self.d;
+        let d = 0;
+        let d = d | (self.d & 0xffffff);
         buffer[2..5].copy_from_slice(&d.to_be_bytes()[0..3]);
         let chunk = 0;
         let chunk = chunk | (self.e & 0xfff);

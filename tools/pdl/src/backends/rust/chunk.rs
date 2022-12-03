@@ -92,7 +92,6 @@ impl Chunk<'_> {
         };
 
         let read_adjustments = self.generate_read_adjustments();
-
         quote! {
             #length_check
             let #chunk_name = #chunk_type::#getter([
@@ -103,19 +102,18 @@ impl Chunk<'_> {
     }
 
     fn generate_read_adjustments(&self) -> proc_macro2::TokenStream {
-        // If there is a single field in the chunk, then we don't have to
-        // shift, mask, or cast.
-        if self.fields.len() == 1 {
-            return quote! {};
-        }
-
+        let chunk_name = self.get_name();
         let chunk_width = self.get_width();
         let chunk_type = Integer::new(chunk_width);
 
         let mut field_parsers = Vec::new();
         let mut field_offset = 0;
         for field in self.fields {
-            field_parsers.push(field.generate_read_adjustment(field_offset, chunk_type));
+            field_parsers.push(field.generate_read_adjustment(
+                field_offset,
+                &chunk_name,
+                chunk_type,
+            ));
             field_offset += field.get_width();
         }
 
@@ -151,27 +149,23 @@ impl Chunk<'_> {
     }
 
     fn generate_write_adjustments(&self) -> proc_macro2::TokenStream {
-        if let [field] = self.fields {
-            // If there is a single field in the chunk, then we don't have to
-            // shift, mask, or cast.
-            let field_name = field.get_ident();
-            return quote! {
-                let #field_name = self.#field_name;
-            };
-        }
-
+        let chunk_name = self.get_name();
         let chunk_width = self.get_width();
         let chunk_type = Integer::new(chunk_width);
 
         let mut field_parsers = Vec::new();
         let mut field_offset = 0;
         for field in self.fields {
-            field_parsers.push(field.generate_write_adjustment(field_offset, chunk_type));
+            field_parsers.push(field.generate_write_adjustment(
+                field_offset,
+                &chunk_name,
+                chunk_type,
+            ));
             field_offset += field.get_width();
         }
 
         quote! {
-            let chunk = 0;
+            let #chunk_name = 0;
             #(#field_parsers)*
         }
     }
@@ -303,7 +297,8 @@ mod tests {
         assert_expr_eq(
             chunk.generate_write(ast::EndiannessValue::BigEndian, 80),
             quote! {
-                let a = self.a;
+                let a = 0;
+                let a = a | self.a;
                 buffer[10..11].copy_from_slice(&a.to_be_bytes()[0..1]);
             },
         );
@@ -316,7 +311,8 @@ mod tests {
         assert_expr_eq(
             chunk.generate_write(ast::EndiannessValue::BigEndian, 80),
             quote! {
-                let a = self.a;
+                let a = 0;
+                let a = a | self.a;
                 buffer[10..12].copy_from_slice(&a.to_be_bytes()[0..2]);
             },
         );
@@ -329,7 +325,8 @@ mod tests {
         assert_expr_eq(
             chunk.generate_write(ast::EndiannessValue::BigEndian, 80),
             quote! {
-                let a = self.a;
+                let a = 0;
+                let a = a | (self.a & 0xffffff);
                 buffer[10..13].copy_from_slice(&a.to_be_bytes()[0..3]);
             },
         );

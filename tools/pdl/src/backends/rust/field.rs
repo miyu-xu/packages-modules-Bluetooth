@@ -46,12 +46,13 @@ impl ScalarField {
     fn generate_read_adjustment(
         &self,
         offset: usize,
+        chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
         let field_name = self.get_ident();
         let field_type = self.get_type();
         let mut field = quote! {
-            chunk
+            #chunk_name
         };
         if offset > 0 {
             let offset = syn::Index::from(offset);
@@ -81,6 +82,7 @@ impl ScalarField {
     fn generate_write_adjustment(
         &self,
         offset: usize,
+        chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
         let field_name = self.get_ident();
@@ -111,7 +113,7 @@ impl ScalarField {
         }
 
         quote! {
-            let chunk = chunk | #field;
+            let #chunk_name = #chunk_name | #field;
         }
     }
 }
@@ -159,12 +161,13 @@ impl EnumField {
     fn generate_read_adjustment(
         &self,
         offset: usize,
+        chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
         let field_name = self.get_ident();
         let field_type = self.get_type();
         let mut field = quote! {
-            chunk
+            #chunk_name
         };
         if offset > 0 {
             let offset = syn::Index::from(offset);
@@ -189,6 +192,7 @@ impl EnumField {
     fn generate_write_adjustment(
         &self,
         offset: usize,
+        chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
         let field_name = self.get_ident();
@@ -214,7 +218,7 @@ impl EnumField {
         }
 
         quote! {
-            let chunk = chunk | #field;
+            let #chunk_name = #chunk_name | #field;
         }
     }
 }
@@ -280,22 +284,24 @@ impl Field {
     pub fn generate_read_adjustment(
         &self,
         offset: usize,
+        chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
         match self {
-            Field::Scalar(field) => field.generate_read_adjustment(offset, chunk_type),
-            Field::Enum(field) => field.generate_read_adjustment(offset, chunk_type),
+            Field::Scalar(field) => field.generate_read_adjustment(offset, chunk_name, chunk_type),
+            Field::Enum(field) => field.generate_read_adjustment(offset, chunk_name, chunk_type),
         }
     }
 
     pub fn generate_write_adjustment(
         &self,
         offset: usize,
+        chunk_name: &proc_macro2::Ident,
         chunk_type: types::Integer,
     ) -> proc_macro2::TokenStream {
         match self {
-            Field::Scalar(field) => field.generate_write_adjustment(offset, chunk_type),
-            Field::Enum(field) => field.generate_write_adjustment(offset, chunk_type),
+            Field::Scalar(field) => field.generate_write_adjustment(offset, chunk_name, chunk_type),
+            Field::Enum(field) => field.generate_write_adjustment(offset, chunk_name, chunk_type),
         }
     }
 }
