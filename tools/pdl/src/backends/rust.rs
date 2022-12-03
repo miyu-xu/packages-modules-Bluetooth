@@ -544,6 +544,56 @@ mod tests {
     }
 
     #[test]
+    fn test_generate_packet_enum24_decl_little_endian() {
+        let file = parse_str(
+            r#"
+              little_endian_packets
+
+              enum Enum24 : 24 {
+                  A = 1,
+                  B = 2,
+              }
+
+              packet Packet_Enum_Field {
+                  a: Enum24,
+              }
+            "#,
+        );
+        let scope = lint::Scope::new(&file);
+        let decl = &file.declarations[1];
+        let actual_code = generate_decl(&scope, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_enum24_decl_little_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_packet_enum24_decl_big_endian() {
+        let file = parse_str(
+            r#"
+              big_endian_packets
+
+              enum Enum24 : 24 {
+                  A = 1,
+                  B = 2,
+              }
+
+              packet Packet_Enum_Field {
+                  a: Enum24,
+              }
+            "#,
+        );
+        let scope = lint::Scope::new(&file);
+        let decl = &file.declarations[1];
+        let actual_code = generate_decl(&scope, &file, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_enum24_decl_big_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
     fn test_generate_enum_max_discriminant_little_endian() {
         let file = parse_str(
             r#"
