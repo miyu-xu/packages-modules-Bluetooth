@@ -22,6 +22,30 @@
       },
       "revId": "b4889277009186ea5627e30b2ff0f2681a875160",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e19095c_be7bc123",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-03T04:14:43Z",
+      "side": 1,
+      "message": "man fcntl\n\n`int fcntl(int fd, int cmd, ... /* arg */ );`\n\nAlthough the binary compiled, there are multiple signatures for this command.\n\nWith 2 arguments it invokes one path, but with 3 another.\n\nWithout that 3rd argument the call takes a branch where the command doesn\u0027t do what is expected.\n\nI will replace the `F_DUPFD` back with `F_DUPFD_CLOEXEC` as that was inadvertently removed.",
+      "parentUuid": "f27621d9_22dfc29d",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 62
+      },
+      "revId": "b4889277009186ea5627e30b2ff0f2681a875160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
