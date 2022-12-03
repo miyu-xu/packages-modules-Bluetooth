@@ -22,6 +22,30 @@
       },
       "revId": "a5fe7348726b431036185e7d5906bab288c7e973",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fabd0d1_ae8c91bf",
+        "filename": "system/test/headless/dump.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-03T18:12:15Z",
+      "side": 1,
+      "message": "They are equivalent. \n\nThis one uses implicit pointer arithmetic, the index method explicit arithmetic.\n\nThe pointer arithmetic shows to the reader a sequential iteration.  The index method also does, but indexing by definition allows random access, so one opinion is that it may be a little cleaner for the reader (?)\n\nThey compile to providing the same functionality but using different assembly set.\nThere are less assembly instructions for the pointer iteration versus index iteration. (Not that indicates \"better\" or \"worse\")\n\nThis is a snippet of an equivalent function(s) (with commonality removed)\n\n```\n 39 _Z15iterate_pointerI4DataEvRKS0_:\n 40 .LFB20:\n...\n 52     jmp .L4\n 53 .L5:\n 54     movq    -8(%rbp), %rax\n 55     movzbl  (%rax), %eax\n 56     movzbl  %al, %ecx\n 57     movq    stdout(%rip), %rax\n 58     movq    -8(%rbp), %rdx\n 59     leaq    .LC1(%rip), %rsi\n 60     movq    %rax, %rdi\n 61     movl    $0, %eax\n 62     call    fprintf@PLT\n 63     addq    $1, -16(%rbp)\n 64     addq    $1, -8(%rbp)\n 65 .L4:\n 66     cmpq    $15, -16(%rbp)\n 67     jbe .L5\n 68     nop\n 69     nop\n 70     leave\n```\n \n```\n 79 _Z13iterate_indexI4DataEvRKS0_:\n 80 .LFB21:\n...\n 92     jmp .L7\n 93 .L8:\n 94     movq    -16(%rbp), %rdx\n 95     movq    -8(%rbp), %rax\n 96     addq    %rdx, %rax\n 97     movzbl  (%rax), %eax\n 98     movzbl  %al, %edx\n 99     movq    -16(%rbp), %rcx\n100     movq    -8(%rbp), %rax\n101     leaq    (%rcx,%rax), %rsi\n102     movq    stdout(%rip), %rax\n103     movl    %edx, %ecx\n104     movq    %rsi, %rdx\n105     leaq    .LC1(%rip), %rsi\n106     movq    %rax, %rdi\n107     movl    $0, %eax\n108     call    fprintf@PLT\n109     addq    $1, -8(%rbp)\n110 .L7:\n111     cmpq    $15, -8(%rbp)\n112     jbe .L8\n113     nop\n114     nop\n115     leave\n```",
+      "parentUuid": "1c0e6e2b_33a39087",
+      "range": {
+        "startLine": 17,
+        "startChar": 51,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "a5fe7348726b431036185e7d5906bab288c7e973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
