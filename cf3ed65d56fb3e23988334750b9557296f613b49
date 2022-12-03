@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "257749e2_ec6d7dce",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-12-03T00:29:29Z",
+      "side": 1,
+      "message": "Why does this need to be +1?",
+      "revId": "cf3ed65d56fb3e23988334750b9557296f613b49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
