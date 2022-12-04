@@ -25,6 +25,7 @@
 #include <string>
 
 #include "device/include/controller.h"
+#include "gd/arbiter/le_connection_arbiter.h"
 #include "gd/att/att_module.h"
 #include "gd/btaa/activity_attribution.h"
 #include "gd/common/init_flags.h"
@@ -150,6 +151,9 @@ void Stack::StartEverything() {
   modules.add<hci::Controller>();
   modules.add<hci::acl_manager::AclScheduler>();
   modules.add<hci::AclManager>();
+
+  modules.add<arbiter::LeConnectionArbiterModule>();
+
   if (common::init_flags::gd_l2cap_is_enabled()) {
     modules.add<l2cap::classic::L2capClassicModule>();
     modules.add<l2cap::le::L2capLeModule>();

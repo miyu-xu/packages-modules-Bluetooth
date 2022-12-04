@@ -32,6 +32,7 @@
 #include "btif/include/btif_hh.h"
 #include "common/interfaces/ILoggable.h"
 #include "device/include/controller.h"
+#include "gd/arbiter/le_connection_arbiter.h"
 #include "gd/common/bidi_queue.h"
 #include "gd/common/bind.h"
 #include "gd/common/init_flags.h"
@@ -91,9 +92,7 @@ class ConnectAddressWithType : public bluetooth::common::IRedactableLoggable {
     return ss.str();
   }
 
-  std::string ToStringForLogging() const override {
-    return ToString();
-  }
+  std::string ToStringForLogging() const override { return ToString(); }
   std::string ToRedactedStringForLogging() const override {
     std::stringstream ss;
     ss << address_.ToRedactedStringForLogging() << "["
@@ -773,8 +772,10 @@ class LeShimAclConnection
           static_cast<tGATT_STATUS>(ToLegacyHciErrorCode(hci_status)), handle_,
           tx_phy, rx_phy);
     } else {
-      LOG_WARN("Not posting OnPhyUpdate callback since it is disabled: (tx:%x, rx:%x, status:%s)",
-               tx_phy, rx_phy, hci::ErrorCodeText(hci_status).c_str());
+      LOG_WARN(
+          "Not posting OnPhyUpdate callback since it is disabled: (tx:%x, "
+          "rx:%x, status:%s)",
+          tx_phy, rx_phy, hci::ErrorCodeText(hci_status).c_str());
     }
   }
 
@@ -1056,9 +1057,7 @@ struct shim::legacy::Acl::impl {
     LOG_DEBUG("Cleared entire Le address acceptlist count:%zu", count);
   }
 
-  void le_rand(LeRandCallback cb ) {
-    controller_get_interface()->le_rand(cb);
-  }
+  void le_rand(LeRandCallback cb) { controller_get_interface()->le_rand(cb); }
 
   void AddToAddressResolution(const hci::AddressWithType& address_with_type,
                               const std::array<uint8_t, 16>& peer_irk,
@@ -1293,7 +1292,8 @@ shim::legacy::Acl::Acl(os::Handler* handler,
   pimpl_ = std::make_unique<Acl::impl>(max_acceptlist_size,
                                        max_address_resolution_size);
   GetAclManager()->RegisterCallbacks(this, handler_);
-  GetAclManager()->RegisterLeCallbacks(this, handler_);
+  GetLeConnectionArbiter()->RegisterLeCallbacks(this, handler_,
+                                                arbiter::DefaultFilter{});
   GetController()->RegisterCompletedMonitorAclPacketsCallback(
       handler->BindOn(this, &Acl::on_incoming_acl_credits));
   shim::RegisterDumpsysFunction(static_cast<void*>(this),
@@ -1739,7 +1739,8 @@ void shim::legacy::Acl::FinalShutdown() {
 
   promise = std::promise<void>();
   future = promise.get_future();
-  GetAclManager()->UnregisterLeCallbacks(this, std::move(promise));
+  GetLeConnectionArbiter()->UnregisterLeCallbacks(
+      this, arbiter::DefaultFilter{}, std::move(promise));
   future.wait();
   LOG_DEBUG("Unregistered le callbacks from gd acl manager");
 

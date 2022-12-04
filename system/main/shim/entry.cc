@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+#include "main/shim/entry.h"
+
+#include "gd/arbiter/le_connection_arbiter.h"
 #include "gd/btaa/activity_attribution.h"
 #include "gd/hci/controller.h"
 #include "gd/hci/hci_layer.h"
@@ -30,10 +33,7 @@
 #include "gd/security/security_module.h"
 #include "gd/shim/dumpsys.h"
 #include "gd/storage/storage_module.h"
-
 #include "hci/acl_manager.h"
-
-#include "main/shim/entry.h"
 #include "main/shim/stack.h"
 
 namespace bluetooth {
@@ -119,6 +119,12 @@ storage::StorageModule* GetStorage() {
   return Stack::GetInstance()
       ->GetStackManager()
       ->GetInstance<storage::StorageModule>();
+}
+
+arbiter::LeConnectionArbiterModule* GetLeConnectionArbiter() {
+  return Stack::GetInstance()
+      ->GetStackManager()
+      ->GetInstance<arbiter::LeConnectionArbiterModule>();
 }
 
 hci::AclManager* GetAclManager() {

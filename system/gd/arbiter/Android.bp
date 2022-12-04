@@ -1,0 +1,17 @@
+package {
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+filegroup {
+    name: "BluetoothArbiterSources",
+    srcs: [
+        "le_connection_arbiter.cc",
+    ],
+}
+
+filegroup {
+    name: "BluetoothArbiterUnitTestSources",
+    srcs: [
+        "le_connection_arbiter.cc",
+    ],
+}
