@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7954ba7_65113d7f",
+        "filename": "android/app/tests/unit/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-04T07:26:49Z",
+      "side": 1,
+      "message": "Could you also do the same thing for pbapclient class?\n\n\"bluetooth.profile.pbap.client.enabled\"",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "097fcf9cd37022d448011dbc500eba2319d0e47c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99bc07d3_d05a7e58",
+        "filename": "android/app/tests/unit/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-04T07:26:49Z",
+      "side": 1,
+      "message": "It seems there is a new file GoogleAndroidText.xml is created.\nPlease also fix the file too.\n\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/tests/unit/GoogleAndroidTest.xml",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 107
+      },
+      "revId": "097fcf9cd37022d448011dbc500eba2319d0e47c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
