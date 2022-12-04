@@ -22,16 +22,28 @@
 namespace bluetooth {
 namespace arbiter {
 
+struct DefaultFilter {};
+struct AdvertisingSetFilter {
+  uint8_t advertising_set_id;
+};
+
+using ConnectionFilter = std::variant<DefaultFilter, AdvertisingSetFilter>;
+
 // The LeConnectionArbiter allows us to dispatch incoming LE connection to one of multiple BLE stacks (Fluoride,
 // GMSCore, etc). Each client can register a set of callbacks, as well as an advertising set ID, and the Arbiter will
-// dispatch the callbacks depending on the ownership of the advertising set ID.
-
+// dispatch the callbacks depending on the filter provided. If multiple filters match, the latest one added will take
+// priority.
 class LeConnectionArbiterModule : public bluetooth::Module {
  public:
   // Register callbacks to be invoked when a connection arrives. For now, this is just a pass-through into the
   // acl_manager, so the advertising set ID is not needed here.
-  void RegisterLeCallbacks(hci::acl_manager::LeConnectionCallbacks* callbacks, os::Handler* handler);
-  void UnregisterLeCallbacks(hci::acl_manager::LeConnectionCallbacks* callbacks, std::promise<void> promise);
+  void RegisterLeCallbacks(
+      hci::acl_manager::LeConnectionCallbacks* callbacks, os::Handler* handler, ConnectionFilter filter);
+
+  // When removing filters, if multiple filters are enrolled for the same callback that compare with equality, the MOST
+  // RECENTLY ADDED will be removed. This behavior is kept for simplicity of implementation, but it is not ideal.
+  void UnregisterLeCallbacks(
+      hci::acl_manager::LeConnectionCallbacks* callbacks, ConnectionFilter filter, std::promise<void> promise);
 
  private:
   struct impl;

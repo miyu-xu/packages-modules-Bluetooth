@@ -67,6 +67,10 @@ class LeAclConnection : public AclConnection {
 
   virtual Role GetRole() const;
 
+  const RoleSpecificData& GetRoleSpecificData() const {
+    return role_specific_data_;
+  }
+
   void UpdateRoleSpecificData(RoleSpecificData role_specific_data) {
     role_specific_data_ = role_specific_data;
   }
