@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c60929f8_a0558e2c",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-04T08:26:09Z",
+      "side": 1,
+      "message": "So for cancelling, the connection_type is not needed ?\nWhat if app tries to make background connection, then targetted announcements ? Or is that invalid ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 17
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6ff919d_b8ed063a",
+        "filename": "system/stack/include/btm_ble_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-04T08:26:09Z",
+      "side": 1,
+      "message": "What is tGATT_CONN_TYPE ? Can\u0027t find it through \"git grep\"",
+      "range": {
+        "startLine": 357,
+        "startChar": 20,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
