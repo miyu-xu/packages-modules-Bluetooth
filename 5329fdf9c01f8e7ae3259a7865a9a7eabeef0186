@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d54662c3_6ab6b5f4",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-04T17:25:37Z",
+      "side": 1,
+      "message": "No, I believe it was used in some previous solution. Removed",
+      "parentUuid": "89cb6932_7f6337fe",
+      "revId": "5329fdf9c01f8e7ae3259a7865a9a7eabeef0186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "650ba7ac_4e2e5a6c",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-03T23:17:13Z",
       "side": 1,
       "message": "will it work when mCallback is null?",
+      "revId": "5329fdf9c01f8e7ae3259a7865a9a7eabeef0186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a3eb57_f40e813f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-04T17:25:37Z",
+      "side": 1,
+      "message": "nope it wont... fixed",
+      "parentUuid": "650ba7ac_4e2e5a6c",
       "revId": "5329fdf9c01f8e7ae3259a7865a9a7eabeef0186",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
