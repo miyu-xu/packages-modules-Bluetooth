@@ -38,12 +38,15 @@ class Handler;
 namespace activity_attribution {
 class ActivityAttribution;
 }
+namespace arbiter {
+class LeConnectionArbiterModule;
+}
 namespace neighbor {
 class ConnectabilityModule;
 class DiscoverabilityModule;
 class InquiryModule;
 class PageModule;
-}
+}  // namespace neighbor
 namespace hci {
 class Controller;
 class HciLayer;
@@ -51,7 +54,7 @@ class AclManager;
 class LeAdvertisingManager;
 class LeScanningManager;
 class VendorSpecificEventManager;
-}
+}  // namespace hci
 
 namespace l2cap {
 namespace classic {
@@ -92,6 +95,7 @@ neighbor::PageModule* GetPage();
 hci::LeScanningManager* GetScanning();
 bluetooth::security::SecurityModule* GetSecurityModule();
 storage::StorageModule* GetStorage();
+arbiter::LeConnectionArbiterModule* GetLeConnectionArbiter();
 hci::AclManager* GetAclManager();
 hci::VendorSpecificEventManager* GetVendorSpecificEventManager();
 activity_attribution::ActivityAttribution* GetActivityAttribution();
