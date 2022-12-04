@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e034f60_bab7c8a0",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-04T08:48:05Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we somehow clean the filter, or disable it, if it was previously enabled ?",
+      "range": {
+        "startLine": 806,
+        "startChar": 3,
+        "endLine": 806,
+        "endChar": 22
+      },
+      "revId": "59eb274c82173b5bfb842b844c6c41337af0e20b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
