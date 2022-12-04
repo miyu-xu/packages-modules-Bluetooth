@@ -94,8 +94,6 @@ class Link : public l2cap::internal::ILink, public hci::acl_manager::LeConnectio
 
   void OnPhyUpdate(hci::ErrorCode hci_status, uint8_t tx_phy, uint8_t rx_phy) override;
 
-  void OnLocalAddressUpdate(hci::AddressWithType address_with_type) override;
-
   virtual void Disconnect();
 
   // Handles connection parameter update request from remote

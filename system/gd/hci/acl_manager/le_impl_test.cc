@@ -416,7 +416,6 @@ class MockLeConnectionManagementCallbacks : public LeConnectionManagementCallbac
       (override));
   MOCK_METHOD(void, OnLeReadRemoteFeaturesComplete, (hci::ErrorCode hci_status, uint64_t features), (override));
   MOCK_METHOD(void, OnPhyUpdate, (hci::ErrorCode hci_status, uint8_t tx_phy, uint8_t rx_phy), (override));
-  MOCK_METHOD(void, OnLocalAddressUpdate, (AddressWithType address_with_type), (override));
 };
 
 class LeImplTest : public ::testing::Test {

@@ -140,9 +140,11 @@ AclManager::AclManager() : pimpl_(std::make_unique<impl>(*this)) {}
 
 void AclManager::RegisterCallbacks(ConnectionCallbacks* callbacks, os::Handler* handler) {
   ASSERT(callbacks != nullptr && handler != nullptr);
-  GetHandler()->Post(common::BindOnce(&classic_impl::handle_register_callbacks,
-                                      common::Unretained(pimpl_->classic_impl_), common::Unretained(callbacks),
-                                      common::Unretained(handler)));
+  GetHandler()->Post(common::BindOnce(
+      &classic_impl::handle_register_callbacks,
+      common::Unretained(pimpl_->classic_impl_),
+      common::Unretained(callbacks),
+      common::Unretained(handler)));
 }
 
 void AclManager::UnregisterCallbacks(ConnectionCallbacks* callbacks, std::promise<void> promise) {
@@ -289,9 +291,10 @@ void AclManager::WriteDefaultLinkPolicySettings(uint16_t default_link_policy_set
   CallOn(pimpl_->classic_impl_, &classic_impl::write_default_link_policy_settings, default_link_policy_settings);
 }
 
-void AclManager::OnAdvertisingSetTerminated(ErrorCode status, uint16_t conn_handle, hci::AddressWithType adv_address) {
+void AclManager::OnAdvertisingSetTerminated(
+    ErrorCode status, uint16_t conn_handle, uint8_t adv_set_id, hci::AddressWithType adv_address) {
   if (status == ErrorCode::SUCCESS) {
-    CallOn(pimpl_->le_impl_, &le_impl::UpdateLocalAddress, conn_handle, adv_address);
+    CallOn(pimpl_->le_impl_, &le_impl::OnAdvertisingSetTerminated, conn_handle, adv_set_id, adv_address);
   }
 }
 
