@@ -16,6 +16,7 @@
 
 #include "main/shim/entry.h"
 
+#include "gd/arbiter/le_connection_arbiter.h"
 #include "gd/btaa/activity_attribution.h"
 #include "gd/hci/controller.h"
 #include "gd/hci/hci_layer.h"
@@ -111,6 +112,12 @@ storage::StorageModule* GetStorage() {
   return Stack::GetInstance()
       ->GetStackManager()
       ->GetInstance<storage::StorageModule>();
+}
+
+arbiter::LeConnectionArbiterModule* GetLeConnectionArbiter() {
+  return Stack::GetInstance()
+      ->GetStackManager()
+      ->GetInstance<arbiter::LeConnectionArbiterModule>();
 }
 
 hci::AclManager* GetAclManager() {
