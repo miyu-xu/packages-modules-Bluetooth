@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdcf7b43_c1981c1a",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothActivity.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-04T06:35:11Z",
+      "side": 1,
+      "message": "Thinking again, How about just using AppCompatActivity?",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 30
+      },
+      "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
