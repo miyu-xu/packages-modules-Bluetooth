@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7e3d2a_501a7747",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-04T09:14:26Z",
+      "side": 1,
+      "message": "Jakub T has same question. For canceling we don\u0027t care about background connection type. Both are checked and removed.",
+      "parentUuid": "c60929f8_a0558e2c",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 17
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6ff919d_b8ed063a",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "29f6d299_62c9e4f2",
+        "filename": "system/stack/include/btm_ble_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-04T09:14:26Z",
+      "side": 1,
+      "message": "Thanks - this comment is a left over from previous version which had this enum in two places  - this was fixed in this version by moving enum to BTM. Will remove this comment.",
+      "parentUuid": "e6ff919d_b8ed063a",
+      "range": {
+        "startLine": 357,
+        "startChar": 20,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6b7004e_8c2d015e",
         "filename": "system/stack/include/btm_ble_api_types.h",
         "patchSetId": 8
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-04T08:32:09Z",
       "side": 1,
       "message": "Should targeted announcements be a property of device, rather than parameter to connect method ?\nWhen you attempt to connect (direct or background connection) to targeted announcements enabled device, you would check the property, and make the decision, rather than making every client aware of this aspect of device/connections",
+      "range": {
+        "startLine": 361,
+        "startChar": 2,
+        "endLine": 361,
+        "endChar": 51
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac1faaa8_e1b2fcd2",
+        "filename": "system/stack/include/btm_ble_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-04T09:14:26Z",
+      "side": 1,
+      "message": "In native we are using address of the device when using internal APIs between modules. There is no device object around and I don\u0027t want to introduce such concept now.\nHowever if you have a good idea where to place such property, I\u0027m open for suggestions. Thanks",
+      "parentUuid": "e6b7004e_8c2d015e",
       "range": {
         "startLine": 361,
         "startChar": 2,
