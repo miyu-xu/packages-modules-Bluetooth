@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca258dee_73b9ed1f",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-12-04T18:03:49Z",
+      "side": 1,
+      "message": "for a pair of hearing aid, there could be multiple active devices, see method `packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java#getActiveDevices`. \nFor a pair of hearing aids, they have same `HiSyncId`, so maybe use `mActiveDeviceHiSyncId` to identify whether a Bluetooth device is active would be better",
+      "range": {
+        "startLine": 80,
+        "startChar": 28,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cfe178f_ee3cd16d",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-12-04T18:03:49Z",
+      "side": 1,
+      "message": "use equals method would be better?",
+      "range": {
+        "startLine": 603,
+        "startChar": 16,
+        "endLine": 603,
+        "endChar": 39
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaadbe12_36c2e44a",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-12-04T18:03:49Z",
+      "side": 1,
+      "message": "maybe this name \"AudioManagerOnAudioDevicesRemovedCallback\" would be better?",
+      "range": {
+        "startLine": 712,
+        "startChar": 18,
+        "endLine": 712,
+        "endChar": 55
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db7a582b_15cc92e0",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-12-04T18:03:49Z",
+      "side": 1,
+      "message": "maybe this name \"AudioManagerOnAudioDevicesAddedCallback\" would be better?",
+      "range": {
+        "startLine": 728,
+        "startChar": 18,
+        "endLine": 728,
+        "endChar": 52
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
