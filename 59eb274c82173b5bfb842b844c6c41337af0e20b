@@ -22,6 +22,30 @@
       },
       "revId": "59eb274c82173b5bfb842b844c6c41337af0e20b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cbc9620_08396393",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-04T09:08:08Z",
+      "side": 1,
+      "message": "Look couple lines above - there is a place where we Delete the filter. This is first step which is always done before we configure.",
+      "parentUuid": "7e034f60_bab7c8a0",
+      "range": {
+        "startLine": 806,
+        "startChar": 3,
+        "endLine": 806,
+        "endChar": 22
+      },
+      "revId": "59eb274c82173b5bfb842b844c6c41337af0e20b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
