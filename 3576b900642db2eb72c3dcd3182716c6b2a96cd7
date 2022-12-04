@@ -45,6 +45,29 @@
       },
       "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6b7004e_8c2d015e",
+        "filename": "system/stack/include/btm_ble_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-04T08:32:09Z",
+      "side": 1,
+      "message": "Should targeted announcements be a property of device, rather than parameter to connect method ?\nWhen you attempt to connect (direct or background connection) to targeted announcements enabled device, you would check the property, and make the decision, rather than making every client aware of this aspect of device/connections",
+      "range": {
+        "startLine": 361,
+        "startChar": 2,
+        "endLine": 361,
+        "endChar": 51
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
