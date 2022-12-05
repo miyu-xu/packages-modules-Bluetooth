@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566524b3_97eefa4e",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-05T21:21:04Z",
+      "side": 1,
+      "message": "The command is very recent and likely to return HCI Command Not Supported on many controllers. You should check the Supported Commands mask before sending the command, and/or not assert on status \u003d\u003d SUCCESS",
+      "range": {
+        "startLine": 995,
+        "startChar": 10,
+        "endLine": 995,
+        "endChar": 20
+      },
+      "revId": "15fc4cf1489f8d22caa6d8b5a973793795c46f4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
