@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::fmt::{Display, Formatter};
+use std::num::ParseIntError;
 use std::slice::SliceIndex;
 use std::sync::{Arc, Mutex};
 
@@ -1227,6 +1228,46 @@ impl CommandHandler {
                 for (adv_id, params, scan_rsp) in advs {
                     print_info!("Setting scan response data for {}", adv_id);
                     context.gatt_dbus.as_mut().unwrap().set_scan_response_data(adv_id, scan_rsp);
+                    print_info!("Setting parameters for {}", adv_id);
+                    context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
+                }
+            }
+            "add-data" => {
+                pub fn decode_hex(s: &str) -> Result<Vec<u8>, ParseIntError> {
+                    (0..s.len()).step_by(2).map(|i| u8::from_str_radix(&s[i..i + 2], 16)).collect()
+                }
+
+                let ad_type = decode_hex(String::from(get_arg(args, 1)?).as_str());
+                if !ad_type.is_ok() {
+                    return Err(CommandError::Failed(format!("Failed parsing ad_type")));
+                }
+                let parsed_ad_type = ad_type.unwrap()[0];
+
+                let ad_payload = decode_hex(String::from(get_arg(args, 2)?).as_str());
+                if !ad_payload.is_ok() {
+                    return Err(CommandError::Failed(format!("Failed parsing ad_payload")));
+                }
+                let mut parsed_ad_payload = ad_payload.unwrap();
+                parsed_ad_payload.reverse();
+
+                let mut context = self.context.lock().unwrap();
+
+                let advs: Vec<(_, _, _)> = context
+                    .adv_sets
+                    .iter()
+                    .filter_map(|(_, s)| {
+                        s.adv_id.map(|adv_id| (adv_id.clone(), s.params.clone(), s.data.clone()))
+                    })
+                    .collect();
+
+                for (adv_id, params, data) in advs {
+                    print_info!("Setting data for {}", adv_id);
+                    context.gatt_dbus.as_mut().unwrap().add_advertising_data(
+                        adv_id,
+                        data,
+                        parsed_ad_type,
+                        parsed_ad_payload.clone(),
+                    );
                     print_info!("Setting parameters for {}", adv_id);
                     context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
                 }

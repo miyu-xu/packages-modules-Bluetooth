@@ -231,7 +231,7 @@ impl Into<bt_topshim::profiles::gatt::AdvertiseParameters> for AdvertisingSetPar
 }
 
 impl AdvertiseData {
-    fn append_adv_data(dest: &mut Vec<u8>, ad_type: u8, ad_payload: &[u8]) {
+    pub fn append_adv_data(dest: &mut Vec<u8>, ad_type: u8, ad_payload: &[u8]) {
         let len = clamp(ad_payload.len(), 0, 254);
         dest.push((len + 1) as u8);
         dest.push(ad_type);
