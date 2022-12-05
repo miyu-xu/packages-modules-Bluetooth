@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e91c2d1_c5ee3f23",
+        "filename": "android/app/tests/unit/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-05T08:00:47Z",
+      "side": 1,
+      "message": "Done for both!",
+      "parentUuid": "cfb6ffcc_f161a0e5",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "097fcf9cd37022d448011dbc500eba2319d0e47c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99bc07d3_d05a7e58",
@@ -61,6 +85,30 @@
       "writtenOn": "2022-12-04T07:26:49Z",
       "side": 1,
       "message": "It seems there is a new file GoogleAndroidText.xml is created.\nPlease also fix the file too.\n\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/tests/unit/GoogleAndroidTest.xml",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 107
+      },
+      "revId": "097fcf9cd37022d448011dbc500eba2319d0e47c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eeecf2c_5a3dc47f",
+        "filename": "android/app/tests/unit/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-05T08:00:47Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "99bc07d3_d05a7e58",
       "range": {
         "startLine": 36,
         "startChar": 8,
