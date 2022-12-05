@@ -14,6 +14,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import logging
+
 from blueberry.tests.gd.cert.truth import assertThat
 from blueberry.tests.topshim.lib.topshim_base_test import TopshimBaseTest
 from blueberry.tests.topshim.lib.adapter_client import AdapterClient
@@ -24,7 +26,7 @@ from mobly import test_runner
 class AdapterTest(TopshimBaseTest):
 
     def test_verify_adapter_started(self):
-        print("Adapter is verified when test starts")
+        logging.info("Adapter is verified when test starts")
 
     def test_enable_inquiry_scan(self):
         status, discovery_mode = self.dut().enable_inquiry_scan()

@@ -56,6 +56,16 @@ bool SetSystemProperty(const std::string& property, const std::string& value) {
   return true;
 }
 
+bool SetSystemPropertyUint16(const std::string& property, const uint16_t value) {
+  std::lock_guard<std::mutex> lock(properties_mutex);
+  std::stringstream stream;
+  stream << value;
+  std::string str_value;
+  stream >> str_value;
+  properties.insert_or_assign(property, str_value);
+  return true;
+}
+
 void ClearSystemPropertiesForHost() {
   std::lock_guard<std::mutex> lock(properties_mutex);
   properties.clear();

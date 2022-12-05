@@ -6,10 +6,10 @@ use bt_topshim::btif::{BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterfac
 use crate::utils::converters::{bluetooth_property_to_event_data, event_data_from_string};
 use bt_topshim_facade_protobuf::empty::Empty;
 use bt_topshim_facade_protobuf::facade::{
-    EventType, FetchEventsRequest, FetchEventsResponse, SetDefaultEventMaskExceptRequest,
-    SetDiscoveryModeRequest, SetDiscoveryModeResponse, SetLocalIoCapsRequest,
-    SetLocalIoCapsResponse, ToggleDiscoveryRequest, ToggleDiscoveryResponse, ToggleStackRequest,
-    ToggleStackResponse,
+    EventType, FetchEventsRequest, FetchEventsResponse, LeConnectionParametersRequest,
+    SetDefaultEventMaskExceptRequest, SetDiscoveryModeRequest, SetDiscoveryModeResponse,
+    SetLocalIoCapsRequest, SetLocalIoCapsResponse, ToggleDiscoveryRequest, ToggleDiscoveryResponse,
+    ToggleStackRequest, ToggleStackResponse,
 };
 use bt_topshim_facade_protobuf::facade_grpc::{create_adapter_service, AdapterService};
 use futures::sink::SinkExt;
@@ -214,6 +214,19 @@ impl AdapterService for AdapterServiceImpl {
                         );
                         sink.send((rsp, WriteFlags::default())).await.unwrap();
                     }
+                    BaseCallbacks::LeConnectionParameterCallback(interval, window) => {
+                        let mut rsp = FetchEventsResponse::new();
+                        rsp.event_type = EventType::LE_CONNECTION_PARAMETER;
+                        rsp.params.insert(
+                            String::from("interval"),
+                            event_data_from_string(interval.to_string()),
+                        );
+                        rsp.params.insert(
+                            String::from("window"),
+                            event_data_from_string(window.to_string()),
+                        );
+                        sink.send((rsp, WriteFlags::default())).await.unwrap();
+                    }
                     _ => (),
                 }
             }
@@ -296,6 +309,33 @@ impl AdapterService for AdapterServiceImpl {
 
     fn le_rand(&mut self, ctx: RpcContext<'_>, _req: Empty, sink: UnarySink<Empty>) {
         self.btif_intf.lock().unwrap().le_rand();
+        ctx.spawn(async move {
+            sink.success(Empty::default()).await.unwrap();
+        })
+    }
+
+    fn get_le_connection_parameters(
+        &mut self,
+        ctx: RpcContext<'_>,
+        _req: Empty,
+        sink: UnarySink<Empty>,
+    ) {
+        self.btif_intf.lock().unwrap().get_le_connection_parameters();
+        ctx.spawn(async move {
+            sink.success(Empty::default()).await.unwrap();
+        })
+    }
+
+    fn set_le_connection_parameters(
+        &mut self,
+        ctx: RpcContext<'_>,
+        req: LeConnectionParametersRequest,
+        sink: UnarySink<Empty>,
+    ) {
+        self.btif_intf
+            .lock()
+            .unwrap()
+            .set_le_connection_parameters(req.interval as u16, req.window as u16);
         ctx.spawn(async move {
             sink.success(Empty::default()).await.unwrap();
         })

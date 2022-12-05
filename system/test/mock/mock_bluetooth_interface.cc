@@ -174,6 +174,14 @@ static int set_event_filter_connection_setup_all_devices() { return 0; }
 static void metadata_changed(const RawAddress& remote_bd_addr, int key,
                              std::vector<uint8_t> value) {}
 
+static int set_le_connection_parameters(uint16_t interval, uint16_t window) {
+  return 0;
+}
+
+static int get_le_connection_parameters() { return 0; }
+
+static int get_le_connection_parameters() { return 0; }
+
 EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     sizeof(bluetoothInterface),
     init,
@@ -219,6 +227,8 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     clear_filter_accept_list,
     disconnect_all_acls,
     le_rand,
+    get_le_connection_parameters,
+    set_le_connection_parameters,
     set_event_filter_connection_setup_all_devices,
     allow_wake_by_hid,
     restore_filter_accept_list,

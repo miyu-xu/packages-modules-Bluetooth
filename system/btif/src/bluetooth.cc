@@ -750,6 +750,36 @@ static int set_event_filter_connection_setup_all_devices() {
   return BT_STATUS_SUCCESS;
 }
 
+static int set_le_connection_parameters(uint16_t interval, uint16_t window) {
+  if (!interface_ready()) return BT_STATUS_NOT_READY;
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindOnce(btif_dm_set_le_connection_parameters, interval, window));
+  return BT_STATUS_SUCCESS;
+}
+
+static void get_le_connection_parameters_btif_cb(uint16_t interval,
+                                                 uint16_t window) {
+  LOG_VERBOSE("%s", __func__);
+  do_in_jni_thread(FROM_HERE, base::BindOnce(
+                                  [](uint16_t interval, uint16_t window) {
+                                    HAL_CBACK(bt_hal_cbacks,
+                                              le_connection_parameter_cb,
+                                              interval, window);
+                                  },
+                                  interval, window));
+}
+
+static int get_le_connection_parameters() {
+  if (!interface_ready()) return BT_STATUS_NOT_READY;
+
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindOnce(btif_dm_get_le_connection_parameters,
+                     base::Bind(&get_le_connection_parameters_btif_cb)));
+  return BT_STATUS_SUCCESS;
+}
+
 static void dump(int fd, const char** arguments) {
   btif_debug_conn_dump(fd);
   btif_debug_bond_event_dump(fd);
@@ -1023,6 +1053,8 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     .clear_filter_accept_list = clear_filter_accept_list,
     .disconnect_all_acls = disconnect_all_acls,
     .le_rand = le_rand,
+    .get_le_connection_parameters = get_le_connection_parameters,
+    .set_le_connection_parameters = set_le_connection_parameters,
     .set_event_filter_inquiry_result_all_devices =
         set_event_filter_inquiry_result_all_devices,
     .set_default_event_mask_except = set_default_event_mask_except,

@@ -516,6 +516,9 @@ typedef void (*switch_codec_callback)(bool is_low_latency_buffer_size);
 
 typedef void (*le_rand_callback)(uint64_t random);
 
+typedef void (*le_connection_parameter_callback)(uint16_t interval,
+                                                 uint16_t window);
+
 typedef enum { ASSOCIATE_JVM, DISASSOCIATE_JVM } bt_cb_thread_evt;
 
 /** Thread Associate/Disassociate JVM Callback */
@@ -577,6 +580,7 @@ typedef struct {
   switch_buffer_size_callback switch_buffer_size_cb;
   switch_codec_callback switch_codec_cb;
   le_rand_callback le_rand_cb;
+  le_connection_parameter_callback le_connection_parameter_cb;
 } bt_callbacks_t;
 
 typedef void (*alarm_cb)(void* data);
@@ -896,6 +900,19 @@ typedef struct {
   void (*metadata_changed)(const RawAddress& remote_bd_addr, int key,
                            std::vector<uint8_t> value);
 
+  /**
+   *
+   * Set the interval and window for an LE connection.
+   *
+   */
+  int (*set_le_connection_parameters)(uint16_t interval, uint16_t window);
+
+  /**
+   *
+   * Get the current values for the interval and window of an LE Connection
+   *
+   */
+  int (*get_le_connection_parameters)();
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"

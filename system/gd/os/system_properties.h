@@ -41,6 +41,10 @@ bool GetSystemPropertyBool(const std::string& property, bool default_value);
 // Replace existing value if property already exists
 bool SetSystemProperty(const std::string& property, const std::string& value);
 
+// Set |property| keyed system property to |value|, return true if the set was successful and false
+// if the set failed Replace existing value if property already exists
+bool SetSystemPropertyUint16(const std::string& property, const uint16_t value);
+
 // Clear system properties for host only
 void ClearSystemPropertiesForHost();
 
