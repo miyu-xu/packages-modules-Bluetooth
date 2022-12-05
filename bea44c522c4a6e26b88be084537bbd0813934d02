@@ -187,6 +187,30 @@
       },
       "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ac67f26_bec2d3a9",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-05T09:47:05Z",
+      "side": 1,
+      "message": "I\u0027ve replaced it with `\u003c\u003c` and `\u003e\u003e` directly.",
+      "parentUuid": "128bd2e6_f51d9afe",
+      "range": {
+        "startLine": 207,
+        "startChar": 21,
+        "endLine": 207,
+        "endChar": 64
+      },
+      "revId": "bea44c522c4a6e26b88be084537bbd0813934d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
