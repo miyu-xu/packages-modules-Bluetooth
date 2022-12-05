@@ -1871,6 +1871,18 @@ tBTM_STATUS BTM_LeRand(LeRandCallback);
 
 /*******************************************************************************
  *
+ * Function        BTM_SetLeConnectionParameters
+ *
+ * Description     Set the interval and window for an LE connection.
+ *
+ * Parameters      interval - ms connection interval
+ *                 window - ms how long to be active per interval
+ *
+ *******************************************************************************/
+tBTM_STATUS BTM_SetLeConnectionParameters(uint8_t interval, uint8_t window);
+
+/*******************************************************************************
+ *
  * Function        BTM_SetEventFilterConnectionSetupAllDevices
  *
  * Description    Tell the controller to allow all devices
