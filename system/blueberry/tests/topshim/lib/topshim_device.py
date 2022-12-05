@@ -157,11 +157,28 @@ class TopshimDevice(AsyncClosable):
     def le_rand(self):
         self.__post(self.__adapter.le_rand())
 
+    def create_bond(self, address, transport=1):
+        """
+        Create a bonding entry for a given address with a particular transport type.
+        """
+        f = self.__post(self.__security.create_bond(address, transport))
+        return self.__post(self.__bond_change_waiter(f))
+
     def remove_bonded_device(self, address):
         """
         Removes a bonding entry for a given address.
         """
         self.__post(self.__security.remove_bond(address))
+
+    def wait_for_bond_state_change(self):
+        f = self.__post(self.__security.wait_for_bond_state_change())
+        return self.__post(self.__bond_change_waiter(f))
+
+    async def __bond_change_waiter(self, f):
+        data = await f
+        data_list = data.split(" :: ")
+        state, address = data_list[0].strip(), data_list[1].strip()
+        return (state, address)
 
     def generate_local_oob_data(self, transport=TRANSPORT_LE):
         """
@@ -198,8 +215,8 @@ class TopshimDevice(AsyncClosable):
 
         async def waiter(f):
             try:
-                property = await f
-                return list(property[1:-1].strip().split(","))
+                address = await f
+                return address
             except:
                 # The future `f` has a timeout after 2s post which it is cancelled.
                 print("No device was found. Timed out.")
@@ -211,5 +228,5 @@ class TopshimDevice(AsyncClosable):
         data = await f
         data_list = data.split(" :: ")
         status, properties = data_list[0].strip(), data_list[1].strip()
-        properties = list(properties[1:-1].strip().split(","))
+        properties = list(properties[1:-1].strip().split(" %%$%% "))
         return (status, properties)
