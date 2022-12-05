@@ -37,13 +37,15 @@ class HfpClient(AsyncClosable):
     def __init__(self, port=8999):
         self.__channel = grpc.aio.insecure_channel("localhost:%d" % port)
         self.__hfp_stub = facade_pb2_grpc.HfpServiceStub(self.__channel)
-        self.__hfp_event_stream = self.__hfp_stub.FetchEvents(facade_pb2.FetchEventsRequest())
+        #self.__hfp_event_stream = self.__hfp_stub.FetchEvents(facade_pb2.FetchEventsRequest())
 
     async def close(self):
         """
         Terminate the current tasks.
         """
         for task in self.__task_list:
+            if task.done() or task.cancelled():
+                continue
             task.cancel()
             task = None
         self.__task_list.clear()

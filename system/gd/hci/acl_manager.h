@@ -140,6 +140,9 @@ public:
  virtual void OnClassicSuspendInitiatedDisconnect(uint16_t handle, ErrorCode reason);
  virtual void OnLeSuspendInitiatedDisconnect(uint16_t handle, ErrorCode reason);
 
+ virtual void OnPause();
+ virtual void OnResume();
+
  static const ModuleFactory Factory;
 
 protected:

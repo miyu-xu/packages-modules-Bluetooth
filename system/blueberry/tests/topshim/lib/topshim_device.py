@@ -236,7 +236,7 @@ class TopshimDevice(AsyncClosable):
                 return params["BdAddr"].data[0]
             except:
                 # The future `f` has a timeout after 2s post which it is cancelled.
-                print("No device was found. Timed out.")
+                logging.error("No device was found. Timed out.")
             return None
 
         return self.__post(waiter(f))
@@ -258,3 +258,9 @@ class TopshimDevice(AsyncClosable):
         data_list = data.split(", ")
         state, address = data_list[0].strip(), data_list[1].strip()
         return (state, address)
+
+    def set_le_connection_parameters(self, interval, window):
+        return self.__post(self.__adapter.set_le_connection_parameters(interval, window))
+
+    def get_le_connection_parameters(self):
+        return self.__post(self.__adapter.get_le_connection_parameters())

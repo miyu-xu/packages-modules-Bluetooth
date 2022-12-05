@@ -13,54 +13,66 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-
 from blueberry.tests.gd.cert.truth import assertThat
 from blueberry.tests.topshim.lib.topshim_base_test import TopshimBaseTest
 from blueberry.tests.topshim.lib.adapter_client import AdapterClient
 
 from mobly import test_runner
 
+MASKED_EVENTS_FOR_SUSPEND = (1 << 4) | (1 << 19)
+
 
 class SuspendTest(TopshimBaseTest):
 
+    __SUSPEND_SCAN_INTERVAL = 0x0400  # 640 ms = 1024 *0.625
+    __SUSPEND_SCAN_WINDOW = 0x0012  # 11.25 ms = 18 *0.625
+    __DEFAULT_DATA = {"interval": 0x0800, "window": 0x0030}
+
     def __verify_no_wake_suspend(self):
         # Start suspend work
-        self.dut().clear_event_mask()
+        self.dut().set_default_event_mask_except(MASKED_EVENTS_FOR_SUSPEND, 0)
         self.dut().clear_event_filter()
         self.dut().clear_filter_accept_list()
         self.dut().stop_advertising()
         self.dut().stop_scanning()
         self.dut().disconnect_all_acls()
+        interval, window = self.dut().get_le_connection_parameters()
+        self.dut().set_le_connection_parameters(self.__SUSPEND_SCAN_INTERVAL, self.__SUSPEND_SCAN_WINDOW)
         self.dut().le_rand()
+        return {"interval": int(interval), "window": int(window)}
 
-    def __verify_no_wake_resume(self):
+    def __verify_no_wake_resume(self, data):
         # Start resume work
         self.dut().set_default_event_mask_except(0, 0)
-        self.dut().set_event_filter_inquiry_result_all_devices()
-        self.dut().set_event_filter_connection_setup_all_devices()
+        self.dut().allow_wake_by_hid()
+        self.dut().clear_event_filter()
+        self.dut().set_le_connection_parameters(data["interval"], data["window"])
         self.dut().le_rand()
 
     def __verify_wakeful_suspend(self, is_a2dp_connected):
-        self.dut().clear_event_mask()
+        self.dut().set_default_event_mask_except(MASKED_EVENTS_FOR_SUSPEND, 0)
         self.dut().clear_event_filter()
         self.dut().clear_filter_accept_list()
         self.dut().stop_advertising()
         self.dut().stop_scanning()
-        if is_a2dp_connected:
-            # self.media_server.disconnect_a2dp()
-            pass
         self.dut().disconnect_all_acls()
+        interval, window = self.dut().get_le_connection_parameters()
+        self.dut().set_le_connection_parameters(self.__SUSPEND_SCAN_INTERVAL, self.__SUSPEND_SCAN_WINDOW)
         self.dut().allow_wake_by_hid()
+        if is_a2dp_connected:
+            pass
+            # self.media_server.disconnect_a2dp()
         self.dut().le_rand()
+        return {"interval": int(interval), "window": int(window)}
 
-    def __verify_wakeful_resume(self, was_a2dp_connected):
+    def __verify_wakeful_resume(self, was_a2dp_connected, data):
         # Start resume work
         self.dut().set_default_event_mask_except(0, 0)
-        self.dut().set_event_filter_inquiry_result_all_devices()
-        self.dut().set_event_filter_connection_setup_all_devices()
+        self.dut().allow_wake_by_hid()
+        self.dut().clear_event_filter()
+        self.dut().set_le_connection_parameters(data["interval"], data["window"])
         if was_a2dp_connected:
-            # restore filter accept list?
-            self.dut().restore_filter_accept_list()
+            pass
             # reconnect a2dp
             # self.media_server.reconnect_last_a2dp()
             # self.gatt.restart_all_previous_advertising()
@@ -71,31 +83,27 @@ class SuspendTest(TopshimBaseTest):
         self.__verify_no_wake_suspend()
 
     def test_no_wake_resume(self):
-        self.__verify_no_wake_resume()
+        self.__verify_no_wake_resume(self.__DEFAULT_DATA)
 
     def test_no_wake_suspend_then_resume(self):
-        self.__verify_no_wake_suspend()
-        self.__verify_no_wake_resume()
+        self.__verify_no_wake_resume(self.__verify_no_wake_suspend())
 
     def test_no_wake_suspend_then_resume_then_suspend(self):
-        self.__verify_no_wake_suspend()
-        self.__verify_no_wake_resume()
-        self.__verify_no_wake_suspend()
+        self.__verify_no_wake_resume(self.__verify_no_wake_suspend())
+        self.__verify_no_wake_resume(self.__verify_no_wake_suspend())
 
     def test_wakeful_suspend_no_a2dp(self):
         self.__verify_wakeful_suspend(False)
 
     def test_wakeful_resume_no_a2dp(self):
-        self.__verify_wakeful_resume(False)
+        self.__verify_wakeful_resume(False, self.__DEFAULT_DATA)
 
     def test_wakeful_suspend_then_resume_no_a2dp(self):
-        self.__verify_wakeful_suspend(False)
-        self.__verify_wakeful_resume(False)
+        self.__verify_wakeful_resume(False, self.__verify_wakeful_suspend(False))
 
     def test_wakeful_suspend_then_resume_then_suspend_no_a2dp(self):
-        self.__verify_wakeful_suspend(False)
-        self.__verify_wakeful_resume(False)
-        self.__verify_wakeful_suspend(False)
+        self.__verify_wakeful_resume(False, self.__verify_wakeful_suspend(False))
+        self.__verify_wakeful_resume(False, self.__verify_wakeful_suspend(False))
 
 
 if __name__ == "__main__":

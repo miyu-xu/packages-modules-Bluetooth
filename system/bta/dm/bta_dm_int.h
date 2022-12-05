@@ -580,6 +580,9 @@ extern void bta_dm_clear_event_mask(void);
 extern void bta_dm_clear_filter_accept_list(void);
 extern void bta_dm_disconnect_all_acls(void);
 extern void bta_dm_le_rand(LeRandCallback cb);
+extern void bta_dm_get_le_connection_parameters(LeConnectionParamsCallback cb);
+extern void bta_dm_set_le_connection_parameters(uint16_t interval,
+                                                uint16_t window);
 extern void bta_dm_set_event_filter_connection_setup_all_devices();
 extern void bta_dm_allow_wake_by_hid(
     std::vector<std::pair<RawAddress, uint8_t>> le_hid_devices);

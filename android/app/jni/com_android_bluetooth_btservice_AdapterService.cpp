@@ -658,6 +658,10 @@ static void le_rand_callback(uint64_t random) {
   // Android doesn't support the LeRand API.
 }
 
+static void le_connection_parameter_cb(uint8_t interval, uint8_t window) {
+  // Android doesn't support the LeRand API.
+}
+
 static void callback_thread_event(bt_cb_thread_evt event) {
   if (event == ASSOCIATE_JVM) {
     JavaVMAttachArgs args;
@@ -738,7 +742,8 @@ static bt_callbacks_t sBluetoothCallbacks = {sizeof(sBluetoothCallbacks),
                                              generate_local_oob_data_callback,
                                              switch_buffer_size_callback,
                                              switch_codec_callback,
-                                             le_rand_callback};
+                                             le_rand_callback,
+                                             le_connection_parameter_cb};
 
 // The callback to call when the wake alarm fires.
 static alarm_cb sAlarmCallback;
