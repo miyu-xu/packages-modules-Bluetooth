@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "382ecda0_8bb07a39",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-12-05T22:35:16Z",
+      "side": 1,
+      "message": "can be futher simplified  to\n\nif let Some(BthfAudioState::Connected) \u003d self.hfp_audio_state.insert(addr, state) {",
+      "range": {
+        "startLine": 544,
+        "startChar": 24,
+        "endLine": 544,
+        "endChar": 96
+      },
+      "revId": "20ffb9731c07f3ddebdae4ee47652aadf0eea396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
