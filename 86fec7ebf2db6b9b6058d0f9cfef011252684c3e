@@ -46,6 +46,30 @@
       },
       "revId": "86fec7ebf2db6b9b6058d0f9cfef011252684c3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e818957_ff46deda",
+        "filename": "android/app/jni/rust/keystore.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-05T18:20:19Z",
+      "side": 1,
+      "message": "Keystore is a pretty new + minimal module, added recently. I thought it would be nice to show the full set of Rust usecases, so future work can just build off an existing template. So I wanted something with incoming + outgoing FFI, interop with GD + legacy, and JNI.",
+      "parentUuid": "d8ba15ac_c6815388",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "86fec7ebf2db6b9b6058d0f9cfef011252684c3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
