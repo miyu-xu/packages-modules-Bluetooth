@@ -67,22 +67,24 @@ def instrument_pandora_server():
   return instrument_process
 
 
-def run_test(args):
+def run_test(args, mobly_args):
   logging.debug(f'run_test config: {args.config} test: {args.test}')
   test_cmd = ['python3', args.test, '-c', args.config]
   if args.verbose:
     test_cmd.append('--verbose')
+  if mobly_args is not None:
+      test_cmd.extend(mobly_args)
   p = subprocess.Popen(test_cmd)
   p.wait(timeout=args.timeout)
   p.terminate()
 
 
-def run(args):
+def run(args, mobly_args):
   if not PANDORA_CF_APK.exists() or args.build:
     build_pandora_server()
   install_pandora_server(args.serial)
   instrument_process = instrument_pandora_server()
-  run_test(args)
+  run_test(args, mobly_args)
   instrument_process.terminate()
 
 
@@ -108,7 +110,7 @@ if __name__ == '__main__':
                       "--verbose",
                       action="store_true",
                       help="Set console logger level to DEBUG")
-  args = parser.parse_args()
+  [args, mobly_args] = parser.parse_known_args()
   console_level = logging.DEBUG if args.verbose else logging.INFO
   logging.basicConfig(level=console_level)
-  run(args)
+  run(args, mobly_args)
