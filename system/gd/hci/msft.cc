@@ -78,22 +78,33 @@ struct MsftExtensionManager::impl {
     LOG_INFO("MsftExtensionManager stop()");
   }
 
-  void handle_msft_events(VendorSpecificEventView event) {
-    // TODO(b/246398494): MSFT events are vendor specific events with an event prefix.
-
-    /* Myles suggested that the structure look like
-    auto payload = event.GetPayload();
-    for (size_t i = 0; i < msft_.prefix.size(); i++) {
-      if (msft_.prefix[i] != payload[i]) {
-        // Print a warning and return
+  void handle_msft_events(VendorSpecificEventView view) {
+    auto payload = view.GetPayload();
+    if (msft_.prefix[0] != (uint8_t)view.GetSubeventCode()) {
+      LOG_WARN("The Microsoft vendor event prefix does not match in view.GetSubeventCode().");
+      return;
+    }
+    for (size_t i = 0; i < msft_.prefix.size() - 1; i++) {
+      if (msft_.prefix[i + 1] != payload[i]) {
+        LOG_WARN("The Microsoft vendor event prefix does not match.");
+        return;
       }
     }
 
-    MsftEventPayloadView::Create(payload.GetLittleEndianSubview(msft_.prefix.size(), payload.size()));
-    // Assert that it's valid
-    // Check the type of event
-    // Cast it, and handle it.
-    */
+    auto pay_view =
+        MsftEventPayloadView::Create(payload.GetLittleEndianSubview(msft_.prefix.size() - 1, payload.size()));
+    ASSERT(pay_view.IsValid());
+
+    MsftEventCode ev_code = pay_view.GetMsftEventCode();
+    if (ev_code != MsftEventCode::MSFT_LE_MONITOR_DEVICE_EVENT) {
+      LOG_WARN("Wrong MSFT event code %hhu", ev_code);
+      return;
+    }
+
+    auto dev_view = MsftLeMonitorDeviceEventPayloadView::Create(pay_view);
+    ASSERT(dev_view.IsValid());
+
+    // TODO: to call a callback here.
   }
 
   bool supports_msft_extensions() {
@@ -174,6 +185,15 @@ struct MsftExtensionManager::impl {
 
     LOG_INFO(
         "MSFT features 0x%16.16llx prefix length %u", (unsigned long long)msft_.features, (unsigned int)prefix.size());
+
+    // We are here because Microsoft Extension is supported. Hence, register the
+    // first octet of the vendor prefix so that the vendor specific event manager
+    // can dispatch the event correctly.
+    // Note: registration of the first octet of the vendor prefix is sufficient
+    //       because each vendor controller should ensure that the first octet
+    //       is unique within the vendor's events.
+    vendor_specific_event_manager_->RegisterEventHandler(
+        static_cast<VseSubeventCode>(msft_.prefix[0]), module_handler_->BindOn(this, &impl::handle_msft_events));
   }
 
   void on_msft_adv_monitor_add_complete(CommandCompleteView view) {
