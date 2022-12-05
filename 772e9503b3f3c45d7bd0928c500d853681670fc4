@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddf6f183_aa3795c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-05T16:41:26Z",
+      "side": 1,
+      "message": "Do you intend to generate the enum type declaration within this CL or this is for another one ?",
+      "revId": "772e9503b3f3c45d7bd0928c500d853681670fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931b97ad_e122a70c",
+        "filename": "tools/pdl/src/backends/rust/field.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-05T16:41:26Z",
+      "side": 1,
+      "message": "You want to forward the error here. It will be raised when an unrecognized enum value is read.",
+      "range": {
+        "startLine": 185,
+        "startChar": 57,
+        "endLine": 185,
+        "endChar": 63
+      },
+      "revId": "772e9503b3f3c45d7bd0928c500d853681670fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
