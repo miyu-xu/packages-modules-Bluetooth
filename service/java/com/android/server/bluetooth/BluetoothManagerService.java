@@ -1411,11 +1411,16 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                 && !isSystem(packageName, callingUid)
                 && !isDeviceOwner(callingUid, packageName)
                 && !isProfileOwner(callingUid, packageName)) {
+            if (DBG) {
+                Log.d(TAG, "disable(): not disabling - Caller is not one of: "
+                        + "privileged | system | deviceOwner | profileOwner");
+            }
             return false;
         }
 
         if (DBG) {
-            Log.d(TAG, "disable(): mBluetooth = " + mBluetooth + " mBinding = " + mBinding);
+            Log.d(TAG, "disable(): mBluetooth=" + mBluetooth + ", persist=" + persist
+                    + ", mBinding=" + mBinding);
         }
 
         synchronized (mReceiver) {
@@ -2059,7 +2064,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                     }
 
                     if (DBG) {
-                        Log.d(TAG, "MESSAGE_ENABLE(" + quietEnable + "): mBluetooth = "
+                        Log.d(TAG, "MESSAGE_ENABLE(" + quietEnable + "): mBluetooth ="
                                 + mBluetooth);
                     }
                     mHandler.removeMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE);
@@ -2138,7 +2143,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                     }
 
                     if (DBG) {
-                        Log.d(TAG, "MESSAGE_DISABLE: mBluetooth = " + mBluetooth
+                        Log.d(TAG, "MESSAGE_DISABLE: mBluetooth =" + mBluetooth
                                 + ", mBinding = " + mBinding);
                     }
                     mHandler.removeMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE);
