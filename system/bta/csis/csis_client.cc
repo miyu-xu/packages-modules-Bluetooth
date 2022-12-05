@@ -161,6 +161,10 @@ class CsisClientImpl : public CsisClient {
         auto g = std::make_shared<CsisGroup>(group_id, uuid);
         csis_groups_.push_back(g);
         csis_group = FindCsisGroup(group_id);
+        if (csis_group == nullptr) {
+          LOG(ERROR) << __func__ << "CSIS group not found";
+          return nullptr;
+        }
       } else {
         LOG(ERROR) << __func__ << ": Missing group - that shall not happen";
         return nullptr;
@@ -643,6 +647,10 @@ class CsisClientImpl : public CsisClient {
 
         // Set grouping and SIRK
         auto csis_group = AssignCsisGroup(addr, gid, true, Uuid::kEmpty);
+        if (csis_group == nullptr) {
+          continue;
+        }
+
         csis_group->SetDesiredSize(size);
         csis_group->SetSirk(sirk);
 
