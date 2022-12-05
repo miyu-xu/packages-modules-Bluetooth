@@ -16,6 +16,24 @@
       "message": "Is it manually test? If yes, mention it in the CL description? Any other tests done?",
       "revId": "35d9375e49de1574f4c5bdcea9d2b35a49c008e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e46a48b1_92e9b20d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-05T22:34:42Z",
+      "side": 1,
+      "message": "Yes, manual scan test was also performed. Added in CL description. Logically, I didn\u0027t apply any change except for the native interface.",
+      "parentUuid": "7b77c7fc_47222699",
+      "revId": "35d9375e49de1574f4c5bdcea9d2b35a49c008e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
