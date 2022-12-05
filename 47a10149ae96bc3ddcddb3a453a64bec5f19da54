@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6595bc16_08ad4210",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-12-05T20:00:11Z",
+      "side": 1,
+      "message": "may remove this and for all following because `#define LOG_INFO(fmt, args...) ALOGI(\"%s:%d %s: \" fmt, __FILE__, __LINE__, __func__, ##args)` already defined __func__",
+      "range": {
+        "startLine": 214,
+        "startChar": 15,
+        "endLine": 214,
+        "endChar": 17
+      },
+      "revId": "47a10149ae96bc3ddcddb3a453a64bec5f19da54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
