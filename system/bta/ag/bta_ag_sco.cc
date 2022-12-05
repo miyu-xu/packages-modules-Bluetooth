@@ -763,6 +763,9 @@ static void bta_ag_sco_event(tBTA_AG_SCB* p_scb, uint8_t event) {
           break;
 
         case BTA_AG_SCO_CLOSE_E:
+          /* Reset codec states so no retry happens */
+          p_scb->codec_fallback = false;
+          p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
           p_sco->state = BTA_AG_SCO_OPEN_CL_ST;
           break;
 
