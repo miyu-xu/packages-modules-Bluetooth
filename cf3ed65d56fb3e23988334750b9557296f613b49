@@ -16,6 +16,24 @@
       "message": "Why does this need to be +1?",
       "revId": "cf3ed65d56fb3e23988334750b9557296f613b49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15b8d99b_636f3bdb",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-05T23:49:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "257749e2_ec6d7dce",
+      "revId": "cf3ed65d56fb3e23988334750b9557296f613b49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
