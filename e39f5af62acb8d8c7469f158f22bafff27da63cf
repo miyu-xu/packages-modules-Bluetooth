@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba5d237_f35f7a2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-05T10:25:16Z",
+      "side": 1,
+      "message": "Hi, this patch is for floss GAP qualification, please take a look, thanks!\nExample command usage is in: https://b.corp.google.com/issues/259356345.",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
