@@ -148,6 +148,10 @@ class CsisClientImpl : public CsisClient {
         auto g = std::make_shared<CsisGroup>(group_id, uuid);
         csis_groups_.push_back(g);
         csis_group = FindCsisGroup(group_id);
+        if (csis_group == nullptr) {
+          LOG(ERROR) << __func__ << "CSIS group not found";
+          return nullptr;
+        }
       } else {
         LOG(ERROR) << __func__ << ": Missing group - that shall not happen";
         return nullptr;
@@ -607,6 +611,10 @@ class CsisClientImpl : public CsisClient {
 
         // Set grouping and SIRK
         auto csis_group = AssignCsisGroup(addr, gid, true, Uuid::kEmpty);
+        if (csis_group == nullptr) {
+          continue;
+        }
+
         csis_group->SetDesiredSize(size);
         csis_group->SetSirk(sirk);
 
@@ -1047,6 +1055,11 @@ class CsisClientImpl : public CsisClient {
 
     csis_instance->SetRank((value[0]));
     auto csis_group = FindCsisGroup(csis_instance->GetGroupId());
+    if (csis_group == nullptr) {
+      LOG(ERROR) << "CSIS group not found";
+      return;
+    }
+
     csis_group->SortByCsisRank();
   }
 
@@ -1057,6 +1070,11 @@ class CsisClientImpl : public CsisClient {
     }
 
     auto csis_group = FindCsisGroup(discovering_group_);
+    if (csis_group == nullptr) {
+      LOG(ERROR) << __func__ << "CSIS group not found";
+      return;
+    }
+
     discovering_group_ = -1;
     if (csis_group->IsGroupComplete())
       csis_group->SetDiscoveryState(
@@ -1403,6 +1421,11 @@ class CsisClientImpl : public CsisClient {
       }
 
       csis_group = FindCsisGroup(group_id);
+      if (csis_group == nullptr) {
+        LOG(ERROR) << __func__ << "CSIS group not found";
+        return;
+      }
+
       csis_group->AddDevice(device);
       /* Let's update csis instance group id */
       csis_instance->SetGroupId(group_id);
