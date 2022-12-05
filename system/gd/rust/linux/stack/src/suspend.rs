@@ -65,6 +65,7 @@ pub enum SuspendType {
 }
 
 struct SuspendState {
+    le_connection_params_expected: bool,
     le_rand_expected: bool,
     suspend_expected: bool,
     resume_expected: bool,
@@ -74,6 +75,7 @@ struct SuspendState {
 impl SuspendState {
     pub fn new() -> SuspendState {
         Self {
+            le_connection_params_expected: false,
             le_rand_expected: false,
             suspend_expected: false,
             resume_expected: false,
@@ -166,6 +168,10 @@ impl ISuspend for Suspend {
         self.gatt.lock().unwrap().scan_enter_suspend();
 
         self.intf.lock().unwrap().disconnect_all_acls();
+
+        self.suspend_state.lock().unwrap().le_connection_params_expected = true;
+        let conn_params = self.intf.lock().unwrap().get_le_connection_parameters();
+        //        self.intf.lock().unwrap().set_le_connection_parameters(0x0400, 0x012);
 
         // Handle wakeful cases (Connected/Other)
         // Treat Other the same as Connected
@@ -273,6 +279,20 @@ impl BtifBluetoothCallbacks for Suspend {
             tokio::spawn(async move {
                 let _result = tx.send(Message::ResumeReady(suspend_id)).await;
             });
+        }
+    }
+
+    fn le_connection_parameter_cb(&mut self, interval: u16, window: u16) {
+        println!("Interval: {:?} ; Window: {:?}", interval, window);
+        if !self.suspend_state.lock().unwrap().le_connection_params_expected {
+            log::warn!("Unexpected LE connection params callback, ignoring.");
+            return;
+        }
+        self.suspend_state.lock().unwrap().le_connection_params_expected = false;
+
+        if let Some(join_handle) = &self.suspend_timeout_joinhandle {
+            join_handle.abort();
+            self.suspend_timeout_joinhandle = None;
         }
     }
 }

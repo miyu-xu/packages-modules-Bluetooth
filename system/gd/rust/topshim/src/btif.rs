@@ -850,6 +850,7 @@ pub enum BaseCallbacks {
     // switch_codec_cb
     GenerateLocalOobData(u8, OobData),
     LeRandCallback(u64),
+    LeConnectionParameterCallback(u16, u16),
 }
 
 pub struct BaseCallbacksDispatcher {
@@ -909,6 +910,8 @@ u32 -> BtStatus, *mut RawAddress, bindings::bt_acl_state_t -> BtAclState, i32 ->
 cb_variant!(BaseCb, generate_local_oob_data_cb -> BaseCallbacks::GenerateLocalOobData, u8, OobData);
 
 cb_variant!(BaseCb, le_rand_cb -> BaseCallbacks::LeRandCallback, u64);
+
+cb_variant!(BaseCb, le_connection_parameter_cb -> BaseCallbacks::LeConnectionParameterCallback, u16, u16);
 
 struct RawInterfaceWrapper {
     pub raw: *const bindings::bt_interface_t,
@@ -1030,6 +1033,7 @@ impl BluetoothInterface {
             switch_buffer_size_cb: None,
             switch_codec_cb: None,
             le_rand_cb: Some(le_rand_cb),
+            le_connection_parameter_cb: Some(le_connection_parameter_cb),
         });
 
         let cb_ptr = LTCheckedPtrMut::from(&mut callbacks);
@@ -1192,6 +1196,14 @@ impl BluetoothInterface {
 
     pub fn le_rand(&self) -> i32 {
         ccall!(self, le_rand)
+    }
+
+    pub fn get_le_connection_parameters(&self) -> i32 {
+        ccall!(self, get_le_connection_parameters)
+    }
+
+    pub fn set_le_connection_parameters(&self, interval: u16, window: u16) -> i32 {
+        ccall!(self, set_le_connection_parameters, interval, window)
     }
 
     pub fn generate_local_oob_data(&self, transport: i32) -> i32 {

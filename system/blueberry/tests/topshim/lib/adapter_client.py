@@ -16,6 +16,7 @@
 
 import asyncio
 import grpc
+import logging
 
 from blueberry.facade.topshim import facade_pb2
 from blueberry.facade.topshim import facade_pb2_grpc
@@ -58,8 +59,8 @@ class AdapterClient(AsyncClosable):
                 future.set_result(e.params)
                 break
             else:
-                print("Got '%s'; expecting '%s'" % (e.event_type, event))
-                print(e)
+                logging.info("Got '%s'; expecting '%s'" % (e.event_type, event))
+                logging.info(e)
 
     async def _listen_for_event(self, event):
         """Start fetching events"""
@@ -70,7 +71,7 @@ class AdapterClient(AsyncClosable):
             await asyncio.wait_for(future, AdapterClient.DEFAULT_TIMEOUT)
         except:
             task.cancel()
-            print("Failed to get event", event)
+            logging.info("Failed to get event", event)
         return future
 
     async def _verify_adapter_started(self):
@@ -144,25 +145,34 @@ class AdapterClient(AsyncClosable):
     async def find_device(self):
         return await self._listen_for_event(facade_pb2.EventType.DEVICE_FOUND)
 
+    async def set_le_connection_parameters(self, interval, window):
+        """Set the le connection parameters"""
+        return await self.__adapter_stub.SetLeConnectionParameters(
+            facade_pb2.LeConnectionParametersRequest(interval=interval, window=window))
+
+    async def get_le_connection_parameters(self):
+        """Get the current value for interval and window"""
+        await self.__adapter_stub.GetLeConnectionParameters(empty_proto.Empty())
+        future = await self._listen_for_event(facade_pb2.EventType.LE_CONNECTION_PARAMETER)
+        params = future.result()
+        return (params["interval"].data[0], params["window"].data[0])
+
 
 class A2dpAutomationHelper():
-    """Invoke gRPC on topshim for A2DP testing"""
 
     def __init__(self, port=8999):
+        """Invoke gRPC on topshim for A2DP testing"""
         self.__channel = grpc.insecure_channel("localhost:%d" % port)
         self.media_stub = facade_pb2_grpc.MediaServiceStub(self.__channel)
 
-    """Start A2dp source profile service"""
-
     def start_source(self):
+        """Start A2dp source profile service"""
         self.media_stub.StartA2dp(facade_pb2.StartA2dpRequest(start_a2dp_source=True))
 
-    """Start A2dp sink profile service"""
-
     def start_sink(self):
+        """Start A2dp sink profile service"""
         self.media_stub.StartA2dp(facade_pb2.StartA2dpRequest(start_a2dp_sink=True))
 
-    """Initialize an A2dp connection from source to sink"""
-
     def source_connect_to_remote(self, address="11:22:33:44:55:66"):
+        """Initialize an A2dp connection from source to sink"""
         self.media_stub.A2dpSourceConnect(facade_pb2.A2dpSourceConnectRequest(address=address))

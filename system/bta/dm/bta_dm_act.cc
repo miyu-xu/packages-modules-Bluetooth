@@ -4220,6 +4220,37 @@ void bta_dm_le_rand(LeRandCallback cb) {
 
 /*******************************************************************************
  *
+ * Function        BTA_DmGetLeConnectionParameters
+ *
+ * Description    Get the current values for the interval and window of an LE
+ *Connection
+ *
+ * Parameters:      |cb| Callback to receive the parameters.
+ *
+ *******************************************************************************/
+void bta_dm_get_le_connection_parameters(LeConnectionParamsCallback cb) {
+  // Autoplumbed
+  VLOG(1) << "bta_dm_get_le_connection_parameters in bta_dm_act";
+  bluetooth::shim::BTM_GetLeConnectionParameters(cb);
+}
+
+/*******************************************************************************
+ *
+ * Function        BTA_DmSetLeConnectionParameters
+ *
+ * Description    Set the interval and window for an LE connection.
+ *
+ * Parameters      interval - ms connection interval
+ *                 window - ms how long to be active per interval
+ *
+ *******************************************************************************/
+void bta_dm_set_le_connection_parameters(uint16_t interval, uint16_t window) {
+  // Autoplumbed
+  bluetooth::shim::BTM_SetLeConnectionParameters(interval, window);
+}
+
+/*******************************************************************************
+ *
  * Function        BTA_DmSetEventFilterConnectionSetupAllDevices
  *
  * Description    Tell the controller to allow all devices

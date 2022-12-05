@@ -13,6 +13,8 @@ service AdapterService {
   rpc ClearFilterAcceptList(google.protobuf.Empty) returns (google.protobuf.Empty) {}
   rpc DisconnectAllAcls(google.protobuf.Empty) returns (google.protobuf.Empty) {}
   rpc LeRand(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc GetLeConnectionParameters(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc SetLeConnectionParameters(LeConnectionParametersRequest) returns (google.protobuf.Empty) {}
   rpc SetEventFilterConnectionSetupAllDevices(google.protobuf.Empty) returns (google.protobuf.Empty) {}
   rpc AllowWakeByHid(google.protobuf.Empty) returns (google.protobuf.Empty) {}
   rpc RestoreFilterAcceptList(google.protobuf.Empty) returns (google.protobuf.Empty) {}
@@ -130,6 +132,7 @@ enum EventType {
   DISCOVERY_STATE = 6;
   DEVICE_FOUND = 7;
   BOND_STATE = 8;
+  LE_CONNECTION_PARAMETER = 9;
 }
 
 message FetchEventsRequest {}
@@ -267,4 +270,9 @@ message CreateBondRequest {
 
 message CreateBondResponse {
   int32 status = 1;
+}
+
+message LeConnectionParametersRequest {
+  uint32 interval = 1;
+  uint32 window = 2;
 }

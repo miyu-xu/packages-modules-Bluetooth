@@ -81,6 +81,8 @@ void btif_dm_clear_filter_accept_list();
 void btif_dm_disconnect_all_acls();
 
 void btif_dm_le_rand(LeRandCallback callback);
+void btif_dm_get_le_connection_parameters(LeConnectionParamsCallback callback);
+void btif_dm_set_le_connection_parameters(uint16_t interval, uint16_t window);
 void btif_dm_set_event_filter_connection_setup_all_devices();
 void btif_dm_allow_wake_by_hid(
     std::vector<std::pair<RawAddress, uint8_t>> addrs);

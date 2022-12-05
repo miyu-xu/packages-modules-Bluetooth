@@ -3732,6 +3732,15 @@ void btif_dm_set_event_filter_inquiry_result_all_devices() {
   BTA_DmSetEventFilterInquiryResultAllDevices();
 }
 
+void btif_dm_get_le_connection_parameters(LeConnectionParamsCallback callback) {
+  LOG_VERBOSE("%s: called", __func__);
+  BTA_DmGetLeConnectionParameters(callback);
+}
+
+void btif_dm_set_le_connection_parameters(uint16_t interval, uint16_t window) {
+  BTA_DmSetLeConnectionParameters(interval, window);
+}
+
 void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
                               std::vector<uint8_t> value) {
   static const int METADATA_LE_AUDIO = 26;

@@ -33,6 +33,7 @@
 #include "types/raw_address.h"
 
 using LeRandCallback = base::Callback<void(uint64_t)>;
+using LeConnectionParamsCallback = base::Callback<void(uint16_t, uint16_t)>;
 
 namespace bluetooth {
 namespace shim {
@@ -120,6 +121,8 @@ class Acl : public hci::acl_manager::ConnectionCallbacks,
   void Shutdown();
   void FinalShutdown();
   void LeRand(LeRandCallback cb);
+  void GetLeConnectionParameters(LeConnectionParamsCallback cb);
+  void SetLeConnectionParameters(uint16_t interval, uint16_t window);
 
   void ClearFilterAcceptList();
 
