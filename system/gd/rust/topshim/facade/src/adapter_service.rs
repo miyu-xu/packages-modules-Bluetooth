@@ -72,7 +72,13 @@ impl AdapterServiceImpl {
         let (event_tx, rx) = mpsc::channel(10);
         btif_intf.lock().unwrap().initialize(
             get_bt_dispatcher(btif_intf.clone(), event_tx.clone()),
-            vec!["INIT_gd_hci=true".to_string()],
+            vec![
+                "INIT_gd_hci=true".to_string(),
+                "INIT_gd_controller=true".to_string(),
+                "INIT_gd_scanning=true".to_string(),
+                "INIT_gd_advertising=true".to_string(),
+                "INIT_logging_debug_enabled_for_all=true".to_string(),
+            ],
         );
         create_adapter_service(Self {
             rt,
