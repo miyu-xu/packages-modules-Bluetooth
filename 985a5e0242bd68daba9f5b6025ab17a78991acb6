@@ -39,6 +39,30 @@
       },
       "revId": "985a5e0242bd68daba9f5b6025ab17a78991acb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "709e83b2_d40e275e",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2279,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-05T21:19:20Z",
+      "side": 1,
+      "message": "I investigated this and there are many more just within this file when using\n` WITH_STATIC_ANALYZER\u003d1`\n\nI suspect it\u0027s that this function may validly be called with nullptr, but part of the static analyzer is to skip conditions and ensure validity, which fails in this case.  (e.g. assume left size is `true` (p_data) but right side may be bogus.)",
+      "parentUuid": "f7215c17_652d1a55",
+      "range": {
+        "startLine": 2279,
+        "startChar": 0,
+        "endLine": 2279,
+        "endChar": 15
+      },
+      "revId": "985a5e0242bd68daba9f5b6025ab17a78991acb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
