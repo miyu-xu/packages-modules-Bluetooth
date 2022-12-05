@@ -1071,6 +1071,12 @@ impl IBluetoothGatt for BluetoothGattDBus {
         dbus_generated!()
     }
 
+    // TODO(b/261143122): move this to BluetoothQA interface
+    #[dbus_method("AddAdvertisingData")]
+    fn set_raw_data(&mut self, advertiser_id: i32, ad_type: u8, ad_payload: Vec<u8>) {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetScanResponseData")]
     fn set_scan_response_data(&mut self, advertiser_id: i32, data: AdvertiseData) {
         dbus_generated!()
