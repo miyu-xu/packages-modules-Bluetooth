@@ -608,10 +608,8 @@ public class HeadsetClientService extends ProfileService {
                 List<BluetoothHeadsetClientCall> defaultValue = new ArrayList<>();
                 if (service != null) {
                     List<HfpClientCall> calls = service.getCurrentCalls(device);
-                    if (calls != null) {
-                        for (HfpClientCall call : calls) {
-                            defaultValue.add(toLegacyCall(call));
-                        }
+                    for (HfpClientCall call : calls) {
+                        defaultValue.add(toLegacyCall(call));
                     }
                 }
                 receiver.send(defaultValue);
