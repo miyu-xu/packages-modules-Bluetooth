@@ -22,6 +22,30 @@
       },
       "revId": "15fc4cf1489f8d22caa6d8b5a973793795c46f4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44f93808_9de5cc8a",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-05T21:37:31Z",
+      "side": 1,
+      "message": "offline chat:\nThe caller is checking for controller support before\nWe just need to add an explicit log for when the command is not called",
+      "parentUuid": "566524b3_97eefa4e",
+      "range": {
+        "startLine": 995,
+        "startChar": 10,
+        "endLine": 995,
+        "endChar": 20
+      },
+      "revId": "15fc4cf1489f8d22caa6d8b5a973793795c46f4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
