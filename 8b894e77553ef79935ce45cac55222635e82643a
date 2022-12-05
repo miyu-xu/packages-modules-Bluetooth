@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72f3b83a_31f27b57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-05T14:23:30Z",
+      "side": 1,
+      "message": "FYI\nWill complete the commit message and some documentation.",
+      "revId": "8b894e77553ef79935ce45cac55222635e82643a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
