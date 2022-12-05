@@ -536,9 +536,15 @@ public class BassClientStateMachine extends StateMachine {
                         parseScanRecord(report.getSyncHandle(), report.getData());
                         BaseData baseData = mService.getBase(report.getSyncHandle());
                         if (baseData != null) {
+
+                            BluetoothDevice device = mService.getDeviceForSyncHandle(report.getSyncHandle());
+                            if (device == null) {
+                                Log.w("device is null");
+                                return;
+                            }
+
                             BluetoothLeBroadcastMetadata metaData =
-                                    getBroadcastMetadataFromBaseData(baseData,
-                                            mService.getDeviceForSyncHandle(report.getSyncHandle()));
+                                    getBroadcastMetadataFromBaseData(baseData, device);
                             mService.getCallbacks().notifySourceFound(metaData);
                         }
                         mFirstTimeBisDiscovery = false;
