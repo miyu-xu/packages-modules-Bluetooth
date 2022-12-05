@@ -22,6 +22,30 @@
       },
       "revId": "86fec7ebf2db6b9b6058d0f9cfef011252684c3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8ba15ac_c6815388",
+        "filename": "android/app/jni/rust/keystore.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-05T15:04:49Z",
+      "side": 1,
+      "message": "I agree with Jakub here.  I think while the ambition of using GD directly is great, I think its too soon.  We should squash it step by step so we don\u0027t lose legacy workarounds, business logic, etc...",
+      "parentUuid": "8f332a59_24c23bf8",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 55
+      },
+      "revId": "86fec7ebf2db6b9b6058d0f9cfef011252684c3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
