@@ -33,6 +33,12 @@ fn get_bt_dispatcher(
                     println!("State changed to {:?}", state);
                 }
                 BaseCallbacks::SspRequest(addr, _, _, variant, passkey) => {
+                    println!(
+                        "SSP Request made for address {:?} with variant {:?} and passkey {:?}",
+                        addr.to_string(),
+                        variant,
+                        passkey
+                    );
                     btif.lock().unwrap().ssp_reply(&addr, variant, 1, passkey);
                 }
                 BaseCallbacks::AdapterProperties(status, _, properties) => {
@@ -46,6 +52,13 @@ fn get_bt_dispatcher(
                 }
                 BaseCallbacks::DeviceFound(_, properties) => {
                     println!("Device found with properties : {:?}", properties)
+                }
+                BaseCallbacks::BondState(_, address, state, _) => {
+                    println!(
+                        "Device in state {:?} with device address {}",
+                        state,
+                        address.to_string()
+                    );
                 }
                 _ => (),
             }
@@ -158,7 +171,20 @@ impl AdapterService for AdapterServiceImpl {
                     BaseCallbacks::DeviceFound(_, properties) => {
                         let mut rsp = FetchEventsResponse::new();
                         rsp.event_type = EventType::DEVICE_FOUND;
-                        rsp.data = format!("{:?}", properties);
+                        let mut address = String::new();
+                        for property in properties {
+                            if let btif::BluetoothProperty::BdAddr(addr) = property {
+                                address = addr.to_string();
+                                break;
+                            }
+                        }
+                        rsp.data = address;
+                        sink.send((rsp, WriteFlags::default())).await.unwrap();
+                    }
+                    BaseCallbacks::BondState(_, address, state, _) => {
+                        let mut rsp = FetchEventsResponse::new();
+                        rsp.event_type = EventType::BOND_STATE;
+                        rsp.data = format!("{:?} :: {}", state, address.to_string());
                         sink.send((rsp, WriteFlags::default())).await.unwrap();
                     }
                     _ => (),
