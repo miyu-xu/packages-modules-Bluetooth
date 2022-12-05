@@ -939,38 +939,40 @@ impl IBluetoothMedia for BluetoothMedia {
                     };
                 }
                 uuid::Profile::AvrcpController => {
-                    metrics::profile_connection_state_changed(
-                        addr,
-                        Profile::AvrcpController as u32,
-                        BtStatus::Success,
-                        BtavConnectionState::Connecting as u32,
-                    );
-                    match self.avrcp.as_mut() {
-                        Some(avrcp) => {
-                            self.avrcp_direction = BtConnectionDirection::Outgoing;
-                            let status: BtStatus = avrcp.connect(addr);
-                            if BtStatus::Success != status {
-                                // Reset direction to unknown.
-                                self.avrcp_direction = BtConnectionDirection::Unknown;
+                    if !connected_profiles.is_empty() {
+                        metrics::profile_connection_state_changed(
+                            addr,
+                            Profile::AvrcpController as u32,
+                            BtStatus::Success,
+                            BtavConnectionState::Connecting as u32,
+                        );
+                        match self.avrcp.as_mut() {
+                            Some(avrcp) => {
+                                self.avrcp_direction = BtConnectionDirection::Outgoing;
+                                let status: BtStatus = avrcp.connect(addr);
+                                if BtStatus::Success != status {
+                                    // Reset direction to unknown.
+                                    self.avrcp_direction = BtConnectionDirection::Unknown;
+                                    metrics::profile_connection_state_changed(
+                                        addr,
+                                        Profile::AvrcpController as u32,
+                                        status,
+                                        BtavConnectionState::Disconnected as u32,
+                                    );
+                                }
+                            }
+
+                            None => {
+                                warn!("Uninitialized AVRCP to connect {}", address);
                                 metrics::profile_connection_state_changed(
                                     addr,
                                     Profile::AvrcpController as u32,
-                                    status,
+                                    BtStatus::NotReady,
                                     BtavConnectionState::Disconnected as u32,
                                 );
                             }
-                        }
-
-                        None => {
-                            warn!("Uninitialized AVRCP to connect {}", address);
-                            metrics::profile_connection_state_changed(
-                                addr,
-                                Profile::AvrcpController as u32,
-                                BtStatus::NotReady,
-                                BtavConnectionState::Disconnected as u32,
-                            );
-                        }
-                    };
+                        };
+                    }
                 }
                 _ => warn!("Unknown profile: {:?}", profile),
             }
