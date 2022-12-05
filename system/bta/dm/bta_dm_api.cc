@@ -718,6 +718,28 @@ void BTA_DmLeRand(LeRandCallback cb) {
   do_in_main_thread(FROM_HERE, base::Bind(bta_dm_le_rand, cb));
 }
 
+void BTA_DmGetLeConnectionParameters(LeConnectionParamsCallback cb) {
+  APPL_TRACE_API("BTA_DmGetLeConnectionParameters");
+  do_in_main_thread(FROM_HERE,
+                    base::Bind(bta_dm_get_le_connection_parameters, cb));
+}
+
+/*******************************************************************************
+ *
+ * Function        BTA_DmSetLeConnectionParameters
+ *
+ * Description     Set the interval and window for an LE connection.
+ *
+ * Parameters      interval - ms connection interval
+ *                 window - ms how long to be active per interval
+ *
+ *******************************************************************************/
+void BTA_DmSetLeConnectionParameters(uint16_t interval, uint16_t window) {
+  APPL_TRACE_API("BTA_DmSetLeConnectionParameters");
+  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_set_le_connection_parameters,
+                                          interval, window));
+}
+
 /*******************************************************************************
  *
  * Function         BTA_DmDisconnectAllAcls

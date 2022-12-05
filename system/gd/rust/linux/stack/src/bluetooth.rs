@@ -768,6 +768,9 @@ pub(crate) trait BtifBluetoothCallbacks {
 
     #[btif_callback(LeRandCallback)]
     fn le_rand_cb(&mut self, random: u64) {}
+
+    #[btif_callback(LeConnectionParameterCallback)]
+    fn le_connection_parameter_cb(&mut self, interval: u8, window: u8) {}
 }
 
 #[btif_callbacks_dispatcher(dispatch_hid_host_callbacks, HHCallbacks)]

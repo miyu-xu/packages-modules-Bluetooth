@@ -1888,6 +1888,31 @@ tBTM_STATUS BTM_LeRand(LeRandCallback);
 
 /*******************************************************************************
  *
+ * Function        BTM_GetLeConnectionParameters
+ *
+ * Description    Get the current values for the interval and window of an LE
+ *Connection
+ *
+ * Parameters
+ *
+ *******************************************************************************/
+using LeConnectionParamsCallback = base::Callback<void(uint16_t, uint16_t)>;
+tBTM_STATUS BTM_GetLeConnectionParameters(LeConnectionParamsCallback);
+
+/*******************************************************************************
+ *
+ * Function        BTM_SetLeConnectionParameters
+ *
+ * Description     Set the interval and window for an LE connection.
+ *
+ * Parameters      interval - ms connection interval
+ *                 window - ms how long to be active per interval
+ *
+ *******************************************************************************/
+tBTM_STATUS BTM_SetLeConnectionParameters(uint16_t interval, uint16_t window);
+
+/*******************************************************************************
+ *
  * Function        BTM_SetEventFilterConnectionSetupAllDevices
  *
  * Description    Tell the controller to allow all devices

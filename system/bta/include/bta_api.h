@@ -1302,6 +1302,32 @@ using LeRandCallback = base::Callback<void(uint64_t)>;
  ******************************************************************************/
 extern void BTA_DmLeRand(LeRandCallback cb);
 
+using LeConnectionParamsCallback = base::Callback<void(uint16_t, uint16_t)>;
+/*******************************************************************************
+ *
+ * Function        BTA_DmGetLeConnectionParameters
+ *
+ * Description    Get the current values for the interval and window of an LE
+ *Connection
+ *
+ * Parameters     |cb| to receive the interval and window
+ *
+ *******************************************************************************/
+extern void BTA_DmGetLeConnectionParameters(
+    LeConnectionParamsCallback callback);
+
+/*******************************************************************************
+ *
+ * Function        BTA_DmSetLeConnectionParameters
+ *
+ * Description     Set the interval and window for an LE connection.
+ *
+ * Parameters      interval - ms connection interval
+ *                 window - ms how long to be active per interval
+ *
+ *******************************************************************************/
+extern void BTA_DmSetLeConnectionParameters(uint16_t interval, uint16_t window);
+
 /*******************************************************************************
  *
  * Function        BTA_DmSetEventFilterConnectionSetupAllDevices

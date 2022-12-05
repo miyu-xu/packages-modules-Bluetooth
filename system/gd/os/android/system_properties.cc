@@ -49,6 +49,15 @@ bool SetSystemProperty(const std::string& property, const std::string& value) {
   return true;
 }
 
+bool SetSystemPropertyUint16(const std::string& property, const uint16_t uint_value) {
+  std::stringstream stream;
+  stream << uint_value;
+  std::string str_value;
+  stream >> str_value;
+  SetSystemProperty(property, str_value);
+  return true;
+}
+
 bool IsRootCanalEnabled() {
   auto value = GetSystemProperty("ro.vendor.build.fingerprint");
   if (value.has_value()) {

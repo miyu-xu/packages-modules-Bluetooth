@@ -77,6 +77,11 @@ bt_status_t do_in_main_thread(const base::Location& from_here,
 
 using namespace bluetooth;
 
+static const std::string kPropertyConnScanIntervalSlow =
+    "bluetooth.core.le.connection_scan_interval_slow";
+static const std::string kPropertyConnScanWindowSlow =
+    "bluetooth.core.le.connection_scan_window_slow";
+
 class ConnectAddressWithType : public bluetooth::common::IRedactableLoggable {
  public:
   explicit ConnectAddressWithType(hci::AddressWithType address_with_type)
@@ -1090,6 +1095,26 @@ struct shim::legacy::Acl::impl {
     controller_get_interface()->le_rand(cb);
   }
 
+  void get_le_connection_parameters(LeConnectionParamsCallback cb) {
+    auto interval_slow =
+        os::GetSystemPropertyUint32(kPropertyConnScanIntervalSlow, -1);
+    auto window_slow =
+        os::GetSystemPropertyUint32(kPropertyConnScanWindowSlow, -1);
+    cb.Run(interval_slow, window_slow);
+  }
+
+  // TODO(optedoblivion): Account for fast AND slow.  Since we disconnect for
+  // suspend its OK to only do slow
+  void set_le_connection_parameters(uint16_t interval, uint16_t window) {
+    // Disarm LE Impl, if armed
+    GetAclManager()->OnPause();
+    // Set system property values
+    os::SetSystemPropertyUint16(kPropertyConnScanIntervalSlow, interval);
+    os::SetSystemPropertyUint16(kPropertyConnScanWindowSlow, window);
+    // If the LE Impl was armed, re-arm (which sets the params)
+    GetAclManager()->OnResume();
+  }
+
   void AddToAddressResolution(const hci::AddressWithType& address_with_type,
                               const std::array<uint8_t, 16>& peer_irk,
                               const std::array<uint8_t, 16>& local_irk) {
@@ -1804,6 +1829,17 @@ void shim::legacy::Acl::ClearFilterAcceptList() {
 
 void shim::legacy::Acl::LeRand(LeRandCallback cb) {
   handler_->CallOn(pimpl_.get(), &Acl::impl::le_rand, cb);
+}
+
+void shim::legacy::Acl::GetLeConnectionParameters(
+    LeConnectionParamsCallback cb) {
+  handler_->CallOn(pimpl_.get(), &Acl::impl::get_le_connection_parameters, cb);
+}
+
+void shim::legacy::Acl::SetLeConnectionParameters(uint8_t interval,
+                                                  uint8_t window) {
+  handler_->CallOn(pimpl_.get(), &Acl::impl::set_le_connection_parameters,
+                   interval, window);
 }
 
 void shim::legacy::Acl::AddToAddressResolution(
