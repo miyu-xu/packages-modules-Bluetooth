@@ -278,6 +278,9 @@ pub trait IBluetoothGatt {
     /// Updates advertisement data of the advertising set.
     fn set_advertising_data(&mut self, advertiser_id: i32, data: AdvertiseData);
 
+    /// Adds a new data into the advertisement data of the advertising set.
+    fn set_raw_data(&mut self, advertiser_id: i32, ad_type: u8, ad_payload: Vec<u8>);
+
     /// Updates scan response of the advertising set.
     fn set_scan_response_data(&mut self, advertiser_id: i32, data: AdvertiseData);
 
@@ -1372,6 +1375,25 @@ impl IBluetoothGatt for BluetoothGatt {
 
         let device_name = self.get_adapter_name();
         let bytes = data.make_with(&device_name);
+
+        if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
+            self.gatt.as_ref().unwrap().lock().unwrap().advertiser.set_data(
+                s.adv_id(),
+                false,
+                bytes,
+            );
+        }
+    }
+
+    fn set_raw_data(&mut self, advertiser_id: i32, ad_type: u8, ad_payload: Vec<u8>) {
+        if self.advertisers.suspend_mode() != SuspendMode::Normal {
+            return;
+        }
+        let mut bytes = Vec::<u8>::new();
+
+        // TODO: filter out the invalid data
+        AdvertiseData::append_adv_data(&mut bytes, ad_type, ad_payload.as_slice());
+        log::debug!("after append data, data: {:?}", bytes);
 
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
             self.gatt.as_ref().unwrap().lock().unwrap().advertiser.set_data(
