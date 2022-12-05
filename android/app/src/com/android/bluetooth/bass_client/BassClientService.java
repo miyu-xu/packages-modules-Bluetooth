@@ -205,6 +205,11 @@ public class BassClientService extends ProfileService {
     void setActiveSyncedSource(BluetoothDevice scanDelegator, BluetoothDevice sourceDevice) {
         log("setActiveSyncedSource, scanDelegator: " + scanDelegator + ", sourceDevice: " +
             sourceDevice);
+        if (mActiveSourceMap == null) {
+            Log.w(TAG, "mActiveSourceMap is null");
+            return;
+        }
+
         if (sourceDevice == null) {
             mActiveSourceMap.remove(scanDelegator);
         } else {
