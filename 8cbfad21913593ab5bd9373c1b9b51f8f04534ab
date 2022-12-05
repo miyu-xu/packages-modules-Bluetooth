@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ca1e72_fe496a9b",
+        "filename": "system/gd/rust/topshim/facade/src/hfp_service.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-05T23:25:26Z",
+      "side": 1,
+      "message": "Follow-up -- you will want to also probably clear the event_tx after fetchevents completes. Otherwise you may have an open event_tx without an open event_rx...",
+      "revId": "8cbfad21913593ab5bd9373c1b9b51f8f04534ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
