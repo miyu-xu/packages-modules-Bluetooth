@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd7c8b55_c889e4d3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-05T03:38:38Z",
+      "side": 1,
+      "message": "what about adding DeviceConnectState::PENDING_REMOVE ?",
+      "range": {
+        "startLine": 311,
+        "startChar": 7,
+        "endLine": 311,
+        "endChar": 43
+      },
+      "revId": "2ea56e226821121f6cec064215471d005cc0a38a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
