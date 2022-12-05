@@ -31,7 +31,7 @@ namespace hci {
 // and Remote Host Supported Features Notification events.
 
 using CompletionCallback = common::ContextualOnceCallback<void(ErrorCode)>;
-using RemoteHostSupportedFeaturesCallback = common::ContextualOnceCallback<void(std::array<uint8_t, 8>)>;
+using RemoteHostSupportedFeaturesCallback = common::ContextualOnceCallback<void(uint64_t)>;
 using RemoteNameCallback = common::ContextualOnceCallback<void(ErrorCode, std::array<uint8_t, 248>)>;
 
 // Historical note: This class is intended to provide a shim at the *HCI* layer, so legacy Remote Name Requests can
