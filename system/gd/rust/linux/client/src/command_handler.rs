@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::fmt::{Display, Formatter};
+use std::num::ParseIntError;
 use std::slice::SliceIndex;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
@@ -221,6 +222,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("advertise <on|off|ext>"),
                 String::from("advertise set-interval <ms>"),
                 String::from("advertise set-scan-rsp <enable|disable>"),
+                String::from("advertise set-data <type> <payload> <reg_id>"),
             ],
             description: String::from("Advertising utilities."),
             function_pointer: CommandHandler::cmd_advertise,
@@ -1276,6 +1278,43 @@ impl CommandHandler {
                     print_info!("Setting parameters for {}", adv_id);
                     context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
                 }
+            }
+            "set-data" => {
+                fn decode_hex(s: &str) -> Result<Vec<u8>, ParseIntError> {
+                    (0..s.len()).step_by(2).map(|i| u8::from_str_radix(&s[i..i + 2], 16)).collect()
+                }
+                let ad_type = *decode_hex(String::from(get_arg(args, 1)?).as_str())
+                    .or(Err("Failed parsing ad_type"))?
+                    .get(0)
+                    .ok_or("Empty ad_type")?;
+
+                let ad_payload: Vec<u8> = decode_hex(String::from(get_arg(args, 2)?).as_str())
+                    .or(Err("Failed parsing ad_payload"))?
+                    .iter()
+                    .rev()
+                    .cloned()
+                    .collect();
+
+                let reg_id = String::from(get_arg(args, 3)?)
+                    .parse::<i32>()
+                    .or(Err("Failed parsing reg_id"))?;
+
+                let mut context = self.context.lock().unwrap();
+
+                if !context.adv_sets.contains_key(&reg_id) {
+                    return Err("Failed to get advertising set".into());
+                }
+                let adv_set = context.adv_sets.get(&reg_id).unwrap().clone();
+
+                print_info!("Setting parameters for {}", reg_id);
+                context
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .set_advertising_parameters(reg_id, adv_set.params.clone());
+
+                print_info!("Setting data for {}", reg_id);
+                context.gatt_dbus.as_mut().unwrap().set_raw_data(reg_id, ad_type, ad_payload);
             }
             _ => return Err(CommandError::InvalidArgs),
         }
