@@ -22,6 +22,30 @@
       },
       "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "829111a9_c4a18991",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothActivity.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-05T01:31:21Z",
+      "side": 1,
+      "message": "I just tried it and realize we need to either use callback way to wait for state or using `Thread.sleep()`. So I guess at least BluetoothActivity has some advantage on that?",
+      "parentUuid": "fdcf7b43_c1981c1a",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 30
+      },
+      "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
