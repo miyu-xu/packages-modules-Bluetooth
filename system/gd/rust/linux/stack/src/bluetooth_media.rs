@@ -51,20 +51,29 @@ pub trait IBluetoothMedia {
     ///
     fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool;
 
-    /// initializes media (both A2dp and AVRCP) stack
+    /// Initializes media (both A2dp and AVRCP) stack
     fn initialize(&mut self) -> bool;
 
-    /// clean up media stack
+    /// Clean up media stack
     fn cleanup(&mut self) -> bool;
 
-    /// connect to available but missing media profiles
+    // TODO(b/257406118): refine reconnection logic
+    /// Connect to available but missing media profiles.
+    /// This function is invoked by two means:
+    /// 1. The host acting as the initiator to connect to all available profiles,
+    ///    but excluding Avrcp since most of the time the host is expected to be the acceptor.
+    /// 2. |ACCEPTOR_CONNECT_MISSING_PROFILES_TIMEOUT_SEC| after the latest profile connection
+    ///    update (that doesn't lead to a total cleanup of connected profiles), should there
+    ///    be any missing profile, the host will initiate a connection to the rest of the
+    ///    profiles as a fallback, unless |PROFILE_DISCOVERY_TIMEOUT_SEC| has passed since
+    ///    the first successful profile connection.
     fn connect(&mut self, address: String);
     fn disconnect(&mut self, address: String);
 
-    // Set the device as the active A2DP device
+    /// Set the device as the active A2DP device
     fn set_active_device(&mut self, address: String);
 
-    // Set the device as the active HFP device
+    /// Set the device as the active HFP device
     fn set_hfp_active_device(&mut self, address: String);
 
     fn set_audio_config(
@@ -74,12 +83,12 @@ pub trait IBluetoothMedia {
         channel_mode: i32,
     ) -> bool;
 
-    // Set the A2DP/AVRCP volume. Valid volume specified by the spec should be
-    // in the range of 0-127.
+    /// Set the A2DP/AVRCP volume. Valid volume specified by the spec should be
+    /// in the range of 0-127.
     fn set_volume(&mut self, volume: u8);
 
-    // Set the HFP speaker volume. Valid volume specified by the HFP spec should
-    // be in the range of 0-15.
+    /// Set the HFP speaker volume. Valid volume specified by the HFP spec should
+    /// be in the range of 0-15.
     fn set_hfp_volume(&mut self, volume: u8, address: String);
     fn start_audio_request(&mut self);
     fn stop_audio_request(&mut self);
@@ -93,7 +102,7 @@ pub trait IBluetoothMedia {
 
     fn get_presentation_position(&mut self) -> PresentationPosition;
 
-    // Start the SCO setup to connect audio
+    /// Start the SCO setup to connect audio
     fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool);
     fn stop_sco_call(&mut self, address: String);
 
@@ -903,10 +912,18 @@ impl IBluetoothMedia for BluetoothMedia {
 
         let connected_profiles = self.connected_profiles.entry(addr).or_insert_with(HashSet::new);
 
-        let missing_profiles =
+        let mut to_connect_profiles =
             available_profiles.difference(&connected_profiles).collect::<HashSet<_>>();
 
-        for profile in missing_profiles {
+        // Do not connect to Avrcp if there hasn't been any connection established with
+        // the HF, as it is prone to collision and the HF may not be ready.
+        // Note that |connected_profiles| can only be empty at this point if the host is the
+        // initiator, since otherwise this task would have been aborted.
+        if connected_profiles.is_empty() {
+            to_connect_profiles.remove(&uuid::Profile::AvrcpController);
+        }
+
+        for profile in to_connect_profiles {
             match profile {
                 uuid::Profile::A2dpSink => {
                     metrics::profile_connection_state_changed(
