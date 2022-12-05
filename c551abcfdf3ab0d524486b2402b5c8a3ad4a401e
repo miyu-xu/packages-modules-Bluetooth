@@ -22,6 +22,30 @@
       },
       "revId": "c551abcfdf3ab0d524486b2402b5c8a3ad4a401e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df527d15_c524f638",
+        "filename": "system/main/shim/acl_legacy_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-05T21:47:38Z",
+      "side": 1,
+      "message": "Done -- moved to aosp/2269569",
+      "parentUuid": "fe9e954e_628525d6",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 76
+      },
+      "revId": "c551abcfdf3ab0d524486b2402b5c8a3ad4a401e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
