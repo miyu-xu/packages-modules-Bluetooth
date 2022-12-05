@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b77c7fc_47222699",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-05T22:16:31Z",
+      "side": 1,
+      "message": "Is it manually test? If yes, mention it in the CL description? Any other tests done?",
+      "revId": "35d9375e49de1574f4c5bdcea9d2b35a49c008e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
