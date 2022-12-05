@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8adf6038_c8e56e6c",
+        "filename": "system/gd/rust/topshim/facade/src/hfp_service.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-05T23:10:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ead7314b_042f0daa",
+      "revId": "6de01da0f06096524be965c484f0ae4500252d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56349461_c49beb13",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-05T22:38:02Z",
       "side": 1,
       "message": "You probably just want to move ownership into the spawned block instead of making it a mutex.\n\ni.e.\n```\nctx.spawn(async move {\n  while let Some(event) \u003d rx.recv().await {\n    // Do something with rx\n  }\n});\n```",
+      "revId": "6de01da0f06096524be965c484f0ae4500252d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89143a22_8a6953d5",
+        "filename": "system/gd/rust/topshim/facade/src/hfp_service.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-05T23:10:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56349461_c49beb13",
       "revId": "6de01da0f06096524be965c484f0ae4500252d13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
