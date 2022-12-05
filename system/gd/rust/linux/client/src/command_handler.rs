@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::fmt::{Display, Formatter};
+use std::num::ParseIntError;
 use std::slice::SliceIndex;
 use std::sync::{Arc, Mutex};
 
@@ -196,6 +197,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("advertise <on|off|ext>"),
                 String::from("advertise set-interval <ms>"),
                 String::from("advertise set-scan-rsp <enable|disable>"),
+                String::from("advertise set-raw-data <raw-adv-data> <adv-id>"),
             ],
             description: String::from("Advertising utilities."),
             function_pointer: CommandHandler::cmd_advertise,
@@ -1249,6 +1251,28 @@ impl CommandHandler {
                     print_info!("Setting parameters for {}", adv_id);
                     context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
                 }
+            }
+            "set-raw-data" => {
+                fn decode_hex(s: &str) -> Result<Vec<u8>, ParseIntError> {
+                    (0..s.len()).step_by(2).map(|i| u8::from_str_radix(&s[i..i + 2], 16)).collect()
+                }
+                let data = decode_hex(String::from(get_arg(args, 1)?).as_str())
+                    .or(Err("Failed parsing data"))?;
+
+                let adv_id = String::from(get_arg(args, 2)?)
+                    .parse::<i32>()
+                    .or(Err("Failed parsing adv_id"))?;
+
+                let mut context = self.context.lock().unwrap();
+                let mut advs =
+                    context.adv_sets.iter().filter(|(_, s)| s.adv_id.unwrap() == adv_id).peekable();
+
+                if !advs.peek().is_some() {
+                    return Err("Failed to find advertising set".into());
+                }
+
+                print_info!("Setting advertising data for {}", adv_id);
+                context.gatt_dbus.as_mut().unwrap().set_raw_adv_data(adv_id, data);
             }
             _ => return Err(CommandError::InvalidArgs),
         }
