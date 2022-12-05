@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e9d88c4_80b62bea",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1528,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-05T21:16:55Z",
+      "side": 1,
+      "message": "We probably need the same thing on metadata update.",
+      "range": {
+        "startLine": 1524,
+        "startChar": 4,
+        "endLine": 1528,
+        "endChar": 36
+      },
+      "revId": "f0591fbc48832e68f15fa574079f5ca2c5e515bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
