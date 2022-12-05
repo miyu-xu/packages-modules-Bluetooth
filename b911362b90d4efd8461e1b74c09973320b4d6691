@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf0f6ea9_3d7db75a",
+        "filename": "system/blueberry/facade/topshim/facade.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-05T22:44:05Z",
+      "side": 1,
+      "message": "API should probably respond with a BtStatus or i32 that you can check. We shouldn\u0027t have a test interface that silently swallows errors.",
+      "revId": "b911362b90d4efd8461e1b74c09973320b4d6691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "845a1873_eb9f5952",
+        "filename": "system/blueberry/facade/topshim/facade.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-05T22:44:05Z",
+      "side": 1,
+      "message": "Looks like this series needs to be rebased on top of your other series. This is duplicated across the two.",
+      "revId": "b911362b90d4efd8461e1b74c09973320b4d6691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc14ca57_b4a3498a",
+        "filename": "system/gd/rust/topshim/facade/src/adapter_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-05T22:44:05Z",
+      "side": 1,
+      "message": "Check the result of this call -- you can get `BT_STATUS_FAIL`",
+      "revId": "b911362b90d4efd8461e1b74c09973320b4d6691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
