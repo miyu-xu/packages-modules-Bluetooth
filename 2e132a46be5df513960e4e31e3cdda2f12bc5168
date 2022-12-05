@@ -33,6 +33,69 @@
       "message": "@jpawlowski@google.com - based on discussion over chat, do you want to re-review this CL?",
       "revId": "2e132a46be5df513960e4e31e3cdda2f12bc5168",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d077197_893ec61c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2022-12-05T22:20:51Z",
+      "side": 1,
+      "message": "LGTM given context discussed offline so as to unblock, with comments on how this change is presented noted. \n\nWould prefer siyuanh@ or jpawlowski@ to chime in on this change once they\u0027re back.",
+      "revId": "2e132a46be5df513960e4e31e3cdda2f12bc5168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f3b16d8_d803ba0c",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2022-12-05T22:20:51Z",
+      "side": 1,
+      "message": "IMO would be preferable to be more explicit about exactly what scenarios we expect MAYBE_VALID to be relevant in (and maybe consider linking to the bug in this case) - I wouldn\u0027t want this behavior extended unintentionally without proper context and this enum seems to leave room to do so.",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 64,
+        "endChar": 15
+      },
+      "revId": "2e132a46be5df513960e4e31e3cdda2f12bc5168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c3ce4ba_67c9ee62",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2022-12-05T22:20:51Z",
+      "side": 1,
+      "message": "nit: UNKNOWN might be a bit more clear/adherent to codebase patterns here",
+      "range": {
+        "startLine": 65,
+        "startChar": 43,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "2e132a46be5df513960e4e31e3cdda2f12bc5168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
