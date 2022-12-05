@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ead7314b_042f0daa",
+        "filename": "system/gd/rust/topshim/facade/src/hfp_service.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-05T22:38:02Z",
+      "side": 1,
+      "message": "Would `if let Some(event_tx) \u003d guard_tx.as_ref()` work?",
+      "revId": "6de01da0f06096524be965c484f0ae4500252d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56349461_c49beb13",
+        "filename": "system/gd/rust/topshim/facade/src/hfp_service.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-05T22:38:02Z",
+      "side": 1,
+      "message": "You probably just want to move ownership into the spawned block instead of making it a mutex.\n\ni.e.\n```\nctx.spawn(async move {\n  while let Some(event) \u003d rx.recv().await {\n    // Do something with rx\n  }\n});\n```",
+      "revId": "6de01da0f06096524be965c484f0ae4500252d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
