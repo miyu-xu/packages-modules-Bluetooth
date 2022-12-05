@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2a55a3ed_ae4e9105",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-05T04:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4a0650e_8e8ea372",
+      "range": {
+        "startLine": 129,
+        "startChar": 37,
+        "endLine": 129,
+        "endChar": 55
+      },
+      "revId": "5c224784553a5ea41d5aba6ffde7a84806f94eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "50d9b2b8_03fd1e73",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
         "patchSetId": 21
@@ -60,6 +84,30 @@
       "writtenOn": "2022-11-29T10:23:44Z",
       "side": 1,
       "message": "Please mention it gets the latest set policy",
+      "range": {
+        "startLine": 3324,
+        "startChar": 7,
+        "endLine": 3324,
+        "endChar": 40
+      },
+      "revId": "5c224784553a5ea41d5aba6ffde7a84806f94eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c0cafc_5b29ac37",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 3324,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-05T04:59:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d944d361_43adc6e1",
       "range": {
         "startLine": 3324,
         "startChar": 7,
