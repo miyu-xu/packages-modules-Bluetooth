@@ -1467,6 +1467,11 @@ tL2C_CCB* l2cu_allocate_ccb(tL2C_LCB* p_lcb, uint16_t cid) {
 
   l2c_link_adjust_chnl_allocation();
 
+  if (p_lcb != NULL) {
+    // once a dynamic channel is opened, timeouts become active
+    p_lcb->local_device_is_active = true;
+  }
+
   return p_ccb;
 }
 
@@ -2617,6 +2622,15 @@ void l2cu_no_dynamic_ccbs(tL2C_LCB* p_lcb) {
 
   /* If the link is pairing, do not mess with the timeouts */
   if (p_lcb->IsBonding()) return;
+
+  // Inactive connections should not timeout, since the ATT channel might still
+  // be in use even without a GATT client. We only timeout if either a dynamic
+  // channel or a GATT client was used, since then we expect the client to
+  // manage the lifecycle of the connection.
+  if (bluetooth::common::init_flags::finite_att_timeout_is_enabled() &&
+      !p_lcb->local_device_is_active) {
+    return;
+  }
 
   if (timeout_ms == 0) {
     L2CAP_TRACE_DEBUG(
