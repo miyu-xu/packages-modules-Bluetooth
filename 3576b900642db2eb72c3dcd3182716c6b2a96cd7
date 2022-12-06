@@ -140,6 +140,30 @@
       },
       "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "883699a2_ba9eec80",
+        "filename": "system/stack/include/btm_ble_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-06T14:37:05Z",
+      "side": 1,
+      "message": "I think TARGETED_ANNOUNCEMENTS should not be tied to devices, but instead, for the same device, we can choose between an allowlist based connection and a targeted announcement based connection",
+      "parentUuid": "ac1faaa8_e1b2fcd2",
+      "range": {
+        "startLine": 361,
+        "startChar": 2,
+        "endLine": 361,
+        "endChar": 51
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
