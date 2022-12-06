@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4bcb289_eb66f5d8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "Why should this be static? This can lead to dependency to other tests.\n\nHow about creating a method that creates ActivityStageObserver instance every time? (i.e. `ActivityStageObserver createActivityStageObserver()`)",
+      "range": {
+        "startLine": 66,
+        "startChar": 11,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44962fb_0b196252",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "Is there any way to reset this observer?",
+      "range": {
+        "startLine": 409,
+        "startChar": 24,
+        "endLine": 409,
+        "endChar": 45
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e2b6afa_7477eeed",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "Let\u0027s make it private final and create a method for `ActivityLifecycleCallback getActivityLifecycleCallback()`.",
+      "range": {
+        "startLine": 412,
+        "startChar": 8,
+        "endLine": 413,
+        "endChar": 48
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0134078d_024e9ee3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "`private static final String TAG \u003d \"ActivityStageObserver\";` in L409",
+      "range": {
+        "startLine": 414,
+        "startChar": 22,
+        "endLine": 414,
+        "endChar": 23
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14a35a15_00773320",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "the activity entered to {@param stageWait} during {@param timeoutMs}\n\nAlso, could you share the error when you use @param?",
+      "range": {
+        "startLine": 419,
+        "startChar": 27,
+        "endLine": 419,
+        "endChar": 52
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03e25eef_ed9700a9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "Instead of calling System.currentTimeMillis() every time, how about decreasing the remaining time?\n\nhttps://source.corp.google.com/android-internal/cts/common/device-side/util-axt/src/com/android/compatibility/common/util/PollingCheck.java;rcl\u003d1390ca540e3cc916e4a877207b7cc1c7928aa801;l\u003d74",
+      "range": {
+        "startLine": 426,
+        "startChar": 23,
+        "endLine": 426,
+        "endChar": 49
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bccc7cf5_65b225ac",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "Log.d(TAG, \"InterruptedException happened.\", e)",
+      "range": {
+        "startLine": 432,
+        "startChar": 27,
+        "endLine": 432,
+        "endChar": 44
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f39cec63_e56e2ea2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "When this is called while not waitForStage() is called, is there any problem?",
+      "range": {
+        "startLine": 444,
+        "startChar": 20,
+        "endLine": 444,
+        "endChar": 49
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0633902d_03bb14f0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnablingActivityTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "When is this removed?",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 77
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a4e95c_3e8a0f45",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 61,
+        "startChar": 20,
+        "endLine": 61,
+        "endChar": 33
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f14c01_72bf3a2f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "Let\u0027s revert it back",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 106,
+        "endChar": 29
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe212e59_6cb3b532",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 8
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0145ede0_c6f8ea38",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapActivityTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-06T11:16:01Z",
+      "side": 1,
+      "message": "Are you fixing this test too in this CL? \n- If not, let\u0027s not change this file.\n- If so, please make this test use ActivityInstrumentationTestCase2",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 38
+      },
+      "revId": "3d9c17115e4b058fcb6df36e686f8ead3227b0d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
