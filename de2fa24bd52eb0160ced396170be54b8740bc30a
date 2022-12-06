@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ad9050_f3ed5f52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T23:25:09Z",
+      "side": 1,
+      "message": "+2 but also wait for Android team\u0027s approval.",
+      "revId": "de2fa24bd52eb0160ced396170be54b8740bc30a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
