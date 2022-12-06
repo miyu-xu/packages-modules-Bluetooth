@@ -114,10 +114,11 @@ void gatt_init(void) {
   fixed_reg.pL2CA_FixedConn_Cb = gatt_le_connect_cback;
   fixed_reg.pL2CA_FixedData_Cb = gatt_le_data_ind;
   fixed_reg.pL2CA_FixedCong_Cb = gatt_le_cong_cback; /* congestion callback */
-  fixed_reg.default_idle_tout =
-      bluetooth::common::init_flags::finite_att_timeout_is_enabled()
-          ? 2 /* We allow 2s for GATT clients to connect once the link is up */
-          : L2CAP_NO_IDLE_TIMEOUT;
+
+  // the GATT timeout is updated after a connection
+  // is established, when we know whether any
+  // clients exist
+  fixed_reg.default_idle_tout = L2CAP_NO_IDLE_TIMEOUT;
 
   L2CA_RegisterFixedChannel(L2CAP_ATT_CID, &fixed_reg);
 
@@ -611,7 +612,6 @@ static void gatt_le_cong_cback(const RawAddress& remote_bda, bool congested) {
  ******************************************************************************/
 static void gatt_le_data_ind(uint16_t chan, const RawAddress& bd_addr,
                              BT_HDR* p_buf) {
-
   /* Find CCB based on bd addr */
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, BT_TRANSPORT_LE);
   if (p_tcb) {
