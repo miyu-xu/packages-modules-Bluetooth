@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3e3b0c4_aaa93837",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-12-06T17:36:23Z",
+      "side": 1,
+      "message": "so the intention here is to clear this flag when we send the AVRCP PLAY_STATUS CHANGED response?",
+      "range": {
+        "startLine": 543,
+        "startChar": 4,
+        "endLine": 543,
+        "endChar": 37
+      },
+      "revId": "092b308a404282e814a6762311b2b044aff07c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4df52901_93f8e804",
+        "filename": "system/profile/avrcp/device.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-12-06T17:36:23Z",
+      "side": 1,
+      "message": "i would prefer calling it something like \"play_status_registered\". Naming it pending is somewhat ambiguous",
+      "range": {
+        "startLine": 348,
+        "startChar": 7,
+        "endLine": 348,
+        "endChar": 31
+      },
+      "revId": "092b308a404282e814a6762311b2b044aff07c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
