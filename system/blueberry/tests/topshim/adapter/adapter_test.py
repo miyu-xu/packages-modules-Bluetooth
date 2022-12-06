@@ -50,6 +50,15 @@ class AdapterTest(TopshimBaseTest):
         assertThat(len(properties)).isEqualTo(1)
         assertThat(properties[0]).isEqualTo("LocalIoCaps(None_)")
 
+    def test_start_discovery(self):
+        state = self.dut().toggle_discovery(True)
+        assertThat(state).isEqualTo("Started")
+
+    def test_cancel_discovery(self):
+        self.dut().toggle_discovery(True)
+        state = self.dut().toggle_discovery(False)
+        assertThat(state).isEqualTo("Stopped")
+
 
 if __name__ == "__main__":
     test_runner.main()
