@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02cf1aa_db631cd8",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-06T09:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "084a659a_572165da",
+      "revId": "d336e6cf2aa96c48fa6e304f5eea1413e40eeea3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99ddc0ec_021c3c74",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-12-06T09:04:23Z",
       "side": 1,
       "message": "Please revise the comment or remove it as Mixing is a must here.",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 47
+      },
+      "revId": "d336e6cf2aa96c48fa6e304f5eea1413e40eeea3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be080886_8a41feed",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-06T09:53:55Z",
+      "side": 1,
+      "message": "Realized it might not be needed to have this variable since it only used once and just wrapt mixin_type to Box\u003cmixin_type\u003e.",
+      "parentUuid": "99ddc0ec_021c3c74",
       "range": {
         "startLine": 229,
         "startChar": 0,
