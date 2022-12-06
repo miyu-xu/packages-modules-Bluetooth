@@ -1545,6 +1545,9 @@ bool L2CA_SetLeGattTimeout(const RawAddress& rem_bda, uint16_t idle_tout) {
     return (false);
   }
 
+  // if GATT sets a timeout, we know that a GATT client is active
+  p_lcb->local_device_is_active = true;
+
   p_lcb->p_fixed_ccbs[kAttCid - L2CAP_FIRST_FIXED_CHNL]->fixed_chnl_idle_tout =
       idle_tout;
 
