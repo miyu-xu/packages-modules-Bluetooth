@@ -43,7 +43,7 @@
 #include "stack/l2cap/l2c_int.h"
 #include "types/raw_address.h"
 
-tL2C_CCB* l2cu_get_next_channel_in_rr(tL2C_LCB* p_lcb); // TODO Move
+tL2C_CCB* l2cu_get_next_channel_in_rr(tL2C_LCB* p_lcb);  // TODO Move
 
 /*******************************************************************************
  *
@@ -68,6 +68,7 @@ tL2C_LCB* l2cu_allocate_lcb(const RawAddress& p_bd_addr, bool is_bonding,
       p_lcb->remote_bd_addr = p_bd_addr;
 
       p_lcb->in_use = true;
+      p_lcb->local_device_is_active = false;
       p_lcb->link_state = LST_DISCONNECTED;
       p_lcb->InvalidateHandle();
       p_lcb->l2c_lcb_timer = alarm_new("l2c_lcb.l2c_lcb_timer");
@@ -776,12 +777,11 @@ void l2cu_send_peer_config_rej(tL2C_CCB* p_ccb, uint8_t* p_data,
 
   const controller_t* controller = controller_get_interface();
 
-/* Put in HCI header - handle + pkt boundary */
+  /* Put in HCI header - handle + pkt boundary */
   if (controller->supports_non_flushable_pb()) {
     UINT16_TO_STREAM(p, (p_ccb->p_lcb->Handle() | (L2CAP_PKT_START_NON_FLUSHABLE
                                                    << L2CAP_PKT_TYPE_SHIFT)));
-  } else
-  {
+  } else {
     UINT16_TO_STREAM(p, (p_ccb->p_lcb->Handle() |
                          (L2CAP_PKT_START << L2CAP_PKT_TYPE_SHIFT)));
   }
@@ -1161,7 +1161,7 @@ void l2cu_enqueue_ccb(tL2C_CCB* p_ccb) {
   tL2C_CCB_Q* p_q = NULL;
 
   /* Find out which queue the channel is on
-  */
+   */
   if (p_ccb->p_lcb != NULL) p_q = &p_ccb->p_lcb->ccb_queue;
 
   if ((!p_ccb->in_use) || (p_q == NULL)) {
@@ -1242,7 +1242,7 @@ void l2cu_dequeue_ccb(tL2C_CCB* p_ccb) {
   L2CAP_TRACE_DEBUG("l2cu_dequeue_ccb  CID: 0x%04x", p_ccb->local_cid);
 
   /* Find out which queue the channel is on
-  */
+   */
   if (p_ccb->p_lcb != NULL) p_q = &p_ccb->p_lcb->ccb_queue;
 
   if ((!p_ccb->in_use) || (p_q == NULL) || (p_q->p_first_ccb == NULL)) {
@@ -1319,8 +1319,7 @@ void l2cu_change_pri_ccb(tL2C_CCB* p_ccb, tL2CAP_CHNL_PRIORITY priority) {
 
       p_ccb->ccb_priority = priority;
       l2cu_enqueue_ccb(p_ccb);
-    }
-    else {
+    } else {
       /* If CCB is the only guy on the queue, no need to re-enqueue */
       /* update only round robin service data */
       p_ccb->p_lcb->rr_serv[p_ccb->ccb_priority].num_ccb = 0;
@@ -1429,8 +1428,8 @@ tL2C_CCB* l2cu_allocate_ccb(tL2C_LCB* p_lcb, uint16_t cid) {
   p_ccb->fcrb.ack_timer = alarm_new("l2c_fcrb.ack_timer");
 
   /*  CSP408639 Fix: When L2CAP send amp move channel request or receive
-    * L2CEVT_AMP_MOVE_REQ do following sequence. Send channel move
-    * request -> Stop retrans/monitor timer -> Change channel state to
+   * L2CEVT_AMP_MOVE_REQ do following sequence. Send channel move
+   * request -> Stop retrans/monitor timer -> Change channel state to
    * CST_AMP_MOVING. */
   alarm_free(p_ccb->fcrb.mon_retrans_timer);
   p_ccb->fcrb.mon_retrans_timer = alarm_new("l2c_fcrb.mon_retrans_timer");
@@ -1466,6 +1465,11 @@ tL2C_CCB* l2cu_allocate_ccb(tL2C_LCB* p_lcb, uint16_t cid) {
   p_ccb->l2c_ccb_timer = alarm_new("l2c.l2c_ccb_timer");
 
   l2c_link_adjust_chnl_allocation();
+
+  if (p_lcb != NULL) {
+    // once a dynamic channel is opened, timeouts become active
+    p_lcb->local_device_is_active = true;
+  }
 
   return p_ccb;
 }
@@ -2605,11 +2609,11 @@ void l2cu_no_dynamic_ccbs(tL2C_LCB* p_lcb) {
   for (xx = 0; xx < L2CAP_NUM_FIXED_CHNLS; xx++) {
     if ((p_lcb->p_fixed_ccbs[xx] != NULL) &&
         (p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout * 1000 > timeout_ms)) {
-
-      if (p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout == L2CAP_NO_IDLE_TIMEOUT) {
-         L2CAP_TRACE_DEBUG("%s NO IDLE timeout set for fixed cid 0x%04x", __func__,
-            p_lcb->p_fixed_ccbs[xx]->local_cid);
-         start_timeout = false;
+      if (p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout ==
+          L2CAP_NO_IDLE_TIMEOUT) {
+        L2CAP_TRACE_DEBUG("%s NO IDLE timeout set for fixed cid 0x%04x",
+                          __func__, p_lcb->p_fixed_ccbs[xx]->local_cid);
+        start_timeout = false;
       }
       timeout_ms = p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout * 1000;
     }
@@ -2617,6 +2621,15 @@ void l2cu_no_dynamic_ccbs(tL2C_LCB* p_lcb) {
 
   /* If the link is pairing, do not mess with the timeouts */
   if (p_lcb->IsBonding()) return;
+
+  // Inactive connections should not timeout, since the ATT channel might still
+  // be in use even without a GATT client. We only timeout if either a dynamic
+  // channel or a GATT client was used, since then we expect the client to
+  // manage the lifecycle of the connection.
+  if (bluetooth::common::init_flags::finite_att_timeout_is_enabled() &&
+      !p_lcb->local_device_is_active) {
+    return;
+  }
 
   if (timeout_ms == 0) {
     L2CAP_TRACE_DEBUG(
@@ -2721,7 +2734,6 @@ void l2cu_process_fixed_chnl_resp(tL2C_LCB* p_lcb) {
  *
  ******************************************************************************/
 void l2cu_process_fixed_disc_cback(tL2C_LCB* p_lcb) {
-
   /* Select peer channels mask to use depending on transport */
   uint8_t peer_channel_mask = p_lcb->peer_chnl_mask[0];
 
@@ -3378,8 +3390,7 @@ static void send_congestion_status_to_all_clients(tL2C_CCB* p_ccb,
     (*p_ccb->p_rcb->api.pL2CA_CongestionStatus_Cb)(p_ccb->local_cid, status);
 
     if (status == false) l2cb.is_cong_cback_context = false;
-  }
-  else {
+  } else {
     for (uint8_t xx = 0; xx < L2CAP_NUM_FIXED_CHNLS; xx++) {
       if (p_ccb->p_lcb->p_fixed_ccbs[xx] == p_ccb) {
         if (l2cb.fixed_reg[xx].pL2CA_FixedCong_Cb != NULL)
