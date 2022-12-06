@@ -46,6 +46,30 @@
       },
       "revId": "b4889277009186ea5627e30b2ff0f2681a875160",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4972909_18793067",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-06T00:14:51Z",
+      "side": 1,
+      "message": "I don\u0027t think it works like that, it takes the same branch everytime it\u0027s just that without the argument you are reading garbage data that is currently in a register/stack (because on the implementation it just do a va_arg on the va_list).\n\nAnd so based on the documentation of `F_DUPFD` I would expect that we where just starting from a random FD. The only issue that I see would be if that value was bigger than the max number of file descriptors.\n\nSo what was the issue ? Was the call to `fcntl` returning `-1` ? If yes what was the `errno` value ?",
+      "parentUuid": "0e19095c_be7bc123",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 62
+      },
+      "revId": "b4889277009186ea5627e30b2ff0f2681a875160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
