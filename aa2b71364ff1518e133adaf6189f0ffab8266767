@@ -22,6 +22,30 @@
       },
       "revId": "aa2b71364ff1518e133adaf6189f0ffab8266767",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ed98879_df3b4541",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-12-06T17:08:26Z",
+      "side": 1,
+      "message": "This shouldn\u0027t change the codec retry at all, we will still try T2 -\u003e T1 -\u003e CVSD  as we don\u0027t go through the CLOSE event when retrying, only when actually trying to close SCO.",
+      "parentUuid": "c959d448_5ecee0ea",
+      "range": {
+        "startLine": 767,
+        "startChar": 9,
+        "endLine": 768,
+        "endChar": 67
+      },
+      "revId": "aa2b71364ff1518e133adaf6189f0ffab8266767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
