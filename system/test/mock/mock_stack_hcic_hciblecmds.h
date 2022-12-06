@@ -475,22 +475,6 @@ struct btsnd_hcic_ble_receiver_test {
 };
 extern struct btsnd_hcic_ble_receiver_test btsnd_hcic_ble_receiver_test;
 
-// Name: btsnd_hcic_ble_remove_from_acceptlist
-// Params: tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
-// base::OnceCallback<void(uint8_t*, uint16_t Return: void
-struct btsnd_hcic_ble_remove_from_acceptlist {
-  std::function<void(tBLE_ADDR_TYPE, const RawAddress&,
-                     base::OnceCallback<void(uint8_t*, uint16_t)>)>
-      body{[](tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
-              base::OnceCallback<void(uint8_t*, uint16_t)> cb) {}};
-  void operator()(tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
-                  base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
-    body(addr_type, bda, std::move(cb));
-  };
-};
-extern struct btsnd_hcic_ble_remove_from_acceptlist
-    btsnd_hcic_ble_remove_from_acceptlist;
-
 // Name: btsnd_hcic_ble_rm_device_resolving_list
 // Params: uint8_t addr_type_peer, const RawAddress& bda_peer
 // Return: void
