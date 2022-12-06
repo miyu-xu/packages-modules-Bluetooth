@@ -58,7 +58,7 @@ pub struct Tag {
     pub value: usize,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind", rename = "constraint")]
 pub struct Constraint {
     pub id: String,
@@ -67,7 +67,7 @@ pub struct Constraint {
     pub tag_id: Option<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind")]
 pub enum Field {
     #[serde(rename = "checksum_field")]
@@ -285,6 +285,29 @@ impl Field {
             Field::Array { id, .. } | Field::Scalar { id, .. } | Field::Typedef { id, .. } => {
                 Some(id)
             }
+        }
+    }
+
+    pub fn is_bitfield(&self) -> bool {
+        matches!(
+            self,
+            Field::Size { .. }
+                | Field::Count { .. }
+                | Field::Fixed { .. }
+                | Field::Reserved { .. }
+                | Field::Scalar { .. }
+                | Field::Typedef { .. }
+        )
+    }
+
+    pub fn width(&self) -> Option<usize> {
+        match self {
+            Field::Scalar { width, .. }
+            | Field::Size { width, .. }
+            | Field::Count { width, .. }
+            | Field::Reserved { width, .. } => Some(*width),
+            // TODO(mgeisler): padding, arrays, etc.
+            _ => None,
         }
     }
 }
