@@ -16,6 +16,24 @@
       "message": "Echoing comments from our meeting, let\u0027s put all of these behind a flag",
       "revId": "3168b96ae785f9a213273fd725535b37d0e8f384",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39caa476_6a0641b9",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-06T15:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cee04a3_125bc412",
+      "revId": "3168b96ae785f9a213273fd725535b37d0e8f384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
