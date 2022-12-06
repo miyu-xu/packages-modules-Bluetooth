@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6351e34b_426092f1",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-06T22:43:03Z",
+      "side": 1,
+      "message": "That\u0027s true but in this CL case the Audio Device matters as active. https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java;drc\u003db88cf66ca2b2b8605f3a5eb6dccc71693064c2f2;l\u003d735\n\nhere the active device is represented as single for AudioManager. I believe it\u0027ll be fine to represent it as single.",
+      "parentUuid": "ca258dee_73b9ed1f",
+      "range": {
+        "startLine": 80,
+        "startChar": 28,
+        "endLine": 80,
+        "endChar": 41
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4cfe178f_ee3cd16d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-04T18:03:49Z",
       "side": 1,
       "message": "use equals method would be better?",
+      "range": {
+        "startLine": 603,
+        "startChar": 16,
+        "endLine": 603,
+        "endChar": 39
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82702e3e_ffe3015b",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-06T22:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cfe178f_ee3cd16d",
       "range": {
         "startLine": 603,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2d0bee9_3f79e818",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-06T22:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaadbe12_36c2e44a",
+      "range": {
+        "startLine": 712,
+        "startChar": 18,
+        "endLine": 712,
+        "endChar": 55
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db7a582b_15cc92e0",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-04T18:03:49Z",
       "side": 1,
       "message": "maybe this name \"AudioManagerOnAudioDevicesAddedCallback\" would be better?",
+      "range": {
+        "startLine": 728,
+        "startChar": 18,
+        "endLine": 728,
+        "endChar": 52
+      },
+      "revId": "f44351e40223aa8ff33604de0411e7093703bc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7c1b179_0b08dff6",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-06T22:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db7a582b_15cc92e0",
       "range": {
         "startLine": 728,
         "startChar": 18,
