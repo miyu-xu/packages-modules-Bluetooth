@@ -79,15 +79,23 @@ class AdapterClient(AsyncClosable):
         await self.__adapter_stub.ToggleStack(facade_pb2.ToggleStackRequest(start_stack=is_start))
         return await self._verify_adapter_started()
 
+    async def enable_inquiry_scan(self):
+        """Enable inquiry scan (Required to make device connectable and discoverable by other devices)"""
+        await self.__adapter_stub.SetDiscoveryMode(facade_pb2.SetDiscoveryModeRequest(enable_inquiry_scan=True))
+        future = await self._listen_for_event(facade_pb2.EventType.ADAPTER_PROPERTY)
+        return future
+
     async def enable_page_scan(self):
         """Enable page scan (might be used for A2dp sink to be discoverable)"""
         await self.__adapter_stub.SetDiscoveryMode(facade_pb2.SetDiscoveryModeRequest(enable_page_scan=True))
-        return await self.le_rand()
+        future = await self._listen_for_event(facade_pb2.EventType.ADAPTER_PROPERTY)
+        return future
 
     async def disable_page_scan(self):
         """Enable page scan (might be used for A2dp sink to be discoverable)"""
         await self.__adapter_stub.SetDiscoveryMode(facade_pb2.SetDiscoveryModeRequest(enable_page_scan=False))
-        return await self.le_rand()
+        future = await self._listen_for_event(facade_pb2.EventType.ADAPTER_PROPERTY)
+        return future
 
     async def clear_event_filter(self):
         await self.__adapter_stub.ClearEventFilter(empty_proto.Empty())
