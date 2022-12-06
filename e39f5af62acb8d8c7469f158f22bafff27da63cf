@@ -16,6 +16,40 @@
       "message": "Hi, this patch is for floss GAP qualification, please take a look, thanks!\nExample command usage is in: https://b.corp.google.com/issues/259356345.",
       "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c026a51_c7c6ec6c",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-06T06:17:23Z",
+      "side": 1,
+      "message": "Let\u0027s wait for Howard\u0027s new QA interface. I\u0027ll provide my implementation and you can rebase on top of it then.",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2339767d_aa983fb0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-06T06:17:23Z",
+      "side": 1,
+      "message": "I\u0027d like to have the new method looks like ths in a QA interface for privacy reason , meaning we only expose this API to limited app to avoid user privacy issue:\n\nfn set_raw_data(\u0026mut self, adv_data: Vec\u003cu8\u003e)",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
