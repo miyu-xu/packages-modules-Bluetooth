@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abc50d31_a5b8c001",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T21:23:15Z",
+      "side": 0,
+      "message": "nit: accidental removal?",
+      "revId": "481961841b86acc67193be8e02fce9e92d92446b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

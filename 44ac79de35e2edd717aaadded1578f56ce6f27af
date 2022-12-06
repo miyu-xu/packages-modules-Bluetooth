@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f5e2ac5_abcbd879",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T21:23:15Z",
+      "side": 1,
+      "message": "nit: is this intentional? looks like a clean up to an unrelated file and prefer not to be in this CL.",
+      "revId": "44ac79de35e2edd717aaadded1578f56ce6f27af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65ad4f5e_5ed1719b",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T21:23:15Z",
+      "side": 1,
+      "message": "nit: `/**` to match the neighboring comments?",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 4
+      },
+      "revId": "44ac79de35e2edd717aaadded1578f56ce6f27af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
