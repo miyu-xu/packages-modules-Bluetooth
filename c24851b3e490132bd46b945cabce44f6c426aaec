@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4c8deac_385cfdc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-06T13:03:21Z",
+      "side": 1,
+      "message": "Followup CL: aosp/2328528. PTAL?",
+      "parentUuid": "ccac65af_bc4f0bc0",
+      "revId": "c24851b3e490132bd46b945cabce44f6c426aaec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e87946b_6c81eff2",
         "filename": "system/stack/gatt/gatt_main.cc",
         "patchSetId": 2
