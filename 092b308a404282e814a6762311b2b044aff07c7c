@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bea2399d_2ddfd92b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-12-06T17:38:19Z",
+      "side": 1,
+      "message": "Also, just FYI, we might have to separate this one out later instead of rebasing it on top of 2319271",
+      "revId": "092b308a404282e814a6762311b2b044aff07c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3e3b0c4_aaa93837",
