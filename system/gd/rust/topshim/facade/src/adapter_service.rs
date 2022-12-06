@@ -7,7 +7,8 @@ use bt_topshim_facade_protobuf::empty::Empty;
 use bt_topshim_facade_protobuf::facade::{
     EventType, FetchEventsRequest, FetchEventsResponse, SetDefaultEventMaskExceptRequest,
     SetDiscoveryModeRequest, SetDiscoveryModeResponse, SetLocalIoCapsRequest,
-    SetLocalIoCapsResponse, ToggleStackRequest, ToggleStackResponse,
+    SetLocalIoCapsResponse, ToggleDiscoveryRequest, ToggleDiscoveryResponse, ToggleStackRequest,
+    ToggleStackResponse,
 };
 use bt_topshim_facade_protobuf::facade_grpc::{create_adapter_service, AdapterService};
 use futures::sink::SinkExt;
@@ -39,6 +40,9 @@ fn get_bt_dispatcher(
                         "Adapter attributes changed, status = {:?}, properties = {:?}",
                         status, properties
                     );
+                }
+                BaseCallbacks::DiscoveryState(state) => {
+                    println!("Discovery state changed, state = {:?}, ", state);
                 }
                 _ => (),
             }
@@ -140,6 +144,12 @@ impl AdapterService for AdapterServiceImpl {
                         let mut rsp = FetchEventsResponse::new();
                         rsp.event_type = EventType::ADAPTER_PROPERTY;
                         rsp.data = format!("{:?} :: {:?}", status, properties);
+                        sink.send((rsp, WriteFlags::default())).await.unwrap();
+                    }
+                    BaseCallbacks::DiscoveryState(state) => {
+                        let mut rsp = FetchEventsResponse::new();
+                        rsp.event_type = EventType::DISCOVERY_STATE;
+                        rsp.data = format!("{:?}", state);
                         sink.send((rsp, WriteFlags::default())).await.unwrap();
                     }
                     _ => (),
@@ -296,6 +306,23 @@ impl AdapterService for AdapterServiceImpl {
             ),
         );
         let mut resp = SetLocalIoCapsResponse::new();
+        resp.status = status;
+        ctx.spawn(async move {
+            sink.success(resp).await.unwrap();
+        })
+    }
+
+    fn toggle_discovery(
+        &mut self,
+        ctx: RpcContext<'_>,
+        req: ToggleDiscoveryRequest,
+        sink: UnarySink<ToggleDiscoveryResponse>,
+    ) {
+        let status = match req.is_start {
+            true => self.btif_intf.lock().unwrap().start_discovery(),
+            false => self.btif_intf.lock().unwrap().cancel_discovery(),
+        };
+        let mut resp = ToggleDiscoveryResponse::new();
         resp.status = status;
         ctx.spawn(async move {
             sink.success(resp).await.unwrap();
