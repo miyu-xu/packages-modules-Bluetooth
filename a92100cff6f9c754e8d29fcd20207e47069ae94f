@@ -63,6 +63,24 @@
       "message": "It seems ActivityInstrumentationTestCase2 doesn\u0027t require annotations like @RunWith, @Before, @After, @Test\n\nhttps://source.corp.google.com/search?q\u003dActivityInstrumentationTestCase2\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
       "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d79c25b_7d0cff02",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnableActivityTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-06T03:48:02Z",
+      "side": 1,
+      "message": "I remember removing runWith cause some error with BluetoothInstrumentationTest. Let me try again",
+      "parentUuid": "0a380d24_98d7c9d8",
+      "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
