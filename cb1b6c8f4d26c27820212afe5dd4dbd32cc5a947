@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72dd09a3_624dd16f",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-06T14:28:32Z",
+      "side": 1,
+      "message": "Should we just use a mutex and lock if the state variables need to be protected? \n\nSince we are running this code in the AP, mutex cost is rather low and using mutex is more readable compared to std::atomic_compare_exchange_strong",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 77
+      },
+      "revId": "cb1b6c8f4d26c27820212afe5dd4dbd32cc5a947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
