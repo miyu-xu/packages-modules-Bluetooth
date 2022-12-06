@@ -2635,18 +2635,18 @@ Address LinkLayerController::generate_rpa(
   prand[2] |= BLE_RESOLVE_ADDR_MSB;
 
   Address rpa;
-  rpa.address[3] = prand[0];
-  rpa.address[4] = prand[1];
-  rpa.address[5] = prand[2];
+  rpa.address[0] = prand[2];
+  rpa.address[1] = prand[1];
+  rpa.address[2] = prand[0];
 
   /* encrypt with IRK */
   bluetooth::crypto_toolbox::Octet16 p =
       bluetooth::crypto_toolbox::aes_128(irk, prand.data(), 3);
 
   /* set hash to be LSB of rpAddress */
-  rpa.address[0] = p[0];
-  rpa.address[1] = p[1];
-  rpa.address[2] = p[2];
+  rpa.address[3] = p[2];
+  rpa.address[4] = p[1];
+  rpa.address[5] = p[0];
   LOG_INFO("RPA %s", rpa.ToString().c_str());
   return rpa;
 }
@@ -4459,7 +4459,6 @@ void LinkLayerController::IncomingLeScanResponsePacket(
              advertising_address.GetAddressType(),
              resolved_advertising_address.ToString().c_str(),
              resolved_advertising_address.GetAddressType());
-    return;
   }
 
   LOG_INFO("Accepting LE Scan response from advertising address %s(%hhx)",
