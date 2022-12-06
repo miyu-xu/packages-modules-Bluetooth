@@ -81,6 +81,24 @@
       "parentUuid": "0a380d24_98d7c9d8",
       "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed9d5734_4713cb1e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnableActivityTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-06T08:25:00Z",
+      "side": 1,
+      "message": "`Runner reported an invalid method \u0027initializationError\u0027 (com.android.bluetooth.opp.BluetoothOppBtEnableActivityTest#initializationError). Something went wrong, Skipping its reporting. Stack:java.lang.RuntimeException: Invalid test class \u0027com.android.bluetooth.opp.BluetoothOppBtEnableActivityTest\u0027: No test methods found\n`\nThis is the error",
+      "parentUuid": "0d79c25b_7d0cff02",
+      "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
