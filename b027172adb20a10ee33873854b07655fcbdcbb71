@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c13be48_c0e5fc38",
+        "filename": "system/gd/rust/topshim/facade/src/adapter_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T21:49:43Z",
+      "side": 1,
+      "message": "what does INIT_gd_controller affect? I see that this is not in Chrome OS\u0027s init flags http://osscs/chromiumos/chromiumos/codesearch/+/main:src/third_party/chromiumos-overlay/net-wireless/floss/files/upstart/btadapterd.conf;l\u003d42",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 69,
+        "endChar": 35
+      },
+      "revId": "b027172adb20a10ee33873854b07655fcbdcbb71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
