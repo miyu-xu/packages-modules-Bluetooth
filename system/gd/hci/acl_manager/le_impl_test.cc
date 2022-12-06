@@ -1054,7 +1054,7 @@ TEST_F(LeImplTest, register_with_address_manager__AddressPolicyResolvableAddress
   ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
 }
 
-TEST_F(LeImplTest, add_device_to_resolving_list) {
+TEST_F(LeImplTest, DISABLED_add_device_to_resolving_list) {
   // Some kind of privacy policy must be set for LeAddressManager to operate properly
   set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS);
   // Let LeAddressManager::resume_registered_clients execute
