@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d79dea3f_a26f420d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-06T14:23:03Z",
+      "side": 1,
+      "message": "Could you attach a bug number and rationale for this revert?",
+      "revId": "f2b97573e5ead7b53fa73018f294967701210260",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
