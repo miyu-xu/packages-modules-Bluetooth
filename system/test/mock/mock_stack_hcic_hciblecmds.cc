@@ -78,8 +78,6 @@ struct btsnd_hcic_ble_read_resolvable_addr_local
 struct btsnd_hcic_ble_read_resolvable_addr_peer
     btsnd_hcic_ble_read_resolvable_addr_peer;
 struct btsnd_hcic_ble_receiver_test btsnd_hcic_ble_receiver_test;
-struct btsnd_hcic_ble_remove_from_acceptlist
-    btsnd_hcic_ble_remove_from_acceptlist;
 struct btsnd_hcic_ble_set_addr_resolution_enable
     btsnd_hcic_ble_set_addr_resolution_enable;
 struct btsnd_hcic_ble_set_adv_data btsnd_hcic_ble_set_adv_data;
@@ -310,13 +308,6 @@ void btsnd_hcic_ble_read_resolvable_addr_peer(uint8_t addr_type_peer,
 void btsnd_hcic_ble_receiver_test(uint8_t rx_freq) {
   mock_function_count_map[__func__]++;
   test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_receiver_test(rx_freq);
-}
-void btsnd_hcic_ble_remove_from_acceptlist(
-    tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
-  mock_function_count_map[__func__]++;
-  test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_remove_from_acceptlist(
-      addr_type, bda, std::move(cb));
 }
 void btsnd_hcic_ble_set_addr_resolution_enable(uint8_t addr_resolution_enable) {
   mock_function_count_map[__func__]++;
