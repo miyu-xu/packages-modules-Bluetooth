@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df57b893_8de4f260",
+        "filename": "tools/rootcanal/model/devices/device.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-06T22:30:51Z",
+      "side": 1,
+      "message": "nit: No need to move the function, right?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "a6c35270850207218b882c61124acb8bd55d4530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
