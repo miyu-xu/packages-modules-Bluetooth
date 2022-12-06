@@ -231,15 +231,21 @@ class Host(
         throw Status.UNKNOWN.asException()
       }
 
-      if (security.manuallyConfirm) {
-        waitBondIntent(bluetoothDevice)
+      if (bluetoothDevice.isConnected() && bluetoothDevice.type != BluetoothDevice.DEVICE_TYPE_LE) {
+        WaitConnectionResponse.newBuilder()
+          .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
+          .build()
       } else {
-        acceptPairingAndAwaitBonded(bluetoothDevice)
-      }
+        if (security.manuallyConfirm) {
+          waitBondIntent(bluetoothDevice)
+        } else {
+          acceptPairingAndAwaitBonded(bluetoothDevice)
+        }
 
-      WaitConnectionResponse.newBuilder()
-        .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
-        .build()
+        WaitConnectionResponse.newBuilder()
+          .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
+          .build()
+      }
     }
   }
 
@@ -277,7 +283,7 @@ class Host(
   ) {
     grpcUnary(scope, responseObserver) {
       val bluetoothDevice = bluetoothAdapter.getRemoteDevice(request.address.toByteArray())
-      if (bluetoothDevice.isConnected() && bluetoothDevice.type != BluetoothDevice.DEVICE_TYPE_LE) {
+      if (bluetoothDevice.type != BluetoothDevice.DEVICE_TYPE_LE) {
         GetConnectionResponse.newBuilder()
           .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
           .build()
