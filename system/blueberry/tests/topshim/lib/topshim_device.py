@@ -99,11 +99,17 @@ class TopshimDevice(AsyncClosable):
         await asyncSafeClose(self.__gatt)
         await asyncSafeClose(self.__security)
 
+    def enable_inquiry_scan(self):
+        f = self.__post(self.__adapter.enable_inquiry_scan())
+        return self.__post(self.__adapter_properties_waiter(f))
+
     def enable_page_scan(self):
-        self.__post(self.__adapter.enable_page_scan())
+        f = self.__post(self.__adapter.enable_page_scan())
+        return self.__post(self.__adapter_properties_waiter(f))
 
     def disable_page_scan(self):
-        self.__post(self.__adapter.disable_page_scan())
+        f = self.__post(self.__adapter.disable_page_scan())
+        return self.__post(self.__adapter_properties_waiter(f))
 
     def start_advertising(self):
         """
@@ -176,12 +182,11 @@ class TopshimDevice(AsyncClosable):
 
     def set_local_io_caps(self, io_capability=0):
         f = self.__post(self.__adapter.set_local_io_caps(io_capability))
+        return self.__post(self.__adapter_properties_waiter(f))
 
-        async def waiter(f):
-            data = await f
-            data_list = data.split(" :: ")
-            status, properties = data_list[0].strip(), data_list[1].strip()
-            properties = list(properties[1:-1].strip().split(","))
-            return (status, properties)
-
-        return asyncio.get_event_loop().run_until_complete(waiter(f))
+    async def __adapter_properties_waiter(self, f):
+        data = await f
+        data_list = data.split(" :: ")
+        status, properties = data_list[0].strip(), data_list[1].strip()
+        properties = list(properties[1:-1].strip().split(","))
+        return (status, properties)
