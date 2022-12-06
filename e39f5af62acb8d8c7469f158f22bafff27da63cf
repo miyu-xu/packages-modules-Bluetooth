@@ -20,6 +20,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7386661_2adf73b6",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T23:23:36Z",
+      "side": 1,
+      "message": "nit:\n```\nlet ad_type \u003d decode_hex(String::from(get_arg(args, 1)?).as_str()).or(Err(\"Failed parsing ad_type\"))?;\n```\n\nAlso we can avoid naked `unwrap()` below and unsafe `[0]`:\n```\nlet parsed_ad_type \u003d *decode_hex(String::from(get_arg(args, 1)?).as_str())\n    .or(Err(\"Failed parsing ad_type\"))?\n    .get(0).ok_or(\"Empty ad_type\")?;\n```",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "271fd90a_71065e47",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T23:23:36Z",
+      "side": 1,
+      "message": "nit: without mut:\n```\nlet parsed_ad_payload: Vec\u003c_\u003e \u003d ad_payload.unwrap().iter().rev().cloned().collect();\n```",
+      "range": {
+        "startLine": 1251,
+        "startChar": 0,
+        "endLine": 1252,
+        "endChar": 44
+      },
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c026a51_c7c6ec6c",
         "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
         "patchSetId": 3
@@ -31,6 +71,24 @@
       "writtenOn": "2022-12-06T06:17:23Z",
       "side": 1,
       "message": "Let\u0027s wait for Howard\u0027s new QA interface. I\u0027ll provide my implementation and you can rebase on top of it then.",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda8484d_201536e4",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T23:23:36Z",
+      "side": 1,
+      "message": "I have a concern with the new macro adding complexity and hiding the simple 1-to-1 correspondence between D-Bus methods/interfaces to Rust functions/traits. I would be okay with this method staying here, or move this method to the QA trait but not just the D-Bus interface.",
+      "parentUuid": "6c026a51_c7c6ec6c",
       "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
