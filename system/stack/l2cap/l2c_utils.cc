@@ -1467,6 +1467,11 @@ tL2C_CCB* l2cu_allocate_ccb(tL2C_LCB* p_lcb, uint16_t cid) {
 
   l2c_link_adjust_chnl_allocation();
 
+  if (p_lcb != NULL) {
+    // once a dynamic channel is opened, timeouts become active
+    p_lcb->local_device_is_active = true;
+  }
+
   return p_ccb;
 }
 
