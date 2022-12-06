@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df3d7f25_675157c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T21:35:26Z",
+      "side": 1,
+      "message": "I will try to avoid adding more complexity in the D-Bus projection macro. I see that the goal we want to achieve is actually to expose everything related to QA under a single D-Bus interface. I would prefer that this is also reflected in the Rust trait definitions as well so that it should appear that these QA related methods should be in the same trait, so there is no need for more complex macro.\n\nCan you instead try moving all QA related methods to the same Rust trait? Maybe that means sharing some backend data between interface implementations and that is okay. If that is difficult, I would rather we don\u0027t make this macro change and let `set_l2cap_mode` stay in `IBluetoothSocketManager` and just comment it clearly that it\u0027s exposed not for regular clients but only for QA. I think this may be better for now rather than adding more complexity.",
+      "revId": "882cd5947d200b7a4ba675b5a310db2bd2b8e3a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
