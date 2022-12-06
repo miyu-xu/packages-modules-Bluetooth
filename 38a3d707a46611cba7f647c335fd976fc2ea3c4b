@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaedba5d_6514eb29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-06T23:11:05Z",
+      "side": 1,
+      "message": "I\u0027m guessing there\u0027s an actual usage coming soon?",
+      "revId": "38a3d707a46611cba7f647c335fd976fc2ea3c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ccc634e_3f19de29",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-06T23:11:05Z",
+      "side": 1,
+      "message": "FYI - IBluetoothCallback has `on_device_found` and `on_device_cleared` that does something similar for discovery but we only use a timer for that.",
+      "revId": "38a3d707a46611cba7f647c335fd976fc2ea3c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
