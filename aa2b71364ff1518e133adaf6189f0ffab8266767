@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c959d448_5ecee0ea",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-12-06T16:27:10Z",
+      "side": 1,
+      "message": "just to be clear, does this mean that we first try the default settings (T2), then we try T1, but if T1 fails we will not be trying T1 anymore since we set codec_msbc_settings to T2?",
+      "range": {
+        "startLine": 767,
+        "startChar": 9,
+        "endLine": 768,
+        "endChar": 67
+      },
+      "revId": "aa2b71364ff1518e133adaf6189f0ffab8266767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
