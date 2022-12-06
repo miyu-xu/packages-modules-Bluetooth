@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ce6bf1_b5000741",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-12-06T18:05:02Z",
+      "side": 1,
+      "message": "Thought more about this after reading the AVRCP spec again. I don\u0027t think this is an Android Bluetooth stack issue. It is a device side issue and we should not be making changes to the Android Bluetooth stack to handle device side issues. Here is what I have understood (correct me if i am wrong):\n\n1. The user connnects to their Bluetooth speaker.\n2. The speaker registers for playback status notifications so that it can be notified of playback status changes such as PLAYING, PAUSED etc when they happen on the phone.\n3. The user is playing music using an app on Android (say YoutubeMusic) on their connected speaker.\n4. The user then switches from one track to another.\n5. When the track switches, playback status updated to PAUSED and then PLAYING (for the new track)\n6. Since the speaker had registered for playback status updates, when the playback changes to PAUSED, we send the speaker a playback status CHANGED notification, letting them know of the new state.\n7. Now, the phone changes playback state to PLAYING (for the new track), but it is possible that the speaker had not registered for a playback status notification *before* the phone changed to PLAYING.\n8. We should not have to change the code for this. The AVRCP notification protocol is designed to handle this scenario. For example, even if phone changes to PLAYING and then the speaker registers for playback status notification, the phone will respond with an INTERIM notification indicating the current playback state (which would be PLAYING).\n9. The speaker should be maintaining additional state on their end to detect if playback status recently changed from PAUSED to PLAYING, not the phone.",
+      "revId": "092b308a404282e814a6762311b2b044aff07c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3e3b0c4_aaa93837",
