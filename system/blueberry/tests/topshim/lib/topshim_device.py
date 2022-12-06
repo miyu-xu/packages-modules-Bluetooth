@@ -184,6 +184,10 @@ class TopshimDevice(AsyncClosable):
         f = self.__post(self.__adapter.set_local_io_caps(io_capability))
         return self.__post(self.__adapter_properties_waiter(f))
 
+    def toggle_discovery(self, is_start):
+        f = self.__post(self.__adapter.toggle_discovery(is_start))
+        return self.__post(f)
+
     async def __adapter_properties_waiter(self, f):
         data = await f
         data_list = data.split(" :: ")
