@@ -16,6 +16,24 @@
       "message": "FYI\nWill complete the commit message and some documentation.",
       "revId": "8b894e77553ef79935ce45cac55222635e82643a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b399b443_a4e4a139",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-06T09:04:23Z",
+      "side": 1,
+      "message": "LG.",
+      "parentUuid": "72f3b83a_31f27b57",
+      "revId": "8b894e77553ef79935ce45cac55222635e82643a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
