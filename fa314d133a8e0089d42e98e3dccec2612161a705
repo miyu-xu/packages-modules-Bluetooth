@@ -39,6 +39,30 @@
       },
       "revId": "fa314d133a8e0089d42e98e3dccec2612161a705",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f60dea_2e12b895",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-06T12:21:12Z",
+      "side": 1,
+      "message": "Looks good to me, just not sure why this error code is not present in the packets before. Done.",
+      "parentUuid": "e76f437a_ba5b0742",
+      "range": {
+        "startLine": 226,
+        "startChar": 40,
+        "endLine": 226,
+        "endChar": 44
+      },
+      "revId": "fa314d133a8e0089d42e98e3dccec2612161a705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
