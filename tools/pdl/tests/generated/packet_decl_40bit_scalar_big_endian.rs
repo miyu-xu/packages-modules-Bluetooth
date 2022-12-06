@@ -1,24 +1,41 @@
 #[derive(Debug)]
-struct FooData {}
+struct FooData {
+    x: u64,
+}
 #[derive(Debug, Clone)]
 pub struct FooPacket {
     foo: Arc<FooData>,
 }
 #[derive(Debug)]
-pub struct FooBuilder {}
+pub struct FooBuilder {
+    pub x: u64,
+}
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
-        true
+        bytes.len() >= 5
     }
     fn parse(mut bytes: &[u8]) -> Result<Self> {
-        Ok(Self {})
+        if bytes.remaining() < 5 {
+            return Err(Error::InvalidLengthError {
+                obj: "Foo".to_string(),
+                wanted: 5,
+                got: bytes.remaining(),
+            });
+        }
+        let x = bytes.get_uint(5);
+        Ok(Self { x })
     }
-    fn write_to(&self, buffer: &mut BytesMut) {}
+    fn write_to(&self, buffer: &mut BytesMut) {
+        if self.x > 0xffffffffffu64 {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "x", self.x, 0xffffffffffu64);
+        }
+        buffer.put_uint(self.x, 5);
+    }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
-        0
+        5
     }
 }
 impl Packet for FooPacket {
@@ -49,10 +66,13 @@ impl FooPacket {
         let foo = root;
         Ok(Self { foo })
     }
+    pub fn get_x(&self) -> u64 {
+        self.foo.as_ref().x
+    }
 }
 impl FooBuilder {
     pub fn build(self) -> FooPacket {
-        let foo = Arc::new(FooData {});
+        let foo = Arc::new(FooData { x: self.x });
         FooPacket::new(foo).unwrap()
     }
 }

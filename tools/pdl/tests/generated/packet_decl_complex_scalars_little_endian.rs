@@ -7,12 +7,10 @@ struct FooData {
     e: u16,
     f: u8,
 }
-
 #[derive(Debug, Clone)]
 pub struct FooPacket {
     foo: Arc<FooData>,
 }
-
 #[derive(Debug)]
 pub struct FooBuilder {
     pub a: u8,
@@ -22,7 +20,6 @@ pub struct FooBuilder {
     pub e: u16,
     pub f: u8,
 }
-
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
         bytes.len() >= 7
@@ -35,7 +32,7 @@ impl FooData {
                 got: bytes.remaining(),
             });
         }
-        let chunk = bytes.get_u16();
+        let chunk = bytes.get_u16_le();
         let a = (chunk & 0x7) as u8;
         let b = (chunk >> 3) as u8;
         let c = ((chunk >> 11) & 0x1f) as u8;
@@ -46,7 +43,7 @@ impl FooData {
                 got: bytes.remaining(),
             });
         }
-        let d = bytes.get_uint(3) as u32;
+        let d = bytes.get_uint_le(3) as u32;
         if bytes.remaining() < 2 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
@@ -54,23 +51,32 @@ impl FooData {
                 got: bytes.remaining(),
             });
         }
-        let chunk = bytes.get_u16();
+        let chunk = bytes.get_u16_le();
         let e = (chunk & 0xfff);
         let f = ((chunk >> 12) & 0xf) as u8;
         Ok(Self { a, b, c, d, e, f })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        let chunk = 0;
-        let chunk = chunk | ((self.a as u16) & 0x7);
-        let chunk = chunk | ((self.b as u16) << 3);
-        let chunk = chunk | (((self.c as u16) & 0x1f) << 11);
-        buffer.put_u16(chunk);
-        let d = self.d;
-        buffer.put_uint(d as u64, 3);
-        let chunk = 0;
-        let chunk = chunk | (self.e & 0xfff);
-        let chunk = chunk | (((self.f as u16) & 0xf) << 12);
-        buffer.put_u16(chunk);
+        if self.a > 0x7 {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "a", self.a, 0x7);
+        }
+        if self.c > 0x1f {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "c", self.c, 0x1f);
+        }
+        let value = (self.a as u16) | ((self.b as u16) << 3) | ((self.c as u16) << 11);
+        buffer.put_u16_le(value);
+        if self.d > 0xffffff {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "d", self.d, 0xffffff);
+        }
+        buffer.put_uint_le(self.d as u64, 3);
+        if self.e > 0xfff {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "e", self.e, 0xfff);
+        }
+        if self.f > 0xf {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "f", self.f, 0xf);
+        }
+        let value = (self.e as u16) | ((self.f as u16) << 12);
+        buffer.put_u16_le(value);
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
@@ -79,7 +85,6 @@ impl FooData {
         7
     }
 }
-
 impl Packet for FooPacket {
     fn to_bytes(self) -> Bytes {
         let mut buffer = BytesMut::with_capacity(self.foo.get_total_size());
@@ -100,7 +105,6 @@ impl From<FooPacket> for Vec<u8> {
         packet.to_vec()
     }
 }
-
 impl FooPacket {
     pub fn parse(mut bytes: &[u8]) -> Result<Self> {
         Ok(Self::new(Arc::new(FooData::parse(bytes)?)).unwrap())
@@ -128,7 +132,6 @@ impl FooPacket {
         self.foo.as_ref().f
     }
 }
-
 impl FooBuilder {
     pub fn build(self) -> FooPacket {
         let foo =
