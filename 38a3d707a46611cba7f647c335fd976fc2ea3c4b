@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "833992d2_5d7cf28b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T23:37:43Z",
+      "side": 1,
+      "message": "Yes, the wiring is coming soon, it\u0027s WIP.",
+      "parentUuid": "eaedba5d_6514eb29",
+      "revId": "38a3d707a46611cba7f647c335fd976fc2ea3c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0ccc634e_3f19de29",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-06T23:11:05Z",
       "side": 1,
       "message": "FYI - IBluetoothCallback has `on_device_found` and `on_device_cleared` that does something similar for discovery but we only use a timer for that.",
+      "revId": "38a3d707a46611cba7f647c335fd976fc2ea3c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4178f3ea_84c286c1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-06T23:37:43Z",
+      "side": 1,
+      "message": "We want a more specific interface for \"lost\" events that are defined by LE scan filtering, so `IScannerCallback` is a more appropriate place (also the original Android aidl does it this way although with a different naming and signature)",
+      "parentUuid": "0ccc634e_3f19de29",
       "revId": "38a3d707a46611cba7f647c335fd976fc2ea3c4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
