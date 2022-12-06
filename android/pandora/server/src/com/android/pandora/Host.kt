@@ -277,7 +277,7 @@ class Host(
   ) {
     grpcUnary(scope, responseObserver) {
       val bluetoothDevice = bluetoothAdapter.getRemoteDevice(request.address.toByteArray())
-      if (bluetoothDevice.isConnected() && bluetoothDevice.type != BluetoothDevice.DEVICE_TYPE_LE) {
+      if (bluetoothDevice.type != BluetoothDevice.DEVICE_TYPE_LE) {
         GetConnectionResponse.newBuilder()
           .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
           .build()
