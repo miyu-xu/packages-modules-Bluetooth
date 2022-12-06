@@ -70,6 +70,30 @@
       },
       "revId": "b4889277009186ea5627e30b2ff0f2681a875160",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "094bd908_8efe1ac6",
+        "filename": "system/test/headless/main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-06T01:55:13Z",
+      "side": 1,
+      "message": "Without the 3rd argument, `STDERR_FILENO`, I get fd \u003d\u003d -1.\n\nI did not check the errno; I ran into this once before a while ago and my solution was to add that third argument.\n\nThere must be an arg specified for the F_DUPFD/F_DUPFD_CLOEX\n`Duplicate  the  file  descriptor fd using the lowest-numbered available file descriptor greater than or equal to arg.`\n\nWould you prefer I used `0` for the arg ?",
+      "parentUuid": "e4972909_18793067",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 62
+      },
+      "revId": "b4889277009186ea5627e30b2ff0f2681a875160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
