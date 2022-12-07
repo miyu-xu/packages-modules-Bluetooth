@@ -30,6 +30,7 @@
 #include "hci/acl_manager/round_robin_scheduler.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
+#include "hci/remote_name_request.h"
 #include "hci_acl_manager_generated.h"
 #include "security/security_module.h"
 #include "storage/storage_module.h"
@@ -64,12 +65,19 @@ struct AclManager::impl {
     controller_ = acl_manager_.GetDependency<Controller>();
     round_robin_scheduler_ = new RoundRobinScheduler(handler_, controller_, hci_layer_->GetAclQueueEnd());
     acl_scheduler_ = acl_manager_.GetDependency<AclScheduler>();
+    remote_name_request_module_ = acl_manager_.GetDependency<RemoteNameRequestModule>();
 
     bool crash_on_unknown_handle = false;
     {
       const std::lock_guard<std::mutex> lock(dumpsys_mutex_);
       classic_impl_ = new classic_impl(
-          hci_layer_, controller_, handler_, round_robin_scheduler_, crash_on_unknown_handle, acl_scheduler_);
+          hci_layer_,
+          controller_,
+          handler_,
+          round_robin_scheduler_,
+          crash_on_unknown_handle,
+          acl_scheduler_,
+          remote_name_request_module_);
       le_impl_ = new le_impl(hci_layer_, controller_, handler_, round_robin_scheduler_, crash_on_unknown_handle);
     }
 
@@ -126,6 +134,7 @@ struct AclManager::impl {
   classic_impl* classic_impl_ = nullptr;
   le_impl* le_impl_ = nullptr;
   AclScheduler* acl_scheduler_ = nullptr;
+  RemoteNameRequestModule* remote_name_request_module_ = nullptr;
   os::Handler* handler_ = nullptr;
   Controller* controller_ = nullptr;
   HciLayer* hci_layer_ = nullptr;
@@ -140,9 +149,11 @@ AclManager::AclManager() : pimpl_(std::make_unique<impl>(*this)) {}
 
 void AclManager::RegisterCallbacks(ConnectionCallbacks* callbacks, os::Handler* handler) {
   ASSERT(callbacks != nullptr && handler != nullptr);
-  GetHandler()->Post(common::BindOnce(&classic_impl::handle_register_callbacks,
-                                      common::Unretained(pimpl_->classic_impl_), common::Unretained(callbacks),
-                                      common::Unretained(handler)));
+  GetHandler()->Post(common::BindOnce(
+      &classic_impl::handle_register_callbacks,
+      common::Unretained(pimpl_->classic_impl_),
+      common::Unretained(callbacks),
+      common::Unretained(handler)));
 }
 
 void AclManager::UnregisterCallbacks(ConnectionCallbacks* callbacks, std::promise<void> promise) {
@@ -337,6 +348,7 @@ void AclManager::ListDependencies(ModuleList* list) const {
   list->add<Controller>();
   list->add<storage::StorageModule>();
   list->add<AclScheduler>();
+  list->add<RemoteNameRequestModule>();
 }
 
 void AclManager::Start() {
