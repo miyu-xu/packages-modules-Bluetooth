@@ -27,6 +27,7 @@ java_defaults {
         "androidx.room_room-testing",
         "gson",
         "mockito-target",
+        "mockito-target-extended",
         "truth-prebuilt",
         "PlatformProperties",
         "framework-bluetooth-pre-jarjar",
