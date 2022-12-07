@@ -22,6 +22,29 @@
       },
       "revId": "132528853f9a812310d0216f64e7ee08d750199e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6406f98c_c728717f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-07T20:49:29Z",
+      "side": 1,
+      "message": "That is bad bug number",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "132528853f9a812310d0216f64e7ee08d750199e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
