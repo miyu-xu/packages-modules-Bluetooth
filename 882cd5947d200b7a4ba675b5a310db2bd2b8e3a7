@@ -34,6 +34,24 @@
       "parentUuid": "df3d7f25_675157c3",
       "revId": "882cd5947d200b7a4ba675b5a310db2bd2b8e3a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be4fbb6_306569f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-07T04:24:59Z",
+      "side": 1,
+      "message": "1. If we have concerns on this refactor\u0027s complexity, \"moving all QA related methods to the same Rust trait\" and option 1 in [1] have less impact to existing interface and dbus macros, which is also less risky for m110.\n\n2. \"let QA method stay in their trait\" might leave some tech debets if there\u0027re privacy or security concerns on these newly exported methods for Bluetooth Qualification.\n\nHoward, could you please take the 2 proposals from Sonny to the doc [1]? Thank you.",
+      "parentUuid": "adf1c594_0aac2e25",
+      "revId": "882cd5947d200b7a4ba675b5a310db2bd2b8e3a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
