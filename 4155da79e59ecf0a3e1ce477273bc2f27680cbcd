@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3fb4b3d_8c8cd254",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393882
+      },
+      "writtenOn": "2022-12-07T03:29:06Z",
+      "side": 1,
+      "message": "Bug: b/261663125",
+      "revId": "4155da79e59ecf0a3e1ce477273bc2f27680cbcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
