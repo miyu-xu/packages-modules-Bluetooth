@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dceadf07_40d01684",
+        "filename": "system/blueberry/tests/topshim/lib/adapter_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-07T18:08:51Z",
+      "side": 1,
+      "message": "return await self._listen_for_event(facade_pb2.EventType.ADAPTER_PROPERTY)",
+      "revId": "185375e936018154f51baafe2fae588555dcf6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
