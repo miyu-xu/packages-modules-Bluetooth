@@ -22,6 +22,46 @@
       },
       "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "addcc06f_0d93ac82",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-07T22:55:49Z",
+      "side": 1,
+      "message": "Why is REMOTE_HOST_SUPPORTED_FEATURES_NOTIFICATION event embedded in the RNR module ?\n\nOther modules may need info from this result but there is currently no way to export it and only handler per event may be registered.\n\nMaybe this belongs in its own module ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 62
+      },
+      "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b70d8ae_6c4f151d",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-07T22:55:49Z",
+      "side": 1,
+      "message": "Log should be `Remote Host Supported Features Request`",
+      "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
