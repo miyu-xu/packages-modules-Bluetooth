@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "082277ac_ffe74e9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1540113
+      },
+      "writtenOn": "2022-12-07T02:13:53Z",
+      "side": 1,
+      "message": "What you said makes sense, and I agree with you, but some devices in the market behave irregularly. We don’t have to adapt to this incorrect behavior, and just keep this modification in the vendor. Thanks.",
+      "parentUuid": "49ce6bf1_b5000741",
+      "revId": "092b308a404282e814a6762311b2b044aff07c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3e3b0c4_aaa93837",
