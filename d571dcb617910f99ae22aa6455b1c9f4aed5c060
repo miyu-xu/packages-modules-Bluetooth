@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd2abd95_803fd83b",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-07T22:58:08Z",
+      "side": 1,
+      "message": "This event is only sent in response to an RNR. Thus if other modules want it, they should use this module to do an RNR (or use a higher-level module that has a cache for this sort of data)",
+      "parentUuid": "addcc06f_0d93ac82",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 62
+      },
+      "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b70d8ae_6c4f151d",
         "filename": "system/gd/hci/remote_name_request.cc",
         "patchSetId": 28
