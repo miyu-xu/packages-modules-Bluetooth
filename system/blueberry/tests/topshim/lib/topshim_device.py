@@ -188,6 +188,25 @@ class TopshimDevice(AsyncClosable):
         f = self.__post(self.__adapter.toggle_discovery(is_start))
         return self.__post(f)
 
+    def find_device(self):
+        """
+        Attempts to find discoverable devices when discovery is toggled on.
+
+        @return a list of properties of found device.
+        """
+        f = self.__post(self.__adapter.find_device())
+
+        async def waiter(f):
+            try:
+                property = await f
+                return list(property[1:-1].strip().split(","))
+            except:
+                # The future `f` has a timeout after 2s post which it is cancelled.
+                print("No device was found. Timed out.")
+            return None
+
+        return self.__post(waiter(f))
+
     async def __adapter_properties_waiter(self, f):
         data = await f
         data_list = data.split(" :: ")

@@ -44,6 +44,9 @@ fn get_bt_dispatcher(
                 BaseCallbacks::DiscoveryState(state) => {
                     println!("Discovery state changed, state = {:?}, ", state);
                 }
+                BaseCallbacks::DeviceFound(_, properties) => {
+                    println!("Device found with properties : {:?}", properties)
+                }
                 _ => (),
             }
         }),
@@ -150,6 +153,12 @@ impl AdapterService for AdapterServiceImpl {
                         let mut rsp = FetchEventsResponse::new();
                         rsp.event_type = EventType::DISCOVERY_STATE;
                         rsp.data = format!("{:?}", state);
+                        sink.send((rsp, WriteFlags::default())).await.unwrap();
+                    }
+                    BaseCallbacks::DeviceFound(_, properties) => {
+                        let mut rsp = FetchEventsResponse::new();
+                        rsp.event_type = EventType::DEVICE_FOUND;
+                        rsp.data = format!("{:?}", properties);
                         sink.send((rsp, WriteFlags::default())).await.unwrap();
                     }
                     _ => (),

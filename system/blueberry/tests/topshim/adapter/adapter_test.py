@@ -53,11 +53,25 @@ class AdapterTest(TopshimBaseTest):
     def test_start_discovery(self):
         state = self.dut().toggle_discovery(True)
         assertThat(state).isEqualTo("Started")
+        # Reset device discovering to Stopped
+        self.dut().toggle_discovery(False)
 
     def test_cancel_discovery(self):
         self.dut().toggle_discovery(True)
         state = self.dut().toggle_discovery(False)
         assertThat(state).isEqualTo("Stopped")
+
+    def test_find_device_device_available(self):
+        self.dut().enable_inquiry_scan()
+        self.cert().enable_inquiry_scan()
+        self.dut().toggle_discovery(True)
+        device = self.dut().find_device()
+        assertThat(device).isNotNone()
+        # Reset DUT device discovering and scanning to None
+        self.dut().disable_page_scan()
+        self.dut().toggle_discovery(False)
+        # Reset CERT device to not discoverable
+        self.cert().disable_page_scan()
 
 
 if __name__ == "__main__":
