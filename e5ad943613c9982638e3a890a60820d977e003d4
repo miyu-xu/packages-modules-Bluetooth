@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2e60f0_17006732",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-07T22:34:05Z",
+      "side": 1,
+      "message": "Seems like it gives us a `_asyncio\u003cFuture\u003e` object which we are resolving here with the double self.__post.",
+      "parentUuid": "38e44e72_b197fd2c",
+      "revId": "e5ad943613c9982638e3a890a60820d977e003d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "389e8e9f_dded4e95",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-07T18:08:22Z",
       "side": 1,
       "message": "Why are we posting then posting again?",
+      "revId": "e5ad943613c9982638e3a890a60820d977e003d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3a8caba_7132b6c4",
+        "filename": "system/blueberry/tests/topshim/lib/topshim_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-07T22:34:05Z",
+      "side": 1,
+      "message": "Seems like it gives us a `_asyncio\u003cFuture\u003e` object which we are resolving here with the double self.__post.",
+      "parentUuid": "389e8e9f_dded4e95",
       "revId": "e5ad943613c9982638e3a890a60820d977e003d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
