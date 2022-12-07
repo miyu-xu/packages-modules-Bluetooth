@@ -31,12 +31,25 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 
+<<<<<<< HEAD
+=======
+import android.app.Activity;
+import android.app.Application;
+import android.content.ComponentName;
+>>>>>>> 0b8de09c48 (Add BluetoothOppReceiverTest)
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+<<<<<<< HEAD
 import android.test.ActivityInstrumentationTestCase2;
 
+=======
+import android.os.Bundle;
+import android.test.ActivityInstrumentationTestCase2;
+
+import androidx.test.core.app.ActivityScenario;
+>>>>>>> 0b8de09c48 (Add BluetoothOppReceiverTest)
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
