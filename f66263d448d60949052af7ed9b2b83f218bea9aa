@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0cf7f59_61df017c",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-07T02:41:18Z",
+      "side": 1,
+      "message": "Resolved in offline discussion",
+      "parentUuid": "30269a76_b40747a4",
+      "range": {
+        "startLine": 393,
+        "startChar": 12,
+        "endLine": 395,
+        "endChar": 15
+      },
+      "revId": "f66263d448d60949052af7ed9b2b83f218bea9aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bd9ec13_32df574a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-19T00:34:02Z",
       "side": 1,
       "message": "No.",
+      "range": {
+        "startLine": 220,
+        "startChar": 13,
+        "endLine": 220,
+        "endChar": 17
+      },
+      "revId": "f66263d448d60949052af7ed9b2b83f218bea9aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5df589da_ef5308a9",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 22
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-07T02:41:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bd9ec13_32df574a",
       "range": {
         "startLine": 220,
         "startChar": 13,
