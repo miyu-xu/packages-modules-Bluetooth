@@ -16,6 +16,24 @@
       "message": "This would be a good candidate for sysprops since we probably don\u0027t want to disable it on AX201. I don\u0027t think we should unilaterally disable across floss.",
       "revId": "7b5df9161472084286ab6cf141d9f3e511cb4359",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48984783_1efd0a10",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-12-07T19:18:37Z",
+      "side": 1,
+      "message": "There are 2 ways to do it depending on what your actual needs are. We can use the already in place sysprops to set the scan window to be the same for all PHY (https://osscs.corp.google.com/chromiumos/chromiumos/codesearch/+/main:src/third_party/chromiumos-overlay/net-wireless/floss/files/sysprops.conf;l\u003d62) for Sarien boards. Or we can create a new one to do what you are currently doing. Happy to discuss offline",
+      "parentUuid": "8df307e1_85a26d53",
+      "revId": "7b5df9161472084286ab6cf141d9f3e511cb4359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
