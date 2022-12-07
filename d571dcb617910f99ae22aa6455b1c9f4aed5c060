@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c6b06f_22ad6a2d",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-07T22:43:13Z",
+      "side": 1,
+      "message": "I fought modules were for big features, shouuld remote name request be just class that\u0027s part of another bigger module providing classic functionalities or pairing ?",
+      "range": {
+        "startLine": 351,
+        "startChar": 12,
+        "endLine": 351,
+        "endChar": 35
+      },
+      "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
