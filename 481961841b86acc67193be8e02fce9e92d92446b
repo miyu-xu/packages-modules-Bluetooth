@@ -16,6 +16,24 @@
       "message": "nit: accidental removal?",
       "revId": "481961841b86acc67193be8e02fce9e92d92446b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47e8f9af_40398ac0",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-07T03:42:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "abc50d31_a5b8c001",
+      "revId": "481961841b86acc67193be8e02fce9e92d92446b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
