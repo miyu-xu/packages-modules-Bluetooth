@@ -186,7 +186,12 @@ public class BluetoothOppIncomingFileConfirmActivity extends AlertActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mReceiver);
+        try {
+            // mReceiver may not be registered at this point (i.e. onCreate early return)
+            unregisterReceiver(mReceiver);
+        } catch (Exception e) {
+            Log.v(TAG, "onDestroy() unregisterReceiver error: " + e);
+        }
     }
 
     @Override
