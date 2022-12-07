@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51175149_ace1e796",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AppAdvertiseStatsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-07T05:59:41Z",
+      "side": 1,
+      "message": "Could you make this as one (or minimal) line? Same for others",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 0
+      },
+      "revId": "424c41d936c717c9248fc744bd5de4790cc945dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
