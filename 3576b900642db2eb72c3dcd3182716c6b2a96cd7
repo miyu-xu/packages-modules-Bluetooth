@@ -164,6 +164,30 @@
       },
       "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec732d89_2b89fc78",
+        "filename": "system/stack/include/btm_ble_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-07T22:15:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "883699a2_ba9eec80",
+      "range": {
+        "startLine": 361,
+        "startChar": 2,
+        "endLine": 361,
+        "endChar": 51
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
