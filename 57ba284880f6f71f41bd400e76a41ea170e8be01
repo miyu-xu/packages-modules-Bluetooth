@@ -22,6 +22,52 @@
       },
       "revId": "57ba284880f6f71f41bd400e76a41ea170e8be01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a1bd7e_1b776800",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/FilterInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-07T08:05:47Z",
+      "side": 1,
+      "message": "What I meant for the MatrixCursor was not creating mock class of it.\nJust creating mock can also be done with the normal Cursor class.\n\nInstead, actually creating a table for the data something like this by using MatrixCursor:\n\n```\nNumber | Student Name | Grade\n1      | James        | A\n2      | Paul         | B\n...\n```\nHow to use MatrixCursor (sample usage):\n \nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2319531/6/android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapUtilsTest.java#185\n\nIt actually creates a table and provides all related Cursor methods\u0027 implementations (e.g. moveToNext(), moveToFirst(), getString(), etc).",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 70
+      },
+      "revId": "57ba284880f6f71f41bd400e76a41ea170e8be01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6dd2977_aeb211a5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/FilterInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-07T08:05:47Z",
+      "side": 1,
+      "message": "I think this test condition is too wide...\n\nLet\u0027s use the actual column name and create table with MatrixCursor. \n\nHere and all other tests.",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 70
+      },
+      "revId": "57ba284880f6f71f41bd400e76a41ea170e8be01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
