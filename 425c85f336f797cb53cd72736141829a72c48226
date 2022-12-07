@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396aaf1f_55302115",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-12-07T16:40:59Z",
+      "side": 1,
+      "message": "some nits\n\ntypo: should *not* be sent.\n\nalt: Change this to \"A pause should not be sent while paused\" and update the above test to say \"A pause should be sent while playing\".",
+      "range": {
+        "startLine": 1446,
+        "startChar": 57,
+        "endLine": 1446,
+        "endChar": 66
+      },
+      "revId": "425c85f336f797cb53cd72736141829a72c48226",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
