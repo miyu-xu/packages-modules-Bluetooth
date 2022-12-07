@@ -16,6 +16,24 @@
       "message": "Why the original CL is reverted?",
       "revId": "2fc66299769a7e29ce59f34d30be1439e44fd337",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7194907_ac05e128",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-07T06:41:39Z",
+      "side": 1,
+      "message": "It seems other test that actually run the service is run after this test.",
+      "parentUuid": "7f4e5a2b_656e217c",
+      "revId": "2fc66299769a7e29ce59f34d30be1439e44fd337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
