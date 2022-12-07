@@ -70,6 +70,30 @@
       },
       "revId": "198c9029a27ea4a31bab9068f66abe723c603046",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8e68672_37822fdb",
+        "filename": "system/gd/hci/hci_layer_fake.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-07T17:29:02Z",
+      "side": 1,
+      "message": "I agree that it simplifies things for the tests, but I\u0027m not sure that the behavior will be the same.  Imagine some module that sends 3 commands and waits for events.",
+      "parentUuid": "1ef0843b_17ee90e7",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 105
+      },
+      "revId": "198c9029a27ea4a31bab9068f66abe723c603046",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
