@@ -99,6 +99,24 @@
       "parentUuid": "0d79c25b_7d0cff02",
       "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23203c70_f43fdbb9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppBtEnableActivityTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-07T04:32:45Z",
+      "side": 1,
+      "message": "IIRC, the old test w/o annotation uses method name instead of the annotation.\nSo the @Befre should be setUp, @After should be tearDown, and @Test should start with \"test\" (e.g. testOnCreate_clickOnEnable_launchEnablingActivity)",
+      "parentUuid": "ed9d5734_4713cb1e",
+      "revId": "a92100cff6f9c754e8d29fcd20207e47069ae94f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
