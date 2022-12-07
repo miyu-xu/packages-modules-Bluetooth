@@ -69,6 +69,24 @@
       "parentUuid": "2fc749ac_63c4e316",
       "revId": "e1f02d5b1c8dd6270398c1c705fde0054d76525a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc404373_5fc34aeb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-07T22:46:39Z",
+      "side": 1,
+      "message": "Hi Myles, I just added you in the thread about throttling LE scan requested from Samsung. At this moment, we want to reduce the downgrade scan timeout roughly but we will do with more optimized value based on the statistics.",
+      "parentUuid": "efc05a89_8f01d9a0",
+      "revId": "e1f02d5b1c8dd6270398c1c705fde0054d76525a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
