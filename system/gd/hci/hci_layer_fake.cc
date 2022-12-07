@@ -39,42 +39,41 @@ PacketView<packet::kLittleEndian> GetPacketView(std::unique_ptr<packet::BasePack
 
 void TestHciLayer::EnqueueCommand(
     std::unique_ptr<CommandBuilder> command, common::ContextualOnceCallback<void(CommandStatusView)> on_status) {
+  // wait until the previous command was consumed by the test (note that the future can never be dropped)
+  EXPECT_EQ(command_consumed_future_.wait_for(std::chrono::milliseconds(1000)), std::future_status::ready);
+
   std::lock_guard<std::mutex> lock(mutex_);
+  command_consumed_promise_ = {};
+  command_consumed_future_ = command_consumed_promise_.get_future();
+
   command_queue_.push(std::move(command));
   command_status_callbacks.push_back(std::move(on_status));
-  command_count_--;
-  if (command_promise_ != nullptr && command_count_ == 0) {
-    command_promise_->set_value();
-    command_promise_.reset();
-  }
+
+  command_promise_.set_value();
 }
 
 void TestHciLayer::EnqueueCommand(
     std::unique_ptr<CommandBuilder> command, common::ContextualOnceCallback<void(CommandCompleteView)> on_complete) {
+  // wait until the previous command was consumed by the test (note that the future can never be dropped)
+  EXPECT_EQ(command_consumed_future_.wait_for(std::chrono::milliseconds(1000)), std::future_status::ready);
+
   std::lock_guard<std::mutex> lock(mutex_);
+  command_consumed_promise_ = {};
+  command_consumed_future_ = command_consumed_promise_.get_future();
+
   command_queue_.push(std::move(command));
   command_complete_callbacks.push_back(std::move(on_complete));
-  command_count_--;
-  if (command_promise_ != nullptr && command_count_ == 0) {
-    command_promise_->set_value();
-    command_promise_.reset();
-  }
-}
 
-void TestHciLayer::SetCommandFuture(uint16_t num_command) {
-  ASSERT_TRUE(command_promise_ == nullptr) << "Promises, Promises, ... Only one at a time.";
-  command_count_ = num_command;
-  command_promise_ = std::make_unique<std::promise<void>>();
-  command_future_ = std::make_unique<std::future<void>>(command_promise_->get_future());
+  command_promise_.set_value();
 }
 
 CommandView TestHciLayer::GetCommand() {
-  // Wait for EnqueueCommand if command_queue_ is empty
-  if (command_queue_.empty() && command_future_ != nullptr) {
-    command_future_->wait_for(std::chrono::milliseconds(1000));
-  }
+  EXPECT_EQ(command_future_.wait_for(std::chrono::milliseconds(1000)), std::future_status::ready);
 
   std::lock_guard<std::mutex> lock(mutex_);
+  command_promise_ = {};
+  command_future_ = command_promise_.get_future();
+
   if (command_queue_.empty()) {
     LOG_ERROR("Command queue is empty");
     return empty_command_view_;
@@ -82,11 +81,10 @@ CommandView TestHciLayer::GetCommand() {
 
   auto last = std::move(command_queue_.front());
   command_queue_.pop();
+  command_consumed_promise_.set_value();
+
   CommandView command_packet_view = CommandView::Create(GetPacketView(std::move(last)));
-  if (!command_packet_view.IsValid()) {
-    LOG_ERROR("Got invalid command");
-    return empty_command_view_;
-  }
+  ASSERT_LOG(command_packet_view.IsValid(), "Got invalid command");
   return command_packet_view;
 }
 
@@ -113,8 +111,14 @@ void TestHciLayer::IncomingEvent(std::unique_ptr<EventBuilder> event_builder) {
   EventView event = EventView::Create(packet);
   ASSERT_TRUE(event.IsValid());
   EventCode event_code = event.GetEventCode();
-  ASSERT_NE(registered_events_.find(event_code), registered_events_.end()) << EventCodeText(event_code);
-  registered_events_[event_code].Invoke(event);
+  if (event_code == EventCode::COMMAND_COMPLETE) {
+    CommandCompleteCallback(event);
+  } else if (event_code == EventCode::COMMAND_STATUS) {
+    CommandStatusCallback(event);
+  } else {
+    ASSERT_NE(registered_events_.find(event_code), registered_events_.end()) << EventCodeText(event_code);
+    registered_events_[event_code].Invoke(event);
+  }
 }
 
 void TestHciLayer::IncomingLeMetaEvent(std::unique_ptr<LeMetaEventBuilder> event_builder) {
@@ -150,9 +154,17 @@ void TestHciLayer::InitEmptyCommand() {
 
 void TestHciLayer::ListDependencies(ModuleList* list) const {}
 void TestHciLayer::Start() {
+  std::lock_guard<std::mutex> lock(mutex_);
+
   InitEmptyCommand();
-  RegisterEventHandler(EventCode::COMMAND_COMPLETE, GetHandler()->BindOn(this, &TestHciLayer::CommandCompleteCallback));
-  RegisterEventHandler(EventCode::COMMAND_STATUS, GetHandler()->BindOn(this, &TestHciLayer::CommandStatusCallback));
+
+  command_consumed_promise_ = {};
+  command_consumed_future_ = command_consumed_promise_.get_future();
+  command_promise_ = {};
+  command_future_ = command_promise_.get_future();
+
+  // set the command_consumed_promise, so we can begin Enqueuing commands
+  command_consumed_promise_.set_value();
 }
 void TestHciLayer::Stop() {}
 
