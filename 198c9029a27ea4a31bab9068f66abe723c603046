@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b41cf575_3b171a64",
+        "filename": "system/gd/hci/hci_layer_fake.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-07T17:23:00Z",
+      "side": 1,
+      "message": "Are you sure you want to block until the command is consumed?  The real HCI layer has a queue and will enqueue multiple commands.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 105
+      },
+      "revId": "198c9029a27ea4a31bab9068f66abe723c603046",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
