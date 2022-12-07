@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e23cbd5_1f868876",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-07T19:16:01Z",
+      "side": 1,
+      "message": "So this is the case where size is None, so len(span) should have been used?\n\nWould it be the same logic if we kept the line where it was and made it:\narray_count \u003d array_size?",
+      "parentUuid": "9925e7d7_b9c5eb9f",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 40
+      },
+      "revId": "10b1d89a35a563d1c4ba929a26a6f809733cba40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24c0b4b5_b9f76097",
         "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
         "patchSetId": 1
