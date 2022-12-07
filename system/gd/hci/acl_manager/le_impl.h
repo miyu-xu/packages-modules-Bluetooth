@@ -809,6 +809,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
 
     if (controller_->IsSupported(OpCode::LE_EXTENDED_CREATE_CONNECTION)) {
+      bool only_1m = false;
+#ifdef TARGET_FLOSS
+      // Using LE 1M PHY in Floss for better compatibility with existing BT
+      // controllers.
+      only_1m = true;
+#endif
+
       uint8_t initiating_phys = PHY_LE_1M;
       std::vector<LeCreateConnPhyScanParameters> parameters = {};
       LeCreateConnPhyScanParameters scan_parameters;
@@ -822,7 +829,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       scan_parameters.max_ce_length_ = 0x00;
       parameters.push_back(scan_parameters);
 
-      if (controller_->SupportsBle2mPhy()) {
+      if (controller_->SupportsBle2mPhy() && !only_1m) {
         LeCreateConnPhyScanParameters scan_parameters_2m;
         scan_parameters_2m.scan_interval_ = le_scan_interval;
         scan_parameters_2m.scan_window_ = le_scan_window_2m;
@@ -835,7 +842,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         parameters.push_back(scan_parameters_2m);
         initiating_phys |= PHY_LE_2M;
       }
-      if (controller_->SupportsBleCodedPhy()) {
+      if (controller_->SupportsBleCodedPhy() && !only_1m) {
         LeCreateConnPhyScanParameters scan_parameters_coded;
         scan_parameters_coded.scan_interval_ = le_scan_interval;
         scan_parameters_coded.scan_window_ = le_scan_window_coded;
