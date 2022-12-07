@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7e72fbc_6d0a5cb5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-12-07T23:08:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "610a1b56_529005cd",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 724,
+        "endChar": 20
+      },
+      "revId": "7ad7b0ca2ecb6591f85e1161577037ca9a541f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0900633_77b91d00",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "I agree it\u0027s getting complicated as we try to find the balance between reducing duplicate code and maintaining readability.\n\nHowever, IMO the mechanism itself is tricky and what\u0027s lacking is a clear description about what it is trying to achieve. I\u0027ve added that to the function declaration.\n\nThe renaming to |to_connect_profiles| is also a good idea, thanks!",
       "parentUuid": "d0900633_77b91d00",
+      "revId": "7ad7b0ca2ecb6591f85e1161577037ca9a541f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0096a902_781a3f70",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-12-07T23:08:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7b79489c_de848d87",
       "revId": "7ad7b0ca2ecb6591f85e1161577037ca9a541f52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +162,30 @@
       "side": 1,
       "message": "The fallback connection (which is a task stored in |self.device_added_tasks|) is not meant to be run when no profile is connected (i.e., when the last update was a remove event that cleared |self.connected_profiles|), and could only run when there was ever a successful profile connection.\n\nNote how \"once there is a moment all profiles get cleared\", we try to reset all the states (see |is_profile_cleared|).\n\nThe change in aosp/2321211 makes this a little bit more tricky... there is some chance where the task could be aborted (due to cleared profiles after |ACCEPTOR_CONNECT_MISSING_PROFILES_TIMEOUT_SEC|) between |MediaActions::Connect| and the fallback connections, but in that case we have been through the reset, so whatever missing profiles are being connected to won\u0027t cause much issue and we can catch up at the fallback connection following that one.\n\nThese are the ideal cases and I could be missing something around, feel free to disagree about any part and we can work on a less complicated architecture (i.e., start building some strong assumptions).",
       "parentUuid": "8c90d9fd_c0df073a",
+      "range": {
+        "startLine": 941,
+        "startChar": 31,
+        "endLine": 941,
+        "endChar": 46
+      },
+      "revId": "7ad7b0ca2ecb6591f85e1161577037ca9a541f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fbb5225_598d287b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-12-07T23:08:23Z",
+      "side": 1,
+      "message": "Thank you for the clarification of the none profile connected case.\n\nSome points I\u0027d like to highlight regarding the profile connection:\n1. Bluetooth stack should have all profile connected before telling Audio stack that the device is ready. (This is not true now as a temporal mitigation that we should start to fix.)\n2. We should collect these race sequence and refine the codes regardingly. As you described, aosp/2321211 mitigates the issue but brings more complexity to the profile connection flow.\n\nI\u0027m fine with this patch, but I\u0027ll suggest to add a TODO to refine reconnect logic brought by aosp/2321211. \n\nMy rough idea is to generalize it to a flow like:\n1. Host or HF side trigger the profile connected event.\n2. Check if all of the profiles are ready, notify audio stack if yes. If not, trigger missing profile connection and schedule a task to check again\n3. Repeat 2. until we hit a retry limit or time limit.\n\nI think we\u0027ll still need to handle the random disconnection event in the run, but we\u0027ll have a easier to improve state-machine flow.",
+      "parentUuid": "11e33a51_c175148d",
       "range": {
         "startLine": 941,
         "startChar": 31,
