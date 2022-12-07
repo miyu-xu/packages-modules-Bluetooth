@@ -16,6 +16,24 @@
       "message": "return await self._listen_for_event(facade_pb2.EventType.ADAPTER_PROPERTY)",
       "revId": "185375e936018154f51baafe2fae588555dcf6fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec6f3bf7_1c6a806d",
+        "filename": "system/blueberry/tests/topshim/lib/adapter_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-07T22:59:45Z",
+      "side": 1,
+      "message": "Done. Made changes in other places as well.",
+      "parentUuid": "dceadf07_40d01684",
+      "revId": "185375e936018154f51baafe2fae588555dcf6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
