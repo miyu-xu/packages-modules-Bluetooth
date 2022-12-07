@@ -16,6 +16,29 @@
       "message": "Hi All,\n\nWe have submitted CL for 9 MAP test cases. Kindly review the same and provide your comments.\n\nThanks,\nDhananjaya",
       "revId": "76d560c3b900e64fa57c39a5e754f03dd4f2b5d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef9d0b5d_361a970c",
+        "filename": "pandora/interfaces/pandora_experimental/map.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-12-07T21:37:34Z",
+      "side": 1,
+      "message": "Hi,\n\nSendSMS method is too high level for a Bluetooth Interface. If sending an sms is the way to trigger a `event_message_gsm_request` then we might need to rename this method `SendEventMsgGsm` or something similar. If you rather keep the `SendSMS` then I think it should be move into the `_android.proto`",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 69
+      },
+      "revId": "76d560c3b900e64fa57c39a5e754f03dd4f2b5d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
