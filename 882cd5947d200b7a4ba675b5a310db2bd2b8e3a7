@@ -16,6 +16,24 @@
       "message": "I will try to avoid adding more complexity in the D-Bus projection macro. I see that the goal we want to achieve is actually to expose everything related to QA under a single D-Bus interface. I would prefer that this is also reflected in the Rust trait definitions as well so that it should appear that these QA related methods should be in the same trait, so there is no need for more complex macro.\n\nCan you instead try moving all QA related methods to the same Rust trait? Maybe that means sharing some backend data between interface implementations and that is okay. If that is difficult, I would rather we don\u0027t make this macro change and let `set_l2cap_mode` stay in `IBluetoothSocketManager` and just comment it clearly that it\u0027s exposed not for regular clients but only for QA. I think this may be better for now rather than adding more complexity.",
       "revId": "882cd5947d200b7a4ba675b5a310db2bd2b8e3a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf1c594_0aac2e25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-12-07T03:22:13Z",
+      "side": 1,
+      "message": "May I know what\u0027s the reason we want to avoid changing the D-Bus macro? And this change doesn\u0027t actually add too much complexity but split the original macro into 2 parts. The first half is used to generate a pre-export function (the term in this CL is `generater`) and will be grouped with other pre-export functions into an exporter, which will be used later to export the D-Bus methods.\n\nI wrote a document[1] for comparing different designs for the QA interface. Since I thought it would be a small change with a small impact, I didn\u0027t send out to broader audiences and just made the decision by myself. What you mention about putting all QA methods into the same trait is included in this document but the other one \"let QA method stay in their trait\" was not in consideration. If \"let QA method stay in their trait\" is the preferred solution, than I think we can also deprecate the D-Bus QA interface.\n\n[1] https://docs.google.com/document/d/1y51kpFU-fBtumTzNg4B-idZg7aSW8XSWXwGnF32AEDY/edit?resourcekey\u003d0-wvV5uL2cqFy5HsDABTIvqg#",
+      "parentUuid": "df3d7f25_675157c3",
+      "revId": "882cd5947d200b7a4ba675b5a310db2bd2b8e3a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
