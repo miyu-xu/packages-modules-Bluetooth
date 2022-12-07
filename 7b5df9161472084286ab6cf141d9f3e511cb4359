@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8df307e1_85a26d53",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-07T19:09:18Z",
+      "side": 1,
+      "message": "This would be a good candidate for sysprops since we probably don\u0027t want to disable it on AX201. I don\u0027t think we should unilaterally disable across floss.",
+      "revId": "7b5df9161472084286ab6cf141d9f3e511cb4359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
