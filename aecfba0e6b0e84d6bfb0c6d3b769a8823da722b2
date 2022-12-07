@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fbf40a2_e0054633",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-07T22:44:33Z",
+      "side": 1,
+      "message": "This is a simple fix that probably shouldn\u0027t involve flag. We just always want it.",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 79
+      },
+      "revId": "aecfba0e6b0e84d6bfb0c6d3b769a8823da722b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
