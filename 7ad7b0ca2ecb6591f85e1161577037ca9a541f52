@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "610a1b56_529005cd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-12-07T11:00:47Z",
+      "side": 1,
+      "message": "I do have that patch testing with upstream/, but somehow I can\u0027t rebase this on AOSP...\n\nThe issue is that there is no perfect policy and we haven\u0027t really settled with some golden rule to follow. Even if we separate them to two functions, we still have to deal with issues like receiving both requests at the same time (i.e., connect via UI while resolving a previous request initiated by the headset, and all sorts of chaotic permutations of profile connection/disconnection), and IMO considering them as a similar form makes it easier for us to focus on the core if we don\u0027t have any good assumptions/guarantees to establish on.",
+      "parentUuid": "40774f28_12463ad7",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 724,
+        "endChar": 20
+      },
+      "revId": "7ad7b0ca2ecb6591f85e1161577037ca9a541f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0900633_77b91d00",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b79489c_de848d87",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-12-07T11:00:47Z",
+      "side": 1,
+      "message": "I agree it\u0027s getting complicated as we try to find the balance between reducing duplicate code and maintaining readability.\n\nHowever, IMO the mechanism itself is tricky and what\u0027s lacking is a clear description about what it is trying to achieve. I\u0027ve added that to the function declaration.\n\nThe renaming to |to_connect_profiles| is also a good idea, thanks!",
+      "parentUuid": "d0900633_77b91d00",
+      "revId": "7ad7b0ca2ecb6591f85e1161577037ca9a541f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c90d9fd_c0df073a",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -54,6 +96,30 @@
       "writtenOn": "2022-12-05T22:37:35Z",
       "side": 1,
       "message": "Is it possible that the fallback connection comes with no profile connected?",
+      "range": {
+        "startLine": 941,
+        "startChar": 31,
+        "endLine": 941,
+        "endChar": 46
+      },
+      "revId": "7ad7b0ca2ecb6591f85e1161577037ca9a541f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e33a51_c175148d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-12-07T11:00:47Z",
+      "side": 1,
+      "message": "The fallback connection (which is a task stored in |self.device_added_tasks|) is not meant to be run when no profile is connected (i.e., when the last update was a remove event that cleared |self.connected_profiles|), and could only run when there was ever a successful profile connection.\n\nNote how \"once there is a moment all profiles get cleared\", we try to reset all the states (see |is_profile_cleared|).\n\nThe change in aosp/2321211 makes this a little bit more tricky... there is some chance where the task could be aborted (due to cleared profiles after |ACCEPTOR_CONNECT_MISSING_PROFILES_TIMEOUT_SEC|) between |MediaActions::Connect| and the fallback connections, but in that case we have been through the reset, so whatever missing profiles are being connected to won\u0027t cause much issue and we can catch up at the fallback connection following that one.\n\nThese are the ideal cases and I could be missing something around, feel free to disagree about any part and we can work on a less complicated architecture (i.e., start building some strong assumptions).",
+      "parentUuid": "8c90d9fd_c0df073a",
       "range": {
         "startLine": 941,
         "startChar": 31,
