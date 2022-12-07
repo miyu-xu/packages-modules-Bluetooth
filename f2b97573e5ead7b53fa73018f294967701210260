@@ -16,6 +16,24 @@
       "message": "Could you attach a bug number and rationale for this revert?",
       "revId": "f2b97573e5ead7b53fa73018f294967701210260",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f3c4a3d_7ba30116",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-12-07T14:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d79dea3f_a26f420d",
+      "revId": "f2b97573e5ead7b53fa73018f294967701210260",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
