@@ -59,7 +59,13 @@ constexpr uint16_t kTimeout = 0x80;
 constexpr uint16_t kContinuationNumber = 0x32;
 
 namespace bluetooth::hci::acl_manager {
-hci::PacketView<hci::kLittleEndian> GetPacketView(std::unique_ptr<packet::BasePacketBuilder> packet);
+PacketView<packet::kLittleEndian> GetPacketView(std::unique_ptr<packet::BasePacketBuilder> packet) {
+  auto bytes = std::make_shared<std::vector<uint8_t>>();
+  BitInserter i(*bytes);
+  bytes->reserve(packet->size());
+  packet->Serialize(i);
+  return packet::PacketView<packet::kLittleEndian>(bytes);
+}
 
 class TestLeConnectionManagementCallbacks : public hci::acl_manager::LeConnectionManagementCallbacks {
   void OnConnectionUpdate(
