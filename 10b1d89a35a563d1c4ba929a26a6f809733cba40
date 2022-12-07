@@ -117,6 +117,30 @@
       },
       "revId": "10b1d89a35a563d1c4ba929a26a6f809733cba40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba1ddabd_cb3203b3",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-07T19:16:38Z",
+      "side": 1,
+      "message": "I forgot that you\u0027re inheriting in your pybind11 implementation",
+      "parentUuid": "dacd2b09_ba9fec64",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 14
+      },
+      "revId": "10b1d89a35a563d1c4ba929a26a6f809733cba40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
