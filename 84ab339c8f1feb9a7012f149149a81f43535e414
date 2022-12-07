@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60cb5484_2785ed12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-07T08:10:22Z",
+      "side": 1,
+      "message": "Merging this in AOSP first (even it won\u0027t have any effect in AOSP), in order to prevent future merge conflict.",
+      "revId": "84ab339c8f1feb9a7012f149149a81f43535e414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
