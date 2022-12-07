@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dca762ce_47645953",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-12-07T22:15:02Z",
+      "side": 1,
+      "message": "Nit: No need for the else branch here.",
+      "revId": "68edd9a046406a679ee20c206c812ef591fcb3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "756d7927_39123858",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-12-07T22:15:02Z",
+      "side": 1,
+      "message": "Update the condition to this: (remote_dev_type !\u003d dev_type \u0026\u0026 dev_type !\u003d 0)\nThis will make sure that the cast from tBT_DEVICE_TYPE to bt_device_type_t resulted in a valid value.",
+      "revId": "68edd9a046406a679ee20c206c812ef591fcb3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
