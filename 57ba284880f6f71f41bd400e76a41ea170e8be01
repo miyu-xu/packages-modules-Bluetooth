@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9b24c17_35f671b8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/FilterInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-07T07:59:23Z",
+      "side": 1,
+      "message": "What about increasing the value?\n\nlike thenReturn(testInt++)?",
+      "range": {
+        "startLine": 49,
+        "startChar": 60,
+        "endLine": 49,
+        "endChar": 68
+      },
+      "revId": "57ba284880f6f71f41bd400e76a41ea170e8be01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
