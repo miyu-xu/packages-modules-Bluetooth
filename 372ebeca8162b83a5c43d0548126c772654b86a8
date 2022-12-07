@@ -22,6 +22,30 @@
       },
       "revId": "372ebeca8162b83a5c43d0548126c772654b86a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb228304_25c1a2ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-07T00:16:25Z",
+      "side": 1,
+      "message": "Thanks for letting me know Hyundo. Fixed!",
+      "parentUuid": "4b273c61_f8407dc2",
+      "range": {
+        "startLine": 1432,
+        "startChar": 4,
+        "endLine": 1432,
+        "endChar": 26
+      },
+      "revId": "372ebeca8162b83a5c43d0548126c772654b86a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
