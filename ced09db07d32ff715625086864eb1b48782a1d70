@@ -16,6 +16,24 @@
       "message": "when the wrong HCI connect complete is dropped, I assume the stack is fine with not receiving failed SCO connect complete? Is there a timer that catches this?",
       "revId": "ced09db07d32ff715625086864eb1b48782a1d70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45ae2be4_c5bc2609",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-08T23:16:45Z",
+      "side": 1,
+      "message": "I don\u0027t actually know if there is a timer somewhere. Speculatively, I would expect after this is dropped for there never to be a sco audio started callback and for the client to request for `connect_audio` again.\n\nI would prefer to merge this speculatively first because the alternative is the whole stack crashes vs that connection doesn\u0027t complete.",
+      "parentUuid": "0caa22c7_42cd2375",
+      "revId": "ced09db07d32ff715625086864eb1b48782a1d70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
