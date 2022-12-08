@@ -94,7 +94,6 @@ class Host(
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
     intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
     intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
-    intentFilter.addAction(BluetoothDevice.ACTION_FOUND)
 
     // Creates a shared flow of intents that can be used in all methods in the coroutine scope.
     // This flow is started eagerly to make sure that the broadcast receiver is registered before
@@ -222,7 +221,11 @@ class Host(
     responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
     grpcUnary(scope, responseObserver) {
-      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
+      val bluetoothDevice = if (!request.address.isEmpty()) {
+        request.address.toBluetoothDevice(bluetoothAdapter)
+      } else {
+        null
+      }
 
       Log.i(TAG, "waitConnection: device=$bluetoothDevice")
 
@@ -231,14 +234,13 @@ class Host(
         throw Status.UNKNOWN.asException()
       }
 
-      if (security.manuallyConfirm) {
-        waitBondIntent(bluetoothDevice)
-      } else {
-        acceptPairingAndAwaitBonded(bluetoothDevice)
-      }
+      val intent = flow
+        .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
+        .filter { bluetoothDevice == null || it.getBluetoothDeviceExtra() == bluetoothDevice }
+        .first()
 
       WaitConnectionResponse.newBuilder()
-        .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
+        .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_BREDR))
         .build()
     }
   }
@@ -300,16 +302,11 @@ class Host(
       when (request.connection.transport) {
         TRANSPORT_BREDR -> {
           Log.i(TAG, "disconnect BR_EDR")
-          val connectionStateChangedFlow =
-            flow
-              .filter { it.getAction() == BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED }
-              .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
-              .map {
-                it.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR)
-              }
-
           bluetoothDevice.disconnect()
-          connectionStateChangedFlow.filter { it == BluetoothAdapter.STATE_DISCONNECTED }.first()
+          flow
+            .filter { it.action == BluetoothDevice.ACTION_ACL_DISCONNECTED }
+            .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+            .first()
         }
         TRANSPORT_LE -> {
           Log.i(TAG, "disconnect LE")
