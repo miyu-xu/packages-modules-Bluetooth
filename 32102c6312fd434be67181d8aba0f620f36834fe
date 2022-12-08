@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73ee7083_fc05667f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-08T17:21:31Z",
+      "side": 1,
+      "message": "Addresses delayed logic in getting SDP UUIDs when they do not change; my big question is providing a test for this.  Is this something Pandora can provide ?",
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
