@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cabed35a_2e4e625d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-12-08T18:08:21Z",
+      "side": 1,
+      "message": "LGTM, but let\u0027s wait on the sysprops to make it in before submitting this.",
+      "revId": "310c76dddbf3f3bc4af8f6bb53c490e6c767c85f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
