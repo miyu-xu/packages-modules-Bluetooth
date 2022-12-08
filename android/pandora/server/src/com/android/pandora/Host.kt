@@ -233,7 +233,6 @@ class Host(
         Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
         throw Status.UNKNOWN.asException()
       }
-
       val intent = flow
         .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
         .filter { bluetoothDevice == null || it.getBluetoothDeviceExtra() == bluetoothDevice }
@@ -441,21 +440,21 @@ class Host(
           val dataTypesRequest = request.data
 
           if (
-            !dataTypesRequest.getIncompleteServiceClassUuids16List().isEmpty() or
-              !dataTypesRequest.getIncompleteServiceClassUuids32List().isEmpty() or
-              !dataTypesRequest.getIncompleteServiceClassUuids128List().isEmpty()
+            !dataTypesRequest.getCompleteServiceClassUuids16List().isEmpty() or
+              !dataTypesRequest.getCompleteServiceClassUuids32List().isEmpty() or
+              !dataTypesRequest.getCompleteServiceClassUuids128List().isEmpty()
           ) {
-            Log.e(TAG, "Incomplete Service Class Uuids not supported")
+            Log.e(TAG, "Complete Service Class Uuids not supported")
             throw Status.UNKNOWN.asException()
           }
 
-          for (service_uuid in dataTypesRequest.getCompleteServiceClassUuids16List()) {
+          for (service_uuid in dataTypesRequest.getIncompleteServiceClassUuids16List()) {
             advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
           }
-          for (service_uuid in dataTypesRequest.getCompleteServiceClassUuids32List()) {
+          for (service_uuid in dataTypesRequest.getIncompleteServiceClassUuids32List()) {
             advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
           }
-          for (service_uuid in dataTypesRequest.getCompleteServiceClassUuids128List()) {
+          for (service_uuid in dataTypesRequest.getIncompleteServiceClassUuids128List()) {
             advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
           }
 
