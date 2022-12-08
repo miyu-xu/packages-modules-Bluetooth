@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0caa22c7_42cd2375",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-08T19:09:04Z",
+      "side": 1,
+      "message": "when the wrong HCI connect complete is dropped, I assume the stack is fine with not receiving failed SCO connect complete? Is there a timer that catches this?",
+      "revId": "ced09db07d32ff715625086864eb1b48782a1d70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
