@@ -97,6 +97,7 @@
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
+#include "osi/include/stack_power_telemetry.h"
 #include "osi/include/wakelock.h"
 #include "profile_log_levels.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
@@ -808,6 +809,7 @@ static void dump(int fd, const char** arguments) {
   PAN_Dumpsys(fd);
   DumpsysHid(fd);
   bluetooth::shim::Dump(fd, arguments);
+  PowerTelemetry::GetInstance()->PowerTelemetryDump(fd);
 }
 
 static void dumpMetrics(std::string* output) {
