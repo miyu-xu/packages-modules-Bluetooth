@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "917a03ee_f4df7d5c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiveFileInfoTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-08T23:59:15Z",
+      "side": 1,
+      "message": "Please remove unused variables.",
+      "revId": "e7c5b84c7cd068eb2ec090a90c92caf5c998407c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "559cbab4_528d6c3f",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiveFileInfoTest.java",
         "patchSetId": 3
