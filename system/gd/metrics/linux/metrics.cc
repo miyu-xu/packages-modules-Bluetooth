@@ -51,5 +51,12 @@ void LogMetricsAclConnectionStateChanged(
 
 void LogMetricsChipsetInfoReport() {}
 
+void LogMetricsA2dpAudioOverrun(
+    RawAddress* addr,
+    uint64_t encoding_interval_millis,
+    int num_dropped_buffers,
+    int num_dropped_encoded_frames,
+    int num_dropped_encoded_bytes) {}
+
 }  // namespace metrics
 }  // namespace bluetooth
