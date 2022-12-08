@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_outer_classname = "BnepProto";
+
+package pandora;
+
+import "pandora_experimental/host.proto";
+import "google/protobuf/empty.proto";
+
+service BNEP {
+}

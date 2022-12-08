@@ -45,6 +45,7 @@
         <option name="profile" value="PBAP/PSE" />
         <option name="profile" value="SDP" />
         <option name="profile" value="SM" />
+        <option name="profile" value="PAN" />
     </test>
 
     <object type="module_controller"

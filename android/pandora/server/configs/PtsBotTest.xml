@@ -46,5 +46,7 @@
         <option name="profile" value="L2CAP/COS" />
         <option name="profile" value="SDP" />
         <option name="profile" value="SM" />
+        <option name="profile" value="PAN" />
+        <option name="profile" value="BNEP" />
     </test>
 </configuration>
