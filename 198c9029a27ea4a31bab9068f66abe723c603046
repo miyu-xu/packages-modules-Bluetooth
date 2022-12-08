@@ -94,6 +94,30 @@
       },
       "revId": "198c9029a27ea4a31bab9068f66abe723c603046",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c833b9dd_82338a8e",
+        "filename": "system/gd/hci/hci_layer_fake.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-08T01:14:51Z",
+      "side": 1,
+      "message": "Based on offline discussion, we agreed that blocking here this does not change the behavior.\n\nHowever, we decided that we should instead use a blocking queue, so unit tests don\u0027t mask non-deterministic behavior of the stack. The CL has been updated accordingly.",
+      "parentUuid": "f8e68672_37822fdb",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 105
+      },
+      "revId": "198c9029a27ea4a31bab9068f66abe723c603046",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
