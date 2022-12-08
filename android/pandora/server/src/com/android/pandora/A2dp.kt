@@ -117,11 +117,6 @@ class A2dp(val context: Context) : A2DPImplBase() {
       val device = request.connection.toBluetoothDevice(bluetoothAdapter)
       Log.i(TAG, "waitSource: device=$device")
 
-      if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-        Log.e(TAG, "Device is not bonded, cannot openSource")
-        throw Status.UNKNOWN.asException()
-      }
-
       if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
         val state =
           flow
