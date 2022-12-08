@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f365dcab_e9598c6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-08T00:34:52Z",
+      "side": 1,
+      "message": "Removing myself from the reviewer. I\u0027m not familiar on these. Please contact other owners.",
+      "revId": "52e9f02e1249d4793ae7ff2f9fb6ed711402fc16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
