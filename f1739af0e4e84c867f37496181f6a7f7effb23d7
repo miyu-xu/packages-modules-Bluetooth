@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37b75858_0ca26760",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-08T02:24:22Z",
+      "side": 1,
+      "message": "Cf go/asa-remove-safetynet-fix-requirement",
+      "revId": "f1739af0e4e84c867f37496181f6a7f7effb23d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
