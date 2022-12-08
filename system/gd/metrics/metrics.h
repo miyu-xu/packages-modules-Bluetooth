@@ -40,6 +40,12 @@ void LogMetricsAclConnectAttempt(RawAddress* addr, uint32_t acl_state);
 void LogMetricsAclConnectionStateChanged(
     RawAddress* addr, uint32_t transport, uint32_t status, uint32_t acl_state, uint32_t direction, uint32_t hci_reason);
 void LogMetricsChipsetInfoReport();
+void LogMetricsA2dpAudioOverrun(
+    RawAddress* addr,
+    uint64_t encoding_interval_millis,
+    int num_dropped_buffers,
+    int num_dropped_encoded_frames,
+    int num_dropped_encoded_bytes);
 
 }  // namespace metrics
 }  // namespace bluetooth
