@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90e8b982_3c087fce",
+        "filename": "system/gd/hci/hci_layer_fake.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-08T01:16:19Z",
+      "side": 1,
+      "message": "lock?",
+      "range": {
+        "startLine": 77,
+        "startChar": 97,
+        "endLine": 77,
+        "endChar": 100
+      },
+      "revId": "18dc6c395e0bcc1f356f4a2f61d46a14c8adc574",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
