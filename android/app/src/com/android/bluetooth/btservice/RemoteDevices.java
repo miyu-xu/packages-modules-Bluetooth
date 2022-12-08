@@ -54,6 +54,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 final class RemoteDevices {
@@ -937,9 +938,10 @@ final class RemoteDevices {
         BluetoothDevice device = getDevice(address);
 
         if (device == null) {
-            errorLog("aclStateChangeCallback: device is NULL, address="
+            warnLog("aclStateChangeCallback: device is NULL, address="
                     + Utils.getAddressStringFromByte(address) + ", newState=" + newState);
-            return;
+            addDeviceProperties(address);
+            device = Objects.requireNonNull(getDevice(address));
         }
         int state = mAdapterService.getState();
 
