@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "161e5e1f_4acaf1a7",
+        "filename": "system/gd/dumpsys/init_flags.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-08T02:41:58Z",
+      "side": 1,
+      "message": "do you mean `add_trigger_advertising_callbacks_on_first_resume_after_pause_is_enabled`",
+      "range": {
+        "startLine": 56,
+        "startChar": 10,
+        "endLine": 56,
+        "endChar": 78
+      },
+      "revId": "1a052b396c62fb5ab34e73ee4cc674f93017c779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
