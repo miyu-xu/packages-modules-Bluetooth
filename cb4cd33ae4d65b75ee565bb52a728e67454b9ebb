@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6567d29d_8e0b89db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-08T00:42:56Z",
+      "side": 1,
+      "message": "Could you run CtsBluetoothTestCases?\nTH is saying it\u0027s failing.",
+      "range": {
+        "startLine": 18,
+        "startChar": 12,
+        "endLine": 18,
+        "endChar": 43
+      },
+      "revId": "cb4cd33ae4d65b75ee565bb52a728e67454b9ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6584d97_85908cc7",
+        "filename": "android/app/tests/unit/AndroidTest.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-08T00:42:56Z",
+      "side": 1,
+      "message": "Please split with multiple lines. ditto for others.",
+      "range": {
+        "startLine": 30,
+        "startChar": 91,
+        "endLine": 31,
+        "endChar": 8
+      },
+      "revId": "cb4cd33ae4d65b75ee565bb52a728e67454b9ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2403c6b_43b951e7",
+        "filename": "android/app/tests/unit/GoogleAndroidTest.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-08T00:42:56Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 101
+      },
+      "revId": "cb4cd33ae4d65b75ee565bb52a728e67454b9ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
