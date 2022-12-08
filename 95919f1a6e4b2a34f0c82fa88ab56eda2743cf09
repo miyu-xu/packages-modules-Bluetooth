@@ -22,6 +22,30 @@
       },
       "revId": "95919f1a6e4b2a34f0c82fa88ab56eda2743cf09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b16ac5c2_c9a3d40f",
+        "filename": "tools/rootcanal/test/controller/le/rpa_generation_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-08T01:29:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18fc54a8_ebeef4d6",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 4
+      },
+      "revId": "95919f1a6e4b2a34f0c82fa88ab56eda2743cf09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
