@@ -16,6 +16,24 @@
       "message": "Should  we have same logic for LE Audio, non-hearing aid devices ? Or are they already covered for that ?",
       "revId": "201b3d5b87c119aa57a53d9a913fa636503299ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bba76292_58408bb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-08T17:04:12Z",
+      "side": 1,
+      "message": "LE Audio have that. Only devices that uses setCommunication devices needs that.",
+      "parentUuid": "118e2063_1f4b9a4a",
+      "revId": "201b3d5b87c119aa57a53d9a913fa636503299ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
