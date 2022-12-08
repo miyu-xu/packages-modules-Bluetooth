@@ -30,6 +30,7 @@
 
 #include "hci/acl_manager/le_connection_management_callbacks.h"
 #include "hci/address_with_type.h"
+#include "hci/hci_layer_fake.h"
 #include "hci/hci_packets.h"
 #include "hci/le_acl_connection_interface.h"
 #include "os/handler.h"
@@ -59,7 +60,8 @@ constexpr uint16_t kTimeout = 0x80;
 constexpr uint16_t kContinuationNumber = 0x32;
 
 namespace bluetooth::hci::acl_manager {
-hci::PacketView<hci::kLittleEndian> GetPacketView(std::unique_ptr<packet::BasePacketBuilder> packet);
+
+namespace {
 
 class TestLeConnectionManagementCallbacks : public hci::acl_manager::LeConnectionManagementCallbacks {
   void OnConnectionUpdate(
@@ -90,7 +92,7 @@ class TestLeConnectionManagementCallbacks : public hci::acl_manager::LeConnectio
   FRIEND_TEST(LeAclConnectionTest, LeSubrateRequest_success);
   FRIEND_TEST(LeAclConnectionTest, LeSubrateRequest_error);
 };
-}  // namespace bluetooth::hci::acl_manager
+}  // namespace
 
 class TestLeAclConnectionInterface : public hci::LeAclConnectionInterface {
  private:
@@ -250,4 +252,6 @@ TEST_F(LeAclConnectionTest, LeSubrateRequest_error) {
   on_status.Invoke(std::move(command_status));
   sync_handler();
 }
+
+}  // namespace bluetooth::hci::acl_manager
 }  // namespace bluetooth::hci::acl_manager
