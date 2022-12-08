@@ -25,6 +25,7 @@ import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.ParcelUuid
 import android.util.Log
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
@@ -150,12 +151,18 @@ class Gatt(private val context: Context) : GATTImplBase() {
       Log.i(TAG, "discoverServicesSdp")
       val bluetoothDevice = request.address.toBluetoothDevice(mBluetoothAdapter)
       check(bluetoothDevice.fetchUuidsWithSdp())
-      flow
-        .filter { it.getAction() == BluetoothDevice.ACTION_UUID }
-        .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
-        .first()
+      var uuids: Array<ParcelUuid>? = null
+      // Several ACTION_UUID could be sent and some of them are empty (null)
+      for (i in 0..2) {
+        flow
+          .filter { it.getAction() == BluetoothDevice.ACTION_UUID }
+          .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+          .first()
+        uuids = bluetoothDevice.getUuids()
+        if (uuids != null) break
+      }
       val uuidsList = arrayListOf<String>()
-      for (parcelUuid in bluetoothDevice.getUuids()) {
+      for (parcelUuid in uuids!!) {
         uuidsList.add(parcelUuid.toString())
       }
       DiscoverServicesSdpResponse.newBuilder().addAllServiceUuids(uuidsList).build()
