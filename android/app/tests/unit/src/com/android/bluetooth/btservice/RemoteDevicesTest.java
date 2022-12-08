@@ -274,6 +274,7 @@ public class RemoteDevicesTest {
     }
 
     @Test
+    @Ignore("b/266128644")
     public void testResetBatteryLevel_testAclStateChangeCallback() {
         int batteryLevel = 10;
 
