@@ -34,8 +34,8 @@ from blueberry.tests.gd.cert.truth import assertThat
 from blueberry.tests.topshim.lib.adapter_client import AdapterClient
 from blueberry.tests.topshim.lib.async_closable import asyncSafeClose
 from blueberry.tests.topshim.lib.gatt_client import GattClient
-from blueberry.tests.topshim.lib.hfp_client import HfpClient
 from blueberry.tests.topshim.lib.hf_client_client import HfClientClient
+from blueberry.tests.topshim.lib.hfp_client import HfpClient
 from blueberry.tests.topshim.lib.security_client import SecurityClient
 from blueberry.tests.topshim.lib.topshim_device import TopshimDevice
 

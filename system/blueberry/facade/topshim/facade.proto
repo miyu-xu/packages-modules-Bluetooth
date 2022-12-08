@@ -130,6 +130,7 @@ enum EventType {
   DISCOVERY_STATE = 6;
   DEVICE_FOUND = 7;
   BOND_STATE = 8;
+  HF_CLIENT_CONNECTION_STATE = 9;
 }
 message FetchEventsRequest {}
 

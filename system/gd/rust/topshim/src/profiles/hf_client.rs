@@ -191,7 +191,6 @@ impl HfClient {
         let addr_ptr = LTCheckedPtr::from_ref(&addr);
         BtStatus::from(ccall!(self, disconnect_audio, addr_ptr.into()))
     }
-
     #[profile_enabled_or]
     pub fn cleanup(&mut self) {
         ccall!(self, cleanup)
