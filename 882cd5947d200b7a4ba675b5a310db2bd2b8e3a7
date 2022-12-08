@@ -52,6 +52,24 @@
       "parentUuid": "adf1c594_0aac2e25",
       "revId": "882cd5947d200b7a4ba675b5a310db2bd2b8e3a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b345641_814bcaa6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-08T18:20:36Z",
+      "side": 1,
+      "message": "My main reason against this approach is that it breaks the \"API definition is Rust traits definition\" principle. The original idea is that all API is self-documented by the trait definitions, and these API definition can be projected to any IPC not necessarily D-Bus. For example, `SetL2capMode` is projected to `org.chromium.BluetoothQA` without being defined in `IBluetoothQA`.\n\nOption 3 would be my preferred way if unifying to a single QA interface is a must. But I agree with your doc that it requires some non-trivial refactor. Therefore my overall suggestion this time is to use option 4 and make those QA methods obvious, i.e. by grouping the definitions close to each other, commenting them, and maybe even naming them with `QA*`. Optionally, to address the security/privacy concern in the short term you may protect this methods with a run-time flag like `--enable-qa` which is much easier to implement than option 3 without breaking the API principle like option 2.",
+      "parentUuid": "4be4fbb6_306569f5",
+      "revId": "882cd5947d200b7a4ba675b5a310db2bd2b8e3a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
