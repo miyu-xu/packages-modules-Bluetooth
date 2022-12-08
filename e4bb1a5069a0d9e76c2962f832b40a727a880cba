@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459809fb_73a290b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-08T23:06:26Z",
+      "side": 1,
+      "message": "add:\n```\nNO_IFTTT\u003dFollow-up fix of aosp/xxx that didn\u0027t follow IFTTT\n```",
+      "revId": "e4bb1a5069a0d9e76c2962f832b40a727a880cba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
