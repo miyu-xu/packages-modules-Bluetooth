@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ec200a1_06a376ad",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiveFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-08T03:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77c6c2b3_dd9080eb",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "b50965b96518cd578ba9f2fbe9ac0703e023c821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "796982dd_e5b5308e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-06T10:47:38Z",
       "side": 1,
       "message": "Q) Is it okay to remove this?\n\nAlso, what method does write to the preference?",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 85
+      },
+      "revId": "b50965b96518cd578ba9f2fbe9ac0703e023c821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5235faa_4f98f5b3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiveFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-08T03:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "796982dd_e5b5308e",
       "range": {
         "startLine": 73,
         "startChar": 8,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cffaf73e_007ba998",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiveFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-08T03:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ef6db5b_559061e2",
+      "revId": "b50965b96518cd578ba9f2fbe9ac0703e023c821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddc1ac06_3abba90e",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e5acc43_68d60d4a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiveFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-08T03:32:36Z",
+      "side": 1,
+      "message": "Yes, or else the test will fail on device without external storage",
+      "parentUuid": "ddc1ac06_3abba90e",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 89
+      },
+      "revId": "b50965b96518cd578ba9f2fbe9ac0703e023c821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad91775c_6faf6f3f",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-12-06T10:47:38Z",
       "side": 1,
       "message": "Please use MatrixCursor, here and others",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 58
+      },
+      "revId": "b50965b96518cd578ba9f2fbe9ac0703e023c821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "996e1782_d1265c91",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiveFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-08T03:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad91775c_6faf6f3f",
       "range": {
         "startLine": 125,
         "startChar": 8,
