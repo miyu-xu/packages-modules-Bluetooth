@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3db20fbb_d21cda6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-08T17:19:40Z",
+      "side": 1,
+      "message": "So IIUC (If I Understand Correctly) if we get properties for an unknown device, we\u0027ll just create a new device in mDevices",
+      "revId": "612176fc090856aeded259086bc8a65364df8ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
