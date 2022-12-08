@@ -39,6 +39,30 @@
       },
       "revId": "612176fc090856aeded259086bc8a65364df8ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20d6203b_cc9b9058",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-12-08T23:31:54Z",
+      "side": 1,
+      "message": "Just did the modification",
+      "parentUuid": "2f26d895_942807f0",
+      "range": {
+        "startLine": 974,
+        "startChar": 9,
+        "endLine": 974,
+        "endChar": 13
+      },
+      "revId": "612176fc090856aeded259086bc8a65364df8ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
