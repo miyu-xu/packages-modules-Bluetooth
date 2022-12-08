@@ -46,6 +46,7 @@
 #include "common/metrics.h"
 #include "common/repeating_timer.h"
 #include "common/time_util.h"
+#include "gd/metrics/metrics.h"
 #include "osi/include/allocator.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/log.h"
@@ -1013,6 +1014,11 @@ static bool btif_a2dp_source_enqueue_callback(BT_HDR* p_buf, size_t frames_n,
         btif_av_source_active_peer(), btif_a2dp_source_cb.encoder_interval_ms,
         drop_n, num_dropped_encoded_frames, num_dropped_encoded_bytes);
 
+    RawAddress peer_bda = btif_av_source_active_peer();
+    bluetooth::metrics::LogMetricsA2dpAudioOverrun(
+        &peer_bda, btif_a2dp_source_cb.encoder_interval_ms, drop_n,
+        num_dropped_encoded_frames, num_dropped_encoded_bytes);
+
     // Intel controllers don't handle ReadRSSI, ReadFailedContactCounter, and
     // ReadTxPower very well, it sends back Hardware Error event which will
     // crash the daemon. So temporarily disable this for Floss.
@@ -1021,7 +1027,6 @@ static bool btif_a2dp_source_enqueue_callback(BT_HDR* p_buf, size_t frames_n,
     // creating a framework to avoid ifdefs.
 #ifndef TARGET_FLOSS
     // Request additional debug info if we had to flush buffers
-    RawAddress peer_bda = btif_av_source_active_peer();
     tBTM_STATUS status = BTM_ReadRSSI(peer_bda, btm_read_rssi_cb);
     if (status != BTM_CMD_STARTED) {
       LOG_WARN("%s: Cannot read RSSI: status %d", __func__, status);
