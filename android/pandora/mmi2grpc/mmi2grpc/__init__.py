@@ -34,6 +34,8 @@ from mmi2grpc.map import MAPProxy
 from mmi2grpc.opp import OPPProxy
 from mmi2grpc.pbap import PBAPProxy
 from mmi2grpc.rfcomm import RFCOMMProxy
+from mmi2grpc.pan import PANProxy
+from mmi2grpc.bnep import BNEPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
 from mmi2grpc._helpers import format_proxy
@@ -84,6 +86,8 @@ class IUT:
         self._opp = None
         self._pbap = None
         self._rfcomm = None
+        self._pan = None
+        self._bnep = None
         self._sdp = None
         self._sm = None
 
@@ -112,6 +116,8 @@ class IUT:
         self._gap = None
         self._hfp = None
         self._l2cap = None
+        self._pan = None
+        self._bnep = None
         self._hid = None
         self._hogp = None
         self._map = None
@@ -250,6 +256,16 @@ class IUT:
             if not self._rfcomm:
                 self._rfcomm = RFCOMMProxy(grpc.insecure_channel(f"localhost:{self.pandora_server_port}"))
             return self._rfcomm.interact(test, interaction, description, pts_address)
+        # Instantiates PAN proxy and reroutes corresponding MMIs to it.
+        if profile in ('PAN'):
+            if not self._pan:
+                self._pan = PANProxy(grpc.insecure_channel(f'localhost:{self.pandora_server_port}'))
+            return self._pan.interact(test, interaction, description, pts_address)
+        # Instantiates BNEP proxy and reroutes corresponding MMIs to it.
+        if profile in ('BNEP'):
+            if not self._bnep:
+                self._bnep = PANProxy(grpc.insecure_channel(f'localhost:{self.pandora_server_port}'))
+            return self._bnep.interact(test, interaction, description, pts_address)
         # Handles SDP MMIs.
         if profile in ("SDP"):
             if not self._sdp:
