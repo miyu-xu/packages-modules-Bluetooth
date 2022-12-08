@@ -34,6 +34,24 @@
       "parentUuid": "8df307e1_85a26d53",
       "revId": "7b5df9161472084286ab6cf141d9f3e511cb4359",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e3acf18_49d80d76",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-08T00:52:44Z",
+      "side": 1,
+      "message": "Thanks for the pointers. I\u0027d like to create a new one for m110 as it aligns with BlueZ. We can definitely tune these for them later. Let\u0027s have a huddle for this.",
+      "parentUuid": "48984783_1efd0a10",
+      "revId": "7b5df9161472084286ab6cf141d9f3e511cb4359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
