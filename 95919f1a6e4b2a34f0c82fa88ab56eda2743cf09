@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18fc54a8_ebeef4d6",
+        "filename": "tools/rootcanal/test/controller/le/rpa_generation_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-08T01:03:54Z",
+      "side": 1,
+      "message": "Since Endianness is such a pain, I prefer to use an IRK that isn\u0027t the same forward and backward.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 4
+      },
+      "revId": "95919f1a6e4b2a34f0c82fa88ab56eda2743cf09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
