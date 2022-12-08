@@ -16,6 +16,29 @@
       "message": "So IIUC (If I Understand Correctly) if we get properties for an unknown device, we\u0027ll just create a new device in mDevices",
       "revId": "612176fc090856aeded259086bc8a65364df8ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f26d895_942807f0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-08T19:06:53Z",
+      "side": 1,
+      "message": "The map will grow continuously, what about cleaning the disconnected and unbonded device here with something like:\n```\nelse if device.getBondState() \u003d\u003d BOND_NONE {\nremove device properties ?\n}\n```",
+      "range": {
+        "startLine": 974,
+        "startChar": 9,
+        "endLine": 974,
+        "endChar": 13
+      },
+      "revId": "612176fc090856aeded259086bc8a65364df8ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
