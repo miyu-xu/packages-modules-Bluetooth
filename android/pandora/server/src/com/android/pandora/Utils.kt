@@ -35,6 +35,7 @@ import io.grpc.stub.ServerCallStreamObserver
 import io.grpc.stub.StreamObserver
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.util.Vector
 import java.util.concurrent.CancellationException
 import java.util.stream.Collectors
 import kotlinx.coroutines.CoroutineScope
@@ -60,6 +61,8 @@ import pandora.HostProto.Connection
 private const val TAG = "PandoraUtils"
 private val alphanumeric = ('A'..'Z') + ('a'..'z') + ('0'..'9')
 
+var intentQueue = Vector<Intent>()
+
 fun shell(cmd: String): String {
   val fd = InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(cmd)
   val input_stream = ParcelFileDescriptor.AutoCloseInputStream(fd)
@@ -79,6 +82,7 @@ fun intentFlow(context: Context, intentFilter: IntentFilter) = callbackFlow {
   val broadcastReceiver: BroadcastReceiver =
     object : BroadcastReceiver() {
       override fun onReceive(context: Context, intent: Intent) {
+        intentQueue.add(intent)
         trySendBlocking(intent)
       }
     }
