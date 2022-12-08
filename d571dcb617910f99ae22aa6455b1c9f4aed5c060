@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4bc76501_acc9bdca",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-08T01:11:03Z",
+      "side": 1,
+      "message": "In my opinion, each module should try to be a separate logical state machine, so the contract it exposes can be as simple as possible, and we can exhaustively unit-test all states+transitions (as I\u0027ve tried to do).\n\nIf GD continues upwards, then there might be some module sitting on top of this one that calls into it, but even then I don\u0027t think there\u0027s an advantage to merging this into some other module - we should just be a dependency.",
+      "parentUuid": "07c6b06f_22ad6a2d",
+      "range": {
+        "startLine": 351,
+        "startChar": 12,
+        "endLine": 351,
+        "endChar": 35
+      },
+      "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "addcc06f_0d93ac82",
         "filename": "system/gd/hci/remote_name_request.cc",
         "patchSetId": 28
