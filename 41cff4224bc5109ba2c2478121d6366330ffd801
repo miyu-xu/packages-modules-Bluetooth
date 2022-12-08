@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2865babd_15fc97fd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-08T12:10:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "41cff4224bc5109ba2c2478121d6366330ffd801",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "297efa18_ba1fd793",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-08T12:10:28Z",
+      "side": 1,
+      "message": "remove 1 line",
+      "revId": "41cff4224bc5109ba2c2478121d6366330ffd801",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3307cc8d_29941c27",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-08T12:10:28Z",
+      "side": 1,
+      "message": "No need to add  parenthesis",
+      "range": {
+        "startLine": 101,
+        "startChar": 33,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "41cff4224bc5109ba2c2478121d6366330ffd801",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a3a02cf_654543f2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-08T12:10:28Z",
+      "side": 1,
+      "message": "Not needed in this CL, but maybe we should replace all CursorMockData usages with MatrixCursor in future?",
+      "range": {
+        "startLine": 228,
+        "startChar": 7,
+        "endLine": 247,
+        "endChar": 11
+      },
+      "revId": "41cff4224bc5109ba2c2478121d6366330ffd801",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
