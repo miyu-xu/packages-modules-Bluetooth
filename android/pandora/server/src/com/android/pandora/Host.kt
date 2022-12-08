@@ -221,7 +221,11 @@ class Host(
     responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
     grpcUnary(scope, responseObserver) {
-      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
+      val bluetoothDevice = if (!request.address.isEmpty()) {
+        request.address.toBluetoothDevice(bluetoothAdapter)
+      } else {
+        null
+      }
 
       Log.i(TAG, "waitConnection: device=$bluetoothDevice")
 
@@ -229,14 +233,13 @@ class Host(
         Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
         throw Status.UNKNOWN.asException()
       }
-
-      flow
+      val intent = flow
         .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
-        .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+        .filter { bluetoothDevice == null || it.getBluetoothDeviceExtra() == bluetoothDevice }
         .first()
 
       WaitConnectionResponse.newBuilder()
-        .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
+        .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_BREDR))
         .build()
     }
   }
@@ -437,21 +440,21 @@ class Host(
           val dataTypesRequest = request.data
 
           if (
-            !dataTypesRequest.getIncompleteServiceClassUuids16List().isEmpty() or
-              !dataTypesRequest.getIncompleteServiceClassUuids32List().isEmpty() or
-              !dataTypesRequest.getIncompleteServiceClassUuids128List().isEmpty()
+            !dataTypesRequest.getCompleteServiceClassUuids16List().isEmpty() or
+              !dataTypesRequest.getCompleteServiceClassUuids32List().isEmpty() or
+              !dataTypesRequest.getCompleteServiceClassUuids128List().isEmpty()
           ) {
-            Log.e(TAG, "Incomplete Service Class Uuids not supported")
+            Log.e(TAG, "Complete Service Class Uuids not supported")
             throw Status.UNKNOWN.asException()
           }
 
-          for (service_uuid in dataTypesRequest.getCompleteServiceClassUuids16List()) {
+          for (service_uuid in dataTypesRequest.getIncompleteServiceClassUuids16List()) {
             advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
           }
-          for (service_uuid in dataTypesRequest.getCompleteServiceClassUuids32List()) {
+          for (service_uuid in dataTypesRequest.getIncompleteServiceClassUuids32List()) {
             advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
           }
-          for (service_uuid in dataTypesRequest.getCompleteServiceClassUuids128List()) {
+          for (service_uuid in dataTypesRequest.getIncompleteServiceClassUuids128List()) {
             advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
           }
 

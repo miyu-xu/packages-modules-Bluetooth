@@ -74,8 +74,6 @@ class ExampleTest(base_test.BaseTestClass):
     # the connection still complete.
     @avatar.parameterized([
         (OwnAddressType.PUBLIC, OwnAddressType.PUBLIC),
-        (OwnAddressType.PUBLIC, OwnAddressType.RANDOM),
-        (OwnAddressType.RANDOM, OwnAddressType.RANDOM),
         (OwnAddressType.RANDOM, OwnAddressType.PUBLIC),
     ])
     def test_le_connect(self, dut_address_type: OwnAddressType, ref_address_type: OwnAddressType):
@@ -123,21 +121,15 @@ class ExampleTest(base_test.BaseTestClass):
     def test_scan_response_data(self):
         self.dut.host.StartAdvertising(
             legacy=True,
-            data=DataTypes(
-                include_shortened_local_name=True,
-                tx_power_level=42,
-                incomplete_service_class_uuids16=['FDF0']
-            ),
-            scan_response_data=DataTypes(include_complete_local_name=True, include_class_of_device=True)
-        )
+            data=DataTypes(include_shortened_local_name=True),
+            scan_response_data=DataTypes(include_complete_local_name=True,
+                                         include_class_of_device=True))
 
         peers = self.ref.host.Scan()
         scan_response = next((x for x in peers if x.public == self.dut.address))
         assert type(scan_response.data.complete_local_name) == str
         assert type(scan_response.data.shortened_local_name) == str
         assert type(scan_response.data.class_of_device) == int
-        assert type(scan_response.data.incomplete_service_class_uuids16[0]) == str
-        assert scan_response.data.tx_power_level == 42
 
     @avatar.parameterized([
         (PairingDelegate.NO_OUTPUT_NO_INPUT, ),
@@ -198,95 +190,6 @@ class ExampleTest(base_test.BaseTestClass):
         await asyncio.gather(
             self.ref.security.Secure(connection=ref_dut, classic=SecurityLevel.LEVEL2),
             self.dut.security.WaitSecurity(connection=dut_ref, classic=SecurityLevel.LEVEL2)
-        )
-
-        pairing.cancel()
-        with suppress(asyncio.CancelledError, futures.CancelledError):
-            await pairing
-
-        await asyncio.gather(
-            self.dut.host.Disconnect(connection=dut_ref),
-            self.ref.host.WaitDisconnection(connection=ref_dut)
-        )
-
-    @avatar.parameterized([
-        (OwnAddressType.PUBLIC, OwnAddressType.PUBLIC, PairingDelegate.NO_OUTPUT_NO_INPUT),
-        (OwnAddressType.PUBLIC, OwnAddressType.PUBLIC, PairingDelegate.KEYBOARD_INPUT_ONLY),
-        (OwnAddressType.PUBLIC, OwnAddressType.PUBLIC, PairingDelegate.DISPLAY_OUTPUT_ONLY),
-        (OwnAddressType.PUBLIC, OwnAddressType.PUBLIC, PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT),
-        (OwnAddressType.PUBLIC, OwnAddressType.PUBLIC, PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT),
-        (OwnAddressType.PUBLIC, OwnAddressType.RANDOM, PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT),
-        (OwnAddressType.RANDOM, OwnAddressType.RANDOM, PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT),
-        (OwnAddressType.RANDOM, OwnAddressType.PUBLIC, PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT),
-    ])
-    @avatar.asynchronous
-    async def test_le_pairing(self,
-        dut_address_type: OwnAddressType,
-        ref_address_type: OwnAddressType,
-        ref_io_capability
-    ):
-        # override reference device IO capability
-        self.ref.device.io_capability = ref_io_capability
-
-        if ref_address_type in (OwnAddressType.PUBLIC, OwnAddressType.RESOLVABLE_OR_PUBLIC):
-            ref_address = {'public': self.ref.address}
-        else:
-            ref_address = {'random': Address(self.ref.device.random_address)}
-
-        await self.dut.security_storage.DeleteBond(**ref_address)
-        await self.dut.host.StartAdvertising(legacy=True, connectable=True, own_address_type=dut_address_type)
-
-        dut = await anext(aiter(self.ref.host.Scan(own_address_type=ref_address_type)))
-        if dut_address_type in (OwnAddressType.PUBLIC, OwnAddressType.RESOLVABLE_OR_PUBLIC):
-            dut_address = {'public': Address(dut.public)}
-        else:
-            dut_address = {'random': Address(dut.random)}
-
-        async def handle_pairing_events():
-            on_ref_pairing = self.ref.security.OnPairing((ref_answer_queue := AsyncQueue()))
-            on_dut_pairing = self.dut.security.OnPairing((dut_answer_queue := AsyncQueue()))
-
-            try:
-                while True:
-                    dut_pairing_event = await anext(aiter(on_dut_pairing))
-                    ref_pairing_event = await anext(aiter(on_ref_pairing))
-
-                    if dut_pairing_event.WhichOneof('method') in ('numeric_comparison', 'just_works'):
-                        assert ref_pairing_event.WhichOneof('method') in ('numeric_comparison', 'just_works')
-                        dut_answer_queue.put_nowait(PairingEventAnswer(
-                            event=dut_pairing_event,
-                            confirm=True,
-                        ))
-                        ref_answer_queue.put_nowait(PairingEventAnswer(
-                            event=ref_pairing_event,
-                            confirm=True,
-                        ))
-                    elif dut_pairing_event.WhichOneof('method') == 'passkey_entry_notification':
-                        assert ref_pairing_event.WhichOneof('method') == 'passkey_entry_request'
-                        ref_answer_queue.put_nowait(PairingEventAnswer(
-                            event=ref_pairing_event,
-                            passkey=dut_pairing_event.passkey_entry_notification,
-                        ))
-                    elif dut_pairing_event.WhichOneof('method') == 'passkey_entry_request':
-                        assert ref_pairing_event.WhichOneof('method') == 'passkey_entry_notification'
-                        dut_answer_queue.put_nowait(PairingEventAnswer(
-                            event=dut_pairing_event,
-                            passkey=ref_pairing_event.passkey_entry_notification,
-                        ))
-                    else:
-                        assert False
-
-            finally:
-                on_ref_pairing.cancel()
-                on_dut_pairing.cancel()
-
-        pairing = asyncio.create_task(handle_pairing_events())
-        ref_dut = (await self.ref.host.ConnectLE(own_address_type=ref_address_type, **dut_address)).connection
-        dut_ref = (await self.dut.host.WaitLEConnection(**ref_address)).connection
-
-        await asyncio.gather(
-            self.ref.security.Secure(connection=ref_dut, le=LESecurityLevel.LE_LEVEL4),
-            self.dut.security.WaitSecurity(connection=dut_ref, le=LESecurityLevel.LE_LEVEL4)
         )
 
         pairing.cancel()
