@@ -157,9 +157,25 @@ bool ToRawPacket(BasicAudioAnnouncementData const& in,
 }
 
 void PrepareAdvertisingData(bluetooth::le_audio::BroadcastId& broadcast_id,
+                            std::vector<unsigned char> local_name,
                             std::vector<uint8_t>& periodic_data) {
-  periodic_data.resize(7);
+  std::size_t local_name_length = local_name.size();
+  uint8_t* local_name_data = local_name.data();
+  size_t adv_data_len = 7;
+
+  if (local_name_length > 0) {
+    adv_data_len += (2 + local_name_length);
+  }
+
+  periodic_data.resize(adv_data_len);
   uint8_t* data_ptr = periodic_data.data();
+
+  if (local_name_length > 0) {
+    UINT8_TO_STREAM(data_ptr, local_name_length + 1);
+    UINT8_TO_STREAM(data_ptr, BTM_BLE_AD_TYPE_COMPLETE_LOCAL_NAME);
+    ARRAY_TO_BE_STREAM(data_ptr, local_name_data, (int)local_name_length);
+  }
+
   UINT8_TO_STREAM(data_ptr, 6);
   UINT8_TO_STREAM(data_ptr, BTM_BLE_AD_TYPE_SERVICE_DATA_TYPE);
   UINT16_TO_STREAM(data_ptr, kBroadcastAudioAnnouncementServiceUuid);

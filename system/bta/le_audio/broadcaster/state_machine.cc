@@ -284,8 +284,16 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
       tBLE_PERIODIC_ADV_PARAMS periodic_params;
       std::vector<uint8_t> adv_data;
       std::vector<uint8_t> periodic_data;
+      std::vector<unsigned char> local_name;
+      uint8_t* ln_ptr;
 
-      PrepareAdvertisingData(broadcast_id, adv_data);
+      if (BTM_ReadLocalDeviceName((const char**)&ln_ptr) != BTM_SUCCESS) {
+        LOG_ERROR("Fail to read local device name for Broadcast Announcement");
+      }
+      local_name = std::vector<unsigned char>(
+          ln_ptr, ln_ptr + strlen((const char*)ln_ptr));
+
+      PrepareAdvertisingData(broadcast_id, local_name, adv_data);
       PreparePeriodicData(announcement, periodic_data);
 
       adv_params.adv_int_min = 0x00A0; /* 160 * 0,625 = 100ms */

@@ -39,6 +39,7 @@ bool ToRawPacket(bluetooth::le_audio::BasicAudioAnnouncementData const&,
                  std::vector<uint8_t>&);
 
 void PrepareAdvertisingData(bluetooth::le_audio::BroadcastId& broadcast_id,
+                            std::vector<unsigned char> local_name,
                             std::vector<uint8_t>& periodic_data);
 void PreparePeriodicData(
     const bluetooth::le_audio::BasicAudioAnnouncementData& announcement,
