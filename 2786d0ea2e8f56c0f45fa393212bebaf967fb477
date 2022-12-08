@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec704c8f_795f60d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-08T19:29:23Z",
+      "side": 1,
+      "message": "This seems like a separate change (copying address to RootCanal)",
+      "revId": "2786d0ea2e8f56c0f45fa393212bebaf967fb477",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3954cf6_1f3eb9e9",
+        "filename": "tools/rootcanal/include/hci/address.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-08T19:29:23Z",
+      "side": 1,
+      "message": "new file, new date",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "2786d0ea2e8f56c0f45fa393212bebaf967fb477",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
