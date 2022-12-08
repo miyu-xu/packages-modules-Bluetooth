@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c92c7cc_d37c01d9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-08T12:05:34Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/android-internal/cts/tests/tests/content/src/android/content/pm/cts/PackageManagerTest.java;rcl\u003d9e7c45f21258862a1b857156442e8fb1caf0b6e7;l\u003d2231",
+      "parentUuid": "cb9c315f_e70d9ced",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 41
+      },
+      "revId": "a6ab5463587714df228e13a724dbf0d4cce19b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa90f8d6_f25ea9c6",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferActivityTest.java",
         "patchSetId": 1
