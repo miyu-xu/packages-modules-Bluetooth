@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13f05f15_87ef951f",
+        "filename": "system/gd/hal/snoop_logger_socket.cc",
+        "patchSetId": 49
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-08T21:27:27Z",
+      "side": 1,
+      "message": "Or\n```\n} else if ((notification_listen_fd_ \u003d\u003d -1) || syscall_if_-\u003eFDIsSet(notification_listen_fd_, \u0026sock_fds)) {\n```",
+      "range": {
+        "startLine": 147,
+        "startChar": 13,
+        "endLine": 147,
+        "endChar": 104
+      },
+      "revId": "6f54e9387580edf69e99470d35ba58d941f7db80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
