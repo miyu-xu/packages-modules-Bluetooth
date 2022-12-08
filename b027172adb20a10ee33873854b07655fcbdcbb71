@@ -46,6 +46,30 @@
       },
       "revId": "b027172adb20a10ee33873854b07655fcbdcbb71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6bd90d_a7a3beb0",
+        "filename": "system/gd/rust/topshim/facade/src/adapter_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-08T18:24:16Z",
+      "side": 1,
+      "message": "Should we make the daemon use the INIT_gd_controller flag too to match the behavior with the topshim test? Or is this flag needed only for topshim test but not wanted for daemon?",
+      "parentUuid": "086df731_6ec1ecbc",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 69,
+        "endChar": 35
+      },
+      "revId": "b027172adb20a10ee33873854b07655fcbdcbb71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
