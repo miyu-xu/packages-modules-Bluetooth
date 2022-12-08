@@ -39,6 +39,30 @@
       },
       "revId": "76d560c3b900e64fa57c39a5e754f03dd4f2b5d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d9a858_edd8620b",
+        "filename": "pandora/interfaces/pandora_experimental/map.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-08T09:39:57Z",
+      "side": 1,
+      "message": "Hi,\n\nMade the changes to move the grpc function SendSMS to _android.proto and removed files map.kt and map.proto.",
+      "parentUuid": "ef9d0b5d_361a970c",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 69
+      },
+      "revId": "76d560c3b900e64fa57c39a5e754f03dd4f2b5d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1be0c1e_3a941fce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-08T09:39:57Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nI have done the required changes as per the comment. Kindly review the same.\n\nThanks,\nDhananjaya",
+      "revId": "8e92e2ccb9149bebf520074b69e1b452b5275266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
