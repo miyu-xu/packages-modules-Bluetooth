@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73bdf4f4_7a701d75",
+        "filename": "system/blueberry/tests/topshim/adapter/adapter_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-08T19:32:39Z",
+      "side": 1,
+      "message": "Can we turn these into types in these CLs vs a later CL for all?  I think it\u0027ll be easier that way.",
+      "range": {
+        "startLine": 55,
+        "startChar": 36,
+        "endLine": 55,
+        "endChar": 45
+      },
+      "revId": "6fff3f8ed0d6c69f90435fff7318a0eff293b4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
