@@ -85,6 +85,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
+#include "osi/include/stack_power_telemetry.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
@@ -1583,6 +1584,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
     case BTA_DM_DISC_CMPL_EVT: {
       GetInterfaceToProfiles()->events->invoke_discovery_state_changed_cb(
           BT_DISCOVERY_STOPPED);
+      PowerTelemetry::GetInstance()->LogScanEnded();
     } break;
     case BTA_DM_SEARCH_CANCEL_CMPL_EVT: {
       /* if inquiry is not in progress and we get a cancel event, then
@@ -1597,6 +1599,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
       if (!btif_dm_inquiry_in_progress) {
         GetInterfaceToProfiles()->events->invoke_discovery_state_changed_cb(
             BT_DISCOVERY_STOPPED);
+        PowerTelemetry::GetInstance()->LogScanEnded();
       }
     } break;
     case BTA_DM_GATT_OVER_LE_RES_EVT:
@@ -2415,6 +2418,7 @@ void btif_dm_start_discovery(void) {
   btif_dm_inquiry_in_progress = false;
   /* find nearby devices */
   BTA_DmSearch(btif_dm_search_devices_evt);
+  PowerTelemetry::GetInstance()->LogScanStarted();
 }
 
 /*******************************************************************************
@@ -2429,6 +2433,7 @@ void btif_dm_cancel_discovery(void) {
   BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Cancel discovery");
 
   BTA_DmSearchCancel();
+  PowerTelemetry::GetInstance()->LogScanEnded();
 }
 
 bool btif_dm_pairing_is_busy() {
