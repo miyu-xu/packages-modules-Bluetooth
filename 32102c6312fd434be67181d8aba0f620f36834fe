@@ -16,6 +16,92 @@
       "message": "Addresses delayed logic in getting SDP UUIDs when they do not change; my big question is providing a test for this.  Is this something Pandora can provide ?",
       "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e46a0c4_ddc99345",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-09T00:28:33Z",
+      "side": 1,
+      "message": "Still +2 because everything I comment about is aesthetic",
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6d1cd5_0f8b1187",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-09T00:28:33Z",
+      "side": 1,
+      "message": "nit: Maybe this comment is personal preference. Sorry about that\n\nThe If cascade is very verbose\nBut I don\u0027t see a perfect way to write it.\nWe can try to move some logs outside of the method, but adding ternary operator is not great neither.\n\nOne thing that can help is to extract some common logs info\n```\nString uuidInfo \u003d \"device:\" + Utils.getLoggableAddress(bdDevice)\n                    + \" numUuids:\" + numUuids;\n```\nMaybe we can go further and create a \nString `headerMsg` in each `if` / `else` and send it at the end (except for the warn log that could be avoid by having break in it)\n```\ninfoLog(headerMsg + uuidInfo);\n```\n\n\nThat would be something like this:\n```\nString uuidInfo \u003d \" device:\" + Utils.getLoggableAddress(bdDevice)\n                    + \" numUuids:\" + numUuids;\nString adapterState \u003d \"AdapterState:\"\n                   + BluetoothAdapter.nameForState(mAdapterService.getState());\nString headerMsg \u003d \"\";\nif (areUuidsEqual(newUuids, device.getUuids())) {\n  if (!mSdpTracker.contains(bdDevice)) {\n    headerMsg \u003d \"Skipped update uuids\";\n  } else {\n    if (mAdapterService.getState() \u003d\u003d BluetoothAdapter.STATE_ON) {\n      headerMsg \u003d \"New uuids same as existing but responded to outstanding intent\";\n      sendUuidIntent(bdDevice, getDeviceProperties(bdDevice));\n    } else {\n      headerMsg \u003d \"prevented ACTION_UUID from being sent\";\n    }\n    mSdpTracker.remove(device);\n  }\n} else {\n  // Update the device properties Uuids\n  device.setUuids(newUuids);\n  headerMsg \u003d \"Presented uuid\";\n  if (mAdapterService.getState() \u003d\u003d BluetoothAdapter.STATE_ON) {\n    mAdapterService.deviceUuidUpdated(bdDevice);\n    sendUuidIntent(bdDevice, getDeviceProperties(bdDevice));\n  } else if (mAdapterService.getState() \u003d\u003d BluetoothAdapter.STATE_BLE_ON) {\n    mAdapterService.deviceUuidUpdated(bdDevice);\n  } else {\n    warnLog(\"Withheld uuids due to \" + adapterState + uuidInfo);\n    break; // to avoid double logging\n  }\n}\ninfoLog(adapterState + \" \" + headerMsg + uuidInfo);\n```\nIn the example I also switch the contains condition to have the smaller brace first and I move the `remove` outside of the if to make it obvious it\u0027s removed everytime (cf my other comment)\n\n\nBut I don\u0027t know if it\u0027s better or not",
+      "range": {
+        "startLine": 817,
+        "startChar": 0,
+        "endLine": 817,
+        "endChar": 3
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92798bbb_eb17039c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-09T00:28:33Z",
+      "side": 1,
+      "message": "~Don\u0027t we want to remove it from `mSdpTracker` whatever the adapter state is ?~\nIt confused me because it\u0027s done in sendUuidIntent. So I guess it will confused other",
+      "range": {
+        "startLine": 834,
+        "startChar": 0,
+        "endLine": 834,
+        "endChar": 67
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d3c1df2_d96fe981",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-09T00:28:33Z",
+      "side": 1,
+      "message": "Why all your logs are formatted this way ?\nI Never encountered this before\n( cf [code search](https://source.corp.google.com/search?q\u003df:packages%2Fmodules%2FBluetooth%20f:java$%20AND%20(%20errorLog%5C(%20OR%20warnLog%5C(%20%20OR%20%20infoLog%5C(%20)\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master ) )",
+      "range": {
+        "startLine": 1130,
+        "startChar": 19,
+        "endLine": 1131,
+        "endChar": 22
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
