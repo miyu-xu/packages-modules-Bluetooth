@@ -57,6 +57,7 @@ import com.android.bluetooth.map.BluetoothMapUtils.TYPE;
 import com.android.bluetooth.map.BluetoothMapbMessageMime.MimePart;
 import com.android.bluetooth.mapapi.BluetoothMapContract;
 import com.android.bluetooth.mapapi.BluetoothMapContract.MessageColumns;
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.ResponseCodes;
 
 import com.google.android.mms.pdu.PduHeaders;
@@ -535,7 +536,8 @@ public class BluetoothMapContentObserver {
         this.mFolders = folderStructure;
     }
 
-    private static class ConvoContactInfo {
+    @VisibleForTesting
+    static class ConvoContactInfo {
         public int mConvoColConvoId = -1;
         public int mConvoColLastActivity = -1;
         public int mConvoColName = -1;
