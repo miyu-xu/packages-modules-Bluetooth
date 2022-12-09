@@ -16,6 +16,24 @@
       "message": "nit: looks like it would easier to construct battery sets if the `new` function accepts the batteries:\n```\npub fn new(\n    address: String,\n    source_uuid: String,\n    source_info: String,\n    batteries: Vec\u003cBattery\u003e,\n) -\u003e Self {\n    Self { address, source_uuid, source_info, batteries }\n}\n```",
       "revId": "eb8c9080bc270732049d7a2c3b57afc9600d6d62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "349dabe2_fe7dfdd3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-12-09T16:21:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3080548_aefa0079",
+      "revId": "eb8c9080bc270732049d7a2c3b57afc9600d6d62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
