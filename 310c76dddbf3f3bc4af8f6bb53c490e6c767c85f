@@ -16,6 +16,23 @@
       "message": "LGTM, but let\u0027s wait on the sysprops to make it in before submitting this.",
       "revId": "310c76dddbf3f3bc4af8f6bb53c490e6c767c85f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cbc9125_845b7639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-09T17:38:43Z",
+      "side": 1,
+      "message": "This seems reasonable, but it also seems like a workaround for a controller that claims support for multiple Phy types but doesn\u0027t really support them.\n\nCan we name it only_use_1m_phy or something like that instead?  I think that makes it more obvious what the purpose of the flag is.",
+      "revId": "310c76dddbf3f3bc4af8f6bb53c490e6c767c85f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
