@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bef7c9c_67c696e5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "1. What about moving this policy check logic in the HeadsetService.setActiveDevice()?\n\n2. ActiveDeviceManager looks written by expecting setHfpActiveDevice will be always succeed. We need to check whether it works correctly when setHfpActiveDevice fails.",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 978,
+        "endChar": 38
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35e40ee2_2b4b0b4c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/AudioPolicyEntity.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "Please use the camelCase naming convention.\ncallPickUpAudioPolicy, ditto for others.",
+      "range": {
+        "startLine": 25,
+        "startChar": 15,
+        "endLine": 25,
+        "endChar": 40
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eeade64_05d11715",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "can\u0027t we use set/getCustomMeta?",
+      "range": {
+        "startLine": 291,
+        "startChar": 19,
+        "endLine": 291,
+        "endChar": 41
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b6370e7_e3c3d431",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "Remove these method.\naudioPolicyMetadata is public.",
+      "range": {
+        "startLine": 383,
+        "startChar": 1,
+        "endLine": 389,
+        "endChar": 5
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65e4629f_0b98ca5e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "Please be consistent on method names that gets the BluetoothAudioPolicy value.",
+      "range": {
+        "startLine": 1318,
+        "startChar": 32,
+        "endLine": 1318,
+        "endChar": 53
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f74df7d_66514f0d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "processAndroidAt?",
+      "range": {
+        "startLine": 1940,
+        "startChar": 17,
+        "endLine": 1940,
+        "endChar": 33
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2a8ee81_045b2704",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1968,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "It would be nice if you can match the type name and the method name.",
+      "range": {
+        "startLine": 1968,
+        "startChar": 16,
+        "endLine": 1968,
+        "endChar": 46
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4326a7ed_6d102d1d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "processAndroidAtFeatureRequest",
+      "range": {
+        "startLine": 1982,
+        "startChar": 17,
+        "endLine": 1982,
+        "endChar": 47
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b7ebc6_372d67dd",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 2000,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "processAndroidAtSetAudioPolicy",
+      "range": {
+        "startLine": 2000,
+        "startChar": 17,
+        "endLine": 2000,
+        "endChar": 47
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7657008e_3760ee64",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "remove \"(C)\"",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d90e864_c805e5b3",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "BluetoothAudioPolicy looks a broad concept that can be used for media as well.\nWhat about BluetoothCallPolicy?",
+      "range": {
+        "startLine": 55,
+        "startChar": 19,
+        "endLine": 55,
+        "endChar": 39
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfc7893_9ff24512",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "Q) what\u0027s the difference between default and allowed?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4beb6f94_9a84b329",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "1. What does \"remote\" stands for? and what will be \"local\"?\n\n2. Will STATUS_UNKNOWN be the same with NOT_SUPPORTED?\n\n3. What about CALL_POLICY_SUPPORTED and CALL_POLICY_NOT_SUPPORT?",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3198736e_a0089036",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "I don\u0027t think CALL_AUDIO_XXX is a proper values for connection policy and inband ring policy.\n\nShouldn\u0027t it be POLICY_ALLOWED and POLICY_DISALLOWED instead of CALL_AUDIO_XXX?",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 53
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d100ff9f_dd8340bd",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T14:43:39Z",
+      "side": 1,
+      "message": "Looks like a Builder class pattern.\nPlease create a builder class if the values are not dynamically changed.\nOr make it a void method.\n\nditto for others.",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 5
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
