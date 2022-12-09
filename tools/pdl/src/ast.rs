@@ -1,3 +1,4 @@
+use crate::lint;
 use codespan_reporting::diagnostic;
 use codespan_reporting::files;
 use serde::Serialize;
@@ -300,12 +301,20 @@ impl Field {
         )
     }
 
-    pub fn width(&self) -> Option<usize> {
+    pub fn width(&self, scope: &lint::Scope<'_>) -> Option<usize> {
         match self {
             Field::Scalar { width, .. }
             | Field::Size { width, .. }
             | Field::Count { width, .. }
             | Field::Reserved { width, .. } => Some(*width),
+            Field::Typedef { type_id, .. } => {
+                let field = scope.typedef.get(type_id.as_str());
+                if let Some(Decl::Enum { width, .. }) = field {
+                    Some(*width)
+                } else {
+                    None
+                }
+            }
             // TODO(mgeisler): padding, arrays, etc.
             _ => None,
         }
