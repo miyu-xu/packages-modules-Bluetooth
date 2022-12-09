@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "148fb849_271dba9e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/FilterInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-09T02:47:21Z",
+      "side": 1,
+      "message": "Changed the test to using the actual column index, as Hyundo suggested.",
+      "parentUuid": "f9b24c17_35f671b8",
+      "range": {
+        "startLine": 49,
+        "startChar": 60,
+        "endLine": 49,
+        "endChar": 68
+      },
+      "revId": "57ba284880f6f71f41bd400e76a41ea170e8be01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c0fc5eb_304aa5be",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/FilterInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-09T02:47:21Z",
+      "side": 1,
+      "message": "Got it. Fixed! Thanks for the detailed explanation :)",
+      "parentUuid": "03a1bd7e_1b776800",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 70
+      },
+      "revId": "57ba284880f6f71f41bd400e76a41ea170e8be01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6dd2977_aeb211a5",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-07T08:05:47Z",
       "side": 1,
       "message": "I think this test condition is too wide...\n\nLet\u0027s use the actual column name and create table with MatrixCursor. \n\nHere and all other tests.",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 70
+      },
+      "revId": "57ba284880f6f71f41bd400e76a41ea170e8be01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5920236f_434a49e8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/FilterInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-09T02:47:21Z",
+      "side": 1,
+      "message": "Fixed! The actual column names are used now.",
+      "parentUuid": "d6dd2977_aeb211a5",
       "range": {
         "startLine": 73,
         "startChar": 8,
