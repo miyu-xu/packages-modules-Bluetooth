@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84f43e2_bb1cd634",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-12-09T16:22:46Z",
+      "side": 1,
+      "message": "Sonny is out today, swapping Abhishek in. Thanks!",
+      "revId": "c61c73733294701f28c1dd308b45af4833147eac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
