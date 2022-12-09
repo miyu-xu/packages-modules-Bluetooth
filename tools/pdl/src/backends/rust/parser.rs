@@ -39,7 +39,7 @@ impl<'a> FieldParser<'a> {
         }
     }
 
-    fn endianness_suffix(&self, width: usize) -> &'static str {
+    fn endianness_suffix(&'a self, width: usize) -> &'static str {
         if width > 8 && self.endianness == ast::EndiannessValue::LittleEndian {
             "_le"
         } else {
@@ -80,7 +80,7 @@ impl<'a> FieldParser<'a> {
     }
 
     fn add_bit_field(&mut self, field: &'a ast::Field) {
-        let width = field.width().unwrap();
+        let width = field.width(self.scope).unwrap();
         self.chunk.push(BitField { offset: self.shift, width, field });
         self.shift += width;
         if self.shift % 8 != 0 {
@@ -149,6 +149,17 @@ impl<'a> FieldParser<'a> {
                     let id = format_ident!("{id}");
                     quote! {
                         let #id = #v;
+                    }
+                }
+                ast::Field::Typedef { id, type_id, .. } => {
+                    let id = format_ident!("{id}");
+                    let type_id = format_ident!("{type_id}");
+                    let from_u = format_ident!("from_u{}", value_type.width);
+                    // TODO(mgeisler): Remove the `unwrap` from the
+                    // generated code and return the error to the
+                    // caller.
+                    quote! {
+                        let #id = #type_id::#from_u(#v).unwrap();
                     }
                 }
                 _ => todo!(),
