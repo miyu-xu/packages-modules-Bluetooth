@@ -1,27 +1,30 @@
-use crate::ast;
 use crate::backends::rust::{mask_bits, types};
+use crate::{ast, lint};
 use quote::{format_ident, quote};
 
-pub struct FieldParser {
+pub struct FieldParser<'a> {
+    scope: &'a lint::Scope<'a>,
     endianness: ast::EndiannessValue,
-    packet_name: String,
-    span: proc_macro2::Ident,
+    packet_name: &'a str,
+    span: &'a proc_macro2::Ident,
     chunk: Vec<(usize, usize, ast::Field)>,
     code: Vec<proc_macro2::TokenStream>,
     shift: usize,
     offset: usize,
 }
 
-impl FieldParser {
+impl<'a> FieldParser<'a> {
     pub fn new(
+        scope: &'a lint::Scope<'a>,
         endianness: ast::EndiannessValue,
-        packet_name: &str,
-        span: &proc_macro2::Ident,
-    ) -> FieldParser {
+        packet_name: &'a str,
+        span: &'a proc_macro2::Ident,
+    ) -> FieldParser<'a> {
         FieldParser {
+            scope,
             endianness,
-            packet_name: packet_name.to_string(),
-            span: span.clone(),
+            packet_name,
+            span,
             chunk: Vec::new(),
             code: Vec::new(),
             shift: 0,
@@ -29,7 +32,7 @@ impl FieldParser {
         }
     }
 
-    fn endianness_suffix(&self, width: usize) -> &'static str {
+    fn endianness_suffix(&'a self, width: usize) -> &'static str {
         if width > 8 && self.endianness == ast::EndiannessValue::LittleEndian {
             "_le"
         } else {
@@ -70,7 +73,7 @@ impl FieldParser {
     }
 
     fn add_bit_field(&mut self, field: &ast::Field) {
-        let width = field.width().unwrap();
+        let width = field.width(self.scope).unwrap();
         self.chunk.push((self.shift, width, field.clone()));
         self.shift += width;
         if self.shift % 8 != 0 {
@@ -132,6 +135,14 @@ impl FieldParser {
                         let #id = #v;
                     }
                 }
+                ast::Field::Typedef { id, type_id, .. } => {
+                    let id = format_ident!("{id}");
+                    let type_id = format_ident!("{type_id}");
+                    let from_u = format_ident!("from_u{}", value_type.width);
+                    quote! {
+                        let #id = #type_id::#from_u(#v).unwrap();
+                    }
+                }
                 _ => todo!(),
             });
         }
@@ -144,7 +155,7 @@ impl FieldParser {
     pub fn done(&mut self) {}
 }
 
-impl quote::ToTokens for FieldParser {
+impl quote::ToTokens for FieldParser<'_> {
     fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream) {
         let code = &self.code;
         tokens.extend(quote! {
