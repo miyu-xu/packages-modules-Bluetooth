@@ -16,6 +16,23 @@
       "message": "Sonny is out today, swapping Abhishek in. Thanks!",
       "revId": "c61c73733294701f28c1dd308b45af4833147eac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f308954_149b015c",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-09T16:32:37Z",
+      "side": 1,
+      "message": "compiler warning: switch cases are not exhaustive.",
+      "revId": "c61c73733294701f28c1dd308b45af4833147eac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
