@@ -1,5 +1,5 @@
-use crate::ast;
 use crate::backends::rust::{mask_bits, types};
+use crate::{ast, lint};
 use quote::{format_ident, quote};
 
 struct Chunk<'a> {
@@ -9,6 +9,7 @@ struct Chunk<'a> {
 }
 
 pub struct FieldParser<'a> {
+    scope: &'a lint::Scope<'a>,
     endianness: ast::EndiannessValue,
     packet_name: &'a str,
     span: &'a proc_macro2::Ident,
@@ -20,11 +21,13 @@ pub struct FieldParser<'a> {
 
 impl<'a> FieldParser<'a> {
     pub fn new(
+        scope: &'a lint::Scope<'a>,
         endianness: ast::EndiannessValue,
         packet_name: &'a str,
         span: &'a proc_macro2::Ident,
     ) -> FieldParser<'a> {
         FieldParser {
+            scope,
             endianness,
             packet_name,
             span,
@@ -35,7 +38,7 @@ impl<'a> FieldParser<'a> {
         }
     }
 
-    fn endianness_suffix(&self, width: usize) -> &'static str {
+    fn endianness_suffix(&'a self, width: usize) -> &'static str {
         if width > 8 && self.endianness == ast::EndiannessValue::LittleEndian {
             "_le"
         } else {
@@ -76,7 +79,7 @@ impl<'a> FieldParser<'a> {
     }
 
     fn add_bit_field(&mut self, field: &'a ast::Field) {
-        let width = field.width().unwrap();
+        let width = field.width(self.scope).unwrap();
         self.chunk.push(Chunk { offset: self.shift, width, field });
         self.shift += width;
         if self.shift % 8 != 0 {
@@ -141,6 +144,14 @@ impl<'a> FieldParser<'a> {
                     let id = format_ident!("{id}");
                     quote! {
                         let #id = #v;
+                    }
+                }
+                ast::Field::Typedef { id, type_id, .. } => {
+                    let id = format_ident!("{id}");
+                    let type_id = format_ident!("{type_id}");
+                    let from_u = format_ident!("from_u{}", value_type.width);
+                    quote! {
+                        let #id = #type_id::#from_u(#v).unwrap();
                     }
                 }
                 _ => todo!(),

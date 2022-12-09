@@ -1,33 +1,36 @@
-use crate::ast;
 use crate::backends::rust::{mask_bits, types};
+use crate::{ast, lint};
 use quote::{format_ident, quote};
 
-pub struct FieldSerializer {
+pub struct FieldSerializer<'a> {
+    scope: &'a lint::Scope<'a>,
     endianness: ast::EndiannessValue,
-    packet_name: String,
-    span: proc_macro2::Ident,
+    packet_name: &'a str,
+    span: &'a proc_macro2::Ident,
     chunk: Vec<(proc_macro2::TokenStream, Option<proc_macro2::Literal>)>,
     code: Vec<proc_macro2::TokenStream>,
     shift: usize,
 }
 
-impl FieldSerializer {
+impl<'a> FieldSerializer<'a> {
     pub fn new(
+        scope: &'a lint::Scope<'a>,
         endianness: ast::EndiannessValue,
-        packet_name: &str,
-        span: &proc_macro2::Ident,
-    ) -> FieldSerializer {
+        packet_name: &'a str,
+        span: &'a proc_macro2::Ident,
+    ) -> FieldSerializer<'a> {
         FieldSerializer {
+            scope,
             endianness,
-            packet_name: packet_name.to_string(),
-            span: span.clone(),
+            packet_name,
+            span,
             chunk: Vec::new(),
             code: Vec::new(),
             shift: 0,
         }
     }
 
-    fn endianness_suffix(&self, width: usize) -> &'static str {
+    fn endianness_suffix(&'a self, width: usize) -> &'static str {
         if width > 8 && self.endianness == ast::EndiannessValue::LittleEndian {
             "_le"
         } else {
@@ -39,7 +42,11 @@ impl FieldSerializer {
     ///
     /// The generated code requires that `self.span` is a mutable
     /// `bytes::BufMut` value.
-    fn put_uint(&self, value: &proc_macro2::TokenStream, width: usize) -> proc_macro2::TokenStream {
+    fn put_uint(
+        &'a self,
+        value: &proc_macro2::TokenStream,
+        width: usize,
+    ) -> proc_macro2::TokenStream {
         let span = &self.span;
         let suffix = self.endianness_suffix(width);
         let value_type = types::Integer::new(width);
@@ -68,7 +75,12 @@ impl FieldSerializer {
     }
 
     fn add_bit_field(&mut self, field: &ast::Field) {
-        let width = field.width().unwrap();
+        let width = field.width(self.scope).unwrap();
+        let shift = if self.shift > 0 {
+            Some(proc_macro2::Literal::usize_unsuffixed(self.shift))
+        } else {
+            None
+        };
 
         match field {
             ast::Field::Scalar { id, width, .. } => {
@@ -86,12 +98,13 @@ impl FieldSerializer {
                         }
                     });
                 }
-                let shift = if self.shift > 0 {
-                    Some(proc_macro2::Literal::usize_unsuffixed(self.shift))
-                } else {
-                    None
-                };
                 self.chunk.push((quote!(self.#field_name), shift));
+            }
+            ast::Field::Typedef { id, .. } => {
+                let field_name = format_ident!("{id}");
+                let field_type = types::Integer::new(width);
+                let to_u = format_ident!("to_u{}", field_type.width);
+                self.chunk.push((quote!(self.#field_name.#to_u().unwrap()), shift));
             }
             _ => todo!(),
         }
@@ -145,7 +158,7 @@ impl FieldSerializer {
     }
 }
 
-impl quote::ToTokens for FieldSerializer {
+impl quote::ToTokens for FieldSerializer<'_> {
     fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream) {
         let code = &self.code;
         tokens.extend(quote! {
