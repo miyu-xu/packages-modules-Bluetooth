@@ -23,6 +23,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.os.UserManager;
@@ -32,28 +33,37 @@ import android.telephony.TelephonyManager;
 import android.test.mock.MockContentProvider;
 import android.test.mock.MockContentResolver;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.R;
+import com.android.obex.ResponseCodes;
 
 import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Map;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class BluetoothMapContentObserverTest {
     static final String TEST_NUMBER_ONE = "5551212";
     static final String TEST_NUMBER_TWO = "5551234";
-    private Context mTargetContext;
+    static final long TEST_HANDLE = 1;
+    private BluetoothMapContentObserver mObserver;
+    @Mock
+    private BluetoothMnsObexClient mClient;
+    @Mock
+    private BluetoothMapMasInstance mInstance;
+
 
     static class ExceptionTestProvider extends MockContentProvider {
         HashSet<String> mContents = new HashSet<String>();
@@ -83,10 +93,33 @@ public class BluetoothMapContentObserverTest {
     }
 
     @Before
-    public void setUp() {
-        mTargetContext = InstrumentationRegistry.getTargetContext();
+    public void setUp() throws Exception {
         Assume.assumeTrue("Ignore test when BluetoothMapService is not enabled",
                 BluetoothMapService.isEnabled());
+        MockitoAnnotations.initMocks(this);
+        if (Looper.myLooper() == null) {
+            Looper.prepare();
+        }
+        Context mockContext = mock(Context.class);
+        MockContentResolver mockResolver = new MockContentResolver();
+        BluetoothMapContentObserverTest.ExceptionTestProvider
+                mockProvider = new BluetoothMapContentObserverTest.ExceptionTestProvider(
+                mockContext);
+        mockResolver.addProvider("sms", mockProvider);
+
+        TelephonyManager mockTelephony = mock(TelephonyManager.class);
+        UserManager mockUserService = mock(UserManager.class);
+
+        // Functions that get called when BluetoothMapContentObserver is created
+        when(mockUserService.isUserUnlocked()).thenReturn(true);
+        when(mockContext.getContentResolver()).thenReturn(mockResolver);
+        when(mockContext.getSystemService(Context.TELEPHONY_SERVICE)).thenReturn(mockTelephony);
+        when(mockContext.getSystemServiceName(TelephonyManager.class))
+                .thenReturn(Context.TELEPHONY_SERVICE);
+        when(mockContext.getSystemService(Context.USER_SERVICE)).thenReturn(mockUserService);
+        when(mInstance.getMasId()).thenReturn(1);
+
+        mObserver = new BluetoothMapContentObserver(mockContext, mClient, mInstance, null, true);
     }
 
     @Test
@@ -187,4 +220,141 @@ public class BluetoothMapContentObserverTest {
         Assert.assertTrue(mockProvider.mContents.contains(TEST_NUMBER_TWO));
     }
 
+    @Test
+    public void testSendEvent_withZeroEventFilter() {
+        when(mClient.isConnected()).thenReturn(true);
+        mObserver.setNotificationFilter(0);
+
+        String eventType = BluetoothMapContentObserver.EVENT_TYPE_NEW;
+        BluetoothMapContentObserver.Event event = mObserver.new Event(eventType, TEST_HANDLE, null,
+                null);
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_DELETE;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_REMOVED;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_SHIFT;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_DELEVERY_SUCCESS;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_SENDING_SUCCESS;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_SENDING_FAILURE;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_READ_STATUS;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_CONVERSATION;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_PRESENCE;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+
+        event.eventType = BluetoothMapContentObserver.EVENT_TYPE_CHAT_STATE;
+        mObserver.sendEvent(event);
+        verify(mClient, never()).sendEvent(any(), anyInt());
+    }
+
+    @Test
+    public void testEvent_withNonZeroEventFilter() throws Exception {
+        when(mClient.isConnected()).thenReturn(true);
+
+        String eventType = BluetoothMapContentObserver.EVENT_TYPE_NEW;
+        BluetoothMapContentObserver.Event event = mObserver.new Event(eventType, TEST_HANDLE, null,
+                null);
+
+        mObserver.sendEvent(event);
+
+        verify(mClient).sendEvent(event.encode(), 1);
+    }
+
+    @Test
+    public void testSetContactList() {
+        Map<String, BluetoothMapConvoContactElement> map = Map.of();
+
+        mObserver.setContactList(map, true);
+
+        Assert.assertEquals(mObserver.getContactList(), map);
+    }
+
+    @Test
+    public void testSetMsgListSms() {
+        Map<Long, BluetoothMapContentObserver.Msg> map = Map.of();
+
+        mObserver.setMsgListSms(map, true);
+
+        Assert.assertEquals(mObserver.getMsgListSms(), map);
+    }
+
+    @Test
+    public void testSetMsgListMsg() {
+        Map<Long, BluetoothMapContentObserver.Msg> map = Map.of();
+
+        mObserver.setMsgListMsg(map, true);
+
+        Assert.assertEquals(mObserver.getMsgListMsg(), map);
+    }
+
+    @Test
+    public void testSetMsgListMms() {
+        Map<Long, BluetoothMapContentObserver.Msg> map = Map.of();
+
+        mObserver.setMsgListMms(map, true);
+
+        Assert.assertEquals(mObserver.getMsgListMms(), map);
+    }
+
+    @Test
+    public void testSetNotificationRegistration_withNullHandler() throws Exception {
+        when(mClient.getMessageHandler()).thenReturn(null);
+
+        Assert.assertEquals(
+                mObserver.setNotificationRegistration(BluetoothMapAppParams.NOTIFICATION_STATUS_NO),
+                ResponseCodes.OBEX_HTTP_UNAVAILABLE);
+    }
+
+    @Test
+    public void testSetNotificationRegistration_withInvalidMnsRecord() throws Exception {
+        if (Looper.myLooper() == null) {
+            Looper.prepare();
+        }
+        Handler handler = new Handler();
+        when(mClient.getMessageHandler()).thenReturn(handler);
+        when(mClient.isValidMnsRecord()).thenReturn(false);
+
+        Assert.assertEquals(
+                mObserver.setNotificationRegistration(BluetoothMapAppParams.NOTIFICATION_STATUS_NO),
+                ResponseCodes.OBEX_HTTP_OK);
+    }
+
+    @Test
+    public void testSetNotificationRegistration_withValidMnsRecord() throws Exception {
+        if (Looper.myLooper() == null) {
+            Looper.prepare();
+        }
+        Handler handler = new Handler();
+        when(mClient.getMessageHandler()).thenReturn(handler);
+        when(mClient.isValidMnsRecord()).thenReturn(true);
+
+        Assert.assertEquals(
+                mObserver.setNotificationRegistration(BluetoothMapAppParams.NOTIFICATION_STATUS_NO),
+                ResponseCodes.OBEX_HTTP_OK);
+    }
 }
