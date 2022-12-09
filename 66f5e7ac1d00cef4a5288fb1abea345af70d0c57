@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ac4e55e_da06f25b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/FilterInfoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-09T04:17:38Z",
+      "side": 1,
+      "message": "add spaced before after \u0027{\u0027\n\nditto for others",
+      "range": {
+        "startLine": 47,
+        "startChar": 59,
+        "endLine": 47,
+        "endChar": 61
+      },
+      "revId": "66f5e7ac1d00cef4a5288fb1abea345af70d0c57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
