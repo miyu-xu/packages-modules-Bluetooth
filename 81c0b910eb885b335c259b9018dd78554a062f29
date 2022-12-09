@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add6d927_e1ef5e73",
+        "filename": "tools/pdl/tests/canonical/be_test_file.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-09T18:17:53Z",
+      "side": 1,
+      "message": "Nice! For Rust, I\u0027ve noticed that 24 bit wide fields are interesting: they are represented by a `u32`, require `get_uint` and `put_uint` when reading and writing, and they thus require a bit more casting than other sizes.\n\nIf you could add that size too, that would be nice.",
+      "range": {
+        "startLine": 227,
+        "startChar": 7,
+        "endLine": 227,
+        "endChar": 14
+      },
+      "revId": "81c0b910eb885b335c259b9018dd78554a062f29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
