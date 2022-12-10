@@ -33,6 +33,42 @@
       "message": "This seems reasonable, but it also seems like a workaround for a controller that claims support for multiple Phy types but doesn\u0027t really support them.\n\nCan we name it only_use_1m_phy or something like that instead?  I think that makes it more obvious what the purpose of the flag is.",
       "revId": "310c76dddbf3f3bc4af8f6bb53c490e6c767c85f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c69403f1_5b4cab36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-10T01:13:29Z",
+      "side": 1,
+      "message": "As BlueZ initiates LE connection with LE 1M PHY, I think creating LE connection in this way offers better compatibility to these controllers. After connection is established, a controller might be able to switch to other PHYs with HCI_LE_Set_PHY.\n\nIn srcs/android/sysprop/BluetoothProperties.sysprop, most boolean configuration types (e.g. with the suffix .enabled) describe their intent in a positive way, like a specific feature is enabled or not. So, `init_more_phy` is more aligned to other bluetooth sysprops and its intent is also clear if readers know LE 1M phy is the default PHY to initiate. See also aosp/2335502 for more description about this sysprop.",
+      "parentUuid": "9cbc9125_845b7639",
+      "revId": "310c76dddbf3f3bc4af8f6bb53c490e6c767c85f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae9295bf_bc384ea4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-10T01:13:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cabed35a_2e4e625d",
+      "revId": "310c76dddbf3f3bc4af8f6bb53c490e6c767c85f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
