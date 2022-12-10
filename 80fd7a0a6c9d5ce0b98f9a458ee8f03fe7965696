@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0da28962_af1f5d39",
+        "filename": "system/gd/rust/topshim/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "inconsistent with Android.bp -- should this be bthfp_?",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be97cd08_bb11300c",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "Any pub type or function must have docstrings using `///`.\n\nFor documenting, prefer to describe how or when something will be used rather than what it is (unless it\u0027s not easily inferable from the name).",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9032abfb_255004aa",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "Put the same TODO I mentioned in below comment here.",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4e53c1_f246c63b",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "You should indent the inner part of `cb_variant!`. I know this doesn\u0027t autoformat but it looks weird as it is now.\n\ni.e.\n```\ncb_variant!(\n  BthfClientCb,\n  foo_cb -\u003e BthfClientCallbacks::Foo,\n  *const RawAddress,\n  ... {\n  }\n);\n```",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "894fd759_ff48ad48",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "The `_variable` pattern in Rust is for unused parameters. Here, all the params are internal since they haven\u0027t been marked with `pub`.\n\nReplace this with just `is_enabled`",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b13d0905_75b575b9",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "Please create a bug and add a TODO(b/...) to explain that this is an incomplete topshim implementation. I\u0027ll add that bug into the topshim backlog.",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c161f31_4267cca0",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "Prefer consistency in apis: keep it always `addr: RawAddress`.",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "632b5257_9ee5fe73",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-10T00:23:49Z",
+      "side": 1,
+      "message": "nit: newline after function",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
