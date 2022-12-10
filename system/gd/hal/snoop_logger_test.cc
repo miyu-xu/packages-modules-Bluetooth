@@ -70,7 +70,8 @@ class TestSnoopLoggerModule : public SnoopLogger {
       std::string snooz_log_path,
       size_t max_packets_per_file,
       const std::string& btsnoop_mode,
-      bool qualcomm_debug_log_enabled)
+      bool qualcomm_debug_log_enabled,
+      bool snoop_log_persists)
       : SnoopLogger(
             std::move(snoop_log_path),
             std::move(snooz_log_path),
@@ -79,7 +80,8 @@ class TestSnoopLoggerModule : public SnoopLogger {
             btsnoop_mode,
             qualcomm_debug_log_enabled,
             20ms,
-            5ms) {}
+            5ms,
+            snoop_log_persists) {}
 
   std::string ToString() const override {
     return std::string("TestSnoopLoggerModule");
@@ -308,6 +310,35 @@ TEST_F(SnoopLoggerModuleTest, capture_l2cap_long_data_packet_btsnooz_test) {
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_));
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
   ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
+}
+
+TEST_F(SnoopLoggerModuleTest, snoop_log_persists) {
+  // Actual test
+  auto* snoop_logger = new TestSnoopLoggerModule(
+      temp_snoop_log_.string(),
+      temp_snooz_log_.string(),
+      10,
+      SnoopLogger::kBtSnoopLogModeDisabled,
+      false,
+      true);
+  TestModuleRegistry test_registry;
+  test_registry.InjectTestModule(&SnoopLogger::Factory, snoop_logger);
+
+  snoop_logger->Capture(
+      kHfpAtNrec0, SnoopLogger::Direction::OUTGOING, SnoopLogger::PacketType::ACL);
+  snoop_logger->CallGetDumpsysData(builder_);
+
+  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  ASSERT_EQ(
+      std::filesystem::file_size(temp_snooz_log_),
+      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + 14);
+
+  test_registry.StopAll();
+
+  // Verify states after test
+  ASSERT_TRUE(std::filesystem::exists(temp_snoop_log_));
+  ASSERT_TRUE(std::filesystem::exists(temp_snoop_log_last_));
+  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
 }
 
 TEST_F(SnoopLoggerModuleTest, delete_old_snooz_log_files) {
