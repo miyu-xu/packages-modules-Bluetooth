@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50431bf7_32278bce",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-10T00:45:58Z",
+      "side": 1,
+      "message": "I would expect this to be printed whether or not DBG is defined.  Info, maybe warning.  It shouldn\u0027t happen very often.",
+      "range": {
+        "startLine": 1414,
+        "startChar": 0,
+        "endLine": 1414,
+        "endChar": 22
+      },
+      "revId": "2bef2b2300942320fffb9e943023505005a75c68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
