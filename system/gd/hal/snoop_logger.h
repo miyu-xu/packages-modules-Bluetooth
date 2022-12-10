@@ -45,6 +45,7 @@ class SnoopLogger : public ::bluetooth::Module {
   static const std::string kBtSnoopMaxPacketsPerFileProperty;
   static const std::string kIsDebuggableProperty;
   static const std::string kBtSnoopLogModeProperty;
+  static const std::string kBtSnoopLogPersists;
   static const std::string kBtSnoopDefaultLogModeProperty;
   static const std::string kSoCManufacturerProperty;
 
@@ -78,6 +79,9 @@ class SnoopLogger : public ::bluetooth::Module {
   // Returns whether the soc manufacturer is Qualcomm
   // Changes to this value is only effective after restarting Bluetooth
   static bool IsQualcommDebugLogEnabled();
+
+  // Returns whether snoop log persists even after restarting Bluetooth
+  static bool IsBtSnoopLogPersisted();
 
   // Has to be defined from 1 to 4 per btsnoop format
   enum PacketType {

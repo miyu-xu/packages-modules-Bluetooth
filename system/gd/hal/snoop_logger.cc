@@ -202,6 +202,7 @@ const std::string SnoopLogger::kBtSnoopMaxPacketsPerFileProperty = "persist.blue
 const std::string SnoopLogger::kIsDebuggableProperty = "ro.debuggable";
 const std::string SnoopLogger::kBtSnoopLogModeProperty = "persist.bluetooth.btsnooplogmode";
 const std::string SnoopLogger::kBtSnoopDefaultLogModeProperty = "persist.bluetooth.btsnoopdefaultmode";
+const std::string SnoopLogger::kBtSnoopLogPersists = "persist.bluetooth.btsnooplogpersists";
 const std::string SnoopLogger::kSoCManufacturerProperty = "ro.soc.manufacturer";
 
 SnoopLogger::SnoopLogger(
@@ -420,7 +421,9 @@ void SnoopLogger::Stop() {
   alarm_->Cancel();
   alarm_.reset();
   // delete any existing snooz logs
-  delete_btsnoop_files(snooz_log_path_);
+  if (!IsBtSnoopLogPersisted) {
+    delete_btsnoop_files(snooz_log_path_);
+  }
 }
 
 DumpsysDataFinisher SnoopLogger::GetDumpsysData(flatbuffers::FlatBufferBuilder* builder) const {
@@ -476,6 +479,11 @@ std::string SnoopLogger::GetBtSnoopMode() {
     }
   }
   return btsnoop_mode;
+}
+
+bool SnoopLogger::IsBtSnoopLogPersisted() {
+  auto is_debuggable = os::GetSystemPropertyBool(kIsDebuggableProperty, false);
+  return is_debuggable && os::GetSystemPropertyBool(kBtSnoopLogPersists, false);
 }
 
 bool SnoopLogger::IsQualcommDebugLogEnabled() {
