@@ -12,23 +12,11 @@ impl FieldDeclarations {
     }
 
     pub fn add(&mut self, field: &ast::Field) {
-        self.code.push(match field {
-            ast::Field::Scalar { id, width, .. } => {
-                let id = format_ident!("{id}");
-                let field_type = types::Integer::new(*width);
-                quote! {
-                    #id: #field_type,
-                }
-            }
-            ast::Field::Typedef { id, type_id, .. } => {
-                let id = format_ident!("{id}");
-                let field_type = format_ident!("{type_id}");
-                quote! {
-                    #id: #field_type,
-                }
-            }
-            _ => todo!(),
-        });
+        let field_type = types::rust_type(field);
+        let id = format_ident!("{}", field.id().unwrap());
+        self.code.push(quote! {
+            #id: #field_type,
+        })
     }
 }
 
