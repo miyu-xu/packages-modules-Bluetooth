@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3099b15b_a919f3d7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:40:29Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 40
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8a10265_e194024e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:40:29Z",
+      "side": 1,
+      "message": "remove this too",
+      "range": {
+        "startLine": 106,
+        "startChar": 35,
+        "endLine": 106,
+        "endChar": 67
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2d072e8_e9c80792",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:40:29Z",
+      "side": 1,
+      "message": "This seems same with setUp(). Is it possible to remove this method?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 35
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f5af4d_be99e75c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:40:29Z",
+      "side": 1,
+      "message": "Can we remove this preparing steps as these are done in setUp?",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a14a84e0_8be3131d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:40:29Z",
+      "side": 1,
+      "message": "Let\u0027s define the static final variable MAS_ID and use it in setUp() and here.",
+      "range": {
+        "startLine": 285,
+        "startChar": 50,
+        "endLine": 285,
+        "endChar": 51
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
