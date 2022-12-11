@@ -252,6 +252,30 @@ impl Decl {
             | Decl::Group { id, .. } => Some(id),
         }
     }
+
+    /// Determine the size of a declaration type in bits, if possible.
+    ///
+    /// If the type is dynamically sized (e.g. contains an array or
+    /// payload), `None` is returned. If `skip_payload` is set,
+    /// payload and body fields are counted as having size `0` rather
+    /// than a variable size.
+    pub fn width(&self, scope: &lint::Scope<'_>, skip_payload: bool) -> Option<usize> {
+        match self {
+            Decl::Enum { width, .. } | Decl::Checksum { width, .. } => Some(*width),
+            Decl::CustomField { width, .. } => *width,
+            Decl::Packet { fields, parent_id, .. } | Decl::Struct { fields, parent_id, .. } => {
+                let mut packet_size = match parent_id {
+                    None => 0,
+                    Some(id) => scope.typedef.get(id.as_str())?.width(scope, true)?,
+                };
+                for field in fields.iter() {
+                    packet_size += field.width(scope, skip_payload)?;
+                }
+                Some(packet_size)
+            }
+            Decl::Group { .. } | Decl::Test { .. } => None,
+        }
+    }
 }
 
 impl Field {
@@ -304,17 +328,34 @@ impl Field {
         }
     }
 
-    pub fn width(&self, scope: &lint::Scope<'_>) -> Option<usize> {
+    pub fn declaration<'a>(&self, scope: &'a lint::Scope<'a>) -> Option<&'a Decl> {
+        match self {
+            Field::Fixed { enum_id: Some(enum_id), .. } => scope.typedef.get(enum_id).copied(),
+            Field::Array { type_id: Some(type_id), .. } => scope.typedef.get(type_id).copied(),
+            Field::Typedef { type_id, .. } => scope.typedef.get(type_id.as_str()).copied(),
+            _ => None,
+        }
+    }
+
+    /// Determine the size of a field in bits, if possible.
+    ///
+    /// If the field is dynamically sized (e.g. unsized array or
+    /// payload field), `None` is returned. If `skip_payload` is set,
+    /// payload and body fields are counted as having size `0` rather
+    /// than a variable size.
+    pub fn width(&self, scope: &lint::Scope<'_>, skip_payload: bool) -> Option<usize> {
         match self {
             Field::Scalar { width, .. }
             | Field::Size { width, .. }
             | Field::Count { width, .. }
             | Field::Reserved { width, .. } => Some(*width),
-            Field::Typedef { type_id, .. } => match scope.typedef.get(type_id.as_str()) {
-                Some(Decl::Enum { width, .. }) => Some(*width),
-                _ => None,
-            },
-            // TODO(mgeisler): padding, arrays, etc.
+            Field::Array { size: Some(size), width, .. } => {
+                let width = width.or_else(|| self.declaration(scope)?.width(scope, false))?;
+                Some(width * size)
+            }
+            Field::Typedef { .. } => self.declaration(scope)?.width(scope, false),
+            Field::Checksum { .. } => Some(0),
+            Field::Payload { .. } | Field::Body { .. } if skip_payload => Some(0),
             _ => None,
         }
     }

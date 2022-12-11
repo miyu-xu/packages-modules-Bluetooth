@@ -41,7 +41,8 @@ pub trait Packet {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 struct FooData {
-    x: u64,
+    padding: u8,
+    x: Vec<u32>,
 }
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -52,31 +53,59 @@ pub struct Foo {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooBuilder {
-    pub x: u64,
+    pub padding: u8,
+    pub x: Vec<u32>,
 }
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
-        bytes.len() >= 8
+        bytes.len() >= 1
     }
     fn parse(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
-        if bytes.get_mut().remaining() < 8 {
+        if bytes.get_mut().remaining() < 1 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
-                wanted: 8,
+                wanted: 1,
                 got: bytes.get_mut().remaining(),
             });
         }
-        let x = bytes.get_mut().get_u64_le();
-        Ok(Self { x })
+        let chunk = bytes.get_mut().get_u8();
+        let x_size = (chunk & 0x1f);
+        let padding = ((chunk >> 5) & 0x7);
+        if bytes.get_mut().remaining() < x_size as usize {
+            return Err(Error::InvalidLengthError {
+                obj: "Foo".to_string(),
+                wanted: x_size as usize,
+                got: bytes.get_mut().remaining(),
+            });
+        }
+        if x_size % 3 != 0 {
+            return Err(Error::InvalidArraySize { array: x_size, element: 3 });
+        }
+        let x_count = x_size / 3;
+        let mut x = Vec::with_capacity(x_count as usize);
+        for _ in 0..x_count {
+            x.push(Ok::<_, Error>(bytes.get_mut().get_uint(3) as u32)?);
+        }
+        Ok(Self { padding, x })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        buffer.put_u64_le(self.x);
+        if (self.x.len() * 3) > 0x1f {
+            panic!("Invalid length for {}::{}: {} > {}", "Foo", "x", (self.x.len() * 3), 0x1f);
+        }
+        if self.padding > 0x7 {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "padding", self.padding, 0x7);
+        }
+        let value = (self.x.len() * 3) as u8 | (self.padding << 5);
+        buffer.put_u8(value);
+        for elem in &self.x {
+            buffer.put_uint(*elem as u64, 3);
+        }
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
-        8
+        1 + self.x.len() * 3
     }
 }
 impl Packet for Foo {
@@ -116,8 +145,11 @@ impl Foo {
         let foo = root;
         Ok(Self { foo })
     }
-    pub fn get_x(&self) -> u64 {
-        self.foo.as_ref().x
+    pub fn get_padding(&self) -> u8 {
+        self.foo.as_ref().padding
+    }
+    pub fn get_x(&self) -> &Vec<u32> {
+        &self.foo.as_ref().x
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         self.foo.write_to(buffer)
@@ -128,7 +160,7 @@ impl Foo {
 }
 impl FooBuilder {
     pub fn build(self) -> Foo {
-        let foo = Arc::new(FooData { x: self.x });
+        let foo = Arc::new(FooData { padding: self.padding, x: self.x });
         Foo::new(foo).unwrap()
     }
 }
