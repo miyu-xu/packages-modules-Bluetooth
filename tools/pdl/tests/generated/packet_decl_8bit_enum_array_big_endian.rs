@@ -84,7 +84,7 @@ impl<'de> serde::Deserialize<'de> for Foo {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 struct BarData {
-    x: Foo,
+    x: [Foo; 3],
 }
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -94,7 +94,7 @@ pub struct Bar {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BarBuilder {
-    pub x: Foo,
+    pub x: [Foo; 3],
 }
 impl BarData {
     fn conforms(bytes: &[u8]) -> bool {
@@ -108,11 +108,23 @@ impl BarData {
                 got: bytes.remaining(),
             });
         }
-        let x = Foo::from_u32(bytes.get_uint(3) as u32).unwrap();
+        let __case_5__ = "555";
+        let x = std::array::from_fn(|_| {
+            Foo::from_u8(bytes.get_u8())
+                .ok_or_else(|| Error::InvalidEnumValueError {
+                    obj: "Bar".to_string(),
+                    field: String::new(),
+                    value: 0,
+                    type_: "Foo".to_string(),
+                })
+                .unwrap()
+        });
         Ok(Self { x })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        buffer.put_uint(self.x.to_u32().unwrap() as u64, 3);
+        for elem in &self.x {
+            buffer.put_u8(elem.to_u8().unwrap());
+        }
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
@@ -149,8 +161,8 @@ impl Bar {
         let bar = root;
         Ok(Self { bar })
     }
-    pub fn get_x(&self) -> Foo {
-        self.bar.as_ref().x
+    pub fn get_x(&self) -> &[Foo; 3] {
+        &self.bar.as_ref().x
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         self.bar.write_to(buffer)

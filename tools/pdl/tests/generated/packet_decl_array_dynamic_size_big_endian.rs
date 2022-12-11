@@ -40,9 +40,8 @@ pub trait Packet {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 struct FooData {
-    x: u8,
-    y: u16,
-    z: u32,
+    padding: u8,
+    x: Vec<u32>,
 }
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -52,13 +51,12 @@ pub struct Foo {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooBuilder {
-    pub x: u8,
-    pub y: u16,
-    pub z: u32,
+    pub padding: u8,
+    pub x: Vec<u32>,
 }
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
-        bytes.len() >= 6
+        bytes.len() >= 1
     }
     fn parse(mut bytes: &[u8]) -> Result<Self> {
         if bytes.remaining() < 1 {
@@ -68,38 +66,41 @@ impl FooData {
                 got: bytes.remaining(),
             });
         }
-        let x = bytes.get_u8();
-        if bytes.remaining() < 2 {
+        let chunk = bytes.get_u8();
+        let x_size = (chunk & 0x1f);
+        let padding = ((chunk >> 5) & 0x7);
+        if bytes.remaining() < x_size as usize {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
-                wanted: 2,
+                wanted: x_size as usize,
                 got: bytes.remaining(),
             });
         }
-        let y = bytes.get_u16_le();
-        if bytes.remaining() < 3 {
-            return Err(Error::InvalidLengthError {
-                obj: "Foo".to_string(),
-                wanted: 3,
-                got: bytes.remaining(),
-            });
+        if x_size % 3 != 0 {
+            return Err(Error::InvalidArraySize { array: x_size, element: 3 });
         }
-        let z = bytes.get_uint_le(3) as u32;
-        Ok(Self { x, y, z })
+        let x_count = x_size / 3;
+        let __case_7__ = "777";
+        let x = (0..x_count)
+            .map(|_| Ok::<_, Error>(bytes.get_uint(3) as u32))
+            .collect::<Result<Vec<_>>>()?;
+        Ok(Self { padding, x })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        buffer.put_u8(self.x);
-        buffer.put_u16_le(self.y);
-        if self.z > 0xffffff {
-            panic!("Invalid value for {}::{}: {} > {}", "Foo", "z", self.z, 0xffffff);
+        if self.padding > 0x7 {
+            panic!("Invalid value for {}::{}: {} > {}", "Foo", "padding", self.padding, 0x7);
         }
-        buffer.put_uint_le(self.z as u64, 3);
+        let value = (self.x.len() as u8) | ((self.padding as u8) << 5);
+        buffer.put_u8(value);
+        for elem in &self.x {
+            buffer.put_uint(*elem as u64, 3);
+        }
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
-        6
+        1 + self.x.len() * 3
     }
 }
 impl Packet for Foo {
@@ -130,14 +131,11 @@ impl Foo {
         let foo = root;
         Ok(Self { foo })
     }
-    pub fn get_x(&self) -> u8 {
-        self.foo.as_ref().x
+    pub fn get_padding(&self) -> u8 {
+        self.foo.as_ref().padding
     }
-    pub fn get_y(&self) -> u16 {
-        self.foo.as_ref().y
-    }
-    pub fn get_z(&self) -> u32 {
-        self.foo.as_ref().z
+    pub fn get_x(&self) -> &Vec<u32> {
+        &self.foo.as_ref().x
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         self.foo.write_to(buffer)
@@ -148,7 +146,7 @@ impl Foo {
 }
 impl FooBuilder {
     pub fn build(self) -> Foo {
-        let foo = Arc::new(FooData { x: self.x, y: self.y, z: self.z });
+        let foo = Arc::new(FooData { padding: self.padding, x: self.x });
         Foo::new(foo).unwrap()
     }
 }

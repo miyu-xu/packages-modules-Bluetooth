@@ -20,6 +20,8 @@ pub enum Error {
     ConstraintOutOfBounds { field: String, value: u64 },
     #[error("when parsing {obj} needed length of {wanted} but got {got}")]
     InvalidLengthError { obj: String, wanted: usize, got: usize },
+    #[error("array size ({array} bytes) is not a multiple of the element size ({element} bytes)")]
+    InvalidArraySize { array: usize, element: usize },
     #[error("Due to size restrictions a struct could not be parsed.")]
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
@@ -149,6 +151,12 @@ impl Bar {
     }
     pub fn get_x(&self) -> Foo {
         self.bar.as_ref().x
+    }
+    fn write_to(&self, buffer: &mut BytesMut) {
+        self.bar.write_to(buffer)
+    }
+    pub fn get_size(&self) -> usize {
+        self.bar.get_size()
     }
 }
 impl BarBuilder {
