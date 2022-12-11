@@ -27,3 +27,33 @@ packet Packet_Enum_Field {
     a: Enum7,
     c: 57,
 }
+
+// Array fields
+// Array element types
+
+packet AllSizesArray {
+    a: 8[3],
+    b: 16[4],
+    c: 24[5],
+    d: 32[6],
+    e: 40[7],
+    f: 48[8],
+    h: 56[9],
+    g: 64[10],
+}
+
+// Array with scalar elements.
+packet Packet_Array_Field_ScalarElement {
+    array: 16[4],
+}
+
+// Array with enum elements.
+packet Packet_Array_Field_EnumElement {
+    array: Enum16[4],
+}
+
+// The parser must extract as many elements as specified by the
+// static array count. The parser should generate a static array size guard.
+packet Packet_Array_Field_SizedElement_ConstantSize {
+    array: 16[8],
+}
