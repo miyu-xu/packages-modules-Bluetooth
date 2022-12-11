@@ -32,37 +32,6 @@ impl<'a> FieldParser<'a> {
         }
     }
 
-    fn endianness_suffix(&'a self, width: usize) -> &'static str {
-        if width > 8 && self.endianness == ast::EndiannessValue::LittleEndian {
-            "_le"
-        } else {
-            ""
-        }
-    }
-
-    /// Parse an unsigned integer with the given `width`.
-    ///
-    /// The generated code requires that `self.span` is a mutable
-    /// `bytes::Buf` value.
-    fn get_uint(&self, width: usize) -> proc_macro2::TokenStream {
-        let span = &self.span;
-        let suffix = self.endianness_suffix(width);
-        let value_type = types::Integer::new(width);
-        if value_type.width == width {
-            let get_u = format_ident!("get_u{}{}", value_type.width, suffix);
-            quote! {
-                #span.#get_u()
-            }
-        } else {
-            let get_uint = format_ident!("get_uint{}", suffix);
-            let value_nbytes = proc_macro2::Literal::usize_unsuffixed(width / 8);
-            let cast = (value_type.width < 64).then(|| quote!(as #value_type));
-            quote! {
-                #span.#get_uint(#value_nbytes) #cast
-            }
-        }
-    }
-
     pub fn add(&mut self, field: &ast::Field) {
         if field.is_bitfield() {
             self.add_bit_field(field);
@@ -98,7 +67,7 @@ impl<'a> FieldParser<'a> {
         let chunk_type = types::Integer::new(self.shift);
         let chunk_name = format_ident!("chunk");
 
-        let get = self.get_uint(self.shift);
+        let get = types::get_uint(self.endianness, self.shift, self.span);
         if self.chunk.len() > 1 {
             // Multiple values: we to read into a local variable.
             self.code.push(quote! {
