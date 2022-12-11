@@ -34,6 +34,36 @@ fn hexadecimal_to_vec(hex: &str) -> proc_macro2::TokenStream {
     }
 }
 
+/// Convert a JSON `Value` to the equivalent `Rust` code.
+fn json_to_rust(value: &Value) -> proc_macro2::TokenStream {
+    match value {
+        Value::Number(n) => {
+            let n = proc_macro2::Literal::u64_unsuffixed(n.as_u64().unwrap());
+            // We lack the necessary type information to convert the
+            // number to an enum, but FromPrimitive can do it for us.
+            // Type inference will let it convert to both integers and
+            // enums, depending on how the return value is used.
+            quote! {
+                FromPrimitive::from_u64(#n).unwrap()
+            }
+        }
+        Value::Array(arr) => {
+            let values = arr.iter().map(json_to_rust);
+            quote! {
+                [#(#values),*]
+            }
+        }
+        _ => {
+            panic!("Could not convert {value} to Rust code");
+        }
+    }
+}
+
+/// Does our getters return a borrowed type?
+fn returns_borrow(value: &Value) -> bool {
+    matches!(value, Value::Array(..))
+}
+
 fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
     eprintln!("Reading test vectors from {input}, will use {} packets", packet_names.len());
 
@@ -71,27 +101,18 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
             });
             let assertions = object.iter().map(|(key, value)| {
                 let getter = format_ident!("get_{key}");
-                let value_u64 = value
-                    .as_u64()
-                    .unwrap_or_else(|| panic!("Expected u64 for {key:?} key, got {value}"));
-                let value = proc_macro2::Literal::u64_unsuffixed(value_u64);
-                // We lack type information, but ToPrimitive allows us
-                // to convert both integers and enums to u64.
+                let borrow = returns_borrow(value).then(|| quote!(&));
+                let value = json_to_rust(value);
                 quote! {
-                    assert_eq!(actual.#getter().to_u64().unwrap(), #value);
+                    assert_eq!(actual.#getter(), #borrow #value);
                 }
             });
 
             let builder_fields = object.iter().map(|(key, value)| {
                 let field = format_ident!("{key}");
-                let value_u64 = value
-                    .as_u64()
-                    .unwrap_or_else(|| panic!("Expected u64 for {key:?} key, got {value}"));
-                let value = proc_macro2::Literal::u64_unsuffixed(value_u64);
-                // We lack type information, but FromPrimitive allows
-                // us to convert both integers and enums to u64.
+                let value = json_to_rust(value);
                 quote! {
-                    #field: FromPrimitive::from_u64(#value).unwrap()
+                    #field: #value
                 }
             });
 
@@ -135,5 +156,16 @@ fn main() {
     let module_name = std::env::args().nth(2).expect("Need name for the generated module");
     // TODO(mgeisler): remove the `packet_names` argument when we
     // support all canonical packets.
-    generate_unit_tests(&input_path, &["Packet_Scalar_Field", "Packet_Enum_Field"], &module_name);
+    generate_unit_tests(
+        &input_path,
+        &[
+            "Packet_Scalar_Field",
+            "Packet_Enum_Field",
+            "Packet_Enum8_Field",
+            "Packet_Array_Field_ScalarElement",
+            "Packet_Array_Field_EnumElement",
+            "Packet_Array_Field_SizedElement_ConstantSize",
+        ],
+        &module_name,
+    );
 }
