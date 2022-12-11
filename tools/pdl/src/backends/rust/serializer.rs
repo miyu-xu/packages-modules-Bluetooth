@@ -33,14 +33,18 @@ impl<'a> FieldSerializer<'a> {
     pub fn add(&mut self, field: &ast::Field) {
         if field.is_bitfield() {
             self.add_bit_field(field);
-            return;
+        } else {
+            match field {
+                ast::Field::Array { id, width, .. } => {
+                    self.add_array_field(id, *width, field.declaration(self.scope))
+                }
+                _ => todo!(),
+            }
         }
-
-        todo!("not yet supported: {field:?}")
     }
 
     fn add_bit_field(&mut self, field: &ast::Field) {
-        let width = field.width(self.scope).unwrap();
+        let width = field.width(self.scope, false).unwrap();
         let shift = if self.shift > 0 {
             Some(proc_macro2::Literal::usize_unsuffixed(self.shift))
         } else {
@@ -71,7 +75,31 @@ impl<'a> FieldSerializer<'a> {
                 let to_u = format_ident!("to_u{}", field_type.width);
                 self.chunk.push((quote!(self.#field_name.#to_u().unwrap()), shift));
             }
-            _ => todo!(),
+            ast::Field::Size { field_id, .. } => {
+                let field_name = format_ident!("{field_id}");
+                // TODO: size modifier
+
+                // TODO: check size
+                self.chunk.push((quote!(self.#field_name.len()), shift));
+            }
+            ast::Field::Count { field_id, width, .. } => {
+                let field_name = format_ident!("{field_id}");
+                let field_type = types::Integer::new(*width);
+                if field_type.width > *width {
+                    let packet_name = &self.packet_name;
+                    let max_value = mask_bits(*width);
+                    self.code.push(quote! {
+                        if self.#field_name.len() > #max_value {
+                            panic!(
+                                "Invalid length for {}::{}: {} > {}",
+                                #packet_name, #field_id, self.#field_name.len(), #max_value
+                            );
+                        }
+                    });
+                }
+                self.chunk.push((quote!(self.#field_name.len()), shift));
+            }
+            _ => todo!("{field:?}"),
         }
 
         self.shift += width;
@@ -120,6 +148,41 @@ impl<'a> FieldSerializer<'a> {
         }
 
         self.shift = 0;
+    }
+
+    fn add_array_field(&mut self, id: &str, width: Option<usize>, decl: Option<&ast::Decl>) {
+        // TODO: padding
+
+        let serialize = match width {
+            Some(width) => {
+                let value = quote!(*elem);
+                types::put_uint(self.endianness, &value, width, self.span)
+            }
+            None => {
+                if let Some(ast::Decl::Enum { width, .. }) = decl {
+                    let field_type = types::Integer::new(*width);
+                    let to_u = format_ident!("to_u{}", field_type.width);
+                    types::put_uint(
+                        self.endianness,
+                        &quote!(elem.#to_u().unwrap()),
+                        *width,
+                        self.span,
+                    )
+                } else {
+                    let span = format_ident!("{}", self.span);
+                    quote! {
+                        elem.write_to(#span)
+                    }
+                }
+            }
+        };
+
+        let id = format_ident!("{id}");
+        self.code.push(quote! {
+            for elem in &self.#id {
+                #serialize;
+            }
+        });
     }
 }
 
