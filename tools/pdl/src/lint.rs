@@ -37,13 +37,13 @@ pub struct PacketScope<'d> {
     checksums: HashMap<String, &'d Field>,
 
     // Size or count fields, indexed by the field id.
-    sizes: HashMap<String, &'d Field>,
+    pub sizes: HashMap<String, &'d Field>,
 
     // Payload or body field.
     payload: Option<&'d Field>,
 
     // Typedef, scalar, array fields.
-    named: HashMap<String, &'d Field>,
+    pub named: HashMap<String, &'d Field>,
 
     // Group fields.
     groups: HashMap<String, &'d Field>,
