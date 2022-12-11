@@ -60,6 +60,8 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
                 eprintln!("Skipping packet {}", test_packet);
                 continue;
             }
+            eprintln!("Generating tests for packet {}", test_packet);
+
             let parse_test_name = format_ident!(
                 "test_parse_{}_vector_{}_0x{}",
                 test_packet,
@@ -129,5 +131,15 @@ fn main() {
     let module_name = std::env::args().nth(2).expect("Need name for the generated module");
     // TODO(mgeisler): remove the `packet_names` argument when we
     // support all canonical packets.
-    generate_unit_tests(&input_path, &["Packet_Scalar_Field", "Packet_Enum_Field"], &module_name);
+    generate_unit_tests(
+        &input_path,
+        &[
+            "Packet_Scalar_Field",
+            "Packet_Enum_Field",
+            "Packet_Enum8_Field",
+            "Packet_Array_Field_ScalarElement",
+            "Packet_Array_Field_EnumElement",
+        ],
+        &module_name,
+    );
 }
