@@ -73,7 +73,7 @@ fn generate_packet_decl(
     let field_names =
         fields.iter().map(|f| format_ident!("{}", f.id().unwrap())).collect::<Vec<_>>();
     let field_types = fields.iter().map(types::rust_type).collect::<Vec<_>>();
-
+    let field_borrows = fields.iter().map(types::rust_borrow).collect::<Vec<_>>();
     let getter_names = field_names.iter().map(|id| format_ident!("get_{id}"));
 
     let packet_size =
@@ -156,8 +156,8 @@ fn generate_packet_decl(
                 Ok(Self { #id_lower })
             }
 
-            #(pub fn #getter_names(&self) -> #field_types {
-                self.#id_lower.as_ref().#field_names
+            #(pub fn #getter_names(&self) -> #field_borrows #field_types {
+                #field_borrows self.#id_lower.as_ref().#field_names
             })*
         }
 
@@ -348,5 +348,22 @@ mod tests {
             w: 3,
           }
         "
+    );
+
+    test_decl!(packet_decl_8bit_scalar_array, " packet Foo { x:  8[3] }");
+    test_decl!(packet_decl_24bit_scalar_array, "packet Foo { x: 24[5] }");
+    test_decl!(packet_decl_64bit_scalar_array, "packet Foo { x: 64[7] }");
+
+    test_decl!(
+        packet_decl_8bit_enum_array,
+        "enum Foo :  8 { A = 1, B = 2 } packet Bar { x: Foo[3] }"
+    );
+    test_decl!(
+        packet_decl_24bit_enum_array,
+        "enum Foo : 24 { A = 1, B = 2 } packet Bar { x: Foo[5] }"
+    );
+    test_decl!(
+        packet_decl_64bit_enum_array,
+        "enum Foo : 64 { A = 1, B = 2 } packet Bar { x: Foo[7] }"
     );
 }
