@@ -43,7 +43,37 @@ pub fn rust_type(field: &ast::Field) -> proc_macro2::TokenStream {
             let field_type = format_ident!("{type_id}");
             quote!(#field_type)
         }
+        ast::Field::Array { width: Some(width), size: Some(size), .. } => {
+            let field_type = Integer::new(*width);
+            let size = proc_macro2::Literal::usize_unsuffixed(*size);
+            quote!([#field_type; #size])
+        }
+        ast::Field::Array { type_id: Some(type_id), size: Some(size), .. } => {
+            let field_type = format_ident!("{type_id}");
+            let size = proc_macro2::Literal::usize_unsuffixed(*size);
+            quote!([#field_type; #size])
+        }
         _ => todo!(),
+    }
+}
+
+pub fn rust_borrow(field: &ast::Field) -> proc_macro2::TokenStream {
+    match field {
+        // TODO: not all typedef fields are copy-types.
+        ast::Field::Scalar { .. } | ast::Field::Typedef { .. } => quote!(),
+        ast::Field::Array { .. } => quote!(&),
+        _ => todo!(),
+    }
+}
+
+pub fn array_element_type(id: &str, width: Option<usize>, type_id: Option<&str>) -> ast::Field {
+    let loc = ast::SourceRange::default();
+    match (width, type_id) {
+        (Some(width), None) => ast::Field::Scalar { loc, id: id.to_owned(), width },
+        (None, Some(type_id)) => {
+            ast::Field::Typedef { loc, id: id.to_owned(), type_id: type_id.to_owned() }
+        }
+        _ => panic!("One of `width` and `type_id` must be Some"),
     }
 }
 

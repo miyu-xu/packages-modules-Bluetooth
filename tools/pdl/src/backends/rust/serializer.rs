@@ -33,10 +33,14 @@ impl<'a> FieldSerializer<'a> {
     pub fn add(&mut self, field: &ast::Field) {
         if field.is_bitfield() {
             self.add_bit_field(field);
-            return;
+        } else {
+            match field {
+                ast::Field::Array { id, width, type_id, .. } => {
+                    self.add_array_field(id, *width, type_id.as_deref())
+                }
+                _ => todo!(),
+            }
         }
-
-        todo!("not yet supported: {field:?}")
     }
 
     fn add_bit_field(&mut self, field: &ast::Field) {
@@ -120,6 +124,27 @@ impl<'a> FieldSerializer<'a> {
         }
 
         self.shift = 0;
+    }
+
+    fn add_array_field(&mut self, id: &str, width: Option<usize>, type_id: Option<&str>) {
+        // TODO: padding
+
+        let element_field = types::array_element_type(id, width, type_id);
+        let element_width = element_field.width(self.scope).unwrap();
+        let to_u = format_ident!("to_u{}", element_width);
+        let value = match element_field {
+            ast::Field::Scalar { .. } => quote!(elem),
+            ast::Field::Typedef { .. } => quote!(elem.#to_u().unwrap()),
+            _ => todo!(),
+        };
+
+        let id = format_ident!("{id}");
+        let put = types::put_uint(self.endianness, &value, element_width, self.span);
+        self.code.push(quote! {
+            for elem in self.#id {
+                #put;
+            }
+        })
     }
 }
 
