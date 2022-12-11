@@ -38,11 +38,20 @@ impl<'a> FieldParser<'a> {
             return;
         }
 
-        todo!("not yet supported: {field:?}")
+        match field {
+            ast::Field::Array { id, width, type_id, size, .. } => self.add_array_field(
+                id,
+                *width,
+                type_id.as_deref(),
+                *size,
+                field.declaration(self.scope),
+            ),
+            _ => todo!("{field:?}"),
+        }
     }
 
     fn add_bit_field(&mut self, field: &ast::Field) {
-        let width = field.width(self.scope).unwrap();
+        let width = field.width(self.scope, false).unwrap();
         self.chunk.push((self.shift, width, field.clone()));
         self.shift += width;
         if self.shift % 8 != 0 {
@@ -112,6 +121,18 @@ impl<'a> FieldParser<'a> {
                         let #id = #type_id::#from_u(#v).unwrap();
                     }
                 }
+                ast::Field::Size { field_id, .. } => {
+                    let id = format_ident!("{field_id}_size");
+                    quote! {
+                        let #id = #v;
+                    }
+                }
+                ast::Field::Count { field_id, .. } => {
+                    let id = format_ident!("{field_id}_count");
+                    quote! {
+                        let #id = #v;
+                    }
+                }
                 _ => todo!(),
             });
         }
@@ -119,6 +140,236 @@ impl<'a> FieldParser<'a> {
         self.offset = end_offset;
         self.shift = 0;
         self.chunk.clear();
+    }
+
+    fn packet_scope(&self) -> Option<&lint::PacketScope> {
+        self.scope.scopes.get(self.scope.typedef.get(self.packet_name)?)
+    }
+
+    fn find_count_field(&self, id: &str) -> Option<proc_macro2::Ident> {
+        let field_path = self.packet_scope()?.sizes.get(id)?;
+        match field_path.0.last()? {
+            ast::Field::Count { .. } => Some(format_ident!("{id}_count")),
+            _ => None,
+        }
+    }
+
+    fn find_size_field(&self, id: &str) -> Option<proc_macro2::Ident> {
+        let field_path = self.packet_scope()?.sizes.get(id)?;
+        match field_path.0.last()? {
+            ast::Field::Size { .. } => Some(format_ident!("{id}_size")),
+            _ => None,
+        }
+    }
+
+    fn check_size(&mut self, id: &str, size: &proc_macro2::TokenStream) {
+        let packet_name = &self.packet_name;
+        let span = self.span;
+        self.code.push(quote! {
+            if #span.remaining() < #size {
+                panic!("Invalid packet size for {}::{}: expected {} bytes, got {}",
+                       #packet_name, #id, #span.remaining(), #size);
+            }
+        });
+    }
+
+    fn add_array_field(
+        &mut self,
+        id: &str,
+        // `width`: the width in bits of the array elements (if Some).
+        width: Option<usize>,
+        // `type_id`: the enum type of the array elements (if Some).
+        // Mutually exclusive with `width`.
+        type_id: Option<&str>,
+        // `size`: the size of the array in number of elements (if
+        // known). If None, the array is a Vec with a dynamic size.
+        size: Option<usize>,
+        decl: Option<&ast::Decl>,
+    ) {
+        let element_width = width.or_else(|| decl?.width(self.scope, false));
+        if let Some(width) = element_width {
+            assert_eq!(width % 8, 0, "Array element size ({width}) is not a multiple of 8");
+        }
+
+        // The number of array elements, either as a static size or a dynamic field.
+        let count_static = size;
+        let count_field = self.find_count_field(id);
+        // The bit width of the array. Should probably be called `array_width`
+        let size_field = self.find_size_field(id);
+
+        // TODO consume_span
+
+        // TODO size modifier
+
+        // TODO padded_size
+
+        let field_name = id;
+        let id = format_ident!("{id}");
+        let span = self.span;
+
+        //        enum Count {
+        //            Static(proc_macro2::TokenStream),
+        //            Dynamic(proc_macro2::Ident),
+        //        }
+
+        let parse_element = self.parse_array_element(self.span, width, type_id, decl);
+
+        struct Shape {
+            element_width: Option<usize>,
+            count_static: Option<usize>,
+            count_field: Option<proc_macro2::Ident>,
+            size_field: Option<proc_macro2::Ident>,
+        }
+        let shape = Shape { element_width, count_static, count_field, size_field };
+        match shape {
+            Shape {
+                element_width: None,
+                count_static: None,
+                count_field: None,
+                size_field: Some(size),
+            } => {
+                // The element width is not known, but the array full
+                // octet size is known by size field. Parse elements
+                // item by item as a vector.
+                self.check_size(field_name, &quote!(#size));
+                self.code.push(quote! {
+                    let array_span = #span.split_to(#size);
+                    let #id = Vec::new();
+                    while !array_span.is_empty() {
+                        parse_array_element_dynamic()
+                    }
+                });
+            }
+            Shape {
+                element_width: None,
+                count_static: Some(count),
+                count_field: None,
+                size_field: None,
+            } => {
+                // The element width is not known, but the array
+                // element count is known statically. Parse elements
+                // item by item as an array.
+
+                let count = proc_macro2::Literal::usize_unsuffixed(count);
+                self.code.push(quote! {
+                    let #id = (0..#count).map(|_| #parse_element).collect();
+                });
+                todo!("2");
+            }
+            Shape {
+                element_width: None,
+                count_static: None,
+                count_field: Some(count_field),
+                size_field: None,
+            } => {
+                // The element width is not known, but the array
+                // element count is known by the count field. Parse
+                // elements item by item as a vector.
+                self.code.push(quote! {
+                    let #id = (0..#count_field).map(|_| #parse_element + 1).collect();
+                });
+            }
+            Shape {
+                element_width: None,
+                count_static: None,
+                count_field: None,
+                size_field: None,
+            } => {
+                // Neither the count not size is known, parse elements
+                // until the end of the span.
+                self.code.push(quote! {
+                    let #id = Vec::new();
+                    while !#span.is_empty() {
+                        parse_array_element_dynamic()
+                    }
+                });
+                todo!("4");
+            }
+            Shape {
+                element_width: Some(element_width),
+                count_static: Some(count),
+                count_field: None,
+                size_field: None,
+            } => {
+                // The element width is known, and the array element
+                // count is known statically.
+
+                let element_width = syn::Index::from(element_width / 8);
+                let count = syn::Index::from(count);
+
+                // We could output the product directly, but this
+                // creates a nicely formatted size.
+                let array_size = if element_width.index == 1 {
+                    quote!(#count)
+                } else {
+                    quote!(#count * #element_width)
+                };
+                self.check_size(field_name, &array_size);
+                self.code.push(quote! {
+                    let #id = std::array::from_fn(|_| #parse_element);
+                });
+            }
+            Shape {
+                element_width: Some(_),
+                count_static: None,
+                count_field: Some(count_field),
+                size_field: None,
+            } => {
+                // The element width is known, and the array element
+                // count is known dynamically by the count field.
+
+                // TODO: check size
+                self.code.push(quote! {
+                    let #id = (0..#count_field).map(|_| #parse_element).collect();
+                });
+            }
+            Shape { element_width: Some(_), count_static: None, count_field: None, size_field } => {
+                // The element width is known, and the array full size
+                // is known by size field, or unknown (in which case
+                // it is the remaining span length).
+                self.code.push(match size_field {
+                    Some(size_field) => quote! {
+                        let #id = (0..#size_field).map(|_| #parse_element).collect();
+                    },
+                    None => quote! {
+                        let #id = std::array::from_fn(|_| #parse_element);
+                    },
+                });
+
+                // taken by test_packet_decl_dynamic_size_array_big_endian
+
+                // todo!("7");
+            }
+            _ => todo!(),
+        }
+    }
+
+    /// Parse a single array field element from `span`.
+    fn parse_array_element(
+        &self,
+        span: &proc_macro2::Ident,
+        width: Option<usize>,
+        type_id: Option<&str>,
+        decl: Option<&ast::Decl>,
+    ) -> proc_macro2::TokenStream {
+        if let Some(width) = width {
+            return types::get_uint(self.endianness, width, span);
+        }
+
+        if let Some(ast::Decl::Enum { id, width, .. }) = decl {
+            let element_type = types::Integer::new(*width);
+            let get_uint = types::get_uint(self.endianness, *width, span);
+            let type_id = format_ident!("{id}");
+            let from_u = format_ident!("from_u{}", element_type.width);
+            return quote! {
+                #type_id::#from_u(#get_uint).unwrap()
+            };
+        }
+
+        let type_id = format_ident!("{}", type_id.unwrap());
+        quote! {
+            #type_id.parse_all(#span)
+        }
     }
 
     pub fn done(&mut self) {}
@@ -130,5 +381,72 @@ impl quote::ToTokens for FieldParser<'_> {
         tokens.extend(quote! {
             #(#code)*
         });
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::ast;
+    use crate::parser::parse_inline;
+
+    /// Parse a string fragment as a PDL file.
+    ///
+    /// # Panics
+    ///
+    /// Panics on parse errors.
+    pub fn parse_str(text: &str) -> ast::File {
+        let mut db = ast::SourceDatabase::new();
+        parse_inline(&mut db, String::from("stdin"), String::from(text)).expect("parse error")
+    }
+
+    #[test]
+    fn test_find_fields_static() {
+        let code = "
+              little_endian_packets
+              packet P {
+                a: 24[3],
+              }
+            ";
+        let file = parse_str(code);
+        let scope = lint::Scope::new(&file).unwrap();
+        let span = format_ident!("bytes");
+        let parser = FieldParser::new(&scope, file.endianness.value, "P", &span);
+        assert_eq!(parser.find_size_field("a"), None);
+        assert_eq!(parser.find_count_field("a"), None);
+    }
+
+    #[test]
+    fn test_find_fields_dynamic_count() {
+        let code = "
+              little_endian_packets
+              packet P {
+                _count_(b): 24,
+                b: 16[],
+              }
+            ";
+        let file = parse_str(code);
+        let scope = lint::Scope::new(&file).unwrap();
+        let span = format_ident!("bytes");
+        let parser = FieldParser::new(&scope, file.endianness.value, "P", &span);
+        assert_eq!(parser.find_size_field("b"), None);
+        assert_eq!(parser.find_count_field("b"), Some(format_ident!("b_count")));
+    }
+
+    #[test]
+    fn test_find_fields_dynamic_size() {
+        let code = "
+              little_endian_packets
+              packet P {
+                _size_(c): 8,
+                c: 24[],
+              }
+            ";
+        let file = parse_str(code);
+        let scope = lint::Scope::new(&file).unwrap();
+        let span = format_ident!("bytes");
+        let parser = FieldParser::new(&scope, file.endianness.value, "P", &span);
+        assert_eq!(parser.find_size_field("c"), Some(format_ident!("c_size")));
+        assert_eq!(parser.find_count_field("c"), None);
     }
 }

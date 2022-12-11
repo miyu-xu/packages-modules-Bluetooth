@@ -25,7 +25,7 @@ pub trait Lintable {
 /// The last field can also be a typedef field of a group if the chain is
 /// not fully expanded.
 #[derive(Debug, Clone)]
-struct FieldPath<'d>(Vec<&'d Field>);
+pub struct FieldPath<'d>(pub Vec<&'d Field>);
 
 /// Gather information about the full AST.
 #[derive(Debug)]
@@ -44,13 +44,13 @@ pub struct PacketScope<'d> {
     checksums: HashMap<String, FieldPath<'d>>,
 
     // Size or count fields, indexed by the field id.
-    sizes: HashMap<String, FieldPath<'d>>,
+    pub sizes: HashMap<String, FieldPath<'d>>,
 
     // Payload or body field.
     payload: Option<FieldPath<'d>>,
 
     // Typedef, scalar, array fields.
-    named: HashMap<String, FieldPath<'d>>,
+    pub named: HashMap<String, FieldPath<'d>>,
 
     // Group fields.
     groups: HashMap<String, &'d Field>,
