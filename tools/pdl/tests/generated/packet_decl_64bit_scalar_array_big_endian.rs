@@ -41,7 +41,7 @@ pub trait Packet {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 struct FooData {
-    x: u64,
+    x: [u64; 7],
 }
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -52,31 +52,33 @@ pub struct Foo {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooBuilder {
-    pub x: u64,
+    pub x: [u64; 7],
 }
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
-        bytes.len() >= 8
+        bytes.len() >= 56
     }
     fn parse(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
-        if bytes.get_mut().remaining() < 8 {
+        if bytes.get_mut().remaining() < 7 * 8 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
-                wanted: 8,
+                wanted: 7 * 8,
                 got: bytes.get_mut().remaining(),
             });
         }
-        let x = bytes.get_mut().get_u64_le();
+        let x = std::array::from_fn(|_| Ok::<_, Error>(bytes.get_mut().get_u64()).unwrap());
         Ok(Self { x })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        buffer.put_u64_le(self.x);
+        for elem in &self.x {
+            buffer.put_u64(*elem);
+        }
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
-        8
+        56
     }
 }
 impl Packet for Foo {
@@ -116,8 +118,8 @@ impl Foo {
         let foo = root;
         Ok(Self { foo })
     }
-    pub fn get_x(&self) -> u64 {
-        self.foo.as_ref().x
+    pub fn get_x(&self) -> &[u64; 7] {
+        &self.foo.as_ref().x
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         self.foo.write_to(buffer)
