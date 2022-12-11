@@ -20,6 +20,8 @@ pub enum Error {
     ConstraintOutOfBounds { field: String, value: u64 },
     #[error("when parsing {obj} needed length of {wanted} but got {got}")]
     InvalidLengthError { obj: String, wanted: usize, got: usize },
+    #[error("array size ({array} bytes) is not a multiple of the element size ({element} bytes)")]
+    InvalidArraySize { array: usize, element: usize },
     #[error("Due to size restrictions a struct could not be parsed.")]
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
@@ -115,7 +117,7 @@ impl FooData {
         if self.f > 0xf {
             panic!("Invalid value for {}::{}: {} > {}", "Foo", "f", self.f, 0xf);
         }
-        let value = (self.e as u16) | ((self.f as u16) << 12);
+        let value = self.e | ((self.f as u16) << 12);
         buffer.put_u16(value);
     }
     fn get_total_size(&self) -> usize {
@@ -170,6 +172,12 @@ impl Foo {
     }
     pub fn get_f(&self) -> u8 {
         self.foo.as_ref().f
+    }
+    fn write_to(&self, buffer: &mut BytesMut) {
+        self.foo.write_to(buffer)
+    }
+    pub fn get_size(&self) -> usize {
+        self.foo.get_size()
     }
 }
 impl FooBuilder {

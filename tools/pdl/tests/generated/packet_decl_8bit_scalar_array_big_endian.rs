@@ -40,9 +40,7 @@ pub trait Packet {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 struct FooData {
-    a: u8,
-    b: u32,
-    c: u8,
+    x: [u8; 3],
 }
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -52,46 +50,34 @@ pub struct Foo {
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooBuilder {
-    pub a: u8,
-    pub b: u32,
-    pub c: u8,
+    pub x: [u8; 3],
 }
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
-        bytes.len() >= 4
+        bytes.len() >= 3
     }
     fn parse(mut bytes: &[u8]) -> Result<Self> {
-        if bytes.remaining() < 4 {
+        if bytes.remaining() < 3 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
-                wanted: 4,
+                wanted: 3,
                 got: bytes.remaining(),
             });
         }
-        let chunk = bytes.get_u32_le();
-        let a = (chunk & 0x3) as u8;
-        let b = ((chunk >> 2) & 0xffffff);
-        let c = ((chunk >> 26) & 0x3f) as u8;
-        Ok(Self { a, b, c })
+        let __case_5__ = "555";
+        let x = std::array::from_fn(|_| Ok::<_, Error>(bytes.get_u8()).unwrap());
+        Ok(Self { x })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        if self.a > 0x3 {
-            panic!("Invalid value for {}::{}: {} > {}", "Foo", "a", self.a, 0x3);
+        for elem in &self.x {
+            buffer.put_u8(*elem);
         }
-        if self.b > 0xffffff {
-            panic!("Invalid value for {}::{}: {} > {}", "Foo", "b", self.b, 0xffffff);
-        }
-        if self.c > 0x3f {
-            panic!("Invalid value for {}::{}: {} > {}", "Foo", "c", self.c, 0x3f);
-        }
-        let value = (self.a as u32) | (self.b << 2) | ((self.c as u32) << 26);
-        buffer.put_u32_le(value);
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
-        4
+        3
     }
 }
 impl Packet for Foo {
@@ -122,14 +108,8 @@ impl Foo {
         let foo = root;
         Ok(Self { foo })
     }
-    pub fn get_a(&self) -> u8 {
-        self.foo.as_ref().a
-    }
-    pub fn get_b(&self) -> u32 {
-        self.foo.as_ref().b
-    }
-    pub fn get_c(&self) -> u8 {
-        self.foo.as_ref().c
+    pub fn get_x(&self) -> &[u8; 3] {
+        &self.foo.as_ref().x
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         self.foo.write_to(buffer)
@@ -140,7 +120,7 @@ impl Foo {
 }
 impl FooBuilder {
     pub fn build(self) -> Foo {
-        let foo = Arc::new(FooData { a: self.a, b: self.b, c: self.c });
+        let foo = Arc::new(FooData { x: self.x });
         Foo::new(foo).unwrap()
     }
 }
