@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b11b81_a0135d09",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:30:17Z",
+      "side": 1,
+      "message": "There is a test named `testGetDevicesMatchingConnectionState` in L996, but it does not test `getDevicesMatchingConnectionStates()`.\n\nLet\u0027s rename the existing test `testGetDevicesMatchingConnectionState` to somewhat else.",
+      "range": {
+        "startLine": 1548,
+        "startChar": 16,
+        "endLine": 1548,
+        "endChar": 54
+      },
+      "revId": "6eb8c0a2d268e9057103d7e38584d7b76206c416",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ede8048c_891f6f33",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1556,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:30:17Z",
+      "side": 1,
+      "message": "Could you add a case that getDevicesMatchingConnectionStates() contains mSingleDevice?",
+      "range": {
+        "startLine": 1555,
+        "startChar": 8,
+        "endLine": 1556,
+        "endChar": 82
+      },
+      "revId": "6eb8c0a2d268e9057103d7e38584d7b76206c416",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ee07df_8b814840",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1564,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-11T23:30:17Z",
+      "side": 1,
+      "message": "remove one line",
+      "revId": "6eb8c0a2d268e9057103d7e38584d7b76206c416",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
