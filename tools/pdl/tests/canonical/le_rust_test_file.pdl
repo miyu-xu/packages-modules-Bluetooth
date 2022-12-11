@@ -28,6 +28,32 @@ packet Packet_Enum_Field {
     c: 57,
 }
 
+// Array fields
+// Array element types
+
+packet AllSizesArray {
+    a: 8[3],
+    b: 16[4],
+    c: 24[5],
+    d: 32[6],
+    e: 40[7],
+    f: 48[8],
+    h: 56[9],
+    g: 64[10],
+}
+
+packet Packet_Array_Field_ByteElement_ConstantSize {
+    array: 8[4],
+}
+
+packet Packet_Array_Field_ScalarElement_ConstantSize {
+    array: 16[4],
+}
+
+packet Packet_Array_Field_EnumElement_ConstantSize {
+    array: Enum16[4],
+}
+
 packet Packet_Size_Field {
     _size_(b): 3,
     a: 61,
@@ -41,3 +67,4 @@ packet Packet_Count_Field {
     a: 61,
     b: 8[],
 }
+
