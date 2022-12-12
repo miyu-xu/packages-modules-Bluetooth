@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf18eac_55c40760",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:48:30Z",
+      "side": 1,
+      "message": "Why was this magic number spared?",
+      "range": {
+        "startLine": 300,
+        "startChar": 68,
+        "endLine": 300,
+        "endChar": 70
+      },
+      "revId": "395f811a787bd995f612e141529214fb221ee1e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
