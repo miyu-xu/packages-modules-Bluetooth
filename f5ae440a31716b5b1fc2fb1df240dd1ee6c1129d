@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21d655b6_f59b5942",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-12T19:01:29Z",
+      "side": 1,
+      "message": "Can you document for each filtering mode the exact transformation that it will exert on the snoop trace ? e.g. truncate packet information, remap identifying data..",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 69
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a343bd_96e6e652",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-12T19:01:29Z",
+      "side": 1,
+      "message": "Please split this function to reduce the number of nested ifs.\nExplain the use of magic value, or declare magic values as const static for better readability. Can you also add some comments as to what information you are extracting from the packet and for which purpose ?",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 862,
+        "endChar": 3
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "470abe3e_ff9c2f9b",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 5
