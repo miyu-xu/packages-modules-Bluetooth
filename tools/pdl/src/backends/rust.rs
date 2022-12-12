@@ -66,8 +66,8 @@ fn generate_packet_decl(
     field_parser.done();
 
     let id_lower = format_ident!("{}", id.to_lowercase());
+    let id_packet = format_ident!("{id}");
     let id_data = format_ident!("{id}Data");
-    let id_packet = format_ident!("{id}Packet");
     let id_builder = format_ident!("{id}Builder");
 
     let field_names =
@@ -193,7 +193,8 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
 
 fn generate_decl(scope: &lint::Scope<'_>, file: &ast::File, decl: &ast::Decl) -> String {
     match decl {
-        ast::Decl::Packet { id, constraints, fields, parent_id, .. } => generate_packet_decl(
+        ast::Decl::Packet { id, constraints, fields, parent_id, .. }
+        | ast::Decl::Struct { id, constraints, fields, parent_id, .. } => generate_packet_decl(
             scope,
             file.endianness.value,
             id,
@@ -311,6 +312,21 @@ mod tests {
         0,
         r#"
           packet Foo {
+            a: 3,
+            b: 8,
+            c: 5,
+            d: 24,
+            e: 12,
+            f: 4,
+          }
+        "#,
+    );
+
+    test_decl!(
+        struct_decl_complex_scalars,
+        0,
+        r#"
+          struct Foo {
             a: 3,
             b: 8,
             c: 5,

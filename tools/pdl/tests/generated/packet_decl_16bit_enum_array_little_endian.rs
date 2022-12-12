@@ -3,7 +3,7 @@ struct BarData {
     x: [Foo; 5],
 }
 #[derive(Debug, Clone)]
-pub struct BarPacket {
+pub struct Bar {
     bar: Arc<BarData>,
 }
 #[derive(Debug)]
@@ -30,7 +30,7 @@ impl BarData {
         0
     }
 }
-impl Packet for BarPacket {
+impl Packet for Bar {
     fn to_bytes(self) -> Bytes {
         let mut buffer = BytesMut::with_capacity(self.bar.get_total_size());
         self.bar.write_to(&mut buffer);
@@ -40,17 +40,17 @@ impl Packet for BarPacket {
         self.to_bytes().to_vec()
     }
 }
-impl From<BarPacket> for Bytes {
-    fn from(packet: BarPacket) -> Self {
+impl From<Bar> for Bytes {
+    fn from(packet: Bar) -> Self {
         packet.to_bytes()
     }
 }
-impl From<BarPacket> for Vec<u8> {
-    fn from(packet: BarPacket) -> Self {
+impl From<Bar> for Vec<u8> {
+    fn from(packet: Bar) -> Self {
         packet.to_vec()
     }
 }
-impl BarPacket {
+impl Bar {
     pub fn parse(mut bytes: &[u8]) -> Result<Self> {
         Ok(Self::new(Arc::new(BarData::parse(bytes)?)).unwrap())
     }
@@ -63,8 +63,8 @@ impl BarPacket {
     }
 }
 impl BarBuilder {
-    pub fn build(self) -> BarPacket {
+    pub fn build(self) -> Bar {
         let bar = Arc::new(BarData { x: self.x });
-        BarPacket::new(bar).unwrap()
+        Bar::new(bar).unwrap()
     }
 }

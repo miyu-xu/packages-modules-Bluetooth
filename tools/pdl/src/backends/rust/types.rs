@@ -53,7 +53,7 @@ pub fn rust_type(field: &ast::Field) -> proc_macro2::TokenStream {
             let size = proc_macro2::Literal::usize_unsuffixed(*size);
             quote!([#field_type; #size])
         }
-        _ => todo!(),
+        _ => todo!("{field:?}"),
     }
 }
 
