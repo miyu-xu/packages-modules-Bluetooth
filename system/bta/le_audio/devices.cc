@@ -1466,8 +1466,27 @@ bool LeAudioDevice::ConfigureAses(
     types::AudioLocations& group_src_audio_locations, bool reuse_cis_id,
     AudioContexts metadata_context_type,
     const std::vector<uint8_t>& ccid_list) {
-  struct ase* ase = GetFirstInactiveAse(ent.direction, reuse_cis_id);
-  if (!ase) return false;
+  /* Skip if device has ASE configured in this direction already and
+   * the configuration matches.
+   */
+  auto ase = GetFirstActiveAseByDirection(ent.direction);
+  if (ase) {
+    if (ase->configured_for_context_type == context_type) {
+      LOG_DEBUG("Found already configured ASE id=%d", ase->id);
+      return true;
+    }
+    LOG_DEBUG(
+        "Found already configured ASE id=%d, but the configuration didn't "
+        "match. Reconfiguring ASE.",
+        ase->id);
+  } else {
+    ase = GetFirstInactiveAse(ent.direction, reuse_cis_id);
+  }
+
+  if (!ase) {
+    LOG_ERROR("Unable to find an ASE to configure");
+    return false;
+  }
 
   uint8_t active_ases = *number_of_already_active_group_ase;
   uint8_t max_required_ase_per_dev =
@@ -1590,12 +1609,6 @@ bool LeAudioDeviceGroup::ConfigureAses(
     for (auto* device = GetFirstDeviceWithActiveContext(context_type);
          device != nullptr && required_device_cnt > 0;
          device = GetNextDeviceWithActiveContext(device, context_type)) {
-      /* Skip if device has ASE configured in this direction already */
-      if (device->GetFirstActiveAseByDirection(ent.direction)) {
-        required_device_cnt--;
-        continue;
-      }
-
       /* For the moment, we configure only connected devices and when it is
        * ready to stream i.e. All ASEs are discovered and device is reported as
        * connected
