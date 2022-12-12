@@ -20,6 +20,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f7c05cc_546e47e3",
+        "filename": "system/gd/rust/topshim/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-12T15:57:58Z",
+      "side": 1,
+      "message": "allowlist function is bthfp this is allowlist type.  in the Android.bp the allowlist type is bthf_",
+      "parentUuid": "0da28962_af1f5d39",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41faf6f7_3ff41b16",
+        "filename": "system/gd/rust/topshim/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-12T15:57:58Z",
+      "side": 1,
+      "message": "however, here should be bthfp_ :-D",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be97cd08_bb11300c",
         "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
         "patchSetId": 1
