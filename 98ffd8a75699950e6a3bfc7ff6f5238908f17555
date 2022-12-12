@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8415dfa3_5dca6916",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-12T18:58:22Z",
+      "side": 1,
+      "message": "FYI `AServiceManager_getService` is deprecated (see lint Warning)",
+      "range": {
+        "startLine": 414,
+        "startChar": 29,
+        "endLine": 414,
+        "endChar": 55
+      },
+      "revId": "98ffd8a75699950e6a3bfc7ff6f5238908f17555",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "827668ff_41819a78",
         "filename": "system/gd/hal/hci_hal_android_hidl.cc",
         "patchSetId": 9
