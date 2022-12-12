@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adcc775e_e158230c",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:40:02Z",
+      "side": 1,
+      "message": "I think you should be able to trust that this was already checked.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "bf95f77ee07df87cc855dac66a12a504de0c15d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ecf94ef_0d214cde",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:40:02Z",
+      "side": 1,
+      "message": "Should this be a case statement?  Is there only one event code that we\u0027ll be looking for?",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "bf95f77ee07df87cc855dac66a12a504de0c15d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
