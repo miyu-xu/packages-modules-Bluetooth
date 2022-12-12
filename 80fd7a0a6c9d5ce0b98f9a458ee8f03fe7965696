@@ -106,6 +106,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28e6a21e_65daf187",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-12T16:00:56Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "bb4e53c1_f246c63b",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "894fd759_ff48ad48",
         "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
         "patchSetId": 1
@@ -151,6 +169,24 @@
       "writtenOn": "2022-12-10T00:23:49Z",
       "side": 1,
       "message": "Prefer consistency in apis: keep it always `addr: RawAddress`.",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886fcd8a_84535911",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-12T16:00:56Z",
+      "side": 1,
+      "message": "+1.  Never need a `\u0026mut RawAddress` in this API.",
+      "parentUuid": "2c161f31_4267cca0",
       "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
