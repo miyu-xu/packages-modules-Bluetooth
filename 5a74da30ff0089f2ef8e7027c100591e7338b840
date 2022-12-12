@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3d1ebcf_5ed14f4b",
+        "filename": "system/blueberry/tests/topshim/lib/security_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-12T21:56:49Z",
+      "side": 1,
+      "message": "doesn\u0027t seem necessary, unless you meant to call it from create_bond, then maybe as a `__function` since I don\u0027t think the API will need to listen for a bonded event in this async paradigm.",
+      "range": {
+        "startLine": 70,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 86
+      },
+      "revId": "5a74da30ff0089f2ef8e7027c100591e7338b840",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
