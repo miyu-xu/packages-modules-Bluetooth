@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f507fb38_d2f1394b",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-12T18:09:30Z",
+      "side": 1,
+      "message": "I think at some point we will want to remove the dependency on Bytes for input buffers to use Vec\u003c\u003e or even raw slices. This code will become invalid then.\n@licorne@google.com might have a different opinion about this.\n\nIt does simplify the generation code though 😊",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
