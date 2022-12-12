@@ -16,6 +16,24 @@
       "message": "Please fix the linter error - commit description",
       "revId": "e7009aae3b7151d963ab39352878665246fe64cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e7119a5_f14dc8c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963225
+      },
+      "writtenOn": "2022-12-12T01:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d573bbb6_4c6607d0",
+      "revId": "e7009aae3b7151d963ab39352878665246fe64cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
