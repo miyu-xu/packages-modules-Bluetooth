@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b76354c_b868e5df",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "What\u0027s the difference with\npackages/modules/Bluetooth/android/app/tests/robotests/src/com/android/bluetooth/opp/OppSendFileInfoTest.java?\n\n@hdmoon@google.com, is it possible toinclude robotests as one of mainline tests?",
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a4b8bc4_c8a46a8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "I think you can remove \"_createCorrectly\" here and other places.",
+      "range": {
+        "startLine": 72,
+        "startChar": 50,
+        "endLine": 72,
+        "endChar": 66
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79fbe518_3daa4e30",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "what about \"returnsSendFileInfoError\" instead?\n\nditto for others",
+      "range": {
+        "startLine": 104,
+        "startChar": 55,
+        "endLine": 104,
+        "endChar": 64
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3869c515_0a19b136",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 114,
+        "startChar": 33,
+        "endLine": 114,
+        "endChar": 48
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "504d8b8a_412ef8a0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "withoutPermissionForAccessingUri",
+      "range": {
+        "startLine": 126,
+        "startChar": 33,
+        "endLine": 126,
+        "endChar": 70
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b293346e_9a1f96dd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "It\u0027s hard to guess what the test is doing.\nCould you elaborate more on name?\n\ngenerateFileInfo_withZeroFileLength_returnsSendFileInfoError?",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 140,
+        "endChar": 88
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe2c065_b76b3d6b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "Please fix.",
+      "range": {
+        "startLine": 146,
+        "startChar": 8,
+        "endLine": 146,
+        "endChar": 38
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5c631a_cc75ca78",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "generateFileInfo_withWrongFileLength_returnsInfoWithActualFileLength?",
+      "range": {
+        "startLine": 175,
+        "startChar": 16,
+        "endLine": 175,
+        "endChar": 86
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17171646_933ad5e4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppSendFileInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-12T13:52:08Z",
+      "side": 1,
+      "message": "generateFileInfo_withWrongExternalFileUri_returnSendFileInfoError?",
+      "range": {
+        "startLine": 214,
+        "startChar": 16,
+        "endLine": 214,
+        "endChar": 88
+      },
+      "revId": "9de09dcda6a0907cf0e88ec9312435d8537314fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
