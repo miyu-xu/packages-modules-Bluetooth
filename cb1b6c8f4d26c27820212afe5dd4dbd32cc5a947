@@ -46,6 +46,30 @@
       },
       "revId": "cb1b6c8f4d26c27820212afe5dd4dbd32cc5a947",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "551046a2_54b24991",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-12T10:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "739ac653_a63adf6f",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 77
+      },
+      "revId": "cb1b6c8f4d26c27820212afe5dd4dbd32cc5a947",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
