@@ -118,10 +118,9 @@ class MceStateMachine extends StateMachine {
     private static final String FOLDER_TELECOM = "telecom";
     private static final String FOLDER_MSG = "msg";
     private static final String FOLDER_OUTBOX = "outbox";
-    private static final String FOLDER_INBOX = "inbox";
-    private static final String FOLDER_SENT = "sent";
+    static final String FOLDER_INBOX = "inbox";
+    static final String FOLDER_SENT = "sent";
     private static final String INBOX_PATH = "telecom/msg/inbox";
-
 
     // Connectivity States
     private int mPreviousState = BluetoothProfile.STATE_DISCONNECTED;
@@ -538,6 +537,7 @@ class MceStateMachine extends StateMachine {
             mMasClient.makeRequest(new RequestGetFolderListing(0, 0));
             mMasClient.makeRequest(new RequestSetPath(false));
             mMasClient.makeRequest(new RequestSetNotificationRegistration(true));
+            mMasClient.makeRequest(new RequestGetMessagesListingForOwnNumber());
             sendMessage(MSG_GET_MESSAGE_LISTING, FOLDER_SENT);
             sendMessage(MSG_GET_MESSAGE_LISTING, FOLDER_INBOX);
         }
@@ -620,6 +620,9 @@ class MceStateMachine extends StateMachine {
                         processMessageListing((RequestGetMessagesListing) message.obj);
                     } else if (message.obj instanceof RequestSetMessageStatus) {
                         processSetMessageStatus((RequestSetMessageStatus) message.obj);
+                    } else if (message.obj instanceof RequestGetMessagesListingForOwnNumber) {
+                        processMessageListingForOwnNumber(
+                                (RequestGetMessagesListingForOwnNumber) message.obj);
                     }
                     break;
 
@@ -737,6 +740,32 @@ class MceStateMachine extends StateMachine {
                             msg.getDateTime().getTime(), msg.isRead()));
                     getMessage(msg.getHandle());
                 }
+            }
+        }
+
+        /**
+         * Process the result of a MessageListing request that was made specifically to obtain
+         * the remote device's own phone number.
+         *
+         * @param request - A request object that has been resolved and returned with:
+         *   - a phone number (possibly null if a number wasn't found)
+         *   - a flag indicating whether there are still messages that can be searched/requested.
+         *   - the request will automatically update itself if a number wasn't found and there are
+         *     still messages that can be searched.
+         */
+        private void processMessageListingForOwnNumber(
+                RequestGetMessagesListingForOwnNumber request) {
+            if (DBG) {
+                Log.d(TAG, "processMessageListingForOwnNumber");
+            }
+
+            if (request.getOwnNumber() != null) {
+                // A phone number was found (should be the remote device's).
+                mDatabase.setRemoteDeviceOwnNumber(request.getOwnNumber());
+            } else if (!request.isSearchCompleted()) {
+                // A phone number wasn't found, but there are still additional messages that can
+                // be requested and searched.
+                mMasClient.makeRequest(request);
             }
         }
 
