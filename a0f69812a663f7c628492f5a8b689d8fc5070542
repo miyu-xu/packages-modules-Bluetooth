@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "524199eb_846d5bfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-12T07:58:04Z",
+      "side": 1,
+      "message": "This will have merge conflict as aosp/2339547 is merged. Please sync the repo and rebase this CL.",
+      "revId": "a0f69812a663f7c628492f5a8b689d8fc5070542",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
