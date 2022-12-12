@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d18af2d7_82e59aac",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-12T15:59:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fd2abd95_803fd83b",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 62
+      },
+      "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b70d8ae_6c4f151d",
@@ -126,6 +150,24 @@
       "side": 1,
       "message": "Why? I want to log the event type. What\u0027s a \"Remote Host Supported Features Request\"? If it\u0027s a separate HCI command, then probably it is not related to what we have here?",
       "parentUuid": "6b70d8ae_6c4f151d",
+      "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa98bd10_441d6a29",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-12T15:59:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6bfcf60_dd8deac3",
       "revId": "d571dcb617910f99ae22aa6455b1c9f4aed5c060",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
