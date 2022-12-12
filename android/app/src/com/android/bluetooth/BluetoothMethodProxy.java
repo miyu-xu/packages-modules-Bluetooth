@@ -34,6 +34,7 @@ import com.android.obex.HeaderSet;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Proxy class for method calls to help with unit testing
@@ -130,6 +131,14 @@ public class BluetoothMethodProxy {
     public ParcelFileDescriptor contentResolverOpenFileDescriptor(ContentResolver contentResolver,
             final Uri uri, final String mode) throws FileNotFoundException {
         return contentResolver.openFileDescriptor(uri, mode);
+    }
+
+    /**
+     * Proxies {@link ContentResolver#openOutputStream(Uri)}.
+     */
+    public OutputStream contentResolverOpenOutputStream(ContentResolver contentResolver, Uri uri)
+            throws FileNotFoundException {
+        return contentResolver.openOutputStream(uri);
     }
 
     /**
