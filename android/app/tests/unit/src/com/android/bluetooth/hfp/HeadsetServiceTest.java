@@ -999,6 +999,70 @@ public class HeadsetServiceTest {
         mHeadsetService.dump(sb);
     }
 
+    @Test
+    public void testGetFallbackCandidates() {
+        BluetoothDevice deviceA = TestUtils.getTestDevice(mAdapter, 0);
+        BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
+        when(mDatabaseManager.getCustomMeta(any(BluetoothDevice.class),
+                any(Integer.class))).thenReturn(null);
+
+        // No connected device
+        Assert.assertTrue(mHeadsetService.getFallbackCandidates(mDatabaseManager).isEmpty());
+
+        // One connected device
+        addConnectedDeviceHelper(deviceA);
+        Assert.assertTrue(mHeadsetService.getFallbackCandidates(mDatabaseManager)
+                .contains(deviceA));
+
+        // Two connected devices
+        addConnectedDeviceHelper(deviceB);
+        Assert.assertTrue(mHeadsetService.getFallbackCandidates(mDatabaseManager)
+                .contains(deviceA));
+        Assert.assertTrue(mHeadsetService.getFallbackCandidates(mDatabaseManager)
+                .contains(deviceB));
+    }
+
+    @Test
+    public void testGetFallbackCandidates_HasWatchDevice() {
+        BluetoothDevice deviceA = TestUtils.getTestDevice(mAdapter, 0);
+        BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
+
+        // Make deviceA a watch
+        when(mDatabaseManager.getCustomMeta(deviceA, BluetoothDevice.METADATA_DEVICE_TYPE))
+                .thenReturn(BluetoothDevice.DEVICE_TYPE_WATCH.getBytes());
+        when(mDatabaseManager.getCustomMeta(deviceB, BluetoothDevice.METADATA_DEVICE_TYPE))
+                .thenReturn(null);
+
+        // Has a connected watch device
+        addConnectedDeviceHelper(deviceA);
+        Assert.assertTrue(mHeadsetService.getFallbackCandidates(mDatabaseManager).isEmpty());
+
+        // Two connected devices with one watch
+        addConnectedDeviceHelper(deviceB);
+        Assert.assertFalse(mHeadsetService.getFallbackCandidates(mDatabaseManager)
+                .contains(deviceA));
+        Assert.assertTrue(mHeadsetService.getFallbackCandidates(mDatabaseManager)
+                .contains(deviceB));
+    }
+
+    private void addConnectedDeviceHelper(BluetoothDevice device) {
+        mCurrentDevice = device;
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                eq(BluetoothProfile.HEADSET)))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        Assert.assertTrue(mHeadsetService.connect(device));
+        when(mStateMachines.get(device).getDevice()).thenReturn(device);
+        when(mStateMachines.get(device).getConnectionState()).thenReturn(
+                BluetoothProfile.STATE_CONNECTING);
+        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING,
+                mHeadsetService.getConnectionState(device));
+        when(mStateMachines.get(mCurrentDevice).getConnectionState()).thenReturn(
+                BluetoothProfile.STATE_CONNECTED);
+        Assert.assertEquals(BluetoothProfile.STATE_CONNECTED,
+                mHeadsetService.getConnectionState(device));
+        Assert.assertTrue(mHeadsetService.getConnectedDevices().contains(device));
+    }
+
     /*
      *  Helper function to test okToAcceptConnection() method
      *
