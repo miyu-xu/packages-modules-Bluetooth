@@ -111,6 +111,30 @@
       },
       "revId": "6406840e559c7dfdaedc57516f854c169b2d404f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22eef514_a60699dc",
+        "filename": "android/app/jni/com_android_bluetooth_hfpclient.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-12T21:36:04Z",
+      "side": 1,
+      "message": "We could try.  However, but I think the goal here is consistency with minimal change.  If we change it to use another type/reference/pointer then we should change the other functions as well.  I hear what you\u0027re saying on the reference, but opt for minimally invasive surgery :-D",
+      "parentUuid": "ba106362_b36dd4ca",
+      "range": {
+        "startLine": 550,
+        "startChar": 63,
+        "endLine": 550,
+        "endChar": 67
+      },
+      "revId": "6406840e559c7dfdaedc57516f854c169b2d404f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
