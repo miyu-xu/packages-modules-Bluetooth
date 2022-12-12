@@ -33,7 +33,7 @@ impl<'a> FieldParser<'a> {
     }
 
     pub fn add(&mut self, field: &ast::Field) {
-        if field.is_bitfield() {
+        if field.is_bitfield(self.scope) {
             self.add_bit_field(field);
             return;
         }
