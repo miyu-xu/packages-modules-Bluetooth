@@ -289,16 +289,19 @@ impl Field {
         }
     }
 
-    pub fn is_bitfield(&self) -> bool {
-        matches!(
-            self,
+    pub fn is_bitfield(&self, scope: &lint::Scope<'_>) -> bool {
+        match self {
             Field::Size { .. }
-                | Field::Count { .. }
-                | Field::Fixed { .. }
-                | Field::Reserved { .. }
-                | Field::Scalar { .. }
-                | Field::Typedef { .. }
-        )
+            | Field::Count { .. }
+            | Field::Fixed { .. }
+            | Field::Reserved { .. }
+            | Field::Scalar { .. } => true,
+            Field::Typedef { type_id, .. } => {
+                let field = scope.typedef.get(type_id.as_str());
+                matches!(field, Some(Decl::Enum { .. }))
+            }
+            _ => false,
+        }
     }
 
     pub fn width(&self, scope: &lint::Scope<'_>) -> Option<usize> {
