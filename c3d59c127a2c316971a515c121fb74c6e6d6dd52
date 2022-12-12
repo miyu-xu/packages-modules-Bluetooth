@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3557fe83_0e14262a",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-12T17:54:56Z",
+      "side": 1,
+      "message": "This index seem a bit fragile to me. Since the declarations can be in any order, I would suggest forcing the tested declaration to be the first in the snippet, with supplement declarations following.",
+      "range": {
+        "startLine": 326,
+        "startChar": 8,
+        "endLine": 326,
+        "endChar": 11
+      },
+      "revId": "c3d59c127a2c316971a515c121fb74c6e6d6dd52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
