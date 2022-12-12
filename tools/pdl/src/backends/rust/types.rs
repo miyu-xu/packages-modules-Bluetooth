@@ -33,6 +33,18 @@ impl quote::ToTokens for Integer {
     }
 }
 
+/// Should this field be stored on the struct?
+///
+/// Some `ast::Field` values (like `ast::Field::Count` and
+/// `ast::Field::Size`) are only used to generate correct Rust types
+/// and they should not be stored in the generated structs.
+pub fn is_stored_field(field: &ast::Field) -> bool {
+    matches!(
+        field,
+        ast::Field::Scalar { .. } | ast::Field::Typedef { .. } | ast::Field::Array { .. }
+    )
+}
+
 pub fn rust_type(field: &ast::Field) -> proc_macro2::TokenStream {
     match field {
         ast::Field::Scalar { width, .. } => {
