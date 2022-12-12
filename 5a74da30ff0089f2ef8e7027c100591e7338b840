@@ -22,6 +22,30 @@
       },
       "revId": "5a74da30ff0089f2ef8e7027c100591e7338b840",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774ce21e_99ad6350",
+        "filename": "system/blueberry/tests/topshim/lib/security_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T22:10:24Z",
+      "side": 1,
+      "message": "We would need it to observe the bond state change from BONDING to BONDED.",
+      "parentUuid": "d3d1ebcf_5ed14f4b",
+      "range": {
+        "startLine": 70,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 86
+      },
+      "revId": "5a74da30ff0089f2ef8e7027c100591e7338b840",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
