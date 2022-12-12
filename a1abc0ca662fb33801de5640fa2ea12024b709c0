@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "665899db_9d4a8a6e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-12T02:22:05Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "3099b15b_a919f3d7",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 40
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8a10265_e194024e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-11T23:40:29Z",
       "side": 1,
       "message": "remove this too",
+      "range": {
+        "startLine": 106,
+        "startChar": 35,
+        "endLine": 106,
+        "endChar": 67
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2a3b4af_22b47a7f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-12T02:22:05Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "c8a10265_e194024e",
       "range": {
         "startLine": 106,
         "startChar": 35,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea8b7710_540e0315",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-12T02:22:05Z",
+      "side": 1,
+      "message": "Removed!",
+      "parentUuid": "e2d072e8_e9c80792",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 35
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87f5af4d_be99e75c",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff208681_56f249f3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-12T02:22:05Z",
+      "side": 1,
+      "message": "Got it. Changed the mocked variables into global variables and initialized them in setUp. Then only left the function mocking relevant inside the test.",
+      "parentUuid": "87f5af4d_be99e75c",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a14a84e0_8be3131d",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-12-11T23:40:29Z",
       "side": 1,
       "message": "Let\u0027s define the static final variable MAS_ID and use it in setUp() and here.",
+      "range": {
+        "startLine": 285,
+        "startChar": 50,
+        "endLine": 285,
+        "endChar": 51
+      },
+      "revId": "a1abc0ca662fb33801de5640fa2ea12024b709c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3c16928_5ba17987",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-12T02:22:05Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "a14a84e0_8be3131d",
       "range": {
         "startLine": 285,
         "startChar": 50,
