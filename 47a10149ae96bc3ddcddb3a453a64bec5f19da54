@@ -22,6 +22,30 @@
       },
       "revId": "47a10149ae96bc3ddcddb3a453a64bec5f19da54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd06d7d7_b6dffda3",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T04:24:10Z",
+      "side": 1,
+      "message": "Thank you for pointing this out. Addressed this and removed `__func__` from all LOG_LEVEL uses.",
+      "parentUuid": "6595bc16_08ad4210",
+      "range": {
+        "startLine": 214,
+        "startChar": 15,
+        "endLine": 214,
+        "endChar": 17
+      },
+      "revId": "47a10149ae96bc3ddcddb3a453a64bec5f19da54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
