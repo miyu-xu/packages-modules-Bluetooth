@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0d068cf_03d08661",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:28:22Z",
+      "side": 1,
+      "message": "Let\u0027s not introduce more inconsistencies.  Logging changes can happen all at once.",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 41
+      },
+      "revId": "c9e6c72c091e0038494a0513c67ee07bbb10d680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
