@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "367abf0a_d9f65faf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "HeadsetService.setActiveDevice doesn\u0027t check what is the purpose of setting it active. But we need to check different audio policies for different times. That\u0027s why we cannot put it in the HeadsetService. \nSince HeadsetService.setActiveDevice is invoked from ActiveDeviceManager.setHfpActiveDevice during connecting, ConnectingAudioPolicy needs to be checked before trying to make it active.",
+      "parentUuid": "8bef7c9c_67c696e5",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 978,
+        "endChar": 38
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35e40ee2_2b4b0b4c",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/AudioPolicyEntity.java",
         "patchSetId": 30
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-09T14:43:39Z",
       "side": 1,
       "message": "Please use the camelCase naming convention.\ncallPickUpAudioPolicy, ditto for others.",
+      "range": {
+        "startLine": 25,
+        "startChar": 15,
+        "endLine": 25,
+        "endChar": 40
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a95eb89_33ca0af9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/AudioPolicyEntity.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "I noticed all the other Entity classes like CustomizedMetadataEntity and ProfilePrioritiesEntity are also naming their variables in this way. Using the rules in Android dev.",
+      "parentUuid": "35e40ee2_2b4b0b4c",
       "range": {
         "startLine": 25,
         "startChar": 15,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb30e068_bc99d8e2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "CustomMetadata structure is used like a key-value store. But for Audio Policies, we designed it to use the getters/setters to get all the audio policy values together in a BluetoothAudioPolicy object. So, it was better creating a new AudioPolicyEntity class and getters and setters for it.",
+      "parentUuid": "3eeade64_05d11715",
+      "range": {
+        "startLine": 291,
+        "startChar": 19,
+        "endLine": 291,
+        "endChar": 41
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b6370e7_e3c3d431",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-09T14:43:39Z",
       "side": 1,
       "message": "Remove these method.\naudioPolicyMetadata is public.",
+      "range": {
+        "startLine": 383,
+        "startChar": 1,
+        "endLine": 389,
+        "endChar": 5
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91b7e561_ae655b6e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b6370e7_e3c3d431",
       "range": {
         "startLine": 383,
         "startChar": 1,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd586906_20c0fa36",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "This one is different from BluetoothHeadsetClient#getAudioPolicy. Here, it means the audio policy it received from the HF side.",
+      "parentUuid": "65e4629f_0b98ca5e",
+      "range": {
+        "startLine": 1318,
+        "startChar": 32,
+        "endLine": 1318,
+        "endChar": 53
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f74df7d_66514f0d",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 30
@@ -129,6 +249,30 @@
       "writtenOn": "2022-12-09T14:43:39Z",
       "side": 1,
       "message": "processAndroidAt?",
+      "range": {
+        "startLine": 1940,
+        "startChar": 17,
+        "endLine": 1940,
+        "endChar": 33
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b203570_7b59ad00",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f74df7d_66514f0d",
       "range": {
         "startLine": 1940,
         "startChar": 17,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f239dd0_194b4089",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1968,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2a8ee81_045b2704",
+      "range": {
+        "startLine": 1968,
+        "startChar": 16,
+        "endLine": 1968,
+        "endChar": 46
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4326a7ed_6d102d1d",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-12-09T14:43:39Z",
       "side": 1,
       "message": "processAndroidAtFeatureRequest",
+      "range": {
+        "startLine": 1982,
+        "startChar": 17,
+        "endLine": 1982,
+        "endChar": 47
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3533a340_7676a680",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4326a7ed_6d102d1d",
       "range": {
         "startLine": 1982,
         "startChar": 17,
@@ -208,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c62f0a23_cfe3bc13",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 2000,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9b7ebc6_372d67dd",
+      "range": {
+        "startLine": 2000,
+        "startChar": 17,
+        "endLine": 2000,
+        "endChar": 47
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7657008e_3760ee64",
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "443258b7_cc605c67",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7657008e_3760ee64",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d90e864_c805e5b3",
@@ -244,6 +484,30 @@
       "writtenOn": "2022-12-09T14:43:39Z",
       "side": 1,
       "message": "BluetoothAudioPolicy looks a broad concept that can be used for media as well.\nWhat about BluetoothCallPolicy?",
+      "range": {
+        "startLine": 55,
+        "startChar": 19,
+        "endLine": 55,
+        "endChar": 39
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acae8a0c_3345e7fa",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Currently it has call audio and in band ringing features but we are leaving a backdoor to add more features for later. For example, the next use case of this class will be in BLE Audio. Thus the naming.",
+      "parentUuid": "2d90e864_c805e5b3",
       "range": {
         "startLine": 55,
         "startChar": 19,
@@ -279,6 +543,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84b98578_cabe7e9c",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "DEFAULT is the initial value of a policy before it was set to something with the API and it is yet to be set. When this policy is default, it would also mean not to depend on it and use other logic for any case.",
+      "parentUuid": "0dfc7893_9ff24512",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4beb6f94_9a84b329",
         "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
         "patchSetId": 30
@@ -290,6 +578,30 @@
       "writtenOn": "2022-12-09T14:43:39Z",
       "side": 1,
       "message": "1. What does \"remote\" stands for? and what will be \"local\"?\n\n2. Will STATUS_UNKNOWN be the same with NOT_SUPPORTED?\n\n3. What about CALL_POLICY_SUPPORTED and CALL_POLICY_NOT_SUPPORT?",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d35c0e58_01b4ca57",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "1. REMOTE is the AG device here. local would be HF but this feature only consists of sending HF devices\u0027 policies to the remote/AG.\n2. They should be separated. This feature extraction or initialization is not a part of the SLC establishment of HFP. So, it needs to be set after that. There is a split second when AudioPolicy feature is not initialized but it will soon be in a moment. Thus the Unknown state.\n3. For the naming, if the HF has the code, it supports. We are curious about whether the AG is supported or not. Thus the name contains \"REMOTE\". Also, since the Audio Policy feature would be used by APIs from BluetoothDevice, they are not generic to hfp only. These values can later be used with those cases too.",
+      "parentUuid": "4beb6f94_9a84b329",
       "range": {
         "startLine": 88,
         "startChar": 28,
@@ -323,6 +635,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c85252e_dbded82d",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3198736e_a0089036",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 53
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d100ff9f_dd8340bd",
@@ -336,6 +672,30 @@
       "writtenOn": "2022-12-09T14:43:39Z",
       "side": 1,
       "message": "Looks like a Builder class pattern.\nPlease create a builder class if the values are not dynamically changed.\nOr make it a void method.\n\nditto for others.",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 5
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8046be65_9bd210d7",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "The values are dynamically changed. I wanted to chain these setter calls and pass the result to some method like here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2299966/32/android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java#2149. \nIs this not allowed?",
+      "parentUuid": "d100ff9f_dd8340bd",
       "range": {
         "startLine": 126,
         "startChar": 0,

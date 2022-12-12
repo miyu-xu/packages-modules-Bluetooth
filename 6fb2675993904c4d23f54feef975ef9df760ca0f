@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34bdef2_e0e7aa1d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 5676,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:12Z",
+      "side": 1,
+      "message": "This is infeasible in the AdapterServiceTest file as the services here are created in a different manner than the other classes which use TestUtils for it. Leaving this one for CTS.",
+      "parentUuid": "0da229c0_37d0c2cf",
+      "range": {
+        "startLine": 5676,
+        "startChar": 15,
+        "endLine": 5676,
+        "endChar": 44
+      },
+      "revId": "6fb2675993904c4d23f54feef975ef9df760ca0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b82524a_d9901303",
