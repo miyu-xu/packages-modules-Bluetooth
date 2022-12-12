@@ -236,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "892d2097_878c57e7",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd586906_20c0fa36",
+      "range": {
+        "startLine": 1318,
+        "startChar": 32,
+        "endLine": 1318,
+        "endChar": 53
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f74df7d_66514f0d",
@@ -555,6 +579,30 @@
       "side": 1,
       "message": "DEFAULT is the initial value of a policy before it was set to something with the API and it is yet to be set. When this policy is default, it would also mean not to depend on it and use other logic for any case.",
       "parentUuid": "0dfc7893_9ff24512",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "360e64f4_2eebdb60",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-12T03:54:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84b98578_cabe7e9c",
       "range": {
         "startLine": 75,
         "startChar": 0,
