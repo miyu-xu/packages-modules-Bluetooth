@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69708255_0cc9551c",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-12T17:24:18Z",
+      "side": 1,
+      "message": "You can use a lambda here to avoid the additional static function.",
+      "range": {
+        "startLine": 413,
+        "startChar": 75,
+        "endLine": 413,
+        "endChar": 109
+      },
+      "revId": "0ab57dfeaaabf81a8e07d866cc519fda99b76ccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4afab1c6_13c9b23b",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-12T17:24:18Z",
+      "side": 1,
+      "message": "Why does it need to be a member function?",
+      "range": {
+        "startLine": 488,
+        "startChar": 0,
+        "endLine": 492,
+        "endChar": 3
+      },
+      "revId": "0ab57dfeaaabf81a8e07d866cc519fda99b76ccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94c3f3ac_0a697f1c",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-12T17:24:18Z",
+      "side": 1,
+      "message": "nit: rename to hidl_callbacks_",
+      "range": {
+        "startLine": 522,
+        "startChar": 36,
+        "endLine": 522,
+        "endChar": 46
+      },
+      "revId": "0ab57dfeaaabf81a8e07d866cc519fda99b76ccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
