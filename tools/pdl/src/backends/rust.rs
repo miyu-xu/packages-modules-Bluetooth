@@ -59,7 +59,9 @@ fn generate_packet_decl(
     let mut field_parser = FieldParser::new(scope, endianness, id, &span);
     let mut field_serializer = FieldSerializer::new(scope, endianness, id, &serializer_span);
     for field in fields {
-        field_declarations.add(field);
+        if types::is_stored_field(field) {
+            field_declarations.add(field);
+        }
         field_parser.add(field);
         field_serializer.add(field);
     }
@@ -70,14 +72,16 @@ fn generate_packet_decl(
     let id_data = format_ident!("{id}Data");
     let id_builder = format_ident!("{id}Builder");
 
+    let stored_fields: Vec<&ast::Field> =
+        fields.iter().filter(|&f| types::is_stored_field(f)).collect::<Vec<_>>();
     let field_names =
-        fields.iter().map(|f| format_ident!("{}", f.id().unwrap())).collect::<Vec<_>>();
-    let field_types = fields.iter().map(types::rust_type).collect::<Vec<_>>();
-    let field_borrows = fields.iter().map(types::rust_borrow).collect::<Vec<_>>();
+        stored_fields.iter().map(|&f| format_ident!("{}", f.id().unwrap())).collect::<Vec<_>>();
+    let field_types = stored_fields.iter().map(|&f| types::rust_type(f)).collect::<Vec<_>>();
+    let field_borrows = stored_fields.iter().map(|&f| types::rust_borrow(f)).collect::<Vec<_>>();
     let getter_names = field_names.iter().map(|id| format_ident!("get_{id}"));
 
     let packet_size =
-        syn::Index::from(fields.iter().filter_map(|f| f.width(scope)).sum::<usize>() / 8);
+        syn::Index::from(stored_fields.iter().filter_map(|f| f.width(scope)).sum::<usize>() / 8);
     let conforms = if packet_size.index == 0 {
         quote! { true }
     } else {
