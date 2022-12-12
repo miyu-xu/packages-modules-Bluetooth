@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c815df_9f6ab9e5",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-12T22:14:56Z",
+      "side": 1,
+      "message": "nit: There is a \"unused\" warning. Prepend with `_` if this is not yet used to suppress the warning rather than removing the field since we know that it will be used in the near future.",
+      "revId": "e259382d71665a873891b33600fb5cbb21c8bead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d75f3ad_be7c5b7b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-12T22:14:56Z",
+      "side": 1,
+      "message": "nit: To avoid naked unwrap:\n```\nself.servers.iter().find(|server| server.id.map_or(false, |id| id \u003d\u003d server_id))\n```",
+      "range": {
+        "startLine": 211,
+        "startChar": 42,
+        "endLine": 211,
+        "endChar": 96
+      },
+      "revId": "e259382d71665a873891b33600fb5cbb21c8bead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dee94b3_d6388f4f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-12T22:14:56Z",
+      "side": 1,
+      "message": "nit: this can be a bit less awkward by avoiding temporary `let` and directly getting the field we need in the `if let` statement:\n```\nif let Some(cbid) \u003d self.get_by_server_id(\u0026id).map(|server| server.cbid) {\n```",
+      "revId": "e259382d71665a873891b33600fb5cbb21c8bead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5dec943_f581645d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-12T22:14:56Z",
+      "side": 1,
+      "message": "nit: avoid naked unwrap:\n```\nif let Some(s) \u003d server {\n  s.id \u003d Some(id);\n}\n```",
+      "revId": "e259382d71665a873891b33600fb5cbb21c8bead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d547cc6_ecf39ad9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2590,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-12T22:14:56Z",
+      "side": 1,
+      "message": "nit: since we don\u0027t actually need to return anything here, an `if let` statement is more suitable:\n```\nif let Some(cb) \u003d self.server_context_map.get_callback_from_callback_id(cbid) {\n  cb.on_server_registered(status, server_id)\n```",
+      "revId": "e259382d71665a873891b33600fb5cbb21c8bead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
