@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "195921bc_a5c6d3a6",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:35:10Z",
+      "side": 1,
+      "message": "remove casts",
+      "range": {
+        "startLine": 190,
+        "startChar": 66,
+        "endLine": 190,
+        "endChar": 73
+      },
+      "revId": "d7b5ebacd286997d3b3ee7297dee55d3861b2dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25e13942_6180f87e",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:35:10Z",
+      "side": 1,
+      "message": "ErrorCode so we don\u0027t have to cast it.  The next two lines, as well.",
+      "range": {
+        "startLine": 33,
+        "startChar": 86,
+        "endLine": 33,
+        "endChar": 93
+      },
+      "revId": "d7b5ebacd286997d3b3ee7297dee55d3861b2dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
