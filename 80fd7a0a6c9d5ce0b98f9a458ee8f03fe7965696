@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc17a540_62267ffb",
+        "filename": "system/gd/rust/topshim/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "Thanks for pointing this out nope the Android.bp should change instead. It is bthf_ throughout.",
+      "parentUuid": "0da28962_af1f5d39",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41faf6f7_3ff41b16",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-12-12T15:57:58Z",
       "side": 1,
       "message": "however, here should be bthfp_ :-D",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e0e3a1e_5cd4d8d3",
+        "filename": "system/gd/rust/topshim/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "It should actually be bthf_ everywhere. And seems like we don\u0027t need allowlist functions. So removing this overall.",
+      "parentUuid": "41faf6f7_3ff41b16",
       "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -70,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4da6613_c87f7c50",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be97cd08_bb11300c",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9032abfb_255004aa",
@@ -83,6 +137,24 @@
       "writtenOn": "2022-12-10T00:23:49Z",
       "side": 1,
       "message": "Put the same TODO I mentioned in below comment here.",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65a74614_a3fd0bb2",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9032abfb_255004aa",
       "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -122,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6175660_818d3c70",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28e6a21e_65daf187",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "894fd759_ff48ad48",
@@ -139,6 +229,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50ab8631_f3b23f9c",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "894fd759_ff48ad48",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b13d0905_75b575b9",
@@ -152,6 +260,24 @@
       "writtenOn": "2022-12-10T00:23:49Z",
       "side": 1,
       "message": "Please create a bug and add a TODO(b/...) to explain that this is an incomplete topshim implementation. I\u0027ll add that bug into the topshim backlog.",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e382c26_aab33a16",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b13d0905_75b575b9",
       "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -193,6 +319,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da885aec_78ee038d",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "This seems to be because of the way the BTIF API is currently (It uses a RawAddress* instead of a const RawAddress*). Changing it seems to break other things. Will make this change once the change in the BTIF API is through. Refer: aosp/2345211",
+      "parentUuid": "886fcd8a_84535911",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "632b5257_9ee5fe73",
         "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
         "patchSetId": 1
@@ -204,6 +348,24 @@
       "writtenOn": "2022-12-10T00:23:49Z",
       "side": 1,
       "message": "nit: newline after function",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee8e91f_f626bb29",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-12T20:50:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "632b5257_9ee5fe73",
       "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
