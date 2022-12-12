@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c014d5_8f21f892",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:44:24Z",
+      "side": 1,
+      "message": "Do we only allow scans when Microsoft extensions are supported?",
+      "range": {
+        "startLine": 1169,
+        "startChar": 0,
+        "endLine": 1172,
+        "endChar": 9
+      },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a23ff392_bbf37186",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:44:24Z",
+      "side": 1,
+      "message": "logging consistency?",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 11
+      },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "317679fd_925da940",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:44:24Z",
+      "side": 1,
+      "message": "In other places, the Floss team is converting these to LOG_INFO\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2280330",
+      "range": {
+        "startLine": 256,
+        "startChar": 1,
+        "endLine": 256,
+        "endChar": 11
+      },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
