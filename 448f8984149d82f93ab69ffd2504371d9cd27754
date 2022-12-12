@@ -39,6 +39,24 @@
       "message": "BT addresses are already filtered by feedback report: https://chromium.googlesource.com/chromium/src/+/refs/tags/87.0.4278.1/components/feedback/redaction_tool.cc#463. So an alternative is that we don\u0027t need this for now for more simplicity, and may provide a better log filtering framework in the future (e.g. which can be enabled with a flag). What do you think?",
       "revId": "448f8984149d82f93ab69ffd2504371d9cd27754",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b9d9ec6_77a412bd",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-12T22:53:36Z",
+      "side": 1,
+      "message": "We are also collecting the last 100 lines from crashes and that requires this protection. I think we need to get used to never being able to print full addresses to the log and we should modify our APIs accordingly.",
+      "parentUuid": "76496ec9_32b3e15c",
+      "revId": "448f8984149d82f93ab69ffd2504371d9cd27754",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
