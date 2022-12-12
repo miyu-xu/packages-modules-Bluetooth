@@ -22,6 +22,30 @@
       },
       "revId": "2bef2b2300942320fffb9e943023505005a75c68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc17798_5e324e10",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-12T18:08:10Z",
+      "side": 1,
+      "message": "You are correct.\nDBG is true anyway 🙈\n\nDone -",
+      "parentUuid": "50431bf7_32278bce",
+      "range": {
+        "startLine": 1414,
+        "startChar": 0,
+        "endLine": 1414,
+        "endChar": 22
+      },
+      "revId": "2bef2b2300942320fffb9e943023505005a75c68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
