@@ -94,6 +94,30 @@
       },
       "revId": "aa97bc2e7479fc09315f4233c1e4b54521c6f49f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15f0cc35_06ba2e6b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-12T22:53:47Z",
+      "side": 1,
+      "message": "I think it would be nice to add a comment that says we\u0027re taking the max for the connection interval.",
+      "parentUuid": "704a5ded_1aacc0e9",
+      "range": {
+        "startLine": 3124,
+        "startChar": 27,
+        "endLine": 3124,
+        "endChar": 50
+      },
+      "revId": "aa97bc2e7479fc09315f4233c1e4b54521c6f49f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
