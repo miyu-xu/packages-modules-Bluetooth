@@ -290,12 +290,16 @@ public class GattService extends ProfileService {
         final MacAddress parsedAddress = MacAddress
                 .fromString(scanResult.getDevice().getAddress());
         if (mAdapterService.getLocationDenylistMac().test(parsedAddress.toByteArray())) {
-            Log.v(TAG, "Skipping device matching denylist: " + parsedAddress);
+            if (VDBG) {
+                Log.v(TAG, "Skipping device matching denylist: " + parsedAddress);
+            }
             return true;
         }
         final ScanRecord scanRecord = scanResult.getScanRecord();
         if (scanRecord.matchesAnyField(mAdapterService.getLocationDenylistAdvertisingData())) {
-            Log.v(TAG, "Skipping data matching denylist: " + scanRecord);
+            if (VDBG) {
+                Log.v(TAG, "Skipping data matching denylist: " + scanRecord);
+            }
             return true;
         }
         return false;
@@ -1841,7 +1845,9 @@ public class GattService extends ProfileService {
 
             if (client.hasDisavowedLocation) {
                 if (mLocationDenylistPredicate.test(result)) {
-                    Log.i(TAG, "Skipping client for location deny list");
+                    if (VDBG) {
+                        Log.i(TAG, "Skipping client for location deny list");
+                    }
                     continue;
                 }
             }
