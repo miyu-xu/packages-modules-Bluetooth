@@ -16,6 +16,24 @@
       "message": "Please fix the linter error",
       "revId": "86c1f97fdf1ede98b7ca80713a1fa7e6aa643fba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0dd4dfa_6cf093c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963225
+      },
+      "writtenOn": "2022-12-13T08:35:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "087dbe99_a2ef2207",
+      "revId": "86c1f97fdf1ede98b7ca80713a1fa7e6aa643fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
