@@ -358,7 +358,8 @@ class PhonePolicy {
         boolean isLeAudioProfileAllowed = false;
         if ((leAudioService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.LE_AUDIO) && (leAudioService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
+                == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)
+                && mAdapterService.isLeAudioAllowDevice(device)) {
             debugLog("setting le audio profile priority for device " + device);
             isLeAudioProfileAllowed = true;
             mAdapterService.getDatabase().setProfileConnectionPolicy(device,
@@ -398,7 +399,7 @@ class PhonePolicy {
         if ((volumeControlService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.VOLUME_CONTROL) && (volumeControlService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
-            debugLog("setting volume control profile priority for device " + device);
+            debugLog("setting volume control priority for device " + device);
             mAdapterService.getDatabase().setProfileConnectionPolicy(device,
                     BluetoothProfile.VOLUME_CONTROL, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
         }
@@ -720,7 +721,8 @@ class PhonePolicy {
             if (!leAudioConnDevList.contains(device) && (leAudioService.getConnectionPolicy(device)
                     == BluetoothProfile.CONNECTION_POLICY_ALLOWED)
                     && (leAudioService.getConnectionState(device)
-                    == BluetoothProfile.STATE_DISCONNECTED)) {
+                    == BluetoothProfile.STATE_DISCONNECTED)
+                    && mAdapterService.isLeAudioAllowDevice(device)) {
                 debugLog("Retrying connection to LEAudio with device " + device);
                 leAudioService.connect(device);
             }
