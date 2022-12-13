@@ -57,6 +57,24 @@
       "parentUuid": "97f06277_395489ab",
       "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f010048_497d8d09",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1475,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-13T12:00:56Z",
+      "side": 1,
+      "message": "yes, and then it is used in `bool LeAudioDeviceGroup::ConfigureAses` - isn\u0027t?\n\nSo if it is not updated for the case where ASE is configured we might end up configuring more ASEs then needed by the configuration.",
+      "parentUuid": "8bc8dcfc_0073e39d",
+      "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
