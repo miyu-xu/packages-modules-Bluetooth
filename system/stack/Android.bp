@@ -1137,14 +1137,9 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     sanitize: {
-        address: true,
-        all_undefined: true,
-        cfi: true,
+        hwaddress: true,
         integer_overflow: true,
         scs: true,
-        diag: {
-            undefined : true
-        },
     },
 }
 
