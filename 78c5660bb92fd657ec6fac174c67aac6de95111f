@@ -34,6 +34,24 @@
       "parentUuid": "e40ffe12_485261c2",
       "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "496d8fd0_7e4e856c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-13T11:55:34Z",
+      "side": 1,
+      "message": "Ok got it. I think, GAME and MEDIA should be taken into account.",
+      "parentUuid": "17e4857f_9dc5da87",
+      "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
