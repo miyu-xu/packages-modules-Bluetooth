@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4def871_29a9fd66",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-13T08:48:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f517733_d4040267",
+      "range": {
+        "startLine": 190,
+        "startChar": 15,
+        "endLine": 190,
+        "endChar": 89
+      },
+      "revId": "1397c144642433450a508dd98e98caa96397134d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be38f132_9d8e979c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-13T05:46:40Z",
       "side": 1,
       "message": "Please spend more time on method names here and other places.\n\nWhat about onReceive_withActionDeviceSelectedIntent_callsStartTransfer?",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 66
+      },
+      "revId": "1397c144642433450a508dd98e98caa96397134d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b580785_54defa09",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-13T08:48:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be38f132_9d8e979c",
       "range": {
         "startLine": 97,
         "startChar": 16,
