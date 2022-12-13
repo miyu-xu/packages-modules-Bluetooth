@@ -330,8 +330,8 @@ cc_binary {
         },
     },
     sanitize: {
-        address: true,
         cfi: true,
+        integer_overflow: true,
     }
 }
 
@@ -424,7 +424,8 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
+        cfi: true,
+        integer_overflow: true,
     },
 }
 
@@ -451,8 +452,8 @@ cc_test {
         "BluetoothPacketParserTestPacketPdlGen_h",
     ],
     sanitize: {
-        address: true,
         cfi: true,
+        integer_overflow: true,
     },
     static_libs: [
         "libbluetooth_rust_interop",

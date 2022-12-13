@@ -168,8 +168,8 @@ fluoride_defaults {
         "libgmock",
     ],
     sanitize: {
-        address: true,
         cfi: true,
+        integer_overflow: true,
         misc_undefined: ["bounds"],
     },
 }
