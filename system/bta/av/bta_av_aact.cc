@@ -1643,6 +1643,10 @@ void bta_av_open_failed(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     open.status = BTA_AV_FAIL_GET_CAP;
     open.starting = bta_av_chk_start(p_scb);
     open.edr = 0;
+    /** Fix Coverity Scan Issue @{ */
+    open.sep = AVDT_TSEP_INVALID;
+    /** @} */
+
     /* set the state back to initial state */
     bta_av_set_scb_sst_init(p_scb);
 
