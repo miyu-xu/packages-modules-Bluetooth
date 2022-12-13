@@ -52,6 +52,24 @@
       "parentUuid": "17e4857f_9dc5da87",
       "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5601943b_dacc2509",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-13T13:50:31Z",
+      "side": 1,
+      "message": "Ok, GAME and MEDIA, but do you mean configuration or metadata context?",
+      "parentUuid": "496d8fd0_7e4e856c",
+      "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
