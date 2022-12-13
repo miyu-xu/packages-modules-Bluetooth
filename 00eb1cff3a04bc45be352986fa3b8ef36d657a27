@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51adc8a8_9ef8cca6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-13T17:39:37Z",
+      "side": 1,
+      "message": "LOG_INFO should be fine",
+      "parentUuid": "f7cd292c_a4df986a",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00e863d6_811cef0b",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 2
