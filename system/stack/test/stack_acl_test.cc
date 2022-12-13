@@ -54,12 +54,6 @@ std::set<const RawAddress> copy_of_connected_with_both_public_and_random_set();
 }  // namespace testing
 }  // namespace bluetooth
 
-void BTM_update_version_info(const RawAddress& bd_addr,
-                             const remote_version_info& remote_version_info) {}
-
-void btm_sec_role_changed(tHCI_STATUS hci_status, const RawAddress& bd_addr,
-                          tHCI_ROLE new_role) {}
-
 class StackAclTest : public testing::Test {
  protected:
   void SetUp() override {
