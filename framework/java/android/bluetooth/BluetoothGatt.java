@@ -80,6 +80,7 @@ public final class BluetoothGatt implements BluetoothProfile {
     private int mTransport;
     private int mPhy;
     private boolean mOpportunistic;
+    private int mConnectionPriority;
     private final AttributionSource mAttributionSource;
 
     private static final int AUTH_RETRY_STATE_IDLE = 0;
@@ -150,6 +151,12 @@ public final class BluetoothGatt implements BluetoothProfile {
     public static final int CONNECTION_PRIORITY_LOW_POWER = 2;
 
     /**
+     * Connection parameter update - Request the balanced priority, low latency connection
+     * with no connection interval window.
+     */
+    public static final int CONNECTION_PRIORITY_BALANCED_HIGH = 3;
+
+    /**
      * No authentication required.
      *
      * @hide
@@ -217,7 +224,8 @@ public final class BluetoothGatt implements BluetoothProfile {
                         final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                         // autoConnect is inverse of "isDirect"
                         mService.clientConnect(mClientIf, mDevice.getAddress(), !mAutoConnect,
-                                mTransport, mOpportunistic, mPhy, mAttributionSource, recv);
+                                mTransport, mOpportunistic, mPhy, mConnectionPriority,
+                                mAttributionSource, recv);
                         recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
                     } catch (RemoteException | TimeoutException e) {
                         Log.e(TAG, "", e);
@@ -772,12 +780,14 @@ public final class BluetoothGatt implements BluetoothProfile {
             };
 
     /* package */ BluetoothGatt(IBluetoothGatt iGatt, BluetoothDevice device, int transport,
-            boolean opportunistic, int phy, AttributionSource attributionSource) {
+            boolean opportunistic, int phy, int connectionPriority,
+            AttributionSource attributionSource) {
         mService = iGatt;
         mDevice = device;
         mTransport = transport;
         mPhy = phy;
         mOpportunistic = opportunistic;
+        mConnectionPriority = connectionPriority;
         mAttributionSource = attributionSource;
         mServices = new ArrayList<BluetoothGattService>();
 
@@ -1038,7 +1048,7 @@ public final class BluetoothGatt implements BluetoothProfile {
             // autoConnect is inverse of "isDirect"
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
             mService.clientConnect(mClientIf, mDevice.getAddress(), !mAutoConnect, mTransport,
-                    mOpportunistic, mPhy, mAttributionSource, recv);
+                    mOpportunistic, mPhy, mConnectionPriority, mAttributionSource, recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
             return true;
         } catch (RemoteException | TimeoutException e) {
@@ -1812,15 +1822,15 @@ public final class BluetoothGatt implements BluetoothProfile {
      * remote device.
      *
      * @param connectionPriority Request a specific connection priority. Must be one of {@link
-     * BluetoothGatt#CONNECTION_PRIORITY_BALANCED}, {@link BluetoothGatt#CONNECTION_PRIORITY_HIGH}
-     * or {@link BluetoothGatt#CONNECTION_PRIORITY_LOW_POWER}.
+     * CONNECTION_PRIORITY_BALANCED}, {@link CONNECTION_PRIORITY_HIGH},
+     * {@link CONNECTION_PRIORITY_LOW_POWER} or {@link CONNECTION_PRIORITY_BALANCED_HIGH}.
      * @throws IllegalArgumentException If the parameters are outside of their specified range.
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean requestConnectionPriority(int connectionPriority) {
         if (connectionPriority < CONNECTION_PRIORITY_BALANCED
-                || connectionPriority > CONNECTION_PRIORITY_LOW_POWER) {
+                || connectionPriority > CONNECTION_PRIORITY_BALANCED_HIGH) {
             throw new IllegalArgumentException("connectionPriority not within valid range");
         }
 
@@ -1836,7 +1846,6 @@ public final class BluetoothGatt implements BluetoothProfile {
             Log.e(TAG, "", e);
             return false;
         }
-
         return true;
     }
 

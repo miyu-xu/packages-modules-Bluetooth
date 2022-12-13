@@ -189,6 +189,7 @@ static jmethodID method_onSyncTransferredCallback;
  */
 
 static const btgatt_interface_t* sGattIf = NULL;
+static const bt_interface_t* btIf;
 static jobject mCallbacksObj = NULL;
 static jobject mAdvertiseCallbacksObj = NULL;
 static jobject mPeriodicScanCallbacksObj = NULL;
@@ -1214,8 +1215,6 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
   info("classInitNative: Success!");
 }
 
-static const bt_interface_t* btIf;
-
 static void initializeNative(JNIEnv* env, jobject object) {
   std::unique_lock<std::shared_mutex> lock(callbacks_mutex);
   if (btIf) return;
@@ -1772,6 +1771,13 @@ static void gattClientConfigureMTUNative(JNIEnv* env, jobject object,
                                          jint conn_id, jint mtu) {
   if (!sGattIf) return;
   sGattIf->client->configure_mtu(conn_id, mtu);
+}
+
+static void gattSetConnectParametersNative(JNIEnv* env, jobject object,
+                                           jint conn_interval,
+                                           jint interval_window) {
+  if (!btIf) return;
+  btIf->set_le_connection_parameters(conn_interval, interval_window);
 }
 
 static void gattConnectionParameterUpdateNative(JNIEnv* env, jobject object,
@@ -2560,6 +2566,8 @@ static JNINativeMethod sMethods[] = {
      (void*)gattClientReadRemoteRssiNative},
     {"gattClientConfigureMTUNative", "(II)V",
      (void*)gattClientConfigureMTUNative},
+    {"gattSetConnectParametersNative", "(II)V",
+     (void*)gattSetConnectParametersNative},
     {"gattConnectionParameterUpdateNative", "(ILjava/lang/String;IIIIII)V",
      (void*)gattConnectionParameterUpdateNative},
     {"gattServerRegisterAppNative", "(JJZ)V",
