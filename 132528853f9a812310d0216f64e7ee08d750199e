@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d862bd_e1f3b990",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-13T21:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ee1fc9e_5d5223d5",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 1
+      },
+      "revId": "132528853f9a812310d0216f64e7ee08d750199e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6406f98c_c728717f",
@@ -84,6 +108,24 @@
       "writtenOn": "2022-12-07T20:56:27Z",
       "side": 1,
       "message": "I think this is needed when you pair new device.\nYou must wait after pairing, to give Settings time to trigger profile connections.\nWith this patch, you can potentially destabilize connecting to profiles after Pairing.",
+      "revId": "132528853f9a812310d0216f64e7ee08d750199e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd767a69_edf63126",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-13T21:02:18Z",
+      "side": 1,
+      "message": "Resolved based on our in-office testing and offline discussion.",
+      "parentUuid": "98a1d3db_0adf42e5",
       "revId": "132528853f9a812310d0216f64e7ee08d750199e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
