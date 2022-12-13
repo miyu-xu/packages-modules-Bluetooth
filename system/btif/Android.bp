@@ -369,8 +369,8 @@ cc_test {
     ],
     cflags: ["-DBUILDCFG"],
     sanitize: {
-        address: true,
         cfi: true,
+        integer_overflow: true,
         misc_undefined: ["bounds"],
     },
 }
@@ -555,8 +555,8 @@ cc_test {
           },
       },
       sanitize: {
-        address: true,
         cfi: true,
+        integer_overflow: true,
         misc_undefined: ["bounds"],
     },
 }
@@ -676,8 +676,8 @@ cc_test {
           },
       },
       sanitize: {
-        address: true,
         cfi: true,
+        integer_overflow: true,
         misc_undefined: ["bounds"],
     },
 }
