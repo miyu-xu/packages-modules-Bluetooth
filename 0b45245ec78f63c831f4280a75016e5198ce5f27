@@ -22,6 +22,53 @@
       },
       "revId": "0b45245ec78f63c831f4280a75016e5198ce5f27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfedbc6f_d9b7591b",
+        "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-13T18:39:24Z",
+      "side": 1,
+      "message": "Re reading that, I see how it works Buf is implemented on `\u0026[u8]` as well https://docs.rs/bytes/latest/src/bytes/buf/buf_impl.rs.html#1351\n\nSo the `get_u16` takes a mut reference to `bytes` and mutate it every time 🤔\n\nI really don\u0027t like that\n\nPS: I see that it\u0027s explained in your comments on the generator, I should have reviewed the whole CL 😅",
+      "parentUuid": "edde1263_9e383e68",
+      "range": {
+        "startLine": 24,
+        "startChar": 24,
+        "endLine": 24,
+        "endChar": 29
+      },
+      "revId": "0b45245ec78f63c831f4280a75016e5198ce5f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3fc263_5db9046a",
+        "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-13T18:39:24Z",
+      "side": 1,
+      "message": "Are we fine changing that to a relative (to the last field) number of bytes ?\nI would see and usage for `wanted` and `got` as absolute to parse an unframed packet (repeat after an `InvalidLengthError` with the number of bytes that you had in `got`)",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "0b45245ec78f63c831f4280a75016e5198ce5f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
