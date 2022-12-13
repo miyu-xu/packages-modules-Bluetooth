@@ -26,6 +26,7 @@
 #include "bta_csis_api.h"
 #include "bta_gatt_api.h"
 #include "bta_groups.h"
+#include "btif_storage.h"
 #include "gap_api.h"
 #include "gd/common/init_flags.h"
 #include "gd/common/strings.h"
@@ -53,6 +54,8 @@ static constexpr uint8_t kCsisErrorCodeLockAlreadyGranted = 0x85;
 
 static constexpr uint8_t kCsisSirkTypeEncrypted = 0x00;
 static constexpr uint8_t kCsisSirkCharLen = 17;
+
+static constexpr int kMaxModelNameLen = 1000;
 
 struct hdl_pair {
   hdl_pair() {}
@@ -290,7 +293,13 @@ class CsisGroup {
         target_lock_state_(CsisLockState::CSIS_STATE_UNSET),
         lock_transition_cnt_(0) {
     devices_.clear();
+    modelNameVal = std::make_unique<char[]>(kMaxModelNameLen);
+    BTIF_STORAGE_FILL_PROPERTY(&modelName, BT_PROPERTY_REMOTE_MODLE_NUM,
+                               kMaxModelNameLen, modelNameVal.get());
   }
+
+  bt_property_t modelName;
+  std::unique_ptr<char[]> modelNameVal;
 
   void AddDevice(std::shared_ptr<CsisDevice> csis_device) {
     auto it =

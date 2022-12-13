@@ -32,6 +32,7 @@
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
 #include "bta_groups.h"
+#include "btif_common.h"
 #include "btif_storage.h"
 #include "csis_types.h"
 #include "gap_api.h"
@@ -148,6 +149,7 @@ class CsisClientImpl : public CsisClient {
         auto g = std::make_shared<CsisGroup>(group_id, uuid);
         csis_groups_.push_back(g);
         csis_group = FindCsisGroup(group_id);
+        btif_storage_get_remote_device_property(&address, &g->modelName);
       } else {
         LOG(ERROR) << __func__ << ": Missing group - that shall not happen";
         return nullptr;
@@ -1175,6 +1177,11 @@ class CsisClientImpl : public CsisClient {
       callbacks_->OnSetMemberAvailable(result->bd_addr,
                                        csis_group->GetGroupId());
 
+      if (csis_group->modelName.len > 0) {
+        invoke_remote_device_properties_cb(BT_STATUS_SUCCESS, result->bd_addr,
+                                           1, &(csis_group->modelName));
+      }
+
       /* Switch back to the opportunistic observer mode.
        * When second device will pair, csis will restart active scan
        * to search more members if needed */
@@ -1243,6 +1250,11 @@ class CsisClientImpl : public CsisClient {
       LOG_INFO("Device %s from inquiry cache match to group id %d",
                address.ToString().c_str(), csis_group->GetGroupId());
       callbacks_->OnSetMemberAvailable(address, csis_group->GetGroupId());
+
+      if (csis_group->modelName.len > 0) {
+        invoke_remote_device_properties_cb(BT_STATUS_SUCCESS, address, 1,
+                                           &csis_group->modelName);
+      }
       break;
     }
   }
@@ -1294,6 +1306,10 @@ class CsisClientImpl : public CsisClient {
 
           callbacks_->OnSetMemberAvailable(result->bd_addr,
                                            group->GetGroupId());
+          if (group->modelName.len > 0) {
+            invoke_remote_device_properties_cb(
+                BT_STATUS_SUCCESS, result->bd_addr, 1, &group->modelName);
+          }
           break;
         }
       }

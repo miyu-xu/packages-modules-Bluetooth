@@ -45,6 +45,9 @@
 #include "btif/include/stack_manager.h"
 #include "btif_api.h"
 #include "btif_config.h"
+#include "btif_hd.h"
+#include "btif_hh.h"
+#include "btif_storage.h"
 #include "btif_util.h"
 #include "core_callbacks.h"
 #include "device/include/controller.h"
@@ -226,7 +229,11 @@ static int prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
                           info->product_id);
       btif_config_set_int(bdstr, BTIF_STORAGE_PATH_VERSION, info->version);
     } break;
-
+    case BT_PROPERTY_REMOTE_MODLE_NUM: {
+      strncpy(value, (char*)prop->val, prop->len);
+      value[prop->len] = '\0';
+      btif_config_set_str(bdstr, BT_CONFIG_KEY_DIS_MODEL_NUM, value);
+    } break;
     default:
       BTIF_TRACE_ERROR("Unknown prop type:%d", prop->type);
       return false;
@@ -383,6 +390,18 @@ static int cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
           ret = btif_config_get_int(bdstr, BTIF_STORAGE_PATH_VERSION, &val);
           info->version = (uint16_t)val;
         }
+      }
+    } break;
+
+    case BT_PROPERTY_REMOTE_MODLE_NUM: {
+      int len = prop->len;
+      ret = btif_config_get_str(bdstr, BT_CONFIG_KEY_DIS_MODEL_NUM,
+                                (char*)prop->val, &len);
+      if (ret && len && len <= prop->len)
+        prop->len = len - 1;
+      else {
+        prop->len = 0;
+        ret = false;
       }
     } break;
 
