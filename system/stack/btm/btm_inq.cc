@@ -1215,6 +1215,8 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
     else
       p_i->inq_info.results.rssi = BTM_INQ_RES_IGNORE_RSSI;
 
+    p_i->inq_info.results.this_result_type = BTM_INQ_RESULT_BR;
+
     if (is_new) {
       /* Save the info */
       p_cur = &p_i->inq_info.results;

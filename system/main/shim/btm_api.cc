@@ -107,6 +107,7 @@ void btm_api_process_inquiry_result(const RawAddress& raw_address,
   p_i->inq_info.results.dev_class[2] = device_class[2];
   p_i->inq_info.results.clock_offset = clock_offset | BTM_CLOCK_OFFSET_VALID;
   p_i->inq_info.results.inq_result_type = BTM_INQ_RESULT_BR;
+  p_i->inq_info.results.this_result_type = BTM_INQ_RESULT_BR;
   p_i->inq_info.results.rssi = BTM_INQ_RES_IGNORE_RSSI;
 
   p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
@@ -154,6 +155,7 @@ void btm_api_process_inquiry_result_with_rssi(RawAddress raw_address,
   }
 
   p_i->inq_info.results.rssi = rssi;
+  p_i->inq_info.results.this_result_type = BTM_INQ_RESULT_BR;
 
   if (is_new) {
     p_i->inq_info.results.page_scan_rep_mode = page_scan_rep_mode;
@@ -208,6 +210,7 @@ void btm_api_process_extended_inquiry_result(RawAddress raw_address,
   }
 
   p_i->inq_info.results.rssi = rssi;
+  p_i->inq_info.results.this_result_type = BTM_INQ_RESULT_BR;
 
   if (is_new) {
     p_i->inq_info.results.page_scan_rep_mode = page_scan_rep_mode;

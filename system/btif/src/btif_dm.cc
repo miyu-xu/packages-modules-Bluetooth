@@ -1266,8 +1266,21 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
                        p_search_data->inq_res.device_type);
       bdname.name[0] = 0;
 
-      if (!check_eir_remote_name(p_search_data, bdname.name, &remote_name_len))
-        check_cached_remote_name(p_search_data, bdname.name, &remote_name_len);
+      if ((p_search_data->inq_res.this_result_type == BTM_INQ_RESULT_BLE) &&
+          (p_search_data->inq_res.inq_result_type & BTM_INQ_RESULT_BR) &&
+          check_cached_remote_name(p_search_data, bdname.name,
+                                   &remote_name_len)) {
+        /* We saw this device before, either on LE on Classic transport, and
+         * know it's name. We prefer name we already know from what we just
+         * received over LE transport. */
+      } else {
+        // This fills the bdname if p_search_data have name in it
+        if (!check_eir_remote_name(p_search_data, bdname.name,
+                                   &remote_name_len)) {
+          check_cached_remote_name(p_search_data, bdname.name,
+                                   &remote_name_len);
+        }
+      }
 
       /* Check EIR for services */
       if (p_search_data->inq_res.p_eir) {
@@ -3457,6 +3470,22 @@ static void btif_dm_ble_sc_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type) {
 void btif_dm_update_ble_remote_properties(const RawAddress& bd_addr,
                                           BD_NAME bd_name,
                                           tBT_DEVICE_TYPE dev_type) {
+  int stored_device_type = 0;
+  if (btif_get_device_type(bd_addr, &stored_device_type) &&
+      ((stored_device_type & BT_DEVICE_TYPE_BREDR) != 0)) {
+    bt_bdname_t bdname;
+    bt_property_t prop_name;
+
+    /* check if we already have it in our btif_storage cache */
+    BTIF_STORAGE_FILL_PROPERTY(&prop_name, BT_PROPERTY_BDNAME,
+                               sizeof(bt_bdname_t), &bdname);
+    if (btif_storage_get_remote_device_property(&bd_addr, &prop_name) ==
+        BT_STATUS_SUCCESS) {
+      /* For devices that support BR/EDR transport, we prefer to use name
+       * discovered over Classic transport, or whatever we already have */
+      strcpy((char*)bd_name, (char*)bdname.name);
+    }
+  }
   btif_update_remote_properties(bd_addr, bd_name, NULL, dev_type);
 }
 
