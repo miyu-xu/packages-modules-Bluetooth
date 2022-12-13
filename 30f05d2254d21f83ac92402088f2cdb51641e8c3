@@ -16,6 +16,24 @@
       "message": "Will you add more tests for other methods in the next CL?",
       "revId": "30f05d2254d21f83ac92402088f2cdb51641e8c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be343e57_5bd1e613",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-13T06:39:48Z",
+      "side": 1,
+      "message": "AppScanStats currently has 53% (191/355) coverage and with the new tests in this CL, I estimate around +135 lines to be added bringing it to ~92% (326/355).",
+      "parentUuid": "42d0b1cc_3685356b",
+      "revId": "30f05d2254d21f83ac92402088f2cdb51641e8c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
