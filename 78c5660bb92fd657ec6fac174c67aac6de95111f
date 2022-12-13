@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02283390_e412fd89",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1597,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-13T15:29:36Z",
+      "side": 0,
+      "message": "I think this was skipping the whole device as the assumption was that if one ASE is configured, then other ASEs are configured as well? Hmm, not sure.",
+      "range": {
+        "startLine": 1594,
+        "startChar": 6,
+        "endLine": 1597,
+        "endChar": 7
+      },
+      "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
