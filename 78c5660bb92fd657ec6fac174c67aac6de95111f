@@ -16,6 +16,24 @@
       "message": "should we check here metadata_context_types_ to see if there is a sonification? Is this enough to check that configuration_context_type_ is different than MEDIA?\n\nMaybe this is ok but just more descriptive comment is needed?\n\n[Update after looking on futher change] \nIs this needed since timer is stopped when metadata has changed in line 3572 and later sonification case is handled in 3650 ?",
       "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17e4857f_9dc5da87",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-13T11:06:39Z",
+      "side": 1,
+      "message": "When you start the recording you usually get a click (SOUNDEFFECT) on the local audio source and then the local audio sink (recording) starts. When you stop the recording, this code prevents reconfiguring back to whatever SOUNDEFFECTS was mapped to. This way you can resume the recording very quickly, unless any Source metadata update happens between the time when the reconfigure timer is started (local sink suspends) and the time it triggers. If that happens, and it results with the configuration change to MEDIA, this `if` clause is false and it will reconfigure to MEDIA according to the normal reconfiguration policy.\n\nSo I think it is needed. But the question is should only MEDIA metadata trigger the reconfiguration to HQ Media scenario, or any metadata which maps to Media scenario according to our current context2scenario mapping policy?",
+      "parentUuid": "e40ffe12_485261c2",
+      "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
