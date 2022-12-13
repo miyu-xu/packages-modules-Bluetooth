@@ -2029,6 +2029,9 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
         /* can not find AVRC on peer device. report failure */
         p_scb->use_rc = false;
         tBTA_AV_RC_OPEN rc_open;
+        /** Fix varaible initial Issue @{ */
+        rc_open.rc_handle = BTA_AV_RC_HANDLE_NONE;
+        /** @} */
         rc_open.peer_addr = p_scb->PeerAddress();
         rc_open.peer_features = 0;
         rc_open.cover_art_psm = 0;
