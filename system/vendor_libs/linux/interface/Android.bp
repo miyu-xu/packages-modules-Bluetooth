@@ -90,8 +90,8 @@ cc_test_host {
         "libgmock",
     ],
     sanitize: {
-        address: true,
         cfi: true,
+        integer_overflow: true,
     },
     test_suites: ["general-tests"],
 }

@@ -620,7 +620,6 @@ cc_test {
         "libosi-AllocationTestHarness",
     ],
     sanitize: {
-        address: true,
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -674,7 +673,6 @@ cc_test {
         "libosi-AllocationTestHarness",
     ],
     sanitize: {
-        address: true,
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -715,7 +713,6 @@ cc_test {
         "libosi-AllocationTestHarness",
     ],
     sanitize: {
-        address: true,
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -802,7 +799,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -966,7 +962,6 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     sanitize: {
-      hwaddress: true,
       integer_overflow: true,
       scs: true,
     },
@@ -1007,14 +1002,9 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
-        all_undefined: true,
         cfi: true,
         integer_overflow: true,
-        scs: true,
-        diag: {
-            undefined : true
-        },
+/       scs: true,
     },
 }
 
@@ -1061,7 +1051,6 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1124,7 +1113,6 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1201,14 +1189,8 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     sanitize: {
-        address: true,
-        all_undefined: true,
-        cfi: true,
         integer_overflow: true,
         scs: true,
-        diag: {
-            undefined : true
-        },
     },
 }
 
@@ -1274,7 +1256,6 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1345,7 +1326,6 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,

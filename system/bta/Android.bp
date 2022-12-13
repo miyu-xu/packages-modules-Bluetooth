@@ -302,7 +302,6 @@ cc_test {
         "libgmock",
     ],
     sanitize: {
-        address: true,
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -386,7 +385,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -428,7 +426,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -727,7 +724,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -778,7 +774,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -849,7 +844,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -904,7 +898,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -972,11 +965,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
-        all_undefined: true,
         integer_overflow: true,
-        diag: {
-            undefined : true
-        },
     },
 }
