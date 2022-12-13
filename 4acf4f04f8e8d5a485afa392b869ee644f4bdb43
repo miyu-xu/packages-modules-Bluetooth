@@ -39,6 +39,30 @@
       },
       "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a1a953_8eff0692",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-13T22:52:08Z",
+      "side": 1,
+      "message": "Can we assert test mode to execute this function otherwise we need to use a proxy object to provide LocationService to ScanManager?\n\n    @VisibleForTesting\n    void setLocationManager(LocationManager locationManager) {\n++        Utils.enforceInstrumentationTestMode();\n        mLocationManager \u003d locationManager;\n    }",
+      "parentUuid": "0647579b_1e15e494",
+      "range": {
+        "startLine": 1709,
+        "startChar": 9,
+        "endLine": 1709,
+        "endChar": 27
+      },
+      "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
