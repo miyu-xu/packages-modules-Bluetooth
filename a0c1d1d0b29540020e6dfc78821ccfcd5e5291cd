@@ -46,6 +46,30 @@
       },
       "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa32becd_cf0314a9",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-13T18:32:30Z",
+      "side": 1,
+      "message": "I\u0027m not sure to get the feature parity part, as the old code generator was only using Bytes for the serialisation path and in your CL you are using it for the parsing path.\n\nI would prefer for us to not use `bytes` at all because the main point of `bytes` https://docs.rs/bytes/latest/bytes/struct.Bytes.html is to provide a shareable heap allocated buffer, and BytesMut that is mostly an optimisation of `Arc\u003cVec\u003cu8\u003e\u003e` to avoid the double indirection.\nIt should not be the decision of PDL to say if the buffer is shareable and should be the decision of the user. Creating a Bytes instance from a `Vec\u003cu8\u003e` (or Box\u003c[u8]\u003e) is zero copy so it\u0027s basically free. Removing this from PDL would allow us to refactor some code (mostly UWB) to not use Bytes as they should not need it.\nIn LMP I don\u0027t need it either for example.\n\nAnd in the point of view of PDL for the serialisation code a `Vec\u003cu8\u003e` should give us the same features as `BytesMut`",
+      "parentUuid": "ea293b55_15505bf6",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
