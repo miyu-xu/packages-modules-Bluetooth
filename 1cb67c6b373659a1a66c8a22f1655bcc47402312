@@ -1,0 +1,860 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e20ee055_86ffb3de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Commit message should not have a licence",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099a7211_a1780a51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Can you add some test associated with this change and then the `Test: xxx` in the commit message  ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf453929_fa9c385e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Please can you address all the java format issue in your commit\nand then run clang-format on it  (diff is too big to be posted as a comment)\n``` \n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/ObexServerSockets.java:108: \u0027int\u0027 has incorrect indentation level 7, expected level should be 12.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/ObexServerSockets.java:109: \u0027method def\u0027 child has incorrect indentation level 5, expected level should be 8.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:2: Android Copyright header seems to be incorrect. Expected \u0027 \\* Copyright (\\([Cc]\\) )?[0-9]{4} The Android Open Source Project\u0027 on this line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:42: Wrong order for android.app.NotificationChannel import. Use Ctrl+Shift+O (Eclipse) or Ctrl+Alt+O (Intellij) to sort imports. https://source.android.com/setup/code-style#order-import-statements\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:76: Wrong order for com.android.bluetooth.btservice.AbstractionLayer import. Use Ctrl+Shift+O (Eclipse) or Ctrl+Alt+O (Intellij) to sort imports. https://source.android.com/setup/code-style#order-import-statements\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:83: Extra separation in import group before \u0027java.util.Arrays\u0027\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:83: Wrong order for java.util.Arrays import. Use Ctrl+Shift+O (Eclipse) or Ctrl+Alt+O (Intellij) to sort imports. https://source.android.com/setup/code-style#order-import-statements\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:84:8: Unused import: java.util.Collections. Use Ctrl+Shift+O (Eclipse) or Ctrl+Alt+O (Intellij) to sort imports\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:86: Extra separation in import group before \u0027java.io.DataInputStream\u0027\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:86: Wrong order for java.io.DataInputStream import. Use Ctrl+Shift+O (Eclipse) or Ctrl+Alt+O (Intellij) to sort imports. https://source.android.com/setup/code-style#order-import-statements\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:200:37: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:200:45: Static field names start with s and are camel-cased. (e.g. sFooBar)\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:200:74: GenericWhitespace \u0027\u003c\u0027 is preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:200:83: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:202:37: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:202:46: Static field names start with s and are camel-cased. (e.g. sFooBar)\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:202:73: GenericWhitespace \u0027\u003c\u0027 is preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:202:82: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:210:42: Static field names start with s and are camel-cased. (e.g. sFooBar)\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:218:30: Static field names start with s and are camel-cased. (e.g. sFooBar)\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:220:30: Static field names start with s and are camel-cased. (e.g. sFooBar)\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:230: Line is longer than 100 characters (found 113).\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:231: Line is longer than 100 characters (found 101).\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:324: \u0027if\u0027 child has incorrect indentation level 4, expected level should be 12.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:326: \u0027if\u0027 has incorrect indentation level 4, expected level should be 12.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:327: \u0027if\u0027 child has incorrect indentation level 8, expected level should be 16.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:329: \u0027if\u0027 child has incorrect indentation level 8, expected level should be 16.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:333: \u0027if rcurly\u0027 has incorrect indentation level 4, expected level should be 12.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:334: \u0027if rcurly\u0027 has incorrect indentation level 0, expected level should be 8.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:390:24: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:391: \u0027if\u0027 child has incorrect indentation level 14, expected level should be 12.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:392:17: \u0027(\u0027 should be on the previous line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:392:49: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:397:24: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:399:17: \u0027(\u0027 should be on the previous line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:399:49: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:449:48: \u0027typecast\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:463:5: Missing a Javadoc comment.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:464:30: \u0027;\u0027 is preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:473:55: \u0027+\u0027 is not preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:473:56: \u0027+\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:474:55: \u0027+\u0027 is not preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:474:56: \u0027+\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:478:37: \u0027typecast\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:480:40: \u0027+\u0027 is not preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:480:54: \u0027+\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:495:5: Missing a Javadoc comment.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:496:5: \u0027{\u0027 at column 5 should be on the previous line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:497:30: \u0027|\u0027 should be on a new line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:498:35: \u0027;\u0027 is preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:514:17: \u0027(\u0027 should be on the previous line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:514:60: \u0027:\u0027 is not preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:516:13: Local variables should be camel-cased (e.g. int minWidth \u003d 4).\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:517:70: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:518: \u0027.\u0027 has incorrect indentation level 12, expected level should be 16.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:519: \u0027.\u0027 has incorrect indentation level 12, expected level should be 16.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:520: \u0027.\u0027 has incorrect indentation level 12, expected level should be 16.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:521: \u0027.\u0027 has incorrect indentation level 12, expected level should be 16.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:522: \u0027.\u0027 has incorrect indentation level 12, expected level should be 16.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:524: if, for, while, and do require curly braces unless they are single-line statements.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:524:41: \u0027)\u0027 is preceded with whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:527:23: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:537:55: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:541:55: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:546:46: \u0027\u0026\u0026\u0027 should be on a new line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:553: if, for, while, and do require curly braces unless they are single-line statements.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:560:55: \u0027,\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:577: \u0027block\u0027 child has incorrect indentation level 18, expected level should be 20.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:578:27: \u0027(\u0027 should be on the previous line.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:580: \u0027if\u0027 has incorrect indentation level 18, expected level should be 20.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:581: \u0027if\u0027 child has incorrect indentation level 22, expected level should be 24.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:582: \u0027if\u0027 child has incorrect indentation level 22, expected level should be 24.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:583: \u0027if rcurly\u0027 has incorrect indentation level 18, expected level should be 20.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:646: \u0027block\u0027 child has incorrect indentation level 21, expected level should be 20.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java:648: \u0027block\u0027 child has incorrect indentation level 21, expected level should be 20.\n```",
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b19c8fd_0ca00569",
+        "filename": "android/app/src/com/android/bluetooth/ObexServerSockets.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "can you add an extra blank line between comment and `CREATE_RETRY_TIME`",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 7
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea242260_a7ea2011",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`All rights reserved` is not allowed in the header (I know it is present 3 lines below ... 😞 )",
+      "range": {
+        "startLine": 2,
+        "startChar": 45,
+        "endLine": 2,
+        "endChar": 64
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2616083_20f009e1",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Please add the unit this delay is expected to be in a comment (I assumed ms)",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 54
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0f980d_30bb2038",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "naive question:\nWhy all of these are protected and not private ?",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 13
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20578538_60461003",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Should the type of PbapSdpResponse be a map of `\u003cString, Boolean\u003e` instead ?",
+      "range": {
+        "startLine": 200,
+        "startChar": 36,
+        "endLine": 200,
+        "endChar": 42
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c11ba2c_32f4a005",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Both hashmap can be final (they will still have get / put but the variable should not be changed)",
+      "range": {
+        "startLine": 199,
+        "startChar": 70,
+        "endLine": 202,
+        "endChar": 92
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ca597e_744e93da",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`sRemoteVersion` ?",
+      "range": {
+        "startLine": 202,
+        "startChar": 45,
+        "endLine": 202,
+        "endChar": 58
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e02686f_862a2f3d",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`sNotificationManager`",
+      "range": {
+        "startLine": 210,
+        "startChar": 41,
+        "endLine": 210,
+        "endChar": 61
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d4b1d3_e850cc8d",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`sIsSimSupported`",
+      "range": {
+        "startLine": 218,
+        "startChar": 29,
+        "endLine": 218,
+        "endChar": 43
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c9a960_4b0bd6f0",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`sIsSupportedPbap12`",
+      "range": {
+        "startLine": 220,
+        "startChar": 29,
+        "endLine": 220,
+        "endChar": 46
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "793979c1_4611f7bf",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "We should delete the entries in the map and in the file on disk when bondState is BOND_NONE",
+      "range": {
+        "startLine": 333,
+        "startChar": 4,
+        "endLine": 333,
+        "endChar": 5
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77115274_0b30ed19",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "It\u0027s hard to look at the difference between the two assignement\nCan we create a temporary variable for this:\n```\nint repository \u003d SDP_PBAP_SUPPORTED_REPOSITORIES;\nif (isSimSupported) {\n  Log.d(TAG ,\"creating PBAP 1.1 record with sim support\");\n} else {\n  Log.d(TAG ,\"creating PBAP 1.1 record without sim support\");\n  repository \u003d SDP_PBAP_LEGACY_SUPPORTED_REPOSITORIES\n}\nmSdphandle \u003d create(...,repository ,...);\n```",
+      "range": {
+        "startLine": 398,
+        "startChar": 3,
+        "endLine": 402,
+        "endChar": 52
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abddd10c_95a15c91",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`\"remoteSupportsPbap1_2\"` ?",
+      "range": {
+        "startLine": 431,
+        "startChar": 20,
+        "endLine": 431,
+        "endChar": 45
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d43cf779_69c2af45",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`\"readRemoteProfileVersion1_2\"` ?",
+      "range": {
+        "startLine": 445,
+        "startChar": 20,
+        "endLine": 445,
+        "endChar": 44
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab398e0d_3247aa71",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "rename to partial_address",
+      "range": {
+        "startLine": 471,
+        "startChar": 26,
+        "endLine": 471,
+        "endChar": 33
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "473794b2_ad993a09",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "I don\u0027t think we want to log this.\n@phui@google.com Can you give clear recommandation for this log ?",
+      "range": {
+        "startLine": 479,
+        "startChar": 64,
+        "endLine": 479,
+        "endChar": 71
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f67645e_41da5eb4",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Logging should use `getAnonymizedAddress()`",
+      "range": {
+        "startLine": 481,
+        "startChar": 29,
+        "endLine": 481,
+        "endChar": 39
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c23c73e_8d04e0ca",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we check with a endWith instead ?\n\nIn my understanding, the start of an address define the device manufacturer / class of device witch are standard and allow people to retrieve the device model from it, while the last 3 digits are more random.",
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a1b303_6a310b86",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "The file content is stored in a map for all devices, but it is stopped as soon as we find the device we are looking for.\n\nIn the end we never know how much of the file has been parsed or not, and we need to check for the file every time.\n\nI think we should either load the file once and never read it again from it during the session, or read it each time and do not use 2 static Map for it\n\nI am also not a big fan of having the file parsing in both native and Java. Can\u0027t we implement it only once and call it from the other side ?",
+      "range": {
+        "startLine": 485,
+        "startChar": 11,
+        "endLine": 486,
+        "endChar": 76
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85eee75a_fa935bee",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "There is already this utility method in packages/modules/Bluetooth/android/app/src/com/android/bluetooth/Utils.java\nand you want to call the  `byteArrayToShort` variant",
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "269f99ca_c1d8f9eb",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "We prefer to use\n`context.getSystemService(NotificationManager.class);`",
+      "range": {
+        "startLine": 505,
+        "startChar": 31,
+        "endLine": 506,
+        "endChar": 71
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36925070_835b1d2b",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "We should add a null check here",
+      "range": {
+        "startLine": 509,
+        "startChar": 8,
+        "endLine": 509,
+        "endChar": 28
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1adeb345_f0443d39",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "This method check for a null remoteDevice but just below you are doing remoteDevice.getAddress.\nIf device is not null we should remove the check in the method and add a `@NonNull` annotation for futur re-reader\n\n----\n\nOr we could delete remoteSupportsPbap1_2 and directly call  readRemoteProfileVersion1_2. What do you think ?",
+      "range": {
+        "startLine": 533,
+        "startChar": 35,
+        "endLine": 533,
+        "endChar": 56
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d0775d7_9367ef5c",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Can you explain what you expect by \"rebonded\" ?\n\nIn case of forget of a device we should delete all the data we know about it.\nA re-pairing (as I understand rebond) should be exaclty the same as a first pairing. We should not have any data in the hashmap / file on disk about the device.\nIf this is not implemented in this CL, we will need to fix that.",
+      "range": {
+        "startLine": 534,
+        "startChar": 38,
+        "endLine": 534,
+        "endChar": 46
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5302549_1cfc8c26",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Replace with getOrDefault() should facilitate the next if later (same for remoteVersion.get)",
+      "range": {
+        "startLine": 536,
+        "startChar": 44,
+        "endLine": 536,
+        "endChar": 47
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81bc1f7_16671b4e",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "This method is never called. We should delete it",
+      "range": {
+        "startLine": 558,
+        "startChar": 19,
+        "endLine": 558,
+        "endChar": 29
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f818971_1c938cf4",
+        "filename": "system/bta/sdp/bta_sdp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Add extra line above",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 6
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee80b5c9_c6aa07e6",
+        "filename": "system/stack/sdp/sdp_db.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "`All right reserved` is not allow in licence header",
+      "range": {
+        "startLine": 3,
+        "startChar": 46,
+        "endLine": 3,
+        "endChar": 66
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76f94cd_13037e31",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 611,
+        "startChar": 0,
+        "endLine": 611,
+        "endChar": 28
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d913898e_0693934f",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Is it intended to be commented ?",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 940,
+        "endChar": 5
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38641484_08c0a77a",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "Please replace all blacklist by denylist",
+      "range": {
+        "startLine": 991,
+        "startChar": 32,
+        "endLine": 991,
+        "endChar": 41
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "156bf6fb_d165c9ed",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "replace with:\n```\nADDRESS_TO_LOGGABLE_CSTR(remote_address)\n```",
+      "range": {
+        "startLine": 1107,
+        "startChar": 6,
+        "endLine": 1107,
+        "endChar": 39
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f095ae61_b7aefd5e",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "I do not agree with this logic. See comment in the PbapService.java about data on unbonded devices",
+      "range": {
+        "startLine": 1162,
+        "startChar": 5,
+        "endLine": 1162,
+        "endChar": 46
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634f0371_8fd354ac",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "replace APPL_TRACE_XXX with the SDP_TRACE_XXX",
+      "range": {
+        "startLine": 1167,
+        "startChar": 4,
+        "endLine": 1167,
+        "endChar": 20
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bcd125e_6ab6c43b",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T21:54:41Z",
+      "side": 1,
+      "message": "is the comment intended ?",
+      "range": {
+        "startLine": 1301,
+        "startChar": 0,
+        "endLine": 1304,
+        "endChar": 12
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
