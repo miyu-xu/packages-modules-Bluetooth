@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fca1fbf_aa7d412d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-13T21:52:12Z",
+      "side": 1,
+      "message": "Can we add the mock in GattService instead?",
+      "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0647579b_1e15e494",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-13T21:52:12Z",
+      "side": 1,
+      "message": "That\u0027s not desirable: we now have two sources of locationManager. It will be confusing for others.",
+      "range": {
+        "startLine": 1709,
+        "startChar": 9,
+        "endLine": 1709,
+        "endChar": 27
+      },
+      "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
