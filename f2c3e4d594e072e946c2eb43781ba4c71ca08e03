@@ -39,6 +39,24 @@
       "message": "shouldn\u0027t number_of_already_active_group_ase be updated here?",
       "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bc8dcfc_0073e39d",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1475,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-13T10:35:30Z",
+      "side": 1,
+      "message": "Hmm, I don\u0027t think so. The code should go its usual path, which means that the `for` loop over the `needed_ase` counter increments the `active_ases` counter also for this already active ASE, and then `active_ases` gets stored back to the `number_of_already_active_group_ase`.",
+      "parentUuid": "97f06277_395489ab",
+      "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
