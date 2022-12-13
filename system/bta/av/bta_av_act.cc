@@ -2295,6 +2295,9 @@ void bta_av_dereg_comp(tBTA_AV_DATA* p_data) {
   uint8_t mask;
   BT_HDR* p_buf;
 
+  /** Fix Coverity uninitial variable Issue @{ */
+  memset(&cod, 0, sizeof(tBTA_UTL_COD));
+  /** @} */
   /* find the stream control block */
   p_scb = bta_av_hndl_to_scb(p_data->hdr.layer_specific);
 
