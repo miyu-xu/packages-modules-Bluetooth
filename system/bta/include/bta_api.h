@@ -475,6 +475,7 @@ typedef struct {
   const uint8_t* p_eir; /* received EIR */
   uint16_t eir_len; /* received EIR length */
   uint8_t inq_result_type;
+  uint8_t this_result_type;
   tBLE_ADDR_TYPE ble_addr_type;
   uint16_t ble_evt_type;
   uint8_t ble_primary_phy;
