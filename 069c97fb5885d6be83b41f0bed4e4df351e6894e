@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b566d373_49d7b709",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-12-13T00:54:43Z",
+      "side": 1,
+      "message": "Oops thanks for catching.",
+      "parentUuid": "b6261fce_04e23584",
+      "revId": "069c97fb5885d6be83b41f0bed4e4df351e6894e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c48482c2_fc26cc7f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-13T00:29:10Z",
       "side": 1,
       "message": "nit: Similar situation, we only need the cbid so this can be:\n```\nlet cbid \u003d self.server_context_map.get_by_uuid(\u0026app_uuid.uu).map(|server| server.cbid);\nmatch cbid {\n...\n```",
+      "revId": "069c97fb5885d6be83b41f0bed4e4df351e6894e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d9a32f0_4cc54b87",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2588,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-12-13T00:54:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c48482c2_fc26cc7f",
       "revId": "069c97fb5885d6be83b41f0bed4e4df351e6894e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
