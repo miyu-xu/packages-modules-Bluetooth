@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c75fb8_4f04180c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-12-13T17:32:55Z",
+      "side": 1,
+      "message": "Test failures appear to be infra-related rather than related to this change.",
+      "revId": "532da0d4d4bfb9b7103acd167d8451c77a38691e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
