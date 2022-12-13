@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e40ffe12_485261c2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-13T09:36:18Z",
+      "side": 1,
+      "message": "should we check here metadata_context_types_ to see if there is a sonification? Is this enough to check that configuration_context_type_ is different than MEDIA?\n\nMaybe this is ok but just more descriptive comment is needed?\n\n[Update after looking on futher change] \nIs this needed since timer is stopped when metadata has changed in line 3572 and later sonification case is handled in 3650 ?",
+      "revId": "78c5660bb92fd657ec6fac174c67aac6de95111f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
