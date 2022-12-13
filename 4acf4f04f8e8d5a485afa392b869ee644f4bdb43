@@ -63,6 +63,30 @@
       },
       "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cc9b50_9ee5c3a2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T23:07:05Z",
+      "side": 1,
+      "message": "Can you just override the `mService.getSystemService(LocationManager.class);` ?\n\n```\nwhen(mAdapterService.getSystemService(Context.LOCATION_SERVICE )).thenReturn(mLocationManager);\nwhen(mAdapterService.getSystemServiceName(LocationManager.class)).thenReturn(Context.LOCATION_SERVICE );\n```\n\nIf it\u0027s not possible, we can simply rename the method to `setLocationManagerForTesting` to keep it obvious it\u0027s from a test",
+      "parentUuid": "d7a1a953_8eff0692",
+      "range": {
+        "startLine": 1709,
+        "startChar": 9,
+        "endLine": 1709,
+        "endChar": 27
+      },
+      "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
