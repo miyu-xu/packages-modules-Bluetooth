@@ -158,6 +158,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8971846_ea173aa0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 5622,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-13T19:49:38Z",
+      "side": 1,
+      "message": "`getProfileFeatureInfo` is looking for a specific profile support. I am not comfortable with the naming.\nWhat do you think about `isProfileVersionSupported(int profile_version)`",
+      "range": {
+        "startLine": 5622,
+        "startChar": 16,
+        "endLine": 5622,
+        "endChar": 36
+      },
+      "revId": "8a2ae4fe24e36a13c57ba6ae500d1826c38daa1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ec352f0_d0669493",
         "filename": "apex/Android.bp",
         "patchSetId": 2
