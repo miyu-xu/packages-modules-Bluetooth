@@ -60,6 +60,8 @@
 
 #define BTA_SERVICE_ID_TO_SERVICE_MASK(id) (1 << (id))
 
+const long long kDefaultDeviceSearchTimeoutMs = 2 * 60 * 1000;
+
 /* DM search events */
 typedef enum : uint16_t {
   /* DM search API events */
@@ -386,6 +388,10 @@ typedef struct {
   alarm_t* gatt_close_timer; /* GATT channel close delay timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
 
+  struct {
+    unsigned long long time_started_ms{0};
+    unsigned long long timeout_ms{kDefaultDeviceSearchTimeoutMs};
+  } device_search;
 } tBTA_DM_SEARCH_CB;
 
 /* DI control block */

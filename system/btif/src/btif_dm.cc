@@ -71,6 +71,7 @@
 #include "common/metrics.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
+#include "gd/common/circular_buffer.h"
 #include "gd/common/lru_cache.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/dumpsys.h"
@@ -102,6 +103,10 @@ const Uuid UUID_BASS = Uuid::FromString("184F");
 const Uuid UUID_BATTERY = Uuid::FromString("180F");
 const Uuid UUID_A2DP_SINK = Uuid::FromString("110B");
 const bool enable_address_consolidate = true;  // TODO remove
+
+namespace {
+bluetooth::common::TimestamperInMilliseconds timestamper_in_ms;
+}
 
 #define COD_UNCLASSIFIED ((0x1F) << 8)
 #define COD_HID_KEYBOARD 0x0540
@@ -2168,15 +2173,40 @@ void btif_dm_start_discovery(void) {
 
   /* no race here because we're guaranteed to be in the main thread */
   if (bta_dm_is_search_request_queued()) {
-    LOG_INFO("%s skipping start discovery because a request is queued",
-             __func__);
+    if (bta_dm_search_cb.device_search.time_started_ms == 0) {
+      LOG_ERROR("Device search request is active without a stopwatch");
+    } else {
+      double last_request_time_ms =
+          timestamper_in_ms.GetTimestamp() -
+          bta_dm_search_cb.device_search.time_started_ms;
+      if (last_request_time_ms > bta_dm_search_cb.device_search.timeout_ms) {
+        if (bluetooth::common::init_flags::disc_device_timemout_is_enabled()) {
+          LOG_ALWAYS_FATAL("Device discovery is taking too long s:%.3f",
+                           last_request_time_ms / 1000.0);
+        }
+        LOG_ERROR("Device start discovery is taking a long time s:%.3f",
+                  last_request_time_ms / 1000.0);
+      }
+    }
+    LOG_INFO("Skipping start device discovery because a request is queued");
     return;
   }
+
+  if (bta_dm_search_cb.device_search.time_started_ms != 0) {
+    LOG_ERROR(
+        "Pending search callback clear with non-zero device discovery "
+        "timestamp");
+  }
+
+  bta_dm_search_cb.device_search.time_started_ms =
+      timestamper_in_ms.GetTimestamp();
 
   /* Will be enabled to true once inquiry busy level has been received */
   btif_dm_inquiry_in_progress = false;
   /* find nearby devices */
   BTA_DmSearch(btif_dm_search_devices_evt);
+
+  LOG_INFO("Started device discovery");
 }
 
 /*******************************************************************************
@@ -2189,6 +2219,8 @@ void btif_dm_start_discovery(void) {
 void btif_dm_cancel_discovery(void) {
   LOG_INFO("Cancel search");
   BTA_DmSearchCancel();
+
+  LOG_INFO("Cancelled device discovery");
 }
 
 bool btif_dm_pairing_is_busy() {
