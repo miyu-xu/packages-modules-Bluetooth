@@ -75,6 +75,24 @@
       "parentUuid": "8bc8dcfc_0073e39d",
       "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72956fa6_d1626105",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1475,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-13T13:58:50Z",
+      "side": 1,
+      "message": "`active_ases` is initialized by the `number_of_already_active_group_ase`. And that one is not initialized to the number of already active ASEs but to 0 when we start iterating over the devices to count the ASEs. It seems to count only newly activated ASEs.",
+      "parentUuid": "2f010048_497d8d09",
+      "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
