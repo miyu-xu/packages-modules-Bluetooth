@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a899cf3c_af270004",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-13T20:06:32Z",
+      "side": 1,
+      "message": "I assume this means you\u0027ll allow either the controller to determine the tx power level? Can we be more explicit about what this represents?",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb9f4a07_ffd3e4bf",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-13T20:06:32Z",
+      "side": 1,
+      "message": "typo: NO_PREFERENCE",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d41a27b8_d12d1400",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-13T20:06:32Z",
+      "side": 1,
+      "message": "Just change this condition to\n\n\"if (txPowerLevel \u003c ADVERTISE_TX_POWER_ULTRA_LOW || txPowerLevel \u003e ADVERTISE_TX_POWER_NO_PREFERENCE)\"",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33e532d2_623c82db",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-13T20:06:32Z",
+      "side": 1,
+      "message": "Same on docs here",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe06421_1540b01a",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-13T20:06:32Z",
+      "side": 1,
+      "message": "Same here, TX_POWER_MAX is TX_POWER_NO_PREFERENCE",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc5d601_27e713b9",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-13T20:06:32Z",
+      "side": 1,
+      "message": "Can we use the constants here?",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
