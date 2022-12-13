@@ -57,6 +57,7 @@ struct get_remote_services get_remote_services;
 struct le_test_mode le_test_mode;
 struct set_remote_device_property set_remote_device_property;
 struct set_hal_cbacks set_hal_cbacks;
+struct invoke_remote_device_properties_cb invoke_remote_device_properties_cb;
 
 }  // namespace btif_bluetooth
 }  // namespace mock
@@ -115,6 +116,14 @@ int set_remote_device_property(RawAddress* remote_addr,
 void set_hal_cbacks(bt_callbacks_t* callbacks) {
   mock_function_count_map[__func__]++;
   test::mock::btif_bluetooth::set_hal_cbacks(callbacks);
+}
+
+void invoke_remote_device_properties_cb(bt_status_t status, RawAddress bd_addr,
+                                        int num_properties,
+                                        bt_property_t* properties) {
+  mock_function_count_map[__func__]++;
+  test::mock::btif_bluetooth::invoke_remote_device_properties_cb(
+      status, bd_addr, num_properties, properties);
 }
 
 // END mockcify generation

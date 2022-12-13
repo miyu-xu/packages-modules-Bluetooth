@@ -22,6 +22,9 @@
 
 #include "acl_api.h"
 #include "bind_helpers.h"
+#include "btif/include/btif_dm.h"
+#include "btif/include/btif_storage.h"
+#include "btif/include/stack_manager.h"
 #include "device/include/controller.h"
 #include "eatt.h"
 #include "gd/common/init_flags.h"
@@ -33,7 +36,8 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_hdr.h"
-#include "stack/include/btu.h"  // do_in_main_thread
+#include "stack/include/btu.h"       // do_in_main_thread
+#include "stack/include/srvc_api.h"  // tDIS_VALUE
 #include "stack/l2cap/l2c_int.h"
 #include "types/raw_address.h"
 
@@ -992,6 +996,15 @@ struct eatt_impl {
     LOG_INFO("Device %s, role %s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
              (role == HCI_ROLE_CENTRAL ? "central" : "peripheral"));
 
+    if (is_device_le_audio_capable(bd_addr)) {
+      LOG_INFO("Read model name for le audio capable device");
+      if (!check_cached_model_name(bd_addr)) {
+        if (!DIS_ReadDISInfo(bd_addr, read_dis_cback, DIS_ATTR_MODEL_NUM_BIT)) {
+          LOG_WARN("Read DIS failed");
+        }
+      }
+    }
+
     if (eatt_dev) {
       /* We are reconnecting device we know that support EATT.
        * Just connect CoC
@@ -1032,6 +1045,53 @@ struct eatt_impl {
     LOG(INFO) << __func__ << ", restoring: " << bd_addr;
 
     if (!eatt_dev) add_eatt_device(bd_addr);
+  }
+
+  bool check_cached_model_name(const RawAddress& bd_addr) {
+    bt_property_t prop;
+    bt_bdname_t model_name;
+    BTIF_STORAGE_FILL_PROPERTY(&prop, BT_PROPERTY_REMOTE_MODLE_NUM,
+                               sizeof(model_name), &model_name);
+
+    if (btif_storage_get_remote_device_property(&bd_addr, &prop) !=
+            BT_STATUS_SUCCESS ||
+        prop.len == 0) {
+      LOG_INFO("Device %s no cached model name",
+               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+      return false;
+    }
+
+    GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
+        BT_STATUS_SUCCESS, bd_addr, 1, &prop);
+    return true;
+  }
+
+  static void read_dis_cback(const RawAddress& bd_addr,
+                             tDIS_VALUE* p_dis_value) {
+    if (p_dis_value == NULL) {
+      LOG_ERROR("received unexpected/error DIS callback");
+      return;
+    }
+
+    if (p_dis_value->attr_mask & DIS_ATTR_MODEL_NUM_BIT) {
+      for (int i = 0; i < DIS_MAX_STRING_DATA; i++) {
+        if (p_dis_value->data_string[i] != NULL) {
+          bt_property_t prop;
+          prop.type = BT_PROPERTY_REMOTE_MODLE_NUM;
+          prop.val = p_dis_value->data_string[i];
+          prop.len = strlen((char*)prop.val);
+
+          LOG_INFO("Device %s, model name: %s",
+                   ADDRESS_TO_LOGGABLE_CSTR(bd_addr), ((char*)prop.val));
+
+          btif_storage_set_remote_device_property(&bd_addr, &prop);
+          GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
+              BT_STATUS_SUCCESS, bd_addr, 1, &prop);
+        }
+      }
+    } else {
+      LOG_ERROR("unknown bit, mask: %d", (int)p_dis_value->attr_mask);
+    }
   }
 };
 

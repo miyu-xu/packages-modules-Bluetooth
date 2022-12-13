@@ -211,6 +211,19 @@ struct set_hal_cbacks {
 };
 extern struct set_hal_cbacks set_hal_cbacks;
 
+struct invoke_remote_device_properties_cb {
+  std::function<void(bt_status_t status, RawAddress bd_addr, int num_properties,
+                     bt_property_t* properties)>
+      body{[](bt_status_t status, RawAddress bd_addr, int num_properties,
+              bt_property_t* properties) { return 0; }};
+  void operator()(bt_status_t status, RawAddress bd_addr, int num_properties,
+                  bt_property_t* properties) {
+    body(status, bd_addr, num_properties, properties);
+  }
+};
+extern struct invoke_remote_device_properties_cb
+    invoke_remote_device_properties_cb;
+
 }  // namespace btif_bluetooth
 }  // namespace mock
 }  // namespace test

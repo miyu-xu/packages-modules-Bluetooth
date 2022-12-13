@@ -369,6 +369,13 @@ typedef enum {
    */
   BT_PROPERTY_VENDOR_PRODUCT_INFO,
 
+  /**
+   * Description - Model name read from Device Information Service(DIS).
+   * Access mode - GET and SET.
+   * Data Type - char array.
+   */
+  BT_PROPERTY_REMOTE_MODLE_NUM,
+
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
 

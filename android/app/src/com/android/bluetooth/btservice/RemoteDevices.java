@@ -312,6 +312,7 @@ final class RemoteDevices {
         private boolean mIsBondingInitiatedLocally;
         private int mBatteryLevel = BluetoothDevice.BATTERY_LEVEL_UNKNOWN;
         private boolean mIsCoordinatedSetMember;
+        private String mModelName;
         @VisibleForTesting int mBondState;
         @VisibleForTesting int mDeviceType;
         @VisibleForTesting ParcelUuid[] mUuids;
@@ -605,6 +606,19 @@ final class RemoteDevices {
         public BluetoothAudioPolicy getHfAudioPolicyForRemoteAg() {
             return mAudioPolicy;
         }
+
+        public void setModelName(String modelName) {
+            mModelName = modelName;
+        }
+
+        /**
+         * @return the mModelName
+         */
+        String getModelName() {
+            synchronized (mObject) {
+                return mModelName;
+            }
+        }
     }
 
     private void sendUuidIntent(BluetoothDevice device, DeviceProperties prop) {
@@ -843,6 +857,10 @@ final class RemoteDevices {
                             break;
                         case AbstractionLayer.BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER:
                             deviceProperties.setIsCoordinatedSetMember(val[0] != 0);
+                            break;
+                        case AbstractionLayer.BT_PROPERTY_REMOTE_MODLE_NUM:
+                            final String modelName = new String(val);
+                            deviceProperties.setModelName(modelName);
                             break;
                     }
                 }

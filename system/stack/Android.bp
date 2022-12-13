@@ -848,6 +848,9 @@ cc_test {
         "test/eatt/eatt_test.cc",
         ":TestCommonMainHandler",
         ":TestCommonStackConfig",
+        ":TestCommonMockFunctions",
+        ":TestMockSrvcDis",
+        ":TestMockBtif",
     ],
     shared_libs: [
         "libcutils",
@@ -1172,6 +1175,7 @@ cc_test {
         ":TestMockStackL2cap",
         ":TestMockStackSdp",
         ":TestMockStackSmp",
+        ":TestMockSrvcDis",
         "eatt/eatt.cc",
         "gatt/att_protocol.cc",
         "gatt/connection_manager.cc",
