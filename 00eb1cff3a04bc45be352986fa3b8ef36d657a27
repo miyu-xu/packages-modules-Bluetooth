@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7cd292c_a4df986a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-13T14:50:49Z",
+      "side": 1,
+      "message": "LOG_DEBUG(\"device %s\", )",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e863d6_811cef0b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-13T14:50:49Z",
+      "side": 1,
+      "message": "lets use LOG_WARN() then.",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "560a1c25_f6ef0f75",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-13T14:50:49Z",
+      "side": 1,
+      "message": "PENDING_TO_REMOVE\n\n\n/* Device would be removed when receiver/sender became IDLE */\n\n-\u003e\n\n/* Device will be removed after scheduled action is finished: One of such action is taking Stream to IDLE */",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
