@@ -22,6 +22,30 @@
       },
       "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea293b55_15505bf6",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-13T12:59:41Z",
+      "side": 1,
+      "message": "Okay. I would like to keep this for now and then we can evolve the API later. Right now, my focus is to get feature parity and then we\u0027ll simplify and improve the API later.",
+      "parentUuid": "f507fb38_d2f1394b",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
