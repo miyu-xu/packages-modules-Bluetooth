@@ -226,6 +226,7 @@ init_flags!(
         sdp_serialization = true,
         sdp_skip_rnr_if_known = true,
         trigger_advertising_callbacks_on_first_resume_after_pause = true,
+        disc_device_timemout = true,
     }
     // extra_fields are not a 1 to 1 match with "INIT_*" flags
     extra_fields: {

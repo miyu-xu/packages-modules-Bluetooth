@@ -165,6 +165,8 @@ static void bta_dm_ctrl_features_rd_cmpl_cback(tHCI_STATUS result);
 
 namespace {
 
+bluetooth::common::TimestamperInMilliseconds timestamper_in_ms;
+
 // Time to wait after receiving shutdown request to delay the actual shutdown
 // process. This time may be zero which invokes immediate shutdown.
 #ifndef BTA_DISABLE_DELAY
@@ -331,6 +333,7 @@ void BTA_dm_on_hw_off() {
   alarm_free(bta_dm_search_cb.search_timer);
   alarm_free(bta_dm_search_cb.gatt_close_timer);
   osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
+  bta_dm_search_cb.device_search.time_started_ms = 0;
   fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
   memset(&bta_dm_search_cb, 0, sizeof(bta_dm_search_cb));
 }
@@ -352,6 +355,7 @@ void BTA_dm_on_hw_on() {
   alarm_free(bta_dm_search_cb.search_timer);
   alarm_free(bta_dm_search_cb.gatt_close_timer);
   osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
+  bta_dm_search_cb.device_search.time_started_ms = 0;
   fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
   memset(&bta_dm_search_cb, 0, sizeof(bta_dm_search_cb));
   /*
@@ -1498,6 +1502,9 @@ void bta_dm_free_sdp_db() {
  *
  ******************************************************************************/
 void bta_dm_queue_search(tBTA_DM_MSG* p_data) {
+  if (bta_dm_search_cb.p_pending_search != nullptr) {
+    LOG_WARN("Overwriting previously queued search command");
+  }
   osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
   bta_dm_search_cb.p_pending_search =
       (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_API_SEARCH));
@@ -1538,6 +1545,10 @@ void bta_dm_execute_queued_request() {
     LOG_INFO("%s Start pending search", __func__);
     bta_sys_sendmsg(bta_dm_search_cb.p_pending_search);
     bta_dm_search_cb.p_pending_search = NULL;
+    if (bta_dm_search_cb.device_search.time_started_ms != 0) {
+      LOG_WARN("Device search time start is unexpected not zero");
+    }
+    bta_dm_search_cb.device_search.time_started_ms = timestamper_in_ms.GetTimestamp();
   } else {
     tBTA_DM_MSG* p_pending_discovery = (tBTA_DM_MSG*)fixed_queue_try_dequeue(
         bta_dm_search_cb.pending_discovery_queue);
