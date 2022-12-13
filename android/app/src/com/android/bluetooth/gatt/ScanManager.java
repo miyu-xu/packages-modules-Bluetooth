@@ -1705,6 +1705,11 @@ public class ScanManager {
         return mBatchScanParms;
     }
 
+    @VisibleForTesting
+    void setLocationManager(LocationManager locationManager) {
+        mLocationManager = locationManager;
+    }
+
     private boolean isScreenOn() {
         Display[] displays = mDm.getDisplays();
 
