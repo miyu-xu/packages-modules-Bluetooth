@@ -1099,6 +1099,9 @@ void Device::GetItemAttributesVFSResponse(
                                                                browse_mtu_);
 
   ListItem item_requested;
+  /** Fix Coverity varaible uninitial issue Issue @{ */
+  item_requested.type = ListItem::SONG;
+  /** @} */
   for (const auto& temp : item_list) {
     if ((temp.type == ListItem::FOLDER && temp.folder.media_id == media_id) ||
         (temp.type == ListItem::SONG && temp.song.media_id == media_id)) {
