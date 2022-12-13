@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1773cdd4_f539a1f9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-13T00:48:15Z",
+      "side": 1,
+      "message": "Ack. I will follow up with a few more clean-ups for printing addresses. Will take care of it there.",
+      "parentUuid": "653a40ab_47942701",
+      "range": {
+        "startLine": 1093,
+        "startChar": 20,
+        "endLine": 1093,
+        "endChar": 42
+      },
+      "revId": "448f8984149d82f93ab69ffd2504371d9cd27754",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76496ec9_32b3e15c",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "We are also collecting the last 100 lines from crashes and that requires this protection. I think we need to get used to never being able to print full addresses to the log and we should modify our APIs accordingly.",
       "parentUuid": "76496ec9_32b3e15c",
+      "revId": "448f8984149d82f93ab69ffd2504371d9cd27754",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7debe443_f984ec5e",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-13T00:48:15Z",
+      "side": 1,
+      "message": "Resolving this and landing current code. Lets follow up offline on next steps here while I land this in M110 branch.",
+      "parentUuid": "8b9d9ec6_77a412bd",
       "revId": "448f8984149d82f93ab69ffd2504371d9cd27754",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
