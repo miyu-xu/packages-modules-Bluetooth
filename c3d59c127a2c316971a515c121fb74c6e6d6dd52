@@ -22,6 +22,30 @@
       },
       "revId": "c3d59c127a2c316971a515c121fb74c6e6d6dd52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e185651f_e3880c15",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-13T12:57:20Z",
+      "side": 1,
+      "message": "In practice, we won\u0027t be changing the PDL _input_ much — but the output can and will change. So the _n_ is just something you set when you add the test.\n\nI don\u0027t totally love it, though, and I was considering simply generating code for all declarations unconditionally. That way we don\u0027t need to care: you enter some PDL and we generate little- and big-endiann files and compare the output. How does that sound?",
+      "parentUuid": "3557fe83_0e14262a",
+      "range": {
+        "startLine": 326,
+        "startChar": 8,
+        "endLine": 326,
+        "endChar": 11
+      },
+      "revId": "c3d59c127a2c316971a515c121fb74c6e6d6dd52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
