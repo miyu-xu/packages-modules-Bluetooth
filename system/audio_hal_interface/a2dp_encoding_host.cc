@@ -162,6 +162,10 @@ bool StartRequest() {
 
 // Invoked by audio server when audio streaming is done.
 bool StopRequest() {
+  // Peer is already removed and no action is required.
+  if (btif_av_get_peer_sep() == AVDT_TSEP_INVALID) {
+    return true;
+  }
   if (btif_av_get_peer_sep() == AVDT_TSEP_SNK &&
       !btif_av_stream_started_ready()) {
     btif_av_clear_remote_suspend_flag();
