@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c2128fe_8d1dbdd6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/SmsMmsContactsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-14T08:06:41Z",
+      "side": 1,
+      "message": "Q) Why is the name null only when the filter is non null? Does the filter exclude names that are not matched?",
+      "range": {
+        "startLine": 189,
+        "startChar": 16,
+        "endLine": 189,
+        "endChar": 40
+      },
+      "revId": "caae3a8461a13ec476ea01f403e2569993392c6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
