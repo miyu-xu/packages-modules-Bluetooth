@@ -22,6 +22,30 @@
       },
       "revId": "90cfebbd1cbc76590c6ab9197d5d32f0e7df8f8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d7be09_bc5f0658",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T06:48:29Z",
+      "side": 1,
+      "message": "Got it. Changed for all smsSelected and mmsSelected tests. I made sure numbers intended to filter that are not defined as variables in BluetoothMapAppParams are defined in the test.\n\nEx) msgTypeNotFilterNoMms: meaning that mms will not be filtered and will be selected (returning true for mmsSelected()), since FILTER_NO_MMS means mms will be filtered and not be selected (returning false for mmsSelected()).",
+      "parentUuid": "1fb7d168_a3fc5e2a",
+      "range": {
+        "startLine": 339,
+        "startChar": 56,
+        "endLine": 339,
+        "endChar": 57
+      },
+      "revId": "90cfebbd1cbc76590c6ab9197d5d32f0e7df8f8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
