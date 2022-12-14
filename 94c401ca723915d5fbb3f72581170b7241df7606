@@ -34,6 +34,24 @@
       "parentUuid": "4c24030e_d9417782",
       "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e23ec1_f5f954be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-12-14T16:16:29Z",
+      "side": 1,
+      "message": "1. What do you mean by not having the \"access right\"? You can add the flag to that file I mentioned in the previous comment and then upload a CL. It will be reviewed by people who have permissions to change that file.\n\n2. What I mean by splitting it into multiple pieces is that right now this CL touches 24 files. Thats a lot of files/places in a single CL. This CL should be split up in to pieces that make changes to a small set of files (maybe 3-4 files) instead of 24 files. For example, at the minimum, all \"bta\", \"btif\", \"profile/avrcp\", \"stack/avct\", \"stack/avrc\" should be in separate CLs.",
+      "parentUuid": "0b779518_84bcec95",
+      "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
