@@ -23,6 +23,7 @@ import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.annotation.SystemApi;
 import android.bluetooth.BluetoothGattCharacteristic.WriteType;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
@@ -687,6 +688,31 @@ public final class BluetoothGatt implements BluetoothProfile {
                             final BluetoothGattCallback callback = mCallback;
                             if (callback != null) {
                                 callback.onReadRemoteRssi(BluetoothGatt.this, rssi, status);
+                            }
+                        }
+                    });
+                }
+
+                /**
+                 * Remote device ACL handle has been returned
+                 * @hide
+                 */
+                @Override
+                public void onGetAclHandle(String address, int transport, int handle) {
+                    if (VDBG) {
+                        Log.d(TAG,
+                                "onGetAclHandle() - Device=" + address + " transport=" + transport
+                                        + " handle=" + handle);
+                    }
+                    if (!address.equals(mDevice.getAddress())) {
+                        return;
+                    }
+                    runOrQueueCallback(new Runnable() {
+                        @Override
+                        public void run() {
+                            final BluetoothGattCallback callback = mCallback;
+                            if (callback != null) {
+                                callback.onGetAclHandle(BluetoothGatt.this, transport, handle);
                             }
                         }
                     });
@@ -1762,6 +1788,45 @@ public final class BluetoothGatt implements BluetoothProfile {
         try {
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
             mService.readRemoteRssi(mClientIf, mDevice.getAddress(), mAttributionSource, recv);
+            recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+        } catch (RemoteException | TimeoutException e) {
+            Log.e(TAG, "", e);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Get the ACL handle used on the given transport to a connected remote device.
+     *
+     * <p>The {@link BluetoothGattCallback#onGetAclHandle} callback will be
+     * invoked when the ACL handle is read. It will be invoked with null if no
+     * connection currently exists on the given transport.
+     *
+     * @param transport the transport of interest {@link BluetoothDevice#TRANSPORT_BREDR} or {@link
+     * BluetoothDevice#TRANSPORT_LE}
+     * @return true, if the ACL handle has been requested successfully
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public boolean getAclHandle(int transport) {
+        if (DBG) {
+            Log.d(TAG, "getAclHandle() - device: " + mDevice.getAddress());
+        }
+
+        if (mService == null || mClientIf == 0) {
+            return false;
+        }
+
+        try {
+            final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+            mService.getAclHandle(
+                    mClientIf, mDevice.getAddress(), transport, mAttributionSource, recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
         } catch (RemoteException | TimeoutException e) {
             Log.e(TAG, "", e);
