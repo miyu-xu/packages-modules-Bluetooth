@@ -53,7 +53,7 @@ using bluetooth::hearing_aid::ConnectionState;
 // The MIN_CE_LEN parameter for Connection Parameters based on the current
 // Connection Interval
 constexpr uint16_t MIN_CE_LEN_10MS_CI = 0x0006;
-constexpr uint16_t MIN_CE_LEN_20MS_CI = 0x0006;
+constexpr uint16_t MIN_CE_LEN_20MS_CI = 0x0004;
 constexpr uint16_t MAX_CE_LEN_20MS_CI = 0x000C;
 constexpr uint16_t CONNECTION_INTERVAL_10MS_PARAM = 0x0008;
 constexpr uint16_t CONNECTION_INTERVAL_20MS_PARAM = 0x0010;
