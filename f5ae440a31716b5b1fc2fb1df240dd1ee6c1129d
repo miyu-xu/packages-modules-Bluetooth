@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e9a56d2_fe3117f3",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-14T16:16:59Z",
+      "side": 1,
+      "message": "Can you add this information to the code ?\nThe comment about splitting the code is still up 😊",
+      "parentUuid": "86cf0bcd_94b5ca6b",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 862,
+        "endChar": 3
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "470abe3e_ff9c2f9b",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 5
