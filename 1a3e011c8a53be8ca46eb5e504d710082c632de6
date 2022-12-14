@@ -16,6 +16,23 @@
       "message": "The presubmit fails are open issues and tracked here: b/262286480. They are failing in aosp and master branches.",
       "revId": "1a3e011c8a53be8ca46eb5e504d710082c632de6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e866e43_317c9c08",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 38
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T05:15:13Z",
+      "side": 1,
+      "message": "For Android T, you can\u0027t change the API.\nAnd if it it for Android U, you don\u0027t need to be hurry.",
+      "revId": "1a3e011c8a53be8ca46eb5e504d710082c632de6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

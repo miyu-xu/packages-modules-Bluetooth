@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c4b957c_2bffaac8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T05:15:13Z",
+      "side": 1,
+      "message": "setHfpActiveDevice is not only called when connected.",
+      "parentUuid": "367abf0a_d9f65faf",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 978,
+        "endChar": 38
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35e40ee2_2b4b0b4c",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/AudioPolicyEntity.java",
         "patchSetId": 30
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "CustomMetadata structure is used like a key-value store. But for Audio Policies, we designed it to use the getters/setters to get all the audio policy values together in a BluetoothAudioPolicy object. So, it was better creating a new AudioPolicyEntity class and getters and setters for it.",
       "parentUuid": "3eeade64_05d11715",
+      "range": {
+        "startLine": 291,
+        "startChar": 19,
+        "endLine": 291,
+        "endChar": 41
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65c0e5c5_0835159a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T05:15:13Z",
+      "side": 1,
+      "message": "...",
+      "parentUuid": "cb30e068_bc99d8e2",
       "range": {
         "startLine": 291,
         "startChar": 19,
@@ -615,6 +663,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4487aed8_9777889d",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T05:15:13Z",
+      "side": 1,
+      "message": "What\u0027s the behavioral different between POLICY_ALLOWED and POLICY_DEFAULT?\n\nI\u0027m curious what would be the other logic that make different behavior.\nIf they do the same, please merge the two constants into one.",
+      "parentUuid": "360e64f4_2eebdb60",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4beb6f94_9a84b329",
         "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
         "patchSetId": 30
@@ -650,6 +722,30 @@
       "side": 1,
       "message": "1. REMOTE is the AG device here. local would be HF but this feature only consists of sending HF devices\u0027 policies to the remote/AG.\n2. They should be separated. This feature extraction or initialization is not a part of the SLC establishment of HFP. So, it needs to be set after that. There is a split second when AudioPolicy feature is not initialized but it will soon be in a moment. Thus the Unknown state.\n3. For the naming, if the HF has the code, it supports. We are curious about whether the AG is supported or not. Thus the name contains \"REMOTE\". Also, since the Audio Policy feature would be used by APIs from BluetoothDevice, they are not generic to hfp only. These values can later be used with those cases too.",
       "parentUuid": "4beb6f94_9a84b329",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75ea11c_ecc9a223",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T05:15:13Z",
+      "side": 1,
+      "message": "1) I can\u0027t find any usecases of getAudioPolicyRemoteSupported which will return these status values.\nMy guess was there will be no behavioral difference between REMOTE_STATUS_UNKNOWN and REMOTE_STATUS_SUPPORTED.\nIf so, we don\u0027t need to have UNKNOWN constant.\n\n2) These valued should be located in other place, maybe BluetoothDevice? and if the case it would be BLUETOOTH_AUDIO_POLICY_SUPPORTED, ...",
+      "parentUuid": "d35c0e58_01b4ca57",
       "range": {
         "startLine": 88,
         "startChar": 28,
@@ -744,6 +840,30 @@
       "side": 1,
       "message": "The values are dynamically changed. I wanted to chain these setter calls and pass the result to some method like here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2299966/32/android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java#2149. \nIs this not allowed?",
       "parentUuid": "d100ff9f_dd8340bd",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 5
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51d976ae_679d9b7d",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T05:15:13Z",
+      "side": 1,
+      "message": "I don\u0027t think it is not allowed, but not sure whether it\u0027s one or the common patterns or not.\nI\u0027m not strong disagree on this. I prefer to make it void method, but up to you",
+      "parentUuid": "8046be65_9bd210d7",
       "range": {
         "startLine": 126,
         "startChar": 0,
