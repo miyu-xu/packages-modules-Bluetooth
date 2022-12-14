@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "491fce48_91c5d889",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T19:19:37Z",
+      "side": 1,
+      "message": "cc @rotkiewicz@google.com",
+      "parentUuid": "4e9a56d2_fe3117f3",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 862,
+        "endChar": 3
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "470abe3e_ff9c2f9b",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 5
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "It is packet record format from ComProbe btsnoop file format.\nOriginal Length:\nA 32-bit unsigned integer representing the length in octets of the captured packet as received via a network.\n\ncaptured Length:\nA 32-bit unsigned integer representing the length of the Packet Data field. This is the number of octets of the\ncaptured packet that are included in this packet record. If the received packet was truncated, the Included Length\nfield is less than the Original Length field.\n\nIn general, they have the same value.",
       "parentUuid": "470abe3e_ff9c2f9b",
+      "range": {
+        "startLine": 1185,
+        "startChar": 10,
+        "endLine": 1186,
+        "endChar": 49
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d830a185_ac6c584a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T19:19:37Z",
+      "side": 1,
+      "message": "So in case of a filtered packet that we truncate, shouldn\u0027t the value be different ?\nShouldn\u0027t we NOT update the `header.length_original` here ?",
+      "parentUuid": "c638894f_3069b9b8",
       "range": {
         "startLine": 1185,
         "startChar": 10,
