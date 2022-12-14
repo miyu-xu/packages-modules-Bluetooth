@@ -111,6 +111,13 @@ service HfpService {
   rpc FetchEvents(FetchEventsRequest) returns (stream FetchEventsResponse) {}
 }
 
+service HfClientService {
+  rpc StartSlc(StartSlcRequest) returns (StartSlcResponse) {}
+  rpc StopSlc(StopSlcRequest) returns (StopSlcResponse) {}
+  rpc ConnectAudio(ConnectAudioRequest) returns (ConnectAudioResponse) {}
+  rpc DisconnectAudio(DisconnectAudioRequest) returns (DisconnectAudioResponse) {}
+}
+
 enum EventType {
   ADAPTER_STATE = 0;
   SSP_REQUEST = 1;
@@ -173,6 +180,22 @@ message StartSlcRequest {
 
 message StopSlcRequest {
   Connection connection = 1;
+}
+
+message StartSlcResponse {
+  int32 status = 1;
+}
+
+message StopSlcResponse {
+  int32 status = 1;
+}
+
+message ConnectAudioResponse {
+  int32 status = 1;
+}
+
+message DisconnectAudioResponse {
+  int32 status = 1;
 }
 
 message ConnectAudioRequest {
