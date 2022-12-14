@@ -16,6 +16,24 @@
       "message": "Can someone on the Bluetooth team please have a look at this? It\u0027s blocking a bunch of other changes I\u0027m trying to get in to update clap and improve our test frameworks.\n\nThe build and test failures look unrelated; are these just really flaky?",
       "revId": "fcc9432e7766873e3abff8bc2d8a8bbfcae61b64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55a5c379_6e02f00c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-14T00:36:11Z",
+      "side": 1,
+      "message": "No -- it looks like you\u0027re breaking the Linux build. Bluetooth is shared between Android and ChromeOS and the pre-submit protects us from build regressions.\n\nI\u0027ll pull this change and see why it\u0027s not building.",
+      "parentUuid": "33840cab_5e48c7b1",
+      "revId": "fcc9432e7766873e3abff8bc2d8a8bbfcae61b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
