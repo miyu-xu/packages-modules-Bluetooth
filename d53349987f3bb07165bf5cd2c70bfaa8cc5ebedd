@@ -35,6 +35,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa412717_b9cce002",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-12-14T20:34:03Z",
+      "side": 1,
+      "message": "As spoken  in DM with Ying, we think we should make sure this is done in a way that keeps the dynamic capability and not always overwrite the status.",
+      "revId": "d53349987f3bb07165bf5cd2c70bfaa8cc5ebedd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13e36019_9a0135de",
