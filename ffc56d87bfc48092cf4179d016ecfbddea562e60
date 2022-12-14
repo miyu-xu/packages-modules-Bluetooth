@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d0ec265_b2bb8c35",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T04:17:39Z",
+      "side": 1,
+      "message": "starts, ditto for others",
+      "range": {
+        "startLine": 117,
+        "startChar": 56,
+        "endLine": 117,
+        "endChar": 61
+      },
+      "revId": "ffc56d87bfc48092cf4179d016ecfbddea562e60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38cbe0fb_46c3362e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T04:17:39Z",
+      "side": 1,
+      "message": "updatesContests, ditto for others",
+      "range": {
+        "startLine": 126,
+        "startChar": 43,
+        "endLine": 126,
+        "endChar": 57
+      },
+      "revId": "ffc56d87bfc48092cf4179d016ecfbddea562e60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96253978_e8d1cbe8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T04:17:39Z",
+      "side": 1,
+      "message": "Completed",
+      "range": {
+        "startLine": 222,
+        "startChar": 44,
+        "endLine": 222,
+        "endChar": 52
+      },
+      "revId": "ffc56d87bfc48092cf4179d016ecfbddea562e60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6471570f_589f8471",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T04:17:39Z",
+      "side": 1,
+      "message": "Do you think we can use ExtendedMockito for testing with static method?\nhttps://source.corp.google.com/android/external/dexmaker/dexmaker-mockito-inline-extended/src/main/java/com/android/dx/mockito/inline/extended/ExtendedMockito.java;l\u003d66?q\u003dMockedMethod%20lang:java\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "revId": "ffc56d87bfc48092cf4179d016ecfbddea562e60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
