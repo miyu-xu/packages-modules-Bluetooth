@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d0296b_624b8e06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:55:30Z",
+      "side": 1,
+      "message": "LGTM from API wiring. Deferring to Myles for Android coding practices.",
+      "revId": "d7b5ebacd286997d3b3ee7297dee55d3861b2dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72580f06_04945361",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:55:30Z",
+      "side": 1,
+      "message": "nit: `adv`\n\nAnd fix other occurrences also",
+      "range": {
+        "startLine": 133,
+        "startChar": 9,
+        "endLine": 133,
+        "endChar": 12
+      },
+      "revId": "d7b5ebacd286997d3b3ee7297dee55d3861b2dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "195921bc_a5c6d3a6",
