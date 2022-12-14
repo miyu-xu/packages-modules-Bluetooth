@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4df8b83_017ed9af",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T00:35:15Z",
+      "side": 1,
+      "message": "FromString could have been directly called in the if (same for other call of IsValidAddress on the bdstr var",
+      "range": {
+        "startLine": 1022,
+        "startChar": 21,
+        "endLine": 1022,
+        "endChar": 35
+      },
+      "revId": "b7465d30499702edb292178f87299e41f4cbbe60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1061a85e_23914264",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T00:35:15Z",
+      "side": 1,
+      "message": "addr_start and addr_end are RawAddress already.\n\nThis if is imposible to go in as a IsValidAddress only check if an address can be built from a string adn the ToString method of RawAddress is always creating a valid parsable string",
+      "range": {
+        "startLine": 1237,
+        "startChar": 4,
+        "endLine": 1245,
+        "endChar": 5
+      },
+      "revId": "b7465d30499702edb292178f87299e41f4cbbe60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
