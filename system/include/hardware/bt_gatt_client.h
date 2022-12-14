@@ -149,6 +149,11 @@ typedef void (*write_descriptor_callback)(int conn_id, int status,
 typedef void (*read_remote_rssi_callback)(int client_if, const RawAddress& bda,
                                           int rssi, int status);
 
+/** Callback triggered in response to get_acl_handle */
+typedef void (*get_acl_handle_callback)(int client_if, const RawAddress& bda,
+                                        tBT_TRANSPORT transport,
+                                        std::optional<uint16_t> handle);
+
 /** Callback invoked when the MTU for a given connection changes */
 typedef void (*configure_mtu_callback)(int conn_id, int status, int mtu);
 
@@ -199,6 +204,7 @@ typedef struct {
   write_descriptor_callback write_descriptor_cb;
   execute_write_callback execute_write_cb;
   read_remote_rssi_callback read_remote_rssi_cb;
+  get_acl_handle_callback get_acl_handle_cb;
   configure_mtu_callback configure_mtu_cb;
   congestion_callback congestion_cb;
   get_gatt_db_callback get_gatt_db_cb;
@@ -285,6 +291,10 @@ typedef struct {
 
   /** Request RSSI for a given remote device */
   bt_status_t (*read_remote_rssi)(int client_if, const RawAddress& bd_addr);
+
+  /** Get the LE ACL connection handle for a connected remote device */
+  bt_status_t (*get_acl_handle)(int client_if, const RawAddress& bd_addr,
+                                tBT_TRANSPORT transport);
 
   /** Determine the type of the remote device (LE, BR/EDR, Dual-mode) */
   int (*get_device_type)(const RawAddress& bd_addr);
