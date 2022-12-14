@@ -209,6 +209,7 @@ init_flags!(
         btaa_hci = true,
         btm_dm_flush_discovery_queue_on_search_cancel,
         finite_att_timeout = true,
+        gatt_allow_invalid_services = true,
         gatt_robust_caching_client = true,
         gatt_robust_caching_server,
         gd_core,
@@ -238,7 +239,7 @@ init_flags!(
         "--hci" => parse_hci_adapter(_, _),
     }
     dependencies: {
-        gd_core => gd_security
+        gd_core => gd_security,
     }
 );
 
