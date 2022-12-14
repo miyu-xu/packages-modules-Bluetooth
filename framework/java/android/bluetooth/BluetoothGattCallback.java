@@ -17,6 +17,7 @@
 package android.bluetooth;
 
 import android.annotation.NonNull;
+import android.annotation.SystemApi;
 
 /**
  * This abstract class is used to implement {@link BluetoothGatt} callbacks.
@@ -208,8 +209,7 @@ public abstract class BluetoothGattCallback {
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the reliable write transaction was
      * executed successfully
      */
-    public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {
-    }
+    public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {}
 
     /**
      * Callback reporting the RSSI for a remote device connection.
@@ -221,8 +221,22 @@ public abstract class BluetoothGattCallback {
      * @param rssi The RSSI value for the remote device
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the RSSI was read successfully
      */
-    public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
-    }
+    public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {}
+
+    /**
+     * Callback reporting the ACL handle for a remote device connection.
+     *
+     * This callback is triggered in response to the
+     * {@link BluetoothGatt#getAclHandle} function.
+     *
+     * @param gatt GATT client invoked {@link BluetoothGatt#getAclHandle}
+     * @param transport The transport for this connection handle
+     * @param handle The ACL handle for the remote device, or -1 if no ACL connection exists.
+     *
+     * @hide
+     */
+    @SystemApi
+    public void onGetAclHandle(@NonNull BluetoothGatt gatt, int transport, int handle) {}
 
     /**
      * Callback indicating the MTU for a given device connection has changed.
