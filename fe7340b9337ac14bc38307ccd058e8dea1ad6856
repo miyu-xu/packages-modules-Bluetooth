@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f724327_b8cbbc60",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "bbae0873_27c9e60e",
+      "range": {
+        "startLine": 330,
+        "startChar": 32,
+        "endLine": 330,
+        "endChar": 46
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e41813d8_8d94cba3",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-14T08:26:30Z",
       "side": 1,
       "message": "\u0027Not\u0027 filter No SMS - seems somewhat strange...\n\nDid you mean no message is filtered?\n\nHow about `int noFilter` and `smsSelected_withNoFilter`?",
+      "range": {
+        "startLine": 339,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 33
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c77cf27_cbed3fd1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Sounds good! Fixed.",
+      "parentUuid": "e41813d8_8d94cba3",
       "range": {
         "startLine": 339,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d31de1f_96d06202",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Removed and fixed.",
+      "parentUuid": "fe2ecfe3_e4255635",
+      "range": {
+        "startLine": 346,
+        "startChar": 32,
+        "endLine": 346,
+        "endChar": 39
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d5d9303_b5e4f943",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-14T08:26:30Z",
       "side": 1,
       "message": "Could you add the test case which smsSelected() returns false?\n\n```\nmInfo.mPhoneType \u003d TelephonyManager.PHONE_TYPE_GSM;\nassertThat(mContent.smsSelected(mInfo, mParams)).isTrue();\n\nmInfo.mPhoneType \u003d TelephonyManager.PHONE_TYPE_CDMA;\nassertThat(mContent.smsSelected(mInfo, mParams)).isFalse();\n```",
+      "range": {
+        "startLine": 350,
+        "startChar": 8,
+        "endLine": 350,
+        "endChar": 66
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a00e8e_659b175c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Added!",
+      "parentUuid": "2d5d9303_b5e4f943",
       "range": {
         "startLine": 350,
         "startChar": 8,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a12c2e9c_8ead6081",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e0737c4e_9717abbc",
+      "range": {
+        "startLine": 362,
+        "startChar": 32,
+        "endLine": 362,
+        "endChar": 68
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a13fa376_d6ebc5e1",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-12-14T08:26:30Z",
       "side": 1,
       "message": "`int noSms \u003d FILTER_NO_SMS_CDMA | FILTER_NO_SMS_GSM`",
+      "range": {
+        "startLine": 363,
+        "startChar": 33,
+        "endLine": 363,
+        "endChar": 34
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6ce09df_7fec240d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a13fa376_d6ebc5e1",
       "range": {
         "startLine": 363,
         "startChar": 33,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0130a6_52b3cc24",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "90a85215_a04d80ab",
+      "range": {
+        "startLine": 370,
+        "startChar": 32,
+        "endLine": 370,
+        "endChar": 46
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa1444b1_dc308ef1",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-12-14T08:26:30Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 378,
+        "startChar": 16,
+        "endLine": 379,
+        "endChar": 30
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6fb45a5_774906f1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-14T08:59:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "aa1444b1_dc308ef1",
       "range": {
         "startLine": 378,
         "startChar": 16,
