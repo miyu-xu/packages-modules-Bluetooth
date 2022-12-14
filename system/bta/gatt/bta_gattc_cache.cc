@@ -36,6 +36,7 @@
 #include "bt_target.h"  // Must be first to define build configuration
 #include "bta/gatt/bta_gattc_int.h"
 #include "bta/gatt/database.h"
+#include "gd/common/init_flags.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "stack/btm/btm_sec.h"
@@ -52,14 +53,42 @@ using gatt::Descriptor;
 using gatt::IncludedService;
 using gatt::Service;
 
+// Normally, service discovery will complete with all operations succeeding.
+// This is VALID, and means that we can permanently cache whatever services we
+// have discovered.
+//
+// However, if a failure occurs, sometimes we have still learned
+// "something" about the services available, and we should pass that up rather
+// than completely failing - but, we should not permanently cache them, so we
+// don't permanently store potentially corrupt data. These cases are the other
+// variants (currently just EXTENDED_PROPERTIES_UNREADABLE).
+//
+// We should avoid adding new failure variants here since they correspond to
+// interop workarounds for misbehaving peer devices.
+enum class ServiceDiscoveryStatus {
+  VALID,
+  EXTENDED_PROPERTIES_UNREADABLE,  // see b/234202616
+};
+
+std::ostream& operator<<(std::ostream& os,
+                         const ServiceDiscoveryStatus& status) {
+  switch (status) {
+    case ServiceDiscoveryStatus::VALID:
+      return os << "VALID";
+    case ServiceDiscoveryStatus::EXTENDED_PROPERTIES_UNREADABLE:
+      return os << "EXTENDED_PROPERTIES_UNREADABLE";
+  }
+}
+
 static tGATT_STATUS bta_gattc_sdp_service_disc(uint16_t conn_id,
                                                tBTA_GATTC_SERV* p_server_cb);
 const Descriptor* bta_gattc_get_descriptor_srcb(tBTA_GATTC_SERV* p_srcb,
                                                 uint16_t handle);
 const Characteristic* bta_gattc_get_characteristic_srcb(tBTA_GATTC_SERV* p_srcb,
                                                         uint16_t handle);
-static void bta_gattc_explore_srvc_finished(uint16_t conn_id,
-                                            tBTA_GATTC_SERV* p_srvc_cb);
+static void bta_gattc_explore_srvc_finished(
+    uint16_t conn_id, tBTA_GATTC_SERV* p_srvc_cb,
+    ServiceDiscoveryStatus service_discovery_status);
 
 static void bta_gattc_read_db_hash_cmpl(tBTA_GATTC_CLCB* p_clcb,
                                         const tBTA_GATTC_OP_CMPL* p_data,
@@ -196,11 +225,13 @@ static void bta_gattc_explore_next_service(uint16_t conn_id,
     return;
   }
 
-  bta_gattc_explore_srvc_finished(conn_id, p_srvc_cb);
+  bta_gattc_explore_srvc_finished(conn_id, p_srvc_cb,
+                                  ServiceDiscoveryStatus::VALID);
 }
 
-static void bta_gattc_explore_srvc_finished(uint16_t conn_id,
-                                            tBTA_GATTC_SERV* p_srvc_cb) {
+static void bta_gattc_explore_srvc_finished(
+    uint16_t conn_id, tBTA_GATTC_SERV* p_srvc_cb,
+    ServiceDiscoveryStatus service_discovery_status) {
   tBTA_GATTC_CLCB* p_clcb = bta_gattc_find_clcb_by_conn_id(conn_id);
   if (!p_clcb) {
     LOG(ERROR) << "unknown conn_id=" << loghex(conn_id);
@@ -208,7 +239,8 @@ static void bta_gattc_explore_srvc_finished(uint16_t conn_id,
   }
 
   /* no service found at all, the end of server discovery*/
-  LOG(INFO) << __func__ << ": service discovery finished";
+  LOG(INFO) << __func__ << ": service discovery finished with status "
+            << service_discovery_status;
 
   p_srvc_cb->gatt_database = p_srvc_cb->pending_discovery.Build();
 
@@ -218,26 +250,36 @@ static void bta_gattc_explore_srvc_finished(uint16_t conn_id,
   /* save cache to NV */
   p_clcb->p_srcb->state = BTA_GATTC_SERV_SAVE;
 
-  // If robust caching is not enabled, use original design
-  if (!bta_gattc_is_robust_caching_enabled()) {
-    if (btm_sec_is_a_bonded_dev(p_srvc_cb->server_bda)) {
-      bta_gattc_cache_write(p_clcb->p_srcb->server_bda,
-                            p_clcb->p_srcb->gatt_database);
+  if (!bluetooth::common::init_flags::
+          gatt_allow_invalid_services_is_enabled() ||
+      service_discovery_status == ServiceDiscoveryStatus::VALID) {
+    // If robust caching is not enabled, use original design
+    if (!bta_gattc_is_robust_caching_enabled()) {
+      if (btm_sec_is_a_bonded_dev(p_srvc_cb->server_bda)) {
+        bta_gattc_cache_write(p_clcb->p_srcb->server_bda,
+                              p_clcb->p_srcb->gatt_database);
+      }
+    } else {
+      // If robust caching is enabled, do something optimized
+      Octet16 hash = p_clcb->p_srcb->gatt_database.Hash();
+      bool success = bta_gattc_hash_write(hash, p_clcb->p_srcb->gatt_database);
+
+      // If the device is trusted, link the addr file to hash file
+      if (success && btm_sec_is_a_bonded_dev(p_srvc_cb->server_bda)) {
+        bta_gattc_cache_link(p_clcb->p_srcb->server_bda, hash);
+      }
+
+      // After success, reset the count.
+      LOG_DEBUG(
+          "service discovery succeed, reset count to zero, conn_id=0x%04x",
+          conn_id);
+      p_srvc_cb->srvc_disc_count = 0;
     }
   } else {
-    // If robust caching is enabled, do something optimized
-    Octet16 hash = p_clcb->p_srcb->gatt_database.Hash();
-    bool success = bta_gattc_hash_write(hash, p_clcb->p_srcb->gatt_database);
-
-    // If the device is trusted, link the addr file to hash file
-    if (success && btm_sec_is_a_bonded_dev(p_srvc_cb->server_bda)) {
-      bta_gattc_cache_link(p_clcb->p_srcb->server_bda, hash);
-    }
-
-    // After success, reset the count.
-    LOG_DEBUG("service discovery succeed, reset count to zero, conn_id=0x%04x",
-              conn_id);
-    p_srvc_cb->srvc_disc_count = 0;
+    LOG(INFO)
+        << __func__
+        << ": Completed service discovery with non-VALID status, reporting "
+           "to upper-layers but will not cache";
   }
 
   bta_gattc_reset_discover_st(p_clcb->p_srcb, GATT_SUCCESS);
@@ -281,7 +323,8 @@ void bta_gattc_sdp_callback(tSDP_STATUS sdp_status, const void* user_data) {
   }
 
   if ((sdp_status != SDP_SUCCESS) && (sdp_status != SDP_DB_FULL)) {
-    bta_gattc_explore_srvc_finished(cb_data->sdp_conn_id, p_srvc_cb);
+    bta_gattc_explore_srvc_finished(cb_data->sdp_conn_id, p_srvc_cb,
+                                    ServiceDiscoveryStatus::VALID);
 
     /* allocated in bta_gattc_sdp_service_disc */
     osi_free(cb_data);
@@ -762,7 +805,14 @@ static void bta_gattc_read_ext_prop_desc_cmpl(
 
   if (status != GATT_SUCCESS) {
     LOG(WARNING) << "Discovery on server failed: " << loghex(status);
-    bta_gattc_reset_discover_st(p_clcb->p_srcb, GATT_ERROR);
+    if (bluetooth::common::init_flags::
+            gatt_allow_invalid_services_is_enabled()) {
+      bta_gattc_explore_srvc_finished(
+          p_clcb->bta_conn_id, p_srvc_cb,
+          ServiceDiscoveryStatus::EXTENDED_PROPERTIES_UNREADABLE);
+    } else {
+      bta_gattc_reset_discover_st(p_clcb->p_srcb, GATT_ERROR);
+    }
     return;
   }
 
