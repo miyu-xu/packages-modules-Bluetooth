@@ -87,6 +87,30 @@
       },
       "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1711bca5_33a8bf97",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-14T17:44:42Z",
+      "side": 1,
+      "message": "Thanks Kai and William for the comments. I changed ScanManager to get location manager through AdapterService which can be mocked from ScanManagerTest.",
+      "parentUuid": "d6cc9b50_9ee5c3a2",
+      "range": {
+        "startLine": 1709,
+        "startChar": 9,
+        "endLine": 1709,
+        "endChar": 27
+      },
+      "revId": "4acf4f04f8e8d5a485afa392b869ee644f4bdb43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
