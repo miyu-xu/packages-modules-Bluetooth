@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93bc77c0_4c64660b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:40:14Z",
+      "side": 1,
+      "message": "This looks like temporary logging. Should this be removed? if you meant this to be permanent, `log::debug!` is more suitable and no need `##` prefix.",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4c014d5_8f21f892",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -20,6 +37,98 @@
         "endLine": 1172,
         "endChar": 9
       },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4166880f_e2c8b73c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:40:14Z",
+      "side": 1,
+      "message": "Scan should still be allowed. Instead we should ignore filters if msft is not supported.",
+      "parentUuid": "c4c014d5_8f21f892",
+      "range": {
+        "startLine": 1169,
+        "startChar": 0,
+        "endLine": 1172,
+        "endChar": 9
+      },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8958f5d_a2f8980a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:40:14Z",
+      "side": 1,
+      "message": "Remove if temporary, `log::debug!` if meant to be permanent.",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7b8072_f6eac536",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:40:14Z",
+      "side": 1,
+      "message": "We don\u0027t need to create an anonymous block to contain the `scanners.lock().unwrap()` MutexGuard in this case, since we only use it directly in the `if let` block. So prefer this to be less verbose:\n```\nif let Some(scanner) \u003d\n    Self::find_scanner_by_id(\u0026mut scanners.lock().unwrap(), scanner_id)\n{\n...\n```",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe53090_f0cab739",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:40:14Z",
+      "side": 1,
+      "message": "Remove if temporary, `log::debug!` if meant to be permanent.",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03722732_b71344e2",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-14T23:40:14Z",
+      "side": 1,
+      "message": "Remove if temporary, `log::debug!` if meant to be permanent.",
       "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
