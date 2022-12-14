@@ -75,6 +75,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af444618_a99fd2c3",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-14T19:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f3b16d8_d803ba0c",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 64,
+        "endChar": 15
+      },
+      "revId": "2e132a46be5df513960e4e31e3cdda2f12bc5168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c3ce4ba_67c9ee62",
@@ -88,6 +112,30 @@
       "writtenOn": "2022-12-05T22:20:51Z",
       "side": 1,
       "message": "nit: UNKNOWN might be a bit more clear/adherent to codebase patterns here",
+      "range": {
+        "startLine": 65,
+        "startChar": 43,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "2e132a46be5df513960e4e31e3cdda2f12bc5168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46a6f46f_419f3377",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-14T19:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c3ce4ba_67c9ee62",
       "range": {
         "startLine": 65,
         "startChar": 43,
