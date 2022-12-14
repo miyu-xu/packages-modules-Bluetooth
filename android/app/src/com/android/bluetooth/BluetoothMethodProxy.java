@@ -27,6 +27,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CancellationSignal;
+import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
@@ -156,6 +157,13 @@ public class BluetoothMethodProxy {
      */
     public void contextSendBroadcast(Context context, @RequiresPermission Intent intent) {
         context.sendBroadcast(intent);
+    }
+
+    /**
+     * Proxies {@link Handler#sendEmptyMessage(int)}}.
+     */
+    public boolean handlerSendEmptyMessage(Handler handler, final int what) {
+        return handler.sendEmptyMessage(what);
     }
 
     /**
