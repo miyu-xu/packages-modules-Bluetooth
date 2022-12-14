@@ -135,6 +135,23 @@ tBTM_STATUS BTM_ReadRSSI(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb);
 
 /*******************************************************************************
  *
+ * Function         BTM_GetAclHandle
+ *
+ * Description      This function is called to get the ACL handle of the remote
+ *                  device on the given transport. The handle is returned in the
+ *                  callback, if found.
+ *
+ * Returns          BTM_SUCCESS if successful or BTM_UNKNOWN_ADDR if no
+ *connection exists
+ *
+ ******************************************************************************/
+
+tBTM_STATUS BTM_GetAclHandle(
+    const RawAddress& remote_bda, tBT_TRANSPORT transport,
+    base::OnceCallback<void(std::optional<uint16_t>)> handle_cb);
+
+/*******************************************************************************
+ *
  * Function         BTM_ReadFailedContactCounter
  *
  * Description      This function is called to read the failed contact counter.

@@ -22,7 +22,6 @@ import android.annotation.NonNull;
  * This abstract class is used to implement {@link BluetoothGatt} callbacks.
  */
 public abstract class BluetoothGattCallback {
-
     /**
      * Callback triggered as result of {@link BluetoothGatt#setPreferredPhy}, or as a result of
      * remote device changing the PHY.
@@ -35,8 +34,7 @@ public abstract class BluetoothGattCallback {
      * @param status Status of the PHY update operation. {@link BluetoothGatt#GATT_SUCCESS} if the
      * operation succeeds.
      */
-    public void onPhyUpdate(BluetoothGatt gatt, int txPhy, int rxPhy, int status) {
-    }
+    public void onPhyUpdate(BluetoothGatt gatt, int txPhy, int rxPhy, int status) {}
 
     /**
      * Callback triggered as result of {@link BluetoothGatt#readPhy}
@@ -49,8 +47,7 @@ public abstract class BluetoothGattCallback {
      * @param status Status of the PHY read operation. {@link BluetoothGatt#GATT_SUCCESS} if the
      * operation succeeds.
      */
-    public void onPhyRead(BluetoothGatt gatt, int txPhy, int rxPhy, int status) {
-    }
+    public void onPhyRead(BluetoothGatt gatt, int txPhy, int rxPhy, int status) {}
 
     /**
      * Callback indicating when GATT client has connected/disconnected to/from a remote
@@ -62,9 +59,7 @@ public abstract class BluetoothGattCallback {
      * @param newState Returns the new connection state. Can be one of {@link
      * BluetoothProfile#STATE_DISCONNECTED} or {@link BluetoothProfile#STATE_CONNECTED}
      */
-    public void onConnectionStateChange(BluetoothGatt gatt, int status,
-            int newState) {
-    }
+    public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {}
 
     /**
      * Callback invoked when the list of remote services, characteristics and descriptors
@@ -74,8 +69,7 @@ public abstract class BluetoothGattCallback {
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the remote device has been explored
      * successfully.
      */
-    public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-    }
+    public void onServicesDiscovered(BluetoothGatt gatt, int status) {}
 
     /**
      * Callback reporting the result of a characteristic read operation.
@@ -89,9 +83,8 @@ public abstract class BluetoothGattCallback {
      * BluetoothGattCharacteristic, byte[], int)} as it is memory safe
      */
     @Deprecated
-    public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic,
-            int status) {
-    }
+    public void onCharacteristicRead(
+            BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {}
 
     /**
      * Callback reporting the result of a characteristic read operation.
@@ -103,8 +96,9 @@ public abstract class BluetoothGattCallback {
      * @param status         {@link BluetoothGatt#GATT_SUCCESS} if the read operation was completed
      *                       successfully.
      */
-    public void onCharacteristicRead(@NonNull BluetoothGatt gatt, @NonNull
-            BluetoothGattCharacteristic characteristic, @NonNull byte[] value, int status) {
+    public void onCharacteristicRead(@NonNull BluetoothGatt gatt,
+            @NonNull BluetoothGattCharacteristic characteristic, @NonNull byte[] value,
+            int status) {
         onCharacteristicRead(gatt, characteristic, status);
     }
 
@@ -125,9 +119,8 @@ public abstract class BluetoothGattCallback {
      *                       the
      *                       operation succeeds.
      */
-    public void onCharacteristicWrite(BluetoothGatt gatt,
-            BluetoothGattCharacteristic characteristic, int status) {
-    }
+    public void onCharacteristicWrite(
+            BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {}
 
     /**
      * Callback triggered as a result of a remote characteristic notification.
@@ -140,9 +133,8 @@ public abstract class BluetoothGattCallback {
      * value at the time of notification.
      */
     @Deprecated
-    public void onCharacteristicChanged(BluetoothGatt gatt,
-            BluetoothGattCharacteristic characteristic) {
-    }
+    public void onCharacteristicChanged(
+            BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {}
 
     /**
      * Callback triggered as a result of a remote characteristic notification. Note that the value
@@ -171,9 +163,8 @@ public abstract class BluetoothGattCallback {
      * value at the time it was read.
      */
     @Deprecated
-    public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor,
-            int status) {
-    }
+    public void onDescriptorRead(
+            BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {}
 
     /**
      * Callback reporting the result of a descriptor read operation.
@@ -197,9 +188,8 @@ public abstract class BluetoothGattCallback {
      * @param status     The result of the write operation {@link BluetoothGatt#GATT_SUCCESS} if the
      *                   operation succeeds.
      */
-    public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor,
-            int status) {
-    }
+    public void onDescriptorWrite(
+            BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {}
 
     /**
      * Callback invoked when a reliable write transaction has been completed.
@@ -208,8 +198,7 @@ public abstract class BluetoothGattCallback {
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the reliable write transaction was
      * executed successfully
      */
-    public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {
-    }
+    public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {}
 
     /**
      * Callback reporting the RSSI for a remote device connection.
@@ -221,8 +210,22 @@ public abstract class BluetoothGattCallback {
      * @param rssi The RSSI value for the remote device
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the RSSI was read successfully
      */
-    public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
-    }
+    public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {}
+
+    /**
+     * Callback reporting the ACL handle for a remote device connection.
+     *
+     * This callback is triggered in response to the
+     * {@link BluetoothGatt#getAclHandle} function.
+     *
+     * @param gatt GATT client invoked {@link BluetoothGatt#getAclHandle}
+     * @param transport The transport for this connection handle
+     * @param handle The ACL handle for the remote device, or -1 if no ACL connection exists.
+     *
+     * @hide
+     */
+    @SystemApi
+    public void onGetAclHandle(@NonNull BluetoothGatt gatt, int transport, int handle) {}
 
     /**
      * Callback indicating the MTU for a given device connection has changed.
@@ -235,8 +238,7 @@ public abstract class BluetoothGattCallback {
      * @param mtu The new MTU size
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the MTU has been changed successfully
      */
-    public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {
-    }
+    public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {}
 
     /**
      * Callback indicating the connection parameters were updated.
@@ -252,9 +254,8 @@ public abstract class BluetoothGattCallback {
      * successfully
      * @hide
      */
-    public void onConnectionUpdated(BluetoothGatt gatt, int interval, int latency, int timeout,
-            int status) {
-    }
+    public void onConnectionUpdated(
+            BluetoothGatt gatt, int interval, int latency, int timeout, int status) {}
 
     /**
      * Callback indicating service changed event is received
@@ -265,6 +266,5 @@ public abstract class BluetoothGattCallback {
      *
      * @param gatt GATT client involved
      */
-    public void onServiceChanged(@NonNull BluetoothGatt gatt) {
-    }
+    public void onServiceChanged(@NonNull BluetoothGatt gatt) {}
 }
