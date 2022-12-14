@@ -94,6 +94,30 @@
       },
       "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edae6a33_482f91dc",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-14T16:51:30Z",
+      "side": 1,
+      "message": "Discussed offline, I\u0027m fine with `bytes`",
+      "parentUuid": "d2af18ef_ff75ba7b",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

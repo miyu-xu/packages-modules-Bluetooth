@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba513003_fa1e948b",
+        "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-14T16:51:30Z",
+      "side": 1,
+      "message": "Discussed offline",
+      "parentUuid": "2efeffc6_05d347ea",
+      "range": {
+        "startLine": 24,
+        "startChar": 24,
+        "endLine": 24,
+        "endChar": 29
+      },
+      "revId": "0b45245ec78f63c831f4280a75016e5198ce5f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c3fc263_5db9046a",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "I mean, these are errors so we should not really be needing them for the happy path, right?",
       "parentUuid": "2c3fc263_5db9046a",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "0b45245ec78f63c831f4280a75016e5198ce5f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e427620a_3d48d0ee",
+        "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-14T16:51:30Z",
+      "side": 1,
+      "message": "Discussed offline",
+      "parentUuid": "892c913d_e3422636",
       "range": {
         "startLine": 36,
         "startChar": 0,
