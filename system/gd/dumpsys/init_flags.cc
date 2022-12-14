@@ -15,6 +15,7 @@
  */
 
 #include "common/init_flags.h"
+
 #include "dumpsys/init_flags.h"
 #include "init_flags_generated.h"
 
@@ -37,6 +38,7 @@ flatbuffers::Offset<bluetooth::common::InitFlagsData> bluetooth::dumpsys::InitFl
       initFlags::btm_dm_flush_discovery_queue_on_search_cancel_is_enabled());
   builder.add_finite_att_timeout_is_enabled(initFlags::finite_att_timeout_is_enabled());
   builder.add_gatt_robust_caching_client_is_enabled(initFlags::gatt_robust_caching_client_is_enabled());
+  builder.add_gatt_allow_invalid_services_is_enabled(initFlags::gatt_allow_invalid_services_is_enabled());
   builder.add_gatt_robust_caching_server_is_enabled(initFlags::gatt_robust_caching_server_is_enabled());
   builder.add_gd_core_is_enabled(initFlags::gd_core_is_enabled());
   builder.add_gd_l2cap_is_enabled(initFlags::gd_l2cap_is_enabled());
