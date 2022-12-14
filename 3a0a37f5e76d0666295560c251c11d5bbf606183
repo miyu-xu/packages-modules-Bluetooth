@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd92f7bc_f090cc64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-14T17:08:24Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/bta/le_audio/devices.cc:1645:15: error: use of undeclared identifier \u0027ToString\u0027; did you mean \u0027bluetooth::common::ToString\u0027?\n              ToString(group_context_type).c_str());\n              ^~~~~~~~\n              bluetooth::common::ToString",
+      "revId": "3a0a37f5e76d0666295560c251c11d5bbf606183",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
