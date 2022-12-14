@@ -16,17 +16,17 @@
 
 package com.android.bluetooth.hfpclient;
 
-import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.BatteryManager;
 
@@ -35,7 +35,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -65,16 +64,18 @@ public class HeadsetClientServiceTest {
     @Mock private HeadsetClientStateMachine mStateMachine;
 
     @Mock private DatabaseManager mDatabaseManager;
+    @Mock private BatteryManager mBatteryManager;
 
     @Before
     public void setUp() throws Exception {
-        mTargetContext = InstrumentationRegistry.getTargetContext();
         Assume.assumeTrue("Ignore test when HeadsetClientService is not enabled",
                 HeadsetClientService.isEnabled());
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
+        mTargetContext = spy(new ContextWrapper(InstrumentationRegistry.getTargetContext()));
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(mBatteryManager).when(mTargetContext).getSystemService(BatteryManager.class);
         TestUtils.startService(mServiceRule, HeadsetClientService.class);
         // At this point the service should have started so check NOT null
         mService = HeadsetClientService.getHeadsetClientService();
@@ -117,7 +118,7 @@ public class HeadsetClientServiceTest {
                 .sendMessage(
                     eq(HeadsetClientStateMachine.SEND_BIEV),
                     eq(2),
-                    anyInt());
+                    eq(50));
     }
 
     @Test
@@ -126,6 +127,7 @@ public class HeadsetClientServiceTest {
         BluetoothDevice device =
                 BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:01:02:03:04:05");
         mService.getStateMachineMap().put(device, mStateMachine);
+        doReturn(99).when(mBatteryManager).getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 
         mService.updateBatteryLevel();
 
@@ -134,6 +136,6 @@ public class HeadsetClientServiceTest {
                 .sendMessage(
                     eq(HeadsetClientStateMachine.SEND_BIEV),
                     eq(2),
-                    anyInt());
+                    eq(99));
     }
 }
