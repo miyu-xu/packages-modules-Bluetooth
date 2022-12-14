@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2efeffc6_05d347ea",
+        "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-14T07:22:15Z",
+      "side": 1,
+      "message": "\u003e So the `get_u16` takes a mut reference to `bytes` and mutate it every time 🤔\n\u003e\n\u003e I really don\u0027t like that\n\nMy guess is that it simply does something like\n\n```\nlet front, bytes \u003d bytes.split_at(2);\n```\n\nrepeatedly and then parses the integer out of `front`. Why would you not like that?",
+      "parentUuid": "dfedbc6f_d9b7591b",
+      "range": {
+        "startLine": 24,
+        "startChar": 24,
+        "endLine": 24,
+        "endChar": 29
+      },
+      "revId": "0b45245ec78f63c831f4280a75016e5198ce5f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c3fc263_5db9046a",
         "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
         "patchSetId": 6

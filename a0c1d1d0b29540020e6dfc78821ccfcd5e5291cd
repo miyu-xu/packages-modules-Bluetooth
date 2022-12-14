@@ -70,6 +70,30 @@
       },
       "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2af18ef_ff75ba7b",
+        "filename": "tools/pdl/src/backends/rust/chunk.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-12-14T07:22:15Z",
+      "side": 1,
+      "message": "\u003e I\u0027m not sure to get the feature parity part, as the old code generator was only using Bytes for the serialisation path and in your CL you are using it for the parsing path.\n\nI meant future parity in the sense that the new compiler should support the PDL constructs of the old compiler. I didn\u0027t mean that it\u0027ll do it the exact same way internally.\n\n\u003e It should not be the decision of PDL to say if the buffer is shareable and should be the decision of the user. \n\nI don\u0027t think using `bytes` forces this decision: as you mention on the other comment, the actually important `Buf` and `BufMut` traits are implemented on `\u0026[u8]` and `Vec\u003cu8\u003e`. Those are the implementations we use: we don\u0027t actually use the shared `Bytes` struct you mention.",
+      "parentUuid": "aa32becd_cf0314a9",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a0c1d1d0b29540020e6dfc78821ccfcd5e5291cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
