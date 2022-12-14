@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86cf0bcd_94b5ca6b",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-12-14T12:28:50Z",
+      "side": 1,
+      "message": "0x1 is L2CAP Signaling channel number.\n0x0edc is QCOM proprietary HCI handle for firmware logs.\nHere we ignore this specific packet type.",
+      "parentUuid": "40a343bd_96e6e652",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 862,
+        "endChar": 3
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "470abe3e_ff9c2f9b",
@@ -77,6 +101,30 @@
       "writtenOn": "2022-12-08T01:01:42Z",
       "side": 1,
       "message": "What is the difference between `length_original` and `length_captured` ?\nI thought (wild guess from me, do not take this as the truth) the `length_original` should match the packet_data.size() to reflect the size before any truncation while the `length_captured` is the saved pkt size.",
+      "range": {
+        "startLine": 1185,
+        "startChar": 10,
+        "endLine": 1186,
+        "endChar": 49
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c638894f_3069b9b8",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-12-14T12:28:50Z",
+      "side": 1,
+      "message": "It is packet record format from ComProbe btsnoop file format.\nOriginal Length:\nA 32-bit unsigned integer representing the length in octets of the captured packet as received via a network.\n\ncaptured Length:\nA 32-bit unsigned integer representing the length of the Packet Data field. This is the number of octets of the\ncaptured packet that are included in this packet record. If the received packet was truncated, the Included Length\nfield is less than the Original Length field.\n\nIn general, they have the same value.",
+      "parentUuid": "470abe3e_ff9c2f9b",
       "range": {
         "startLine": 1185,
         "startChar": 10,
