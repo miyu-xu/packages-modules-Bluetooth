@@ -1,0 +1,809 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59bcf43c_0a1766b5",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "@mylesgw@google.com\n\nI know there is a storage/btifconfig module in GD.\nis there something more generic that could be used her instead of the legacy config_t from the lib osi ?",
+      "range": {
+        "startLine": 80,
+        "startChar": 23,
+        "endLine": 80,
+        "endChar": 31
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b4a7a9_dfd06bef",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "We can replace the pointer by a `const RawAddress\u0026` to remove the CHECK or any assumption.\nSame in a lot of method in this file",
+      "range": {
+        "startLine": 211,
+        "startChar": 38,
+        "endLine": 211,
+        "endChar": 48
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c82338_6f6598f0",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "const cast is not needed.",
+      "range": {
+        "startLine": 222,
+        "startChar": 46,
+        "endLine": 222,
+        "endChar": 56
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c383ea7_1c699008",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "expression can be simplified for readibility:\n```\n    feature_name_id_map.insert({feature_name, feature});\n```",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 279,
+        "endChar": 60
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e3e002c_28192c3b",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "We don\u0027t want to destroy the mutex as we are not shutting down the interop module on failure",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 36
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2be3460_ab31fb90",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "why do we need `get_feature` when we are already storing a map to match from a name to the id with interop_feature_name_to_feature_id ?\n\nWe could create a `interop_feature_name_to_feature_id` that take a \u0026string in parameter",
+      "range": {
+        "startLine": 467,
+        "startChar": 1,
+        "endLine": 477,
+        "endChar": 1
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20927240_3c470974",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "you are already doing an early return.\nit would be better to invert the condition\n```\nif (interop) {\n  LOG\n  return\n}\nmutex_lock\n...\nmutex_unlock\n```",
+      "range": {
+        "startLine": 509,
+        "startChar": 3,
+        "endLine": 509,
+        "endChar": 11
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8e4d6d_4a0d49d3",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be simpler to use the RawAddress [existing method](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/types/raw_address.cc;l\u003d43?q\u003draw_address.cc) ?\n\nSomething like:\n```\nconst std::string bdstr \u003d addr_entry.addr.ToColonSepHexString()\n                  .substr(0, addr_entry.length * 3 - 1);\n````\n\nsame for INTEROP_BL_TYPE_SSR_MAX_LAT / INTEROP_BL_TYPE_LMP_VERSION by replacing `addr_entry.length` by `3`",
+      "range": {
+        "startLine": 522,
+        "startChar": 11,
+        "endLine": 522,
+        "endChar": 16
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111e8fcf_71703e2a",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "interop_config_flush is done in all case except the default.\nI suppose we can remove it from the switch and put it after:\n```\nswitch {\n  case X:\n    ...\n  default:\n    LOG\n    return;\n}\ninterop_config_flush();\n```",
+      "range": {
+        "startLine": 608,
+        "startChar": 0,
+        "endLine": 608,
+        "endChar": 29
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f76ca215_eccdaddc",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "pass entry as reference ?",
+      "range": {
+        "startLine": 617,
+        "startChar": 56,
+        "endLine": 617,
+        "endChar": 61
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "290a5f10_9e369888",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "This is the only case where we assigned on `src`.\n\nIt\u0027s a bit confusing.\nis it possible to take a `const\u0026 entry` in parameter and move the assignement outside of the scope of this method ?\nand then have all the `src` as const\u0026 also",
+      "range": {
+        "startLine": 653,
+        "startChar": 0,
+        "endLine": 653,
+        "endChar": 36
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2103a4f2_566caf3f",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "can we merge together this switch and the one from `interop_database_add_`\nthe only difference is the \n\n`interop_config_remove` vs `interop_config_set_str(_, _, value)`",
+      "range": {
+        "startLine": 788,
+        "startChar": 0,
+        "endLine": 788,
+        "endChar": 27
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aab5d9b_1ce96696",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "`saveptr` should be set to null for first call of `strtok_r` (see man page NOTES)\n\nsame for other method",
+      "range": {
+        "startLine": 901,
+        "startChar": 8,
+        "endLine": 901,
+        "endChar": 15
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae1c192a_b0e6d136",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "`trim(token)` will only perform a trim_end if the pointer is not assigned back.\nstrtoul will trim_start again but we could benefit from our trim fonction already",
+      "range": {
+        "startLine": 906,
+        "startChar": 4,
+        "endLine": 906,
+        "endChar": 16
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db2623dc_50547589",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "we are looking for a couple of uint16_t from a token.\nWe should do it in a common function like this:\n```\n  bool token_to_ul(char *token, uint16_t *ul) {\n    char *e;\n\n    token \u003d trim(token);\n    errno \u003d 0;\n    *ul \u003d (uint16_t)strtoul(token, \u0026e, 16);\n    return !*e \u0026\u0026 errno \u003d\u003d 0; // OR explictly list EINVAL and ERANGE\n  }\n\n  ...\n\n  if ((token \u003d strtok_r(vendorstr, VENDOR_VALUE_SEPARATOR, \u0026saveptr)) \u003d\u003d NULL) {\n    return false;\n  }\n  if (!token_to_ul(token, vendor)) {\n    return false;\n  }\n  ...\n  return true;\n```\n\nwe could then use the `token_to_ul` in a couple other location where we are doing the same conversion and check (like in `load_to_database`)",
+      "range": {
+        "startLine": 905,
+        "startChar": 2,
+        "endLine": 910,
+        "endChar": 3
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00349334_4ad82152",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "this is always the case.\nDon\u0027t you mean to check if we end on \\0 and to negate the other errno check ?\n```\nif (!*e \u0026\u0026 errno !\u003d EINVAL \u0026\u0026 errno !\u003d ERANGE) ret_value \u003d true;\n```",
+      "range": {
+        "startLine": 915,
+        "startChar": 9,
+        "endLine": 915,
+        "endChar": 18
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3d0d23_11d7d6da",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "`if (!RawAddress::FromString() || xxx) return false` will remove the need to parse he address again later",
+      "range": {
+        "startLine": 953,
+        "startChar": 4,
+        "endLine": 954,
+        "endChar": 57
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0da4ba0f_bce16d99",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "duplicate of `trim`",
+      "range": {
+        "startLine": 992,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 1
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8d86ca9_29c5fdfc",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1003,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "Why not taking string directly as this method is always called with string.c_str()",
+      "range": {
+        "startLine": 1003,
+        "startChar": 35,
+        "endLine": 1003,
+        "endChar": 68
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c0a0da_68acdec2",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "do you mean `len \u003c 3 || len \u003e 6` ?",
+      "range": {
+        "startLine": 1012,
+        "startChar": 0,
+        "endLine": 1012,
+        "endChar": 29
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ca96c6_20e8ff83",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "strlcat is not used in the stack and add weird dependencies.\n\nWhy not using the RawAddress::kEmpty as a source of truth to complete the address:\n```\n    std::string bdstr \u003d std::string(key);\n    bdstr +\u003d RawAddress::kEmpty.ToColonSepHexString()\n            .substr(bdstr.length(), std::string::npos);\n    ```",
+      "range": {
+        "startLine": 1018,
+        "startChar": 34,
+        "endLine": 1018,
+        "endChar": 41
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebad8ba6_d1603060",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1065,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "replace with the token_to_ul ?",
+      "range": {
+        "startLine": 1063,
+        "startChar": 6,
+        "endLine": 1065,
+        "endChar": 63
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9864720_7cf89fa3",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "VALID_VNDR_PRDT_LEN + 1",
+      "range": {
+        "startLine": 1077,
+        "startChar": 17,
+        "endLine": 1077,
+        "endChar": 31
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38efa0df_82973afd",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1085,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "VALID_VNDR_PRDT_LEN (not sure about the +1 or not here)\n\nOr better remove the strlcpy to use a string",
+      "range": {
+        "startLine": 1085,
+        "startChar": 0,
+        "endLine": 1085,
+        "endChar": 42
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc3cfa7_c2fe422e",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "do you mean `len \u003c 3 || len \u003e 6` ?",
+      "range": {
+        "startLine": 1123,
+        "startChar": 8,
+        "endLine": 1123,
+        "endChar": 27
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae0e0788_e5445ef0",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "same as above with kEmpty",
+      "range": {
+        "startLine": 1128,
+        "startChar": 4,
+        "endLine": 1129,
+        "endChar": 76
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05bf90a9_6e767680",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "replace with the token_to_ul ?",
+      "range": {
+        "startLine": 1158,
+        "startChar": 5,
+        "endLine": 1160,
+        "endChar": 63
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "222eef62_5a1bac1e",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "`len \u003c 3 || len \u003e 6`",
+      "range": {
+        "startLine": 1194,
+        "startChar": 8,
+        "endLine": 1194,
+        "endChar": 27
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38c43ef2_35b6400c",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1201,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "complete with kEmpty.substr",
+      "range": {
+        "startLine": 1199,
+        "startChar": 1,
+        "endLine": 1201,
+        "endChar": 0
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba64ecd3_96f66f0e",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "early return will help for readibility:\n```\nif (init \u003d\u003d -1) {\n  LOG\n  return;\n}\n```",
+      "range": {
+        "startLine": 1266,
+        "startChar": 0,
+        "endLine": 1266,
+        "endChar": 36
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb1e0b8_ba561f25",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "why initial declaration is not set to get_feature ? (same below)\n```\nconst int feature \u003d get_feature(sec.name);\nif (feature !\u003d -1) {\n  for(){\n  }\n}\n```",
+      "range": {
+        "startLine": 1269,
+        "startChar": 6,
+        "endLine": 1270,
+        "endChar": 52
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5d74346_0d4b0b9a",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "method is only called once with always the same parameter.\nWe can inline the code in it (`interop_config_flush`)",
+      "range": {
+        "startLine": 1293,
+        "startChar": 12,
+        "endLine": 1293,
+        "endChar": 32
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99662361_0c122ba1",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "config_save already call [fsync](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/osi/src/config.cc;l\u003d330?q\u003d%5Cbconfig_save%5Cb%20f:modules%2FBluetooth%20-f:test%20-f:mock\u0026ss\u003dandroid%2Fplatform%2Fsuperproject)",
+      "range": {
+        "startLine": 1298,
+        "startChar": 2,
+        "endLine": 1304,
+        "endChar": 3
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3086e2f_28d1eecc",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "parameter is set but not used\n\nthis is the case for most of the `interop_database_match_(` call (not all)\n\nbut we can replace this by a NULL parameter directly",
+      "range": {
+        "startLine": 1415,
+        "startChar": 22,
+        "endLine": 1415,
+        "endChar": 31
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "608b0436_335cb325",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1469,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-14T10:05:59Z",
+      "side": 1,
+      "message": "`\u0026entry.entry_type.addr_entry.addr \u003d *addr` instead of memcpy (same in a couple other place when len is  `sizeof(RawAddress)` )",
+      "range": {
+        "startLine": 1469,
+        "startChar": 0,
+        "endLine": 1469,
+        "endChar": 70
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
