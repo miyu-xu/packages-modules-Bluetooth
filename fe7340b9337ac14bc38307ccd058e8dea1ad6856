@@ -95,6 +95,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0737c4e_9717abbc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-14T08:27:11Z",
+      "side": 1,
+      "message": "withGsmAndCdmaExcludeFilter?",
+      "range": {
+        "startLine": 362,
+        "startChar": 32,
+        "endLine": 362,
+        "endChar": 68
+      },
+      "revId": "fe7340b9337ac14bc38307ccd058e8dea1ad6856",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a13fa376_d6ebc5e1",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
         "patchSetId": 2
