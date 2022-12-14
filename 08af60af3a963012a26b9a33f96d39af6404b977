@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b479f5b5_3dd1c167",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea7f87df_e5577685",
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "771993aa_7c1f431e",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-12-14T04:33:21Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7b0d4e3_cf0083fc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "771993aa_7c1f431e",
       "range": {
         "startLine": 2,
         "startChar": 13,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "575f9d1d_ed5f3d13",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "012829f2_996fdcdb",
+      "range": {
+        "startLine": 101,
+        "startChar": 16,
+        "endLine": 101,
+        "endChar": 51
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a606a84a_ab737d0d",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-12-14T04:33:21Z",
       "side": 1,
       "message": "just \"unblock\" look enough.",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "416ed68f_70f8365c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a606a84a_ab737d0d",
       "range": {
         "startLine": 108,
         "startChar": 16,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f570719_d8f02fbd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44835ecf_506e6d5f",
+      "range": {
+        "startLine": 131,
+        "startChar": 25,
+        "endLine": 131,
+        "endChar": 44
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89dadedd_13fa771f",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-12-14T04:33:21Z",
       "side": 1,
       "message": "returns",
+      "range": {
+        "startLine": 154,
+        "startChar": 33,
+        "endLine": 154,
+        "endChar": 39
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c687b84_f7a04966",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89dadedd_13fa771f",
       "range": {
         "startLine": 154,
         "startChar": 33,
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a385e80_ec5cef65",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "To indirectly change mAccept using that line is super cumbersome, while doing like this has no drawback in my opinion",
+      "parentUuid": "96541b9c_2b00106a",
+      "range": {
+        "startLine": 155,
+        "startChar": 23,
+        "endLine": 155,
+        "endChar": 32
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "138d30a2_99732b09",
@@ -169,6 +331,30 @@
       "writtenOn": "2022-12-14T04:33:21Z",
       "side": 1,
       "message": "The test condition \"onPut_userDenied_\" are the same with previous test method, but the result is different.\n\nPlease make the test method name make sense.",
+      "range": {
+        "startLine": 160,
+        "startChar": 16,
+        "endLine": 160,
+        "endChar": 57
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afbca1b6_59dffced",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "138d30a2_99732b09",
       "range": {
         "startLine": 160,
         "startChar": 16,
@@ -202,6 +388,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86eb472f_93916a28",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c13ab24_101c8561",
+      "range": {
+        "startLine": 166,
+        "startChar": 22,
+        "endLine": 166,
+        "endChar": 38
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "478a7264_2af758cb",
@@ -215,6 +425,30 @@
       "writtenOn": "2022-12-14T04:33:21Z",
       "side": 1,
       "message": "Set headerSet values first before this.",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 65
+      },
+      "revId": "08af60af3a963012a26b9a33f96d39af6404b977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e91fb0_2d6e0e0c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexServerSessionTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-14T16:54:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "478a7264_2af758cb",
       "range": {
         "startLine": 171,
         "startChar": 8,
