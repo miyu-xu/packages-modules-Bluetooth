@@ -851,7 +851,7 @@ impl IBluetoothSocketManagerCallbacks for BtSocketManagerCallback {
         _listener_id: SocketId,
         _connection: BluetoothSocket,
     ) {
-        todo!();
+        print_info!("handling connection {}: {}", listener_id, connection);
     }
 
     fn on_outgoing_connection_result(

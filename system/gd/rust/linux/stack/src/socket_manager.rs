@@ -226,14 +226,15 @@ impl fmt::Display for BluetoothSocket {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "[{}]:{} (type: {:?}) (uuid: {})",
+            "[{}]:{} (type: {:?}) (uuid: {}) (fd: {:?})",
             self.remote_device.address,
             self.port,
             self.sock_type,
             match self.uuid {
                 Some(u) => UuidHelper::to_string(&u.uu),
                 None => "".to_string(),
-            }
+            },
+            self.fd
         )
     }
 }

@@ -817,9 +817,27 @@ bt_status_t btsock_l2cap_set_etm_default_cfg(bt_l2cap_mode mode,
       l2cap_etm_preferred.preferred_mode = mode;
       status = BT_STATUS_SUCCESS;
       break;
+    case BT_L2CAP_FCR_RTM_MODE:
+      l2cap_etm_cfg.fcr_present = mandatory;
+      l2cap_etm_cfg.fcr = kDefaultRTMOptions;
+      l2cap_etm_preferred.preferred_mode = mode;
+      status = BT_STATUS_SUCCESS;
+      break;
+    case BT_L2CAP_FCR_FC_MODE:
+      l2cap_etm_cfg.fcr_present = mandatory;
+      l2cap_etm_cfg.fcr = kDefaultFCOptions;
+      l2cap_etm_preferred.preferred_mode = mode;
+      status = BT_STATUS_SUCCESS;
+      break;
     case BT_L2CAP_FCR_ERTM_MODE:
       l2cap_etm_cfg.fcr_present = mandatory;
       l2cap_etm_cfg.fcr = kDefaultErtmOptions;
+      l2cap_etm_preferred.preferred_mode = mode;
+      status = BT_STATUS_SUCCESS;
+      break;
+    case BT_L2CAP_FCR_STREAMING_MODE:
+      l2cap_etm_cfg.fcr_present = mandatory;
+      l2cap_etm_cfg.fcr = kDefaultStreamingOptions;
       l2cap_etm_preferred.preferred_mode = mode;
       status = BT_STATUS_SUCCESS;
       break;

@@ -41,7 +41,10 @@ typedef enum {
 /** Bluetooth L2CAP FCR Mode */
 typedef enum {
   BT_L2CAP_FCR_BASIC_MODE = 0,
+  BT_L2CAP_FCR_RTM_MODE = 1,
+  BT_L2CAP_FCR_FC_MODE = 2,
   BT_L2CAP_FCR_ERTM_MODE = 3,
+  BT_L2CAP_FCR_STREAMING_MODE = 4,
   BT_L2CAP_FCR_LE_COC_MODE = 5,
 } bt_l2cap_mode;
 

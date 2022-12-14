@@ -26,7 +26,10 @@ pub enum SocketType {
 #[repr(u32)]
 pub enum L2CAPEtmMode {
     Basic = 0,
-    ERTM = 3,
+    RTM = 1,  // Retransmission
+    FC = 2,   // Flow Control
+    ERTM = 3, // Enhanced Retransmission
+    Streaming = 4,
     LECOC = 5,
 }
 

@@ -115,7 +115,10 @@ typedef uint8_t tL2CAP_CHNL_DATA_RATE;
 
 typedef struct {
 #define L2CAP_FCR_BASIC_MODE 0x00
+#define L2CAP_FCR_RTM_MODE 0x01
+#define L2CAP_FCR_FC_MODE 0x02
 #define L2CAP_FCR_ERTM_MODE 0x03
+#define L2CAP_FCR_STREAMING_MODE 0x04
 #define L2CAP_FCR_LE_COC_MODE 0x05
 
   uint8_t mode;
@@ -137,6 +140,26 @@ constexpr tL2CAP_FCR_OPTS kDefaultBasicOptions = {
     0  /* MPS segment size */
 };
 
+/* default options for Retransmission mode */
+constexpr tL2CAP_FCR_OPTS kDefaultRTMOptions = {
+    L2CAP_FCR_RTM_MODE,
+    0, /* Tx window size */
+    0, /* Maximum transmissions before disconnecting */
+    0, /* Retransmission timeout (2 secs) */
+    0, /* Monitor timeout (12 secs) */
+    0  /* MPS segment size */
+};
+
+/* default options for Flow Control mode */
+constexpr tL2CAP_FCR_OPTS kDefaultFCOptions = {
+    L2CAP_FCR_FC_MODE,
+    0, /* Tx window size */
+    0, /* Maximum transmissions before disconnecting */
+    0, /* Retransmission timeout (2 secs) */
+    0, /* Monitor timeout (12 secs) */
+    0  /* MPS segment size */
+};
+
 /* default options for ERTM mode */
 constexpr tL2CAP_FCR_OPTS kDefaultErtmOptions = {
     L2CAP_FCR_ERTM_MODE,
@@ -145,6 +168,16 @@ constexpr tL2CAP_FCR_OPTS kDefaultErtmOptions = {
     2000,  /* Retransmission timeout (2 secs) */
     12000, /* Monitor timeout (12 secs) */
     1010   /* MPS segment size */
+};
+
+/* default options for Streaming mode */
+constexpr tL2CAP_FCR_OPTS kDefaultStreamingOptions = {
+    L2CAP_FCR_STREAMING_MODE,
+    0, /* Tx window size */
+    0, /* Maximum transmissions before disconnecting */
+    0, /* Retransmission timeout (2 secs) */
+    0, /* Monitor timeout (12 secs) */
+    0  /* MPS segment size */
 };
 
 /* default options for LE COC mode */
