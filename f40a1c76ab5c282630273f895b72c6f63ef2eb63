@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2e32d82_5c4b88ad",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-14T06:06:05Z",
+      "side": 1,
+      "message": "I see what you mean. But this logic will only have effect if the device is not null and there is an audioPolicy object stored for it with the connecting policy being NOT_ALLOWED. I checked the use cases of setHfpActiveDevice and found\n1. setting null : this should be okay by the logic\n2. during connection : the original purpose of the policy\n3. fallback : even for fallback, if the HF device sent connecting policy to be NOT_ALLOWED, we don\u0027t want to route audio to it. So, this logic covers that case too.\nIf the connecting policy is set to NOT_ALLOWED, we don\u0027t want to set the HF as active in these cases.",
+      "parentUuid": "2c4b957c_2bffaac8",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 978,
+        "endChar": 38
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35e40ee2_2b4b0b4c",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/AudioPolicyEntity.java",
         "patchSetId": 30
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "...",
       "parentUuid": "cb30e068_bc99d8e2",
+      "range": {
+        "startLine": 291,
+        "startChar": 19,
+        "endLine": 291,
+        "endChar": 41
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0bce217_8016db39",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-14T06:06:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65c0e5c5_0835159a",
       "range": {
         "startLine": 291,
         "startChar": 19,
@@ -685,6 +733,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "018ed40d_56cb0ba0",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-14T06:06:05Z",
+      "side": 1,
+      "message": "They are not the same. Default is kept for 2 cases:\n1. the values haven\u0027t been configured yet. We cannot assume ALLOWED or NOT_ALLOWED might be the default behavior because it may depend on device.\n2. we don\u0027t want to depend on this value and let use other logic. this is kept as a backdoor for future.",
+      "parentUuid": "4487aed8_9777889d",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4beb6f94_9a84b329",
@@ -746,6 +818,30 @@
       "side": 1,
       "message": "1) I can\u0027t find any usecases of getAudioPolicyRemoteSupported which will return these status values.\nMy guess was there will be no behavioral difference between REMOTE_STATUS_UNKNOWN and REMOTE_STATUS_SUPPORTED.\nIf so, we don\u0027t need to have UNKNOWN constant.\n\n2) These valued should be located in other place, maybe BluetoothDevice? and if the case it would be BLUETOOTH_AUDIO_POLICY_SUPPORTED, ...",
       "parentUuid": "d35c0e58_01b4ca57",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85152900_ba6ef020",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-14T06:06:05Z",
+      "side": 1,
+      "message": "1. Before configuring, the HF doesn\u0027t know whether the AG supports it or not. We cannot assume that SUPPORTED because the AG device can be running on older android builds. we cannot assume that NOT_SUPPORTED either because AG device might update from an older android version to newer.\n2. I wanted to use that naming at first. But since this SUPPORT means supported by remote or not. so I thought it needs to mention remote. It will make it huge",
+      "parentUuid": "f75ea11c_ecc9a223",
       "range": {
         "startLine": 88,
         "startChar": 28,
@@ -864,6 +960,30 @@
       "side": 1,
       "message": "I don\u0027t think it is not allowed, but not sure whether it\u0027s one or the common patterns or not.\nI\u0027m not strong disagree on this. I prefer to make it void method, but up to you",
       "parentUuid": "8046be65_9bd210d7",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 5
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a197e189_954774d4",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-14T06:06:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51d976ae_679d9b7d",
       "range": {
         "startLine": 126,
         "startChar": 0,
