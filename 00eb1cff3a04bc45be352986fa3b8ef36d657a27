@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a9938a_b492cee0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-14T18:53:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51adc8a8_9ef8cca6",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00e863d6_811cef0b",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "719d930f_353301fb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-14T18:53:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00e863d6_811cef0b",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "560a1c25_f6ef0f75",
@@ -66,6 +102,24 @@
       "writtenOn": "2022-12-13T14:50:49Z",
       "side": 1,
       "message": "PENDING_TO_REMOVE\n\n\n/* Device would be removed when receiver/sender became IDLE */\n\n-\u003e\n\n/* Device will be removed after scheduled action is finished: One of such action is taking Stream to IDLE */",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4886153a_f55e915c",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-14T18:53:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "560a1c25_f6ef0f75",
       "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
