@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76754249_05584a80",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T03:55:35Z",
+      "side": 1,
+      "message": "deviceWatch",
+      "range": {
+        "startLine": 1027,
+        "startChar": 24,
+        "endLine": 1027,
+        "endChar": 31
+      },
+      "revId": "ca03ce505e04168dbe344c242002f62a95d072c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
