@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09f8918f_2941c8d7",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothShellCommandTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-14T04:36:36Z",
+      "side": 1,
+      "message": "withPrivilegedCommandName",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 108,
+        "endChar": 43
+      },
+      "revId": "da58bb00075e39bb9c900f000756905edae442c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
