@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80d421aa_09433175",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T06:28:56Z",
+      "side": 1,
+      "message": "Methods",
+      "range": {
+        "startLine": 83,
+        "startChar": 21,
+        "endLine": 83,
+        "endChar": 32
+      },
+      "revId": "2450d656ab9948023fe7209f89de3bf4390f36bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
