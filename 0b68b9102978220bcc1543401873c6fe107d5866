@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b87213d_7266f854",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-12-15T13:04:38Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI have checked in Host changes. \n\nUpdated Host.kt file.\nRemoved rebootBluetooth call from factoryReset function in Host.\nbluetoothAdapter.clearBluetooth() performs bluetooth config clear and reset bluetooth. Hence no need to call rebootBluetooth().\n\nWith this change, Test case execution time has improved and \"E/PtsBotTest: Error: Timeout in IUT initialization\" issue is not observed. \n\n\nThanks,\nFahad",
+      "revId": "0b68b9102978220bcc1543401873c6fe107d5866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
