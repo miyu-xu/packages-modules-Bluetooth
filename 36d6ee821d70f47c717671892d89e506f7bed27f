@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c019f89a_48a6702d",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-15T23:05:46Z",
+      "side": 1,
+      "message": "this was copy/paste from an existing comment\n\nFixing in both places.",
+      "parentUuid": "2b3bd3d9_ce4840ed",
+      "revId": "36d6ee821d70f47c717671892d89e506f7bed27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "247afa91_3cb38ed6",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1343194b_2bc879c7",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-15T23:05:46Z",
+      "side": 1,
+      "message": "Good catch, actually - this would mess up EATT a bit",
+      "parentUuid": "247afa91_3cb38ed6",
+      "revId": "36d6ee821d70f47c717671892d89e506f7bed27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff415ed7_c3b6c0a1",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-12-15T22:46:50Z",
       "side": 1,
       "message": "nit: may be rename this to something like: MarkLocalDeviceAsActive ?",
+      "revId": "36d6ee821d70f47c717671892d89e506f7bed27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa558c5a_8ecc6670",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1564,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-15T23:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff415ed7_c3b6c0a1",
       "revId": "36d6ee821d70f47c717671892d89e506f7bed27f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
