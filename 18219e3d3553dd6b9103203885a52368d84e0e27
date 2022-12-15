@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6daef3dd_16fcb2ef",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppNotificationTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T08:43:46Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "18219e3d3553dd6b9103203885a52368d84e0e27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6452e42_55dc141c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppNotificationTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T08:43:46Z",
+      "side": 1,
+      "message": "Is it possible to verify different things?\n(It is verifying the same thing with updateCompletedNotification_withOutBoundShare_showsNoti)",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 93
+      },
+      "revId": "18219e3d3553dd6b9103203885a52368d84e0e27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813788f0_dde71fe3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppNotificationTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T08:43:46Z",
+      "side": 1,
+      "message": "Are there any more things we can verify more?",
+      "revId": "18219e3d3553dd6b9103203885a52368d84e0e27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
