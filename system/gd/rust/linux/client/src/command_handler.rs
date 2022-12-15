@@ -196,6 +196,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("advertise <on|off|ext>"),
                 String::from("advertise set-interval <ms>"),
                 String::from("advertise set-scan-rsp <enable|disable>"),
+                String::from("advertise set-connectable <on|off>"),
             ],
             description: String::from("Advertising utilities."),
             function_pointer: CommandHandler::cmd_advertise,
@@ -1223,6 +1224,33 @@ impl CommandHandler {
                 for (adv_id, params) in advs {
                     print_info!("Setting advertising parameters for {}", adv_id);
                     context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
+                }
+            }
+            "set-connectable" => {
+                let connectable = match &get_arg(args, 1)?[..] {
+                    "on" => true,
+                    "off" => false,
+                    _ => false,
+                };
+
+                let mut context = self.context.lock().unwrap();
+                context.adv_sets.iter_mut().for_each(|(_, s)| s.params.connectable = connectable);
+
+                let advs: Vec<(_, _, _)> = context
+                    .adv_sets
+                    .iter()
+                    .filter_map(|(_, s)| {
+                        s.adv_id.map(|adv_id| (adv_id.clone(), s.params.clone(), s.data.clone()))
+                    })
+                    .collect();
+
+                for (adv_id, params, data) in advs {
+                    print_info!("Setting parameters for {}. connectable: {}", adv_id, connectable);
+                    context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
+
+                    // renew the flags
+                    print_info!("Setting data for {}", adv_id);
+                    context.gatt_dbus.as_mut().unwrap().set_advertising_data(adv_id, data);
                 }
             }
             "set-scan-rsp" => {
