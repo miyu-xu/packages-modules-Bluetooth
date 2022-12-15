@@ -23,6 +23,10 @@ import io.grpc.stub.StreamObserver
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
+import androidx.test.InstrumentationRegistry
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -35,8 +39,13 @@ private const val TAG = "PandoraAndroidInternal"
 class AndroidInternal(context: Context) : AndroidImplBase() {
 
   private val scope: CoroutineScope = CoroutineScope(Dispatchers.Default)
+  private val ACCEPT_BTN_TXT = "ACCEPT"
+  private val INCOMING_FILE_TITLE = "Incoming file"
+  private val WAIT_TIMEOUT = 2000L
+
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
+  private var device: UiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
 
   fun deinit() {
     scope.cancel()
@@ -58,6 +67,14 @@ class AndroidInternal(context: Context) : AndroidImplBase() {
         AccessType.ACCESS_SIM -> bluetoothDevice.setSimAccessPermission(BluetoothDevice.ACCESS_ALLOWED)
         else -> {}
       }
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun acceptIncomingFile(request: Empty, responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      device.wait(Until.findObject(By.text(INCOMING_FILE_TITLE)), WAIT_TIMEOUT).click()
+      device.wait(Until.findObject(By.text(ACCEPT_BTN_TXT)), WAIT_TIMEOUT).click()
       Empty.getDefaultInstance()
     }
   }
