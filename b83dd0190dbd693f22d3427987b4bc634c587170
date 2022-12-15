@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c78b5f8_6126fcf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-15T09:28:18Z",
+      "side": 1,
+      "message": "Hi this patch adds a command to set advertising connectable, please take a look, thanks!",
+      "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
