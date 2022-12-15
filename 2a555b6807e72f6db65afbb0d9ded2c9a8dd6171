@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bfe9b08_ced6d63b",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-15T22:04:08Z",
+      "side": 1,
+      "message": "The logic LGTM, but I think this could be written more clearly - the three nested ifs are IMO quite hard to understand.\n\nCould you pull some of this logic up into the switch statement? So put the early return in `BTM_SEC_OK`:\n```\n    case BTM_SEC_OK:\n      LOG_DEBUG(\"Security met\");\n      p_callback(\u0026bd_addr, BT_TRANSPORT_LE, p_ref_data, BTM_SUCCESS);\n      return L2CAP_LE_RESULT_CONN_OK;\n```\n\nThen in the PENDING case,\n```\n    case BTM_SEC_ENC_PENDING:\n      LOG_DEBUG(\"Ecryption pending\");\n      if (FLAG) {\n        // enqueue ourselves\n        BTM_SetEncryption(bd_addr, BT_TRANSPORT_LE, p_callback, p_ref_data, BTM_BLE_SEC_NONE);\n      }\n      return L2CAP_LE_RESULT_CONN_OK;\n```\n\nWe\u0027d group these two cases (OK + PENDING) at the start, and leave the other cases for later.\n\nAnd then after the switch statement, we\u0027d just have:\n```\nASSERT(ble_sec_act !\u003d BTM_BLE_SEC_NONE) {\nBTM_SetEncryption(...)\n}\n```\n\nThat way the logic is a lot clearer - either we\u0027re done, we queue, or we do an action.",
+      "revId": "2a555b6807e72f6db65afbb0d9ded2c9a8dd6171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
