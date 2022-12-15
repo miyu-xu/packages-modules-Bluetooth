@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cdb8151_d32fa1c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-15T07:26:31Z",
+      "side": 1,
+      "message": "Hi this patch adds a sysprop to force sending abort command for floss qualification AVDTP/SRC/INT/SIG/SMG/BV-23-C, please take a look.",
+      "revId": "d18c20706a60f00ad537227aa5a2c150445de23a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
