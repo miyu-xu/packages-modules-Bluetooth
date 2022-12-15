@@ -16,6 +16,29 @@
       "message": "Hi Thomas,\n\nI have fixed the comments. Request you to look into it and provide your feedback.\n\nThanks \u0026 Regards,\nDhananjaya",
       "revId": "e956e6e2eeb4d5b92d7ee929b348aafbc267f530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ffc0b7b_ba32650b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/map.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-12-15T18:19:39Z",
+      "side": 1,
+      "message": "Should be lower case `min_sms_count` since it is not a global variable. Could you also add a comment explaining why we need to send 2 sms here?",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 21
+      },
+      "revId": "e956e6e2eeb4d5b92d7ee929b348aafbc267f530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
