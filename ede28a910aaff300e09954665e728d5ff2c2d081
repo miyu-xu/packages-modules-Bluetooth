@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c5ab55_7db12d21",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T07:29:01Z",
+      "side": 0,
+      "message": "What about using mSessionHandler.sendEmptyMessage(BluetoothOppObexSession.MSG_CONNECT_TIMEOUT) and change the proxy method accordingly?",
+      "range": {
+        "startLine": 142,
+        "startChar": 24,
+        "endLine": 144,
+        "endChar": 0
+      },
+      "revId": "ede28a910aaff300e09954665e728d5ff2c2d081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66e6773a_c65087de",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T07:29:01Z",
+      "side": 0,
+      "message": "ditto.\nsendEmptyMessage?",
+      "range": {
+        "startLine": 866,
+        "startChar": 24,
+        "endLine": 866,
+        "endChar": 37
+      },
+      "revId": "ede28a910aaff300e09954665e728d5ff2c2d081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
