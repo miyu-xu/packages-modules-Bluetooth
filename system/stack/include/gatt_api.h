@@ -1000,12 +1000,16 @@ extern tGATT_STATUS GATTC_SendHandleValueConfirm(uint16_t conn_id,
  * Parameter        bd_addr:   target device bd address.
  *                  idle_tout: timeout value in seconds.
  *                  transport: trasnport option.
+ *                  is_active: whether we should use this as a signal that an
+ *                             active client now exists (which changes link
+ * .                           timeout logic, see
+ *                             t_l2c_linkcb.local_device_is_active for details)
  *
  * Returns          void
  *
  ******************************************************************************/
 extern void GATT_SetIdleTimeout(const RawAddress& bd_addr, uint16_t idle_tout,
-                                tBT_TRANSPORT transport);
+                                tBT_TRANSPORT transport, bool is_active);
 
 /*******************************************************************************
  *
