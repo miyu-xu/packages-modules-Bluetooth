@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69bbb12b_2e167cdb",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1073518
+      },
+      "writtenOn": "2022-12-15T12:22:44Z",
+      "side": 1,
+      "message": "Is this flag required?\nCould you please explain the purpose of this flag?",
+      "range": {
+        "startLine": 994,
+        "startChar": 39,
+        "endLine": 994,
+        "endChar": 71
+      },
+      "revId": "4521bd58c66421f8769b0b15cd162a064717602c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
