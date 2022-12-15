@@ -35,6 +35,7 @@ import android.app.ActivityManager;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
+import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.Message;
@@ -91,6 +92,7 @@ public class ScanManagerTest {
     @Mock private AdapterService mAdapterService;
     @Mock private BluetoothAdapterProxy mBluetoothAdapterProxy;
     @Mock private GattObjectsFactory mFactory;
+    @Mock private LocationManager mLocationManager;
     @Mock private GattNativeInterface mNativeInterface;
     @Mock private ScanNativeInterface mScanNativeInterface;
 
@@ -129,6 +131,9 @@ public class ScanManagerTest {
 
         mHandler = mScanManager.getClientHandler();
         assertThat(mHandler).isNotNull();
+
+        mScanManager.setLocationManagerForTesting(mLocationManager);
+        doReturn(true).when(mLocationManager).isLocationEnabled();
 
         mLatch = new CountDownLatch(1);
         assertThat(mLatch).isNotNull();
