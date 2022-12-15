@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2298a61_a176e830",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-15T15:11:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f4ccb83_4f19018f",
+      "range": {
+        "startLine": 12,
+        "startChar": 9,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97f06277_395489ab",
@@ -109,6 +133,24 @@
       "side": 1,
       "message": "As discussed offline, when the condition is true, then indeed we should update `number_of_already_active_group_ase` and continue with other ASEs from this device instead of just returning true.",
       "parentUuid": "72956fa6_d1626105",
+      "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc5f1121_a22d9633",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1475,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-15T15:11:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df8e85a3_aed15475",
       "revId": "f2c3e4d594e072e946c2eb43781ba4c71ca08e03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
