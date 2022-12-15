@@ -88,6 +88,24 @@
       "parentUuid": "1124a8ca_92cef3f5",
       "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bd3a2ec_66cc8e2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2022-12-15T02:16:45Z",
+      "side": 1,
+      "message": "OK, we can access this link, and will add the flags according to the suggestion.",
+      "parentUuid": "d3afbfbd_81e9de2a",
+      "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
