@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eac3d501_e4bd9632",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-15T06:33:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7386661_2adf73b6",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "271fd90a_71065e47",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-12-06T23:23:36Z",
       "side": 1,
       "message": "nit: without mut:\n```\nlet parsed_ad_payload: Vec\u003c_\u003e \u003d ad_payload.unwrap().iter().rev().cloned().collect();\n```",
+      "range": {
+        "startLine": 1251,
+        "startChar": 0,
+        "endLine": 1252,
+        "endChar": 44
+      },
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad806005_55209977",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-15T06:33:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "271fd90a_71065e47",
       "range": {
         "startLine": 1251,
         "startChar": 0,
@@ -93,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf8ee6bc_7acbc8ec",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-15T06:33:31Z",
+      "side": 1,
+      "message": "Per offline discussion, we decide to just leave this in here.",
+      "parentUuid": "fda8484d_201536e4",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2339767d_aa983fb0",
@@ -106,6 +166,24 @@
       "writtenOn": "2022-12-06T06:17:23Z",
       "side": 1,
       "message": "I\u0027d like to have the new method looks like ths in a QA interface for privacy reason , meaning we only expose this API to limited app to avoid user privacy issue:\n\nfn set_raw_data(\u0026mut self, adv_data: Vec\u003cu8\u003e)",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c4d548_0dd43ee3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-15T06:33:31Z",
+      "side": 1,
+      "message": "change this into fn set_raw_data(\u0026mut self, ad_type, ad_payload)",
+      "parentUuid": "2339767d_aa983fb0",
       "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
