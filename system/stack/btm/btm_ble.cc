@@ -991,7 +991,13 @@ tL2CAP_LE_RESULT_CODE btm_ble_start_sec_check(const RawAddress& bd_addr,
   }
 
   if (ble_sec_act == BTM_BLE_SEC_NONE) {
-    return result;
+    if (bluetooth::common::init_flags::queue_l2cap_coc_while_encrypting()) {
+      if (sec_act != BTM_SEC_ENC_PENDING) {
+        return result;
+      }
+    } else {
+      return result;
+    }
   }
 
   l2cble_update_sec_act(bd_addr, sec_act);
