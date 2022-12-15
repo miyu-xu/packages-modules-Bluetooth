@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eb3e5a4_0d4fc803",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-15T13:57:04Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "d1196809_b2083e20",
+      "range": {
+        "startLine": 70,
+        "startChar": 20,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76c2aba6_aabff1a9",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-01T19:48:35Z",
       "side": 1,
       "message": "If this module already uses `clients` and `apps` to reference the same concept, than maybe let\u0027s not introduce another `user` alias to the same concept.",
+      "range": {
+        "startLine": 81,
+        "startChar": 34,
+        "endLine": 81,
+        "endChar": 39
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7ac392a_a9c10056",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-15T13:57:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "76c2aba6_aabff1a9",
       "range": {
         "startLine": 81,
         "startChar": 34,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ffff4f4_791b4b33",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-15T13:57:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8083bd38_b46fd900",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 16
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb08a6c2_61b12fee",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-01T19:48:35Z",
       "side": 1,
       "message": "Is there any part of this function that makes it CAP specific?",
+      "range": {
+        "startLine": 120,
+        "startChar": 55,
+        "endLine": 120,
+        "endChar": 58
+      },
+      "revId": "76c15c47a238c54dfb0982df0bb0659eb7929873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "134fdcb2_22e43c15",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-15T13:57:04Z",
+      "side": 1,
+      "message": "left over from the patch version where CAP was only in my interest.",
+      "parentUuid": "fb08a6c2_61b12fee",
       "range": {
         "startLine": 120,
         "startChar": 55,
