@@ -52,6 +52,24 @@
       "parentUuid": "0b779518_84bcec95",
       "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1124a8ca_92cef3f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2022-12-15T01:09:49Z",
+      "side": 1,
+      "message": "1. \"https://source.corp.google.com/aosp-master/packages/modules/Bluetooth/system/gd/rust/common/src/init_flags.rs;rcl\u003db45a2ea7820\", we don\u0027t have right to access.\n2. ok, we will split it.",
+      "parentUuid": "65e23ec1_f5f954be",
+      "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
