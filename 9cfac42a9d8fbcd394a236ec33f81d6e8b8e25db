@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d1d2b7_7bb6f30f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1958655
+      },
+      "writtenOn": "2022-12-15T23:48:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34d3725f_ede631e1",
+      "range": {
+        "startLine": 774,
+        "startChar": 42,
+        "endLine": 774,
+        "endChar": 44
+      },
+      "revId": "9cfac42a9d8fbcd394a236ec33f81d6e8b8e25db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d79879e1_c8eb349f",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-15T20:38:45Z",
       "side": 1,
       "message": "Please run `m update-api` to update the API record.",
+      "range": {
+        "startLine": 777,
+        "startChar": 0,
+        "endLine": 777,
+        "endChar": 14
+      },
+      "revId": "9cfac42a9d8fbcd394a236ec33f81d6e8b8e25db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2215a1e4_bbf28f3c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1958655
+      },
+      "writtenOn": "2022-12-15T23:48:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d79879e1_c8eb349f",
       "range": {
         "startLine": 777,
         "startChar": 0,
