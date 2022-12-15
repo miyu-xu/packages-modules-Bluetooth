@@ -16,6 +16,24 @@
       "message": "AVRCP only make sense when there is an A2DP connection. Such assumption is also holds many places in Android. I want to suggest to defer the AVRCP connection (as initiator) further until A2DP is connected.",
       "revId": "dba1dc5a97e5ea010af09acfd8b157191b936f0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04d10773_3f491cac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-12-15T21:46:55Z",
+      "side": 1,
+      "message": "Discussed offline. There are cases that BT devices only support HFP+AVRCP withtout A2DP. We should add metrics to facilitate future refinement.",
+      "parentUuid": "137b8e9b_54a51af5",
+      "revId": "dba1dc5a97e5ea010af09acfd8b157191b936f0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
