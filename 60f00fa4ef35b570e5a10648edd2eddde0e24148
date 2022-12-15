@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29499d17_4c5ef70b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-15T07:02:46Z",
+      "side": 1,
+      "message": "Re-enabled by aosp/2324091",
+      "revId": "60f00fa4ef35b570e5a10648edd2eddde0e24148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
