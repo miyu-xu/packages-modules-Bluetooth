@@ -196,6 +196,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("advertise <on|off|ext>"),
                 String::from("advertise set-interval <ms>"),
                 String::from("advertise set-scan-rsp <enable|disable>"),
+                String::from("advertise set-connectable <on|off> <reg-id>"),
             ],
             description: String::from("Advertising utilities."),
             function_pointer: CommandHandler::cmd_advertise,
@@ -1224,6 +1225,44 @@ impl CommandHandler {
                     print_info!("Setting advertising parameters for {}", adv_id);
                     context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
                 }
+            }
+            "set-connectable" => {
+                let connectable = match &get_arg(args, 1)?[..] {
+                    "on" => true,
+                    "off" => false,
+                    _ => false,
+                };
+
+                let reg_id = String::from(get_arg(args, 2)?)
+                    .parse::<i32>()
+                    .or(Err("Failed parsing reg_id"))?;
+
+                let mut context = self.context.lock().unwrap();
+
+                context
+                    .adv_sets
+                    .get_mut(&reg_id)
+                    .ok_or("Failed to get advertising set")?
+                    .params
+                    .connectable = connectable;
+                let adv_set = context.adv_sets.get(&reg_id).unwrap().clone();
+                let adv_id = adv_set.adv_id.unwrap();
+
+                print_info!(
+                    "Setting parameters for reg_id: {} adv_id: {} connectable: {}",
+                    reg_id,
+                    adv_id,
+                    connectable
+                );
+                context
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .set_advertising_parameters(adv_id, adv_set.params);
+
+                // renew the flags
+                print_info!("Setting data for reg_id: {} adv_id: {}", reg_id, adv_id);
+                context.gatt_dbus.as_mut().unwrap().set_advertising_data(adv_id, adv_set.data);
             }
             "set-scan-rsp" => {
                 let enable = match &get_arg(args, 1)?[..] {
