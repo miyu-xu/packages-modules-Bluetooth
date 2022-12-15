@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "184c5986_a5fbb3c3",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-15T17:41:00Z",
+      "side": 1,
+      "message": "nit: Add a log line here similar to line 82",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 37
+      },
+      "revId": "385c416668e5920f7f0aec504a096719fa2514c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
