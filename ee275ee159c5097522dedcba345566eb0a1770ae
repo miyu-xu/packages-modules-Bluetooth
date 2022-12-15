@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb2383e4_fb73b2c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-12-15T13:47:22Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI have checked in OPP changes with 7 OPP/SR test cases passed.\n\nAs per suggestion we have used uiautomator for one of the TC (OPP/SR/GOEP/BC/BV-01-I) as notification intent was not received.\n\nPlease have a look into it and provide your comments.\n\n\nThanks,\nFahad",
+      "revId": "ee275ee159c5097522dedcba345566eb0a1770ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
