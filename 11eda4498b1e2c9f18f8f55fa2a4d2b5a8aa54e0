@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "522aa222_a3a135b4",
+        "filename": "system/device/include/interop_database.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T22:27:31Z",
+      "side": 1,
+      "message": "it\u0027s looks like this database is no longer used at all. Am I right ?",
+      "range": {
+        "startLine": 214,
+        "startChar": 34,
+        "endLine": 214,
+        "endChar": 55
+      },
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfcf903a_f36681bd",
+        "filename": "system/device/include/interop_database.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T22:27:31Z",
+      "side": 1,
+      "message": "This is not used",
+      "range": {
+        "startLine": 244,
+        "startChar": 36,
+        "endLine": 244,
+        "endChar": 65
+      },
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3074e123_7331c914",
+        "filename": "system/device/include/interop_database.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T22:27:31Z",
+      "side": 1,
+      "message": "this is not used",
+      "range": {
+        "startLine": 257,
+        "startChar": 38,
+        "endLine": 257,
+        "endChar": 69
+      },
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f57d2a58_c76cdd53",
+        "filename": "system/device/test/interop_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T22:27:31Z",
+      "side": 1,
+      "message": "All the test are currently failing.\nThe issue is that the module_init try to load a config from file, but the file is not accessible from the test.\n\nI do not know how to do that properly as I never encountered this behavior.\n\nThere may be some rules to add the config files to be available from the tests. I do not know if this should go in the Android.bp or is there should be a manifest_test.xml\n\nI tried to make it works in a dirty way and did the following patch then I run the test in my home folder with the file manually put there.\n\n```\ndiff --git a/system/device/Android.bp b/system/device/Android.bp\nindex 105dbe560d..cc1debcd4f 100644\n--- a/system/device/Android.bp\n+++ b/system/device/Android.bp\n@@ -26,7 +26,12 @@ cc_library_static {\n         \"src/esco_parameters.cc\",\n         \"src/interop.cc\",\n     ],\n-    min_sdk_version: \"Tiramisu\"\n+    min_sdk_version: \"Tiramisu\",\n+    target: {\n+        host: {\n+            cflags: [\"-DOS_GENERIC\"],\n+        },\n+    },\n }\n \n // Bluetooth device unit tests for target\n@@ -37,6 +42,7 @@ cc_test {\n         \"fluoride_defaults\",\n         \"mts_defaults\",\n     ],\n+    host_supported: true,\n     include_dirs: [\"packages/modules/Bluetooth/system\"],\n     srcs: [\n         \"test/interop_test.cc\",\n@@ -45,7 +51,6 @@ cc_test {\n         \"android.hardware.bluetooth@1.0\",\n         \"android.hardware.bluetooth@1.1\",\n         \"liblog\",\n-        \"libdl\",\n     ],\n     static_libs: [\n         \"libbtdevice\",\n@@ -54,4 +59,9 @@ cc_test {\n         \"libosi-AllocationTestHarness\",\n         \"libbluetooth-types\",\n     ],\n+    target: {\n+        host: {\n+            cflags: [\"-DOS_GENERIC\"],\n+        },\n+    },\n }\ndiff --git a/system/device/src/interop.cc b/system/device/src/interop.cc\nindex d52b48e170..ada068fecd 100644\n--- a/system/device/src/interop.cc\n+++ b/system/device/src/interop.cc\n@@ -52,7 +52,7 @@\n #include \"types/raw_address.h\"\n \n #if defined(OS_GENERIC)\n-static const char* INTEROP_FILE_PATH \u003d \"interop_database.conf\";\n+static const char* INTEROP_STATIC_FILE_PATH \u003d \"interop_database.conf\";\n #else   // !defined(OS_GENERIC)\n static const char* INTEROP_DYNAMIC_FILE_PATH \u003d\n     \"/data/misc/bluedroid/interop_database_dynamic.conf\";\n@@ -279,11 +279,15 @@ static void interop_init_feature_name_id_map() {\n         std::pair\u003cstd::string, int\u003e(feature_name, feature));\n   }\n }\n+#include \u003cunistd.h\u003e\n \n // Module life-cycle functions\n static future_t* interop_init(void) {\n   interop_init_feature_name_id_map();\n \n+  char cwd[1024];\n+  char *str \u003d getcwd(cwd, sizeof(cwd));\n+  LOG_ERROR(\"Current working dir: %s\\n\", str);\n   interop_lazy_init_();\n   interop_is_initialized \u003d true;\n   return future_new_immediate(FUTURE_SUCCESS);\n@@ -401,17 +405,25 @@ static int interop_config_init(void) {\n       LOG_WARN(\"unable to load static config file for : %s\",\n                INTEROP_STATIC_FILE_PATH);\n     }\n+  } else {\n+      LOG_WARN(\"static config file does not exist : %s\",\n+               INTEROP_STATIC_FILE_PATH);\n   }\n   if (!config_static \u0026\u0026 !(config_static \u003d config_new_empty())) {\n     goto error;\n   }\n \n+#if !defined(OS_GENERIC)\n   if (!stat(INTEROP_DYNAMIC_FILE_PATH, \u0026sts) \u0026\u0026 sts.st_size) {\n     if (!(config_dynamic \u003d config_new(INTEROP_DYNAMIC_FILE_PATH))) {\n       LOG_WARN(\"unable to load dynamic config file for : %s\",\n                INTEROP_DYNAMIC_FILE_PATH);\n     }\n+  } else {\n+      LOG_WARN(\"dynamic config file does not exist : %s\",\n+               INTEROP_DYNAMIC_FILE_PATH);\n   }\n+#endif\n   if (!config_dynamic \u0026\u0026 !(config_dynamic \u003d config_new_empty())) {\n     goto error;\n   }\n@@ -1294,6 +1306,7 @@ static void interop_config_write(UNUSED_ATTR UINT16 event,\n                                  UNUSED_ATTR char* p_param) {\n   CHECK(config_dynamic.get() !\u003d NULL);\n \n+#if !defined(OS_GENERIC)\n   pthread_mutex_lock(\u0026file_lock);\n   config_save(*config_dynamic, INTEROP_DYNAMIC_FILE_PATH);\n   // sync the file as well\n@@ -1303,6 +1316,7 @@ static void interop_config_write(UNUSED_ATTR UINT16 event,\n     close(fd);\n   }\n   pthread_mutex_unlock(\u0026file_lock);\n+#endif\n }\n \n static void interop_config_cleanup(void) {\n ```",
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
