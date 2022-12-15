@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13267906_c1c0556f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T00:54:36Z",
+      "side": 1,
+      "message": "Is this needed?",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 76
+      },
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d63f82a_37538a2e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T00:54:36Z",
+      "side": 1,
+      "message": "Is this needed?",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 14
+      },
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20d628b0_fa1ea79a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T00:54:36Z",
+      "side": 1,
+      "message": "getByMethods?",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 21
+      },
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebdb540b_a61b0c41",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T00:54:36Z",
+      "side": 1,
+      "message": "Q) Any reasons this doesn\u0027t cover other getBy methods?",
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
