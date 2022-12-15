@@ -46,6 +46,30 @@
       },
       "revId": "9c90ec79b5a186ee1da530e3bac498c755626d8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db59c65_ab7c5ae6",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-15T18:34:09Z",
+      "side": 1,
+      "message": "Oh, sorry it checks in the for(). My bad.",
+      "parentUuid": "bb544c6d_d1a68b90",
+      "range": {
+        "startLine": 1552,
+        "startChar": 10,
+        "endLine": 1552,
+        "endChar": 29
+      },
+      "revId": "9c90ec79b5a186ee1da530e3bac498c755626d8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
