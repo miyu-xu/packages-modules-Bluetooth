@@ -16,29 +16,28 @@
 
 package com.android.bluetooth.sap;
 
-import android.hardware.radio.sap.ISap;
-import android.hardware.radio.sap.ISapCallback;
+import android.hardware.radio.V1_0.ISap;
+import android.hardware.radio.V1_0.ISapCallback;
 import android.os.Handler;
-import android.os.IBinder;
+import android.os.HwBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.Log;
 
-import com.android.modules.utils.build.SdkLevel;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * SapRiilReceiver is the AIDL implementation of ISapRilReceiver
+ * SapRiilReceiverHidl is the HIDL implementation of ISapRilReceiver
  */
-public class SapRilReceiver implements ISapRilReceiver {
+public class SapRilReceiverHidl implements ISapRilReceiver {
     private static final String TAG = "SapRilReceiver";
     public static final boolean DEBUG = true;
     public static final boolean VERBOSE = true;
 
     // todo: add support for slot2 and slot3
-    private static final String HAL_INSTANCE_NAME = ISap.DESCRIPTOR + "/slot1";
+    private static final String SERVICE_NAME_RIL_BT = "slot1";
     // match with constant in ril.cpp - as in RIL.java
     private static final int SOCKET_OPEN_RETRY_MILLIS = 4 * 1000;
 
@@ -54,6 +53,14 @@ public class SapRilReceiver implements ISapRilReceiver {
     public static final int RIL_MAX_COMMAND_BYTES = (8 * 1024);
     public byte[] buffer = new byte[RIL_MAX_COMMAND_BYTES];
 
+    private ArrayList<Byte> primitiveArrayToContainerArrayList(byte[] arr) {
+        ArrayList<Byte> arrayList = new ArrayList<>(arr.length);
+        for (byte b : arr) {
+            arrayList.add(b);
+        }
+        return arrayList;
+    }
+
     /**
      * TRANSFER_APDU_REQ from SAP 1.1 spec 5.1.6
      *
@@ -62,8 +69,10 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param command CommandAPDU/CommandAPDU7816 parameter depending on type
      */
     @Override
-    public void apduReq(int serial, int type, byte[] command) throws android.os.RemoteException {
-        mSapProxy.apduReq(serial, type, command);
+    public void apduReq(int serial, int type, byte[] command) throws RemoteException {
+        ArrayList<Byte> commandHidl = primitiveArrayToContainerArrayList(command);
+        mSapProxy.apduReq(serial, type, commandHidl);
+
     }
 
     /**
@@ -73,7 +82,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param maxMsgSizeBytes MaxMsgSize to be used for SIM Access Profile connection
      */
     @Override
-    public void connectReq(int serial, int maxMsgSizeBytes) throws android.os.RemoteException {
+    public void connectReq(int serial, int maxMsgSizeBytes) throws RemoteException {
         mSapProxy.connectReq(serial, maxMsgSizeBytes);
     }
 
@@ -83,7 +92,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param serial Id to match req-resp. Resp must include same serial.
      */
     @Override
-    public void disconnectReq(int serial) throws android.os.RemoteException {
+    public void disconnectReq(int serial) throws RemoteException {
         mSapProxy.disconnectReq(serial);
     }
 
@@ -94,7 +103,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param powerOn true for on, false for off
      */
     @Override
-    public void powerReq(int serial, boolean powerOn) throws android.os.RemoteException {
+    public void powerReq(int serial, boolean powerOn) throws RemoteException {
         mSapProxy.powerReq(serial, powerOn);
     }
 
@@ -104,7 +113,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param serial Id to match req-resp. Resp must include same serial.
      */
     @Override
-    public void resetSimReq(int serial) throws android.os.RemoteException {
+    public void resetSimReq(int serial) throws RemoteException {
         mSapProxy.resetSimReq(serial);
     }
 
@@ -115,7 +124,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      */
     @Override
     public void setCallback(android.hardware.radio.sap.ISapCallback sapCallback)
-            throws android.os.RemoteException {
+            throws RemoteException {
         Log.e(TAG, "setCallback should never be called");
     }
 
@@ -126,8 +135,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param transferProtocol Transport Protocol
      */
     @Override
-    public void setTransferProtocolReq(int serial, int transferProtocol)
-            throws android.os.RemoteException {
+    public void setTransferProtocolReq(int serial, int transferProtocol) throws RemoteException {
         mSapProxy.setTransferProtocolReq(serial, transferProtocol);
     }
 
@@ -137,7 +145,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param serial Id to match req-resp. Resp must include same serial.
      */
     @Override
-    public void transferAtrReq(int serial) throws android.os.RemoteException {
+    public void transferAtrReq(int serial) throws RemoteException {
         mSapProxy.transferAtrReq(serial);
     }
 
@@ -147,7 +155,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param serial Id to match req-resp. Resp must include same serial.
      */
     @Override
-    public void transferCardReaderStatusReq(int serial) throws android.os.RemoteException {
+    public void transferCardReaderStatusReq(int serial) throws RemoteException {
         mSapProxy.transferCardReaderStatusReq(serial);
     }
 
@@ -169,14 +177,16 @@ public class SapRilReceiver implements ISapRilReceiver {
         return null;
     }
 
-    final class SapProxyDeathRecipient implements IBinder.DeathRecipient {
+    final class SapProxyDeathRecipient implements HwBinder.DeathRecipient {
         @Override
-        public void binderDied() {
+        public void serviceDied(long cookie) {
             // Deal with service going away
             Log.d(TAG, "serviceDied");
             // todo: temp hack to send delayed message so that rild is back up by then
+            // mSapHandler.sendMessage(mSapHandler.obtainMessage(EVENT_SAP_PROXY_DEAD, cookie));
+
             mSapServerMsgHandler.sendMessageDelayed(
-                    mSapServerMsgHandler.obtainMessage(SapServer.SAP_PROXY_DEAD, (long) 0),
+                    mSapServerMsgHandler.obtainMessage(SapServer.SAP_PROXY_DEAD, cookie),
                     SapServer.ISAP_GET_SERVICE_DELAY_MILLIS);
         }
     }
@@ -196,6 +206,19 @@ public class SapRilReceiver implements ISapRilReceiver {
                     reqType == null ? "null" : SapMessage.getMsgTypeName(reqType)));
         }
         sendSapMessage(sapMessage);
+    }
+
+    /**
+     * Convert an arrayList to a primitive array
+     *
+     * @param bytes the List to convert
+     */
+    public static byte[] arrayListToPrimitiveArray(List<Byte> bytes) {
+        byte[] ret = new byte[bytes.size()];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = bytes.get(i);
+        }
+        return ret;
     }
 
     class SapCallback extends ISapCallback.Stub {
@@ -233,25 +256,25 @@ public class SapRilReceiver implements ISapRilReceiver {
         }
 
         @Override
-        public void apduResponse(int token, int resultCode, byte[] apduRsp) {
+        public void apduResponse(int token, int resultCode, ArrayList<Byte> apduRsp) {
             Log.d(TAG, "apduResponse: token " + token);
             SapService.notifyUpdateWakeLock(mSapServiceHandler);
             SapMessage sapMessage = new SapMessage(SapMessage.ID_TRANSFER_APDU_RESP);
             sapMessage.setResultCode(resultCode);
             if (resultCode == SapMessage.RESULT_OK) {
-                sapMessage.setApduResp(apduRsp);
+                sapMessage.setApduResp(arrayListToPrimitiveArray(apduRsp));
             }
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
 
         @Override
-        public void transferAtrResponse(int token, int resultCode, byte[] atr) {
+        public void transferAtrResponse(int token, int resultCode, ArrayList<Byte> atr) {
             Log.d(TAG, "transferAtrResponse: token " + token + " resultCode " + resultCode);
             SapService.notifyUpdateWakeLock(mSapServiceHandler);
             SapMessage sapMessage = new SapMessage(SapMessage.ID_TRANSFER_ATR_RESP);
             sapMessage.setResultCode(resultCode);
             if (resultCode == SapMessage.RESULT_OK) {
-                sapMessage.setAtr(atr);
+                sapMessage.setAtr(arrayListToPrimitiveArray(atr));
             }
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
@@ -328,16 +351,6 @@ public class SapRilReceiver implements ISapRilReceiver {
             sapMessage.setResultCode(resultCode);
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
-
-        @Override
-        public String getInterfaceHash() {
-            return ISapCallback.HASH;
-        }
-
-        @Override
-        public int getInterfaceVersion() {
-            return ISapCallback.VERSION;
-        }
     }
 
     @Override
@@ -352,13 +365,6 @@ public class SapRilReceiver implements ISapRilReceiver {
     }
 
     /**
-     * Check if AIDL is supported
-     */
-    public static boolean isAidlSupported() {
-        return SdkLevel.isAtLeastU() && ServiceManager.isDeclared(HAL_INSTANCE_NAME);
-    }
-
-    /**
      * Obtain a valid sapProxy
      */
     public ISap getSapProxy() {
@@ -368,11 +374,10 @@ public class SapRilReceiver implements ISapRilReceiver {
             }
 
             try {
-                IBinder service = ServiceManager.waitForDeclaredService(HAL_INSTANCE_NAME);
-                mSapProxy = ISap.Stub.asInterface(service);
+                mSapProxy = ISap.getService(SERVICE_NAME_RIL_BT);
                 if (mSapProxy != null) {
-                    service.linkToDeath(mSapProxyDeathRecipient,
-                            /* flags= */ 0);
+                    mSapProxy.linkToDeath(mSapProxyDeathRecipient,
+                            mSapProxyCookie.incrementAndGet());
                     mSapProxy.setCallback(mSapCallback);
                 } else {
                     Log.e(TAG, "getSapProxy: mSapProxy == null");
@@ -397,18 +402,18 @@ public class SapRilReceiver implements ISapRilReceiver {
     public void resetSapProxy() {
         synchronized (mSapProxyLock) {
             if (DEBUG) Log.d(TAG, "resetSapProxy :" + mSapProxy);
-            if (mSapProxy == null) {
-                return;
+            try {
+                if (mSapProxy != null) {
+                    mSapProxy.unlinkToDeath(mSapProxyDeathRecipient);
+                }
+            } catch (RemoteException | RuntimeException e) {
+                Log.e(TAG, "resetSapProxy: exception: " + e);
             }
-            if (mSapProxy.asBinder() == null) {
-                Log.e(TAG, "asdf asBinder is null");
-            }
-            mSapProxy.asBinder().unlinkToDeath(mSapProxyDeathRecipient, /* flags= */ 0);
             mSapProxy = null;
         }
     }
 
-    public SapRilReceiver(Handler sapServerMsgHandler, Handler sapServiceHandler) {
+    public SapRilReceiverHidl(Handler sapServerMsgHandler, Handler sapServiceHandler) {
         mSapServerMsgHandler = sapServerMsgHandler;
         mSapServiceHandler = sapServiceHandler;
         mSapCallback = new SapCallback();
