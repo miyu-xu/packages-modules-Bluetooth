@@ -16,6 +16,23 @@
       "message": "Hi this patch adds a command to set advertising connectable, please take a look, thanks!",
       "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c98103_268c553d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-15T10:10:45Z",
+      "side": 1,
+      "message": "Please verify if the flags is modified as expected with HCI log on another BLE device.",
+      "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
