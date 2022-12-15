@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfaede68_c179696e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-15T17:54:45Z",
+      "side": 1,
+      "message": "LGTM after my comment is resolved. Adding Ying to look also since it modifies his change and I will be off today and tomorrow.",
+      "revId": "9cff64ca4be6055cc4c4bdd2997597d6fa72d310",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40f623a6_ea3b1d5b",
