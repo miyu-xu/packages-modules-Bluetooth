@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9fbbf7e_b8b57655",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T22:01:40Z",
+      "side": 1,
+      "message": "in case of a -DOS_GENERIC this code is broken",
+      "range": {
+        "startLine": 399,
+        "startChar": 12,
+        "endLine": 399,
+        "endChar": 36
+      },
+      "revId": "4fecdac45670511763fea0f1c3a1daa641722a6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
