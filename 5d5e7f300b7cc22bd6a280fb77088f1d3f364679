@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a92ae8ab_618851c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-15T17:47:37Z",
+      "side": 1,
+      "message": "This CL doesn\u0027t seem like it should depend on its parent.",
+      "revId": "5d5e7f300b7cc22bd6a280fb77088f1d3f364679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
