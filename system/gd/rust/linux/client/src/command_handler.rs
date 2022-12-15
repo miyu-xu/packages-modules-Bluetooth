@@ -223,6 +223,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("advertise set-interval <ms>"),
                 String::from("advertise set-scan-rsp <enable|disable>"),
                 String::from("advertise set-data <type> <payload> <reg_id>"),
+                String::from("advertise set-connectable <on|off> <adv_id>"),
             ],
             description: String::from("Advertising utilities."),
             function_pointer: CommandHandler::cmd_advertise,
@@ -1253,6 +1254,40 @@ impl CommandHandler {
                     print_info!("Setting advertising parameters for {}", adv_id);
                     context.gatt_dbus.as_mut().unwrap().set_advertising_parameters(adv_id, params);
                 }
+            }
+            "set-connectable" => {
+                let connectable = match &get_arg(args, 1)?[..] {
+                    "on" => true,
+                    "off" => false,
+                    _ => false,
+                };
+
+                let adv_id = String::from(get_arg(args, 2)?)
+                    .parse::<i32>()
+                    .or(Err("Failed parsing adv_id"))?;
+                let mut context = self.context.lock().unwrap();
+
+                if !context.adv_sets.contains_key(&adv_id) {
+                    return Err("Failed to get advertising set".into());
+                }
+
+                context.adv_sets.get_mut(&adv_id).unwrap().params.connectable = connectable;
+                let adv_set = context.adv_sets.get(&adv_id).unwrap().clone();
+
+                print_info!("Setting parameters for {}. connectable: {}", adv_id, connectable);
+                context
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .set_advertising_parameters(adv_id, adv_set.params.clone());
+
+                // renew the flags
+                print_info!("Setting data for {}", adv_id);
+                context
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .set_advertising_data(adv_id, adv_set.data.clone());
             }
             "set-scan-rsp" => {
                 let enable = match &get_arg(args, 1)?[..] {
