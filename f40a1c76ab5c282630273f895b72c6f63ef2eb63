@@ -878,6 +878,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4898e482_218a0fd5",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-15T09:23:42Z",
+      "side": 1,
+      "message": "The application should invoke setAudioPolicy and getAudioPolicy APIs only if the feature is supported. That is, if the getAudioPolicyRemoteSupported API returns REMOTE_STATUS_SUPPORTED, then only this feature should be used.\nIf it returns REMOTE_STATUS_NOT_SUPPORTED, then the application should not invoke those APIs and follow accordingly.\nIf it returns REMOTE_STATUS_UNKNOWN, then it means that the feature support from remote side is yet to be configured and the application should wait for it to become either SUPPORTED or NOT_SUPPORTED in a while to decide how to move forward.",
+      "parentUuid": "2cfa46ff_77f5a1b6",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3198736e_a0089036",
         "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
         "patchSetId": 30
