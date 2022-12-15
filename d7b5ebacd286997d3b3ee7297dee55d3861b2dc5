@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a51ae32_455a59ad",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:53:30Z",
+      "side": 1,
+      "message": "Done. Thanks for catching the typo.",
+      "parentUuid": "72580f06_04945361",
+      "range": {
+        "startLine": 133,
+        "startChar": 9,
+        "endLine": 133,
+        "endChar": 12
+      },
+      "revId": "d7b5ebacd286997d3b3ee7297dee55d3861b2dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "195921bc_a5c6d3a6",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fff6ad23_2ebf010a",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:53:30Z",
+      "side": 1,
+      "message": "Please refer to my explanation to the other comment. Thanks.",
+      "parentUuid": "195921bc_a5c6d3a6",
+      "range": {
+        "startLine": 190,
+        "startChar": 66,
+        "endLine": 190,
+        "endChar": 73
+      },
+      "revId": "d7b5ebacd286997d3b3ee7297dee55d3861b2dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25e13942_6180f87e",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-12-12T22:35:10Z",
       "side": 1,
       "message": "ErrorCode so we don\u0027t have to cast it.  The next two lines, as well.",
+      "range": {
+        "startLine": 33,
+        "startChar": 86,
+        "endLine": 33,
+        "endChar": 93
+      },
+      "revId": "d7b5ebacd286997d3b3ee7297dee55d3861b2dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550096d0_f4cdba4c",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:53:30Z",
+      "side": 1,
+      "message": "It seems that the callbacks of le_scanning_manager and le_advertising_manager tend to use uint8_t as the status type.\n\nI tried to use ErrorCode which is declared in hci_packets.h as the status type here. However, we still need to cast the types from ErrorCode to uint8_t at some layer as the upper layers do not use the types declared in hci_packets.h.\n\nMaybe we can just use uint8_t for simplicity here? Thanks.",
+      "parentUuid": "25e13942_6180f87e",
       "range": {
         "startLine": 33,
         "startChar": 86,
