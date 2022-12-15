@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d072d3a4_79cf4bf1",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-12-15T01:32:23Z",
+      "side": 1,
+      "message": "There are 4 filters:\n1. kBtSnoopLogFilterTypeA2dpPktsFiltered \nTo discard A2DP media packets(non-split mode).\n2. kBtSnoopLogFilterTypeRfcommChannelFiltered\nIt truncates RFCOMM UIH packet to fixed (L2CAP_HEADER_SIZE) bytes\n3. kBtSnoopLogFilterTypeHeadersFiltered\nIt truncates ACL packet (non-fragment) to fixed(MAX_HCI_ACL_LEN) bytes.\n4. kBtSnoopLogFilterTypeProfilesFiltered\n Filter PBAP, MAP and HFP packets (CPBR, CLCC) based on filer mode: \n  fullfilter: discard whole packet\n  header: truncated to fixed length\n  magic: fill with a magic string. such as: \"PROHIBITED\"",
+      "parentUuid": "21d655b6_f59b5942",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 69
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40a343bd_96e6e652",
@@ -197,6 +221,30 @@
       "side": 1,
       "message": "So in case of a filtered packet that we truncate, shouldn\u0027t the value be different ?\nShouldn\u0027t we NOT update the `header.length_original` here ?",
       "parentUuid": "c638894f_3069b9b8",
+      "range": {
+        "startLine": 1185,
+        "startChar": 10,
+        "endLine": 1186,
+        "endChar": 49
+      },
+      "revId": "f5ae440a31716b5b1fc2fb1df240dd1ee6c1129d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f18467ad_3fc07ccb",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-12-15T01:32:23Z",
+      "side": 1,
+      "message": "You are right. Here seem we should not update header.length_original.",
+      "parentUuid": "d830a185_ac6c584a",
       "range": {
         "startLine": 1185,
         "startChar": 10,
