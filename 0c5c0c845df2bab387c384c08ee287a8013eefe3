@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53758651_89a3a3b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-15T18:10:22Z",
+      "side": 1,
+      "message": "Sungsoo, this is reverting multiple CLs in one shot, should we revert each ones with individual CLs instead?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "0c5c0c845df2bab387c384c08ee287a8013eefe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
