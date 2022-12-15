@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c7554e0_7ca21e9e",
+        "filename": "system/stack/include/btm_ble_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-15T13:56:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29f6d299_62c9e4f2",
+      "range": {
+        "startLine": 357,
+        "startChar": 20,
+        "endLine": 357,
+        "endChar": 35
+      },
+      "revId": "3576b900642db2eb72c3dcd3182716c6b2a96cd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6b7004e_8c2d015e",
