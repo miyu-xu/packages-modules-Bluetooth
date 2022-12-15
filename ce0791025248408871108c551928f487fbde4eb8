@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e594be1_9d8bcf8b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-15T01:01:09Z",
+      "side": 1,
+      "message": "Yes. I\u0027ve tried without it and it fails. I believe the `TestUtils` class for starting and stopping the GattService require this mock.",
+      "parentUuid": "13267906_c1c0556f",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 76
+      },
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d63f82a_37538a2e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-15T00:54:36Z",
       "side": 1,
       "message": "Is this needed?",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 14
+      },
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2d8fc1_011f5d37",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-15T01:01:09Z",
+      "side": 1,
+      "message": "Yes. ContextMap\u0027s `add` functions require a valid GattService",
+      "parentUuid": "3d63f82a_37538a2e",
       "range": {
         "startLine": 77,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88ddbdbb_54ecf6e2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-15T01:01:09Z",
+      "side": 1,
+      "message": "Done! Thank you.",
+      "parentUuid": "20d628b0_fa1ea79a",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 21
+      },
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebdb540b_a61b0c41",
@@ -83,6 +155,24 @@
       "writtenOn": "2022-12-15T00:54:36Z",
       "side": 1,
       "message": "Q) Any reasons this doesn\u0027t cover other getBy methods?",
+      "revId": "ce0791025248408871108c551928f487fbde4eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e02a71_91aebdf0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-15T01:01:09Z",
+      "side": 1,
+      "message": "The other getBy methods are mostly covered with the exception of getByContextInfo which I could not find any easy to test for now.",
+      "parentUuid": "ebdb540b_a61b0c41",
       "revId": "ce0791025248408871108c551928f487fbde4eb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
