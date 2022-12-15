@@ -22,6 +22,30 @@
       },
       "revId": "4521bd58c66421f8769b0b15cd162a064717602c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcad66cc_b01f6c26",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-15T15:30:27Z",
+      "side": 1,
+      "message": "Hi Ilho,\n\nWe are flagging all changes that we put out now unless they are trivial and have no user impact. We are defaulting this flag to true, so the new logic will be adopted by default. This flag does allow us to roll back a change in case there is a significant regression without having to push an OTA. We don\u0027t usually expect this to be the case, but this minimizes the risk of shipping changes on our side. Barring there being a major regression, we will keep this enabled.",
+      "parentUuid": "69bbb12b_2e167cdb",
+      "range": {
+        "startLine": 994,
+        "startChar": 39,
+        "endLine": 994,
+        "endChar": 71
+      },
+      "revId": "4521bd58c66421f8769b0b15cd162a064717602c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
