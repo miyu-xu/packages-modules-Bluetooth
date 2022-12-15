@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "572a0ebd_8f305328",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-15T14:01:09Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI have fixed the comments. Request you to look into it and provide your feedback.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "e956e6e2eeb4d5b92d7ee929b348aafbc267f530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

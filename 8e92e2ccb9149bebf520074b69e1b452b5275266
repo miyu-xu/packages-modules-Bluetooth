@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e9b14b8_006973f5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/map.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-15T14:01:09Z",
+      "side": 1,
+      "message": "We had maintained count as 10 for one of the test case which needs more than 100 messages in Inbox. Currently the test case  (MAP/MSE/GOEP/SRMP/BI-02-C) is on hold. So, revert it to send 2 sms.",
+      "parentUuid": "4fc7b820_6048394e",
+      "range": {
+        "startLine": 59,
+        "startChar": 30,
+        "endLine": 59,
+        "endChar": 38
+      },
+      "revId": "8e92e2ccb9149bebf520074b69e1b452b5275266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b06bb4a_b77f4d95",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-12-15T03:38:55Z",
       "side": 1,
       "message": "To rename to `DEFAULT_MESSAGE_LEN`",
+      "range": {
+        "startLine": 46,
+        "startChar": 14,
+        "endLine": 46,
+        "endChar": 25
+      },
+      "revId": "8e92e2ccb9149bebf520074b69e1b452b5275266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "726042f6_d3089fca",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-15T14:01:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b06bb4a_b77f4d95",
       "range": {
         "startLine": 46,
         "startChar": 14,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eb5c8cc_09798dd3",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-15T14:01:09Z",
+      "side": 1,
+      "message": "We had maintained count as 10 for one of the test case which needs more than 100 messages in Inbox. Currently the test case (MAP/MSE/GOEP/SRMP/BI-02-C) is on hold. So, revert it to send 2 sms and removed the check.",
+      "parentUuid": "de6ae695_c4d8ca66",
+      "range": {
+        "startLine": 75,
+        "startChar": 10,
+        "endLine": 75,
+        "endChar": 41
+      },
+      "revId": "8e92e2ccb9149bebf520074b69e1b452b5275266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a5f1a7d_67a4c028",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-12-15T03:38:55Z",
       "side": 1,
       "message": "As mentioned in my other comment, I would prefer to call multiple times `SendSMS` rather than having `count` as part of the request",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "8e92e2ccb9149bebf520074b69e1b452b5275266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd67f546_96fd21ce",
+        "filename": "pandora/interfaces/pandora_experimental/_android.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-15T14:01:09Z",
+      "side": 1,
+      "message": "As per the suggestion we have updated the code to call SendSMS() in for loop",
+      "parentUuid": "7a5f1a7d_67a4c028",
       "range": {
         "startLine": 36,
         "startChar": 2,
