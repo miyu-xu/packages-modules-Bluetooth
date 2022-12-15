@@ -70,6 +70,24 @@
       "parentUuid": "65e23ec1_f5f954be",
       "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3afbfbd_81e9de2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963225
+      },
+      "writtenOn": "2022-12-15T02:03:58Z",
+      "side": 1,
+      "message": "@huirong.liao@mediatek.com Can check the flag here\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/common/src/init_flags.rs;drc\u003dd83f97318ac9ae3e607c1f3a68c32dc5a32d6ce7;l\u003d207",
+      "parentUuid": "1124a8ca_92cef3f5",
+      "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
