@@ -365,7 +365,7 @@ extern struct GATT_Register GATT_Register;
 // transport Return: void
 struct GATT_SetIdleTimeout {
   std::function<void(const RawAddress& bd_addr, uint16_t idle_tout,
-                     tBT_TRANSPORT transport)>
+                     tBT_TRANSPORT transport, bool is_active)>
       body{[](const RawAddress& bd_addr, uint16_t idle_tout,
               tBT_TRANSPORT transport) {}};
   void operator()(const RawAddress& bd_addr, uint16_t idle_tout,
