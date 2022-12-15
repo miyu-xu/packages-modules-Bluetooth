@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40f623a6_ea3b1d5b",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-15T17:49:31Z",
+      "side": 1,
+      "message": "Let\u0027s limit connection only for LE transport. I haven\u0027t seen BAS over classic implemented so it\u0027s safer to avoid doing this.",
+      "revId": "9cff64ca4be6055cc4c4bdd2997597d6fa72d310",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
