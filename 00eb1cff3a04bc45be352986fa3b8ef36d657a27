@@ -122,6 +122,24 @@
       "parentUuid": "560a1c25_f6ef0f75",
       "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9b5909c_00727737",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-15T12:51:57Z",
+      "side": 1,
+      "message": "SCHEDULED_FOR_REMOVE",
+      "parentUuid": "4886153a_f55e915c",
+      "revId": "00eb1cff3a04bc45be352986fa3b8ef36d657a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
