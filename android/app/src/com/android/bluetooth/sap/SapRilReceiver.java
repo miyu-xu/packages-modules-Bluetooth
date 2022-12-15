@@ -1,11 +1,13 @@
 package com.android.bluetooth.sap;
 
-import android.hardware.radio.V1_0.ISap;
-import android.hardware.radio.V1_0.ISapCallback;
+import android.hardware.radio.sap.ISap;
+import android.hardware.radio.sap.ISapCallback;
 import android.os.Handler;
 import android.os.HwBinder;
+import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.util.Log;
 
 import java.io.IOException;
@@ -19,6 +21,7 @@ public class SapRilReceiver {
     public static final boolean DEBUG = true;
     public static final boolean VERBOSE = true;
 
+    //TODO: support slot2 and slot3
     private static final String SERVICE_NAME_RIL_BT = "slot1";
     // match with constant in ril.cpp - as in RIL.java
     private static final int SOCKET_OPEN_RETRY_MILLIS = 4 * 1000;
@@ -35,15 +38,16 @@ public class SapRilReceiver {
     public static final int RIL_MAX_COMMAND_BYTES = (8 * 1024);
     public byte[] buffer = new byte[RIL_MAX_COMMAND_BYTES];
 
-    final class SapProxyDeathRecipient implements HwBinder.DeathRecipient {
+    final class SapProxyDeathRecipient implements IBinder.DeathRecipient {
         @Override
-        public void serviceDied(long cookie) {
+        public void binderDied() {
             // Deal with service going away
             Log.d(TAG, "serviceDied");
             // todo: temp hack to send delayed message so that rild is back up by then
             // mSapHandler.sendMessage(mSapHandler.obtainMessage(EVENT_SAP_PROXY_DEAD, cookie));
+            //TODO: there was a cookie where the zero is
             mSapServerMsgHandler.sendMessageDelayed(
-                    mSapServerMsgHandler.obtainMessage(SapServer.SAP_PROXY_DEAD, cookie),
+                    mSapServerMsgHandler.obtainMessage(SapServer.SAP_PROXY_DEAD, 0),
                     SapServer.ISAP_GET_SERVICE_DELAY_MILLIS);
         }
     }
@@ -100,25 +104,25 @@ public class SapRilReceiver {
         }
 
         @Override
-        public void apduResponse(int token, int resultCode, ArrayList<Byte> apduRsp) {
+        public void apduResponse(int token, int resultCode, byte[] apduRsp) {
             Log.d(TAG, "apduResponse: token " + token);
             SapService.notifyUpdateWakeLock(mSapServiceHandler);
             SapMessage sapMessage = new SapMessage(SapMessage.ID_TRANSFER_APDU_RESP);
             sapMessage.setResultCode(resultCode);
             if (resultCode == SapMessage.RESULT_OK) {
-                sapMessage.setApduResp(arrayListToPrimitiveArray(apduRsp));
+                sapMessage.setApduResp(apduRsp);
             }
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
 
         @Override
-        public void transferAtrResponse(int token, int resultCode, ArrayList<Byte> atr) {
+        public void transferAtrResponse(int token, int resultCode, byte[] atr) {
             Log.d(TAG, "transferAtrResponse: token " + token + " resultCode " + resultCode);
             SapService.notifyUpdateWakeLock(mSapServiceHandler);
             SapMessage sapMessage = new SapMessage(SapMessage.ID_TRANSFER_ATR_RESP);
             sapMessage.setResultCode(resultCode);
             if (resultCode == SapMessage.RESULT_OK) {
-                sapMessage.setAtr(arrayListToPrimitiveArray(atr));
+                sapMessage.setAtr(atr);
             }
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
@@ -195,14 +199,16 @@ public class SapRilReceiver {
             sapMessage.setResultCode(resultCode);
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
-    }
 
-    public static byte[] arrayListToPrimitiveArray(List<Byte> bytes) {
-        byte[] ret = new byte[bytes.size()];
-        for (int i = 0; i < ret.length; i++) {
-            ret[i] = bytes.get(i);
+        @Override
+        public String getInterfaceHash() {
+            return ISapCallback.HASH;
         }
-        return ret;
+
+        @Override
+        public int getInterfaceVersion() {
+            return ISapCallback.VERSION;
+        }
     }
 
     public Object getSapProxyLock() {
@@ -210,16 +216,18 @@ public class SapRilReceiver {
     }
 
     public ISap getSapProxy() {
+        IBinder service = ServiceManager.waitForDeclaredService(ISap.DESCRIPTOR + SERVICE_NAME_RIL_BT);
         synchronized (mSapProxyLock) {
             if (mSapProxy != null) {
                 return mSapProxy;
             }
 
             try {
-                mSapProxy = ISap.getService(SERVICE_NAME_RIL_BT);
+                mSapProxy = ISap.Stub.asInterface(service);
+                //IBinder serviceBinder =
                 if (mSapProxy != null) {
-                    mSapProxy.linkToDeath(mSapProxyDeathRecipient,
-                            mSapProxyCookie.incrementAndGet());
+                    service.linkToDeath(mSapProxyDeathRecipient,
+                            /* flags= */ 0);
                     mSapProxy.setCallback(mSapCallback);
                 } else {
                     Log.e(TAG, "getSapProxy: mSapProxy == null");
@@ -243,12 +251,8 @@ public class SapRilReceiver {
     public void resetSapProxy() {
         synchronized (mSapProxyLock) {
             if (DEBUG) Log.d(TAG, "resetSapProxy :" + mSapProxy);
-            try {
-                if (mSapProxy != null) {
-                    mSapProxy.unlinkToDeath(mSapProxyDeathRecipient);
-                }
-            } catch (RemoteException | RuntimeException e) {
-                Log.e(TAG, "resetSapProxy: exception: " + e);
+            if (mSapProxy != null) {
+                mSapProxy.asBinder().unlinkToDeath(mSapProxyDeathRecipient, /* flags= */ 0);
             }
             mSapProxy = null;
         }

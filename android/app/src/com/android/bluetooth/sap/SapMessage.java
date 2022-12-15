@@ -1,8 +1,8 @@
 package com.android.bluetooth.sap;
 
-import android.hardware.radio.V1_0.ISap;
-import android.hardware.radio.V1_0.SapApduType;
-import android.hardware.radio.V1_0.SapTransferProtocol;
+import android.hardware.radio.sap.ISap;
+import android.hardware.radio.sap.SapApduType;
+import android.hardware.radio.sap.SapTransferProtocol;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -729,13 +729,6 @@ public class SapMessage {
      * RILD Interface message conversion functions.
      ***************************************************************************/
 
-    private ArrayList<Byte> primitiveArrayToContainerArrayList(byte[] arr) {
-        ArrayList<Byte> arrayList = new ArrayList<>(arr.length);
-        for (byte b : arr) {
-            arrayList.add(b);
-        }
-        return arrayList;
-    }
 
     /**
      * Send the message by calling corresponding ISap api.
@@ -763,13 +756,13 @@ public class SapMessage {
             }
             case ID_TRANSFER_APDU_REQ: {
                 int type;
-                ArrayList<Byte> command;
+                byte[] command;
                 if (mApdu != null) {
                     type = SapApduType.APDU;
-                    command = primitiveArrayToContainerArrayList(mApdu);
+                    command = mApdu;
                 } else if (mApdu7816 != null) {
                     type = SapApduType.APDU7816;
-                    command = primitiveArrayToContainerArrayList(mApdu7816);
+                    command = mApdu7816;
                 } else {
                     Log.e(TAG, "Missing Apdu parameter in TRANSFER_APDU_REQ");
                     throw new IllegalArgumentException();

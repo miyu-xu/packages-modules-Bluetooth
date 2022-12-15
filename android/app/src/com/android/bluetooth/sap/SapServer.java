@@ -12,7 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Icon;
-import android.hardware.radio.V1_0.ISap;
+import android.hardware.radio.sap.ISap;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.HandlerThread;
