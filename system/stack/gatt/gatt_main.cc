@@ -114,10 +114,11 @@ void gatt_init(void) {
   fixed_reg.pL2CA_FixedConn_Cb = gatt_le_connect_cback;
   fixed_reg.pL2CA_FixedData_Cb = gatt_le_data_ind;
   fixed_reg.pL2CA_FixedCong_Cb = gatt_le_cong_cback; /* congestion callback */
-  fixed_reg.default_idle_tout =
-      bluetooth::common::init_flags::finite_att_timeout_is_enabled()
-          ? 2 /* We allow 2s for GATT clients to connect once the link is up */
-          : L2CAP_NO_IDLE_TIMEOUT;
+
+  // the GATT timeout is updated after a connection
+  // is established, when we know whether any
+  // clients exist
+  fixed_reg.default_idle_tout = L2CAP_NO_IDLE_TIMEOUT;
 
   L2CA_RegisterFixedChannel(L2CAP_ATT_CID, &fixed_reg);
 
@@ -376,7 +377,7 @@ void gatt_update_app_use_link_flag(tGATT_IF gatt_if, tGATT_TCB* p_tcb,
                ADDRESS_TO_LOGGABLE_CSTR(p_tcb->peer_bda));
       /* acl link is connected disable the idle timeout */
       GATT_SetIdleTimeout(p_tcb->peer_bda, GATT_LINK_NO_IDLE_TIMEOUT,
-                          p_tcb->transport);
+                          p_tcb->transport, true /* is_active */);
     } else {
       LOG_INFO("invalid handle %d or dynamic CID %d", is_valid_handle,
                p_tcb->att_lcid);
@@ -395,7 +396,7 @@ void gatt_update_app_use_link_flag(tGATT_IF gatt_if, tGATT_TCB* p_tcb,
             "%d seconds",
             GATT_LINK_IDLE_TIMEOUT_WHEN_NO_APP);
         GATT_SetIdleTimeout(p_tcb->peer_bda, GATT_LINK_IDLE_TIMEOUT_WHEN_NO_APP,
-                            p_tcb->transport);
+                            p_tcb->transport, false /* is_active */);
       } else {
         // disconnect the dynamic channel
         LOG_INFO("disconnect GATT dynamic channel");
@@ -590,7 +591,7 @@ static void gatt_le_cong_cback(const RawAddress& remote_bda, bool congested) {
   if (!p_tcb) return;
 
   /* if uncongested, check to see if there is any more pending data */
-    gatt_channel_congestion(p_tcb, congested);
+  gatt_channel_congestion(p_tcb, congested);
 }
 
 /*******************************************************************************
@@ -611,7 +612,6 @@ static void gatt_le_cong_cback(const RawAddress& remote_bda, bool congested) {
  ******************************************************************************/
 static void gatt_le_data_ind(uint16_t chan, const RawAddress& bd_addr,
                              BT_HDR* p_buf) {
-
   /* Find CCB based on bd addr */
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, BT_TRANSPORT_LE);
   if (p_tcb) {
@@ -740,7 +740,6 @@ void gatt_l2cif_config_ind_cback(uint16_t lcid, tL2CAP_CFG_INFO* p_cfg) {
 
 /** This is the L2CAP disconnect indication callback function */
 void gatt_l2cif_disconnect_ind_cback(uint16_t lcid, bool ack_needed) {
-
   /* look up clcb for this channel */
   tGATT_TCB* p_tcb = gatt_find_tcb_by_cid(lcid);
   if (!p_tcb) return;
@@ -823,7 +822,12 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
     /* disable idle timeout if one or more clients are holding the link disable
      * the idle timer */
     GATT_SetIdleTimeout(p_tcb->peer_bda, GATT_LINK_NO_IDLE_TIMEOUT,
-                        p_tcb->transport);
+                        p_tcb->transport, true /* is_active */);
+  } else {
+    if (bluetooth::common::init_flags::finite_att_timeout_is_enabled()) {
+      GATT_SetIdleTimeout(p_tcb->peer_bda, GATT_LINK_IDLE_TIMEOUT_WHEN_NO_APP,
+                          p_tcb->transport, false /* is_active */);
+    }
   }
 }
 
