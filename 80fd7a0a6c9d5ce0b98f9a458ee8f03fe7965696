@@ -335,6 +335,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99669c3e_2d1c2534",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2022-12-15T22:22:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da885aec_78ee038d",
+      "revId": "80fd7a0a6c9d5ce0b98f9a458ee8f03fe7965696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "632b5257_9ee5fe73",
