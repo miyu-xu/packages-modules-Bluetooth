@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a960d108_e3de2300",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T19:47:29Z",
+      "side": 1,
+      "message": "Licence should not be in commit message\nTBC with Sunny \u0026 Amith",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 87
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f923db2_e9503fe3",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T19:47:29Z",
+      "side": 1,
+      "message": "Code is not properly formatted.\n\ncan you pass clang-format on the change + fix the the repo hook complaining on Java format:\n```\n    ERRORS:\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/gatt/ScanFilterQueue.java:260: \u0027filter\u0027 has incorrect indentation level 16, expected level should be 20.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:56: \u0027if\u0027 has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:57: \u0027if\u0027 child has incorrect indentation level 13, expected level should be 12.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:58: \u0027if rcurly\u0027 has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:59: \u0027method def\u0027 child has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:60: \u0027method def\u0027 child has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:61: \u0027for\u0027 has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:61:13: \u0027for\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:61:19: \u0027\u003d\u0027 is not preceded with whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:61:20: \u0027\u003d\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:62: \u0027for\u0027 child has incorrect indentation level 13, expected level should be 12.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:63: \u0027if\u0027 has incorrect indentation level 13, expected level should be 12.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:63:20: \u0027+\u0027 is not preceded with whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:63:21: \u0027+\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:64: \u0027if\u0027 child has incorrect indentation level 17, expected level should be 16.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:65: \u0027if rcurly\u0027 has incorrect indentation level 13, expected level should be 12.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:66: \u0027for rcurly\u0027 has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:67: \u0027method def\u0027 child has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/BluetoothLeUtils.java:68: \u0027method def\u0027 child has incorrect indentation level 9, expected level should be 8.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:221:11: \u0027if\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:340:15: \u0027if\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:349:17: \u0027}\u0027 at column 17 should be on the same line as the next part of a multi-block statement (one that directly contains multiple blocks: if/else-if/else, do/while or try/catch/finally).\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:573:11: \u0027if\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:576:44: \u0027||\u0027 should be on a new line.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:577: \u0027(\u0027 has incorrect indentation level 20, expected level should be 24.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:679:57: \u0027+\u0027 should be on a new line.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanFilter.java:682:70: \u0027+\u0027 is not followed by whitespace.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanRecord.java:478:20: Name \u0027TdsData\u0027 must match pattern \u0027^[a-z][a-zA-Z0-9]*$\u0027.\n      [platform/packages/modules/Bluetooth] framework/java/android/bluetooth/le/ScanRecord.java:634:72: \u0027+\u0027 is not followed by whitespace.\n```",
+      "range": {
+        "startLine": 61,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 14
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08bddc49_96ad9147",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T19:47:29Z",
+      "side": 1,
+      "message": "We don\u0027t need to write this one.\nAbove line already transfer the information on the data",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 42
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fab3b0d7_b852867a",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T19:47:29Z",
+      "side": 1,
+      "message": "Could be \n```\nif (orgId \u003e\u003d 0) {\n```",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba6e57ec_1b64dd65",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T19:47:29Z",
+      "side": 1,
+      "message": "`@NonNull`. The method is either Throwing or returning `this`, I don\u0027t think it can be null",
+      "range": {
+        "startLine": 1094,
+        "startChar": 16,
+        "endLine": 1094,
+        "endChar": 24
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b2bd7c7_108d7bbd",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-15T19:47:29Z",
+      "side": 1,
+      "message": "if `wifiNanHash` is `NonNull`, we should always check for it being nonNull, not only when the `orgID !\u003d WIFI_ALLIAN_ORD_ID`.\nWe could use `mWifiNanHash \u003d Objects.requireNonNull(wifiNanHash)`",
+      "range": {
+        "startLine": 1095,
+        "startChar": 35,
+        "endLine": 1095,
+        "endChar": 42
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
