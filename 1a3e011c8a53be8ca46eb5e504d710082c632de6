@@ -33,6 +33,24 @@
       "message": "For Android T, you can\u0027t change the API.\nAnd if it it for Android U, you don\u0027t need to be hurry.",
       "revId": "1a3e011c8a53be8ca46eb5e504d710082c632de6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf6e1ed1_064db662",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 38
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-15T08:20:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e866e43_317c9c08",
+      "revId": "1a3e011c8a53be8ca46eb5e504d710082c632de6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
