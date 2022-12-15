@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d4fcdd4_2834f41c",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1249,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-15T18:09:16Z",
+      "side": 1,
+      "message": "This can be combined and avoid naked unwrap:\n```\nlet parsed_ad_payload: Vec\u003cu8\u003e \u003d\n    decode_hex(String::from(get_arg(args, 2)?).as_str())\n        .or(Err(\"Failed parsing ad_payload\"))?\n        .iter()\n        .rev()\n        .cloned()\n        .collect();\n```",
+      "range": {
+        "startLine": 1246,
+        "startChar": 0,
+        "endLine": 1249,
+        "endChar": 72
+      },
+      "revId": "d4e3dfec775b5784cb1f904b67a4c0b2410d49a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc75cf22_503963e3",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-15T18:09:16Z",
+      "side": 1,
+      "message": "there is compiler warning that this is unused. If it\u0027s unused you don\u0027t have to clone this in the collect step above.",
+      "range": {
+        "startLine": 1261,
+        "startChar": 37,
+        "endLine": 1261,
+        "endChar": 41
+      },
+      "revId": "d4e3dfec775b5784cb1f904b67a4c0b2410d49a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
