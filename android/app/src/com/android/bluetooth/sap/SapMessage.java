@@ -733,7 +733,8 @@ public class SapMessage {
     /**
      * Send the message by calling corresponding ISap api.
      */
-    public void send(ISap sapProxy) throws RemoteException, RuntimeException {
+    //TODO: change name of sapProxy
+    public void send(ISapRilReceiver sapProxy) throws RemoteException, RuntimeException {
         int rilSerial = sNextSerial.getAndIncrement();
 
         Log.e(TAG, "callISapReq: called for mMsgType " + mMsgType + " rilSerial " + rilSerial);

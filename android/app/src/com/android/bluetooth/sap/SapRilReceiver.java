@@ -3,20 +3,15 @@ package com.android.bluetooth.sap;
 import android.hardware.radio.sap.ISap;
 import android.hardware.radio.sap.ISapCallback;
 import android.os.Handler;
-import android.os.HwBinder;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.util.Log;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class SapRilReceiver {
+public class SapRilReceiver implements ISapRilReceiver {
     private static final String TAG = "SapRilReceiver";
     public static final boolean DEBUG = true;
     public static final boolean VERBOSE = true;
@@ -37,6 +32,101 @@ public class SapRilReceiver {
 
     public static final int RIL_MAX_COMMAND_BYTES = (8 * 1024);
     public byte[] buffer = new byte[RIL_MAX_COMMAND_BYTES];
+
+    /**
+     * TRANSFER_APDU_REQ from SAP 1.1 spec 5.1.6
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     * @param type APDU command type
+     * @param command CommandAPDU/CommandAPDU7816 parameter depending on type
+     */
+    @Override public void apduReq(int serial, int type, byte[] command) throws android.os.RemoteException {
+        mSapProxy.apduReq(serial, type, command);
+    }
+
+    /**
+     * CONNECT_REQ from SAP 1.1 spec 5.1.1
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     * @param maxMsgSizeBytes MaxMsgSize to be used for SIM Access Profile connection
+     */
+    @Override public void connectReq(int serial, int maxMsgSizeBytes) throws android.os.RemoteException {
+        mSapProxy.connectReq(serial, maxMsgSizeBytes);
+    }
+
+    /**
+     * DISCONNECT_REQ from SAP 1.1 spec 5.1.3
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     */
+    @Override public void disconnectReq(int serial) throws android.os.RemoteException {
+        mSapProxy.disconnectReq(serial);
+    }
+
+    /**
+     * POWER_SIM_OFF_REQ and POWER_SIM_ON_REQ from SAP 1.1 spec 5.1.10 + 5.1.12
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     * @param powerOn true for on, false for off
+     */
+    @Override public void powerReq(int serial, boolean powerOn) throws android.os.RemoteException {
+        mSapProxy.powerReq(serial, powerOn);
+    }
+
+    /**
+     * RESET_SIM_REQ from SAP 1.1 spec 5.1.14
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     */
+    @Override public void resetSimReq(int serial) throws android.os.RemoteException {
+        mSapProxy.resetSimReq(serial);
+    }
+    /**
+     * Set callback that has response and unsolicited indication functions
+     *
+     * @param sapCallback Object containing response and unosolicited indication callbacks
+     */
+    @Override public void setCallback(android.hardware.radio.sap.ISapCallback sapCallback) throws android.os.RemoteException {
+        mSapProxy.setCallback(sapCallback);
+    }
+    /**
+     * SET_TRANSPORT_PROTOCOL_REQ from SAP 1.1 spec 5.1.20
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     * @param transferProtocol Transport Protocol
+     */
+    @Override public void setTransferProtocolReq(int serial, int transferProtocol) throws android.os.RemoteException {
+        mSapProxy.setTransferProtocolReq(serial, transferProtocol);
+    }
+    /**
+     * TRANSFER_ATR_REQ from SAP 1.1 spec 5.1.8
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     */
+    @Override public void transferAtrReq(int serial) throws android.os.RemoteException {
+        mSapProxy.transferAtrReq(serial);
+    }
+    /**
+     * TRANSFER_CARD_READER_STATUS_REQ from SAP 1.1 spec 5.1.17
+     *
+     * @param serial Id to match req-resp. Resp must include same serial.
+     */
+    @Override public void transferCardReaderStatusReq(int serial) throws android.os.RemoteException {
+        mSapProxy.transferCardReaderStatusReq(serial);
+    }
+    //TODO: log that we should never call these three
+    @Override
+    public int getInterfaceVersion() {
+        return 0;
+    }
+    @Override
+    public String getInterfaceHash() {
+        return "";
+    }
+    @Override
+    public android.os.IBinder asBinder() {
+        return null;
+    }
 
     final class SapProxyDeathRecipient implements IBinder.DeathRecipient {
         @Override
@@ -211,6 +301,7 @@ public class SapRilReceiver {
         }
     }
 
+    @Override
     public Object getSapProxyLock() {
         return mSapProxyLock;
     }
@@ -248,6 +339,7 @@ public class SapRilReceiver {
         }
     }
 
+    @Override
     public void resetSapProxy() {
         synchronized (mSapProxyLock) {
             if (DEBUG) Log.d(TAG, "resetSapProxy :" + mSapProxy);
@@ -271,7 +363,8 @@ public class SapRilReceiver {
     /**
      * Notify SapServer that this class is ready for shutdown.
      */
-    void notifyShutdown() {
+    @Override
+    public void notifyShutdown() {
         if (DEBUG) {
             Log.i(TAG, "notifyShutdown()");
         }
@@ -286,7 +379,8 @@ public class SapRilReceiver {
     /**
      * Notify SapServer that the RIL socket is connected
      */
-    void sendRilConnectMessage() {
+    @Override
+    public void sendRilConnectMessage() {
         if (mSapServerMsgHandler != null) {
             mSapServerMsgHandler.sendEmptyMessage(SapServer.SAP_MSG_RIL_CONNECT);
         }

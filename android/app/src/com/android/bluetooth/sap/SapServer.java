@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Icon;
-import android.hardware.radio.sap.ISap;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.HandlerThread;
@@ -67,7 +66,7 @@ public class SapServer extends Thread implements Callback {
     private BufferedInputStream mRfcommIn = null;
     /* References to the SapRilReceiver object */
     @VisibleForTesting
-    SapRilReceiver mRilBtReceiver = null;
+    ISapRilReceiver mRilBtReceiver = null;
     /* The message handler members */
     @VisibleForTesting
     Handler mSapHandler = null;
@@ -352,6 +351,7 @@ public class SapServer extends Thread implements Callback {
             mSapHandler = new Handler(sapLooper, this);
 
             mRilBtReceiver = new SapRilReceiver(mSapHandler, mSapServiceHandler);
+            //TODO: is it AIDL?
             boolean done = false;
             while (!done) {
                 if (VERBOSE) {
@@ -724,14 +724,7 @@ public class SapServer extends Thread implements Callback {
                 startDisconnectTimer(SapMessage.DISC_RFCOMM, DISCONNECT_TIMEOUT_RFCOMM);
                 break;
             case SAP_PROXY_DEAD:
-                if ((long) msg.obj == mRilBtReceiver.getSapProxyCookie().get()) {
-                    mRilBtReceiver.notifyShutdown(); /* Only needed in case of a connection error */
-                    mRilBtReceiver.resetSapProxy();
-
-                    // todo: rild should be back up since message was sent with a delay. this is
-                    // a hack.
-                    mRilBtReceiver.getSapProxy();
-                }
+                mRilBtReceiver.notifyShutdown(); /* Only needed in case of a connection error */
                 break;
             default:
             /* Message not handled */
@@ -968,19 +961,11 @@ public class SapServer extends Thread implements Callback {
             Log.i(TAG_HANDLER,
                     "sendRilMessage() - " + SapMessage.getMsgTypeName(sapMsg.getMsgType()));
         }
-
+        // TODO: check if mRilBtReceiver is null (?)
         Log.d(TAG_HANDLER, "sendRilMessage: calling getSapProxy");
         synchronized (mRilBtReceiver.getSapProxyLock()) {
-            ISap sapProxy = mRilBtReceiver.getSapProxy();
-            if (sapProxy == null) {
-                Log.e(TAG_HANDLER,
-                        "sendRilMessage: Unable to send message to RIL; sapProxy is null");
-                sendClientMessage(new SapMessage(SapMessage.ID_ERROR_RESP));
-                return;
-            }
-
             try {
-                sapMsg.send(sapProxy);
+                sapMsg.send(mRilBtReceiver);
                 if (VERBOSE) {
                     Log.d(TAG_HANDLER, "sendRilMessage: sapMsg.callISapReq called successfully");
                 }
@@ -994,6 +979,7 @@ public class SapServer extends Thread implements Callback {
                 mRilBtReceiver.resetSapProxy();
             }
         }
+
     }
 
     /**
