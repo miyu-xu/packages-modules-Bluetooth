@@ -33,6 +33,46 @@
       "message": "Please verify if the flags is modified as expected with HCI log on another BLE device.",
       "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b632476_ec5e2414",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-15T10:19:33Z",
+      "side": 1,
+      "message": "I\u0027d suggest tha we just start a new advertising set for this command, or adding an extra argument to tell adv_id if you do need to modify existing one.",
+      "range": {
+        "startLine": 1239,
+        "startChar": 16,
+        "endLine": 1239,
+        "endChar": 50
+      },
+      "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a57af7_8bfdd787",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-15T10:19:33Z",
+      "side": 1,
+      "message": "Please verify if the flags is modified as expected with HCI log on another BLE device.",
+      "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
