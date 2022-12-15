@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71cc21b_84ae7390",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. Sorry, it was my debug logging.",
+      "parentUuid": "93bc77c0_4c64660b",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4c014d5_8f21f892",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efe32fa3_89fedbe6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. Myles, thank you for catching the issue! Sonny, thanks for the explanation.",
+      "parentUuid": "4166880f_e2c8b73c",
+      "range": {
+        "startLine": 1169,
+        "startChar": 0,
+        "endLine": 1172,
+        "endChar": 9
+      },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8958f5d_a2f8980a",
@@ -78,6 +120,24 @@
       "writtenOn": "2022-12-14T23:40:14Z",
       "side": 1,
       "message": "Remove if temporary, `log::debug!` if meant to be permanent.",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "607f4b9c_2523f978",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. Sorry, it was my debug logging.",
+      "parentUuid": "a8958f5d_a2f8980a",
       "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -99,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ac23cbb_628bbb8c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. Good point. Thanks.",
+      "parentUuid": "ff7b8072_f6eac536",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfe53090_f0cab739",
@@ -116,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab722f82_6d87fb86",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. Sorry, it was my debug logging.",
+      "parentUuid": "bfe53090_f0cab739",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03722732_b71344e2",
@@ -129,6 +225,24 @@
       "writtenOn": "2022-12-14T23:40:14Z",
       "side": 1,
       "message": "Remove if temporary, `log::debug!` if meant to be permanent.",
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86cf44f9_191814c2",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. Sorry, it was my debug logging.",
+      "parentUuid": "03722732_b71344e2",
       "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -156,6 +270,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bffb65e5_caac7c09",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. The LOG_INFO(\"## ...\") was removed. Sorry, it was my debug logging.",
+      "parentUuid": "a23ff392_bbf37186",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 11
+      },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "317679fd_925da940",
@@ -169,6 +307,30 @@
       "writtenOn": "2022-12-12T22:44:24Z",
       "side": 1,
       "message": "In other places, the Floss team is converting these to LOG_INFO\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2280330",
+      "range": {
+        "startLine": 256,
+        "startChar": 1,
+        "endLine": 256,
+        "endChar": 11
+      },
+      "revId": "178aef7d8cddead58774ae10ee0ec2a83a62a4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38f12497_b28a7aff",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-15T13:54:34Z",
+      "side": 1,
+      "message": "Done. Convert the logging to using LOG_INFO instead.",
+      "parentUuid": "317679fd_925da940",
       "range": {
         "startLine": 256,
         "startChar": 1,
