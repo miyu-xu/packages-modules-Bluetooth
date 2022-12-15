@@ -16,6 +16,29 @@
       "message": "This CL doesn\u0027t seem like it should depend on its parent.",
       "revId": "5d5e7f300b7cc22bd6a280fb77088f1d3f364679",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9284b69_67375a48",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-15T17:49:14Z",
+      "side": 1,
+      "message": "We\u0027re trying to remove #defines where possible.  Is this possible to do for the host with a sysprop?\n\nIf not, can we call it DISABLE_UHID_SET_REPORT instead and default to 0 if it\u0027s not defined.  The common case is that we want support for this.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 48
+      },
+      "revId": "5d5e7f300b7cc22bd6a280fb77088f1d3f364679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
