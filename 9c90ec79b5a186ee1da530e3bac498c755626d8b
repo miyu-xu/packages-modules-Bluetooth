@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b7162f_b9cd47b2",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-15T16:10:50Z",
+      "side": 1,
+      "message": "Is this still OK here?",
+      "range": {
+        "startLine": 1552,
+        "startChar": 10,
+        "endLine": 1552,
+        "endChar": 29
+      },
+      "revId": "9c90ec79b5a186ee1da530e3bac498c755626d8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
