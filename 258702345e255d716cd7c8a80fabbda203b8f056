@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c0c83d_a92b6344",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1804,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-15T02:22:35Z",
+      "side": 1,
+      "message": "Be explicit that this is referring to the BluetoothGatt param.",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "891c340b_d2a96455",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-15T02:22:35Z",
+      "side": 1,
+      "message": "Need to have BLUETOOTH_PRIVILEGED for a system API",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "629caddb_cb408583",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-15T02:22:35Z",
+      "side": 1,
+      "message": "IntDef annotation for the transport and remove the possible values from the JavaDoc",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1016bea0_134e1f74",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-15T02:22:35Z",
+      "side": 1,
+      "message": "nit: param summaries start with a lowercase character and are fragments (don\u0027t end in a period)",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51056ca9_058c663e",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-15T02:22:35Z",
+      "side": 1,
+      "message": "I thought the docs were saying this can return a null gatt param if there is no connection? Therefore, shouldn\u0027t this be nullable?",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de02d252_5a41ad84",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-15T02:22:35Z",
+      "side": 1,
+      "message": "IntDef annotation for the transport again",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
