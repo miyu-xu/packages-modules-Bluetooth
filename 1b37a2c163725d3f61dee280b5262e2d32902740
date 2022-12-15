@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c149bed_39cbc74a",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-15T09:15:34Z",
+      "side": 1,
+      "message": "Missing initialization",
+      "range": {
+        "startLine": 86,
+        "startChar": 36,
+        "endLine": 86,
+        "endChar": 53
+      },
+      "revId": "1b37a2c163725d3f61dee280b5262e2d32902740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e7eb9ae_40e8c618",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-15T09:15:34Z",
+      "side": 1,
+      "message": "The comment says 2 ASEs, but we seem to be checking for 1 ASE operations.",
+      "range": {
+        "startLine": 1428,
+        "startChar": 2,
+        "endLine": 1431,
+        "endChar": 33
+      },
+      "revId": "1b37a2c163725d3f61dee280b5262e2d32902740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75e47834_ad51c0b9",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1680,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-15T09:15:34Z",
+      "side": 1,
+      "message": "2 ?",
+      "range": {
+        "startLine": 1680,
+        "startChar": 14,
+        "endLine": 1680,
+        "endChar": 15
+      },
+      "revId": "1b37a2c163725d3f61dee280b5262e2d32902740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
