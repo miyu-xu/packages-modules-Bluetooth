@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9035528f_46aea7a2",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-16T08:17:11Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "19c5ab55_7db12d21",
+      "range": {
+        "startLine": 142,
+        "startChar": 24,
+        "endLine": 144,
+        "endChar": 0
+      },
+      "revId": "ede28a910aaff300e09954665e728d5ff2c2d081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66e6773a_c65087de",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-15T07:29:01Z",
       "side": 0,
       "message": "ditto.\nsendEmptyMessage?",
+      "range": {
+        "startLine": 866,
+        "startChar": 24,
+        "endLine": 866,
+        "endChar": 37
+      },
+      "revId": "ede28a910aaff300e09954665e728d5ff2c2d081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d95cbec7_5d19e87c",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-12-16T08:17:11Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "66e6773a_c65087de",
       "range": {
         "startLine": 866,
         "startChar": 24,
