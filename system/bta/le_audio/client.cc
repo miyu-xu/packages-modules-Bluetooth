@@ -727,9 +727,9 @@ class LeAudioClientImpl : public LeAudioClient {
           /* Highest priority first */
           LeAudioContextType::CONVERSATIONAL,
           LeAudioContextType::RINGTONE,
-          LeAudioContextType::GAME,
           LeAudioContextType::LIVE,
           LeAudioContextType::VOICEASSISTANTS,
+          LeAudioContextType::GAME,
           LeAudioContextType::MEDIA,
           LeAudioContextType::EMERGENCYALARM,
           LeAudioContextType::ALERTS,
@@ -3498,9 +3498,9 @@ class LeAudioClientImpl : public LeAudioClient {
            * call volume slider while not in a call.
            * LeAudioContextType::RINGTONE,
            */
-          LeAudioContextType::GAME,
           LeAudioContextType::LIVE,
           LeAudioContextType::VOICEASSISTANTS,
+          LeAudioContextType::GAME,
           LeAudioContextType::MEDIA,
           LeAudioContextType::EMERGENCYALARM,
           LeAudioContextType::ALERTS,
