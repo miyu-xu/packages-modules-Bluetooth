@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "980af120_7d4cd959",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-16T23:51:20Z",
+      "side": 1,
+      "message": "(I mean `clcb_queue`)",
+      "parentUuid": "1e71654d_3c515f1b",
+      "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12f9e456_4a641f28",
