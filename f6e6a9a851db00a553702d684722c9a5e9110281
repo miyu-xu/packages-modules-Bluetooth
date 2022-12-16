@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f9e456_4a641f28",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-16T19:31:30Z",
+      "side": 1,
+      "message": "in the past, we do `memset(p_clcb, 0, sizeof(tGATT_CLCB))`, but now we keep the content of `p_clcb` and only invalidate it. \n\ndoes it have the same effect as memset to 0?",
+      "range": {
+        "startLine": 1141,
+        "startChar": 4,
+        "endLine": 1148,
+        "endChar": 5
+      },
+      "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
