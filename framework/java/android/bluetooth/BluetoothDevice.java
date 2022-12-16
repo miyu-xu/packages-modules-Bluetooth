@@ -27,6 +27,7 @@ import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
+import android.bluetooth.BluetoothGatt.ConnectionPriority;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
 import android.bluetooth.annotations.RequiresBluetoothScanPermission;
@@ -3247,7 +3248,45 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     public BluetoothGatt connectGatt(Context context, boolean autoConnect,
             BluetoothGattCallback callback, int transport, int phy,
             Handler handler) {
-        return connectGatt(context, autoConnect, callback, transport, false, phy, handler);
+        return connectGatt(context, autoConnect, transport, phy,
+                BluetoothGatt.CONNECTION_PRIORITY_DEFAULT, handler, callback);
+    }
+
+    /**
+     * Connect to GATT Server hosted by this device. Caller acts as GATT client.
+     * The callback is used to deliver results to Caller, such as connection status as well
+     * as any further GATT client operations.
+     * The method returns a BluetoothGatt instance. You can use BluetoothGatt to conduct
+     * GATT client operations.
+     *
+     * @param callback GATT callback handler that will receive asynchronous callbacks.
+     * @param autoConnect Whether to directly connect to the remote device (false) or to
+     * automatically connect as soon as the remote device becomes available (true).
+     * @param transport preferred transport for GATT connections to remote dual-mode devices {@link
+     * BluetoothDevice#TRANSPORT_AUTO} or {@link BluetoothDevice#TRANSPORT_BREDR} or {@link
+     * BluetoothDevice#TRANSPORT_LE}
+     * @param phy preferred PHY for connections to remote LE device. Bitwise OR of any of {@link
+     * BluetoothDevice#PHY_LE_1M_MASK}, {@link BluetoothDevice#PHY_LE_2M_MASK}, an d{@link
+     * BluetoothDevice#PHY_LE_CODED_MASK}. This option does not take effect if {@code autoConnect}
+     * is set to true.
+     * @param handler The handler to use for the callback. If {@code null}, callbacks will happen on
+     * an un-specified background thread.
+     * @param connectionPriority connection priority used for this connection. Must be one of
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_DEFAULT},
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_LOW_POWER},
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_BALANCED},
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_CCC} or
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_HIGH}.
+     * @throws NullPointerException if callback is null
+     */
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @NonNull
+    public BluetoothGatt connectGatt(@NonNull Context context, boolean autoConnect,
+            int transport, int phy, @ConnectionPriority int connectionPriority,
+            @Nullable Handler handler, @NonNull BluetoothGattCallback callback) {
+        return connectGatt(context, autoConnect, callback, transport,
+                false, phy, connectionPriority, handler);
     }
 
     /**
@@ -3272,6 +3311,11 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * is set to true.
      * @param handler The handler to use for the callback. If {@code null}, callbacks will happen on
      * an un-specified background thread.
+     * @param connectionPriority connection priority used for this connection. Must be one of
+     * {@link BluetoothGatt#orCONNECTION_PRIORITY_LOW_POWER},
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_BALANCED},
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_CCC} or
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_HIGH}.
      * @return A BluetoothGatt instance. You can use BluetoothGatt to conduct GATT client
      * operations.
      * @hide
@@ -3281,7 +3325,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public BluetoothGatt connectGatt(Context context, boolean autoConnect,
             BluetoothGattCallback callback, int transport,
-            boolean opportunistic, int phy, Handler handler) {
+            boolean opportunistic, int phy, @ConnectionPriority int connectionPriority,
+            Handler handler) {
         if (callback == null) {
             throw new NullPointerException("callback is null");
         }
@@ -3297,7 +3342,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 return null;
             }
             BluetoothGatt gatt = new BluetoothGatt(
-                    iGatt, this, transport, opportunistic, phy, mAttributionSource);
+                    iGatt, this, transport, opportunistic, phy, connectionPriority,
+                    mAttributionSource);
             gatt.connect(autoConnect, callback, handler);
             return gatt;
         } catch (RemoteException e) {
