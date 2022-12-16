@@ -199,10 +199,11 @@ public class GattServiceBinderTest {
         int phy = 3;
 
         mBinder.clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
-                mAttributionSource, SynchronousResultReceiver.get());
+                BluetoothGatt.CONNECTION_PRIORITY_DEFAULT, mAttributionSource,
+                SynchronousResultReceiver.get());
 
         verify(mService).clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
-                mAttributionSource);
+                BluetoothGatt.CONNECTION_PRIORITY_DEFAULT, mAttributionSource);
     }
 
     @Test
