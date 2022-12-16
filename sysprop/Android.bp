@@ -10,6 +10,7 @@ sysprop_library {
         "bta.sysprop",
         "hfp.sysprop",
         "pan.sysprop",
+        "a2dp.sysprop"
     ],
     property_owner: "Platform",
     api_packages: ["android.sysprop"],
