@@ -16,6 +16,8 @@
 
 package android.bluetooth;
 
+import android.annotation.NonNull;
+
 /**
  * This abstract class is used to implement {@link BluetoothGattServer} callbacks.
  */
@@ -179,6 +181,18 @@ public abstract class BluetoothGattServerCallback {
      * operation succeeds.
      */
     public void onPhyRead(BluetoothDevice device, int txPhy, int rxPhy, int status) {
+    }
+
+    /**
+     * Callback indicating the connection interval and latency was updated.
+     *
+     * @param device The remote device that requested the PHY read
+     * @param interval Connection interval used on this connection, 1.25ms unit. Valid range is from
+     * 6 (7.5ms) to 3200 (4000ms)
+     * @param latency Worker latency for the connection in number of connection events. Valid range
+     * is from 0 to 499
+     */
+    public void onIntervalChanged(@NonNull BluetoothDevice device, int interval, int latency) {
     }
 
     /**

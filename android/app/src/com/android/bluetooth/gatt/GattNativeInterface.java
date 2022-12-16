@@ -324,6 +324,7 @@ public class GattNativeInterface {
             int handle, boolean enable);
     private native void gattClientReadRemoteRssiNative(int clientIf, String address);
     private native void gattClientConfigureMTUNative(int connId, int mtu);
+    private native void gattSetConnectParametersNative(int connInterval, int intervalWindow);
     private native void gattConnectionParameterUpdateNative(int clientIf, String address,
             int minInterval, int maxInterval, int latency, int timeout, int minConnectionEventLen,
             int maxConnectionEventLen);
@@ -522,6 +523,13 @@ public class GattNativeInterface {
      */
     public void gattClientConfigureMTU(int connId, int mtu) {
         gattClientConfigureMTUNative(connId, mtu);
+    }
+
+    /**
+     * Configures connection interval parameters before connection
+     */
+    public void gattSetConnectParameters(int connInterval, int intervalWindow) {
+        gattSetConnectParametersNative(connInterval, intervalWindow);
     }
 
     /**

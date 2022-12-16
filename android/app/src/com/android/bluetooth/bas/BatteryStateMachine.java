@@ -234,7 +234,8 @@ public class BatteryStateMachine extends StateMachine {
         }
         mBluetoothGatt = mDevice.connectGatt(service, /*autoConnect=*/false,
                 mGattCallback, TRANSPORT_AUTO, /*opportunistic=*/true,
-                PHY_LE_1M_MASK | PHY_LE_2M_MASK, getHandler());
+                PHY_LE_1M_MASK | PHY_LE_2M_MASK, BluetoothGatt.CONNECTION_PRIORITY_BALANCED,
+                getHandler());
         return mBluetoothGatt != null;
     }
 

@@ -73,6 +73,7 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.Utils.GattPriority;
 import com.android.bluetooth.btservice.AbstractionLayer;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
@@ -94,7 +95,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 
 /**
@@ -779,24 +779,25 @@ public class GattService extends ProfileService {
 
         @Override
         public void clientConnect(int clientIf, String address, boolean isDirect, int transport,
-                boolean opportunistic, int phy, AttributionSource attributionSource,
-                SynchronousResultReceiver receiver) {
+                boolean opportunistic, int phy, int connectionPriority,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
             try {
                 clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
-                        attributionSource);
+                        connectionPriority, attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
         private void clientConnect(int clientIf, String address, boolean isDirect, int transport,
-                boolean opportunistic, int phy, AttributionSource attributionSource) {
+                boolean opportunistic, int phy, int connectionPriority,
+                AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
             service.clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
-                    attributionSource);
+                    connectionPriority, attributionSource);
         }
 
         @Override
@@ -1131,8 +1132,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.connectionParameterUpdate(
-                    clientIf, address, connectionPriority, attributionSource);
+            service.connectionParameterUpdate(clientIf, address,
+                    GattPriority.getStaticPriority(service, connectionPriority), attributionSource);
         }
 
         @Override
@@ -2208,6 +2209,8 @@ public class GattService extends ProfileService {
             return;
         }
 
+        int priority = GattPriority.toPriority(this, interval, latency);
+        app.callback.onIntervalChanged(address, priority, latency);
         app.callback.onConnectionUpdated(address, interval, latency, timeout, status);
     }
 
@@ -3410,7 +3413,8 @@ public class GattService extends ProfileService {
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     void clientConnect(int clientIf, String address, boolean isDirect, int transport,
-            boolean opportunistic, int phy, AttributionSource attributionSource) {
+            boolean opportunistic, int phy, int connectionPriority,
+            AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService clientConnect")) {
             return;
@@ -3424,6 +3428,10 @@ public class GattService extends ProfileService {
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
                 BluetoothProtoEnums.CONNECTION_STATE_CONNECTING);
+        if (connectionPriority != BluetoothGatt.CONNECTION_PRIORITY_BALANCED) {
+            connectionParameterUpdate(0, null, GattPriority.getStaticPriority(this,
+                    connectionPriority), attributionSource);
+        }
         mNativeInterface.gattClientConnect(clientIf, address, isDirect, transport, opportunistic,
                 phy);
     }
@@ -3838,51 +3846,29 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void connectionParameterUpdate(int clientIf, String address, int connectionPriority,
+    void connectionParameterUpdate(int clientIf, String address, GattPriority connectionPriority,
             AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService connectionParameterUpdate")) {
             return;
         }
 
-        int minInterval;
-        int maxInterval;
-
-        // Peripheral latency
-        int latency;
-
         // Link supervision timeout is measured in N * 10ms
         int timeout = 500; // 5s
 
-        switch (connectionPriority) {
-            case BluetoothGatt.CONNECTION_PRIORITY_HIGH:
-                minInterval = getResources().getInteger(R.integer.gatt_high_priority_min_interval);
-                maxInterval = getResources().getInteger(R.integer.gatt_high_priority_max_interval);
-                latency = getResources().getInteger(R.integer.gatt_high_priority_latency);
-                break;
-
-            case BluetoothGatt.CONNECTION_PRIORITY_LOW_POWER:
-                minInterval = getResources().getInteger(R.integer.gatt_low_power_min_interval);
-                maxInterval = getResources().getInteger(R.integer.gatt_low_power_max_interval);
-                latency = getResources().getInteger(R.integer.gatt_low_power_latency);
-                break;
-
-            default:
-                // Using the values for CONNECTION_PRIORITY_BALANCED.
-                minInterval =
-                        getResources().getInteger(R.integer.gatt_balanced_priority_min_interval);
-                maxInterval =
-                        getResources().getInteger(R.integer.gatt_balanced_priority_max_interval);
-                latency = getResources().getInteger(R.integer.gatt_balanced_priority_latency);
-                break;
-        }
-
         if (DBG) {
             Log.d(TAG, "connectionParameterUpdate() - address=" + address + "params="
-                    + connectionPriority + " interval=" + minInterval + "/" + maxInterval);
+                    + connectionPriority + " interval=" + connectionPriority.getMinInterval()
+                    + "/" + connectionPriority.getMaxInterval());
         }
-        mNativeInterface.gattConnectionParameterUpdate(clientIf, address, minInterval, maxInterval,
-                latency, timeout, 0, 0);
+        if (address == null) {
+            mNativeInterface.gattSetConnectParameters(connectionPriority.getMinInterval(),
+                    connectionPriority.getIntervalWindow());
+        } else {
+            mNativeInterface.gattConnectionParameterUpdate(clientIf, address,
+                    connectionPriority.getMinInterval(), connectionPriority.getMaxInterval(),
+                    connectionPriority.getLatency(), timeout, 0, 0);
+        }
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)

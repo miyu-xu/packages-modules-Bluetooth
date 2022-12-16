@@ -367,6 +367,29 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 }
 
                 /**
+                 * The connection interval has changed.
+                 * @hide
+                 */
+                @Override
+                public void onIntervalChanged(String address, int interval, int latency) {
+                    if (DBG) {
+                        Log.d(TAG,
+                                "onIntervalChanged() - " + "device=" + address
+                                        + ",interval=" + interval
+                                        + ", latency=" + latency);
+                    }
+
+                    BluetoothDevice device = mAdapter.getRemoteDevice(address);
+                    if (device == null) return;
+
+                    try {
+                        mCallback.onIntervalChanged(device, interval, latency);
+                    } catch (Exception ex) {
+                        Log.w(TAG, "Unhandled exception: " + ex);
+                    }
+                }
+
+                /**
                  * Callback invoked when the given connection is updated
                  * @hide
                  */
