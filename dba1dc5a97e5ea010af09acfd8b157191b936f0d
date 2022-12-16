@@ -34,6 +34,24 @@
       "parentUuid": "137b8e9b_54a51af5",
       "revId": "dba1dc5a97e5ea010af09acfd8b157191b936f0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "987c6144_0595e76e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-12-16T05:37:30Z",
+      "side": 1,
+      "message": "After checking again I found I was wrong at least about the device I was referring to: HM1100 indeed only runs HFP and controls via AT commands alone. Thus I\u0027ll take the advice to connect only after A2DP.\n\nAfter experimenting with the \"popular\" headsets that we never tried, I found a few more strange behaviors (e.g., some claim AVRCP but never successfully connects \u003d\u003e makes retry-loop/disconnect-on-missing infeasible) and am hesitant to make greater changes before ensuring all of them on our hands work in an expected way.\n\nIMO deferring AVRCP to after A2DP is not a large change and could mitigate a subset of issues so it may be worth landing first.",
+      "parentUuid": "04d10773_3f491cac",
+      "revId": "dba1dc5a97e5ea010af09acfd8b157191b936f0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
