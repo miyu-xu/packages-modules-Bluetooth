@@ -230,6 +230,7 @@ public class Constants {
         Uri contentUri = Uri.parse(BluetoothShare.CONTENT_URI + "/" + id);
         ContentValues updateValues = new ContentValues();
         updateValues.put(BluetoothShare.STATUS, status);
+        Log.d("TestRunner","called here " + id + " " + status + " " + BluetoothMethodProxy.getInstance());
         BluetoothMethodProxy.getInstance().contentResolverUpdate(context.getContentResolver(),
                 contentUri, updateValues, null, null);
         Constants.sendIntentIfCompleted(context, contentUri, status);
