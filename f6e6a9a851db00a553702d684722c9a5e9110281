@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64a3660d_11411be8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-16T19:45:31Z",
+      "side": 1,
+      "message": "unresolved",
+      "parentUuid": "9f2680a0_cd75eb5e",
+      "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd1784a1_5743258d",
         "filename": "system/stack/gatt/gatt_utils.cc",
         "patchSetId": 1
