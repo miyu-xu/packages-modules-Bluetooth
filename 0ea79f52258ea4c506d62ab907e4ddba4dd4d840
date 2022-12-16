@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd408c5_6b61a344",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1566,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-16T01:36:31Z",
+      "side": 1,
+      "message": "Do you need the address here?",
+      "range": {
+        "startLine": 1566,
+        "startChar": 49,
+        "endLine": 1566,
+        "endChar": 56
+      },
+      "revId": "0ea79f52258ea4c506d62ab907e4ddba4dd4d840",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
