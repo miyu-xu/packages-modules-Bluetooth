@@ -16,6 +16,24 @@
       "message": "Please fix this error prones",
       "revId": "4bea02ee5ceadc3fd6f9fdf581dded905fc895c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c3b191_17bb211f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-16T01:27:15Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "a08b5bc7_4da7c178",
+      "revId": "4bea02ee5ceadc3fd6f9fdf581dded905fc895c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
