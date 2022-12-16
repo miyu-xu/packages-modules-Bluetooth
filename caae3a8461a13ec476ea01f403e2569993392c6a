@@ -22,6 +22,30 @@
       },
       "revId": "caae3a8461a13ec476ea01f403e2569993392c6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10a74ea5_9c6dbdfe",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/SmsMmsContactsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-16T02:08:19Z",
+      "side": 1,
+      "message": "Yes when filter is non null and and contact is non null, the function tests if they are matching and returns null if they don\u0027t match. I changed the test name and filter parameter name for better readability! \n\nAlso, I didn\u0027t include a case when they match because it only increases 1 line coverage and I didn\u0027t want to spend more time looking in to it.",
+      "parentUuid": "8c2128fe_8d1dbdd6",
+      "range": {
+        "startLine": 189,
+        "startChar": 16,
+        "endLine": 189,
+        "endChar": 40
+      },
+      "revId": "caae3a8461a13ec476ea01f403e2569993392c6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
