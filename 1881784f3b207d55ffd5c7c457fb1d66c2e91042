@@ -16,6 +16,29 @@
       "message": "Too bad it didn\u0027t pass pre-submit",
       "revId": "1881784f3b207d55ffd5c7c457fb1d66c2e91042",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d140164_3b3e8568",
+        "filename": "system/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-16T05:43:05Z",
+      "side": 1,
+      "message": "nit: I think they\u0027re in alphabetical order.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "1881784f3b207d55ffd5c7c457fb1d66c2e91042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
