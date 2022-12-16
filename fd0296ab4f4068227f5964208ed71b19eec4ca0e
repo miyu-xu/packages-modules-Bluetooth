@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403e4ad2_b023f017",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-12-16T18:20:21Z",
+      "side": 1,
+      "message": "Can you please split the CL? For example there can be one CL for stack changes, one for JNI changes and one for Framework changes. Smaller CLs will be easy to review. Thanks",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
