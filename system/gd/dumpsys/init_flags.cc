@@ -64,6 +64,7 @@ flatbuffers::Offset<bluetooth::common::InitFlagsData> bluetooth::dumpsys::InitFl
   builder.add_subrating_is_enabled(initFlags::subrating_is_enabled());
   builder.add_trigger_advertising_callbacks_on_first_resume_after_pause_is_enabled(
       initFlags::trigger_advertising_callbacks_on_first_resume_after_pause_is_enabled());
+  builder.add_a2dp_src_sink_coexist_is_enabled(initFlags::a2dp_src_sink_coexist_is_enabled());
 
   return builder.Finish();
 }
