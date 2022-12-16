@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bab08704_a9d9b997",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-16T19:13:18Z",
+      "side": 1,
+      "message": "FYI flakyness spotted and analyzed in aosp/2329340",
+      "revId": "702003c257159c1fd70c5467dc3382fbd1d0bcff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
