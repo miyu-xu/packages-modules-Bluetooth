@@ -65,7 +65,7 @@ import java.util.concurrent.TimeoutException;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
-public class BluetoothOppServiceTest {
+public class BluetoothOppServiceMockTest {
     @Rule
     public final ServiceTestRule mServiceRule = new ServiceTestRule();
     @Mock
@@ -93,26 +93,6 @@ public class BluetoothOppServiceTest {
     @After
     public void tearDown() throws Exception {
         BluetoothMethodProxy.setInstanceForTesting(null);
-    }
-
-    @Test
-    public void testInitialize() throws Exception {
-        Assume.assumeTrue("Ignore test when BluetoothOppService is not enabled",
-                BluetoothOppService.isEnabled());
-        TestUtils.setAdapterService(mAdapterService);
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
-        TestUtils.startService(mServiceRule, BluetoothOppService.class);
-        mService = spy(BluetoothOppService.getBluetoothOppService());
-        Assert.assertNotNull(mService);
-        // Try getting the Bluetooth adapter
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
-        Assert.assertNotNull(mAdapter);
-        Assert.assertNotNull(BluetoothOppService.getBluetoothOppService());
-        if (!BluetoothOppService.isEnabled()) {
-            return;
-        }
-        TestUtils.stopService(mServiceRule, BluetoothOppService.class);
-        TestUtils.clearAdapterService(mAdapterService);
     }
 
     @Test

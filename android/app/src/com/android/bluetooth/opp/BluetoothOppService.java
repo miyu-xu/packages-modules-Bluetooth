@@ -140,7 +140,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
     @VisibleForTesting
     ArrayList<BluetoothOppShareInfo> mShares;
 
-    private ArrayList<BluetoothOppBatch> mBatches;
+    @VisibleForTesting
+    ArrayList<BluetoothOppBatch> mBatches;
 
     private BluetoothOppTransfer mTransfer;
 
@@ -763,7 +764,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         }
     }
 
-    private void insertShare(Cursor cursor, int arrayPos) {
+    @VisibleForTesting
+    void insertShare(Cursor cursor, int arrayPos) {
         String uriString = cursor.getString(cursor.getColumnIndexOrThrow(BluetoothShare.URI));
         Uri uri;
         if (uriString != null) {
@@ -894,7 +896,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         }
     }
 
-    private void updateShare(Cursor cursor, int arrayPos) {
+    @VisibleForTesting
+    void updateShare(Cursor cursor, int arrayPos) {
         BluetoothOppShareInfo info = mShares.get(arrayPos);
         int statusColumn = cursor.getColumnIndexOrThrow(BluetoothShare.STATUS);
 
@@ -947,7 +950,10 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         info.mMediaScanned = (cursor.getInt(cursor.getColumnIndexOrThrow(Constants.MEDIA_SCANNED))
                 != Constants.MEDIA_SCANNED_NOT_SCANNED);
 
+        Log.d("TestRunner", "run here");
+
         if (confirmUpdated) {
+            Log.d("TestRunner", "run here2");
             if (V) {
                 Log.v(TAG, "Service handle info " + info.mId + " confirmation updated");
             }
@@ -961,7 +967,9 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
             }
         }
         int i = findBatchWithTimeStamp(info.mTimestamp);
+        Log.d("TestRunner", "run here with i" + i);
         if (i != -1) {
+            Log.d("TestRunner", "run here i not -1");
             BluetoothOppBatch batch = mBatches.get(i);
             if (batch.mStatus == Constants.BATCH_STATUS_FINISHED
                     || batch.mStatus == Constants.BATCH_STATUS_FAILED) {
@@ -990,6 +998,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                     }
                     mServerTransfer = null;
                 }
+                Log.d("TestRunner", "run here remove batch");
                 removeBatch(batch);
             }
         }
@@ -1066,7 +1075,9 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         if (V) {
             Log.v(TAG, "Remove batch " + batch.mId);
         }
+        Log.d("TestRunner", "run here removing batch size is " + mBatches.size());
         mBatches.remove(batch);
+        Log.d("TestRunner", "run here removed batch size is " + mBatches.size());
         if (mBatches.size() > 0) {
             for (BluetoothOppBatch nextBatch : mBatches) {
                 // we have a running batch
@@ -1176,11 +1187,11 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
             mInfo = info;
             mCallback = handler;
 
-            if(connection == null) {
+            if (connection == null) {
                 connection = new MediaScannerConnection(mContext, this);
             }
-
             mConnection = connection;
+
             if (V) {
                 Log.v(TAG, "Connecting to MediaScannerConnection ");
             }
