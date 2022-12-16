@@ -9,6 +9,8 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.util.Log;
 
+import com.android.modules.utils.build.SdkLevel;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 public class SapRilReceiver implements ISapRilReceiver {
@@ -307,7 +309,8 @@ public class SapRilReceiver implements ISapRilReceiver {
     }
 
     static public boolean isAidlSupported() {
-        return ServiceManager.isDeclared(ISap.DESCRIPTOR + SERVICE_NAME_RIL_BT);
+        return SdkLevel.isAtLeastU() && ServiceManager.isDeclared(
+                ISap.DESCRIPTOR + SERVICE_NAME_RIL_BT);
     }
 
     public ISap getSapProxy() {

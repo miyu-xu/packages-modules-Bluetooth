@@ -42,8 +42,8 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import android.hardware.radio.V1_0.ISap;
-import android.hardware.radio.V1_0.SapTransferProtocol;
+import android.hardware.radio.sap.ISap;
+import android.hardware.radio.sap.SapTransferProtocol;
 
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
@@ -199,7 +199,7 @@ public class SapMessageTest {
         byte[] apdu = new byte[] {0x01, 0x02};
         byte[] apdu7816 = new byte[] {0x03, 0x04};
 
-        ISap sapProxy = mock(ISap.class);
+        ISapRilReceiver sapProxy = mock(ISapRilReceiver.class);
         mMessage.setClearRilQueue(true);
 
         mMessage.setMsgType(ID_CONNECT_REQ);

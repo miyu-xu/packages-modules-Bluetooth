@@ -49,7 +49,7 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-import android.hardware.radio.sap.ISap;
+import android.hardware.radio.V1_0.ISap;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
@@ -71,7 +71,7 @@ import java.util.Arrays;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SapRilReceiverTest {
+public class SapRilReceiverHidlTest {
 
     private static final long TIMEOUT_MS = 1_000;
 
@@ -87,7 +87,7 @@ public class SapRilReceiverTest {
     @Mock
     private ISap mSapProxy;
 
-    private SapRilReceiver mReceiver;
+    private SapRilReceiverHidl mReceiver;
 
     @Before
     public void setUp() throws Exception {
@@ -97,7 +97,7 @@ public class SapRilReceiverTest {
         mHandlerThread.start();
 
         mServerMsgHandler = new Handler(mHandlerThread.getLooper(), mCallback);
-        mReceiver = new SapRilReceiver(mServerMsgHandler, mServiceHandler);
+        mReceiver = new SapRilReceiverHidl(mServerMsgHandler, mServiceHandler);
         mReceiver.mSapProxy = mSapProxy;
     }
 
@@ -116,7 +116,7 @@ public class SapRilReceiverTest {
         mReceiver.resetSapProxy();
 
         assertThat(mReceiver.mSapProxy).isNull();
-        verify(mSapProxy.asBinder()).unlinkToDeath(any(), 0);
+        verify(mSapProxy).unlinkToDeath(any());
     }
 
     @Test
@@ -134,13 +134,13 @@ public class SapRilReceiverTest {
     }
 
     @Test
-    public void binderDied() throws Exception {
-        mReceiver.mSapProxyDeathRecipient.binderDied();
+    public void serviceDied() throws Exception {
+        long cookie = 1;
+        mReceiver.mSapProxyDeathRecipient.serviceDied(cookie);
 
         verify(mCallback, timeout(ISAP_GET_SERVICE_DELAY_MILLIS + TIMEOUT_MS))
                 .receiveMessage(eq(SAP_PROXY_DEAD), argThat(
-                        arg -> (arg instanceof Long) && ((Long) arg == 0)
-                        //TODO: its the 0 cookie
+                        arg -> (arg instanceof Long) && ((Long) arg == cookie)
                 ));
     }
 
@@ -211,8 +211,12 @@ public class SapRilReceiverTest {
         int token = 1;
         int resultCode = RESULT_OK;
         byte[] apduRsp = new byte[]{0x03, 0x04};
+        ArrayList<Byte> apduRspList = new ArrayList<>();
+        for (byte b : apduRsp) {
+            apduRspList.add(b);
+        }
 
-        mReceiver.mSapCallback.apduResponse(token, resultCode, apduRsp);
+        mReceiver.mSapCallback.apduResponse(token, resultCode, apduRspList);
 
         verify(mCallback, timeout(TIMEOUT_MS)).receiveMessage(eq(SAP_MSG_RFC_REPLY), argThat(
                 new ArgumentMatcher<Object>() {
@@ -235,8 +239,12 @@ public class SapRilReceiverTest {
         int token = 1;
         int resultCode = RESULT_OK;
         byte[] atr = new byte[]{0x03, 0x04};
+        ArrayList<Byte> atrList = new ArrayList<>();
+        for (byte b : atr) {
+            atrList.add(b);
+        }
 
-        mReceiver.mSapCallback.transferAtrResponse(token, resultCode, atr);
+        mReceiver.mSapCallback.transferAtrResponse(token, resultCode, atrList);
 
         verify(mCallback, timeout(TIMEOUT_MS)).receiveMessage(eq(SAP_MSG_RFC_REPLY), argThat(
                 new ArgumentMatcher<Object>() {
