@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "271d96f1_4eb0dd8e",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1033608
+      },
+      "writtenOn": "2022-12-16T06:51:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e1d8c4d_46dc3ea9",
+      "revId": "7c833ca1ee32b8359ea575c2e16425906e55a42b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c9955f6_c1b1b6da",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-16T06:32:15Z",
       "side": 1,
       "message": "I will also add a TODO as others are doing, since linter isn\u0027t handling such API changes correctly:\n\n// TODO(b/193460475): Android Lint handles change from SystemApi to public incorrectly",
+      "revId": "7c833ca1ee32b8359ea575c2e16425906e55a42b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5f9386d_c323df66",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1033608
+      },
+      "writtenOn": "2022-12-16T06:51:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c9955f6_c1b1b6da",
       "revId": "7c833ca1ee32b8359ea575c2e16425906e55a42b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

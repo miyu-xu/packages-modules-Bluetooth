@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e31867aa_7f862559",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1033608
+      },
+      "writtenOn": "2022-12-16T06:51:27Z",
+      "side": 1,
+      "message": "Rahul, could you please take a look? I believe there was a similar CL recently",
+      "revId": "b15289817fc3139050ee55dee1bfa8afcff20aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
