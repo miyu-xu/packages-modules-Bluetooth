@@ -239,6 +239,15 @@ public abstract class BluetoothGattCallback {
     }
 
     /**
+     * Callback indicating the connection priority was updated.
+     *
+     * @param gatt GATT client involved
+     * @param priority {@link BluetoothGatt#ConnectionPriority} used by this connection
+     */
+    public void onPriorityChanged(@NonNull BluetoothGatt gatt, int priority) {
+    }
+
+    /**
      * Callback indicating the connection parameters were updated.
      *
      * @param gatt GATT client involved
