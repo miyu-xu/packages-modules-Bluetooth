@@ -87,7 +87,7 @@ public class SapRilReceiver implements ISapRilReceiver {
      * @param sapCallback Object containing response and unosolicited indication callbacks
      */
     @Override public void setCallback(android.hardware.radio.sap.ISapCallback sapCallback) throws android.os.RemoteException {
-        mSapProxy.setCallback(sapCallback);
+        //TODO: log that we shouldn't call this
     }
     /**
      * SET_TRANSPORT_PROTOCOL_REQ from SAP 1.1 spec 5.1.20
@@ -304,6 +304,10 @@ public class SapRilReceiver implements ISapRilReceiver {
     @Override
     public Object getSapProxyLock() {
         return mSapProxyLock;
+    }
+
+    static public boolean isAidlSupported() {
+        return ServiceManager.isDeclared(ISap.DESCRIPTOR + SERVICE_NAME_RIL_BT);
     }
 
     public ISap getSapProxy() {

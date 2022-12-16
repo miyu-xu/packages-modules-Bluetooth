@@ -350,8 +350,12 @@ public class SapServer extends Thread implements Callback {
             Looper sapLooper = mHandlerThread.getLooper();
             mSapHandler = new Handler(sapLooper, this);
 
-            mRilBtReceiver = new SapRilReceiver(mSapHandler, mSapServiceHandler);
-            //TODO: is it AIDL?
+            if (SapRilReceiver.isAidlSupported()) {
+                mRilBtReceiver = new SapRilReceiver(mSapHandler, mSapServiceHandler);
+            }
+            else {
+                mRilBtReceiver = new SapRilReceiverHidl(mSapHandler, mSapServiceHandler);
+            }
             boolean done = false;
             while (!done) {
                 if (VERBOSE) {

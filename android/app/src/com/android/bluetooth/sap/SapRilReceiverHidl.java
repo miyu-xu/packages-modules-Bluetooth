@@ -1,14 +1,15 @@
 package com.android.bluetooth.sap;
 
-import android.hardware.radio.sap.ISap;
-import android.hardware.radio.sap.ISapCallback;
+import android.hardware.radio.V1_0.ISap;
+import android.hardware.radio.V1_0.ISapCallback;
 import android.os.Handler;
-import android.os.IBinder;
+import android.os.HwBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class SapRilReceiverHidl implements ISapRilReceiver {
@@ -33,6 +34,13 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
     public static final int RIL_MAX_COMMAND_BYTES = (8 * 1024);
     public byte[] buffer = new byte[RIL_MAX_COMMAND_BYTES];
 
+    private ArrayList<Byte> primitiveArrayToContainerArrayList(byte[] arr) {
+        ArrayList<Byte> arrayList = new ArrayList<>(arr.length);
+        for (byte b : arr) {
+            arrayList.add(b);
+        }
+        return arrayList;
+    }
     /**
      * TRANSFER_APDU_REQ from SAP 1.1 spec 5.1.6
      *
@@ -41,7 +49,8 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
      * @param command CommandAPDU/CommandAPDU7816 parameter depending on type
      */
     @Override public void apduReq(int serial, int type, byte[] command) throws RemoteException {
-        mSapProxy.apduReq(serial, type, command);
+        ArrayList<Byte> commandHidl = primitiveArrayToContainerArrayList(command);
+        mSapProxy.apduReq(serial, type, commandHidl);
     }
 
     /**
@@ -87,7 +96,7 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
      * @param sapCallback Object containing response and unosolicited indication callbacks
      */
     @Override public void setCallback(android.hardware.radio.sap.ISapCallback sapCallback) throws RemoteException {
-        mSapProxy.setCallback(sapCallback);
+        //TODO: log that we can't call this
     }
     /**
      * SET_TRANSPORT_PROTOCOL_REQ from SAP 1.1 spec 5.1.20
@@ -114,6 +123,7 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
     @Override public void transferCardReaderStatusReq(int serial) throws RemoteException {
         mSapProxy.transferCardReaderStatusReq(serial);
     }
+
     //TODO: log that we should never call these three
     @Override
     public int getInterfaceVersion() {
@@ -124,20 +134,19 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
         return "";
     }
     @Override
-    public IBinder asBinder() {
+    public android.os.IBinder asBinder() {
         return null;
     }
 
-    final class SapProxyDeathRecipient implements IBinder.DeathRecipient {
+    final class SapProxyDeathRecipient implements HwBinder.DeathRecipient {
         @Override
-        public void binderDied() {
+        public void serviceDied(long cookie) {
             // Deal with service going away
             Log.d(TAG, "serviceDied");
             // todo: temp hack to send delayed message so that rild is back up by then
             // mSapHandler.sendMessage(mSapHandler.obtainMessage(EVENT_SAP_PROXY_DEAD, cookie));
-            //TODO: there was a cookie where the zero is
             mSapServerMsgHandler.sendMessageDelayed(
-                    mSapServerMsgHandler.obtainMessage(SapServer.SAP_PROXY_DEAD, 0),
+                    mSapServerMsgHandler.obtainMessage(SapServer.SAP_PROXY_DEAD, cookie),
                     SapServer.ISAP_GET_SERVICE_DELAY_MILLIS);
         }
     }
@@ -157,6 +166,14 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
                     reqType == null ? "null" : SapMessage.getMsgTypeName(reqType)));
         }
         sendSapMessage(sapMessage);
+    }
+
+    public static byte[] arrayListToPrimitiveArray(List<Byte> bytes) {
+        byte[] ret = new byte[bytes.size()];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = bytes.get(i);
+        }
+        return ret;
     }
 
     class SapCallback extends ISapCallback.Stub {
@@ -194,25 +211,26 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
         }
 
         @Override
-        public void apduResponse(int token, int resultCode, byte[] apduRsp) {
+        public void apduResponse(int token, int resultCode, ArrayList<Byte> apduRsp) {
             Log.d(TAG, "apduResponse: token " + token);
             SapService.notifyUpdateWakeLock(mSapServiceHandler);
             SapMessage sapMessage = new SapMessage(SapMessage.ID_TRANSFER_APDU_RESP);
             sapMessage.setResultCode(resultCode);
             if (resultCode == SapMessage.RESULT_OK) {
-                sapMessage.setApduResp(apduRsp);
+
+                sapMessage.setApduResp(arrayListToPrimitiveArray(apduRsp));
             }
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
 
         @Override
-        public void transferAtrResponse(int token, int resultCode, byte[] atr) {
+        public void transferAtrResponse(int token, int resultCode, ArrayList<Byte> atr) {
             Log.d(TAG, "transferAtrResponse: token " + token + " resultCode " + resultCode);
             SapService.notifyUpdateWakeLock(mSapServiceHandler);
             SapMessage sapMessage = new SapMessage(SapMessage.ID_TRANSFER_ATR_RESP);
             sapMessage.setResultCode(resultCode);
             if (resultCode == SapMessage.RESULT_OK) {
-                sapMessage.setAtr(atr);
+                sapMessage.setAtr(arrayListToPrimitiveArray(atr));
             }
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
@@ -289,16 +307,6 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
             sapMessage.setResultCode(resultCode);
             removeOngoingReqAndSendMessage(token, sapMessage);
         }
-
-        @Override
-        public String getInterfaceHash() {
-            return ISapCallback.HASH;
-        }
-
-        @Override
-        public int getInterfaceVersion() {
-            return ISapCallback.VERSION;
-        }
     }
 
     @Override
@@ -307,18 +315,16 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
     }
 
     public ISap getSapProxy() {
-        IBinder service = ServiceManager.waitForDeclaredService(ISap.DESCRIPTOR + SERVICE_NAME_RIL_BT);
         synchronized (mSapProxyLock) {
             if (mSapProxy != null) {
                 return mSapProxy;
             }
 
             try {
-                mSapProxy = ISap.Stub.asInterface(service);
-                //IBinder serviceBinder =
+                mSapProxy = ISap.getService(SERVICE_NAME_RIL_BT);
                 if (mSapProxy != null) {
-                    service.linkToDeath(mSapProxyDeathRecipient,
-                            /* flags= */ 0);
+                    mSapProxy.linkToDeath(mSapProxyDeathRecipient,
+                            mSapProxyCookie.incrementAndGet());
                     mSapProxy.setCallback(mSapCallback);
                 } else {
                     Log.e(TAG, "getSapProxy: mSapProxy == null");
@@ -343,8 +349,12 @@ public class SapRilReceiverHidl implements ISapRilReceiver {
     public void resetSapProxy() {
         synchronized (mSapProxyLock) {
             if (DEBUG) Log.d(TAG, "resetSapProxy :" + mSapProxy);
-            if (mSapProxy != null) {
-                mSapProxy.asBinder().unlinkToDeath(mSapProxyDeathRecipient, /* flags= */ 0);
+            try {
+                if (mSapProxy != null) {
+                    mSapProxy.unlinkToDeath(mSapProxyDeathRecipient);
+                }
+            } catch (RemoteException | RuntimeException e) {
+                Log.e(TAG, "resetSapProxy: exception: " + e);
             }
             mSapProxy = null;
         }
