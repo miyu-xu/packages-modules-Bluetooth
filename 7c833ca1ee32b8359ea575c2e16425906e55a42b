@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e1d8c4d_46dc3ea9",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1033608
+      },
+      "writtenOn": "2022-12-16T05:22:22Z",
+      "side": 1,
+      "message": "I should change T to U, and S to T here... typo",
+      "revId": "7c833ca1ee32b8359ea575c2e16425906e55a42b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
