@@ -55,6 +55,7 @@ import android.os.Process;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.IObexConnectionHandler;
 import com.android.bluetooth.ObexServerSockets;
@@ -128,7 +129,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
     private BluetoothShareContentObserver mObserver;
 
     /** Class to handle Notification Manager updates */
-    private BluetoothOppNotification mNotifier;
+    @VisibleForTesting
+    BluetoothOppNotification mNotifier;
 
     private boolean mPendingUpdate;
 
@@ -136,9 +138,11 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     private boolean mUpdateThreadRunning;
 
-    private ArrayList<BluetoothOppShareInfo> mShares;
+    @VisibleForTesting
+    ArrayList<BluetoothOppShareInfo> mShares;
 
-    private ArrayList<BluetoothOppBatch> mBatches;
+    @VisibleForTesting
+    ArrayList<BluetoothOppBatch> mBatches;
 
     private BluetoothOppTransfer mTransfer;
 
@@ -157,7 +161,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     private boolean mListenStarted;
 
-    private boolean mMediaScanInProgress;
+    @VisibleForTesting
+    boolean mMediaScanInProgress;
 
     private int mIncomingRetries;
 
@@ -349,9 +354,11 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     private static final int START_LISTENER = 1;
 
-    private static final int MEDIA_SCANNED = 2;
+    @VisibleForTesting
+    static final int MEDIA_SCANNED = 2;
 
-    private static final int MEDIA_SCANNED_FAILED = 3;
+    @VisibleForTesting
+    static final int MEDIA_SCANNED_FAILED = 3;
 
     private static final int MSG_INCOMING_CONNECTION_RETRY = 4;
 
@@ -359,7 +366,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     private static final int STOP_LISTENER = 200;
 
-    private Handler mHandler = new Handler() {
+    @VisibleForTesting
+    Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -418,7 +426,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                     updateValues.put(BluetoothShare.URI, msg.obj.toString()); // update
                     updateValues.put(BluetoothShare.MIMETYPE,
                             getContentResolver().getType(Uri.parse(msg.obj.toString())));
-                    getContentResolver().update(contentUri, updateValues, null, null);
+                    BluetoothMethodProxy.getInstance().contentResolverUpdate(getContentResolver(),
+                            contentUri, updateValues, null, null);
                     synchronized (BluetoothOppService.this) {
                         mMediaScanInProgress = false;
                     }
@@ -429,7 +438,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                     Uri contentUri1 = Uri.parse(BluetoothShare.CONTENT_URI + "/" + msg.arg1);
                     updateValues1.put(Constants.MEDIA_SCANNED,
                             Constants.MEDIA_SCANNED_SCANNED_FAILED);
-                    getContentResolver().update(contentUri1, updateValues1, null, null);
+                    BluetoothMethodProxy.getInstance().contentResolverUpdate(getContentResolver(),
+                            contentUri1, updateValues1, null, null);
                     synchronized (BluetoothOppService.this) {
                         mMediaScanInProgress = false;
                     }
@@ -755,7 +765,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         }
     }
 
-    private void insertShare(Cursor cursor, int arrayPos) {
+    @VisibleForTesting
+    void insertShare(Cursor cursor, int arrayPos) {
         String uriString = cursor.getString(cursor.getColumnIndexOrThrow(BluetoothShare.URI));
         Uri uri;
         if (uriString != null) {
@@ -886,7 +897,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         }
     }
 
-    private void updateShare(Cursor cursor, int arrayPos) {
+    @VisibleForTesting
+    void updateShare(Cursor cursor, int arrayPos) {
         BluetoothOppShareInfo info = mShares.get(arrayPos);
         int statusColumn = cursor.getColumnIndexOrThrow(BluetoothShare.STATUS);
 
@@ -1094,7 +1106,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         }
     }
 
-    private void scanFileIfNeeded(int arrayPos) {
+    @VisibleForTesting
+    void scanFileIfNeeded(int arrayPos) {
         BluetoothOppShareInfo info = mShares.get(arrayPos);
         boolean isFileReceived = BluetoothShare.isStatusSuccess(info.mStatus)
                 && info.mDirection == BluetoothShare.DIRECTION_INBOUND && !info.mMediaScanned
@@ -1146,7 +1159,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         cursor.close();
     }
 
-    private static class MediaScannerNotifier implements MediaScannerConnectionClient {
+    @VisibleForTesting
+    static class MediaScannerNotifier implements MediaScannerConnectionClient {
 
         private MediaScannerConnection mConnection;
 
@@ -1157,10 +1171,20 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         private Handler mCallback;
 
         MediaScannerNotifier(Context context, BluetoothOppShareInfo info, Handler handler) {
+            this(context, info, handler, null);
+        }
+
+        MediaScannerNotifier(Context context, BluetoothOppShareInfo info, Handler handler,
+                MediaScannerConnection connection) {
             mContext = context;
             mInfo = info;
             mCallback = handler;
-            mConnection = new MediaScannerConnection(mContext, this);
+
+            if (connection == null) {
+                connection = new MediaScannerConnection(mContext, this);
+            }
+            mConnection = connection;
+
             if (V) {
                 Log.v(TAG, "Connecting to MediaScannerConnection ");
             }
