@@ -115,6 +115,24 @@
       "parentUuid": "a1a57af7_8bfdd787",
       "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "812b16f3_4e7848ce",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-16T06:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d87d00a_1d85c290",
+      "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
