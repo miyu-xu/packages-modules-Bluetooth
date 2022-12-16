@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2c4df9d_784442c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-16T16:29:24Z",
+      "side": 1,
+      "message": "for unreadable extended properties descriptor",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "25287400e0a6497c4f244f0179072fbbcee87e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63c6ad82_aae56054",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-16T16:29:24Z",
+      "side": 1,
+      "message": "If reading extended properties descriptor fail, don\u0027t store the GATT DB hash.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "25287400e0a6497c4f244f0179072fbbcee87e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c4e014_e8a5389c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-16T16:29:24Z",
+      "side": 1,
+      "message": "Please get rid of \"invalid\" everywhere.",
+      "revId": "25287400e0a6497c4f244f0179072fbbcee87e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e144b46c_9318004a",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-16T16:29:24Z",
+      "side": 1,
+      "message": "bool extended_properties_read_successfully",
+      "range": {
+        "startLine": 234,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 51
+      },
+      "revId": "25287400e0a6497c4f244f0179072fbbcee87e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4539a9f4_f83200cb",
+        "filename": "system/gd/common/init_flags.fbs",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-16T16:29:24Z",
+      "side": 1,
+      "message": "unreadable_extended_properties",
+      "range": {
+        "startLine": 19,
+        "startChar": 15,
+        "endLine": 19,
+        "endChar": 31
+      },
+      "revId": "25287400e0a6497c4f244f0179072fbbcee87e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ed28e0_bb126415",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-12-16T16:29:24Z",
+      "side": 1,
+      "message": "unreadable_extended_properties",
+      "range": {
+        "startLine": 212,
+        "startChar": 19,
+        "endLine": 212,
+        "endChar": 26
+      },
+      "revId": "25287400e0a6497c4f244f0179072fbbcee87e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
