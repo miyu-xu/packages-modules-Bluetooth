@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f5126e5_f11bb531",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-16T19:21:24Z",
+      "side": 1,
+      "message": "Failures in pre-submit are unrelated.\n\nScanManager test are fixed.",
+      "revId": "8ca29d1b62a021b73393fa44d83e4927d01b44a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
