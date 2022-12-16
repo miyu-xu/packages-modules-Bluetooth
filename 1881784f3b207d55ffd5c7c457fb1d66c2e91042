@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b28ce363_24b56f12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-16T05:42:13Z",
+      "side": 1,
+      "message": "Too bad it didn\u0027t pass pre-submit",
+      "revId": "1881784f3b207d55ffd5c7c457fb1d66c2e91042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
