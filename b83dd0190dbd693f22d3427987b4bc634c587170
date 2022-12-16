@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36dd484b_fa151199",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-16T06:32:44Z",
+      "side": 1,
+      "message": "Thanks, I think it\u0027s good to modify existing one. Done.",
+      "parentUuid": "3b632476_ec5e2414",
+      "range": {
+        "startLine": 1239,
+        "startChar": 16,
+        "endLine": 1239,
+        "endChar": 50
+      },
+      "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1a57af7_8bfdd787",
@@ -71,6 +95,24 @@
       "writtenOn": "2022-12-15T10:19:33Z",
       "side": 1,
       "message": "Please verify if the flags is modified as expected with HCI log on another BLE device.",
+      "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d87d00a_1d85c290",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-16T06:32:44Z",
+      "side": 1,
+      "message": "Verified on both side (host/peer) HCI logs.",
+      "parentUuid": "a1a57af7_8bfdd787",
       "revId": "b83dd0190dbd693f22d3427987b4bc634c587170",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
