@@ -155,6 +155,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "322cdba1_6e80295d",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T09:19:10Z",
+      "side": 1,
+      "message": "I\u0027ll -1 the change until the decision is clear in design doc:\n\nhttps://docs.google.com/document/d/1y51kpFU-fBtumTzNg4B-idZg7aSW8XSWXwGnF32AEDY/edit?resourcekey\u003d0-wvV5uL2cqFy5HsDABTIvqg#heading\u003dh.17wg41voij6q.",
+      "parentUuid": "cf8ee6bc_7acbc8ec",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2339767d_aa983fb0",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 3
@@ -184,6 +202,24 @@
       "side": 1,
       "message": "change this into fn set_raw_data(\u0026mut self, ad_type, ad_payload)",
       "parentUuid": "2339767d_aa983fb0",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82e37ad7_2cd3d446",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T09:19:10Z",
+      "side": 1,
+      "message": "This is still different to what I asked, we can save append_adv_data in this case.",
+      "parentUuid": "71c4d548_0dd43ee3",
       "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

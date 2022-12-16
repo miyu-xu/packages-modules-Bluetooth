@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f89373e9_5f11a563",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1273,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T09:19:10Z",
+      "side": 1,
+      "message": "May I know why `reg_id` is used instead of `adv_id`?",
+      "range": {
+        "startLine": 1271,
+        "startChar": 0,
+        "endLine": 1273,
+        "endChar": 55
+      },
+      "revId": "e8bf691a0f913e7e4dbd790bc3f28c391896459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2028f3_1e4b7184",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T09:19:10Z",
+      "side": 1,
+      "message": "Calling set_advertising_parameters looks oods as you don\u0027t change anything in adv_set.params. Can you please remove it and verify the data is updated over the air?",
+      "range": {
+        "startLine": 1288,
+        "startChar": 0,
+        "endLine": 1288,
+        "endChar": 0
+      },
+      "revId": "e8bf691a0f913e7e4dbd790bc3f28c391896459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186cc96e_a408478b",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T09:19:10Z",
+      "side": 1,
+      "message": "Please update dbus method name accordingly. \n\nAlso, set_raw_data doesn\u0027t explain its intent clearly in the context of IBluetoothGatt. How about set_raw_adv_data, update_raw_adv_data, or something similiar?",
+      "range": {
+        "startLine": 1074,
+        "startChar": 0,
+        "endLine": 1076,
+        "endChar": 86
+      },
+      "revId": "e8bf691a0f913e7e4dbd790bc3f28c391896459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bbfa0fa_be1cfaad",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T09:19:10Z",
+      "side": 1,
+      "message": "Please update the dbus method name accordingly.",
+      "range": {
+        "startLine": 568,
+        "startChar": 3,
+        "endLine": 569,
+        "endChar": 43
+      },
+      "revId": "e8bf691a0f913e7e4dbd790bc3f28c391896459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57dcbef2_1af6b62a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T09:19:10Z",
+      "side": 1,
+      "message": "We don\u0027t have to expose this method, calling append_adv_data in bluetooth_gatt.rs is not necessary as set_raw_data() can just pass it as an argument.",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 80
+      },
+      "revId": "e8bf691a0f913e7e4dbd790bc3f28c391896459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
