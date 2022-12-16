@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf7847a_f2e23c9d",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T08:55:21Z",
+      "side": 1,
+      "message": "This looks like a redundant clone as adv_set is a cloned one?",
+      "range": {
+        "startLine": 1253,
+        "startChar": 71,
+        "endLine": 1253,
+        "endChar": 76
+      },
+      "revId": "35107f2950fcdd4d7609f2b77a55bae8fb3ed844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03bc21a1_fe3c8154",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-16T08:55:21Z",
+      "side": 1,
+      "message": "This looks like a redundant clone as adv_set is a cloned one?",
+      "revId": "35107f2950fcdd4d7609f2b77a55bae8fb3ed844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
