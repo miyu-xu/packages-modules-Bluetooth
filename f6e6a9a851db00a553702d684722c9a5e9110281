@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e137bb6_38f71042",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-16T23:49:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64a3660d_11411be8",
+      "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd1784a1_5743258d",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-12-16T19:39:08Z",
       "side": 1,
       "message": "I don\u0027t think this is safe since pointers are not stable in a deque if you erase from the middle?",
+      "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e71654d_3c515f1b",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-16T23:49:34Z",
+      "side": 1,
+      "message": "Never mind, `pending_enc_clcb` is a std::list (not a std::deque) so we are safe.",
+      "parentUuid": "dd1784a1_5743258d",
       "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
