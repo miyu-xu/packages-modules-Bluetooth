@@ -22,6 +22,30 @@
       },
       "revId": "7feab94dd418c41cf3ef92e389745f2e6553b682",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10650b2f_c200d599",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothModeChangeHelperTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-17T08:42:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82874c82_1002276d",
+      "range": {
+        "startLine": 66,
+        "startChar": 87,
+        "endLine": 66,
+        "endChar": 88
+      },
+      "revId": "7feab94dd418c41cf3ef92e389745f2e6553b682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
