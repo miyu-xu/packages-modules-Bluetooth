@@ -82,7 +82,12 @@ extern struct semaphore_get_fd semaphore_get_fd;
 struct semaphore_new {
   semaphore_t* return_value{0};
   std::function<semaphore_t*(unsigned int value)> body{
-      [this](unsigned int value) { return return_value; }};
+      [this](unsigned int value) {
+        ASSERT_LOG(false,
+                   "You are using a mocked semaphore. Your test will not work "
+                   "as expected");
+        return return_value;
+      }};
   semaphore_t* operator()(unsigned int value) { return body(value); };
 };
 extern struct semaphore_new semaphore_new;
