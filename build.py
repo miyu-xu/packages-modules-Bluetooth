@@ -63,12 +63,13 @@ VALID_TARGETS = [
     'all',  # All targets except test and clean
     'clean',  # Clean up output directory
     'docs',  # Build Rust docs
+    'hosttools',  # Build the host tools (i.e. packetgen)
     'main',  # Build the main C++ codebase
     'prepare',  # Prepare the output directory (gn gen + rust setup)
     'rootcanal',  # Build Rust targets for RootCanal
     'rust',  # Build only the rust components + copy artifacts to output dir
     'test',  # Run the unit tests
-    'tools',  # Build the host tools (i.e. packetgen)
+    'utils',  # Build Floss utils
 ]
 
 # TODO(b/190750167) - Host tests are disabled until we are full bazel build
@@ -434,7 +435,7 @@ class HostBuild():
         self._gn_configure()
         self._rust_configure()
 
-    def _target_tools(self):
+    def _target_hosttools(self):
         """ Build the tools target in an already prepared environment.
         """
         self._gn_build('tools')
@@ -486,6 +487,16 @@ class HostBuild():
                 'test', [os.path.join(self.output_dir, 'out/Default', t)],
                 cwd=os.path.join(self.output_dir),
                 env=self.env)
+
+    def _target_utils(self):
+        """ Builds the utility applications.
+        """
+        rust_targets = ['hcidoc']
+
+        # Build targets
+        for target in rust_targets:
+            self.run_command(
+                'utils', ['cargo', 'build', '-p', target], cwd=os.path.join(self.platform_dir, 'bt'), env=self.env)
 
     def _target_install(self):
         """ Installs files required to run Floss to install directory.
@@ -562,7 +573,7 @@ class HostBuild():
         """ Build all common targets (skipping doc, test, and clean).
         """
         self._target_prepare()
-        self._target_tools()
+        self._target_hosttools()
         self._target_main()
         self._target_rust()
 
@@ -578,8 +589,8 @@ class HostBuild():
 
         if self.target == 'prepare':
             self._target_prepare()
-        elif self.target == 'tools':
-            self._target_tools()
+        elif self.target == 'hosttools':
+            self._target_hosttools()
         elif self.target == 'rootcanal':
             self._target_rootcanal()
         elif self.target == 'rust':
@@ -594,6 +605,8 @@ class HostBuild():
             self._target_clean()
         elif self.target == 'install':
             self._target_install()
+        elif self.target == 'utils':
+            self._target_utils()
         elif self.target == 'all':
             self._target_all()
 
