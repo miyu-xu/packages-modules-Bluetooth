@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3f6a6c_c566f387",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3486,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-17T01:36:00Z",
+      "side": 1,
+      "message": "copy with length?",
+      "range": {
+        "startLine": 3486,
+        "startChar": 6,
+        "endLine": 3486,
+        "endChar": 12
+      },
+      "revId": "b7061f9e80b34cd0cdfc0c2cea8835d68d1829b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
