@@ -128,6 +128,30 @@
       },
       "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31a0c039_a1a3213f",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-17T01:39:27Z",
+      "side": 1,
+      "message": "Rahul explained to me offline. Zeroing is no longer needed",
+      "parentUuid": "12f9e456_4a641f28",
+      "range": {
+        "startLine": 1141,
+        "startChar": 4,
+        "endLine": 1148,
+        "endChar": 5
+      },
+      "revId": "f6e6a9a851db00a553702d684722c9a5e9110281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
