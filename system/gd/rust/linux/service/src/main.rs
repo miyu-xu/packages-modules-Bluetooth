@@ -372,8 +372,8 @@ extern "C" fn handle_sigterm(_signum: i32) {
 
         let guard = notifier.0.lock().unwrap();
         if *guard {
-            log::debug!("Waiting for stack to turn off for 2s");
-            let _ = notifier.1.wait_timeout(guard, std::time::Duration::from_millis(2000));
+            log::debug!("Waiting for stack to turn off for 4s");
+            let _ = notifier.1.wait_timeout(guard, std::time::Duration::from_millis(4000));
         }
     }
 
