@@ -39,17 +39,17 @@ void BTA_GATTC_AppDeregister(tGATT_IF client_if) {
 }
 
 void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                    tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
-                    bool opportunistic, uint8_t initiating_phys) {
+                    bool is_direct, tBT_TRANSPORT transport, bool opportunistic,
+                    uint8_t initiating_phys) {
   LOG_ASSERT(gatt_interface) << "Mock GATT interface not set!";
-  gatt_interface->Open(client_if, remote_bda, connection_type, transport,
+  gatt_interface->Open(client_if, remote_bda, is_direct, transport,
                        opportunistic, initiating_phys);
 }
 
 void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                    tBTM_BLE_CONN_TYPE connection_type, bool opportunistic) {
+                    bool is_direct, bool opportunistic) {
   LOG_ASSERT(gatt_interface) << "Mock GATT interface not set!";
-  gatt_interface->Open(client_if, remote_bda, connection_type, opportunistic);
+  gatt_interface->Open(client_if, remote_bda, is_direct, opportunistic);
 }
 
 void BTA_GATTC_CancelOpen(tGATT_IF client_if, const RawAddress& remote_bda,

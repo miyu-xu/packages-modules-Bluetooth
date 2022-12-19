@@ -107,17 +107,12 @@ typedef struct {
   BT_HDR_RIGID hdr;
   RawAddress remote_bda;
   tGATT_IF server_if;
-  tBTM_BLE_CONN_TYPE connection_type;
-  tBT_TRANSPORT transport;
-} tBTA_GATTS_API_OPEN;
-
-typedef struct {
-  BT_HDR_RIGID hdr;
-  RawAddress remote_bda;
-  tGATT_IF server_if;
   bool is_direct;
   tBT_TRANSPORT transport;
-} tBTA_GATTS_API_CANCEL_OPEN;
+
+} tBTA_GATTS_API_OPEN;
+
+typedef tBTA_GATTS_API_OPEN tBTA_GATTS_API_CANCEL_OPEN;
 
 typedef union {
   BT_HDR_RIGID hdr;

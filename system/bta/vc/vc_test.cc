@@ -77,12 +77,10 @@ class MockVolumeControlCallbacks : public VolumeControlCallbacks {
   MOCK_METHOD((void), OnDeviceAvailable,
               (const RawAddress& address, uint8_t num_offset), (override));
   MOCK_METHOD((void), OnVolumeStateChanged,
-              (const RawAddress& address, uint8_t volume, bool mute,
-               bool isAutonomous),
+              (const RawAddress& address, uint8_t volume, bool mute, bool isAutonomous),
               (override));
   MOCK_METHOD((void), OnGroupVolumeStateChanged,
-              (int group_id, uint8_t volume, bool mute, bool isAutonomous),
-              (override));
+              (int group_id, uint8_t volume, bool mute, bool isAutonomous), (override));
   MOCK_METHOD((void), OnExtAudioOutVolumeOffsetChanged,
               (const RawAddress& address, uint8_t ext_output_id,
                int16_t offset),
@@ -337,8 +335,7 @@ class VolumeControlTest : public ::testing::Test {
     ON_CALL(btm_interface, BTM_IsEncrypted(address, _))
         .WillByDefault(DoAll(Return(true)));
 
-    EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, _));
+    EXPECT_CALL(gatt_interface, Open(gatt_if, address, true, _));
     VolumeControl::Get()->Connect(address);
     Mock::VerifyAndClearExpectations(&gatt_interface);
   }
@@ -359,8 +356,7 @@ class VolumeControlTest : public ::testing::Test {
         .WillByDefault(DoAll(Return(true)));
 
     if (auto_connect) {
-      EXPECT_CALL(gatt_interface,
-                  Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, _));
+      EXPECT_CALL(gatt_interface, Open(gatt_if, address, false, _));
     } else {
       EXPECT_CALL(gatt_interface, Open(gatt_if, address, _, _)).Times(0);
     }
@@ -1086,8 +1082,7 @@ TEST_F(VolumeControlCsis, test_set_volume) {
   VolumeControl::Get()->SetVolume(group_id, 10);
 
   /* Now inject notification and make sure callback is sent up to Java layer */
-  EXPECT_CALL(*callbacks,
-              OnGroupVolumeStateChanged(group_id, 0x03, true, false));
+  EXPECT_CALL(*callbacks, OnGroupVolumeStateChanged(group_id, 0x03, true, false));
 
   std::vector<uint8_t> value({0x03, 0x01, 0x02});
   GetNotificationEvent(conn_id_1, test_address_1, 0x0021, value);
@@ -1144,8 +1139,7 @@ TEST_F(VolumeControlCsis, autonomus_test_set_volume) {
   GetSearchCompleteEvent(conn_id_2);
 
   /* Now inject notification and make sure callback is sent up to Java layer */
-  EXPECT_CALL(*callbacks,
-              OnGroupVolumeStateChanged(group_id, 0x03, false, true));
+  EXPECT_CALL(*callbacks, OnGroupVolumeStateChanged(group_id, 0x03, false, true));
 
   std::vector<uint8_t> value({0x03, 0x00, 0x02});
   GetNotificationEvent(conn_id_1, test_address_1, 0x0021, value);

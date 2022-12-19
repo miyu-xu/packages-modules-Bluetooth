@@ -4113,11 +4113,9 @@ void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
     BTA_GATTC_ServiceSearchRequest(bta_dm_search_cb.conn_id, nullptr);
   } else {
     if (BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE)) {
-      BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
-                     BTM_BLE_DIRECT_CONNECTION, true);
+      BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr, true, true);
     } else {
-      BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
-                     BTM_BLE_DIRECT_CONNECTION, false);
+      BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr, true, false);
     }
   }
 }

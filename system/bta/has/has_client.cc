@@ -166,12 +166,11 @@ class HasClientImpl : public HasClient {
                                  HasDevice::MatchAddress(addr));
       if (device == devices_.end()) {
         devices_.emplace_back(addr, true);
-        BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_DIRECT_CONNECTION, false);
+        BTA_GATTC_Open(gatt_if_, addr, true, false);
 
       } else {
         device->is_connecting_actively = true;
-        if (!device->IsConnected())
-          BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_DIRECT_CONNECTION, false);
+        if (!device->IsConnected()) BTA_GATTC_Open(gatt_if_, addr, true, false);
       }
     }
   }
@@ -191,7 +190,7 @@ class HasClientImpl : public HasClient {
         devices_.push_back(HasDevice(address, features));
 
       /* Connect in background */
-      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
+      BTA_GATTC_Open(gatt_if_, address, false, false);
     }
   }
 
@@ -1858,9 +1857,7 @@ class HasClientImpl : public HasClient {
     DoDisconnectCleanUp(*device, peer_disconnected ? false : true);
 
     /* Connect in background - is this ok? */
-    if (peer_disconnected)
-      BTA_GATTC_Open(gatt_if_, device->addr, BTM_BLE_BKG_CONNECT_ALLOW_LIST,
-                     false);
+    if (peer_disconnected) BTA_GATTC_Open(gatt_if_, device->addr, false, false);
   }
 
   void OnGattServiceSearchComplete(const tBTA_GATTC_SEARCH_CMPL& evt) {
