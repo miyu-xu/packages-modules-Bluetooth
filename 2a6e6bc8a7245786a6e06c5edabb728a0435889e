@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2e7735f_4279e5fe",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-19T07:44:15Z",
+      "side": 1,
+      "message": "Can we use Utils.isInstrumentationTestMode instead?\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/Utils.java;l\u003d914?q\u003disInstrumentationTestMode\u0026ct\u003dos\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "range": {
+        "startLine": 342,
+        "startChar": 16,
+        "endLine": 342,
+        "endChar": 26
+      },
+      "revId": "2a6e6bc8a7245786a6e06c5edabb728a0435889e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
