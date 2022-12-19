@@ -545,7 +545,6 @@ cc_test {
         "fluoride_defaults",
         "mts_defaults",
     ],
-    host_supported: true,
     test_suites: ["general-tests"],
     local_include_dirs: [
         "include",
