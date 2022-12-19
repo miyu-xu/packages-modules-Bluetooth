@@ -2181,13 +2181,11 @@ static void bta_energy_info_cb(tBTM_BLE_TX_TIME_MS tx_time,
 void btif_dm_start_discovery(void) {
   BTIF_TRACE_EVENT("%s", __func__);
 
-  /* no race here because we're guaranteed to be in the main thread */
-  if (bta_dm_is_search_request_queued()) {
-    LOG_INFO("%s skipping start discovery because a request is queued",
-             __func__);
-    return;
+  if (btif_dm_inquiry_in_progress) {
+    LOG_INFO(
+        "Received device discovery inquiry scan request while already in "
+        "progress");
   }
-
   /* Will be enabled to true once inquiry busy level has been received */
   btif_dm_inquiry_in_progress = false;
   /* find nearby devices */
