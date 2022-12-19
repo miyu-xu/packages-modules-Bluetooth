@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c450f71_d2b3b883",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-19T17:08:30Z",
+      "side": 1,
+      "message": "I will address the semaphore issue in a mock in a future CL",
+      "revId": "62aed141fbdb3ba17bbac00958091d5687a10c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
