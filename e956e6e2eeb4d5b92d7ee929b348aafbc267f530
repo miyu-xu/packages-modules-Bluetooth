@@ -39,6 +39,30 @@
       },
       "revId": "e956e6e2eeb4d5b92d7ee929b348aafbc267f530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07e9b0a5_66f04a7c",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/map.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-19T07:03:16Z",
+      "side": 1,
+      "message": "Modified to lower case variable.Also added comment on 2 SMS required.",
+      "parentUuid": "6ffc0b7b_ba32650b",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 21
+      },
+      "revId": "e956e6e2eeb4d5b92d7ee929b348aafbc267f530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
