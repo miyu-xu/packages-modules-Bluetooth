@@ -16,6 +16,24 @@
       "message": "I will address the semaphore issue in a mock in a future CL",
       "revId": "62aed141fbdb3ba17bbac00958091d5687a10c98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca128759_d1f79b90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-19T17:35:10Z",
+      "side": 1,
+      "message": "aosp/2363080 is up to address the other test using the semaphore.\nWhat wrong is there with this test ?\n\nBecause libosi is a utility libs I do not think we want to use a mock of it.",
+      "parentUuid": "5c450f71_d2b3b883",
+      "revId": "62aed141fbdb3ba17bbac00958091d5687a10c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
