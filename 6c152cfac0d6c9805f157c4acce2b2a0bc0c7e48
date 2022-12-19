@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d065d3e_5a2f68e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-12-19T18:46:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b2aa99d8_cba22cb5",
+      "revId": "6c152cfac0d6c9805f157c4acce2b2a0bc0c7e48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2379cab9_c1483a01",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65b9866c_7b104384",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-12-19T18:46:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2379cab9_c1483a01",
+      "revId": "6c152cfac0d6c9805f157c4acce2b2a0bc0c7e48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c4e0ba7_aae46782",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-12-19T18:16:34Z",
       "side": 1,
       "message": "Can you move this into a const and document it with what you have in commit:\n```\n// ACL disconnect timeout can be 2s + 1.5s defined by BTA_DM_DISABLE_TIMER_MS and BTA_DM_DISABLE_TIMER_RETRIAL_MS.\n```",
+      "revId": "6c152cfac0d6c9805f157c4acce2b2a0bc0c7e48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0feb2e8d_3296a7e4",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-12-19T18:46:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3c4e0ba7_aae46782",
       "revId": "6c152cfac0d6c9805f157c4acce2b2a0bc0c7e48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
