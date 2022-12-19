@@ -81,6 +81,7 @@ inline const T* Specialize(U* u) {
 #define BTA_ID_ACC 16           /* Advanced Camera Client */
 #define BTA_ID_SC 17            /* SIM Card Access server */
 #define BTA_ID_AV 18            /* Advanced audio/video */
+#define BTA_ID_AVK 19           /* Audio/video sink */
 #define BTA_ID_HD 20            /* HID Device */
 #define BTA_ID_CG 21            /* Cordless Gateway */
 #define BTA_ID_BP 22            /* Basic Printing Client */
@@ -177,7 +178,8 @@ typedef struct {
 #if (BTA_EIR_CANNED_UUID_LIST != TRUE)
 /* eir callback for adding/removeing UUID */
 typedef void(tBTA_SYS_EIR_CBACK)(uint16_t uuid16, bool adding);
-typedef void(tBTA_SYS_CUST_EIR_CBACK)(const tBTA_CUSTOM_UUID &curr, bool adding);
+typedef void(tBTA_SYS_CUST_EIR_CBACK)(const tBTA_CUSTOM_UUID& curr,
+                                      bool adding);
 #endif
 
 /* registration structure */

@@ -112,6 +112,7 @@ enum {
   BTA_AV_CONN_CHG_EVT,
   BTA_AV_DEREG_COMP_EVT,
   BTA_AV_AVDT_RPT_CONN_EVT,
+  BTA_AV_API_PEER_SEP_EVT,
   BTA_AV_API_START_EVT, /* the following 2 events must be in the same order as
                            the *AP_*EVT */
   BTA_AV_API_STOP_EVT,
@@ -263,6 +264,7 @@ typedef struct {
   bool use_rc;
   tBTA_AV_RS_RES switch_res;
   uint16_t uuid; /* uuid of initiator */
+  bool incoming; /* peer launch connection */
 } tBTA_AV_API_OPEN;
 
 /* data type for BTA_AV_API_SET_LATENCY_EVT */
@@ -286,9 +288,7 @@ typedef struct {
 } tBTA_AV_API_STOP;
 
 /* data type for BTA_AV_API_DISCONNECT_EVT */
-typedef struct {
-  BT_HDR_RIGID hdr;
-} tBTA_AV_API_DISCNT;
+typedef struct { BT_HDR_RIGID hdr; } tBTA_AV_API_DISCNT;
 
 /* data type for BTA_AV_API_PROTECT_REQ_EVT */
 typedef struct {
@@ -320,14 +320,10 @@ typedef struct {
 } tBTA_AV_API_VENDOR;
 
 /* data type for BTA_AV_API_RC_OPEN_EVT */
-typedef struct {
-  BT_HDR_RIGID hdr;
-} tBTA_AV_API_OPEN_RC;
+typedef struct { BT_HDR_RIGID hdr; } tBTA_AV_API_OPEN_RC;
 
 /* data type for BTA_AV_API_RC_CLOSE_EVT */
-typedef struct {
-  BT_HDR_RIGID hdr;
-} tBTA_AV_API_CLOSE_RC;
+typedef struct { BT_HDR_RIGID hdr; } tBTA_AV_API_CLOSE_RC;
 
 /* data type for BTA_AV_API_META_RSP_EVT */
 typedef struct {
@@ -364,7 +360,7 @@ typedef struct {
 typedef struct {
   BT_HDR_RIGID hdr;
   AvdtpSepConfig cfg; /* configuration/capabilities parameters */
-  tAVDT_CTRL msg;  /* AVDTP callback message parameters */
+  tAVDT_CTRL msg;     /* AVDTP callback message parameters */
   RawAddress bd_addr; /* bd address */
   uint8_t scb_index;
   uint8_t handle;
@@ -403,9 +399,7 @@ typedef struct {
 } tBTA_AV_ROLE_RES;
 
 /* data type for BTA_AV_SDP_DISC_OK_EVT */
-typedef struct {
-  BT_HDR_RIGID hdr;
-} tBTA_AV_SDP_RES;
+typedef struct { BT_HDR_RIGID hdr; } tBTA_AV_SDP_RES;
 
 /* data type for BTA_AV_API_OFFLOAD_RSP_EVT */
 typedef struct {
@@ -436,6 +430,12 @@ enum : uint8_t {
 };
 typedef uint8_t tBTA_AV_ROLE;
 
+typedef struct {
+  BT_HDR_RIGID hdr;
+  RawAddress addr;
+  uint8_t sep;
+} tBTA_AV_API_PEER_SEP;
+
 /* union of all event datatypes */
 union tBTA_AV_DATA {
   BT_HDR_RIGID hdr;
@@ -460,6 +460,7 @@ union tBTA_AV_DATA {
   tBTA_AV_SDP_RES sdp_res;
   tBTA_AV_API_META_RSP api_meta_rsp;
   tBTA_AV_API_STATUS_RSP api_status_rsp;
+  tBTA_AV_API_PEER_SEP peer_sep;
 };
 
 typedef union {
@@ -503,7 +504,7 @@ struct tBTA_AV_SCB final {
   bool sdp_discovery_started; /* variable to determine whether SDP is started */
   tBTA_AV_SEP seps[BTAV_A2DP_CODEC_INDEX_MAX];
   AvdtpSepConfig peer_cap; /* buffer used for get capabilities */
-  list_t* a2dp_list; /* used for audio channels only */
+  list_t* a2dp_list;       /* used for audio channels only */
   tBTA_AV_Q_INFO q_info;
   tAVDT_SEP_INFO sep_info[BTA_AV_NUM_SEPS]; /* stream discovery results */
   AvdtpSepConfig cfg;                       /* local SEP configuration */
@@ -511,49 +512,49 @@ struct tBTA_AV_SCB final {
   alarm_t* link_signalling_timer;
   alarm_t*
       accept_signalling_timer; /* timer to monitor signalling when accepting */
-  uint16_t l2c_cid;                         /* L2CAP channel ID */
-  uint16_t stream_mtu;                      /* MTU of stream */
-  uint8_t media_type;         /* Media type: AVDT_MEDIA_TYPE_* */
-  bool cong;                  /* true if AVDTP congested */
-  tBTA_AV_STATUS open_status; /* open failure status */
-  tBTA_AV_CHNL chnl;          /* the channel: audio/video */
-  tBTA_AV_HNDL hndl;          /* the handle: ((hdi + 1)|chnl) */
-  uint16_t cur_psc_mask;      /* Protocol service capabilities mask for current
-                                 connection */
-  uint8_t avdt_handle;        /* AVDTP handle */
-  uint8_t hdi;                /* the index to SCB[] */
-  uint8_t num_seps;           /* number of seps returned by stream discovery */
-  uint8_t num_disc_snks;      /* number of discovered snks */
-  uint8_t num_disc_srcs;      /* number of discovered srcs */
-  uint8_t sep_info_idx;       /* current index into sep_info */
-  uint8_t sep_idx;            /* current index into local seps[] */
-  uint8_t rcfg_idx;           /* reconfig requested index into sep_info */
-  uint8_t state;              /* state machine state */
-  uint8_t avdt_label;         /* AVDTP label */
-  uint8_t app_id;             /* application id */
-  uint8_t num_recfg;          /* number of reconfigure sent */
+  uint16_t l2c_cid;            /* L2CAP channel ID */
+  uint16_t stream_mtu;         /* MTU of stream */
+  uint8_t media_type;          /* Media type: AVDT_MEDIA_TYPE_* */
+  bool cong;                   /* true if AVDTP congested */
+  tBTA_AV_STATUS open_status;  /* open failure status */
+  tBTA_AV_CHNL chnl;           /* the channel: audio/video */
+  tBTA_AV_HNDL hndl;           /* the handle: ((hdi + 1)|chnl) */
+  uint16_t cur_psc_mask;       /* Protocol service capabilities mask for current
+                                  connection */
+  uint8_t avdt_handle;         /* AVDTP handle */
+  uint8_t hdi;                 /* the index to SCB[] */
+  uint8_t num_seps;            /* number of seps returned by stream discovery */
+  uint8_t num_disc_snks;       /* number of discovered snks */
+  uint8_t num_disc_srcs;       /* number of discovered srcs */
+  uint8_t sep_info_idx;        /* current index into sep_info */
+  uint8_t sep_idx;             /* current index into local seps[] */
+  uint8_t rcfg_idx;            /* reconfig requested index into sep_info */
+  uint8_t state;               /* state machine state */
+  uint8_t avdt_label;          /* AVDTP label */
+  uint8_t app_id;              /* application id */
+  uint8_t num_recfg;           /* number of reconfigure sent */
   uint8_t role;
-  uint8_t l2c_bufs;  /* the number of buffers queued to L2CAP */
-  uint8_t rc_handle; /* connected AVRCP handle */
-  bool use_rc;       /* true if AVRCP is allowed */
-  bool started;      /* true if stream started */
+  uint8_t l2c_bufs;               /* the number of buffers queued to L2CAP */
+  uint8_t rc_handle;              /* connected AVRCP handle */
+  bool use_rc;                    /* true if AVRCP is allowed */
+  bool started;                   /* true if stream started */
   bool use_rtp_header_marker_bit; /* true if the encoded data packets have RTP
                                    * headers, and the Marker bit in the header
                                    * is set according to RFC 6416 */
   uint8_t
-      co_started;    /* non-zero, if stream started from call-out perspective */
-  bool recfg_sup;    /* true if the first attempt to reconfigure the stream was
-                        successfull, else False if command fails */
-  bool suspend_sup;  /* true if Suspend stream is supported, else false if
-                        suspend command fails */
+      co_started;   /* non-zero, if stream started from call-out perspective */
+  bool recfg_sup;   /* true if the first attempt to reconfigure the stream was
+                       successfull, else False if command fails */
+  bool suspend_sup; /* true if Suspend stream is supported, else false if
+                       suspend command fails */
   bool deregistering; /* true if deregistering */
-  bool sco_suspend;  /* true if SUSPEND is issued automatically for SCO */
-  uint8_t coll_mask; /* Mask to check incoming and outgoing collision */
+  bool sco_suspend;   /* true if SUSPEND is issued automatically for SCO */
+  uint8_t coll_mask;  /* Mask to check incoming and outgoing collision */
   tBTA_AV_API_OPEN open_api; /* Saved OPEN api message */
   uint8_t wait;  /* set 0x1, when getting Caps as ACP, set 0x2, when started */
   uint8_t q_tag; /* identify the associated q_info union member */
   bool no_rtp_header; /* true if add no RTP header */
-  uint16_t uuid_int; /*intended UUID of Initiator to connect to */
+  uint16_t uuid_int;  /*intended UUID of Initiator to connect to */
 
   /**
    * Called to setup the state when connected to a peer.
@@ -612,6 +613,8 @@ typedef struct {
   uint8_t lidx;               /* (index+1) to LCB */
   tBTA_AV_FEAT peer_features; /* peer features mask */
   uint16_t cover_art_psm;     /* BIP PSM for cover art feature */
+  tBTA_AV_FEAT peer_ct_features;
+  tBTA_AV_FEAT peer_tg_features;
 } tBTA_AV_RCB;
 #define BTA_AV_NUM_RCB (BTA_AV_NUM_STRS + 2)
 
@@ -634,13 +637,13 @@ typedef struct {
   tBTA_AV_CBACK* p_cback;                /* application callback function */
   tBTA_AV_RCB rcb[BTA_AV_NUM_RCB];       /* RCB control block */
   tBTA_AV_LCB lcb[BTA_AV_NUM_LINKS + 1]; /* link control block */
-  uint32_t sdp_a2dp_handle;     /* SDP record handle for audio src */
-  uint32_t sdp_a2dp_snk_handle; /* SDP record handle for audio snk */
-  tBTA_AV_FEAT features;        /* features mask */
-  tBTA_SEC sec_mask;            /* security mask */
-  tBTA_AV_HNDL handle;          /* the handle for SDP activity */
-  bool disabling;               /* true if api disabled called */
-  uint8_t enabling_attempts;    // counter to wait for previous disabling
+  uint32_t sdp_a2dp_handle;              /* SDP record handle for audio src */
+  uint32_t sdp_a2dp_snk_handle;          /* SDP record handle for audio snk */
+  tBTA_AV_FEAT features;                 /* features mask */
+  tBTA_SEC sec_mask;                     /* security mask */
+  tBTA_AV_HNDL handle;                   /* the handle for SDP activity */
+  bool disabling;                        /* true if api disabled called */
+  uint8_t enabling_attempts;  // counter to wait for previous disabling
   uint8_t
       disc; /* (hdi+1) or (rc_handle|BTA_AV_CHNL_MSK) if p_disc_db is in use */
   uint8_t state;          /* state machine state */
@@ -654,6 +657,9 @@ typedef struct {
   bool sco_occupied; /* true if SCO is being used or call is in progress */
   uint16_t offload_start_pending_hndl;
   uint16_t offload_started_hndl;
+  tBTA_AV_FEAT sink_features; /* sink features */
+  uint8_t reg_role;           /* bit0-src, bit1-sink */
+  tBTA_AV_RC_FEAT rc_feature;    /* save peer rc feature*/
 } tBTA_AV_CB;
 
 // total attempts are half seconds
@@ -663,8 +669,8 @@ constexpr uint8_t kEnablingAttemptsCountMaximum = 5;
 // A2DP offload VSC parameters
 class tBT_A2DP_OFFLOAD {
  public:
-  uint32_t codec_type;            /* codec types ex: SBC/AAC/LDAC/APTx */
-  uint16_t max_latency;           /* maximum latency */
+  uint32_t codec_type;                  /* codec types ex: SBC/AAC/LDAC/APTx */
+  uint16_t max_latency;                 /* maximum latency */
   std::array<uint8_t, 2> scms_t_enable; /* SCMS-T enable */
   uint32_t sample_rate;           /* Sample rates ex: 44.1/48/88.2/96 Khz */
   uint8_t bits_per_sample;        /* bits per sample ex: 16/24/32 */
@@ -825,5 +831,6 @@ extern void bta_av_offload_req(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data);
 extern void bta_av_offload_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data);
 extern void bta_av_vendor_offload_stop(void);
 extern void bta_av_st_rc_timer(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data);
+extern void bta_av_api_set_peer_sep(tBTA_AV_DATA* p_data);
 
 #endif /* BTA_AV_INT_H */

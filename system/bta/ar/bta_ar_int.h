@@ -35,7 +35,7 @@
 
 /* data associated with BTA_AR */
 typedef struct {
-  tAVDT_CTRL_CBACK* p_av_conn_cback;  /* av connection callback function */
+  tAVDT_CTRL_CBACK* p_av_conn_cback; /* av connection callback function */
   uint8_t avdt_registered;
   uint8_t avct_registered;
   uint32_t sdp_tg_handle;
@@ -44,6 +44,8 @@ typedef struct {
   uint8_t tg_registered;
   tBTA_AV_HNDL hndl; /* Handle associated with the stream that rejected the
                         connection. */
+  uint16_t ct_ver;
+  uint16_t tg_categories[2];
 } tBTA_AR_CB;
 
 /*****************************************************************************
