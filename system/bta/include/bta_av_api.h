@@ -75,6 +75,11 @@ typedef uint8_t tBTA_AV_STATUS;
 #define BTA_AV_FEAT_NO_SCO_SSPD \
   0x8000 /* Do not suspend av streaming as to AG events(SCO or Call) */
 
+/** src and sink coexit, we can be src or sink any time.
+  * it indicates the feature is for source @{ */
+#define BTA_AV_FEAT_SRC 0x4000
+/** @} */
+
 typedef uint16_t tBTA_AV_FEAT;
 
 /* AV channel values */
@@ -167,6 +172,9 @@ typedef struct {
   tBTA_AV_HNDL hndl; /* Handle associated with the stream. */
   uint8_t app_id;    /* ID associated with call to BTA_AvRegister() */
   tBTA_AV_STATUS status;
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  uint8_t peer_sep;  /* peer sep type */
+  /** @} */
 } tBTA_AV_REGISTER;
 
 /* data associated with BTA_AV_OPEN_EVT */
@@ -236,6 +244,10 @@ typedef struct {
   uint8_t rc_handle;
   uint16_t cover_art_psm;
   tBTA_AV_FEAT peer_features;
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  tBTA_AV_FEAT    peer_ct_features;
+  tBTA_AV_FEAT    peer_tg_features;
+  /** @} */
   RawAddress peer_addr;
   tBTA_AV_STATUS status;
 } tBTA_AV_RC_OPEN;
@@ -263,6 +275,10 @@ typedef struct {
 typedef struct {
   uint8_t rc_handle;
   tBTA_AV_FEAT peer_features;
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  tBTA_AV_FEAT    peer_ct_features;
+  tBTA_AV_FEAT    peer_tg_features;
+  /** @} */
   RawAddress peer_addr;
 } tBTA_AV_RC_FEAT;
 
@@ -729,5 +745,9 @@ int BTA_AvObtainPeerChannelIndex(const RawAddress& peer_address);
  * information
  */
 void bta_debug_av_dump(int fd);
+
+/** src and sink coexit, we can be src or sink any time. @{ */
+void BTA_AvSetPeerSep(const RawAddress& bdaddr, uint8_t sep);
+/** @} */
 
 #endif /* BTA_AV_API_H */

@@ -112,6 +112,9 @@ enum {
   BTA_AV_CONN_CHG_EVT,
   BTA_AV_DEREG_COMP_EVT,
   BTA_AV_AVDT_RPT_CONN_EVT,
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  BTA_AV_API_PEER_SEP_EVT,
+  /** @} */
   BTA_AV_API_START_EVT, /* the following 2 events must be in the same order as
                            the *AP_*EVT */
   BTA_AV_API_STOP_EVT,
@@ -436,6 +439,15 @@ enum : uint8_t {
 };
 typedef uint8_t tBTA_AV_ROLE;
 
+/** src and sink coexit, we can be src or sink any time. @{ */
+typedef struct
+{
+  BT_HDR                hdr;
+  RawAddress            addr;
+  uint8_t               sep;
+} tBTA_AV_API_PEER_SEP;
+/** @} */
+
 /* union of all event datatypes */
 union tBTA_AV_DATA {
   BT_HDR_RIGID hdr;
@@ -460,6 +472,9 @@ union tBTA_AV_DATA {
   tBTA_AV_SDP_RES sdp_res;
   tBTA_AV_API_META_RSP api_meta_rsp;
   tBTA_AV_API_STATUS_RSP api_status_rsp;
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  tBTA_AV_API_PEER_SEP peer_sep;
+  /** @} */
 };
 
 typedef union {
@@ -612,6 +627,10 @@ typedef struct {
   uint8_t lidx;               /* (index+1) to LCB */
   tBTA_AV_FEAT peer_features; /* peer features mask */
   uint16_t cover_art_psm;     /* BIP PSM for cover art feature */
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  tBTA_AV_FEAT peer_ct_features;
+  tBTA_AV_FEAT peer_tg_features;
+  /** @} */
 } tBTA_AV_RCB;
 #define BTA_AV_NUM_RCB (BTA_AV_NUM_STRS + 2)
 
@@ -654,6 +673,11 @@ typedef struct {
   bool sco_occupied; /* true if SCO is being used or call is in progress */
   uint16_t offload_start_pending_hndl;
   uint16_t offload_started_hndl;
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  tBTA_AV_FEAT sink_features;     /* sink features */
+  uint8_t reg_role;               /* bit0-src, bit1-sink */
+  tBTA_AV_RC_FEAT rc_feat;        /* save peer rc feature*/
+  /** @} */
 } tBTA_AV_CB;
 
 // total attempts are half seconds
@@ -825,5 +849,8 @@ extern void bta_av_offload_req(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data);
 extern void bta_av_offload_rsp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data);
 extern void bta_av_vendor_offload_stop(void);
 extern void bta_av_st_rc_timer(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data);
+/** src and sink coexit, we can be src or sink any time. @{ */
+extern void bta_av_api_set_peer_sep(tBTA_AV_DATA *p_data);
+/** @} */
 
 #endif /* BTA_AV_INT_H */
