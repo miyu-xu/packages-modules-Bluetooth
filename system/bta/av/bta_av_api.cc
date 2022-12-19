@@ -161,6 +161,20 @@ void BTA_AvOpen(const RawAddress& bd_addr, tBTA_AV_HNDL handle, bool use_rc,
   p_buf->use_rc = use_rc;
   p_buf->switch_res = BTA_AV_RS_NONE;
   p_buf->uuid = uuid;
+  /** src and sink coexist, we can be src or sink any time. @{ */
+  if (bluetooth::common::init_flags::a2dp_src_sink_coexist_is_enabled() {
+    if (p_buf->uuid == AVDT_TSEP_SRC) {
+      p_buf->uuid = UUID_SERVCLASS_AUDIO_SOURCE;
+      p_buf->incoming = TRUE;
+    }
+    else if (p_buf->uuid == AVDT_TSEP_SNK) {
+      p_buf->uuid = UUID_SERVCLASS_AUDIO_SINK;
+      p_buf->incoming = TRUE;
+    }
+    else {
+      p_buf->incoming = FALSE;
+    }
+  }
 
   bta_sys_sendmsg(p_buf);
 }
@@ -640,3 +654,16 @@ void BTA_AvSetLatency(tBTA_AV_HNDL handle, bool is_low_latency) {
 
   bta_sys_sendmsg(p_buf);
 }
+/** src and sink coexist, we can be src or sink any time. @{ */
+void BTA_AvSetPeerSep(const RawAddress& bdaddr, uint8_t sep) {
+  tBTA_AV_API_PEER_SEP *p_buf =
+      (tBTA_AV_API_PEER_SEP *)osi_malloc(sizeof(tBTA_AV_API_PEER_SEP));
+
+  p_buf->hdr.event = BTA_AV_API_PEER_SEP_EVT;
+  p_buf->addr = bdaddr;
+  p_buf->sep = sep;
+
+  bta_sys_sendmsg(p_buf);
+}
+/** @} */
+
