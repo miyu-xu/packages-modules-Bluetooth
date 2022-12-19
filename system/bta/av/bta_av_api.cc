@@ -33,6 +33,9 @@
 #include "osi/include/log.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
+#ifdef OS_ANDROID
+#include <a2dp.sysprop.h>
+#endif
 
 /*****************************************************************************
  *  Constants
@@ -161,6 +164,19 @@ void BTA_AvOpen(const RawAddress& bd_addr, tBTA_AV_HNDL handle, bool use_rc,
   p_buf->use_rc = use_rc;
   p_buf->switch_res = BTA_AV_RS_NONE;
   p_buf->uuid = uuid;
+  if (android::sysprop::bluetooth::A2dp::a2dp_src_sink_coexist().value_or(false)) {
+    if (p_buf->uuid == AVDT_TSEP_SRC) {
+      p_buf->uuid = UUID_SERVCLASS_AUDIO_SOURCE;
+      p_buf->incoming = TRUE;
+    }
+    else if (p_buf->uuid == AVDT_TSEP_SNK) {
+      p_buf->uuid = UUID_SERVCLASS_AUDIO_SINK;
+      p_buf->incoming = TRUE;
+    }
+    else {
+      p_buf->incoming = FALSE;
+    }
+  }
 
   bta_sys_sendmsg(p_buf);
 }
@@ -640,3 +656,25 @@ void BTA_AvSetLatency(tBTA_AV_HNDL handle, bool is_low_latency) {
 
   bta_sys_sendmsg(p_buf);
 }
+
+/*******************************************************************************
+ *
+ * Function         BTA_AvSetLatency
+ *
+ * Description      Set peer sep in order to delete wrong avrcp handle
+ *......................there are may be two avrcp handle at start, delete the wrong when a2dp connected
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTA_AvSetPeerSep(const RawAddress& bdaddr, uint8_t sep) {
+  tBTA_AV_API_PEER_SEP *p_buf =
+      (tBTA_AV_API_PEER_SEP *)osi_malloc(sizeof(tBTA_AV_API_PEER_SEP));
+
+  p_buf->hdr.event = BTA_AV_API_PEER_SEP_EVT;
+  p_buf->addr = bdaddr;
+  p_buf->sep = sep;
+
+  bta_sys_sendmsg(p_buf);
+}
+
