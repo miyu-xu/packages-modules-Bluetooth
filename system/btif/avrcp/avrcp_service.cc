@@ -106,7 +106,7 @@ class AvrcpInterfaceImpl : public AvrcpInterface {
 
   uint16_t MsgReq(uint8_t handle, uint8_t label, uint8_t ctype,
                   BT_HDR* p_pkt) override {
-    return AVRC_MsgReq(handle, label, ctype, p_pkt);
+    return AVRC_MsgReq(handle, label, ctype, p_pkt, true);
   }
 
   void SaveControllerVersion(const RawAddress& bdaddr,
@@ -577,6 +577,9 @@ void AvrcpService::DeviceCallback(std::shared_ptr<Device> new_device) {
 }
 
 // Service Interface
+/* for btif_rc_test.cc */
+AvrcpService::~AvrcpService() {}
+
 void AvrcpService::ServiceInterfaceImpl::Init(
     MediaInterface* media_interface, VolumeInterface* volume_interface,
     PlayerSettingsInterface* player_settings_interface) {
@@ -676,6 +679,14 @@ void AvrcpService::DebugDump(int fd) {
   }
 
   dprintf(fd, "%s", stream.str().c_str());
+}
+
+/** when a2dp connected, btif will start register vol changed, so we need a
+ * interface for it. */
+void AvrcpService::RegisterVolChanged(const RawAddress& bdaddr) {
+  LOG(INFO) << ": address=" << ADDRESS_TO_LOGGABLE_STR(bdaddr);
+
+  connection_handler_->RegisterVolChanged(bdaddr);
 }
 
 }  // namespace avrcp
