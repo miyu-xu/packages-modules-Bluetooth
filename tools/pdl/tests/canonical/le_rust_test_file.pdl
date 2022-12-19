@@ -46,6 +46,26 @@ packet Packet_Array_Field_ByteElement_ConstantSize {
     array: 8[4],
 }
 
+packet Packet_Array_Field_ByteElement_UnknownSize {
+    array: 8[],
+}
+
+packet Packet_Array_Field_ScalarElement_ConstantSize {
+    array: 16[4],
+}
+
+packet Packet_Array_Field_ScalarElement_UnknownSize {
+    array: 16[],
+}
+
+packet Packet_Array_Field_EnumElement_ConstantSize {
+    array: Enum16[4],
+}
+
+packet Packet_Array_Field_EnumElement_UnknownSize {
+    array: Enum16[],
+}
+
 packet Packet_Array_Field_ScalarElement_ConstantSize {
     array: 16[4],
 }

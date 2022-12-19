@@ -166,6 +166,12 @@ fn main() {
             "Packet_Enum8_Field",
             "Packet_Array_Field_ScalarElement",
             "Packet_Array_Field_EnumElement",
+            "Packet_Array_Field_ByteElement_ConstantSize",
+            "Packet_Array_Field_ByteElement_UnknownSize",
+            "Packet_Array_Field_ScalarElement_ConstantSize",
+            "Packet_Array_Field_ScalarElement_UnknownSize",
+            "Packet_Array_Field_EnumElement_ConstantSize",
+            "Packet_Array_Field_EnumElement_UnknownSize",
         ],
         &module_name,
     );
