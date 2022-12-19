@@ -26,14 +26,15 @@
 #include "types/raw_address.h"
 
 // Process 'idle' request from the BTIF state machine during initialization.
-void btif_a2dp_on_idle(void);
+void btif_a2dp_on_idle(const RawAddress& peer_addr);
 
 // Process 'start' request from the BTIF state machine to prepare for A2DP
 // streaming.
 // |peer_addr| is the peer address.
 // |p_av_start| is the data associated with the request - see |tBTA_AV_START|.
 // Returns true if an ACK for the local command was sent, otherwise false.
-bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start);
+bool btif_a2dp_on_started(const RawAddress& peer_addr,
+                          tBTA_AV_START* p_av_start);
 
 // Process 'stop' request from the BTIF state machine to stop A2DP streaming.
 // |p_av_suspend| is the data associated with the request - see

@@ -38,9 +38,21 @@
 
 #include <base/logging.h>
 
-void btif_a2dp_on_idle(void) {
+void btif_a2dp_on_idle(const RawAddress& peer_addr) {
   LOG_VERBOSE("Peer stream endpoint type:%s",
               peer_stream_endpoint_text(btif_av_get_peer_sep()).c_str());
+  if (btif_av_src_sink_coexist_enabled()) {
+    bool is_sink = btif_av_peer_is_sink(peer_addr);
+    bool is_source = btif_av_peer_is_source(peer_addr);
+    LOG_INFO("## ON A2DP IDLE ## is_sink:%d is_source:%d", is_sink, is_source);
+    if (is_sink) {
+      btif_a2dp_source_on_idle();
+    } else if (is_source) {
+      btif_a2dp_sink_on_idle();
+    }
+    return;
+  }
+
   if (btif_av_get_peer_sep() == AVDT_TSEP_SNK) {
     btif_a2dp_source_on_idle();
   } else if (btif_av_get_peer_sep() == AVDT_TSEP_SRC) {
@@ -48,10 +60,11 @@ void btif_a2dp_on_idle(void) {
   }
 }
 
-bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start) {
+bool btif_a2dp_on_started(const RawAddress& peer_addr,
+                          tBTA_AV_START* p_av_start) {
   LOG(INFO) << __func__ << ": ## ON A2DP STARTED ## peer "
-            << ADDRESS_TO_LOGGABLE_STR(peer_addr) << " p_av_start:"
-            << p_av_start;
+            << ADDRESS_TO_LOGGABLE_STR(peer_addr)
+            << " p_av_start:" << p_av_start;
 
   if (p_av_start == NULL) {
     tA2DP_CTRL_ACK status = A2DP_CTRL_ACK_SUCCESS;
@@ -72,7 +85,8 @@ bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start
 
   LOG(INFO) << __func__ << ": peer " << ADDRESS_TO_LOGGABLE_STR(peer_addr)
             << " status:" << +p_av_start->status
-            << " suspending:" << logbool(p_av_start->suspending) << " initiator:" << logbool(p_av_start->initiator);
+            << " suspending:" << logbool(p_av_start->suspending)
+            << " initiator:" << logbool(p_av_start->initiator);
 
   if (p_av_start->status == BTA_AV_SUCCESS) {
     if (p_av_start->suspending) {
@@ -101,7 +115,8 @@ bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start
     }
   } else if (p_av_start->initiator) {
     LOG(ERROR) << __func__ << ": peer " << ADDRESS_TO_LOGGABLE_STR(peer_addr)
-               << " A2DP start request failed: status = " << +p_av_start->status;
+               << " A2DP start request failed: status = "
+               << +p_av_start->status;
     if (bluetooth::audio::a2dp::is_hal_enabled()) {
       bluetooth::audio::a2dp::ack_stream_started(A2DP_CTRL_ACK_FAILURE);
     } else {
