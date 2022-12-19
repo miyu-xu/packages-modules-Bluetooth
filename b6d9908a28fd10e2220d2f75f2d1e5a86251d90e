@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f7ae26f_0e3279db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-19T08:27:10Z",
+      "side": 1,
+      "message": "launchDevicePicker_bluetoothEnabled_launchActivity failed with this CL",
+      "revId": "b6d9908a28fd10e2220d2f75f2d1e5a86251d90e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
