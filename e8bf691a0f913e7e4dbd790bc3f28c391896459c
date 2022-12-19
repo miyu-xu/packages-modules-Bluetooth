@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d273b04_aa45df07",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-19T19:53:54Z",
+      "side": 1,
+      "message": "Avoid naked unwrap:\n```\nlet adv_set \u003d context.adv_sets.get(\u0026reg_id).ok_or(\"Failed to get advertising set\")?.clone();\n```",
+      "range": {
+        "startLine": 1277,
+        "startChar": 0,
+        "endLine": 1280,
+        "endChar": 77
+      },
+      "revId": "e8bf691a0f913e7e4dbd790bc3f28c391896459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d2028f3_1e4b7184",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 8
