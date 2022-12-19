@@ -33,6 +33,24 @@
       "message": "Hi Myles, regarding the Presubmit failures, a few builds, e.g., aosp_bramble-userdebug on git_master, got an error as\n\n```\npackages/modules/Bluetooth/system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc:28:10: fatal error: \u0027hci/hci_packets.h\u0027 file not found\n#include \"hci/hci_packets.h\"\n         ^~~~~~~~~~~~~~~~~~~\n```\n\nI checked out goog/master and lunch redfin-userdebug. Running m or mm got an error\n\n```\nerror: packages/modules/Bluetooth/android/app/tests/unit/Android.bp:58:1: module \"GoogleBluetoothInstrumentationTests\" already defined\n       vendor/google/modules/BluetoothGoogle/Android.bp:44:1 \u003c-- previous definition here\n```\n\nI suspect that the error was caused by “6d069589ebd”. So I reverted the patch. The error was gone. But a few more errors showed up\n\n```\nerror: frameworks/base/api/Android.bp:89:1: \"framework-updatable-stubs-module_libs_api\" depends on undefined module \"framework-federatedcompute.stubs.modul\ne_lib\"\nerror: frameworks/base/api/Android.bp:89:1: \"all-modules-public-stubs\" depends on undefined module \"framework-federatedcompute.stubs\"\nerror: frameworks/base/api/Android.bp:89:1: \"all-modules-system-stubs\" depends on undefined module \"framework-federatedcompute.stubs.system\"\n```\n\nCould you advise what I could do next to fix my include error? Thanks!",
       "revId": "2c34f90892813759da337400b1be6a2f7e7b48f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19351ddc_130d0a3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-19T15:16:23Z",
+      "side": 1,
+      "message": "One quick question -- I did `git fetch goog` and `git co goog/master` in my internal main. Do you know why I got the m/mm errors above while the Presubmit builds did not encounter the same errors as I?  I have tried \"redfin-userdebug\" and \"aosp_bramble-userdebug\" and got the errors. Thanks!",
+      "parentUuid": "e78fd34d_91c78ae0",
+      "revId": "2c34f90892813759da337400b1be6a2f7e7b48f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
