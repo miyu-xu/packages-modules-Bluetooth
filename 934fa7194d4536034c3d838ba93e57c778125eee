@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa973b7_6426265b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T22:51:48Z",
+      "side": 1,
+      "message": "Consider making it package private instead of public because the test class is in the same package in this case",
+      "revId": "934fa7194d4536034c3d838ba93e57c778125eee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
