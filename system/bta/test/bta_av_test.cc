@@ -37,6 +37,14 @@
 
 using namespace std::chrono_literals;
 
+bool btif_av_both_enable(void) { return true; }
+bool btif_av_src_sink_coexist_enabled(void) { return true; }
+bool btif_av_is_source_enabled(void) { return true; }
+bool btif_av_is_sink_enabled(void) { return true; }
+bool btif_av_peer_is_connected_sink(const RawAddress& peer_address) {
+  return true;
+}
+
 namespace {
 const RawAddress kRawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
 }  // namespace
