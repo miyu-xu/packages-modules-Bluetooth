@@ -253,15 +253,6 @@ class LeAudioClientImpl : public LeAudioClient {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
     groupStateMachine_ = LeAudioGroupStateMachine::Get();
 
-    if (bluetooth::common::InitFlags::
-            IsTargetedAnnouncementReconnectionMode()) {
-      LOG_INFO(" Reconnection mode: TARGETED_ANNOUNCEMENTS");
-      reconnection_mode_ = BTM_BLE_BKG_CONNECT_TARGETED_ANNOUNCEMENTS;
-    } else {
-      LOG_INFO(" Reconnection mode: ALLOW_LIST");
-      reconnection_mode_ = BTM_BLE_BKG_CONNECT_ALLOW_LIST;
-    }
-
     BTA_GATTC_AppRegister(
         le_audio_gattc_callback,
         base::Bind(
@@ -1207,7 +1198,7 @@ class LeAudioClientImpl : public LeAudioClient {
       leAudioDevice->SetConnectionState(
           DeviceConnectState::CONNECTING_AUTOCONNECT);
       leAudioDevice->autoconnect_flag_ = true;
-      BTA_GATTC_Open(gatt_if_, address, reconnection_mode_, false);
+      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
     }
   }
 
@@ -1248,14 +1239,14 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    DLOG(INFO) << __func__ << " Add " << leAudioDevice->address_
+    DLOG(INFO) << __func__ << "Add " << leAudioDevice->address_
                << " to background connect to connected group: "
                << leAudioDevice->group_id_;
 
     leAudioDevice->SetConnectionState(
         DeviceConnectState::CONNECTING_AUTOCONNECT);
-    BTA_GATTC_Open(gatt_if_, leAudioDevice->address_, reconnection_mode_,
-                   false);
+    BTA_GATTC_Open(gatt_if_, leAudioDevice->address_,
+                   BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
   }
 
   void Disconnect(const RawAddress& address) override {
@@ -1825,7 +1816,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (reason != GATT_CONN_TERMINATE_LOCAL_HOST) {
       leAudioDevice->SetConnectionState(
           DeviceConnectState::CONNECTING_AUTOCONNECT);
-      BTA_GATTC_Open(gatt_if_, address, reconnection_mode_, false);
+      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
     } else {
       leAudioDevice->SetConnectionState(DeviceConnectState::DISCONNECTED);
     }
@@ -3023,10 +3014,6 @@ class LeAudioClientImpl : public LeAudioClient {
 
   void Dump(int fd) {
     dprintf(fd, "  Active group: %d\n", active_group_id_);
-    dprintf(fd, "    reconnection mode: %s \n",
-            (reconnection_mode_ == BTM_BLE_BKG_CONNECT_ALLOW_LIST
-                 ? " Allow List"
-                 : " Targeted Announcements"));
     dprintf(fd, "    configuration: %s  (0x%08hx)\n",
             bluetooth::common::ToString(configuration_context_type_).c_str(),
             configuration_context_type_);
@@ -4273,10 +4260,6 @@ class LeAudioClientImpl : public LeAudioClient {
   AudioState audio_sender_state_;
   /* Keep in call state. */
   bool in_call_;
-
-  /* Reconnection mode */
-  tBTM_BLE_CONN_TYPE reconnection_mode_;
-
   static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
       "persist.bluetooth.leaudio.notify.idle.during.call";
 
