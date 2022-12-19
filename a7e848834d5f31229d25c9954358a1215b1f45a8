@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9381504c_1fb6cf62",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2327,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-19T08:22:45Z",
+      "side": 1,
+      "message": "The thread id isn\u0027t usually stored in database, so it does not seem natural that we get it from Cursor. Also the test code readers can be confused when they see the MatrixCursor has the oldThreadId.\n\nLet\u0027s create a new method something like \u0027long telephonyGetOrCreateThreadId()\u0027 in BluetoothMethodProxy().",
+      "range": {
+        "startLine": 2327,
+        "startChar": 24,
+        "endLine": 2327,
+        "endChar": 81
+      },
+      "revId": "a7e848834d5f31229d25c9954358a1215b1f45a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be33c8ea_94107289",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-19T08:22:45Z",
+      "side": 1,
+      "message": "Could you declare a static final variable for this in the beginning of this class?\n\nTEST_MSG_ID, TEST_MSG_TYPE, TEST_READ_FLAG\n\nOr if those values are not important, then creating a private method `createSimpleMsg()` would be good.",
+      "range": {
+        "startLine": 344,
+        "startChar": 82,
+        "endLine": 344,
+        "endChar": 90
+      },
+      "revId": "a7e848834d5f31229d25c9954358a1215b1f45a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f83c2af4_4830af4f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/MsgTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-19T08:22:45Z",
+      "side": 1,
+      "message": "isNotNull?",
+      "range": {
+        "startLine": 66,
+        "startChar": 23,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "a7e848834d5f31229d25c9954358a1215b1f45a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "733a41e5_74703012",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/MsgTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-19T08:22:45Z",
+      "side": 1,
+      "message": "Is the ID only thing that is compared in equals()? \nIn other words, will equals() return true even if the FLAG or FOLDER_ID is different?\n\nIf not, let\u0027s rename this as equals_withEqualInstance() or something like that.",
+      "range": {
+        "startLine": 91,
+        "startChar": 31,
+        "endLine": 91,
+        "endChar": 33
+      },
+      "revId": "a7e848834d5f31229d25c9954358a1215b1f45a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
