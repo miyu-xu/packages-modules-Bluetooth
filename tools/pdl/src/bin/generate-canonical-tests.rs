@@ -104,7 +104,7 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
                 fn #serialize_test_name() {
                     let builder: #module::#builder_name = serde_json::from_str(#json).unwrap();
                     let packet = builder.build();
-                    let packed = #packed;
+                    let packed: Vec<u8> = #packed;
                     assert_eq!(packet.to_vec(), packed);
                 }
             });
@@ -137,8 +137,22 @@ fn main() {
             "Packet_Scalar_Field",
             "Packet_Enum_Field",
             "Packet_Enum8_Field",
-            "Packet_Array_Field_ScalarElement",
+            "Packet_Array_Field_ByteElement_ConstantSize",
+            "Packet_Array_Field_ByteElement_UnknownSize",
             "Packet_Array_Field_EnumElement",
+            "Packet_Array_Field_EnumElement_ConstantSize",
+            "Packet_Array_Field_EnumElement_UnknownSize",
+            "Packet_Array_Field_ScalarElement",
+            "Packet_Array_Field_ScalarElement_ConstantSize",
+            "Packet_Array_Field_ScalarElement_UnknownSize",
+            "Packet_Array_Field_SizedElement_ConstantSize",
+            "Packet_Array_Field_SizedElement_UnknownSize",
+            "Packet_Array_Field_UnsizedElement_ConstantSize",
+            // "Packet_Array_Field_UnsizedElement_UnknownSize",
+            "Packet_Array_Field_UnsizedElement_VariableCount",
+            //"Packet_Array_Field_UnsizedElement_VariableSize",
+            "Packet_Size_Field",
+            "Packet_Count_Field",
         ],
         &module_name,
     );
