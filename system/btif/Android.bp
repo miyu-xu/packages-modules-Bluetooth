@@ -351,6 +351,9 @@ cc_test {
     include_dirs: btifCommonIncludes,
     srcs: [
         ":TestCommonLogMsg",
+        ":TestCommonMockFunctions",
+        ":TestMockCommon",
+        ":TestMockOsi",
         "test/btif_rc_test.cc",
     ],
     header_libs: ["libbluetooth_headers"],
@@ -365,7 +368,6 @@ cc_test {
         "libbt-protos-lite",
         "libchrome",
         "libevent",
-        "libosi",
         "libosi-AllocationTestHarness",
     ],
     cflags: ["-DBUILDCFG"],
