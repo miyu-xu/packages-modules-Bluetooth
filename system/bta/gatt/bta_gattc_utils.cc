@@ -359,6 +359,55 @@ tBTA_GATTC_SERV* bta_gattc_srcb_alloc(const RawAddress& bda) {
   return p_tcb;
 }
 
+void bta_gattc_send_mtu_response(tBTA_GATTC_CLCB* p_clcb,
+                                 const tBTA_GATTC_DATA* p_data,
+                                 uint16_t current_mtu) {
+  GATT_CONFIGURE_MTU_OP_CB cb = p_data->api_mtu.mtu_cb;
+  if (cb) {
+    void* my_cb_data = p_data->api_mtu.mtu_cb_data;
+    cb(p_clcb->bta_conn_id, GATT_SUCCESS, my_cb_data);
+  }
+
+  tBTA_GATTC cb_data;
+  p_clcb->status = GATT_SUCCESS;
+  cb_data.cfg_mtu.conn_id = p_clcb->bta_conn_id;
+  cb_data.cfg_mtu.status = GATT_SUCCESS;
+  cb_data.cfg_mtu.mtu = current_mtu;
+
+  if (p_clcb->p_rcb) {
+    (*p_clcb->p_rcb->p_cback)(BTA_GATTC_CFG_MTU_EVT, &cb_data);
+  }
+}
+bool bta_gattc_handle_queued_multiple_mtu_requests(
+    tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
+  if (p_data->hdr.event != BTA_GATTC_API_CFG_MTU_EVT) {
+    return false;
+  }
+
+  uint16_t current_mtu = 0;
+  auto result = GATTC_TryMtuRequest(p_clcb->bda, p_clcb->transport,
+                                    p_clcb->bta_conn_id, &current_mtu);
+  switch (result) {
+    case MTU_EXCHANGE_NOT_ALLOWED:
+      LOG_ERROR("Device %s disconnected", p_clcb->bda.ToString().c_str());
+      bta_gattc_cmpl_sendmsg(p_clcb->bta_conn_id, GATTC_OPTYPE_CONFIG,
+                             GATT_ERR_UNLIKELY, NULL);
+      osi_free_and_reset((void**)&p_clcb->p_q_cmd);
+      bta_gattc_continue(p_clcb);
+      return true;
+    case MTU_EXCHANGE_ALREADY_DONE:
+      bta_gattc_send_mtu_response(p_clcb, p_data, current_mtu);
+      osi_free_and_reset((void**)&p_clcb->p_q_cmd);
+      bta_gattc_continue(p_clcb);
+      return true;
+    case MTU_EXCHANGE_IN_PROGRESS:
+      LOG_INFO("Waiting p_clcb %p", p_clcb);
+      return true;
+    case MTU_EXCHANGE_NOT_DONE_YET:
+      return false;
+  }
+}
+
 void bta_gattc_continue(tBTA_GATTC_CLCB* p_clcb) {
   if (p_clcb->p_q_cmd != NULL) {
     LOG_INFO("Already scheduled another request for conn_id = 0x%04x",
@@ -373,6 +422,11 @@ void bta_gattc_continue(tBTA_GATTC_CLCB* p_clcb) {
 
   const tBTA_GATTC_DATA* p_q_cmd = p_clcb->p_q_cmd_queue.front();
   p_clcb->p_q_cmd_queue.pop_front();
+
+  if (bta_gattc_handle_queued_multiple_mtu_requests(p_clcb, p_q_cmd)) {
+    return;
+  }
+
   bta_gattc_sm_execute(p_clcb, p_q_cmd->hdr.event, p_q_cmd);
 }
 
