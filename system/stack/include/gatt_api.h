@@ -21,6 +21,7 @@
 #include <base/strings/stringprintf.h>
 
 #include <cstdint>
+#include <list>
 #include <string>
 
 #include "bt_target.h"
@@ -126,6 +127,13 @@ typedef enum : uint8_t {
   /* 0x1E = 30 + 1 = 31*/
   GATT_OP_CODE_MAX = (GATT_HANDLE_MULTI_VALUE_NOTIF + 1),
 } tGATT_OP_CODE;
+
+typedef enum : uint8_t {
+  MTU_EXCHANGE_NOT_DONE_YET = 0x00,
+  MTU_EXCHANGE_NOT_ALLOWED,
+  MTU_EXCHANGE_ALREADY_DONE,
+  MTU_EXCHANGE_IN_PROGRESS,
+} tGATTC_TryMtuRequestResult;
 
 inline std::string gatt_op_code_text(const tGATT_OP_CODE& op_code) {
   switch (op_code) {
@@ -912,6 +920,38 @@ extern tGATT_STATUS GATTS_SendRsp(uint16_t conn_id, uint32_t trans_id,
  ******************************************************************************/
 extern tGATT_STATUS GATTC_ConfigureMTU(uint16_t conn_id, uint16_t mtu);
 
+// clang-format off
+/************************************************************************************************
+ *
+ * Function         GATTC_TryMtuRequest
+ *
+ * Description      This function shall be called before calling GATTC_ConfgureMTU
+ *                  in order to check if operation is available to do.
+ *
+ * Parameters        remote_bda : peer device address. (input)
+ *                   transport  : physical transport of the GATT connection
+ *                                 (BR/EDR or LE) (input)
+ *                   conn_id    : connection id  (input)
+ *                   current_mtu: current mtu on the link (output)
+ *
+ * Returns          tGATTC_TryMtuRequestResult
+ *                    MTU_EXCHANGE_NOT_DONE_YET: There was no MTU Exchange procedure on the link.
+ *                                               User can call GATTC_ConfigureMTU now.
+ *                    MTU_EXCHANGE_NOT_ALLOWED : Not allowed for BR/EDR or if link does not exist
+ *                    MTU_EXCHANGE_ALREADY_DONE: MTU Exchange is done. MTU should be taken from
+ *                                               current_mtu
+ *                    MTU_EXCHANGE_IN_PROGRESS : Other use is doing MTU Exchange.
+ *                                               Conn_id is stored for result.
+ *
+ ************************************************************************************************/
+// clang-format on
+
+extern tGATTC_TryMtuRequestResult GATTC_TryMtuRequest(
+    const RawAddress& remote_bda, tBT_TRANSPORT transport, uint16_t conn_id,
+    uint16_t* current_mtu);
+
+extern std::list<uint16_t> GATTC_GetAndRemoveListOfConnIdsWaitingForMtuRequest(
+    const RawAddress& remote_bda);
 /*******************************************************************************
  *
  * Function         GATTC_Discover

@@ -1098,8 +1098,19 @@ void gatt_process_mtu_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, uint16_t len,
   } else {
     STREAM_TO_UINT16(mtu, p_data);
 
-    if (mtu < tcb.payload_size && mtu >= GATT_DEF_BLE_MTU_SIZE)
+    LOG_INFO("Local pending MTU %d, Remote (%s) MTU %d",
+             tcb.pending_mtu_exchange_value, tcb.peer_bda.ToString().c_str(),
+             mtu);
+    if (tcb.pending_mtu_exchange_value > 0) {
+      tcb.payload_size = tcb.pending_mtu_exchange_value;
+      tcb.pending_mtu_exchange_value = 0;
+    }
+
+    if (mtu < tcb.payload_size && mtu >= GATT_DEF_BLE_MTU_SIZE) {
       tcb.payload_size = mtu;
+    }
+
+    LOG_INFO("MTU Exchange resulted in: %d", tcb.payload_size);
   }
 
   BTM_SetBleDataLength(tcb.peer_bda, tcb.payload_size + L2CAP_PKT_OVERHEAD);

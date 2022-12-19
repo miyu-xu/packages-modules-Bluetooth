@@ -229,7 +229,12 @@ void BTA_GATTC_ConfigureMTU(uint16_t conn_id, uint16_t mtu,
 
   p_buf->hdr.event = BTA_GATTC_API_CFG_MTU_EVT;
   p_buf->hdr.layer_specific = conn_id;
-  p_buf->mtu = mtu;
+
+  /* Since GATT MTU Exchange can be done only once, and it is impossible to
+   * predict what MTU will be requested by other applications, let's use
+   * max possible MTU in the request. */
+  p_buf->mtu = GATT_MAX_MTU_SIZE;
+
   p_buf->mtu_cb = callback;
   p_buf->mtu_cb_data = cb_data;
 
