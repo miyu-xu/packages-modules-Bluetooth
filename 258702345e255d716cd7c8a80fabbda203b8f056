@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "347b2fb8_ad382699",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1804,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-19T21:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99c0c83d_a92b6344",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "891c340b_d2a96455",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-15T02:22:35Z",
       "side": 1,
       "message": "Need to have BLUETOOTH_PRIVILEGED for a system API",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e90ab252_2933c5fb",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-19T21:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "891c340b_d2a96455",
       "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b32be672_0cd2caa1",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-19T21:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "629caddb_cb408583",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1016bea0_134e1f74",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-12-15T02:22:35Z",
       "side": 1,
       "message": "nit: param summaries start with a lowercase character and are fragments (don\u0027t end in a period)",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6716b8_b367c363",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-19T21:05:48Z",
+      "side": 1,
+      "message": "Done since this is the latest standard, but this is inconsistent with what\u0027s done elsewhere in the file",
+      "parentUuid": "1016bea0_134e1f74",
       "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -99,6 +171,42 @@
       "writtenOn": "2022-12-15T02:22:35Z",
       "side": 1,
       "message": "IntDef annotation for the transport again",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98baf3fc_64bcc4cb",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-19T21:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51056ca9_058c663e",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2daca08f_72ad8e27",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-19T21:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de02d252_5a41ad84",
       "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
