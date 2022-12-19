@@ -34,6 +34,7 @@
 #include "gd/common/init_flags.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
+#include "stack/gatt/gatt_int.h"
 #include "types/bt_transport.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
@@ -339,6 +340,40 @@ tBTA_GATTC_SERV* bta_gattc_srcb_alloc(const RawAddress& bda) {
   return p_tcb;
 }
 
+bool bta_gattc_handle_multiple_mtu_requests(tBTA_GATTC_CLCB* p_clcb,
+                                            const tBTA_GATTC_DATA* p_data) {
+  if (p_data->hdr.event != BTA_GATTC_API_CFG_MTU_EVT) {
+    return false;
+  }
+
+  uint16_t current_mtu = gatt_get_mtu(p_clcb->bda, p_clcb->transport);
+  if (current_mtu == GATT_DEF_BLE_MTU_SIZE || current_mtu == 0) {
+    LOG_DEBUG("MTU not yet updated for %s", p_clcb->bda.ToString().c_str());
+    return false;
+  }
+
+  LOG_INFO("Current MTU for device %s is %d", p_clcb->bda.ToString().c_str(),
+           current_mtu);
+
+  GATT_CONFIGURE_MTU_OP_CB cb = p_data->api_mtu.mtu_cb;
+  if (cb) {
+    void* my_cb_data = p_data->api_mtu.mtu_cb_data;
+    cb(p_clcb->bta_conn_id, GATT_SUCCESS, my_cb_data);
+  }
+
+  tBTA_GATTC cb_data;
+  p_clcb->status = GATT_SUCCESS;
+  cb_data.cfg_mtu.conn_id = p_clcb->bta_conn_id;
+  cb_data.cfg_mtu.status = GATT_SUCCESS;
+  cb_data.cfg_mtu.mtu = current_mtu;
+
+  if (p_clcb->p_rcb) {
+    (*p_clcb->p_rcb->p_cback)(BTA_GATTC_CFG_MTU_EVT, &cb_data);
+  }
+
+  return true;
+}
+
 void bta_gattc_continue(tBTA_GATTC_CLCB* p_clcb) {
   if (p_clcb->p_q_cmd != NULL) {
     LOG_INFO("Already scheduled another request for conn_id = 0x%04x",
@@ -353,6 +388,13 @@ void bta_gattc_continue(tBTA_GATTC_CLCB* p_clcb) {
 
   const tBTA_GATTC_DATA* p_q_cmd = p_clcb->p_q_cmd_queue.front();
   p_clcb->p_q_cmd_queue.pop_front();
+
+  if (bta_gattc_handle_multiple_mtu_requests(p_clcb, p_q_cmd)) {
+    osi_free_and_reset((void**)&p_clcb->p_q_cmd);
+    bta_gattc_continue(p_clcb);
+    return;
+  }
+
   bta_gattc_sm_execute(p_clcb, p_q_cmd->hdr.event, p_q_cmd);
 }
 

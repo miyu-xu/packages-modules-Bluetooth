@@ -443,6 +443,8 @@ extern BtaEnqueuedResult_t bta_gattc_enqueue(tBTA_GATTC_CLCB* p_clcb,
 extern bool bta_gattc_is_data_queued(tBTA_GATTC_CLCB* p_clcb,
                                      const tBTA_GATTC_DATA* p_data);
 extern void bta_gattc_continue(tBTA_GATTC_CLCB* p_clcb);
+extern bool bta_gattc_handle_multiple_mtu_requests(
+    tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data);
 
 extern bool bta_gattc_check_notif_registry(tBTA_GATTC_RCB* p_clreg,
                                            tBTA_GATTC_SERV* p_srcb,

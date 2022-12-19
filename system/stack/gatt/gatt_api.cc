@@ -709,13 +709,17 @@ tGATT_STATUS GATTC_ConfigureMTU(uint16_t conn_id, uint16_t mtu) {
 
   /* For this request only ATT CID is valid */
   p_clcb->cid = L2CAP_ATT_CID;
-  p_clcb->p_tcb->payload_size = mtu;
   p_clcb->operation = GATTC_OPTYPE_CONFIG;
   tGATT_CL_MSG gatt_cl_msg;
   gatt_cl_msg.mtu = mtu;
   LOG_DEBUG("Configuring ATT mtu size conn_id:%hu mtu:%hu", conn_id, mtu);
 
-  return attp_send_cl_msg(*p_clcb->p_tcb, p_clcb, GATT_REQ_MTU, &gatt_cl_msg);
+  auto result =
+      attp_send_cl_msg(*p_clcb->p_tcb, p_clcb, GATT_REQ_MTU, &gatt_cl_msg);
+  if (result == GATT_SUCCESS) {
+    p_clcb->p_tcb->pending_mtu_exchange_value = mtu;
+  }
+  return result;
 }
 
 /*******************************************************************************

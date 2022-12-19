@@ -40,6 +40,8 @@
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
+#include "stack/btm/btm_dev.h"
+#include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/btu.h"  // do_in_main_thread
@@ -721,6 +723,36 @@ void bta_gattc_restart_discover(tBTA_GATTC_CLCB* p_clcb,
 
 /** Configure MTU size on the GATT connection */
 void bta_gattc_cfg_mtu(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
+  if (gatt_is_pending_mtu_exchange(p_clcb->bda, p_clcb->transport)) {
+    LOG_DEBUG(
+        "Continue MTU pending for other client. Wait with clcb %p, "
+        "conn_id=0x%04x",
+        p_clcb, p_clcb->bta_conn_id);
+    /* MTU Exchange is in progress, started by other GATT Client.
+     * Wait until it is completed.
+     */
+    if (gatt_set_conn_id_waiting_for_mtu_exchange(p_clcb->bda,
+                                                  p_clcb->bta_conn_id)) {
+      bta_gattc_enqueue(p_clcb, p_data);
+    } else {
+      LOG_ERROR("Device %s disconnected", p_clcb->bda.ToString().c_str());
+      bta_gattc_cmpl_sendmsg(p_clcb->bta_conn_id, GATTC_OPTYPE_CONFIG,
+                             GATT_ERR_UNLIKELY, NULL);
+    }
+    return;
+  }
+
+  /* Check if MTU is not already set, if so, just report it back to the user
+   * and continue with other requests.
+   */
+  if (bta_gattc_handle_multiple_mtu_requests(p_clcb, p_data)) {
+    bta_gattc_continue(p_clcb);
+    return;
+  }
+
+  /* Set flag on TCB showing that MTU Exchange has been scheduled.
+   * We need it for proper handling other MTU requests. */
+  gatt_set_pending_mtu_exchange_flag(p_clcb->bda);
   if (bta_gattc_enqueue(p_clcb, p_data) == ENQUEUED_FOR_LATER) return;
 
   tGATT_STATUS status =
@@ -1138,17 +1170,31 @@ void bta_gattc_op_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
   }
 
   /* service handle change void the response, discard it */
-  if (op == GATTC_OPTYPE_READ)
+  if (op == GATTC_OPTYPE_READ) {
     bta_gattc_read_cmpl(p_clcb, &p_data->op_cmpl);
-
-  else if (op == GATTC_OPTYPE_WRITE)
+  } else if (op == GATTC_OPTYPE_WRITE) {
     bta_gattc_write_cmpl(p_clcb, &p_data->op_cmpl);
-
-  else if (op == GATTC_OPTYPE_EXE_WRITE)
+  } else if (op == GATTC_OPTYPE_EXE_WRITE) {
     bta_gattc_exec_cmpl(p_clcb, &p_data->op_cmpl);
-
-  else if (op == GATTC_OPTYPE_CONFIG)
+  } else if (op == GATTC_OPTYPE_CONFIG) {
     bta_gattc_cfg_mtu_cmpl(p_clcb, &p_data->op_cmpl);
+
+    /* If there is more clients waiting for the MTU results on the same device,
+     * lets trigger them now.
+     */
+    tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(p_clcb->bda, p_clcb->transport);
+    if (p_tcb && !p_tcb->conn_ids_waiting_for_mtu_exchange.empty()) {
+      for (auto conn_id = p_tcb->conn_ids_waiting_for_mtu_exchange.front();
+           p_tcb->conn_ids_waiting_for_mtu_exchange.empty();
+           p_tcb->conn_ids_waiting_for_mtu_exchange.pop_front()) {
+        tBTA_GATTC_CLCB* p_clcb = bta_gattc_find_clcb_by_conn_id(conn_id);
+        if (p_clcb) {
+          LOG_DEBUG("Continue MTU request for client conn_id=0x%04x", conn_id);
+          bta_gattc_continue(p_clcb);
+        }
+      }
+    }
+  }
 
   // If receive DATABASE_OUT_OF_SYNC error code, bta_gattc should start service
   // discovery immediately
