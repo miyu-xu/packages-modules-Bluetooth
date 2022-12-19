@@ -46,6 +46,13 @@ RawAddress btif_av_sink_active_peer(void);
  */
 bool btif_av_is_sink_enabled(void);
 
+/** src and sink coexit, we can be src or sink any time. @{ */
+/**
+ * Check whether A2DP Source is enabled.
+ */
+bool btif_av_is_source_enabled(void);
+/** @} */
+
 /**
  * Start streaming.
  */
@@ -84,10 +91,12 @@ bool btif_av_stream_ready(void);
  */
 bool btif_av_stream_started_ready(void);
 
+/** src and sink coexit, we can be src or sink any time. @{ */
 /**
  * Check whether there is a connected peer (either Source or Sink)
  */
 bool btif_av_is_connected(void);
+/** @} */
 
 /**
  * Get the Stream Endpoint Type of the Active peer.
@@ -227,6 +236,14 @@ bool btif_av_is_a2dp_offload_running(void);
 bool btif_av_is_peer_silenced(const RawAddress& peer_address);
 
 /**
+ * check the a2dp connect status
+ *
+ * @param address : checked device address
+ *
+ */
+bool btif_av_is_connected(const RawAddress& peer_address);
+
+/**
  * Set the dynamic audio buffer size
  *
  * @param dynamic_audio_buffer_size to set
@@ -240,4 +257,17 @@ void btif_av_set_dynamic_audio_buffer_size(uint8_t dynamic_audio_buffer_size);
  */
 void btif_av_set_low_latency(bool is_low_latency);
 
+/** src and sink coexit, we can be src or sink any time. @{ */
+/**
+ * Check whether A2DP Source is enabled.
+ */
+extern bool btif_av_is_source_enabled(void);
+extern bool btif_av_both_enable(void);
+extern bool btif_av_is_sink_enabled(void);
+extern bool btif_av_is_connected(const RawAddress& peer_address);
+extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
+extern bool btif_av_peer_is_connected_source(const RawAddress& peer_address);
+extern bool btif_av_peer_is_sink(const RawAddress& peer_address);
+extern bool btif_av_peer_is_source(const RawAddress& peer_address);
+/** @} */
 #endif /* BTIF_AV_H */

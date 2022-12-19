@@ -38,15 +38,27 @@
 
 #include <base/logging.h>
 
-void btif_a2dp_on_idle(void) {
+/** src and sink coexit, we can be src or sink any time. @{ */
+void btif_a2dp_on_idle(const RawAddress& peer_addr) {
   LOG_VERBOSE("Peer stream endpoint type:%s",
               peer_stream_endpoint_text(btif_av_get_peer_sep()).c_str());
-  if (btif_av_get_peer_sep() == AVDT_TSEP_SNK) {
+  if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+    LOG_INFO("%s: ## ON A2DP IDLE ## is_sink = %d", __func__,
+             btif_av_peer_is_sink(peer_addr));
+    if (btif_av_peer_is_sink(peer_addr)) {
+      btif_a2dp_source_on_idle();
+    } else if (btif_av_peer_is_source(peer_addr)) {
+      btif_a2dp_sink_on_idle();
+    }
+  } else {
+    if (btif_av_get_peer_sep() == AVDT_TSEP_SNK) {
     btif_a2dp_source_on_idle();
-  } else if (btif_av_get_peer_sep() == AVDT_TSEP_SRC) {
-    btif_a2dp_sink_on_idle();
+    } else if (btif_av_get_peer_sep() == AVDT_TSEP_SRC) {
+      btif_a2dp_sink_on_idle();
+    }
   }
 }
+/** @} */
 
 bool btif_a2dp_on_started(const RawAddress& peer_addr, tBTA_AV_START* p_av_start) {
   LOG(INFO) << __func__ << ": ## ON A2DP STARTED ## peer " << peer_addr << " p_av_start:" << p_av_start;
