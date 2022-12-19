@@ -147,6 +147,8 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_search_clear_queue();
           bta_dm_search_set_state(BTA_DM_SEARCH_CANCELLING);
           bta_dm_search_cancel();
+        case BTA_DM_API_SEARCH_EVT:
+          bta_dm_queue_search(message);
           break;
         default:
           LOG_INFO("Received unexpected event %s[0x%x] in state %s",
