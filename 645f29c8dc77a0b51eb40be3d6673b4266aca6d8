@@ -1,0 +1,299 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd88e461_a4a82471",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "Mirroring my comments from the design doc:\n\n1. We should use a builder pattern instead of a constructor. This provides more opportunity for extensibility.\n2.",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0cd7e5_402fd8d0",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "nit: did you intend to put this in the JavaDoc?",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "840cfaa8_e2e90473",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "nit: Can we explicitly mark all of the fields here with their desired visibility? Just in case we change the visibility of the class, I don\u0027t want an accidental change to the visibility of methods / fields/",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324c0cc6_f2d336df",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "nit: First sentence of all Javadocs should end in a period.",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3013b92b_28daa663",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "This ctor can be removed in favor of using the builder (which would invoke the other ctor).",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def8242a_4e73382d",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "We need more detail in all of these docs. It isn\u0027t clear to me what this is supposed to represent without reading the design doc.",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3a670e_e407cf57",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "Put IntDef annotations on all params for the setters as well.",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03b471cb_85febf98",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "Should be @hide",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee45d121_f3278e5e",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "Should also be @hide",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8af728f_d10d9230",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3235,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "Consider using BluetoothStatusCodes#FEATURE_SUPPORTED and BluetoothStatusCodes#FEATURE_NOT_SUPPORTED. The current design also doesn\u0027t clearly indicate if the feature wasn\u0027t supported, so those constants should help!",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a07ce75d_9b535bb1",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3246,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "nit: remove \"or not\". \"Whether\" already indicates it\u0027ll return a yes or no.",
+      "range": {
+        "startLine": 3246,
+        "startChar": 68,
+        "endLine": 3246,
+        "endChar": 74
+      },
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e34858f2_f43ee59e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3247,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "I would rephrase this --\u003e \"This requires a vendor specific command, so the API returns {@link #REMOTE_STATE_UNKNOWN} to indicate the remote device has not yet relayed this information.\"",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7502bb77_e8e4be18",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3251,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "nit: don\u0027t end return or param summaries in a period",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bc3fcdf_220829be",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3284,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "I would remove the parentheses and reword to something like \"Sets and sends the provided call audio preferences to the remote device\"",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e4ad0b7_fb85a37d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3286,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "nit: \"call audio policy preferences\"",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f480379d_b74e2655",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3318,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "This is slightly misleading because I assume this returns a default if it\u0027s never set. I would just reword to \"Gets the call audio preferences for the remote device.\" I think we should also indicate that the caller should first check getAudioPolicyRemoteSupported.",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ece556_a533f062",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3320,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-19T19:25:26Z",
+      "side": 1,
+      "message": "The API is marked @Nullable. We should document when it returns null.",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
