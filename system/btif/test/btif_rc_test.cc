@@ -239,7 +239,9 @@ class BtifRcFeatureTest : public BtifRcTest {
  protected:
   void SetUp() override {
     BtifRcTest::SetUp();
-    init_ctrl(&btrc_ctrl_callbacks);
+    if (bt_rc_ctrl_callbacks == NULL) {
+      bt_rc_ctrl_callbacks = &btrc_ctrl_callbacks;
+    }
     jni_thread.StartUp();
     btrc_ctrl_callbacks.getrcfeatures_cb = [](const RawAddress& bd_addr,
                                               int features) {
@@ -283,7 +285,9 @@ class BtifRcBrowseConnectionTest : public BtifRcTest {
  protected:
   void SetUp() override {
     BtifRcTest::SetUp();
-    init_ctrl(&btrc_ctrl_callbacks);
+    if (bt_rc_ctrl_callbacks == NULL) {
+      bt_rc_ctrl_callbacks = &btrc_ctrl_callbacks;
+    }
     jni_thread.StartUp();
     btrc_ctrl_callbacks.connection_state_cb = [](bool rc_state, bool bt_state,
                                                  const RawAddress& bd_addr) {
@@ -330,7 +334,9 @@ class BtifRcConnectionTest : public BtifRcTest {
  protected:
   void SetUp() override {
     BtifRcTest::SetUp();
-    init_ctrl(&btrc_ctrl_callbacks);
+    if (bt_rc_ctrl_callbacks == NULL) {
+      bt_rc_ctrl_callbacks = &btrc_ctrl_callbacks;
+    }
     jni_thread.StartUp();
     btrc_ctrl_callbacks.connection_state_cb = [](bool rc_state, bool bt_state,
                                                  const RawAddress& bd_addr) {
