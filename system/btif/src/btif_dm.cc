@@ -2381,11 +2381,12 @@ void btif_dm_start_discovery(void) {
 
   /* no race here because we're guaranteed to be in the main thread */
   if (bta_dm_is_search_request_queued()) {
-    LOG_INFO("%s skipping start discovery because a request is queued",
-             __func__);
-    return;
+    // Informational indication of a search request already queued as there
+    // may be tasks in flight in the Mainloop queue
+    LOG_INFO(
+        "Received device discovery inquiry scan request while already in "
+        "progress");
   }
-
   /* Will be enabled to true once inquiry busy level has been received */
   btif_dm_inquiry_in_progress = false;
   /* find nearby devices */
