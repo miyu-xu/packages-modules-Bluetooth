@@ -38,9 +38,25 @@
 
 #include <base/logging.h>
 
-void btif_a2dp_on_idle(void) {
+#ifdef OS_ANDROID
+#include <a2dp.sysprop.h>
+#endif
+
+void btif_a2dp_on_idle(const RawAddress& peer_addr) {
   LOG_VERBOSE("Peer stream endpoint type:%s",
               peer_stream_endpoint_text(btif_av_get_peer_sep()).c_str());
+  if (android::sysprop::bluetooth::A2dp::a2dp_src_sink_coexist().value_or(false)) {
+    bool is_sink = btif_av_peer_is_sink(peer_addr);
+    bool is_source = btif_av_peer_is_source(peer_addr);
+    LOG_INFO("## ON A2DP IDLE ## is_sink:%d is_souce:%d", is_sink, is_source);
+    if (is_sink) {
+      btif_a2dp_source_on_idle();
+    } else if (is_source) {
+      btif_a2dp_sink_on_idle();
+    }
+    return;
+  } 
+
   if (btif_av_get_peer_sep() == AVDT_TSEP_SNK) {
     btif_a2dp_source_on_idle();
   } else if (btif_av_get_peer_sep() == AVDT_TSEP_SRC) {
