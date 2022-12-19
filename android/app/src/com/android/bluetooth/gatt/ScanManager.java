@@ -1482,12 +1482,11 @@ public class ScanManager {
         private void initFilterIndexStack() {
             int maxFiltersSupported =
                     AdapterService.getAdapterService().getNumOfOffloadedScanFilterSupported();
-            // Start from index 4 as:
+            // Start from index 3 as:
             // index 0 is reserved for ALL_PASS filter in Settings app.
             // index 1 is reserved for ALL_PASS filter for regular scan apps.
             // index 2 is reserved for ALL_PASS filter for batch scan apps.
-            // index 3 is reserved for BAP/CAP Announcements
-            for (int i = 4; i < maxFiltersSupported; ++i) {
+            for (int i = 3; i < maxFiltersSupported; ++i) {
                 mFilterIndexStack.add(i);
             }
         }
