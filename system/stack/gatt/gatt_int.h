@@ -344,6 +344,9 @@ typedef struct {
 
   bool in_use;
   uint8_t tcb_idx;
+
+  uint16_t pending_mtu_exchange_value;
+  std::list<uint16_t> conn_ids_waiting_for_mtu_exchange;
 } tGATT_TCB;
 
 /* logic channel */
@@ -598,6 +601,11 @@ extern uint16_t gatt_tcb_get_payload_size_tx(tGATT_TCB& tcb, uint16_t cid);
 extern uint16_t gatt_tcb_get_payload_size_rx(tGATT_TCB& tcb, uint16_t cid);
 extern void gatt_clcb_invalidate(tGATT_TCB* p_tcb, const tGATT_CLCB* p_clcb);
 extern void gatt_clcb_dealloc(tGATT_CLCB* p_clcb);
+extern uint16_t gatt_get_mtu(const RawAddress& bda, tBT_TRANSPORT transport);
+extern bool gatt_is_pending_mtu_exchange(const RawAddress& bda,
+                                         tBT_TRANSPORT transport);
+extern bool gatt_set_conn_id_waiting_for_mtu_exchange(const RawAddress& bda,
+                                                      uint16_t conn_id);
 
 extern void gatt_sr_copy_prep_cnt_to_cback_cnt(tGATT_TCB& p_tcb);
 extern bool gatt_sr_is_cback_cnt_zero(tGATT_TCB& p_tcb);

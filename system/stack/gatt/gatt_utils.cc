@@ -451,6 +451,8 @@ tGATT_TCB* gatt_allocate_tcb_by_bdaddr(const RawAddress& bda,
     p_tcb->transport = transport;
     p_tcb->peer_bda = bda;
     p_tcb->eatt = 0;
+    p_tcb->pending_mtu_exchange_value = 0;
+    p_tcb->conn_ids_waiting_for_mtu_exchange = std::list<uint16_t>();
     gatt_sr_init_cl_status(*p_tcb);
     gatt_cl_init_sr_status(*p_tcb);
 
@@ -458,6 +460,41 @@ tGATT_TCB* gatt_allocate_tcb_by_bdaddr(const RawAddress& bda,
   }
 
   return NULL;
+}
+
+uint16_t gatt_get_mtu(const RawAddress& bda, tBT_TRANSPORT transport) {
+  tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bda, transport);
+  if (!p_tcb) return 0;
+
+  return p_tcb->payload_size;
+}
+
+bool gatt_is_pending_mtu_exchange(const RawAddress& bda,
+                                  tBT_TRANSPORT transport) {
+  if (transport == BT_TRANSPORT_BR_EDR) return false;
+
+  tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bda, transport);
+  if (!p_tcb) return false;
+
+  return p_tcb->pending_mtu_exchange_value != 0;
+}
+
+bool gatt_set_conn_id_waiting_for_mtu_exchange(const RawAddress& bda,
+                                               uint16_t conn_id) {
+  tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bda, BT_TRANSPORT_LE);
+  if (!p_tcb) {
+    LOG_WARN("TCB for %s is not available", bda.ToString().c_str());
+    return false;
+  }
+  auto it = std::find(p_tcb->conn_ids_waiting_for_mtu_exchange.begin(),
+                      p_tcb->conn_ids_waiting_for_mtu_exchange.end(), conn_id);
+  if (it == p_tcb->conn_ids_waiting_for_mtu_exchange.end()) {
+    p_tcb->conn_ids_waiting_for_mtu_exchange.push_back(conn_id);
+    LOG_INFO("Put conn_id=0x%04x on wait list", conn_id);
+  } else {
+    LOG_INFO("Conn_id=0x%04x already on wait list", conn_id);
+  }
+  return true;
 }
 
 /** gatt_build_uuid_to_stream will convert 32bit UUIDs to 128bit. This function
