@@ -1,0 +1,63 @@
+---- btif_av_is_connected Matches (4 in 4 files) ----
+Btif_av.cc (z:\bluetooth\system\btif\src):bool btif_av_is_connected(void) {
+Btif_av.h (z:\bluetooth\system\btif\include):bool btif_av_is_connected(void);
+Btif_rc.cc (z:\bluetooth\system\btif\src):      (!btif_av_is_connected())) {
+Btif_rc_test.cc (z:\bluetooth\system\btif\test):bool btif_av_is_connected(void) { return true; }
+---- btif_av_is_connected_addr Matches (7 in 4 files) ----
+Btif_av.cc (z:\bluetooth\system\btif\src):extern bool btif_av_is_connected_addr(const RawAddress& peer_address);
+Btif_av.cc (z:\bluetooth\system\btif\src):bool btif_av_is_connected_addr(const RawAddress& peer_address) {
+Btif_av.h (z:\bluetooth\system\btif\include):bool btif_av_is_connected_addr(const RawAddress& peer_address);
+Btif_av.h (z:\bluetooth\system\btif\include):extern bool btif_av_is_connected_addr(const RawAddress& peer_address);
+Btif_rc.cc (z:\bluetooth\system\btif\src):      btif_av_is_connected_addr(p_dev->rc_addr),
+Btif_rc.cc (z:\bluetooth\system\btif\src):  if (btif_av_is_connected_addr(p_dev->rc_addr)) {
+Btif_rc_test.cc (z:\bluetooth\system\btif\test):bool btif_av_is_connected_addr(const RawAddress& peer_address) { return true; }
+---- btif_active_av_is_connected Matches (0 in 0 files) ----
+---- btif_av_src_sink_coexist_enabled Matches (48 in 10 files) ----
+Avct_bcb_act.cc (z:\bluetooth\system\stack\avct):  if (btif_av_src_sink_coexist_enabled()) {
+Avct_l2c.cc (z:\bluetooth\system\stack\avct):    if (btif_av_src_sink_coexist_enabled()) {
+Avct_lcb_act.cc (z:\bluetooth\system\stack\avct):  if (btif_av_src_sink_coexist_enabled()) {
+Avct_lcb_act.cc (z:\bluetooth\system\stack\avct):  if (btif_av_src_sink_coexist_enabled()) {
+Avrc_api.cc (z:\bluetooth\system\stack\avrc):  if (!btif_av_src_sink_coexist_enabled())
+Btif_a2dp.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):      if (!btif_av_src_sink_coexist_enabled() ||
+Btif_av.cc (z:\bluetooth\system\btif\src):          (btif_av_src_sink_coexist_enabled() &&
+Btif_av.cc (z:\bluetooth\system\btif\src):    if (btif_av_src_sink_coexist_enabled()) btif_av_sink_delete_active_peer();
+Btif_av.cc (z:\bluetooth\system\btif\src):      if (!btif_av_src_sink_coexist_enabled() ||
+Btif_av.cc (z:\bluetooth\system\btif\src):          (btif_av_src_sink_coexist_enabled() &&
+Btif_av.cc (z:\bluetooth\system\btif\src):    if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):    if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
+Btif_av.cc (z:\bluetooth\system\btif\src):          if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable())
+Btif_av.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
+Btif_av.cc (z:\bluetooth\system\btif\src):          if (btif_av_src_sink_coexist_enabled())
+Btif_av.cc (z:\bluetooth\system\btif\src):          if (btif_av_src_sink_coexist_enabled())
+Btif_av.cc (z:\bluetooth\system\btif\src):      if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):        if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):        if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):        if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):        if (btif_av_src_sink_coexist_enabled() &&
+Btif_av.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):      if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):      if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):bool btif_av_src_sink_coexist_enabled() {
+Btif_av.cc (z:\bluetooth\system\btif\src):    if (btif_av_src_sink_coexist_enabled()) {
+Btif_av.cc (z:\bluetooth\system\btif\src):    if (btif_av_src_sink_coexist_enabled())
+Btif_av.h (z:\bluetooth\system\btif\include):extern bool btif_av_src_sink_coexist_enabled(void);
+Btif_rc.cc (z:\bluetooth\system\btif\src):    if (btif_av_src_sink_coexist_enabled()) {
+Btif_rc.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() &&
+Btif_rc.cc (z:\bluetooth\system\btif\src):      if (btif_av_src_sink_coexist_enabled() &&
+Btif_rc.cc (z:\bluetooth\system\btif\src):  if (btif_av_src_sink_coexist_enabled() &&
+Connection_handler.cc (z:\bluetooth\system\profile\avrcp):extern bool btif_av_src_sink_coexist_enabled(void);
+Connection_handler.cc (z:\bluetooth\system\profile\avrcp):      if (!btif_av_src_sink_coexist_enabled() ||
+Connection_handler.cc (z:\bluetooth\system\profile\avrcp):          (btif_av_src_sink_coexist_enabled() &&
+Connection_handler.cc (z:\bluetooth\system\profile\avrcp):      if (btif_av_src_sink_coexist_enabled() && peer_addr != NULL &&
+Connection_handler.cc (z:\bluetooth\system\profile\avrcp):        if (!btif_av_src_sink_coexist_enabled() ||
+Connection_handler.cc (z:\bluetooth\system\profile\avrcp):            (btif_av_src_sink_coexist_enabled() &&
+Connection_handler.cc (z:\bluetooth\system\profile\avrcp):    if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+Device.cc (z:\bluetooth\system\profile\avrcp):extern bool btif_av_src_sink_coexist_enabled(void);
+Device.cc (z:\bluetooth\system\profile\avrcp):        if ((!btif_av_src_sink_coexist_enabled() ||
+Device.cc (z:\bluetooth\system\profile\avrcp):             (btif_av_src_sink_coexist_enabled() &&
