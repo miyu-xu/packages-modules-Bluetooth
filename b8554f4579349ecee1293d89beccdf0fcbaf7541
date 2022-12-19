@@ -46,6 +46,30 @@
       },
       "revId": "b8554f4579349ecee1293d89beccdf0fcbaf7541",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07fc8194_5c5c5f79",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-19T20:24:06Z",
+      "side": 1,
+      "message": "I would create dedicated one",
+      "parentUuid": "4072fa6b_282265b2",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 4
+      },
+      "revId": "b8554f4579349ecee1293d89beccdf0fcbaf7541",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
