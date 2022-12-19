@@ -46,6 +46,30 @@
       },
       "revId": "a5fe7348726b431036185e7d5906bab288c7e973",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6e8026_dc89e182",
+        "filename": "system/test/headless/dump.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-19T16:16:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6fabd0d1_ae8c91bf",
+      "range": {
+        "startLine": 17,
+        "startChar": 51,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "a5fe7348726b431036185e7d5906bab288c7e973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
