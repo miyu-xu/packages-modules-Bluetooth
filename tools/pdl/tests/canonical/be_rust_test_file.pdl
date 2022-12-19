@@ -28,6 +28,16 @@ packet Packet_Enum_Field {
     c: 57,
 }
 
+struct SizedStruct {
+    a: 8,
+}
+
+struct UnsizedStruct {
+    _size_(array): 2,
+    reserved: 6,
+    array: 8[],
+}
+
 // Array fields
 // Array element types
 
@@ -46,12 +56,40 @@ packet Packet_Array_Field_ByteElement_ConstantSize {
     array: 8[4],
 }
 
+packet Packet_Array_Field_ByteElement_UnknownSize {
+    array: 8[],
+}
+
 packet Packet_Array_Field_ScalarElement_ConstantSize {
     array: 16[4],
 }
 
+packet Packet_Array_Field_ScalarElement_UnknownSize {
+    array: 16[],
+}
+
 packet Packet_Array_Field_EnumElement_ConstantSize {
     array: Enum16[4],
+}
+
+packet Packet_Array_Field_EnumElement_UnknownSize {
+    array: Enum16[],
+}
+
+packet Packet_Array_Field_SizedElement_ConstantSize {
+    array: SizedStruct[4],
+}
+
+packet Packet_Array_Field_SizedElement_UnknownSize {
+    array: SizedStruct[],
+}
+
+packet Packet_Array_Field_UnsizedElement_ConstantSize {
+    array: UnsizedStruct[4],
+}
+
+packet Packet_Array_Field_UnsizedElement_UnknownSize {
+    array: UnsizedStruct[],
 }
 
 packet Packet_Size_Field {
