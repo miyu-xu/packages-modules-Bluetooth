@@ -445,17 +445,15 @@ extern void BTA_GATTC_AppDeregister(tGATT_IF client_if);
  *
  * Parameters       client_if: server interface.
  *                  remote_bda: remote device BD address.
- *                  connection_type: connection type used for the peer device
+ *                  is_direct: direct connection or background auto connection
  *                  initiating_phys: LE PHY to use, optional
  *
  ******************************************************************************/
 extern void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                           tBTM_BLE_CONN_TYPE connection_type,
-                           bool opportunistic);
+                           bool is_direct, bool opportunistic);
 extern void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                           tBTM_BLE_CONN_TYPE connection_type,
-                           tBT_TRANSPORT transport, bool opportunistic,
-                           uint8_t initiating_phys);
+                           bool is_direct, tBT_TRANSPORT transport,
+                           bool opportunistic, uint8_t initiating_phys);
 
 /*******************************************************************************
  *

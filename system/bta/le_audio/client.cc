@@ -1102,7 +1102,7 @@ class LeAudioClientImpl : public LeAudioClient {
           le_audio::ConnectionStatus::SUCCESS);
     }
 
-    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
+    BTA_GATTC_Open(gatt_if_, address, true, false);
   }
 
   std::vector<RawAddress> GetGroupDevices(const int group_id) override {
@@ -1198,7 +1198,7 @@ class LeAudioClientImpl : public LeAudioClient {
       leAudioDevice->SetConnectionState(
           DeviceConnectState::CONNECTING_AUTOCONNECT);
       leAudioDevice->autoconnect_flag_ = true;
-      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
+      BTA_GATTC_Open(gatt_if_, address, false, false);
     }
   }
 
@@ -1245,8 +1245,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     leAudioDevice->SetConnectionState(
         DeviceConnectState::CONNECTING_AUTOCONNECT);
-    BTA_GATTC_Open(gatt_if_, leAudioDevice->address_,
-                   BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
+    BTA_GATTC_Open(gatt_if_, leAudioDevice->address_, false, false);
   }
 
   void Disconnect(const RawAddress& address) override {
@@ -1816,7 +1815,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (reason != GATT_CONN_TERMINATE_LOCAL_HOST) {
       leAudioDevice->SetConnectionState(
           DeviceConnectState::CONNECTING_AUTOCONNECT);
-      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
+      BTA_GATTC_Open(gatt_if_, address, false, false);
     } else {
       leAudioDevice->SetConnectionState(DeviceConnectState::DISCONNECTED);
     }

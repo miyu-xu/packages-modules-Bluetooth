@@ -112,12 +112,12 @@ void BTA_GATTC_GetGattDb(uint16_t conn_id, uint16_t start_handle,
   mock_function_count_map[__func__]++;
 }
 void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                    tBTM_BLE_CONN_TYPE connection_type, bool opportunistic) {
+                    bool is_direct, bool opportunistic) {
   mock_function_count_map[__func__]++;
 }
 void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda,
-                    tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
-                    bool opportunistic, uint8_t initiating_phys) {
+                    bool is_direct, tBT_TRANSPORT transport, bool opportunistic,
+                    uint8_t initiating_phys) {
   mock_function_count_map[__func__]++;
 }
 void BTA_GATTC_PrepareWrite(uint16_t conn_id, uint16_t handle, uint16_t offset,
