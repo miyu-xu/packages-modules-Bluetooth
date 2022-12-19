@@ -139,6 +139,8 @@ oneway interface IBluetoothGatt {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void readRemoteRssi(in int clientIf, in String address, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void getAclHandle(in int clientIf, in String address, in int transport, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void configureMTU(in int clientIf, in String address, in int mtu, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void connectionParameterUpdate(in int clientIf, in String address, in int connectionPriority, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
