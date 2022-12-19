@@ -62,10 +62,6 @@ static void bta_gattc_conn_cback(tGATT_IF gattc_if, const RawAddress& bda,
 static void bta_gattc_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
                                  tGATT_STATUS status,
                                  tGATT_CL_COMPLETE* p_data);
-static void bta_gattc_cmpl_sendmsg(uint16_t conn_id, tGATTC_OPTYPE op,
-                                   tGATT_STATUS status,
-                                   tGATT_CL_COMPLETE* p_data);
-
 static void bta_gattc_deregister_cmpl(tBTA_GATTC_RCB* p_clreg);
 static void bta_gattc_enc_cmpl_cback(tGATT_IF gattc_if, const RawAddress& bda);
 static void bta_gattc_cong_cback(uint16_t conn_id, bool congested);
@@ -742,6 +738,42 @@ void bta_gattc_restart_discover(tBTA_GATTC_CLCB* p_clcb,
 
 /** Configure MTU size on the GATT connection */
 void bta_gattc_cfg_mtu(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
+  uint16_t current_mtu = 0;
+  auto result = GATTC_TryMtuRequest(p_clcb->bda, p_clcb->transport,
+                                    p_clcb->bta_conn_id, &current_mtu);
+  switch (result) {
+    case MTU_EXCHANGE_DEVICE_DISCONNECTED:
+      LOG_INFO("Device %s disconnected", ADDRESS_TO_LOGGABLE_CSTR(p_clcb->bda));
+      bta_gattc_cmpl_sendmsg(p_clcb->bta_conn_id, GATTC_OPTYPE_CONFIG,
+                             GATT_NO_RESOURCES, NULL);
+      bta_gattc_continue(p_clcb);
+      return;
+    case MTU_EXCHANGE_NOT_ALLOWED:
+      LOG_INFO("Not allowed for BR/EDR devices %s",
+               ADDRESS_TO_LOGGABLE_CSTR(p_clcb->bda));
+      bta_gattc_cmpl_sendmsg(p_clcb->bta_conn_id, GATTC_OPTYPE_CONFIG,
+                             GATT_ERR_UNLIKELY, NULL);
+      bta_gattc_continue(p_clcb);
+      return;
+    case MTU_EXCHANGE_ALREADY_DONE:
+      /* Check if MTU is not already set, if so, just report it back to the user
+       * and continue with other requests.
+       */
+      GATTC_UpdateUserAttMtuIfNeeded(p_clcb->bda, p_clcb->transport,
+                                     p_data->api_mtu.mtu);
+      bta_gattc_send_mtu_response(p_clcb, p_data, current_mtu);
+      return;
+    case MTU_EXCHANGE_IN_PROGRESS:
+      LOG_INFO("Enqueue MTU Request  - waiting for response on p_clcb %p",
+               p_clcb);
+      bta_gattc_enqueue(p_clcb, p_data);
+      return;
+
+    case MTU_EXCHANGE_NOT_DONE_YET:
+      /* OK to proceed */
+      break;
+  }
+
   if (bta_gattc_enqueue(p_clcb, p_data) == ENQUEUED_FOR_LATER) return;
 
   tGATT_STATUS status =
@@ -1104,6 +1136,8 @@ static void bta_gattc_cfg_mtu_cmpl(tBTA_GATTC_CLCB* p_clcb,
   void* my_cb_data = p_clcb->p_q_cmd->api_mtu.mtu_cb_data;
   tBTA_GATTC cb_data;
 
+  uint16_t user_mtu = p_clcb->p_q_cmd->api_mtu.mtu;
+
   osi_free_and_reset((void**)&p_clcb->p_q_cmd);
 
   if (p_data->p_cmpl && p_data->status == GATT_SUCCESS)
@@ -1113,7 +1147,12 @@ static void bta_gattc_cfg_mtu_cmpl(tBTA_GATTC_CLCB* p_clcb,
   p_clcb->status = p_data->status;
   cb_data.cfg_mtu.conn_id = p_clcb->bta_conn_id;
   cb_data.cfg_mtu.status = p_data->status;
-  cb_data.cfg_mtu.mtu = p_clcb->p_srcb->mtu;
+
+  if (p_clcb->p_srcb->mtu > user_mtu) {
+    cb_data.cfg_mtu.mtu = user_mtu;
+  } else {
+    cb_data.cfg_mtu.mtu = p_clcb->p_srcb->mtu;
+  }
 
   if (cb) {
     cb(p_clcb->bta_conn_id, p_data->status, my_cb_data);
@@ -1171,17 +1210,30 @@ void bta_gattc_op_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
   }
 
   /* service handle change void the response, discard it */
-  if (op == GATTC_OPTYPE_READ)
+  if (op == GATTC_OPTYPE_READ) {
     bta_gattc_read_cmpl(p_clcb, &p_data->op_cmpl);
-
-  else if (op == GATTC_OPTYPE_WRITE)
+  } else if (op == GATTC_OPTYPE_WRITE) {
     bta_gattc_write_cmpl(p_clcb, &p_data->op_cmpl);
-
-  else if (op == GATTC_OPTYPE_EXE_WRITE)
+  } else if (op == GATTC_OPTYPE_EXE_WRITE) {
     bta_gattc_exec_cmpl(p_clcb, &p_data->op_cmpl);
-
-  else if (op == GATTC_OPTYPE_CONFIG)
+  } else if (op == GATTC_OPTYPE_CONFIG) {
     bta_gattc_cfg_mtu_cmpl(p_clcb, &p_data->op_cmpl);
+
+    /* If there are more clients waiting for the MTU results on the same device,
+     * lets trigger them now.
+     */
+
+    auto outstanding_conn_ids =
+        GATTC_GetAndRemoveListOfConnIdsWaitingForMtuRequest(p_clcb->bda);
+    for (auto conn_id : outstanding_conn_ids) {
+      tBTA_GATTC_CLCB* p_clcb = bta_gattc_find_clcb_by_conn_id(conn_id);
+      LOG_DEBUG("Continue MTU request clcb %p", p_clcb);
+      if (p_clcb) {
+        LOG_DEBUG("Continue MTU request for client conn_id=0x%04x", conn_id);
+        bta_gattc_continue(p_clcb);
+      }
+    }
+  }
 
   // If receive DATABASE_OUT_OF_SYNC error code, bta_gattc should start service
   // discovery immediately
@@ -1542,9 +1594,8 @@ static void bta_gattc_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
 }
 
 /** client operation complete send message */
-static void bta_gattc_cmpl_sendmsg(uint16_t conn_id, tGATTC_OPTYPE op,
-                                   tGATT_STATUS status,
-                                   tGATT_CL_COMPLETE* p_data) {
+void bta_gattc_cmpl_sendmsg(uint16_t conn_id, tGATTC_OPTYPE op,
+                            tGATT_STATUS status, tGATT_CL_COMPLETE* p_data) {
   const size_t len = sizeof(tBTA_GATTC_OP_CMPL) + sizeof(tGATT_CL_COMPLETE);
   tBTA_GATTC_OP_CMPL* p_buf = (tBTA_GATTC_OP_CMPL*)osi_calloc(len);
 
