@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a17626_5303ec7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-19T08:07:54Z",
+      "side": 1,
+      "message": "I cherry-picked the CL, but the test failed.",
+      "revId": "b13a95f088e8944b22c0d904a8e809b1de683572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
