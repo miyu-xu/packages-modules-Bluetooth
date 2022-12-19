@@ -43,6 +43,7 @@
 #include "stack/include/btm_api.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
+#include "btif_av.h"
 
 #include <base/logging.h>
 
@@ -126,6 +127,34 @@ static const char* bta_av_st_code(uint8_t state);
  *
  ******************************************************************************/
 static void bta_av_api_enable(tBTA_AV_DATA* p_data) {
+  /** src and sink coexit, we can be src or sink any time.
+   * source/sink has enable @{ */
+  if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+    if (bta_av_cb.features != 0) {
+      tBTA_AV_ENABLE enable;
+      tBTA_AV bta_av_data;
+      bta_av_cb.sink_features = p_data->api_enable.features;
+
+      /* if 1 => 0, then should register it, or ignore it */
+      if ((~bta_av_cb.sink_features) & bta_av_cb.features & BTA_AV_FEAT_NO_SCO_SSPD) {
+        bta_sys_sco_register(bta_av_sco_chg_cback);
+      }
+
+      enable.features = bta_av_cb.sink_features;
+      bta_av_data.enable = enable;
+      (*bta_av_cb.p_cback)(BTA_AV_ENABLE_EVT, &bta_av_data);
+
+      /* if this is source feature, then exchange them */
+      if (p_data->api_enable.features & BTA_AV_FEAT_SRC) {
+        tBTA_AV_FEAT tmp_feature = bta_av_cb.features;
+        bta_av_cb.features = bta_av_cb.sink_features;
+        bta_av_cb.sink_features = tmp_feature;
+      }
+      return;
+    }
+  }
+  /** @} */
+
   if (bta_av_cb.disabling) {
     APPL_TRACE_WARNING(
         "%s: previous (reg_audio=%#x) is still disabling (attempts=%d)",
@@ -286,6 +315,26 @@ static tBTA_AV_SCB* bta_av_alloc_scb(tBTA_AV_CHNL chnl) {
   return nullptr;
 }
 
+/** src and sink coexit, we can be src or sink any time. @{ */
+static tBTA_AV_SCB* bta_av_find_scb(tBTA_AV_CHNL chnl, uint8_t app_id) {
+  if (chnl != BTA_AV_CHNL_AUDIO) {
+    APPL_TRACE_ERROR("%s: bad channel: %d", __func__, chnl);
+    return nullptr;
+  }
+
+  for (int xx = 0; xx < BTA_AV_NUM_STRS; xx++) {
+    if ((bta_av_cb.p_scb[xx] != nullptr) &&
+      (bta_av_cb.p_scb[xx]->chnl == chnl) &&
+      (bta_av_cb.p_scb[xx]->app_id == app_id)) {
+      APPL_TRACE_DEBUG("%s: found at: %d", __func__, xx);
+      return bta_av_cb.p_scb[xx];
+    }
+  }
+
+  return nullptr;
+}
+/** @} */
+
 void bta_av_free_scb(tBTA_AV_SCB* p_scb) {
   if (p_scb == nullptr) return;
   uint8_t scb_index = p_scb->hdi;
@@ -400,7 +449,9 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
   AvdtpStreamConfig avdtp_stream_config;
   char* p_service_name;
   tBTA_UTL_COD cod;
-
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  uint8_t local_role = 0;
+  /** @} */
   if (bta_av_cb.disabling || (bta_av_cb.features == 0)) {
     APPL_TRACE_WARNING(
         "%s: AV instance (features=%#x, reg_audio=%#x) is not "
@@ -420,6 +471,11 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
   }
 
   avdtp_stream_config.Reset();
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  local_role = (p_data->api_reg.service_uuid == UUID_SERVCLASS_AUDIO_SINK) ?
+    AVDT_TSEP_SNK : AVDT_TSEP_SRC;
+  memset((void*)&registr, 0, sizeof(registr));
+  /** @} */
 
   registr.status = BTA_AV_FAIL_RESOURCES;
   registr.app_id = p_data->api_reg.app_id;
@@ -449,7 +505,14 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
   }
 
   do {
-    p_scb = bta_av_alloc_scb(registr.chnl);
+    if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+      /** src and sink coexit, we can be src or sink any time. @{ */
+      p_scb = bta_av_find_scb(registr.chnl, registr.app_id);
+      if (NULL == p_scb) p_scb = bta_av_alloc_scb(registr.chnl);
+      /** @} */
+    } else {
+      p_scb = bta_av_alloc_scb(registr.chnl);
+    }
     if (p_scb == NULL) {
       APPL_TRACE_ERROR("%s: failed to alloc SCB", __func__);
       break;
@@ -460,8 +523,11 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
 
     /* initialize the stream control block */
     registr.status = BTA_AV_SUCCESS;
-
-    if (bta_av_cb.reg_audio == 0) {
+    /** src and sink coexit, we can be src or sink any time.
+        * if don't register this role, register it @{ */
+    if ((bluetooth::common::init_flags::src_sink_coexit_is_enabled() && !(bta_av_cb.reg_role & (1 << local_role))) ||
+	  (!bluetooth::common::init_flags::src_sink_coexit_is_enabled() && bta_av_cb.reg_audio == 0)) {
+    /** @} */
       /* the first channel registered. register to AVDTP */
       reg.ctrl_mtu = 672;
       reg.ret_tout = BTA_AV_RET_TOUT;
@@ -564,10 +630,18 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
       codec_index_max = BTAV_A2DP_CODEC_INDEX_SINK_MAX;
     }
 
-    /* Initialize handles to zero */
-    for (int xx = 0; xx < BTAV_A2DP_CODEC_INDEX_MAX; xx++) {
-      p_scb->seps[xx].av_handle = 0;
+    /** src and sink coexit, we can be src or sink any time.
+     * Initialize handles to zero @{ */
+    if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+      for (int xx = codec_index_min; xx < codec_index_max; xx++) {
+        p_scb->seps[xx].av_handle = 0;
+      }
+    } else {
+      for (int xx = 0; xx < BTAV_A2DP_CODEC_INDEX_MAX; xx++) {
+        p_scb->seps[xx].av_handle = 0;
+      }
     }
+    /** @} */
 
     /* keep the configuration in the stream control block */
     p_scb->cfg = avdtp_stream_config.cfg;
@@ -601,8 +675,11 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
         p_scb->seps[codec_index].p_app_sink_data_cback = NULL;
       }
     }
-
-    if (!bta_av_cb.reg_audio) {
+    /** src and sink coexit, we can be src or sink any time.
+        * if don't register this role, register it @{ */
+    if ((bluetooth::common::init_flags::src_sink_coexit_is_enabled() && !(bta_av_cb.reg_role & (1 << local_role))) ||
+      (!bluetooth::common::init_flags::src_sink_coexit_is_enabled() && !bta_av_cb.reg_audio)) {
+    /** @} */
       bta_av_cb.sdp_a2dp_handle = 0;
       bta_av_cb.sdp_a2dp_snk_handle = 0;
       if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
@@ -652,6 +729,24 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
     bta_av_cb.reg_audio |= BTA_AV_HNDL_TO_MSK(p_scb->hdi);
     APPL_TRACE_DEBUG("%s: reg_audio: 0x%x", __func__, bta_av_cb.reg_audio);
   } while (0);
+
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+    bta_av_cb.reg_role |= (1 << local_role);
+    registr.peer_sep = (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) ? AVDT_TSEP_SNK : AVDT_TSEP_SRC;
+
+    /* there are too much check depend on it's only source */
+    if ((profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
+      && (bta_av_cb.reg_role & (1 << AVDT_TSEP_SRC))) {
+      p_bta_av_cfg = &bta_av_cfg;
+
+      if (!strncmp(AVRCP_1_3_STRING, avrcp_version, sizeof(AVRCP_1_3_STRING))) {  //ver if need
+        APPL_TRACE_DEBUG("%s: AVRCP 1.3 capabilites used", __func__);
+        p_bta_av_cfg = &bta_av_cfg_compatibility;
+      }
+    }
+  }
+  /** @} */
 
   /* call callback with register event */
   tBTA_AV bta_av_data;
@@ -1145,6 +1240,11 @@ static void bta_av_non_state_machine_event(uint16_t event,
     case BTA_AV_API_STOP_EVT:
       bta_av_api_to_ssm(p_data);
       break;
+    /** src and sink coexit, we can be src or sink any time. @{ */
+    case BTA_AV_API_PEER_SEP_EVT:
+      bta_av_api_set_peer_sep(p_data);
+      break;
+    /** @} */
   }
 }
 

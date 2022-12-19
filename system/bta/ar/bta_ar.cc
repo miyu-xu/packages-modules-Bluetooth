@@ -29,6 +29,7 @@
 #include "stack/include/avct_api.h"
 #include "stack/include/avrc_api.h"
 #include "types/raw_address.h"
+#include "btif_av.h"
 
 /* AV control block */
 tBTA_AR_CB bta_ar_cb;
@@ -162,9 +163,24 @@ void bta_ar_reg_avrc(uint16_t service_uuid, const char* service_name,
   uint8_t mask = BTA_AR_AV_MASK;
   uint8_t temp[8], *p;
 
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  uint16_t class_list[2];
+  uint16_t count = 1;
+
+  APPL_TRACE_API("%s uuid=0x%x, categories=%d, mask=0x%x, ver=0x%x",
+      __FUNCTION__, service_uuid, categories, mask, profile_version);
+  /** @} */
+
   if (!categories) return;
 
   if (service_uuid == UUID_SERVCLASS_AV_REM_CTRL_TARGET) {
+    /** src and sink coexit, we can be src or sink any time. @{ */
+    if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+      bta_ar_cb.tg_categories [mask - 1] = categories;
+      categories = bta_ar_cb.tg_categories[0]|bta_ar_cb.tg_categories[1];
+    }
+    /** @} */
+
     if (bta_ar_cb.sdp_tg_handle == 0) {
       bta_ar_cb.tg_registered = mask;
       bta_ar_cb.sdp_tg_handle = SDP_CreateRecord();
@@ -173,6 +189,14 @@ void bta_ar_reg_avrc(uint16_t service_uuid, const char* service_name,
                      profile_version, 0);
       bta_sys_add_uuid(service_uuid);
     }
+    /** src and sink coexit, we can be src or sink any time. @{ */
+    else if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+      p = temp;
+      UINT16_TO_BE_STREAM(p, categories);
+      SDP_AddAttribute(bta_ar_cb.sdp_tg_handle, ATTR_ID_SUPPORTED_FEATURES,
+                       UINT_DESC_TYPE, (uint32_t)2, (uint8_t*)temp);
+    }
+    /** @} */
     /* only one TG is allowed (first-come, first-served).
      * If sdp_tg_handle is non-0, ignore this request */
   } else if ((service_uuid == UUID_SERVCLASS_AV_REMOTE_CONTROL) ||
@@ -185,7 +209,31 @@ void bta_ar_reg_avrc(uint16_t service_uuid, const char* service_name,
                      bta_ar_cb.sdp_ct_handle, browse_supported,
                      profile_version, 0);
       bta_sys_add_uuid(service_uuid);
+      /** src and sink coexit, we can be src or sink any time. @{ */
+      if (bluetooth::common::init_flags::src_sink_coexit_is_enabled())
+        bta_ar_cb.ct_ver = profile_version;
+      /** @} */
     } else {
+      /** src and sink coexit, we can be src or sink any time.
+            * If first reg 1,3 version, reg 1.6 must update class id @{ */
+      if (bluetooth::common::init_flags::src_sink_coexit_is_enabled() && bta_ar_cb.ct_ver < profile_version) {
+        APPL_TRACE_API("%s ver=0x%x", __FUNCTION__, profile_version);
+        if (bta_ar_cb.ct_ver <= AVRC_REV_1_3 && profile_version > AVRC_REV_1_3) {
+          bta_ar_cb.ct_ver = profile_version;
+          /* add service class id list */
+          class_list[0] = service_uuid;
+          if (service_uuid == UUID_SERVCLASS_AV_REMOTE_CONTROL) {
+            class_list[1] = UUID_SERVCLASS_AV_REM_CTRL_CONTROL;
+            count = 2;
+          }
+          SDP_AddServiceClassIdList(bta_ar_cb.sdp_ct_handle, count, class_list);
+        } else {
+          bta_ar_cb.ct_ver = profile_version;
+        }
+        SDP_AddProfileDescriptorList(
+          bta_ar_cb.sdp_ct_handle, service_uuid, profile_version);
+      }
+      /** @} */
       /* multiple CTs are allowed.
        * Change supported categories on the second one */
       p = temp;

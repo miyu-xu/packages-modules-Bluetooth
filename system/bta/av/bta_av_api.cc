@@ -640,3 +640,16 @@ void BTA_AvSetLatency(tBTA_AV_HNDL handle, bool is_low_latency) {
 
   bta_sys_sendmsg(p_buf);
 }
+/** src and sink coexit, we can be src or sink any time. @{ */
+void BTA_AvSetPeerSep(const RawAddress& bdaddr, uint8_t sep) {
+  tBTA_AV_API_PEER_SEP *p_buf =
+      (tBTA_AV_API_PEER_SEP *)osi_malloc(sizeof(tBTA_AV_API_PEER_SEP));
+
+  p_buf->hdr.event = BTA_AV_API_PEER_SEP_EVT;
+  p_buf->addr = bdaddr;
+  p_buf->sep = sep;
+
+  bta_sys_sendmsg(p_buf);
+}
+/** @} */
+
