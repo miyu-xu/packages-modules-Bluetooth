@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16caa929_edb26232",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2022-12-19T19:30:20Z",
+      "side": 1,
+      "message": "Yes, we should use `AServiceManager_waitForDeclaredService` instead.",
+      "parentUuid": "8415dfa3_5dca6916",
+      "range": {
+        "startLine": 414,
+        "startChar": 29,
+        "endLine": 414,
+        "endChar": 55
+      },
+      "revId": "98ffd8a75699950e6a3bfc7ff6f5238908f17555",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "827668ff_41819a78",
         "filename": "system/gd/hal/hci_hal_android_hidl.cc",
         "patchSetId": 9
