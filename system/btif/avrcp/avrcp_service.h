@@ -54,6 +54,9 @@ class AvrcpService : public MediaCallbacks {
    */
   static ServiceInterface* GetServiceInterface();
 
+  /* for btif_rc_test.cc */
+  virtual ~AvrcpService();
+
   void Init(MediaInterface* media_interface, VolumeInterface* volume_interface);
   void Cleanup();
 
@@ -72,6 +75,11 @@ class AvrcpService : public MediaCallbacks {
                         bool queue) override;
   void SendActiveDeviceChanged(const RawAddress& address) override;
 
+  /** src and sink coexit, we can be src or sink any time.
+    * when a2dp connected, btif will start register vol changed, so we need a
+    * interface for it. @{ */
+  void RegisterVolChanged(const RawAddress& bdaddr);
+  /** @} */
   class ServiceInterfaceImpl : public ServiceInterface {
    public:
     void Init(MediaInterface* media_interface,
