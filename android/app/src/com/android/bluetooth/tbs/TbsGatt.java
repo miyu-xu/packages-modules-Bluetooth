@@ -17,17 +17,22 @@
 
 package com.android.bluetooth.tbs;
 
+import static android.bluetooth.BluetoothDevice.METADATA_GTBS_CCCD;
+
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattServerCallback;
 import android.bluetooth.BluetoothGattService;
+import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.ParcelUuid;
 import android.util.Log;
 
+import com.android.bluetooth.Utils;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.io.ByteArrayOutputStream;
@@ -131,6 +136,7 @@ public class TbsGatt {
     private final GattCharacteristic mTerminationReasonCharacteristic;
     private final GattCharacteristic mIncomingCallCharacteristic;
     private final GattCharacteristic mCallFriendlyNameCharacteristic;
+    private List<BluetoothDevice> mSubscribers = new ArrayList<>();
     private BluetoothGattServerProxy mBluetoothGattServer;
     private Handler mHandler;
     private Callback mCallback;
@@ -252,11 +258,55 @@ public class TbsGatt {
         return mContext;
     }
 
+    private void removeUuidFromMetadata(ParcelUuid charUuid, BluetoothDevice device) {
+        List<ParcelUuid> uuidList;
+        byte[] gtbs_cccd = device.getMetadata(METADATA_GTBS_CCCD);
+
+        if ((gtbs_cccd == null) || (gtbs_cccd.length == 0)) {
+            uuidList = new ArrayList<ParcelUuid>();
+        } else {
+            uuidList = new ArrayList<>(Arrays.asList(Utils.byteArrayToUuid(gtbs_cccd)));
+
+            if (!uuidList.contains(charUuid)) {
+                Log.d(TAG, "Characteristic CCCD can't be removed (not cached): "
+                        + charUuid.toString());
+                return;
+            }
+        }
+
+        uuidList.remove(charUuid);
+
+        if (!device.setMetadata(METADATA_GTBS_CCCD,
+                Utils.uuidsToByteArray(uuidList.toArray(new ParcelUuid[0])))) {
+            Log.e(TAG, "Can't set CCCD for GTBS characteristic UUID: " + charUuid + ", (remove)");
+        }
+    }
+
+    private void addUuidToMetadata(ParcelUuid charUuid, BluetoothDevice device) {
+        List<ParcelUuid> uuidList;
+        byte[] gtbs_cccd = device.getMetadata(METADATA_GTBS_CCCD);
+
+        if ((gtbs_cccd == null) || (gtbs_cccd.length == 0)) {
+            uuidList = new ArrayList<ParcelUuid>();
+        } else {
+            uuidList = new ArrayList<>(Arrays.asList(Utils.byteArrayToUuid(gtbs_cccd)));
+
+            if (uuidList.contains(charUuid)) {
+                Log.d(TAG, "Characteristic CCCD already add: " + charUuid.toString());
+                return;
+            }
+        }
+
+        uuidList.add(charUuid);
+
+        if (!device.setMetadata(METADATA_GTBS_CCCD,
+                Utils.uuidsToByteArray(uuidList.toArray(new ParcelUuid[0])))) {
+            Log.e(TAG, "Can't set CCCD for GTBS characteristic UUID: " + charUuid + ", (add)");
+        }
+    }
+
     /** Class that handles GATT characteristic notifications */
     private class BluetoothGattCharacteristicNotifier {
-
-        private List<BluetoothDevice> mSubscribers = new ArrayList<>();
-
         public int setSubscriptionConfiguration(BluetoothDevice device, byte[] configuration) {
             if (Arrays.equals(configuration, BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE)) {
                 mSubscribers.remove(device);
@@ -453,6 +503,14 @@ public class TbsGatt {
                     || ((properties & BluetoothGattCharacteristic.PROPERTY_INDICATE) == 0 && Arrays
                             .equals(value, BluetoothGattDescriptor.ENABLE_INDICATION_VALUE))) {
                 return BluetoothGatt.GATT_FAILURE;
+            }
+
+            if (Arrays.equals(value, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)) {
+                addUuidToMetadata(new ParcelUuid(characteristic.getUuid()), device);
+            } else if (Arrays.equals(value, BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE)) {
+                removeUuidFromMetadata(new ParcelUuid(characteristic.getUuid()), device);
+            } else {
+                Log.e(TAG, "Not handled CCC value: " + Arrays.toString(value));
             }
 
             return characteristic.setSubscriptionConfiguration(device, value);
@@ -665,6 +723,44 @@ public class TbsGatt {
      */
     @VisibleForTesting
     final BluetoothGattServerCallback mGattServerCallback = new BluetoothGattServerCallback() {
+        @Override
+        public void onConnectionStateChange(BluetoothDevice device, int status, int newState) {
+            super.onConnectionStateChange(device, status, newState);
+            if (DBG) {
+                Log.d(TAG, "BluetoothGattServerCallback: onConnectionStateChange");
+            }
+            if (newState == BluetoothProfile.STATE_CONNECTED) {
+                BluetoothGattService gattService = mBluetoothGattServer.getService(UUID_GTBS);
+
+                byte[] gtbs_cccd = device.getMetadata(METADATA_GTBS_CCCD);
+
+                if ((gtbs_cccd == null) || (gtbs_cccd.length == 0)) {
+                    return;
+                }
+
+                List<ParcelUuid> uuidList = Arrays.asList(Utils.byteArrayToUuid(gtbs_cccd));
+
+                /* Restore CCCD values for device */
+                for (ParcelUuid uuid : uuidList) {
+                    BluetoothGattCharacteristic characteristic =
+                            gattService.getCharacteristic(uuid.getUuid());
+                    if (characteristic == null) {
+                        Log.e(TAG, "Invalid UUID stored in metadata: " + uuid.toString());
+                        continue;
+                    }
+
+                    BluetoothGattDescriptor descriptor =
+                            characteristic.getDescriptor(UUID_CLIENT_CHARACTERISTIC_CONFIGURATION);
+                    if (descriptor == null) {
+                        Log.e(TAG, "Invalid characteristic, does not include CCCD");
+                        continue;
+                    }
+
+                    descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                    mSubscribers.add(device);
+                }
+            }
+        }
 
         @Override
         public void onServiceAdded(int status, BluetoothGattService service) {
