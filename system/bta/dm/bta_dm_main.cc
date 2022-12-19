@@ -101,6 +101,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_API_DISCOVER_EVT:
           bta_dm_queue_disc(message);
           break;
+        case BTA_DM_API_SEARCH_EVT:
+          bta_dm_queue_search(message);
+          break;
         default:
           LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
                    bta_dm_search_cb.state);
