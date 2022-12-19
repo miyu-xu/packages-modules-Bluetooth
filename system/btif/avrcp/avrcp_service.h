@@ -54,6 +54,9 @@ class AvrcpService : public MediaCallbacks {
    */
   static ServiceInterface* GetServiceInterface();
 
+  /* for btif_rc_test.cc */
+  virtual ~AvrcpService();
+
   void Init(MediaInterface* media_interface, VolumeInterface* volume_interface,
             PlayerSettingsInterface* player_settings_interface);
   void Cleanup();
@@ -75,6 +78,10 @@ class AvrcpService : public MediaCallbacks {
 
   void SendPlayerSettingsChanged(std::vector<PlayerAttribute> attributes,
                                  std::vector<uint8_t> values) override;
+
+  /** when a2dp connected, btif will start register vol changed, so we need a
+   * interface for it. */
+  void RegisterVolChanged(const RawAddress& bdaddr);
 
   class ServiceInterfaceImpl : public ServiceInterface {
    public:
