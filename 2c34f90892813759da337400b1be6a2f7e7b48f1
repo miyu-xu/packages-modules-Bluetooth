@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54cf588e_b9f53da1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2022-12-19T02:38:37Z",
+      "side": 1,
+      "message": "Hi Sonny, in this Patchset 3, the get_jni_message_loop()-\u003etask_runner()-\u003ePostDelayedTask() in system/main/shim/le_scanning_manager.cc were removed since the callbacks would be actually invoked by the msft module from the low layer. Please check if you have any concern about this change. Thanks!",
+      "revId": "2c34f90892813759da337400b1be6a2f7e7b48f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
