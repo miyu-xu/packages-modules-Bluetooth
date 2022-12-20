@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e515a32_ec3bc0b2",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-20T18:39:31Z",
+      "side": 1,
+      "message": "You can run `git clang-format` to format your native change.\nI don\u0027t know if there is a manual tool like clang for java but using the `repo upload` command when pushing your change will ask to run a hook to check for format issue",
+      "parentUuid": "a5f3c5ab_13ed9680",
+      "range": {
+        "startLine": 61,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 14
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08bddc49_96ad9147",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 1
