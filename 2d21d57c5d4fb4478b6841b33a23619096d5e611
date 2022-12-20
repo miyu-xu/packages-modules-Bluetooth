@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0101435_9457f3a8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-20T00:23:18Z",
+      "side": 1,
+      "message": "This is making a build error. Please remove",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 39
+      },
+      "revId": "2d21d57c5d4fb4478b6841b33a23619096d5e611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9bbb83bc_27ffccb5",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
         "patchSetId": 1
