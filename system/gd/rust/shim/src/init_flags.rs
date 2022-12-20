@@ -18,6 +18,7 @@ mod ffi {
         fn gd_rust_is_enabled() -> bool;
         fn gd_security_is_enabled() -> bool;
         fn get_hci_adapter() -> i32;
+	fn hfp_dynamic_version_is_enabled() -> bool;
         fn irk_rotation_is_enabled() -> bool;
         fn is_debug_logging_enabled_for_tag(tag: &str) -> bool;
         fn logging_debug_enabled_for_all_is_enabled() -> bool;

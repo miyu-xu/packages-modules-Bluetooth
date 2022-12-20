@@ -219,6 +219,7 @@ init_flags!(
         gd_rust,
         gd_security,
         hci_adapter: i32,
+	hfp_dynamic_version = true,
         irk_rotation,
         logging_debug_enabled_for_all,
         pass_phy_update_callback = true,
