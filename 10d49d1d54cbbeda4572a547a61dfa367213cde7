@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99fcb547_b17af619",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-12-20T17:20:45Z",
+      "side": 1,
+      "message": "Hi Abhishek, would you review again the updated patch?",
+      "revId": "10d49d1d54cbbeda4572a547a61dfa367213cde7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
