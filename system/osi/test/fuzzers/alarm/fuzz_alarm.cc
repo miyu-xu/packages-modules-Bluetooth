@@ -17,7 +17,7 @@
 #include <fcntl.h>
 #include <fuzzer/FuzzedDataProvider.h>
 #include "osi/include/alarm.h"
-#include "osi/include/semaphore.h"
+#include "osi/semaphore.h"
 
 #include "common/message_loop_thread.h"
 
