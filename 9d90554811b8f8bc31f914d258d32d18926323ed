@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2881ec25_69991f9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-20T01:10:16Z",
+      "side": 1,
+      "message": "Prefer rename before submit",
+      "revId": "9d90554811b8f8bc31f914d258d32d18926323ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26183cb8_b94677e9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-20T01:10:16Z",
+      "side": 1,
+      "message": "nit: Naming is a bit meh. Prefer either `guard()` or `lock_context()` which are a bit clearer.",
+      "revId": "9d90554811b8f8bc31f914d258d32d18926323ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
