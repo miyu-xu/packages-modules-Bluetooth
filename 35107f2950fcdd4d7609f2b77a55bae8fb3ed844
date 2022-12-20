@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12450d4d_f8141dab",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-20T08:38:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccf7847a_f2e23c9d",
+      "range": {
+        "startLine": 1253,
+        "startChar": 71,
+        "endLine": 1253,
+        "endChar": 76
+      },
+      "revId": "35107f2950fcdd4d7609f2b77a55bae8fb3ed844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03bc21a1_fe3c8154",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-12-16T08:55:21Z",
       "side": 1,
       "message": "This looks like a redundant clone as adv_set is a cloned one?",
+      "revId": "35107f2950fcdd4d7609f2b77a55bae8fb3ed844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb6d7135_992f87ee",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-20T08:38:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03bc21a1_fe3c8154",
       "revId": "35107f2950fcdd4d7609f2b77a55bae8fb3ed844",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
