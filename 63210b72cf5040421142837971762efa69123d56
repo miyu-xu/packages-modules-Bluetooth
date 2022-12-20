@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2ad203_4e0a1e9e",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T20:30:02Z",
+      "side": 1,
+      "message": "Avoid naked unwrap:\n```\nif !(s.adv_id.map_or(false, |id| id \u003d\u003d adv_id)) {\n```",
+      "revId": "63210b72cf5040421142837971762efa69123d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
