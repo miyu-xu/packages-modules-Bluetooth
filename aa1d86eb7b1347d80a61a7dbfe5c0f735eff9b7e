@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a51c031_87b1f61d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-20T21:24:15Z",
+      "side": 1,
+      "message": "The only difference is from before is that we are no longer invoking `gatt_sec_check_complete()` at all, whereas before we invoked with with a cleared CLCB.\n\nBut looking at its implementation, it was a no-op anyway. So this LGTM. Thanks!",
+      "revId": "aa1d86eb7b1347d80a61a7dbfe5c0f735eff9b7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
