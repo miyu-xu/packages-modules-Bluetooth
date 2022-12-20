@@ -388,6 +388,10 @@ public final class DatabaseManagerTest {
                 value, true);
         testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_LE_AUDIO,
                 value, true);
+        testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_GMCS_CCCD,
+                value, true);
+        testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_GTBS_CCCD,
+                value, true);
         testSetGetCustomMetaCase(false, badKey, value, false);
 
         // Device is in database
@@ -447,6 +451,10 @@ public final class DatabaseManagerTest {
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_FAST_PAIR_CUSTOMIZED_FIELDS,
                 value, true);
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_LE_AUDIO,
+                value, true);
+        testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_GMCS_CCCD,
+                value, true);
+        testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_GTBS_CCCD,
                 value, true);
     }
     @Test
@@ -1247,6 +1255,30 @@ public final class DatabaseManagerTest {
             assertColumnBlobData(cursor, "call_establish_audio_policy", null);
             assertColumnBlobData(cursor, "connecting_time_audio_policy", null);
             assertColumnBlobData(cursor, "in_band_ringtone_audio_policy", null);
+        }
+    }
+
+    @Test
+    public void testDatabaseMigration_115_116() throws IOException {
+        // Create a database with version 115
+        SupportSQLiteDatabase db = testHelper.createDatabase(DB_NAME, 115);
+        // insert a device to the database
+        ContentValues device = new ContentValues();
+        device.put("address", TEST_BT_ADDR);
+        device.put("migrated", false);
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
+                CoreMatchers.not(-1));
+        // Migrate database from 115 to 116
+        db.close();
+        db = testHelper.runMigrationsAndValidate(DB_NAME, 116, true,
+                MetadataDatabase.MIGRATION_115_116);
+        Cursor cursor = db.query("SELECT * FROM metadata");
+        assertHasColumn(cursor, "gmcs_cccd", true);
+        assertHasColumn(cursor, "gtbs_cccd", true);
+        while (cursor.moveToNext()) {
+            // Check the new columns was added with default value
+            assertColumnBlobData(cursor, "gmcs_cccd", null);
+            assertColumnBlobData(cursor, "gtbs_cccd", null);
         }
     }
 
