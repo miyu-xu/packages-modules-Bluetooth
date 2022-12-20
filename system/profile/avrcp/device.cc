@@ -26,6 +26,14 @@
 #include "stack_config.h"
 #include "types/raw_address.h"
 
+#include <base/logging.h>
+#ifdef OS_ANDROID
+#include <a2dp.sysprop.h>
+#endif
+
+extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
+extern bool btif_av_both_enable(void);
+
 namespace bluetooth {
 namespace avrcp {
 
@@ -120,7 +128,10 @@ void Device::VendorPacketHandler(uint8_t label,
         auto register_notification =
             Packet::Specialize<RegisterNotificationResponse>(pkt);
 
-        if (!register_notification->IsValid()) {
+        if ((!android::sysprop::bluetooth::A2dp::a2dp_src_sink_coexist().value_or(false) ||
+          (android::sysprop::bluetooth::A2dp::a2dp_src_sink_coexist().value_or(false) &&
+          register_notification->GetEvent() == Event::VOLUME_CHANGED)) &&
+          !register_notification->IsValid()) {
           DEVICE_LOG(WARNING) << __func__ << ": Request packet is not valid";
           auto response =
               RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
