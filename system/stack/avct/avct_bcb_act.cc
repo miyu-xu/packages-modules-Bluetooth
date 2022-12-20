@@ -33,6 +33,7 @@
 #include "avct_int.h"
 #include "bt_target.h"
 #include "bta/include/bta_api.h"
+#include "btif/include/btif_av.h"
 #include "btm_api.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
@@ -508,6 +509,7 @@ void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
   uint16_t pid;
   tAVCT_CCB* p_ccb;
   tAVCT_LCB* p_lcb = avct_lcb_by_bcb(p_bcb);
+  bool bind = false;
 
   if ((p_data == NULL) || (p_data->p_buf == NULL)) {
     AVCT_TRACE_WARNING("%s p_data is NULL, returning!", __func__);
@@ -545,16 +547,22 @@ void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
     return;
   }
 
-  /* parse and lookup PID */
-  BE_STREAM_TO_UINT16(pid, p);
-  p_ccb = avct_lcb_has_pid(p_lcb, pid);
-  if (p_ccb) {
-    /* PID found; send msg up, adjust bt hdr and call msg callback */
-    p_data->p_buf->offset += AVCT_HDR_LEN_SINGLE;
-    p_data->p_buf->len -= AVCT_HDR_LEN_SINGLE;
-    (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
-                             p_data->p_buf);
-    return;
+  if (btif_av_src_sink_coexist_enabled()) {
+    bind = avct_msg_ind_for_src_sink_coexist(p_lcb, p_data, label, cr_ipid);
+    osi_free_and_reset((void**)&p_data->p_buf);
+    if (bind) return;
+  } else {
+    /* parse and lookup PID */
+    BE_STREAM_TO_UINT16(pid, p);
+    p_ccb = avct_lcb_has_pid(p_lcb, pid);
+    if (p_ccb) {
+      /* PID found; send msg up, adjust bt hdr and call msg callback */
+      p_data->p_buf->offset += AVCT_HDR_LEN_SINGLE;
+      p_data->p_buf->len -= AVCT_HDR_LEN_SINGLE;
+      (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
+                               p_data->p_buf);
+      return;
+    }
   }
 
   /* PID not found; drop message */
