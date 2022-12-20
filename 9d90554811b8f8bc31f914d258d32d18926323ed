@@ -33,6 +33,24 @@
       "message": "nit: Naming is a bit meh. Prefer either `guard()` or `lock_context()` which are a bit clearer.",
       "revId": "9d90554811b8f8bc31f914d258d32d18926323ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d98a2bbc_8410855f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T19:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26183cb8_b94677e9",
+      "revId": "9d90554811b8f8bc31f914d258d32d18926323ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
