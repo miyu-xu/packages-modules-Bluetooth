@@ -51,6 +51,52 @@
       "parentUuid": "e78fd34d_91c78ae0",
       "revId": "2c34f90892813759da337400b1be6a2f7e7b48f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3cde7e_d6951f87",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-20T21:53:23Z",
+      "side": 1,
+      "message": "This is too high for the hci_packets.h to be found by the build system.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "2c34f90892813759da337400b1be6a2f7e7b48f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c017ffea_521abf1b",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-20T21:53:23Z",
+      "side": 1,
+      "message": "this is the point where I would expect the casting to be.  It\u0027s ugly, but it\u0027s in the shim...\n\nWrap the original cb in another callback that just casts that value.",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 77
+      },
+      "revId": "2c34f90892813759da337400b1be6a2f7e7b48f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
