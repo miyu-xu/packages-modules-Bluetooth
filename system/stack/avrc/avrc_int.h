@@ -30,6 +30,9 @@
 #include "stack/avct/avct_defs.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/bt_hdr.h"
+#ifdef OS_ANDROID
+#include <a2dp.sysprop.h>
+#endif
 
 /*      DEBUG FLAGS
  *
