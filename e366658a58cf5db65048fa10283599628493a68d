@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f21be378_1addd829",
+        "filename": "system/gd/rust/linux/client/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-20T01:16:01Z",
+      "side": 1,
+      "message": "Is this dependency already in `rust_crates`? You should submit that first or pre-submit here may fail.",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81ef80f_fad63279",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-20T01:16:01Z",
+      "side": 1,
+      "message": "Please confirm Android is using 1.65. We will also need to update the Floss container to upgrade to 1.65 (it\u0027s currently at 1.60).",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf05685_577c6228",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-20T01:16:01Z",
+      "side": 1,
+      "message": "While you\u0027re here, could you also handle `ctrl+c` to exit only if there\u0027s nothing in readline? It\u0027s annoying not be able to ctrl+c out of what I\u0027m currently typing :P",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
