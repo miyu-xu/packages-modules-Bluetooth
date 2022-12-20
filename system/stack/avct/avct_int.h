@@ -204,6 +204,9 @@ extern void avct_ccb_dealloc(tAVCT_CCB* p_ccb, uint8_t event, uint16_t result,
 extern uint8_t avct_ccb_to_idx(tAVCT_CCB* p_ccb);
 extern tAVCT_CCB* avct_ccb_by_idx(uint8_t idx);
 
+extern bool avct_msg_ind_for_src_sink_coexist(tAVCT_LCB* p_lcb,
+                tAVCT_LCB_EVT* p_data, uint8_t label, uint8_t cr_ipid);
+
 /*****************************************************************************
  * global data
  ****************************************************************************/
