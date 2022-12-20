@@ -387,6 +387,10 @@ public final class DatabaseManagerTest {
                 value, true);
         testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_LE_AUDIO,
                 value, true);
+        testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_GMCS_CCCD,
+                value, true);
+        testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_GTBS_CCCD,
+                value, true);
         testSetGetCustomMetaCase(false, badKey, value, false);
 
         // Device is in database
@@ -446,6 +450,10 @@ public final class DatabaseManagerTest {
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_FAST_PAIR_CUSTOMIZED_FIELDS,
                 value, true);
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_LE_AUDIO,
+                value, true);
+        testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_GMCS_CCCD,
+                value, true);
+        testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_GTBS_CCCD,
                 value, true);
     }
 
@@ -1206,6 +1214,30 @@ public final class DatabaseManagerTest {
         while (cursor.moveToNext()) {
             // Check the new columns was added with default value
             assertColumnBlobData(cursor, "le_audio", null);
+        }
+    }
+
+    @Test
+    public void testDatabaseMigration_114_115() throws IOException {
+        // Create a database with version 114
+        SupportSQLiteDatabase db = testHelper.createDatabase(DB_NAME, 114);
+        // insert a device to the database
+        ContentValues device = new ContentValues();
+        device.put("address", TEST_BT_ADDR);
+        device.put("migrated", false);
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
+                CoreMatchers.not(-1));
+        // Migrate database from 114 to 115
+        db.close();
+        db = testHelper.runMigrationsAndValidate(DB_NAME, 115, true,
+                MetadataDatabase.MIGRATION_114_115);
+        Cursor cursor = db.query("SELECT * FROM metadata");
+        assertHasColumn(cursor, "gmcs_cccd", true);
+        assertHasColumn(cursor, "gtbs_cccd", true);
+        while (cursor.moveToNext()) {
+            // Check the new columns was added with default value
+            assertColumnBlobData(cursor, "gmcs_cccd", null);
+            assertColumnBlobData(cursor, "gtbs_cccd", null);
         }
     }
 
