@@ -127,6 +127,10 @@ class ConnectionHandler {
    */
   static void InitForTesting(ConnectionHandler* handler);
 
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  virtual void RegisterVolChanged(const RawAddress& bdaddr);
+  /** @} */
+
  private:
   AvrcpInterface* avrc_;
   SdpInterface* sdp_;
