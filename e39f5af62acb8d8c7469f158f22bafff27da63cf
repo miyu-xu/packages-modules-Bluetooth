@@ -222,6 +222,24 @@
       "parentUuid": "71c4d548_0dd43ee3",
       "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f9de63d_0fbd32db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-20T09:36:40Z",
+      "side": 1,
+      "message": "I see your point. append_adv_data is unnecessary here and I have removed it, thanks.",
+      "parentUuid": "82e37ad7_2cd3d446",
+      "revId": "e39f5af62acb8d8c7469f158f22bafff27da63cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
