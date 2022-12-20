@@ -407,7 +407,7 @@ async fn start_interactive_shell(
         }
     });
 
-    loop {
+    'readline: loop {
         let m = rx.recv().await;
 
         if m.is_none() {
@@ -572,15 +572,31 @@ async fn start_interactive_shell(
                     break;
                 }
                 Ok(line) => {
-                    let mut args = line.split_whitespace();
-                    let cmd = args.next().unwrap_or("");
-                    if cmd.eq("quit") {
+                    // With Rust 1.65 onwards we can convert this loop hack into a named block:
+                    // https://blog.rust-lang.org/2022/11/03/Rust-1.65.0.html#break-from-labeled-blocks
+                    loop {
+                        let args = match shell_words::split(line.as_str()) {
+                            Ok(words) => words,
+                            Err(e) => {
+                                print_error!("Error parsing arguments: {}", e);
+                                break;
+                            }
+                        };
+
+                        let (cmd, rest) = match args.split_first() {
+                            Some(pair) => pair,
+                            None => break,
+                        };
+
+                        if cmd.eq("quit") {
+                            break 'readline;
+                        }
+
+                        handler.process_cmd_line(&String::from(cmd), &rest.to_vec());
+
                         break;
                     }
-                    handler.process_cmd_line(
-                        &String::from(cmd),
-                        &args.map(String::from).collect::<Vec<String>>(),
-                    );
+
                     // Ready to do readline again.
                     semaphore_fg.add_permits(1);
                 }
