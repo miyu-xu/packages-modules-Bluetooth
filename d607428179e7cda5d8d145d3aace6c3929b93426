@@ -33,6 +33,24 @@
       "message": "Can you use `find` instead? https://doc.rust-lang.org/stable/std/iter/trait.Iterator.html#method.find",
       "revId": "d607428179e7cda5d8d145d3aace6c3929b93426",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81f48591_57b83756",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T20:33:09Z",
+      "side": 1,
+      "message": "Also avoid naked unwrap since it can panic. `s.adv_id.unwrap() \u003d\u003d adv_id` can be written with safety `s.adv_id.map_or(false, |id| id \u003d\u003d adv_id)`",
+      "parentUuid": "fec7bf20_0237f9be",
+      "revId": "d607428179e7cda5d8d145d3aace6c3929b93426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
