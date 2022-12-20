@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fe7e0e3_78dec209",
+        "filename": "system/gd/rust/linux/client/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T21:01:23Z",
+      "side": 1,
+      "message": "Added here: https://crrev.com/c/4119066",
+      "parentUuid": "d10e0faf_3ee90a72",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b81ef80f_fad63279",
