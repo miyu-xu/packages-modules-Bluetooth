@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "381ee872_08efa8b9",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-20T21:56:42Z",
+      "side": 1,
+      "message": "I don\u0027t see this being used anywhere.",
+      "range": {
+        "startLine": 98,
+        "startChar": 45,
+        "endLine": 98,
+        "endChar": 72
+      },
+      "revId": "52425905fc6b7d405f9372526c84d4c58a4b0c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
