@@ -175,7 +175,6 @@ cc_defaults {
     srcs: [
         "stack_manager.cc",
         "module.cc",
-        ":BluetoothArbiterSources",
         ":BluetoothAttSources",
         ":BluetoothCommonSources",
         ":BluetoothCryptoToolboxSources",
