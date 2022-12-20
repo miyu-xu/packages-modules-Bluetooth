@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8a55380_e6f2be57",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-12-20T17:39:42Z",
+      "side": 1,
+      "message": "So this is the local device\u0027s battery level changing that\u0027s causing an event to be sent?\n\nIf so, can we mock out the battery manager and/or context handling the intents so we can keep outside device events from impacting our tests?",
+      "revId": "abecb5bb21bf01d6e9f6dff484eb5814d1bc1e2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
