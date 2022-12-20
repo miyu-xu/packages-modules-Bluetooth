@@ -175,6 +175,24 @@
       "parentUuid": "f57d2a58_c76cdd53",
       "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "763df142_9027c9cf",
+        "filename": "system/device/test/interop_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2022-12-20T12:18:52Z",
+      "side": 1,
+      "message": "Is Testcase failing on android or different OS(OS Generic)? if It\u0027s different OS, then How can we run locally?",
+      "parentUuid": "5c357c97_277887db",
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
