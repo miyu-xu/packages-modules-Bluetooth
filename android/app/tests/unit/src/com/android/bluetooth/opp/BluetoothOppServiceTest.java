@@ -15,17 +15,18 @@
  */
 package com.android.bluetooth.opp;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doReturn;
 
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
+import android.net.Uri;
 
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
@@ -39,17 +40,16 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppServiceTest {
+    @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
+
     private BluetoothOppService mService = null;
     private BluetoothAdapter mAdapter = null;
 
-    @Rule
-    public final ServiceTestRule mServiceRule = new ServiceTestRule();
-
-    @Mock
-    private AdapterService mAdapterService;
+    @Mock private AdapterService mAdapterService;
 
     @Before
     public void setUp() throws Exception {
@@ -78,5 +78,73 @@ public class BluetoothOppServiceTest {
     @Test
     public void testInitialize() {
         Assert.assertNotNull(BluetoothOppService.getBluetoothOppService());
+    }
+
+    @Test
+    public void deleteShare_deleteShareAndCorrespondingBatch() {
+        Uri infoUri = Uri.parse("file://Idontknow//Justmadeitup");
+        String hintString = "this is a object that take 4 bytes";
+        String infoFileName = "random.jpg";
+        String mimetype = "image/jpeg";
+        int infoDir = BluetoothShare.DIRECTION_OUTBOUND;
+        String infoDes = "01:23:45:67:89:AB";
+        int infoVisibility = BluetoothShare.VISIBILITY_VISIBLE;
+        int infoConfirm = BluetoothShare.USER_CONFIRMATION_PENDING;
+        int infoStatus = BluetoothShare.STATUS_SUCCESS;
+        int totalBytes = 1023;
+        int currentBytes = 42;
+        int infoTimestamp = 123456789;
+        int infoTimestamp2 = 123489;
+        boolean infoScanned = false;
+
+        BluetoothOppShareInfo info = new BluetoothOppShareInfo(0, infoUri, hintString, infoFileName,
+                mimetype, infoDir, infoDes, infoVisibility, infoConfirm, infoStatus, totalBytes,
+                currentBytes, infoTimestamp, infoScanned);
+        BluetoothOppShareInfo info2 = new BluetoothOppShareInfo(0, infoUri, hintString,
+                infoFileName,
+                mimetype, infoDir, infoDes, infoVisibility, infoConfirm, infoStatus, totalBytes,
+                currentBytes, infoTimestamp2, infoScanned);
+
+        mService.mShares.clear();
+        mService.mShares.add(info);
+        mService.mShares.add(info2);
+
+        // batch1 will be removed and batch2 will start
+        BluetoothOppBatch batch1 = new BluetoothOppBatch(mService, info);
+        BluetoothOppBatch batch2 = new BluetoothOppBatch(mService, info2);
+        batch2.mStatus = Constants.BATCH_STATUS_FINISHED;
+        mService.mBatches.clear();
+        mService.mBatches.add(batch1);
+        mService.mBatches.add(batch2);
+        // should not throw
+        mService.deleteShare(0);
+        assertThat(mService.mShares.size()).isEqualTo(1);
+        assertThat(mService.mBatches.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void dump_shouldNotThrow() {
+        Uri uri = Uri.parse("file://Idontknow//Justmadeitup");
+        String hintString = "this is a object that take 4 bytes";
+        String infoFileName = "random.jpg";
+        String mimetype = "image/jpeg";
+        int direction = BluetoothShare.DIRECTION_INBOUND;
+        String destination = "01:23:45:67:89:AB";
+        int visibility = BluetoothShare.VISIBILITY_VISIBLE;
+        int confirm = BluetoothShare.USER_CONFIRMATION_CONFIRMED;
+        int status = BluetoothShare.STATUS_SUCCESS;
+        int totalBytes = 1023;
+        int currentBytes = 42;
+        int timestamp = 123456789;
+        boolean mediaScanned = false;
+
+        BluetoothOppShareInfo info = new BluetoothOppShareInfo(0, uri, hintString, infoFileName,
+                mimetype, direction, destination, visibility, confirm, status, totalBytes,
+                currentBytes, timestamp, mediaScanned);
+
+        mService.mShares.add(info);
+
+        // should not throw
+        mService.dump(new StringBuilder());
     }
 }
