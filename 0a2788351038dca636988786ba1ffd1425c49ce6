@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5e6427c_7733b016",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-20T08:37:24Z",
+      "side": 1,
+      "message": "Here the logic is slightly different after the update. Do we need to assert that `section`, `property` and `value` does not contain `\\n`?",
+      "revId": "0a2788351038dca636988786ba1ffd1425c49ce6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
