@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c827bd56_bccdd0a9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T20:25:06Z",
+      "side": 1,
+      "message": "Howard recently added `hex` crate to decode hex: https://r.android.com/c/platform/packages/modules/Bluetooth/+/2294998/8/system/gd/rust/linux/client/src/command_handler.rs#1033\n\nCould you use that also to simplify the code and more reuse?",
+      "revId": "d607428179e7cda5d8d145d3aace6c3929b93426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec7bf20_0237f9be",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T20:25:06Z",
+      "side": 1,
+      "message": "Can you use `find` instead? https://doc.rust-lang.org/stable/std/iter/trait.Iterator.html#method.find",
+      "revId": "d607428179e7cda5d8d145d3aace6c3929b93426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
