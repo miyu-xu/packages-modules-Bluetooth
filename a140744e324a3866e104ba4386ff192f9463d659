@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b02301d_c1d4e56c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-20T18:10:27Z",
+      "side": 1,
+      "message": "I was expecting the ::bt_property_t changes from headless.cc to be removed here",
+      "revId": "a140744e324a3866e104ba4386ff192f9463d659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
