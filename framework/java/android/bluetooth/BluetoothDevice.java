@@ -510,7 +510,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             METADATA_UNTETHERED_CASE_LOW_BATTERY_THRESHOLD,
             METADATA_SPATIAL_AUDIO,
             METADATA_FAST_PAIR_CUSTOMIZED_FIELDS,
-            METADATA_LE_AUDIO})
+            METADATA_LE_AUDIO,
+            METADATA_GMCS_CCCD,
+            METADATA_GTBS_CCCD})
     @Retention(RetentionPolicy.SOURCE)
     public @interface MetadataKey{}
 
@@ -743,6 +745,19 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @SystemApi
     public static final int METADATA_LE_AUDIO = 26;
 
+    /**
+     * The UUIDs (16-bit) of registered to CCC characteristics from Media Control services.
+     * Data type should be {@link Byte} array.
+     * @hide
+     */
+    public static final int METADATA_GMCS_CCCD = 27;
+
+    /**
+     * The UUIDs (16-bit) of registered to CCC characteristics from Telephony Bearer service.
+     * Data type should be {@link Byte} array.
+     * @hide
+     */
+    public static final int METADATA_GTBS_CCCD = 28;
 
     /**
      * Device type which is used in METADATA_DEVICE_TYPE
@@ -3218,7 +3233,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     public static @MetadataKey int getMaxMetadataKey() {
-        return METADATA_LE_AUDIO;
+        return METADATA_GTBS_CCCD;
     }
 
     /**
