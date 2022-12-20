@@ -509,6 +509,11 @@ void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
   uint16_t pid;
   tAVCT_CCB* p_ccb;
   tAVCT_LCB* p_lcb = avct_lcb_by_bcb(p_bcb);
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  int i = 0;
+  bool bind = false;
+  bool buf_used = false;
+  /** @} */
 
   if ((p_data == NULL) || (p_data->p_buf == NULL)) {
     AVCT_TRACE_WARNING("%s p_data is NULL, returning!", __func__);
@@ -548,15 +553,48 @@ void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
 
   /* parse and lookup PID */
   BE_STREAM_TO_UINT16(pid, p);
-  p_ccb = avct_lcb_has_pid(p_lcb, pid);
-  if (p_ccb) {
-    /* PID found; send msg up, adjust bt hdr and call msg callback */
-    p_data->p_buf->offset += AVCT_HDR_LEN_SINGLE;
-    p_data->p_buf->len -= AVCT_HDR_LEN_SINGLE;
-    (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
-                             p_data->p_buf);
-    return;
+  /** src and sink coexit, we can be src or sink any time. @{ */
+  if (bluetooth::common::init_flags::src_sink_coexit_is_enabled()) {
+    p_ccb = &avct_cb.ccb[0];
+    int p_buf_len = AVRC_CMD_BUF_SIZE;
+    BT_HDR* p_bak_buf = NULL;
+    if (p_data->p_buf) {
+      p_data->p_buf->offset += AVCT_HDR_LEN_SINGLE;
+      p_data->p_buf->len -= AVCT_HDR_LEN_SINGLE;
+      p_buf_len =  BT_HDR_SIZE + p_data->p_buf->offset + p_data->p_buf->len;
+      p_bak_buf = (BT_HDR*)osi_malloc(p_buf_len);
+      memcpy(p_bak_buf, p_data->p_buf, p_buf_len);
+    }
+    for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
+      if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb) && (p_ccb->cc.pid == pid)) {
+        /* PID found; send msg up, adjust bt hdr and call msg callback */
+        bind = true;
+        if (p_data->p_buf && !buf_used) {
+          buf_used = true;
+          (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
+                                   p_data->p_buf);
+        } else {
+          BT_HDR* p_tmp_buf = (BT_HDR*)osi_malloc(p_buf_len);
+          memcpy(p_tmp_buf, p_bak_buf, p_buf_len);
+          (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
+                                   p_tmp_buf);
+        }
+      }
+    }
+    osi_free_and_reset((void**)&p_bak_buf);
+    if (bind)  return;
+  } else {
+    p_ccb = avct_lcb_has_pid(p_lcb, pid);
+    if (p_ccb) {
+      /* PID found; send msg up, adjust bt hdr and call msg callback */    
+      p_data->p_buf->offset += AVCT_HDR_LEN_SINGLE;    
+      p_data->p_buf->len -= AVCT_HDR_LEN_SINGLE;    
+      (*p_ccb->cc.p_msg_cback)(avct_ccb_to_idx(p_ccb), label, cr_ipid,
+        p_data->p_buf);    
+      return;  
+    }
   }
+  /** @} */
 
   /* PID not found; drop message */
   AVCT_TRACE_WARNING("No ccb for PID=%x", pid);
