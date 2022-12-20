@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84179f5_3ca3ecdb",
+        "filename": "system/gd/rust/linux/client/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T20:08:27Z",
+      "side": 1,
+      "message": "We already have this in rust_crates: https://chromium.googlesource.com/chromiumos/third_party/rust_crates/+/refs/heads/main/vendor/shell-words-1.1.0/",
+      "parentUuid": "f21be378_1addd829",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b81ef80f_fad63279",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a668e4e_ff958938",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T20:08:27Z",
+      "side": 1,
+      "message": "Actually we are not using that 1.65 feature, but it\u0027s a reminder that we can improve it when 1.65 is used. I will clarify the comment.",
+      "parentUuid": "b81ef80f_fad63279",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cf05685_577c6228",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-12-20T01:16:01Z",
       "side": 1,
       "message": "While you\u0027re here, could you also handle `ctrl+c` to exit only if there\u0027s nothing in readline? It\u0027s annoying not be able to ctrl+c out of what I\u0027m currently typing :P",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "438a70c7_83a771df",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-12-20T20:08:27Z",
+      "side": 1,
+      "message": "Added in next patch.",
+      "parentUuid": "9cf05685_577c6228",
       "revId": "e366658a58cf5db65048fa10283599628493a68d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
