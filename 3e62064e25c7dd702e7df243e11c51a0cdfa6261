@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c6a0eb_0a4b2fb4",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-20T21:46:26Z",
+      "side": 1,
+      "message": "Would this be clearer if it were msft_view ?\n\nIt was the payload of the VendorSpecificEventView, but now it is its own event.",
+      "range": {
+        "startLine": 100,
+        "startChar": 9,
+        "endLine": 100,
+        "endChar": 12
+      },
+      "revId": "3e62064e25c7dd702e7df243e11c51a0cdfa6261",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
