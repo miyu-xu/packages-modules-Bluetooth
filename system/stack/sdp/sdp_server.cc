@@ -26,6 +26,7 @@
 #include <base/logging.h>
 #include <log/log.h>
 #include <string.h>  // memcpy
+#include <base/location.h>
 
 #include <cstdint>
 
@@ -37,11 +38,22 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/sdp_api.h"
 #include "stack/sdp/sdpint.h"
+#include "btif/include/btif_storage.h"
+#include "cutils/properties.h"
+#include "bta/include/bta_hfp_api.h"
+
+#include "osi/include/properties.h"
 
 /* Maximum number of bytes to reserve out of SDP MTU for response data */
 #define SDP_MAX_SERVICE_RSPHDR_LEN 12
 #define SDP_MAX_SERVATTR_RSPHDR_LEN 10
 #define SDP_MAX_ATTR_RSPHDR_LEN 10
+#define PROFILE_VERSION_POSITION 7
+#define SDP_PROFILE_DESC_LENGTH 8
+#define HFP_PROFILE_MINOR_VERSION_6 0x06
+#define HFP_PROFILE_MINOR_VERSION_7 0x07
+
+
 
 /******************************************************************************/
 /*            L O C A L    F U N C T I O N     P R O T O T Y P E S            */
@@ -57,7 +69,8 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
                                             uint16_t param_len, uint8_t* p_req,
                                             uint8_t* p_req_end);
-
+bool sdp_dynamic_change_hfp_version (const tSDP_ATTRIBUTE *p_attr, const RawAddress remote_address);
+void hfp_fallback(bool is_hfp_fallback, const tSDP_ATTRIBUTE* p_attr);
 /******************************************************************************/
 /*                E R R O R   T E X T   S T R I N G S                         */
 /*                                                                            */
@@ -95,6 +108,53 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 #ifndef SDP_TEXT_BAD_MAX_RECORDS_LIST
 #define SDP_TEXT_BAD_MAX_RECORDS_LIST NULL
 #endif
+
+/*************************************************************************************
+**
+** Function        sdp_dynamic_change_hfp_version
+**
+** Description     Checks if UUID is AG_HANDSFREE, attribute id
+**                 is Profile descriptor list and remote BD address
+**                 matches device blacklist, change hfp version to 1.7
+**
+** Returns         BOOLEAN
+**
++***************************************************************************************/
+bool sdp_dynamic_change_hfp_version (const tSDP_ATTRIBUTE *p_attr, const RawAddress& remote_address)
+{
+   if ((p_attr->id != ATTR_ID_BT_PROFILE_DESC_LIST) ||(p_attr->len < SDP_PROFILE_DESC_LENGTH))
+    {
+        return false;
+	}
+       /* As per current DB implementation UUID is condidered as 16 bit */
+        if (((p_attr->value_ptr[3] << SDP_PROFILE_DESC_LENGTH) | (p_attr->value_ptr[4])) != UUID_SERVCLASS_HF_HANDSFREE)
+		{
+          return false;
+        }
+        bool is_blacklisted_1_7 = interop_match_addr_or_name(INTEROP_HFP_1_7_ALLOWLIST,&remote_address,&btif_storage_get_remote_device_property);
+            /* For PTS we should update AG's HFP version as 1.7 */
+        if (!(is_blacklisted_1_7) && !(osi_property_get_bool("vendor.bt.pts.certification", false)))
+            {
+             return false;
+            }
+       p_attr->value_ptr[PROFILE_VERSION_POSITION] = HFP_PROFILE_MINOR_VERSION_7;
+       SDP_TRACE_INFO("%s SDP Change HFP Version = %d for %s",__func__,p_attr->value_ptr[PROFILE_VERSION_POSITION],ADDRESS_TO_LOGGABLE_CSTR(remote_address));
+       return true;
+}
+/******************************************************************************
+ *
+ * Function         hfp_fallback
+ *
+ * Description      Update HFP version back to 1.6
+ *
+ * Returns          void
+ *
+ *****************************************************************************/
+void hfp_fallback(bool is_hfp_fallback, const tSDP_ATTRIBUTE* p_attr) {
+  /* Update HFP version back to 1.6 */
+  p_attr->value_ptr[PROFILE_VERSION_POSITION] = HFP_PROFILE_MINOR_VERSION_6;
+  is_hfp_fallback = false;
+}
 
 /*******************************************************************************
  *
@@ -321,6 +381,7 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
   const tSDP_RECORD* p_rec;
   const tSDP_ATTRIBUTE* p_attr;
   bool is_cont = false;
+  bool is_hfp_fallback = false;
   uint16_t attr_len;
 
   if (p_req + sizeof(rec_handle) + sizeof(max_list_len) > p_req_end) {
@@ -420,6 +481,7 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
       if (is_service_avrc_target) {
         sdpu_set_avrc_target_version(p_attr, &(p_ccb->device_address));
       }
+      is_hfp_fallback = sdp_dynamic_change_hfp_version (p_attr, p_ccb->device_address);
       /* Check if attribute fits. Assume 3-byte value type/length */
       rem_len = max_list_len - (int16_t)(p_rsp - &p_ccb->rsp_list[0]);
 
@@ -474,8 +536,16 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
         xx--;
       }
+     if(is_hfp_fallback)
+      {
+         hfp_fallback(is_hfp_fallback,p_attr);
+      }
     }
   }
+   if(is_hfp_fallback)
+   {
+     hfp_fallback(is_hfp_fallback,p_attr);
+   }
   /* If all the attributes have been accomodated in p_rsp,
      reset next_attr_index */
   if (xx == attr_seq.num_attr) p_ccb->cont_info.next_attr_index = 0;
@@ -569,6 +639,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
   const tSDP_ATTRIBUTE* p_attr;
   bool maxxed_out = false, is_cont = false;
   uint8_t* p_seq_start;
+  bool is_hfp_fallback = false;
   uint16_t seq_len, attr_len;
 
   /* Extract the UUID sequence to search for */
@@ -680,6 +751,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
         if (is_service_avrc_target) {
           sdpu_set_avrc_target_version(p_attr, &(p_ccb->device_address));
         }
+        is_hfp_fallback = sdp_dynamic_change_hfp_version (p_attr, p_ccb->device_address);
         /* Check if attribute fits. Assume 3-byte value type/length */
         rem_len = max_list_len - (int16_t)(p_rsp - &p_ccb->rsp_list[0]);
 
@@ -738,8 +810,16 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
           xx--;
         }
+       if (is_hfp_fallback)
+        {
+          hfp_fallback(is_hfp_fallback,p_attr);
+        }
       }
     }
+     if (is_hfp_fallback)
+      {
+         hfp_fallback(is_hfp_fallback,p_attr);
+       }
 
     /* Go back and put the type and length into the buffer */
     if (!p_ccb->cont_info.last_attr_seq_desc_sent) {
