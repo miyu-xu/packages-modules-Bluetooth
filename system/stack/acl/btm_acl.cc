@@ -605,9 +605,8 @@ tBTM_STATUS BTM_SwitchRoleToCentral(const RawAddress& remote_bd_addr) {
   /* some devices do not support switch while encryption is on */
   else {
     if (p_acl->is_encrypted && !IsEprAvailable(*p_acl)) {
-      /* bypass turning off encryption if change link key is already doing it */
-      p_acl->set_encryption_off();
-      p_acl->set_switch_role_encryption_off();
+      /* Do not perform role switch if remote donot suppor EPR*/
+      return BTM_DEV_RESTRICT_LISTED;
     } else {
       internal_.hci_start_role_switch_to_central(*p_acl);
     }
