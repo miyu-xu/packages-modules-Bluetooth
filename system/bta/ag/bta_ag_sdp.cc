@@ -37,6 +37,8 @@
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "stack/include/port_api.h"
 #include "types/bluetooth/uuid.h"
+#include "device/include/interop.h"
+#include "device/include/interop_config.h"
 
 using bluetooth::Uuid;
 
@@ -161,7 +163,7 @@ bool bta_ag_add_record(uint16_t service_uuid, const char* p_service_name,
   /* add profile descriptor list */
   if (service_uuid == UUID_SERVCLASS_AG_HANDSFREE) {
     profile_uuid = UUID_SERVCLASS_HF_HANDSFREE;
-    version = BTA_HFP_VERSION;
+    version = HFP_VERSION_1_6;
   } else {
     profile_uuid = UUID_SERVCLASS_HEADSET;
     version = HSP_VERSION_1_2;
@@ -387,6 +389,11 @@ bool bta_ag_sdp_find_attr(tBTA_AG_SCB* p_scb, tBTA_SERVICE_MASK service) {
         }
         if (p_scb->peer_features == 0) {
           p_scb->peer_features = sdp_features & HFP_SDP_BRSF_FEATURES_MASK;
+        }
+		/* Remote supports 1.7, store it in HFP 1.7 BL file */
+        if (p_scb->peer_version == HFP_VERSION_1_7) {
+          interop_database_add_addr(INTEROP_HFP_1_7_BLACKLIST,
+                            &p_scb->peer_addr, 3);
         }
       }
     } else {
