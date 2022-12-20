@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c800a5cf_d8d32e8c",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1273,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-20T10:52:06Z",
+      "side": 1,
+      "message": "`reg_id` is only used for registration, which is a not supposed to be used by user even adv_sets is actually indexed by `reg_id`. You can iterate adv_sets and find a one with matched \u0027adv_id\u0027 which is a valid advertising set to be used.\nYou might use a filter adapter while iterating adv_sets or manage the mapping in other ways.",
+      "parentUuid": "70c71378_5ccc9b6b",
+      "range": {
+        "startLine": 1271,
+        "startChar": 0,
+        "endLine": 1273,
+        "endChar": 55
+      },
+      "revId": "e8bf691a0f913e7e4dbd790bc3f28c391896459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d273b04_aa45df07",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 8
