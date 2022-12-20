@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a31b18f_c7d7292b",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-20T21:43:51Z",
+      "side": 1,
+      "message": "Do you need some type of check to make sure that patterns doesn\u0027t get too full?",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 117,
+        "endChar": 14
+      },
+      "revId": "3611b172f5edc7020deaa03037e64c1b117e87c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
