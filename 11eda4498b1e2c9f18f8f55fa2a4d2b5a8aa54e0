@@ -193,6 +193,24 @@
       "parentUuid": "5c357c97_277887db",
       "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc3f728_5bf42c53",
+        "filename": "system/device/test/interop_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-20T22:11:23Z",
+      "side": 1,
+      "message": "I do not know which os is using `-DOS_GENERIC` which are not.\nIn my mind, OS_GENERIC is for everything that is not android. Like chromeOs.\nLooking at code search, any host test and build should set the `-DOS_GENERIC`\nThey do not... (note to myself: fix this)\nExcept when they are generated from BUILD.gn",
+      "parentUuid": "763df142_9027c9cf",
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
