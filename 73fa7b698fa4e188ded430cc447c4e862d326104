@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2cf69d4_0532d73a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-12-20T10:44:52Z",
+      "side": 1,
+      "message": "\u0027reg-id\u0027 is an internal handle, use \u0027adv_id` to find the advertising set.",
+      "range": {
+        "startLine": 199,
+        "startChar": 66,
+        "endLine": 199,
+        "endChar": 72
+      },
+      "revId": "73fa7b698fa4e188ded430cc447c4e862d326104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
