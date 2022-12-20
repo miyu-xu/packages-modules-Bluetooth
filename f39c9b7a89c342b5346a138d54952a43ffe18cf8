@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f29057_24f1dcd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-20T16:35:39Z",
+      "side": 1,
+      "message": "Hi @siyuanh@google.com, this is a patch to fix a known issue in bluetooth 5.3, could you take a look at it? Thanks.",
+      "revId": "f39c9b7a89c342b5346a138d54952a43ffe18cf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
