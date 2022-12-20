@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d229f8_3620337a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T01:22:43Z",
+      "side": 1,
+      "message": "selfreview: add missing mocks for testing.",
+      "revId": "0b0e4d10593254d2eacb3fd37e5d3e943b31fcb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4448fc41_cd99085f",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T01:22:43Z",
+      "side": 1,
+      "message": "this is not needed (selfreview)",
+      "revId": "0b0e4d10593254d2eacb3fd37e5d3e943b31fcb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
