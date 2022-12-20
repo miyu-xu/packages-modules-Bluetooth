@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae029fd5_cb262d65",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T14:17:21Z",
+      "side": 1,
+      "message": "left over",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ca3f9d_b28a0106",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T14:17:21Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf018277_5b65cc2d",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T14:17:21Z",
+      "side": 1,
+      "message": "with this approach this flag might be not needed.",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff078a40_7582f97d",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T14:17:21Z",
+      "side": 1,
+      "message": "to remove probably.",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
