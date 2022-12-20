@@ -84,7 +84,7 @@ public class BluetoothMapAppParams {
     private static final int TRANSPARENT_LEN = 0x01; //, 0x0000, 0x0001),
     private static final int RETRY_LEN = 0x01; //, 0x0000, 0x0001),
     private static final int NEW_MESSAGE_LEN = 0x01; //, 0x0000, 0x0001),
-    private static final int NOTIFICATION_STATUS_LEN = 0x01; //, 0x0000, 0xFFFF),
+    private static final int NOTIFICATION_STATUS_LEN = 0x02; //, 0x0000, 0xFFFF),
     private static final int MAS_INSTANCE_ID_LEN = 0x01; //, 0x0000, 0x00FF),
     private static final int PARAMETER_MASK_LEN = 0x04; //, 0x0000, 0x0000),
     private static final int FOLDER_LISTING_SIZE_LEN = 0x02; //, 0x0000, 0xFFFF),
@@ -98,12 +98,12 @@ public class BluetoothMapAppParams {
     private static final int DATABASE_INDETIFIER_LEN = 0x10;
     private static final int CONVO_LIST_VER_COUNTER_LEN = 0x10;
     private static final int PRESENCE_AVAILABLE_LEN = 0X01;
-    private static final int CHAT_STATE_LEN = 0x01;
+    private static final int CHAT_STATE_LEN = 0x02;
     private static final int CHAT_STATE_CONVO_ID_LEN = 0x10;
     private static final int FILTER_CONVO_ID_LEN = 0x20;
     private static final int CONVO_LISTING_SIZE_LEN = 0x02;
-    private static final int FILTER_PRESENCE_LEN = 0x01;
-    private static final int FILTER_UID_PRESENT_LEN = 0x01;
+    private static final int FILTER_PRESENCE_LEN = 0x02;
+    private static final int FILTER_UID_PRESENT_LEN = 0x02;
     private static final int FOLDER_VER_COUNTER_LEN = 0x20;
     private static final int FILTER_MESSAGE_HANDLE_LEN = 0x08;
     private static final int NOTIFICATION_FILTER_LEN = 0x04;
@@ -342,7 +342,7 @@ public class BluetoothMapAppParams {
                         Log.w(TAG, "NOTIFICATION_STATUS: Wrong length received: " + tagLength
                                 + " expected: " + NOTIFICATION_STATUS_LEN);
                     } else {
-                        setNotificationStatus(appParams[i] & 0x01); // Lower bit
+                        setNotificationStatus(appParamBuf.getShort(i) & 0xffff); // Make it unsigned
                     }
                     break;
                 case NOTIFICATION_FILTER:
@@ -484,7 +484,7 @@ public class BluetoothMapAppParams {
                         Log.w(TAG, "CHAT_STATE: Wrong length received: " + tagLength + " expected: "
                                 + CHAT_STATE_LEN);
                     } else {
-                        setChatState(appParams[i]);
+                        setChatState(appParamBuf.getShort(i) & 0xffff); // Make it unsigned
                     }
                     break;
                 case FILTER_CONVO_ID:
@@ -510,7 +510,7 @@ public class BluetoothMapAppParams {
                         Log.w(TAG, "FILTER_PRESENCE: Wrong length received: " + tagLength
                                 + " expected: " + FILTER_PRESENCE_LEN);
                     } else {
-                        setFilterPresence(appParams[i]);
+                        setFilterPresence(appParamBuf.getShort(i) & 0xffff); // Make it unsigned
                     }
                     break;
                 case FILTER_UID_PRESENT:
@@ -518,7 +518,7 @@ public class BluetoothMapAppParams {
                         Log.w(TAG, "FILTER_UID_PRESENT: Wrong length received: " + tagLength
                                 + " expected: " + FILTER_UID_PRESENT_LEN);
                     } else {
-                        setFilterUidPresent(appParams[i] & 0x1);
+                        setFilterUidPresent(appParamBuf.getShort(i) & 0xffff); // Make it unsigned
                     }
                     break;
                 case CHAT_STATE_CONVO_ID:
@@ -750,7 +750,7 @@ public class BluetoothMapAppParams {
         if (getPresenceAvailability() != INVALID_VALUE_PARAMETER) {
             appParamBuf.put((byte) PRESENCE_AVAILABLE);
             appParamBuf.put((byte) PRESENCE_AVAILABLE_LEN);
-            appParamBuf.putInt((int) getPresenceAvailability());
+            appParamBuf.put((byte) getPresenceAvailability());
         }
         if (getPresenceStatus() != null) {
             appParamBuf.put((byte) PRESENCE_TEXT);
