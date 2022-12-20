@@ -902,6 +902,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9783ca28_2479f891",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-20T05:00:00Z",
+      "side": 1,
+      "message": "Sorry for late response. I was stuck on a P0 issue.\nFix me if I\u0027m wrong.\n\nHow can we be sure that all BT device will send the audio policy?\nIf they don\u0027t, it will be UNKNOWN status, and will be waiting forever?",
+      "parentUuid": "4898e482_218a0fd5",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3198736e_a0089036",
         "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
         "patchSetId": 30
