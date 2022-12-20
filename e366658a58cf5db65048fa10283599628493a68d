@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d10e0faf_3ee90a72",
+        "filename": "system/gd/rust/linux/client/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-12-20T20:39:35Z",
+      "side": 1,
+      "message": "Please add the dependency here: https://chromium.googlesource.com/chromiumos/third_party/rust_crates/+/refs/heads/main/projects/aosp/floss/Cargo.toml",
+      "parentUuid": "e84179f5_3ca3ecdb",
+      "revId": "e366658a58cf5db65048fa10283599628493a68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b81ef80f_fad63279",
