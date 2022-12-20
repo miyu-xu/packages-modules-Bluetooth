@@ -568,6 +568,11 @@ async fn start_interactive_shell(
                 print_info!("Adapter {} is ready", adapter_address);
             }
             ForegroundActions::Readline(result) => match result {
+                Err(rustyline::error::ReadlineError::Interrupted) => {
+                    // Ready to do readline again.
+                    semaphore_fg.add_permits(1);
+                    continue;
+                }
                 Err(_err) => {
                     break;
                 }
