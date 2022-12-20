@@ -16,6 +16,23 @@
       "message": "Thank you!",
       "revId": "aa23836c6a5b625120671dd30f6cf3cfa23fd656",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7331bcc0_bfa5ea25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-12-20T00:00:39Z",
+      "side": 1,
+      "message": "Only failure is an infra failure",
+      "revId": "aa23836c6a5b625120671dd30f6cf3cfa23fd656",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
