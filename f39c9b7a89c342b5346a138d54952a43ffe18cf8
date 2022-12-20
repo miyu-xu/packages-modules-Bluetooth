@@ -16,6 +16,23 @@
       "message": "Hi @siyuanh@google.com, this is a patch to fix a known issue in bluetooth 5.3, could you take a look at it? Thanks.",
       "revId": "f39c9b7a89c342b5346a138d54952a43ffe18cf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec54d397_b835e250",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-20T21:22:27Z",
+      "side": 1,
+      "message": "Set Ready For Review",
+      "revId": "f39c9b7a89c342b5346a138d54952a43ffe18cf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
