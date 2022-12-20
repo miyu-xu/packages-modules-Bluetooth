@@ -16,6 +16,52 @@
       "message": "Hi Thomas,\n\nI have done rebase.\n\n\nThanks,\nFahad",
       "revId": "9101f4e257d545ed65ffe8b1476e0f46c7830289",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021980b4_04907196",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-12-20T10:59:38Z",
+      "side": 1,
+      "message": "Rename to `INCOMING_FILE_ACCEPT_BTN`",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 28
+      },
+      "revId": "9101f4e257d545ed65ffe8b1476e0f46c7830289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "283710de_3e3f7a1e",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-12-20T10:59:38Z",
+      "side": 1,
+      "message": "Rename to `INCOMING_FILE_WAIT_TIMEOUT`",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "9101f4e257d545ed65ffe8b1476e0f46c7830289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
