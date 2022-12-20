@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20beef73_821db57e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-12-20T10:27:26Z",
+      "side": 1,
+      "message": "Hi Thomas and Charlie,\n\nI have increased factoryReset timeout from 10 to 30. \nThis change is required because in some random scenarios, after clearing bluetooth config, BT Off and BT On takes more than 10 seconds( approx 17-18 seconds).\n\nRequest you to provide your inputs.\n\nThanks,\nFahad",
+      "revId": "a10b74a7e283a18b84b98a4806ad36d60985fb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
