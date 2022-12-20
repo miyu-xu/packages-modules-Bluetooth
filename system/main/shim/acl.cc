@@ -1634,10 +1634,23 @@ void shim::legacy::Acl::OnLeConnectSuccess(
   tBLE_BD_ADDR legacy_address_with_type =
       ToLegacyAddressWithType(address_with_type);
 
+  auto is_discovering = std::visit(
+      [&](auto&& data) {
+        using T = std::decay_t<decltype(data)>;
+        if constexpr (std::is_same_v<T, hci::acl_manager::DataAsPeripheral>) {
+          return data.connected_to_discoverable;
+        } else {
+          // if we are the central, the peer can always see discoverable
+          // characteristics
+          return true;
+        }
+      },
+      connection->GetRoleSpecificData());
+
   TRY_POSTING_ON_MAIN(
       acl_interface_.connection.le.on_connected, legacy_address_with_type,
       handle, ToLegacyRole(connection_role), conn_interval, conn_latency,
-      conn_timeout, local_rpa, peer_rpa, peer_addr_type);
+      conn_timeout, local_rpa, peer_rpa, peer_addr_type, is_discovering);
 
   LOG_DEBUG("Connection successful le remote:%s handle:%hu initiator:%s",
             PRIVATE_ADDRESS(address_with_type), handle,

@@ -237,6 +237,10 @@ struct tACL_CONN {
   tHCI_ROLE link_role;
   uint8_t switch_role_failed_attempts;
 
+  // whether this connection can read characteristics only visible if we are
+  // "discoverable" (default true)
+  bool is_discovering{true};
+
   tREMOTE_VERSION_INFO remote_version_info;
 
 #define BTM_SEC_RS_NOT_PENDING 0 /* Role Switch not in progress */
