@@ -237,11 +237,11 @@ using tAVRC_MSG_CBACK = base::Callback<void(uint8_t handle, uint8_t label,
                                             uint8_t opcode, tAVRC_MSG* p_msg)>;
 
 typedef struct {
-  tAVRC_CTRL_CBACK ctrl_cback;    /* application control callback */
-  tAVRC_MSG_CBACK msg_cback;      /* application message callback */
-  uint32_t company_id;            /* the company ID  */
-  uint8_t conn;                   /* Connection role (Initiator/acceptor) */
-  uint8_t control;                /* Control role (Control/Target) */
+  tAVRC_CTRL_CBACK ctrl_cback; /* application control callback */
+  tAVRC_MSG_CBACK msg_cback;   /* application message callback */
+  uint32_t company_id;         /* the company ID  */
+  uint8_t conn;                /* Connection role (Initiator/acceptor) */
+  uint8_t control;             /* Control role (Control/Target) */
 } tAVRC_CONN_CB;
 
 typedef struct {
@@ -513,7 +513,7 @@ extern uint16_t AVRC_CloseBrowse(uint8_t handle);
  *
  *****************************************************************************/
 extern uint16_t AVRC_MsgReq(uint8_t handle, uint8_t label, uint8_t ctype,
-                            BT_HDR* p_pkt);
+                            BT_HDR* p_pkt, bool is_new_avrcp);
 
 /******************************************************************************
  *
@@ -842,5 +842,7 @@ extern bool AVRC_IsValidAvcType(uint8_t pdu_id, uint8_t avc_type);
  *
  ******************************************************************************/
 extern bool AVRC_IsValidPlayerAttr(uint8_t attr);
+
+extern void AVRC_UpdateCcb(RawAddress* addr, uint32_t company_id);
 
 #endif /* AVRC_API_H */
