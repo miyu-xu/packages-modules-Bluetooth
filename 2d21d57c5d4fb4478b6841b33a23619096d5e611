@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c099855e_315af59f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-20T02:13:31Z",
+      "side": 1,
+      "message": "Internal branch doesn\u0027t have this.\nLet me do it in the next CL, after checking the status.",
+      "parentUuid": "c0101435_9457f3a8",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 39
+      },
+      "revId": "2d21d57c5d4fb4478b6841b33a23619096d5e611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bbb83bc_27ffccb5",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-19T11:07:26Z",
       "side": 1,
       "message": "log",
+      "range": {
+        "startLine": 389,
+        "startChar": 27,
+        "endLine": 389,
+        "endChar": 30
+      },
+      "revId": "2d21d57c5d4fb4478b6841b33a23619096d5e611",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d0a1ee_34acef7d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-20T02:13:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bbb83bc_27ffccb5",
       "range": {
         "startLine": 389,
         "startChar": 27,
