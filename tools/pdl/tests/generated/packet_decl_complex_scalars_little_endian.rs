@@ -36,6 +36,7 @@ pub trait Packet {
 }
 
 #[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 struct FooData {
     a: u8,
     b: u8,
@@ -45,10 +46,12 @@ struct FooData {
     f: u8,
 }
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooPacket {
     foo: Arc<FooData>,
 }
 #[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooBuilder {
     pub a: u8,
     pub b: u8,
