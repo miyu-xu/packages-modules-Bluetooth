@@ -16,6 +16,24 @@
       "message": "NIT:Separate this to another CL.",
       "revId": "d8d9e97e510ef7bd3615da734579a8d426cf76a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "086e26e5_2a14b6fd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-12-20T19:02:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d58f8d53_52ddc642",
+      "revId": "d8d9e97e510ef7bd3615da734579a8d426cf76a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
