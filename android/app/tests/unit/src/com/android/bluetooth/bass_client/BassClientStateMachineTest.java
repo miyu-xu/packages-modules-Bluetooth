@@ -99,7 +99,6 @@ public class BassClientStateMachineTest {
 
     @After
     public void tearDown() throws Exception {
-        Log.d("hieu-debug", "blo blo");
         mBassClientStateMachine.doQuit();
         mHandlerThread.quit();
         TestUtils.clearAdapterService(mAdapterService);
