@@ -22,6 +22,30 @@
       },
       "revId": "52425905fc6b7d405f9372526c84d4c58a4b0c82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b04b6c_984f8311",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-20T22:18:02Z",
+      "side": 1,
+      "message": "It\u0027s in a follow on CL.\n\nIt will be used to aggregate the time for a variety of events, initially starting with inquiry enable/disable, and le scan enable/disable.\n\nI have other use cases where we want to aggregate various timestamps; e.g. crash after x seconds when some event doesn\u0027t happen (behind flag of course)",
+      "parentUuid": "381ee872_08efa8b9",
+      "range": {
+        "startLine": 98,
+        "startChar": 45,
+        "endLine": 98,
+        "endChar": 72
+      },
+      "revId": "52425905fc6b7d405f9372526c84d4c58a4b0c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
