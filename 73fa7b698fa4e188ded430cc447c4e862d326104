@@ -22,6 +22,30 @@
       },
       "revId": "73fa7b698fa4e188ded430cc447c4e862d326104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba4efb14_a8b32d7e",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-20T14:40:35Z",
+      "side": 1,
+      "message": "I see, this makes sense to me. Let the user go to use adv_id.",
+      "parentUuid": "b2cf69d4_0532d73a",
+      "range": {
+        "startLine": 199,
+        "startChar": 66,
+        "endLine": 199,
+        "endChar": 72
+      },
+      "revId": "73fa7b698fa4e188ded430cc447c4e862d326104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
