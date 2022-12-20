@@ -3602,6 +3602,22 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void isDistanceMeasurementSupported(SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(isDistanceMeasurementSupported());
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        public int isDistanceMeasurementSupported() {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            return BluetoothStatusCodes.FEATURE_SUPPORTED;
+        }
+
+        @Override
         public void getLeMaximumAdvertisingDataLength(SynchronousResultReceiver receiver) {
             try {
                 receiver.send(getLeMaximumAdvertisingDataLength());
