@@ -33,6 +33,29 @@
       "message": "this is not needed (selfreview)",
       "revId": "0b0e4d10593254d2eacb3fd37e5d3e943b31fcb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a9974df_66074ead",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T12:31:49Z",
+      "side": 1,
+      "message": "actually this dependency is also ugly. Fixing it.",
+      "range": {
+        "startLine": 44,
+        "startChar": 21,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "0b0e4d10593254d2eacb3fd37e5d3e943b31fcb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
