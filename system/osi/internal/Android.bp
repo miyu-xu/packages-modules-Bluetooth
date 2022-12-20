@@ -1,0 +1,26 @@
+// cc_library_static {
+//     name: "libosi_internal",
+//     host_supported: true,
+//     export_include_dirs: [
+//         "include",
+//     ],
+//     visibility:[
+//         // visibility is voluntarly restricted to libosi
+//         "//packages/modules/Bluetooth/system/osi",
+//     ],
+//     header_libs: [
+//       "libbluetooth_headers",
+//       "libosi",
+//     ],
+//     shared_libs: [
+//         "liblog",
+//     ],
+//     srcs: [
+//         "src/semaphore.cc",
+//     ],
+//     min_sdk_version: "Tiramisu",
+//     apex_available: [
+//         "com.android.btservices",
+//     ],
+// }
+
