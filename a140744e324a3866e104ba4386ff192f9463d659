@@ -16,6 +16,24 @@
       "message": "I was expecting the ::bt_property_t changes from headless.cc to be removed here",
       "revId": "a140744e324a3866e104ba4386ff192f9463d659",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34a4bb33_25b7f2e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-12-20T20:45:01Z",
+      "side": 1,
+      "message": "I don\u0027t quite understand; I was going to use ::bt_property_t, but it\u0027s not good...so I rolled my own and sequenced a set of CLs to remove.",
+      "parentUuid": "5b02301d_c1d4e56c",
+      "revId": "a140744e324a3866e104ba4386ff192f9463d659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
