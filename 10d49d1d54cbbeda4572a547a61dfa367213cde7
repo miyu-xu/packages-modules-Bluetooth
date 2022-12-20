@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f342d64_d392c480",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-12-20T18:19:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1efb915c_94492ce6",
+      "revId": "10d49d1d54cbbeda4572a547a61dfa367213cde7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a72ef7a_55b23a5c",
@@ -65,6 +83,24 @@
       "writtenOn": "2022-12-20T17:37:01Z",
       "side": 1,
       "message": "```\nlog:debug!(\"Waiting for stack to turn off for {:?}\", STACK_TURN_OFF_TIMEOUT_MS);\nlet _ \u003d notifier.1.wait_timeout(guard, STACK_TURN_OFF_TIMEOUT_MS);\n```",
+      "revId": "10d49d1d54cbbeda4572a547a61dfa367213cde7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed90c2f8_5fe2af58",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2022-12-20T18:19:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a72ef7a_55b23a5c",
       "revId": "10d49d1d54cbbeda4572a547a61dfa367213cde7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
