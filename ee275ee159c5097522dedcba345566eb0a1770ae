@@ -33,6 +33,24 @@
       "message": "Please rebase 😊",
       "revId": "ee275ee159c5097522dedcba345566eb0a1770ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd1b9129_95524f05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-12-20T05:57:44Z",
+      "side": 1,
+      "message": "Rebase done.",
+      "parentUuid": "b037b894_0efdc4de",
+      "revId": "ee275ee159c5097522dedcba345566eb0a1770ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

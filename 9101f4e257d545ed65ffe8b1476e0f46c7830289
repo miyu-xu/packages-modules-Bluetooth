@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "845d76a5_f23d9756",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-12-20T05:57:44Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nI have done rebase.\n\n\nThanks,\nFahad",
+      "revId": "9101f4e257d545ed65ffe8b1476e0f46c7830289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
