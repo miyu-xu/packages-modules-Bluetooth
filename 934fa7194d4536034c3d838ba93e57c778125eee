@@ -16,6 +16,24 @@
       "message": "Consider making it package private instead of public because the test class is in the same package in this case",
       "revId": "934fa7194d4536034c3d838ba93e57c778125eee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f4a7fb1_7a4c4ce6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-20T00:49:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fa973b7_6426265b",
+      "revId": "934fa7194d4536034c3d838ba93e57c778125eee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
