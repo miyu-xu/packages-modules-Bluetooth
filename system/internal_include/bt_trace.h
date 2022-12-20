@@ -34,7 +34,8 @@ typedef enum {
   BT_TRACE_LEVEL_API = 3,     /* API traces                           */
   BT_TRACE_LEVEL_EVENT = 4,   /* Debug messages for events            */
   BT_TRACE_LEVEL_DEBUG = 5,   /* Full debug messages                  */
-  BT_TRACE_LEVEL_VERBOSE = 6, /* Verbose debug messages               */
+  BT_TRACE_LEVEL_INFO = 6,    /* INFO Messages                        */
+  BT_TRACE_LEVEL_VERBOSE = 7, /* Verbose debug messages               */
 } tLEGACY_TRACE_LEVEL;
 
 #define TRACE_CTRL_GENERAL 0x00000000
@@ -72,6 +73,7 @@ typedef enum {
 #define TRACE_TYPE_API 0x00000002
 #define TRACE_TYPE_EVENT 0x00000003
 #define TRACE_TYPE_DEBUG 0x00000004
+#define TRACE_TYPE_INFO 0x00000005
 
 static const char BTE_LOGMSG_MODULE[] = "bte_logmsg_module";
 
@@ -348,6 +350,11 @@ static const char BTE_LOGMSG_MODULE[] = "bte_logmsg_module";
     if (sdp_cb.trace_level >= BT_TRACE_LEVEL_DEBUG)               \
       BT_TRACE(TRACE_LAYER_SDP, TRACE_TYPE_DEBUG, ##__VA_ARGS__); \
   }
+#define SDP_TRACE_INFO(...)                                     \
+ {                                                              \
+    if (sdp_cb.trace_level >= BT_TRACE_LEVEL_INFO)              \
+      BT_TRACE(TRACE_LAYER_SDP, TRACE_TYPE_INFO, ##__VA_ARGS__); \
+ }
 
 /* Define tracing for the RFCOMM unit */
 #define RFCOMM_TRACE_ERROR(...)                                      \
