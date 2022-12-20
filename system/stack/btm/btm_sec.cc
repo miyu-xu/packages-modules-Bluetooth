@@ -318,6 +318,16 @@ bool BTM_IsAuthenticated(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   return (flags & BTM_SEC_AUTHENTICATED) != 0;
 }
 
+bool BTM_IsDiscovering(const RawAddress& bd_addr) {
+  auto p_dev_rec = btm_find_dev(bd_addr);
+  if (p_dev_rec != nullptr) {
+    return p_dev_rec->can_read_discoverable;
+  } else {
+    LOG_ERROR("BTM_IsDiscovering invoked for an invalid BD_ADDR");
+    return false;
+  }
+}
+
 /*******************************************************************************
  *
  * Function         BTM_GetSecurityFlagsByTransport
