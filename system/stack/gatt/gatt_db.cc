@@ -101,6 +101,28 @@ static tGATT_STATUS gatts_check_attr_readability(const tGATT_ATTR& attr,
     return GATT_READ_NOT_PERMIT;
   }
 
+  if (read_long && attr.uuid.Is16Bit()) {
+    switch (attr.uuid.As16Bit()) {
+      case GATT_UUID_PRI_SERVICE:
+      case GATT_UUID_SEC_SERVICE:
+      case GATT_UUID_CHAR_DECLARE:
+      case GATT_UUID_INCLUDE_SERVICE:
+      case GATT_UUID_CHAR_EXT_PROP:
+      case GATT_UUID_CHAR_CLIENT_CONFIG:
+      case GATT_UUID_CHAR_SRVR_CONFIG:
+      case GATT_UUID_CHAR_PRESENT_FORMAT:
+        LOG(ERROR) << __func__ << ": GATT_NOT_LONG";
+        return GATT_NOT_LONG;
+
+      default:
+        break;
+    }
+  }
+
+  if ((perm & GATT_PERM_READ_IF_DISCOVERABLE) && sec_flag.is_discovering) {
+    return GATT_SUCCESS;
+  }
+
   if ((perm & GATT_READ_AUTH_REQUIRED) && !sec_flag.is_link_key_known &&
       !sec_flag.is_encrypted) {
     LOG(ERROR) << __func__ << ": GATT_INSUF_AUTHENTICATION";
@@ -121,24 +143,6 @@ static tGATT_STATUS gatts_check_attr_readability(const tGATT_ATTR& attr,
       (key_size < min_key_size)) {
     LOG(ERROR) << __func__ << ": GATT_INSUF_KEY_SIZE";
     return GATT_INSUF_KEY_SIZE;
-  }
-
-  if (read_long && attr.uuid.Is16Bit()) {
-    switch (attr.uuid.As16Bit()) {
-      case GATT_UUID_PRI_SERVICE:
-      case GATT_UUID_SEC_SERVICE:
-      case GATT_UUID_CHAR_DECLARE:
-      case GATT_UUID_INCLUDE_SERVICE:
-      case GATT_UUID_CHAR_EXT_PROP:
-      case GATT_UUID_CHAR_CLIENT_CONFIG:
-      case GATT_UUID_CHAR_SRVR_CONFIG:
-      case GATT_UUID_CHAR_PRESENT_FORMAT:
-        LOG(ERROR) << __func__ << ": GATT_NOT_LONG";
-        return GATT_NOT_LONG;
-
-      default:
-        break;
-    }
   }
 
   return GATT_SUCCESS;
