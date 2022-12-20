@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "101fb26b_b4602a98",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T19:05:55Z",
+      "side": 1,
+      "message": "You will need to have a tristate for field sizes in the future, so might as well define it now:\n\n```\nenum Size {\n  Static(usize), // Field of known static bit-size\n  Dynamic, // Field of known dynamic bit-size (size or count field provided)\n  Undefined, // Field of unknown bit-size (size or count field not provided)\n}\n``` \nIn the latter case the parser is greedy",
+      "range": {
+        "startLine": 262,
+        "startChar": 72,
+        "endLine": 262,
+        "endChar": 85
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96cf154_814f5f6e",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T19:05:55Z",
+      "side": 1,
+      "message": "nit: Move this check as a guarded match case:\n```\nmatch field {\n  _ if field.is_bitfield() \u003d\u003e self.add_bit_field(field),\n  ..\n```",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 9
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ce1fb8_3282c565",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T19:05:55Z",
+      "side": 1,
+      "message": "parse_element parses from #span, but here you want to parser from head",
+      "range": {
+        "startLine": 234,
+        "startChar": 34,
+        "endLine": 234,
+        "endChar": 47
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff571d6_7b3a4613",
+        "filename": "tools/pdl/src/backends/rust/serializer.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T19:05:55Z",
+      "side": 1,
+      "message": "Invalid for vectors of struct or large integers.\nFor structures:\n```self.field.iter().map(|s| s.size()).sum::\u003cuN\u003e()```\nFor integers:\n```self.field.len() * N```",
+      "range": {
+        "startLine": 83,
+        "startChar": 57,
+        "endLine": 83,
+        "endChar": 60
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
