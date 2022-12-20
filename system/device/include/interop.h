@@ -23,6 +23,7 @@
 
 #include "osi/include/list.h"
 #include "raw_address.h"
+#include "include/hardware/bluetooth.h"
 
 static const char INTEROP_MODULE[] = "interop_module";
 
@@ -267,6 +268,7 @@ typedef enum {
   // which causes an HFP profile connection failure
   INTEROP_SLC_SKIP_BIND_COMMAND,
 
+
   // Few remote devices do not understand AVRCP version greater than 1.3. For
   // these devices, we would like to denylist them and advertise AVRCP version
   // as 1.3
@@ -321,6 +323,11 @@ typedef enum {
   INTEROP_DISABLE_ROLE_SWITCH_DURING_CONNECTION,
 
   END_OF_INTEROP_LIST
+
+  // Respond AVRCP profile version only 1.3 for some device.
+  INTEROP_AVRCP_1_3_ONLY,
+
+  INTEROP_HFP_1_7_ALLOWLIST
 } interop_feature_t;
 
 // Check if a given |addr| matches a known interoperability workaround as
