@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "188b7f64_a7d82c0f",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T18:31:23Z",
+      "side": 1,
+      "message": "nit: Document tuple: offset, width, declaration\nnit: Vec\u003c(usize, usize, \u0026\u0027d ast::Field)\u003e to avoid cloning fields",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b523338_06c81887",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T18:31:23Z",
+      "side": 1,
+      "message": "I don\u0027t know if that will hold in the future, but you can have get_uint check the size and increment the offset to simplify the code below. That would shadow the behavior of BytesMut.get_uint which consumes the input.",
+      "range": {
+        "startLine": 44,
+        "startChar": 7,
+        "endLine": 44,
+        "endChar": 15
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5904267_91ebdd79",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T18:31:23Z",
+      "side": 1,
+      "message": "nit: Something that I did not do consistently in the python generator: disambiguate local variables in case someone has a field of the same name.",
+      "range": {
+        "startLine": 96,
+        "startChar": 40,
+        "endLine": 96,
+        "endChar": 45
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bf34444_f42347fa",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T18:31:23Z",
+      "side": 1,
+      "message": "~~to~~",
+      "range": {
+        "startLine": 100,
+        "startChar": 35,
+        "endLine": 100,
+        "endChar": 37
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b24b794_3bc037a6",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T18:31:23Z",
+      "side": 1,
+      "message": "self.chunk.drain(..).into_iter()",
+      "range": {
+        "startLine": 105,
+        "startChar": 37,
+        "endLine": 105,
+        "endChar": 48
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8627b929_c029c7c1",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T18:31:23Z",
+      "side": 1,
+      "message": "You also need to apply the mask for some sizes that are multiple of 8:\n```\na: 2\nb: 24 // Needs a mask as well\nc: 6\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

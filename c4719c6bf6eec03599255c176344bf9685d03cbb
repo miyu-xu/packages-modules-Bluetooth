@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55e0dc19_f7ef8607",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-20T18:31:23Z",
+      "side": 1,
+      "message": "Typedef yes, but only when an enum type. The python generator does not consider struct / custom fields as bit fields.",
+      "range": {
+        "startLine": 299,
+        "startChar": 16,
+        "endLine": 299,
+        "endChar": 39
+      },
+      "revId": "c4719c6bf6eec03599255c176344bf9685d03cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
