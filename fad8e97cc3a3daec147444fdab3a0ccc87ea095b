@@ -16,6 +16,190 @@
       "message": "There are new System APIs to set/get the snoop log mode (https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d5120), should they be expanded to include these changes?",
       "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a036fc7_9e842d09",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "If you create BluetoothProperties, you should use them.\n\nBut this change is unrelated to the QC Upstream and could / should be done in immediate follow up CL",
+      "range": {
+        "startLine": 822,
+        "startChar": 12,
+        "endLine": 830,
+        "endChar": 93
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1b4802_f2aa6d38",
+        "filename": "system/gd/dumpsys/init_flags.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "I recommend moving the flagging in a immediate follow-up CL (not the same as the one for adapterservice)",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd790e0_d957574f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "What does this handle enable ?",
+      "range": {
+        "startLine": 244,
+        "startChar": 19,
+        "endLine": 244,
+        "endChar": 42
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85327c33_24357259",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "please use the sysprop you are adding:\nandroid::sysprop::BluetoothProperties\n\nThere is an example of it in `l2c_ble.cc`",
+      "range": {
+        "startLine": 628,
+        "startChar": 27,
+        "endLine": 628,
+        "endChar": 48
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "821a5b49_611d870f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "Where does this come from ?",
+      "range": {
+        "startLine": 674,
+        "startChar": 102,
+        "endLine": 674,
+        "endChar": 103
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33627386_109f5f2e",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "you can early return here to avoid the else and its nesting",
+      "range": {
+        "startLine": 822,
+        "startChar": 6,
+        "endLine": 822,
+        "endChar": 12
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad9b1a66_3c5e2b20",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "Can we move all this in a filterRfcomm method ?",
+      "range": {
+        "startLine": 825,
+        "startChar": 16,
+        "endLine": 825,
+        "endChar": 20
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda2d808_5af561d9",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T21:06:16Z",
+      "side": 1,
+      "message": "naive question:\nIsRfcommChannel can be true but the ctrl not a RFCOMM ?\nIn which case does this happen ?",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 33
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
