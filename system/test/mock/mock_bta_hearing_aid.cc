@@ -71,3 +71,19 @@ void HearingAid::Initialize(
     base::Closure initCb) {
   mock_function_count_map[__func__]++;
 }
+
+void HearingAid::Connect(const RawAddress& address) {
+  mock_function_count_map[__func__]++;
+}
+
+void HearingAid::Disconnect(const RawAddress& address) {
+  mock_function_count_map[__func__]++;
+}
+
+void HearingAid::AddToAcceptlist(const RawAddress& address) {
+  mock_function_count_map[__func__]++;
+}
+
+void HearingAid::SetVolume(int8_t volume) {
+  mock_function_count_map[__func__]++;
+}
