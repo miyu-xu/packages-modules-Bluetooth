@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "332e69a8_1ff9e3ca",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T19:13:14Z",
+      "side": 1,
+      "message": "shall be return.",
+      "revId": "a21b5043e52236852452160edc167713386fb54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
