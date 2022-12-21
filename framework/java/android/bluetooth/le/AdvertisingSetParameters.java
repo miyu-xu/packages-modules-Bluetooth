@@ -142,16 +142,26 @@ public final class AdvertisingSetParameters implements Parcelable {
     private final int mPrimaryPhy;
     private final int mSecondaryPhy;
     private final boolean mConnectable;
+    private final boolean mDiscoverable;
     private final boolean mScannable;
     private final int mInterval;
     private final int mTxPowerLevel;
     private final int mOwnAddressType;
 
-    private AdvertisingSetParameters(boolean connectable, boolean scannable, boolean isLegacy,
-            boolean isAnonymous, boolean includeTxPower,
-            int primaryPhy, int secondaryPhy,
-            int interval, int txPowerLevel, @AddressTypeStatus int ownAddressType) {
+    private AdvertisingSetParameters(
+            boolean connectable,
+            boolean discoverable,
+            boolean scannable,
+            boolean isLegacy,
+            boolean isAnonymous,
+            boolean includeTxPower,
+            int primaryPhy,
+            int secondaryPhy,
+            int interval,
+            int txPowerLevel,
+            @AddressTypeStatus int ownAddressType) {
         mConnectable = connectable;
+        mDiscoverable = discoverable;
         mScannable = scannable;
         mIsLegacy = isLegacy;
         mIsAnonymous = isAnonymous;
@@ -165,6 +175,7 @@ public final class AdvertisingSetParameters implements Parcelable {
 
     private AdvertisingSetParameters(Parcel in) {
         mConnectable = in.readInt() != 0;
+        mDiscoverable = in.readInt() != 0;
         mScannable = in.readInt() != 0;
         mIsLegacy = in.readInt() != 0;
         mIsAnonymous = in.readInt() != 0;
@@ -176,11 +187,14 @@ public final class AdvertisingSetParameters implements Parcelable {
         mOwnAddressType = in.readInt();
     }
 
-    /**
-     * Returns whether the advertisement will be connectable.
-     */
+    /** Returns whether the advertisement will be connectable. */
     public boolean isConnectable() {
         return mConnectable;
+    }
+
+    /** Returns whether the advertisement is discoverable. */
+    public boolean isDiscoverable() {
+        return mDiscoverable;
     }
 
     /**
@@ -251,15 +265,27 @@ public final class AdvertisingSetParameters implements Parcelable {
 
     @Override
     public String toString() {
-        return "AdvertisingSetParameters [connectable=" + mConnectable
-                + ", isLegacy=" + mIsLegacy
-                + ", isAnonymous=" + mIsAnonymous
-                + ", includeTxPower=" + mIncludeTxPower
-                + ", primaryPhy=" + mPrimaryPhy
-                + ", secondaryPhy=" + mSecondaryPhy
-                + ", interval=" + mInterval
-                + ", txPowerLevel=" + mTxPowerLevel
-                + ", ownAddressType=" + mOwnAddressType + "]";
+        return "AdvertisingSetParameters [connectable="
+                + mConnectable
+                + ", discoverable="
+                + mDiscoverable
+                + ", isLegacy="
+                + mIsLegacy
+                + ", isAnonymous="
+                + mIsAnonymous
+                + ", includeTxPower="
+                + mIncludeTxPower
+                + ", primaryPhy="
+                + mPrimaryPhy
+                + ", secondaryPhy="
+                + mSecondaryPhy
+                + ", interval="
+                + mInterval
+                + ", txPowerLevel="
+                + mTxPowerLevel
+                + ", ownAddressType="
+                + mOwnAddressType
+                + "]";
     }
 
     @Override
@@ -270,6 +296,7 @@ public final class AdvertisingSetParameters implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mConnectable ? 1 : 0);
+        dest.writeInt(mDiscoverable ? 1 : 0);
         dest.writeInt(mScannable ? 1 : 0);
         dest.writeInt(mIsLegacy ? 1 : 0);
         dest.writeInt(mIsAnonymous ? 1 : 0);
@@ -299,6 +326,7 @@ public final class AdvertisingSetParameters implements Parcelable {
      */
     public static final class Builder {
         private boolean mConnectable = false;
+        private boolean mDiscoverable = true;
         private boolean mScannable = false;
         private boolean mIsLegacy = false;
         private boolean mIsAnonymous = false;
@@ -320,6 +348,19 @@ public final class AdvertisingSetParameters implements Parcelable {
          */
         public Builder setConnectable(boolean connectable) {
             mConnectable = connectable;
+            return this;
+        }
+
+        /**
+         * Set whether the advertisement type should be discoverable or non-discoverable. By
+         * default, advertisements will be discoverable. Devices connecting to non-discoverable
+         * advertisements cannot initiate bonding.
+         *
+         * @param discoverable Controls whether the advertisement type will be discoverable (true)
+         *     or non-discoverable (false).
+         */
+        public @NonNull Builder setDiscoverable(boolean discoverable) {
+            mDiscoverable = discoverable;
             return this;
         }
 
@@ -505,8 +546,17 @@ public final class AdvertisingSetParameters implements Parcelable {
                 }
             }
 
-            return new AdvertisingSetParameters(mConnectable, mScannable, mIsLegacy, mIsAnonymous,
-                    mIncludeTxPower, mPrimaryPhy, mSecondaryPhy, mInterval, mTxPowerLevel,
+            return new AdvertisingSetParameters(
+                    mConnectable,
+                    mDiscoverable,
+                    mScannable,
+                    mIsLegacy,
+                    mIsAnonymous,
+                    mIncludeTxPower,
+                    mPrimaryPhy,
+                    mSecondaryPhy,
+                    mInterval,
+                    mTxPowerLevel,
                     mOwnAddressType);
         }
     }

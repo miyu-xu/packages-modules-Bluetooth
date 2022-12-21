@@ -78,14 +78,20 @@ public final class AdvertiseSettings implements Parcelable {
     private final int mAdvertiseTxPowerLevel;
     private final int mAdvertiseTimeoutMillis;
     private final boolean mAdvertiseConnectable;
+    private final boolean mDiscoverable;
     private final int mOwnAddressType;
 
-    private AdvertiseSettings(int advertiseMode, int advertiseTxPowerLevel,
-            boolean advertiseConnectable, int advertiseTimeout,
+    private AdvertiseSettings(
+            int advertiseMode,
+            int advertiseTxPowerLevel,
+            boolean advertiseConnectable,
+            boolean discoverable,
+            int advertiseTimeout,
             @AddressTypeStatus int ownAddressType) {
         mAdvertiseMode = advertiseMode;
         mAdvertiseTxPowerLevel = advertiseTxPowerLevel;
         mAdvertiseConnectable = advertiseConnectable;
+        mDiscoverable = discoverable;
         mAdvertiseTimeoutMillis = advertiseTimeout;
         mOwnAddressType = ownAddressType;
     }
@@ -94,6 +100,7 @@ public final class AdvertiseSettings implements Parcelable {
         mAdvertiseMode = in.readInt();
         mAdvertiseTxPowerLevel = in.readInt();
         mAdvertiseConnectable = in.readInt() != 0;
+        mDiscoverable = in.readInt() != 0;
         mAdvertiseTimeoutMillis = in.readInt();
         mOwnAddressType = in.readInt();
     }
@@ -119,6 +126,11 @@ public final class AdvertiseSettings implements Parcelable {
         return mAdvertiseConnectable;
     }
 
+    /** Returns whether the advertisement will be discoverable. */
+    public boolean isDiscoverable() {
+        return mDiscoverable;
+    }
+
     /**
      * Returns the advertising time limit in milliseconds.
      */
@@ -138,11 +150,19 @@ public final class AdvertiseSettings implements Parcelable {
 
     @Override
     public String toString() {
-        return "Settings [mAdvertiseMode=" + mAdvertiseMode
-                + ", mAdvertiseTxPowerLevel=" + mAdvertiseTxPowerLevel
-                + ", mAdvertiseConnectable=" + mAdvertiseConnectable
-                + ", mAdvertiseTimeoutMillis=" + mAdvertiseTimeoutMillis
-                + ", mOwnAddressType=" + mOwnAddressType + "]";
+        return "Settings [mAdvertiseMode="
+                + mAdvertiseMode
+                + ", mAdvertiseTxPowerLevel="
+                + mAdvertiseTxPowerLevel
+                + ", mAdvertiseConnectable="
+                + mAdvertiseConnectable
+                + ", mDiscoverable="
+                + mDiscoverable
+                + ", mAdvertiseTimeoutMillis="
+                + mAdvertiseTimeoutMillis
+                + ", mOwnAddressType="
+                + mOwnAddressType
+                + "]";
     }
 
     @Override
@@ -155,6 +175,7 @@ public final class AdvertiseSettings implements Parcelable {
         dest.writeInt(mAdvertiseMode);
         dest.writeInt(mAdvertiseTxPowerLevel);
         dest.writeInt(mAdvertiseConnectable ? 1 : 0);
+        dest.writeInt(mDiscoverable ? 1 : 0);
         dest.writeInt(mAdvertiseTimeoutMillis);
         dest.writeInt(mOwnAddressType);
     }
@@ -180,6 +201,7 @@ public final class AdvertiseSettings implements Parcelable {
         private int mTxPowerLevel = ADVERTISE_TX_POWER_MEDIUM;
         private int mTimeoutMillis = 0;
         private boolean mConnectable = true;
+        private boolean mDiscoverable = true;
         private int mOwnAddressType = AdvertisingSetParameters.ADDRESS_TYPE_DEFAULT;
 
         /**
@@ -231,6 +253,17 @@ public final class AdvertiseSettings implements Parcelable {
         }
 
         /**
+         * Set whether the advertisement type should be discoverable or non-discoverable.
+         *
+         * @param discoverable Controls whether the advertisment type will be discoverable (true) or
+         *     non-discoverable (false).
+         */
+        public @NonNull Builder setDiscoverable(boolean discoverable) {
+            mDiscoverable = discoverable;
+            return this;
+        }
+
+        /**
          * Limit advertising to a given amount of time.
          *
          * @param timeoutMillis Advertising time limit. May not exceed 180000 milliseconds. A value
@@ -270,8 +303,13 @@ public final class AdvertiseSettings implements Parcelable {
          * Build the {@link AdvertiseSettings} object.
          */
         public AdvertiseSettings build() {
-            return new AdvertiseSettings(mMode, mTxPowerLevel, mConnectable, mTimeoutMillis,
-                mOwnAddressType);
+            return new AdvertiseSettings(
+                    mMode,
+                    mTxPowerLevel,
+                    mConnectable,
+                    mDiscoverable,
+                    mTimeoutMillis,
+                    mOwnAddressType);
         }
     }
 }

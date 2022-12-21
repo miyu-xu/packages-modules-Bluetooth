@@ -22,7 +22,6 @@
 #include <cstddef>
 #include <cstdint>
 #include <memory>
-#include <optional>
 #include <string>
 #include <unordered_set>
 
@@ -105,19 +104,13 @@ inline std::string connectability_state_machine_text(const ConnectabilityState& 
 #undef CASE_RETURN_TEXT
 
 struct le_acl_connection {
-  le_acl_connection(
-      AddressWithType remote_address,
-      std::unique_ptr<LeAclConnection> pending_connection,
-      AclConnection::QueueDownEnd* queue_down_end,
-      os::Handler* handler)
+  le_acl_connection(AddressWithType remote_address, AclConnection::QueueDownEnd* queue_down_end, os::Handler* handler)
       : remote_address_(remote_address),
-        pending_connection_(std::move(pending_connection)),
         assembler_(new acl_manager::assembler(remote_address, queue_down_end, handler)) {}
   ~le_acl_connection() {
     delete assembler_;
   }
   AddressWithType remote_address_;
-  std::unique_ptr<LeAclConnection> pending_connection_;
   acl_manager::assembler* assembler_;
   LeConnectionManagementCallbacks* le_connection_management_callbacks_ = nullptr;
 };
@@ -238,7 +231,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     void add(
         uint16_t handle,
         const AddressWithType& remote_address,
-        std::unique_ptr<LeAclConnection> pending_connection,
         AclConnection::QueueDownEnd* queue_end,
         os::Handler* handler,
         LeConnectionManagementCallbacks* le_connection_management_callbacks) {
@@ -246,23 +238,10 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       auto emplace_pair = le_acl_connections_.emplace(
           std::piecewise_construct,
           std::forward_as_tuple(handle),
-          std::forward_as_tuple(remote_address, std::move(pending_connection), queue_end, handler));
+          std::forward_as_tuple(remote_address, queue_end, handler));
       ASSERT(emplace_pair.second);  // Make sure the connection is unique
       emplace_pair.first->second.le_connection_management_callbacks_ = le_connection_management_callbacks;
     }
-
-    std::unique_ptr<LeAclConnection> record_peripheral_data_and_extract_pending_connection(
-        uint16_t handle, DataAsPeripheral data) {
-      std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
-      auto connection = le_acl_connections_.find(handle);
-      if (connection != le_acl_connections_.end() && connection->second.pending_connection_.get()) {
-        connection->second.pending_connection_->UpdateRoleSpecificData(data);
-        return std::move(connection->second.pending_connection_);
-      } else {
-        return nullptr;
-      }
-    }
-
     uint16_t HACK_get_handle(Address address) const {
       std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
       for (auto it = le_acl_connections_.begin(); it != le_acl_connections_.end(); it++) {
@@ -565,11 +544,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     auto queue_down_end = queue->GetDownEnd();
     round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::LE, handle, queue);
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
-        std::move(queue),
-        le_acl_connection_interface_,
-        handle,
-        role_specific_data,
-        remote_address));
+        std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
     connection->interval_ = conn_interval;
     connection->latency_ = conn_latency;
@@ -738,18 +713,10 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     return connections.HACK_get_handle(address);
   }
 
-  void OnAdvertisingSetTerminated(
-      uint16_t conn_handle, uint8_t adv_set_id, hci::AddressWithType adv_set_address) {
-    auto connection = connections.record_peripheral_data_and_extract_pending_connection(
-        conn_handle, DataAsPeripheral{adv_set_address, adv_set_id});
-
-    if (connection != nullptr) {
-      le_client_handler_->Post(common::BindOnce(
-          &LeConnectionCallbacks::OnLeConnectSuccess,
-          common::Unretained(le_client_callbacks_),
-          connection->GetRemoteAddress(),
-          std::move(connection)));
-    }
+  void UpdateLocalAddress(uint16_t handle, hci::AddressWithType address_with_type) {
+    connections.execute(handle, [=](LeConnectionManagementCallbacks* callbacks) {
+      callbacks->OnLocalAddressUpdate(address_with_type);
+    });
   }
 
   void add_device_to_connect_list(AddressWithType address_with_type) {
