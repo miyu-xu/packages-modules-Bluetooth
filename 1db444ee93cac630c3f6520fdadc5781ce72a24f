@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "255586f9_7d7c97ba",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T15:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae029fd5_cb262d65",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53ca3f9d_b28a0106",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-20T14:17:21Z",
       "side": 1,
       "message": "ditto",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b4a3d3_85d94619",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T15:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53ca3f9d_b28a0106",
       "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4262be2d_e34ce054",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T15:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf018277_5b65cc2d",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff078a40_7582f97d",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-12-20T14:17:21Z",
       "side": 1,
       "message": "to remove probably.",
+      "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a129f8d0_e65e1db7",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T15:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff078a40_7582f97d",
       "revId": "1db444ee93cac630c3f6520fdadc5781ce72a24f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
