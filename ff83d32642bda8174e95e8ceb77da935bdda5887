@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9723679c_4c6b6cb1",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-21T15:37:42Z",
+      "side": 1,
+      "message": "This check wasn\u0027t here before.  I can see why p_srcb might be needed, if this function gets called from somewhere else, but why does p_srcb-\u003econnected need to be checked?",
+      "range": {
+        "startLine": 202,
+        "startChar": 1,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "ff83d32642bda8174e95e8ceb77da935bdda5887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
