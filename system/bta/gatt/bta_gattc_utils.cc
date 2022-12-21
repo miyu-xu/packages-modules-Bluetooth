@@ -191,6 +191,26 @@ tBTA_GATTC_CLCB* bta_gattc_find_alloc_clcb(tGATT_IF client_if,
 
 /*******************************************************************************
  *
+ * Function         bta_gattc_server_disconnected
+ *
+ * Description      Set server cache disconnected
+ *
+ * Returns          pointer to the srcb
+ *
+ ******************************************************************************/
+void bta_gattc_server_disconnected(tBTA_GATTC_SERV* p_srcb) {
+  if (p_srcb && p_srcb->connected) {
+    p_srcb->connected = false;
+    p_srcb->state = BTA_GATTC_SERV_IDLE;
+    p_srcb->mtu = 0;
+
+    // clear reallocating
+    p_srcb->gatt_database.Clear();
+  }
+}
+
+/*******************************************************************************
+ *
  * Function         bta_gattc_clcb_dealloc
  *
  * Description      Deallocte a clcb
@@ -211,12 +231,7 @@ void bta_gattc_clcb_dealloc(tBTA_GATTC_CLCB* p_clcb) {
 
   /* if the srcb is no longer needed, reset the state */
   if (p_srcb->num_clcb == 0) {
-    p_srcb->connected = false;
-    p_srcb->state = BTA_GATTC_SERV_IDLE;
-    p_srcb->mtu = 0;
-
-    // clear reallocating
-    p_srcb->gatt_database.Clear();
+    bta_gattc_server_disconnected(p_srcb);
   }
 
   while (!p_clcb->p_q_cmd_queue.empty()) {
