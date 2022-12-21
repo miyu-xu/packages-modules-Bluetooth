@@ -96,6 +96,20 @@ public final class ScanSettings implements Parcelable {
      */
     public static final int CALLBACK_TYPE_MATCH_LOST = 4;
 
+    /**
+     * A result callback for every Bluetooth advertisement found that matches the filter criteria
+     * is only triggered when screen is turned on. While the screen is turned off, the
+     * advertisements are batched and the batched result callbacks are triggered every report delay.
+     * When the batch scan with this callback type is activated, the batched result callbacks are
+     * also triggered while turning on screen or disabling the scan. This callback type must be used
+     * with a report delay of AUTO_BATCH_MIN_REPORT_DELAY_MILLIS or greater.
+     */
+    public static final int CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH = 8;
+
+    /**
+     * Minimum report delay for auto batch callback type
+     */
+    public static final long AUTO_BATCH_MIN_REPORT_DELAY_MILLIS = 1000 * 60 * 10;
 
     /**
      * Determines how many advertisements to match per filter, as this is scarce hw resource
@@ -337,6 +351,7 @@ public final class ScanSettings implements Parcelable {
         // Returns true if the callbackType is valid.
         private boolean isValidCallbackType(int callbackType) {
             if (callbackType == CALLBACK_TYPE_ALL_MATCHES
+                    || callbackType == CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH
                     || callbackType == CALLBACK_TYPE_FIRST_MATCH
                     || callbackType == CALLBACK_TYPE_MATCH_LOST) {
                 return true;
@@ -447,8 +462,15 @@ public final class ScanSettings implements Parcelable {
 
         /**
          * Build {@link ScanSettings}.
+         *
+         * @throws IllegalArgumentException if the settings cannot be built.
          */
         public ScanSettings build() {
+            if (mCallbackType == CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH
+                    && mReportDelayMillis < AUTO_BATCH_MIN_REPORT_DELAY_MILLIS) {
+                throw new IllegalArgumentException("report delay for auto batch must be >= "
+                        + AUTO_BATCH_MIN_REPORT_DELAY_MILLIS);
+            }
             return new ScanSettings(mScanMode, mCallbackType, mScanResultType,
                     mReportDelayMillis, mMatchMode,
                     mNumOfMatchesPerFilter, mLegacy, mPhy);
