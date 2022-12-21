@@ -2469,7 +2469,8 @@ void LeAudioDevice::Dump(int fd) {
              << ",\tactive: " << ase.active << ", dir: "
              << (ase.direction == types::kLeAudioDirectionSink ? "sink"
                                                                : "source")
-             << ",\tcis_id: " << static_cast<int>(ase.cis_id) << ",\tstate: "
+             << ",\tcis_id: " << static_cast<int>(ase.cis_id)
+             << ",\tcis_handle: " << ase.cis_conn_hdl << ",\tstate: "
              << bluetooth::common::ToString(ase.data_path_state);
     }
   }
@@ -2547,13 +2548,11 @@ bool LeAudioDevice::ActivateConfiguredAses(LeAudioContextType context_type) {
 
 void LeAudioDevice::DeactivateAllAses(void) {
   for (auto& ase : ases_) {
-    if (ase.active) {
-      ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
-      ase.data_path_state = AudioStreamDataPathState::IDLE;
-      ase.active = false;
-      ase.cis_id = le_audio::kInvalidCisId;
-      ase.cis_conn_hdl = 0;
-    }
+    ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
+    ase.data_path_state = AudioStreamDataPathState::IDLE;
+    ase.active = false;
+    ase.cis_id = le_audio::kInvalidCisId;
+    ase.cis_conn_hdl = 0;
   }
 }
 
