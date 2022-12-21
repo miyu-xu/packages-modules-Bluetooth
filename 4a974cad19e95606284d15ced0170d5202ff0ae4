@@ -16,6 +16,24 @@
       "message": "I would rename this method to reflect that it\u0027s making the MCS authorized. We\u0027re not only triggering this when BT is enabled :)",
       "revId": "4a974cad19e95606284d15ced0170d5202ff0ae4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f426bab8_b0f10c7d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1990,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T15:16:15Z",
+      "side": 1,
+      "message": "the reason I did this way, as very first callback registration is actually done on the Bluetooth enable, and soon we will add here TBS registration.\n\nDoes it makes sense?\n\nAlso, not that this function is called only once.",
+      "parentUuid": "536cf03b_69bbe05e",
+      "revId": "4a974cad19e95606284d15ced0170d5202ff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
