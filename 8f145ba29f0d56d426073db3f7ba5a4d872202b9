@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6acb7e6_2a4602c8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3432,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-12-21T04:02:04Z",
+      "side": 1,
+      "message": "C++ style - TODO (bug#). \n\nIs the intent to check in like this - with startDistanceMeasurement() commented out?",
+      "revId": "8f145ba29f0d56d426073db3f7ba5a4d872202b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3221ec45_24cf1465",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3443,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-12-21T04:02:04Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "8f145ba29f0d56d426073db3f7ba5a4d872202b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
