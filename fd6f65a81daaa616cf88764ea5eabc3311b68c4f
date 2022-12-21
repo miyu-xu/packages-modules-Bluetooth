@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b562ed4f_db330c4d",
+        "filename": "tools/rootcanal/model/controller/acl_connection_handler.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-21T18:15:21Z",
+      "side": 1,
+      "message": "I\u0027d rather not have NOLINT lines.  This doesn\u0027t look like a place that needs an exception.  Are we planning on changing this in another CL?",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 47
+      },
+      "revId": "fd6f65a81daaa616cf88764ea5eabc3311b68c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ce9c331_b91d4c07",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-21T18:15:21Z",
+      "side": 1,
+      "message": "same comment.  To me, either it\u0027s worth enforcing or it\u0027s not.  NOLINT isn\u0027t a precedence I want to set.",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 44
+      },
+      "revId": "fd6f65a81daaa616cf88764ea5eabc3311b68c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
