@@ -227,6 +227,7 @@ cc_test {
 cc_test {
     name: "bt_host_test_bta",
     defaults: [
+        "bluetooth_native_test_defaults",
         "fluoride_bta_defaults",
         "mts_defaults",
     ],
@@ -302,11 +303,6 @@ cc_test {
         "libflatbuffers-cpp",
         "libgmock",
     ],
-    sanitize: {
-        address: true,
-        cfi: true,
-        misc_undefined: ["bounds"],
-    },
 }
 
 // bta hf client add record tests for target
