@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a751d281_c479e100",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T12:36:38Z",
+      "side": 1,
+      "message": "1. After getting connected, the value can still be DEFAULT if nobody invoked the setAudioPolicy API to set ALLOWED or NOT_ALLOWED.\n2. Yes this should be handled. During the first connection, it will be set to active first by the time an application invokes setAudioPolicy. So, we should handle it and make the previous one active. I will extend the connectDuringCall policy to be a generic connectingTime policy. It will mean whether the device should be made active when it connects. Also, if this policy is set to NOT_ALLOWED, we will keep the HF deactivated and will only active them if there are other use cases depending on the other policies like during picking up a call. And for these cases, after the case is done, we will set this device back to deactivate.",
+      "parentUuid": "cd514001_12f7e8b9",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 978,
+        "endChar": 38
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35e40ee2_2b4b0b4c",
