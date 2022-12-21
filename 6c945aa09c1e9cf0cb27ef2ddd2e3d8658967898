@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bc46cba_05685991",
+        "filename": "system/test/headless/tamper.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T23:43:59Z",
+      "side": 1,
+      "message": "why do you need a sleep ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 11
+      },
+      "revId": "6c945aa09c1e9cf0cb27ef2ddd2e3d8658967898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8043e573_9ecd8750",
+        "filename": "system/test/headless/tamper.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T23:43:59Z",
+      "side": 1,
+      "message": "licence header is missing",
+      "revId": "6c945aa09c1e9cf0cb27ef2ddd2e3d8658967898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
