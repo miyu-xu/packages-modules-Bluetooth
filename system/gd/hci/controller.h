@@ -202,7 +202,7 @@ class Controller : public Module {
   static const ModuleFactory Factory;
 
   static constexpr uint64_t kDefaultEventMask = 0x3dbfffffffffffff;
-  static constexpr uint64_t kDefaultLeEventMask = 0x000000004d02fe7f;
+  static constexpr uint64_t kDefaultLeEventMask = 0x000000014d02fe7f;
 
   static constexpr uint64_t kLeEventMask53 = 0x00000007ffffffff;
   static constexpr uint64_t kLeEventMask52 = 0x00000003ffffffff;
