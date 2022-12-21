@@ -141,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ddffe6_f51971ff",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-21T01:48:19Z",
+      "side": 1,
+      "message": "That\u0027s fine with me",
+      "parentUuid": "8f6716b8_b367c363",
+      "revId": "258702345e255d716cd7c8a80fabbda203b8f056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51056ca9_058c663e",
