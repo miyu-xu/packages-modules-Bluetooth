@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "384f773a_b63bce08",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1986,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-21T18:50:26Z",
+      "side": 1,
+      "message": "nit: I would update this to describe what this function does. Currently, I\u0027d mention that we authorize MCS for the remote device to be able to query it. We can expand the docs as we add more functionality.\n\nAlso I would reword the current docs to say something along the lines of \"This function is called when the framework registers a callback with the service for this first time. This is used as an indication that Bluetooth has been enabled.\"",
+      "revId": "4a974cad19e95606284d15ced0170d5202ff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "536cf03b_69bbe05e",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 6
@@ -32,6 +49,24 @@
       "side": 1,
       "message": "the reason I did this way, as very first callback registration is actually done on the Bluetooth enable, and soon we will add here TBS registration.\n\nDoes it makes sense?\n\nAlso, not that this function is called only once.",
       "parentUuid": "536cf03b_69bbe05e",
+      "revId": "4a974cad19e95606284d15ced0170d5202ff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea707650_55a45de8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1990,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-21T18:50:26Z",
+      "side": 1,
+      "message": "Ah okay if we\u0027re adding TBS registration, then we can keep it as-is.",
+      "parentUuid": "f426bab8_b0f10c7d",
       "revId": "4a974cad19e95606284d15ced0170d5202ff0ae4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
