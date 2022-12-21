@@ -24,6 +24,7 @@
 #include <string>
 
 #include "bta/pan/bta_pan_int.h"
+#include "bta/sys/bta_sys.h"
 #include "test/common/main_handler.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_stack_pan_api.h"
@@ -137,6 +138,7 @@ TEST_F(BtaPanRegisteredTest, BTA_PanSetRole_Null) {
   ASSERT_EQ(true, uuids[0].adding);
   ASSERT_EQ(0x1115, uuids[1].uuid16);
   ASSERT_EQ(true, uuids[1].adding);
+  bta_sys_eir_unregister();
 }
 
 TEST_F(BtaPanRegisteredTest, BTA_PanSetRole_WithNames) {
@@ -181,6 +183,7 @@ TEST_F(BtaPanRegisteredTest, BTA_PanSetRole_WithNames) {
   ASSERT_THAT("TestPanUser", StrEq(stack_pan_user_name));
   ASSERT_THAT("TestPanNap", StrEq(stack_pan_nap_name));
 
+  bta_sys_eir_unregister();
   test::mock::stack_pan_api::PAN_SetRole = {};
 }
 
@@ -239,4 +242,5 @@ TEST_F(BtaPanRegisteredTest, BTA_PanSetRole_WithLongNames) {
   ASSERT_THAT(stack_pan_nap_name, StrEq("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"));
 
   test::mock::stack_pan_api::PAN_SetRole = {};
+  bta_sys_eir_unregister();
 }
