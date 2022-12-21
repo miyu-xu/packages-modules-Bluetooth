@@ -52,6 +52,24 @@
       "parentUuid": "ce58647c_68d9a1cf",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b27ae27_2f46946f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T22:57:41Z",
+      "side": 1,
+      "message": "Unfortunately proposed solutions just introduce races because it is not assured that LeAudio code will do ask for MTU first.\n\nMTU is the stack thing and valid question is why it was exposed up to the Java developers at all. Especially that it can be done only once.\nI already faced couple of issues related to this.\n\nI\u0027m pretty confident about us having this solution.",
+      "parentUuid": "5de72b18_5f127cb0",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
