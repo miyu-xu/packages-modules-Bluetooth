@@ -182,3 +182,22 @@ genrule {
         "blueberry/facade/topshim/facade_pb2_grpc.py"
     ],
 }
+
+cc_defaults {
+    name: "bluetooth_native_test_defaults",
+    target: {
+        android: {
+            sanitize: {
+                cfi: true,
+                misc_undefined: ["bounds"],
+            },
+        },
+        host: {
+            sanitize: {
+                address: true,
+                cfi: true,
+                misc_undefined: ["bounds"],
+            },
+        },
+    }
+}
