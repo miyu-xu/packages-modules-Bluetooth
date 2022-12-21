@@ -34,6 +34,24 @@
       "parentUuid": "cff7553f_d24be091",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5de72b18_5f127cb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-21T22:28:07Z",
+      "side": 1,
+      "message": "To me a safer change would be to allow only the first application to set whatever MTU it wants, and then subsequent requests would be rejected.\n\nAnd then, for LE Audio devices / devices with BT profiles, we as the stack would be the first application to request a large MTU. So for 3P peripherals used by only one app (which is the common case) we don\u0027t have to worry.",
+      "parentUuid": "ce58647c_68d9a1cf",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
