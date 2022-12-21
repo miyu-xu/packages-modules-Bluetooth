@@ -16,6 +16,24 @@
       "message": "Avoid naked unwrap:\n```\nif !(s.adv_id.map_or(false, |id| id \u003d\u003d adv_id)) {\n```",
       "revId": "63210b72cf5040421142837971762efa69123d56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d29e15e_825007b7",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-21T08:37:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e2ad203_4e0a1e9e",
+      "revId": "63210b72cf5040421142837971762efa69123d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
