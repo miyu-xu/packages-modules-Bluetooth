@@ -33,6 +33,23 @@
       "message": "Ditto.",
       "revId": "8f145ba29f0d56d426073db3f7ba5a4d872202b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb8dbea9_d863f990",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-12-21T04:03:07Z",
+      "side": 1,
+      "message": "Please describe what AUTO means and what the intent is in the future.",
+      "revId": "8f145ba29f0d56d426073db3f7ba5a4d872202b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
