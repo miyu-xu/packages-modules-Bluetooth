@@ -193,6 +193,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b158a1d4_96d65458",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "def8242a_4e73382d",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f3a670e_e407cf57",
