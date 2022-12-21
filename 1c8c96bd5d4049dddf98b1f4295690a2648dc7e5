@@ -1,0 +1,406 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49f7360c_fefd7df8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "Please add:\n```\nBug: 252902891\nTag: #feature\nSponsor: wescande\n```",
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5af1e336_e95c51d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "Please run clang-format on your change",
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84195805_69b505ef",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "Replace with `denylisting` (same everywhere)",
+      "range": {
+        "startLine": 40,
+        "startChar": 14,
+        "endLine": 40,
+        "endChar": 26
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b3375c1_37e72816",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "we are storing only the device that support 1.7 Does that mean it\u0027s an allow-list instead ?",
+      "range": {
+        "startLine": 395,
+        "startChar": 8,
+        "endLine": 397,
+        "endChar": 50
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56347263_0cddebf4",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "can you leave a blank line above ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 28
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e9a24ff_d26bd991",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "You doesn\u0027t need to add `// dynamic HFP  version` on each line related to the feature",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 54
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2057672e_89b10513",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "what about renaming to `sdp_dynamic_change_hfp_version` so it\u0027s obvious it\u0027s for dynamic hfp version ? (and get rid of the comment)",
+      "range": {
+        "startLine": 64,
+        "startChar": 5,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9400c592_cda6f53f",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "prefer a `const RawAddress\u0026 remote_address` to avoid copy\n\nUp to you to also put a reference on `p_attr` to make it obvious it cannot be null. (if you do, please remove the `p_` prefix)",
+      "range": {
+        "startLine": 114,
+        "startChar": 59,
+        "endLine": 114,
+        "endChar": 69
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73acc356_c8dc388c",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 54
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee7d5290_b43a08fe",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "Your change depend on this other CL: [aosp/2314600](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2314600)\n\nplease update the relation chain to reflect that",
+      "range": {
+        "startLine": 126,
+        "startChar": 33,
+        "endLine": 126,
+        "endChar": 59
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14f35c57_38c3b065",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "Can you inverse the condition to have early return ?\nReducing the conditional nesting make it easier to read \n\n```\nbool sdp_change_hfp_version(const tSDP_ATTRIBUTE* p_attr, const RawAddress\u0026 remote_address) {\n  if (p_attr-\u003eid !\u003d ATTR_ID_BT_PROFILE_DESC_LIST || p_attr-\u003elen \u003c SDP_PROFILE_DESC_LENGTH) {\n    return false;\n  }\n  /* As per current DB implementation UUID is condidered as 16 bit */\n  if (((p_attr-\u003evalue_ptr[3] \u003c\u003c 8) | (p_attr-\u003evalue_ptr[4])) !\u003d UUID_SERVCLASS_HF_HANDSFREE) {\n    return false;\n  }\n  bool is_blacklisted_1_7 \u003d interop_match_addr_or_name(INTEROP_HFP_1_7_BLACKLIST, \u0026remote_address,\n                                                       \u0026btif_storage_get_remote_device_property);\n  /* For PTS we should update AG\u0027s HFP version as 1.7 */\n  if (!is_blacklisted_1_7 \u0026\u0026 !property_get_bool(\"vendor.bt.pts.certification\", false)) {\n    return false;\n  }\n  p_attr-\u003evalue_ptr[PROFILE_VERSION_POSITION] \u003d 0x07;\n  SDP_TRACE_INFO(\"%s: SDP Change HFP Version \u003d 0x%x for %s\", __func__,\n                 p_attr-\u003evalue_ptr[PROFILE_VERSION_POSITION],\n                 ADDRESS_TO_LOGGABLE_CSTR(remote_address));\n  return true;\n}\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 13
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "876c0bb1_407d701d",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "use `property_get_bool` instead",
+      "range": {
+        "startLine": 130,
+        "startChar": 17,
+        "endLine": 131,
+        "endChar": 43
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5677f6f0_d0178030",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "replace with :\n```\nADDRESS_TO_LOGGABLE_CSTR(remote_address)\n```",
+      "range": {
+        "startLine": 134,
+        "startChar": 33,
+        "endLine": 134,
+        "endChar": 66
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec2d3b08_3d8ae44f",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "can we replace with a define to avoid the magic value in the code ?",
+      "range": {
+        "startLine": 136,
+        "startChar": 62,
+        "endLine": 136,
+        "endChar": 66
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7920a467_916e8904",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "Combine the debug and error log to output only one log",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 64
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab4e15a9_3fa4a627",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "This log and this if is written 4 times.\nMaybe we can split it in separate method:\n\n```\nvoid hfp_fallback(bool \u0026is_hfp_fallback, const tSDP_ATTRIBUTE* p_attr) {\n  if (!is_hfp_fallback) {\n    return;\n  }\n  // p_attr is always !\u003d nullptr when is_hfp_fallback is true\n  SDP_TRACE_ERROR(\"Restore HFP version to 1.6\");\n  /* Update HFP version back to 1.6 */\n  p_attr-\u003evalue_ptr[PROFILE_VERSION_POSITION] \u003d HFP_VERSION_1_6 \u0026 0xFF;\n  is_hfp_fallback \u003d false;\n}\n```",
+      "range": {
+        "startLine": 534,
+        "startChar": 3,
+        "endLine": 539,
+        "endChar": 7
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e60a35b6_471e222a",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "can we replace with a define to avoid the magic value in the code ?",
+      "range": {
+        "startLine": 817,
+        "startChar": 58,
+        "endLine": 817,
+        "endChar": 62
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827b901a_02b266de",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-21T22:57:42Z",
+      "side": 1,
+      "message": "Please use the `false` and `true` from cpp instead of `FALSE` / `TRUE` (same everywhere)",
+      "range": {
+        "startLine": 818,
+        "startChar": 30,
+        "endLine": 818,
+        "endChar": 35
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
