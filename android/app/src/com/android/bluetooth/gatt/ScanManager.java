@@ -354,6 +354,10 @@ public class ScanManager {
         return mBluetoothAdapterProxy.isOffloadedScanFilteringSupported();
     }
 
+    boolean isAutoBatchScanClient(ScanClient client) {
+        return mScanNative.isAutoBatchScanClient(client);
+    }
+
     // Handler class that handles BLE scan operations.
     private class ClientHandler extends Handler {
 
@@ -442,8 +446,16 @@ public class ScanManager {
                 return;
             }
 
+            if (!mScanNative.isExemptFromAutoBatchScanUpdate(client)) {
+                if (mScreenOn) {
+                    clearAutoBatchScanClient(client);
+                } else {
+                    setAutoBatchScanClient(client);
+                }
+            }
+
             // Begin scan operations.
-            if (isBatchClient(client)) {
+            if (isBatchClient(client) || isAutoBatchScanClient(client)) {
                 mBatchClients.add(client);
                 mScanNative.startBatchScan(client);
             } else {
@@ -512,7 +524,13 @@ public class ScanManager {
         }
 
         void handleFlushBatchResults(ScanClient client) {
+            if (DBG) {
+                Log.d(TAG, "handleFlushBatchResults() " + client);
+            }
             if (!mBatchClients.contains(client)) {
+                if (DBG) {
+                    Log.d(TAG, "There is no batch scan client to flush " + client);
+                }
                 return;
             }
             mScanNative.flushBatchResults(client.scannerId);
@@ -549,6 +567,7 @@ public class ScanManager {
             }
             handleSuspendScans();
             updateRegularScanClientsScreenOff();
+            updateRegularScanToBatchScanClients();
         }
 
         void handleConnectingState() {
@@ -615,6 +634,63 @@ public class ScanManager {
                     handleStopScan(client);
                     mSuspendedScanClients.add(client);
                 }
+            }
+        }
+
+        private void updateRegularScanToBatchScanClients() {
+            boolean updatedScanParams = false;
+            for (ScanClient client : mRegularScanClients) {
+                if (!mScanNative.isExemptFromAutoBatchScanUpdate(client)) {
+                    if (DBG) {
+                        Log.d(TAG, "Updating regular scan to batch scan" + client);
+                    }
+                    handleStopScan(client);
+                    setAutoBatchScanClient(client);
+                    handleStartScan(client);
+                    updatedScanParams = true;
+                }
+            }
+            if (updatedScanParams) {
+                mScanNative.configureRegularScanParams();
+            }
+        }
+
+        private void updateBatchScanToRegularScanClients() {
+            boolean updatedScanParams = false;
+            for (ScanClient client : mBatchClients) {
+                if (!mScanNative.isExemptFromAutoBatchScanUpdate(client)) {
+                    if (DBG) {
+                        Log.d(TAG, "Updating batch scan to regular scan" + client);
+                    }
+                    handleFlushBatchResults(client);
+                    handleStopScan(client);
+                    clearAutoBatchScanClient(client);
+                    handleStartScan(client);
+                    updatedScanParams = true;
+                }
+            }
+            if (updatedScanParams) {
+                mScanNative.configureRegularScanParams();
+            }
+        }
+
+        private void setAutoBatchScanClient(ScanClient client) {
+            if (isAutoBatchScanClient(client)) {
+                return;
+            }
+            client.updateScanMode(ScanSettings.SCAN_MODE_SCREEN_OFF);
+            if (client.stats != null) {
+                client.stats.setAutoBatchScan(client.scannerId, true);
+            }
+        }
+
+        private void clearAutoBatchScanClient(ScanClient client) {
+            if (!isAutoBatchScanClient(client)) {
+                return;
+            }
+            client.updateScanMode(client.scanModeApp);
+            if (client.stats != null) {
+                client.stats.setAutoBatchScan(client.scannerId, false);
             }
         }
 
@@ -782,6 +858,7 @@ public class ScanManager {
             if (DBG) {
                 Log.d(TAG, "handleScreenOn()");
             }
+            updateBatchScanToRegularScanClients();
             handleResumeScans();
             updateRegularScanClientsScreenOn();
         }
@@ -1039,6 +1116,21 @@ public class ScanManager {
             return isOpportunisticScanClient(client) || isFirstMatchScanClient(client);
         }
 
+        private boolean isExemptFromAutoBatchScanUpdate(ScanClient client) {
+            return isOpportunisticScanClient(client) || !isAllMatchesAutoBatchScanClient(client);
+        }
+
+        private boolean isAutoBatchScanClient(ScanClient client) {
+            return client.stats != null && client.stats.isAutoBatchScan(client.scannerId);
+        }
+
+        private boolean isAllMatchesAutoBatchScanClient(ScanClient client) {
+            ScanSettings settings = client.settings;
+            return (settings.getCallbackType() == (ScanSettings.CALLBACK_TYPE_ALL_MATCHES
+                    | ScanSettings.CALLBACK_TYPE_AUTO_BATCH))
+                    && settings.getReportDelayMillis() != 0;
+        }
+
         private boolean isOpportunisticScanClient(ScanClient client) {
             return client.settings.getScanMode() == ScanSettings.SCAN_MODE_OPPORTUNISTIC;
         }
@@ -1148,6 +1240,8 @@ public class ScanManager {
                         resolver,
                         Settings.Global.BLE_SCAN_BALANCED_WINDOW_MS,
                         SCAN_MODE_BALANCED_WINDOW_MS);
+                case ScanSettings.SCAN_MODE_SCREEN_OFF:
+                    return mAdapterService.getScreenOffLowPowerWindowMillis();
                 default:
                     return Settings.Global.getInt(
                         resolver,
@@ -1164,6 +1258,8 @@ public class ScanManager {
                         resolver,
                         Settings.Global.BLE_SCAN_BALANCED_INTERVAL_MS,
                         SCAN_MODE_BALANCED_INTERVAL_MS);
+                case ScanSettings.SCAN_MODE_SCREEN_OFF:
+                    return mAdapterService.getScreenOffLowPowerIntervalMillis();
                 default:
                     return Settings.Global.getInt(
                         resolver,
@@ -1525,6 +1621,10 @@ public class ScanManager {
             if ((settings.getCallbackType() & ScanSettings.CALLBACK_TYPE_FIRST_MATCH) != 0
                     || (settings.getCallbackType() & ScanSettings.CALLBACK_TYPE_MATCH_LOST) != 0) {
                 return DELIVERY_MODE_ON_FOUND_LOST;
+            }
+            if (isAllMatchesAutoBatchScanClient(client)) {
+                return isAutoBatchScanClient(client) ? DELIVERY_MODE_BATCH
+                        : DELIVERY_MODE_IMMEDIATE;
             }
             return settings.getReportDelayMillis() == 0 ? DELIVERY_MODE_IMMEDIATE
                     : DELIVERY_MODE_BATCH;

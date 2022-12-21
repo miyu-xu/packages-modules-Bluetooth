@@ -82,20 +82,28 @@ public final class ScanSettings implements Parcelable {
      * Trigger a callback for every Bluetooth advertisement found that matches the filter criteria.
      * If no filter is active, all advertisement packets are reported.
      */
-    public static final int CALLBACK_TYPE_ALL_MATCHES = 1;
+    public static final int CALLBACK_TYPE_ALL_MATCHES = 0x01 << 0;
 
     /**
      * A result callback is only triggered for the first advertisement packet received that matches
      * the filter criteria.
      */
-    public static final int CALLBACK_TYPE_FIRST_MATCH = 2;
+    public static final int CALLBACK_TYPE_FIRST_MATCH = 0x01 << 1;
 
     /**
      * Receive a callback when advertisements are no longer received from a device that has been
      * previously reported by a first match callback.
      */
-    public static final int CALLBACK_TYPE_MATCH_LOST = 4;
+    public static final int CALLBACK_TYPE_MATCH_LOST = 0x01 << 2;
 
+    /**
+     * A result callback for every Bluetooth advertisement found that matches the filter criteria
+     * is only triggered when screen is turned on. While screen is turned off, the advertisements
+     * are batched and the batched result callbacks are triggered every report delay or during
+     * turing on the screen. This callback type should be set with the all match callback type like
+     * (ScanSettings.CALLBACK_TYPE_ALL_MATCHES | ScanSettings.CALLBACK_TYPE_AUTO_BATCH).
+     */
+    public static final int CALLBACK_TYPE_AUTO_BATCH = 0x01 << 3;
 
     /**
      * Determines how many advertisements to match per filter, as this is scarce hw resource
@@ -337,6 +345,7 @@ public final class ScanSettings implements Parcelable {
         // Returns true if the callbackType is valid.
         private boolean isValidCallbackType(int callbackType) {
             if (callbackType == CALLBACK_TYPE_ALL_MATCHES
+                    || callbackType == (CALLBACK_TYPE_ALL_MATCHES | CALLBACK_TYPE_AUTO_BATCH)
                     || callbackType == CALLBACK_TYPE_FIRST_MATCH
                     || callbackType == CALLBACK_TYPE_MATCH_LOST) {
                 return true;

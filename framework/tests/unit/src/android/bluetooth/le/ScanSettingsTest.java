@@ -29,6 +29,8 @@ public class ScanSettingsTest extends TestCase {
     public void testCallbackType() {
         ScanSettings.Builder builder = new ScanSettings.Builder();
         builder.setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+        builder.setCallbackType(
+                ScanSettings.CALLBACK_TYPE_ALL_MATCHES | ScanSettings.CALLBACK_TYPE_AUTO_BATCH);
         builder.setCallbackType(ScanSettings.CALLBACK_TYPE_FIRST_MATCH);
         builder.setCallbackType(ScanSettings.CALLBACK_TYPE_MATCH_LOST);
         builder.setCallbackType(
@@ -60,5 +62,37 @@ public class ScanSettingsTest extends TestCase {
             // nothing to do
         }
 
+        try {
+            builder.setCallbackType(ScanSettings.CALLBACK_TYPE_AUTO_BATCH);
+            fail("should have thrown IllegalArgumentException!");
+        } catch (IllegalArgumentException e) {
+            // nothing to do
+        }
+
+        try {
+            builder.setCallbackType(
+                    ScanSettings.CALLBACK_TYPE_AUTO_BATCH | ScanSettings.CALLBACK_TYPE_MATCH_LOST);
+            fail("should have thrown IllegalArgumentException!");
+        } catch (IllegalArgumentException e) {
+            // nothing to do
+        }
+
+        try {
+            builder.setCallbackType(
+                    ScanSettings.CALLBACK_TYPE_AUTO_BATCH | ScanSettings.CALLBACK_TYPE_FIRST_MATCH);
+            fail("should have thrown IllegalArgumentException!");
+        } catch (IllegalArgumentException e) {
+            // nothing to do
+        }
+
+        try {
+            builder.setCallbackType(
+                    ScanSettings.CALLBACK_TYPE_AUTO_BATCH
+                            | ScanSettings.CALLBACK_TYPE_FIRST_MATCH
+                            | ScanSettings.CALLBACK_TYPE_MATCH_LOST);
+            fail("should have thrown IllegalArgumentException!");
+        } catch (IllegalArgumentException e) {
+            // nothing to do
+        }
     }
 }
