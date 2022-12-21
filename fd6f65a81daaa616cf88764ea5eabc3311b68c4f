@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2908eb97_0a261245",
+        "filename": "tools/rootcanal/model/controller/acl_connection_handler.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-21T22:22:18Z",
+      "side": 1,
+      "message": "That sounds reasonable to me.",
+      "parentUuid": "fcbeb06d_3007b8d1",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 47
+      },
+      "revId": "fd6f65a81daaa616cf88764ea5eabc3311b68c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ce9c331_b91d4c07",
         "filename": "tools/rootcanal/model/controller/controller_properties.cc",
         "patchSetId": 26
