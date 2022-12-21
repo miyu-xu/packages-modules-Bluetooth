@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf0f6387_7252876f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-21T11:23:28Z",
+      "side": 1,
+      "message": "why not ? should this be different logic ?\n\nIdea was to re-register callbacks on Bluetooth up if there are no registered callbacks.",
+      "parentUuid": "0f511c68_bd15d125",
+      "revId": "1b9e8a87030e8ae40ca4f0d97338d3609d24941b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b909fb0f_87f99868",
         "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
         "patchSetId": 3
@@ -31,6 +49,42 @@
       "writtenOn": "2022-12-21T10:42:39Z",
       "side": 1,
       "message": "please fix the SynchronizeOnNonFinalField warning",
+      "revId": "1b9e8a87030e8ae40ca4f0d97338d3609d24941b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39d06d8_b863f4a1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-21T11:23:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b909fb0f_87f99868",
+      "revId": "1b9e8a87030e8ae40ca4f0d97338d3609d24941b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e63af8b_32207162",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-21T11:23:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b909fb0f_87f99868",
       "revId": "1b9e8a87030e8ae40ca4f0d97338d3609d24941b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +102,24 @@
       "writtenOn": "2022-12-21T10:42:39Z",
       "side": 1,
       "message": "Please add some error message instead of empty string.",
+      "revId": "1b9e8a87030e8ae40ca4f0d97338d3609d24941b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "552749ef_8787def6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-21T11:23:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c28da4b_6a651b28",
       "revId": "1b9e8a87030e8ae40ca4f0d97338d3609d24941b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
