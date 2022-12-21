@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "105e3e8f_6b347c07",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-21T09:01:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c827bd56_bccdd0a9",
+      "revId": "d607428179e7cda5d8d145d3aace6c3929b93426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fec7bf20_0237f9be",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "Also avoid naked unwrap since it can panic. `s.adv_id.unwrap() \u003d\u003d adv_id` can be written with safety `s.adv_id.map_or(false, |id| id \u003d\u003d adv_id)`",
       "parentUuid": "fec7bf20_0237f9be",
+      "revId": "d607428179e7cda5d8d145d3aace6c3929b93426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3965690_ef658170",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-21T09:01:10Z",
+      "side": 1,
+      "message": "Thanks. Done.",
+      "parentUuid": "81f48591_57b83756",
       "revId": "d607428179e7cda5d8d145d3aace6c3929b93426",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
