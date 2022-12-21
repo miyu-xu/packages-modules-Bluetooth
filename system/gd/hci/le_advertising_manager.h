@@ -53,6 +53,7 @@ class AdvertisingConfig {
 class ExtendedAdvertisingConfig : public AdvertisingConfig {
  public:
   bool connectable = false;
+  bool discoverable = false;
   bool scannable = false;
   bool directed = false;
   bool high_duty_directed_connectable = false;
