@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cff7553f_d24be091",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-21T22:26:04Z",
+      "side": 1,
+      "message": "Is there ever a case when an application would intentionally want us to report a smaller MTU than what we actually have (e.g. for interop reasons)?\n\nAlso, then should we remove the Java API entirely and just immediately request a large MTU on connection?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
