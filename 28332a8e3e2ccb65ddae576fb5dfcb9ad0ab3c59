@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a13e53e1_126cbd70",
+        "filename": "system/service/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-21T22:14:59Z",
+      "side": 1,
+      "message": "Why not just remove it?  Is it important for it to be a host test?",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 50
+      },
+      "revId": "28332a8e3e2ccb65ddae576fb5dfcb9ad0ab3c59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
