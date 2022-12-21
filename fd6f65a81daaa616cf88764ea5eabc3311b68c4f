@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fcdf843_786b4c45",
+        "filename": "tools/rootcanal/model/controller/acl_connection_handler.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-21T22:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2908eb97_0a261245",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 47
+      },
+      "revId": "fd6f65a81daaa616cf88764ea5eabc3311b68c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ce9c331_b91d4c07",
@@ -85,6 +109,30 @@
       "writtenOn": "2022-12-21T18:15:21Z",
       "side": 1,
       "message": "same comment.  To me, either it\u0027s worth enforcing or it\u0027s not.  NOLINT isn\u0027t a precedence I want to set.",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 44
+      },
+      "revId": "fd6f65a81daaa616cf88764ea5eabc3311b68c4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab39aad7_dc86890b",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-21T22:30:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ce9c331_b91d4c07",
       "range": {
         "startLine": 344,
         "startChar": 0,
