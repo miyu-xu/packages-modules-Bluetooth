@@ -96,6 +96,12 @@ public final class ScanSettings implements Parcelable {
      */
     public static final int CALLBACK_TYPE_MATCH_LOST = 4;
 
+    /**
+     * A result callback for every Bluetooth advertisement found that matches the filter criteria
+     * is only triggered when screen is turned on. While screen is turned off, the advertisements
+     * are batched and the batched result callbacks are triggered in turing on the screen.
+     */
+    public static final int CALLBACK_TYPE_AUTO_BATCH = 8;
 
     /**
      * Determines how many advertisements to match per filter, as this is scarce hw resource
@@ -337,6 +343,7 @@ public final class ScanSettings implements Parcelable {
         // Returns true if the callbackType is valid.
         private boolean isValidCallbackType(int callbackType) {
             if (callbackType == CALLBACK_TYPE_ALL_MATCHES
+                    || callbackType == (CALLBACK_TYPE_ALL_MATCHES | CALLBACK_TYPE_AUTO_BATCH)
                     || callbackType == CALLBACK_TYPE_FIRST_MATCH
                     || callbackType == CALLBACK_TYPE_MATCH_LOST) {
                 return true;
