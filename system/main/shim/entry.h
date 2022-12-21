@@ -48,6 +48,7 @@ namespace hci {
 class Controller;
 class HciLayer;
 class AclManager;
+class DistanceMeasurementManager;
 class LeAdvertisingManager;
 class LeScanningManager;
 class VendorSpecificEventManager;
@@ -90,6 +91,7 @@ l2cap::classic::L2capClassicModule* GetL2capClassicModule();
 l2cap::le::L2capLeModule* GetL2capLeModule();
 neighbor::PageModule* GetPage();
 hci::LeScanningManager* GetScanning();
+hci::DistanceMeasurementManager* GetDistanceMeasurementManager();
 bluetooth::security::SecurityModule* GetSecurityModule();
 storage::StorageModule* GetStorage();
 hci::AclManager* GetAclManager();
