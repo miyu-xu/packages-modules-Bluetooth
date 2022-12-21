@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536cf03b_69bbe05e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1990,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-21T02:17:40Z",
+      "side": 1,
+      "message": "I would rename this method to reflect that it\u0027s making the MCS authorized. We\u0027re not only triggering this when BT is enabled :)",
+      "revId": "4a974cad19e95606284d15ced0170d5202ff0ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
