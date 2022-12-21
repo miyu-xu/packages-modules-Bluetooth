@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "803e81a0_2c0c216d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-21T15:56:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf0f6387_7252876f",
+      "revId": "1b9e8a87030e8ae40ca4f0d97338d3609d24941b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b909fb0f_87f99868",
