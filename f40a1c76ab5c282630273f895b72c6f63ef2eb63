@@ -926,6 +926,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e4c12e4_01ad42cf",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "HF device sends an Android specific (protocol designed in this feature) AT command asking about the support of audio policy feature. \nIf the AG device doesn\u0027t support this protocol, it will respond in ERROR or OK (since this is still a vendor specific command). After receiving this event, the HF device will change the status from UNKNOWN to NOT_SUPPORTED.\nIf the AG device support this protocol, then it will send the list of all features (which will use this protocol) it supports, right now we only have audio policy feature. So, if the HF device gets this event, it will change the status from UNKNOWN to SUPPORTED.\nThe status will remain in UNKNOWN state until the HF device receives this event. All AT commands will have a respond from the AG. So, the status will never be stuck indefinitely.",
+      "parentUuid": "9783ca28_2479f891",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 49
+      },
+      "revId": "f40a1c76ab5c282630273f895b72c6f63ef2eb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3198736e_a0089036",
         "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
         "patchSetId": 30

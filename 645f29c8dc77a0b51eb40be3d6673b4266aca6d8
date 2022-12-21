@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "921c9417_4fdeee64",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd88e461_a4a82471",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc0cd7e5_402fd8d0",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-19T19:25:26Z",
       "side": 1,
       "message": "nit: did you intend to put this in the JavaDoc?",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c046fb4_59868df7",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "This one is used just as a comment but it is not necessary",
+      "parentUuid": "bc0cd7e5_402fd8d0",
       "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef1711f_c7614fd5",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "840cfaa8_e2e90473",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c3ff978_b699e495",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "324c0cc6_f2d336df",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3013b92b_28daa663",
@@ -82,6 +154,24 @@
       "writtenOn": "2022-12-19T19:25:26Z",
       "side": 1,
       "message": "This ctor can be removed in favor of using the builder (which would invoke the other ctor).",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f2bff73_1c6b85bc",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3013b92b_28daa663",
       "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +210,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6416fd9_14215ec0",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f3a670e_e407cf57",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03b471cb_85febf98",
@@ -133,6 +241,24 @@
       "writtenOn": "2022-12-19T19:25:26Z",
       "side": 1,
       "message": "Should be @hide",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a79eed83_ce753b72",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03b471cb_85febf98",
       "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +280,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55097880_fb8db05d",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee45d121_f3278e5e",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8af728f_d10d9230",
@@ -167,6 +311,24 @@
       "writtenOn": "2022-12-19T19:25:26Z",
       "side": 1,
       "message": "Consider using BluetoothStatusCodes#FEATURE_SUPPORTED and BluetoothStatusCodes#FEATURE_NOT_SUPPORTED. The current design also doesn\u0027t clearly indicate if the feature wasn\u0027t supported, so those constants should help!",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbc3d315_65c8d4c0",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3235,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Adding the NOT_SUPPORTED code. If it is supported then it will succeed. Returning SUCCESS in this case.",
+      "parentUuid": "c8af728f_d10d9230",
       "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -194,6 +356,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5c80698_29faa12c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3246,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a07ce75d_9b535bb1",
+      "range": {
+        "startLine": 3246,
+        "startChar": 68,
+        "endLine": 3246,
+        "endChar": 74
+      },
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e34858f2_f43ee59e",
@@ -207,6 +393,24 @@
       "writtenOn": "2022-12-19T19:25:26Z",
       "side": 1,
       "message": "I would rephrase this --\u003e \"This requires a vendor specific command, so the API returns {@link #REMOTE_STATE_UNKNOWN} to indicate the remote device has not yet relayed this information.\"",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e0c74e5_56c7e761",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3247,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e34858f2_f43ee59e",
       "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -228,6 +432,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c2a38e5_f09278b0",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3251,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7502bb77_e8e4be18",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bc3fcdf_220829be",
@@ -241,6 +463,24 @@
       "writtenOn": "2022-12-19T19:25:26Z",
       "side": 1,
       "message": "I would remove the parentheses and reword to something like \"Sets and sends the provided call audio preferences to the remote device\"",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4102a1c9_20a8fc75",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3284,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bc3fcdf_220829be",
       "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -262,6 +502,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40aec695_299d6c04",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3286,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e4ad0b7_fb85a37d",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f480379d_b74e2655",
@@ -279,6 +537,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa36d637_a112066b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3318,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f480379d_b74e2655",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60ece556_a533f062",
@@ -292,6 +568,24 @@
       "writtenOn": "2022-12-19T19:25:26Z",
       "side": 1,
       "message": "The API is marked @Nullable. We should document when it returns null.",
+      "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "051e4518_4b8ed251",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 3320,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-21T09:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60ece556_a533f062",
       "revId": "645f29c8dc77a0b51eb40be3d6673b4266aca6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
