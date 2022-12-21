@@ -22,6 +22,30 @@
       },
       "revId": "ff83d32642bda8174e95e8ceb77da935bdda5887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11973906_50f4cd19",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-21T17:23:55Z",
+      "side": 1,
+      "message": "just to not do it many times. p_srcb is attached to many p_clcbs - when disconnected, we need to do clearing only once.",
+      "parentUuid": "9723679c_4c6b6cb1",
+      "range": {
+        "startLine": 202,
+        "startChar": 1,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "ff83d32642bda8174e95e8ceb77da935bdda5887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
