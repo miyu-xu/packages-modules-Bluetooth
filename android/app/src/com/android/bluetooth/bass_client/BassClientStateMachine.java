@@ -88,6 +88,7 @@ import android.os.ParcelUuid;
 import android.provider.DeviceConfig;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
@@ -113,8 +114,10 @@ import java.util.stream.IntStream;
 @VisibleForTesting
 public class BassClientStateMachine extends StateMachine {
     private static final String TAG = "BassClientStateMachine";
-    private static final byte[] REMOTE_SCAN_STOP = {00};
-    private static final byte[] REMOTE_SCAN_START = {01};
+    @VisibleForTesting
+    static final byte[] REMOTE_SCAN_STOP = {00};
+    @VisibleForTesting
+    static final byte[] REMOTE_SCAN_START = {01};
     private static final byte OPCODE_ADD_SOURCE = 0x02;
     private static final byte OPCODE_UPDATE_SOURCE = 0x03;
     private static final byte OPCODE_SET_BCAST_PIN = 0x04;
@@ -386,8 +389,9 @@ public class BassClientStateMachine extends StateMachine {
         mNoStopScanOffload = true;
         cancelActiveSync(null);
         try {
-            mPeriodicAdvManager.registerSync(scanRes, 0,
-                    BassConstants.PSYNC_TIMEOUT, mPeriodicAdvCallback);
+            BluetoothMethodProxy.getInstance().periodicAdvertisingManagerRegisterSync(
+                    mPeriodicAdvManager, scanRes, 0, BassConstants.PSYNC_TIMEOUT,
+                    mPeriodicAdvCallback, null);
         } catch (IllegalArgumentException ex) {
             Log.w(TAG, "registerSync:IllegalArgumentException");
             Message message = obtainMessage(STOP_SCAN_OFFLOAD);
@@ -461,11 +465,11 @@ public class BassClientStateMachine extends StateMachine {
                 subGroup.addChannel(channel.build());
             }
             byte[] arrayCodecId = baseLevel2.codecId;
-            long codeId = ((long) (arrayCodecId[4] & 0xff)) << 32
+            long codeId = (long) ((arrayCodecId[4] & 0xff) << 32
                     | (arrayCodecId[3] & 0xff) << 24
                     | (arrayCodecId[2] & 0xff) << 16
                     | (arrayCodecId[1] & 0xff) << 8
-                    | (arrayCodecId[0] & 0xff);
+                    | (arrayCodecId[0] & 0xff));
             subGroup.setCodecId(codeId);
             subGroup.setCodecSpecificConfig(BluetoothLeAudioCodecConfigMetadata.
                     fromRawBytes(baseLevel2.codecConfigInfo));
