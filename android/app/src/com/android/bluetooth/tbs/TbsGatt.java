@@ -134,6 +134,7 @@ public class TbsGatt {
     private BluetoothGattServerProxy mBluetoothGattServer;
     private Handler mHandler;
     private Callback mCallback;
+    private TbsService mTbsService;
 
     public static abstract class Callback {
 
@@ -143,8 +144,17 @@ public class TbsGatt {
                 byte[] args);
     }
 
-    TbsGatt(Context context) {
-        mContext = context;
+    private static class GattOpContext {
+        public enum Operation {
+            READ_CHARACTERISTIC,
+            WRITE_CHARACTERISTIC,
+            READ_DESCRIPTOR,
+            WRITE_DESCRIPTOR,
+        }
+    }
+
+    TbsGatt(TbsService tbsService) {
+        mContext = tbsService;
         mBearerProviderNameCharacteristic = new GattCharacteristic(UUID_BEARER_PROVIDER_NAME,
                 BluetoothGattCharacteristic.PROPERTY_READ
                         | BluetoothGattCharacteristic.PROPERTY_NOTIFY,
@@ -191,6 +201,8 @@ public class TbsGatt {
                 BluetoothGattCharacteristic.PROPERTY_READ
                         | BluetoothGattCharacteristic.PROPERTY_NOTIFY,
                 BluetoothGattCharacteristic.PERMISSION_READ_ENCRYPTED);
+
+        mTbsService = tbsService;
         mBluetoothGattServer = null;
     }
 
@@ -659,6 +671,33 @@ public class TbsGatt {
         return UUID.fromString(UUID_PREFIX + uuid16 + UUID_SUFFIX);
     }
 
+    private int getDeviceAuthorization(BluetoothDevice device) {
+        return mTbsService.getDeviceAuthorization(device);
+    }
+
+    private void onRejectedAuthorizationGattOperation(BluetoothDevice device,
+            GattOpContext.Operation op, boolean responseNeeded, int requestId, int offset) {
+        Log.w(TAG, "onRejectedAuthorizationGattOperation device: " + device + ", operation: "
+                + op);
+
+        switch (op) {
+            case READ_CHARACTERISTIC:
+            case READ_DESCRIPTOR:
+                mBluetoothGattServer.sendResponse(device, requestId,
+                        BluetoothGatt.GATT_INSUFFICIENT_AUTHORIZATION, offset, null);
+                break;
+            case WRITE_CHARACTERISTIC:
+            case WRITE_DESCRIPTOR:
+                if (responseNeeded) {
+                    mBluetoothGattServer.sendResponse(device, requestId,
+                            BluetoothGatt.GATT_INSUFFICIENT_AUTHORIZATION, offset, null);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * Callback to handle incoming requests to the GATT server. All read/write requests for
      * characteristics and descriptors are handled here.
@@ -682,6 +721,13 @@ public class TbsGatt {
             if (DBG) {
                 Log.d(TAG, "onCharacteristicReadRequest: device=" + device);
             }
+
+            if (getDeviceAuthorization(device) != BluetoothDevice.ACCESS_ALLOWED) {
+                onRejectedAuthorizationGattOperation(device,
+                        GattOpContext.Operation.READ_CHARACTERISTIC, false, requestId, offset);
+                return;
+            }
+
             GattCharacteristic gattCharacteristic = (GattCharacteristic) characteristic;
             byte[] value = gattCharacteristic.getValue();
             if (value == null) {
@@ -706,6 +752,14 @@ public class TbsGatt {
             if (DBG) {
                 Log.d(TAG, "onCharacteristicWriteRequest: device=" + device);
             }
+
+            if (getDeviceAuthorization(device) != BluetoothDevice.ACCESS_ALLOWED) {
+                onRejectedAuthorizationGattOperation(device,
+                        GattOpContext.Operation.READ_CHARACTERISTIC, preparedWrite, requestId,
+                        offset);
+                return;
+            }
+
             GattCharacteristic gattCharacteristic = (GattCharacteristic) characteristic;
             int status;
             if (preparedWrite) {
@@ -728,6 +782,13 @@ public class TbsGatt {
             if (DBG) {
                 Log.d(TAG, "onDescriptorReadRequest: device=" + device);
             }
+
+            if (getDeviceAuthorization(device) != BluetoothDevice.ACCESS_ALLOWED) {
+                onRejectedAuthorizationGattOperation(device,
+                        GattOpContext.Operation.READ_CHARACTERISTIC, false, requestId, offset);
+                return;
+            }
+
             ClientCharacteristicConfigurationDescriptor cccd =
                     (ClientCharacteristicConfigurationDescriptor) descriptor;
             byte[] value = cccd.getValue(device);
@@ -749,6 +810,14 @@ public class TbsGatt {
             if (DBG) {
                 Log.d(TAG, "onDescriptorWriteRequest: device=" + device);
             }
+
+            if (getDeviceAuthorization(device) != BluetoothDevice.ACCESS_ALLOWED) {
+                onRejectedAuthorizationGattOperation(device,
+                        GattOpContext.Operation.READ_CHARACTERISTIC, preparedWrite, requestId,
+                        offset);
+                return;
+            }
+
             ClientCharacteristicConfigurationDescriptor cccd =
                     (ClientCharacteristicConfigurationDescriptor) descriptor;
             int status;
