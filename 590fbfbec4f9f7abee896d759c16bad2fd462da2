@@ -22,6 +22,30 @@
       },
       "revId": "590fbfbec4f9f7abee896d759c16bad2fd462da2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ade9ae1_7d1fc74a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-22T07:32:57Z",
+      "side": 1,
+      "message": "To cover one more line.\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java;l\u003d1758?q\u003dbassclientst\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "parentUuid": "1fe11d38_6d8fe031",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 769,
+        "endChar": 31
+      },
+      "revId": "590fbfbec4f9f7abee896d759c16bad2fd462da2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
