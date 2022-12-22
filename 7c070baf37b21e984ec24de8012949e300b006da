@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4239b6f5_3cfbed11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-12-22T14:32:33Z",
+      "side": 1,
+      "message": "I\u0027m not sure why but it seems to break pts-bot tests. You should try running `atest pts-bot:MAP` (see go/pts-bot-tldr) and find the reasons behind.",
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3334d333_ef4b9915",
         "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
         "patchSetId": 1
