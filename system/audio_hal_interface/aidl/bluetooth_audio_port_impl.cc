@@ -66,6 +66,21 @@ ndk::ScopedAStatus BluetoothAudioPortImpl::stopStream() {
   return ndk::ScopedAStatus::ok();
 }
 
+ndk::ScopedAStatus BluetoothAudioPortImpl::startConfirmation(
+                                bool status) {
+  return ndk::ScopedAStatus::ok();
+}
+
+ndk::ScopedAStatus BluetoothAudioPortImpl::suspendConfirmation(
+                                bool status) {
+  return ndk::ScopedAStatus::ok();
+}
+
+ndk::ScopedAStatus BluetoothAudioPortImpl::updateSinklatency(
+                                int latencyMs) {
+  return ndk::ScopedAStatus::ok();
+}
+
 ndk::ScopedAStatus BluetoothAudioPortImpl::getPresentationPosition(
     PresentationPosition* _aidl_return) {
   StopWatchLegacy stop_watch(__func__);

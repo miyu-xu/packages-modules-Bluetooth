@@ -54,6 +54,12 @@ class BluetoothAudioPortImpl : public BnBluetoothAudioPort {
 
   ndk::ScopedAStatus setLatencyMode(LatencyMode latency_mode) override;
 
+  ndk::ScopedAStatus suspendConfirmation(bool status) override;
+
+  ndk::ScopedAStatus startConfirmation (bool status) override;
+
+  ndk::ScopedAStatus updateSinklatency (int latencyMs) override;
+
  protected:
   virtual ~BluetoothAudioPortImpl();
 
