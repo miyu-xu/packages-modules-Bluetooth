@@ -69,6 +69,24 @@
       "parentUuid": "b3563216_7f02c209",
       "revId": "c0d067cc1585f6efbf3298e970c9dabb2b8cc0ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "031966f0_1772fdee",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-12-22T00:48:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3563216_7f02c209",
+      "revId": "c0d067cc1585f6efbf3298e970c9dabb2b8cc0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
