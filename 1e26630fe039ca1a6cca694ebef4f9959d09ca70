@@ -22,6 +22,30 @@
       },
       "revId": "1e26630fe039ca1a6cca694ebef4f9959d09ca70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "543895d4_3e074f28",
+        "filename": "android/app/src/com/android/bluetooth/sap/SapMessage.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2022-12-22T00:55:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "789712e3_c1887efc",
+      "range": {
+        "startLine": 738,
+        "startChar": 4,
+        "endLine": 738,
+        "endChar": 35
+      },
+      "revId": "1e26630fe039ca1a6cca694ebef4f9959d09ca70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
