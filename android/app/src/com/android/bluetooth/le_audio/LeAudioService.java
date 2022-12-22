@@ -65,6 +65,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.mcp.McpService;
 import com.android.bluetooth.tbs.TbsGatt;
+import com.android.bluetooth.tbs.TbsService;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -2123,6 +2124,19 @@ public class LeAudioService extends ProfileService {
         return mMcpService;
     }
 
+    void setAuthorizationForRelatedProfiles(BluetoothDevice device, boolean authorize) {
+        McpService mcpService = getMcpService();
+        if (mcpService != null) {
+            mcpService.setDeviceAuthorized(device, authorize);
+        }
+
+        TbsService tbsService = TbsService.getTbsService();
+        if (tbsService != null) {
+            tbsService.setDeviceAuthorized(device, authorize);
+            return;
+        }
+    }
+
     /**
      * This function is called when the framework registers
      * a callback with the service for this first time.
@@ -2145,20 +2159,9 @@ public class LeAudioService extends ProfileService {
             }
         }
 
-        McpService mcpService = getMcpService();
-        if (mcpService == null) {
-            Log.e(TAG, "mcpService not available ");
-            return;
-        }
-
         synchronized (mGroupLock) {
-            for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> entry
-                    : mDeviceDescriptors.entrySet()) {
-                if (entry.getValue().mGroupId == LE_AUDIO_GROUP_ID_INVALID) {
-                    continue;
-                }
-
-                mcpService.setDeviceAuthorized(entry.getKey(), true);
+            for (BluetoothDevice device : mDeviceDescriptors.keySet()) {
+                setAuthorizationForRelatedProfiles(device, true);
             }
         }
     }
@@ -2196,10 +2199,7 @@ public class LeAudioService extends ProfileService {
         }
 
         if (mBluetoothEnabled) {
-            McpService mcpService = getMcpService();
-            if (mcpService != null) {
-                mcpService.setDeviceAuthorized(device, true);
-            }
+            setAuthorizationForRelatedProfiles(device, true);
         }
     }
 
@@ -2267,10 +2267,7 @@ public class LeAudioService extends ProfileService {
             notifyGroupNodeRemoved(device, groupId);
         }
 
-        McpService mcpService = getMcpService();
-        if (mcpService != null) {
-            mcpService.setDeviceAuthorized(device, false);
-        }
+        setAuthorizationForRelatedProfiles(device, false);
     }
 
     private void notifyGroupNodeRemoved(BluetoothDevice device, int groupId) {
