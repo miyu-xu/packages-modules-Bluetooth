@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7902650a_6de61bed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2022-12-22T10:22:10Z",
+      "side": 1,
+      "message": "Hi Thomas and Charlie,\n\nMoved AVCTP/TG/NFR/BV-02-C to pass list as it is working with recent changes.\nMoved AVCTP/CT/CCM/BV-02-C to skip list since it is not working after enabling SNK. We will add this once SNK changes are working for AVRCP/AVCTP.\n\nRequest you to share your inputs.\n\nThanks,\nFahad",
+      "revId": "b444ed2899a983388bc9c8b12bee0543b8ab5df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
