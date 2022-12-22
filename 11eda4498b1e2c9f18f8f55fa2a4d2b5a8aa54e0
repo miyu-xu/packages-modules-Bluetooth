@@ -234,6 +234,24 @@
       "parentUuid": "763df142_9027c9cf",
       "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b845b011_00c8f145",
+        "filename": "system/device/test/interop_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T02:45:31Z",
+      "side": 1,
+      "message": "Update.\nWith a recent sync tree you only need to `atest --host \u003cTEST_NAME\u003e`",
+      "parentUuid": "bfc3f728_5bf42c53",
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
