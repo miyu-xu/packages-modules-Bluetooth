@@ -402,6 +402,7 @@ const btgatt_client_callbacks_t gatt_client_callbacks = {
     WriteDescriptorCallback,
     nullptr,  // execute_write_cb
     nullptr,  // read_remote_rssi_cb
+    nullptr,  // get_acl_handle_cb
     MtuChangedCallback,
     nullptr,  // congestion_cb
     GetGattDbCallback,

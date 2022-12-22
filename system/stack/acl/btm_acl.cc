@@ -117,7 +117,7 @@ std::unique_ptr<RoleChangeView> delayed_role_change_ = nullptr;
 const bluetooth::legacy::hci::Interface& GetLegacyHciInterface() {
   return bluetooth::legacy::hci::GetInterface();
 }
-}
+}  // namespace
 
 typedef struct {
   uint16_t handle;
@@ -1687,6 +1687,32 @@ tBTM_STATUS BTM_ReadRSSI(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb) {
 
   /* If here, no BD Addr found */
   return (BTM_UNKNOWN_ADDR);
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_GetAclHandle
+ *
+ * Description      This function is called to get the ACL handle of the remote
+ *                  device. The handle is returned in the
+ *                  callback, if found.
+ *
+ * Returns          BTM_SUCCESS if successful or BTM_UNKNOWN_ADDR if no
+ *                  connection exists
+ *
+ ******************************************************************************/
+tBTM_STATUS BTM_GetAclHandle(
+    const RawAddress& remote_bda, tBT_TRANSPORT transport,
+    base::OnceCallback<void(std::optional<uint16_t>)> handle_cb) {
+  auto p = internal_.btm_bda_to_acl(remote_bda, transport);
+
+  if (p == NULL) {
+    std::move(handle_cb).Run(std::nullopt);
+    return BTM_UNKNOWN_ADDR;
+  }
+
+  std::move(handle_cb).Run(p->Handle());
+  return BTM_SUCCESS;
 }
 
 /*******************************************************************************

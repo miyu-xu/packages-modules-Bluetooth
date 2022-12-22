@@ -127,6 +127,7 @@ btgatt_client_interface_t fake_btgattc_iface = {
     nullptr,  // register_for_notification
     nullptr,  // deregister_for_notification
     nullptr,  // read_remote_rssi
+    nullptr,  // get_acl_handle
     nullptr,  // get_device_type
     nullptr,  // configure_mtu
     nullptr,  // conn_parameter_update
