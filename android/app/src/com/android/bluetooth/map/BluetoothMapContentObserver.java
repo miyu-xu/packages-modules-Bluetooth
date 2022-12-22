@@ -1357,7 +1357,8 @@ public class BluetoothMapContentObserver {
         }
     }
 
-    private void initContactsList() throws RemoteException {
+    @VisibleForTesting
+    void initContactsList() throws RemoteException {
         if (V) {
             Log.d(TAG, "initContactsList");
         }
@@ -2153,7 +2154,8 @@ public class BluetoothMapContentObserver {
         // TODO: conversation contact updates if IM and SMS(MMS in one instance
     }
 
-    private boolean setEmailMessageStatusDelete(BluetoothMapFolderElement mCurrentFolder,
+    @VisibleForTesting
+    boolean setEmailMessageStatusDelete(BluetoothMapFolderElement mCurrentFolder,
             String uriStr, long handle, int status) {
         boolean res = false;
         Uri uri = Uri.parse(uriStr + BluetoothMapContract.TABLE_MESSAGE);
