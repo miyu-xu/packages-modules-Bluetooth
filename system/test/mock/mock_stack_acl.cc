@@ -82,6 +82,7 @@ struct BTM_GetLinkSuperTout BTM_GetLinkSuperTout;
 struct BTM_GetRole BTM_GetRole;
 struct BTM_ReadFailedContactCounter BTM_ReadFailedContactCounter;
 struct BTM_ReadRSSI BTM_ReadRSSI;
+struct BTM_GetAclHandle BTM_GetAclHandle;
 struct BTM_ReadTxPower BTM_ReadTxPower;
 struct BTM_SetLinkSuperTout BTM_SetLinkSuperTout;
 struct BTM_SwitchRoleToCentral BTM_SwitchRoleToCentral;
@@ -338,6 +339,13 @@ tBTM_STATUS BTM_ReadFailedContactCounter(const RawAddress& remote_bda,
 tBTM_STATUS BTM_ReadRSSI(const RawAddress& remote_bda, tBTM_CMPL_CB* p_cb) {
   mock_function_count_map[__func__]++;
   return test::mock::stack_acl::BTM_ReadRSSI(remote_bda, p_cb);
+}
+tBTM_STATUS BTM_GetAclHandle(
+    const RawAddress& remote_bda, tBT_TRANSPORT transport,
+    base::OnceCallback<void(std::optional<uint16_t>)> handle_cb) {
+  mock_function_count_map[__func__]++;
+  return test::mock::stack_acl::BTM_GetAclHandle(remote_bda, transport,
+                                                 std::move(handle_cb));
 }
 tBTM_STATUS BTM_ReadTxPower(const RawAddress& remote_bda,
                             tBT_TRANSPORT transport, tBTM_CMPL_CB* p_cb) {

@@ -231,6 +231,12 @@ void btm_read_rssi_cb(void* p_void) {
                    p_result->rem_bda, p_result->rssi, p_result->status);
 }
 
+void btm_get_acl_handle_cb(int client_if, RawAddress address,
+                           tBT_TRANSPORT transport,
+                           std::optional<uint16_t> handle) {
+  CLI_CBACK_IN_JNI(get_acl_handle_cb, client_if, address, transport, handle);
+}
+
 /*******************************************************************************
  *  Client API Functions
  ******************************************************************************/
@@ -588,12 +594,22 @@ static bt_status_t btif_gattc_read_remote_rssi(int client_if,
       Bind(base::IgnoreResult(&BTM_ReadRSSI), bd_addr, btm_read_rssi_cb));
 }
 
+static bt_status_t btif_gattc_get_acl_handle(int client_if,
+                                             const RawAddress& bd_addr,
+                                             tBT_TRANSPORT transport) {
+  CHECK_BTGATT_INIT();
+
+  return do_in_jni_thread(BindOnce(
+      base::IgnoreResult(&BTM_GetAclHandle), bd_addr, transport,
+      base::Bind(&btm_get_acl_handle_cb, client_if, bd_addr, transport)));
+}
+
 static bt_status_t btif_gattc_configure_mtu(int conn_id, int mtu) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(
-      Bind(base::IgnoreResult(
-        static_cast<void (*)(uint16_t,uint16_t)>(&BTA_GATTC_ConfigureMTU)),
-        conn_id, mtu));
+  return do_in_jni_thread(Bind(
+      base::IgnoreResult(
+          static_cast<void (*)(uint16_t, uint16_t)>(&BTA_GATTC_ConfigureMTU)),
+      conn_id, mtu));
 }
 
 static void btif_gattc_conn_parameter_update_impl(
@@ -668,6 +684,7 @@ const btgatt_client_interface_t btgattClientInterface = {
     btif_gattc_reg_for_notification,
     btif_gattc_dereg_for_notification,
     btif_gattc_read_remote_rssi,
+    btif_gattc_get_acl_handle,
     btif_gattc_get_device_type,
     btif_gattc_configure_mtu,
     btif_gattc_conn_parameter_update,
