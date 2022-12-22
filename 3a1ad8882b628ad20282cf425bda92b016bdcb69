@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "213019fa_0443ecfe",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-22T07:49:00Z",
+      "side": 1,
+      "message": "When a watch is connected during a call via a HFP, the audio would be routed to the watch for a while and then back to previous HFP device.\n\nAm I correct? If so, are there any possible way to prevent this case?",
+      "revId": "3a1ad8882b628ad20282cf425bda92b016bdcb69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
