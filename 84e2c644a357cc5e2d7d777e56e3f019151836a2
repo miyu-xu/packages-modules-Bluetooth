@@ -16,6 +16,24 @@
       "message": "Also mention the status in the callback",
       "revId": "84e2c644a357cc5e2d7d777e56e3f019151836a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4694716_192078a4",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-22T00:57:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d472ca43_ce9cab8a",
+      "revId": "84e2c644a357cc5e2d7d777e56e3f019151836a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
