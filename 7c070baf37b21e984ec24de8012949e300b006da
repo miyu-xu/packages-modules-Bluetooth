@@ -22,6 +22,46 @@
       },
       "revId": "7c070baf37b21e984ec24de8012949e300b006da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "975604bc_3d3b0089",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-22T07:29:29Z",
+      "side": 1,
+      "message": "Where can I check these updated values?",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6360643_849e59ab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAppParamsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-22T07:29:29Z",
+      "side": 1,
+      "message": "please fix",
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
