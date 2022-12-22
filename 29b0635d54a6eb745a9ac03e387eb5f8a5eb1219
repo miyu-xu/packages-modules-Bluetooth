@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d89e969_5c1c47d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-22T23:26:51Z",
+      "side": 1,
+      "message": "The test failure is not related to this CL.",
+      "revId": "29b0635d54a6eb745a9ac03e387eb5f8a5eb1219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
