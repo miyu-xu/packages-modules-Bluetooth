@@ -16,6 +16,29 @@
       "message": "Hi Thomas and Charlie,\n\nHave added AVRCP flaky test cases, they are stable post Host.kt file change. Also provided workaround for SSP Pairing request.\n\nRequest you to share your inputs.\n\nThank you.\n\nRegards,\nSnehal",
       "revId": "dbaa7c21284e18a283e131f5fd0a7fa2036cba09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513b058f_a3c7ad74",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-12-22T09:59:19Z",
+      "side": 1,
+      "message": "Hello,\n\nThis is a copy of the one in gap.py right ?\n\nMaybe we could make it useful for anyone and then move its implementation into _utils.py for example",
+      "range": {
+        "startLine": 801,
+        "startChar": 4,
+        "endLine": 812,
+        "endChar": 45
+      },
+      "revId": "dbaa7c21284e18a283e131f5fd0a7fa2036cba09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
