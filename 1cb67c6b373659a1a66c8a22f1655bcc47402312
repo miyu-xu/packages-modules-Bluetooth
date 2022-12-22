@@ -434,6 +434,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05be5e3a_5f217d98",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-22T17:50:02Z",
+      "side": 1,
+      "message": "Please use `BluetoothUtils.toAnonymizedAddress` here.\n\n\nhttps://source.corp.google.com/aosp-master/packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothUtils.java;l\u003d184?q\u003dToAnonymiz\u0026sq\u003dpackage:%5Eaosp-master$",
+      "parentUuid": "473794b2_ad993a09",
+      "range": {
+        "startLine": 479,
+        "startChar": 64,
+        "endLine": 479,
+        "endChar": 71
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f67645e_41da5eb4",
         "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
         "patchSetId": 2
