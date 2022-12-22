@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "525a8da7_fed0e5bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2022-12-22T14:23:30Z",
+      "side": 1,
+      "message": "Hello Thomas, Hello Charlie,\n\nWe have submitted the CL for OPP/CL with 4 test cases. Request to provide your comments.\n\nNote: Created and Saved BMP image file. Same file is sent to PTS\n\nThanks,\nDhananjaya",
+      "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
