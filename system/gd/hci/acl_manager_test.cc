@@ -20,6 +20,7 @@
 #include <chrono>
 #include <future>
 #include <map>
+#include <mutex>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -131,33 +132,43 @@ class TestHciLayer : public HciLayer {
   void EnqueueCommand(
       std::unique_ptr<CommandBuilder> command,
       common::ContextualOnceCallback<void(CommandStatusView)> on_status) override {
+    std::lock_guard<std::mutex> lock(mutex_);
     command_queue_.push(std::move(command));
     command_status_callbacks.push_back(std::move(on_status));
     if (command_promise_ != nullptr) {
+      LOG_INFO("CYDBG reset <------------------- s");
       command_promise_->set_value();
       command_promise_.reset();
+      LOG_INFO("CYDBG reset <------------------- e");
     }
   }
 
   void EnqueueCommand(
       std::unique_ptr<CommandBuilder> command,
       common::ContextualOnceCallback<void(CommandCompleteView)> on_complete) override {
+    std::lock_guard<std::mutex> lock(mutex_);
     command_queue_.push(std::move(command));
     command_complete_callbacks.push_back(std::move(on_complete));
     if (command_promise_ != nullptr) {
+      LOG_INFO("CYDBG reset <------------------- s");
       command_promise_->set_value();
       command_promise_.reset();
+      LOG_INFO("CYDBG reset <------------------- e");
     }
   }
 
   void SetCommandFuture() {
+    LOG_INFO("CYDBG SetCommandFuture OWO22 -------------------> ");
+    if (command_promise_ != nullptr) {
+      LOG_INFO("CYDBG SetCommandFuture Errrrrrrrrrrrrrrrrrrrrrr-------------------> ");
+    }
     ASSERT_EQ(command_promise_, nullptr) << "Promises, Promises, ... Only one at a time.";
     command_promise_ = std::make_unique<std::promise<void>>();
     command_future_ = std::make_unique<std::future<void>>(command_promise_->get_future());
   }
 
   CommandView GetLastCommand() {
-    if (command_queue_.size() == 0) {
+    if (command_queue_.empty()) {
       return CommandView::Create(PacketView<kLittleEndian>(std::make_shared<std::vector<uint8_t>>()));
     }
     auto last = std::move(command_queue_.front());
@@ -191,6 +202,7 @@ class TestHciLayer : public HciLayer {
       auto result = command_future_->wait_for(std::chrono::milliseconds(1000));
       EXPECT_NE(std::future_status::timeout, result);
     }
+    std::lock_guard<std::mutex> lock(mutex_);
     if (command_queue_.empty()) {
       return ConnectionManagementCommandView::Create(AclCommandView::Create(
           CommandView::Create(PacketView<kLittleEndian>(std::make_shared<std::vector<uint8_t>>()))));
@@ -314,6 +326,7 @@ class TestHciLayer : public HciLayer {
   std::queue<std::unique_ptr<CommandBuilder>> command_queue_;
   std::unique_ptr<std::promise<void>> command_promise_;
   std::unique_ptr<std::future<void>> command_future_;
+  mutable std::mutex mutex_;
 
   void do_disconnect(uint16_t handle, ErrorCode reason) {
     HciLayer::Disconnect(handle, reason);
@@ -329,6 +342,7 @@ class AclManagerNoCallbacksTest : public ::testing::Test {
     fake_registry_.InjectTestModule(&Controller::Factory, test_controller_);
     client_handler_ = fake_registry_.GetTestModuleHandler(&HciLayer::Factory);
     ASSERT_NE(client_handler_, nullptr);
+    LOG_INFO("CYDBG 0");
     ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
     fake_registry_.Start<AclManager>(&thread_);
     acl_manager_ = static_cast<AclManager*>(fake_registry_.GetModuleUnderTest(&AclManager::Factory));
@@ -760,14 +774,17 @@ TEST_F(AclManagerTest, invoke_registered_callback_le_connection_complete_fail) {
 
 TEST_F(AclManagerTest, cancel_le_connection) {
   AddressWithType remote_with_type(remote, AddressType::PUBLIC_DEVICE_ADDRESS);
+  // CYDBG 1
+  LOG_INFO("CYDBG 1");
   ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
   acl_manager_->CreateLeConnection(remote_with_type, true);
   test_hci_layer_->GetLastCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   test_hci_layer_->IncomingEvent(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
+  LOG_INFO("CYDBG 2");
   ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
   test_hci_layer_->GetLastCommand(OpCode::LE_CREATE_CONNECTION);
   test_hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
-
+  LOG_INFO("CYDBG 3");
   ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
   acl_manager_->CancelLeConnect(remote_with_type);
   auto packet = test_hci_layer_->GetLastCommand(OpCode::LE_CREATE_CONNECTION_CANCEL);
@@ -787,7 +804,7 @@ TEST_F(AclManagerTest, cancel_le_connection) {
       0x0010,
       0x0011,
       ClockAccuracy::PPM_30));
-
+  LOG_INFO("CYDBG 4");
   ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
   packet = test_hci_layer_->GetLastCommand(OpCode::LE_REMOVE_DEVICE_FROM_FILTER_ACCEPT_LIST);
   le_connection_management_command_view = LeConnectionManagementCommandView::Create(AclCommandView::Create(packet));
