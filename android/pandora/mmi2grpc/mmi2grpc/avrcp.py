@@ -21,6 +21,8 @@ from grpc import RpcError
 from mmi2grpc._audio import AudioSignal
 from mmi2grpc._helpers import assert_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._utils import Utils
+
 from pandora_experimental.a2dp_grpc import A2DP
 from pandora_experimental.a2dp_pb2 import Sink, Source
 from pandora_experimental.avrcp_grpc import AVRCP
@@ -46,6 +48,8 @@ class AVRCPProxy(ProfileProxy):
         self.a2dp = A2DP(channel)
         self.avrcp = AVRCP(channel)
         self.mediaplayer = MediaPlayer(channel)
+        self.utils = Utils()
+        self.utils._auto_confirm_pairing_requests(channel)
 
     @assert_description
     def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
