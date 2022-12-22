@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a75cfb3e_e37b9824",
+        "filename": "system/btif/src/btif_hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2022-12-22T19:03:13Z",
+      "side": 1,
+      "message": "Hi jpawlowski@,\nI have C++ questions here, do we need `Unretained`? `Unretained` allows Bind() to bind a non-refcounted class, and to disable refcounting on arguments that are refcounted objects.\nI have two understandings here, and don\u0027t know which one is correct:\n1. `HearingAid::Get()` returns an `HearingAidImpl* instance`, which is a global variable. As a global variable, it is not a refcounted objects and needs `Unretained`?\n2. Or maybe it is okay to remove `Unretained` because with this change, because `Connect` becomes static and no longer needs a `HearingAidImpl* instance`?",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 68
+      },
+      "revId": "a66d335ebe5476f24ef8375d2758641d0f5fb026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
