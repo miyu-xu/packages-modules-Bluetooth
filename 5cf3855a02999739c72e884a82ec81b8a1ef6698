@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dfe7044_ad13aa24",
+        "filename": "system/gd/rust/topshim/src/profiles/mod.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1118598
+      },
+      "writtenOn": "2022-12-22T19:00:11Z",
+      "side": 1,
+      "message": "That value is outside the range of protobuf enums. Per https://developers.google.com/protocol-buffers/docs/proto3#enum:\n\n\"\nEnumerator constants must be in the range of a 32-bit integer. Since enum values use varint encoding on the wire, negative values are inefficient and thus not recommended.\n\"\n\nWould it be possible to use 0 (or 0x7FFFFFFF) for invalid? That would avoid having to write logic to translate between the integer values of this enum and enums in protobufs.",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "5cf3855a02999739c72e884a82ec81b8a1ef6698",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
