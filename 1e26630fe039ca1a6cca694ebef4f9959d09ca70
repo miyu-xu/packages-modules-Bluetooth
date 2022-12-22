@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "789712e3_c1887efc",
+        "filename": "android/app/src/com/android/bluetooth/sap/SapMessage.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-22T00:36:25Z",
+      "side": 1,
+      "message": "Are you going to change this?  Otherwise let\u0027s remove this.",
+      "range": {
+        "startLine": 738,
+        "startChar": 4,
+        "endLine": 738,
+        "endChar": 35
+      },
+      "revId": "1e26630fe039ca1a6cca694ebef4f9959d09ca70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
