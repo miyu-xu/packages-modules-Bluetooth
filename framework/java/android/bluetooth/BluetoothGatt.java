@@ -23,6 +23,8 @@ import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.annotation.SystemApi;
+import android.bluetooth.BluetoothDevice.Transport;
 import android.bluetooth.BluetoothGattCharacteristic.WriteType;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
@@ -687,6 +689,35 @@ public final class BluetoothGatt implements BluetoothProfile {
                             final BluetoothGattCallback callback = mCallback;
                             if (callback != null) {
                                 callback.onReadRemoteRssi(BluetoothGatt.this, rssi, status);
+                            }
+                        }
+                    });
+                }
+
+                /**
+                 * Remote device ACL handle has been returned
+                 * @hide
+                 */
+                @Override
+                public void onGetAclHandle(String address, int transport, int handle) {
+                    if (VDBG) {
+                        Log.d(TAG,
+                                "onGetAclHandle() - Device=" + address + " transport=" + transport
+                                        + " handle=" + handle);
+                    }
+                    if (!address.equals(mDevice.getAddress())) {
+                        return;
+                    }
+                    runOrQueueCallback(new Runnable() {
+                        @Override
+                        public void run() {
+                            final BluetoothGattCallback callback = mCallback;
+                            if (callback != null) {
+                                callback.onGetAclHandle(BluetoothGatt.this, transport,
+                                        handle == -1
+                                                ? BluetoothStatusCodes.ERROR_DEVICE_NOT_CONNECTED
+                                                : BluetoothStatusCodes.SUCCESS,
+                                        handle);
                             }
                         }
                     });
@@ -1769,6 +1800,56 @@ public final class BluetoothGatt implements BluetoothProfile {
         }
 
         return true;
+    }
+
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {BluetoothStatusCodes.SUCCESS,
+                    BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND,
+                    BluetoothStatusCodes.ERROR_UNKNOWN})
+    public @interface GetAclHandleStatusValues {}
+
+    /**
+     * Get the ACL handle used on the given transport to a connected remote device.
+     *
+     * <p>The {@link BluetoothGattCallback#onGetAclHandle} callback will be
+     * invoked when the ACL handle is read. It will be invoked with status={@link
+     * BluetoothStatusCodes#ERROR_DEVICE_NOT_CONNECTED} handle = -1 if no connection currently
+     * exists on the given transport.
+     *
+     * @param transport the transport of interest
+     * @return {@link BluetoothStatusCodes#SUCCESS}, if the ACL handle has been requested
+     *         successfully
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    @GetAclHandleStatusValues
+    public int getAclHandle(@Transport int transport) {
+        if (DBG) {
+            Log.d(TAG, "getAclHandle() - device: " + mDevice.getAddress());
+        }
+
+        if (mService == null || mClientIf == 0) {
+            return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
+        }
+
+        try {
+            final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+            mService.getAclHandle(
+                    mClientIf, mDevice.getAddress(), transport, mAttributionSource, recv);
+            return recv.awaitResultNoInterrupt(getSyncTimeout())
+                    .getValue(BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND);
+        } catch (TimeoutException e) {
+            Log.e(TAG, "", e);
+            return BluetoothStatusCodes.ERROR_UNKNOWN;
+        } catch (RemoteException e) {
+            Log.e(TAG, "", e);
+            throw e.rethrowFromSystemServer();
+        }
     }
 
     /**

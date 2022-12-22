@@ -123,6 +123,7 @@ static jmethodID method_onWriteDescriptor;
 static jmethodID method_onNotify;
 static jmethodID method_onRegisterForNotifications;
 static jmethodID method_onReadRemoteRssi;
+static jmethodID method_onGetAclHandle;
 static jmethodID method_onConfigureMTU;
 static jmethodID method_onScanFilterConfig;
 static jmethodID method_onScanFilterParamsConfigured;
@@ -381,6 +382,18 @@ void btgattc_remote_rssi_cb(int client_if, const RawAddress& bda, int rssi,
                                client_if, address.get(), rssi, status);
 }
 
+void btgattc_get_acl_handle_cb(int client_if, const RawAddress& bda,
+                               tBT_TRANSPORT transport,
+                               std::optional<uint16_t> handle) {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mCallbacksObj) return;
+
+  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onGetAclHandle, client_if,
+                               bda, transport,
+                               handle.has_value() ? handle.value() : -1);
+}
+
 void btgattc_configure_mtu_cb(int conn_id, int status, int mtu) {
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
@@ -590,6 +603,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
     btgattc_write_descriptor_cb,
     btgattc_execute_write_cb,
     btgattc_remote_rssi_cb,
+    btgattc_get_acl_handle_cb,
     btgattc_configure_mtu_cb,
     btgattc_congestion_cb,
     btgattc_get_gatt_db_cb,
@@ -818,7 +832,9 @@ static const btgatt_server_callbacks_t sGattServerCallbacks = {
  */
 
 static const btgatt_callbacks_t sGattCallbacks = {
-    sizeof(btgatt_callbacks_t), &sGattClientCallbacks, &sGattServerCallbacks,
+    sizeof(btgatt_callbacks_t),
+    &sGattClientCallbacks,
+    &sGattServerCallbacks,
     &sGattScannerCallbacks,
 };
 
@@ -1135,6 +1151,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onRegisterForNotifications", "(IIII)V");
   method_onReadRemoteRssi =
       env->GetMethodID(clazz, "onReadRemoteRssi", "(ILjava/lang/String;II)V");
+  method_onGetAclHandle =
+      env->GetMethodID(clazz, "onGetAclHandle", "(ILjava/lang/String;II)V");
   method_onConfigureMTU = env->GetMethodID(clazz, "onConfigureMTU", "(III)V");
   method_onScanFilterConfig =
       env->GetMethodID(clazz, "onScanFilterConfig", "(IIIII)V");
@@ -1172,8 +1190,7 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onClientPhyUpdate", "(IIII)V");
   method_onClientConnUpdate =
       env->GetMethodID(clazz, "onClientConnUpdate", "(IIIII)V");
-  method_onServiceChanged =
-      env->GetMethodID(clazz, "onServiceChanged", "(I)V");
+  method_onServiceChanged = env->GetMethodID(clazz, "onServiceChanged", "(I)V");
 
   // Server callbacks
 
@@ -1502,6 +1519,14 @@ static void gattClientReadRemoteRssiNative(JNIEnv* env, jobject object,
   if (!sGattIf) return;
 
   sGattIf->client->read_remote_rssi(clientif, str2addr(env, address));
+}
+
+static void gattClientGetAclHandleNative(JNIEnv* env, jobject object,
+                                         jint clientif, jstring address,
+                                         jint transport) {
+  if (!sGattIf) return;
+
+  sGattIf->client->get_acl_handle(clientif, str2addr(env, address), transport);
 }
 
 void set_scan_params_cmpl_cb(int client_if, uint8_t status) {
@@ -2557,6 +2582,8 @@ static JNINativeMethod sMethods[] = {
      (void*)gattClientRegisterForNotificationsNative},
     {"gattClientReadRemoteRssiNative", "(ILjava/lang/String;)V",
      (void*)gattClientReadRemoteRssiNative},
+    {"gattClientGetAclHandleNative", "(ILjava/lang/String;I)V",
+     (void*)gattClientGetAclHandleNative},
     {"gattClientConfigureMTUNative", "(II)V",
      (void*)gattClientConfigureMTUNative},
     {"gattConnectionParameterUpdateNative", "(ILjava/lang/String;IIIIII)V",

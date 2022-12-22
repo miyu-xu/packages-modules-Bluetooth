@@ -426,6 +426,25 @@ struct BTM_ReadRSSI {
   };
 };
 extern struct BTM_ReadRSSI BTM_ReadRSSI;
+// Name: BTM_GetAclHandle
+// Params: const RawAddress& remote_bda, tBT_TRANSPORT transport,
+// base::OnceCallback<void(std::optional<uint16_t>)> handle_cb
+// Returns: tBTM_STATUS
+struct BTM_GetAclHandle {
+  std::function<tBTM_STATUS(
+      const RawAddress& remote_bda, tBT_TRANSPORT transport,
+      base::OnceCallback<void(std::optional<uint16_t>)> handle_cb)>
+      body{[](const RawAddress& remote_bda, tBT_TRANSPORT transport,
+              base::OnceCallback<void(std::optional<uint16_t>)> handle_cb) {
+        return 0;
+      }};
+  tBTM_STATUS operator()(
+      const RawAddress& remote_bda, tBT_TRANSPORT transport,
+      base::OnceCallback<void(std::optional<uint16_t>)> handle_cb) {
+    return body(remote_bda, transport, std::move(handle_cb));
+  };
+};
+extern struct BTM_ReadRSSI BTM_ReadRSSI;
 // Name: BTM_ReadTxPower
 // Params: const RawAddress& remote_bda, tBT_TRANSPORT transport,
 // tBTM_CMPL_CB* p_cb Returns: tBTM_STATUS
