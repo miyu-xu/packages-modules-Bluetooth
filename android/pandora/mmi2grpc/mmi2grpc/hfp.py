@@ -15,11 +15,12 @@
 
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._utils import Utils
 
 from pandora_experimental.hfp_grpc import HFP
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.host_pb2 import ConnectabilityMode
-from pandora_experimental.security_grpc import Security, SecurityStorage
+from pandora_experimental.security_grpc import SecurityStorage
 from pandora_experimental.hfp_pb2 import AudioPath
 
 import sys
@@ -42,14 +43,14 @@ class HFPProxy(ProfileProxy):
         super().__init__(channel)
         self.hfp = HFP(channel)
         self.host = Host(channel)
-        self.security = Security(channel)
         self.security_storage = SecurityStorage(channel)
         self.rootcanal = rootcanal
         self.modem = modem
+        self.utils = Utils()
 
         self.connection = None
 
-        self._auto_confirm_requests()
+        self.utils._auto_confirm_pairing_requests(channel)
 
     def asyncWaitConnection(self, pts_addr, delay=WAIT_DELAY_BEFORE_CONNECTION):
         """
@@ -617,16 +618,3 @@ class HFPProxy(ProfileProxy):
         threading.Thread(target=reject_call).start()
 
         return "OK"
-
-    def _auto_confirm_requests(self, times=None):
-
-        def task():
-            cnt = 0
-            pairing_events = self.security.OnPairing()
-            for event in pairing_events:
-                if event.WhichOneof("method") in {"just_works", "numeric_comparison"}:
-                    if times is None or cnt < times:
-                        cnt += 1
-                        pairing_events.send(event=event, confirm=True)
-
-        threading.Thread(target=task).start()

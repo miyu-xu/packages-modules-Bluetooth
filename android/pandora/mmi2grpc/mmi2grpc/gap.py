@@ -1,6 +1,7 @@
 from threading import Thread
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._utils import Utils
 from time import sleep
 
 from pandora_experimental.gatt_grpc import GATT
@@ -19,6 +20,7 @@ class GAPProxy(ProfileProxy):
         self.host = Host(channel)
         self.security = Security(channel)
         self.security_storage = SecurityStorage(channel)
+        self.utils = Utils()
 
         self.connection = None
         self.pairing_events = None
@@ -28,7 +30,7 @@ class GAPProxy(ProfileProxy):
         self.counter = 0
         self.cached_passkey = None
 
-        self._auto_confirm_requests()
+        self.utils._auto_confirm_pairing_requests(channel)
 
     @match_description
     def TSC_MMI_iut_send_hci_connect_request(self, test: str, pts_addr: bytes, **kwargs):
@@ -95,18 +97,16 @@ class GAPProxy(ProfileProxy):
         database where Insufficient Authentication error will be returned :
         """
 
-        response = self.gatt.RegisterService(
-            service=GattServiceParams(
-                uuid="955798ce-3022-455c-b759-ee8edcd73d1a",
-                characteristics=[
-                    GattCharacteristicParams(
-                        uuid="cf99ed9b-3c43-4343-b8a7-8afa513752ce",
-                        properties=0x02,  # PROPERTY_READ,
-                        permissions=0x04,  # PERMISSION_READ_ENCRYPTED_MITM
-                    ),
-                ],
-            ))
-
+        response = self.gatt.RegisterService(service=GattServiceParams(
+            uuid="955798ce-3022-455c-b759-ee8edcd73d1a",
+            characteristics=[
+                GattCharacteristicParams(
+                    uuid="cf99ed9b-3c43-4343-b8a7-8afa513752ce",
+                    properties=0x02,  # PROPERTY_READ,
+                    permissions=0x04,  # PERMISSION_READ_ENCRYPTED_MITM
+                ),
+            ],
+        ))
         self.pairing_events = self.security.OnPairing()
 
         return handle_format(response.service.characteristics[0].handle)
@@ -205,9 +205,9 @@ class GAPProxy(ProfileProxy):
         Please prepare IUT to send an advertising report with Service UUID.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(complete_service_class_uuids128=["955798ce-3022-455c-b759-ee8edcd73d1a"],))
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC,
+                                   data=DataTypes(
+                                       complete_service_class_uuids128=["955798ce-3022-455c-b759-ee8edcd73d1a"],))
         return "OK"
 
     @assert_description
@@ -216,10 +216,11 @@ class GAPProxy(ProfileProxy):
         Please prepare IUT to send an advertising report with Local Name.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(include_complete_local_name=True, include_shortened_local_name=True,))
-
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC,
+                                   data=DataTypes(
+                                       include_complete_local_name=True,
+                                       include_shortened_local_name=True,
+                                   ))
         return "OK"
 
     @assert_description
@@ -244,9 +245,8 @@ class GAPProxy(ProfileProxy):
         Specific Data.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(manufacturer_specific_data=b"d0n't b3 3v1l!",))
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC,
+                                   data=DataTypes(manufacturer_specific_data=b"d0n't b3 3v1l!",))
 
         return "OK"
 
@@ -256,9 +256,7 @@ class GAPProxy(ProfileProxy):
         Please prepare IUT to send an advertising report with TX Power Level.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(include_tx_power_level=True,))
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC, data=DataTypes(include_tx_power_level=True,))
 
         return "OK"
 
@@ -456,7 +454,7 @@ class GAPProxy(ProfileProxy):
         for response in self.scan_responses:
             assert response.HasField("public")
             if (response.public == pts_addr and
-                response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
+                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
                 self.scan_responses.cancel()
                 return "OK"
 
@@ -475,7 +473,7 @@ class GAPProxy(ProfileProxy):
             for response in self.scan_responses:
                 assert response.HasField("public")
                 if (response.public == pts_addr and
-                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_GENERAL):
+                        response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_GENERAL):
                     self.scan_responses.cancel()
                     discovered = True
                     return
@@ -502,7 +500,7 @@ class GAPProxy(ProfileProxy):
             for response in self.scan_responses:
                 assert response.HasField("public")
                 if (response.public == pts_addr and
-                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
+                        response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
                     self.inquiry_responses.cancel()
                     discovered = True
                     return
@@ -604,8 +602,7 @@ class GAPProxy(ProfileProxy):
             scan_responses = self.host.Scan()
             for event in scan_responses:
                 address = event.public if event.HasField("public") else event.random
-                if (address == pts_addr and
-                    event.data.le_discoverability_mode):
+                if (address == pts_addr and event.data.le_discoverability_mode):
                     scan_responses.cancel()
                     discovered_le = True
                     return
@@ -627,8 +624,7 @@ class GAPProxy(ProfileProxy):
         Please make IUT general discoverable. Press OK to continue.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
 
         self.host.StartAdvertising(
             data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
@@ -659,8 +655,7 @@ class GAPProxy(ProfileProxy):
         Please make IUT not connectable. Press OK to continue.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.NOT_DISCOVERABLE)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.NOT_DISCOVERABLE)
 
         self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
 
@@ -672,8 +667,7 @@ class GAPProxy(ProfileProxy):
         Please make IUT not discoverable. Press OK to continue.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.NOT_DISCOVERABLE)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.NOT_DISCOVERABLE)
         self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
 
         return "OK"
@@ -755,8 +749,7 @@ class GAPProxy(ProfileProxy):
         Please enter General Discoverable and Non-Connectable mode.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
         self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
 
         return "OK"
@@ -904,18 +897,6 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
-    def _auto_confirm_requests(self, times=None):
-
-        def task():
-            cnt = 0
-            pairing_events = self.security.OnPairing()
-            for event in pairing_events:
-                if event.WhichOneof('method') in {"just_works", "numeric_comparison"}:
-                    if times is None or cnt < times:
-                        cnt += 1
-                        pairing_events.send(event=event, confirm=True)
-
-        Thread(target=task).start()
 
 def handle_format(handle):
     return hex(handle)[2:].zfill(4)
