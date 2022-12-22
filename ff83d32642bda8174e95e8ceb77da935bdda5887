@@ -46,6 +46,30 @@
       },
       "revId": "ff83d32642bda8174e95e8ceb77da935bdda5887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8178d596_209010c9",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-22T05:30:34Z",
+      "side": 1,
+      "message": "I see your point.\nLet me change it a bit so when the number of clcbs drops to 0 we will always clear the state.",
+      "parentUuid": "11973906_50f4cd19",
+      "range": {
+        "startLine": 202,
+        "startChar": 1,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "ff83d32642bda8174e95e8ceb77da935bdda5887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
