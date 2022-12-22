@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7165368_bf9ed8ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-12-22T07:31:26Z",
+      "side": 1,
+      "message": "Hi Thomas and Charlie,\n\nHave added AVRCP flaky test cases, they are stable post Host.kt file change. Also provided workaround for SSP Pairing request.\n\nRequest you to share your inputs.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "dbaa7c21284e18a283e131f5fd0a7fa2036cba09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
