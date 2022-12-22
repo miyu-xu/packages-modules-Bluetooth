@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "359aeb96_faf0c9b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-22T19:54:15Z",
+      "side": 1,
+      "message": "failures are unrelated, this is only going in U and the flag is set to False so no need for dedicated QA",
+      "revId": "5ce51fa7da0cf2a774e0fb3be60aa5a37f10a34d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
