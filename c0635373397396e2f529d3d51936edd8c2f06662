@@ -16,6 +16,24 @@
       "message": "Sorry I didn\u0027t catch this on the first pass, but we should return an int instead of a boolean. See go/bluetooth-api-error-codes-itd for more info, but to summarize, boolean return types don\u0027t do a good job of informing the caller what went wrong.",
       "revId": "c0635373397396e2f529d3d51936edd8c2f06662",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8057df06_87286022",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-22T00:43:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b13c760_324226df",
+      "revId": "c0635373397396e2f529d3d51936edd8c2f06662",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
