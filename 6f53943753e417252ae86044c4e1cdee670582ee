@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94ecff73_b7a90666",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T19:58:11Z",
+      "side": 1,
+      "message": "As part of a mainline module, our api coverage must be 100%.\nPlease add the test in the same topic instead",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 27
+      },
+      "revId": "6f53943753e417252ae86044c4e1cdee670582ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3c76c9f_ad7be0ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T19:58:11Z",
+      "side": 1,
+      "message": "Device Boot test ... xD\nThis is wild",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "6f53943753e417252ae86044c4e1cdee670582ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf16f71d_ab0d116f",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T19:58:11Z",
+      "side": 1,
+      "message": "Do not log full address but use `BluetoothUtils.toAnonymizedAddress`\nSame below",
+      "range": {
+        "startLine": 705,
+        "startChar": 63,
+        "endLine": 705,
+        "endChar": 70
+      },
+      "revId": "6f53943753e417252ae86044c4e1cdee670582ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
