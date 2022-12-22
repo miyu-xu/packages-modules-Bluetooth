@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fe11d38_6d8fe031",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-22T04:21:39Z",
+      "side": 1,
+      "message": "Q) Why is this needed? Is this a cleanup?",
+      "range": {
+        "startLine": 764,
+        "startChar": 8,
+        "endLine": 769,
+        "endChar": 31
+      },
+      "revId": "590fbfbec4f9f7abee896d759c16bad2fd462da2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
