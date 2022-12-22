@@ -106,6 +106,24 @@
       "parentUuid": "d3afbfbd_81e9de2a",
       "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2875a8e_8be5ef0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2022-12-22T08:07:05Z",
+      "side": 1,
+      "message": "@qasimj@google.com we split into 5 CLs as below, and the flag is also added, plz help review them, thanks.\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2282274\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2365976\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2365977\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2365978\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2367509",
+      "parentUuid": "3bd3a2ec_66cc8e2d",
+      "revId": "94c401ca723915d5fbb3f72581170b7241df7606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
