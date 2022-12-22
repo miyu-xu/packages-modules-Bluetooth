@@ -49,6 +49,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbae1ef6_bd605b21",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-22T07:44:00Z",
+      "side": 1,
+      "message": "These updated values are used to correctly put values in a byteBuffer in function \"encodeParams\", and parse them to produce a new instance with \"parseParams\". Before these values were updated, the encode and decode functions were causing index errors. After the fix, encode and parse works fine. I wrote how I found the problem and fixed these values in a reply to Hyundo\u0027s comment!",
+      "parentUuid": "975604bc_3d3b0089",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5483d9f3_23c44c7c",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-22T07:44:00Z",
+      "side": 1,
+      "message": "I changed the lengths based on how they were put into the byteBuffer for encoding. \n\nFor example, FOLDER_LISTING_SIZE_LEN, MESSAGE_LISTING_SIZE_LEN, etc are length 0x02, because in function \"encodeParams()\", folderListingSize and MessageListingSize are put into buffer by \"appParamBuf.putShort(...)\". However, although notificationStatus was also put in to buffer by \"appParamBuf.putShort(...)\", but had a NOTIFICATION_STATUS_LEN of 0x01, which messed up the buffer structure of \u003ccontentId, contentLength, actualContent\u003e, and caused index errors in function \"parseParams()\" which parses the contents put into the buffer in \"encodeParams()\". \n\nI followed this rationale with the *_LEN variables I changed in this CL, which allowed encode and decode to work fine after. FYI, I searched and found out \"encodeParams()\" is not being used anywhere outside this file. That seems to be the reason why the code was not working but wasn\u0027t causing any problems.",
+      "parentUuid": "3334d333_ef4b9915",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6360643_849e59ab",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAppParamsTest.java",
         "patchSetId": 1
@@ -60,6 +108,24 @@
       "writtenOn": "2022-12-22T07:29:29Z",
       "side": 1,
       "message": "please fix",
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d5788af_e83572af",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapAppParamsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-22T07:44:00Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "b6360643_849e59ab",
       "revId": "7c070baf37b21e984ec24de8012949e300b006da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
