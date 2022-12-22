@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "240e36d3_4a114e18",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T17:30:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "84195805_69b505ef",
+      "range": {
+        "startLine": 40,
+        "startChar": 14,
+        "endLine": 40,
+        "endChar": 26
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b3375c1_37e72816",
@@ -71,6 +95,30 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "we are storing only the device that support 1.7 Does that mean it\u0027s an allow-list instead ?",
+      "range": {
+        "startLine": 395,
+        "startChar": 8,
+        "endLine": 397,
+        "endChar": 50
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25ccf1d8_d485be99",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T17:30:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2b3375c1_37e72816",
       "range": {
         "startLine": 395,
         "startChar": 8,
@@ -104,6 +152,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c3a3c32_02a5970b",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T17:30:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "56347263_0cddebf4",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 28
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e9a24ff_d26bd991",
@@ -127,6 +199,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37f5b849_ba30de46",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T17:30:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7e9a24ff_d26bd991",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 54
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2057672e_89b10513",
@@ -140,6 +236,30 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "what about renaming to `sdp_dynamic_change_hfp_version` so it\u0027s obvious it\u0027s for dynamic hfp version ? (and get rid of the comment)",
+      "range": {
+        "startLine": 64,
+        "startChar": 5,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d951b080_5ae4c815",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T17:30:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2057672e_89b10513",
       "range": {
         "startLine": 64,
         "startChar": 5,
@@ -186,6 +306,30 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "remove ?",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 54
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a26be322_de676827",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T17:30:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "73acc356_c8dc388c",
       "range": {
         "startLine": 117,
         "startChar": 0,

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "babe4134_ed54d25e",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T17:30:14Z",
+      "side": 1,
+      "message": "Can you use deny/allow list everywhere ?",
+      "range": {
+        "startLine": 108,
+        "startChar": 34,
+        "endLine": 108,
+        "endChar": 43
+      },
+      "revId": "314fc1a9b695140d939c64f5c43ab6e7487a44d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
