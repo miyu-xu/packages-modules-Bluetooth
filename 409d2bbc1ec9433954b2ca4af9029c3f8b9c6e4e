@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aec9aea_7ae90e2e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2577,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-22T18:34:26Z",
+      "side": 1,
+      "message": "Just curious, why do we move it here?",
+      "range": {
+        "startLine": 2577,
+        "startChar": 8,
+        "endLine": 2577,
+        "endChar": 52
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7fce2b9_663e9ba4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2586,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-22T18:34:26Z",
+      "side": 1,
+      "message": "Do you mean auto batch?",
+      "range": {
+        "startLine": 2586,
+        "startChar": 62,
+        "endLine": 2586,
+        "endChar": 69
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c58d4a78_3bee03f7",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-22T18:34:26Z",
+      "side": 1,
+      "message": "What does it mean? App has to set both? If yes, why not just rename CALLBACK_TYPE_AUTO_BATCH to something like CALLBACK_TYPE_ALL_MATCH_AUTO_BATCH TO  reflect that fact? Or simply mention that it will be all match in the javadoc and let app just set CALLBACK_TYPE_AUTO_BATCH?",
+      "range": {
+        "startLine": 346,
+        "startChar": 40,
+        "endLine": 346,
+        "endChar": 92
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
