@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb7c46dd_fe2a67f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-22T20:56:00Z",
+      "side": 1,
+      "message": "Thanks Kai for the review. I add comments below",
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9aec9aea_7ae90e2e",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-12-22T18:34:26Z",
       "side": 1,
       "message": "Just curious, why do we move it here?",
+      "range": {
+        "startLine": 2577,
+        "startChar": 8,
+        "endLine": 2577,
+        "endChar": 52
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f1af6c6_783b46f1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2577,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-22T20:56:00Z",
+      "side": 1,
+      "message": "Right. It was required for a corner case. While turning on, updateBatchScanToRegularScanClients() calls flush and stop API. The flushed scan results could come later than when the batched scan client is cleared. So, this change is to make sure the flushed results were received in handleFlushBatchResults().\n\nupdateBatchScanToRegularScanClients() {\n   handleFlushBatchResults(client);  // flushed results come asynchronously\n   handleStopScan(client); // it can clear batch scan client before receiving the flushed scan results\n   ...\n}",
+      "parentUuid": "9aec9aea_7ae90e2e",
       "range": {
         "startLine": 2577,
         "startChar": 8,
@@ -49,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c91f41c_87693a08",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2586,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-22T20:56:00Z",
+      "side": 1,
+      "message": "I meant in this log that onScanResult() is regular scan callback and onBatchScanResults() is batch scan callback. So, auto batch scan client will receive the scan results through onScanResult() only.",
+      "parentUuid": "c7fce2b9_663e9ba4",
+      "range": {
+        "startLine": 2586,
+        "startChar": 62,
+        "endLine": 2586,
+        "endChar": 69
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c58d4a78_3bee03f7",
         "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
         "patchSetId": 5
@@ -60,6 +125,30 @@
       "writtenOn": "2022-12-22T18:34:26Z",
       "side": 1,
       "message": "What does it mean? App has to set both? If yes, why not just rename CALLBACK_TYPE_AUTO_BATCH to something like CALLBACK_TYPE_ALL_MATCH_AUTO_BATCH TO  reflect that fact? Or simply mention that it will be all match in the javadoc and let app just set CALLBACK_TYPE_AUTO_BATCH?",
+      "range": {
+        "startLine": 346,
+        "startChar": 40,
+        "endLine": 346,
+        "endChar": 92
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbbd09a6_5f17891a",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-22T20:56:00Z",
+      "side": 1,
+      "message": "Callback types have been used as bit mask like (CALLBACK_TYPE_FIRST_MATCH | CALLBACK_TYPE_MATCH_LOST). Internally, the auto batch scan client will work like CALLBACK_TYPE_ALL_MATCHES during regular scan or batch scan, but CALLBACK_TYPE_AUTO_BATCH is just a flag to indicate app wants the auto switching. I can add comments in javadoc like CALLBACK_TYPE_AUTO_BATCH should be used with CALLBACK_TYPE_ALL_MATCHES.\n\nIn meanwhile, realized I need to update ScanSettingsTest.java as well.",
+      "parentUuid": "c58d4a78_3bee03f7",
       "range": {
         "startLine": 346,
         "startChar": 40,
