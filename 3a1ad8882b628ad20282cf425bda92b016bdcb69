@@ -16,6 +16,24 @@
       "message": "When a watch is connected during a call via a HFP, the audio would be routed to the watch for a while and then back to previous HFP device.\n\nAm I correct? If so, are there any possible way to prevent this case?",
       "revId": "3a1ad8882b628ad20282cf425bda92b016bdcb69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63411828_b891d8be",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-22T07:54:18Z",
+      "side": 1,
+      "message": "This is going to happen only once, the first time the devices connect. This is because by the time they connect for the first time, the setAudioPolicy is still not invoked and the AG device doesn\u0027t know about any preferences from the HF device.\nBut after this, the application in the HF device will send the preferences with the setAudioPolicy API. The AG will also store this information in its database, meaning the preferences sent from the HF will be persisted in the AG database. So, for all the connection for the rest of the time, the AG will check its database during connecting with the HF. It will get the preference and will decide to not make the HF active if the connectingTime policy is found NOT_ALLOWED. This is what happening here.",
+      "parentUuid": "213019fa_0443ecfe",
+      "revId": "3a1ad8882b628ad20282cf425bda92b016bdcb69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
