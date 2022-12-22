@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd07c46b_c8e708ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-22T19:22:28Z",
+      "side": 1,
+      "message": "Pre-submit bypass.\n\nFailing test are unrelated to this change.",
+      "revId": "7181c6d981c7a3ee92dce53afeb7b4a88102b5e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
