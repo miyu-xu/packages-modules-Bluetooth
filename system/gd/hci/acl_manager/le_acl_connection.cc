@@ -34,6 +34,7 @@ class LeAclConnectionTracker : public LeConnectionManagementCallbacks {
   void RegisterCallbacks(LeConnectionManagementCallbacks* callbacks, os::Handler* handler) {
     client_handler_ = handler;
     client_callbacks_ = callbacks;
+    LOG_INFO("CYDBG RegisterCallbacks done");
     while (!queued_callbacks_.empty()) {
       auto iter = queued_callbacks_.begin();
       handler->Post(std::move(*iter));
@@ -87,6 +88,7 @@ class LeAclConnectionTracker : public LeConnectionManagementCallbacks {
   }
 
   void OnDisconnection(ErrorCode reason) override {
+    LOG_INFO("CYDBG OnDisconnection");
     SAVE_OR_CALL(OnDisconnection, reason);
   }
 #undef SAVE_OR_CALL
@@ -138,6 +140,7 @@ LeAclConnection::~LeAclConnection() {
 }
 
 void LeAclConnection::RegisterCallbacks(LeConnectionManagementCallbacks* callbacks, os::Handler* handler) {
+  LOG_INFO("CYDBG RegisterCallbacks 1");
   return pimpl_->tracker.RegisterCallbacks(callbacks, handler);
 }
 

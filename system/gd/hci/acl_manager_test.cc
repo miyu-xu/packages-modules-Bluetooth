@@ -16,13 +16,14 @@
 
 #include "hci/acl_manager.h"
 
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
+
 #include <algorithm>
 #include <chrono>
 #include <future>
 #include <map>
-
-#include <gmock/gmock.h>
-#include <gtest/gtest.h>
+#include <mutex>
 
 #include "common/bind.h"
 #include "hci/address.h"
@@ -131,6 +132,7 @@ class TestHciLayer : public HciLayer {
   void EnqueueCommand(
       std::unique_ptr<CommandBuilder> command,
       common::ContextualOnceCallback<void(CommandStatusView)> on_status) override {
+    std::lock_guard<std::mutex> lock(mutex_);
     command_queue_.push(std::move(command));
     command_status_callbacks.push_back(std::move(on_status));
     if (command_promise_ != nullptr) {
@@ -142,6 +144,7 @@ class TestHciLayer : public HciLayer {
   void EnqueueCommand(
       std::unique_ptr<CommandBuilder> command,
       common::ContextualOnceCallback<void(CommandCompleteView)> on_complete) override {
+    std::lock_guard<std::mutex> lock(mutex_);
     command_queue_.push(std::move(command));
     command_complete_callbacks.push_back(std::move(on_complete));
     if (command_promise_ != nullptr) {
@@ -157,7 +160,7 @@ class TestHciLayer : public HciLayer {
   }
 
   CommandView GetLastCommand() {
-    if (command_queue_.size() == 0) {
+    if (command_queue_.empty()) {
       return CommandView::Create(PacketView<kLittleEndian>(std::make_shared<std::vector<uint8_t>>()));
     }
     auto last = std::move(command_queue_.front());
@@ -174,6 +177,7 @@ class TestHciLayer : public HciLayer {
       return ConnectionManagementCommandView::Create(AclCommandView::Create(
           CommandView::Create(PacketView<kLittleEndian>(std::make_shared<std::vector<uint8_t>>()))));
     }
+    std::lock_guard<std::mutex> lock(mutex_);
     CommandView command_packet_view = GetLastCommand();
     ConnectionManagementCommandView command =
         ConnectionManagementCommandView::Create(AclCommandView::Create(command_packet_view));
@@ -191,6 +195,7 @@ class TestHciLayer : public HciLayer {
       auto result = command_future_->wait_for(std::chrono::milliseconds(1000));
       EXPECT_NE(std::future_status::timeout, result);
     }
+    std::lock_guard<std::mutex> lock(mutex_);
     if (command_queue_.empty()) {
       return ConnectionManagementCommandView::Create(AclCommandView::Create(
           CommandView::Create(PacketView<kLittleEndian>(std::make_shared<std::vector<uint8_t>>()))));
@@ -314,6 +319,7 @@ class TestHciLayer : public HciLayer {
   std::queue<std::unique_ptr<CommandBuilder>> command_queue_;
   std::unique_ptr<std::promise<void>> command_promise_;
   std::unique_ptr<std::future<void>> command_future_;
+  mutable std::mutex mutex_;
 
   void do_disconnect(uint16_t handle, ErrorCode reason) {
     HciLayer::Disconnect(handle, reason);
@@ -767,7 +773,6 @@ TEST_F(AclManagerTest, cancel_le_connection) {
   ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
   test_hci_layer_->GetLastCommand(OpCode::LE_CREATE_CONNECTION);
   test_hci_layer_->IncomingEvent(LeCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
-
   ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
   acl_manager_->CancelLeConnect(remote_with_type);
   auto packet = test_hci_layer_->GetLastCommand(OpCode::LE_CREATE_CONNECTION_CANCEL);
@@ -787,7 +792,6 @@ TEST_F(AclManagerTest, cancel_le_connection) {
       0x0010,
       0x0011,
       ClockAccuracy::PPM_30));
-
   ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
   packet = test_hci_layer_->GetLastCommand(OpCode::LE_REMOVE_DEVICE_FROM_FILTER_ACCEPT_LIST);
   le_connection_management_command_view = LeConnectionManagementCommandView::Create(AclCommandView::Create(packet));
@@ -922,15 +926,20 @@ TEST_F(AclManagerWithLeConnectionTest, invoke_registered_callback_le_connection_
 }
 
 TEST_F(AclManagerWithLeConnectionTest, invoke_registered_callback_le_disconnect) {
+  LOG_INFO("CYDBG");
   ASSERT_EQ(connection_->GetRemoteAddress(), remote_with_type_);
   ASSERT_EQ(connection_->GetHandle(), handle_);
   connection_->RegisterCallbacks(&mock_le_connection_management_callbacks_, client_handler_);
 
   auto reason = ErrorCode::REMOTE_USER_TERMINATED_CONNECTION;
   EXPECT_CALL(mock_le_connection_management_callbacks_, OnDisconnection(reason));
+  LOG_INFO("CYDBG Disconnect");
   test_hci_layer_->Disconnect(handle_, reason);
+  LOG_INFO("CYDBG Sync");
   test_hci_layer_->Sync();
+  LOG_INFO("CYDBG sync_client_handler");
   sync_client_handler();
+  LOG_INFO("CYDBG done");
 }
 
 TEST_F(AclManagerWithLeConnectionTest, invoke_registered_callback_le_disconnect_data_race) {

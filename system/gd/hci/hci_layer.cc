@@ -540,6 +540,7 @@ void HciLayer::on_disconnection_complete(EventView event_view) {
 }
 
 void HciLayer::Disconnect(uint16_t handle, ErrorCode reason) {
+  LOG_INFO("CYDBG do Disconnect");
   std::unique_lock<std::mutex> lock(callback_handlers_guard_);
   for (auto callback : disconnect_handlers_) {
     callback.Invoke(handle, reason);
