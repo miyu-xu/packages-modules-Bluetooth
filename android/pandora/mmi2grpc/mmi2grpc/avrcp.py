@@ -17,6 +17,7 @@ import time
 from typing import Optional
 
 from grpc import RpcError
+import threading
 
 from mmi2grpc._audio import AudioSignal
 from mmi2grpc._helpers import assert_description
@@ -27,6 +28,7 @@ from pandora_experimental.avrcp_grpc import AVRCP
 from pandora_experimental.host_grpc import Host
 from pandora_experimental.host_pb2 import Connection
 from pandora_experimental.mediaplayer_grpc import MediaPlayer
+from pandora_experimental.security_grpc import Security
 
 
 class AVRCPProxy(ProfileProxy):
@@ -45,7 +47,9 @@ class AVRCPProxy(ProfileProxy):
         self.host = Host(channel)
         self.a2dp = A2DP(channel)
         self.avrcp = AVRCP(channel)
+        self.security = Security(channel)
         self.mediaplayer = MediaPlayer(channel)
+        self._auto_confirm_requests()
 
     @assert_description
     def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
@@ -793,3 +797,16 @@ class AVRCPProxy(ProfileProxy):
         self.mediaplayer.Play()
 
         return "OK"
+
+    def _auto_confirm_requests(self, times=None):
+
+        def task():
+            cnt = 0
+            pairing_events = self.security.OnPairing()
+            for event in pairing_events:
+                if event.WhichOneof("method") in {"just_works", "numeric_comparison"}:
+                    if times is None or cnt < times:
+                        cnt += 1
+                        pairing_events.send(event=event, confirm=True)
+
+        threading.Thread(target=task).start()
