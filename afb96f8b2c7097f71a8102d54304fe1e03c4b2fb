@@ -16,6 +16,24 @@
       "message": "What about a method in devices.cc for group ? e.g. RemoveDevicesFromAutoConnectMode ?",
       "revId": "afb96f8b2c7097f71a8102d54304fe1e03c4b2fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "929c7a8e_335658b4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-22T11:31:50Z",
+      "side": 1,
+      "message": "Let\u0027s do that as following patch.",
+      "parentUuid": "db689b0d_180e4e07",
+      "revId": "afb96f8b2c7097f71a8102d54304fe1e03c4b2fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
