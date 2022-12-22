@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58723a16_48611b72",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1820,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-22T00:47:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e9421cc_8b615b32",
+      "revId": "c0d067cc1585f6efbf3298e970c9dabb2b8cc0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3563216_7f02c209",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-22T00:46:58Z",
       "side": 1,
       "message": "Update docs to reflect new param for status",
+      "revId": "c0d067cc1585f6efbf3298e970c9dabb2b8cc0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b49abc3_d7005b0d",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-22T00:47:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3563216_7f02c209",
       "revId": "c0d067cc1585f6efbf3298e970c9dabb2b8cc0ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
