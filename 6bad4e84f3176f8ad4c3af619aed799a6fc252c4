@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54d7a8bb_810d0872",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/EventReportTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-22T15:12:51Z",
+      "side": 1,
+      "message": "Could you use StringBuilder instead?",
+      "range": {
+        "startLine": 48,
+        "startChar": 37,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "6bad4e84f3176f8ad4c3af619aed799a6fc252c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
