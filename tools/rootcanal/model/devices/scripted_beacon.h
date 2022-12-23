@@ -46,9 +46,9 @@ class ScriptedBeacon : public Beacon {
     return "scripted_beacon " + config_file_;
   }
 
-  void TimerTick() override;
-
-  void IncomingPacket(model::packets::LinkLayerPacketView packet_view) override;
+  void Tick() override;
+  void ReceiveLinkLayerPacket(
+      model::packets::LinkLayerPacketView packet_view) override;
 
  private:
   static bool registered_;
@@ -60,9 +60,6 @@ class ScriptedBeacon : public Beacon {
     Address address;
     std::chrono::steady_clock::time_point ad_time;
   };
-
-  void populate_event(PlaybackEvent* event,
-                      PlaybackEvent::PlaybackEventType type);
 
   void get_next_advertisement();
 

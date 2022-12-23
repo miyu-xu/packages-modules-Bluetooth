@@ -24,8 +24,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include "model/devices/device.h"
-#include "phy_layer_factory.h"
 #include "test_channel_transport.h"
 #include "test_model.h"
 
@@ -46,8 +44,7 @@ class TestCommandHandler {
   void FromFile(const std::string& file_name);
 
   // Dispatches the action corresponding to the command specified by |name|.
-  void RegisterSendResponse(
-      const std::function<void(const std::string&)> callback);
+  void RegisterSendResponse(std::function<void(const std::string&)> callback);
 
   // Commands:
 

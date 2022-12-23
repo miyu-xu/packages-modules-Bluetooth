@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 The Android Open Source Project
+ * Copyright 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,39 +16,41 @@
 
 #pragma once
 
-#include <list>
-#include <memory>
-#include <vector>
+#include <cstdint>
+#include <unordered_set>
 
+#include "model/devices/device.h"
 #include "phy.h"
-#include "phy_device.h"
 
 namespace rootcanal {
 
-class PhyLayer {
+class PhyLayer;
+class Device;
+
+class PhyDevice {
  public:
   using Identifier = uint32_t;
 
-  PhyLayer(Identifier id, Phy::Type type);
-  virtual ~PhyLayer() {}
+  PhyDevice(Identifier id, std::string type, std::shared_ptr<Device> device);
+  ~PhyDevice() = default;
 
-  virtual void Tick();
-  virtual void Send(std::vector<uint8_t> const& packet,
-                    rootcanal::PhyDevice::Identifier sender_id);
+  void Register(PhyLayer* phy);
+  void Unregister(PhyLayer* phy);
 
-  void Register(std::shared_ptr<rootcanal::PhyDevice> device);
-  void Unregister(rootcanal::PhyDevice::Identifier device_id);
-  void UnregisterAll();
+  void Tick();
+  void Receive(std::vector<uint8_t> const& packet, Phy::Type type);
+  void Send(std::vector<uint8_t> const& packet, Phy::Type type);
 
-  std::string ToString() const;
+  void SetAddress(bluetooth::hci::Address address);
+  std::string ToString();
 
   // Id and type are public but immutable.
   const Identifier id;
-  const Phy::Type type;
+  const std::string type;
 
- protected:
-  // List of devices currently connected to the phy.
-  std::list<std::shared_ptr<rootcanal::PhyDevice>> phy_devices_;
+ private:
+  const std::shared_ptr<Device> device_;
+  std::unordered_set<PhyLayer*> phy_layers_;
 };
 
 }  // namespace rootcanal

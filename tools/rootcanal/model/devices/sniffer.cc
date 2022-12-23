@@ -32,7 +32,8 @@ Sniffer::Sniffer(const vector<std::string>& args) {
   }
 }
 
-void Sniffer::IncomingPacket(model::packets::LinkLayerPacketView packet) {
+void Sniffer::ReceiveLinkLayerPacket(
+    model::packets::LinkLayerPacketView packet) {
   Address source = packet.GetSourceAddress();
   Address dest = packet.GetDestinationAddress();
   model::packets::PacketType packet_type = packet.GetType();
