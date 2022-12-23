@@ -171,7 +171,13 @@ struct eatt_impl {
 
       auto chan = std::make_shared<EattChannel>(eatt_dev->bda_, cid, peer_mtu,
                                                 eatt_dev->rx_mtu_);
-      eatt_dev->eatt_channels.insert({cid, chan});
+      const auto [it, success] = eatt_dev->eatt_channels.insert({cid, chan});
+
+      if (!success) {
+        LOG_ERROR("Cannot insert device: %s, CID: 0x%04x",
+                  bda.ToString().c_str(), cid);
+        return false;
+      }
 
       chan->EattChannelSetState(EattChannelState::EATT_CHANNEL_OPENED);
       eatt_dev->eatt_tcb_->eatt++;
@@ -611,7 +617,13 @@ struct eatt_impl {
 
       auto chan = std::make_shared<EattChannel>(eatt_dev->bda_, cid, 0,
                                                 eatt_dev->rx_mtu_);
-      eatt_dev->eatt_channels.insert({cid, chan});
+      const auto [it, success] = eatt_dev->eatt_channels.insert({cid, chan});
+
+      if (!success) {
+        LOG_ERROR("Cannot insert device: %s, CID: 0x%04x",
+                  eatt_dev->bda_.ToString().c_str(), cid);
+        return;
+      }
     }
 
     if (eatt_dev->eatt_tcb_) {
