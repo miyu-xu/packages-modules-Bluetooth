@@ -16,6 +16,24 @@
       "message": "This might be inaccurate in certain cases.",
       "revId": "3582787b0310ad6e3ed2003f28d71a8b715dc60c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6343b1b_64650516",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2550,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-23T11:46:05Z",
+      "side": 0,
+      "message": "it might not work in case of controller issues - lets print warning in such a case.",
+      "parentUuid": "5864e72e_7f2d9814",
+      "revId": "3582787b0310ad6e3ed2003f28d71a8b715dc60c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
