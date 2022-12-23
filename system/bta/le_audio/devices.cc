@@ -1956,6 +1956,56 @@ bool LeAudioDeviceGroup::Configure(LeAudioContextType context_type,
 }
 
 LeAudioDeviceGroup::~LeAudioDeviceGroup(void) { this->Cleanup(); }
+
+void LeAudioDeviceGroup::PrintDebugState(void) {
+  auto* active_conf = GetActiveConfiguration();
+
+  LOG_INFO(
+      "\n Groupd id: %d, state: %s, target state: %s, cig state: %s \n group "
+      "available contexts: %s, \n configuration context type:  %s, \n active "
+      "configuration name:  %s \n",
+      group_id_, bluetooth::common::ToString(GetState()).c_str(),
+      bluetooth::common::ToString(GetTargetState()).c_str(),
+      bluetooth::common::ToString(cig_state_).c_str(),
+      bluetooth::common::ToString(GetAvailableContexts()).c_str(),
+      bluetooth::common::ToString(GetConfigurationContextType()).c_str(),
+      (active_conf ? active_conf->name.c_str() : " not set"));
+
+  if (cises_.size() > 0) {
+    LOG_INFO("\n Allocated CISes: %d", static_cast<int>(cises_.size()));
+    for (auto cis : cises_) {
+      LOG_INFO("\n cis id: %d, type: %d, conn_handle %d, addr: %s", cis.id,
+               cis.type, cis.conn_handle, cis.addr.ToString().c_str());
+    }
+  }
+
+  if (GetFirstActiveDevice() != nullptr) {
+    uint32_t sink_delay = 0;
+    uint32_t source_delay = 0;
+    GetPresentationDelay(&sink_delay, le_audio::types::kLeAudioDirectionSink);
+    GetPresentationDelay(&source_delay,
+                         le_audio::types::kLeAudioDirectionSource);
+    auto phy_mtos = GetPhyBitmask(le_audio::types::kLeAudioDirectionSink);
+    auto phy_stom = GetPhyBitmask(le_audio::types::kLeAudioDirectionSource);
+    auto max_transport_latency_mtos = GetMaxTransportLatencyMtos();
+    auto max_transport_latency_stom = GetMaxTransportLatencyStom();
+    auto sdu_mts = GetSduInterval(le_audio::types::kLeAudioDirectionSink);
+    auto sdu_stom = GetSduInterval(le_audio::types::kLeAudioDirectionSource);
+
+    LOG_INFO(
+        "\n resentation_delay for sink (speaker): %d us, , presentation_delay "
+        "for source (microphone): %d us, \n MtoS transport latency:  %d, StoM "
+        "transport latency: %d, \n MtoS Phy: 0x%02x, MtoS sdu: 0x%02x \n MtoS "
+        "sdu: %d, StoM sdu: %d",
+        sink_delay, source_delay, max_transport_latency_mtos,
+        max_transport_latency_stom, phy_mtos, phy_stom, sdu_mts, sdu_stom);
+  }
+
+  for (const auto& device_iter : leAudioDevices_) {
+    device_iter.lock()->PrintDebugState();
+  }
+}
+
 void LeAudioDeviceGroup::Dump(int fd, int active_group_id) {
   bool is_active = (group_id_ == active_group_id);
   std::stringstream stream;
@@ -2448,6 +2498,29 @@ void LeAudioDevice::SetSupportedContexts(AudioContexts snk_contexts,
                                          AudioContexts src_contexts) {
   supp_contexts_.sink = snk_contexts;
   supp_contexts_.source = src_contexts;
+}
+
+void LeAudioDevice::PrintDebugState(void) {
+  LOG_INFO("\n\taddress: %s, %s, conn_id: %d, mtu: %d, num_of_ase: %d",
+           address_.ToString().c_str(),
+           bluetooth::common::ToString(connection_state_).c_str(), conn_id_,
+           mtu_, static_cast<int>(ases_.size()));
+
+  if (ases_.size() > 0) {
+    LOG_INFO("\n  == ASEs == ");
+    for (auto& ase : ases_) {
+      LOG_INFO(
+          "\n  id: %d, , active: %d, dir: %s, cis_id: %d, cis_handle: %d "
+          ", state: %s \n ase max_latency: %d, rtn: %d, max_sdu: %d, target "
+          "latency: %d\n",
+          ase.id, ase.active,
+          (ase.direction == types::kLeAudioDirectionSink ? "sink" : "source"),
+          ase.cis_id, ase.cis_conn_hdl,
+          bluetooth::common::ToString(ase.data_path_state).c_str(),
+          ase.max_transport_latency, ase.retrans_nb, ase.max_sdu_size,
+          ase.target_latency);
+    }
+  }
 }
 
 void LeAudioDevice::Dump(int fd) {

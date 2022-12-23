@@ -378,6 +378,16 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         return;
       }
 
+      if (status == HCI_ERR_HOST_UNSUPPORTED_FEATURE_OR_PARAMETER_VAL) {
+        group->PrintDebugState();
+        /* We are going to reconfigure whole group. Clear Cises.*/
+        ReleaseCisIds(group);
+        group->Deactivate();
+        state_machine_callbacks_->StatusReportCb(group->group_id_,
+                                                 GroupStreamStatus::STREAMING);
+        return;
+      }
+
       group->SetCigState(CigState::NONE);
       LOG_ERROR(", failed to create CIG, reason: 0x%02x, new cig state: %s",
                 +status, ToString(group->cig_state_).c_str());
