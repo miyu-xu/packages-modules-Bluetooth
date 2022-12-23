@@ -4765,7 +4765,7 @@ void LinkLayerController::IncomingPageResponsePacket(
 #endif /* !ROOTCANAL_LMP */
 }
 
-void LinkLayerController::TimerTick() {
+void LinkLayerController::Tick() {
   if (inquiry_timer_task_id_ != kInvalidTaskId) {
     Inquiry();
   }
