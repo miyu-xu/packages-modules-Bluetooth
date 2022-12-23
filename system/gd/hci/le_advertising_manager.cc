@@ -61,7 +61,7 @@ struct Advertiser {
   int8_t tx_power;
   uint16_t duration;
   uint8_t max_extended_advertising_events;
-  bool pending_start = false;  // whether we have started but are still in the queue
+  bool pending_enable_callback = false;  // whether we have started but are still in the queue
   bool started = false;
   bool connectable = false;
   bool directed = false;
@@ -348,7 +348,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           enable_advertiser(id, true, 0, 0);
         } else {
           enabled_sets_[id].advertising_handle_ = id;
-          advertising_sets_[id].pending_start = true;
+          advertising_sets_[id].pending_enable_callback = true;
         }
       } break;
       case (AdvertisingApiType::ANDROID_HCI): {
@@ -374,7 +374,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           enable_advertiser(id, true, 0, 0);
         } else {
           enabled_sets_[id].advertising_handle_ = id;
-          advertising_sets_[id].pending_start = true;
+          advertising_sets_[id].pending_enable_callback = true;
         }
       } break;
       case (AdvertisingApiType::EXTENDED): {
@@ -487,7 +487,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       enable_advertiser(id, true, duration, max_ext_adv_events);
     } else {
       // invoke callbacks upon OnResume()
-      advertising_sets_[id].pending_start = true;
+      advertising_sets_[id].pending_enable_callback = true;
 
       EnabledSet curr_set;
       curr_set.advertising_handle_ = id;
@@ -933,10 +933,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       return;
     }
 
-    if (enable) {
-      // so that callbacks get invoked on command complete
-      advertising_sets_[advertiser_id].pending_start = true;
-    }
+    // so that callbacks get invoked on command complete
+    // note that if we pause, enable, disable, then unpause, ONLY the disable callback will be
+    // invoked (since we never actually enabled the advertiser)
+    advertising_sets_[advertiser_id].pending_enable_callback = true;
 
     switch (advertising_api_type_) {
       case (AdvertisingApiType::LEGACY): {
@@ -1256,19 +1256,21 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       }
 
       if (started) {
-        // This event can be triggered from OnPause / OnResume. If so, only invoke callbacks if we were initially paused
-        // (pending_start) after an API invocation (i.e. StartAdvertising -> currently paused -> OnResume -> enabled
-        // [callback], but StartAdvertising -> enabled [callback] -> resumed -> OnPause -> OnResume [NO callback]
-        if (!advertising_sets_[enabled_set.advertising_handle_].pending_start) {
+        // This event can be triggered from OnPause / OnResume. If so, only invoke callbacks if we
+        // were initially paused (pending_enable_callback) after an API invocation (i.e.
+        // StartAdvertising -> currently paused -> OnResume -> enabled [callback], but
+        // StartAdvertising -> enabled [callback] -> resumed -> OnPause -> OnResume [NO callback]
+        if (!advertising_sets_[enabled_set.advertising_handle_].pending_enable_callback) {
           continue;
         }
         advertising_callbacks_->OnAdvertisingEnabled(id, enable, advertising_status);
-        // since we have started, we are no longer pending
-        advertising_sets_[enabled_set.advertising_handle_].pending_start = false;
       } else {
         advertising_sets_[enabled_set.advertising_handle_].started = true;
         advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, le_physical_channel_tx_power_, advertising_status);
       }
+
+      // since we have started, we are no longer pending
+      advertising_sets_[enabled_set.advertising_handle_].pending_enable_callback = false;
     }
   }
 
@@ -1306,19 +1308,21 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       }
 
       if (started) {
-        // This event can be triggered from OnPause / OnResume. If so, only invoke callbacks if we were initially paused
-        // (pending_start) after an API invocation (i.e. StartAdvertising -> currently paused -> OnResume -> enabled
-        // [callback], but StartAdvertising -> enabled [callback] -> resumed -> OnPause -> OnResume [NO callback]
-        if (!advertising_sets_[enabled_set.advertising_handle_].pending_start) {
+        // This event can be triggered from OnPause / OnResume. If so, only invoke callbacks if we
+        // were initially paused (pending_enable_callback) after an API invocation (i.e.
+        // StartAdvertising -> currently paused -> OnResume -> enabled [callback], but
+        // StartAdvertising -> enabled [callback] -> resumed -> OnPause -> OnResume [NO callback]
+        if (!advertising_sets_[enabled_set.advertising_handle_].pending_enable_callback) {
           continue;
         }
         advertising_callbacks_->OnAdvertisingEnabled(id, enable, advertising_status);
         // since we have started, we are no longer pending
-        advertising_sets_[enabled_set.advertising_handle_].pending_start = false;
       } else {
         advertising_sets_[enabled_set.advertising_handle_].started = true;
         advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, tx_power, advertising_status);
       }
+
+      advertising_sets_[enabled_set.advertising_handle_].pending_enable_callback = false;
     }
   }
 
