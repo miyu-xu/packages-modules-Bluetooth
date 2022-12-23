@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2449fcb5_342cc20c",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1273,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-23T17:39:15Z",
+      "side": 1,
+      "message": "this is needed so that we don\u0027t make a spurious call if we Start() and then Pause() [by clearing pending callbacks even if no Enable callback was made]",
+      "revId": "65829eecbe62fc3213b85c248a204c6dbcbbc739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
