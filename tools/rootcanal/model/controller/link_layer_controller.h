@@ -147,7 +147,7 @@ class LinkLayerController {
   void IncomingPacket(model::packets::LinkLayerPacketView incoming,
                       int8_t rssi);
 
-  void TimerTick();
+  void Tick();
 
   void Close();
 
