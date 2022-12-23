@@ -16,6 +16,322 @@
       "message": "@wescande@google.com Base implementation change for AVRCP dynamic updates. Please start review. Unit test WIP.",
       "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "431fb9ec_1cc4b93d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "Can you run clang-format on the patch ?",
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5087f6b8_99f677c1",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "I saw hfp version being managed with [aosp/2363584](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2363584). Is this the one you are thinking about in this TODO ?\n\nor is there other changes incoming ?",
+      "range": {
+        "startLine": 1101,
+        "startChar": 29,
+        "endLine": 1101,
+        "endChar": 37
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed12a0a_86efda80",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "This array is the same as servclass_uuids, is it on purpose ?",
+      "range": {
+        "startLine": 1105,
+        "startChar": 4,
+        "endLine": 1105,
+        "endChar": 36
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e6032c_f1b902f5",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "You could make it easier by using a std::array and then just iterate with\n```\nfor(const auto\u0026 servclass_uuid: servclass_uuids) { ... }\n```",
+      "range": {
+        "startLine": 1113,
+        "startChar": 0,
+        "endLine": 1115,
+        "endChar": 37
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfefa1c3_2cc336e6",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "`i` is defined as a number to iterate over servclass_uuids, but you are using it to access btprofile_uuids and profile_keys later\nThey are the same size in this CL so it will work for now, but it\u0027s error prone for the future.\n\nWe should either group both array in one or do something completely different cf my other comment",
+      "range": {
+        "startLine": 1125,
+        "startChar": 57,
+        "endLine": 1125,
+        "endChar": 58
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2793f6aa_8f298dac",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "Do we want to do the 2nd `if` when `profile_version \u003d\u003d 0` or do we want to continue to next iteration ?",
+      "range": {
+        "startLine": 1126,
+        "startChar": 0,
+        "endLine": 1126,
+        "endChar": 31
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "767aeed5_8b0d6b8d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "Prefer using:\n```\nsdp_rec-\u003eremote_bd_addr.ToColonSepHexString\n```\n\nToString will be deprecated as we want to identify the \"logging usage\" from the actual need of the address\n\nsame for the ToString in sdp_utils.cc",
+      "range": {
+        "startLine": 1127,
+        "startChar": 30,
+        "endLine": 1127,
+        "endChar": 73
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d065d193_c176ec99",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "I would like to suggest a more scalable approach as it looks like you plan to extend to other profiles.\n\nWe can put everything that is in this if in a separate method, and use a function pointer.\n\nIt would be something like this:\n\n```\nstatic void store_avrcp_version(tSDP_DISC_REC* sdp_rec) {\n  tSDP_DISC_ATTR* p_attr \u003d\n      SDP_FindAttributeInRec(sdp_rec, ATTR_ID_SUPPORTED_FEATURES);\n  if (p_attr \u003d\u003d NULL) {\n    return;\n  }\n  \n  uint16_t avrcp_features \u003d p_attr-\u003eattr_value.v.u16;\n  if (avrcp_features \u003d\u003d 0) {\n    return;\n  }\n  \n  if (btif_config_set_bin(sdp_rec-\u003eremote_bd_addr.ToString().c_str(),\n                          AV_REM_CTRL_FEATURES_CONFIG_KEY,\n                          (const uint8_t*)\u0026avrcp_features,\n                          sizeof(avrcp_features))) {\n    LOG_INFO(\"Saving avrcp_features: 0x%x\", avrcp_features);\n    btif_config_save();\n  } else {\n    LOG_INFO(\"Failed to store avrcp_features 0x%x for %s\", avrcp_features\n             ADDRESS_TO_LOGGABLE_CSTR(sdp_rec-\u003eremote_bd_addr));\n  }\n}\n\nstatic void bta_dm_store_audio_profiles_version() {\n  struct AudioProfile {\n    const uint16_t servclass_uuid;\n    const uint16_t btprofile_uuid;\n    const char* profile_key;\n    void (*store_audio_version)(tSDP_DISC_REC*);\n  };\n\n  std::array\u003cAudioProfile, 1\u003e audio_profiles \u003d {{\n      {\n          .servclass_uuid \u003d UUID_SERVCLASS_AV_REMOTE_CONTROL,\n          .btprofile_uuid \u003d UUID_SERVCLASS_AV_REMOTE_CONTROL,\n          .profile_key \u003d AVRCP_CONTROLLER_VERSION_CONFIG_KEY,\n          .store_audio_version \u003d store_avrcp_version,\n      },\n      // {\n      //     .servclass_uuid \u003d A2DPxx\n      //     .btprofile_uuid \u003d A2DPxx,\n      //     .profile_key \u003d A2DPxx,\n      //     .store_audio_version \u003d store_a2dp_version,\n      // },\n  }};\n\n  for (const auto\u0026 audio_profile : audio_profiles) {\n    tSDP_DISC_REC* sdp_rec \u003d SDP_FindServiceInDb(\n        bta_dm_search_cb.p_sdp_db, audio_profile.servclass_uuid, NULL);\n    if (sdp_rec \u003d\u003d NULL) continue;\n\n    if (SDP_FindAttributeInRec(sdp_rec, ATTR_ID_BT_PROFILE_DESC_LIST) \u003d\u003d NULL)\n      continue;\n\n    uint16_t profile_version \u003d 0;\n    /* get profile version (if failure, version parameter is not updated) */\n    SDP_FindProfileVersionInRec(sdp_rec, audio_profile.btprofile_uuid,\n                                \u0026profile_version);\n    if (profile_version !\u003d 0) {\n      if (btif_config_set_bin(sdp_rec-\u003eremote_bd_addr.ToString().c_str(),\n                              audio_profile.profile_key,\n                              (const uint8_t*)\u0026profile_version,\n                              sizeof(profile_version))) {\n        btif_config_save();\n      } else {\n        LOG_INFO(\"Failed to store peer profile version for %s\",\n                 ADDRESS_TO_LOGGABLE_CSTR(sdp_rec-\u003eremote_bd_addr));\n      }\n    }\n\n    audio_profile.store_audio_version(sdp_rec);\n  }\n}\n```",
+      "range": {
+        "startLine": 1138,
+        "startChar": 0,
+        "endLine": 1138,
+        "endChar": 65
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa68a21_ff2d7b63",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "Can we avoid the double logging here ? You just need to add the avrcp_feature to the LOG_INFO in the else. (and should it be a warn/error log ?)",
+      "range": {
+        "startLine": 1143,
+        "startChar": 0,
+        "endLine": 1143,
+        "endChar": 59
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8319bc2_2162efac",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "`__func__` is already part of LOG_INFO macro (same a few lines before)",
+      "range": {
+        "startLine": 1151,
+        "startChar": 27,
+        "endLine": 1151,
+        "endChar": 35
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec72dc5_be23913d",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1503,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "Can we have only one log ?",
+      "range": {
+        "startLine": 1495,
+        "startChar": 0,
+        "endLine": 1503,
+        "endChar": 67
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96dc98df_201af5aa",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "`0x%x` or `%#x` to make it obvious we are logging in exa",
+      "range": {
+        "startLine": 1557,
+        "startChar": 34,
+        "endLine": 1557,
+        "endChar": 35
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "952d6a1d_bf0175e7",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "Can you merge all 3 LOG_INFO in one? \n```\n LOG_INFO(\"avrcp_version\u003d%#x avrcp_peer_features\u003d%#x browsing_supported\u003d%d, coverart_supported\u003d%d\", avrcp_version, avrcp_peer_features, browsing_supported, coverart_supported);\n```",
+      "range": {
+        "startLine": 1562,
+        "startChar": 2,
+        "endLine": 1562,
+        "endChar": 10
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e21633b_65bbd3f5",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-23T00:02:47Z",
+      "side": 1,
+      "message": "Is it 100% sure that `AVRCP_SUPPORTED_FEATURES_POSITION` (and the other before) is smaller than `value_ptr` size  ?",
+      "range": {
+        "startLine": 1582,
+        "startChar": 22,
+        "endLine": 1582,
+        "endChar": 55
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
