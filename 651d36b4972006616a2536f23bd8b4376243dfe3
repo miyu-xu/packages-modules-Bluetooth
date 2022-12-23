@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed3e7e1d_ca100337",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-23T07:28:29Z",
+      "side": 1,
+      "message": "It seems that changing framework code (length related variables in BluetoothMapAppParams.java) is breaking pts-bot tests. So I changed the CL to not amend any framework code and removed the length related variables that cause errors during encoding and parsing from tests.",
+      "revId": "651d36b4972006616a2536f23bd8b4376243dfe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

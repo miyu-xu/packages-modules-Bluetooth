@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faa81d47_cf836234",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-23T07:28:29Z",
+      "side": 1,
+      "message": "Thanks for the comment Thomas. I fixed the CL to not amend any framework code that breaks pts-bot tests.",
+      "parentUuid": "4239b6f5_3cfbed11",
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3334d333_ef4b9915",
@@ -126,6 +144,30 @@
       "side": 1,
       "message": "Thanks for the info. LGTM.",
       "parentUuid": "5483d9f3_23c44c7c",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "7c070baf37b21e984ec24de8012949e300b006da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c862b9ff_bae93c84",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-23T07:28:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbae1ef6_bd605b21",
       "range": {
         "startLine": 87,
         "startChar": 29,
