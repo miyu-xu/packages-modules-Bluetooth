@@ -67,8 +67,8 @@ import java.util.regex.Pattern;
  */
 public class BluetoothOppLauncherActivity extends Activity {
     private static final String TAG = "BluetoothOppLauncherActivity";
-    private static final boolean D = Constants.DEBUG;
-    private static final boolean V = Constants.VERBOSE;
+    private static final boolean D = true; //Constants.DEBUG;
+    private static final boolean V = true; //Constants.VERBOSE;
 
     // Regex that matches characters that have special meaning in HTML. '<', '>', '&' and
     // multiple continuous spaces.
