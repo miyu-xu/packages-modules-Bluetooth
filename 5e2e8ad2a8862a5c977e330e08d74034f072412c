@@ -16,6 +16,23 @@
       "message": "Follow-up to https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2352482",
       "revId": "5e2e8ad2a8862a5c977e330e08d74034f072412c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9088fe94_e29c91c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-12-23T00:31:26Z",
+      "side": 1,
+      "message": "The failing tests have been failing for a while, and have no place in presubmit.",
+      "revId": "5e2e8ad2a8862a5c977e330e08d74034f072412c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
