@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b20c4ef_b7504578",
+        "filename": "system/device/include/controller.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "nit: any reason for not using the names `supports_ble_conn_subrating[_host]` ?",
+      "range": {
+        "startLine": 90,
+        "startChar": 7,
+        "endLine": 91,
+        "endChar": 49
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f69f0415_925ed4ec",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "SupportsBleConnectionSubrating~~Host~~\nThe Host feature can only be set when the controller supports the feature as well",
+      "range": {
+        "startLine": 159,
+        "startChar": 61,
+        "endLine": 159,
+        "endChar": 95
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4baedfd6_c147a3e1",
+        "filename": "system/gd/hci/controller_unittest.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "nit: Following the pattern for previous versions, you should also add\n```\nASSERT_LE(\n      Controller::MaskLeEventMask(version.hci_version_, Controller::kDefaultLeEventMask), Controller::kLeEventMask53);\n```",
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3be66a4_6df64401",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2308,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "p_acl-\u003epeer_le_features_valid",
+      "range": {
+        "startLine": 2308,
+        "startChar": 2,
+        "endLine": 2308,
+        "endChar": 42
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "564775fb_0e525de9",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2323,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "p_acl-\u003epeer_le_features_valid",
+      "range": {
+        "startLine": 2323,
+        "startChar": 2,
+        "endLine": 2323,
+        "endChar": 42
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60958206_ef429fff",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "nit: Should be declared in a header\nThough gatt_notify_conn_update has the same issue",
+      "range": {
+        "startLine": 587,
+        "startChar": 5,
+        "endLine": 587,
+        "endChar": 31
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "449032a8_a59a655a",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "nit: early return for SUBRATE_REQ_DISABLE\n```\nif (p_lcb-\u003esubrate_req_mask \u0026 L2C_BLE_SUBRATE_REQ_DISABLE) {\n  L2CAP_TRACE_DEBUG(\"%s: returning L2C_BLE_SUBRATE_REQ_DISABLE\", __func__);\n  return;\n}\n```",
+      "range": {
+        "startLine": 1742,
+        "startChar": 0,
+        "endLine": 1744,
+        "endChar": 73
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3d11f29_d9e6a251",
+        "filename": "system/test/mock/mock_device_controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "nit: `supports`",
+      "range": {
+        "startLine": 454,
+        "startChar": 4,
+        "endLine": 455,
+        "endChar": 42
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da26158c_13aae02c",
+        "filename": "system/test/mock/mock_device_controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-23T09:10:52Z",
+      "side": 1,
+      "message": "Comment to be removed",
+      "range": {
+        "startLine": 456,
+        "startChar": 3,
+        "endLine": 457,
+        "endChar": 40
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
