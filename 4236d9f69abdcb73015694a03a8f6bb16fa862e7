@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9adc05c_a5580afb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T10:41:53Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 24
+      },
+      "revId": "4236d9f69abdcb73015694a03a8f6bb16fa862e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e292dea_3eee3c14",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T10:41:53Z",
+      "side": 1,
+      "message": "Let\u0027s remove `d` (onConnectionStateChage)\n\nHere and others",
+      "range": {
+        "startLine": 489,
+        "startChar": 51,
+        "endLine": 489,
+        "endChar": 52
+      },
+      "revId": "4236d9f69abdcb73015694a03a8f6bb16fa862e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ebb8cb8_e9a6817d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T10:41:53Z",
+      "side": 1,
+      "message": "Disconnected?",
+      "range": {
+        "startLine": 525,
+        "startChar": 65,
+        "endLine": 525,
+        "endChar": 74
+      },
+      "revId": "4236d9f69abdcb73015694a03a8f6bb16fa862e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7262ecdd_abd667c9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T10:41:53Z",
+      "side": 1,
+      "message": "Service`s`",
+      "range": {
+        "startLine": 546,
+        "startChar": 30,
+        "endLine": 546,
+        "endChar": 37
+      },
+      "revId": "4236d9f69abdcb73015694a03a8f6bb16fa862e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccc7f864_c5f9f694",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T10:41:53Z",
+      "side": 1,
+      "message": "t",
+      "range": {
+        "startLine": 576,
+        "startChar": 34,
+        "endLine": 576,
+        "endChar": 35
+      },
+      "revId": "4236d9f69abdcb73015694a03a8f6bb16fa862e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a63a3ee_0c88c209",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T10:41:53Z",
+      "side": 1,
+      "message": "gattCallbackOnCharacteristicChanged? Here and below",
+      "range": {
+        "startLine": 709,
+        "startChar": 16,
+        "endLine": 709,
+        "endChar": 41
+      },
+      "revId": "4236d9f69abdcb73015694a03a8f6bb16fa862e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14859ab0_77357690",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T10:41:53Z",
+      "side": 1,
+      "message": "@Override needed?",
+      "range": {
+        "startLine": 1396,
+        "startChar": 8,
+        "endLine": 1396,
+        "endChar": 15
+      },
+      "revId": "4236d9f69abdcb73015694a03a8f6bb16fa862e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
