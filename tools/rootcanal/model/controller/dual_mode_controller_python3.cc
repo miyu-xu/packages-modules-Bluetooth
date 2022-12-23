@@ -64,7 +64,7 @@ class BaseController : public DualModeController {
   void Start() {
     if (timer_task_id_ == kInvalidTaskId) {
       timer_task_id_ = async_manager_.ExecAsyncPeriodically(
-          0, 0ms, 5ms, [this]() { this->TimerTick(); });
+          0, 0ms, 5ms, [this]() { this->Tick(); });
     }
   }
 

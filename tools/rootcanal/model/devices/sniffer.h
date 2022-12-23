@@ -38,7 +38,7 @@ class Sniffer : public Device {
 
   virtual std::string GetTypeString() const override { return "sniffer"; }
 
-  virtual void IncomingPacket(
+  virtual void ReceiveLinkLayerPacket(
       model::packets::LinkLayerPacketView packet) override;
 
  private:
