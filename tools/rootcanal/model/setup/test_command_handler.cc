@@ -134,7 +134,7 @@ void TestCommandHandler::Add(const vector<std::string>& args) {
   }
 
   LOG_INFO("Add %s", new_dev->ToString().c_str());
-  size_t dev_index = model_.Add(new_dev);
+  size_t dev_index = model_.AddDevice(new_dev);
   response_string_ =
       std::to_string(dev_index) + std::string(":") + new_dev->ToString();
   send_response_(response_string_);
@@ -171,7 +171,7 @@ void TestCommandHandler::AddRemote(const vector<std::string>& args) {
 void TestCommandHandler::Del(const vector<std::string>& args) {
   size_t dev_index = std::stoi(args[0]);
 
-  model_.Del(dev_index);
+  model_.RemoveDevice(dev_index);
   response_string_ = "TestCommandHandler 'del' called with device at index " +
                      std::to_string(dev_index);
   send_response_(response_string_);
@@ -196,7 +196,7 @@ void TestCommandHandler::AddPhy(const vector<std::string>& args) {
 void TestCommandHandler::DelPhy(const vector<std::string>& args) {
   size_t phy_index = std::stoi(args[0]);
 
-  model_.DelPhy(phy_index);
+  model_.RemovePhy(phy_index);
   response_string_ = "TestCommandHandler 'del_phy' called with phy at index " +
                      std::to_string(phy_index);
   send_response_(response_string_);
@@ -227,7 +227,7 @@ void TestCommandHandler::DelDeviceFromPhy(const vector<std::string>& args) {
   }
   size_t dev_index = std::stoi(args[0]);
   size_t phy_index = std::stoi(args[1]);
-  model_.DelDeviceFromPhy(dev_index, phy_index);
+  model_.RemoveDeviceFromPhy(dev_index, phy_index);
   response_string_ =
       "TestCommandHandler 'del_device_from_phy' called with device " +
       std::to_string(dev_index) + " and phy " + std::to_string(phy_index);
