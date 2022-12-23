@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cee6b7f_f6994f82",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "What about BluetoothCallAudioPolicy or just CallAudioPolicy?",
+      "range": {
+        "startLine": 60,
+        "startChar": 19,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da6efd7_d6315311",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "POLICY_UNCONFIGURED",
+      "range": {
+        "startLine": 81,
+        "startChar": 28,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3124bc7_d40d87b2",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "POLICY_ACTIVE?",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 42
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a49d6af6_7d52953e",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "POLICY_INACTIVE?",
+      "range": {
+        "startLine": 95,
+        "startChar": 28,
+        "endLine": 95,
+        "endChar": 46
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ff7b2e1_23f4c1b7",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "FEATURE_UNCONFIGURED?",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 49
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068ac9bd_131794f8",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "FEATURE_SUPPORTED",
+      "range": {
+        "startLine": 111,
+        "startChar": 28,
+        "endLine": 111,
+        "endChar": 51
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90576934_b198b0c5",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "FEATURE_NOT_SUPPORTED",
+      "range": {
+        "startLine": 119,
+        "startChar": 28,
+        "endLine": 119,
+        "endChar": 55
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c4148c1_d0d3db0f",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "setInCallPolicy?",
+      "range": {
+        "startLine": 261,
+        "startChar": 32,
+        "endLine": 261,
+        "endChar": 54
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c997c4_a3b98bf1",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-23T07:40:32Z",
+      "side": 1,
+      "message": "setDeviceConnectionPolicy?",
+      "range": {
+        "startLine": 276,
+        "startChar": 32,
+        "endLine": 276,
+        "endChar": 55
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
