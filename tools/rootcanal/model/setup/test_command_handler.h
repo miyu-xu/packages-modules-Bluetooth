@@ -24,8 +24,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include "model/devices/device.h"
-#include "phy_layer_factory.h"
 #include "test_channel_transport.h"
 #include "test_model.h"
 
