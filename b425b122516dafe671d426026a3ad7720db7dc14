@@ -22,6 +22,30 @@
       },
       "revId": "b425b122516dafe671d426026a3ad7720db7dc14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a135797_d96f9318",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-23T13:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1df3cf_6690e636",
+      "range": {
+        "startLine": 1076,
+        "startChar": 51,
+        "endLine": 1076,
+        "endChar": 56
+      },
+      "revId": "b425b122516dafe671d426026a3ad7720db7dc14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
