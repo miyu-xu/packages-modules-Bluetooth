@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8b0f418_ab785e24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-12-23T11:46:13Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nI have moved the function to _utils.py. This function is used in HFP GAP and AVRCP, so have removed these from respective profiles and have imported it from _utils.py.\nHave tested GAP and AVRCP. HFP is not consistent on local machine\u003c majority time it fails \u003e, but observed its passed in pre-submits. Will revert HFP changes if pre-submit is not proceeding.\n\nHave fixed format errors in gap.py observed while performing repo upload.\n\nRequest you to provide your inputs. Thank you.\n\nRegards,\nSnehal",
+      "revId": "55696c18a932af5d68952c25b48a983043b0c4e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
