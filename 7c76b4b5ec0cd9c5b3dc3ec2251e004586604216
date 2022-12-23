@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd58871c_5ff0893c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T06:30:59Z",
+      "side": 1,
+      "message": "Is there any assertion for count as zero?",
+      "range": {
+        "startLine": 647,
+        "startChar": 63,
+        "endLine": 647,
+        "endChar": 81
+      },
+      "revId": "7c76b4b5ec0cd9c5b3dc3ec2251e004586604216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f93c7307_ac6de3b8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T06:30:59Z",
+      "side": 1,
+      "message": "Q) For GSM or MMS, is setting message status not supported?\n\nWhy do they return false?",
+      "range": {
+        "startLine": 755,
+        "startChar": 48,
+        "endLine": 755,
+        "endChar": 56
+      },
+      "revId": "7c76b4b5ec0cd9c5b3dc3ec2251e004586604216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
