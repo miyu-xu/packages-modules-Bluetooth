@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "439d7ef0_03210e48",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-23T09:10:13Z",
+      "side": 1,
+      "message": "Making contentResolverUpdate() return 0 below with proxy leads to count being 0. Should I add a comment on this for clarity?",
+      "parentUuid": "dd58871c_5ff0893c",
+      "range": {
+        "startLine": 647,
+        "startChar": 63,
+        "endLine": 647,
+        "endChar": 81
+      },
+      "revId": "7c76b4b5ec0cd9c5b3dc3ec2251e004586604216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f93c7307_ac6de3b8",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-23T06:30:59Z",
       "side": 1,
       "message": "Q) For GSM or MMS, is setting message status not supported?\n\nWhy do they return false?",
+      "range": {
+        "startLine": 755,
+        "startChar": 48,
+        "endLine": 755,
+        "endChar": 56
+      },
+      "revId": "7c76b4b5ec0cd9c5b3dc3ec2251e004586604216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab3bf83_d7cb8b9d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-23T09:10:13Z",
+      "side": 1,
+      "message": "For GSM and MMS, setMessageStatusDeleted() calls the function deleteMessage*() and unDeleteMessage*(), which return false when no cursor is set with BluetoothMethodProxy. Should I clarify this logic more in this test? Tests for deleteMessage*() and unDeleteMessage*() have already been added in this test file, with cursor set and the functions returning true.",
+      "parentUuid": "f93c7307_ac6de3b8",
       "range": {
         "startLine": 755,
         "startChar": 48,
