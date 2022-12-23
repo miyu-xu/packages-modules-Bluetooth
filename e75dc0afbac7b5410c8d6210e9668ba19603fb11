@@ -22,6 +22,30 @@
       },
       "revId": "e75dc0afbac7b5410c8d6210e9668ba19603fb11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd51aa0f_a011d34b",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-23T13:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f5adf3e_c46f9594",
+      "range": {
+        "startLine": 513,
+        "startChar": 55,
+        "endLine": 513,
+        "endChar": 60
+      },
+      "revId": "e75dc0afbac7b5410c8d6210e9668ba19603fb11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
