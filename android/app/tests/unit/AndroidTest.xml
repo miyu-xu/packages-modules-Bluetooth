@@ -48,6 +48,8 @@
         <option name="teardown-command" value="setprop bluetooth.profile.a2dp.sink.enabled false" />
         <option name="teardown-command"
                 value="setprop bluetooth.profile.sap.server.enabled false" />
+        <option name="run-command" value="input keyevent KEYCODE_WAKEUP" />
+        <option name="run-command" value="wm dismiss-keyguard" />
     </target_preparer>
     <target_preparer class="com.android.tradefed.targetprep.FolderSaver">
         <option name="device-path" value="/data/vendor/ssrdump" />
