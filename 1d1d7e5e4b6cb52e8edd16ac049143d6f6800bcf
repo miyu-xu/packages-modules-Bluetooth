@@ -22,6 +22,30 @@
       },
       "revId": "1d1d7e5e4b6cb52e8edd16ac049143d6f6800bcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1e6aa2d_ba7fe5bf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-23T09:58:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0d58b7a_8b45e681",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 30
+      },
+      "revId": "1d1d7e5e4b6cb52e8edd16ac049143d6f6800bcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
