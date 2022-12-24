@@ -35,7 +35,9 @@
 
 tBTM_CB btm_cb;
 
-void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {}
+void LogMsg(uint32_t trace_set_mask,
+            const char* filename, uint32_t linenum, const char* func,
+            const char* fmt_str, ...) {}
 
 namespace {
 const char* test_flags[] = {
