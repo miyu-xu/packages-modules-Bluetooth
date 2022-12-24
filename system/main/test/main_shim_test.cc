@@ -216,7 +216,9 @@ struct hci_t;
 const hci_t* hci_layer_get_interface() { return nullptr; }
 struct packet_fragmenter_t;
 const packet_fragmenter_t* packet_fragmenter_get_interface() { return nullptr; }
-void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {}
+void LogMsg(uint32_t trace_set_mask,
+            const char* filename, uint32_t linenum, const char* func,
+            const char* fmt_str, ...) {}
 
 template <typename T>
 class MockEnQueue : public os::IQueueEnqueue<T> {
