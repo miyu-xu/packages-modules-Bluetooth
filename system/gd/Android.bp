@@ -239,6 +239,7 @@ cc_library {
     cflags: [
         "-DFUZZ_TARGET",
         "-DUSE_FAKE_TIMERS",
+        "-Wno-unused-variable"
     ],
 }
 
@@ -580,6 +581,9 @@ cc_benchmark {
     static_libs: [
         "libbluetooth_gd",
         "libbt_shim_bridge",
+        // use init flag functions
+        "libbt_shim_ffi",
+        "libutils",
     ],
 }
 
@@ -896,6 +900,7 @@ cc_library_host_shared {
     ],
     generated_headers: [
         "BluetoothGeneratedPackets_h",
+        "libbt_init_flags_bridge_header",
     ],
     generated_sources: [
         "BluetoothGeneratedPackets_python3_cc",
