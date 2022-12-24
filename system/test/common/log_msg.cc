@@ -16,4 +16,6 @@
 
 #include <cstdint>
 
-extern "C" void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {}
+void LogMsg(uint32_t trace_set_mask,
+            const char* filename, uint32_t linenum, const char* func,
+            const char* fmt_str, ...) {}
