@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c99faee6_40eba2fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:41:35Z",
+      "side": 1,
+      "message": "Bypass presubmit as failing test are not related with this change and are tracked in their bugs",
+      "revId": "7158aa065b9739f33cdde75805173bfa19e24018",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
