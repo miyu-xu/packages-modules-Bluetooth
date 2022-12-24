@@ -23,6 +23,10 @@
 #include <string>   // for string
 #include <vector>   // for vector
 
+// To fix the build failure in netsim
+// we disable log filter here
+#define IGNORE_LOG_TAG_FILTER 1
+
 #include "device.h"                      // for Device
 #include "include/phy.h"                 // for Phy, Phy::Type
 #include "net/async_data_channel.h"      // for AsyncDataChannel
