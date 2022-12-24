@@ -58,35 +58,36 @@ class CommonLogMsgOutputTest : public CommonLogMsgTest {
 };
 
 TEST_F(CommonLogMsgTest, default_no_output) {
-  LogMsg(kDefaultTraceSetMask, "This is a test");
+  LogMsg(kDefaultTraceSetMask, __FILE__, __LINE__, __func__, "This is a test");
 }
 
 TEST_F(CommonLogMsgOutputTest, simple_with_output) {
-  LogMsg(kDefaultTraceSetMask, "This will be printed\n");
+  LogMsg(kDefaultTraceSetMask, __FILE__, __LINE__, __func__, "This will be printed\n");
   ASSERT_EQ(kDefaultTraceSetMask, last_.mask);
   ASSERT_EQ(strlen("This will be printed\n"), last_.data_len);
 }
 
 TEST_F(CommonLogMsgOutputTest, simple_with_no_output) {
-  LogMsg(0U, "This will not be printed\n");
+  LogMsg(0U, __FILE__, __LINE__, __func__, "This will not be printed\n");
   ASSERT_EQ(0U, last_.mask);
   ASSERT_EQ(0UL, last_.data_len);
 }
 
 TEST_F(CommonLogMsgOutputTest, max_string) {
   auto long_string = std::string(max_buffer_size_ - sizeof('\0'), 'x');
-  LogMsg(kDefaultTraceSetMask, long_string.c_str());
+  LogMsg(kDefaultTraceSetMask, __FILE__, __LINE__, __func__, long_string.c_str());
   ASSERT_EQ(max_buffer_size_ - sizeof('\0'), last_.data_len);
 }
 
 TEST_F(CommonLogMsgOutputTest, max_string_plus_string_terminator) {
   auto long_string = std::string(max_buffer_size_, 'x');
-  LogMsg(kDefaultTraceSetMask, long_string.c_str());
+  LogMsg(kDefaultTraceSetMask, __FILE__, __LINE__, __func__, long_string.c_str());
   ASSERT_EQ(max_buffer_size_ - sizeof('\0'), last_.data_len);
 }
 
 TEST_F(CommonLogMsgOutputTest, too_large_string) {
   auto long_string = std::string(4096UL, 'x');
-  LogMsg(kDefaultTraceSetMask, long_string.c_str());
+  LogMsg(kDefaultTraceSetMask, __FILE__, __LINE__, __func__, long_string.c_str());
   ASSERT_EQ(max_buffer_size_ - sizeof('\0'), last_.data_len);
 }
+`
