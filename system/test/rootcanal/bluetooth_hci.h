@@ -19,6 +19,10 @@
 #include <android/hardware/bluetooth/1.1/IBluetoothHci.h>
 #include <hidl/MQDescriptor.h>
 
+// to suppress the build failure in bluetooth_hci.cc
+// we add the following definition
+#define IGNORE_LOG_TAG_FILTER 1
+
 #include "hci_packetizer.h"
 #include "model/controller/dual_mode_controller.h"
 #include "model/setup/async_manager.h"
