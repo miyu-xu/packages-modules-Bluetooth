@@ -135,7 +135,9 @@ const stack_config_t* stack_config_get_interface(void) {
 
 // Require bte_logmsg.cc to run, here is just to fake it as we don't care about
 // trace in unit test
-void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {
+void LogMsg(uint32_t trace_set_mask,
+            const char* filename, uint32_t linenum, const char* func,
+            const char* fmt_str, ...) {
   va_list args;
   va_start(args, fmt_str);
   vprintf(fmt_str, args);
