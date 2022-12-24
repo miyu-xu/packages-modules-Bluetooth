@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21bbf2a9_132be2c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T05:28:01Z",
+      "side": 1,
+      "message": "Add `Bug: 254593836`",
+      "revId": "255b7034caf57d187f81d20aeff580900172f31f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17eb6f72_54052c66",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T05:28:01Z",
+      "side": 1,
+      "message": "The `android.hardware.bluetooth.audio-V3-ndk` does not exist.\nAre you depending on another CL ?\nCan you put in in the relation chain / topic so we can \n\nFor now, this patch is not breaking the build",
+      "range": {
+        "startLine": 151,
+        "startChar": 9,
+        "endLine": 151,
+        "endChar": 48
+      },
+      "revId": "255b7034caf57d187f81d20aeff580900172f31f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
