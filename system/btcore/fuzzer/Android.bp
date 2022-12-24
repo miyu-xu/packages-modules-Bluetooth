@@ -30,11 +30,13 @@ cc_defaults {
         "android.hardware.bluetooth@1.1",
         "libcrypto",
         "libstatslog_bt",
+        "libdl_android",
     ],
     static_libs: [
         "libosi",
         "liblog",
         "libbase",
+        "libutils",
         "libevent",
         "libbtcore",
         "libchrome",
