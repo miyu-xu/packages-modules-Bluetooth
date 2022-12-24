@@ -293,9 +293,9 @@ bool generate_pybind11_sources_one_file(
     out_file << "#include <pybind11/pybind11.h>\n";
     out_file << "#include <pybind11/stl.h>\n";
     out_file << "\n\n";
-    out_file << "#include " << gen_relative_header << "\n";
-    out_file << "\n\n";
     out_file << "#include \"packet/raw_builder.h\"\n";
+    out_file << "\n\n";
+    out_file << "#include " << gen_relative_header << "\n";
     out_file << "\n\n";
 
     for (const auto& c : decls.type_defs_queue_) {

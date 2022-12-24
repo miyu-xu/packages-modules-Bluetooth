@@ -16,6 +16,8 @@
 
 #define LOG_TAG "android.hardware.bluetooth@1.1.sim"
 
+#define IGNORE_LOG_TAG_FILTER 1
+
 #include "bluetooth_hci.h"
 
 #include <cutils/properties.h>
