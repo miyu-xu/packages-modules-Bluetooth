@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75fd6440_47aae247",
+        "filename": "system/device/include/controller.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "I was adapting code from legacy usage and kept the name.\nBut you are right, I fixed it",
+      "parentUuid": "1b20c4ef_b7504578",
+      "range": {
+        "startLine": 90,
+        "startChar": 7,
+        "endLine": 91,
+        "endChar": 49
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69f0415_925ed4ec",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-23T09:10:52Z",
       "side": 1,
       "message": "SupportsBleConnectionSubrating~~Host~~\nThe Host feature can only be set when the controller supports the feature as well",
+      "range": {
+        "startLine": 159,
+        "startChar": 61,
+        "endLine": 159,
+        "endChar": 95
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "824aaf60_abd2de1e",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "You are right, it was done like in the [initial patch](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2269569/2)",
+      "parentUuid": "f69f0415_925ed4ec",
       "range": {
         "startLine": 159,
         "startChar": 61,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e32e8d3_ce171366",
+        "filename": "system/gd/hci/controller_unittest.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4baedfd6_c147a3e1",
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3be66a4_6df64401",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-12-23T09:10:52Z",
       "side": 1,
       "message": "p_acl-\u003epeer_le_features_valid",
+      "range": {
+        "startLine": 2308,
+        "startChar": 2,
+        "endLine": 2308,
+        "endChar": 42
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7e0a76_1f82680e",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2308,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3be66a4_6df64401",
       "range": {
         "startLine": 2308,
         "startChar": 2,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76c5db57_18fff3f8",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2323,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "564775fb_0e525de9",
+      "range": {
+        "startLine": 2323,
+        "startChar": 2,
+        "endLine": 2323,
+        "endChar": 42
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60958206_ef429fff",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-12-23T09:10:52Z",
       "side": 1,
       "message": "nit: Should be declared in a header\nThough gatt_notify_conn_update has the same issue",
+      "range": {
+        "startLine": 587,
+        "startChar": 5,
+        "endLine": 587,
+        "endChar": 31
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf41eeaa_025b3420",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "added to gatt_int.h like `gatt_notify_phy_updated`\nI am not touching `gatt_notify_conn_update` in this CL so leaving it like this",
+      "parentUuid": "60958206_ef429fff",
       "range": {
         "startLine": 587,
         "startChar": 5,
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a142493_3cb46c8f",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "Thanks. Way better like this.\nI changed the other if too\n\nDone",
+      "parentUuid": "449032a8_a59a655a",
+      "range": {
+        "startLine": 1742,
+        "startChar": 0,
+        "endLine": 1744,
+        "endChar": 73
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3d11f29_d9e6a251",
@@ -179,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc205d89_619a5a34",
+        "filename": "system/test/mock/mock_device_controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3d11f29_d9e6a251",
+      "range": {
+        "startLine": 454,
+        "startChar": 4,
+        "endLine": 455,
+        "endChar": 42
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da26158c_13aae02c",
@@ -192,6 +378,30 @@
       "writtenOn": "2022-12-23T09:10:52Z",
       "side": 1,
       "message": "Comment to be removed",
+      "range": {
+        "startLine": 456,
+        "startChar": 3,
+        "endLine": 457,
+        "endChar": 40
+      },
+      "revId": "30b6e87c10292f5b748a500a5c884fdde2985d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a75116d5_b3546d2e",
+        "filename": "system/test/mock/mock_device_controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-24T06:40:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da26158c_13aae02c",
       "range": {
         "startLine": 456,
         "startChar": 3,
