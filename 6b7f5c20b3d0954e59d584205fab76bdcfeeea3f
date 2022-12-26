@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52cc4b02_1bab6287",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "Leaving a ground to add more policies later. That\u0027s why I kept a generic naming.",
+      "parentUuid": "7cee6b7f_f6994f82",
+      "range": {
+        "startLine": 60,
+        "startChar": 19,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9da6efd7_d6315311",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-23T07:40:32Z",
       "side": 1,
       "message": "POLICY_UNCONFIGURED",
+      "range": {
+        "startLine": 81,
+        "startChar": 28,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f5c153_484d99c0",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9da6efd7_d6315311",
       "range": {
         "startLine": 81,
         "startChar": 28,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a420534_fc71b684",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "Both ALLOWED and NOT_ALLOWED means that the policy is actually active. the policy actively decides whether to route the audio to the HF. Shouldn\u0027t this naming create more confusion?",
+      "parentUuid": "f3124bc7_d40d87b2",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 42
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a49d6af6_7d52953e",
         "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
         "patchSetId": 52
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-23T07:40:32Z",
       "side": 1,
       "message": "POLICY_INACTIVE?",
+      "range": {
+        "startLine": 95,
+        "startChar": 28,
+        "endLine": 95,
+        "endChar": 46
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbdc8bbb_cad881c8",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "same as comment 88",
+      "parentUuid": "a49d6af6_7d52953e",
       "range": {
         "startLine": 95,
         "startChar": 28,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62820fbb_d1002469",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "This is the feature support status for the remote device. I think \"REMOTE\" should be mentioned. I can make these FEATURE_UNCONFIGURED_BY_REMOTE and similar for the rest of them.",
+      "parentUuid": "1ff7b2e1_23f4c1b7",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 49
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "068ac9bd_131794f8",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66c8ce8a_ecc2ddd4",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "same as comment 103",
+      "parentUuid": "068ac9bd_131794f8",
+      "range": {
+        "startLine": 111,
+        "startChar": 28,
+        "endLine": 111,
+        "endChar": 51
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90576934_b198b0c5",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-12-23T07:40:32Z",
       "side": 1,
       "message": "FEATURE_NOT_SUPPORTED",
+      "range": {
+        "startLine": 119,
+        "startChar": 28,
+        "endLine": 119,
+        "endChar": 55
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "765c4f15_1cf12408",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "same as comment 103",
+      "parentUuid": "90576934_b198b0c5",
       "range": {
         "startLine": 119,
         "startChar": 28,
@@ -187,6 +355,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63d87a4b_8098b2b5",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "InCall would be a little ambiguous as we also have the ConnectingTime policy which defines the behavior of the HF getting connected during a call?",
+      "parentUuid": "1c4148c1_d0d3db0f",
+      "range": {
+        "startLine": 261,
+        "startChar": 32,
+        "endLine": 261,
+        "endChar": 54
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03c997c4_a3b98bf1",
         "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
         "patchSetId": 52
@@ -198,6 +390,30 @@
       "writtenOn": "2022-12-23T07:40:32Z",
       "side": 1,
       "message": "setDeviceConnectionPolicy?",
+      "range": {
+        "startLine": 276,
+        "startChar": 32,
+        "endLine": 276,
+        "endChar": 55
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f765a36d_986c7c81",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T08:34:47Z",
+      "side": 1,
+      "message": "There are existing connection policy and if we use this kind of naming then shouldn\u0027t it create much more confusion?",
+      "parentUuid": "03c997c4_a3b98bf1",
       "range": {
         "startLine": 276,
         "startChar": 32,
