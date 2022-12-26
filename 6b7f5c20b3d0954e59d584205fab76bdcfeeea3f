@@ -425,6 +425,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bc8f4bd_82dbce23",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-26T11:52:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "63d87a4b_8098b2b5",
+      "range": {
+        "startLine": 261,
+        "startChar": 32,
+        "endLine": 261,
+        "endChar": 54
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03c997c4_a3b98bf1",
@@ -462,6 +486,30 @@
       "side": 1,
       "message": "There are existing connection policy and if we use this kind of naming then shouldn\u0027t it create much more confusion?",
       "parentUuid": "03c997c4_a3b98bf1",
+      "range": {
+        "startLine": 276,
+        "startChar": 32,
+        "endLine": 276,
+        "endChar": 55
+      },
+      "revId": "6b7f5c20b3d0954e59d584205fab76bdcfeeea3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a0fdc25_131b22ac",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 52
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-26T11:52:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f765a36d_986c7c81",
       "range": {
         "startLine": 276,
         "startChar": 32,
