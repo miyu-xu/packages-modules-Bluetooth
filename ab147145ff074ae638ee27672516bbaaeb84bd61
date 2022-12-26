@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0dd34b3_cdb1b137",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dpsink/A2dpSinkServiceBinderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-26T15:21:04Z",
+      "side": 1,
+      "message": "empty line",
+      "revId": "ab147145ff074ae638ee27672516bbaaeb84bd61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
