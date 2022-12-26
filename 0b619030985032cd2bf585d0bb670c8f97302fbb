@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1047c74a_a0825cc7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceBinderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-26T12:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "724386a8_679c8cca",
+      "revId": "0b619030985032cd2bf585d0bb670c8f97302fbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60f6f174_c948846f",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-12-26T11:49:42Z",
       "side": 1,
       "message": "please fix",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 230,
+        "endChar": 101
+      },
+      "revId": "0b619030985032cd2bf585d0bb670c8f97302fbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "968594a4_37244b08",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceBinderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-26T12:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60f6f174_c948846f",
       "range": {
         "startLine": 230,
         "startChar": 8,
