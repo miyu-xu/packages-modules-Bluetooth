@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceeecb4c_2eb69047",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-26T02:48:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76947b53_3fee5095",
+      "range": {
+        "startLine": 647,
+        "startChar": 63,
+        "endLine": 647,
+        "endChar": 81
+      },
+      "revId": "7c76b4b5ec0cd9c5b3dc3ec2251e004586604216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f93c7307_ac6de3b8",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "So the reason that the method returns false is *NOT* due to the type or status value, but due to cursor. Is it right? \n\nLet\u0027s add one-line comment that explains this situation.",
       "parentUuid": "1ab3bf83_d7cb8b9d",
+      "range": {
+        "startLine": 755,
+        "startChar": 48,
+        "endLine": 755,
+        "endChar": 56
+      },
+      "revId": "7c76b4b5ec0cd9c5b3dc3ec2251e004586604216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "411c0e50_eac9e48f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2022-12-26T02:48:19Z",
+      "side": 1,
+      "message": "Yes that\u0027s correct! I added a comment :)",
+      "parentUuid": "21b1250c_d7fee9f5",
       "range": {
         "startLine": 755,
         "startChar": 48,
