@@ -106,6 +106,11 @@ bool ConfigCache::operator!=(const ConfigCache& rhs) const {
   return !(*this == rhs);
 }
 
+void ConfigCache::ProvideKeystoreInterface(BluetoothKeystoreInterface* interface) {
+  std::lock_guard<std::recursive_mutex> lock(mutex_);
+  keystore_interface_ = interface;
+}
+
 void ConfigCache::Clear() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   if (information_sections_.size() > 0) {

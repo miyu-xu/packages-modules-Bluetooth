@@ -30,6 +30,7 @@
 #include "common/lru_cache.h"
 #include "hci/address.h"
 #include "os/utils.h"
+#include "storage/keystore_interface.h"
 #include "storage/mutation_entry.h"
 
 namespace bluetooth {
@@ -57,6 +58,11 @@ class ConfigCache {
   ConfigCache& operator=(const ConfigCache&) = delete;
 
   virtual ~ConfigCache() = default;
+
+  // Supply the Keystore interface, if in use. Then, key retrieval / storage will be done through
+  // this interface rather than writing to disk. This should be done after the module starts, but
+  // before any reads/writes take place.
+  void ProvideKeystoreInterface(BluetoothKeystoreInterface* interface);
 
   // no copy
 
@@ -138,6 +144,9 @@ class ConfigCache {
   // Information about temporary devices, normally unpaired, will not be written to disk, will be evicted automatically
   // if capacity exceeds given value during initialization
   common::LruCache<std::string, common::ListMap<std::string, std::string>> temporary_devices_;
+  // Interface to the Keystore module (if active), where we store and load encrypted keys (rather
+  // than writing them to disk)
+  BluetoothKeystoreInterface* keystore_interface_{};
 
   // Convenience method to check if the callback is valid before calling it
   inline void PersistentConfigChangedCallback() const {

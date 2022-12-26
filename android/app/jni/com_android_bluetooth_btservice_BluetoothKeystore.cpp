@@ -30,7 +30,7 @@ namespace android {
 static jmethodID method_setEncryptKeyOrRemoveKeyCallback;
 static jmethodID method_getKeyCallback;
 
-static BluetoothKeystoreInterface* sBluetoothKeystoreInterface = nullptr;
+// static BluetoothKeystoreInterface* sBluetoothKeystoreInterface = nullptr;
 static std::shared_timed_mutex interface_mutex;
 
 static jobject mCallbacksObj = nullptr;
@@ -84,81 +84,81 @@ class BluetoothKeystoreCallbacksImpl
   }
 };
 
-static BluetoothKeystoreCallbacksImpl sBluetoothKeystoreCallbacks;
+// static BluetoothKeystoreCallbacksImpl sBluetoothKeystoreCallbacks;
 
-static void classInitNative(JNIEnv* env, jclass clazz) {
-  method_setEncryptKeyOrRemoveKeyCallback =
-      env->GetMethodID(clazz, "setEncryptKeyOrRemoveKeyCallback",
-                       "(Ljava/lang/String;Ljava/lang/String;)V");
+// static void classInitNative(JNIEnv* env, jclass clazz) {
+//   method_setEncryptKeyOrRemoveKeyCallback =
+//       env->GetMethodID(clazz, "setEncryptKeyOrRemoveKeyCallback",
+//                        "(Ljava/lang/String;Ljava/lang/String;)V");
 
-  method_getKeyCallback = env->GetMethodID(
-      clazz, "getKeyCallback", "(Ljava/lang/String;)Ljava/lang/String;");
+//   method_getKeyCallback = env->GetMethodID(
+//       clazz, "getKeyCallback", "(Ljava/lang/String;)Ljava/lang/String;");
 
-  LOG(INFO) << __func__ << ": succeeds";
-}
+//   LOG(INFO) << __func__ << ": succeeds";
+// }
 
-static void initNative(JNIEnv* env, jobject object) {
-  std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
-  std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
+// static void initNative(JNIEnv* env, jobject object) {
+//   std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
+//   std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
 
-  const bt_interface_t* btInf = getBluetoothInterface();
-  if (btInf == nullptr) {
-    LOG(ERROR) << "Bluetooth module is not loaded";
-    return;
-  }
+//   const bt_interface_t* btInf = getBluetoothInterface();
+//   if (btInf == nullptr) {
+//     LOG(ERROR) << "Bluetooth module is not loaded";
+//     return;
+//   }
 
-  if (sBluetoothKeystoreInterface != nullptr) {
-    LOG(INFO)
-        << "Cleaning up BluetoothKeystore Interface before initializing...";
-    sBluetoothKeystoreInterface = nullptr;
-  }
+//   if (sBluetoothKeystoreInterface != nullptr) {
+//     LOG(INFO)
+//         << "Cleaning up BluetoothKeystore Interface before initializing...";
+//     sBluetoothKeystoreInterface = nullptr;
+//   }
 
-  if (mCallbacksObj != nullptr) {
-    LOG(INFO) << "Cleaning up BluetoothKeystore callback object";
-    env->DeleteGlobalRef(mCallbacksObj);
-    mCallbacksObj = nullptr;
-  }
+//   if (mCallbacksObj != nullptr) {
+//     LOG(INFO) << "Cleaning up BluetoothKeystore callback object";
+//     env->DeleteGlobalRef(mCallbacksObj);
+//     mCallbacksObj = nullptr;
+//   }
 
-  if ((mCallbacksObj = env->NewGlobalRef(object)) == nullptr) {
-    LOG(ERROR)
-        << "Failed to allocate Global Ref for BluetoothKeystore Callbacks";
-    return;
-  }
+//   if ((mCallbacksObj = env->NewGlobalRef(object)) == nullptr) {
+//     LOG(ERROR)
+//         << "Failed to allocate Global Ref for BluetoothKeystore Callbacks";
+//     return;
+//   }
 
-  sBluetoothKeystoreInterface =
-      (BluetoothKeystoreInterface*)btInf->get_profile_interface(BT_KEYSTORE_ID);
-  if (sBluetoothKeystoreInterface == nullptr) {
-    LOG(ERROR) << "Failed to get BluetoothKeystore Interface";
-    return;
-  }
+//   sBluetoothKeystoreInterface =
+//       (BluetoothKeystoreInterface*)btInf->get_profile_interface(BT_KEYSTORE_ID);
+//   if (sBluetoothKeystoreInterface == nullptr) {
+//     LOG(ERROR) << "Failed to get BluetoothKeystore Interface";
+//     return;
+//   }
 
-  sBluetoothKeystoreInterface->init(&sBluetoothKeystoreCallbacks);
-}
+//   sBluetoothKeystoreInterface->init(&sBluetoothKeystoreCallbacks);
+// }
 
-static void cleanupNative(JNIEnv* env, jobject object) {
-  std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
-  std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
+// static void cleanupNative(JNIEnv* env, jobject object) {
+//   std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
+//   std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
 
-  const bt_interface_t* btInf = getBluetoothInterface();
-  if (btInf == nullptr) {
-    LOG(ERROR) << "Bluetooth module is not loaded";
-    return;
-  }
+//   const bt_interface_t* btInf = getBluetoothInterface();
+//   if (btInf == nullptr) {
+//     LOG(ERROR) << "Bluetooth module is not loaded";
+//     return;
+//   }
 
-  if (sBluetoothKeystoreInterface != nullptr) {
-    sBluetoothKeystoreInterface = nullptr;
-  }
+//   if (sBluetoothKeystoreInterface != nullptr) {
+//     sBluetoothKeystoreInterface = nullptr;
+//   }
 
-  if (mCallbacksObj != nullptr) {
-    env->DeleteGlobalRef(mCallbacksObj);
-    mCallbacksObj = nullptr;
-  }
-}
+//   if (mCallbacksObj != nullptr) {
+//     env->DeleteGlobalRef(mCallbacksObj);
+//     mCallbacksObj = nullptr;
+//   }
+// }
 
 static JNINativeMethod sMethods[] = {
-    {"classInitNative", "()V", (void*)classInitNative},
-    {"initNative", "()V", (void*)initNative},
-    {"cleanupNative", "()V", (void*)cleanupNative},
+    // {"classInitNativeIGNOREME", "()V", (void*)classInitNative},
+    // {"initNativeIGNOREME", "()V", (void*)initNative},
+    // {"cleanupNativeIGNOREME", "()V", (void*)cleanupNative},
 };
 
 int register_com_android_bluetooth_btservice_BluetoothKeystore(JNIEnv* env) {
