@@ -41,8 +41,7 @@ cc_defaults {
     },
     cpp_std: "c++17",
     cflags: [
-        "-DEXPORT_SYMBOL=__attribute__((visibility(\"default\")))",
-        "-fvisibility=hidden",
+        "-fvisibility=default",
         "-DLOG_NDEBUG=1",
         "-DGOOGLE_PROTOBUF_NO_RTTI",
         "-Wno-unused-result",

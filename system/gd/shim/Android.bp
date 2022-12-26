@@ -12,6 +12,7 @@ filegroup {
     srcs: [
             "dumpsys.cc",
             "dumpsys_args.cc",
+            "rust_interface.cc",
     ]
 }
 

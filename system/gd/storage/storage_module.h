@@ -28,6 +28,7 @@
 #include "storage/adapter_config.h"
 #include "storage/config_cache.h"
 #include "storage/device.h"
+#include "storage/keystore_interface.h"
 #include "storage/mutation.h"
 
 namespace bluetooth {
@@ -52,6 +53,10 @@ class StorageModule : public bluetooth::Module {
 
   ~StorageModule();
   static const ModuleFactory Factory;
+
+  // Supply the Keystore interface, if in use. Then, key retrieval / storage will be done through
+  // this interface rather than writing to disk.
+  void ProvideKeystoreInterface(std::unique_ptr<BluetoothKeystoreInterface> interface);
 
   // Methods to access the storage layer via Device abstraction
   // - Devices will be lazily created when methods below are called. Hence, no std::optional<> nor nullptr is used in
@@ -102,7 +107,7 @@ class StorageModule : public bluetooth::Module {
   AdapterConfig GetAdapterConfig();
 
   // Get a list of bonded devices from config
-  std::vector<Device> GetBondedDevices();
+  std::vector<Device> GetBondedDevices() const;
 
   // Modify the underlying config by starting a mutation. All entries in the mutation will be applied atomically when
   // Commit() is called. User should never touch ConfigCache() directly.
@@ -116,7 +121,7 @@ class StorageModule : public bluetooth::Module {
 
   friend shim::BtifConfigInterface;
   // For shim layer only
-  ConfigCache* GetConfigCache();
+  ConfigCache* GetConfigCache() const;
   // For unit test only
   ConfigCache* GetMemoryOnlyConfigCache();
   // Normally, underlying config will be saved at most 3 seconds after the first config change in a series of changes

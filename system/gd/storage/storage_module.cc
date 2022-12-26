@@ -99,6 +99,7 @@ struct StorageModule::impl {
   ConfigCache cache_;
   ConfigCache memory_only_cache_;
   bool has_pending_config_save_ = false;
+  std::unique_ptr<BluetoothKeystoreInterface> keystore_interface_{};
 };
 
 Mutation StorageModule::Modify() {
@@ -106,7 +107,7 @@ Mutation StorageModule::Modify() {
   return Mutation(&pimpl_->cache_, &pimpl_->memory_only_cache_);
 }
 
-ConfigCache* StorageModule::GetConfigCache() {
+ConfigCache* StorageModule::GetConfigCache() const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   return &pimpl_->cache_;
 }
@@ -149,7 +150,7 @@ void StorageModule::SaveImmediately() {
 }
 
 void StorageModule::ListDependencies(ModuleList* list) const {
-    list->add<metrics::CounterMetrics>();
+  list->add<metrics::CounterMetrics>();
 }
 
 void StorageModule::Start() {
@@ -249,7 +250,7 @@ AdapterConfig StorageModule::GetAdapterConfig() {
   return AdapterConfig(&pimpl_->cache_, &pimpl_->memory_only_cache_, kAdapterSection);
 }
 
-std::vector<Device> StorageModule::GetBondedDevices() {
+std::vector<Device> StorageModule::GetBondedDevices() const {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   auto persistent_sections = GetConfigCache()->GetPersistentSections();
   std::vector<Device> result;
@@ -258,6 +259,13 @@ std::vector<Device> StorageModule::GetBondedDevices() {
     result.emplace_back(&pimpl_->cache_, &pimpl_->memory_only_cache_, section);
   }
   return result;
+}
+
+void StorageModule::ProvideKeystoreInterface(
+    std::unique_ptr<BluetoothKeystoreInterface> interface) {
+  std::lock_guard<std::recursive_mutex> lock(mutex_);
+  pimpl_->keystore_interface_ = std::move(interface);
+  pimpl_->cache_.ProvideKeystoreInterface(pimpl_->keystore_interface_.get());
 }
 
 bool StorageModule::is_config_checksum_pass(int check_bit) {
