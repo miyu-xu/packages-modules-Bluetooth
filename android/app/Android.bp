@@ -53,7 +53,7 @@ java_library {
 
 // Bluetooth JNI
 
-cc_library_shared {
+cc_library {
     name: "libbluetooth_jni",
     defaults: ["fluoride_full_defaults"],
     srcs: ["jni/**/*.cpp"],
@@ -61,15 +61,24 @@ cc_library_shared {
         "jni_headers",
         "libbluetooth_headers",
     ],
+    generated_headers: [
+        "libbluetooth_core_rs_bridge_codegen_header",
+    ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/types",
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/rust",
         "packages/modules/Bluetooth/system/gd",
     ],
     static_libs: [
         "libbluetooth-types",
         "libbluetooth",
         "libc++fs",
+        "libbluetooth_core_rs_bridge",
+    ],
+    whole_static_libs: [
+        "libbluetooth_core_rs",
     ],
     sanitize: {
         scs: true,
