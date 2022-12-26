@@ -1,0 +1,146 @@
+rust_defaults {
+    name: "libbluetooth_core_rs_defaults",
+    min_sdk_version: "Tiramisu",
+    dylib: {
+        enabled: false,
+    },
+    shared_libs: [
+      "libbase",
+    ],
+    static_libs: [
+        "libbluetooth_gd",
+        "libbt_shim_bridge",
+        "libbt_shim_ffi",
+
+        "libchrome",
+        "libmodpb64",
+        "libevent",
+    ],
+    target: {
+        android: {
+            shared_libs: [
+                "android.hardware.bluetooth@1.0",
+                "android.hardware.bluetooth@1.1",
+                "android.system.suspend.control-V1-ndk",
+                "android.system.suspend-V1-ndk",
+                "libbinder_ndk",
+                "libcutils",
+                "libhidlbase",
+                "libutils",
+                "libstatslog_bt",
+            ],
+        },
+    },
+    apex_available: ["com.android.btservices"],
+}
+
+rust_ffi {
+    name: "libbluetooth_core_rs",
+    crate_name: "bluetooth_core",
+    defaults: ["libbluetooth_core_rs_defaults"],
+    srcs: ["lib.rs"],
+    rustlibs: [
+        "liblog_rust",
+        "libandroid_logger",
+        "libcxx",
+
+        // needed just for build system nonsense (ask @licorne why) please do not actually use
+        "libbt_shim",
+    ],
+    proc_macros: [
+        "libpaste",
+    ],
+    whole_static_libs: [
+        "libbluetooth_core_rs_bridge",
+    ],
+    features: [
+        // used to enable some hacks needed to make Soong happy
+        // grep for this string in *.rs to see details
+        "via_android_bp",
+    ]
+}
+
+rust_test {
+    name: "libbluetooth_core_rs_test",
+    defaults: ["libbluetooth_core_rs_defaults"],
+    srcs: ["lib.rs"],
+    rustlibs: [
+        "liblog_rust",
+        "libandroid_logger",
+        "libcxx",
+    ],
+    proc_macros: [
+        "libpaste",
+    ],
+}
+
+cc_library_static {
+    name: "libbluetooth_core_rs_bridge",
+    defaults: [
+        "libchrome_support_defaults",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/types",
+    ],
+    static_libs: [
+        "libbluetooth_gd",
+        "libbt_shim_ffi",
+        "libbt_shim_bridge",
+    ],
+    shared_libs: [
+        "libflatbuffers-cpp",
+    ],
+    generated_headers: [
+        "cxx-bridge-header",
+        "libbluetooth_core_rs_bridge_codegen_header",
+
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    export_generated_headers: [
+        "libbluetooth_core_rs_bridge_codegen_header",
+    ],
+    generated_sources: ["libbluetooth_core_rs_bridge_codegen"],
+    apex_available: ["com.android.btservices"],
+    min_sdk_version: "33",
+}
+
+/// FFI codegen
+/// 
+/// We generate the static library libbluetooth_core_rs_bridge that is included by libbluetooth_core_rs,
+/// and depends on libbluetooth-core. libbluetooth depends on libbluetooth_core_rs.
+///
+/// Thus, FFI can be either Rust -> C++ calls, or C++ -> Rust. Core C++ -> Rust calls can only be made via
+/// injected callbacks (as libbluetooth-core does not depend on libbluetooth_core_rs), while
+/// Profile C++ -> Rust calls can be made directly (as libbluetooth *does* depend on libbluetooth_core_rs).
+///
+/// To add FFI for a new module, create an ffi.rs file, and add it to the "out" .cc and .h files below.
+
+genrule {
+    name: "libbluetooth_core_rs_bridge_codegen",
+    tools: ["cxxbridge"],
+    cmd: "INPUTS=($(in)); OUTPUTS=($(out)); for (( i = 0; i < $${#INPUTS[*]}; ++i )); do $(location cxxbridge) $${INPUTS[$$i]} -o $${OUTPUTS[$$i]}; done",
+    srcs: ["./**/ffi.rs"],
+    out: [
+        "core.rs.cc",
+        "gatt.rs.cc",
+    ],
+}
+
+// Note: please keep the order of files the same in srcs and out, thanks!
+genrule {
+    name: "libbluetooth_core_rs_bridge_codegen_header",
+    tools: ["cxxbridge"],
+    cmd: "INPUTS=($(in)); OUTPUTS=($(out)); for (( i = 0; i < $${#INPUTS[*]}; ++i )); do $(location cxxbridge) $${INPUTS[$$i]} -o $${OUTPUTS[$$i]}; done",
+    srcs: [
+        "core/ffi.rs",
+        "gatt/ffi.rs",
+    ],
+    out: [
+        "core.rs.h",
+        "gatt.rs.h",
+    ],
+}
