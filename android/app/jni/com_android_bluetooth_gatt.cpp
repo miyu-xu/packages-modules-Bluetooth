@@ -26,7 +26,11 @@
 #include <shared_mutex>
 
 #include "com_android_bluetooth.h"
+#include "core.rs.h"
+#include "gatt.rs.h"
+#include "gd/common/init_flags.h"
 #include "hardware/bt_gatt.h"
+#include "rust/gatt/gatt_shim.h"
 #include "utils/Log.h"
 #define info(fmt, ...) ALOGI("%s(L%d): " fmt, __func__, __LINE__, ##__VA_ARGS__)
 #define debug(fmt, ...) \
@@ -1257,6 +1261,10 @@ static void initializeNative(JNIEnv* env, jobject object) {
   sGattIf->scanner->RegisterCallbacks(JniScanningCallbacks::GetInstance());
 
   mCallbacksObj = env->NewGlobalRef(object);
+
+  auto callbacks = std::make_unique<bluetooth::gatt::GattServerCallbacks>(
+      sGattServerCallbacks);
+  bluetooth::rust::init(std::move(callbacks));
 }
 
 static void cleanupNative(JNIEnv* env, jobject object) {
@@ -1844,6 +1852,9 @@ static void gattServerRegisterAppNative(JNIEnv* env, jobject object,
                                         jboolean eatt_support) {
   if (!sGattIf) return;
   Uuid uuid = from_java_uuid(app_uuid_msb, app_uuid_lsb);
+
+  bluetooth::gatt::start();
+
   sGattIf->server->register_server(uuid, eatt_support);
 }
 
