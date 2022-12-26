@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba1fc11_9ca96ad7",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 53
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T09:17:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ed74c24_7f71d674",
+      "range": {
+        "startLine": 256,
+        "startChar": 21,
+        "endLine": 256,
+        "endChar": 28
+      },
+      "revId": "0cb3da11b4f05a6066fb282c6ea56467f45e1938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc04e0b6_fdd02aeb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b533791_ee87809d",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 53
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T09:17:48Z",
+      "side": 1,
+      "message": "Adding more clarity here",
+      "parentUuid": "fc04e0b6_fdd02aeb",
+      "range": {
+        "startLine": 256,
+        "startChar": 54,
+        "endLine": 258,
+        "endChar": 29
+      },
+      "revId": "0cb3da11b4f05a6066fb282c6ea56467f45e1938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0978fa51_2513f334",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-26T08:58:26Z",
       "side": 1,
       "message": "You may not mean this policy is not used when the device is connected while not in a call. Please fix.",
+      "range": {
+        "startLine": 271,
+        "startChar": 49,
+        "endLine": 271,
+        "endChar": 62
+      },
+      "revId": "0cb3da11b4f05a6066fb282c6ea56467f45e1938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9da1096_2fbce876",
+        "filename": "framework/java/android/bluetooth/BluetoothAudioPolicy.java",
+        "patchSetId": 53
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-12-26T09:17:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0978fa51_2513f334",
       "range": {
         "startLine": 271,
         "startChar": 49,
