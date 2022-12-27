@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a58ae194_84987be9",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-27T12:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3695efa0_8511c6ea",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "d2c3e371865fc6239c32aed377e7e2762d8f68a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14ddbc44_18da7ebf",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-27T11:09:12Z",
       "side": 1,
       "message": "and LOGWRAPPER, _LOGWRAPPER",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 16
+      },
+      "revId": "d2c3e371865fc6239c32aed377e7e2762d8f68a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d7774f4_44c57656",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-27T12:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14ddbc44_18da7ebf",
       "range": {
         "startLine": 78,
         "startChar": 10,
