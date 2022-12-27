@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3629ca6a_8d38ad3c",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-27T23:46:26Z",
+      "side": 1,
+      "message": "Here should we use the macros from gtest? As hinted below?",
+      "revId": "0abf20ec8b0b6914420407d71880945b6940f02c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f39a12f0_639c5739",
+        "filename": "system/gd/os/linux_generic/reactor.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-27T23:46:26Z",
+      "side": 1,
+      "message": "I agree with the fix.\nBut another concern I have here is whether `idle_promise_` is possible to be nullptr when entering this block.",
+      "revId": "0abf20ec8b0b6914420407d71880945b6940f02c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
