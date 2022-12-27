@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d151b0e5_c18b5814",
+        "filename": "system/gd/hci/le_advertising_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-27T20:32:12Z",
+      "side": 1,
+      "message": "remove all one word comment as per go/unit-testing-practices?polyglot\u003dcpp#structure",
+      "range": {
+        "startLine": 1241,
+        "startChar": 5,
+        "endLine": 1241,
+        "endChar": 12
+      },
+      "revId": "2a14661c7699929b44e899196693f66cd0429aeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

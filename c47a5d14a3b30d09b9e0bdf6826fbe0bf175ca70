@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0481db3c_82ff994a",
+        "filename": "system/gd/hci/le_advertising_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-27T20:32:12Z",
+      "side": 0,
+      "message": "Why deleting this but adding a `LOG_INFO(\"pause\");` below ?",
+      "range": {
+        "startLine": 1135,
+        "startChar": 0,
+        "endLine": 1135,
+        "endChar": 20
+      },
+      "revId": "c47a5d14a3b30d09b9e0bdf6826fbe0bf175ca70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
