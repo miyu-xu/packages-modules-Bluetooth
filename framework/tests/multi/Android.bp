@@ -1,0 +1,15 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_test {
+    name: "MultiDeviceBluetoothTests",
+    srcs: ["src/**/*.java"],
+    static_libs: [
+        "androidx.test.rules",
+    ],
+    jni_libs: [
+        "libandroid_bluetooth_binder_rpc",
+    ],
+    defaults: ["framework-bluetooth-tests-defaults"],
+}
