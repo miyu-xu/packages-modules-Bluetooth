@@ -308,8 +308,15 @@ class Host(
                 it.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR)
               }
 
-          bluetoothDevice.disconnect()
+          val job = scope.launch {
+            while (true) {
+              val error = bluetoothDevice.disconnect()
+              Log.i(TAG, "disconnect $error")
+              delay(5000)
+            }
+          }
           connectionStateChangedFlow.filter { it == BluetoothAdapter.STATE_DISCONNECTED }.first()
+          job.cancel()
         }
         TRANSPORT_LE -> {
           Log.i(TAG, "disconnect LE")

@@ -76,6 +76,35 @@ cc_library_shared {
     apex_available: [
         "com.android.btservices",
     ],
+    ldflags: ["-Wl,-Map=/tmp/output.map", "-Wl,--verbose"],
+    version_script: "libbluetooth_jni.version",
+    min_sdk_version: "Tiramisu",
+}
+
+cc_binary {
+    name: "bluetooth_jni",
+    defaults: ["fluoride_full_defaults"],
+    srcs: ["jni/**/*.cpp"],
+    header_libs: [
+        "jni_headers",
+        "libbluetooth_headers",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system/types",
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    static_libs: [
+        "libbluetooth-types",
+        "libbluetooth",
+        "libc++fs",
+    ],
+    sanitize: {
+        scs: true,
+    },
+    apex_available: [
+        "com.android.btservices",
+    ],
+    ldflags: ["-Wl,-Map=/tmp/output.map", "-Wl,--verbose", "-Wl,-eJNI_OnLoad"],
     min_sdk_version: "Tiramisu",
 }
 
