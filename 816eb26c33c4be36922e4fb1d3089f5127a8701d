@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c1ba71_e98668c9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-27T07:49:49Z",
+      "side": 1,
+      "message": "mService\n\nand ditto for others.",
+      "range": {
+        "startLine": 57,
+        "startChar": 24,
+        "endLine": 57,
+        "endChar": 31
+      },
+      "revId": "816eb26c33c4be36922e4fb1d3089f5127a8701d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76590cfe_7902336a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-27T07:49:49Z",
+      "side": 1,
+      "message": "verifying things in setUp method looks strange to me.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 91
+      },
+      "revId": "816eb26c33c4be36922e4fb1d3089f5127a8701d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
