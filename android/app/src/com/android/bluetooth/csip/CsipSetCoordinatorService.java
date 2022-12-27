@@ -974,6 +974,9 @@ public class CsipSetCoordinatorService extends ProfileService {
         private CsipSetCoordinatorService mService;
 
         private CsipSetCoordinatorService getService(AttributionSource source) {
+            if (Utils.isInstrumentationTestMode()) {
+                return mService;
+            }
             if (!Utils.checkServiceAvailable(mService, TAG)
                     || !Utils.checkCallerIsSystemOrActiveOrManagedUser(mService, TAG)) {
                 return null;
@@ -1176,7 +1179,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         }
 
         @Override
-        public void unlockGroup(@NonNull ParcelUuid lockUuid, AttributionSource source,
+            public void unlockGroup(@NonNull ParcelUuid lockUuid, AttributionSource source,
                 SynchronousResultReceiver receiver) {
             try {
                 Objects.requireNonNull(lockUuid, "lockUuid cannot be null");
