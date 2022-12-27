@@ -22,6 +22,30 @@
       },
       "revId": "6bdc422c229734af49e7064f4a84c8ab962b55da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdaa150f_5f200c08",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-27T11:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f389507_59509c2b",
+      "range": {
+        "startLine": 78,
+        "startChar": 6,
+        "endLine": 78,
+        "endChar": 11
+      },
+      "revId": "6bdc422c229734af49e7064f4a84c8ab962b55da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
