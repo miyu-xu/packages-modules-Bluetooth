@@ -1612,6 +1612,8 @@ void bta_dm_search_cancel_notify() {
  ******************************************************************************/
 static void bta_dm_find_services(const RawAddress& bd_addr) {
   while (bta_dm_search_cb.service_index < BTA_MAX_SERVICE_ID) {
+    LOG_INFO("%s service_index=%08x", __func__,
+                bta_dm_search_cb.service_index);
     Uuid uuid = Uuid::kEmpty;
     if (bta_dm_search_cb.services_to_search &
         (tBTA_SERVICE_MASK)(
