@@ -130,7 +130,7 @@ class IUT:
                     if tries >= MAX_RETRIES:
                         raise
                     else:
-                        print(f"Retry {func.__name__}: {tries}/{MAX_RETRIES}")
+                        print(f"Retry {func.__name__}: {tries}/{MAX_RETRIES}", file=sys.stderr)
                         time.sleep(1)
 
         return wrapper

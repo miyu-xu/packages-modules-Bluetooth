@@ -216,6 +216,8 @@ public class A2dpSinkStateMachine extends StateMachine {
                     processStackEvent((StackEvent) message.obj);
                     return true;
                 case CONNECT_TIMEOUT:
+                    Log.w(TAG, "Connecting connection timeout: " + mDevice);
+                    mNativeInterface.disconnectA2dpSink(mDevice);
                     transitionTo(mDisconnected);
                     return true;
             }

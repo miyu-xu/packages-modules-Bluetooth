@@ -78,6 +78,7 @@ fun intentFlow(context: Context, intentFilter: IntentFilter) = callbackFlow {
   val broadcastReceiver: BroadcastReceiver =
     object : BroadcastReceiver() {
       override fun onReceive(context: Context, intent: Intent) {
+        Log.i(TAG, "$intent")
         trySendBlocking(intent)
       }
     }

@@ -1,0 +1,4 @@
+libbluetooth_jni {
+	global: JNI_OnLoad;
+	local: *;
+};
