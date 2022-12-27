@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d083de7_6670c9ba",
+        "filename": "tools/rootcanal/model/setup/phy_device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-12-27T20:11:16Z",
+      "side": 1,
+      "message": "prefer\n\nif (packet_view.IsValid()) {\n    device_-\u003eReceiveLinkLayerPacket(std::move(packet_view));\n} else {\n    LOG_WARN(\"Invalid phy packet\");\n}\n\npackets are coming from external sources so shouldn\u0027t crash rootcanal",
+      "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5060b7b_bbe41c7a",
+        "filename": "tools/rootcanal/model/setup/phy_device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-12-27T20:11:16Z",
+      "side": 1,
+      "message": "create the shared_ptr\u003cLinkLayerPacketView\u003e in send rather than multiple in\nreceive?",
+      "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121447cd_9be0cff4",
+        "filename": "tools/rootcanal/model/setup/phy_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-12-27T20:11:16Z",
+      "side": 1,
+      "message": "This used to be LinkLayerPacketView\nwhich was used to determine if PacketType::RSSI_WRAPPER\n\nWondering whether the packet could be converted to shared packet_view in PhyDevice Send() rather than Receive(). That way filtering of RSSI_WRAPPER does no extra work for non RSSI packets.\n\nIf PhyDevice Receive accepts shared packet_view then it can be the original or\nrewritten with new rssi.",
+      "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0d53740_70512a84",
+        "filename": "tools/rootcanal/model/setup/phy_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-12-27T20:11:16Z",
+      "side": 1,
+      "message": "Any thoughts how to make the rewriting of rssi in packet_views cleaner?\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/+/tm-dev-plus-aosp:tools/netsim/src/hci/bluetooth_facade.cc;drc\u003d8f3f602a999148d5723da88c52cdd597f19f2b12;l\u003d49",
+      "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
