@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf51d06_acaeea43",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-27T10:45:49Z",
+      "side": 1,
+      "message": "Let\u0027s break the line here (same for L732)",
+      "range": {
+        "startLine": 729,
+        "startChar": 65,
+        "endLine": 729,
+        "endChar": 66
+      },
+      "revId": "035304b33f62e1cb1ea826134c59145bc4b36b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
