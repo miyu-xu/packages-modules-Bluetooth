@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2b07e68_75abf9f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-27T23:35:57Z",
+      "side": 1,
+      "message": "new fixed version is here:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2371069",
+      "revId": "7f93f0cc273411e5d50b5978b472f0423d17fda4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
