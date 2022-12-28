@@ -67,6 +67,24 @@
       "message": "Any thoughts how to make the rewriting of rssi in packet_views cleaner?\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/+/tm-dev-plus-aosp:tools/netsim/src/hci/bluetooth_facade.cc;drc\u003d8f3f602a999148d5723da88c52cdd597f19f2b12;l\u003d49",
       "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bbbbe1c_9f5f6103",
+        "filename": "tools/rootcanal/model/setup/phy_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-28T09:30:52Z",
+      "side": 1,
+      "message": "We could remove the RSSI from the packet itself and pass this information in the send / receive Phy methods.\n\n```\n// PhyDevice\nvoid Send(std::vector\u003cuint8_t\u003e const\u0026 packet, Phy::Type type, uint8_t tx_power);\nvoid Receive(std::vector\u003cuint8_t\u003e const\u0026 packet, Phy::Type type, int8_t rssi);\n\n// PhyLayer\nvirtual void Send(std::vector\u003cuint8_t\u003e const\u0026 packet,\n                  uint8_t tx_power,\n                  rootcanal::PhyDevice::Identifier sender_id);\n```",
+      "parentUuid": "e0d53740_70512a84",
+      "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
