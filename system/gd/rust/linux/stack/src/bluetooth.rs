@@ -1054,7 +1054,6 @@ impl BtifBluetoothCallbacks for Bluetooth {
         properties: Vec<BluetoothProperty>,
     ) {
         let address = addr.to_string();
-        let txl = self.tx.clone();
         let device = match self.get_remote_device_if_found_mut(&address) {
             None => {
                 self.found_devices.insert(
@@ -1095,13 +1094,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
 
                 if d.wait_to_connect && has_uuids {
                     d.wait_to_connect = false;
-
-                    let sent_info = info.clone();
-                    tokio::spawn(async move {
-                        let _ = txl.send(Message::DelayedAdapterActions(
-                            DelayedActions::ConnectAllProfiles(sent_info),
-                        ));
-                    });
+                    self.connect_all_enabled_profiles(info.clone());
                 }
 
                 self.bluetooth_admin
