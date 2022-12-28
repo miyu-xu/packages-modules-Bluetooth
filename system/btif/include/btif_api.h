@@ -222,7 +222,8 @@ bool btif_dm_pairing_is_busy();
  * Description      Initiate bonding with the specified device
  *
  ******************************************************************************/
-void btif_dm_create_bond(const RawAddress bd_addr, int transport);
+void btif_dm_create_bond(const RawAddress bd_addr, int addr_type,
+                         int transport);
 
 /*******************************************************************************
  *
