@@ -107,7 +107,6 @@ bt_callbacks_t callbacks = {
     .le_address_associate_cb = le_address_associate_callback,
     .acl_state_changed_cb = acl_state_changed_callback,
     .thread_evt_cb = callback_thread_event,
-    .dut_mode_recv_cb = dut_mode_recv_callback,
     .energy_info_cb = energy_info_callback,
     .link_quality_report_cb = link_quality_report_callback,
     .generate_local_oob_data_cb = generate_local_oob_data_callback,
