@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "def7bc40_095a9731",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-12-28T22:40:23Z",
+      "side": 1,
+      "message": "This makes it much cleaner to update rssi. No longer need to unwrap and rewrap packets!\n\nI think there are also PDL changes if removing rssi, ask Myles.",
+      "revId": "b4aa7113dc713535728452c98302f4760025054d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34044a1d_67fa918c",
+        "filename": "tools/rootcanal/model/setup/phy_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-12-28T22:40:23Z",
+      "side": 1,
+      "message": "Maybe separate the rssi calculation to make it cleaner to override\n```\nuint8_t PhyLayer::ComputeRssi(\n  PhyDevice::Identifier sender_id, \n  PhyDevice::Identifier receiver_id,\n  uint8_t tx_power) {\n  // Perform no RSSI computation by default.\n  // Clients overriding this function should use the TX power and\n  // positional information to derive correct device-to-device RSSI.\n  static uint8_t rssi \u003d 0;\n  rssi \u003d (rssi + 5) % 128;\n  return rssi;\n}\n```",
+      "revId": "b4aa7113dc713535728452c98302f4760025054d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
