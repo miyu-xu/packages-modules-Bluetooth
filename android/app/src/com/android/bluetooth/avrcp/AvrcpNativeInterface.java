@@ -24,6 +24,7 @@ import com.android.bluetooth.audio_util.ListItem;
 import com.android.bluetooth.audio_util.Metadata;
 import com.android.bluetooth.audio_util.PlayStatus;
 import com.android.bluetooth.audio_util.PlayerInfo;
+import com.android.bluetooth.audio_util.PlayerSettingsManager.PlayerSettingsValues;
 import com.android.bluetooth.btservice.AdapterService;
 
 import java.util.List;
@@ -261,6 +262,105 @@ public class AvrcpNativeInterface {
         mAvrcpService.setVolume(volume);
     }
 
+    /**
+     * Request from remote to list supported player settings.
+     */
+    void listPlayerSettingsRequest(String bdaddr) {
+        byte[] settingsArray = new byte[2];
+        settingsArray[0] = (byte) PlayerSettingsValues.SETTING_REPEAT;
+        settingsArray[1] = (byte) PlayerSettingsValues.SETTING_SHUFFLE;
+        listPlayerSettingsRspNative(bdaddr, settingsArray);
+    }
+
+    /**
+     * Request from remote to list supported values for player setting.
+     */
+    void listPlayerSettingValuesRequest(String bdaddr, byte settingRequest) {
+        byte[] valuesArray;
+        switch (settingRequest) {
+            case (byte) PlayerSettingsValues.SETTING_REPEAT:
+                valuesArray = new byte[4];
+                valuesArray[0] = PlayerSettingsValues.STATE_REPEAT_OFF;
+                valuesArray[1] = PlayerSettingsValues.STATE_REPEAT_SINGLE_TRACK;
+                valuesArray[2] = PlayerSettingsValues.STATE_REPEAT_GROUP;
+                valuesArray[3] = PlayerSettingsValues.STATE_REPEAT_ALL_TRACK;
+                break;
+            case (byte) PlayerSettingsValues.SETTING_SHUFFLE:
+                valuesArray = new byte[3];
+                valuesArray[0] = PlayerSettingsValues.STATE_SHUFFLE_OFF;
+                valuesArray[1] = PlayerSettingsValues.STATE_SHUFFLE_GROUP;
+                valuesArray[2] = PlayerSettingsValues.STATE_SHUFFLE_ALL_TRACK;
+                break;
+            default:
+                // For settings we don't support yet, return only state off.
+                valuesArray = new byte[1];
+                valuesArray[0] = PlayerSettingsValues.STATE_DEFAULT_OFF;
+        }
+        listPlayerSettingValuesRspNative(bdaddr, settingRequest, valuesArray);
+    }
+
+    /**
+     * Request from remote current values for player settings.
+     */
+    void getCurrentPlayerSettingValuesRequest(String bdaddr, byte[] settingsRequest) {
+        byte[] valuesArray = new byte[settingsRequest.length];
+        for (int i = 0; i < settingsRequest.length; i++) {
+            switch (settingsRequest[i]) {
+                case (byte) PlayerSettingsValues.SETTING_REPEAT:
+                    valuesArray[i] = (byte) mAvrcpService.getRepeatMode();
+                    break;
+                case (byte) PlayerSettingsValues.SETTING_SHUFFLE:
+                    valuesArray[i] = (byte) mAvrcpService.getShuffleMode();
+                    break;
+                default:
+                    valuesArray[i] = (byte) PlayerSettingsValues.STATE_DEFAULT_OFF;
+                    break;
+            }
+        }
+        getPlayerSettingsRspNative(bdaddr, settingsRequest, valuesArray);
+    }
+
+    /**
+     * Request from remote to set current values for player settings.
+     */
+    boolean setPlayerSettingsRequest(String bdaddr, byte[] settingsRequest,
+            byte[] valuesRequest) {
+        if (settingsRequest.length != valuesRequest.length) {
+            return false;
+        }
+        boolean success = true;
+        for (int i = 0; i < settingsRequest.length; i++) {
+            if (settingsRequest[i] == (byte) PlayerSettingsValues.SETTING_REPEAT
+                    && !mAvrcpService.setRepeatMode(valuesRequest[i])) {
+                success = false;
+            } else if (settingsRequest[i] == (byte) PlayerSettingsValues.SETTING_SHUFFLE
+                    && !mAvrcpService.setShuffleMode(valuesRequest[i])) {
+                success = false;
+            }
+        }
+        return success;
+    }
+
+    /* Not supported by MediaController, we may want to return internationalized strings
+    void getPlayerSettingTextRequest(String bdaddr, byte[] settingsRequest) {
+    }
+
+    void getPlayerSettingValueTextRequest(String bdaddr, byte settingRequest,
+            byte[] valuesRequest) {
+    }
+    */
+
+    void sendPlayerSettings(String bdaddr, int repeatMode, int shuffleMode) {
+        byte[] settingsArray = new byte[2];
+        byte[] valuesArray = new byte[2];
+        settingsArray[0] = (byte) PlayerSettingsValues.SETTING_REPEAT;
+        settingsArray[1] = (byte) PlayerSettingsValues.SETTING_SHUFFLE;
+        valuesArray[0] = (byte) repeatMode;
+        valuesArray[1] = (byte) shuffleMode;
+        sendPlayerSettingsNative(bdaddr, settingsArray, valuesArray);
+    }
+
+
     private static native void classInitNative();
     private native void initNative();
     private native void registerBipServerNative(int l2capPsm);
@@ -277,6 +377,15 @@ public class AvrcpNativeInterface {
     private native boolean disconnectDeviceNative(String bdaddr);
     private native void sendVolumeChangedNative(String bdaddr, int volume);
     private native void setBipClientStatusNative(String bdaddr, boolean connected);
+    private native void listPlayerSettingsRspNative(String bdaddr, byte[] settings);
+    private native void listPlayerSettingValuesRspNative(
+            String bdaddr, byte setting, byte[] values);
+    private native void getPlayerSettingsRspNative(String bdaddr, byte[] settings, byte[] values);
+    //private native void getPlayerSettingsTextRspNative(
+    //        String bdaddr, byte[] settings, String[] text);
+    //private native void getPlayerValuesTextRspNative(
+    //        String bdaddr, byte setting, byte[] values, String[] text);
+    private native void sendPlayerSettingsNative(String bdaddr, byte[] settings, byte[] values);
 
     private static void d(String msg) {
         if (DEBUG) {
