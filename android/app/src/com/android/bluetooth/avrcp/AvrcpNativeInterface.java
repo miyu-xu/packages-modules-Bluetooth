@@ -261,6 +261,105 @@ public class AvrcpNativeInterface {
         mAvrcpService.setVolume(volume);
     }
 
+    void getListPlayerAppAttrRsp(byte attr, byte[] attrIds, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        getListPlayerAppAttrRspNative(attr, attrIds, device.getAddress());
+    }
+
+    void getPlayerAppValueRsp(byte numberAttr, byte[] values, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        getPlayerAppValueRspNative(numberAttr, values, device.getAddress());
+    }
+
+    void sendCurrentPlayerValueRsp(byte numberAttr, byte[] attr, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        sendCurrentPlayerValueRspNative(numberAttr, attr, device.getAddress());
+    }
+
+    void sendSetPlayerAppRsp(int attrStatus, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        sendSetPlayerAppRspNative(attrStatus, device.getAddress());
+    }
+
+    void sendSettingsTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                 BluetoothDevice device, AttributionSource attributionSource) {
+        sendSettingsTextRspNative(numAttr, attr, length, text, device.getAddress());
+    }
+
+    void sendValueTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                BluetoothDevice device, AttributionSource attributionSource) {
+        sendValueTextRspNative(numAttr, attr, length, text, device.getAddress());
+    }
+
+    void registerNotificationPlayerAppRsp(int type, byte numberAttr, byte[] attr,
+                BluetoothDevice device, AttributionSource attributionSource) {
+        registerNotificationPlayerAppRspNative(type, numberAttr, attr, device.getAddress());
+    }
+
+    //PDU ID 0x11
+    private void onListPlayerAttributeRequest(byte[] address) {
+        if (mAvrcpService == null) {
+            Log.w(TAG, "onListPlayerAttributeRequest: AvrcpTargetService is null");
+            return;
+        }
+        BluetoothDevice device = mAdapterService.getDeviceFromByte(address);
+        mAvrcpService.onListPlayerAttributeRequest(device);
+    }
+
+    //PDU ID 0x12
+    private void onListPlayerAttributeValues(byte attr, byte[] address) {
+        if (mAvrcpService == null) {
+            Log.w(TAG, "onListPlayerAttributeValues: AvrcpTargetService is null");
+            return;
+        }
+        BluetoothDevice device = mAdapterService.getDeviceFromByte(address);
+        mAvrcpService.onListPlayerAttributeValues(attr, device);
+    }
+
+    //PDU ID 0x13
+    private void onGetPlayerAttributeValues(byte attr , int[] arr,
+            byte[] address) {
+        if (mAvrcpService == null) {
+            Log.w(TAG, "onGetPlayerAttributeValues: AvrcpTargetService is null");
+            return;
+        }
+        BluetoothDevice device = mAdapterService.getDeviceFromByte(address);
+        mAvrcpService.onGetPlayerAttributeValues(attr, arr, device);
+    }
+
+    //PDU 0x14
+    private void setPlayerAppSetting(byte num, byte[] attr_id, byte[] attr_val,
+            byte[] address) {
+        if (mAvrcpService == null) {
+            Log.w(TAG, "setPlayerAppSetting: AvrcpTargetService is null");
+            return;
+        }
+        BluetoothDevice device = mAdapterService.getDeviceFromByte(address);
+        mAvrcpService.setPlayerAppSetting(num, attr_id, attr_val, device);
+    }
+
+    //PDU 0x15
+    private void getPlayerAttributeText(byte attr , byte[] attrIds,
+            byte[] address) {
+        if (mAvrcpService == null) {
+            Log.w(TAG, "getPlayerAttributeText: AvrcpTargetService is null");
+            return;
+        }
+        BluetoothDevice device = mAdapterService.getDeviceFromByte(address);
+        mAvrcpService.getPlayerAttributeText(attr, attrIds, device);
+    }
+
+    //PDU 0x16
+    private void getPlayerValueText(byte attr_id , byte num_value , byte [] value,
+            byte[] address) {
+        if (mAvrcpService == null) {
+            Log.w(TAG, "getPlayerValueText: AvrcpTargetService is null");
+            return;
+        }
+        BluetoothDevice device = mAdapterService.getDeviceFromByte(address);
+        mAvrcpService.getPlayerValueText(attr_id, num_value, value, device);
+    }
+
     private static native void classInitNative();
     private native void initNative();
     private native void registerBipServerNative(int l2capPsm);
@@ -277,6 +376,20 @@ public class AvrcpNativeInterface {
     private native boolean disconnectDeviceNative(String bdaddr);
     private native void sendVolumeChangedNative(String bdaddr, int volume);
     private native void setBipClientStatusNative(String bdaddr, boolean connected);
+
+    private native void getListPlayerAppAttrRspNative(byte attr,
+            byte[] attrIds, String bdaddr);
+    private native void getPlayerAppValueRspNative(byte numberAttr,
+            byte[] values, String bdaddr);
+    private native void sendCurrentPlayerValueRspNative(byte numberAttr,
+            byte[] attr, String bdaddr);
+    private native void sendSetPlayerAppRspNative(int attrStatus, String bdaddr);
+    private native void sendSettingsTextRspNative(int numAttr, byte[] attr,
+        int length, String[] text, String bdaddr);
+    private native void sendValueTextRspNative(int numAttr, byte[] attr,
+        int length, String[] text, String bdaddr);
+    private native void registerNotificationPlayerAppRspNative(int type,
+        byte numberAttr, byte[] attr, String bdaddr);
 
     private static void d(String msg) {
         if (DEBUG) {

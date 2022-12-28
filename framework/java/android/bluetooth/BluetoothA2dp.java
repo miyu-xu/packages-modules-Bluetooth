@@ -1155,6 +1155,101 @@ public final class BluetoothA2dp implements BluetoothProfile {
         return defaultValue;
     }
 
+
+    /**
+     * Registers a media player callback to receive AVRCP player settings updates.
+     *
+     * <p>Adds the player to the list of media player registered to receive AVRCP Player Settings
+     * updates. See {@link BluetoothAvrcpPlayerSettings}.
+     *
+     * <p>Please not that only the active player will receive updates.
+     *
+     * @param device the device updates should be listened from, usually the active A2DP device
+     * @param settings a list of features and values of the media player
+     * @param callback an implmentation of the callbacks to be called for updates
+     */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public void registerPlayerSettingsCallback(@NonNull BluetoothDevice device,
+            @NonNull AvrcpPlayerSettings settings,
+            @NonNull PlayerSettingsCallback callback) {
+        if (DBG) log("registerPlayerSettingsCallback(" + device + ")");
+        verifyDeviceNotNull(device, "registerPlayerSettingsCallback");
+        if (settings == null || settings.isEmpty()) {
+            Log.e(TAG, "registerPlayerSettingsCallback: Can't register callback to"
+            + "a player with no settings");
+            return;
+        }
+        if (callback == null) {
+            Log.e(TAG, "registerPlayerSettingsCallback: Callback should not be null");
+        }
+        final IBluetoothA2dp service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled() && isValidDevice(device)) {
+            try {
+                service.registerPlayerSettingsCallback(device, settings, callback,
+                        mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Unregisters a media player callback.
+     *
+     * @param callback the callback used in {@link #registerPlayerSettingsCallback}
+     */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public void unregisterPlayerSettingsCallback(@NonNull PlayerSettingsCallback callback) {
+        if (DBG) log("unregisterPlayerSettingsCallback");
+        if (callback == null) {
+            Log.e(TAG, "unregisterPlayerSettingsCallback: Callback should not be null");
+        }
+        final IBluetoothA2dp service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                service.unregisterPlayerSettingsCallback(callback, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Sends media player updates to the AVRCP device.
+     *
+     * <p> Only the currently active media player updates will be sent.
+     *
+     * @param device the device updates should be sent to, usually the active A2DP device
+     * @param settings the list of settings to update
+     */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public void updatePlayerSettings(@NonNull BluetoothDevice device,
+            @NonNull AvrcpPlayerSettings settings) {
+        if (DBG) log("updatePlayerSettings(" + device + ")");
+        verifyDeviceNotNull(device, "updatePlayerSettings");
+        if (settings == null || settings.isEmpty()) {
+            Log.e(TAG, "updatePlayerSettings: Can't update with no settings");
+            return;
+        }
+        final IBluetoothA2dp service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled() && isValidDevice(device)) {
+            try {
+                service.updatePlayerSettings(device, settings, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
     /**
      * Helper for converting a state to a string.
      *

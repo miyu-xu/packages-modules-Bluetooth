@@ -463,6 +463,234 @@ public class AvrcpTargetService extends ProfileService {
         setA2dpActiveDevice(device);
     }
 
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void getListPlayerAppAttrRsp(byte attr, byte[] attrIds, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService getListPlayerAppAttrRsp")) {
+            return;
+        }
+        mNativeInterface.getListPlayerAppAttrRsp(attr, attrIds, device);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void getPlayerAppValueRsp(byte numberAttr, byte[] values, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService getPlayerAppValueRsp")) {
+            return;
+        }
+        mNativeInterface.getPlayerAppValueRsp(numberAttr, values, device);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void sendCurrentPlayerValueRsp(byte numberAttr, byte[] attr, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService sendCurrentPlayerValueRsp")) {
+            return;
+        }
+        mNativeInterface.sendCurrentPlayerValueRsp(numberAttr, attr, device);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void sendSetPlayerAppRsp(int attrStatus, BluetoothDevice device,
+                AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService sendSetPlayerAppRsp")) {
+            return;
+        }
+        mNativeInterface.sendSetPlayerAppRsp(attrStatus, device);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void sendSettingsTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                 BluetoothDevice device, AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService sendSettingsTextRsp")) {
+            return;
+        }
+        mNativeInterface.sendSettingsTextRsp(numAttr, attr, length, text, device);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void sendValueTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                BluetoothDevice device, AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService sendValueTextRsp")) {
+            return;
+        }
+        mNativeInterface.sendValueTextRsp(numAttr, attr, length, text, device);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void registerNotificationPlayerAppRsp(int type, byte numberAttr, byte[] attr,
+                BluetoothDevice device, AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService registerNotificationPlayerAppRsp")) {
+            return;
+        }
+        mNativeInterface.registerNotificationPlayerAppRsp(type, numberAttr, attr, device);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    BluetoothDevice getPlayerSettingCmdPendingDevice(Integer reponse,
+                AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "AvrcpTargetService getPlayerSettingCmdPendingDevice")) {
+            return null;
+        }
+        return null;
+    }
+
+    //PDU ID 0x11
+    private void onListPlayerAttributeRequest(BluetoothDevice device) {
+        if (DEBUG)
+            Log.v(TAG, "onListPlayerAttributeRequest");
+        int deviceIndex =
+                getIndexForDevice(mAdapter.getRemoteDevice(
+                        Utils.getAddressStringFromByte(address)));
+        if (deviceIndex == INVALID_DEVICE_INDEX) {
+            Log.e(TAG,"invalid index for device");
+            return;
+        }
+        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_ATTRIBUTE_IDS,
+                deviceIndex, true);
+        mAvrcpPlayerAppSettings.onListPlayerAttributeRequest(address);
+        SendPlayerSettingMsg(AvrcpConstants.GET_ATTRIBUTE_IDS, address);
+    }
+
+    //PDU ID 0x12
+    private void onListPlayerAttributeValues(byte attr, BluetoothDevice device) {
+        if (DEBUG)Log.v(TAG, "onListPlayerAttributeValues");
+        int deviceIndex =
+                getIndexForDevice(mAdapter.getRemoteDevice(
+                Utils.getAddressStringFromByte(address)));
+        if (deviceIndex == INVALID_DEVICE_INDEX) {
+            Log.e(TAG,"invalid index for device");
+            return;
+        }
+        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_VALUE_IDS, deviceIndex, true);
+        mAvrcpPlayerAppSettings.onListPlayerAttributeValues(attr, address);
+        SendPlayerSettingMsg(AvrcpConstants.GET_VALUE_IDS, address);
+    }
+
+    //PDU ID 0x13
+    private void onGetPlayerAttributeValues(byte attr , int[] arr,
+            BluetoothDevice device) {
+        if (DEBUG)
+            Log.v(TAG, "onGetPlayerAttributeValues: num of attrib " + attr );
+        int deviceIndex =
+                getIndexForDevice(mAdapter.getRemoteDevice(
+                Utils.getAddressStringFromByte(address)));
+        if (deviceIndex == INVALID_DEVICE_INDEX) {
+            Log.e(TAG,"invalid index for device");
+            return;
+        }
+        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_ATTRIBUTE_VALUES,
+                deviceIndex, true);
+        mAvrcpPlayerAppSettings.onGetPlayerAttributeValues(attr, arr, address);
+        SendPlayerSettingMsg(AvrcpConstants.GET_ATTRIBUTE_VALUES, address);
+    }
+
+    //PDU 0x14
+    private void setPlayerAppSetting(byte num, byte[] attr_id, byte[] attr_val,
+            BluetoothDevice device) {
+        if (DEBUG)
+            Log.v(TAG, "setPlayerAppSetting: number of attributes" + num );
+        int deviceIndex =
+                getIndexForDevice(mAdapter.getRemoteDevice(
+                Utils.getAddressStringFromByte(address)));
+        if (deviceIndex == INVALID_DEVICE_INDEX) {
+            Log.e(TAG,"invalid index for device");
+            return;
+        }
+        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.SET_ATTRIBUTE_VALUES,
+                deviceIndex, true);
+        mAvrcpPlayerAppSettings.setPlayerAppSetting(num, attr_id, attr_val, address);
+        SendPlayerSettingMsg(AvrcpConstants.SET_ATTRIBUTE_VALUES, address);
+    }
+
+    //PDU 0x15
+    private void getPlayerAttributeText(byte num , byte[] attrIds,
+            BluetoothDevice device) {
+        if(DEBUG) Log.d(TAG, "getplayerattribute_text " + attr +" attrIDsNum "
+                                                        + attrIds.length);
+        int deviceIndex =
+                getIndexForDevice(mAdapter.getRemoteDevice(
+                Utils.getAddressStringFromByte(address)));
+        if (deviceIndex == INVALID_DEVICE_INDEX) {
+            Log.e(TAG,"invalid index for device");
+            return;
+        }
+        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_ATTRIBUTE_TEXT,
+                deviceIndex, true);
+        mAvrcpPlayerAppSettings.getplayerattribute_text(num, attrIds, address);
+        SendPlayerSettingMsg(AvrcpConstants.GET_ATTRIBUTE_TEXT, address);
+    }
+
+    //PDU 0x16
+    private void getPlayerValueText(byte attr_id , byte num_value , byte[] value,
+            BluetoothDevice device) {
+        int deviceIndex =
+                getIndexForDevice(mAdapter.getRemoteDevice(
+                Utils.getAddressStringFromByte(address)));
+        if (deviceIndex == INVALID_DEVICE_INDEX) {
+            Log.e(TAG,"invalid index for device");
+            return;
+        }
+        CreateMusicSettingsAppCmdLookupOrUpdate(AvrcpConstants.GET_VALUE_TEXT, deviceIndex, true);
+        mAvrcpPlayerAppSettings.getplayervalue_text(attr_id, num_value, value, address);
+        SendPlayerSettingMsg(AvrcpConstants.GET_VALUE_TEXT, address);
+    }
+
+    private void SendPlayerSettingMsg(Integer cmd, byte[] address) {
+        Message msg = mHandler.obtainMessage();
+        msg.what = MESSAGE_PLAYERSETTINGS_TIMEOUT;
+        msg.arg1 = cmd;
+        msg.arg2 = 0;
+        msg.obj = Utils.getAddressStringFromByte(address);
+        mHandler.sendMessageDelayed(msg, 500);
+    }
+
+    private void CreateMusicSettingsAppCmdLookupOrUpdate(Integer cmd,
+            int deviceIndex, boolean entry_new) {
+        if (deviceIndex == INVALID_DEVICE_INDEX) {
+           Log.e(TAG,"invalid index for device");
+           return;
+        }
+        Log.v(TAG,"Cmd = " + cmd + "on index = " + deviceIndex + "new entry" + entry_new);
+
+        if (entry_new) {
+            if (deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.
+                    containsKey(cmd)) {
+                int cmdCount =
+                        deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.get(cmd);
+                Log.v(TAG,"cmdCount = " + cmdCount + "for command type = " + cmd);
+                deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.put
+                        (cmd, cmdCount + 1);
+            } else {
+                deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.put
+                        (cmd, 1);
+            }
+        } else {
+            if (deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.
+                    containsKey(cmd)) {
+                int PendingCmds =
+                        deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.get(cmd);
+                Log.v(TAG,"PendingCmds = " + PendingCmds + "for resoponse type = " + cmd);
+                if (PendingCmds > 1) {
+                    deviceFeatures[deviceIndex].mMusicAppCmdResponsePending
+                            .put(cmd, PendingCmds - 1);
+                } else if (PendingCmds == 1) {
+                    deviceFeatures[deviceIndex].mMusicAppCmdResponsePending.remove(cmd);
+                } else {
+                    Log.e(TAG,"Invalid Player Setting Cmd count entry in lookup");
+                }
+            }
+        }
+    }
+
     /**
      * Dump debugging information to the string builder
      */
@@ -516,5 +744,155 @@ public class AvrcpTargetService extends ProfileService {
 
             mService.sendVolumeChanged(volume);
         }
+
+        @Override
+        public void getListPlayerAppAttrRsp(byte attr, byte[] attrIds, BluetoothDevice device,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                getListPlayerAppAttrRsp(attr, attrIds, device, attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void getListPlayerAppAttrRsp(byte attr, byte[] attrIds, BluetoothDevice device,
+                AttributionSource attributionSource) {
+            if (mService == null) {
+                return;
+            }
+            mService.getListPlayerAppAttrRsp(attr, attrIds, device, attributionSource);
+        }
+
+        @Override
+        public void getPlayerAppValueRsp(byte numberAttr, byte[] values, BluetoothDevice device,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                getPlayerAppValueRsp(numberAttr, values, device, attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void getPlayerAppValueRsp(byte numberAttr, byte[] values, BluetoothDevice device,
+                AttributionSource attributionSource) {
+            if (mService == null) {
+                return;
+            }
+            mService.getPlayerAppValueRsp(numberAttr, values, device, attributionSource);
+        }
+
+        @Override
+        public void sendCurrentPlayerValueRsp(byte numberAttr, byte[] attr, BluetoothDevice device,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                sendCurrentPlayerValueRsp(numberAttr, attr, device, attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void sendCurrentPlayerValueRsp(byte numberAttr, byte[]attr, BluetoothDevice device,
+                AttributionSource attributionSource) {
+            if (mService == null) {
+                return;
+            }
+            mService.sendCurrentPlayerValueRsp(numberAttr, attr, device, attributionSource);
+        }
+
+        @Override
+        public void sendSetPlayerAppRsp(int attrStatus, BluetoothDevice device,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                sendSetPlayerAppRsp(attrStatus, device, attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void sendSetPlayerAppRsp(int attrStatus, BluetoothDevice device,
+                AttributionSource attributionSource) {
+            if (mService == null) {
+                return;
+            }
+            mService.sendSetPlayerAppRsp(attrStatus, device, attributionSource);
+        }
+
+        @Override
+        public void sendSettingsTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                 BluetoothDevice device, AttributionSource attributionSource,
+                 SynchronousResultReceiver receiver) {
+            try {
+                sendSettingsTextRsp(numAttr, attr, length, device, attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void sendSettingsTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                 BluetoothDevice device, AttributionSource attributionSource) {
+            if (mService == null) {
+                return;
+            }
+            mService.sendSettingsTextRsp(numAttr, attr, length, device, attributionSource);
+        }
+
+        @Override
+        public void sendValueTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                BluetoothDevice device, AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            try {
+                sendValueTextRsp(numAttr, attr, length, text, device, attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void sendValueTextRsp(int numAttr, byte[] attr, int length, String[] text,
+                BluetoothDevice device, AttributionSource attributionSource) {
+            if (mService == null) {
+                return;
+            }
+            mService.sendValueTextRsp(numAttr, attr, length, text, device,
+                    attributionSource);
+        }
+
+        @Override
+        public void registerNotificationPlayerAppRsp(int type, byte numberAttr, byte[] attr,
+                BluetoothDevice device, AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            try {
+                registerNotificationPlayerAppRsp(type, numberAttr, attr, device,
+                        attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void registerNotificationPlayerAppRsp(int type, byte numberAttr, byte[] attr,
+                BluetoothDevice device, AttributionSource attributionSource) {
+            if (mService == null) {
+                return;
+            }
+            mService.registerNotificationPlayerAppRsp(type, numberAttr, attr, device,
+                    attributionSource);
+        }
+
+        @Override
+        public BluetoothDevice getPlayerSettingCmdPendingDevice(Integer reponse,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getPlayerSettingCmdPendingDevice(reponse, attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private BluetoothDevice getPlayerSettingCmdPendingDevice(Integer reponse,
+                AttributionSource attributionSource) {
+            if (mService == null) {
+                return null;
+            }
+            return mService.getPlayerSettingCmdPendingDevice(reponse, attributionSource);
+        }
+
     }
 }

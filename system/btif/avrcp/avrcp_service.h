@@ -103,6 +103,7 @@ class AvrcpService : public MediaCallbacks {
 
   MediaInterface* media_interface_ = nullptr;
   VolumeInterface* volume_interface_ = nullptr;
+  PlayerSettingsInterface* player_settings_interface_ = nullptr;
 
   ConnectionHandler* connection_handler_;
 };

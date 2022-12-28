@@ -90,4 +90,243 @@ public final class BluetoothAvrcp {
     public static final int PASSTHROUGH_ID_F5 = 0x75;    /* F5 */
     public static final int PASSTHROUGH_ID_VENDOR = 0x7E;    /* vendor unique */
     public static final int PASSTHROUGH_KEYPRESSED_RELEASE = 0x80;
+
+    public interface PlayerSettingsCallback {
+        /**
+         * Request for players to set attributes values.
+         */
+        public void onSetPlayerSettingsAttributes(Map<Integer, Integer> attributesValues,
+                BluetoothDevice device) {};
+        /**
+         * Players should return a list of values mapped to the given attributes.
+         */
+        public void onRequestPlayerAttributesValues(List<Integer> attributes,
+                BluetoothDevice device) {};
+    }
+
+    public final class AvrcpPlayerSettings implements Parcelable {
+        public static final String TAG = "AvrcpPlayerSettings";
+
+        /**
+         * Repeat setting.
+         */
+        public static final int SETTING_REPEAT = 0;
+
+        /**
+         * Shuffle setting.
+         */
+        public static final int SETTING_SHUFFLE = 1;
+
+        /** @hide */
+        @IntDef({SETTING_REPEAT, SETTING_SHUFFLE})
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface PlayerSetting {}
+
+        /**
+         * OFF state.
+         *
+         * Denotes a general OFF state. Applies to all settings.
+         */
+        public static final int STATE_OFF = 0;
+
+        /**
+         * Single track repeat.
+         *
+         * Applies only to {@link SETTING_REPEAT}.
+         */
+        public static final int STATE_SINGLE_TRACK = 1;
+
+        /**
+         * All track repeat/shuffle.
+         *
+         * Applies to {@link #SETTING_REPEAT}, {@link #SETTING_SHUFFLE}.
+         */
+        public static final int STATE_ALL_TRACK = 2;
+
+        /**
+         * Group repeat/shuffle.
+         *
+         * Applies to {@link #SETTING_REPEAT}, {@link #SETTING_SHUFFLE}.
+         */
+        public static final int STATE_GROUP = 3;
+
+        /** @hide */
+        @IntDef({STATE_OFF, STATE_SINGLE_TRACK, STATE_ALL_TRACK, STATE_GROUP})
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface PlayerSettingValue {}
+
+
+        private Map<Integer, Integer> mSettingsValue = new HashMap<Integer, Integer>();
+        private Map<Integer, String> mSettingsText = new HashMap<Integer, String>();
+
+        /** @hide */
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        /**
+         * Flattens the object to a parcel
+         *
+         * @param out The Parcel in which the object should be written
+         * @param flags Additional flags about how the object should be written
+         *
+         * @hide
+         */
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            out.writeInt(mSettingsValue.size());
+            for (int j : mSettingsValue.keySet()) {
+                out.writeInt(j);
+                out.writeInt(mSettingsValue.get(j));
+            }
+            out.writeInt(mSettingsText.size());
+            for (int k : mSettingsText.keySet()) {
+                out.writeInt(k);
+                out.writeString(mSettingsText.get(k));
+            }
+        }
+
+        public static final @NonNull Creator<AvrcpPlayerSettings> CREATOR = new Creator<>() {
+            public AvrcpPlayerSettings createFromParcel(Parcel in) {
+                return new AvrcpPlayerSettings(in);
+            }
+
+            public AvrcpPlayerSettings[] newArray(int size) {
+                return new AvrcpPlayerSettings[size];
+            }
+        };
+
+        private AvrcpPlayerSettings(Parcel in) {
+            int numSettingsValues = in.readInt();
+            for (int i = 0; i < numSettingsValues; i++) {
+                mSettingsValue.put(in.readInt(), in.readInt());
+            }
+            int numSettingsText = in.readInt();
+            for (int j = 0; j < numSettingsText; j++) {
+                mSettingsValue.put(in.readInt(), in.readString());
+            }
+        }
+
+        private AvrcpPlayerSettings(@NonNull Map<Integer, Integer> settingsValue,
+                Map<Integer, String> settingsText) {
+            mSettingsValue = settingsValue;
+            mSettingsText = settingsText;
+        }
+
+        /**
+         * @return true if the settings are not empty
+         */
+        public boolean isValid() {
+            return !mSettingsValue.isEmpty();
+        }
+
+        /**
+         * Ensures that the setting are valid.
+         *
+         * @return true if the settings are valid, false otherwise
+         */
+        public boolean isValidPlayerSetting(@PlayerSetting int setting) {
+            if (setting > SETTING_SHUFFLE || setting < SETTING_REPEAT) {
+                return false;
+            }
+            return true;
+        }
+
+        /**
+         * Ensures that the setting and value given are valid.
+         *
+         * @return true if the settings are valid, false otherwise
+         */
+        public boolean isValidPlayerSettingValue(@PlayerSetting int setting,
+                @PlayerSettingValue int value) {
+            switch (setting) {
+                case SETTING_SHUFFLE:
+                    if (value == STATE_OFF || value == STATE_ALL_TRACK || value == STATE_GROUP) {
+                        return true;
+                    }
+                    return false;
+                case SETTING_REPEAT:
+                    if (value == STATE_OFF || value == STATE_ALL_TRACK || value == STATE_GROUP
+                            || value == STATE_SINGLE_TRACK) {
+                        return true;
+                    }
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+        /**
+         * Returns the value of the given setting.
+         *
+         * @param setting the setting to get the value for
+         * @return the value of the setting or STATE_OFF if the setting is not found
+         */
+        public int getPlayerSettingValue(@PlayerSetting int setting) {
+            if (isValidPlayerSetting(setting) && mSettingsValue.contains(setting)) {
+                return mSettingsValue.get(setting);
+            }
+            return STATE_OFF;
+        }
+
+        /**
+         * Returns the text describing the given setting.
+         *
+         * @param setting the setting to get the text for
+         * @return the text of the setting or null if the setting is not found
+         */
+        public @Nullable String getPlayerSettingText(@PlayerSetting int setting) {
+            if (isValidPlayerSetting(setting) && mSettingsText.contains(setting)) {
+                return mSettingsText.get(setting);
+            }
+            return null;
+        }
+
+        public static final class Builder {
+            private Map<Integer, Integer> mSettingsValue = new HashMap();
+            private Map<Integer, String> mSettingsText = new HashMap();
+
+            /**
+             * Adds a new setting value pair.
+             *
+             * @param setting the setting to add
+             * @param value the value for this setting
+             * @return the same Builder instance
+             */
+            public @NonNull Builder addPlayerSettingValue(@PlayerSetting int setting,
+                    @PlayerSettingValue int value) {
+                if (isValidPlayerSettingValue(setting, value)) {
+                    mSettingsValue.add(setting, value);
+                }
+                return this;
+            }
+
+            /**
+             * Adds a new setting value pair.
+             *
+             * @param setting the setting to add
+             * @param value the value for this setting
+             * @param text a string representing this setting
+             * @return the same Builder instance
+             */
+            public @NonNull Builder addPlayerSettingText(@PlayerSetting int setting,
+                    @PlayerSettingValue int value, @NonNull String text) {
+                if (isValidPlayerSettingValue(setting, value)) {
+                    mSettingsValue.add(setting, value);
+                    mSettingsText.add(setting, text);
+                }
+                return this;
+            }
+
+            /**
+             * Build {@link AvrcpPlayerSettings}.
+             * @return new AvrcpPlayerSettings built
+             */
+            public @NonNull AvrcpPlayerSettings build() {
+                return new AvrcpPlayerSettings(mSettingsValue, mSettingsText);
+            }
+        }
+
+    }
 }
