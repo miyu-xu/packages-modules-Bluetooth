@@ -18,7 +18,7 @@ package com.android.bluetooth.avrcpcontroller;
 
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothAvrcpPlayerSettings;
+import android.bluetooth.BluetoothAvrcpControllerPlayerSettings;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothAvrcpController;
@@ -449,7 +449,7 @@ public class AvrcpControllerService extends ProfileService {
         }
 
         @Override
-        public void setPlayerApplicationSetting(BluetoothAvrcpPlayerSettings settings,
+        public void setPlayerApplicationSetting(BluetoothAvrcpControllerPlayerSettings settings,
                 AttributionSource source, SynchronousResultReceiver receiver) {
             try {
                 AvrcpControllerService service = getService(source);

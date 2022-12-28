@@ -1155,6 +1155,113 @@ public final class BluetoothA2dp implements BluetoothProfile {
         return defaultValue;
     }
 
+
+    /**
+     * Registers a media player callback to receive AVRCP player settings updates.
+     *
+     * <p>Adds the player to the list of media player registered to receive AVRCP Player Settings
+     * updates. See {@link AvrcpPlayerSettings}.
+     * <p> Only one callback can be registered per Player app, registering a new one will override
+     * the previously registered callback.
+     *
+     * <p>Please not that only the active player will receive updates.
+     *
+     * @param settings current list of settings and values of the media player
+     * @param callback an implementation of the callbacks to be called for updates
+     */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public void registerPlayerSettingsCallback(@NonNull BluetoothAvrcpPlayerSettings settings,
+            @NonNull @CallbackExecutor Executor executor,
+            @NonNull BluetoothAvrcpPlayerSettingsCallback callback) {
+        if (DBG) log("registerPlayerSettingsCallback(" + device + ")");
+        if (settings == null || settings.isEmpty()) {
+            Log.e(TAG, "registerPlayerSettingsCallback: Can't register callback to"
+                    + "a player with no settings");
+            return;
+        }
+        if (callback == null || executor == null) {
+            Log.e(TAG, "registerPlayerSettingsCallback: Callback and Executor should not be null");
+        }
+        final IBluetoothA2dp service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled() && isValidDevice(device)) {
+            final IBluetoothAvrcpPlayerSettingsCallback playerSettingsCallback =
+                    new IBluetoothAvrcpPlayerSettingsCallback.Stub() {
+                        @Override
+                        public void onPlayerSettingsRegistered() {
+                            executor.execute(() -> callback.onPlayerSettingsRegistered());
+                        }
+
+                        @Override
+                        public void onSetPlayerSettings(BluetoothAvrcpPlayerSettings settings) {
+                            executor.execute(() -> callback.onSetPlayerSettings(settings));
+                        }
+
+                        @Override
+                        public void onRequestPlayerSettings() {
+                            executor.execute(() -> callback.onRequestPlayerSettings());
+                        }
+                    };
+            try {
+                service.registerPlayerSettingsCallback(settings, executor,
+                        playerSettingsCallback, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Unregisters a media player callback.
+     */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public void unregisterPlayerSettingsCallback() {
+        if (DBG) log("unregisterPlayerSettingsCallback");
+        if (callback == null) {
+            Log.e(TAG, "unregisterPlayerSettingsCallback: Callback should not be null");
+        }
+        final IBluetoothA2dp service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                service.unregisterPlayerSettingsCallback(mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Sends media player updates to the AVRCP service.
+     *
+     * <p> Only the currently active media player settings will be sent to the remote device.
+     *
+     * @param settings the list of settings to update
+     */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public void updatePlayerSettings(@NonNull BluetoothAvrcpPlayerSettings settings) {
+        if (DBG) log("updatePlayerSettings(" + device + ")");
+        if (settings == null || settings.isEmpty()) {
+            Log.e(TAG, "updatePlayerSettings: Can't update with no settings");
+            return;
+        }
+        final IBluetoothA2dp service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled() && isValidDevice(device)) {
+            try {
+                service.updatePlayerSettings(settings, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
     /**
      * Helper for converting a state to a string.
      *
