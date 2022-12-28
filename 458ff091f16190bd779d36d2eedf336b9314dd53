@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6833faf_590221f7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/GattDebugUtilsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-28T05:15:49Z",
+      "side": 1,
+      "message": "Let\u0027s make this constants as @VisibleForTesting in GattDebugUtils and use them.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "458ff091f16190bd779d36d2eedf336b9314dd53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
