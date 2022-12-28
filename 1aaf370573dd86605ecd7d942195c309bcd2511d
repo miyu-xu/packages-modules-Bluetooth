@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "789fecd9_700f9826",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-12-28T18:19:19Z",
+      "side": 1,
+      "message": "Hi John, are you trying to add a new sysprop? Have you already made the changes in system/libsysprop and system/sepolicy?",
+      "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
