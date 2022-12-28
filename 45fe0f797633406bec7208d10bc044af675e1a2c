@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eb042e2_2abb7496",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-28T18:15:40Z",
+      "side": 0,
+      "message": "Why did the original code fail?",
+      "revId": "45fe0f797633406bec7208d10bc044af675e1a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

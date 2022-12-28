@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3862622_d5289e48",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-28T18:15:40Z",
+      "side": 1,
+      "message": "Is there any reason to place the lock statement here, instead of the beginning of the block?",
+      "revId": "c7576317252ccdc74180080f4d2544628942038f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d85d2d8_6e313438",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-28T18:15:40Z",
+      "side": 1,
+      "message": "What is the reason for this change?",
+      "revId": "c7576317252ccdc74180080f4d2544628942038f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95f376e_d3e572fc",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-28T18:15:40Z",
+      "side": 1,
+      "message": "Same here, the reason for the change?",
+      "revId": "c7576317252ccdc74180080f4d2544628942038f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
