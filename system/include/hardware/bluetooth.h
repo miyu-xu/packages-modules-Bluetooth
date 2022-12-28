@@ -684,7 +684,7 @@ typedef struct {
   int (*cancel_discovery)(void);
 
   /** Create Bluetooth Bonding */
-  int (*create_bond)(const RawAddress* bd_addr, int transport);
+  int (*create_bond)(const RawAddress* bd_addr, int addr_type, int transport);
 
   /** Create Bluetooth Bond using out of band data */
   int (*create_bond_out_of_band)(const RawAddress* bd_addr, int transport,

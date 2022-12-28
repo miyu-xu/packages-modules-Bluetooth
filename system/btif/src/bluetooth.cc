@@ -578,12 +578,13 @@ static int cancel_discovery(void) {
   return BT_STATUS_SUCCESS;
 }
 
-static int create_bond(const RawAddress* bd_addr, int transport) {
+static int create_bond(const RawAddress* bd_addr, int addr_type,
+                       int transport) {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
   if (btif_dm_pairing_is_busy()) return BT_STATUS_BUSY;
 
-  do_in_main_thread(FROM_HERE,
-                    base::BindOnce(btif_dm_create_bond, *bd_addr, transport));
+  do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_create_bond, *bd_addr,
+                                              addr_type, transport));
   return BT_STATUS_SUCCESS;
 }
 

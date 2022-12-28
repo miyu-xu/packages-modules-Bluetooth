@@ -113,7 +113,8 @@ public class BondStateMachineTest {
         deviceProperties2.mBondState = BOND_BONDED;
 
         doReturn(true).when(mAdapterService).removeBondNative(any(byte[].class));
-        doReturn(true).when(mAdapterService).createBondNative(any(byte[].class), anyInt());
+        doReturn(true).when(mAdapterService).createBondNative(any(byte[].class), anyInt(),
+                anyInt());
 
         // The removeBond() request for a bonded device should invoke the removeBondNative() call.
         Message removeBondMsg1 = mBondStateMachine.obtainMessage(BondStateMachine.REMOVE_BOND);
@@ -144,8 +145,10 @@ public class BondStateMachineTest {
         mBondStateMachine.sendMessage(createBondMsg2);
         TestUtils.waitForLooperToFinishScheduledTask(mBondStateMachine.getHandler().getLooper());
 
-        verify(mAdapterService, times(1)).createBondNative(eq(TEST_BT_ADDR_BYTES), anyInt());
-        verify(mAdapterService, times(1)).createBondNative(eq(TEST_BT_ADDR_BYTES_2), anyInt());
+        verify(mAdapterService, times(1)).createBondNative(eq(TEST_BT_ADDR_BYTES), anyInt(),
+                anyInt());
+        verify(mAdapterService, times(1)).createBondNative(eq(TEST_BT_ADDR_BYTES_2), anyInt(),
+                anyInt());
     }
 
     @Test
