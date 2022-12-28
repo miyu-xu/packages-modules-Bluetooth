@@ -42,6 +42,7 @@ import com.android.bluetooth.audio_util.MediaPlayerWrapper;
 import com.android.bluetooth.audio_util.Metadata;
 import com.android.bluetooth.audio_util.PlayStatus;
 import com.android.bluetooth.audio_util.PlayerInfo;
+import com.android.bluetooth.audio_util.PlayerSettingsManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
@@ -68,6 +69,7 @@ public class AvrcpTargetService extends ProfileService {
 
     private AvrcpVersion mAvrcpVersion;
     private MediaPlayerList mMediaPlayerList;
+    private PlayerSettingsManager mPlayerSettingsManager;
     private AudioManager mAudioManager;
     private AvrcpBroadcastReceiver mReceiver;
     private AvrcpNativeInterface mNativeInterface;
@@ -203,6 +205,8 @@ public class AvrcpTargetService extends ProfileService {
 
         mMediaPlayerList = new MediaPlayerList(Looper.myLooper(), this);
 
+        mPlayerSettingsManager = new PlayerSettingsManager(mMediaPlayerList, this);
+
         mNativeInterface = AvrcpNativeInterface.getInterface();
         mNativeInterface.init(AvrcpTargetService.this);
 
@@ -271,9 +275,11 @@ public class AvrcpTargetService extends ProfileService {
         unregisterReceiver(mReceiver);
 
         // We check the interfaces first since they only get set on User Unlocked
+        if (mPlayerSettingsManager != null) mPlayerSettingsManager.cleanup();
         if (mMediaPlayerList != null) mMediaPlayerList.cleanup();
         if (mNativeInterface != null) mNativeInterface.cleanup();
 
+        mPlayerSettingsManager = null;
         mMediaPlayerList = null;
         mNativeInterface = null;
         mAudioManager = null;
@@ -461,6 +467,45 @@ public class AvrcpTargetService extends ProfileService {
             Log.wtf(TAG, "setActiveDevice: could not find device " + device);
         }
         setA2dpActiveDevice(device);
+    }
+
+    /**
+     * Called from native to update current active player shuffle mode.
+     */
+    boolean setShuffleMode(int shuffleMode) {
+        return mPlayerSettingsManager.setPlayerShuffleMode(shuffleMode);
+    }
+
+    /**
+     * Called from native to update current active player repeat mode.
+     */
+    boolean setRepeatMode(int repeatMode) {
+        return mPlayerSettingsManager.setPlayerRepeatMode(repeatMode);
+    }
+
+    /**
+     * Called from native to get the current active player repeat mode.
+     */
+    int getRepeatMode() {
+        return mPlayerSettingsManager.getPlayerRepeatMode();
+    }
+
+    /**
+     * Called from native to get the current active player shuffle mode.
+     */
+    int getShuffleMode() {
+        return mPlayerSettingsManager.getPlayerShuffleMode();
+    }
+
+    /**
+     * Called from player callback to indicate new settings to remote device.
+     */
+    public void sendPlayerSettings(int shuffleMode, int repeatMode) {
+        String activeDeviceAddress = getA2dpActiveDevice().getAddress();
+        if (activeDeviceAddress == null) {
+            return;
+        }
+        mNativeInterface.sendPlayerSettings(activeDeviceAddress, repeatMode, shuffleMode);
     }
 
     /**
