@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "591d28fe_c7383986",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4028,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T22:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "587ca069_fb10d2f6",
+      "range": {
+        "startLine": 4028,
+        "startChar": 12,
+        "endLine": 4028,
+        "endChar": 20
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f95ac43_5ae14b4e",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-12-28T09:01:43Z",
       "side": 1,
       "message": "nit: I would use the prefix SUBRATE_REQUEST_MODE, but any way is fine",
+      "range": {
+        "startLine": 157,
+        "startChar": 28,
+        "endLine": 157,
+        "endChar": 52
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e28efcc_29c4b050",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T22:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f95ac43_5ae14b4e",
       "range": {
         "startLine": 157,
         "startChar": 28,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9ea5a98_45584944",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1954,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T22:40:10Z",
+      "side": 1,
+      "message": "I looked at other method and almost non have a match between aidl and interface.\nLet\u0027s fix them all in follow-up.\n\nThe `requestSubrateMode` make more sens if we look at above method `requestLeConnectionUpdate` or `requestConnectionPriority`",
+      "parentUuid": "f5d936ae_99d353e1",
+      "range": {
+        "startLine": 1954,
+        "startChar": 19,
+        "endLine": 1954,
+        "endChar": 37
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32ea4ad3_fa6652ef",
@@ -110,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0e13dbc_d411eaf6",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1960,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T22:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32ea4ad3_fa6652ef",
+      "range": {
+        "startLine": 1960,
+        "startChar": 24,
+        "endLine": 1960,
+        "endChar": 42
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4acfe7b8_1c1f76c3",
@@ -123,6 +219,30 @@
       "writtenOn": "2022-12-28T09:01:43Z",
       "side": 1,
       "message": "nit: declared as `leSubraterequest` in AIDL, would be better to have consistent naming",
+      "range": {
+        "startLine": 1988,
+        "startChar": 19,
+        "endLine": 1988,
+        "endChar": 36
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b0d1a15_33277391",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T22:40:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4acfe7b8_1c1f76c3",
       "range": {
         "startLine": 1988,
         "startChar": 19,
