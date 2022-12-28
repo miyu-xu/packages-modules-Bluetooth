@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e4d9d38_fe18d60f",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T00:08:42Z",
+      "side": 1,
+      "message": "No it\u0027s done on purpose.\nThe warning is there to prevent using ASSERT in normal test check.\nThis is not a normal test check as this must never fail.\n\nIf it fail we don\u0027t want to test more and want to abort the test",
+      "parentUuid": "3629ca6a_8d38ad3c",
+      "revId": "0abf20ec8b0b6914420407d71880945b6940f02c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f39a12f0_639c5739",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-27T23:46:26Z",
       "side": 1,
       "message": "I agree with the fix.\nBut another concern I have here is whether `idle_promise_` is possible to be nullptr when entering this block.",
+      "revId": "0abf20ec8b0b6914420407d71880945b6940f02c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "217a705b_8ebc29f7",
+        "filename": "system/gd/os/linux_generic/reactor.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T00:08:42Z",
+      "side": 1,
+      "message": "Short answer: Yes it is possible to be nullptr\n\nLong answer:\n`waiting_for_idle` is set to true only when receiving a event_fd after setting idle_promise_ to something different than null.\nThe only case for idle_promise to be null is if 2 threads ask for waitForIdle, But even that is tricky because they need to ask no exactly in the same time. If they do, the event will be increased to be So what if multiple people ask for waitForIdle in the exact same time and we received multiple time the event. and you will have the `Unknown control_fd` log.\n\nSo this reactor DOES not handle multi-threads client.\n\nAnd as you guessed this is not the goal of this CL to refactor the event loop",
+      "parentUuid": "f39a12f0_639c5739",
       "revId": "0abf20ec8b0b6914420407d71880945b6940f02c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
