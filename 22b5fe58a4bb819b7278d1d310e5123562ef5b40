@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cf7ea31_921eb6ea",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-28T19:15:02Z",
+      "side": 1,
+      "message": "What will happen if setReportDelay() is not called?",
+      "range": {
+        "startLine": 104,
+        "startChar": 54,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
