@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "642175f6_da298158",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hid/BluetoothHidDeviceBinderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-28T07:19:57Z",
+      "side": 1,
+      "message": "please fix",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 101
+      },
+      "revId": "408cdf5e92c1732379363b0d935d8491a6209334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
