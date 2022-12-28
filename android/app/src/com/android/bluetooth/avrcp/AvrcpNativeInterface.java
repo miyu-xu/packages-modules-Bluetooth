@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.avrcp;
 
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
@@ -27,6 +28,7 @@ import com.android.bluetooth.audio_util.PlayerInfo;
 import com.android.bluetooth.btservice.AdapterService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -261,6 +263,192 @@ public class AvrcpNativeInterface {
         mAvrcpService.setVolume(volume);
     }
 
+    /**
+     * Request from remote to list supported player settings.
+     */
+    void listPlayerSettingsRequest(String bdaddr) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> listPlayerSettingsResponse(bdaddr, settings));
+    }
+
+    void listPlayerSettingsResponse(String bdaddr, BluetoothAvrcpPlayerSettings settings) {
+        int[] settingsArray = new int[0];
+        if (settings != null) {
+            settingsArray = new int[settings.getPlayerSettingValues().size()];
+            int index = 0;
+            for (Map.Entry<Integer, Integer> setting :
+                    settings.getPlayerSettingValues().entrySet()) {
+                settingsArray[index] = setting.getKey();
+                index++;
+            }
+        }
+        listPlayerSettingsRspNative(bdaddr, settingsArray);
+    }
+
+    /**
+     * Request from remote to list supported values for player setting.
+     */
+    void listPlayerSettingValuesRequest(String bdaddr, int settingRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> listPlayerSettingValuesResponse(bdaddr, settingRequest, settings));
+    }
+
+    void listPlayerSettingValuesResponse(String bdaddr, int settingRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        int[] valuesArray = new int[0];
+        if (settings != null) {
+            switch (settingRequest) {
+                case BluetoothAvrcpPlayerSettings.SETTING_REPEAT:
+                    valuesArray = new int[] {
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_OFF,
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_SINGLE_TRACK,
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_ALL_TRACK,
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_GROUP
+                    };
+                    break;
+                case BluetoothAvrcpPlayerSettings.SETTING_SHUFFLE:
+                    valuesArray = new int[] {
+                        BluetoothAvrcpPlayerSettings.STATE_SHUFFLE_OFF,
+                        BluetoothAvrcpPlayerSettings.STATE_SHUFFLE_ALL_TRACK,
+                        BluetoothAvrcpPlayerSettings.STATE_SHUFFLE_GROUP
+                    };
+                    break;
+                default:
+                    valuesArray = new int[0];
+
+            }
+        }
+        listPlayerSettingValuesRspNative(bdaddr, settingRequest, valuesArray);
+    }
+
+    /**
+     * Request from remote current values for player settings.
+     */
+    void getCurrentPlayerSettingValuesRequest(String bdaddr, List<Integer> settingsRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getCurrentPlayerSettingValuesResponse(
+                        bdaddr, settingsRequest, settings));
+    }
+
+    void getCurrentPlayerSettingValuesResponse(String bdaddr, List<Integer> settingsRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        int[] settingsArray = new int[0];
+        int[] valuesArray = new int[0];
+        if (settings != null) {
+            settingsArray = new int[settings.getPlayerSettingValues().size()];
+            valuesArray = new int[settings.getPlayerSettingValues().size()];
+            int index = 0;
+            for (Map.Entry<Integer, Integer> setting :
+                    settings.getPlayerSettingValues().entrySet()) {
+                settingsArray[index] = setting.getKey();
+                valuesArray[index] = setting.getValue();
+                index++;
+            }
+        }
+        getPlayerSettingsRspNative(bdaddr, settingsArray, valuesArray);
+    }
+
+    /**
+     * Request from remote to set current values for player settings.
+     */
+    boolean setPlayerSettingsRequest(String bdaddr, List<Integer> settingsRequest,
+            List<Integer> valuesRequest) {
+        if (settingsRequest.size() != valuesRequest.size()) {
+            return false;
+        }
+        BluetoothAvrcpPlayerSettings.Builder builder = new BluetoothAvrcpPlayerSettings.Builder();
+        for (int i = 0; i < settingsRequest.size(); i++) {
+            try {
+                builder.addPlayerSettingValue(settingsRequest.get(i), valuesRequest.get(i));
+            } catch (IllegalArgumentException e) {
+                Log.w(TAG, "setPlayerAppSettingsRequest: " + e);
+            }
+        }
+
+        try {
+            return mAvrcpService.setPlayerSettings(builder.build());
+            //setPlayerAppSettingsResponseNative() ?
+        } catch (IllegalStateException e) {
+            Log.e(TAG, "setPlayerAppSettingsRequest: " + e);
+            return false;
+        }
+    }
+
+    /**
+     * Request from remote to get player setting as text.
+     */
+    void getPlayerSettingTextRequest(String bdaddr, List<Integer> settingsRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getPlayerSettingTextResponse(bdaddr, settingsRequest, settings));
+    }
+
+    void getPlayerSettingTextResponse(String bdaddr, List<Integer> settingsRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        int[] settingsArray = new int[0];
+        String[] textArray = new String[0];
+        if (settings != null) {
+            settingsArray = new int[settings.getPlayerSettingTexts().size()];
+            textArray = new String[settings.getPlayerSettingTexts().size()];
+            int index = 0;
+            for (Map.Entry<Integer, String> setting :
+                    settings.getPlayerSettingTexts().entrySet()) {
+                settingsArray[index] = setting.getKey();
+                textArray[index] = setting.getValue();
+                index++;
+            }
+        }
+        getPlayerSettingsTextRspNative(bdaddr, settingsArray, textArray);
+    }
+
+    /**
+     * Request from remote to get player setting value as text.
+     */
+    void getPlayerSettingValueTextRequest(String bdaddr, int settingRequest,
+            List<Integer> attributesRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getPlayerSettingValueTextResponse(bdaddr, settingRequest,
+                        attributesRequest, settings));
+    }
+
+    void getPlayerSettingValueTextResponse(String bdaddr, int settingRequest,
+            List<Integer> attributesRequest, BluetoothAvrcpPlayerSettings settings) {
+        int[] valuesArray = new int[0];
+        String[] textArray = new String[0];
+        if (settings != null) {
+            valuesArray = new int[settings.getPlayerValueTexts().size()];
+            textArray = new String[settings.getPlayerValueTexts().size()];
+            int index = 0;
+            for (Map.Entry<Integer, String> value :
+                    settings.getPlayerValueTexts().entrySet()) {
+                if (BluetoothAvrcpPlayerSettings.isValidPlayerSettingValue(
+                        settingRequest, value.getKey())) {
+                    valuesArray[index] = value.getKey();
+                    textArray[index] = value.getValue();
+                    index++;
+                }
+            }
+        }
+        getPlayerValuesTestRspNative(bdaddr, settingRequest, valuesArray, textArray);
+    }
+
+    void sendPlayerSettings(String bdaddr, BluetoothAvrcpPlayerSettings settings) {
+        int[] settingsArray = new int[0];
+        int[] valuesArray = new int[0];
+        if (settings != null) {
+            settingsArray = new int[settings.getPlayerSettingValues().size()];
+            valuesArray = new int[settings.getPlayerSettingValues().size()];
+            int index = 0;
+            for (Map.Entry<Integer, Integer> setting :
+                    settings.getPlayerSettingValues().entrySet()) {
+                settingsArray[index] = setting.getKey();
+                valuesArray[index] = setting.getValue();
+                index++;
+            }
+        }
+        sendPlayerSettingsNative(bdaddr, settingsArray, valuesArray);
+    }
+
+
     private static native void classInitNative();
     private native void initNative();
     private native void registerBipServerNative(int l2capPsm);
@@ -277,6 +465,14 @@ public class AvrcpNativeInterface {
     private native boolean disconnectDeviceNative(String bdaddr);
     private native void sendVolumeChangedNative(String bdaddr, int volume);
     private native void setBipClientStatusNative(String bdaddr, boolean connected);
+    private native void listPlayerSettingsRspNative(String bdaddr, int[] settings);
+    private native void listPlayerSettingValuesRspNative(String bdaddr, int setting, int[] values);
+    private native void getPlayerSettingsRspNative(String bdaddr, int[] settings, int[] values);
+    private native void getPlayerSettingsTextRspNative(
+            String bdaddr, int[] settings, String[] text);
+    private native void getPlayerValuesTestRspNative(
+            String bdaddr, int setting, int[] values, String[] text);
+    private native void sendPlayerSettingsNative(String bdaddr, int[] settings, int[] values);
 
     private static void d(String msg) {
         if (DEBUG) {

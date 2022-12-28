@@ -8,7 +8,10 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getConnectionState(android.bluetooth.BluetoothDevice);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public java.util.List<android.bluetooth.BluetoothDevice> getDevicesMatchingConnectionStates(int[]);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean isA2dpPlaying(android.bluetooth.BluetoothDevice);
+    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public void registerPlayerSettingsCallback(@NonNull android.bluetooth.BluetoothAvrcpPlayerSettings, @NonNull java.util.concurrent.Executor, @NonNull android.bluetooth.BluetoothAvrcpPlayerSettingsCallback);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public void setCodecConfigPreference(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.bluetooth.BluetoothCodecConfig);
+    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public void unregisterPlayerSettingsCallback();
+    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public void updatePlayerSettings(@NonNull android.bluetooth.BluetoothAvrcpPlayerSettings);
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public static final String ACTION_CODEC_CONFIG_CHANGED = "android.bluetooth.a2dp.profile.action.CODEC_CONFIG_CHANGED";
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public static final String ACTION_CONNECTION_STATE_CHANGED = "android.bluetooth.a2dp.profile.action.CONNECTION_STATE_CHANGED";
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public static final String ACTION_PLAYING_STATE_CHANGED = "android.bluetooth.a2dp.profile.action.PLAYING_STATE_CHANGED";
@@ -321,6 +324,50 @@ package android.bluetooth {
     field public static final int ZER01_TV = 152; // 0x98
     field public static final int ZOMM = 116; // 0x74
     field public static final int ZSCAN_SOFTWARE = 141; // 0x8d
+  }
+
+  public final class BluetoothAvrcpPlayerSettings implements android.os.Parcelable {
+    method public int describeContents();
+    method @Nullable public String getPlayerSettingText(int);
+    method @NonNull public java.util.Map<java.lang.Integer,java.lang.String> getPlayerSettingTexts();
+    method public int getPlayerSettingValue(int);
+    method @NonNull public java.util.Map<java.lang.Integer,java.lang.Integer> getPlayerSettingValues();
+    method @Nullable public String getPlayerValueText(int);
+    method @NonNull public java.util.Map<java.lang.Integer,java.lang.String> getPlayerValueTexts();
+    method @NonNull public static java.util.List<java.lang.Integer> getSettingPossibleValues(int);
+    method public boolean isPlayerSettingSet(int);
+    method public boolean isValid();
+    method public static boolean isValidPlayerSetting(int);
+    method public static boolean isValidPlayerSettingValue(int, int);
+    method public static boolean isValidPlayerValue(int);
+    method public void writeToParcel(android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothAvrcpPlayerSettings> CREATOR;
+    field public static final int SETTING_REPEAT = 2; // 0x2
+    field public static final int SETTING_SHUFFLE = 3; // 0x3
+    field public static final int STATE_DEFAULT_OFF = 1; // 0x1
+    field public static final int STATE_REPEAT_ALL_TRACK = 3; // 0x3
+    field public static final int STATE_REPEAT_GROUP = 4; // 0x4
+    field public static final int STATE_REPEAT_OFF = 1; // 0x1
+    field public static final int STATE_REPEAT_SINGLE_TRACK = 2; // 0x2
+    field public static final int STATE_SHUFFLE_ALL_TRACK = 2; // 0x2
+    field public static final int STATE_SHUFFLE_GROUP = 3; // 0x3
+    field public static final int STATE_SHUFFLE_OFF = 1; // 0x1
+    field public static final String TAG = "BluetoothAvrcpPlayerSettings";
+  }
+
+  public static final class BluetoothAvrcpPlayerSettings.Builder {
+    ctor public BluetoothAvrcpPlayerSettings.Builder();
+    ctor public BluetoothAvrcpPlayerSettings.Builder(@NonNull android.bluetooth.BluetoothAvrcpPlayerSettings);
+    method @NonNull public android.bluetooth.BluetoothAvrcpPlayerSettings.Builder addPlayerSettingText(int, @NonNull String);
+    method @NonNull public android.bluetooth.BluetoothAvrcpPlayerSettings.Builder addPlayerSettingValue(int, int);
+    method @NonNull public android.bluetooth.BluetoothAvrcpPlayerSettings.Builder addPlayerValueText(int, @NonNull String);
+    method @NonNull public android.bluetooth.BluetoothAvrcpPlayerSettings build();
+  }
+
+  public interface BluetoothAvrcpPlayerSettingsCallback {
+    method public void onPlayerSettingsRegistered();
+    method public void onRequestPlayerSettings();
+    method public void onSetPlayerSettings(@NonNull android.bluetooth.BluetoothAvrcpPlayerSettings);
   }
 
   public final class BluetoothClass implements android.os.Parcelable {
