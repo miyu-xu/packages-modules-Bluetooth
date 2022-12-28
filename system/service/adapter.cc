@@ -382,7 +382,7 @@ class AdapterImpl : public Adapter, public hal::BluetoothInterface::Observer {
     }
 
     int status = hal::BluetoothInterface::Get()->GetHALInterface()->create_bond(
-        &addr, transport);
+        &addr, 0, transport);
     if (status != BT_STATUS_SUCCESS) {
       LOG(ERROR) << "Failed to create bond - status: "
                  << BtStatusText((const bt_status_t)status);
