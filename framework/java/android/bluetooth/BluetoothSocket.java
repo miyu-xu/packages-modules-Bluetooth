@@ -85,7 +85,7 @@ import java.util.UUID;
  */
 public final class BluetoothSocket implements Closeable {
     private static final String TAG = "BluetoothSocket";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
+    private static final boolean DBG = true;
     private static final boolean VDBG = Log.isLoggable(TAG, Log.VERBOSE);
 
     /** @hide */
@@ -285,7 +285,7 @@ public final class BluetoothSocket implements Closeable {
         BluetoothSocket as = new BluetoothSocket(this);
         as.mSocketState = SocketState.CONNECTED;
         FileDescriptor[] fds = mSocket.getAncillaryFileDescriptors();
-        if (DBG) Log.d(TAG, "socket fd passed by stack fds: " + Arrays.toString(fds));
+        if (DBG) Log.d(TAG, "acceptSocket: socket fd passed by stack fds:" + Arrays.toString(fds));
         if (fds == null || fds.length != 1) {
             Log.e(TAG, "socket fd passed from stack failed, fds: " + Arrays.toString(fds));
             as.close();
@@ -450,6 +450,7 @@ public final class BluetoothSocket implements Closeable {
                     throw new IOException("bt socket closed");
                 }
                 mSocketState = SocketState.CONNECTED;
+                if (DBG) Log.d(TAG, "connect(), socket connected");
             }
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
@@ -532,12 +533,12 @@ public final class BluetoothSocket implements Closeable {
     }
 
     /*package*/ BluetoothSocket accept(int timeout) throws IOException {
+        Log.d(TAG, "accept(), timeout (ms):" + timeout);
         BluetoothSocket acceptedSocket;
         if (mSocketState != SocketState.LISTENING) {
             throw new IOException("bt socket is not in listen state");
         }
         if (timeout > 0) {
-            Log.d(TAG, "accept() set timeout (ms):" + timeout);
             mSocket.setSoTimeout(timeout);
         }
         String RemoteAddr = waitSocketSignal(mSocketIS);
