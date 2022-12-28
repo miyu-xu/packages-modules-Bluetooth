@@ -16,4 +16,15 @@
 
 package android.bluetooth;
 
-parcelable BluetoothAvrcpPlayerSettings;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
+
+/**
+ * Callback definitions for interacting with BLE / GATT
+ * @hide
+ */
+oneway interface IBluetoothGattCallback {
+    void onPlayerSettingsRegistered();
+    void onSetPlayerSettings(in BluetoothAvrcpPlayerSettings settings);
+    void onRequestPlayerSettings();
+}
