@@ -250,7 +250,6 @@ static void btm_ble_start_sync_timeout(void* data);
 /*******************************************************************************
  *  Local functions
  ******************************************************************************/
-static void btm_ble_update_adv_flag(uint8_t flag);
 void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
                                   const RawAddress& bda, uint8_t primary_phy,
                                   uint8_t secondary_phy,
@@ -258,13 +257,7 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
                                   int8_t rssi, uint16_t periodic_adv_int,
                                   uint8_t data_len, const uint8_t* data,
                                   const RawAddress& original_bda);
-static uint8_t btm_set_conn_mode_adv_init_addr(RawAddress& p_peer_addr_ptr,
-                                               tBLE_ADDR_TYPE* p_peer_addr_type,
-                                               tBLE_ADDR_TYPE* p_own_addr_type);
 static void btm_ble_stop_observe(void);
-static void btm_ble_fast_adv_timer_timeout(void* data);
-static void btm_ble_start_slow_adv(void);
-static void btm_ble_inquiry_timer_gap_limited_discovery_timeout(void* data);
 static void btm_ble_inquiry_timer_timeout(void* data);
 static void btm_ble_observer_timer_timeout(void* data);
 
@@ -864,15 +857,6 @@ bool BTM_BleLocalPrivacyEnabled(void) {
     return bluetooth::shim::BTM_BleLocalPrivacyEnabled();
   }
   return (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_NONE);
-}
-
-static bool is_resolving_list_bit_set(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-
-  if ((p_dev_rec->ble.in_controller_list & BTM_RESOLVING_LIST_BIT) != 0)
-    return false;
-
-  return true;
 }
 
 /*******************************************************************************
@@ -1496,98 +1480,6 @@ void BTM_BlePeriodicSyncTxParameters(RawAddress addr, uint8_t mode,
   }
 }
 
-/*******************************************************************************
- *
- * Function         btm_set_conn_mode_adv_init_addr
- *
- * Description      set initator address type and local address type based on
- *                  adv mode.
- *
- *
- ******************************************************************************/
-static uint8_t btm_set_conn_mode_adv_init_addr(
-    RawAddress& p_peer_addr_ptr, tBLE_ADDR_TYPE* p_peer_addr_type,
-    tBLE_ADDR_TYPE* p_own_addr_type) {
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
-  uint8_t evt_type;
-  tBTM_SEC_DEV_REC* p_dev_rec;
-
-  if (p_cb->connectable_mode == BTM_BLE_NON_CONNECTABLE) {
-    if (p_cb->scan_rsp) {
-      evt_type = BTM_BLE_DISCOVER_EVT;
-    } else {
-      evt_type = BTM_BLE_NON_CONNECT_EVT;
-    }
-  } else {
-    evt_type = BTM_BLE_CONNECT_EVT;
-  }
-
-  if (evt_type == BTM_BLE_CONNECT_EVT) {
-    CHECK(p_peer_addr_type != nullptr);
-    const tBLE_BD_ADDR ble_bd_addr = {
-        .bda = p_peer_addr_ptr,
-        .type = *p_peer_addr_type,
-    };
-    LOG_DEBUG("Received BLE connect event %s", PRIVATE_ADDRESS(ble_bd_addr));
-
-    evt_type = p_cb->directed_conn;
-
-    if (p_cb->directed_conn == BTM_BLE_CONNECT_DIR_EVT ||
-        p_cb->directed_conn == BTM_BLE_CONNECT_LO_DUTY_DIR_EVT) {
-      /* for privacy 1.2, convert peer address as static, own address set as ID
-       * addr */
-      if (btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_1_2 ||
-          btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_MIXED) {
-        /* only do so for bonded device */
-        if ((p_dev_rec = btm_find_or_alloc_dev(p_cb->direct_bda.bda)) != NULL &&
-            p_dev_rec->ble.in_controller_list & BTM_RESOLVING_LIST_BIT) {
-          p_peer_addr_ptr = p_dev_rec->ble.identity_address_with_type.bda;
-          *p_peer_addr_type = p_dev_rec->ble.identity_address_with_type.type;
-          *p_own_addr_type = BLE_ADDR_RANDOM_ID;
-          return evt_type;
-        }
-        /* otherwise fall though as normal directed adv */
-      }
-      /* direct adv mode does not have privacy, if privacy is not enabled  */
-      *p_peer_addr_type = p_cb->direct_bda.type;
-      p_peer_addr_ptr = p_cb->direct_bda.bda;
-      return evt_type;
-    }
-  }
-
-  /* undirect adv mode or non-connectable mode*/
-  /* when privacy 1.2 privacy only mode is used, or mixed mode */
-  if ((btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_1_2 &&
-       p_cb->afp != AP_SCAN_CONN_ALL) ||
-      btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_MIXED) {
-    list_node_t* n =
-        list_foreach(btm_cb.sec_dev_rec, is_resolving_list_bit_set, NULL);
-    if (n) {
-      /* if enhanced privacy is required, set Identity address and matching IRK
-       * peer */
-      tBTM_SEC_DEV_REC* p_dev_rec =
-          static_cast<tBTM_SEC_DEV_REC*>(list_node(n));
-      p_peer_addr_ptr = p_dev_rec->ble.identity_address_with_type.bda;
-      *p_peer_addr_type = p_dev_rec->ble.identity_address_with_type.type;
-
-      *p_own_addr_type = BLE_ADDR_RANDOM_ID;
-    } else {
-      /* resolving list is empty, not enabled */
-      *p_own_addr_type = BLE_ADDR_RANDOM;
-    }
-  }
-  /* privacy 1.1, or privacy 1.2, general discoverable/connectable mode, disable
-     privacy in */
-  /* controller fall back to host based privacy */
-  else if (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_NONE) {
-    *p_own_addr_type = BLE_ADDR_RANDOM;
-  }
-
-  /* if no privacy,do not set any peer address,*/
-  /* local address type go by global privacy setting */
-  return evt_type;
-}
-
 /**
  * This function is called to set scan parameters. |cb| is called with operation
  * status
@@ -1661,41 +1553,6 @@ uint16_t BTM_BleReadConnectability() {
 
 /*******************************************************************************
  *
- * Function         btm_ble_select_adv_interval
- *
- * Description      select adv interval based on device mode
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btm_ble_select_adv_interval(uint8_t evt_type,
-                                        uint16_t* p_adv_int_min,
-                                        uint16_t* p_adv_int_max) {
-  switch (evt_type) {
-    case BTM_BLE_CONNECT_EVT:
-    case BTM_BLE_CONNECT_LO_DUTY_DIR_EVT:
-      *p_adv_int_min = *p_adv_int_max = BTM_BLE_GAP_ADV_FAST_INT_1;
-      break;
-
-    case BTM_BLE_NON_CONNECT_EVT:
-    case BTM_BLE_DISCOVER_EVT:
-      *p_adv_int_min = *p_adv_int_max = BTM_BLE_GAP_ADV_FAST_INT_2;
-      break;
-
-      /* connectable directed event */
-    case BTM_BLE_CONNECT_DIR_EVT:
-      *p_adv_int_min = BTM_BLE_GAP_ADV_DIR_MIN_INT;
-      *p_adv_int_max = BTM_BLE_GAP_ADV_DIR_MAX_INT;
-      break;
-
-    default:
-      *p_adv_int_min = *p_adv_int_max = BTM_BLE_GAP_ADV_SLOW_INT;
-      break;
-  }
-}
-
-/*******************************************************************************
- *
  * Function         btm_ble_update_dmt_flag_bits
  *
  * Description      Obtain updated adv flag value based on connect and
@@ -1726,204 +1583,6 @@ void btm_ble_update_dmt_flag_bits(uint8_t* adv_flag_value,
     *adv_flag_value |= (BTM_BLE_DMT_CONTROLLER_SPT | BTM_BLE_DMT_HOST_SPT);
   else
     *adv_flag_value &= ~(BTM_BLE_DMT_CONTROLLER_SPT | BTM_BLE_DMT_HOST_SPT);
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_set_adv_flag
- *
- * Description      Set adv flag in adv data.
- *
- * Parameters:      connect_mode (Input)- Connect mode value
- *                  disc_mode (Input) - discoverability mode
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_ble_set_adv_flag(uint16_t connect_mode, uint16_t disc_mode) {
-  uint8_t flag = 0, old_flag = 0;
-  tBTM_BLE_LOCAL_ADV_DATA* p_adv_data = &btm_cb.ble_ctr_cb.inq_var.adv_data;
-
-  if (p_adv_data->p_flags != NULL) flag = old_flag = *(p_adv_data->p_flags);
-
-  btm_ble_update_dmt_flag_bits(&flag, connect_mode, disc_mode);
-
-  LOG_INFO("disc_mode %04x", disc_mode);
-  /* update discoverable flag */
-  if (disc_mode & BTM_BLE_LIMITED_DISCOVERABLE) {
-    flag &= ~BTM_BLE_GEN_DISC_FLAG;
-    flag |= BTM_BLE_LIMIT_DISC_FLAG;
-  } else if (disc_mode & BTM_BLE_GENERAL_DISCOVERABLE) {
-    flag |= BTM_BLE_GEN_DISC_FLAG;
-    flag &= ~BTM_BLE_LIMIT_DISC_FLAG;
-  } else /* remove all discoverable flags */
-  {
-    flag &= ~(BTM_BLE_LIMIT_DISC_FLAG | BTM_BLE_GEN_DISC_FLAG);
-  }
-
-  if (flag != old_flag) {
-    btm_ble_update_adv_flag(flag);
-  }
-}
-/*******************************************************************************
- *
- * Function         btm_ble_set_discoverability
- *
- * Description      This function is called to set BLE discoverable mode.
- *
- * Parameters:      combined_mode: discoverability mode.
- *
- * Returns          BTM_SUCCESS is status set successfully; otherwise failure.
- *
- ******************************************************************************/
-tBTM_STATUS btm_ble_set_discoverability(uint16_t combined_mode) {
-  tBTM_LE_RANDOM_CB* p_addr_cb = &btm_cb.ble_ctr_cb.addr_mgnt_cb;
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
-  uint16_t mode = (combined_mode & BTM_BLE_DISCOVERABLE_MASK);
-  uint8_t new_mode = BTM_BLE_ADV_ENABLE;
-  uint8_t evt_type;
-  tBTM_STATUS status = BTM_SUCCESS;
-  RawAddress address = RawAddress::kEmpty;
-  tBLE_ADDR_TYPE init_addr_type = BLE_ADDR_PUBLIC,
-                 own_addr_type = p_addr_cb->own_addr_type;
-  uint16_t adv_int_min, adv_int_max;
-
-  BTM_TRACE_EVENT("%s mode=0x%0x combined_mode=0x%x", __func__, mode,
-                  combined_mode);
-
-  /*** Check mode parameter ***/
-  if (mode > BTM_BLE_MAX_DISCOVERABLE) return (BTM_ILLEGAL_VALUE);
-
-  p_cb->discoverable_mode = mode;
-
-  evt_type =
-      btm_set_conn_mode_adv_init_addr(address, &init_addr_type, &own_addr_type);
-
-  if (p_cb->connectable_mode == BTM_BLE_NON_CONNECTABLE &&
-      mode == BTM_BLE_NON_DISCOVERABLE)
-    new_mode = BTM_BLE_ADV_DISABLE;
-
-  btm_ble_select_adv_interval(evt_type, &adv_int_min, &adv_int_max);
-
-  alarm_cancel(p_cb->fast_adv_timer);
-
-  /* update adv params if start advertising */
-  BTM_TRACE_EVENT("evt_type=0x%x p-cb->evt_type=0x%x ", evt_type,
-                  p_cb->evt_type);
-
-  if (new_mode == BTM_BLE_ADV_ENABLE) {
-    btm_ble_set_adv_flag(btm_cb.btm_inq_vars.connectable_mode, combined_mode);
-
-    if (evt_type != p_cb->evt_type || p_cb->adv_addr_type != own_addr_type ||
-        !p_cb->fast_adv_on) {
-      btm_ble_stop_adv();
-
-      /* update adv params */
-      btsnd_hcic_ble_write_adv_params(adv_int_min, adv_int_max, evt_type,
-                                      own_addr_type, init_addr_type, address,
-                                      p_cb->adv_chnl_map, p_cb->afp);
-      p_cb->evt_type = evt_type;
-      p_cb->adv_addr_type = own_addr_type;
-    }
-  }
-
-  if (status == BTM_SUCCESS && p_cb->adv_mode != new_mode) {
-    if (new_mode == BTM_BLE_ADV_ENABLE)
-      status = btm_ble_start_adv();
-    else
-      status = btm_ble_stop_adv();
-  }
-
-  if (p_cb->adv_mode == BTM_BLE_ADV_ENABLE) {
-    p_cb->fast_adv_on = true;
-    /* start initial GAP mode adv timer */
-    alarm_set_on_mloop(p_cb->fast_adv_timer, BTM_BLE_GAP_FAST_ADV_TIMEOUT_MS,
-                       btm_ble_fast_adv_timer_timeout, NULL);
-  }
-
-  /* set up stop advertising timer */
-  if (status == BTM_SUCCESS && mode == BTM_BLE_LIMITED_DISCOVERABLE) {
-    BTM_TRACE_EVENT("start timer for limited disc mode duration=%d ms",
-                    BTM_BLE_GAP_LIM_TIMEOUT_MS);
-    /* start Tgap(lim_timeout) */
-    alarm_set_on_mloop(p_cb->inquiry_timer, BTM_BLE_GAP_LIM_TIMEOUT_MS,
-                       btm_ble_inquiry_timer_gap_limited_discovery_timeout,
-                       NULL);
-  }
-  return status;
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_set_connectability
- *
- * Description      This function is called to set BLE connectability mode.
- *
- * Parameters:      combined_mode: connectability mode.
- *
- * Returns          BTM_SUCCESS is status set successfully; otherwise failure.
- *
- ******************************************************************************/
-tBTM_STATUS btm_ble_set_connectability(uint16_t combined_mode) {
-  tBTM_LE_RANDOM_CB* p_addr_cb = &btm_cb.ble_ctr_cb.addr_mgnt_cb;
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
-  uint16_t mode = (combined_mode & BTM_BLE_CONNECTABLE_MASK);
-  uint8_t new_mode = BTM_BLE_ADV_ENABLE;
-  uint8_t evt_type;
-  tBTM_STATUS status = BTM_SUCCESS;
-  RawAddress address = RawAddress::kEmpty;
-  tBLE_ADDR_TYPE peer_addr_type = BLE_ADDR_PUBLIC,
-                 own_addr_type = p_addr_cb->own_addr_type;
-  uint16_t adv_int_min, adv_int_max;
-
-  BTM_TRACE_EVENT("%s mode=0x%0x combined_mode=0x%x", __func__, mode,
-                  combined_mode);
-
-  /*** Check mode parameter ***/
-  if (mode > BTM_BLE_MAX_CONNECTABLE) return (BTM_ILLEGAL_VALUE);
-
-  p_cb->connectable_mode = mode;
-
-  evt_type =
-      btm_set_conn_mode_adv_init_addr(address, &peer_addr_type, &own_addr_type);
-
-  if (mode == BTM_BLE_NON_CONNECTABLE &&
-      p_cb->discoverable_mode == BTM_BLE_NON_DISCOVERABLE)
-    new_mode = BTM_BLE_ADV_DISABLE;
-
-  btm_ble_select_adv_interval(evt_type, &adv_int_min, &adv_int_max);
-
-  alarm_cancel(p_cb->fast_adv_timer);
-  /* update adv params if needed */
-  if (new_mode == BTM_BLE_ADV_ENABLE) {
-    btm_ble_set_adv_flag(combined_mode, btm_cb.btm_inq_vars.discoverable_mode);
-    if (p_cb->evt_type != evt_type ||
-        p_cb->adv_addr_type != p_addr_cb->own_addr_type || !p_cb->fast_adv_on) {
-      btm_ble_stop_adv();
-
-      btsnd_hcic_ble_write_adv_params(adv_int_min, adv_int_max, evt_type,
-                                      own_addr_type, peer_addr_type, address,
-                                      p_cb->adv_chnl_map, p_cb->afp);
-      p_cb->evt_type = evt_type;
-      p_cb->adv_addr_type = own_addr_type;
-    }
-  }
-
-  /* update advertising mode */
-  if (status == BTM_SUCCESS && new_mode != p_cb->adv_mode) {
-    if (new_mode == BTM_BLE_ADV_ENABLE)
-      status = btm_ble_start_adv();
-    else
-      status = btm_ble_stop_adv();
-  }
-
-  if (p_cb->adv_mode == BTM_BLE_ADV_ENABLE) {
-    p_cb->fast_adv_on = true;
-    /* start initial GAP mode adv timer */
-    alarm_set_on_mloop(p_cb->fast_adv_timer, BTM_BLE_GAP_FAST_ADV_TIMEOUT_MS,
-                       btm_ble_fast_adv_timer_timeout, NULL);
-  }
-  return status;
 }
 
 static void btm_send_hci_scan_enable(uint8_t enable,
@@ -2148,49 +1807,6 @@ bool btm_ble_cancel_remote_name(const RawAddress& remote_bda) {
   alarm_cancel(p_inq->remote_name_timer);
 
   return status;
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_update_adv_flag
- *
- * Description      This function update the limited discoverable flag in the
- *                  adv data.
- *
- * Parameters:       None.
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btm_ble_update_adv_flag(uint8_t flag) {
-  tBTM_BLE_LOCAL_ADV_DATA* p_adv_data = &btm_cb.ble_ctr_cb.inq_var.adv_data;
-  uint8_t* p;
-
-  BTM_TRACE_DEBUG("btm_ble_update_adv_flag new=0x%x", flag);
-
-  if (p_adv_data->p_flags != NULL) {
-    BTM_TRACE_DEBUG("btm_ble_update_adv_flag old=0x%x", *p_adv_data->p_flags);
-    *p_adv_data->p_flags = flag;
-  } else /* no FLAGS in ADV data*/
-  {
-    p = (p_adv_data->p_pad == NULL) ? p_adv_data->ad_data : p_adv_data->p_pad;
-    /* need 3 bytes space to stuff in the flags, if not */
-    /* erase all written data, just for flags */
-    if ((BTM_BLE_AD_DATA_LEN - (p - p_adv_data->ad_data)) < 3) {
-      p = p_adv_data->p_pad = p_adv_data->ad_data;
-      memset(p_adv_data->ad_data, 0, BTM_BLE_AD_DATA_LEN);
-    }
-
-    *p++ = 2;
-    *p++ = BTM_BLE_AD_TYPE_FLAG;
-    p_adv_data->p_flags = p;
-    *p++ = flag;
-    p_adv_data->p_pad = p;
-  }
-
-  btsnd_hcic_ble_set_adv_data(
-      (uint8_t)(p_adv_data->p_pad - p_adv_data->ad_data), p_adv_data->ad_data);
-  p_adv_data->data_mask |= BTM_BLE_AD_BIT_FLAGS;
 }
 
 /**
@@ -3127,51 +2743,6 @@ tBTM_STATUS btm_ble_stop_adv(void) {
   return BTM_SUCCESS;
 }
 
-static void btm_ble_fast_adv_timer_timeout(UNUSED_ATTR void* data) {
-  /* fast adv is completed, fall back to slow adv interval */
-  btm_ble_start_slow_adv();
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_start_slow_adv
- *
- * Description      Restart adv with slow adv interval
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btm_ble_start_slow_adv(void) {
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
-
-  if (p_cb->adv_mode == BTM_BLE_ADV_ENABLE) {
-    tBTM_LE_RANDOM_CB* p_addr_cb = &btm_cb.ble_ctr_cb.addr_mgnt_cb;
-    RawAddress address = RawAddress::kEmpty;
-    tBLE_ADDR_TYPE init_addr_type = BLE_ADDR_PUBLIC;
-    tBLE_ADDR_TYPE own_addr_type = p_addr_cb->own_addr_type;
-
-    btm_ble_stop_adv();
-
-    p_cb->evt_type = btm_set_conn_mode_adv_init_addr(address, &init_addr_type,
-                                                     &own_addr_type);
-
-    /* slow adv mode never goes into directed adv */
-    btsnd_hcic_ble_write_adv_params(
-        BTM_BLE_GAP_ADV_SLOW_INT, BTM_BLE_GAP_ADV_SLOW_INT, p_cb->evt_type,
-        own_addr_type, init_addr_type, address, p_cb->adv_chnl_map, p_cb->afp);
-
-    btm_ble_start_adv();
-  }
-}
-
-static void btm_ble_inquiry_timer_gap_limited_discovery_timeout(
-    UNUSED_ATTR void* data) {
-  /* lim_timeout expired, limited discovery should exit now */
-  btm_cb.btm_inq_vars.discoverable_mode &= ~BTM_BLE_LIMITED_DISCOVERABLE;
-  btm_ble_set_adv_flag(btm_cb.btm_inq_vars.connectable_mode,
-                       btm_cb.btm_inq_vars.discoverable_mode);
-}
-
 static void btm_ble_inquiry_timer_timeout(UNUSED_ATTR void* data) {
   btm_ble_stop_inquiry();
 }
@@ -3344,11 +2915,6 @@ void btm_ble_update_mode_operation(uint8_t link_role, const RawAddress* bd_addr,
     btm_ble_clear_topology_mask(BTM_BLE_STATE_ALL_ADV_MASK);
   }
 
-  if (btm_cb.ble_ctr_cb.inq_var.connectable_mode == BTM_BLE_CONNECTABLE) {
-    btm_ble_set_connectability(btm_cb.btm_inq_vars.connectable_mode |
-                               btm_cb.ble_ctr_cb.inq_var.connectable_mode);
-  }
-
   /* in case of disconnected, we must cancel bgconn and restart
      in order to add back device to acceptlist in order to reconnect */
   if (bd_addr != nullptr) {
@@ -3396,8 +2962,6 @@ void btm_ble_init(void) {
   p_cb->inq_var.adv_chnl_map = BTM_BLE_DEFAULT_ADV_CHNL_MAP;
   p_cb->inq_var.afp = BTM_BLE_DEFAULT_AFP;
   p_cb->inq_var.sfp = BTM_BLE_DEFAULT_SFP;
-  p_cb->inq_var.connectable_mode = BTM_BLE_NON_CONNECTABLE;
-  p_cb->inq_var.discoverable_mode = BTM_BLE_NON_DISCOVERABLE;
   p_cb->inq_var.fast_adv_timer = alarm_new("btm_ble_inq.fast_adv_timer");
   p_cb->inq_var.inquiry_timer = alarm_new("btm_ble_inq.inquiry_timer");
 
