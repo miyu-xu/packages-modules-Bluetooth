@@ -975,6 +975,10 @@
  *
  *****************************************************************************/
 
+#ifndef AVRC_QTI_V1_3_OPTIONAL_FEAT
+#define AVRC_QTI_V1_3_OPTIONAL_FEAT TRUE
+#endif
+
 #ifndef AVRC_ADV_CTRL_INCLUDED
 #define AVRC_ADV_CTRL_INCLUDED TRUE
 #endif

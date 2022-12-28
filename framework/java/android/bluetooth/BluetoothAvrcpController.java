@@ -77,8 +77,8 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
      *
      * <p>This intent will have the following extras:
      * <ul>
-     * <li> {@link #EXTRA_PLAYER_SETTING} - {@link BluetoothAvrcpPlayerSettings} containing the
-     * most recent player setting. </li>
+     * <li> {@link #EXTRA_PLAYER_SETTING} - {@link BluetoothAvrcpPlayerSettings}
+     * containing the most recent player setting. </li>
      * </ul>
      */
     @RequiresBluetoothConnectPermission
@@ -211,7 +211,8 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
     /**
      * Gets the player application settings.
      *
-     * @return the {@link BluetoothAvrcpPlayerSettings} or {@link null} if there is an error.
+     * @return the {@link BluetoothAvrcpPlayerSettings} or
+     * {@link null} if there is an error.
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
@@ -242,7 +243,8 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    public boolean setPlayerApplicationSetting(BluetoothAvrcpPlayerSettings plAppSetting) {
+    public boolean setPlayerApplicationSetting(
+            BluetoothAvrcpPlayerSettings plAppSetting) {
         if (DBG) Log.d(TAG, "setPlayerApplicationSetting");
         final IBluetoothAvrcpController service = getService();
         final boolean defaultValue = false;

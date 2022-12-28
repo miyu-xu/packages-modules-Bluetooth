@@ -119,7 +119,8 @@ public final class BluetoothAvrcpPlayerSettings implements Parcelable {
         }
     }
 
-    public static final @NonNull Creator<BluetoothAvrcpPlayerSettings> CREATOR = new Creator<>() {
+    public static final @NonNull Creator<BluetoothAvrcpPlayerSettings> CREATOR =
+            new Creator<>() {
         public BluetoothAvrcpPlayerSettings createFromParcel(Parcel in) {
             return new BluetoothAvrcpPlayerSettings(in);
         }

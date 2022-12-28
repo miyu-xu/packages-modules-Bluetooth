@@ -19,7 +19,7 @@ package com.android.bluetooth.avrcpcontroller;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothAvrcpPlayerSettings;
+import android.bluetooth.BluetoothAvrcpControllerPlayerSettings;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 
@@ -83,7 +83,8 @@ public class AvrcpControllerServiceBinderTest {
 
     @Test
     public void setPlayerApplicationSetting_notImplemented_doesNothing() {
-        BluetoothAvrcpPlayerSettings settings = new BluetoothAvrcpPlayerSettings(1);
+        BluetoothAvrcpControllerPlayerSettings settings =
+                new BluetoothAvrcpControllerPlayerSettings(1);
 
         mBinder.setPlayerApplicationSetting(settings, null, SynchronousResultReceiver.get());
     }
