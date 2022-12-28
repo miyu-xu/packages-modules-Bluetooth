@@ -16,6 +16,24 @@
       "message": "hmm I\u0027m considering to have in this function only this:\n{\n  p_srcb-\u003econnected \u003d false;\n  p_srcb-\u003emtu \u003d 0;\n}\n\nand do not change the state and gatt_database.",
       "revId": "19f5bebbffa72cf367ac8c81eb94c68619770f93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c42c84_f9f14fba",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-28T08:42:50Z",
+      "side": 1,
+      "message": "probably this is safer to just clear it all. So I would keep it as it is for now.",
+      "parentUuid": "cca00c40_9cb45f1d",
+      "revId": "19f5bebbffa72cf367ac8c81eb94c68619770f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
