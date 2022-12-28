@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "291f4a24_bb9a586f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2577,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-28T19:04:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f1af6c6_783b46f1",
+      "range": {
+        "startLine": 2577,
+        "startChar": 8,
+        "endLine": 2577,
+        "endChar": 52
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7fce2b9_663e9ba4",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "I meant in this log that onScanResult() is regular scan callback and onBatchScanResults() is batch scan callback. So, auto batch scan client will receive the scan results through onScanResult() only.",
       "parentUuid": "c7fce2b9_663e9ba4",
+      "range": {
+        "startLine": 2586,
+        "startChar": 62,
+        "endLine": 2586,
+        "endChar": 69
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08f53192_4c5cee9e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2586,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-28T19:04:26Z",
+      "side": 1,
+      "message": "Done. Updated the log as callback function name.",
+      "parentUuid": "4c91f41c_87693a08",
       "range": {
         "startLine": 2586,
         "startChar": 62,
@@ -173,6 +221,30 @@
       "side": 1,
       "message": "In my opinion, it is better to simplify App\u0027s usage and the service codes. Instead of expecting the app to set both flags, why not rename it to reflect that the fact that it will include CALLBACK_TYPE_ALL_MATCHES?",
       "parentUuid": "cbbd09a6_5f17891a",
+      "range": {
+        "startLine": 346,
+        "startChar": 40,
+        "endLine": 346,
+        "endChar": 92
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac3dbf2_f5168e35",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-28T19:04:26Z",
+      "side": 1,
+      "message": "Thanks for the comments. Updated the name as CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH.",
+      "parentUuid": "bea6f5fa_4c96a802",
       "range": {
         "startLine": 346,
         "startChar": 40,
