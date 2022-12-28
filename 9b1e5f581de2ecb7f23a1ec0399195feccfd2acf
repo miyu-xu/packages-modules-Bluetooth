@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cfece54_5509a51d",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 0,
+      "message": "This library is only intended to be built as shared library and put inside the apex.\nWhy do you want to make it static too ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 17
+      },
+      "revId": "9b1e5f581de2ecb7f23a1ec0399195feccfd2acf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

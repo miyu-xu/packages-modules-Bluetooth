@@ -1,0 +1,395 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47589325_c69c3540",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Please do not use include_dirs for newly added lib.\nThis is a bad pattern that we should avoid.\nreplace with `export_include_dirs` (something like that not sure about the proper syntax)",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 49
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf6404e7_1edeb984",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1908,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Do this in another CL",
+      "range": {
+        "startLine": 1908,
+        "startChar": 6,
+        "endLine": 1908,
+        "endChar": 8
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cf9fefc_8751bbb8",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Why do you want to export all symbols ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 31
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d10c7e_cd33b10f",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Can we avoid libchrome in rust ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 9,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7e3064_b184d9ff",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Are `rust_test` automatically run ?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 9
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a559c460_e4b1af53",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "This is confusing.\nlibbluetooth_core_rs need libbluetooth_core_rs_bridge + libbluetooth-core\nlibbluetooth need libbluetooth_core_rs\n\nSo libbluetooth need all 3: libbluetooth_core_rs + libbluetooth_core_rs_bridge + libbluetooth-core\n\nIs it correct ?",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 114,
+        "endChar": 83
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e83b34_45612646",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Please add a line break to make it obvious is not part of the 2 before (I know there is a dot)\nOr maybe a list item :\n```\n/// Thus, FFI can be either:\n///  * Rust to C++\n///  * C++ to Rust\n///     * Core C++ to Rust only via injected callbacks (libbluetooth-core does not depend on libbluetooth_core_rs)\n///     * Profile C++ to Rust can be made directly (as libbluetooth *does* depend on libbluetooth_core_rs).\n```\n\n\nAlso, you mention 2 different c++ for c++ \u003d\u003e rust but you don\u0027t make this distinction in Rust\u003d\u003eC++.\nI understand this mean rust \u003d\u003e c++ core as rust depend on the bluetooth_core, and the rust\u003d\u003e c++ profile is only with callback. (like any core -\u003e profile)",
+      "range": {
+        "startLine": 116,
+        "startChar": 62,
+        "endLine": 116,
+        "endChar": 63
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dc406e8_2525c674",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "There is another rules for srcs generation:\ngensrcs\n\nSee already implemented example in [topshim](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/topshim/Android.bp;l\u003d77;drc\u003dc098551094ddd6107c0ac4f94e91b2cdbfe03428)\n\nThe big advantage is you don\u0027t need to list all out files. \nThe second advantage is that you cmd is readable again :\n`cmd: \"$(location cxxbridge) $(in) \u003e $(out)\",`\nand\n`cmd: \"$(location cxxbridge) $(in) --header \u003e $(out)\",`\n\n\nand if we want to keep them in sync",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 7
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de13a185_76b3c281",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "I prefer listing all of them. once in a default / filegroup so we can pass it to both the cc and h genrule",
+      "range": {
+        "startLine": 126,
+        "startChar": 13,
+        "endLine": 126,
+        "endChar": 18
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "497ca288_66560a4d",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "don\u0027t you want a `--header` somewhere in this ?",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 154
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aadc9c74_886ca887",
+        "filename": "system/rust/core/hci_shim.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Is this a temporary workaround ?\nDo we need to re declare the struct ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 2
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb137c0_4ca44b19",
+        "filename": "system/rust/core/mod.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "By implementing Display but using a `unimplemented!` macro, you are moving a compile time check to a runtime check.\n\nI suppose you are doing that to be obvious that we DO NOT want to implement the display, but I think it can be error prone.\n\n~Maybe we can add a exclusive trait (here the rfc: https://github.com/rust-lang/rfcs/pull/1148)~ looks like its is closed but ...",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c0e8c62_93082c23",
+        "filename": "system/rust/core/mod.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Where is `to_unredacted_string` defined ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9bfc156_b37b40a2",
+        "filename": "system/rust/core/mod.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Note for later, this is not the way we want to log address, cf all the work that has been done by phui on the legacy RawAddress.\nWe are using [log_redaction.cc](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/os/logging/log_redaction.cc;l\u003d1;drc\u003d896fe4e75dce21e8b91d6ba956a0d07121b2df50) to determined if the address need to be strip or not.\n\n\nAlso you could avoid listing all conversion with below format\n```\nwrite!(f, \"{}\", self.address.map(|x| format!(\"{:02x}\", x)).join(\":\"))\n```",
+      "range": {
+        "startLine": 53,
+        "startChar": 13,
+        "endLine": 53,
+        "endChar": 41
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18fbf60e_1ebc86d2",
+        "filename": "system/rust/gatt/ffi.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Every other naming are `do_in` like `do_in_jni_thread` or `do_in_main_thread`",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 21
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a54104fa_813408af",
+        "filename": "system/rust/gatt/ffi.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "Is it the JNI call that has failed here ? not the rust call ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "953ed25c_09535bae",
+        "filename": "system/rust/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T02:52:58Z",
+      "side": 1,
+      "message": "A lot of you doc is above the 100 char limit.\nBut it\u0027s not flag by the lint checker.\n\nWhat kind of magic did you use ? 😂",
+      "range": {
+        "startLine": 97,
+        "startChar": 100,
+        "endLine": 97,
+        "endChar": 132
+      },
+      "revId": "e40e684ac079eb4269c7744f12b9d684efc4f39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
