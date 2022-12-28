@@ -16,6 +16,24 @@
       "message": "Please fix.",
       "revId": "c05a9a68ab07a7ab424490baa125f70dff457416",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56ecf8eb_e9a1749a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/GattServiceBinderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-28T05:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "853beb15_52746d62",
+      "revId": "c05a9a68ab07a7ab424490baa125f70dff457416",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
