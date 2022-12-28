@@ -43,6 +43,12 @@ cc_defaults {
                 "-DOS_GENERIC",
             ],
         },
+        android: {
+           cflags: [
+                // add this macro for all android code
+                "-DOS_ANDROID",
+            ],
+        },
     },
 }
 
