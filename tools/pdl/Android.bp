@@ -268,3 +268,13 @@ python_test_host {
         ":pypdl",
     ],
 }
+
+cc_test {
+    name: "pdl_cpp_no_allocation_test",
+    srcs: ["cpp_no_allocation_test.cc"],
+    host_supported: true,
+    sanitize: {
+        address: true,
+        all_undefined: true,
+    },
+}

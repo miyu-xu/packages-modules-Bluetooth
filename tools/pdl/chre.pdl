@@ -1,0 +1,98 @@
+little_endian_packets
+
+enum PacketBoundaryFlag : 2 {
+  FIRST_NON_AUTOMATICALLY_FLUSHABLE = 0,
+  CONTINUING_FRAGMENT = 1,
+  FIRST_AUTOMATICALLY_FLUSHABLE = 2,
+}
+
+enum BroadcastFlag : 2 {
+  POINT_TO_POINT = 0,
+  ACTIVE_PERIPHERAL_BROADCAST = 1,
+}
+
+packet Acl {
+  handle : 12,
+  packet_boundary_flag : PacketBoundaryFlag,
+  broadcast_flag : BroadcastFlag,
+  _size_(_payload_) : 16,
+  _payload_,
+}
+
+packet L2capBasicFrame : Acl {
+  _size_(_payload_) : 16,
+  channel_id : 16,
+  _payload_,
+}
+
+enum AttOpcode : 6 {
+  // supported
+  ERROR_RESPONSE = 0x01,
+
+  EXCHANGE_MTU_REQUEST = 0x02,
+  EXCHANGE_MTU_RESPONSE = 0x03,
+
+  // supported
+  FIND_INFORMATION_REQUEST = 0x04,
+  FIND_INFORMATION_RESPONSE = 0x05,
+
+  FIND_BY_TYPE_VALUE_REQUEST = 0x06,
+  FIND_BY_TYPE_VALUE_RESPONSE = 0x07,
+
+  // supported
+  READ_BY_TYPE_REQUEST = 0x08,
+  READ_BY_TYPE_RESPONSE = 0x09,
+
+  READ_REQUEST = 0x0A,
+  READ_RESPONSE = 0x0B,
+
+  READ_BLOB_REQUEST = 0x0C,
+  READ_BLOB_RESPONSE = 0x0D,
+
+  READ_MULTIPLE_REQUEST = 0x0E,
+  READ_MULTIPLE_RESPONSE = 0x0F,
+
+  // supported
+  READ_BY_GROUP_TYPE_REQUEST = 0x10,
+  READ_BY_GROUP_TYPE_RESPONSE = 0x11,
+}
+
+packet Att : L2capBasicFrame {
+  opcode : AttOpcode,
+  command_flag : 1,
+  _fixed_ = 0 : 1, // auth_signature_flag
+  _payload_,
+}
+
+enum AttErrorCode : 8 {
+  INVALID_HANDLE = 0x01,
+  // etc etc etc
+  REQUEST_NOT_SUPPORTED = 0x06,
+  // more etc etc etc
+  ATTRIBUTE_NOT_FOUND = 0x0A,
+}
+
+packet AttFindInformationRequest : Att(opcode = FIND_INFORMATION_REQUEST) {
+  starting_handle : 16,
+  ending_handle : 16,
+}
+
+struct Uuid {
+  data: 8[],
+}
+
+packet AttReadByGroupTypeRequest : Att(opcode = READ_BY_GROUP_TYPE_REQUEST) {
+  starting_handle : 16,
+  ending_handle : 16,
+  attribute_group_type : Uuid,
+}
+
+packet AttReadByTypeRequest : Att(opcode = READ_BY_TYPE_REQUEST) {
+  starting_handle : 16,
+  ending_handle : 16,
+  attribute_type : Uuid,
+}
+
+packet AttReadRequest : Att(opcode = READ_REQUEST) {
+  attribute_handle : 16,
+}

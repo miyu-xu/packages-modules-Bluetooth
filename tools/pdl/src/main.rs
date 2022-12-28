@@ -12,10 +12,14 @@ mod test_utils;
 
 use crate::lint::Lintable;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 enum OutputFormat {
     JSON,
     Rust,
+    RustNoAlloc,
+    RustNoAllocTest,
+    EmbeddedC,
+    EmbeddedCTest,
 }
 
 impl std::str::FromStr for OutputFormat {
@@ -25,6 +29,10 @@ impl std::str::FromStr for OutputFormat {
         match input.to_lowercase().as_str() {
             "json" => Ok(Self::JSON),
             "rust" => Ok(Self::Rust),
+            "rust_no_alloc" => Ok(Self::RustNoAlloc),
+            "rust_no_alloc_test" => Ok(Self::RustNoAllocTest),
+            "embedded_c" => Ok(Self::EmbeddedC),
+            "embedded_c_test" => Ok(Self::EmbeddedCTest),
             _ => Err(format!("could not parse {:?}, valid option are 'json' and 'rust'.", input)),
         }
     }
@@ -34,12 +42,12 @@ impl std::str::FromStr for OutputFormat {
 #[clap(name = "pdl-parser", about = "Packet Description Language parser tool.")]
 struct Opt {
     /// Print tool version and exit.
-    #[clap(short, long = "--version")]
+    #[clap(short, long = "version")]
     version: bool,
 
-    /// Generate output in this format ("json" or "rust"). The output
+    /// Generate output in this format ("json", "rust", "embedded_c"). The output
     /// will be printed on stdout in both cases.
-    #[clap(short, long = "--output-format", name = "FORMAT", default_value = "JSON")]
+    #[clap(short, long = "output-format", name = "FORMAT", default_value = "JSON")]
     output_format: OutputFormat,
 
     /// Input file.
@@ -48,7 +56,7 @@ struct Opt {
 }
 
 fn main() -> std::process::ExitCode {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     if opt.version {
         println!("Packet Description Language parser version 1.0");
@@ -71,6 +79,31 @@ fn main() -> std::process::ExitCode {
                 }
                 OutputFormat::Rust => {
                     println!("{}", backends::rust::generate(&sources, &file))
+                }
+                OutputFormat::EmbeddedC => {
+                    let schema = backends::intermediate::generate(&file).unwrap();
+                    println!(
+                        "{}",
+                        backends::cpp_no_allocation::cpp_no_allocation::generate(&file, &schema)
+                            .unwrap()
+                    )
+                }
+                OutputFormat::RustNoAlloc => {
+                    let schema = backends::intermediate::generate(&file).unwrap();
+                    println!("{}", backends::rust_no_allocation::generate(&file, &schema).unwrap())
+                }
+                OutputFormat::RustNoAllocTest => {
+                    println!(
+                        "{}",
+                        backends::rust_no_allocation::test::generate_test_file().unwrap()
+                    )
+                }
+                OutputFormat::EmbeddedCTest => {
+                    println!(
+                        "{}",
+                        backends::cpp_no_allocation::cpp_no_allocation_test::generate_test_file()
+                            .unwrap()
+                    )
                 }
             }
             std::process::ExitCode::SUCCESS
