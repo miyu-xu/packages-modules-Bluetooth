@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,107 +19,123 @@ package android.bluetooth;
 import android.annotation.NonNull;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class used to identify settings associated with the player on AG.
- *
- * {@hide}
+ * Class used to identify settings associated with the player.
+ * See {@link BluetoothA2dp#registerPlayerSettingsCallback} and
+ * {@link BluetoothA2dp#updatePlayerSettings}.
  */
 public final class BluetoothAvrcpPlayerSettings implements Parcelable {
     public static final String TAG = "BluetoothAvrcpPlayerSettings";
 
     /**
-     * Equalizer setting.
+     * Repeat setting, as defined in Bluetooth.
      */
-    public static final int SETTING_EQUALIZER = 0x01;
+    public static final int SETTING_REPEAT = 2;
 
     /**
-     * Repeat setting.
+     * Shuffle setting, as defined in Bluetooth.
      */
-    public static final int SETTING_REPEAT = 0x02;
+    public static final int SETTING_SHUFFLE = 3;
+
+    /** @hide */
+    @IntDef({SETTING_REPEAT, SETTING_SHUFFLE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface PlayerSetting {}
 
     /**
-     * Shuffle setting.
+     * Repeat OFF state, as defined in Bluetooth.
      */
-    public static final int SETTING_SHUFFLE = 0x04;
+    public static final int STATE_REPEAT_OFF = 1;
 
     /**
-     * Scan mode setting.
+     * Single track repeat, as defined in Bluetooth.
      */
-    public static final int SETTING_SCAN = 0x08;
+    public static final int STATE_REPEAT_SINGLE_TRACK = 2;
 
     /**
-     * Invalid state.
-     *
-     * Used for returning error codes.
+     * All track repeat, as defined in Bluetooth.
      */
-    public static final int STATE_INVALID = -1;
+    public static final int STATE_REPEAT_ALL_TRACK = 3;
 
     /**
-     * OFF state.
-     *
-     * Denotes a general OFF state. Applies to all settings.
+     * Group repeat, as defined in Bluetooth.
      */
-    public static final int STATE_OFF = 0x00;
+    public static final int STATE_REPEAT_GROUP = 4;
+
+    /** @hide */
+    @IntDef({
+            STATE_REPEAT_OFF,
+            STATE_REPEAT_SINGLE_TRACK,
+            STATE_REPEAT_ALL_TRACK,
+            STATE_REPEAT_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface PlayerSettingRepeatValue {}
+
 
     /**
-     * ON state.
-     *
-     * Applies to {@link SETTING_EQUALIZER}.
+     * Shuffle OFF state, as defined in Bluetooth.
      */
-    public static final int STATE_ON = 0x01;
+    public static final int STATE_SHUFFLE_OFF = 1;
 
     /**
-     * Single track repeat.
-     *
-     * Applies only to {@link SETTING_REPEAT}.
+     * All track shuffle, as defined in Bluetooth.
      */
-    public static final int STATE_SINGLE_TRACK = 0x02;
+    public static final int STATE_SHUFFLE_ALL_TRACK = 2;
 
     /**
-     * All track repeat/shuffle.
-     *
-     * Applies to {@link #SETTING_REPEAT}, {@link #SETTING_SHUFFLE} and {@link #SETTING_SCAN}.
+     * Group shuffle, as defined in Bluetooth.
      */
-    public static final int STATE_ALL_TRACK = 0x03;
+    public static final int STATE_SHUFFLE_GROUP = 3;
 
-    /**
-     * Group repeat/shuffle.
-     *
-     * Applies to {@link #SETTING_REPEAT}, {@link #SETTING_SHUFFLE} and {@link #SETTING_SCAN}.
-     */
-    public static final int STATE_GROUP = 0x04;
+    /** @hide */
+    @IntDef({STATE_SHUFFLE_OFF, STATE_SHUFFLE_ALL_TRACK, STATE_SHUFFLE_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface PlayerSettingShuffleValue {}
 
-    /**
-     * List of supported settings ORed.
-     */
-    private int mSettings;
 
-    /**
-     * Hash map of current capability values.
-     */
     private Map<Integer, Integer> mSettingsValue = new HashMap<Integer, Integer>();
+    private Map<Integer, String> mSettingsText = new HashMap<Integer, String>();
+    private Map<Integer, String> mValuesText = new HashMap<Integer, String>();
 
+    /** @hide */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Flattens the object to a parcel
+     *
+     * @param out The Parcel in which the object should be written
+     * @param flags Additional flags about how the object should be written
+     *
+     * @hide
+     */
     @Override
     public void writeToParcel(Parcel out, int flags) {
-        out.writeInt(mSettings);
         out.writeInt(mSettingsValue.size());
-        for (int k : mSettingsValue.keySet()) {
-            out.writeInt(k);
-            out.writeInt(mSettingsValue.get(k));
+        for (Map.Entry<Integer, String> entryValue : mSettingsValue.entrySet()) {
+            out.writeInt(entryValue.getKey());
+            out.writeString(entryValue.getValue());
+        }
+        out.writeInt(mSettingsText.size());
+        for (Map.Entry<Integer, String> entrySettingText : mSettingsText.entrySet()) {
+            out.writeInt(entrySettingText.getKey());
+            out.writeString(entrySettingText.getValue());
+        }
+        out.writeInt(mValuesText.size());
+        for (Map.Entry<Integer, String> entryValueText : mValuesText.entrySet()) {
+            out.writeInt(entryValueText.getKey());
+            out.writeString(entryValueText.getValue());
         }
     }
 
-    public static final @NonNull Creator<BluetoothAvrcpPlayerSettings> CREATOR = new Creator<>() {
+    public static final @NonNull Creator<BluetoothAvrcpPlayerSettings> CREATOR =
+            new Creator<>() {
         public BluetoothAvrcpPlayerSettings createFromParcel(Parcel in) {
             return new BluetoothAvrcpPlayerSettings(in);
         }
@@ -130,64 +146,236 @@ public final class BluetoothAvrcpPlayerSettings implements Parcelable {
     };
 
     private BluetoothAvrcpPlayerSettings(Parcel in) {
-        mSettings = in.readInt();
-        int numSettings = in.readInt();
-        for (int i = 0; i < numSettings; i++) {
+        int numSettingsValues = in.readInt();
+        for (int i = 0; i < numSettingsValues; i++) {
             mSettingsValue.put(in.readInt(), in.readInt());
         }
-    }
-
-    /**
-     * Create a new player settings object.
-     *
-     * @param settings a ORed value of SETTINGS_* defined above.
-     */
-    public BluetoothAvrcpPlayerSettings(int settings) {
-        mSettings = settings;
-    }
-
-    /**
-     * Get the supported settings.
-     *
-     * @return int ORed value of supported settings.
-     */
-    public int getSettings() {
-        return mSettings;
-    }
-
-    /**
-     * Add a setting value.
-     *
-     * The setting must be part of possible settings in {@link getSettings()}.
-     *
-     * @param setting setting config.
-     * @param value value for the setting.
-     * @throws IllegalStateException if the setting is not supported.
-     */
-    public void addSettingValue(int setting, int value) {
-        if ((setting & mSettings) == 0) {
-            Log.e(TAG, "Setting not supported: " + setting + " " + mSettings);
-            throw new IllegalStateException("Setting not supported: " + setting);
+        int numSettingsText = in.readInt();
+        for (int j = 0; j < numSettingsText; j++) {
+            mSettingsText.put(in.readInt(), in.readString());
         }
-        mSettingsValue.put(setting, value);
+        int numValuesText = in.readInt();
+        for (int j = 0; j < numValuesText; j++) {
+            mValuesText.put(in.readInt(), in.readString());
+        }
+    }
+
+    private BluetoothAvrcpPlayerSettings(@NonNull Map<Integer, Integer> settingsValue,
+            Map<Integer, String> settingsText, Map<Integer, String> valuesText) {
+        mSettingsValue = settingsValue;
+        mSettingsText = settingsText;
+        mValuesText = valuesText;
     }
 
     /**
-     * Get a setting value.
-     *
-     * The setting must be part of possible settings in {@link getSettings()}.
-     *
-     * @param setting setting config.
-     * @return value value for the setting.
-     * @throws IllegalStateException if the setting is not supported.
+     * @return true if the settings are not empty
      */
-    public int getSettingValue(int setting) {
-        if ((setting & mSettings) == 0) {
-            Log.e(TAG, "Setting not supported: " + setting + " " + mSettings);
-            throw new IllegalStateException("Setting not supported: " + setting);
+    public boolean isValid() {
+        return !mSettingsValue.isEmpty();
+    }
+
+    /**
+     * Ensures that the setting is valid.
+     *
+     * @return true if the setting is valid, false otherwise
+     */
+    public static boolean isValidPlayerSetting(@PlayerSetting int setting) {
+        if (setting > SETTING_SHUFFLE || setting < SETTING_REPEAT) {
+            return false;
         }
-        Integer i = mSettingsValue.get(setting);
-        if (i == null) return -1;
-        return i;
+        return true;
+    }
+
+    /**
+     * Ensures that the setting and value given are valid.
+     *
+     * @return true if the setting is valid, false otherwise
+     */
+    public static boolean isValidPlayerSettingValue(@PlayerSetting int setting, int value) {
+        switch (setting) {
+            case SETTING_SHUFFLE:
+                if (value == STATE_SHUFFLE_OFF
+                        || value == STATE_SHUFFLE_ALL_TRACK
+                        || value == STATE_SHUFFLE_GROUP) {
+                    return true;
+                }
+                return false;
+            case SETTING_REPEAT:
+                if (value == STATE_REPEAT_OFF
+                        || value == STATE_REPEAT_ALL_TRACK
+                        || value == STATE_REPEAT_GROUP
+                        || value == STATE_REPEAT_SINGLE_TRACK) {
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Ensures that the value given exists.
+     *
+     * @return true if the value exists, false otherwise
+     */
+    public static boolean isValidPlayerValue(int value) {
+        switch (value) {
+            case STATE_SHUFFLE_OFF:
+            case STATE_SHUFFLE_ALL_TRACK:
+            case STATE_SHUFFLE_GROUP:
+            case STATE_REPEAT_OFF:
+            case STATE_REPEAT_ALL_TRACK:
+            case STATE_REPEAT_GROUP:
+            case STATE_REPEAT_SINGLE_TRACK:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Retrieves the list of possible values for a setting.
+     *
+     * @param setting the setting values should be retrieved for
+     * @return a list of values corresponding to the provided setting
+     */
+    public static List<Integer> getSettingPossibleValues(@PlayerSetting int setting) {
+        switch (setting) {
+            case SETTING_SHUFFLE:
+                return Arrays.asList(STATE_SHUFFLE_OFF,
+                        STATE_SHUFFLE_ALL_TRACK,
+                        STATE_SHUFFLE_GROUP);
+            case SETTING_REPEAT:
+                return Arrays.asList(STATE_REPEAT_OFF,
+                        STATE_REPEAT_ALL_TRACK,
+                        STATE_REPEAT_GROUP,
+                        STATE_REPEAT_SINGLE_TRACK);
+            default:
+                return Collections.emptyList();
+        }
+    }
+
+    /**
+     * Checks if the setting exists for this player.
+     *
+     * @param setting the setting to check
+     * @return the true if the setting exists or false if the setting is not found
+     */
+    public boolean isPlayerSettingSet(@PlayerSetting int setting) {
+        return mSettingsValue.containsKey(setting);
+    }
+
+    /**
+     * Returns the value of the given setting.
+     *
+     * @param setting the setting to get the value for
+     * @return the value of the setting or STATE_OFF if the setting is not found
+     */
+    public int getPlayerSettingValue(@PlayerSetting int setting) {
+        return mSettingsValue.getOrDefault(setting, STATE_OFF);
+    }
+
+    /**
+     * Returns the text describing the given setting.
+     *
+     * @param setting the setting to get the text for
+     * @return the text of the setting or null if the setting is not found
+     */
+    public @Nullable String getPlayerSettingText(@PlayerSetting int setting) {
+        return mSettingsText.get(setting);
+    }
+
+    /**
+     * Returns the text describing the given value.
+     *
+     * @param value the value to get the text for
+     * @return the text of the value or null if the value is not found
+     */
+    public @Nullable String getPlayerValueText(int value) {
+        return mValuesText.get(value);
+    }
+
+    /**
+     * Public builder for BluetoothAvrcpPlayerSettings.
+     */
+    public static final class Builder {
+        private Map<Integer, Integer> mSettingsValue = new HashMap();
+        private Map<Integer, String> mSettingsText = new HashMap();
+        private Map<Integer, String> mValuesText = new HashMap();
+
+        public Builder(BluetoothAvrcpPlayerSettings original) {
+            mSettingsValue.putAll(original.mSettingsValue);
+            mSettingsText.putAll(original.mSettingsText);
+            mValuesText.putAll(original.mValuesText);
+            return this;
+        }
+
+        /**
+         * Adds a new setting value pair.
+         *
+         * Players should add all their available settings when registering as only available
+         * settings will receive updates.
+         *
+         * @param setting the setting to add
+         * @param value the value for this setting
+         * @return the same Builder instance
+         * @throws IllegalArgumentException if the setting or value is not supported.
+         */
+        public @NonNull Builder addPlayerSettingValue(@PlayerSetting int setting, int value) {
+            if (!isValidPlayerSetting(setting)) {
+                throw new IllegalArgumentException("Setting not supported: " + setting);
+            }
+            if (!isValidPlayerSettingValue(setting, value)) {
+                throw new IllegalArgumentException("Value: " + value
+                        + " not supported for setting: " + setting);
+            }
+            mSettingsValue.put(setting, value);
+            return this;
+        }
+
+        /**
+         * Adds a new setting text name pair.
+         *
+         * @param setting the setting to add
+         * @param text a string representing this setting
+         * @return the same Builder instance
+         * @throws IllegalArgumentException if the setting is not supported.
+         */
+        public @NonNull Builder addPlayerSettingText(@PlayerSetting int setting,
+                @NonNull String text) {
+            if (!isValidPlayerSetting(setting)) {
+                throw new IllegalArgumentException("Setting not supported: " + setting);
+            }
+            mSettingsText.put(setting, text);
+            return this;
+        }
+
+        /**
+         * Adds a new value text name pair.
+         *
+         * @param value the value for this setting
+         * @param text a string representing this value
+         * @return the same Builder instance
+         * @throws IllegalArgumentException if the value is not supported.
+         */
+        public @NonNull Builder addPlayerValueText(int value, @NonNull String text) {
+            if (!isValidPlayerValue(value)) {
+                throw new IllegalArgumentException("Value not supported: " + value);
+            }
+            mValuesText.put(value, text);
+            return this;
+        }
+
+        /**
+         * Build {@link BluetoothAvrcpPlayerSettings}.
+         * @return new BluetoothAvrcpPlayerSettings built
+         * @throws IllegalStateException if the settings are not set.
+         */
+        public @NonNull BluetoothAvrcpPlayerSettings build() {
+            if (!isValid()) {
+                throw new IllegalStateException("Settings cannot be empty");
+            }
+            return new BluetoothAvrcpPlayerSettings(mSettingsValue, mSettingsText, mValuesText);
+        }
     }
 }

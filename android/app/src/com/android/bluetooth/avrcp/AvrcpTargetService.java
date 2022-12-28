@@ -463,6 +463,70 @@ public class AvrcpTargetService extends ProfileService {
         setA2dpActiveDevice(device);
     }
 
+    void registerPlayerSettingsCallback(BluetoothAvrcpPlayerSettings settings,
+            BluetoothAvrcpPlayerSettingsCallback callback,
+            String playerPackageName) {
+        mPlayerSettingsManager.registerPlayerSettingsCallback(settings,
+                callback, playerPackageName);
+    }
+
+    void unregisterPlayerSettingsCallback(String playerPackageName) {
+        mPlayerSettingsManager.unregisterPlayerSettingsCallback(playerPackageName);
+    }
+
+    void updatePlayerSettings(BluetoothAvrcpPlayerSettings settings,
+            String playerPackageName) {
+        mPlayerSettingsManager.updatePlayerSettings(settings, playerPackageName);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the list of
+     * player settings.
+     */
+    void onListPlayerAttributeRequest(BluetoothDevice device) {
+        mPlayerSettingsManager.onListPlayerAttributeRequest(device);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the list of
+     * player setting values.
+     */
+    void onListPlayerAttributeValues(int setting, BluetoothDevice device) {
+        mPlayerSettingsManager.onListPlayerAttributeValues(setting, device);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the current values of
+     * player settings.
+     */
+    void onGetPlayerAttributeValues(List<Integer> settings, BluetoothDevice device) {
+        mPlayerSettingsManager.onGetPlayerAttributeValues(settings, device);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the current values of
+     * player settings to be set.
+     */
+    void setPlayerAppSetting(Map<Integer, Integer> settingsValue, BluetoothDevice device) {
+        mPlayerSettingsManager.setPlayerAppSetting(settingsValue, device);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the current text
+     * equivalent of player settings.
+     */
+    void getPlayerAttributeText(List<Integer> settings, BluetoothDevice device) {
+        mPlayerSettingsManager.getPlayerAttributeText(settings, device);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the current text
+     * equivalent of player settings values.
+     */
+    void getPlayerValueText(int setting, List<Integer> values, BluetoothDevice device) {
+        mPlayerSettingsManager.getPlayerValueText(setting, values, device);
+    }
+
     /**
      * Dump debugging information to the string builder
      */
