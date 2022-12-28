@@ -47,8 +47,8 @@ class ScriptedBeacon : public Beacon {
   }
 
   void Tick() override;
-  void ReceiveLinkLayerPacket(
-      model::packets::LinkLayerPacketView packet_view) override;
+  void ReceiveLinkLayerPacket(model::packets::LinkLayerPacketView packet_view,
+                              Phy::Type type, int8_t rssi) override;
 
  private:
   static bool registered_;

@@ -92,7 +92,8 @@ static uint32_t BuildBtPacketHeader(uint8_t uap, uint8_t lt_addr,
 }
 
 void BaseBandSniffer::ReceiveLinkLayerPacket(
-    model::packets::LinkLayerPacketView packet) {
+    model::packets::LinkLayerPacketView packet, Phy::Type /*type*/,
+    int8_t /*rssi*/) {
   auto packet_type = packet.GetType();
   auto address = packet.GetSourceAddress();
 

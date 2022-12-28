@@ -65,7 +65,8 @@ class DualModeController : public Device {
   virtual std::string GetTypeString() const override;
 
   virtual void ReceiveLinkLayerPacket(
-      model::packets::LinkLayerPacketView incoming) override;
+      model::packets::LinkLayerPacketView incoming, Phy::Type type,
+      int8_t rssi) override;
 
   virtual void Tick() override;
   virtual void Close() override;

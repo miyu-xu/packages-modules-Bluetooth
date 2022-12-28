@@ -46,7 +46,8 @@ class BaseBandSniffer : public Device {
   }
 
   virtual void ReceiveLinkLayerPacket(
-      model::packets::LinkLayerPacketView packet) override;
+      model::packets::LinkLayerPacketView packet, Phy::Type type,
+      int8_t rssi) override;
 
  private:
   void AppendRecord(std::unique_ptr<bredr_bb::BaseBandPacketBuilder> packet);

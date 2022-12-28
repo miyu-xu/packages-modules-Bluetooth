@@ -25,6 +25,8 @@
 
 namespace rootcanal {
 
+using rootcanal::PhyDevice;
+
 class PhyLayer {
  public:
   using Identifier = uint32_t;
@@ -32,12 +34,18 @@ class PhyLayer {
   PhyLayer(Identifier id, Phy::Type type);
   virtual ~PhyLayer() {}
 
-  virtual void Tick();
-  virtual void Send(std::vector<uint8_t> const& packet,
-                    rootcanal::PhyDevice::Identifier sender_id);
+  void Tick();
+  void Send(std::vector<uint8_t> const& packet, uint8_t tx_power,
+            PhyDevice::Identifier sender_id);
 
-  void Register(std::shared_ptr<rootcanal::PhyDevice> device);
-  void Unregister(rootcanal::PhyDevice::Identifier device_id);
+  // Compute the RSSI for a packet sent from one device to the other
+  // with the specified TX power.
+  virtual uint8_t ComputeRssi(PhyDevice::Identifier sender_id,
+                              PhyDevice::Identifier receiver_id,
+                              uint8_t tx_power);
+
+  void Register(std::shared_ptr<PhyDevice> device);
+  void Unregister(PhyDevice::Identifier device_id);
   void UnregisterAll();
 
   std::string ToString() const;

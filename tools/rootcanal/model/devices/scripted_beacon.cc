@@ -195,7 +195,8 @@ void ScriptedBeacon::Tick() {
 }
 
 void ScriptedBeacon::ReceiveLinkLayerPacket(
-    model::packets::LinkLayerPacketView packet) {
+    model::packets::LinkLayerPacketView packet, Phy::Type /*type*/,
+    int8_t /*rssi*/) {
   if (current_state_ == PlaybackEvent::INITIALIZED) {
     if (packet.GetDestinationAddress() == address_ &&
         packet.GetType() == PacketType::LE_SCAN) {
