@@ -344,13 +344,15 @@ final class BondStateMachine extends StateMachine {
         if (dev.getBondState() == BluetoothDevice.BOND_NONE) {
             infoLog("Bond address is:" + dev);
             byte[] addr = Utils.getBytesFromAddress(dev.getAddress());
+            byte[] addrWithType = new byte[addr.length + 1];
+            addrWithType[addr.length] = (byte) dev.getAddressType();
             boolean result;
             // If we have some data
             if (remoteP192Data != null || remoteP256Data != null) {
                 result = mAdapterService.createBondOutOfBandNative(addr, transport,
                     remoteP192Data, remoteP256Data);
             } else {
-                result = mAdapterService.createBondNative(addr, transport);
+                result = mAdapterService.createBondNative(addrWithType, transport);
             }
             BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_DEVICE_NAME_REPORTED,
                     mAdapterService.getMetricId(dev), dev.getName());
