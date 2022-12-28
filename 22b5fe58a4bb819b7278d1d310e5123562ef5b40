@@ -46,6 +46,30 @@
       },
       "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f088764_3095e657",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-28T23:29:50Z",
+      "side": 1,
+      "message": "Note that originally batch scan is detected by the platform based on the fact that app sets report delay.\n\nFor Apps using CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH, the platform should force it to use a large default value of reportDelay (\u003e\u003d10 min). Allowing it to be zero probably doesn\u0027t make sense in this case.",
+      "parentUuid": "e022f721_d637bcca",
+      "range": {
+        "startLine": 104,
+        "startChar": 54,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
