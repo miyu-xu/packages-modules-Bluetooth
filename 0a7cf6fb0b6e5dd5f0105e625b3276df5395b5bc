@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c847975e_c2967e35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-28T08:53:29Z",
+      "side": 1,
+      "message": "The problem with the reverted CL, was the LOG_DEBUG in client.cc. By mistake address was printed there from the p_data, which was wrong.",
+      "revId": "0a7cf6fb0b6e5dd5f0105e625b3276df5395b5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
