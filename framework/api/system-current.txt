@@ -253,6 +253,14 @@ package android.bluetooth {
     field public static final int FILTER_TYPE_TRANSFER = 2; // 0x2
   }
 
+  public final class BluetoothGatt implements android.bluetooth.BluetoothProfile {
+    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public int getAclHandle(int);
+  }
+
+  public abstract class BluetoothGattCallback {
+    method public void onGetAclHandle(@NonNull android.bluetooth.BluetoothGatt, int, int, int);
+  }
+
   public final class BluetoothHapClient implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public android.bluetooth.BluetoothHapPresetInfo getActivePresetInfo(@NonNull android.bluetooth.BluetoothDevice);
     method @NonNull @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public java.util.List<android.bluetooth.BluetoothHapPresetInfo> getAllPresetInfo(@NonNull android.bluetooth.BluetoothDevice);

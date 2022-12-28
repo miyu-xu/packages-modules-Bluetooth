@@ -50,9 +50,7 @@ public final class BluetoothStatusCodes {
     public static final int ERROR_DEVICE_NOT_BONDED = 3;
 
     /**
-     * Error code indicating that the Bluetooth Device specified is not connected, but is bonded.
-     *
-     * @hide
+     * Error code indicating that the Bluetooth Device specified is not connected.
      */
     public static final int ERROR_DEVICE_NOT_CONNECTED = 4;
 
