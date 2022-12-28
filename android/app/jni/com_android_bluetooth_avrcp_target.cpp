@@ -170,6 +170,13 @@ static jmethodID method_volumeDeviceDisconnected;
 
 static jmethodID method_setVolume;
 
+static jmethodID method_listPlayerSettings;
+static jmethodID method_listPlayerSettingValues;
+static jmethodID method_getPlayerSettings;
+static jmethodID method_setPlayerSettings;
+static jmethodID method_listPlayerSettingsText;
+static jmethodID method_listPlayerSettingValuesText;
+
 static void classInitNative(JNIEnv* env, jclass clazz) {
   method_getCurrentSongInfo = env->GetMethodID(
       clazz, "getCurrentSongInfo", "()Lcom/android/bluetooth/audio_util/Metadata;");
@@ -211,6 +218,24 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "deviceDisconnected", "(Ljava/lang/String;)V");
 
   method_setVolume = env->GetMethodID(clazz, "setVolume", "(I)V");
+
+  method_listPlayerSettings = env->GetMethodID(
+      clazz, "listPlayerSettingsRequest", "(Ljava/lang/String;)V");
+
+  method_listPlayerSettingValues = env->GetMethodID(
+      clazz, "listPlayerSettingValuesRequest", "(Ljava/lang/String;B)V");
+
+  method_getPlayerSettings = env->GetMethodID(
+      clazz, "getCurrentPlayerSettingValuesRequest", "(Ljava/lang/String;[B)V");
+
+  method_setPlayerSettings = env->GetMethodID(clazz, "setPlayerSettingsRequest",
+                                              "(Ljava/lang/String;[B[B)V");
+
+  method_listPlayerSettingsText = env->GetMethodID(
+      clazz, "getPlayerSettingTextRequest", "(Ljava/lang/String;[B)V");
+
+  method_listPlayerSettingValuesText = env->GetMethodID(
+      clazz, "getPlayerSettingTextRequest", "(Ljava/lang/String;B[B)V");
 
   ALOGI("%s: AvrcpTargetJni initialized!", __func__);
 }
@@ -900,6 +925,42 @@ static void setBipClientStatusNative(JNIEnv* env, jobject object,
   sServiceInterface->SetBipClientStatus(bdaddr, status);
 }
 
+static void listPlayerSettingsRspNative(JNIEnv* env, jobject object,
+                                        jstring address, jbyteArray settings) {
+  // Struct build
+}
+
+static void listPlayerSettingValuesRspNative(JNIEnv* env, jobject object,
+                                             jstring address, jbyte setting,
+                                             jbyteArray values) {
+  // Struct build
+}
+
+static void getPlayerSettingsRspNative(JNIEnv* env, jobject object,
+                                       jstring address, jbyteArray settings,
+                                       jbyteArray values) {
+  // Struct build
+}
+
+static void getPlayerSettingsTextRspNative(JNIEnv* env, jobject object,
+                                           jstring address, jbyteArray settings,
+                                           jobjectArray texts) {
+  // Struct build
+}
+
+static void getPlayerValuesTextRspNative(JNIEnv* env, jobject object,
+                                         jstring address, jbyte setting,
+                                         jbyteArray values,
+                                         jobjectArray texts) {
+  // Struct build
+}
+
+static void sendPlayerSettingsNative(JNIEnv* env, jobject object,
+                                     jstring address, jbyteArray settings,
+                                     jbyteArray values) {
+  // Struct build
+}
+
 static JNINativeMethod sMethods[] = {
     {"classInitNative", "()V", (void*)classInitNative},
     {"initNative", "()V", (void*)initNative},
@@ -920,6 +981,21 @@ static JNINativeMethod sMethods[] = {
      (void*)sendVolumeChangedNative},
     {"setBipClientStatusNative", "(Ljava/lang/String;Z)V",
      (void*)setBipClientStatusNative},
+    {"listPlayerSettingsRspNative", "(Ljava/lang/String;[B)V",
+     (void*)listPlayerSettingsRspNative},
+    {"listPlayerSettingValuesRspNative", "(Ljava/lang/String;B[B)V",
+     (void*)listPlayerSettingValuesRspNative},
+    {"getPlayerSettingsRspNative", "(Ljava/lang/String;[B[B)V",
+     (void*)getPlayerSettingsRspNative},
+    {"getPlayerSettingsTextRspNative",
+     "(Ljava/lang/String;[B[Ljava/lang/String;)V",
+     (void*)getPlayerSettingsTextRspNative},
+    {"getPlayerValuesTextRspNative",
+     "(Ljava/lang/String;B[B[Ljava/lang/String;)V",
+     (void*)getPlayerValuesTextRspNative},
+    {"sendPlayerSettingsNative", "(Ljava/lang/String;[B[B)V",
+     (void*)sendPlayerSettingsNative},
+
 };
 
 int register_com_android_bluetooth_avrcp_target(JNIEnv* env) {
