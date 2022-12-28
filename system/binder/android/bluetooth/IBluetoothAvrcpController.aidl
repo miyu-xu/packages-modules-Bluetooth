@@ -16,7 +16,7 @@
 
 package android.bluetooth;
 
-import android.bluetooth.BluetoothAvrcpPlayerSettings;
+import android.bluetooth.BluetoothAvrcpControllerPlayerSettings;
 import android.bluetooth.BluetoothDevice;
 import android.content.AttributionSource;
 
@@ -37,7 +37,7 @@ oneway interface IBluetoothAvrcpController {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void getPlayerSettings(in BluetoothDevice device, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void setPlayerApplicationSetting(in BluetoothAvrcpPlayerSettings plAppSetting, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    void setPlayerApplicationSetting(in BluetoothAvrcpControllerPlayerSettings plAppSetting, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void sendGroupNavigationCmd(in BluetoothDevice device, int keyCode, int keyState, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
 }
