@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e35e297_768f9ef9",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-28T00:48:06Z",
+      "side": 1,
+      "message": "gtest ASSERTs also abort the execution, don\u0027t they?\n\n\nHere is the ref: https://google.github.io/googletest/primer.html#assertions",
+      "parentUuid": "6e4d9d38_fe18d60f",
+      "revId": "0abf20ec8b0b6914420407d71880945b6940f02c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f39a12f0_639c5739",
         "filename": "system/gd/os/linux_generic/reactor.cc",
         "patchSetId": 1
