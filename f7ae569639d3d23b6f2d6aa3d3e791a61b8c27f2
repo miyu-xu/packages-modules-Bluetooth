@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e14902de_5137f6ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-28T09:55:14Z",
+      "side": 1,
+      "message": "Can you explain the issue you are trying to solve and how a little bit in the commit message?",
+      "revId": "f7ae569639d3d23b6f2d6aa3d3e791a61b8c27f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
