@@ -343,11 +343,15 @@ final class BondStateMachine extends StateMachine {
             OobData remoteP256Data, boolean transition) {
         if (dev.getBondState() == BluetoothDevice.BOND_NONE) {
             infoLog("Bond address is:" + dev);
-            byte[] addr = Utils.getBytesFromAddress(dev.getAddress());
+            byte[] address = Utils.getBytesFromAddress(dev.getAddress());
+            int addrType = dev.getAddressType();
+            byte[] addr = new byte[address.length + 1];
+            System.arraycopy(address, 0, addr, 0, address.length);
+            addrWithType[address.length] = (byte) addrType;
             boolean result;
             // If we have some data
             if (remoteP192Data != null || remoteP256Data != null) {
-                result = mAdapterService.createBondOutOfBandNative(addr, transport,
+                result = mAdapterService.createBondOutOfBandNative(address, transport,
                     remoteP192Data, remoteP256Data);
             } else {
                 result = mAdapterService.createBondNative(addr, transport);
