@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b65e743e_0047cfdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-12-28T03:06:16Z",
+      "side": 1,
+      "message": "The CL is blocked by unrelated flaky tests",
+      "revId": "323643d31d1da833e50c8583e9759b4d01034e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
