@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80d2d2fd_9a5e3dc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-28T19:30:45Z",
+      "side": 1,
+      "message": "There is an edge case if we Pause, Enable, then Resume, where OnAdvertisingEnable callback is not invoked.\n\nBut this existed before as well, so it\u0027s not a QPR regression",
+      "revId": "212357f2f545ac99705d813c0dcb14c2d883b4ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
