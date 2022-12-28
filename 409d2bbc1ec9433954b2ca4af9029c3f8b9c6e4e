@@ -157,6 +157,30 @@
       },
       "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bea6f5fa_4c96a802",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-28T00:01:07Z",
+      "side": 1,
+      "message": "In my opinion, it is better to simplify App\u0027s usage and the service codes. Instead of expecting the app to set both flags, why not rename it to reflect that the fact that it will include CALLBACK_TYPE_ALL_MATCHES?",
+      "parentUuid": "cbbd09a6_5f17891a",
+      "range": {
+        "startLine": 346,
+        "startChar": 40,
+        "endLine": 346,
+        "endChar": 92
+      },
+      "revId": "409d2bbc1ec9433954b2ca4af9029c3f8b9c6e4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
