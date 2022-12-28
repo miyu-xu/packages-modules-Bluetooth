@@ -32,14 +32,14 @@ void Device::Close() {
 
 void Device::SendLinkLayerPacket(
     std::shared_ptr<model::packets::LinkLayerPacketBuilder> packet,
-    Phy::Type type) {
-  SendLinkLayerPacket(packet->SerializeToBytes(), type);
+    Phy::Type type, uint8_t tx_power) {
+  SendLinkLayerPacket(packet->SerializeToBytes(), type, tx_power);
 }
 
 void Device::SendLinkLayerPacket(std::vector<uint8_t> const& packet,
-                                 Phy::Type type) {
+                                 Phy::Type type, uint8_t tx_power) {
   if (send_ll_ != nullptr) {
-    send_ll_(packet, type);
+    send_ll_(packet, type, tx_power);
   }
 }
 
@@ -48,7 +48,8 @@ void Device::RegisterCloseCallback(std::function<void()> close_callback) {
 }
 
 void Device::RegisterLinkLayerChannel(
-    std::function<void(std::vector<uint8_t> const&, Phy::Type)> send_ll) {
+    std::function<void(std::vector<uint8_t> const&, Phy::Type, uint8_t)>
+        send_ll) {
   send_ll_ = send_ll;
 }
 

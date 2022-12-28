@@ -25,7 +25,8 @@ PhyDevice::PhyDevice(Identifier id, std::string type,
     : id(id), type(std::move(type)), device_(std::move(device)) {
   using namespace std::placeholders;
   assert(device_ != nullptr);
-  device_->RegisterLinkLayerChannel(std::bind(&PhyDevice::Send, this, _1, _2));
+  device_->RegisterLinkLayerChannel(
+      std::bind(&PhyDevice::Send, this, _1, _2, _3));
 }
 
 void PhyDevice::Register(PhyLayer* phy) { phy_layers_.insert(phy); }
@@ -38,8 +39,8 @@ void PhyDevice::SetAddress(bluetooth::hci::Address address) {
   device_->SetAddress(std::move(address));
 }
 
-void PhyDevice::Receive(std::vector<uint8_t> const& packet,
-                        Phy::Type /*type*/) {
+void PhyDevice::Receive(std::vector<uint8_t> const& packet, Phy::Type type,
+                        int8_t rssi) {
   std::shared_ptr<std::vector<uint8_t>> packet_copy =
       std::make_shared<std::vector<uint8_t>>(packet);
   model::packets::LinkLayerPacketView packet_view =
@@ -47,13 +48,14 @@ void PhyDevice::Receive(std::vector<uint8_t> const& packet,
           bluetooth::packet::PacketView<bluetooth::packet::kLittleEndian>(
               packet_copy));
   ASSERT(packet_view.IsValid());
-  device_->ReceiveLinkLayerPacket(std::move(packet_view));
+  device_->ReceiveLinkLayerPacket(std::move(packet_view), type, rssi);
 }
 
-void PhyDevice::Send(std::vector<uint8_t> const& packet, Phy::Type type) {
+void PhyDevice::Send(std::vector<uint8_t> const& packet, Phy::Type type,
+                     uint8_t tx_power) {
   for (auto const& phy : phy_layers_) {
     if (phy->type == type) {
-      phy->Send(packet, id);
+      phy->Send(packet, tx_power, id);
     }
   }
 }

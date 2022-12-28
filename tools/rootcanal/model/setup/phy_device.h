@@ -38,8 +38,9 @@ class PhyDevice {
   void Unregister(PhyLayer* phy);
 
   void Tick();
-  void Receive(std::vector<uint8_t> const& packet, Phy::Type type);
-  void Send(std::vector<uint8_t> const& packet, Phy::Type type);
+  void Receive(std::vector<uint8_t> const& packet, Phy::Type type, int8_t rssi);
+  void Send(std::vector<uint8_t> const& packet, Phy::Type type,
+            uint8_t tx_power);
 
   void SetAddress(bluetooth::hci::Address address);
   std::string ToString();

@@ -49,7 +49,8 @@ class LinkLayerSocketDevice : public Device {
   }
 
   virtual void ReceiveLinkLayerPacket(
-      model::packets::LinkLayerPacketView packet) override;
+      model::packets::LinkLayerPacketView packet, Phy::Type type,
+      int8_t rssi) override;
 
   virtual void Tick() override;
   virtual void Close() override;

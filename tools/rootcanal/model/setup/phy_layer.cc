@@ -45,12 +45,18 @@ void PhyLayer::UnregisterAll() {
   phy_devices_.clear();
 }
 
-void PhyLayer::Send(std::vector<uint8_t> const& packet,
+void PhyLayer::Send(std::vector<uint8_t> const& packet, uint8_t /*tx_power*/,
                     PhyDevice::Identifier sender_id) {
+  // Perform no RSSI computation by default.
+  // Clients overriding this function should use the TX power and
+  // positional information to derive correct device-to-device RSSI.
+  static uint8_t rssi = 0;
+  rssi = (rssi + 5) % 128;
+
   for (const auto& device : phy_devices_) {
     // Do not send the packet back to the sender.
     if (sender_id != device->id) {
-      device->Receive(packet, type);
+      device->Receive(packet, type, -rssi);
     }
   }
 }

@@ -95,7 +95,8 @@ void LinkLayerSocketDevice::Close() {
 }
 
 void LinkLayerSocketDevice::ReceiveLinkLayerPacket(
-    model::packets::LinkLayerPacketView packet) {
+    model::packets::LinkLayerPacketView packet, Phy::Type /*type*/,
+    int8_t /*rssi*/) {
   auto size_packet = bluetooth::packet::RawBuilder();
   size_packet.AddOctets4(packet.size());
   std::vector<uint8_t> size_bytes;

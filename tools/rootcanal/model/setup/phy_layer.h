@@ -33,7 +33,7 @@ class PhyLayer {
   virtual ~PhyLayer() {}
 
   virtual void Tick();
-  virtual void Send(std::vector<uint8_t> const& packet,
+  virtual void Send(std::vector<uint8_t> const& packet, uint8_t tx_power,
                     rootcanal::PhyDevice::Identifier sender_id);
 
   void Register(std::shared_ptr<rootcanal::PhyDevice> device);

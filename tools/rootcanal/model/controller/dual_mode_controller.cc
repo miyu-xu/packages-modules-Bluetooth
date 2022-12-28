@@ -42,8 +42,9 @@ std::string DualModeController::GetTypeString() const {
 }
 
 void DualModeController::ReceiveLinkLayerPacket(
-    model::packets::LinkLayerPacketView incoming) {
-  link_layer_controller_.IncomingPacket(incoming);
+    model::packets::LinkLayerPacketView incoming, Phy::Type /*type*/,
+    int8_t rssi) {
+  link_layer_controller_.IncomingPacket(incoming, rssi);
 }
 
 void DualModeController::Tick() { link_layer_controller_.Tick(); }
@@ -83,8 +84,8 @@ DualModeController::DualModeController(const std::string& properties_filename,
 
   link_layer_controller_.RegisterRemoteChannel(
       [this](std::shared_ptr<model::packets::LinkLayerPacketBuilder> packet,
-             Phy::Type phy_type) {
-        this->SendLinkLayerPacket(packet, phy_type);
+             Phy::Type phy_type, uint8_t tx_power) {
+        this->SendLinkLayerPacket(packet, phy_type, tx_power);
       });
 
   std::array<uint8_t, 64> supported_commands{0};
