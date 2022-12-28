@@ -2082,6 +2082,13 @@ public class LeAudioService extends ProfileService {
         synchronized (mGroupLock) {
             mDeviceGroupIdMap.remove(device);
             if (!mDeviceGroupIdMap.containsValue(groupId)) {
+                /* Device is currently an active device. Group needs to be inactivated before
+                 * removing
+                 */
+                if (Objects.equals(device, mActiveAudioOutDevice)
+                        || Objects.equals(device, mActiveAudioInDevice)) {
+                    handleGroupTransitToInactive(groupId);
+                }
                 mGroupDescriptors.remove(groupId);
             }
             notifyGroupNodeRemoved(device, groupId);
