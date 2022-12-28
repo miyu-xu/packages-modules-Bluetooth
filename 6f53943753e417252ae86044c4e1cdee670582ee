@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "633b2f94_f7caf1b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-28T22:35:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94ecff73_b7a90666",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 27
+      },
+      "revId": "6f53943753e417252ae86044c4e1cdee670582ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3c76c9f_ad7be0ed",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28050d56_cf728ebf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-28T22:35:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3c76c9f_ad7be0ed",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "6f53943753e417252ae86044c4e1cdee670582ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf16f71d_ab0d116f",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-22T19:58:11Z",
       "side": 1,
       "message": "Do not log full address but use `BluetoothUtils.toAnonymizedAddress`\nSame below",
+      "range": {
+        "startLine": 705,
+        "startChar": 63,
+        "endLine": 705,
+        "endChar": 70
+      },
+      "revId": "6f53943753e417252ae86044c4e1cdee670582ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "625c56e8_ab0db010",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-12-28T22:35:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf16f71d_ab0d116f",
       "range": {
         "startLine": 705,
         "startChar": 63,
