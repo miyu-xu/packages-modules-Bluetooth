@@ -22,6 +22,30 @@
       },
       "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e022f721_d637bcca",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-28T21:42:17Z",
+      "side": 1,
+      "message": "Because the default report delay is zero, isAllMatchesAutoBatchScanClient() will return false. So, isExemptFromAutoBatchScanUpdate() will always returns true. Thus, auto switching to batch scan will not kick in so that this scan client will be handled like regular scan.\n\nActually, this is good point. I will add unit test case for this case.",
+      "parentUuid": "7cf7ea31_921eb6ea",
+      "range": {
+        "startLine": 104,
+        "startChar": 54,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
