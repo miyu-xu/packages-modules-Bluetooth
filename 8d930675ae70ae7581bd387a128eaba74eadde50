@@ -85,6 +85,24 @@
       "parentUuid": "e0d53740_70512a84",
       "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2f11ff_8364cbd1",
+        "filename": "tools/rootcanal/model/setup/phy_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-12-28T17:05:46Z",
+      "side": 1,
+      "message": "TxPower and RxPower would be very clean. Default implementation copies tx-\u003erx.\n\nHow clean is it to pass the param down/up from the original point of insertion and use?",
+      "parentUuid": "7bbbbe1c_9f5f6103",
+      "revId": "8d930675ae70ae7581bd387a128eaba74eadde50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
