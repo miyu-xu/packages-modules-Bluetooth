@@ -117,12 +117,6 @@ static const void* get_profile_interface(const char* profile_id) {
   return nullptr;
 }
 
-int dut_mode_configure(uint8_t enable) { return BT_STATUS_SUCCESS; }
-
-int dut_mode_send(uint16_t opcode, uint8_t* buf, uint8_t len) {
-  return BT_STATUS_SUCCESS;
-}
-
 static int set_os_callouts(bt_os_callouts_t* callouts) {
   return BT_STATUS_SUCCESS;
 }
@@ -194,8 +188,6 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     pin_reply,
     ssp_reply,
     get_profile_interface,
-    dut_mode_configure,
-    dut_mode_send,
     set_os_callouts,
     read_energy_info,
     dump,
