@@ -74,4 +74,10 @@ oneway interface IBluetoothA2dp {
     void getBufferConstraints(in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     void setBufferLengthMillis(int codec, int size, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void registerPlayerSettingsCallback(in BluetoothAvrcpPlayerSettings settings, in BluetoothAvrcpPlayerSettingsCallback callback, in AttributionSource attributionSource);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void unregisterPlayerSettingsCallback(in AttributionSource attributionSource);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void updatePlayerSettings(in BluetoothAvrcpPlayerSettings settings, in AttributionSource attributionSource);
 }

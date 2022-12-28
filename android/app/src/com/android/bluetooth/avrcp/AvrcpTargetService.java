@@ -463,6 +463,60 @@ public class AvrcpTargetService extends ProfileService {
         setA2dpActiveDevice(device);
     }
 
+    void registerPlayerSettingsCallback(BluetoothAvrcpPlayerSettings settings,
+            BluetoothAvrcpPlayerSettingsCallback callback,
+            String playerPackageName) {
+        mPlayerSettingsManager.registerPlayerSettingsCallback(settings,
+                callback, playerPackageName);
+    }
+
+    void unregisterPlayerSettingsCallback(String playerPackageName) {
+        mPlayerSettingsManager.unregisterPlayerSettingsCallback(playerPackageName);
+    }
+
+    void updatePlayerSettings(BluetoothAvrcpPlayerSettings settings,
+            String playerPackageName) {
+        mPlayerSettingsManager.updatePlayerSettings(settings, playerPackageName);
+    }
+
+    //PDU ID 0x11
+    void onListPlayerAttributeRequest(BluetoothDevice device) {
+        mPlayerSettingsManager.onListPlayerAttributeRequest(device);
+    }
+
+    //PDU ID 0x12
+    void onListPlayerAttributeValues(byte setting, BluetoothDevice device) {
+        mPlayerSettingsManager.onListPlayerAttributeValues(setting, device);
+    }
+
+    //PDU ID 0x13
+    void onGetPlayerAttributeValues(byte numberSettings , int[] settings,
+            BluetoothDevice device) {
+        mPlayerSettingsManager.onGetPlayerAttributeValues(numberSettings,
+                settings, device);
+    }
+
+    //PDU 0x14
+    void setPlayerAppSetting(byte numberSettings, byte[] settings, byte[] values,
+            BluetoothDevice device) {
+        mPlayerSettingsManager.setPlayerAppSetting(numberSettings,
+                settings, values, device);
+    }
+
+    //PDU 0x15
+    void getPlayerAttributeText(byte numberSettings, byte[] settings,
+            BluetoothDevice device) {
+        mPlayerSettingsManager.getPlayerAttributeText(numberSettings,
+                settings, device);
+    }
+
+    //PDU 0x16
+    void getPlayerValueText(byte setting, byte numberValues, byte[] values,
+            BluetoothDevice device) {
+        mPlayerSettingsManager.getPlayerValueText(setting, numberValues,
+                values, device);
+    }
+
     /**
      * Dump debugging information to the string builder
      */

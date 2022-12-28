@@ -77,8 +77,8 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
      *
      * <p>This intent will have the following extras:
      * <ul>
-     * <li> {@link #EXTRA_PLAYER_SETTING} - {@link BluetoothAvrcpPlayerSettings} containing the
-     * most recent player setting. </li>
+     * <li> {@link #EXTRA_PLAYER_SETTING} - {@link BluetoothAvrcpControllerPlayerSettings}
+     * containing the most recent player setting. </li>
      * </ul>
      */
     @RequiresBluetoothConnectPermission
@@ -209,21 +209,22 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
     /**
      * Gets the player application settings.
      *
-     * @return the {@link BluetoothAvrcpPlayerSettings} or {@link null} if there is an error.
+     * @return the {@link BluetoothAvrcpControllerPlayerSettings} or
+     * {@link null} if there is an error.
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    public BluetoothAvrcpPlayerSettings getPlayerSettings(BluetoothDevice device) {
+    public BluetoothAvrcpControllerPlayerSettings getPlayerSettings(BluetoothDevice device) {
         if (DBG) Log.d(TAG, "getPlayerSettings");
-        BluetoothAvrcpPlayerSettings settings = null;
+        BluetoothAvrcpControllerPlayerSettings settings = null;
         final IBluetoothAvrcpController service = getService();
-        final BluetoothAvrcpPlayerSettings defaultValue = null;
+        final BluetoothAvrcpControllerPlayerSettings defaultValue = null;
         if (service == null) {
             Log.w(TAG, "Proxy not attached to service");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (isEnabled()) {
             try {
-                final SynchronousResultReceiver<BluetoothAvrcpPlayerSettings> recv =
+                final SynchronousResultReceiver<BluetoothAvrcpControllerPlayerSettings> recv =
                         SynchronousResultReceiver.get();
                 service.getPlayerSettings(device, mAttributionSource, recv);
                 settings = recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
@@ -240,7 +241,8 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    public boolean setPlayerApplicationSetting(BluetoothAvrcpPlayerSettings plAppSetting) {
+    public boolean setPlayerApplicationSetting(
+            BluetoothAvrcpControllerPlayerSettings plAppSetting) {
         if (DBG) Log.d(TAG, "setPlayerApplicationSetting");
         final IBluetoothAvrcpController service = getService();
         final boolean defaultValue = false;
