@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.android.bluetooth.Utils;
+
 import java.util.UUID;
 
 /**
@@ -69,7 +71,7 @@ import java.util.UUID;
      *   import com.android.bluetooth.gatt.GattService;
      */
     static boolean handleDebugAction(GattService svc, Intent intent) {
-        if (!DEBUG_ADMIN) {
+        if (!DEBUG_ADMIN && !Utils.isInstrumentationTestMode()) {
             return false;
         }
 
