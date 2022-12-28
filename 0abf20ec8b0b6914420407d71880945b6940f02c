@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fabaff41_8c5de70c",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-28T01:00:52Z",
+      "side": 1,
+      "message": "Not if run in a subroutine:\nhttps://google.github.io/googletest/advanced.html#propagating-fatal-failures",
+      "parentUuid": "7e35e297_768f9ef9",
+      "revId": "0abf20ec8b0b6914420407d71880945b6940f02c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f39a12f0_639c5739",
