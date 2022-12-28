@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.avrcp;
 
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
@@ -260,6 +261,103 @@ public class AvrcpNativeInterface {
 
         mAvrcpService.setVolume(volume);
     }
+
+    /**
+     * Request from remote to list supported player settings.
+     */
+    void listPlayerSettingsRequest(String bdaddr) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> listPlayerSettingsResponse(bdaddr, settings));
+    }
+
+    void listPlayerSettingsResponse(String bdaddr, BluetoothAvrcpPlayerSettings settings) {
+        //listPlayerSettingsResponseNative()
+    }
+
+    /**
+     * Request from remote to list supported values for player setting.
+     */
+    void listPlayerSettingValuesRequest(String bdaddr, int settingRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> listPlayerSettingValuesResponse(bdaddr, settingRequest, settings));
+    }
+
+    void listPlayerSettingValuesResponse(String bdaddr, int settingRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        //listPlayerSettingValuesResponseNative()
+    }
+
+    /**
+     * Request from remote current values for player settings.
+     */
+    void getCurrentSettingValuesRequest(String bdaddr, List<Integer> settingsRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getCurrentSettingValuesResponse(bdaddr, settingsRequest, settings));
+    }
+
+    void getCurrentSettingValuesResponse(String bdaddr, List<Integer> settingsRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        //getCurrentSettingValuesResponseNative()
+    }
+
+    /**
+     * Request from remote to set current values for player settings.
+     */
+    boolean setPlayerSettingsRequest(String bdaddr, List<Integer> settingsRequest,
+            List<Integer> valuesRequest) {
+        if (settingsRequest.size() != valuesRequest.size()) {
+            return false;
+        }
+        BluetoothAvrcpPlayerSettings.Builder builder = new BluetoothAvrcpPlayerSettings.Builder();
+        for (int i = 0; i < settingsRequest.size(); i++) {
+            try {
+                builder.addPlayerSettingValue(settingsRequest.get(i), valuesRequest.get(i));
+            } catch (IllegalArgumentException e) {
+                Log.w(TAG, "setPlayerAppSettingsRequest: " + e);
+            }
+        }
+
+        try {
+            return mAvrcpService.setPlayerSettings(builder.build());
+            //setPlayerAppSettingsResponseNative() ?
+        } catch (IllegalStateException e) {
+            Log.e(TAG, "setPlayerAppSettingsRequest: " + e);
+            return false;
+        }
+    }
+
+    /**
+     * Request from remote to get player setting as text.
+     */
+    void getPlayerSettingTextRequest(String bdaddr, List<Integer> settingsRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getPlayerSettingTextResponse(bdaddr, settingsRequest, settings));
+    }
+
+    void getPlayerSettingTextResponse(String bdaddr, List<Integer> settingsRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        //getPlayerSettingTextResponseNative()
+    }
+
+    /**
+     * Request from remote to get player setting value as text.
+     */
+    void getPlayerSettingValueTextRequest(String bdaddr, int settingRequest,
+            List<Integer> attributesRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getPlayerSettingValueTextResponse(bdaddr, settingRequest,
+                        attributesRequest, settings));
+    }
+
+    void getPlayerSettingValueTextResponse(String bdaddr, int settingRequest,
+            List<Integer> attributesRequest, BluetoothAvrcpPlayerSettings settings) {
+        //getPlayerSettingValueTextResponseNative()
+    }
+
+    void sendPlayerSettings(BluetoothAvrcpPlayerSettings settings) {
+        //sendPlayerSettingsNative();
+    }
+
 
     private static native void classInitNative();
     private native void initNative();

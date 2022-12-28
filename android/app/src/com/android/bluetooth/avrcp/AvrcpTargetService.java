@@ -17,8 +17,10 @@
 package com.android.bluetooth.avrcp;
 
 import android.bluetooth.BluetoothA2dp;
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.IBluetoothAvrcpPlayerSettingsCallback;
 import android.bluetooth.IBluetoothAvrcpTarget;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -42,6 +44,8 @@ import com.android.bluetooth.audio_util.MediaPlayerWrapper;
 import com.android.bluetooth.audio_util.Metadata;
 import com.android.bluetooth.audio_util.PlayStatus;
 import com.android.bluetooth.audio_util.PlayerInfo;
+import com.android.bluetooth.audio_util.PlayerSettingsManager;
+import com.android.bluetooth.audio_util.PlayerSettingsManager.PlayerSettingsNativeCallback;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
@@ -68,6 +72,7 @@ public class AvrcpTargetService extends ProfileService {
 
     private AvrcpVersion mAvrcpVersion;
     private MediaPlayerList mMediaPlayerList;
+    private PlayerSettingsManager mPlayerSettingsManager;
     private AudioManager mAudioManager;
     private AvrcpBroadcastReceiver mReceiver;
     private AvrcpNativeInterface mNativeInterface;
@@ -202,6 +207,8 @@ public class AvrcpTargetService extends ProfileService {
         sDeviceMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 
         mMediaPlayerList = new MediaPlayerList(Looper.myLooper(), this);
+
+        mPlayerSettingsManager = new PlayerSettingsManager(mMediaPlayerList, this);
 
         mNativeInterface = AvrcpNativeInterface.getInterface();
         mNativeInterface.init(AvrcpTargetService.this);
@@ -461,6 +468,54 @@ public class AvrcpTargetService extends ProfileService {
             Log.wtf(TAG, "setActiveDevice: could not find device " + device);
         }
         setA2dpActiveDevice(device);
+    }
+
+    /**
+     * Registers the callback for the Player app.
+     */
+    public void registerPlayerSettingsCallback(BluetoothAvrcpPlayerSettings settings,
+            IBluetoothAvrcpPlayerSettingsCallback callback,
+            String playerPackageName) {
+        mPlayerSettingsManager.registerPlayerSettingsCallback(settings,
+                callback, playerPackageName);
+    }
+
+    /**
+     * Unregisters the callback for the Player app.
+     */
+    public void unregisterPlayerSettingsCallback(String playerPackageName) {
+        mPlayerSettingsManager.unregisterPlayerSettingsCallback(playerPackageName);
+    }
+
+    /**
+     * Updates the player settings in the manager.
+     */
+    public void updatePlayerSettings(BluetoothAvrcpPlayerSettings settings,
+            String playerPackageName) {
+        mPlayerSettingsManager.updatePlayerSettings(settings, playerPackageName);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the current values of
+     * player settings to be set.
+     */
+    boolean setPlayerSettings(BluetoothAvrcpPlayerSettings settings) {
+        return mPlayerSettingsManager.setPlayerSettings(settings);
+    }
+
+    /**
+     * Called from native to indicate that the remote device requests the current settings of
+     * player settings to be set.
+     */
+    void onPlayerSettingsRequest(PlayerSettingsNativeCallback callback) {
+        mPlayerSettingsManager.onPlayerSettingsRequest(callback);
+    }
+
+    /**
+     * Called from player callback to indicate new settings to remote device.
+     */
+    void sendPlayerSettings(BluetoothAvrcpPlayerSettings settings) {
+        mNativeInterface.sendPlayerSettings(settings);
     }
 
     /**

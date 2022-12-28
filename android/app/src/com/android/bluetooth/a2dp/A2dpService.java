@@ -27,6 +27,7 @@ import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsPreferenceStatus;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsSupportStatus;
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
 import android.bluetooth.BluetoothCodecConfig;
 import android.bluetooth.BluetoothCodecStatus;
 import android.bluetooth.BluetoothDevice;
@@ -34,6 +35,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.BufferConstraints;
 import android.bluetooth.IBluetoothA2dp;
+import android.bluetooth.IBluetoothAvrcpPlayerSettingsCallback;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
@@ -957,6 +959,38 @@ public class A2dpService extends ProfileService {
         return mAdapterService.setBufferLengthMillis(codec, value);
     }
 
+    /**
+     * Transfers the register request to AvrcpTargetService.
+     */
+    public void registerPlayerSettingsCallback(BluetoothAvrcpPlayerSettings settings,
+            IBluetoothAvrcpPlayerSettingsCallback callback,
+            String playerPackageName) {
+        if (mFactory.getAvrcpTargetService() != null) {
+            mFactory.getAvrcpTargetService().registerPlayerSettingsCallback(
+                    settings, callback, playerPackageName);
+        }
+    }
+
+    /**
+     * Transfers the unregisterPlayerSettingsCallback request to AvrcpTargetService.
+     */
+    public void unregisterPlayerSettingsCallback(String playerPackageName) {
+        if (mFactory.getAvrcpTargetService() != null) {
+            mFactory.getAvrcpTargetService().unregisterPlayerSettingsCallback(playerPackageName);
+        }
+    }
+
+    /**
+     * Transfers the updatePlayerSettings request to AvrcpTargetService.
+     */
+    public void updatePlayerSettings(BluetoothAvrcpPlayerSettings settings,
+            String playerPackageName) {
+        if (mFactory.getAvrcpTargetService() != null) {
+            mFactory.getAvrcpTargetService().updatePlayerSettings(settings,
+                    playerPackageName);
+        }
+    }
+
     // Handle messages from native (JNI) to Java
     void messageFromNative(A2dpStackEvent stackEvent) {
         Objects.requireNonNull(stackEvent.device,
@@ -1651,6 +1685,36 @@ public class A2dpService extends ProfileService {
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
+        }
+
+        @Override
+        public void registerPlayerSettingsCallback(BluetoothAvrcpPlayerSettings settings,
+                IBluetoothAvrcpPlayerSettingsCallback callback,
+                AttributionSource source) {
+            A2dpService service = getService(source);
+            if (service == null) {
+                return;
+            }
+            service.registerPlayerSettingsCallback(settings, callback, source.getPackageName());
+        }
+
+        @Override
+        public void unregisterPlayerSettingsCallback(AttributionSource source) {
+            A2dpService service = getService(source);
+            if (service == null) {
+                return;
+            }
+            service.unregisterPlayerSettingsCallback(source.getPackageName());
+        }
+
+        @Override
+        public void updatePlayerSettings(BluetoothAvrcpPlayerSettings settings,
+                AttributionSource source) {
+            A2dpService service = getService(source);
+            if (service == null) {
+                return;
+            }
+            service.updatePlayerSettings(settings, source.getPackageName());
         }
     }
 
