@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "047c6a1d_ad96258b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2012,
+      "author": {
+        "id": 1963513
+      },
+      "writtenOn": "2022-12-28T09:03:39Z",
+      "side": 1,
+      "message": "please check the condition.",
+      "revId": "cd07a3bd09ec7e0d1cf152db2eaeb373c4e87803",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
