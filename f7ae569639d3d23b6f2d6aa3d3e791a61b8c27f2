@@ -16,6 +16,70 @@
       "message": "Can you explain the issue you are trying to solve and how a little bit in the commit message?",
       "revId": "f7ae569639d3d23b6f2d6aa3d3e791a61b8c27f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f54cda68_4d21ca46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-28T11:19:12Z",
+      "side": 1,
+      "message": "Done and left some comments about the details. Thanks!",
+      "parentUuid": "e14902de_5137f6ac",
+      "revId": "f7ae569639d3d23b6f2d6aa3d3e791a61b8c27f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdd7240d_504b5d01",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-28T11:19:12Z",
+      "side": 1,
+      "message": "EnqueueCommand and SetCommandFuture are run on different thread.\nThis may cause line 157 run between line 151 and 152 and cause test fail\n```\nExpected equality of these values:\n  command_promise_\n    Which is: (ptr \u003d 0x602000015d10, value \u003d 8-byte object \u003c80-38 00-00 C0-60 00-00\u003e)\n  nullptr\n    Which is: (nullptr)\nPromises, Promises, ... Only one at a time.\n```",
+      "range": {
+        "startLine": 151,
+        "startChar": 6,
+        "endLine": 152,
+        "endChar": 31
+      },
+      "revId": "f7ae569639d3d23b6f2d6aa3d3e791a61b8c27f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ea8f06_b05b36d0",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-28T11:19:12Z",
+      "side": 1,
+      "message": "Use promise to wait asynchronous callback event to prevent flaky error \n```\npackages/modules/Bluetooth/system/gd/hci/acl_manager_test.cc:934: Failure\nActual function call count doesn\u0027t match EXPECT_CALL(mock_le_connection_management_callbacks_, OnDisconnection(reason))...\n         Expected: to be called once\n           Actual: never called - unsatisfied and active\n```",
+      "range": {
+        "startLine": 916,
+        "startChar": 2,
+        "endLine": 916,
+        "endChar": 57
+      },
+      "revId": "f7ae569639d3d23b6f2d6aa3d3e791a61b8c27f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
