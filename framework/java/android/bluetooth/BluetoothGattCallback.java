@@ -16,7 +16,13 @@
 
 package android.bluetooth;
 
+import android.annotation.IntDef;
 import android.annotation.NonNull;
+import android.annotation.SystemApi;
+import android.bluetooth.BluetoothDevice.Transport;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * This abstract class is used to implement {@link BluetoothGatt} callbacks.
@@ -208,8 +214,7 @@ public abstract class BluetoothGattCallback {
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the reliable write transaction was
      * executed successfully
      */
-    public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {
-    }
+    public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {}
 
     /**
      * Callback reporting the RSSI for a remote device connection.
@@ -221,8 +226,29 @@ public abstract class BluetoothGattCallback {
      * @param rssi The RSSI value for the remote device
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the RSSI was read successfully
      */
-    public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
-    }
+    public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {}
+
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {BluetoothStatusCodes.SUCCESS, BluetoothStatusCodes.ERROR_DEVICE_NOT_CONNECTED})
+    public @interface OnGetAclHandleStatusValues {}
+
+    /**
+     * Callback reporting the ACL handle for a remote device connection.
+     *
+     * This callback is triggered in response to the
+     * {@link BluetoothGatt#getAclHandle} function.
+     *
+     * @param gatt GATT client invoked {@link BluetoothGatt#getAclHandle}
+     * @param transport transport for this connection handle
+     * @param status {@link BluetoothStatusCodes#SUCCESS} if the handle was read successfully
+     * @param handle ACL handle for the remote device, or -1 if no ACL connection exists
+     *
+     * @hide
+     */
+    @SystemApi
+    public void onGetAclHandle(@NonNull BluetoothGatt gatt, @Transport int transport,
+            @OnGetAclHandleStatusValues int status, int handle) {}
 
     /**
      * Callback indicating the MTU for a given device connection has changed.
