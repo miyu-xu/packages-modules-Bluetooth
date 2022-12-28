@@ -16,4 +16,14 @@
 
 package android.bluetooth;
 
-parcelable BluetoothAvrcpPlayerSettings;
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
+
+/**
+ * Callback definitions for Player settings.
+ * @hide
+ */
+oneway interface IBluetoothAvrcpPlayerSettingsCallback {
+    void onPlayerSettingsRegistered();
+    void onSetPlayerSettings(in BluetoothAvrcpPlayerSettings settings);
+    void onRequestPlayerSettings();
+}

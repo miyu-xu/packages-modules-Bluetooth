@@ -16,11 +16,14 @@
 
 package android.bluetooth;
 
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
 import android.bluetooth.BluetoothCodecConfig;
 import android.bluetooth.BluetoothCodecStatus;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BufferConstraints;
 import android.content.AttributionSource;
+
+import android.bluetooth.IBluetoothAvrcpPlayerSettingsCallback;
 
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -74,4 +77,10 @@ oneway interface IBluetoothA2dp {
     void getBufferConstraints(in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     void setBufferLengthMillis(int codec, int size, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void registerPlayerSettingsCallback(in BluetoothAvrcpPlayerSettings settings, in IBluetoothAvrcpPlayerSettingsCallback callback, in AttributionSource attributionSource);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void unregisterPlayerSettingsCallback(in AttributionSource attributionSource);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void updatePlayerSettings(in BluetoothAvrcpPlayerSettings settings, in AttributionSource attributionSource);
 }

@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.avrcp;
 
+import android.bluetooth.BluetoothAvrcpPlayerSettings;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
@@ -27,6 +28,7 @@ import com.android.bluetooth.audio_util.PlayerInfo;
 import com.android.bluetooth.btservice.AdapterService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -261,6 +263,174 @@ public class AvrcpNativeInterface {
         mAvrcpService.setVolume(volume);
     }
 
+    /**
+     * Request from remote to list supported player settings.
+     */
+    void listPlayerSettingsRequest(String bdaddr) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> listPlayerSettingsResponse(bdaddr, settings));
+    }
+
+    void listPlayerSettingsResponse(String bdaddr, BluetoothAvrcpPlayerSettings settings) {
+        byte[] settingsArray = new byte[0];
+        if (settings != null) {
+            settingsArray = new byte[settings.getPlayerSettingValues().size()];
+            int index = 0;
+            for (Map.Entry<Integer, Integer> setting :
+                    settings.getPlayerSettingValues().entrySet()) {
+                settingsArray[index] = (byte) setting.getKey().intValue();
+                index++;
+            }
+        }
+        listPlayerSettingsRspNative(bdaddr, settingsArray);
+    }
+
+    /**
+     * Request from remote to list supported values for player setting.
+     */
+    void listPlayerSettingValuesRequest(String bdaddr, byte settingRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> listPlayerSettingValuesResponse(bdaddr, settingRequest, settings));
+    }
+
+    void listPlayerSettingValuesResponse(String bdaddr, byte settingRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        byte[] valuesArray = new byte[0];
+        if (settings != null) {
+            switch (settingRequest) {
+                case BluetoothAvrcpPlayerSettings.SETTING_REPEAT:
+                    valuesArray = new byte[] {
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_OFF,
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_SINGLE_TRACK,
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_ALL_TRACK,
+                        BluetoothAvrcpPlayerSettings.STATE_REPEAT_GROUP
+                    };
+                    break;
+                case BluetoothAvrcpPlayerSettings.SETTING_SHUFFLE:
+                    valuesArray = new byte[] {
+                        BluetoothAvrcpPlayerSettings.STATE_SHUFFLE_OFF,
+                        BluetoothAvrcpPlayerSettings.STATE_SHUFFLE_ALL_TRACK,
+                        BluetoothAvrcpPlayerSettings.STATE_SHUFFLE_GROUP
+                    };
+                    break;
+                default:
+                    valuesArray = new byte[0];
+
+            }
+        }
+        listPlayerSettingValuesRspNative(bdaddr, settingRequest, valuesArray);
+    }
+
+    /**
+     * Request from remote current values for player settings.
+     */
+    void getCurrentPlayerSettingValuesRequest(String bdaddr, byte[] settingsRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getCurrentPlayerSettingValuesResponse(
+                        bdaddr, settingsRequest, settings));
+    }
+
+    void getCurrentPlayerSettingValuesResponse(String bdaddr, byte[] settingsRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        byte[] valuesArray = new byte[settingsRequest.length];
+        for (int i = 0; i < settingsRequest.length; i++) {
+            valuesArray[i] = BluetoothAvrcpPlayerSettings.STATE_DEFAULT_OFF;
+            if (settings != null) {
+                valuesArray[i] = (byte) settings.getPlayerSettingValues().getOrDefault(
+                        settingsRequest[i],
+                        BluetoothAvrcpPlayerSettings.STATE_DEFAULT_OFF).intValue();
+            }
+        }
+        getPlayerSettingsRspNative(bdaddr, settingsRequest, valuesArray);
+    }
+
+    /**
+     * Request from remote to set current values for player settings.
+     */
+    boolean setPlayerSettingsRequest(String bdaddr, byte[] settingsRequest,
+            byte[] valuesRequest) {
+        if (settingsRequest.length != valuesRequest.length) {
+            return false;
+        }
+        BluetoothAvrcpPlayerSettings.Builder builder = new BluetoothAvrcpPlayerSettings.Builder();
+        for (int i = 0; i < settingsRequest.length; i++) {
+            try {
+                builder.addPlayerSettingValue(settingsRequest[i], valuesRequest[i]);
+            } catch (IllegalArgumentException e) {
+                Log.w(TAG, "setPlayerAppSettingsRequest: " + e);
+            }
+        }
+
+        try {
+            return mAvrcpService.setPlayerSettings(builder.build());
+            //setPlayerAppSettingsResponseNative() ?
+        } catch (IllegalStateException e) {
+            Log.e(TAG, "setPlayerAppSettingsRequest: " + e);
+            return false;
+        }
+    }
+
+    /**
+     * Request from remote to get player setting as text.
+     */
+    void getPlayerSettingTextRequest(String bdaddr, byte[] settingsRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getPlayerSettingTextResponse(bdaddr, settingsRequest, settings));
+    }
+
+    void getPlayerSettingTextResponse(String bdaddr, byte[] settingsRequest,
+            BluetoothAvrcpPlayerSettings settings) {
+        String[] textArray = new String[settingsRequest.length];
+        for (int i = 0; i < settingsRequest.length; i++) {
+            textArray[i] = new String();
+            if (settings != null) {
+                textArray[i] = settings.getPlayerSettingText(settingsRequest[i], new String());
+            }
+        }
+        getPlayerSettingsTextRspNative(bdaddr, settingsRequest, textArray);
+    }
+
+    /**
+     * Request from remote to get player setting value as text.
+     */
+    void getPlayerSettingValueTextRequest(String bdaddr, byte settingRequest,
+            byte[] valuesRequest) {
+        mAvrcpService.onPlayerSettingsRequest(
+                (settings) -> getPlayerSettingValueTextResponse(bdaddr, settingRequest,
+                        valuesRequest, settings));
+    }
+
+    void getPlayerSettingValueTextResponse(String bdaddr, byte settingRequest,
+            byte[] valuesRequest, BluetoothAvrcpPlayerSettings settings) {
+        String[] textArray = new String[valuesRequest.length];
+        for (int i = 0; i < valuesRequest.length; i++) {
+            textArray[i] = new String();
+            if (settings != null) {
+                textArray[i] = settings.getPlayerValueText(settingRequest,
+                        valuesRequest[i], new String());
+            }
+        }
+        getPlayerValuesTextRspNative(bdaddr, settingRequest, valuesRequest, textArray);
+    }
+
+    void sendPlayerSettings(String bdaddr, BluetoothAvrcpPlayerSettings settings) {
+        byte[] settingsArray = new byte[0];
+        byte[] valuesArray = new byte[0];
+        if (settings != null) {
+            settingsArray = new byte[settings.getPlayerSettingValues().size()];
+            valuesArray = new byte[settings.getPlayerSettingValues().size()];
+            int index = 0;
+            for (Map.Entry<Integer, Integer> setting :
+                    settings.getPlayerSettingValues().entrySet()) {
+                settingsArray[index] = (byte) setting.getKey().intValue();
+                valuesArray[index] = (byte) setting.getValue().intValue();
+                index++;
+            }
+        }
+        sendPlayerSettingsNative(bdaddr, settingsArray, valuesArray);
+    }
+
+
     private static native void classInitNative();
     private native void initNative();
     private native void registerBipServerNative(int l2capPsm);
@@ -277,6 +447,15 @@ public class AvrcpNativeInterface {
     private native boolean disconnectDeviceNative(String bdaddr);
     private native void sendVolumeChangedNative(String bdaddr, int volume);
     private native void setBipClientStatusNative(String bdaddr, boolean connected);
+    private native void listPlayerSettingsRspNative(String bdaddr, byte[] settings);
+    private native void listPlayerSettingValuesRspNative(
+            String bdaddr, byte setting, byte[] values);
+    private native void getPlayerSettingsRspNative(String bdaddr, byte[] settings, byte[] values);
+    private native void getPlayerSettingsTextRspNative(
+            String bdaddr, byte[] settings, String[] text);
+    private native void getPlayerValuesTextRspNative(
+            String bdaddr, byte setting, byte[] values, String[] text);
+    private native void sendPlayerSettingsNative(String bdaddr, byte[] settings, byte[] values);
 
     private static void d(String msg) {
         if (DEBUG) {
