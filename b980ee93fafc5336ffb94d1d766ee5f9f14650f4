@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "587ca069_fb10d2f6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4028,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-28T09:01:43Z",
+      "side": 1,
+      "message": "nit: with a fallthrough:\n```\ncase BluetoothGatt.SUBRATE_REQUEST_BALANCED:\ndefault:\n    ...\n```",
+      "range": {
+        "startLine": 4028,
+        "startChar": 12,
+        "endLine": 4028,
+        "endChar": 20
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f95ac43_5ae14b4e",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-28T09:01:43Z",
+      "side": 1,
+      "message": "nit: I would use the prefix SUBRATE_REQUEST_MODE, but any way is fine",
+      "range": {
+        "startLine": 157,
+        "startChar": 28,
+        "endLine": 157,
+        "endChar": 52
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5d936ae_99d353e1",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1954,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-28T09:01:43Z",
+      "side": 1,
+      "message": "nit: declared as `subrateModeRequest` in AIDL, would be better to have consistent naming",
+      "range": {
+        "startLine": 1954,
+        "startChar": 19,
+        "endLine": 1954,
+        "endChar": 37
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ea4ad3_fa6652ef",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1960,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-28T09:01:43Z",
+      "side": 1,
+      "message": "nit: `\"requestSubrateMode() - subrateMode:\"`",
+      "range": {
+        "startLine": 1960,
+        "startChar": 24,
+        "endLine": 1960,
+        "endChar": 42
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4acfe7b8_1c1f76c3",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-12-28T09:01:43Z",
+      "side": 1,
+      "message": "nit: declared as `leSubraterequest` in AIDL, would be better to have consistent naming",
+      "range": {
+        "startLine": 1988,
+        "startChar": 19,
+        "endLine": 1988,
+        "endChar": 36
+      },
+      "revId": "b980ee93fafc5336ffb94d1d766ee5f9f14650f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
