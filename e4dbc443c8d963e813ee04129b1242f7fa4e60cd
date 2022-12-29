@@ -70,6 +70,75 @@
       "parentUuid": "5de72b18_5f127cb0",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59dbbd0f_a814503f",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-29T16:04:23Z",
+      "side": 1,
+      "message": "Will that return `ENQUEUED_FOR_LATER` just like the call at line #747?\n\nIf we still want to enqueue the operation to call the callback, do we have to differentiate this case from `MTU_EXCHANGE_NOT_DONE_YET` at this stage?\n... just wondering.",
+      "range": {
+        "startLine": 739,
+        "startChar": 6,
+        "endLine": 739,
+        "endChar": 40
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fff522ee_11be1e0f",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-29T16:04:23Z",
+      "side": 1,
+      "message": "nit. It seems that all but the `p_clcb-\u003estatus \u003d GATT_SUCCESS;` can be moved under the if() statement at line #357.",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 36
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66dec281_bb535008",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-29T16:04:23Z",
+      "side": 1,
+      "message": "I know that we are not expecting the app to schedule a gazillion MTU exchange requests, but can we somehow avoid the recursion and just let the state machine go another round?",
+      "range": {
+        "startLine": 376,
+        "startChar": 6,
+        "endLine": 376,
+        "endChar": 33
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
