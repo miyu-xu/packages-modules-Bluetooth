@@ -218,6 +218,12 @@ LeAudioSinkAudioHalClient::AcquireUnicast() {
 
 void LeAudioSinkAudioHalClient::DebugDump(int fd) {}
 
+RawAddress GetTestAddress(uint8_t index) {
+  CHECK_LT(index, UINT8_MAX);
+  RawAddress result = {{0xC0, 0xDE, 0xC0, 0xDE, 0x00, index}};
+  return result;
+}
+
 class MockAudioHalClientCallbacks
     : public bluetooth::le_audio::LeAudioClientCallbacks {
  public:
@@ -2302,13 +2308,113 @@ class UnicastTest : public UnicastTestNoInit {
     groups.clear();
     UnicastTestNoInit::TearDown();
   }
-};
 
-RawAddress GetTestAddress(uint8_t index) {
-  CHECK_LT(index, UINT8_MAX);
-  RawAddress result = {{0xC0, 0xDE, 0xC0, 0xDE, 0x00, index}};
-  return result;
-}
+  void TestSetCodecPreference(
+      const btle_audio_codec_config_t* preferred_codec_config_before_streaming,
+      const btle_audio_codec_config_t* preferred_codec_config_while_streaming,
+      bool set_before_streaming, bool set_while_streaming,
+      bool use_preferred_codec_before_streaming,
+      bool use_preferred_codec_while_streaming,
+      int expected_configure_stream_times_while_streaming,
+      int expected_stop_stream_times_while_streaming) {
+    if (set_before_streaming && !preferred_codec_config_before_streaming) {
+      return;
+    }
+
+    if (set_while_streaming && !preferred_codec_config_while_streaming) {
+      return;
+    }
+
+    uint8_t group_size = 2;
+    int group_id = 2;
+
+    // Report working CSIS
+    ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
+        .WillByDefault(Return(true));
+
+    // First earbud
+    const RawAddress test_address0 = GetTestAddress(0);
+    EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
+        .Times(1);
+    ConnectCsisDevice(test_address0, 1 /*conn_id*/,
+                      codec_spec_conf::kLeAudioLocationFrontLeft,
+                      codec_spec_conf::kLeAudioLocationFrontLeft, group_size,
+                      group_id, 1 /* rank*/);
+
+    // Second earbud
+    const RawAddress test_address1 = GetTestAddress(1);
+    EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address1, true))
+        .Times(1);
+    ConnectCsisDevice(test_address1, 2 /*conn_id*/,
+                      codec_spec_conf::kLeAudioLocationFrontRight,
+                      codec_spec_conf::kLeAudioLocationFrontRight, group_size,
+                      group_id, 2 /* rank*/, true /*connect_through_csis*/);
+
+    constexpr int gmcs_ccid = 1;
+    constexpr int gtbs_ccid = 2;
+
+    ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+        .WillByDefault(Invoke([&](int group_id) { return 2; }));
+
+    if (set_before_streaming) {
+      LeAudioClient::Get()->SetCodecConfigPreference(
+          group_id, *preferred_codec_config_before_streaming,
+          *preferred_codec_config_before_streaming);
+    }
+
+    // Start streaming MEDIA
+    EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _)).Times(1);
+    EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _)).Times(1);
+    LeAudioClient::Get()->SetCcidInformation(gmcs_ccid, 4 /* Media */);
+    LeAudioClient::Get()->SetCcidInformation(gtbs_ccid, 2 /* Phone */);
+    LeAudioClient::Get()->GroupSetActive(group_id);
+
+    EXPECT_CALL(mock_state_machine_, StartStream(_, _, _, {{gmcs_ccid}}))
+        .Times(1);
+    StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+
+    Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+    Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+    SyncOnMainLoop();
+
+    ASSERT_EQ(LeAudioClient::Get()->IsUsingPreferredCodecConfig(
+                  group_id, static_cast<int>(types::LeAudioContextType::MEDIA)),
+              use_preferred_codec_before_streaming);
+
+    // Verify Data transfer on two peer sinks
+    uint8_t cis_count_out = 2;
+    uint8_t cis_count_in = 0;
+    TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+
+    if (set_while_streaming) {
+      // +1 means Call from StopStreaming(group_id)
+      EXPECT_CALL(mock_state_machine_, StopStream(_))
+          .Times(expected_stop_stream_times_while_streaming + 1);
+      EXPECT_CALL(mock_state_machine_, ConfigureStream(_, _, _, _))
+          .Times(expected_configure_stream_times_while_streaming);
+      LeAudioClient::Get()->SetCodecConfigPreference(
+          group_id, *preferred_codec_config_while_streaming,
+          *preferred_codec_config_while_streaming);
+      SyncOnMainLoop();
+    }
+
+    ASSERT_EQ(LeAudioClient::Get()->IsUsingPreferredCodecConfig(
+                  group_id, static_cast<int>(types::LeAudioContextType::MEDIA)),
+              use_preferred_codec_while_streaming);
+
+    // Stop
+    StopStreaming(group_id);
+    Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+
+    // Release
+    EXPECT_CALL(*mock_le_audio_source_hal_client_, Stop()).Times(1);
+    EXPECT_CALL(*mock_le_audio_source_hal_client_, OnDestroyed()).Times(1);
+    EXPECT_CALL(*mock_le_audio_sink_hal_client_, Stop()).Times(1);
+    EXPECT_CALL(*mock_le_audio_sink_hal_client_, OnDestroyed()).Times(1);
+    LeAudioClient::Get()->GroupSetActive(bluetooth::groups::kGroupUnknown);
+    Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+  }
+};
 
 TEST_F(UnicastTest, Initialize) {
   ASSERT_NE(LeAudioClient::Get(), nullptr);
@@ -3460,6 +3566,220 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, OnDestroyed()).Times(1);
   LeAudioClient::Get()->GroupSetActive(bluetooth::groups::kGroupUnknown);
   Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+}
+
+TEST_F(UnicastTest, TwoEarbudsClearPreferenceBeforeStreaming) {
+  btle_audio_codec_config_t preferred_codec_config_before_streaming = {
+      .codec_priority = -1};
+
+  bool set_before_streaming = true;
+  bool set_while_streaming = false;
+  bool use_preferred_codec_before_streaming = false;
+  bool use_preferred_codec_while_streaming = false;
+
+  int expected_configure_stream_times_while_streaming = 0;
+  int expected_stop_stream_times_while_streaming = 0;
+
+  TestSetCodecPreference(&preferred_codec_config_before_streaming, nullptr,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
+}
+
+TEST_F(UnicastTest,
+       TwoEarbudsClearPreferenceWhileStreamingWithoutReconfiguration) {
+  // Set Codec Preference: DualDev_OneChanStereoSnk_24_2
+  btle_audio_codec_config_t preferred_codec_config_before_streaming = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_24000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 60};
+
+  btle_audio_codec_config_t preferred_codec_config_while_streaming = {
+      .codec_priority = -1};
+
+  bool set_before_streaming = true;
+  bool set_while_streaming = true;
+  bool use_preferred_codec_before_streaming = false;
+  bool use_preferred_codec_while_streaming = false;
+
+  int expected_configure_stream_times_while_streaming = 0;
+  int expected_stop_stream_times_while_streaming = 0;
+
+  TestSetCodecPreference(&preferred_codec_config_before_streaming,
+                         &preferred_codec_config_while_streaming,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
+}
+
+TEST_F(UnicastTest,
+       TwoEarbudsClearPreferenceWhileStreamingWithReconfiguration) {
+  // Set Codec Preference: DualDev_OneChanStereoSnk_16_2
+  btle_audio_codec_config_t preferred_codec_config_before_streaming = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+
+  btle_audio_codec_config_t preferred_codec_config_while_streaming = {
+      .codec_priority = -1};
+
+  bool set_before_streaming = true;
+  bool set_while_streaming = true;
+  bool use_preferred_codec_before_streaming = true;
+  bool use_preferred_codec_while_streaming = false;
+
+  int expected_configure_stream_times_while_streaming = 1;
+  int expected_stop_stream_times_while_streaming = 1;
+
+  TestSetCodecPreference(&preferred_codec_config_before_streaming,
+                         &preferred_codec_config_while_streaming,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
+}
+
+TEST_F(UnicastTest, TwoEarbudsSetPreferenceSuccessBeforeStreaming) {
+  // Set Codec Preference: DualDev_OneChanStereoSnk_16_2
+  btle_audio_codec_config_t preferred_codec_config_before_streaming = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+
+  bool set_before_streaming = true;
+  bool set_while_streaming = false;
+  bool use_preferred_codec_before_streaming = true;
+  bool use_preferred_codec_while_streaming = true;
+
+  int expected_configure_stream_times_while_streaming = 0;
+  int expected_stop_stream_times_while_streaming = 0;
+
+  TestSetCodecPreference(&preferred_codec_config_before_streaming, nullptr,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
+}
+
+TEST_F(UnicastTest, TwoEarbudsSetPreferenceFailBeforeStreaming) {
+  // Set Codec Preference: DualDev_OneChanStereoSnk_24_2
+  btle_audio_codec_config_t preferred_codec_config_before_streaming = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_24000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 60};
+
+  bool set_before_streaming = true;
+  bool set_while_streaming = false;
+  bool use_preferred_codec_before_streaming = false;
+  bool use_preferred_codec_while_streaming = false;
+
+  int expected_configure_stream_times_while_streaming = 0;
+  int expected_stop_stream_times_while_streaming = 0;
+
+  TestSetCodecPreference(&preferred_codec_config_before_streaming, nullptr,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
+}
+
+TEST_F(UnicastTest,
+       TwoEarbudsSetPreferenceSuccessWhileStreamingWithoutReconfiguration) {
+  // Set Codec Preference: DualDev_OneChanStereoSnk_48_4
+  btle_audio_codec_config_t preferred_codec_config_while_streaming = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_48000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 120};
+
+  bool set_before_streaming = false;
+  bool set_while_streaming = true;
+  bool use_preferred_codec_before_streaming = false;
+  bool use_preferred_codec_while_streaming = false;
+
+  int expected_configure_stream_times_while_streaming = 0;
+  int expected_stop_stream_times_while_streaming = 0;
+
+  TestSetCodecPreference(nullptr, &preferred_codec_config_while_streaming,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
+}
+
+TEST_F(UnicastTest,
+       TwoEarbudsSetPreferenceSuccessWhileStreamingWithReconfiguration) {
+  // Set Codec Preference: DualDev_OneChanStereoSnk_16_2
+  btle_audio_codec_config_t preferred_codec_config_while_streaming = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 40};
+
+  bool set_before_streaming = false;
+  bool set_while_streaming = true;
+  bool use_preferred_codec_before_streaming = false;
+  bool use_preferred_codec_while_streaming = true;
+
+  int expected_configure_stream_times_while_streaming = 1;
+  int expected_stop_stream_times_while_streaming = 1;
+
+  TestSetCodecPreference(nullptr, &preferred_codec_config_while_streaming,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
+}
+
+TEST_F(UnicastTest, TwoEarbudsSetPreferenceFailWhileStreaming) {
+  // Set Codec Preference: DualDev_OneChanStereoSnk_24_2
+  btle_audio_codec_config_t preferred_codec_config_while_streaming = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_24000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 60};
+
+  bool set_before_streaming = false;
+  bool set_while_streaming = true;
+  bool use_preferred_codec_before_streaming = false;
+  bool use_preferred_codec_while_streaming = false;
+
+  int expected_configure_stream_times_while_streaming = 0;
+  int expected_stop_stream_times_while_streaming = 0;
+
+  TestSetCodecPreference(nullptr, &preferred_codec_config_while_streaming,
+                         set_before_streaming, set_while_streaming,
+                         use_preferred_codec_before_streaming,
+                         use_preferred_codec_while_streaming,
+                         expected_configure_stream_times_while_streaming,
+                         expected_stop_stream_times_while_streaming);
 }
 
 TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchNoReconfigure) {
