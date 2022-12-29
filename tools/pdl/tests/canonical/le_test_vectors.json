@@ -2204,54 +2204,6 @@
           "c": 31745
         },
         "packet": "ScalarChild_B"
-      },
-      {
-        "packed": "020100",
-        "unpacked": {
-          "a": 2,
-          "b": 0
-        },
-        "packet": "AliasedChild_A"
-      },
-      {
-        "packed": "0201ff",
-        "unpacked": {
-          "a": 2,
-          "b": 255
-        },
-        "packet": "AliasedChild_A"
-      },
-      {
-        "packed": "020185",
-        "unpacked": {
-          "a": 2,
-          "b": 133
-        },
-        "packet": "AliasedChild_A"
-      },
-      {
-        "packed": "03020000",
-        "unpacked": {
-          "a": 3,
-          "c": 0
-        },
-        "packet": "AliasedChild_B"
-      },
-      {
-        "packed": "0302ffff",
-        "unpacked": {
-          "a": 3,
-          "c": 65535
-        },
-        "packet": "AliasedChild_B"
-      },
-      {
-        "packed": "03023784",
-        "unpacked": {
-          "a": 3,
-          "c": 33847
-        },
-        "packet": "AliasedChild_B"
       }
     ]
   },
