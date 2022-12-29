@@ -46,6 +46,30 @@
       },
       "revId": "4a152ff8872e8a0258e362f13baa4cff482bd770",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8faa8ce3_5eefbff3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-29T05:36:55Z",
+      "side": 1,
+      "message": "Then what do you think make mAppAdvertiseStats visible for testing?",
+      "parentUuid": "a576d9fa_3e173e96",
+      "range": {
+        "startLine": 121,
+        "startChar": 50,
+        "endLine": 121,
+        "endChar": 74
+      },
+      "revId": "4a152ff8872e8a0258e362f13baa4cff482bd770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
