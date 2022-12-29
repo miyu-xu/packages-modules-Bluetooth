@@ -173,13 +173,24 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     switch (group->GetState()) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED:
         if (group->GetConfigurationContextType() == context_type) {
-          if (group->Activate(context_type)) {
+          if ((!group->IsUsingPreferredCodecConfig(context_type) &&
+               group->GetPreferredCodecConfig(context_type)) ||
+              (group->IsUsingPreferredCodecConfig(context_type) &&
+               !group->GetPreferredCodecConfig(context_type))) {
+            // We are here because we receive new preferred codec config
+            // and it is not used now, so reconfigure the whole group
+            // or we used available config from
+            // `available_context_to_configuration_map` when clearing preferred
+            // codec option
+            LOG_INFO("Reconfigure as we have new preferred codec updated");
+          } else if (group->Activate(context_type)) {
             SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
             if (CigCreate(group)) {
               return true;
             }
+          } else {
+            LOG_INFO("Could not activate device, try to configure it again");
           }
-          LOG_INFO("Could not activate device, try to configure it again");
         }
 
         /* We are going to reconfigure whole group. Clear Cises.*/

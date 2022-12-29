@@ -35,6 +35,54 @@ namespace le_audio {
 using types::acs_ac_record;
 using types::LeAudioContextType;
 
+namespace codec_spec_caps {
+uint8_t SampleingFreqCapability2Config(uint16_t cap) {
+  // check the value is valid
+  if (!cap || ((cap & (cap - 1)))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf + 1;
+}
+
+uint8_t FrameDurationCapability2Config(uint16_t cap) {
+  // check the value is valid
+  if (!cap || ((cap & (cap - 1)))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf;
+}
+
+uint8_t BitsPerSampleCapability2Config(uint16_t cap) {
+  // check the value is valid
+  if (!cap || ((cap & (cap - 1)))) {
+    return 0;
+  }
+
+  int conf = 0;
+  while (!(cap & 1)) {
+    ++conf;
+    cap >>= 1;
+  }
+
+  return conf + 1;
+}
+
+}  // namespace codec_spec_caps
+
 namespace set_configurations {
 using set_configurations::CodecCapabilitySetting;
 using types::CodecLocation;
@@ -402,11 +450,42 @@ uint32_t CodecCapabilitySetting::GetConfigDataIntervalUs() const {
   }
 };
 
+uint32_t CodecCapabilitySetting::GetConfigChannelAllocation() const {
+  switch (id.coding_format) {
+    case kLeAudioCodingFormatLC3:
+      return std::get<types::LeAudioLc3Config>(config).GetChannelAllocation();
+    default:
+      LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
+      return 0;
+  }
+}
+
+uint16_t CodecCapabilitySetting::GetConfigOctetsPerCodecFrame() const {
+  switch (id.coding_format) {
+    case kLeAudioCodingFormatLC3:
+      return std::get<types::LeAudioLc3Config>(config).GetOctetsPerCodecFrame();
+    default:
+      LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
+      return 0;
+  }
+}
+
+uint32_t CodecCapabilitySetting::GetConfigCodecFramesBlocksPerSdu() const {
+  switch (id.coding_format) {
+    case kLeAudioCodingFormatLC3:
+      return std::get<types::LeAudioLc3Config>(config)
+          .GetCodecFramesBlocksPerSdu();
+    default:
+      LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
+      return 0;
+  }
+}
+
 uint8_t CodecCapabilitySetting::GetConfigBitsPerSample() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
       /* XXX LC3 supports 16, 24, 32 */
-      return 16;
+      return std::get<types::LeAudioLc3Config>(config).GetBitsPerSample();
     default:
       LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
       return 0;
@@ -449,6 +528,15 @@ const std::map<uint8_t, uint32_t> LeAudioLc3Config::frame_duration_map = {
      LeAudioCodecConfiguration::kInterval7500Us},
     {codec_spec_conf::kLeAudioCodecLC3FrameDur10000us,
      LeAudioCodecConfiguration::kInterval10000Us}};
+
+/* Helper map for matching various bits per sample notations */
+const std::map<uint8_t, uint8_t> LeAudioLc3Config::bits_per_sample_map = {
+    {codec_spec_conf::kLeAudioCodecBitsPerSample16,
+     LeAudioCodecConfiguration::kBitsPerSample16},
+    {codec_spec_conf::kLeAudioCodecBitsPerSample24,
+     LeAudioCodecConfiguration::kBitsPerSample24},
+    {codec_spec_conf::kLeAudioCodecBitsPerSample32,
+     LeAudioCodecConfiguration::kBitsPerSample32}};
 
 std::optional<std::vector<uint8_t>> LeAudioLtvMap::Find(uint8_t type) const {
   auto iter =
