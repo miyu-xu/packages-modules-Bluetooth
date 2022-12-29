@@ -94,6 +94,30 @@
       },
       "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4de5d3a6_fa491a4e",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-29T00:48:26Z",
+      "side": 1,
+      "message": "For auto batch, I\u0027m curious do we have to force the reportDelay \u003e\u003d 10min in ScanSettings.java explicitly or ScanManager.java silently?",
+      "parentUuid": "a20df057_fce143fd",
+      "range": {
+        "startLine": 104,
+        "startChar": 54,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
