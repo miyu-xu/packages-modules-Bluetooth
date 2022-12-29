@@ -3350,12 +3350,13 @@ static void handle_notification_response(tBTA_AV_META_MSG* pmeta_msg,
     }
   } else if (pmeta_msg->code == AVRC_RSP_CHANGED) {
     btif_rc_supported_event_t* p_event;
-    list_node_t* node;
+    list_node_t* node = NULL;
 
     BTIF_TRACE_DEBUG("%s: Notification completed: 0x%2X ", __func__,
                      p_rsp->event_id);
 
-    node = list_begin(p_dev->rc_supported_event_list);
+    if (list_length(p_dev->rc_supported_event_list) != 0)
+      node = list_begin(p_dev->rc_supported_event_list);
 
     while (node != NULL) {
       p_event = (btif_rc_supported_event_t*)list_node(node);
