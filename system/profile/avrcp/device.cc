@@ -16,6 +16,7 @@
 #include "device.h"
 
 #include "abstract_message_loop.h"
+#include "bta/include/bta_dm_api.h"
 #include "connection_handler.h"
 #include "packet/avrcp/avrcp_reject_packet.h"
 #include "packet/avrcp/general_reject_packet.h"
@@ -515,6 +516,11 @@ void Device::PlaybackStatusNotificationResponse(uint8_t label, bool interim,
   }
 
   last_play_status_.state = state_to_send;
+
+  // Ensure that link is in active mode before going into playing state
+  if (state_to_send == PlayState::PLAYING) {
+    bta_dm_pm_active(GetAddress());
+  }
 
   auto response =
       RegisterNotificationResponseBuilder::MakePlaybackStatusBuilder(

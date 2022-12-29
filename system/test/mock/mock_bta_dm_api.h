@@ -55,6 +55,18 @@ namespace test {
 namespace mock {
 namespace bta_dm_api {
 
+// Name: bta_dm_pm_active
+// Params: const RawAddress& peer_addr
+// dev_type Return: void
+struct bta_dm_pm_active {
+  std::function<void(const RawAddress& peer_addr)>
+      body{[](const RawAddress& peer_addr){}};
+  void operator()(const RawAddress& peer_addr) {
+    body(peer_addr);
+  };
+};
+extern struct bta_dm_pm_active bta_dm_pm_active;
+
 // Name: BTA_DmAddBleDevice
 // Params: const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type, tBT_DEVICE_TYPE
 // dev_type Return: void
