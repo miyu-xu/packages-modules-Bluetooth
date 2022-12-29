@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0e483e2_e66c0e6b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:09:28Z",
+      "side": 1,
+      "message": "Remove private address and instead use the `ADDRESS_TO_LOGGABLE_CSTR`",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 95
+      },
+      "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b5e1398_8f0ebbae",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:09:28Z",
+      "side": 1,
+      "message": "Should we pass as reference to avoid copy ? (same in a couple other methods)",
+      "range": {
+        "startLine": 57,
+        "startChar": 14,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0729f50_678b6c66",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:09:28Z",
+      "side": 1,
+      "message": "Is this switch doing anything ?\nYou are running the same code in all case of it.\nSame in the method below",
+      "range": {
+        "startLine": 69,
+        "startChar": 3,
+        "endLine": 71,
+        "endChar": 25
+      },
+      "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7abdbef_0ab27ffa",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:09:28Z",
+      "side": 1,
+      "message": "return is not needed as we ended the method. Or add it in the first if IsValid() too for consistency",
+      "range": {
+        "startLine": 152,
+        "startChar": 6,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83b585cf_17788784",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:09:28Z",
+      "side": 1,
+      "message": "Add a log content ?",
+      "range": {
+        "startLine": 244,
+        "startChar": 15,
+        "endLine": 244,
+        "endChar": 18
+      },
+      "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b209b7f_983bce73",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:09:28Z",
+      "side": 1,
+      "message": "you are casting `remote_tx_power` from uint8 to int8 but you are not doing it for `kRSSIDropOffAt1M`",
+      "range": {
+        "startLine": 247,
+        "startChar": 30,
+        "endLine": 247,
+        "endChar": 36
+      },
+      "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
