@@ -72,6 +72,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4491c89_498ac227",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:25:34Z",
+      "side": 1,
+      "message": "I have a general consideration in this MTU setup. Wouldn\u0027t it be good enough just to request maximum possible MTU on every channel ? Profiles/services would only check if they can work with such MTU if not - then disconnect them.",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "59dbbd0f_a814503f",
