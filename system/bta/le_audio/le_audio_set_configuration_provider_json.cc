@@ -251,15 +251,15 @@ struct AudioSetConfigurationProviderJson {
       STREAM_TO_UINT8(codec_frames_blocks_per_sdu, ptr);
     }
 
-    codec.config = types::LeAudioLc3Config({
-        .sampling_frequency = sampling_frequency,
-        .frame_duration = frame_duration,
-        .octets_per_codec_frame = octets_per_codec_frame,
-        .codec_frames_blocks_per_sdu = codec_frames_blocks_per_sdu,
-        .channel_count =
-            (uint8_t)std::bitset<32>(audio_channel_allocation).count(),
-        .audio_channel_allocation = audio_channel_allocation,
-    });
+    codec.config = types::LeAudioLc3Config(
+        {.sampling_frequency = sampling_frequency,
+         .frame_duration = frame_duration,
+         .audio_channel_allocation = audio_channel_allocation,
+         .octets_per_codec_frame = octets_per_codec_frame,
+         .codec_frames_blocks_per_sdu = codec_frames_blocks_per_sdu,
+         .bits_per_sample = 0x01,  // force write to default 16 bits per sample
+         .channel_count =
+             (uint8_t)std::bitset<32>(audio_channel_allocation).count()});
     return codec;
   }
 
