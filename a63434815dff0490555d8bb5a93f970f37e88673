@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b786f36e_dad0f41e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "Not a valid test for a feature",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb94be3_1cb1b811",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "Is there a design doc associated ?\nI thought the RSSI value was not accurate enough to have this kind of measurement.\nHow do you get angle from it? Is there a second part planned ?",
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b5c4c3a_fb558cb0",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 7
@@ -14,6 +54,30 @@
       "writtenOn": "2022-12-29T07:32:41Z",
       "side": 1,
       "message": "Where is this defined?",
+      "range": {
+        "startLine": 2817,
+        "startChar": 12,
+        "endLine": 2817,
+        "endChar": 33
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8e806f_9020259e",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "Defined above in this file: [BluetoothAdapter L 2670](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d2670;drc\u003d82db49983049246cffc7aae33fb319bb665f7401)",
+      "parentUuid": "1b5c4c3a_fb558cb0",
       "range": {
         "startLine": 2817,
         "startChar": 12,
@@ -42,6 +106,52 @@
         "startChar": 19,
         "endLine": 50,
         "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf020cd_ad54eb14",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "Error prone complain about the HashTable (JdkObsolete)\ncan we use another type?",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 25
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ad35ac8_d71b3b81",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "Error prone complain about this.\nMaybe the correct wording is `{@link BluetoothAdapter#getDistanceMeasurementManager}`\nBut I am not 100% sure",
+      "range": {
+        "startLine": 61,
+        "startChar": 17,
+        "endLine": 61,
+        "endChar": 66
       },
       "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -141,6 +251,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3bd1e8d_251cdbb8",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "You can directly write it:\n```\nreturn new Builder().setMeters(in.readDouble())\n                    .setErrorMeters(in.readDouble())\n                    .setAzimuthAngle(in.readDouble())\n                    .setErrorAzimuthAngle(in.readDouble())\n                    .setAltitudeAngle(in.readDouble())\n                    .setErrorAltitudeAngle(in.readDouble())\n                    .build();\n```",
+      "range": {
+        "startLine": 176,
+        "startChar": 20,
+        "endLine": 183,
+        "endChar": 43
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "517d8f4c_9aee4999",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "Check for meters \u003e\u003d 0 ?",
+      "range": {
+        "startLine": 217,
+        "startChar": 30,
+        "endLine": 217,
+        "endChar": 39
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cceb99d_bc630a6b",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "add `@FloatRange` (same on other method)",
+      "range": {
+        "startLine": 253,
+        "startChar": 39,
+        "endLine": 253,
+        "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c563d087_0073604e",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
         "patchSetId": 7
@@ -157,6 +336,29 @@
         "startChar": 19,
         "endLine": 53,
         "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0b1f10_71b4f910",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T22:16:22Z",
+      "side": 1,
+      "message": "can you add requireNonNull on gatt, params, executor and callback?\nI know it\u0027s already done on the other file before calling this constructor, but  the next reader will not have to search for it.",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 20
       },
       "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
