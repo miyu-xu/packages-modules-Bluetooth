@@ -317,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "877fbc32_5512e24b",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T01:10:21Z",
+      "side": 1,
+      "message": "We do not need it because we are only storing the first 3 bytes as a device interop",
+      "parentUuid": "793979c1_4611f7bf",
+      "range": {
+        "startLine": 333,
+        "startChar": 4,
+        "endLine": 333,
+        "endChar": 5
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77115274_0b30ed19",
@@ -480,6 +504,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6438fdec_b6da1b67",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T01:10:21Z",
+      "side": 1,
+      "message": "No needed to hide it, we are logging the interop class of device.",
+      "parentUuid": "e014ead8_3d5d06a1",
+      "range": {
+        "startLine": 479,
+        "startChar": 64,
+        "endLine": 479,
+        "endChar": 71
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f67645e_41da5eb4",
@@ -516,6 +564,24 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "Shouldn\u0027t we check with a endWith instead ?\n\nIn my understanding, the start of an address define the device manufacturer / class of device witch are standard and allow people to retrieve the device model from it, while the last 3 digits are more random.",
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fa19f18_aab958a3",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T01:10:21Z",
+      "side": 1,
+      "message": "This is on purpose",
+      "parentUuid": "9c23c73e_8d04e0ca",
       "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -642,6 +708,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "Can you explain what you expect by \"rebonded\" ?\n\nIn case of forget of a device we should delete all the data we know about it.\nA re-pairing (as I understand rebond) should be exaclty the same as a first pairing. We should not have any data in the hashmap / file on disk about the device.\nIf this is not implemented in this CL, we will need to fix that.",
+      "range": {
+        "startLine": 534,
+        "startChar": 38,
+        "endLine": 534,
+        "endChar": 46
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4aa5e78_6aa3d6fb",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T01:10:21Z",
+      "side": 1,
+      "message": "Intended behavior. We are not storing the address but only the first 3 bytes to recognize the type of device for interop",
+      "parentUuid": "2d0775d7_9367ef5c",
       "range": {
         "startLine": 534,
         "startChar": 38,
@@ -849,6 +939,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "I do not agree with this logic. See comment in the PbapService.java about data on unbonded devices",
+      "range": {
+        "startLine": 1162,
+        "startChar": 5,
+        "endLine": 1162,
+        "endChar": 46
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a55144c_53e506a3",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T01:10:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f095ae61_b7aefd5e",
       "range": {
         "startLine": 1162,
         "startChar": 5,
