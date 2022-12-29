@@ -63,13 +63,14 @@ cc_library_shared {
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
-        "packages/modules/Bluetooth/system/types",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/types",
     ],
     static_libs: [
         "libbluetooth-types",
         "libbluetooth",
         "libc++fs",
+        "libbluetooth_core_rs_bridge",
     ],
     sanitize: {
         scs: true,
