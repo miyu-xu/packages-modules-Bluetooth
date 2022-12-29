@@ -21,6 +21,9 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 
+import android.bluetooth.le.AdvertiseData;
+import android.bluetooth.le.AdvertisingSetParameters;
+import android.bluetooth.le.PeriodicAdvertisingParameters;
 import android.os.Binder;
 
 import androidx.test.filters.SmallTest;
@@ -99,6 +102,52 @@ public class ContextMapTest {
     }
 
     @Test
+    public void advertisingSetAndData_doesNotCrash() throws Exception {
+        ContextMap contextMap = new ContextMap<>();
+
+        int id = 12345;
+        contextMap.add(id, null, mService);
+
+        int duration = 60;
+        int maxExtAdvEvents = 100;
+        contextMap.enableAdvertisingSet(id, true, duration, maxExtAdvEvents);
+
+        AdvertiseData advertiseData = new AdvertiseData.Builder().build();
+        contextMap.setAdvertisingData(id, advertiseData);
+
+        AdvertiseData scanResponse = new AdvertiseData.Builder().build();
+        contextMap.setScanResponseData(id, scanResponse);
+
+        AdvertisingSetParameters parameters = new AdvertisingSetParameters.Builder().build();
+        contextMap.setAdvertisingParameters(id, parameters);
+
+        PeriodicAdvertisingParameters periodicParameters =
+                new PeriodicAdvertisingParameters.Builder().build();
+        contextMap.setPeriodicAdvertisingParameters(id, periodicParameters);
+
+        AdvertiseData periodicData = new AdvertiseData.Builder().build();
+        contextMap.setPeriodicAdvertisingData(id, periodicData);
+
+        contextMap.onPeriodicAdvertiseEnabled(id, true);
+
+        AppAdvertiseStats toBeRemoved = contextMap.getAppAdvertiseStatsById(id);
+        assertThat(toBeRemoved).isNotNull();
+
+        contextMap.removeAppAdvertiseStats(id);
+
+        AppAdvertiseStats isRemoved = contextMap.getAppAdvertiseStatsById(id);
+        assertThat(isRemoved).isNull();
+    }
+
+    @Test
+    public void emptyStop_doesNotCrash() throws Exception {
+        ContextMap contextMap = new ContextMap<>();
+
+        int id = 12345;
+        contextMap.recordAdvertiseStop(id);
+    }
+
+    @Test
     public void testDump_doesNotCrash() throws Exception {
         StringBuilder sb = new StringBuilder();
 
@@ -108,6 +157,11 @@ public class ContextMapTest {
         contextMap.add(id, null, mService);
 
         contextMap.add(UUID.randomUUID(), null, null, null, mService);
+
+        contextMap.recordAdvertiseStop(id);
+
+        int idSecond = 54321;
+        contextMap.add(idSecond, null, mService);
 
         contextMap.dump(sb);
 
