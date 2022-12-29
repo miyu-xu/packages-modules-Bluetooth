@@ -34,6 +34,24 @@
       "parentUuid": "789fecd9_700f9826",
       "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "016cb7db_5df86f6f",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-12-29T21:49:38Z",
+      "side": 1,
+      "message": "That makes sense. Thanks for providing some context.\n\nPutting them in system/libsysprop and system/sepolicy are for API compatibility as far as I know, but since you mention it\u0027s only used for qualification, I can see why they are not there.",
+      "parentUuid": "1f031ff5_1cb15ff3",
+      "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
