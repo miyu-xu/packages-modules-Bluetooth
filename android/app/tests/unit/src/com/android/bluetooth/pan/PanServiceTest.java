@@ -97,4 +97,9 @@ public class PanServiceTest {
         when(mMockUserManager.isGuestUser()).thenReturn(true);
         Assert.assertFalse(mService.connect(device));
     }
+
+    @Test
+    public void testDumpDoesNotCrash() {
+        mService.dump(new StringBuilder());
+    }
 }
