@@ -35,6 +35,52 @@ namespace le_audio {
 using types::acs_ac_record;
 using types::LeAudioContextType;
 
+namespace codec_spec_caps {
+uint8_t SampleingFreqCapability2Config(uint16_t cap) {
+  switch (cap) {
+    case kLeAudioSamplingFreq8000Hz:
+      return codec_spec_conf::kLeAudioSamplingFreq8000Hz;
+    case kLeAudioSamplingFreq16000Hz:
+      return codec_spec_conf::kLeAudioSamplingFreq16000Hz;
+    case kLeAudioSamplingFreq24000Hz:
+      return codec_spec_conf::kLeAudioSamplingFreq24000Hz;
+    case kLeAudioSamplingFreq32000Hz:
+      return codec_spec_conf::kLeAudioSamplingFreq32000Hz;
+    case kLeAudioSamplingFreq44100Hz:
+      return codec_spec_conf::kLeAudioSamplingFreq44100Hz;
+    case kLeAudioSamplingFreq48000Hz:
+      return codec_spec_conf::kLeAudioSamplingFreq48000Hz;
+  }
+
+  return 0;
+}
+
+uint8_t FrameDurationCapability2Config(uint16_t cap) {
+  switch (cap) {
+    case kLeAudioCodecLC3FrameDur7500us:
+      return codec_spec_conf::kLeAudioCodecLC3FrameDur7500us;
+    case kLeAudioCodecLC3FrameDur10000us:
+      return codec_spec_conf::kLeAudioCodecLC3FrameDur10000us;
+  }
+
+  return 0;
+}
+
+uint8_t BitsPerSampleCapability2Config(uint16_t cap) {
+  switch (cap) {
+    case kLeAudioCodecBitsPerSample16:
+      return codec_spec_conf::kLeAudioCodecBitsPerSample16;
+    case kLeAudioCodecBitsPerSample24:
+      return codec_spec_conf::kLeAudioCodecBitsPerSample24;
+    case kLeAudioCodecBitsPerSample32:
+      return codec_spec_conf::kLeAudioCodecBitsPerSample32;
+  }
+
+  return 0;
+}
+
+}  // namespace codec_spec_caps
+
 namespace set_configurations {
 using set_configurations::CodecCapabilitySetting;
 using types::CodecLocation;
@@ -406,7 +452,7 @@ uint8_t CodecCapabilitySetting::GetConfigBitsPerSample() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
       /* XXX LC3 supports 16, 24, 32 */
-      return 16;
+      return std::get<types::LeAudioLc3Config>(config).GetBitsPerSample();
     default:
       LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
       return 0;
@@ -449,6 +495,15 @@ const std::map<uint8_t, uint32_t> LeAudioLc3Config::frame_duration_map = {
      LeAudioCodecConfiguration::kInterval7500Us},
     {codec_spec_conf::kLeAudioCodecLC3FrameDur10000us,
      LeAudioCodecConfiguration::kInterval10000Us}};
+
+/* Helper map for matching various bits per sample notations */
+const std::map<uint8_t, uint8_t> LeAudioLc3Config::bits_per_sample_map = {
+    {codec_spec_conf::kLeAudioCodecBitsPerSample16,
+     LeAudioCodecConfiguration::kBitsPerSample16},
+    {codec_spec_conf::kLeAudioCodecBitsPerSample24,
+     LeAudioCodecConfiguration::kBitsPerSample24},
+    {codec_spec_conf::kLeAudioCodecBitsPerSample32,
+     LeAudioCodecConfiguration::kBitsPerSample32}};
 
 std::optional<std::vector<uint8_t>> LeAudioLtvMap::Find(uint8_t type) const {
   auto iter =
