@@ -27,8 +27,12 @@
 
 using bluetooth::le_audio::BroadcastId;
 using bluetooth::le_audio::BroadcastState;
+using bluetooth::le_audio::btle_audio_bits_per_sample_index_t;
+using bluetooth::le_audio::btle_audio_channel_count_index_t;
 using bluetooth::le_audio::btle_audio_codec_config_t;
 using bluetooth::le_audio::btle_audio_codec_index_t;
+using bluetooth::le_audio::btle_audio_frame_duration_index_t;
+using bluetooth::le_audio::btle_audio_sample_rate_index_t;
 using bluetooth::le_audio::ConnectionState;
 using bluetooth::le_audio::GroupNodeStatus;
 using bluetooth::le_audio::GroupStatus;
@@ -51,6 +55,12 @@ static struct {
   jclass clazz;
   jmethodID constructor;
   jmethodID getCodecType;
+  jmethodID getSampleRate;
+  jmethodID getBitsPerSample;
+  jmethodID getChannelCount;
+  jmethodID getFrameDuration;
+  jmethodID getOctetsPerFrame;
+  jmethodID getCodecPriority;
 } android_bluetooth_BluetoothLeAudioCodecConfig;
 
 static struct {
@@ -281,6 +291,16 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       jniBluetoothLeAudioCodecConfigClass, "<init>", "(IIIIIIIII)V");
   android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
       jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
+      jniBluetoothLeAudioCodecConfigClass, "getSampleRate", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
+      jniBluetoothLeAudioCodecConfigClass, "getBitsPerSample", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
+      jniBluetoothLeAudioCodecConfigClass, "getChannelCount", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
+      jniBluetoothLeAudioCodecConfigClass, "getFrameDuration", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
+      jniBluetoothLeAudioCodecConfigClass, "getOctetsPerFrame", "()I");
 
   method_onGroupStatus = env->GetMethodID(clazz, "onGroupStatus", "(II)V");
   method_onGroupNodeStatus =
@@ -507,15 +527,85 @@ static void setCodecConfigPreferenceNative(JNIEnv* env, jobject object,
       inputCodecConfig,
       android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType);
 
+  jint inputSampleRate = env->CallIntMethod(
+      inputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getSampleRate);
+
+  jint inputBitsPerSample = env->CallIntMethod(
+      inputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getBitsPerSample);
+
+  jint inputChannelCount = env->CallIntMethod(
+      inputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getChannelCount);
+
+  jint inputFrameDuration = env->CallIntMethod(
+      inputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getFrameDuration);
+
+  jint inputOctetsPerFrame = env->CallIntMethod(
+      inputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getOctetsPerFrame);
+
+  jint inputCodecPriority = env->CallIntMethod(
+      inputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getCodecPriority);
+
   btle_audio_codec_config_t input_codec_config = {
-      .codec_type = static_cast<btle_audio_codec_index_t>(inputCodecType)};
+      .codec_type = static_cast<btle_audio_codec_index_t>(inputCodecType),
+      .sample_rate =
+          static_cast<btle_audio_sample_rate_index_t>(inputSampleRate),
+      .bits_per_sample =
+          static_cast<btle_audio_bits_per_sample_index_t>(inputBitsPerSample),
+      .channel_count =
+          static_cast<btle_audio_channel_count_index_t>(inputChannelCount),
+      .frame_duration =
+          static_cast<btle_audio_frame_duration_index_t>(inputFrameDuration),
+      .octets_per_frame = static_cast<uint16_t>(inputOctetsPerFrame),
+      .codec_priority = static_cast<int32_t>(inputCodecPriority),
+  };
 
   jint outputCodecType = env->CallIntMethod(
       outputCodecConfig,
       android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType);
 
+  jint outputSampleRate = env->CallIntMethod(
+      outputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getSampleRate);
+
+  jint outputBitsPerSample = env->CallIntMethod(
+      outputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getBitsPerSample);
+
+  jint outputChannelCount = env->CallIntMethod(
+      outputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getChannelCount);
+
+  jint outputFrameDuration = env->CallIntMethod(
+      outputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getFrameDuration);
+
+  jint outputOctetsPerFrame = env->CallIntMethod(
+      outputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getOctetsPerFrame);
+
+  jint outputCodecPriority = env->CallIntMethod(
+      outputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getCodecPriority);
+
   btle_audio_codec_config_t output_codec_config = {
-      .codec_type = static_cast<btle_audio_codec_index_t>(outputCodecType)};
+      .codec_type = static_cast<btle_audio_codec_index_t>(outputCodecType),
+      .sample_rate =
+          static_cast<btle_audio_sample_rate_index_t>(outputSampleRate),
+      .bits_per_sample =
+          static_cast<btle_audio_bits_per_sample_index_t>(outputBitsPerSample),
+      .channel_count =
+          static_cast<btle_audio_channel_count_index_t>(outputChannelCount),
+      .frame_duration =
+          static_cast<btle_audio_frame_duration_index_t>(outputFrameDuration),
+      .octets_per_frame = static_cast<uint16_t>(outputOctetsPerFrame),
+      .codec_priority = static_cast<int32_t>(outputCodecPriority),
+  };
 
   sLeAudioClientInterface->SetCodecConfigPreference(
       group_id, input_codec_config, output_codec_config);
