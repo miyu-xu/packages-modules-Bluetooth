@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e4be8cc_c6eeb5f7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-29T07:54:41Z",
+      "side": 1,
+      "message": "package private would work.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 6
+      },
+      "revId": "1b7cdccc4348f870f4d7fc87b80f6aa239690b4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
