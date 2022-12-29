@@ -22,6 +22,30 @@
       },
       "revId": "4a152ff8872e8a0258e362f13baa4cff482bd770",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a576d9fa_3e173e96",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-29T04:58:45Z",
+      "side": 1,
+      "message": "The `mAppAdvertiseStats` comes from\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/ContextMap.java;l\u003d196\n\nis created within the class so I believe it won\u0027t be possible to mock it without serious modification.\n\n\u003e e.g. we can verify this.\n\u003e https://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/ContextMap.java;l\u003d536?q\u003dcontextmap.java\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n\nI already have tests for `AppAdvertiseStats` here via `AppAdvertiseStatsTest`: https://source.corp.google.com/android/packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/gatt/AppAdvertiseStatsTest.java\nSo I believe the functionality of those methods are being unit tested.\n\nI agree it would be better if we can verify more things but do you think it\u0027s okay to leave it like this or would you like me to do anything else?",
+      "parentUuid": "d8fdc005_fadb6ea0",
+      "range": {
+        "startLine": 121,
+        "startChar": 50,
+        "endLine": 121,
+        "endChar": 74
+      },
+      "revId": "4a152ff8872e8a0258e362f13baa4cff482bd770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
