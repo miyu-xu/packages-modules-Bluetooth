@@ -1656,10 +1656,15 @@ public class HeadsetService extends ProfileService {
                     return false;
                 }
             }
-            if (!setActiveDevice(fromDevice)) {
-                Log.e(TAG, "dialOutgoingCall failed to set active device to " + fromDevice);
-                return false;
+            BluetoothAudioPolicy callAudioPolicy = getHfpCallAudioPolicy(fromDevice);
+            if (callAudioPolicy == null || callAudioPolicy.getCallEstablishPolicy()
+                    != BluetoothAudioPolicy.POLICY_NOT_ALLOWED) {
+                if (!setActiveDevice(fromDevice)) {
+                    Log.w(TAG, "dialOutgoingCall failed to set active device to " + fromDevice
+                            + "! using the current active device for outgoing call.");
+                }
             }
+
             Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                     Uri.fromParts(PhoneAccount.SCHEME_TEL, dialNumber, null));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
