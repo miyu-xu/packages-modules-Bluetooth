@@ -70,6 +70,30 @@
       },
       "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a20df057_fce143fd",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-12-29T00:28:17Z",
+      "side": 1,
+      "message": "Even for CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH, app wanted to configure the reportDelay. Batch scan didn\u0027t have any throttle logic for screen status and restriction for the report delay. Does it mean we have to apply the minimum reportDelay for both auto batch and batch scan commonly? Currently, we allow any non-zero value for batch scan.\n\npublic Builder setReportDelay(long reportDelayMillis) {\n            if (reportDelayMillis \u003c 0) {\n                throw new IllegalArgumentException(\"reportDelay must be \u003e 0\");\n            }\n            mReportDelayMillis \u003d reportDelayMillis;\n            return this;\n}\n\nJust added two unit test cases which shows the zero report delay makes the auto batch scan work as regular scan only.\n\n- testUnfilteredAutoBatchScanZeroReportDelay()\n- testFilteredAutoBatchScanZeroReportDelay()",
+      "parentUuid": "1f088764_3095e657",
+      "range": {
+        "startLine": 104,
+        "startChar": 54,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
