@@ -1,5 +1,5 @@
 #
-#  Copyright 2021 Google, Inc.
+#  Copyright 2022 Google, Inc.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -13,13 +13,22 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-[workspace]
+[package]
+name = "bluetooth_core"
+version = "0.0.1"
+edition = "2021"
 
-members = [
-  "system/gd/rust/shim",
-  "system/gd/rust/topshim",
-  "system/gd/rust/linux/mgmt",
-  "system/gd/rust/linux/service",
-  "system/gd/rust/linux/client",
-  "system/rust",
-]
+[dependencies]
+# None yet
+
+# External dependencies
+# Note: source-of-truth is Android.bp, these are mirrored solely for IDE convenient
+log = "*"
+cxx = "*"
+android_logger = "*"
+jni = "*"
+paste = "*"
+
+[lib]
+crate-type = ["rlib"]
+path = "lib.rs"
