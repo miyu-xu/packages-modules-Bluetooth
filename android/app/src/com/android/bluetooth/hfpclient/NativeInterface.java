@@ -330,8 +330,7 @@ public class NativeInterface {
 
     // Callbacks from the native back into the java framework. All callbacks are routed via the
     // Service which will disambiguate which state machine the message should be routed through.
-    @VisibleForTesting
-    void onConnectionStateChanged(int state, int peerFeat, int chldFeat, byte[] address) {
+    private void onConnectionStateChanged(int state, int peerFeat, int chldFeat, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
         event.valueInt = state;
         event.valueInt2 = peerFeat;
@@ -350,8 +349,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onAudioStateChanged(int state, byte[] address) {
+    private void onAudioStateChanged(int state, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED);
         event.valueInt = state;
         event.device = getDevice(address);
@@ -367,8 +365,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onVrStateChanged(int state, byte[] address) {
+    private void onVrStateChanged(int state, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_VR_STATE_CHANGED);
         event.valueInt = state;
         event.device = getDevice(address);
@@ -385,8 +382,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onNetworkState(int state, byte[] address) {
+    private void onNetworkState(int state, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_NETWORK_STATE);
         event.valueInt = state;
         event.device = getDevice(address);
@@ -404,8 +400,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onNetworkRoaming(int state, byte[] address) {
+    private void onNetworkRoaming(int state, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_ROAMING_STATE);
         event.valueInt = state;
         event.device = getDevice(address);
@@ -421,8 +416,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onNetworkSignal(int signal, byte[] address) {
+    private void onNetworkSignal(int signal, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_NETWORK_SIGNAL);
         event.valueInt = signal;
         event.device = getDevice(address);
@@ -437,8 +431,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onBatteryLevel(int level, byte[] address) {
+    private void onBatteryLevel(int level, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_BATTERY_LEVEL);
         event.valueInt = level;
         event.device = getDevice(address);
@@ -453,8 +446,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onCurrentOperator(String name, byte[] address) {
+    private void onCurrentOperator(String name, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_OPERATOR_NAME);
         event.valueString = name;
         event.device = getDevice(address);
@@ -470,8 +462,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onCall(int call, byte[] address) {
+    private void onCall(int call, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CALL);
         event.valueInt = call;
         event.device = getDevice(address);
@@ -495,8 +486,7 @@ public class NativeInterface {
      * 2 - Outgoing call process ongoing
      * 3 - Remote party being alerted for outgoing call
      */
-    @VisibleForTesting
-    void onCallSetup(int callsetup, byte[] address) {
+    private void onCallSetup(int callsetup, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CALLSETUP);
         event.valueInt = callsetup;
         event.device = getDevice(address);
@@ -521,8 +511,7 @@ public class NativeInterface {
      * call)
      * 2 - Call on hold, no active call
      */
-    @VisibleForTesting
-    void onCallHeld(int callheld, byte[] address) {
+    private void onCallHeld(int callheld, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CALLHELD);
         event.valueInt = callheld;
         event.device = getDevice(address);
@@ -537,8 +526,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onRespAndHold(int respAndHold, byte[] address) {
+    private void onRespAndHold(int respAndHold, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_RESP_AND_HOLD);
         event.valueInt = respAndHold;
         event.device = getDevice(address);
@@ -553,8 +541,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onClip(String number, byte[] address) {
+    private void onClip(String number, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CLIP);
         event.valueString = number;
         event.device = getDevice(address);
@@ -569,8 +556,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onCallWaiting(String number, byte[] address) {
+    private void onCallWaiting(String number, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CALL_WAITING);
         event.valueString = number;
         event.device = getDevice(address);
@@ -585,8 +571,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onCurrentCalls(int index, int dir, int state, int mparty, String number,
+    private void onCurrentCalls(int index, int dir, int state, int mparty, String number,
             byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CURRENT_CALLS);
         event.valueInt = index;
@@ -606,8 +591,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onVolumeChange(int type, int volume, byte[] address) {
+    private void onVolumeChange(int type, int volume, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_VOLUME_CHANGED);
         event.valueInt = type;
         event.valueInt2 = volume;
@@ -623,8 +607,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onCmdResult(int type, int cme, byte[] address) {
+    private void onCmdResult(int type, int cme, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_CMD_RESULT);
         event.valueInt = type;
         event.valueInt2 = cme;
@@ -640,8 +623,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onSubscriberInfo(String number, int type, byte[] address) {
+    private void onSubscriberInfo(String number, int type, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_SUBSCRIBER_INFO);
         event.valueInt = type;
         event.valueString = number;
@@ -658,8 +640,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onInBandRing(int inBand, byte[] address) {
+    private void onInBandRing(int inBand, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_IN_BAND_RINGTONE);
         event.valueInt = inBand;
         event.device = getDevice(address);
@@ -675,13 +656,11 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onLastVoiceTagNumber(String number, byte[] address) {
+    private void onLastVoiceTagNumber(String number, byte[] address) {
         Log.w(TAG, "onLastVoiceTagNumber not supported");
     }
 
-    @VisibleForTesting
-    void onRingIndication(byte[] address) {
+    private void onRingIndication(byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_RING_INDICATION);
         event.device = getDevice(address);
         if (DBG) {
@@ -696,8 +675,7 @@ public class NativeInterface {
         }
     }
 
-    @VisibleForTesting
-    void onUnknownEvent(String eventString, byte[] address) {
+    private void onUnknownEvent(String eventString, byte[] address) {
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_UNKNOWN_EVENT);
         event.device = getDevice(address);
         event.valueString = eventString;
