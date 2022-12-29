@@ -1,8 +1,9 @@
 use std::iter::empty;
 
+use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 
-use crate::{ast, quote_block};
+use crate::ast;
 
 use crate::backends::intermediate::{
     ComputedOffsetId, ComputedValueId, PacketOrStruct, PacketOrStructLength, Schema,
@@ -11,13 +12,12 @@ use crate::backends::intermediate::{
 use super::computed_values::{Computable, Declarable};
 
 pub fn generate_packet(
-    out: &mut String,
     id: &str,
     fields: &[ast::Field],
     parent_id: Option<&str>,
     schema: &Schema,
     curr_schema: &PacketOrStruct,
-) -> Result<(), String> {
+) -> Result<TokenStream, String> {
     let id_ident = format_ident!("{id}View");
 
     let needs_external = matches!(curr_schema.length, PacketOrStructLength::NeedsExternal);
@@ -243,7 +243,7 @@ pub fn generate_packet(
 
     let packet_end_offset = ComputedOffsetId::PacketEnd.call_fn();
 
-    out.push_str(&quote_block! {
+    Ok(quote! {
         #[derive(Clone, Copy, Debug)]
         pub struct #id_ident<'a> {
             buf: #backing_buffer,
@@ -281,7 +281,5 @@ pub fn generate_packet(
                 Ok(out)
             }
         }
-    });
-
-    Ok(())
+    })
 }

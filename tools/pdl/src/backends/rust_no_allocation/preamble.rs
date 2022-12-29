@@ -7,6 +7,8 @@
 #![feature(mixed_integer_ops)]
 
 use std::ops::Deref;
+use std::convert::TryInto;
+use std::convert::TryFrom;
 
 #[derive(Debug)]
 pub enum ParseError {
@@ -138,5 +140,46 @@ impl<'a> SizedBitSlice<'a> {
 
     pub fn get_size_in_bits(&self) -> usize {
         self.end_bit_offset - self.start_bit_offset
+    }
+}
+
+#[derive(Debug)]
+pub enum SerializeError {
+    NegativePadding,
+    IntegerConversionFailure,
+}
+
+trait BitWriter {
+    fn write_bits(&mut self, num_bits: usize, gen_contents: impl FnOnce() -> Result<u64, SerializeError>) -> Result<(), SerializeError>;
+}
+
+trait Serializable {
+    fn size_in_bits(&self) -> Result<usize, SerializeError> {
+        let mut sizer = Sizer::new();
+        self.serialize(&mut sizer)?;
+        Ok(sizer.size())
+    }
+
+    fn serialize(&self, writer: &mut impl BitWriter) -> Result<(), SerializeError>;
+}
+
+struct Sizer {
+    size: usize,
+}
+
+impl Sizer {
+    fn new() -> Self {
+        Self { size: 0 }
+    }
+
+    fn size(self) -> usize {
+        self.size
+    }
+}
+
+impl BitWriter for Sizer {
+    fn write_bits(&mut self, num_bits: usize, gen_contents: impl FnOnce() -> Result<u64, SerializeError>) -> Result<(), SerializeError> {
+        self.size += num_bits;
+        Ok(())
     }
 }
