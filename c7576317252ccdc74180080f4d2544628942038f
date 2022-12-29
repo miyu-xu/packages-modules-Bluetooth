@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94137e9a_fb66d1f1",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-29T03:59:30Z",
+      "side": 1,
+      "message": "If we lock at the beginning of the block, \"EnqueueCommand\" can not get the mutex_ to enqueue command and set value.",
+      "parentUuid": "c3862622_d5289e48",
+      "revId": "c7576317252ccdc74180080f4d2544628942038f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d85d2d8_6e313438",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db4ea494_0c338535",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-29T03:59:30Z",
+      "side": 1,
+      "message": "After the refactor, GetCommand and GetLastCommand is almost the same, remove GetLastCommand  for consistency",
+      "parentUuid": "5d85d2d8_6e313438",
+      "revId": "c7576317252ccdc74180080f4d2544628942038f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d95f376e_d3e572fc",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-12-28T18:15:40Z",
       "side": 1,
       "message": "Same here, the reason for the change?",
+      "revId": "c7576317252ccdc74180080f4d2544628942038f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "572a755f_4faddef1",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-29T03:59:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d95f376e_d3e572fc",
       "revId": "c7576317252ccdc74180080f4d2544628942038f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

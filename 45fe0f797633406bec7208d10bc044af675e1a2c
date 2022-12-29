@@ -16,6 +16,24 @@
       "message": "Why did the original code fail?",
       "revId": "45fe0f797633406bec7208d10bc044af675e1a2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e2e7598_a74c62a1",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-12-29T03:59:30Z",
+      "side": 0,
+      "message": "The original code didn\u0027t fail, but I think use promise for callback is better than sync different thread for several times. It is more clearer as well.",
+      "parentUuid": "7eb042e2_2abb7496",
+      "revId": "45fe0f797633406bec7208d10bc044af675e1a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
