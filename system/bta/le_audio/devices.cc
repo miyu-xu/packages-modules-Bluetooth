@@ -816,7 +816,168 @@ bool LeAudioDeviceGroup::UpdateAudioContextTypeAvailability(
     group_available_contexts_ = new_contexts;
   }
 
+  // update preference map by newly active map
+  if (UpdateAudioContextTypePreference()) {
+    LOG_INFO("preferred config has been modified.");
+  }
+
   return active_contexts_has_been_modified;
+}
+
+bool LeAudioDeviceGroup::UpdateAudioContextTypePreference() {
+  bool preferred_contexts_has_been_modified = false;
+
+  for (LeAudioContextType ctx_type : types::kLeAudioContextAllTypesArray) {
+    bool ctx_not_supported_in_available_map =
+        (available_context_to_configuration_map.count(ctx_type) == 0 ||
+         available_context_to_configuration_map[ctx_type] == nullptr);
+
+    bool ctx_not_supported_in_preferred_map =
+        preferred_context_to_configuration_map.find(ctx_type) ==
+        preferred_context_to_configuration_map.end();
+
+    if (ctx_not_supported_in_available_map &&
+        !ctx_not_supported_in_preferred_map) {
+      preferred_context_to_configuration_map.erase(ctx_type);
+      preferred_context_to_configuration_using_status_map.erase(ctx_type);
+      preferred_contexts_has_been_modified = true;
+    } else if (!ctx_not_supported_in_available_map) {
+      set_configurations::AudioSetConfiguration new_preferred_conf;
+      new_preferred_conf.name = "preferred_audio_set_configuration";
+
+      if (FindFirstSupportedPreferredConfiguration(ctx_type,
+                                                   &new_preferred_conf)) {
+        auto prev_preferred_conf = GetPreferredCodecConfig(ctx_type);
+        if (prev_preferred_conf &&
+            IsSameCodecConfiguration(*prev_preferred_conf,
+                                     new_preferred_conf)) {
+          return preferred_contexts_has_been_modified;
+        }
+
+        preferred_context_to_configuration_map[ctx_type] = new_preferred_conf;
+        preferred_context_to_configuration_using_status_map[ctx_type] = false;
+        preferred_contexts_has_been_modified = true;
+      }
+    }
+  }
+
+  return preferred_contexts_has_been_modified;
+}
+
+bool LeAudioDeviceGroup::IsSameCodecConfiguration(
+    const set_configurations::AudioSetConfiguration& first_conf,
+    const set_configurations::AudioSetConfiguration& second_conf) {
+  bool is_same_codec_config = true;
+  if (first_conf.confs.size() != second_conf.confs.size()) {
+    return false;
+  }
+
+  int sz = first_conf.confs.size();
+  for (int i = 0; i < sz; ++i) {
+    auto first_codec = first_conf.confs[i].codec;
+    auto second_codec = second_conf.confs[i].codec;
+
+    if (first_codec.GetConfigSamplingFrequency() !=
+        second_codec.GetConfigSamplingFrequency()) {
+      is_same_codec_config = false;
+      break;
+    }
+
+    if (first_codec.GetConfigDataIntervalUs() !=
+        second_codec.GetConfigDataIntervalUs()) {
+      is_same_codec_config = false;
+      break;
+    }
+
+    if (first_codec.GetConfigChannelAllocation() !=
+        second_codec.GetConfigChannelAllocation()) {
+      is_same_codec_config = false;
+      break;
+    }
+
+    if (first_codec.GetConfigOctetsPerCodecFrame() !=
+        second_codec.GetConfigOctetsPerCodecFrame()) {
+      is_same_codec_config = false;
+      break;
+    }
+
+    if (first_codec.GetConfigCodecFramesBlocksPerSdu() !=
+        second_codec.GetConfigCodecFramesBlocksPerSdu()) {
+      is_same_codec_config = false;
+      break;
+    }
+
+    if (first_codec.GetConfigBitsPerSample() !=
+        second_codec.GetConfigBitsPerSample()) {
+      is_same_codec_config = false;
+      break;
+    }
+  }
+
+  return is_same_codec_config;
+}
+
+bool LeAudioDeviceGroup::InitializeAudioContextTypePreference(
+    const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
+    const bluetooth::le_audio::btle_audio_codec_config_t& output_codec_config) {
+  bool preferred_contexts_has_been_modified = false;
+
+  if (input_codec_config.codec_priority == -1 ||
+      output_codec_config.codec_priority == -1) {
+    LOG_INFO("Clear preferred context to configuration map");
+
+    preferred_context_to_configuration_map.clear();
+    preferred_input_codec_config = nullptr;
+    preferred_output_codec_config = nullptr;
+
+    return preferred_contexts_has_been_modified = true;
+  }
+
+  LOG_INFO(
+      "Initialize preferred context to configuration map, input codec config: "
+      "%s, output codec config: %s",
+      input_codec_config.ToString().c_str(),
+      output_codec_config.ToString().c_str());
+
+  preferred_input_codec_config = &input_codec_config;
+  preferred_output_codec_config = &output_codec_config;
+
+  for (LeAudioContextType ctx_type : types::kLeAudioContextAllTypesArray) {
+    if ((available_context_to_configuration_map.find(ctx_type) ==
+         available_context_to_configuration_map.end()) ||
+        available_context_to_configuration_map.at(ctx_type) == nullptr) {
+      continue;
+    }
+
+    set_configurations::AudioSetConfiguration new_preferred_conf;
+    new_preferred_conf.name = "preferred_audio_set_configuration";
+
+    if (!FindFirstSupportedPreferredConfiguration(ctx_type,
+                                                  &new_preferred_conf)) {
+      continue;
+    }
+
+    auto prev_preferred_conf = GetPreferredCodecConfig(ctx_type);
+    if (prev_preferred_conf &&
+        IsSameCodecConfiguration(*prev_preferred_conf, new_preferred_conf)) {
+      continue;
+    }
+
+    preferred_context_to_configuration_map[ctx_type] = new_preferred_conf;
+    preferred_context_to_configuration_using_status_map[ctx_type] = false;
+    preferred_contexts_has_been_modified = true;
+  }
+
+  return preferred_contexts_has_been_modified;
+}
+
+const set_configurations::AudioSetConfiguration*
+LeAudioDeviceGroup::GetPreferredCodecConfig(
+    types::LeAudioContextType group_context_type) {
+  return preferred_context_to_configuration_map.find(group_context_type) !=
+                 preferred_context_to_configuration_map.end()
+             ? &preferred_context_to_configuration_map[group_context_type]
+             : nullptr;
 }
 
 bool LeAudioDeviceGroup::ReloadAudioLocations(void) {
@@ -1662,17 +1823,22 @@ LeAudioDeviceGroup::GetActiveConfiguration(void) {
 std::optional<LeAudioCodecConfiguration>
 LeAudioDeviceGroup::GetCodecConfigurationByDirection(
     types::LeAudioContextType group_context_type, uint8_t direction) const {
-  if (available_context_to_configuration_map.count(group_context_type) == 0) {
+  const set_configurations::AudioSetConfiguration* audio_set_conf;
+  if (preferred_context_to_configuration_map.find(group_context_type) !=
+      preferred_context_to_configuration_map.end()) {
+    audio_set_conf =
+        &preferred_context_to_configuration_map.at(group_context_type);
+  } else if (available_context_to_configuration_map.count(group_context_type)) {
+    audio_set_conf =
+        available_context_to_configuration_map.at(group_context_type);
+  } else {
     LOG_DEBUG("Context type %s, not supported",
               bluetooth::common::ToString(group_context_type).c_str());
     return std::nullopt;
   }
-
-  const set_configurations::AudioSetConfiguration* audio_set_conf =
-      available_context_to_configuration_map.at(group_context_type);
-  LeAudioCodecConfiguration group_config = {0, 0, 0, 0};
   if (!audio_set_conf) return std::nullopt;
 
+  LeAudioCodecConfiguration group_config = {0, 0, 0, 0};
   for (const auto& conf : audio_set_conf->confs) {
     if (conf.direction != direction) continue;
 
@@ -1920,14 +2086,140 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
   return nullptr;
 }
 
+bool LeAudioDeviceGroup::FindFirstSupportedPreferredConfiguration(
+    types::LeAudioContextType context_type,
+    set_configurations::AudioSetConfiguration* preferred_conf) {
+  const set_configurations::AudioSetConfigurations* confs =
+      AudioSetConfigurationProvider::Get()->GetConfigurations(context_type);
+
+  LOG_DEBUG("context type: %s,  number of connected devices: %d",
+            bluetooth::common::ToString(context_type).c_str(),
+            +NumOfConnected());
+
+  /* Filter out device set for all scenarios */
+  if (!set_configurations::check_if_may_cover_scenario(confs,
+                                                       NumOfConnected())) {
+    LOG_ERROR(", group is unable to cover scenario");
+    return false;
+  }
+
+  /* Filter out device set for each end every scenario */
+  for (const auto& conf : *confs) {
+    preferred_conf->confs.clear();
+
+    if (!CreatePreferredConfiguration(conf, preferred_conf)) {
+      continue;
+    }
+
+    if (IsConfigurationSupported(preferred_conf, context_type)) {
+      LOG_DEBUG("found: %s", preferred_conf->name.c_str());
+      return true;
+    }
+  }
+
+  return false;
+}
+
+bool LeAudioDeviceGroup::CreatePreferredConfiguration(
+    const set_configurations::AudioSetConfiguration* audio_set_conf,
+    set_configurations::AudioSetConfiguration* preferred_audio_set_conf) {
+  for (const auto& ent : (*audio_set_conf).confs) {
+    set_configurations::CodecCapabilitySetting preferred_codec_config;
+
+    if (ent.direction == types::kLeAudioDirectionSink) {
+      if (!preferred_output_codec_config ||
+          !CreatePreferredCodecConfiguration(ent.codec,
+                                             *preferred_output_codec_config,
+                                             &preferred_codec_config)) {
+        return false;
+      }
+
+      preferred_audio_set_conf->confs.push_back(
+          set_configurations::SetConfiguration(
+              ent.direction, ent.device_cnt, ent.ase_cnt, ent.target_latency,
+              preferred_codec_config, ent.qos, ent.strategy));
+    } else {
+      if (!preferred_input_codec_config ||
+          !CreatePreferredCodecConfiguration(ent.codec,
+                                             *preferred_input_codec_config,
+                                             &preferred_codec_config)) {
+        return false;
+      }
+
+      preferred_audio_set_conf->confs.push_back(
+          set_configurations::SetConfiguration(
+              ent.direction, ent.device_cnt, ent.ase_cnt, ent.target_latency,
+              preferred_codec_config, ent.qos, ent.strategy));
+    }
+  }
+
+  return preferred_audio_set_conf->confs.size() == audio_set_conf->confs.size();
+}
+
+bool LeAudioDeviceGroup::CreatePreferredCodecConfiguration(
+    const set_configurations::CodecCapabilitySetting& audio_set_codec_conf,
+    const bluetooth::le_audio::btle_audio_codec_config_t& codec_config,
+    set_configurations::CodecCapabilitySetting* preferred_codec_config) {
+  // check codec is same
+  uint8_t coding_format;
+  switch (codec_config.codec_type) {
+    case bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3:
+      coding_format = types::kLeAudioCodingFormatLC3;
+      break;
+    default:
+      coding_format = 0;
+      break;
+  }
+  if (coding_format != audio_set_codec_conf.id.coding_format) {
+    return false;
+  }
+  preferred_codec_config->id = audio_set_codec_conf.id;
+
+  // check channel count is same
+  if (codec_config.channel_count !=
+      audio_set_codec_conf.GetConfigChannelCount()) {
+    return false;
+  }
+
+  preferred_codec_config->config = types::LeAudioLc3Config({
+      .sampling_frequency =
+          le_audio::codec_spec_caps::SampleingFreqCapability2Config(
+              codec_config.sample_rate),
+      .frame_duration =
+          le_audio::codec_spec_caps::FrameDurationCapability2Config(
+              codec_config.frame_duration),
+      .audio_channel_allocation =
+          audio_set_codec_conf.GetConfigChannelAllocation(),
+      .octets_per_codec_frame = codec_config.octets_per_frame,
+      .codec_frames_blocks_per_sdu =
+          audio_set_codec_conf.GetConfigCodecFramesBlocksPerSdu(),
+      .bits_per_sample =
+          le_audio::codec_spec_caps::BitsPerSampleCapability2Config(
+              codec_config.bits_per_sample),
+      .channel_count = (uint8_t)codec_config.channel_count,
+  });
+
+  return true;
+}
+
 /* This method should choose aproperiate ASEs to be active and set a cached
  * configuration for codec and qos.
  */
 bool LeAudioDeviceGroup::Configure(LeAudioContextType context_type,
                                    AudioContexts metadata_context_type,
                                    std::vector<uint8_t> ccid_list) {
-  const set_configurations::AudioSetConfiguration* conf =
-      available_context_to_configuration_map[context_type];
+  const set_configurations::AudioSetConfiguration* conf;
+
+  if (preferred_context_to_configuration_map.find(context_type) !=
+      preferred_context_to_configuration_map.end()) {
+    conf = &preferred_context_to_configuration_map[context_type];
+    preferred_context_to_configuration_using_status_map[context_type] = true;
+    LOG_DEBUG("use preferred codec config: %s", conf->name.c_str());
+  } else {
+    conf = available_context_to_configuration_map[context_type];
+    preferred_context_to_configuration_using_status_map[context_type] = false;
+    LOG_DEBUG("use available codec config: %s", conf->name.c_str());
+  }
 
   if (!conf) {
     LOG_ERROR(
