@@ -1986,7 +1986,7 @@ public class LeAudioService extends ProfileService {
      * This function is called when the framework registers
      * a callback with the service for this first time.
      * This is used as an indication that Bluetooth has been enabled.
-     * 
+     *
      * It is used to authorize all known LeAudio devices in the services
      * which requires that e.g. GMCS
      */
@@ -2315,11 +2315,6 @@ public class LeAudioService extends ProfileService {
             Log.e(TAG, "setCodecConfigPreference: Input codec type: "
                     + inputCodecConfig.getCodecType()
                     + "does not match output codec type: " + outputCodecConfig.getCodecType());
-            return;
-        }
-
-        if (descriptor.mCodecStatus == null) {
-            Log.e(TAG, "setCodecConfigPreference: Codec status is null");
             return;
         }
 

@@ -926,7 +926,45 @@ class LeAudioClientImpl : public LeAudioClient {
       bluetooth::le_audio::btle_audio_codec_config_t input_codec_config,
       bluetooth::le_audio::btle_audio_codec_config_t output_codec_config)
       override {
-    // TODO Implement
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (!group) {
+      LOG_ERROR(", unknown group id: %d", group_id);
+      return;
+    }
+
+    bool set_preferred_codec = group->InitializeAudioContextTypePreference(
+        input_codec_config, output_codec_config);
+
+    if (set_preferred_codec) {
+      LOG_INFO(", group id: %d, setting preferred codec is successful.",
+               group_id);
+    } else {
+      LOG_INFO(", group id: %d, setting preferred codec is failed.", group_id);
+      return;
+    }
+
+    if (group->GetState() ==
+        le_audio::types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+      if (SetConfigurationAndStopStreamWhenNeeded(
+              group, group->GetConfigurationContextType())) {
+        LOG_INFO(", group id: %d: Reconfiguration Needed", group_id);
+      } else {
+        LOG_INFO(", group id: %d: Reconfiguration Not Needed", group_id);
+      }
+    }
+  }
+
+  bool IsUsingPreferredCodecConfig(int group_id, int context_type) {
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (!group) {
+      LOG_ERROR(", unknown group id: %d", group_id);
+      return false;
+    }
+
+    return group->IsUsingPreferredCodecConfig(
+        static_cast<LeAudioContextType>(context_type));
   }
 
   void SetCcidInformation(int ccid, int context_type) override {
