@@ -34,6 +34,24 @@
       "parentUuid": "cca00c40_9cb45f1d",
       "revId": "19f5bebbffa72cf367ac8c81eb94c68619770f93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae6ffb13_55749693",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-29T23:27:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "82c42c84_f9f14fba",
+      "revId": "19f5bebbffa72cf367ac8c81eb94c68619770f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
