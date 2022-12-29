@@ -18,6 +18,8 @@ enum OutputFormat {
     Rust,
     RustNoAlloc,
     RustNoAllocTest,
+    EmbeddedC,
+    EmbeddedCTest,
 }
 
 impl std::str::FromStr for OutputFormat {
@@ -29,7 +31,9 @@ impl std::str::FromStr for OutputFormat {
             "rust" => Ok(Self::Rust),
             "rust_no_alloc" => Ok(Self::RustNoAlloc),
             "rust_no_alloc_test" => Ok(Self::RustNoAllocTest),
-            _ => Err(format!("could not parse {:?}, valid option are 'json', 'rust', 'rust_no_alloc', and 'rust_no_alloc_test'.", input)),
+            "embedded_c" => Ok(Self::EmbeddedC),
+            "embedded_c_test" => Ok(Self::EmbeddedCTest),
+            _ => Err(format!("could not parse {:?}'.", input)),
         }
     }
 }
@@ -76,6 +80,14 @@ fn main() -> std::process::ExitCode {
                 OutputFormat::Rust => {
                     println!("{}", backends::rust::generate(&sources, &file))
                 }
+                OutputFormat::EmbeddedC => {
+                    let schema = backends::intermediate::generate(&file).unwrap();
+                    println!(
+                        "{}",
+                        backends::cpp_no_allocation::cpp_no_allocation::generate(&file, &schema)
+                            .unwrap()
+                    )
+                }
                 OutputFormat::RustNoAlloc => {
                     let schema = backends::intermediate::generate(&file).unwrap();
                     println!("{}", backends::rust_no_allocation::generate(&file, &schema).unwrap())
@@ -84,6 +96,13 @@ fn main() -> std::process::ExitCode {
                     println!(
                         "{}",
                         backends::rust_no_allocation::test::generate_test_file().unwrap()
+                    )
+                }
+                OutputFormat::EmbeddedCTest => {
+                    println!(
+                        "{}",
+                        backends::cpp_no_allocation::cpp_no_allocation_test::generate_test_file()
+                            .unwrap()
                     )
                 }
             }
