@@ -137,6 +137,29 @@
       },
       "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcaa5be_757d3bec",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T23:31:17Z",
+      "side": 1,
+      "message": "Error is `0` ? Shouldn\u0027t it be ~5/10 meters ?",
+      "range": {
+        "startLine": 252,
+        "startChar": 33,
+        "endLine": 252,
+        "endChar": 34
+      },
+      "revId": "bc7244c89b9957049336ef43f2b7c5d527d6097b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
