@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "646099e7_de7ac627",
+        "filename": "system/device/include/interop_database.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2022-12-29T15:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09aee7bb_aaf4d05e",
+      "range": {
+        "startLine": 214,
+        "startChar": 34,
+        "endLine": 214,
+        "endChar": 55
+      },
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfcf903a_f36681bd",
@@ -165,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7631ba3f_88243526",
+        "filename": "system/device/include/interop_database.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2022-12-29T15:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44ae28de_00480c3f",
+      "range": {
+        "startLine": 244,
+        "startChar": 36,
+        "endLine": 244,
+        "endChar": 65
+      },
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3074e123_7331c914",
@@ -202,6 +250,30 @@
       "side": 1,
       "message": "Yes , will remove it",
       "parentUuid": "3074e123_7331c914",
+      "range": {
+        "startLine": 257,
+        "startChar": 38,
+        "endLine": 257,
+        "endChar": 69
+      },
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d73610d_bcad6a6f",
+        "filename": "system/device/include/interop_database.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2022-12-29T15:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec1abd4c_42fa80e2",
       "range": {
         "startLine": 257,
         "startChar": 38,
