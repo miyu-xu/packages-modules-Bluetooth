@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e557ef1_02d41945",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "I think this I really better.\nWe can go one step further if we set_str / remove only once at the end of the method.\naka:\n\n```\ninterop_config_add_or_remove() {\n  interop_feature_t feature;\n  string key;\n  string value;\n  \n  switch (db_entry-\u003ebl_type) {\n    case INTEROP_BL_TYPE_ADDR:\n      feature \u003d db_entry-\u003eentry_type.addr_entry.feature;\n      key \u003d addr_entry.addr.ToColonSepHexString().substr(0, addr_entry.length * 3 - 1);\n      value \u003d ADDR_BASED;\n    [...]\n    default:\n      LOG_ERROR(\"bl_type: %d not handled\", db_entry-\u003ebl_type);\n      return false;\n  }\n  if (add) {\n    interop_config_set_str(interop_feature_string_(feature), key, value);\n  } else {\n    interop_config_remove(interop_feature_string_(feature), key);\n  }\n  interop_config_flush();\n  return true;\n}\n```",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 3
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5697c998_5fb035b5",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "This if is always true.\n`!\u003d EINVAL || !\u003d ERANGE`\n\nWhat we want is returning true if the three condition are ok at the same time\nAKA:\n```\nreturn e !\u003d NULL \u0026\u0026 errno !\u003d EINVAL \u0026\u0026 errno !\u003d ERANGE;\n```",
+      "range": {
+        "startLine": 846,
+        "startChar": 7,
+        "endLine": 846,
+        "endChar": 58
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46b90685_0a2b8f7a",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "You also whant to check that you went inside the previous if by checking if token is not null before assigning it",
+      "range": {
+        "startLine": 876,
+        "startChar": 7,
+        "endLine": 876,
+        "endChar": 12
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97f4a7cb_f13db4e2",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "Check if token is not null before calling strtok_r",
+      "range": {
+        "startLine": 898,
+        "startChar": 6,
+        "endLine": 898,
+        "endChar": 7
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5c449a5_847da1b6",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "Do you want to check the return value of FromString?\nSame above",
+      "range": {
+        "startLine": 902,
+        "startChar": 16,
+        "endLine": 902,
+        "endChar": 26
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cecf9c74_d01c15bc",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "For this strlcpy there is no `errno \u003d 0` and there is no errno check neither.\n Maybe we should make a common method for the strlcpy too ?",
+      "range": {
+        "startLine": 916,
+        "startChar": 4,
+        "endLine": 916,
+        "endChar": 11
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd7e1127_96f5d4f2",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "lmp_ver could be switch to be uint16 (and in the caller too) so we can call token_to_ul. And only when assigning it to lmp_version_entry we cast it to uint8...\n\nBut is not perfect I agree so I let you decide for it",
+      "range": {
+        "startLine": 921,
+        "startChar": 5,
+        "endLine": 921,
+        "endChar": 12
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

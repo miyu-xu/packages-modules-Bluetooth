@@ -188,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20891dff_a6cb5fc5",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2e3e002c_28192c3b",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 36
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2be3460_ab31fb90",
@@ -515,6 +539,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b49940b_2ba23e1b",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ae1c192a_b0e6d136",
+      "range": {
+        "startLine": 906,
+        "startChar": 4,
+        "endLine": 906,
+        "endChar": 16
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db2623dc_50547589",
@@ -669,6 +717,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "0da4ba0f_bce16d99",
+      "range": {
+        "startLine": 992,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 1
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "719dc044_89b3e4a3",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "Why keeping the method and not completely delete it and replace the call with `trim` directly",
+      "parentUuid": "e92dade2_e869c8ec",
       "range": {
         "startLine": 992,
         "startChar": 0,
@@ -889,6 +961,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d3829a_bfdee84d",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1085,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38efa0df_82973afd",
+      "range": {
+        "startLine": 1085,
+        "startChar": 0,
+        "endLine": 1085,
+        "endChar": 42
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afc3cfa7_c2fe422e",
@@ -925,6 +1021,30 @@
       "writtenOn": "2022-12-14T10:05:59Z",
       "side": 1,
       "message": "same as above with kEmpty",
+      "range": {
+        "startLine": 1128,
+        "startChar": 4,
+        "endLine": 1129,
+        "endChar": 76
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226572cd_8f2eea6d",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1129,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T19:26:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ae0e0788_e5445ef0",
       "range": {
         "startLine": 1128,
         "startChar": 4,
