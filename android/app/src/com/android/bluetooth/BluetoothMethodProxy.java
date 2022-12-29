@@ -31,6 +31,9 @@ import android.os.ParcelFileDescriptor;
 import android.provider.Telephony;
 import android.util.Log;
 
+import com.android.bluetooth.gatt.AppAdvertiseStats;
+import com.android.bluetooth.gatt.ContextMap;
+import com.android.bluetooth.gatt.GattService;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.HeaderSet;
 
@@ -179,5 +182,13 @@ public class BluetoothMethodProxy {
      */
     public long telephonyGetOrCreateThreadId(Context context, Set<String> recipients) {
         return Telephony.Threads.getOrCreateThreadId(context, recipients);
+    }
+
+    /**
+     * Proxies {@link AppAdvertiseStats}.
+     */
+    public AppAdvertiseStats createAppAdvertiseStats(int appUid, int id, String name,
+            ContextMap map, GattService service) {
+        return new AppAdvertiseStats(appUid, id, name, map, service);
     }
 }
