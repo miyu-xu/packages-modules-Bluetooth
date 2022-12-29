@@ -318,8 +318,6 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
   }
 
   void DestroyBroadcastAnnouncement() {
-    if (BleAdvertisingManager::IsInitialized())
-      advertiser_if_->Unregister(GetAdvertisingSid());
   }
 
   void EnableAnnouncementCb(bool enable, uint8_t status) {
@@ -607,13 +605,8 @@ void BroadcastStateMachine::Initialize(
     IBroadcastStateMachineCallbacks* callbacks) {
   BroadcastStateMachineImpl::callbacks_ = callbacks;
   /* Get BLE advertiser interface */
-  if (BleAdvertisingManager::IsInitialized()) {
-    LOG_INFO("BleAdvertisingManager acquired");
-    BroadcastStateMachineImpl::advertiser_if_ = BleAdvertisingManager::Get();
-  } else {
-    LOG_INFO("Could not acquire BleAdvertisingManager!");
-    BroadcastStateMachineImpl::advertiser_if_ = nullptr;
-  }
+  LOG_INFO("Could not acquire BleAdvertisingManager!");
+  BroadcastStateMachineImpl::advertiser_if_ = nullptr;
 }
 
 namespace le_audio {

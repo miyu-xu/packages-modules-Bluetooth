@@ -3929,19 +3929,6 @@ static void bta_dm_start_scan(uint8_t duration_sec) {
   }
 }
 
-void bta_dm_ble_observe(bool start, uint8_t duration,
-                        tBTA_DM_SEARCH_CBACK* p_cback) {
-  if (!start) {
-    bta_dm_search_cb.p_scan_cback = NULL;
-    BTM_BleObserve(false, 0, NULL, NULL);
-    return;
-  }
-
-  /*Save the  callback to be called when a scan results are available */
-  bta_dm_search_cb.p_scan_cback = p_cback;
-  bta_dm_start_scan(duration);
-}
-
 void bta_dm_ble_scan(bool start, uint8_t duration_sec) {
   /* Start or stop only if there is no active main scanner */
   if (bta_dm_search_cb.p_scan_cback != NULL) return;
