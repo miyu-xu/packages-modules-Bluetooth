@@ -173,13 +173,24 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     switch (group->GetState()) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED:
         if (group->GetConfigurationContextType() == context_type) {
-          if (group->Activate(context_type)) {
+          if ((!group->IsUsingPreferredCodecConfig(context_type) &&
+               group->GetPreferredCodecConfig(context_type)) ||
+              (group->IsUsingPreferredCodecConfig(context_type) &&
+               !group->GetPreferredCodecConfig(context_type))) {
+            // We are here because we receive new preferred codec config
+            // and it is not used now, so reconfigure the whole group
+            // or we used available config from
+            // `available_context_to_configuration_map` when clearing preferred
+            // codec option
+            LOG_INFO("Reconfigure as we have new preferred codec updated");
+          } else if (group->Activate(context_type)) {
             SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
             if (CigCreate(group)) {
               return true;
             }
+          } else {
+            LOG_INFO("Could not activate device, try to configure it again");
           }
-          LOG_INFO("Could not activate device, try to configure it again");
         }
 
         /* We are going to reconfigure whole group. Clear Cises.*/
@@ -986,6 +997,17 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                    ase->codec_config.GetSamplingFrequencyHz());
       }
 
+      if (stream_conf->sink_bits_per_sample == 0) {
+        stream_conf->sink_bits_per_sample =
+            ase->codec_config.GetBitsPerSample();
+      } else {
+        ASSERT_LOG(stream_conf->sink_bits_per_sample ==
+                       ase->codec_config.GetBitsPerSample(),
+                   "bits per sample mismatch: %d!=%d",
+                   stream_conf->sink_bits_per_sample,
+                   ase->codec_config.GetBitsPerSample());
+      }
+
       if (stream_conf->sink_octets_per_codec_frame == 0) {
         stream_conf->sink_octets_per_codec_frame =
             *ase->codec_config.octets_per_codec_frame;
@@ -1054,6 +1076,17 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                    "sample freq mismatch: %d!=%d",
                    stream_conf->source_sample_frequency_hz,
                    ase->codec_config.GetSamplingFrequencyHz());
+      }
+
+      if (stream_conf->source_bits_per_sample == 0) {
+        stream_conf->source_bits_per_sample =
+            ase->codec_config.GetBitsPerSample();
+      } else {
+        ASSERT_LOG(stream_conf->source_bits_per_sample ==
+                       ase->codec_config.GetBitsPerSample(),
+                   "bits per sample mismatch: %d!=%d",
+                   stream_conf->source_bits_per_sample,
+                   ase->codec_config.GetBitsPerSample());
       }
 
       if (stream_conf->source_octets_per_codec_frame == 0) {
