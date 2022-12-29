@@ -16,6 +16,24 @@
       "message": "Hi John, are you trying to add a new sysprop? Have you already made the changes in system/libsysprop and system/sepolicy?",
       "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f031ff5_1cb15ff3",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2022-12-29T01:53:19Z",
+      "side": 1,
+      "message": "Hi Katherine, this sysprop is used by android team for qualification only (under packages/modules/Bluetooth/system/bta/av/bta_av_aact.cc).\n\nI didn\u0027t see them put this in the system/libsysprop and system/sepolicy so I guess they intend to do it because there\u0027s no other use cases for this sysprop.\n\nMay I know if there are reasons that we need to add them in system/libsysprop and system/sepolicy? \n\nAndroid team uses this sysprop through the command \"adb shell setprop bluetooth.pts.force_a2dp_abort true\" (from tools/test/connectivity/acts_tests/tests/google/bt/pts/instructions/AVDTP_PTS_INSTUCTIONS) for qualification used.\n\nAnd for chromeos, we can use this sysprop by appending \"bluetooth.pts.force_a2dp_abort\u003dtrue\" at the end of the file /var/lib/bluetooth/sysprops.conf.",
+      "parentUuid": "789fecd9_700f9826",
+      "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
