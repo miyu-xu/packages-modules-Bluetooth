@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8841ee5b_a699a358",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "mDistanceMeasurementCallbacksObj, same in each method",
+      "range": {
+        "startLine": 1124,
+        "startChar": 34,
+        "endLine": 1124,
+        "endChar": 47
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2186febd_fde97279",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "File coverage reported is only 9%.\nCan you add java test ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dad74fe5_82629fd3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "No sure if we can log identity address..\nUse `BluetoothUtils.toAnonymizedAddress(identityAddress)`",
+      "range": {
+        "startLine": 80,
+        "startChar": 82,
+        "endLine": 80,
+        "endChar": 97
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "612215a9_9c0ef1e6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "why using Log.d AND logd ?\nCan you merge both log into one only (same below)",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 12
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb520555_97ec9409",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "`getAnonymizedAddress()`",
+      "range": {
+        "startLine": 80,
+        "startChar": 58,
+        "endLine": 80,
+        "endChar": 68
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e60d81c_48248018",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "Error prone warning about ConcurrentModificationException\n\nCan you have multiple tracker in the set ? If no, you need to add a break here, if yes, you need to find another way of iterating to not remove from set but from it\u0027s iterator for example",
+      "range": {
+        "startLine": 148,
+        "startChar": 15,
+        "endLine": 148,
+        "endChar": 36
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc125a5_bd2d2b96",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "It\u0027s frustrating to see that for all the onDistancMeasurement{Started|StartFail|Stopped|Result} you are using almost the same pattern. It\u0027s just different enough to make it hard to concatenate in one generic method\n\nwe can imagine a fn to check and log for the correct case but the gain is small:\n```\nboolean check_method_rrsi(int method, String callFn) {\n  if (method !\u003d DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI) {\n    Log.d(TAG, callFn + \": invalid method \" + method);\n    return false\n  }\n  return true;\n}\n\nvoid onDistanceMeasurementXX() {\n  if (!check_method_rrsi(method, \"onDistanceMeasurementXX\")) return;\n  \n  HashSet\u003cDistanceMeasurementTracker\u003e set \u003d mRssiTrackers.get(address);\n  for (DistanceMeasurementTracker tracker : set) {\n    ....\n  }\n```\n\nwdyt ?",
+      "range": {
+        "startLine": 201,
+        "startChar": 9,
+        "endLine": 201,
+        "endChar": 30
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c321069_ef687204",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "BluetoothUtils.toAnonymizedAddress\n\nsame below",
+      "range": {
+        "startLine": 202,
+        "startChar": 55,
+        "endLine": 202,
+        "endChar": 62
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e604822_b42237d1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "This is the only onDistanceMeasurement that move the for loop in an external method.\n\nIs there a reason to for making this the only one ? Can we do either the same for all or never at all ?",
+      "range": {
+        "startLine": 271,
+        "startChar": 16,
+        "endLine": 271,
+        "endChar": 32
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6fac635_997aac50",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementTracker.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "This file has 0% coverage",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18bafa58_4636e58a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementTracker.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "unused variable",
+      "range": {
+        "startLine": 34,
+        "startChar": 33,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71701ba9_550424a3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementTracker.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "Error Prone suggest: `* 1000L` to avoid overflow and cast it to long sooner",
+      "range": {
+        "startLine": 68,
+        "startChar": 23,
+        "endLine": 68,
+        "endChar": 27
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b17a951_2733abb0",
+        "filename": "system/main/shim/distance_measurement_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-12-29T21:40:47Z",
+      "side": 1,
+      "message": "nit 2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "252c52f09c94be06b7b36eb8c10407ba6e5a45c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
