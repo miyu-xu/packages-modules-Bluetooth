@@ -3,14 +3,9 @@ use std::collections::{hash_map::Entry, HashMap};
 use crate::ast;
 
 pub struct Schema<'a> {
-    pub packets: HashMap<&'a str, Packet<'a>>,
-    pub structs: HashMap<&'a str, Struct<'a>>,
+    pub packets_and_structs: HashMap<&'a str, PacketOrStruct<'a>>,
     pub enums: HashMap<&'a str, Enum<'a>>,
 }
-
-pub struct Packet<'a>(pub PacketOrStruct<'a>);
-
-pub struct Struct<'a>(pub PacketOrStruct<'a>);
 
 pub struct PacketOrStruct<'a> {
     pub computed_offsets: HashMap<ComputedOffsetId<'a>, ComputedOffset<'a>>,
@@ -88,8 +83,7 @@ pub enum ComputedOffset<'a> {
 }
 
 pub fn generate(file: &ast::File) -> Result<Schema, String> {
-    let mut schema =
-        Schema { packets: HashMap::new(), structs: HashMap::new(), enums: HashMap::new() };
+    let mut schema = Schema { packets_and_structs: HashMap::new(), enums: HashMap::new() };
     match file.endianness.value {
         ast::EndiannessValue::LittleEndian => {}
         _ => unimplemented!("Only little_endian endianness supported"),
@@ -105,8 +99,9 @@ pub fn generate(file: &ast::File) -> Result<Schema, String> {
 fn process_decl<'a>(schema: &mut Schema<'a>, decl: &'a ast::Decl) {
     match decl {
         ast::Decl::Enum { id, tags, width, .. } => process_enum(schema, id, tags, *width),
-        ast::Decl::Packet { id, fields, .. } => process_packet(schema, id, fields),
-        ast::Decl::Struct { id, fields, .. } => process_struct(schema, id, fields),
+        ast::Decl::Packet { id, fields, .. } | ast::Decl::Struct { id, fields, .. } => {
+            process_packet_or_struct(schema, id, fields)
+        }
         ast::Decl::Group { .. } => todo!(),
         _ => unimplemented!("type {decl:?} not supported"),
     }
@@ -114,22 +109,18 @@ fn process_decl<'a>(schema: &mut Schema<'a>, decl: &'a ast::Decl) {
 
 fn process_enum<'a>(schema: &mut Schema<'a>, id: &'a str, tags: &'a [ast::Tag], width: usize) {
     schema.enums.insert(id, Enum { tags, width });
-    schema.structs.insert(
+    schema.packets_and_structs.insert(
         id,
-        Struct(PacketOrStruct {
+        PacketOrStruct {
             computed_offsets: HashMap::new(),
             computed_values: HashMap::new(),
             length: PacketOrStructLength::Static(width),
-        }),
+        },
     );
 }
 
-fn process_packet<'a>(schema: &mut Schema<'a>, id: &'a str, fields: &'a [ast::Field]) {
-    schema.packets.insert(id, Packet(compute_getters(schema, fields)));
-}
-
-fn process_struct<'a>(schema: &mut Schema<'a>, id: &'a str, fields: &'a [ast::Field]) {
-    schema.structs.insert(id, Struct(compute_getters(schema, fields)));
+fn process_packet_or_struct<'a>(schema: &mut Schema<'a>, id: &'a str, fields: &'a [ast::Field]) {
+    schema.packets_and_structs.insert(id, compute_getters(schema, fields));
 }
 
 fn compute_getters<'a>(schema: &Schema<'a>, fields: &'a [ast::Field]) -> PacketOrStruct<'a> {
@@ -260,7 +251,7 @@ fn compute_getters<'a>(schema: &Schema<'a>, fields: &'a [ast::Field]) -> PacketO
 
                 let statically_known_width_in_bits = if let Some(type_id) = type_id {
                     if let PacketOrStructLength::Static(len) =
-                        schema.structs[type_id.as_str()].0.length
+                        schema.packets_and_structs[type_id.as_str()].length
                     {
                         Some(len)
                     } else {
@@ -279,7 +270,7 @@ fn compute_getters<'a>(schema: &Schema<'a>, fields: &'a [ast::Field]) -> PacketO
                     computed_values.contains_key(&ComputedValueId::FieldSize(id));
 
                 let element_size = if let Some(type_id) = type_id {
-                    match schema.structs[type_id.as_str()].0.length {
+                    match schema.packets_and_structs[type_id.as_str()].length {
                         PacketOrStructLength::Static(width) => {
                             assert!(width % 8 == 0);
                             Some(width / 8)
@@ -302,7 +293,7 @@ fn compute_getters<'a>(schema: &Schema<'a>, fields: &'a [ast::Field]) -> PacketO
 
                 // whether we can know the length of each element in the array by greedy parsing,
                 let structs_know_length = if let Some(type_id) = type_id {
-                    match schema.structs[type_id.as_str()].0.length {
+                    match schema.packets_and_structs[type_id.as_str()].length {
                         PacketOrStructLength::Static(_) => true,
                         PacketOrStructLength::Dynamic => true,
                         PacketOrStructLength::NeedsExternal => {
@@ -415,7 +406,7 @@ fn compute_getters<'a>(schema: &Schema<'a>, fields: &'a [ast::Field]) -> PacketO
                 computed_offsets
                     .insert(ComputedOffsetId::FieldOffset(id), ComputedOffset::Alias(curr_pos_id));
 
-                match schema.structs[type_id.as_str()].0.length {
+                match schema.packets_and_structs[type_id.as_str()].length {
                     PacketOrStructLength::Static(len) => {
                         ComputedOffset::ConstantPlusOffsetInBits(curr_pos_id, len as i64)
                     }
