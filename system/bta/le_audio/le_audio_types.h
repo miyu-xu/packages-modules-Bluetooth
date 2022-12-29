@@ -183,6 +183,11 @@ constexpr uint16_t kLeAudioCodecLC3FrameLen60 = 60;
 constexpr uint16_t kLeAudioCodecLC3FrameLen80 = 80;
 constexpr uint16_t kLeAudioCodecLC3FrameLen120 = 120;
 
+/* Bits Per Sample */
+constexpr uint8_t kLeAudioCodecBitsPerSample16 = 0x01;
+constexpr uint8_t kLeAudioCodecBitsPerSample24 = 0x02;
+constexpr uint8_t kLeAudioCodecBitsPerSample32 = 0x04;
+
 }  // namespace codec_spec_conf
 
 constexpr uint8_t kInvalidCisId = 0xFF;
@@ -194,6 +199,10 @@ uint16_t constexpr SamplingFreqConfig2Capability(uint8_t conf) {
 
 uint8_t constexpr FrameDurationConfig2Capability(uint8_t conf) {
   return (0x01 << (conf));
+}
+
+uint16_t constexpr BitsPerSampleConfig2Capability(uint8_t conf) {
+  return (0x01 << (conf - 1));
 }
 
 inline uint8_t GetAudioChannelCounts(std::bitset<32> allocation) {
@@ -264,6 +273,21 @@ constexpr uint16_t kLeAudioCodecLC3FrameLen40 =
     codec_spec_conf::kLeAudioCodecLC3FrameLen40;
 constexpr uint16_t kLeAudioCodecLC3FrameLen120 =
     codec_spec_conf::kLeAudioCodecLC3FrameLen120;
+
+/* Bits Per Sample */
+constexpr uint16_t kLeAudioCodecBitsPerSample16 =
+    BitsPerSampleConfig2Capability(
+        codec_spec_conf::kLeAudioCodecBitsPerSample16);
+constexpr uint16_t kLeAudioCodecBitsPerSample24 =
+    BitsPerSampleConfig2Capability(
+        codec_spec_conf::kLeAudioCodecBitsPerSample24);
+constexpr uint16_t kLeAudioCodecBitsPerSample32 =
+    BitsPerSampleConfig2Capability(
+        codec_spec_conf::kLeAudioCodecBitsPerSample32);
+
+uint8_t SampleingFreqCapability2Config(uint16_t cap);
+uint8_t FrameDurationCapability2Config(uint16_t cap);
+uint8_t BitsPerSampleCapability2Config(uint16_t cap);
 
 };  // namespace codec_spec_caps
 
@@ -516,12 +540,14 @@ class LeAudioLtvMap {
 struct LeAudioLc3Config {
   static const std::map<uint8_t, uint32_t> sampling_freq_map;
   static const std::map<uint8_t, uint32_t> frame_duration_map;
+  static const std::map<uint8_t, uint8_t> bits_per_sample_map;
 
   std::optional<uint8_t> sampling_frequency;
   std::optional<uint8_t> frame_duration;
   std::optional<uint32_t> audio_channel_allocation;
   std::optional<uint16_t> octets_per_codec_frame;
   std::optional<uint8_t> codec_frames_blocks_per_sdu;
+  std::optional<uint8_t> bits_per_sample;
 
   uint8_t channel_count;
 
@@ -546,6 +572,27 @@ struct LeAudioLc3Config {
 
   uint8_t GetChannelCount(void) const {
     if (channel_count) return channel_count;
+
+    return 0;
+  }
+
+  uint32_t GetChannelAllocation(void) const {
+    if (audio_channel_allocation) return *audio_channel_allocation;
+
+    return 0;
+  }
+
+  uint32_t GetCodecFramesBlocksPerSdu(void) const {
+    if (codec_frames_blocks_per_sdu) return *codec_frames_blocks_per_sdu;
+
+    return 0;
+  }
+
+  uint8_t GetBitsPerSample(void) const {
+    if (bits_per_sample)
+      return bits_per_sample_map.count(*bits_per_sample)
+                 ? bits_per_sample_map.at(*bits_per_sample)
+                 : 0;
 
     return 0;
   }

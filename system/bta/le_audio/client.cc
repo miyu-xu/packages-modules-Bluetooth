@@ -926,7 +926,29 @@ class LeAudioClientImpl : public LeAudioClient {
       bluetooth::le_audio::btle_audio_codec_config_t input_codec_config,
       bluetooth::le_audio::btle_audio_codec_config_t output_codec_config)
       override {
-    // TODO Implement
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (!group) {
+      LOG(ERROR) << __func__ << ", unknown group id: " << group_id;
+      return;
+    }
+
+    bool set_preferred_codec = group->InitializeAudioContextTypePreference(
+        input_codec_config, output_codec_config);
+
+    if (set_preferred_codec) {
+      LOG(INFO) << __func__ << ", group id: " << group_id
+                << ", setting preferred codec is successful.";
+    } else {
+      LOG(INFO) << __func__ << ", group id: " << group_id
+                << ", setting preferred codec is failed.";
+    }
+
+    if (group->GetState() ==
+        le_audio::types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+      SetConfigurationAndStopStreamWhenNeeded(
+          group, group->GetConfigurationContextType());
+    }
   }
 
   void SetCcidInformation(int ccid, int context_type) override {

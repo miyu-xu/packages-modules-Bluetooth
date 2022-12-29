@@ -573,6 +573,161 @@ class LeAudioAseConfigurationTest : public Test {
         [direction](auto& a) { return a.direction == direction; });
   }
 
+  CodecCapabilitySetting PrepareCodecConfig(
+      const CodecCapabilitySetting& audio_set_codec_conf,
+      const btle_audio_sample_rate_index_t sample_rate,
+      const btle_audio_bits_per_sample_index_t bits_per_sample,
+      const btle_audio_frame_duration_index_t frame_duration,
+      const int16_t octets_per_frame) {
+    CodecCapabilitySetting codec;
+    codec.id = LeAudioCodecIdLc3;
+    codec.config = LeAudioLc3Config({
+        .sampling_frequency =
+            ::le_audio::codec_spec_caps::SampleingFreqCapability2Config(
+                sample_rate),
+        .frame_duration =
+            ::le_audio::codec_spec_caps::FrameDurationCapability2Config(
+                frame_duration),
+        .audio_channel_allocation =
+            std::get<LeAudioLc3Config>(audio_set_codec_conf.config)
+                .GetChannelAllocation(),
+        .octets_per_codec_frame = octets_per_frame,
+        .codec_frames_blocks_per_sdu =
+            std::get<LeAudioLc3Config>(audio_set_codec_conf.config)
+                .GetCodecFramesBlocksPerSdu(),
+        .bits_per_sample =
+            ::le_audio::codec_spec_caps::BitsPerSampleCapability2Config(
+                bits_per_sample),
+        .channel_count = (uint8_t)audio_set_codec_conf.GetConfigChannelCount(),
+    });
+
+    return codec;
+  }
+
+  void TestGroupAseConfigurationWithCodecPreference(
+      LeAudioContextType context_type, TestGroupAseConfigurationData* data,
+      uint8_t data_size, btle_audio_codec_config_t preferred_codec_config,
+      btle_audio_codec_config_t pac_codec_config,
+      bool should_use_preferred_codec,
+      uint8_t directions_to_verify = kLeAudioDirectionSink |
+                                     kLeAudioDirectionSource) {
+    const auto* configurations =
+        ::le_audio::AudioSetConfigurationProvider::Get()->GetConfigurations(
+            context_type);
+
+    bool success_expected = directions_to_verify != 0;
+    int num_of_matching_configurations = 0;
+    for (const auto& audio_set_conf : *configurations) {
+      bool interesting_configuration = true;
+      uint8_t configuration_directions = 0;
+
+      // the configuration should fail if there are no active ases expected
+      PublishedAudioCapabilitiesBuilder snk_pac_builder, src_pac_builder;
+      snk_pac_builder.Reset();
+      src_pac_builder.Reset();
+
+      /* Let's go thru devices in the group and configure them*/
+      for (int i = 0; i < data_size; i++) {
+        int num_of_ase_snk_per_dev = 0;
+        int num_of_ase_src_per_dev = 0;
+
+        /* Prepare PAC's for each device. Also make sure configuration is in our
+         * interest to test */
+        for (const auto& entry : (*audio_set_conf).confs) {
+          /* We are interested in the configurations which contains exact number
+           * of devices and number of ases is same the number of expected ases
+           * to active
+           */
+          if (entry.device_cnt != data_size) {
+            interesting_configuration = false;
+          }
+
+          /* Make sure the strategy is the expected one */
+          if (entry.direction == kLeAudioDirectionSink &&
+              group_->GetGroupStrategy() != entry.strategy) {
+            interesting_configuration = false;
+          }
+
+          // We add one customized pac codec into PAC for each device
+          auto customized_codec_config = PrepareCodecConfig(
+              entry.codec, pac_codec_config.sample_rate,
+              pac_codec_config.bits_per_sample, pac_codec_config.frame_duration,
+              pac_codec_config.octets_per_frame);
+
+          if (entry.direction == kLeAudioDirectionSink) {
+            configuration_directions |= kLeAudioDirectionSink;
+            num_of_ase_snk_per_dev = entry.ase_cnt / data_size;
+            snk_pac_builder.Add(entry.codec, data[i].audio_channel_counts_snk);
+            if (should_use_preferred_codec) {
+              snk_pac_builder.Add(customized_codec_config,
+                                  data[i].audio_channel_counts_snk);
+            }
+          } else {
+            configuration_directions |= kLeAudioDirectionSource;
+            num_of_ase_src_per_dev = entry.ase_cnt / data_size;
+            src_pac_builder.Add(entry.codec, data[i].audio_channel_counts_src);
+            if (should_use_preferred_codec) {
+              src_pac_builder.Add(customized_codec_config,
+                                  data[i].audio_channel_counts_src);
+            }
+          }
+
+          data[i].device->snk_pacs_ = snk_pac_builder.Get();
+          data[i].device->src_pacs_ = src_pac_builder.Get();
+        }
+
+        /* Make sure configuration can satisfy number of expected active ASEs*/
+        if (num_of_ase_snk_per_dev >
+            data[i].device->GetAseCount(kLeAudioDirectionSink)) {
+          interesting_configuration = false;
+        }
+
+        if (num_of_ase_src_per_dev >
+            data[i].device->GetAseCount(kLeAudioDirectionSource)) {
+          interesting_configuration = false;
+        }
+      }
+
+      // set preferred codec config
+      group_->InitializeAudioContextTypePreference(preferred_codec_config,
+                                                   preferred_codec_config);
+
+      /* Stimulate update of available context map */
+      group_->UpdateAudioContextTypeAvailability(AudioContexts(context_type));
+
+      auto configuration_result =
+          group_->Configure(context_type, AudioContexts(context_type));
+
+      /* In case of configuration #ase is same as the one we expected to be
+       * activated verify, ASEs are actually active */
+      if (interesting_configuration &&
+          (directions_to_verify == configuration_directions)) {
+        ASSERT_TRUE(configuration_result);
+        ASSERT_EQ(group_->GetPreferredCodecConfig(context_type) != nullptr,
+                  should_use_preferred_codec);
+        ASSERT_EQ(group_->IsUsingPreferredCodecConfig(context_type),
+                  should_use_preferred_codec);
+
+        bool matching_conf = true;
+        /* Check if each of the devices has activated ASEs as expected */
+        for (int i = 0; i < data_size; i++) {
+          matching_conf &= TestGroupAseConfigurationVerdict(
+              data[i], configuration_directions);
+        }
+
+        if (matching_conf) num_of_matching_configurations++;
+      }
+      group_->Deactivate();
+      TestAsesInactive();
+    }
+
+    if (success_expected) {
+      ASSERT_TRUE((num_of_matching_configurations > 0));
+    } else {
+      ASSERT_TRUE(num_of_matching_configurations == 0);
+    }
+  }
+
   void TestGroupAseConfiguration(
       LeAudioContextType context_type, TestGroupAseConfigurationData* data,
       uint8_t data_size,
@@ -917,6 +1072,260 @@ TEST_F(LeAudioAseConfigurationTest, test_bounded_headset_media) {
   uint8_t directions_to_verify = kLeAudioDirectionSink;
   TestGroupAseConfiguration(LeAudioContextType::MEDIA, &data, 1,
                             directions_to_verify);
+}
+
+TEST_F(LeAudioAseConfigurationTest, test_use_codec_preference_earbuds_media) {
+  LeAudioDevice* left = AddTestDevice(1, 1);
+  LeAudioDevice* right = AddTestDevice(1, 1);
+  TestGroupAseConfigurationData data[] = {
+      {left, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0},
+      {right, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0}};
+
+  /* Change location as by default it is stereo */
+  left->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  left->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  right->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  right->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  group_->ReloadAudioLocations();
+
+  btle_audio_codec_config_t preferred_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_48000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 120};
+
+  btle_audio_codec_config_t pac_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_48000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 120};
+
+  uint8_t directions_to_verify = kLeAudioDirectionSink;
+  bool should_use_preferred_codec = true;
+
+  TestGroupAseConfigurationWithCodecPreference(
+      LeAudioContextType::MEDIA, data, 2, preferred_codec_config,
+      pac_codec_config, should_use_preferred_codec, directions_to_verify);
+}
+
+TEST_F(LeAudioAseConfigurationTest,
+       test_not_use_codec_preference_earbuds_media) {
+  LeAudioDevice* left = AddTestDevice(1, 1);
+  LeAudioDevice* right = AddTestDevice(1, 1);
+  TestGroupAseConfigurationData data[] = {
+      {left, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0},
+      {right, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0}};
+
+  /* Change location as by default it is stereo */
+  left->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  left->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  right->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  right->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  group_->ReloadAudioLocations();
+
+  btle_audio_codec_config_t preferred_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_32000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 120};
+
+  btle_audio_codec_config_t pac_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_48000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_16,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 120};
+
+  uint8_t directions_to_verify = kLeAudioDirectionSink;
+  bool should_use_preferred_codec = false;
+
+  TestGroupAseConfigurationWithCodecPreference(
+      LeAudioContextType::MEDIA, data, 2, preferred_codec_config,
+      pac_codec_config, should_use_preferred_codec, directions_to_verify);
+}
+
+TEST_F(LeAudioAseConfigurationTest,
+       test_use_codec_preference_earbuds_conversational) {
+  LeAudioDevice* left = AddTestDevice(1, 1);
+  LeAudioDevice* right = AddTestDevice(1, 1);
+  TestGroupAseConfigurationData data[] = {
+      {left, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1},
+      {right, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1}};
+
+  /* Change location as by default it is stereo */
+  left->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  left->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  right->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  right->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  group_->ReloadAudioLocations();
+
+  btle_audio_codec_config_t preferred_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_32000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 100};
+
+  btle_audio_codec_config_t pac_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_32000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 100};
+
+  bool should_use_preferred_codec = true;
+
+  TestGroupAseConfigurationWithCodecPreference(
+      LeAudioContextType::CONVERSATIONAL, data, 2, preferred_codec_config,
+      pac_codec_config, should_use_preferred_codec);
+}
+
+TEST_F(LeAudioAseConfigurationTest,
+       test_not_use_codec_preference_earbuds_conversational) {
+  LeAudioDevice* left = AddTestDevice(1, 1);
+  LeAudioDevice* right = AddTestDevice(1, 1);
+  TestGroupAseConfigurationData data[] = {
+      {left, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1},
+      {right, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1}};
+
+  /* Change location as by default it is stereo */
+  left->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  left->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  right->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  right->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  group_->ReloadAudioLocations();
+
+  btle_audio_codec_config_t preferred_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_48000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 100};
+
+  btle_audio_codec_config_t pac_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_32000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 100};
+
+  bool should_use_preferred_codec = false;
+
+  TestGroupAseConfigurationWithCodecPreference(
+      LeAudioContextType::CONVERSATIONAL, data, 2, preferred_codec_config,
+      pac_codec_config, should_use_preferred_codec);
+}
+
+TEST_F(LeAudioAseConfigurationTest, test_clear_codec_preference_earbuds_media) {
+  LeAudioDevice* left = AddTestDevice(1, 1);
+  LeAudioDevice* right = AddTestDevice(1, 1);
+  TestGroupAseConfigurationData data[] = {
+      {left, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0},
+      {right, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0}};
+
+  /* Change location as by default it is stereo */
+  left->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  left->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  right->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  right->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  group_->ReloadAudioLocations();
+
+  btle_audio_codec_config_t preferred_codec_config = {.codec_priority = -1};
+
+  btle_audio_codec_config_t pac_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 100};
+
+  uint8_t directions_to_verify = kLeAudioDirectionSink;
+
+  bool should_use_preferred_codec = false;
+
+  TestGroupAseConfigurationWithCodecPreference(
+      LeAudioContextType::MEDIA, data, 2, preferred_codec_config,
+      pac_codec_config, should_use_preferred_codec, directions_to_verify);
+}
+
+TEST_F(LeAudioAseConfigurationTest,
+       test_clear_codec_preference_earbuds_conversational) {
+  LeAudioDevice* left = AddTestDevice(1, 1);
+  LeAudioDevice* right = AddTestDevice(1, 1);
+  TestGroupAseConfigurationData data[] = {
+      {left, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1},
+      {right, kLeAudioCodecLC3ChannelCountSingleChannel,
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1}};
+
+  /* Change location as by default it is stereo */
+  left->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  left->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  right->snk_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  right->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
+  group_->ReloadAudioLocations();
+
+  btle_audio_codec_config_t preferred_codec_config = {.codec_priority = -1};
+
+  btle_audio_codec_config_t pac_codec_config = {
+      .codec_type = LE_AUDIO_CODEC_INDEX_SOURCE_LC3,
+      .sample_rate = LE_AUDIO_SAMPLE_RATE_INDEX_16000HZ,
+      .bits_per_sample = LE_AUDIO_BITS_PER_SAMPLE_INDEX_24,
+      .channel_count = LE_AUDIO_CHANNEL_COUNT_INDEX_1,
+      .frame_duration = LE_AUDIO_FRAME_DURATION_INDEX_10000US,
+      .octets_per_frame = 100};
+
+  bool should_use_preferred_codec = false;
+
+  TestGroupAseConfigurationWithCodecPreference(
+      LeAudioContextType::CONVERSATIONAL, data, 2, preferred_codec_config,
+      pac_codec_config, should_use_preferred_codec);
 }
 
 TEST_F(LeAudioAseConfigurationTest, test_earbuds_ringtone) {

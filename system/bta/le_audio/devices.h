@@ -28,6 +28,7 @@
 #include "bta_groups.h"
 #include "btm_iso_api_types.h"
 #include "gatt_api.h"
+#include "hardware/bt_le_audio.h"
 #include "le_audio_types.h"
 #include "osi/include/alarm.h"
 #include "osi/include/properties.h"
@@ -246,6 +247,8 @@ class LeAudioDeviceGroup {
         group_available_contexts_(types::LeAudioContextType::UNINITIALIZED),
         pending_group_available_contexts_change_(
             types::LeAudioContextType::UNINITIALIZED),
+        preferred_input_codec_config(nullptr),
+        preferred_output_codec_config(nullptr),
         target_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
         current_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {}
   ~LeAudioDeviceGroup(void);
@@ -310,6 +313,13 @@ class LeAudioDeviceGroup {
   uint16_t GetRemoteDelay(uint8_t direction);
   bool UpdateAudioContextTypeAvailability(types::AudioContexts contexts);
   void UpdateAudioContextTypeAvailability(void);
+  bool UpdateAudioContextTypePreference(void);
+  bool InitializeAudioContextTypePreference(
+      const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
+      const bluetooth::le_audio::btle_audio_codec_config_t&
+          output_codec_config);
+  const set_configurations::AudioSetConfiguration* GetPreferredCodecConfig(
+      types::LeAudioContextType group_context_type);
   bool ReloadAudioLocations(void);
   bool ReloadAudioDirections(void);
   const set_configurations::AudioSetConfiguration* GetActiveConfiguration(void);
@@ -368,6 +378,16 @@ class LeAudioDeviceGroup {
     return group_available_contexts_;
   }
 
+  inline bool IsUsingPreferredCodecConfig(
+      types::LeAudioContextType group_context_type) {
+    return preferred_context_to_configuration_using_status_map.find(
+               group_context_type) !=
+                   preferred_context_to_configuration_using_status_map.end()
+               ? preferred_context_to_configuration_using_status_map
+                     [group_context_type]
+               : false;
+  }
+
   bool IsInTransition(void);
   bool IsReleasingOrIdle(void);
   void Dump(int fd, int active_group_id);
@@ -378,13 +398,23 @@ class LeAudioDeviceGroup {
 
   const set_configurations::AudioSetConfiguration*
   FindFirstSupportedConfiguration(types::LeAudioContextType context_type);
+  bool FindFirstSupportedPreferredConfiguration(
+      types::LeAudioContextType context_type,
+      set_configurations::AudioSetConfiguration* preferred_conf);
+  bool CreatePreferredConfiguration(
+      const set_configurations::AudioSetConfiguration* audio_set_conf,
+      set_configurations::AudioSetConfiguration* preferred_audio_set_conf);
+  bool CreatePreferredCodecConfiguration(
+      const set_configurations::CodecCapabilitySetting& audio_set_codec_conf,
+      const bluetooth::le_audio::btle_audio_codec_config_t& codec_config,
+      set_configurations::CodecCapabilitySetting* preferred_codec_config);
   bool ConfigureAses(
       const set_configurations::AudioSetConfiguration* audio_set_conf,
       types::LeAudioContextType context_type,
       types::AudioContexts metadata_context_type,
       const std::vector<uint8_t>& ccid_list);
   bool IsConfigurationSupported(
-      const set_configurations::AudioSetConfiguration* audio_set_configuration,
+      const set_configurations::AudioSetConfiguration* audio_set_conf,
       types::LeAudioContextType context_type);
   uint32_t GetTransportLatencyUs(uint8_t direction);
 
@@ -410,6 +440,23 @@ class LeAudioDeviceGroup {
   std::map<types::LeAudioContextType,
            const set_configurations::AudioSetConfiguration*>
       available_context_to_configuration_map;
+
+  /* Preferred configuration cache - validated on each group context
+   * availability change. It is initialized in `SetCodecConfigPreference()`
+   */
+  std::map<types::LeAudioContextType, set_configurations::AudioSetConfiguration>
+      preferred_context_to_configuration_map;
+
+  /* True: using preferred codec config
+     False: not using preferred codec config
+  */
+  std::map<types::LeAudioContextType, bool>
+      preferred_context_to_configuration_using_status_map;
+
+  const bluetooth::le_audio::btle_audio_codec_config_t*
+      preferred_input_codec_config;
+  const bluetooth::le_audio::btle_audio_codec_config_t*
+      preferred_output_codec_config;
 
   types::AseState target_state_;
   types::AseState current_state_;

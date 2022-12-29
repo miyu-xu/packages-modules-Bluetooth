@@ -3389,6 +3389,14 @@ TEST_F(UnicastTest, SpeakerStreamingAutonomousRelease) {
                         1920);
 }
 
+// TEST_F(UnicastTest, SetCodecPreferrenceBeforeStreaming) {}
+
+// TEST_F(UnicastTest, SetCodecPreferrenceWhileStreaming) {}
+
+// TEST_F(UnicastTest, ClearCodecPreferrenceBeforeStreaming) {}
+
+// TEST_F(UnicastTest, ClearCodecPreferrenceWhileStreaming) {}
+
 TEST_F(UnicastTest, TwoEarbudsStreaming) {
   uint8_t group_size = 2;
   int group_id = 2;

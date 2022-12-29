@@ -2718,7 +2718,7 @@ TEST_F(StateMachineTest, testConfigureDataPathForHost) {
    * 4 - Data Path
    */
   EXPECT_CALL(*mock_codec_manager_, GetCodecLocation())
-      .Times(4)
+      .Times(5)
       .WillRepeatedly(Return(types::CodecLocation::HOST));
 
   // Prepare fake connected device group
@@ -2744,6 +2744,7 @@ TEST_F(StateMachineTest, testConfigureDataPathForHost) {
       group, static_cast<LeAudioContextType>(context_type),
       types::AudioContexts(context_type)));
 }
+
 TEST_F(StateMachineTest, testConfigureDataPathForAdsp) {
   const auto context_type = kContextTypeRingtone;
   const int leaudio_group_id = 4;
@@ -2758,7 +2759,7 @@ TEST_F(StateMachineTest, testConfigureDataPathForAdsp) {
    * 4 - data path
    */
   EXPECT_CALL(*mock_codec_manager_, GetCodecLocation())
-      .Times(4)
+      .Times(5)
       .WillRepeatedly(Return(types::CodecLocation::ADSP));
 
   // Prepare fake connected device group
@@ -2811,7 +2812,7 @@ TEST_F(StateMachineTest, testStreamConfigurationAdspDownMix) {
    * 5,6 - Data Path
    */
   EXPECT_CALL(*mock_codec_manager_, GetCodecLocation())
-      .Times(6)
+      .Times(7)
       .WillRepeatedly(Return(types::CodecLocation::ADSP));
 
   PrepareConfigureCodecHandler(group);
