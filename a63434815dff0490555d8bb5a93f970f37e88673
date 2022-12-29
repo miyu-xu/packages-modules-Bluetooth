@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b5c4c3a_fb558cb0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2817,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-29T07:32:41Z",
+      "side": 1,
+      "message": "Where is this defined?",
+      "range": {
+        "startLine": 2817,
+        "startChar": 12,
+        "endLine": 2817,
+        "endChar": 33
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "078e4358_de0df237",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-29T07:32:41Z",
+      "side": 1,
+      "message": "should App be able to check the capability of the distance measurement manager? \n\ne.g. what methods does it support? For each method, does it support angle? For angle, how many angles?",
+      "range": {
+        "startLine": 50,
+        "startChar": 19,
+        "endLine": 50,
+        "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "172a01b5_cddcd031",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-29T07:32:41Z",
+      "side": 1,
+      "message": "Should probably mention the life cycle expectation of this callback object. \n\nWould the callback object be abandoned by the SDK library once the measurement is stopped?",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 83,
+        "endChar": 22
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c36306_d9722c1c",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-29T07:32:41Z",
+      "side": 1,
+      "message": "please reduce try-catch to minimum scope",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 11
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fe63a47_035fa3f7",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-29T07:32:41Z",
+      "side": 1,
+      "message": "Do we want to allow setting a Parcelable for other non-standard parameters? \n\ne.g. \n\nsetOtherOptions(Parcelable options);",
+      "range": {
+        "startLine": 218,
+        "startChar": 30,
+        "endLine": 218,
+        "endChar": 37
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a219f5_9d78fccc",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-29T07:32:41Z",
+      "side": 1,
+      "message": "Please include in javadoc a reference on how the angle and reference system are defined e.g. a link to a standard article online",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c563d087_0073604e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-12-29T07:32:41Z",
+      "side": 1,
+      "message": "Just checking: do we want to support pausing and re-starting current session?",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
