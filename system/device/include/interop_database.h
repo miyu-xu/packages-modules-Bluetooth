@@ -153,6 +153,49 @@ static const interop_addr_entry_t interop_addr_database[] = {
     // AirPods 2 - unacceptably loud volume
     {{{0x9c, 0x64, 0x8b, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
 
+    // aigo X6
+    {{{0x00, 0x08, 0x3e, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Gionee
+    {{{0x00, 0x00, 0x1a, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // PISEN-LE005
+    {{{0xad, 0xcd, 0xee, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Mi Bluetooth Speaker
+    {{{0xe8, 0x07, 0xbf, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // MI Portable Bluetooth Speaker
+    {{{0xb8, 0x07, 0xbf, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // SYNC
+    {{{0x68, 0xc9, 0x0b, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // lingdong
+    {{{0xe9, 0x08, 0xef, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // AirPods
+    {{{0x50, 0x32, 0x37, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Range Rover Sport
+    {{{0xac, 0xfd, 0xce, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // FreeBuds
+    {{{0xf0, 0x0f, 0xec, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Renault R-Link
+    {{{0x00, 0x21, 0x3e, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Porsche BT 1706
+    {{{0xdc, 0xef, 0xca, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Ford Ecosport
+    {{{0x98, 0x5d, 0xad, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Ford Mondeo
+    {{{0x60, 0x64, 0x05, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // Audi MMI 3958
+    {{{0xcc, 0xf9, 0x57, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // mini
+    {{{0x7c, 0x49, 0xeb, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // MEIZU EP52 Lite
+    {{{0x28, 0x37, 0x13, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // WI-C400
+    {{{0x00, 0x18, 0x09, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // EDIFIER M120
+    {{{0x5c, 0xc6, 0xe9, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // HBS730
+    {{{0x00, 0x18, 0x6b, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+    // EDIFIER LolliPods Plus
+    {{{0x60, 0xf4, 0x3a, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+
     // for skip name request,
     // because BR/EDR address and ADV random address are the same
     {{{0xd4, 0x7a, 0xe2, 0, 0, 0}}, 3, INTEROP_DISABLE_NAME_REQUEST},
