@@ -95,6 +95,40 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "57dc1804_b1d9c385",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "\"there are\"",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d02e2358_9129450e",
+        "filename": "system/bta/gatt/bta_gattc_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "This function become senseless after such change.\n\nCaller would like to configure MTU to \"uint16_t mtu\" which is never used in scope of this method.\n\nbtw. I like the idea of just set maximum possible for \"Device\" MTU only once. I don\u0027t see reason to set lower value with some research e.g. apps can configure their own MTU.",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fff522ee_11be1e0f",
@@ -166,6 +200,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b154df24_5c11cc97",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "Format of this comment is broken and something is probably missing here:\n`This function shall be called before calling GATTC_ConfgureMTU in order to`",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1360871f_febed4ec",
         "filename": "system/stack/gatt/gatt_api.cc",
         "patchSetId": 5
@@ -183,6 +234,74 @@
         "endLine": 742,
         "endChar": 58
       },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13249c71_a3f6d654",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "typo: use-\u003euser ?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87719317_974a2f82",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "How there can be pending mtu exchange for not connected device ?\n\nThere is a condition inside this block handling such case.",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc93335_987a9c26",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "This was confusing me a little bit. I thought that this may mean \"MTU exchange is not done yet but may be already pending\"",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "341db581_fb626a3e",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "what about return std::move(p_tcb-\u003econn_ids_waiting_for_mtu_exchange) ?",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -210,6 +329,91 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8e24d2d_66876bed",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "I don\u0027t think that \"personal\" view orientation is a common way of comment/log e.g. Our, their. What about Requested MTU:, Remote MTU ?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42c10d4f_8d12e5c7",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "Maybe there should be check for default LE ATT_MTU ?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be88d6d8_b56145d3",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1113,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "1. spare white space\n2. Information about device, channel would be nice here",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e16da6b5_fe22449d",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "their -\u003e remote ?\n\nMaybe: Requested MTU: %d by %s. Requesting MTU: %d ?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0efcb715_15c47e93",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "Is this intentional that transport is parameter ?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4d24ccd3_bcdb4bab",
@@ -229,6 +433,23 @@
         "endLine": 477,
         "endChar": 22
       },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2a60452_87a345d8",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-12-29T17:23:09Z",
+      "side": 1,
+      "message": "typo 0 -\u003e false ?",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
