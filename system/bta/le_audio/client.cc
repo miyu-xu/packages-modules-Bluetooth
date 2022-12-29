@@ -926,7 +926,44 @@ class LeAudioClientImpl : public LeAudioClient {
       bluetooth::le_audio::btle_audio_codec_config_t input_codec_config,
       bluetooth::le_audio::btle_audio_codec_config_t output_codec_config)
       override {
-    // TODO Implement
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (!group) {
+      LOG_ERROR("unknown group id: %d", group_id);
+      return;
+    }
+
+    bool set_preferred_codec = group->InitializeAudioContextTypePreference(
+        input_codec_config, output_codec_config);
+
+    if (set_preferred_codec) {
+      LOG_INFO("group id: %d, setting preferred codec is successful.",
+               group_id);
+    } else {
+      LOG_INFO("group id: %d, setting preferred codec is failed.", group_id);
+      return;
+    }
+
+    // set configuration and check if streaming
+    if (SetConfigurationAndStopStreamWhenNeeded(
+            group, group->GetConfigurationContextType())) {
+      LOG_DEBUG("group id %d stops streaming and do the reconfiguration",
+                group_id);
+    } else {
+      LOG_DEBUG("group id %d is not streaming", group_id);
+    }
+  }
+
+  bool IsUsingPreferredCodecConfig(int group_id, int context_type) {
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (!group) {
+      LOG_ERROR("unknown group id: %d", group_id);
+      return false;
+    }
+
+    return group->IsUsingPreferredCodecConfig(
+        static_cast<LeAudioContextType>(context_type));
   }
 
   void SetCcidInformation(int ccid, int context_type) override {
@@ -2515,9 +2552,9 @@ class LeAudioClientImpl : public LeAudioClient {
     number_of_required_samples_per_channel = lc3_frame_samples(dt_us, af_hz);
 
     lc3_pcm_format bits_per_sample =
-        bits_to_lc3_bits(audio_framework_source_config.bits_per_sample);
+        bits_to_lc3_bits(current_source_codec_config.bits_per_sample);
     uint8_t bytes_per_sample =
-        bits_to_bytes_per_sample(audio_framework_source_config.bits_per_sample);
+        bits_to_bytes_per_sample(current_source_codec_config.bits_per_sample);
 
     for (auto [cis_handle, audio_location] : stream_conf->sink_streams) {
       if (audio_location & le_audio::codec_spec_conf::kLeAudioLocationAnyLeft)
@@ -2584,9 +2621,9 @@ class LeAudioClientImpl : public LeAudioClient {
     int af_hz = audio_framework_source_config.sample_rate;
     number_of_required_samples_per_channel = lc3_frame_samples(dt_us, af_hz);
     lc3_pcm_format bits_per_sample =
-        bits_to_lc3_bits(audio_framework_source_config.bits_per_sample);
+        bits_to_lc3_bits(current_source_codec_config.bits_per_sample);
     uint8_t bytes_per_sample =
-        bits_to_bytes_per_sample(audio_framework_source_config.bits_per_sample);
+        bits_to_bytes_per_sample(current_source_codec_config.bits_per_sample);
 
     if ((int)data.size() < (2 /* bytes per sample */ * num_channels *
                             number_of_required_samples_per_channel)) {
@@ -2713,7 +2750,7 @@ class LeAudioClientImpl : public LeAudioClient {
     int dt_us = current_sink_codec_config.data_interval_us;
     int af_hz = audio_framework_sink_config.sample_rate;
     lc3_pcm_format bits_per_sample =
-        bits_to_lc3_bits(audio_framework_sink_config.bits_per_sample);
+        bits_to_lc3_bits(current_sink_codec_config.bits_per_sample);
 
     int pcm_size;
     if (dt_us == 10000) {
@@ -2914,6 +2951,10 @@ class LeAudioClientImpl : public LeAudioClient {
       int sr_hz = current_source_codec_config.sample_rate;
       int af_hz = audio_framework_source_config.sample_rate;
       unsigned enc_size = lc3_encoder_size(dt_us, af_hz);
+
+      LOG_INFO(
+          "src sampling rate: %d, af sampling rate: %d, frame duration: %d",
+          sr_hz, af_hz, dt_us);
 
       lc3_encoder_left_mem = malloc(enc_size);
       lc3_encoder_right_mem = malloc(enc_size);
