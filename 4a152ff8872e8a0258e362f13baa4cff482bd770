@@ -70,6 +70,30 @@
       },
       "revId": "4a152ff8872e8a0258e362f13baa4cff482bd770",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17217740_145d4903",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2022-12-29T06:32:12Z",
+      "side": 1,
+      "message": "I\u0027ve fixed it via the method proxy for the creator as discussed. This way, we are able to verify the function calls. Please let me know if I\u0027ve missed anything.",
+      "parentUuid": "8faa8ce3_5eefbff3",
+      "range": {
+        "startLine": 121,
+        "startChar": 50,
+        "endLine": 121,
+        "endChar": 74
+      },
+      "revId": "4a152ff8872e8a0258e362f13baa4cff482bd770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
