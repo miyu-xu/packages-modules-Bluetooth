@@ -6,6 +6,9 @@
 // this is now stable
 #![feature(mixed_integer_ops)]
 
+use log::{debug, info};
+use std::convert::TryFrom;
+use std::convert::TryInto;
 use std::ops::Deref;
 
 #[derive(Debug)]
@@ -126,10 +129,6 @@ impl<'a> SizedBitSlice<'a> {
                     remaining_bits -= bits_to_consume as usize;
                 }
             }
-            println!(
-                "reading value {accumulator} out of buffer {:?} [start={}, end={}]",
-                self.backing, self.start_bit_offset, self.end_bit_offset
-            );
             Ok(accumulator)
         } else {
             return Err(ParseError::MisalignedPayload);
@@ -138,5 +137,123 @@ impl<'a> SizedBitSlice<'a> {
 
     pub fn get_size_in_bits(&self) -> usize {
         self.end_bit_offset - self.start_bit_offset
+    }
+}
+
+#[derive(Debug)]
+pub enum SerializeError {
+    NegativePadding,
+    IntegerConversionFailure,
+    ValueTooLarge,
+    AlignmentError,
+}
+
+trait BitWriter {
+    fn write_bits(
+        &mut self,
+        num_bits: usize,
+        gen_contents: impl FnOnce() -> Result<u64, SerializeError>,
+    ) -> Result<(), SerializeError>;
+}
+
+pub trait Serializable {
+    fn size_in_bits(&self) -> Result<usize, SerializeError> {
+        let mut sizer = Sizer::new();
+        self.serialize(&mut sizer)?;
+        Ok(sizer.size())
+    }
+
+    fn serialize(&self, writer: &mut impl BitWriter) -> Result<(), SerializeError>;
+}
+
+struct Sizer {
+    size: usize,
+}
+
+impl Sizer {
+    fn new() -> Self {
+        Self { size: 0 }
+    }
+
+    fn size(self) -> usize {
+        self.size
+    }
+}
+
+impl BitWriter for Sizer {
+    fn write_bits(
+        &mut self,
+        num_bits: usize,
+        gen_contents: impl FnOnce() -> Result<u64, SerializeError>,
+    ) -> Result<(), SerializeError> {
+        self.size += num_bits;
+        Ok(())
+    }
+}
+
+struct Serializer<'a> {
+    buf: &'a mut Vec<u8>,
+    curr_byte: u8,
+    curr_bit_offset: u8,
+}
+
+impl<'a> Serializer<'a> {
+    fn new(buf: &'a mut Vec<u8>) -> Self {
+        Self { buf, curr_byte: 0, curr_bit_offset: 0 }
+    }
+
+    fn flush(self) {
+        if self.curr_bit_offset > 0 {
+            // partial byte remaining
+            self.buf.push(self.curr_byte << (8 - self.curr_bit_offset));
+        }
+    }
+}
+
+impl<'a> BitWriter for Serializer<'a> {
+    fn write_bits(
+        &mut self,
+        num_bits: usize,
+        gen_contents: impl FnOnce() -> Result<u64, SerializeError>,
+    ) -> Result<(), SerializeError> {
+        let val = gen_contents()?;
+
+        debug!("writing {val:b} into buffer of size {num_bits} bits");
+        if num_bits < 64 && val >= 1 << num_bits {
+            debug!("num_bits={num_bits}, val={val}");
+            return Err(SerializeError::ValueTooLarge);
+        }
+
+        let mut remaining_val = val;
+        let mut remaining_bits = num_bits;
+        while remaining_bits > 0 {
+            let remaining_bits_in_curr_byte = (8 - self.curr_bit_offset) as usize;
+            if remaining_bits < remaining_bits_in_curr_byte {
+                // we cannot finish the last byte
+                debug!("writing final {remaining_bits} bits of {remaining_val:b} into byte currently holding {:b}", self.curr_byte);
+                self.curr_byte += (remaining_val as u8) << self.curr_bit_offset;
+                self.curr_bit_offset += remaining_bits as u8;
+                debug!("byte now holds {:b}", self.curr_byte);
+                break;
+            } else {
+                // finish up our current byte and move on
+                debug!("writing {remaining_bits_in_curr_byte} bits of {remaining_val:b} to fill up byte currently holding {:b}", self.curr_byte);
+                let val_for_this_byte =
+                    (remaining_val & ((1 << remaining_bits_in_curr_byte) - 1)) as u8;
+                let curr_byte = self.curr_byte + (val_for_this_byte << self.curr_bit_offset);
+                debug!("byte now holds {:b}", curr_byte);
+                self.buf.push(curr_byte);
+
+                // clear pending byte
+                self.curr_bit_offset = 0;
+                self.curr_byte = 0;
+
+                // update what's remaining
+                remaining_val >>= remaining_bits_in_curr_byte;
+                remaining_bits -= remaining_bits_in_curr_byte;
+            }
+        }
+
+        Ok(())
     }
 }

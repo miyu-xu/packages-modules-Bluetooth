@@ -57,25 +57,36 @@ fn generate_matchers(
                 out.push(quote! { assert_eq!(u64::from(#base.#getter_ident()), #num); });
             }
             Field::List(lst) => {
-                let get_iter_ident = format_ident!("get_{field_name}_iter");
-                let vec_ident = format_ident!("{field_name}_vec");
-                out.push(quote! { let #vec_ident = #base.#get_iter_ident().collect::<Vec<_>>(); });
-
-                for (i, val) in lst.iter().enumerate() {
-                    let list_elem = if field_name == "payload" {
-                        todo!()
-                    } else {
-                        quote! { #vec_ident[#i] }
-                    };
-                    out.push(match val {
-                        ListEntry::Number(num) => {
-                            let num = *num as u64;
-                            quote! { assert_eq!(u64::from(#list_elem), #num); }
-                        }
-                        ListEntry::Struct(fields) => {
-                            generate_matchers(list_elem, fields, &|_| Ok(true))?
-                        }
+                if field_name == "payload" {
+                    let reference = lst
+                        .iter()
+                        .map(|val| match val {
+                            ListEntry::Number(val) => *val as u8,
+                            _ => unreachable!(),
+                        })
+                        .collect::<Vec<_>>();
+                    out.push(quote! {
+                        assert_eq!(#base.get_raw_payload().collect::<Vec<_>>(), vec![#(#reference),*]);
                     })
+                } else {
+                    let get_iter_ident = format_ident!("get_{field_name}_iter");
+                    let vec_ident = format_ident!("{field_name}_vec");
+                    out.push(
+                        quote! { let #vec_ident = #base.#get_iter_ident().collect::<Vec<_>>(); },
+                    );
+
+                    for (i, val) in lst.iter().enumerate() {
+                        let list_elem = quote! { #vec_ident[#i] };
+                        out.push(match val {
+                            ListEntry::Number(num) => {
+                                let num = *num as u64;
+                                quote! { assert_eq!(u64::from(#list_elem), #num); }
+                            }
+                            ListEntry::Struct(fields) => {
+                                generate_matchers(list_elem, fields, &|_| Ok(true))?
+                            }
+                        })
+                    }
                 }
             }
             Field::Struct(fields) => {
@@ -86,6 +97,72 @@ fn generate_matchers(
         }
     }
     Ok(quote! { { #(#out)* } })
+}
+
+fn generate_builder(
+    curr_type: &str,
+    child_type: Option<&str>,
+    type_lookup: &HashMap<&str, HashMap<&str, Option<&str>>>,
+    value: &UnpackedTestFields,
+) -> TokenStream {
+    let builder_ident = format_ident!("{curr_type}Builder");
+    let child_ident = format_ident!("{curr_type}Child");
+
+    let curr_fields = &type_lookup[curr_type];
+
+    let fields = value.0.iter().filter_map(|(field_name, field_value)| {
+        let curr_field_info = curr_fields.get(field_name.as_str());
+
+        if let Some(curr_field_info) = curr_field_info {
+            let field_name_ident = if field_name == "payload" {
+                format_ident!("_child_")
+            } else {
+                format_ident!("{field_name}")
+            };
+            let val = match field_value {
+                Field::Number(val) => quote! { (#val as u64).try_into().unwrap() },
+                Field::Struct(fields) => {
+                    generate_builder(curr_field_info.unwrap(), None, type_lookup, fields)
+                }
+                Field::List(lst) => {
+                    let elems = lst.iter().map(|entry| match entry {
+                        ListEntry::Number(val) => {
+                            let val = *val as u64;
+                            quote! { #val.try_into().unwrap() }
+                        }
+                        ListEntry::Struct(fields) => {
+                            generate_builder(curr_field_info.unwrap(), None, type_lookup, fields)
+                        }
+                    });
+                    quote! { vec![#(#elems),*].into_boxed_slice() }
+                }
+            };
+
+            Some(if field_name == "payload" {
+                quote! { #field_name_ident: #child_ident::RawData(#val) }
+            } else {
+                quote! { #field_name_ident: #val }
+            })
+        } else {
+            None
+        }
+    });
+
+    let child_field = if let Some(child_type) = child_type {
+        let child_builder = generate_builder(child_type, None, type_lookup, value);
+        Some(quote! {
+            _child_: #child_builder.into(),
+        })
+    } else {
+        None
+    };
+
+    quote! {
+        #builder_ident {
+            #child_field
+            #(#fields),*
+        }
+    }
 }
 
 pub fn generate_test_file() -> Result<String, String> {
@@ -105,9 +182,26 @@ pub fn generate_test_file() -> Result<String, String> {
         .declarations
         .iter()
         .filter_map(|decl| match decl {
-            ast::Decl::Packet { id, fields, .. } | ast::Decl::Struct { id, fields, .. } => {
-                Some((id.as_str(), fields))
-            }
+            ast::Decl::Packet { id, fields, .. } | ast::Decl::Struct { id, fields, .. } => Some((
+                id.as_str(),
+                fields
+                    .iter()
+                    .filter_map(|field| match field {
+                        ast::Field::Body { .. } | ast::Field::Payload { .. } => {
+                            Some(("payload", None))
+                        }
+                        ast::Field::Array { id, type_id, .. } => match type_id {
+                            Some(type_id) => Some((id.as_str(), Some(type_id.as_str()))),
+                            None => Some((id.as_str(), None)),
+                        },
+                        ast::Field::Typedef { id, type_id, .. } => {
+                            Some((id.as_str(), Some(type_id.as_str())))
+                        }
+                        ast::Field::Scalar { id, .. } => Some((id.as_str(), None)),
+                        _ => None,
+                    })
+                    .collect::<HashMap<_, _>>(),
+            )),
             _ => None,
         })
         .collect::<HashMap<_, _>>();
@@ -146,14 +240,19 @@ pub fn generate_test_file() -> Result<String, String> {
             let leaf_packet_ident = format_ident!("{leaf_packet}_instance");
 
             let packet_matchers =
+                generate_matchers(quote! { #packet_ident }, unpacked, &|field| {
+                    Ok(packet_lookup
+                        .get(packet.as_str())
+                        .ok_or(format!("could not find packet {packet}"))?
+                        .contains_key(field))
+                })?;
+
+            let sub_packet_matchers =
                 generate_matchers(quote! { #leaf_packet_ident }, unpacked, &|field| {
-                    Ok(
-                        packet_lookup
-                            .get(leaf_packet.as_str())
-                            .ok_or(format!("could not find packet {packet}"))?
-                            .iter()
-                            .any(|x| x.id().map(|x| x == field).unwrap_or(false)), // || field == "payload"
-                    )
+                    Ok(packet_lookup
+                        .get(leaf_packet.as_str())
+                        .ok_or(format!("could not find packet {packet}"))?
+                        .contains_key(field))
                 })?;
 
             out.push_str(&quote_block! {
@@ -165,6 +264,19 @@ pub fn generate_test_file() -> Result<String, String> {
                 #specialization
 
                 #packet_matchers
+                #sub_packet_matchers
+              }
+            });
+
+            let builder = generate_builder(packet, sub_packet.as_deref(), &packet_lookup, unpacked);
+
+            let test_name_ident = format_ident!("test_{packet}_builder_{i}");
+            out.push_str(&quote_block! {
+              #[test]
+              fn #test_name_ident() {
+                let packed = hex_to_byte_string(#packed);
+                let serialized = #builder.to_vec().unwrap();
+                assert_eq!(packed, serialized);
               }
             });
         }
