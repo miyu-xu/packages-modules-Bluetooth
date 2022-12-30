@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90059f07_472d0545",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-30T20:21:14Z",
+      "side": 1,
+      "message": "Nevermind. Just notice that there is already a fix in review.",
+      "parentUuid": "58ff74d5_95d26f34",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 261,
+        "endChar": 9
+      },
+      "revId": "c59cb7b164ac7eb1177dbadd5328d8960f31a6e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d9e23ce_0475097c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-30T20:15:34Z",
       "side": 1,
       "message": "I think this should be `clearAdapterService()`, as null will not be accepted by the `setAdapterService()` function.\n\nBTW: TestUtils has methods to call these private methods of AdapterService using reflection.",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "c59cb7b164ac7eb1177dbadd5328d8960f31a6e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cbfb3db_893ef393",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HfpNativeInterfaceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-30T20:21:14Z",
+      "side": 1,
+      "message": "Nevermind. Just notice that there is already a fix in review.",
+      "parentUuid": "6d9e23ce_0475097c",
       "range": {
         "startLine": 55,
         "startChar": 8,
