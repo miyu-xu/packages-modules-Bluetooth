@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06421b17_4c03b98d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2088,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-30T18:01:19Z",
+      "side": 1,
+      "message": "we should compare `leadDevice` instead of `device.`",
+      "revId": "0d879e806b90597ab4f93a10c3ef72a17fade77d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
