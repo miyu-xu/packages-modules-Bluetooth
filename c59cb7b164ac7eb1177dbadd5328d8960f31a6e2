@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ff74d5_95d26f34",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-30T20:15:34Z",
+      "side": 1,
+      "message": "Because of this the unit tests will not reset the adapter in the TearDown() phaze and all other tests start to fail after that.",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 261,
+        "endChar": 9
+      },
+      "revId": "c59cb7b164ac7eb1177dbadd5328d8960f31a6e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d9e23ce_0475097c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HfpNativeInterfaceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-30T20:15:34Z",
+      "side": 1,
+      "message": "I think this should be `clearAdapterService()`, as null will not be accepted by the `setAdapterService()` function.\n\nBTW: TestUtils has methods to call these private methods of AdapterService using reflection.",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "c59cb7b164ac7eb1177dbadd5328d8960f31a6e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
