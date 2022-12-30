@@ -22,6 +22,30 @@
       },
       "revId": "a2adef9c3daa75fe017d945cfb879833c4ee3ae1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4edfa29_b7a2aa68",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HfpNativeInterfaceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-12-30T07:52:41Z",
+      "side": 0,
+      "message": "Because AdapterService.setAdapterService(null) is not working as expected.\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;l\u003d260?q\u003dAdapterService.setAdapterService\u0026ct\u003dos\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "parentUuid": "2c643440_5f660638",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "a2adef9c3daa75fe017d945cfb879833c4ee3ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
