@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c39a09af_a4439fed",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3400,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-12-30T06:43:44Z",
+      "side": 0,
+      "message": "Remove those fields",
+      "range": {
+        "startLine": 3400,
+        "startChar": 16,
+        "endLine": 3400,
+        "endChar": 33
+      },
+      "revId": "dba71e34e22782772e71b2047796e1c1fb18c64e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
