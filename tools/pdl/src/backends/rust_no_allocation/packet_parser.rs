@@ -1,8 +1,9 @@
 use std::iter::empty;
 
+use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 
-use crate::{ast, quote_block};
+use crate::ast;
 
 use crate::backends::intermediate::{
     ComputedOffsetId, ComputedValueId, PacketOrStruct, PacketOrStructLength, Schema,
@@ -11,13 +12,12 @@ use crate::backends::intermediate::{
 use super::computed_values::{Computable, Declarable};
 
 pub fn generate_packet(
-    out: &mut String,
     id: &str,
     fields: &[ast::Field],
     parent_id: Option<&str>,
     schema: &Schema,
     curr_schema: &PacketOrStruct,
-) -> Result<(), String> {
+) -> Result<TokenStream, String> {
     let id_ident = format_ident!("{id}View");
 
     let needs_external = matches!(curr_schema.length, PacketOrStructLength::NeedsExternal);
@@ -51,27 +51,25 @@ pub fn generate_packet(
             ast::Field::Checksum { .. } => {
                 unimplemented!("checksums not yet supported with this backend")
             }
-            ast::Field::Payload { .. } => {
-                let payload_start_offset = ComputedOffsetId::FieldOffset("_payload_").call_fn();
-                let payload_end_offset = ComputedOffsetId::FieldEndOffset("_payload_").call_fn();
+            ast::Field::Payload { .. } | ast::Field::Body { .. } => {
+                let name = if matches!(field, ast::Field::Payload { .. }) { "_payload_"} else { "_body_"};
+                let payload_start_offset = ComputedOffsetId::FieldOffset(name).call_fn();
+                let payload_end_offset = ComputedOffsetId::FieldEndOffset(name).call_fn();
                 quote! {
                     fn try_get_payload(&self) -> Result<SizedBitSlice<'a>, ParseError> {
                         let payload_start_offset = #payload_start_offset;
                         let payload_end_offset = #payload_end_offset;
                         self.buf.offset(payload_start_offset)?.slice(payload_end_offset - payload_start_offset)
                     }
-                }
-            }
-            ast::Field::Body { .. } => {
-                let payload_start_offset = ComputedOffsetId::FieldOffset("_body_").call_fn();
-                let payload_end_offset = ComputedOffsetId::FieldEndOffset("_body_").call_fn();
-                quote! {
-                    // note: this is called payload, not body, intentionally!
-                    // (since this backend does not distinguish them)
-                    fn try_get_payload(&self) -> Result<SizedBitSlice<'a>, ParseError> {
-                        let payload_start_offset = #payload_start_offset;
-                        let payload_end_offset = #payload_end_offset;
-                        self.buf.offset(payload_start_offset)?.slice(payload_end_offset - payload_start_offset)
+
+                    fn try_get_raw_payload(&self) -> Result<impl Iterator<Item = Result<u8, ParseError>> + '_, ParseError> {
+                        let view = self.try_get_payload()?;
+                        let count = (view.get_size_in_bits() + 7) / 8;
+                        Ok((0..count).map(move |i| Ok(view.offset(i*8)?.slice(8.min(view.get_size_in_bits() - i*8))?.try_parse()? as u8)))
+                    }
+
+                    pub fn get_raw_payload(&self) -> impl Iterator<Item = u8> + '_ {
+                        self.try_get_raw_payload().unwrap().map(|x| x.unwrap())
                     }
                 }
             }
@@ -225,7 +223,10 @@ pub fn generate_packet(
             quote! {}
         }
         ast::Field::Payload { .. } => {
-            quote! { self.try_get_payload()?; }
+            quote! {
+                self.try_get_payload()?;
+                self.try_get_raw_payload()?;
+            }
         }
         ast::Field::Array { id, .. } => {
             let iter_ident = format_ident!("try_get_{id}_iter");
@@ -243,7 +244,7 @@ pub fn generate_packet(
 
     let packet_end_offset = ComputedOffsetId::PacketEnd.call_fn();
 
-    out.push_str(&quote_block! {
+    Ok(quote! {
         #[derive(Clone, Copy, Debug)]
         pub struct #id_ident<'a> {
             buf: #backing_buffer,
@@ -281,7 +282,5 @@ pub fn generate_packet(
                 Ok(out)
             }
         }
-    });
-
-    Ok(())
+    })
 }

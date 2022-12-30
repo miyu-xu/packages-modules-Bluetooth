@@ -13,11 +13,20 @@
 mod computed_values;
 mod enums;
 mod packet_parser;
+mod packet_serializer;
 pub mod test;
+
+use std::collections::HashMap;
+
+use proc_macro2::TokenStream;
+use quote::quote;
 
 use crate::ast;
 
-use self::{enums::generate_enum, packet_parser::generate_packet};
+use self::{
+    enums::generate_enum, packet_parser::generate_packet,
+    packet_serializer::generate_packet_serializer,
+};
 
 use super::intermediate::Schema;
 
@@ -31,32 +40,62 @@ pub fn generate(file: &ast::File, schema: &Schema) -> Result<String, String> {
 
     out.push_str(include_str!("preamble.rs"));
 
+    let mut children = HashMap::new();
     for decl in &file.declarations {
-        generate_decl(&mut out, decl, schema)?;
+        match decl {
+            ast::Decl::Packet { id, parent_id: Some(parent_id), .. }
+            | ast::Decl::Struct { id, parent_id: Some(parent_id), .. } => {
+                children.entry(parent_id.as_str()).or_insert(vec![]).push(id.as_str());
+            }
+            _ => {}
+        }
     }
+
+    let declarations = file
+        .declarations
+        .iter()
+        .map(|decl| generate_decl(decl, schema, &children))
+        .collect::<Result<TokenStream, _>>()?;
+
+    out.push_str(
+        &quote! {
+            #declarations
+        }
+        .to_string(),
+    );
 
     Ok(out)
 }
 
-fn generate_decl(out: &mut String, decl: &ast::Decl, schema: &Schema) -> Result<(), String> {
+fn generate_decl(
+    decl: &ast::Decl,
+    schema: &Schema,
+    children: &HashMap<&str, Vec<&str>>,
+) -> Result<TokenStream, String> {
     match decl {
-        ast::Decl::Enum { id, tags, width, .. } => generate_enum(out, id, tags, *width),
-        ast::Decl::Packet { id, fields, parent_id, .. } => generate_packet(
-            out,
-            id,
-            fields,
-            parent_id.as_ref().map(|x| &**x),
-            schema,
-            &schema.packets[id.as_str()].0,
-        ),
-        ast::Decl::Struct { id, fields, parent_id, .. } => generate_packet(
-            out,
-            id,
-            fields,
-            parent_id.as_ref().map(|x| &**x),
-            schema,
-            &schema.structs[id.as_str()].0,
-        ),
+        ast::Decl::Enum { id, tags, width, .. } => Ok(generate_enum(id, tags, *width)),
+        ast::Decl::Packet { id, fields, parent_id, .. }
+        | ast::Decl::Struct { id, fields, parent_id, .. } => {
+            let parser = generate_packet(
+                id,
+                fields,
+                parent_id.as_deref(),
+                schema,
+                &schema.packets_and_structs[id.as_str()],
+            )?;
+            let serializer = generate_packet_serializer(
+                id,
+                parent_id.as_deref(),
+                fields,
+                schema,
+                &schema.packets_and_structs[id.as_str()],
+                children,
+            );
+            Ok(quote! {
+                #parser
+                #serializer
+            })
+        }
         _ => unimplemented!("Unsupported decl type"),
     }
 }
