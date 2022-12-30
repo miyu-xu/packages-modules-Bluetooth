@@ -45,7 +45,7 @@ void StackManager::StartUp(ModuleList* modules, Thread* stack_thread) {
   handler_->Post(common::BindOnce(&StackManager::handle_start_up, common::Unretained(this), modules, stack_thread,
                                   std::move(promise)));
 
-  auto init_status = future.wait_for(std::chrono::seconds(3));
+  auto init_status = future.wait_for(std::chrono::seconds(4));
 
   WakelockManager::Get().Release();
 
