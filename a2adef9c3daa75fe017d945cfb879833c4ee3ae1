@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c643440_5f660638",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HfpNativeInterfaceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-30T05:41:36Z",
+      "side": 0,
+      "message": "Q) Why did this code throw error in https://b.corp.google.com/issues/263914827#comment3?",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "a2adef9c3daa75fe017d945cfb879833c4ee3ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
