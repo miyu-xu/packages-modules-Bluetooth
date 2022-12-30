@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddaafe1c_970d9d5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-12-30T00:08:54Z",
+      "side": 1,
+      "message": "Thanks for helping make the tests less flaky.  Would it work to use the test HCI layer in hci_layer_fake.cc ?  It would be nice to standardize on one implementation.",
+      "revId": "c7576317252ccdc74180080f4d2544628942038f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3862622_d5289e48",
