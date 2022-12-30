@@ -325,6 +325,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3b1d3b3_37ced3d0",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-12-30T17:11:22Z",
+      "side": 1,
+      "message": "I think that moved-from standard library containers are left in an unspecified state, which is different from an empty container and we don\u0027t want to leave it like this.",
+      "parentUuid": "341db581_fb626a3e",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "823b7f5d_c2457da4",
         "filename": "system/stack/gatt/gatt_api.cc",
         "patchSetId": 5
