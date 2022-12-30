@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "401d2ff7_d48efed8",
+        "filename": "system/bta/csis/csis_types.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1873440
+      },
+      "writtenOn": "2022-12-30T13:06:16Z",
+      "side": 1,
+      "message": "Hi sirs,\n\nWould this change lead to csis client not initiate group member scan for normal LEA earbuds? (e.g., `size is 2`)",
+      "revId": "8d3aeb573bf8984944652dfce1e609698f548041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
