@@ -134,7 +134,7 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_CFG
         {BTA_ID_GATTS, BTA_ALL_APP_ID, 15}  /* gatts spec table */
 };
 
-tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_SPEC bta_dm_pm_spec[BTA_DM_NUM_PM_SPEC] = {
+tBTA_DM_PM_SPEC bta_dm_pm_spec[BTA_DM_NUM_PM_SPEC] = {
     /* AG : 0 */
     {(BTA_DM_PM_SNIFF | BTA_DM_PM_PARK), /* allow park & sniff */
      (BTA_DM_PM_SSR2), /* the SSR entry */
@@ -364,7 +364,7 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_SPEC bta_dm_pm_spec[BTA_DM_NUM_PM_SPEC] = {
     {(BTA_DM_PM_SNIFF | BTA_DM_PM_PARK), /* allow park & sniff */
      (BTA_DM_PM_SSR2), /* the SSR entry */
      {
-         {{BTA_DM_PM_SNIFF, 7000},
+         {{BTA_DM_PM_SNIFF, 7000},   /* overrided by bta_hs_sniff_delay_ms */
           {BTA_DM_PM_NO_ACTION, 0}}, /* conn open sniff  */
          {{BTA_DM_PM_NO_PREF, 0}, {BTA_DM_PM_NO_ACTION, 0}},   /* conn close  */
          {{BTA_DM_PM_NO_ACTION, 0}, {BTA_DM_PM_NO_ACTION, 0}}, /* app open */
@@ -373,8 +373,9 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_SPEC bta_dm_pm_spec[BTA_DM_NUM_PM_SPEC] = {
           {BTA_DM_PM_NO_ACTION, 0}}, /* sco open, active */
          {{BTA_DM_PM_SNIFF, 7000},
           {BTA_DM_PM_NO_ACTION, 0}}, /* sco close sniff  */
-         {{BTA_DM_PM_SNIFF, 7000}, {BTA_DM_PM_NO_ACTION, 0}}, /* idle */
          {{BTA_DM_PM_ACTIVE, 0}, {BTA_DM_PM_NO_ACTION, 0}},   /* busy */
+         {{BTA_DM_PM_SNIFF, 7000},   /* overrided by bta_hs_sniff_delay_ms */
+          {BTA_DM_PM_NO_ACTION, 0}}, /* idle */
          {{BTA_DM_PM_RETRY, 7000},
           {BTA_DM_PM_NO_ACTION, 0}} /* mode change retry */
      }},

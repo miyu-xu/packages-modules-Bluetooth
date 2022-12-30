@@ -103,6 +103,14 @@ void bta_dm_init_pm(void) {
     for (int j = 0; j < BTA_DM_PM_MODE_TIMER_MAX; j++)
       bta_dm_cb.pm_timer[i].srvc_id[j] = BTA_ID_MAX;
   }
+
+  int32_t delay_ms =
+      osi_property_get_int32("bluetooth.bta_hs_sniff_delay_ms.config", -1);
+  if (delay_ms != -1) {
+    tBTA_DM_PM_SPEC& hs_spec = (tBTA_DM_PM_SPEC&)p_bta_dm_pm_spec[12 /* HS */];
+    hs_spec.actn_tbl[BTA_SYS_CONN_OPEN][0].timeout = delay_ms;
+    hs_spec.actn_tbl[BTA_SYS_CONN_IDLE][0].timeout = delay_ms;
+  }
 }
 
 /*******************************************************************************
