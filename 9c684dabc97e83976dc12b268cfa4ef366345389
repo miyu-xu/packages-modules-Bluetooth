@@ -16,6 +16,24 @@
       "message": "Please fix.",
       "revId": "9c684dabc97e83976dc12b268cfa4ef366345389",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da5b58b8_a96480a7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-12-30T08:14:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8ea4000_0704ad57",
+      "revId": "9c684dabc97e83976dc12b268cfa4ef366345389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
