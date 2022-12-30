@@ -118,6 +118,30 @@
       },
       "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9484b8da_b1e206f7",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-12-30T05:18:34Z",
+      "side": 1,
+      "message": "My point is normally batch scan is derived/detected from reportDelay value.  This is fine. However, it probably doesn\u0027t make sense to allow the app to use the new CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH with reportDelay \u003d 0. So I would suggest to force reportDelay to a large value in case of CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH mode.",
+      "parentUuid": "4de5d3a6_fa491a4e",
+      "range": {
+        "startLine": 104,
+        "startChar": 54,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
