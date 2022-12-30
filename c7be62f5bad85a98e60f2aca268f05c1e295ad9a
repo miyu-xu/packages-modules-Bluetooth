@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9efdf745_098e3b32",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-12-30T17:53:51Z",
+      "side": 1,
+      "message": "why we would not like to store it?",
+      "range": {
+        "startLine": 1057,
+        "startChar": 81,
+        "endLine": 1057,
+        "endChar": 94
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
