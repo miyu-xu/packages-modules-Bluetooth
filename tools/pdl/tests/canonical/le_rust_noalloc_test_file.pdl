@@ -310,18 +310,6 @@ packet EnumChild_B : EnumParent (a = B) {
     c: 16,
 }
 
-// The parser must handle aliasing of packets
-// through inheritance with no constraints
-packet AliasedChild_A : EmptyParent (a = 2) {
-    b: 8,
-}
-
-// The parser must handle aliasing of packets
-// through inheritance with no constraints
-packet AliasedChild_B : EmptyParent (a = 3) {
-    c: 16,
-}
-
 // The parser must handle inheritance of packets with payloads starting
 // on a shifted byte boundary, as long as the first fields of the child
 // complete the bit fields.
