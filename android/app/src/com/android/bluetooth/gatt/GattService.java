@@ -1099,6 +1099,24 @@ public class GattService extends ProfileService {
         }
 
         @Override
+        public void getAclHandle(int clientIf, String address, int transport,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getAclHandle(clientIf, address, transport, attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private int getAclHandle(int clientIf, String address, int transport,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
+            }
+            return service.getAclHandle(clientIf, address, transport, attributionSource);
+        }
+
+        @Override
         public void configureMTU(int clientIf, String address, int mtu,
                 AttributionSource attributionSource, SynchronousResultReceiver receiver) {
             try {
@@ -2539,6 +2557,20 @@ public class GattService extends ProfileService {
         }
     }
 
+    void onGetAclHandle(int clientIf, String address, int transport, int handle)
+            throws RemoteException {
+        if (DBG) {
+            Log.d(TAG,
+                    "onGetAclHandle() - clientIf=" + clientIf + " address=" + address
+                    + ", transport=" + transport + ", handle=" + handle);
+        }
+
+        ClientMap.App app = mClientMap.getById(clientIf);
+        if (app != null) {
+            app.callback.onGetAclHandle(address, transport, handle);
+        }
+    }
+
     void onScanFilterEnableDisabled(int action, int status, int clientIf) {
         if (DBG) {
             Log.d(TAG, "onScanFilterEnableDisabled() - clientIf=" + clientIf + ", status=" + status
@@ -3901,6 +3933,21 @@ public class GattService extends ProfileService {
             Log.d(TAG, "readRemoteRssi() - address=" + address);
         }
         mNativeInterface.gattClientReadRemoteRssi(clientIf, address);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    int getAclHandle(int clientIf, String address, int transport,
+            AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "GattService readRemoteRssi")) {
+            return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+        }
+
+        if (DBG) {
+            Log.d(TAG, "readRemoteRssi() - address=" + address);
+        }
+        mNativeInterface.gattClientGetAclHandle(clientIf, address, transport);
+        return BluetoothStatusCodes.SUCCESS;
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
