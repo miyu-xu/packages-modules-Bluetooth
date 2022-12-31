@@ -441,6 +441,7 @@ const btgatt_client_callbacks_t gatt_client_callbacks = {
     nullptr, /* write_descriptor_cb; */
     nullptr, /* execute_write_cb; */
     nullptr, /* read_remote_rssi_cb; */
+    nullptr, /* get_acl_handle_cb; */
     nullptr, /* configure_mtu_cb; */
     nullptr, /* congestion_cb; */
     nullptr, /* get_gatt_db_cb; */

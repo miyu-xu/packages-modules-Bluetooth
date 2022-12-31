@@ -1784,6 +1784,7 @@ impl Gatt {
             write_descriptor_cb: Some(gc_write_descriptor_cb),
             execute_write_cb: Some(gc_execute_write_cb),
             read_remote_rssi_cb: Some(gc_read_remote_rssi_cb),
+            get_acl_handle_cb: None,
             configure_mtu_cb: Some(gc_configure_mtu_cb),
             congestion_cb: Some(gc_congestion_cb),
             get_gatt_db_cb: Some(gc_get_gatt_db_cb),
