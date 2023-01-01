@@ -931,7 +931,7 @@ struct Controller::impl {
   std::string local_name_;
   LeBufferSize le_buffer_size_;
   LeBufferSize iso_buffer_size_;
-  uint64_t le_local_supported_features_;
+  uint64_t le_local_supported_features_{};
   uint64_t le_supported_states_;
   uint8_t le_connect_list_size_;
   uint8_t le_resolving_list_size_;

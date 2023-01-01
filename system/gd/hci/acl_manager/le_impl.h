@@ -104,7 +104,10 @@ inline std::string connectability_state_machine_text(const ConnectabilityState& 
 #undef CASE_RETURN_TEXT
 
 struct le_acl_connection {
-  le_acl_connection(AddressWithType remote_address, AclConnection::QueueDownEnd* queue_down_end, os::Handler* handler)
+  le_acl_connection(
+      AddressWithType remote_address,
+      AclConnection::QueueDownEnd* queue_down_end,
+      os::Handler* handler)
       : remote_address_(remote_address),
         assembler_(new acl_manager::assembler(remote_address, queue_down_end, handler)) {}
   ~le_acl_connection() {
@@ -532,7 +535,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     auto queue_down_end = queue->GetDownEnd();
     round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::LE, handle, queue);
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
-        std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
+        std::move(queue),
+        le_acl_connection_interface_,
+        handle,
+        local_address,
+        remote_address,
+        role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
     connection->interval_ = conn_interval;
     connection->latency_ = conn_latency;
