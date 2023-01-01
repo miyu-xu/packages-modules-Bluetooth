@@ -402,7 +402,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     auto queue_down_end = queue->GetDownEnd();
     round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::LE, handle, queue);
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
-        std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
+        std::move(queue),
+        le_acl_connection_interface_,
+        handle,
+        local_address,
+        remote_address,
+        role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
     connection->interval_ = conn_interval;
     connection->latency_ = conn_latency;
@@ -410,12 +415,17 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     connection->in_filter_accept_list_ = in_filter_accept_list;
     connection->locally_initiated_ = (role == hci::Role::CENTRAL);
     connections.add(
-        handle, remote_address, queue_down_end, handler_, connection->GetEventCallbacks([this](uint16_t handle) {
-          this->connections.invalidate(handle);
-        }));
-    le_client_handler_->Post(common::BindOnce(&LeConnectionCallbacks::OnLeConnectSuccess,
-                                              common::Unretained(le_client_callbacks_), remote_address,
-                                              std::move(connection)));
+        handle,
+        remote_address,
+        queue_down_end,
+        handler_,
+        connection->GetEventCallbacks(
+            [this](uint16_t handle) { this->connections.invalidate(handle); }));
+    le_client_handler_->Post(common::BindOnce(
+        &LeConnectionCallbacks::OnLeConnectSuccess,
+        common::Unretained(le_client_callbacks_),
+        remote_address,
+        std::move(connection)));
   }
 
   void on_le_enhanced_connection_complete(LeMetaEventView packet) {
@@ -549,13 +559,50 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     connection->peer_resolvable_private_address_ = connection_complete.GetPeerResolvablePrivateAddress();
     connection->in_filter_accept_list_ = in_filter_accept_list;
     connection->locally_initiated_ = (role == hci::Role::CENTRAL);
-    connections.add(
-        handle, remote_address, queue_down_end, handler_, connection->GetEventCallbacks([this](uint16_t handle) {
-          this->connections.invalidate(handle);
-        }));
-    le_client_handler_->Post(common::BindOnce(&LeConnectionCallbacks::OnLeConnectSuccess,
-                                              common::Unretained(le_client_callbacks_), remote_address,
-                                              std::move(connection)));
+
+    auto connection_callbacks = connection->GetEventCallbacks(
+        [this](uint16_t handle) { this->connections.invalidate(handle); });
+
+    if (std::holds_alternative<DataAsUninitializedPeripheral>(role_specific_data)) {
+      // the OnLeConnectSuccess event will be sent after receiving the On Advertising Set Terminated
+      // event, since we need it to know what local_address / advertising set the peer connected to.
+      // In the meantime, we store it as a pending_connection.
+      connections.add(
+          handle,
+          remote_address,
+          std::move(connection),
+          queue_down_end,
+          handler_,
+          connection_callbacks);
+    } else {
+      connections.add(
+          handle, remote_address, nullptr, queue_down_end, handler_, connection_callbacks);
+      le_client_handler_->Post(common::BindOnce(
+          &LeConnectionCallbacks::OnLeConnectSuccess,
+          common::Unretained(le_client_callbacks_),
+          remote_address,
+          std::move(connection)));
+    }
+  }
+
+  RoleSpecificData initialize_role_specific_data(Role role) {
+    if (role == hci::Role::CENTRAL) {
+      return DataAsCentral{le_address_manager_->GetCurrentAddress()};
+    } else if (
+        controller_->SupportsBleExtendedAdvertising() ||
+        controller_->IsSupported(hci::OpCode::LE_MULTI_ADVT)) {
+      // when accepting connection, we must obtain the address from the advertiser.
+      // When we receive "set terminated event", we associate connection handle with advertiser
+      // address
+      return DataAsUninitializedPeripheral{};
+    } else {
+      // the exception is if we only support legacy advertising - here, our current address is also
+      // our advertised address
+      return DataAsPeripheral{
+          le_address_manager_->GetCurrentAddress(),
+          {},
+          true /* For now, ignore non-discoverable legacy advertising TODO(b/254314964) */};
+    }
   }
 
   static constexpr bool kRemoveConnectionAfterwards = true;
@@ -675,10 +722,21 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     return connections.HACK_get_handle(address);
   }
 
-  void UpdateLocalAddress(uint16_t handle, hci::AddressWithType address_with_type) {
-    connections.execute(handle, [=](LeConnectionManagementCallbacks* callbacks) {
-      callbacks->OnLocalAddressUpdate(address_with_type);
-    });
+  void OnAdvertisingSetTerminated(
+      uint16_t conn_handle,
+      uint8_t adv_set_id,
+      hci::AddressWithType adv_set_address,
+      bool is_discoverable) {
+    auto connection = connections.record_peripheral_data_and_extract_pending_connection(
+        conn_handle, DataAsPeripheral{adv_set_address, adv_set_id, is_discoverable});
+
+    if (connection != nullptr) {
+      le_client_handler_->Post(common::BindOnce(
+          &LeConnectionCallbacks::OnLeConnectSuccess,
+          common::Unretained(le_client_callbacks_),
+          connection->GetRemoteAddress(),
+          std::move(connection)));
+    }
   }
 
   void add_device_to_connect_list(AddressWithType address_with_type) {
