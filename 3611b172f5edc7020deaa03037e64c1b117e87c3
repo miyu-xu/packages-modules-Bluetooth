@@ -22,6 +22,30 @@
       },
       "revId": "3611b172f5edc7020deaa03037e64c1b117e87c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ed32de_c7052417",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-01-01T11:44:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a31b18f_c7d7292b",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 117,
+        "endChar": 14
+      },
+      "revId": "3611b172f5edc7020deaa03037e64c1b117e87c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
