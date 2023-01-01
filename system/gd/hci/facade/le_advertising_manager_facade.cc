@@ -169,7 +169,7 @@ bool PeriodicAdvertisingParametersFromProto(
 
 class LeAdvertiser {
  public:
-  LeAdvertiser(hci::AdvertisingConfig config) : config_(std::move(config)) {}
+  LeAdvertiser(hci::ExtendedAdvertisingConfig config) : config_(std::move(config)) {}
 
   void ScanCallback(Address address, AddressType address_type) {}
 
@@ -185,7 +185,7 @@ class LeAdvertiser {
 
  private:
   hci::AdvertiserId id_ = LeAdvertisingManager::kInvalidId;
-  hci::AdvertisingConfig config_;
+  hci::ExtendedAdvertisingConfig config_;
 };
 
 using ::blueberry::facade::hci::AddressMsg;
