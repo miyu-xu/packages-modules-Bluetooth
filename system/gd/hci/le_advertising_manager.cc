@@ -68,32 +68,6 @@ struct Advertiser {
   std::unique_ptr<os::Alarm> address_rotation_alarm;
 };
 
-ExtendedAdvertisingConfig::ExtendedAdvertisingConfig(const AdvertisingConfig& config) : AdvertisingConfig(config) {
-  switch (config.advertising_type) {
-    case AdvertisingType::ADV_IND:
-      connectable = true;
-      scannable = true;
-      break;
-    case AdvertisingType::ADV_DIRECT_IND_HIGH:
-      connectable = true;
-      directed = true;
-      high_duty_directed_connectable = true;
-      break;
-    case AdvertisingType::ADV_SCAN_IND:
-      scannable = true;
-      break;
-    case AdvertisingType::ADV_NONCONN_IND:
-      break;
-    case AdvertisingType::ADV_DIRECT_IND_LOW:
-      connectable = true;
-      directed = true;
-      break;
-    default:
-      LOG_WARN("Unknown event type");
-      break;
-  }
-}
-
 struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallback {
   impl(Module* module) : module_(module), le_advertising_interface_(nullptr), num_instances_(0) {}
 
@@ -308,13 +282,12 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   void create_advertiser(
       int reg_id,
       AdvertiserId id,
-      const AdvertisingConfig config,
+      const ExtendedAdvertisingConfig config,
       const common::Callback<void(Address, AddressType)>& scan_callback,
       const common::Callback<void(ErrorCode, uint8_t, uint8_t)>& set_terminated_callback,
       os::Handler* handler) {
     // check advertising data is valid before start advertising
-    ExtendedAdvertisingConfig extended_config = static_cast<ExtendedAdvertisingConfig>(config);
-    if (!check_advertising_data(config.advertisement, extended_config.connectable) ||
+    if (!check_advertising_data(config.advertisement, config.connectable) ||
         !check_advertising_data(config.scan_response, false)) {
       advertising_callbacks_->OnAdvertisingSetStarted(
           reg_id, id, le_physical_channel_tx_power_, AdvertisingCallback::AdvertisingStatus::DATA_TOO_LARGE);
@@ -1501,7 +1474,7 @@ size_t LeAdvertisingManager::GetNumberOfAdvertisingInstances() const {
 
 AdvertiserId LeAdvertisingManager::create_advertiser(
     int reg_id,
-    const AdvertisingConfig config,
+    const ExtendedAdvertisingConfig config,
     const common::Callback<void(Address, AddressType)>& scan_callback,
     const common::Callback<void(ErrorCode, uint8_t, uint8_t)>& set_terminated_callback,
     os::Handler* handler) {
