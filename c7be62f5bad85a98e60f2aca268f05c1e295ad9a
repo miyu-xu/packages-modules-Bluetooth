@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e260a66c_abaffe61",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-02T17:34:52Z",
+      "side": 1,
+      "message": "NIT: I wonder if registering for CCC here could be too late, and cause some sort of race conditions. I hope there are no scenarios where MCS would like to blast notifications right after connections.\n\nOr maybe we could set CCCs when we restore devices from storage, rather than on connection ?",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 86
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9efdf745_098e3b32",
         "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
         "patchSetId": 6
