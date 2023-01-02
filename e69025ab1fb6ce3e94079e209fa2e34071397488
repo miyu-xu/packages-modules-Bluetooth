@@ -16,6 +16,23 @@
       "message": "Thanks, LGTM",
       "revId": "e69025ab1fb6ce3e94079e209fa2e34071397488",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92dafec9_86ab8fac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-02T17:30:53Z",
+      "side": 1,
+      "message": "All other LE Audio related things are stored in native, in bt_config.conf\n\nMaybe storing in native layer would be better ?",
+      "revId": "e69025ab1fb6ce3e94079e209fa2e34071397488",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
