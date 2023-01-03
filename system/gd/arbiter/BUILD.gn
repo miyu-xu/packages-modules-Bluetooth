@@ -1,5 +1,5 @@
 #
-#  Copyright 2021 Google, Inc.
+#  Copyright 2022 Google, Inc.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 source_set("BluetoothArbiterSources") {
   sources = [
     "le_connection_arbiter.cc",
+    "le_connection_packet_router.cc",
   ]
 
   include_dirs = [ "//bt/system/gd" ]

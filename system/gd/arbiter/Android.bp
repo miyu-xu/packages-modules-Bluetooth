@@ -6,6 +6,7 @@ filegroup {
     name: "BluetoothArbiterSources",
     srcs: [
         "le_connection_arbiter.cc",
+        "le_connection_packet_router.cc",
     ],
 }
 
@@ -13,5 +14,6 @@ filegroup {
     name: "BluetoothArbiterUnitTestSources",
     srcs: [
         "le_connection_arbiter.cc",
+        "le_connection_packet_router.cc",
     ],
 }

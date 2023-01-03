@@ -593,6 +593,10 @@ void HciLayer::PutAclConnectionInterface() {
   }
 }
 
+LeAclConnectionInterface* HciLayer::GetLeAclConnectionInterfaceWithoutRegisteringForEvents() {
+  return &le_acl_connection_manager_interface_;
+}
+
 LeAclConnectionInterface* HciLayer::GetLeAclConnectionInterface(
     ContextualCallback<void(LeMetaEventView)> event_handler,
     ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,

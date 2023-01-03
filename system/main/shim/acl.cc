@@ -841,6 +841,8 @@ struct shim::legacy::Acl::impl {
   ShadowAcceptlist shadow_acceptlist_;
   ShadowAddressResolutionList shadow_address_resolution_list_;
 
+  arbiter::Token le_arbiter_client_token_;
+
   bool IsClassicAcl(HciHandle handle) {
     return handle_to_classic_connection_map_.find(handle) !=
            handle_to_classic_connection_map_.end();
@@ -1318,8 +1320,11 @@ shim::legacy::Acl::Acl(os::Handler* handler,
   pimpl_ = std::make_unique<Acl::impl>(max_acceptlist_size,
                                        max_address_resolution_size);
   GetAclManager()->RegisterCallbacks(this, handler_);
-  GetLeConnectionArbiter()->RegisterLeCallbacks(this, handler_,
-                                                arbiter::DefaultFilter{});
+  pimpl_->le_arbiter_client_token_ =
+      GetLeConnectionArbiter()->RegisterClient(
+          this, handler_, arbiter::UnconditionalConnectionFilter{},
+          arbiter::UnconditionalPacketFilter{},
+          arbiter::CLIENT_PRIORITY_FALLBACK);
   GetController()->RegisterCompletedMonitorAclPacketsCallback(
       handler->BindOn(this, &Acl::on_incoming_acl_credits));
   shim::RegisterDumpsysFunction(static_cast<void*>(this),
@@ -1796,8 +1801,8 @@ void shim::legacy::Acl::FinalShutdown() {
 
   promise = std::promise<void>();
   future = promise.get_future();
-  GetLeConnectionArbiter()->UnregisterLeCallbacks(
-      this, arbiter::DefaultFilter{}, std::move(promise));
+  GetLeConnectionArbiter()->UnregisterClient(pimpl_->le_arbiter_client_token_,
+                                             std::move(promise));
   future.wait();
   LOG_DEBUG("Unregistered le callbacks from gd acl manager");
 
