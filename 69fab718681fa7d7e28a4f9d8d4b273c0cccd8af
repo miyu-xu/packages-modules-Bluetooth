@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e24bf4f2_12e22b2a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-03T23:07:54Z",
+      "side": 1,
+      "message": "Why removing the `isLoggable` ? \nI wanted to comment on BluetoothServerSocket to ask you to use `Log.isLoggable(TAG, Log.DEBUG);`, but I see you are removing it on purpose here and I do not understand the reason for that.",
+      "range": {
+        "startLine": 88,
+        "startChar": 39,
+        "endLine": 88,
+        "endChar": 43
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db79abba_74cf9075",
         "filename": "system/btif/include/btif_sock.h",
         "patchSetId": 1
@@ -103,6 +126,121 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "4495d0db_e9163c24",
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0df4e736_b5e88e5f",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-03T23:07:54Z",
+      "side": 1,
+      "message": "`const RawAddress\u0026` ?",
+      "range": {
+        "startLine": 151,
+        "startChar": 54,
+        "endLine": 151,
+        "endChar": 64
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "787a0cfa_ab2e3a69",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-03T23:07:54Z",
+      "side": 1,
+      "message": "Use [ADDRESS_TO_LOGGABLE_CSTR](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/os/logging/log_adapter.h;l\u003d39;drc\u003d896fe4e75dce21e8b91d6ba956a0d07121b2df50) instead",
+      "range": {
+        "startLine": 152,
+        "startChar": 44,
+        "endLine": 152,
+        "endChar": 67
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47842041_bc36fb5f",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-03T23:07:54Z",
+      "side": 1,
+      "message": "Use [ADDRESS_TO_LOGGABLE_CSTR](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/os/logging/log_adapter.h;l\u003d39;drc\u003d896fe4e75dce21e8b91d6ba956a0d07121b2df50) instead",
+      "range": {
+        "startLine": 221,
+        "startChar": 13,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf80779_50f0c118",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-03T23:07:54Z",
+      "side": 1,
+      "message": "`*bd_addr`",
+      "range": {
+        "startLine": 308,
+        "startChar": 54,
+        "endLine": 308,
+        "endChar": 72
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f9e781_2ec5501a",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-03T23:07:54Z",
+      "side": 1,
+      "message": "`*bd_addr`",
+      "range": {
+        "startLine": 354,
+        "startChar": 56,
+        "endLine": 354,
+        "endChar": 73
+      },
       "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
