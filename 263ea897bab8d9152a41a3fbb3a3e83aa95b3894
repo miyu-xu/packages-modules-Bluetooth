@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dbbedf6_ad713ff4",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-03T17:56:55Z",
+      "side": 1,
+      "message": "I\u0027m confused about this fix.  If start isn\u0027t called, it\u0027s a bug.  The two tests that you\u0027re fixing here use fake Controllers.",
+      "range": {
+        "startLine": 934,
+        "startChar": 0,
+        "endLine": 934,
+        "endChar": 42
+      },
+      "revId": "263ea897bab8d9152a41a3fbb3a3e83aa95b3894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
