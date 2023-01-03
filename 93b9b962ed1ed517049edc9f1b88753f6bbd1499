@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d481fdaa_17948aa0",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-03T21:47:59Z",
+      "side": 1,
+      "message": "This would be a nice cleanup, but I have a slight concern. For a lot of our newer profile classes (e.g. BluetoothLeAudio), they implement the AutoClosable interface which includes the close() method. We will have a conflict for those profile classes because they now implement both BluetoothProfile \u0026 AutoCloseable and each has a close() method.",
+      "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
