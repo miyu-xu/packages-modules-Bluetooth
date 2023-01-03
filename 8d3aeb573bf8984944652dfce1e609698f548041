@@ -34,6 +34,24 @@
       "parentUuid": "401d2ff7_d48efed8",
       "revId": "8d3aeb573bf8984944652dfce1e609698f548041",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8e467c6_c722289c",
+        "filename": "system/bta/csis/csis_types.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-03T13:11:08Z",
+      "side": 1,
+      "message": "but maybe this is what you are looking for:\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2374068",
+      "parentUuid": "b3de1631_e75503af",
+      "revId": "8d3aeb573bf8984944652dfce1e609698f548041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
