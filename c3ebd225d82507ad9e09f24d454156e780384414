@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa373b73_b5414c47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2023-01-03T02:58:54Z",
+      "side": 1,
+      "message": "Submitting this CL for now with these minor tests before a `repo sync`.",
+      "revId": "c3ebd225d82507ad9e09f24d454156e780384414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
