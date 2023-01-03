@@ -16,6 +16,24 @@
       "message": "`device_nr` is a `size_t`, which is unsigned.  So we should use `zu` instead of `zd` for the printf format.  I\u0027ve put up a follow-up fix at https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2366037",
       "revId": "883f7eb9d89ca00e25939089cc53d44a2d22f7e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76d557e8_50b3a093",
+        "filename": "tools/rootcanal/lib/hci/pcap_filter.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-03T07:42:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "36832fda_76f46798",
+      "revId": "883f7eb9d89ca00e25939089cc53d44a2d22f7e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
