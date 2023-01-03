@@ -379,14 +379,12 @@ public abstract class ProfileService extends Service {
             Log.w(mName, "doStop() called, but the profile is not running.");
         }
         mProfileStarted = false;
-        if (mAdapterService != null) {
-            mAdapterService.onProfileServiceStateChanged(this, BluetoothAdapter.STATE_OFF);
-        }
         if (!stop()) {
             Log.e(mName, "Unable to stop profile");
         }
         if (mAdapterService != null) {
             mAdapterService.removeProfile(this);
+            mAdapterService.onProfileServiceStateChanged(this, BluetoothAdapter.STATE_OFF);
         }
         if (mUserSwitchedReceiver != null) {
             getApplicationContext().unregisterReceiver(mUserSwitchedReceiver);
