@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5be76f64_475b126d",
+        "filename": "framework/java/android/bluetooth/BluetoothCsipSetCoordinator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-03T22:51:52Z",
+      "side": 1,
+      "message": "This `hide` doesn\u0027t do anything since it\u0027s in the API interface: (cf [current.txt](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/api/current.txt;l\u003d504;drc\u003d64d4e6b67acd24159379e50af55131ae4bc2c474) )\nDo we know why it\u0027s happening on BluetoothCsipSetCoordinator and not on [BluetoothA2dp](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/api/current.txt;l\u003d4;drc\u003d64d4e6b67acd24159379e50af55131ae4bc2c474) for example ?\n\n\nI also noticed [BluetoothMap](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/api/system-current.txt;l\u003d618;drc\u003dcb85f8cb0da7680b9251bbbca7ce12e78008037d) and [BluetoothVolumeControl](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/api/system-current.txt;l\u003d784;drc\u003dcb85f8cb0da7680b9251bbbca7ce12e78008037d) that have it as a system api, but that match their annotation",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d481fdaa_17948aa0",
         "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
         "patchSetId": 2
