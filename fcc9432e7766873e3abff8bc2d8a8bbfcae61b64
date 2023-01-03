@@ -122,6 +122,23 @@
       "message": "Ping, can I please get a +2 on this?",
       "revId": "fcc9432e7766873e3abff8bc2d8a8bbfcae61b64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4610fafe_ee22903f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2023-01-03T11:09:04Z",
+      "side": 1,
+      "message": "Bypassing presubmit as it is broken according to abhishekpandit@.",
+      "revId": "fcc9432e7766873e3abff8bc2d8a8bbfcae61b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
