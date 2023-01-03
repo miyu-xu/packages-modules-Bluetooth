@@ -86,6 +86,7 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
           on_read_remote_version_complete);
   virtual void PutAclConnectionInterface();
 
+  virtual LeAclConnectionInterface* GetLeAclConnectionInterfaceWithoutRegisteringForEvents();
   virtual LeAclConnectionInterface* GetLeAclConnectionInterface(
       common::ContextualCallback<void(LeMetaEventView)> event_handler,
       common::ContextualCallback<void(uint16_t, hci::ErrorCode)> on_disconnect,
