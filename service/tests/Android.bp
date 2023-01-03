@@ -29,6 +29,7 @@ android_test {
     java_version: "1.9",
 
     static_libs: [
+        "androidx.test.core",
         "androidx.test.rules",
         "frameworks-base-testutils",
         "mockito-target-extended-minus-junit4",
