@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1a6af1_fabb03b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2023-01-03T22:14:23Z",
+      "side": 1,
+      "message": "The build failures in presubmits are happening on tip of tree: https://b.corp.google.com/issues/264285696",
+      "revId": "98ffd8a75699950e6a3bfc7ff6f5238908f17555",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8415dfa3_5dca6916",
