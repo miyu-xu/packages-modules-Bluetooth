@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993b3af4_f7964188",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMasInstance.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-03T09:15:27Z",
+      "side": 1,
+      "message": "Protected is wider than package-private, so I think you\u0027ll not need this.\n\nhttps://stackoverflow.com/a/215505",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 76
+      },
+      "revId": "690ce30d7ad7e49911ecc826dbadd175d2d66e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87bdd9fc_ac02a70c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapMasInstanceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-03T09:15:27Z",
+      "side": 1,
+      "message": "This test depends on a static variable `sInstanceCounter`.\nIf this test runs twice, then it will fail.\n\nPlease make sure the `sInstanceCounter` becomes zero, or make it visible for testing and use it in this test.",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 44
+      },
+      "revId": "690ce30d7ad7e49911ecc826dbadd175d2d66e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6a8777_9694ef6f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-03T09:15:27Z",
+      "side": 1,
+      "message": "8 spaces needed",
+      "range": {
+        "startLine": 173,
+        "startChar": 8,
+        "endLine": 173,
+        "endChar": 28
+      },
+      "revId": "690ce30d7ad7e49911ecc826dbadd175d2d66e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
