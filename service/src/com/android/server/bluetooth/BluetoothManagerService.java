@@ -136,7 +136,7 @@ class BluetoothManagerService {
     // Delay for retrying enable and disable in msec
     private static final int ENABLE_DISABLE_DELAY_MS = 300;
 
-    private static final int MESSAGE_ENABLE = 1;
+    @VisibleForTesting static final int MESSAGE_ENABLE = 1;
     @VisibleForTesting static final int MESSAGE_DISABLE = 2;
     private static final int MESSAGE_HANDLE_ENABLE_DELAYED = 3;
     private static final int MESSAGE_HANDLE_DISABLE_DELAYED = 4;
@@ -146,7 +146,7 @@ class BluetoothManagerService {
     private static final int MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED = 41;
     private static final int MESSAGE_RESTART_BLUETOOTH_SERVICE = 42;
     private static final int MESSAGE_BLUETOOTH_STATE_CHANGE = 60;
-    private static final int MESSAGE_TIMEOUT_BIND = 100;
+    @VisibleForTesting static final int MESSAGE_TIMEOUT_BIND = 100;
     private static final int MESSAGE_GET_NAME_AND_ADDRESS = 200;
     private static final int MESSAGE_USER_SWITCHED = 300;
     private static final int MESSAGE_USER_UNLOCKED = 301;
@@ -206,7 +206,7 @@ class BluetoothManagerService {
     private IBluetooth mBluetooth = null;
 
     private IBluetoothGatt mBluetoothGatt = null;
-    private boolean mBinding = false;
+    @VisibleForTesting boolean mBinding = false;
     private boolean mUnbinding = false;
     private List<Integer> mSupportedProfileList = new ArrayList<>();
 
@@ -220,7 +220,7 @@ class BluetoothManagerService {
 
     // used inside handler thread
     private boolean mQuietEnable = false;
-    private boolean mEnable = false;
+    @VisibleForTesting boolean mEnable = false;
     private boolean mShutdownInProgress = false;
 
     private static String timeToLog(long timestamp) {
@@ -278,7 +278,7 @@ class BluetoothManagerService {
     private int mState = BluetoothAdapter.STATE_OFF;
     private final HandlerThread mBluetoothHandlerThread =
             BluetoothServerProxy.getInstance().createHandlerThread("BluetoothManagerService");
-    @VisibleForTesting private final BluetoothHandler mHandler;
+    @VisibleForTesting final BluetoothHandler mHandler;
     private int mErrorRecoveryRetryCounter = 0;
 
     private final boolean mIsHearingAidProfileSupported;
