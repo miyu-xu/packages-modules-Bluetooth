@@ -114,6 +114,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.function.Function;
 
 public class BluetoothManagerService extends IBluetoothManager.Stub {
     private static final String TAG = "BluetoothManagerService";
@@ -299,6 +300,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
     private boolean mIsHearingAidProfileSupported;
 
     private AppOpsManager mAppOps;
+    private final Function<Intent, ComponentName> mGetComponentForIntent;
 
     // Save a ProfileServiceConnections object for each of the bound
     // bluetooth profile services
@@ -613,7 +615,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
         }
     };
 
-    BluetoothManagerService(Context context) {
+    BluetoothManagerService(Context context, Function<Intent, ComponentName> getComponentForIntent) {
         mBluetoothHandlerThread = BluetoothServerProxy.getInstance()
                 .createHandlerThread("BluetoothManagerService");
         mBluetoothHandlerThread.start();
@@ -637,6 +639,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
         mName = null;
         mErrorRecoveryRetryCounter = 0;
         mContentResolver = context.getContentResolver();
+        mGetComponentForIntent = getComponentForIntent;
 
         // Observe BLE scan only mode settings change.
         registerForBleScanModeChange();
@@ -700,7 +703,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
             }
         }, filterUser, null, null);
 
-        loadStoredNameAndAddress();
+        //loadStoredNameAndAddress();
         if (isBluetoothPersistedStateOn()) {
             if (DBG) {
                 Log.d(TAG, "Startup: Bluetooth persisted state is ON.");
@@ -732,6 +735,10 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
 
         mBluetoothSatelliteModeListener = new BluetoothSatelliteModeListener(
                 this, mBluetoothHandlerThread.getLooper(), context);
+    }
+
+    BluetoothManagerService(Context context) {
+        this(context, intent -> resolveSystemService(intent, context.getPackageManager(), 0));
     }
 
     /**
@@ -2848,7 +2855,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
     }
 
     boolean doBind(Intent intent, ServiceConnection conn, int flags, UserHandle user) {
-        ComponentName comp = resolveSystemService(intent, mContext.getPackageManager(), 0);
+        ComponentName comp = mGetComponentForIntent.apply(intent);
         intent.setComponent(comp);
         if (comp == null || !mContext.bindServiceAsUser(intent, conn, flags, user)) {
             Log.e(TAG, "Fail to bind to: " + intent);
@@ -3475,7 +3482,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
         return bOptions.toBundle();
     }
 
-    private ComponentName resolveSystemService(@NonNull Intent intent,
+    private static ComponentName resolveSystemService(@NonNull Intent intent,
             @NonNull PackageManager pm, int flags) {
         List<ResolveInfo> results = pm.queryIntentServices(intent, flags);
         if (results == null) {

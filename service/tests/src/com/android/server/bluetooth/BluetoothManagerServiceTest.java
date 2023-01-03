@@ -24,10 +24,13 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
+// import android.content.AttributionSource;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.HandlerThread;
+import android.os.Process;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
@@ -42,10 +45,16 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Set;
+
 @RunWith(AndroidJUnit4.class)
 public class BluetoothManagerServiceTest {
-    static int sTimeout = 3000;
+  // private static final AttributionSource SHELL_ATTRIBUTION_SOURCE =
+  //     new AttributionSource(Process.SHELL_UID, "com.android.shell", null, (Set<String>) null, null);
+
+    static final int sTimeout = 3000;
     BluetoothManagerService mManagerService;
+    final Context mTargetContext = InstrumentationRegistry.getTargetContext();
     Context mContext;
     @Mock
     BluetoothServerProxy mBluetoothServerProxy;
@@ -104,5 +113,16 @@ public class BluetoothManagerServiceTest {
         mManagerService.onUserRestrictionsChanged(UserHandle.SYSTEM);
         verify(mBluetoothServerProxy, timeout(sTimeout)).handlerSendWhatMessage(mHandler,
                 BluetoothManagerService.MESSAGE_DISABLE);
+    }
+
+    @Test
+    public void bindTimeout() throws Exception {
+        InstrumentationRegistry.getInstrumentation().getUiAutomation().adoptShellPermissionIdentity();
+        BluetoothManagerService service =
+            new BluetoothManagerService(mTargetContext, intent -> {
+                return new ComponentName(mTargetContext, NeverBoundService.class);
+            });
+        service.handleOnBootPhase();
+        service.enable(AttributionSource.myAttributionSource());
     }
 }
