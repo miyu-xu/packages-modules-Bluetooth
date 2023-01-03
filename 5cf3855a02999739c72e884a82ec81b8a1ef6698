@@ -46,6 +46,30 @@
       },
       "revId": "5cf3855a02999739c72e884a82ec81b8a1ef6698",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cf676a_f0e26e4f",
+        "filename": "system/gd/rust/topshim/src/profiles/mod.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1118598
+      },
+      "writtenOn": "2023-01-03T23:34:42Z",
+      "side": 1,
+      "message": "Thanks!\nUnfortunately while I was looking at implementation of the server-side, I remembered that we typically offset those values by +1 (see http://shortn/_42aU6MogbX) to make space for the case where no value at all has been set by the client.\nSo 0x7FFFFFFF +1 would also fall outside of the protobuf range. So i32::MAX - 1 would be preferred.\nSorry for the back and forth, I should have thought about that earlier.",
+      "parentUuid": "4afa6264_1907acf3",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "5cf3855a02999739c72e884a82ec81b8a1ef6698",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
