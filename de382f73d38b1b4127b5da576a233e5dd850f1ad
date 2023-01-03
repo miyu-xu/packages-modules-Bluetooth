@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb1e2a38_677cc340",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-03T13:40:49Z",
+      "side": 1,
+      "message": "Are there nothing to verify?",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 26
+      },
+      "revId": "de382f73d38b1b4127b5da576a233e5dd850f1ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
