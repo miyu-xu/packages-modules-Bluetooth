@@ -22,6 +22,30 @@
       },
       "revId": "5cf3855a02999739c72e884a82ec81b8a1ef6698",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4afa6264_1907acf3",
+        "filename": "system/gd/rust/topshim/src/profiles/mod.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-03T22:42:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dfe7044_ad13aa24",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "5cf3855a02999739c72e884a82ec81b8a1ef6698",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
