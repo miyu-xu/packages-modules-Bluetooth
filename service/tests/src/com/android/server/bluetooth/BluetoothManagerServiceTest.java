@@ -101,6 +101,14 @@ public class BluetoothManagerServiceTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
+        // Mock these functions so security errors won't throw
+        doReturn("name")
+                .when(mBluetoothServerProxy)
+                .settingsSecureGetString(any(), eq(Settings.Secure.BLUETOOTH_NAME));
+        doReturn("00:11:22:33:44:55")
+                .when(mBluetoothServerProxy)
+                .settingsSecureGetString(any(), eq(Settings.Secure.BLUETOOTH_ADDRESS));
+
         mContext =
                 spy(
                         new ContextWrapper(
@@ -115,6 +123,8 @@ public class BluetoothManagerServiceTest {
 
         doReturn(mAdapterBinder).when(mBluetoothServerProxy).createAdapterBinder(any());
         doReturn(mAdapterService).when(mAdapterBinder).getAdapterBinder();
+
+        BluetoothServerProxy.setInstanceForTesting(mBluetoothServerProxy);
 
         mLooper = new TestLooper();
 
@@ -163,15 +173,6 @@ public class BluetoothManagerServiceTest {
         doReturn(mock(Intent.class))
                 .when(mContext)
                 .registerReceiverForAllUsers(any(), any(), eq(null), eq(null));
-        BluetoothServerProxy.setInstanceForTesting(mBluetoothServerProxy);
-
-        // Mock these functions so security errors won't throw
-        doReturn("name")
-                .when(mBluetoothServerProxy)
-                .settingsSecureGetString(any(), eq(Settings.Secure.BLUETOOTH_NAME));
-        doReturn("00:11:22:33:44:55")
-                .when(mBluetoothServerProxy)
-                .settingsSecureGetString(any(), eq(Settings.Secure.BLUETOOTH_ADDRESS));
         return new BluetoothManagerService(mContext, mLooper.getLooper());
     }
 
@@ -218,6 +219,52 @@ public class BluetoothManagerServiceTest {
                         Settings.Global.getInt(
                                 mContext.getContentResolver(), "apm_enhancement_enabled", 0))
                 .isEqualTo(1);
+    }
+
+    @Test
+    public void enable_bindFailure_removesTimeout() throws Exception {
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity();
+
+        doReturn(false)
+                .when(mContext)
+                .bindServiceAsUser(
+                        any(Intent.class),
+                        any(ServiceConnection.class),
+                        anyInt(),
+                        any(UserHandle.class));
+        mManagerService.enableBle("enable_bindFailure_removesTimeout", mBinder);
+        syncHandler(MESSAGE_ENABLE);
+
+        // TODO(b/280518177): Failed to start should be noted / reported in metrics
+        // Maybe show a popup or a crash notification
+        // Should we attempt to re-bind ?
+
+        assertThat(mManagerService.mBinding).isFalse();
+    }
+
+    @Test
+    public void enable_bindTimeout() throws Exception {
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity();
+
+        returnTrueOnBindServiceAsUser();
+        mManagerService.enableBle("enable_bindTimeout", mBinder);
+        syncHandler(MESSAGE_ENABLE);
+
+        assertThat(mManagerService.mBinding).isTrue();
+
+        mLooper.moveTimeForward(1000000);
+        syncHandler(MESSAGE_TIMEOUT_BIND);
+        // Force handling the message now without waiting for the timeout to fire
+
+        assertThat(mManagerService.mBinding).isFalse();
+        // TODO(b/280518177): A lot of stuff is wrong here since when a timeout occur:
+        //   * No error is printed to the user
+        //   * Code stop trying to start the bluetooth.
+        //   * if user ask to enable again, it will start a second bind but the first still run
     }
 
     private void acceptBluetoothBinding(IBinder binder, String name, int n) {
@@ -355,4 +402,5 @@ public class BluetoothManagerServiceTest {
         verify(mStateChangeCallback).onBluetoothStateChange(eq(true));
         assertThat(mManagerService.getState()).isEqualTo(STATE_ON);
     }
+
 }
