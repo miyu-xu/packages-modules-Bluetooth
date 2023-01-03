@@ -52,6 +52,24 @@
       "parentUuid": "b3de1631_e75503af",
       "revId": "8d3aeb573bf8984944652dfce1e609698f548041",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea5d171_9085317e",
+        "filename": "system/bta/csis/csis_types.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1873440
+      },
+      "writtenOn": "2023-01-03T13:18:15Z",
+      "side": 1,
+      "message": "Thanks for your infomation, CL:2374068 is exactly what I looking for!\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2374068\nBecause when I testing, SIRK value will be updated first and active scan will not be triggered (due to desired size is not greater than current size).",
+      "parentUuid": "f8e467c6_c722289c",
+      "revId": "8d3aeb573bf8984944652dfce1e609698f548041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
