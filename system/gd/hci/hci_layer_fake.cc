@@ -175,7 +175,7 @@ void TestHciLayer::IncomingAclData(uint16_t handle) {
   auto future = promise.get_future();
   queue_end->RegisterEnqueue(
       hci_handler,
-      common::Bind(
+      ommon::Bind(c
           [](decltype(queue_end) queue_end, uint16_t handle, std::promise<void> promise) {
             auto packet = GetPacketView(NextAclPacket(handle));
             AclView acl2 = AclView::Create(packet);
