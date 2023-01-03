@@ -33,6 +33,29 @@
       "message": "All other LE Audio related things are stored in native, in bt_config.conf\n\nMaybe storing in native layer would be better ?",
       "revId": "e69025ab1fb6ce3e94079e209fa2e34071397488",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bb0d820_efc2f6a5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3236,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-03T07:47:42Z",
+      "side": 1,
+      "message": "nit. feel free to ignor.\nIt would be nice if we define METATADA_KEY_MAX \u003d METADATA_GTBS_CCCD",
+      "range": {
+        "startLine": 3236,
+        "startChar": 15,
+        "endLine": 3236,
+        "endChar": 33
+      },
+      "revId": "e69025ab1fb6ce3e94079e209fa2e34071397488",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
