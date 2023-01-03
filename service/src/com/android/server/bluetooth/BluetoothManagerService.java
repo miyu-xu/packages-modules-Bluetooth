@@ -152,7 +152,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
     private static final int DELAY_BEFORE_RESTART_DUE_TO_INIT_FLAGS_CHANGED_MS = 300;
     private static final int DELAY_FOR_RETRY_INIT_FLAG_CHECK_MS = 86400000;
 
-    private static final int MESSAGE_ENABLE = 1;
+    @VisibleForTesting static final int MESSAGE_ENABLE = 1;
     @VisibleForTesting
     static final int MESSAGE_DISABLE = 2;
     private static final int MESSAGE_HANDLE_ENABLE_DELAYED = 3;
@@ -163,7 +163,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
     private static final int MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED = 41;
     private static final int MESSAGE_RESTART_BLUETOOTH_SERVICE = 42;
     private static final int MESSAGE_BLUETOOTH_STATE_CHANGE = 60;
-    private static final int MESSAGE_TIMEOUT_BIND = 100;
+    @VisibleForTesting static final int MESSAGE_TIMEOUT_BIND = 100;
     private static final int MESSAGE_GET_NAME_AND_ADDRESS = 200;
     private static final int MESSAGE_USER_SWITCHED = 300;
     private static final int MESSAGE_USER_UNLOCKED = 301;
@@ -221,7 +221,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
     private IBluetooth mBluetooth;
 
     private IBluetoothGatt mBluetoothGatt;
-    private boolean mBinding;
+    @VisibleForTesting boolean mBinding;
     private boolean mUnbinding;
     private List<Integer> mSupportedProfileList = new ArrayList<>();
 
@@ -237,7 +237,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
 
     // used inside handler thread
     private boolean mQuietEnable = false;
-    private boolean mEnable;
+    @VisibleForTesting boolean mEnable;
     private boolean mShutdownInProgress = false;
 
     private static String timeToLog(long timestamp) {
@@ -290,7 +290,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
 
     private int mState;
     private final HandlerThread mBluetoothHandlerThread;
-    private final BluetoothHandler mHandler;
+    @VisibleForTesting final BluetoothHandler mHandler;
     private int mErrorRecoveryRetryCounter;
     private final int mSystemUiUid;
 
