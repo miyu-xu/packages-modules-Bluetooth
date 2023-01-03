@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4d75f83_7eaa4b2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-03T09:15:58Z",
+      "side": 1,
+      "message": "Also, please fix the build error.",
+      "revId": "690ce30d7ad7e49911ecc826dbadd175d2d66e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "993b3af4_f7964188",
