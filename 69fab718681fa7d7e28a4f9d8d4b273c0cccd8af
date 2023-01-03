@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2109c97b_630c1f08",
+        "filename": "system/btif/include/btif_sock.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-03T07:31:34Z",
+      "side": 1,
+      "message": "The names are from the Bluetooth metrics proto, was trying to make them aligned in case any confusion.\nhttps://cs.android.com/android/platform/superproject/+/master:frameworks/proto_logging/stats/enums/bluetooth/enums.proto;l\u003d139?q\u003dSocketRoleEnum",
+      "parentUuid": "db79abba_74cf9075",
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5cc7714b_585bc89d",
         "filename": "system/btif/include/btif_sock.h",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-03T07:01:31Z",
       "side": 1,
       "message": "Maybe rename this to: SOCKET_ROLE_CLIENT ??",
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4495d0db_e9163c24",
+        "filename": "system/btif/include/btif_sock.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-03T07:31:34Z",
+      "side": 1,
+      "message": "same here",
+      "parentUuid": "5cc7714b_585bc89d",
       "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
