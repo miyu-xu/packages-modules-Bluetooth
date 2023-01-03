@@ -210,7 +210,7 @@ class BluetoothManagerService {
     private AdapterBinder mAdapter = null;
 
     private IBluetoothGatt mBluetoothGatt = null;
-    private boolean mBinding = false;
+    @VisibleForTesting boolean mBinding = false;
     private boolean mUnbinding = false;
     private List<Integer> mSupportedProfileList = new ArrayList<>();
 
@@ -224,7 +224,7 @@ class BluetoothManagerService {
 
     // used inside handler thread
     private boolean mQuietEnable = false;
-    private boolean mEnable = false;
+    @VisibleForTesting boolean mEnable = false;
     private boolean mShutdownInProgress = false;
 
     private static String timeToLog(long timestamp) {
