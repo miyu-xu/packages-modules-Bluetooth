@@ -22,6 +22,30 @@
       },
       "revId": "fba7f74ec49bca7726375799d5dbc38b6f42f3b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7182675_c10ebee8",
+        "filename": "system/stack/test/gatt_connection_manager_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-03T18:26:04Z",
+      "side": 1,
+      "message": "never mind...this is a compilation unit...it should have a Copyright header though.",
+      "parentUuid": "b50cc231_5b74a7b2",
+      "range": {
+        "startLine": 81,
+        "startChar": 5,
+        "endLine": 81,
+        "endChar": 19
+      },
+      "revId": "fba7f74ec49bca7726375799d5dbc38b6f42f3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
