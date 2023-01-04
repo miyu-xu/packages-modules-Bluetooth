@@ -212,6 +212,30 @@
       },
       "revId": "a66d335ebe5476f24ef8375d2758641d0f5fb026",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5254ab6_0956cb13",
+        "filename": "system/btif/src/btif_hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-04T18:13:22Z",
+      "side": 1,
+      "message": "Got that, thanks!",
+      "parentUuid": "b9f7e33c_d278d890",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 68
+      },
+      "revId": "a66d335ebe5476f24ef8375d2758641d0f5fb026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
