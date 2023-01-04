@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4128329_c4baddf0",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-04T22:57:07Z",
+      "side": 1,
+      "message": "Is this method supposed to be async ? don\u0027t you want to wait on recv ?\n```\nrecv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);\nreturn cancellationSignal;\n```",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 38
+      },
+      "revId": "10fea255b7a2f682b128c1060702e2ecb59bc604",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
