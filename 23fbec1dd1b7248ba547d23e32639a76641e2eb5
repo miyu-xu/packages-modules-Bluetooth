@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b904b463_5326d3ea",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-01-04T21:13:04Z",
+      "side": 1,
+      "message": "the screen",
+      "revId": "23fbec1dd1b7248ba547d23e32639a76641e2eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6f1f58c_3bb42663",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-01-04T21:13:04Z",
+      "side": 1,
+      "message": "the screen",
+      "range": {
+        "startLine": 101,
+        "startChar": 57,
+        "endLine": 101,
+        "endChar": 63
+      },
+      "revId": "23fbec1dd1b7248ba547d23e32639a76641e2eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c79364_ccbc84d7",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-01-04T21:13:04Z",
+      "side": 1,
+      "message": "or after the screen is turned on.",
+      "range": {
+        "startLine": 102,
+        "startChar": 88,
+        "endLine": 103,
+        "endChar": 27
+      },
+      "revId": "23fbec1dd1b7248ba547d23e32639a76641e2eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
