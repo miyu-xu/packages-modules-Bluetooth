@@ -16,6 +16,24 @@
       "message": "nit: this seems to be not related. Looks good, byt it could be done as separate patch.",
       "revId": "a0b849230c4cbbb510410cbf3b501a2b8ad25e5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "054bc132_32cf30c4",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2408,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-04T15:56:40Z",
+      "side": 0,
+      "message": "Would preferf to keep this all in single patch for easier merging",
+      "parentUuid": "c7a679d5_7f7f117e",
+      "revId": "a0b849230c4cbbb510410cbf3b501a2b8ad25e5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
