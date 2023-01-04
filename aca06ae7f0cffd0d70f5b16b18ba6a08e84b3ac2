@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83641608_19931945",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-04T22:27:33Z",
+      "side": 1,
+      "message": "I find it easer to think about ENABLE than !DISABLE\n\n#ifdef ENABLE_UHID_SET_REPORT  ?",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 28
+      },
+      "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23aa924e_795ce111",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-04T22:27:33Z",
+      "side": 1,
+      "message": "Even for host builds, someone may want to enable this...  Or are we saying that no kernel outside ChromeOS and Android supports this?\n\n#ifndef ENABLE_UHID_SET_REPORT\n#if defined(OS_ANDROID) || defined(TARGET_FLOSS)\n#define ENABLE_UHID_SET_REPORT\n#endif\n#endif",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 6
+      },
+      "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ac8a5bf_a4b5d801",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1898,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-04T22:27:33Z",
+      "side": 1,
+      "message": "Unrelated white-space change.",
+      "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
