@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c484afa7_c5bd0221",
+        "filename": "framework/java/android/bluetooth/BluetoothCsipSetCoordinator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-04T18:24:39Z",
+      "side": 1,
+      "message": "Yes but I was asking in case you understand why it\u0027s happening.\nI don\u0027t understand why one is hide but in the current.txt while the other one is hide but not in the current.txt.\n\nBut I found why. BluetoothCsipSetCoordinator is extending Autoclosable, A2dp is not. I guess a clean across all profiles will be needed",
+      "parentUuid": "c1c0d82c_abda2691",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d481fdaa_17948aa0",

@@ -33,6 +33,24 @@
       "message": "Any advice on which test suite to run for this?",
       "revId": "5861ae094b476ec4002522f71479d1d1ec9b8169",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e42095_72739466",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-04T18:24:39Z",
+      "side": 1,
+      "message": "The Cts bluetooth test as you are modifying framework code ? `CtsBluetoothTestCases`\nSpoiler: they are flaky.\n\nYou can also run `FrameworkBluetoothTests` but I do not expect them to cover a lot of this change.",
+      "parentUuid": "bfbc7fbd_5c915af5",
+      "revId": "5861ae094b476ec4002522f71479d1d1ec9b8169",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
