@@ -22,6 +22,30 @@
       },
       "revId": "c490a89195fea2be8af0ce4cba6480b34be87e78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "426b98ff_f25a5a59",
+        "filename": "system/stack/include/avrc_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-01-04T23:02:30Z",
+      "side": 1,
+      "message": "This naming is following: `bluetooth.profile.avrcp.controller.enabled`\n\nThe above `\"persist.bluetooth.avrcpversion\"` was meant for applying user setting?\n\nWTYT?",
+      "parentUuid": "b86f96ba_2295dc45",
+      "range": {
+        "startLine": 124,
+        "startChar": 3,
+        "endLine": 124,
+        "endChar": 12
+      },
+      "revId": "c490a89195fea2be8af0ce4cba6480b34be87e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
