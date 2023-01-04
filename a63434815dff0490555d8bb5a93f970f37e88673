@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2607b74_cd46d380",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b786f36e_dad0f41e",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deb94be3_1cb1b811",
@@ -131,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffa64497_e9e07072",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "sure, I will create new class DistanceMeasurementMethod in following patchset",
+      "parentUuid": "078e4358_de0df237",
+      "range": {
+        "startLine": 50,
+        "startChar": 19,
+        "endLine": 50,
+        "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5bf020cd_ad54eb14",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
         "patchSetId": 7
@@ -142,6 +190,30 @@
       "writtenOn": "2022-12-29T22:16:22Z",
       "side": 1,
       "message": "Error prone complain about the HashTable (JdkObsolete)\ncan we use another type?",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 25
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee13da99_45207b3e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "5bf020cd_ad54eb14",
       "range": {
         "startLine": 54,
         "startChar": 16,
@@ -175,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "848bcb75_6d48026e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ad35ac8_d71b3b81",
+      "range": {
+        "startLine": 61,
+        "startChar": 17,
+        "endLine": 61,
+        "endChar": 66
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "172a01b5_cddcd031",
@@ -188,6 +284,30 @@
       "writtenOn": "2022-12-29T07:32:41Z",
       "side": 1,
       "message": "Should probably mention the life cycle expectation of this callback object. \n\nWould the callback object be abandoned by the SDK library once the measurement is stopped?",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 83,
+        "endChar": 22
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17d0c47a_e093be51",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "172a01b5_cddcd031",
       "range": {
         "startLine": 83,
         "startChar": 14,
@@ -221,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0db95573_c655cea5",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8c36306_d9722c1c",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 11
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fe63a47_035fa3f7",
@@ -234,6 +378,30 @@
       "writtenOn": "2022-12-29T07:32:41Z",
       "side": 1,
       "message": "Do we want to allow setting a Parcelable for other non-standard parameters? \n\ne.g. \n\nsetOtherOptions(Parcelable options);",
+      "range": {
+        "startLine": 218,
+        "startChar": 30,
+        "endLine": 218,
+        "endChar": 37
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e2e3fa2_b5b961b0",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "We don\u0027t have use case about it, we can add it in the future if necessary.\nThanks!",
+      "parentUuid": "7fe63a47_035fa3f7",
       "range": {
         "startLine": 218,
         "startChar": 30,
@@ -267,6 +435,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8915594e_569fe8b4",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Updated doc of getAzimuthAngle and getAltitudeAngle",
+      "parentUuid": "c4a219f5_9d78fccc",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3bd1e8d_251cdbb8",
@@ -280,6 +472,30 @@
       "writtenOn": "2022-12-29T22:16:22Z",
       "side": 1,
       "message": "You can directly write it:\n```\nreturn new Builder().setMeters(in.readDouble())\n                    .setErrorMeters(in.readDouble())\n                    .setAzimuthAngle(in.readDouble())\n                    .setErrorAzimuthAngle(in.readDouble())\n                    .setAltitudeAngle(in.readDouble())\n                    .setErrorAltitudeAngle(in.readDouble())\n                    .build();\n```",
+      "range": {
+        "startLine": 176,
+        "startChar": 20,
+        "endLine": 183,
+        "endChar": 43
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "821704b3_9ee06f9b",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3bd1e8d_251cdbb8",
       "range": {
         "startLine": 176,
         "startChar": 20,
@@ -313,6 +529,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02680313_8247e4dd",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "517d8f4c_9aee4999",
+      "range": {
+        "startLine": 217,
+        "startChar": 30,
+        "endLine": 217,
+        "endChar": 39
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cceb99d_bc630a6b",
@@ -326,6 +566,30 @@
       "writtenOn": "2022-12-29T22:16:22Z",
       "side": 1,
       "message": "add `@FloatRange` (same on other method)",
+      "range": {
+        "startLine": 253,
+        "startChar": 39,
+        "endLine": 253,
+        "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b9f046a_6f0dd9a6",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cceb99d_bc630a6b",
       "range": {
         "startLine": 253,
         "startChar": 39,
@@ -359,6 +623,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebb1fe74_970ac1d6",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "No, just start and stop. Like BLE scan.",
+      "parentUuid": "c563d087_0073604e",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db0b1f10_71b4f910",
@@ -372,6 +660,30 @@
       "writtenOn": "2022-12-29T22:16:22Z",
       "side": 1,
       "message": "can you add requireNonNull on gatt, params, executor and callback?\nI know it\u0027s already done on the other file before calling this constructor, but  the next reader will not have to search for it.",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 20
+      },
+      "revId": "a63434815dff0490555d8bb5a93f970f37e88673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d400f3d_ae199cf3",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-04T12:48:26Z",
+      "side": 1,
+      "message": "Sure, thanks",
+      "parentUuid": "db0b1f10_71b4f910",
       "range": {
         "startLine": 69,
         "startChar": 16,
