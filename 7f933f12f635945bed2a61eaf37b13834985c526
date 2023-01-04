@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2527209b_44b12c5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "How to do run that?\nIs there any command for same.",
+      "parentUuid": "431fb9ec_1cc4b93d",
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5087f6b8_99f677c1",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 11
@@ -48,6 +66,54 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "I saw hfp version being managed with [aosp/2363584](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2363584). Is this the one you are thinking about in this TODO ?\n\nor is there other changes incoming ?",
+      "range": {
+        "startLine": 1101,
+        "startChar": 29,
+        "endLine": 1101,
+        "endChar": 37
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed3f76b3_b7b9e34f",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "no, it\u0027s just matter of scalability in implementation to add other audio profiles in future",
+      "parentUuid": "5087f6b8_99f677c1",
+      "range": {
+        "startLine": 1101,
+        "startChar": 29,
+        "endLine": 1101,
+        "endChar": 37
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f04056c_cce22bc5",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "No, it\u0027s just like if we want to enhance further similar logic for profiles as well.",
+      "parentUuid": "5087f6b8_99f677c1",
       "range": {
         "startLine": 1101,
         "startChar": 29,
@@ -83,6 +149,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01dd3717_4270dd4a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "On purpose, for other profiles it could be like if we want to scale as above\n\n   const UINT16 servclass_uuids[] \u003d {\n     UUID_SERVCLASS_AUDIO_SINK,\n     UUID_SERVCLASS_AV_REMOTE_CONTROL,\n     UUID_SERVCLASS_AV_REM_CTRL_TARGET,\n   };\n\n   const UINT16 btprofile_uuids[] \u003d {\n     UUID_SERVCLASS_ADV_AUDIO_DISTRIBUTION,\n     UUID_SERVCLASS_AV_REMOTE_CONTROL,\n     UUID_SERVCLASS_AV_REMOTE_CONTROL,\n   };",
+      "parentUuid": "7ed12a0a_86efda80",
+      "range": {
+        "startLine": 1105,
+        "startChar": 4,
+        "endLine": 1105,
+        "endChar": 36
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78e6032c_f1b902f5",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 11
@@ -94,6 +184,30 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "You could make it easier by using a std::array and then just iterate with\n```\nfor(const auto\u0026 servclass_uuid: servclass_uuids) { ... }\n```",
+      "range": {
+        "startLine": 1113,
+        "startChar": 0,
+        "endLine": 1115,
+        "endChar": 37
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "272b08ae_17859579",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78e6032c_f1b902f5",
       "range": {
         "startLine": 1113,
         "startChar": 0,
@@ -117,6 +231,30 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "`i` is defined as a number to iterate over servclass_uuids, but you are using it to access btprofile_uuids and profile_keys later\nThey are the same size in this CL so it will work for now, but it\u0027s error prone for the future.\n\nWe should either group both array in one or do something completely different cf my other comment",
+      "range": {
+        "startLine": 1125,
+        "startChar": 57,
+        "endLine": 1125,
+        "endChar": 58
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3038ad3_dc4fdb57",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfefa1c3_2cc336e6",
       "range": {
         "startLine": 1125,
         "startChar": 57,
@@ -175,6 +313,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0074cb1b_3549fd5e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Are we already using it other places apart from logging ?",
+      "parentUuid": "767aeed5_8b0d6b8d",
+      "range": {
+        "startLine": 1127,
+        "startChar": 30,
+        "endLine": 1127,
+        "endChar": 73
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d065d193_c176ec99",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 11
@@ -186,6 +348,30 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "I would like to suggest a more scalable approach as it looks like you plan to extend to other profiles.\n\nWe can put everything that is in this if in a separate method, and use a function pointer.\n\nIt would be something like this:\n\n```\nstatic void store_avrcp_version(tSDP_DISC_REC* sdp_rec) {\n  tSDP_DISC_ATTR* p_attr \u003d\n      SDP_FindAttributeInRec(sdp_rec, ATTR_ID_SUPPORTED_FEATURES);\n  if (p_attr \u003d\u003d NULL) {\n    return;\n  }\n  \n  uint16_t avrcp_features \u003d p_attr-\u003eattr_value.v.u16;\n  if (avrcp_features \u003d\u003d 0) {\n    return;\n  }\n  \n  if (btif_config_set_bin(sdp_rec-\u003eremote_bd_addr.ToString().c_str(),\n                          AV_REM_CTRL_FEATURES_CONFIG_KEY,\n                          (const uint8_t*)\u0026avrcp_features,\n                          sizeof(avrcp_features))) {\n    LOG_INFO(\"Saving avrcp_features: 0x%x\", avrcp_features);\n    btif_config_save();\n  } else {\n    LOG_INFO(\"Failed to store avrcp_features 0x%x for %s\", avrcp_features\n             ADDRESS_TO_LOGGABLE_CSTR(sdp_rec-\u003eremote_bd_addr));\n  }\n}\n\nstatic void bta_dm_store_audio_profiles_version() {\n  struct AudioProfile {\n    const uint16_t servclass_uuid;\n    const uint16_t btprofile_uuid;\n    const char* profile_key;\n    void (*store_audio_version)(tSDP_DISC_REC*);\n  };\n\n  std::array\u003cAudioProfile, 1\u003e audio_profiles \u003d {{\n      {\n          .servclass_uuid \u003d UUID_SERVCLASS_AV_REMOTE_CONTROL,\n          .btprofile_uuid \u003d UUID_SERVCLASS_AV_REMOTE_CONTROL,\n          .profile_key \u003d AVRCP_CONTROLLER_VERSION_CONFIG_KEY,\n          .store_audio_version \u003d store_avrcp_version,\n      },\n      // {\n      //     .servclass_uuid \u003d A2DPxx\n      //     .btprofile_uuid \u003d A2DPxx,\n      //     .profile_key \u003d A2DPxx,\n      //     .store_audio_version \u003d store_a2dp_version,\n      // },\n  }};\n\n  for (const auto\u0026 audio_profile : audio_profiles) {\n    tSDP_DISC_REC* sdp_rec \u003d SDP_FindServiceInDb(\n        bta_dm_search_cb.p_sdp_db, audio_profile.servclass_uuid, NULL);\n    if (sdp_rec \u003d\u003d NULL) continue;\n\n    if (SDP_FindAttributeInRec(sdp_rec, ATTR_ID_BT_PROFILE_DESC_LIST) \u003d\u003d NULL)\n      continue;\n\n    uint16_t profile_version \u003d 0;\n    /* get profile version (if failure, version parameter is not updated) */\n    SDP_FindProfileVersionInRec(sdp_rec, audio_profile.btprofile_uuid,\n                                \u0026profile_version);\n    if (profile_version !\u003d 0) {\n      if (btif_config_set_bin(sdp_rec-\u003eremote_bd_addr.ToString().c_str(),\n                              audio_profile.profile_key,\n                              (const uint8_t*)\u0026profile_version,\n                              sizeof(profile_version))) {\n        btif_config_save();\n      } else {\n        LOG_INFO(\"Failed to store peer profile version for %s\",\n                 ADDRESS_TO_LOGGABLE_CSTR(sdp_rec-\u003eremote_bd_addr));\n      }\n    }\n\n    audio_profile.store_audio_version(sdp_rec);\n  }\n}\n```",
+      "range": {
+        "startLine": 1138,
+        "startChar": 0,
+        "endLine": 1138,
+        "endChar": 65
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129359e5_2a64206e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Looks Good, made changes for same pending for testing now though\nhowever, for\n.store_audio_version \u003d store_a2dp_version, -\u003e it\u0027s for profile feature not version as version we already storing in main function.\n\nSome profiles don\u0027t have feature like A2DP then it might be dummy empty OR null impl if it will be there.",
+      "parentUuid": "d065d193_c176ec99",
       "range": {
         "startLine": 1138,
         "startChar": 0,
@@ -219,6 +405,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27fb54f2_b054b255",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "caa68a21_ff2d7b63",
+      "range": {
+        "startLine": 1143,
+        "startChar": 0,
+        "endLine": 1143,
+        "endChar": 59
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8319bc2_2162efac",
@@ -232,6 +442,30 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "`__func__` is already part of LOG_INFO macro (same a few lines before)",
+      "range": {
+        "startLine": 1151,
+        "startChar": 27,
+        "endLine": 1151,
+        "endChar": 35
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d084f2e_b8b2c9b4",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8319bc2_2162efac",
       "range": {
         "startLine": 1151,
         "startChar": 27,
@@ -265,6 +499,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4c3b04_1e3e002e",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1503,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ec72dc5_be23913d",
+      "range": {
+        "startLine": 1495,
+        "startChar": 0,
+        "endLine": 1503,
+        "endChar": 67
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96dc98df_201af5aa",
@@ -278,6 +536,30 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "`0x%x` or `%#x` to make it obvious we are logging in exa",
+      "range": {
+        "startLine": 1557,
+        "startChar": 34,
+        "endLine": 1557,
+        "endChar": 35
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "588c5fae_fefd9f99",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96dc98df_201af5aa",
       "range": {
         "startLine": 1557,
         "startChar": 34,
@@ -311,6 +593,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c429f30_5e518d35",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "952d6a1d_bf0175e7",
+      "range": {
+        "startLine": 1562,
+        "startChar": 2,
+        "endLine": 1562,
+        "endChar": 10
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e21633b_65bbd3f5",
@@ -324,6 +630,30 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "Is it 100% sure that `AVRCP_SUPPORTED_FEATURES_POSITION` (and the other before) is smaller than `value_ptr` size  ?",
+      "range": {
+        "startLine": 1582,
+        "startChar": 22,
+        "endLine": 1582,
+        "endChar": 55
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "888f9696_d1ae3898",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-04T17:06:34Z",
+      "side": 1,
+      "message": "I think so considering feature is there in 2 bytes as below where cover art is in next byte\n\n\t\t\tAttribute: Supported Features\n\t\t\t\tCategory 1: Not Supported\n\t\t\t\tCategory 2: Supported\n\t\t\t\tCategory 3: Not Supported\n\t\t\t\tCategory 4: Not Supported\n\t\t\t\tPlayer Application Settings.: Not Supported\n\t\t\t\tGroup Navigation: Not Supported\n\t\t\t\tSupports browsing: Not Supported\n\t\t\t\tSupports Multi Media Applications: Not Supported\n\t\t\t\tSupports Cover Art: Not Supported\n\t\t\t\tRFA: Not Supported",
+      "parentUuid": "9e21633b_65bbd3f5",
       "range": {
         "startLine": 1582,
         "startChar": 22,
