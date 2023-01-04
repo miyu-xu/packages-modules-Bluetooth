@@ -31,7 +31,6 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
-std::map<std::string, int> mock_function_count_map;
 void btif_storage_add_volume_control(const RawAddress& addr, bool auto_conn) {}
 
 namespace bluetooth {
