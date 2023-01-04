@@ -225,6 +225,7 @@ init_flags!(
         logging_debug_enabled_for_all,
         pass_phy_update_callback = true,
         periodic_advertising_adi = true,
+        private_gatt,
         queue_l2cap_coc_while_encrypting = true,
         redact_log = true,
         sdp_serialization = true,
