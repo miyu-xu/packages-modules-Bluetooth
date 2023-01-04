@@ -203,6 +203,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66d136e4_325f7c31",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-04T17:59:09Z",
+      "side": 1,
+      "message": "Can you add the `\u0026` to pass it has a reference and not make extra copy ?\nI know it\u0027s not a huge structure but we try to do it whenever we can",
+      "parentUuid": "5dca48de_c24ec18e",
+      "range": {
+        "startLine": 151,
+        "startChar": 54,
+        "endLine": 151,
+        "endChar": 64
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "787a0cfa_ab2e3a69",
         "filename": "system/btif/src/btif_sock.cc",
         "patchSetId": 1
