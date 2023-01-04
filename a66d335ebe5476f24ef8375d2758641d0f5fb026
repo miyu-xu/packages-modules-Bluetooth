@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1f73d46_96244953",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1954,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-01-04T00:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2efece58_0a3e4f13",
+      "range": {
+        "startLine": 1951,
+        "startChar": 0,
+        "endLine": 1954,
+        "endChar": 0
+      },
+      "revId": "a66d335ebe5476f24ef8375d2758641d0f5fb026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ae653f9_3cbc971c",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Yep we don\u0027t use Get() anymore so removing it makes sense.",
       "parentUuid": "a03a6bee_1392b036",
+      "range": {
+        "startLine": 1963,
+        "startChar": 0,
+        "endLine": 1963,
+        "endChar": 18
+      },
+      "revId": "a66d335ebe5476f24ef8375d2758641d0f5fb026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc7b6cc3_1be1d0af",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1963,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-01-04T00:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84c0dba4_020f4693",
       "range": {
         "startLine": 1963,
         "startChar": 0,
