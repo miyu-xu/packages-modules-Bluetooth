@@ -339,11 +339,16 @@ class CsisClientImpl : public CsisClient {
       }
 
       /* In case of GATT ERROR */
-      LOG(ERROR) << __func__ << " Incorrect write status "
-                 << loghex((int)(status));
+      LOG_ERROR("Incorrect write status=0x%02x", (int)(status));
 
       /* Unlock previous devices */
       HandleCsisLockProcedureError(csis_group, device);
+
+      if (status == GATT_DATABASE_OUT_OF_SYNC) {
+        LOG_INFO("Database out of sync for %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+        ClearDeviceInformationAndStartSearch(device);
+      }
       return;
     }
 
@@ -840,6 +845,12 @@ class CsisClientImpl : public CsisClient {
       BtaGattQueue::Clean(conn_id);
       return;
     }
+
+    if (status == GATT_DATABASE_OUT_OF_SYNC) {
+      LOG_INFO("Database out of sync for %s",
+               ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+      ClearDeviceInformationAndStartSearch(device);
+    }
   }
 
   void OnCsisNotification(uint16_t conn_id, uint16_t handle, uint16_t len,
@@ -956,13 +967,18 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    DLOG(INFO) << __func__ << " " << device->addr
-               << " status: " << loghex(+status);
+    LOG_DEBUG("%s, status: 0x%02x", ADDRESS_TO_LOGGABLE_CSTR(device->addr),
+              status);
 
     if (status != GATT_SUCCESS) {
-      LOG(ERROR) << __func__ << " Could not read characteristic at handle="
-                 << loghex(handle);
-      BTA_GATTC_Close(device->conn_id);
+      if (status == GATT_DATABASE_OUT_OF_SYNC) {
+        LOG_INFO("Database out of sync for %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+        ClearDeviceInformationAndStartSearch(device);
+      } else {
+        LOG_ERROR("Could not read characteristic at handle=0x%04x", handle);
+        BTA_GATTC_Close(device->conn_id);
+      }
       return;
     }
 
@@ -1000,13 +1016,18 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    LOG(INFO) << __func__ << " " << device->addr
-              << " status: " << loghex(+status);
+    LOG_INFO("%s, status 0x%02x", ADDRESS_TO_LOGGABLE_CSTR(device->addr),
+             status);
 
     if (status != GATT_SUCCESS) {
-      LOG(ERROR) << __func__ << " Could not read characteristic at handle="
-                 << loghex(handle);
-      BTA_GATTC_Close(device->conn_id);
+      if (status == GATT_DATABASE_OUT_OF_SYNC) {
+        LOG_INFO("Database out of sync for %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+        ClearDeviceInformationAndStartSearch(device);
+      } else {
+        LOG_ERROR("Could not read characteristic at handle=0x%04x", handle);
+        BTA_GATTC_Close(device->conn_id);
+      }
       return;
     }
 
@@ -1035,13 +1056,18 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    DLOG(INFO) << __func__ << " " << device->addr
-               << " status: " << loghex(+status) << " rank:" << int(value[0]);
+    LOG_DEBUG("%s, status: 0x%02x, rank: %d",
+              ADDRESS_TO_LOGGABLE_CSTR(device->addr), status, value[0]);
 
     if (status != GATT_SUCCESS) {
-      LOG(ERROR) << __func__ << " Could not read characteristic at handle="
-                 << loghex(handle);
-      BTA_GATTC_Close(device->conn_id);
+      if (status == GATT_DATABASE_OUT_OF_SYNC) {
+        LOG_INFO("Database out of sync for %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+        ClearDeviceInformationAndStartSearch(device);
+      } else {
+        LOG_ERROR("Could not read characteristic at handle=0x%04x", handle);
+        BTA_GATTC_Close(device->conn_id);
+      }
       return;
     }
 
@@ -1241,7 +1267,7 @@ class CsisClientImpl : public CsisClient {
       }
 
       LOG_INFO("Device %s from inquiry cache match to group id %d",
-               address.ToString().c_str(), csis_group->GetGroupId());
+               ADDRESS_TO_LOGGABLE_CSTR(address), csis_group->GetGroupId());
       callbacks_->OnSetMemberAvailable(address, csis_group->GetGroupId());
       break;
     }
@@ -1336,17 +1362,22 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    DLOG(INFO) << __func__ << " " << device->addr
-               << " status: " << loghex(+status);
+    LOG_DEBUG("%s, status: 0x%02x", ADDRESS_TO_LOGGABLE_CSTR(device->addr),
+              status);
 
     if (status != GATT_SUCCESS) {
       /* TODO handle error codes:
        * kCsisErrorCodeLockAccessSirkRejected
        * kCsisErrorCodeLockOobSirkOnly
        */
-      LOG(ERROR) << __func__ << " Could not read characteristic at handle="
-                 << loghex(handle);
-      BTA_GATTC_Close(device->conn_id);
+      if (status == GATT_DATABASE_OUT_OF_SYNC) {
+        LOG_INFO("Database out of sync for %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+        ClearDeviceInformationAndStartSearch(device);
+      } else {
+        LOG_ERROR("Could not read characteristic at handle=0x%04x", handle);
+        BTA_GATTC_Close(device->conn_id);
+      }
       return;
     }
 
@@ -1441,9 +1472,7 @@ class CsisClientImpl : public CsisClient {
       CsisActiveDiscovery(csis_group);
   }
 
-  void DoDisconnectCleanUp(std::shared_ptr<CsisDevice> device) {
-    DLOG(INFO) << __func__ << ": device=" << device->addr;
-
+  void DeregisterNotifications(std::shared_ptr<CsisDevice> device) {
     device->ForEachCsisInstance(
         [&](const std::shared_ptr<CsisInstance>& csis_inst) {
           DisableGattNotification(device->conn_id, device->addr,
@@ -1453,6 +1482,12 @@ class CsisClientImpl : public CsisClient {
           DisableGattNotification(device->conn_id, device->addr,
                                   csis_inst->svc_data.size_handle.val_hdl);
         });
+  }
+
+  void DoDisconnectCleanUp(std::shared_ptr<CsisDevice> device) {
+    DLOG(INFO) << __func__ << ": device=" << device->addr;
+
+    DeregisterNotifications(device);
 
     if (device->IsConnected()) {
       BtaGattQueue::Clean(device->conn_id);
@@ -1848,6 +1883,22 @@ class CsisClientImpl : public CsisClient {
     }
   }
 
+  void ClearDeviceInformationAndStartSearch(
+      std::shared_ptr<CsisDevice> device) {
+    LOG_INFO("%s ", ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+    if (device->is_gatt_service_valid == false) {
+      LOG_DEBUG("Device database already invalidated.");
+      return;
+    }
+
+    /* Invalidate service discovery results */
+    BtaGattQueue::Clean(device->conn_id);
+    device->first_connection = true;
+    DeregisterNotifications(device);
+    device->ClearSvcData();
+    BTA_GATTC_ServiceSearchRequest(device->conn_id, &kCsisServiceUuid);
+  }
+
   void OnGattServiceChangeEvent(const RawAddress& address) {
     auto device = FindDeviceByAddress(address);
     if (!device) {
@@ -1856,11 +1907,7 @@ class CsisClientImpl : public CsisClient {
     }
 
     DLOG(INFO) << __func__ << ": address=" << address;
-
-    /* Invalidate service discovery results */
-    BtaGattQueue::Clean(device->conn_id);
-    device->first_connection = true;
-    device->ClearSvcData();
+    ClearDeviceInformationAndStartSearch(device);
   }
 
   void OnGattServiceDiscoveryDoneEvent(const RawAddress& address) {
