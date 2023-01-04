@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b606cb5_28874e85",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-04T08:21:12Z",
+      "side": 1,
+      "message": "Was trying to make the log enabled by default instead of asking the users to manually enable it. isLoggable() requires setting up a property to enable the log.",
+      "parentUuid": "e24bf4f2_12e22b2a",
+      "range": {
+        "startLine": 88,
+        "startChar": 39,
+        "endLine": 88,
+        "endChar": 43
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db79abba_74cf9075",
@@ -153,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dca48de_c24ec18e",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-04T08:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0df4e736_b5e88e5f",
+      "range": {
+        "startLine": 151,
+        "startChar": 54,
+        "endLine": 151,
+        "endChar": 64
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "787a0cfa_ab2e3a69",
@@ -166,6 +214,30 @@
       "writtenOn": "2023-01-03T23:07:54Z",
       "side": 1,
       "message": "Use [ADDRESS_TO_LOGGABLE_CSTR](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/os/logging/log_adapter.h;l\u003d39;drc\u003d896fe4e75dce21e8b91d6ba956a0d07121b2df50) instead",
+      "range": {
+        "startLine": 152,
+        "startChar": 44,
+        "endLine": 152,
+        "endChar": 67
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0078d68c_ac7db4e4",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-04T08:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "787a0cfa_ab2e3a69",
       "range": {
         "startLine": 152,
         "startChar": 44,
@@ -199,6 +271,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f854b50f_d98989cf",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-04T08:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47842041_bc36fb5f",
+      "range": {
+        "startLine": 221,
+        "startChar": 13,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdf80779_50f0c118",
@@ -222,6 +318,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1c4ca57_eb11868a",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-04T08:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdf80779_50f0c118",
+      "range": {
+        "startLine": 308,
+        "startChar": 54,
+        "endLine": 308,
+        "endChar": 72
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04f9e781_2ec5501a",
@@ -235,6 +355,30 @@
       "writtenOn": "2023-01-03T23:07:54Z",
       "side": 1,
       "message": "`*bd_addr`",
+      "range": {
+        "startLine": 354,
+        "startChar": 56,
+        "endLine": 354,
+        "endChar": 73
+      },
+      "revId": "69fab718681fa7d7e28a4f9d8d4b273c0cccd8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae690a6a_58dd1a74",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-01-04T08:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04f9e781_2ec5501a",
       "range": {
         "startLine": 354,
         "startChar": 56,
