@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca45f53b_17a5f1ea",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-04T13:20:40Z",
+      "side": 1,
+      "message": "True if Le Audio capable device, false otherwise",
+      "range": {
+        "startLine": 1402,
+        "startChar": 20,
+        "endLine": 1402,
+        "endChar": 24
+      },
+      "revId": "166bb65e1dacc9e160e64c96d56595c931aa48a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

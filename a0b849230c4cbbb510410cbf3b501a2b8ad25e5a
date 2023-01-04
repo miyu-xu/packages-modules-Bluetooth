@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a679d5_7f7f117e",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2408,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-04T13:20:40Z",
+      "side": 0,
+      "message": "nit: this seems to be not related. Looks good, byt it could be done as separate patch.",
+      "revId": "a0b849230c4cbbb510410cbf3b501a2b8ad25e5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
