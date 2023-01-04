@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d2251c_5f44aea4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-04T19:57:43Z",
+      "side": 1,
+      "message": "Thanks. That\u0027s a good catch. Done.",
+      "parentUuid": "4a1f3b6a_3fc0ec76",
+      "range": {
+        "startLine": 1123,
+        "startChar": 24,
+        "endLine": 1123,
+        "endChar": 45
+      },
+      "revId": "fde72dfbe35d885efea5e0d98177a2f9c4d30ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a025ac5e_85c903f6",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-04T03:05:33Z",
       "side": 1,
       "message": "update this?",
+      "range": {
+        "startLine": 1130,
+        "startChar": 23,
+        "endLine": 1130,
+        "endChar": 59
+      },
+      "revId": "fde72dfbe35d885efea5e0d98177a2f9c4d30ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0016bfff_e4b4ffca",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-04T19:57:43Z",
+      "side": 1,
+      "message": "Thanks. Done.",
+      "parentUuid": "a025ac5e_85c903f6",
       "range": {
         "startLine": 1130,
         "startChar": 23,
