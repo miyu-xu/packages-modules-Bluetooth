@@ -133,6 +133,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acedd93e_760969e6",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-04T18:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "821a5b49_611d870f",
+      "range": {
+        "startLine": 674,
+        "startChar": 102,
+        "endLine": 674,
+        "endChar": 103
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33627386_109f5f2e",
@@ -156,6 +180,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a782a040_16594d92",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-04T18:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33627386_109f5f2e",
+      "range": {
+        "startLine": 822,
+        "startChar": 6,
+        "endLine": 822,
+        "endChar": 12
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad9b1a66_3c5e2b20",
@@ -169,6 +217,30 @@
       "writtenOn": "2022-12-21T21:06:16Z",
       "side": 1,
       "message": "Can we move all this in a filterRfcomm method ?",
+      "range": {
+        "startLine": 825,
+        "startChar": 16,
+        "endLine": 825,
+        "endChar": 20
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ecf674_33e76f18",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-04T18:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad9b1a66_3c5e2b20",
       "range": {
         "startLine": 825,
         "startChar": 16,
