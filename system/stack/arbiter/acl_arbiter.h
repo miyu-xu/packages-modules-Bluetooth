@@ -50,6 +50,14 @@ class AclArbiter {
   virtual ~AclArbiter() = default;
 };
 
+void StoreCallbacksFromRust(
+    ::rust::Fn<void(uint16_t handle)> on_le_connect,
+    ::rust::Fn<void(uint16_t handle)> on_le_disconnect,
+    ::rust::Fn<InterceptAction(uint16_t handle, ::rust::Vec<uint8_t> buffer)>
+        intercept_packet);
+
+void SendPacketToPeer(uint16_t handle, ::rust::Vec<uint8_t> buffer);
+
 AclArbiter& GetArbiter();
 
 }  // namespace arbiter
