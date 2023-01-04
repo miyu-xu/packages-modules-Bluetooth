@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec40916_bb10f145",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T18:04:47Z",
+      "side": 1,
+      "message": "a2dp_src_sink_coexist_is_enabled\n\nhere and in other places",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 26
+      },
+      "revId": "960679b888213fa0b67a721298fa9bd93faa74a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
