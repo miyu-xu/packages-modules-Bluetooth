@@ -142,6 +142,30 @@
       },
       "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aec8c81c_445dbaa2",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-04T01:39:30Z",
+      "side": 1,
+      "message": "I understand the point. I\u0027m still thinking where the large report delay value should be defined such as ScanSettings.java or AdaterService.java. If it is placed in ScanSettings.java, the value may not be dynamically changed. If it is in AdaterService.java, the value is not accessible in building ScanSettings object.\n\nUpdated to define the minimum delay report in ScanSettings.java.",
+      "parentUuid": "9484b8da_b1e206f7",
+      "range": {
+        "startLine": 104,
+        "startChar": 54,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "22b5fe58a4bb819b7278d1d310e5123562ef5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
