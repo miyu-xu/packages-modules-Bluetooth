@@ -52,6 +52,24 @@
       "parentUuid": "1f031ff5_1cb15ff3",
       "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1253f293_721a9dbf",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-01-04T02:21:24Z",
+      "side": 1,
+      "message": "Thanks! Let\u0027s wait for owner approve.",
+      "parentUuid": "016cb7db_5df86f6f",
+      "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
