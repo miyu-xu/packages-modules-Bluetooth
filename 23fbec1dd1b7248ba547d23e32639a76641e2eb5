@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d37d48e_067f5c20",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-04T22:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b904b463_5326d3ea",
+      "revId": "23fbec1dd1b7248ba547d23e32639a76641e2eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db59af7_39741dfe",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-04T22:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6f1f58c_3bb42663",
+      "range": {
+        "startLine": 101,
+        "startChar": 57,
+        "endLine": 101,
+        "endChar": 63
+      },
+      "revId": "23fbec1dd1b7248ba547d23e32639a76641e2eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4c79364_ccbc84d7",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-01-04T21:13:04Z",
       "side": 1,
       "message": "or after the screen is turned on.",
+      "range": {
+        "startLine": 102,
+        "startChar": 88,
+        "endLine": 103,
+        "endChar": 27
+      },
+      "revId": "23fbec1dd1b7248ba547d23e32639a76641e2eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "239552de_b06f6b03",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-04T22:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4c79364_ccbc84d7",
       "range": {
         "startLine": 102,
         "startChar": 88,
