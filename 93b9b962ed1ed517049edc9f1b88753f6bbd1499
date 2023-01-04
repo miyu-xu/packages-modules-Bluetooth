@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7f33dd_dc0909ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1576211
+      },
+      "writtenOn": "2023-01-04T10:39:24Z",
+      "side": 1,
+      "message": "PTAL.",
+      "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5be76f64_475b126d",
@@ -26,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1c0d82c_abda2691",
+        "filename": "framework/java/android/bluetooth/BluetoothCsipSetCoordinator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1576211
+      },
+      "writtenOn": "2023-01-04T10:39:24Z",
+      "side": 1,
+      "message": "Isn\u0027t this unrelated to this CL, considering the hide annotation was already there before this change?\n\nWouldn\u0027t it be more straightforward to make a following CL that cleans up hide annotations and any other spurious visibility artifacts?",
+      "parentUuid": "5be76f64_475b126d",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d481fdaa_17948aa0",
         "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
         "patchSetId": 2
@@ -37,6 +78,24 @@
       "writtenOn": "2023-01-03T21:47:59Z",
       "side": 1,
       "message": "This would be a nice cleanup, but I have a slight concern. For a lot of our newer profile classes (e.g. BluetoothLeAudio), they implement the AutoClosable interface which includes the close() method. We will have a conflict for those profile classes because they now implement both BluetoothProfile \u0026 AutoCloseable and each has a close() method.",
+      "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dc8d89f_7d7b27b6",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1576211
+      },
+      "writtenOn": "2023-01-04T10:39:24Z",
+      "side": 1,
+      "message": "Yes, but that\u0027s not a problem, is it?\n\nJack He mentioned the idea of making BluetoothProfile autocloseable, but that\u0027d require all close methods be part of the public API, which is not the case at the moment. I\u0027d rather defer this effort (making BluetoothProfile autocloseable) to the codebase owners.",
+      "parentUuid": "d481fdaa_17948aa0",
       "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
