@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86f96ba_2295dc45",
+        "filename": "system/stack/include/avrc_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-04T22:39:24Z",
+      "side": 1,
+      "message": "Should this be \"persist.bluetooth...\" ?",
+      "range": {
+        "startLine": 124,
+        "startChar": 3,
+        "endLine": 124,
+        "endChar": 12
+      },
+      "revId": "c490a89195fea2be8af0ce4cba6480b34be87e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
