@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba66da46_ade406eb",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2192,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "this function is too long. Can you please split it into smaller functions that are more readable?",
+      "range": {
+        "startLine": 2004,
+        "startChar": 0,
+        "endLine": 2192,
+        "endChar": 9
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33f3d605_5455b4a4",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "name the flag a2dp_src_sink_coexist_is_enabled to make it clear that this is related to A2DP/AVRCP?",
+      "range": {
+        "startLine": 132,
+        "startChar": 37,
+        "endLine": 132,
+        "endChar": 63
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b739d9a5_bbb55bb7",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "The CL description talks about A2DP source and sink. Why do you have to touch SCO here?",
+      "range": {
+        "startLine": 140,
+        "startChar": 7,
+        "endLine": 140,
+        "endChar": 51
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e57a4204_b75daf2f",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "I do not understand why you need to do this. Can you please explain?",
+      "range": {
+        "startLine": 147,
+        "startChar": 5,
+        "endLine": 152,
+        "endChar": 7
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82fbd113_e0e17135",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "use registr \u003d {}; instead",
+      "range": {
+        "startLine": 477,
+        "startChar": 1,
+        "endLine": 477,
+        "endChar": 46
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489f96fa_48a5abaa",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "flag protect?",
+      "range": {
+        "startLine": 474,
+        "startChar": 2,
+        "endLine": 478,
+        "endChar": 11
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c470bf2_e0a69f90",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "use nullptr instead of NULL",
+      "range": {
+        "startLine": 511,
+        "startChar": 10,
+        "endLine": 511,
+        "endChar": 14
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c666fa5d_8b059e30",
+        "filename": "system/bta/include/bta_av_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-04T16:49:01Z",
+      "side": 1,
+      "message": "change \"coexist\" \u003d\u003e \"coexist\", here and in other places as well",
+      "range": {
+        "startLine": 175,
+        "startChar": 19,
+        "endLine": 175,
+        "endChar": 25
+      },
+      "revId": "6cbcb5b970d3975a2e4bcc61ff615ea80de45e76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
