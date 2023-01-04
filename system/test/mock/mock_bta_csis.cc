@@ -15,16 +15,15 @@
  * limitations under the License.
  */
 
-#include <map>
-#include <string>
-
-extern std::map<std::string, int> mock_function_count_map;
-
 #include <base/bind.h>
 #include <hardware/bt_csis.h>
 
+#include <map>
+#include <string>
+
 #include "bta/include/bta_csis_api.h"
 #include "btif/include/btif_storage.h"
+#include "test/common/mock_functions.h"
 
 #ifndef UNUSED_ATTR
 #define UNUSED_ATTR
@@ -36,24 +35,26 @@ using bluetooth::csis::CsisClientCallbacks;
 void CsisClient::AddFromStorage(const RawAddress& addr,
                                 const std::vector<uint8_t>& in,
                                 bool autoconnect) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 bool CsisClient::GetForStorage(const RawAddress& addr,
                                std::vector<uint8_t>& out) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
-void CsisClient::CleanUp() { mock_function_count_map[__func__]++; }
+void CsisClient::CleanUp() { increment_mock_function_call_count(__func__); }
 bluetooth::csis::CsisClient* CsisClient::Get(void) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 bool CsisClient::IsCsisClientRunning() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 void CsisClient::Initialize(CsisClientCallbacks* callbacks,
                             base::Closure initCb) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void CsisClient::DebugDump(int fd) { mock_function_count_map[__func__]++; }
+void CsisClient::DebugDump(int fd) {
+  increment_mock_function_call_count(__func__);
+}

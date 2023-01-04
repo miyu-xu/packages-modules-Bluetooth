@@ -22,13 +22,12 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
-
 #include "bt_target.h"
 #include "bta/hd/bta_hd_int.h"
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
 #include "osi/include/log.h"
+#include "test/common/mock_functions.h"
 #include "types/raw_address.h"
 
 #ifndef UNUSED_ATTR
@@ -36,26 +35,30 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 void BTA_HdEnable(tBTA_HD_CBACK* p_cback) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HdAddDevice(const RawAddress& addr) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HdConnect(const RawAddress& addr) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void BTA_HdDisable(void) { mock_function_count_map[__func__]++; }
-void BTA_HdDisconnect(void) { mock_function_count_map[__func__]++; }
+void BTA_HdDisable(void) { increment_mock_function_call_count(__func__); }
+void BTA_HdDisconnect(void) { increment_mock_function_call_count(__func__); }
 void BTA_HdRegisterApp(tBTA_HD_APP_INFO* p_app_info, tBTA_HD_QOS_INFO* p_in_qos,
                        tBTA_HD_QOS_INFO* p_out_qos) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HdRemoveDevice(const RawAddress& addr) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void BTA_HdReportError(uint8_t error) { mock_function_count_map[__func__]++; }
+void BTA_HdReportError(uint8_t error) {
+  increment_mock_function_call_count(__func__);
+}
 void BTA_HdSendReport(tBTA_HD_REPORT* p_report) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void BTA_HdUnregisterApp(void) { mock_function_count_map[__func__]++; }
-void BTA_HdVirtualCableUnplug(void) { mock_function_count_map[__func__]++; }
+void BTA_HdUnregisterApp(void) { increment_mock_function_call_count(__func__); }
+void BTA_HdVirtualCableUnplug(void) {
+  increment_mock_function_call_count(__func__);
+}

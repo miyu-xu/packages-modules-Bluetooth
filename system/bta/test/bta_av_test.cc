@@ -53,7 +53,7 @@ extern uint8_t appl_trace_level;
 class BtaAvTest : public testing::Test {
  protected:
   void SetUp() override {
-    mock_function_count_map.clear();
+    reset_mock_function_count_map();
     bluetooth::common::InitFlags::SetAllForTesting();
     appl_trace_level = BT_TRACE_LEVEL_VERBOSE;
   }
