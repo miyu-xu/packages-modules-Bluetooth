@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a1f3b6a_3fc0ec76",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-01-04T03:05:33Z",
+      "side": 1,
+      "message": "Should we call it isAutoBatchScanEnabled()? Otherwise, it is confusing to have both isAllMatchesAutoBatchScanClient() and isAutoBatchScanClient().",
+      "range": {
+        "startLine": 1123,
+        "startChar": 24,
+        "endLine": 1123,
+        "endChar": 45
+      },
+      "revId": "fde72dfbe35d885efea5e0d98177a2f9c4d30ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a025ac5e_85c903f6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-01-04T03:05:33Z",
+      "side": 1,
+      "message": "update this?",
+      "range": {
+        "startLine": 1130,
+        "startChar": 23,
+        "endLine": 1130,
+        "endChar": 59
+      },
+      "revId": "fde72dfbe35d885efea5e0d98177a2f9c4d30ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
