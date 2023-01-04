@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/callback.h>
@@ -49,25 +49,25 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 int HearingAid::GetDeviceCount() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 void HearingAid::AddFromStorage(const HearingDevice& dev_info,
                                 uint16_t is_acceptlisted) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void HearingAid::DebugDump(int fd) { mock_function_count_map[__func__]++; }
+void HearingAid::DebugDump(int fd) { increment_mock_function_call_count(__func__); }
 HearingAid* HearingAid::Get() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 bool HearingAid::IsHearingAidRunning() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
-void HearingAid::CleanUp() { mock_function_count_map[__func__]++; }
+void HearingAid::CleanUp() { increment_mock_function_call_count(__func__); }
 void HearingAid::Initialize(
     bluetooth::hearing_aid::HearingAidCallbacks* callbacks,
     base::Closure initCb) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

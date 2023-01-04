@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <cstdint>
 #include "stack/btm/btm_int_types.h"
@@ -33,14 +33,14 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 bool BTM_FreeSCN(uint8_t scn) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 bool BTM_TryAllocateSCN(uint8_t scn) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 uint8_t BTM_AllocateSCN(void) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }

@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/logging.h>
@@ -47,4 +47,4 @@ extern std::map<std::string, int> mock_function_count_map;
 #define UNUSED_ATTR
 #endif
 
-void btu_hci_msg_process(BT_HDR* p_msg) { mock_function_count_map[__func__]++; }
+void btu_hci_msg_process(BT_HDR* p_msg) { increment_mock_function_call_count(__func__); }

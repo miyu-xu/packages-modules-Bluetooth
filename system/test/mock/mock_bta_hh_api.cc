@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <cstdint>
 
@@ -39,46 +39,46 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 void BTA_HhEnable(tBTA_HH_CBACK* p_cback) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhAddDev(const RawAddress& bda, tBTA_HH_ATTR_MASK attr_mask,
                   uint8_t sub_class, uint8_t app_id,
                   tBTA_HH_DEV_DSCP_INFO dscp_info) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void BTA_HhClose(uint8_t dev_handle) { mock_function_count_map[__func__]++; }
-void BTA_HhDisable(void) { mock_function_count_map[__func__]++; }
+void BTA_HhClose(uint8_t dev_handle) { increment_mock_function_call_count(__func__); }
+void BTA_HhDisable(void) { increment_mock_function_call_count(__func__); }
 void BTA_HhGetDscpInfo(uint8_t dev_handle) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void BTA_HhGetIdle(uint8_t dev_handle) { mock_function_count_map[__func__]++; }
+void BTA_HhGetIdle(uint8_t dev_handle) { increment_mock_function_call_count(__func__); }
 void BTA_HhGetProtoMode(uint8_t dev_handle) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhGetReport(uint8_t dev_handle, tBTA_HH_RPT_TYPE r_type,
                      uint8_t rpt_id, uint16_t buf_size) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhOpen(const RawAddress& dev_bda) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhRemoveDev(uint8_t dev_handle) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhSendCtrl(uint8_t dev_handle, tBTA_HH_TRANS_CTRL_TYPE c_type) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhSendData(uint8_t dev_handle, UNUSED_ATTR const RawAddress& dev_bda,
                     BT_HDR* p_data) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhSetIdle(uint8_t dev_handle, uint16_t idle_rate) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhSetProtoMode(uint8_t dev_handle, tBTA_HH_PROTO_MODE p_type) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void BTA_HhSetReport(uint8_t dev_handle, tBTA_HH_RPT_TYPE r_type,
                      BT_HDR* p_data) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

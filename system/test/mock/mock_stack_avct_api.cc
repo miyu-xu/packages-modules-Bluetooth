@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <string.h>
 
@@ -43,37 +43,37 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 uint16_t AVCT_CreateBrowse(uint8_t handle, uint8_t role) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint16_t AVCT_CreateConn(uint8_t* p_handle, tAVCT_CC* p_cc,
                          const RawAddress& peer_addr) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint16_t AVCT_GetBrowseMtu(uint8_t handle) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint16_t AVCT_GetPeerMtu(uint8_t handle) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint16_t AVCT_MsgReq(uint8_t handle, uint8_t label, uint8_t cr, BT_HDR* p_msg) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint16_t AVCT_RemoveBrowse(uint8_t handle) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint16_t AVCT_RemoveConn(uint8_t handle) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
-void AVCT_Deregister(void) { mock_function_count_map[__func__]++; }
-void AVCT_Register() { mock_function_count_map[__func__]++; }
+void AVCT_Deregister(void) { increment_mock_function_call_count(__func__); }
+void AVCT_Register() { increment_mock_function_call_count(__func__); }
 uint8_t AVCT_SetTraceLevel(uint8_t new_level) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }

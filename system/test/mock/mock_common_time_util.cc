@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <sys/time.h>
 #include <time.h>
@@ -36,19 +36,19 @@ namespace bluetooth {
 namespace common {
 
 uint64_t time_get_os_boottime_ms() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint64_t time_get_os_boottime_us() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint64_t time_gettimeofday_us() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 uint64_t time_get_os_monotonic_raw_us() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 

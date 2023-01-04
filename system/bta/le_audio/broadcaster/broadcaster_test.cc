@@ -30,6 +30,7 @@
 #include "bta/test/common/mock_controller.h"
 #include "device/include/controller.h"
 #include "stack/include/btm_iso_api.h"
+#include "test/common/mock_functions.h"
 
 using namespace std::chrono_literals;
 
@@ -53,8 +54,6 @@ using le_audio::LeAudioCodecConfiguration;
 using le_audio::LeAudioSourceAudioHalClient;
 using le_audio::broadcaster::BigConfig;
 using le_audio::broadcaster::BroadcastCodecWrapper;
-
-std::map<std::string, int> mock_function_count_map;
 
 // Disables most likely false-positives from base::SplitString()
 extern "C" const char* __asan_default_options() {
@@ -196,7 +195,7 @@ class BroadcasterTest : public Test {
   void SetUp() override {
     init_message_loop_thread();
 
-    mock_function_count_map.clear();
+    reset_mock_function_count_map();
     ON_CALL(controller_interface_, SupportsBleIsochronousBroadcaster)
         .WillByDefault(Return(true));
 

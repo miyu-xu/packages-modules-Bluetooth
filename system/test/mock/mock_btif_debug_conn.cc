@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include "btif/include/btif_debug_conn.h"
 #include "stack/include/gatt_api.h"
@@ -32,9 +32,9 @@ extern std::map<std::string, int> mock_function_count_map;
 #define UNUSED_ATTR
 #endif
 
-void btif_debug_conn_dump(int fd) { mock_function_count_map[__func__]++; }
+void btif_debug_conn_dump(int fd) { increment_mock_function_call_count(__func__); }
 void btif_debug_conn_state(const RawAddress& bda,
                            const btif_debug_conn_state_t state,
                            const tGATT_DISCONN_REASON disconnect_reason) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

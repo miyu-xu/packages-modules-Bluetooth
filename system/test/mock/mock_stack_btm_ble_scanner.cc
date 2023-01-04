@@ -17,7 +17,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/location.h>
@@ -43,17 +43,17 @@ extern std::map<std::string, int> mock_function_count_map;
 #define UNUSED_ATTR
 #endif
 
-void BleScanningManager::CleanUp() { mock_function_count_map[__func__]++; }
-void btm_ble_scanner_init() { mock_function_count_map[__func__]++; }
+void BleScanningManager::CleanUp() { increment_mock_function_call_count(__func__); }
+void btm_ble_scanner_init() { increment_mock_function_call_count(__func__); }
 base::WeakPtr<BleScanningManager> BleScanningManager::Get() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 bool BleScanningManager::IsInitialized() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 void BleScanningManager::Initialize(BleScannerHciInterface* interface) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void btm_ble_scanner_cleanup(void) { mock_function_count_map[__func__]++; }
+void btm_ble_scanner_cleanup(void) { increment_mock_function_call_count(__func__); }

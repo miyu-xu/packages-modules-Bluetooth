@@ -17,7 +17,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/bind_helpers.h>
@@ -34,20 +34,20 @@ namespace has {
 
 void HasClient::Initialize(bluetooth::has::HasClientCallbacks*,
                            base::RepeatingCallback<void()>) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void HasClient::CleanUp() { mock_function_count_map[__func__]++; }
-void HasClient::DebugDump(int) { mock_function_count_map[__func__]++; }
+void HasClient::CleanUp() { increment_mock_function_call_count(__func__); }
+void HasClient::DebugDump(int) { increment_mock_function_call_count(__func__); }
 bool HasClient::IsHasClientRunning() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 void HasClient::AddFromStorage(RawAddress const&, unsigned char,
                                unsigned short) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 HasClient* HasClient::Get() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 

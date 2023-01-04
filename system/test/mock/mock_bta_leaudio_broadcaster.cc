@@ -17,7 +17,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/bind_helpers.h>
@@ -29,15 +29,15 @@ extern std::map<std::string, int> mock_function_count_map;
 #define UNUSED_ATTR
 #endif
 
-void LeAudioBroadcaster::DebugDump(int) { mock_function_count_map[__func__]++; }
+void LeAudioBroadcaster::DebugDump(int) { increment_mock_function_call_count(__func__); }
 void LeAudioBroadcaster::Initialize(
     bluetooth::le_audio::LeAudioBroadcasterCallbacks*,
     base::RepeatingCallback<bool()>) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void LeAudioBroadcaster::Stop() { mock_function_count_map[__func__]++; }
-void LeAudioBroadcaster::Cleanup() { mock_function_count_map[__func__]++; }
+void LeAudioBroadcaster::Stop() { increment_mock_function_call_count(__func__); }
+void LeAudioBroadcaster::Cleanup() { increment_mock_function_call_count(__func__); }
 LeAudioBroadcaster* LeAudioBroadcaster::Get() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }

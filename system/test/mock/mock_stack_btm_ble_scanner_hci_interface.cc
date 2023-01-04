@@ -26,7 +26,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 // Original included files, if any
 // NOTE: Since this is a mock file with mock definitions some number of
@@ -62,18 +62,18 @@ struct btm_ble_process_periodic_adv_sync_lost_evt
 // Mocked functions, if any
 void btm_ble_process_periodic_adv_sync_est_evt(uint8_t data_len,
                                                const uint8_t* data) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   test::mock::stack_btm_ble_scanner_hci_interface::
       btm_ble_process_periodic_adv_sync_est_evt(data_len, data);
 }
 void btm_ble_process_periodic_adv_pkt(uint8_t data_len, const uint8_t* data) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   test::mock::stack_btm_ble_scanner_hci_interface::
       btm_ble_process_periodic_adv_pkt(data_len, data);
 }
 void btm_ble_process_periodic_adv_sync_lost_evt(uint8_t data_len,
                                                 uint8_t* data) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   test::mock::stack_btm_ble_scanner_hci_interface::
       btm_ble_process_periodic_adv_sync_lost_evt(data_len, data);
 }

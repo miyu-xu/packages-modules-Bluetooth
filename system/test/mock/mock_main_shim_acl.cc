@@ -23,7 +23,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include "main/shim/acl_api.h"
 #include "types/ble_address_with_type.h"
@@ -33,4 +33,4 @@ extern std::map<std::string, int> mock_function_count_map;
 #define UNUSED_ATTR
 #endif
 
-void bluetooth::shim::ACL_Shutdown() { mock_function_count_map[__func__]++; }
+void bluetooth::shim::ACL_Shutdown() { increment_mock_function_call_count(__func__); }

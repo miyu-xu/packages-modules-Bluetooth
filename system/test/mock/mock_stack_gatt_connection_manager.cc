@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/callback.h>
@@ -49,46 +49,46 @@ using namespace connection_manager;
 
 bool connection_manager::background_connect_add(uint8_t app_id,
                                                 const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 bool connection_manager::background_connect_remove(uint8_t app_id,
                                                    const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 bool connection_manager::direct_connect_add(uint8_t app_id,
                                             const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 bool connection_manager::direct_connect_remove(uint8_t app_id,
                                                const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 bool connection_manager::remove_unconditional(const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 std::set<tAPP_ID> connection_manager::get_apps_connecting_to(
     const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return std::set<tAPP_ID>();
 }
-void connection_manager::dump(int fd) { mock_function_count_map[__func__]++; }
+void connection_manager::dump(int fd) { increment_mock_function_call_count(__func__); }
 void connection_manager::on_app_deregistered(uint8_t app_id) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void connection_manager::on_connection_complete(const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 
 void connection_manager::on_connection_timed_out_from_shim(
     const RawAddress& address) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 
 void connection_manager::reset(bool after_reset) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

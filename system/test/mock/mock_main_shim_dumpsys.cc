@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include "main/shim/dumpsys.h"
 #include "main/shim/entry.h"
@@ -34,11 +34,11 @@ extern std::map<std::string, int> mock_function_count_map;
 
 void bluetooth::shim::RegisterDumpsysFunction(const void* token,
                                               DumpsysFunction func) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void bluetooth::shim::Dump(int fd, const char** args) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void bluetooth::shim::UnregisterDumpsysFunction(const void* token) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

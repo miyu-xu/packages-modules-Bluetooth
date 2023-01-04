@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include "btif/include/btif_common.h"
 #include "gd/common/init_flags.h"
@@ -37,9 +37,9 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 BleAdvertiserInterface* bluetooth::shim::get_ble_advertiser_instance() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 void bluetooth::shim::init_advertising_manager() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

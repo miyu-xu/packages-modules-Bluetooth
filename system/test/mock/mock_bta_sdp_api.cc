@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/location.h>
@@ -38,19 +38,19 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 tBTA_SDP_STATUS BTA_SdpCreateRecordByUser(void* user_data) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return BTA_SDP_SUCCESS;
 }
 tBTA_SDP_STATUS BTA_SdpEnable(tBTA_SDP_DM_CBACK* p_cback) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return BTA_SDP_SUCCESS;
 }
 tBTA_SDP_STATUS BTA_SdpRemoveRecordByUser(void* user_data) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return BTA_SDP_SUCCESS;
 }
 tBTA_SDP_STATUS BTA_SdpSearch(const RawAddress& bd_addr,
                               const bluetooth::Uuid& uuid) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return BTA_SDP_SUCCESS;
 }

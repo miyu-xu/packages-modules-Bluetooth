@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <cstdint>
 
@@ -38,20 +38,20 @@ extern std::map<std::string, int> mock_function_count_map;
 
 void bta_ar_avdt_conn(tBTA_SYS_ID sys_id, const RawAddress& bd_addr,
                       uint8_t scb_index) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void bta_ar_dereg_avct() { mock_function_count_map[__func__]++; }
-void bta_ar_dereg_avdt() { mock_function_count_map[__func__]++; }
+void bta_ar_dereg_avct() { increment_mock_function_call_count(__func__); }
+void bta_ar_dereg_avdt() { increment_mock_function_call_count(__func__); }
 void bta_ar_dereg_avrc(uint16_t service_uuid) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void bta_ar_init(void) { mock_function_count_map[__func__]++; }
-void bta_ar_reg_avct() { mock_function_count_map[__func__]++; }
+void bta_ar_init(void) { increment_mock_function_call_count(__func__); }
+void bta_ar_reg_avct() { increment_mock_function_call_count(__func__); }
 void bta_ar_reg_avdt(AvdtpRcb* p_reg, tAVDT_CTRL_CBACK* p_cback) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void bta_ar_reg_avrc(uint16_t service_uuid, const char* service_name,
                      const char* provider_name, uint16_t categories,
                      bool browse_supported, uint16_t profile_version) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

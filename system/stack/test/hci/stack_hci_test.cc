@@ -22,9 +22,8 @@
 #include "osi/include/log.h"
 #include "stack/include/hcidefs.h"
 #include "stack/include/l2cdefs.h"
+#include "test/common/mock_functions.h"
 #include "test/mock/mock_hcic_hcicmds.h"
-
-std::map<std::string, int> mock_function_count_map;
 
 namespace mock = test::mock::hcic_hcicmds;
 
@@ -44,7 +43,7 @@ using testing::Test;
 class StackHciTest : public Test {
  public:
  protected:
-  void SetUp() override { mock_function_count_map.clear(); }
+  void SetUp() override { reset_mock_function_count_map(); }
   void TearDown() override {}
 };
 

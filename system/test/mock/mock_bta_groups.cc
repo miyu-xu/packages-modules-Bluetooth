@@ -18,7 +18,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <vector>
 #include "bta/include/bta_groups.h"
@@ -32,11 +32,11 @@ using bluetooth::groups::DeviceGroups;
 
 void DeviceGroups::AddFromStorage(const RawAddress& addr,
                                   const std::vector<uint8_t>& in) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 
 bool DeviceGroups::GetForStorage(const RawAddress& addr,
                                  std::vector<uint8_t>& out) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }

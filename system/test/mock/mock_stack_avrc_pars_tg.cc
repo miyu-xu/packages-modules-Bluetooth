@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <string.h>
 #include "avrc_api.h"
@@ -35,11 +35,11 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 tAVRC_STS AVRC_Ctrl_ParsCommand(tAVRC_MSG* p_msg, tAVRC_COMMAND* p_result) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }
 tAVRC_STS AVRC_ParsCommand(tAVRC_MSG* p_msg, tAVRC_COMMAND* p_result,
                            uint8_t* p_buf, uint16_t buf_len) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return 0;
 }

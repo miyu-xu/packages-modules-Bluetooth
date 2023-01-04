@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/logging.h>
@@ -45,19 +45,19 @@ extern std::map<std::string, int> mock_function_count_map;
 
 void VolumeControl::AddFromStorage(const RawAddress& address,
                                    bool auto_connect) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void VolumeControl::CleanUp() { mock_function_count_map[__func__]++; }
-void VolumeControl::DebugDump(int fd) { mock_function_count_map[__func__]++; }
+void VolumeControl::CleanUp() { increment_mock_function_call_count(__func__); }
+void VolumeControl::DebugDump(int fd) { increment_mock_function_call_count(__func__); }
 VolumeControl* VolumeControl::Get(void) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 bool VolumeControl::IsVolumeControlRunning() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 void VolumeControl::Initialize(
     bluetooth::vc::VolumeControlCallbacks* callbacks) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

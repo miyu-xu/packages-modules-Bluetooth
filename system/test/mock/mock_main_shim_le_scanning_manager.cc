@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include "include/hardware/ble_scanner.h"
 #include "main/shim/le_scanning_manager.h"
@@ -32,26 +32,26 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 ::BleScannerInterface* bluetooth::shim::get_ble_scanner_instance() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 void bluetooth::shim::init_scanning_manager() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 
 bool bluetooth::shim::is_ad_type_filter_supported() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 
 void bluetooth::shim::set_ad_type_rsi_filter(bool enable) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 
 void bluetooth::shim::set_empty_filter(bool enable) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 
 void bluetooth::shim::set_target_announcements_filter(bool enable) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }

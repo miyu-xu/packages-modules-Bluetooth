@@ -17,7 +17,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/callback.h>
 #include <stddef.h>
@@ -46,10 +46,10 @@ namespace mock = test::mock::hcic_hcicmds;
 
 namespace {
 void btsnd_hcic_disconnect(uint16_t handle, uint8_t reason) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 void btsnd_hcic_switch_role(const RawAddress& bd_addr, uint8_t role) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
 }  // namespace
 

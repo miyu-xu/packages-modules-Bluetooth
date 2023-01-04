@@ -16,21 +16,21 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include "bta/include/bta_le_audio_api.h"
 
 bool LeAudioHalVerifier::SupportsLeAudio() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return true;
 }
 
 bool LeAudioHalVerifier::SupportsLeAudioHardwareOffload() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return true;
 }
 
 bool LeAudioHalVerifier::SupportsLeAudioBroadcast() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return true;
 }

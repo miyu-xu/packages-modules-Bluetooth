@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <string.h>
 
@@ -40,12 +40,12 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 tCONN_CB* sdp_conn_originate(const RawAddress& p_bd_addr) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
-void sdp_conn_timer_timeout(void* data) { mock_function_count_map[__func__]++; }
+void sdp_conn_timer_timeout(void* data) { increment_mock_function_call_count(__func__); }
 void sdp_disconnect(tCONN_CB* p_ccb, uint16_t reason) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void sdp_free(void) { mock_function_count_map[__func__]++; }
-void sdp_init(void) { mock_function_count_map[__func__]++; }
+void sdp_free(void) { increment_mock_function_call_count(__func__); }
+void sdp_init(void) { increment_mock_function_call_count(__func__); }

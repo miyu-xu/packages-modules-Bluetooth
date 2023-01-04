@@ -22,7 +22,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 #include <base/bind.h>
 #include <base/location.h>
@@ -46,21 +46,21 @@ extern std::map<std::string, int> mock_function_count_map;
 #define UNUSED_ATTR
 #endif
 
-void BleAdvertisingManager::CleanUp() { mock_function_count_map[__func__]++; }
-void btm_ble_adv_init() { mock_function_count_map[__func__]++; }
+void BleAdvertisingManager::CleanUp() { increment_mock_function_call_count(__func__); }
+void btm_ble_adv_init() { increment_mock_function_call_count(__func__); }
 base::WeakPtr<BleAdvertisingManager> BleAdvertisingManager::Get() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return nullptr;
 }
 bool BleAdvertisingManager::IsInitialized() {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
-void test_timeout_cb(uint8_t status) { mock_function_count_map[__func__]++; }
+void test_timeout_cb(uint8_t status) { increment_mock_function_call_count(__func__); }
 void BleAdvertisingManager::Initialize(BleAdvertiserHciInterface* interface) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void btm_ble_multi_adv_cleanup(void) { mock_function_count_map[__func__]++; }
-void testRecomputeTimeout1() { mock_function_count_map[__func__]++; }
-void testRecomputeTimeout2() { mock_function_count_map[__func__]++; }
-void testRecomputeTimeout3() { mock_function_count_map[__func__]++; }
+void btm_ble_multi_adv_cleanup(void) { increment_mock_function_call_count(__func__); }
+void testRecomputeTimeout1() { increment_mock_function_call_count(__func__); }
+void testRecomputeTimeout2() { increment_mock_function_call_count(__func__); }
+void testRecomputeTimeout3() { increment_mock_function_call_count(__func__); }
