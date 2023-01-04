@@ -40,7 +40,6 @@ java_defaults {
         include_filter: ["android.bluetooth.*"],
         exclude_filter: [],
     },
-    platform_apis: true,
 
     test_suites: [
         "device-tests",
