@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad3efdf4_dc59720b",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMasInstance.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-01-04T02:43:26Z",
+      "side": 1,
+      "message": "Removed!",
+      "parentUuid": "993b3af4_f7964188",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 76
+      },
+      "revId": "690ce30d7ad7e49911ecc826dbadd175d2d66e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87bdd9fc_ac02a70c",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbb56ed0_71b8ccfa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapMasInstanceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-01-04T02:43:26Z",
+      "side": 1,
+      "message": "Got it. Made it visiblefortesting!",
+      "parentUuid": "87bdd9fc_ac02a70c",
+      "range": {
+        "startLine": 64,
+        "startChar": 16,
+        "endLine": 64,
+        "endChar": 44
+      },
+      "revId": "690ce30d7ad7e49911ecc826dbadd175d2d66e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d6a8777_9694ef6f",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-01-03T09:15:27Z",
       "side": 1,
       "message": "8 spaces needed",
+      "range": {
+        "startLine": 173,
+        "startChar": 8,
+        "endLine": 173,
+        "endChar": 28
+      },
+      "revId": "690ce30d7ad7e49911ecc826dbadd175d2d66e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d6aaa7d_1fb86647",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapObexServerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-01-04T02:43:26Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "5d6a8777_9694ef6f",
       "range": {
         "startLine": 173,
         "startChar": 8,
