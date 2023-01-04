@@ -26,7 +26,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 // Mock include file to share data between tests and mock
 #include "test/mock/mock_osi_semaphore.h"
@@ -51,27 +51,27 @@ struct semaphore_wait semaphore_wait;
 
 // Mocked functions, if any
 void semaphore_free(semaphore_t* semaphore) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   test::mock::osi_semaphore::semaphore_free(semaphore);
 }
 int semaphore_get_fd(const semaphore_t* semaphore) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return test::mock::osi_semaphore::semaphore_get_fd(semaphore);
 }
 semaphore_t* semaphore_new(unsigned int value) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return test::mock::osi_semaphore::semaphore_new(value);
 }
 void semaphore_post(semaphore_t* semaphore) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   test::mock::osi_semaphore::semaphore_post(semaphore);
 }
 bool semaphore_try_wait(semaphore_t* semaphore) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return test::mock::osi_semaphore::semaphore_try_wait(semaphore);
 }
 void semaphore_wait(semaphore_t* semaphore) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   test::mock::osi_semaphore::semaphore_wait(semaphore);
 }
 // Mocked functions complete

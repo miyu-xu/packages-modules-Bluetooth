@@ -70,7 +70,6 @@ using le_audio::LeAudioSourceAudioHalClient;
 
 extern struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
 
-std::map<std::string, int> mock_function_count_map;
 constexpr int max_num_of_ases = 5;
 
 static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
