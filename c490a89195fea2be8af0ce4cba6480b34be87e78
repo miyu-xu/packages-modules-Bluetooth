@@ -46,6 +46,30 @@
       },
       "revId": "c490a89195fea2be8af0ce4cba6480b34be87e78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10af123c_7229a58a",
+        "filename": "system/stack/include/avrc_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-04T23:25:33Z",
+      "side": 1,
+      "message": "I see why you did that, but I expected it to follow the example of AVRC_VERSION_PROPERTY",
+      "parentUuid": "426b98ff_f25a5a59",
+      "range": {
+        "startLine": 124,
+        "startChar": 3,
+        "endLine": 124,
+        "endChar": 12
+      },
+      "revId": "c490a89195fea2be8af0ce4cba6480b34be87e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
