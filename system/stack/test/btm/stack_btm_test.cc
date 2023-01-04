@@ -86,7 +86,7 @@ std::string Hex16(int n) {
 class StackBtmTest : public Test {
  public:
  protected:
-  void SetUp() override { mock_function_count_map.clear(); }
+  void SetUp() override { reset_mock_function_count_map(); }
   void TearDown() override {}
 };
 
@@ -132,7 +132,7 @@ TEST_F(StackBtmTest, InformClientOnConnectionSuccess) {
 
   btm_acl_connected(bda, 2, HCI_SUCCESS, false);
   ASSERT_EQ(static_cast<size_t>(1),
-            mock_function_count_map.count("BTA_dm_acl_up"));
+            get_func_call_count().count("BTA_dm_acl_up"));
 
   get_btm_client_interface().lifecycle.btm_free();
 }
@@ -144,7 +144,7 @@ TEST_F(StackBtmTest, NoInformClientOnConnectionFail) {
 
   btm_acl_connected(bda, 2, HCI_ERR_NO_CONNECTION, false);
   ASSERT_EQ(static_cast<size_t>(0),
-            mock_function_count_map.count("BTA_dm_acl_up"));
+            get_func_call_count().count("BTA_dm_acl_up"));
 
   get_btm_client_interface().lifecycle.btm_free();
 }
@@ -181,12 +181,12 @@ TEST_F(StackBtmTest, change_packet_type) {
     packet_types = p;
   };
   btm_set_packet_types_from_address(bda, 0x55aa);
-  ASSERT_EQ(++cnt, mock_function_count_map["btsnd_hcic_change_conn_type"]);
+  ASSERT_EQ(++cnt, get_func_call_count()["btsnd_hcic_change_conn_type"]);
   ASSERT_EQ(0x123, handle);
   ASSERT_EQ(Hex16(0x4400 | HCI_PKT_TYPES_MASK_DM1), Hex16(packet_types));
 
   btm_set_packet_types_from_address(bda, 0xffff);
-  ASSERT_EQ(++cnt, mock_function_count_map["btsnd_hcic_change_conn_type"]);
+  ASSERT_EQ(++cnt, get_func_call_count()["btsnd_hcic_change_conn_type"]);
   ASSERT_EQ(0x123, handle);
   ASSERT_EQ(Hex16(0xcc00 | HCI_PKT_TYPES_MASK_DM1 | HCI_PKT_TYPES_MASK_DH1),
             Hex16(packet_types));

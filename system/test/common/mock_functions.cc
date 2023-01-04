@@ -19,14 +19,19 @@
 #include "osi/include/log.h"
 #include "test/common/mock_functions.h"
 
-std::map<std::string, int> mock_function_count_map;
+std::map<std::string, int>& get_func_call_count() {
+  static std::map<std::string, int> mock_function_count_map;
+  return mock_function_count_map;
+}
 
-void reset_mock_function_count_map() { mock_function_count_map.clear(); }
+void inc_func_call_count(const char* fn) { get_func_call_count()[fn]++; }
+
+void reset_mock_function_count_map() { get_func_call_count().clear(); }
 
 void dump_mock_function_count_map() {
-  LOG_INFO("Mock function count map size:%zu", mock_function_count_map.size());
+  LOG_INFO("Mock function count map size:%zu", get_func_call_count().size());
 
-  for (auto it : mock_function_count_map) {
+  for (auto it : get_func_call_count()) {
     LOG_INFO("function:%s: call_count:%d", it.first.c_str(), it.second);
   }
 }

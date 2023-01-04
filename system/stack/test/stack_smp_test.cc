@@ -35,7 +35,6 @@
 #include "types/raw_address.h"
 
 tBTM_CB btm_cb;
-std::map<std::string, int> mock_function_count_map;
 
 const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions(

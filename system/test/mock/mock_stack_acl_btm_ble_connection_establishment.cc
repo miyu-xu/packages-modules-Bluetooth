@@ -25,7 +25,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 // Original included files, if any
 // NOTE: Since this is a mock file with mock definitions some number of
@@ -60,22 +60,22 @@ struct btm_ble_create_conn_cancel_complete btm_ble_create_conn_cancel_complete;
 }  // namespace test
 
 void btm_ble_create_ll_conn_complete(tHCI_STATUS status) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   test::mock::stack_acl_btm_ble_connection_establishment::
       btm_ble_create_ll_conn_complete(status);
 }
 bool maybe_resolve_address(RawAddress* bda, tBLE_ADDR_TYPE* bda_type) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return test::mock::stack_acl_btm_ble_connection_establishment::
       maybe_resolve_address(bda, bda_type);
 }
 void btm_ble_conn_complete(uint8_t* p, uint16_t evt_len, bool enhanced) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   test::mock::stack_acl_btm_ble_connection_establishment::btm_ble_conn_complete(
       p, evt_len, enhanced);
 }
 void btm_ble_create_conn_cancel_complete(uint8_t* p) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   test::mock::stack_acl_btm_ble_connection_establishment::
       btm_ble_create_conn_cancel_complete(p);
 }
