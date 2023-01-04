@@ -34,6 +34,7 @@
 #include "mock_controller.h"
 #include "mock_csis_client.h"
 #include "mock_iso_manager.h"
+#include "test/common/mock_functions.h"
 #include "types/bt_transport.h"
 
 using ::le_audio::DeviceConnectState;
@@ -50,7 +51,6 @@ using ::testing::Return;
 using ::testing::SaveArg;
 using ::testing::Test;
 
-std::map<std::string, int> mock_function_count_map;
 extern struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
 
 void osi_property_set_bool(const char* key, bool value);
@@ -179,7 +179,7 @@ class StateMachineTest : public Test {
 
   void SetUp() override {
     bluetooth::common::InitFlags::Load(test_flags);
-    mock_function_count_map.clear();
+    reset_mock_function_count_map();
     controller::SetMockControllerInterface(&mock_controller_);
     bluetooth::manager::SetMockBtmInterface(&btm_interface);
     gatt::SetMockBtaGattInterface(&gatt_interface);
@@ -2699,7 +2699,7 @@ TEST_F(StateMachineTest, testStateTransitionTimeout) {
 
   // simulate timeout seconds passed, alarm executing
   fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
-  ASSERT_EQ(1, mock_function_count_map["alarm_set_on_mloop"]);
+  ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
 }
 
 MATCHER_P(dataPathIsEq, expected, "") { return (arg.data_path_id == expected); }

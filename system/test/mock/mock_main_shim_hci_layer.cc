@@ -26,7 +26,7 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
+#include "test/common/mock_functions.h"
 
 // Mock include file to share data between tests and mock
 #include "test/mock/mock_main_shim_hci_layer.h"
