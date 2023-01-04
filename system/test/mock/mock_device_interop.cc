@@ -24,9 +24,8 @@
 #include <map>
 #include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
-
 #include "device/include/interop.h"
+#include "test/common/mock_functions.h"
 #include "types/raw_address.h"
 
 #ifndef UNUSED_ATTR
@@ -35,15 +34,15 @@ extern std::map<std::string, int> mock_function_count_map;
 
 bool interop_match_addr(const interop_feature_t feature,
                         const RawAddress* addr) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 bool interop_match_name(const interop_feature_t feature, const char* name) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
   return false;
 }
 void interop_database_add(uint16_t feature, const RawAddress* addr,
                           size_t length) {
-  mock_function_count_map[__func__]++;
+  increment_mock_function_call_count(__func__);
 }
-void interop_database_clear() { mock_function_count_map[__func__]++; }
+void interop_database_clear() { increment_mock_function_call_count(__func__); }
