@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2aef69_94322f67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T16:14:26Z",
+      "side": 1,
+      "message": "bug? explanation? motivation?",
+      "revId": "f24f9ee97437e005eb25a9fe6059449b49d09894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "661ac2c8_f4c17b7c",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T16:14:26Z",
+      "side": 1,
+      "message": "IncomingPacket -\u003e ReceiveLinkLayerPacket\nTimerTick -\u003e Tick\n\nCan we separate renames from refactor?",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 37
+      },
+      "revId": "f24f9ee97437e005eb25a9fe6059449b49d09894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
