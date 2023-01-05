@@ -110,6 +110,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "782ed563_477cbe40",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T02:47:52Z",
+      "side": 1,
+      "message": "As per offline chat. we don\u0027t want to use BluetoothProperties because this will require to have ifdef around it for non OS_ANDROID version.\nToo much of a pain.",
+      "parentUuid": "85327c33_24357259",
+      "range": {
+        "startLine": 628,
+        "startChar": 27,
+        "endLine": 628,
+        "endChar": 48
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "821a5b49_611d870f",
