@@ -93,6 +93,7 @@ bt_interface_t fake_bt_iface = {
     nullptr, /* set_event_filter_inquiry_result_all_devices */
     nullptr, /* get_wbs_supported */
     nullptr, /* metadata_changed */
+    nullptr, /* create_bond_with_addrtype */
 };
 
 }  // namespace

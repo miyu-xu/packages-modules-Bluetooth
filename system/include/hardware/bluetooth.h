@@ -896,6 +896,9 @@ typedef struct {
   void (*metadata_changed)(const RawAddress& remote_bd_addr, int key,
                            std::vector<uint8_t> value);
 
+  /** Create Bluetooth Bonding with address type */
+  int (*create_bond_with_addrtype)(const RawAddress* bd_addr, uint8_t addr_type,
+                                   int transport);
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"
