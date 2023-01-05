@@ -22,6 +22,30 @@
       },
       "revId": "1097fafc1b74527615b39aa132281f3293b22f46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6979334_2677e00b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2690,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-05T02:31:04Z",
+      "side": 1,
+      "message": "Resolved offline, but just for local consistency regarding soft denials",
+      "parentUuid": "6d70c914_e8f854b1",
+      "range": {
+        "startLine": 2690,
+        "startChar": 0,
+        "endLine": 2690,
+        "endChar": 76
+      },
+      "revId": "1097fafc1b74527615b39aa132281f3293b22f46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
