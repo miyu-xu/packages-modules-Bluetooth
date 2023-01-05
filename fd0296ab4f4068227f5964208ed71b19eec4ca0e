@@ -55,6 +55,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef834ca5_3c971e9a",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T23:04:01Z",
+      "side": 1,
+      "message": "Following the point raised in the meeting.\nTest need to be added to [ScanFilterTest in cts](https://cs.android.com/android/platform/superproject/+/master:cts/tests/tests/bluetooth/src/android/bluetooth/cts/ScanFilterTest.java;l\u003d35;drc\u003dd3decc0365d63779f9d37e2a1dfbd3e6644cc6b1)",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "204d45c0_2e145600",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 2
