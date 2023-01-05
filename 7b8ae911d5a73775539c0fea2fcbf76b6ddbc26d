@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e77127_e03b33f7",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:46:12Z",
+      "side": 1,
+      "message": "This looks like left-over debugging.  Remove?",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "7b8ae911d5a73775539c0fea2fcbf76b6ddbc26d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
