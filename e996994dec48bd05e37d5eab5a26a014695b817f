@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33780d1b_fc2ecf5f",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-05T00:50:25Z",
+      "side": 1,
+      "message": "I would consider making the new param the last param to maintain backwards compatibility with parcels that were valid in previous versions of the API surface.",
+      "revId": "e996994dec48bd05e37d5eab5a26a014695b817f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca3c9293_93adce3d",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-05T00:50:25Z",
+      "side": 1,
+      "message": "nit: Use \"{@code true}\" and \"{@code false}\" so the boolean values are shown properly in the generated docs. Something like \"{@code true} if the advertisement will be discoverable, {@code false} otherwise\".\n\nRelevant section of the API guidelines: go/android-api-guidelines#code-font",
+      "revId": "e996994dec48bd05e37d5eab5a26a014695b817f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
