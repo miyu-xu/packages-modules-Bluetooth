@@ -22,6 +22,52 @@
       },
       "revId": "e9613a53759e7a33ec7bc52ed78ba136d79cf5c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00f1fcbe_d16bc507",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T05:58:47Z",
+      "side": 1,
+      "message": "get?",
+      "range": {
+        "startLine": 414,
+        "startChar": 5,
+        "endLine": 414,
+        "endChar": 7
+      },
+      "revId": "e9613a53759e7a33ec7bc52ed78ba136d79cf5c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9a75704_63d23b54",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T05:58:47Z",
+      "side": 1,
+      "message": "get?",
+      "range": {
+        "startLine": 550,
+        "startChar": 19,
+        "endLine": 550,
+        "endChar": 20
+      },
+      "revId": "e9613a53759e7a33ec7bc52ed78ba136d79cf5c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
