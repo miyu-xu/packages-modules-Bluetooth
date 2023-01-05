@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ba3e8da_7356c7c7",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-05T14:08:35Z",
+      "side": 1,
+      "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd43460_7f5efe66",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-05T14:08:35Z",
+      "side": 1,
+      "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d16954a_01649353",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-05T14:08:35Z",
+      "side": 1,
+      "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced91d85_e47faceb",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-05T14:08:35Z",
+      "side": 1,
+      "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "719ab242_c1621bf1",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-05T14:08:35Z",
+      "side": 1,
+      "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf2bb49_e44fa247",
+        "filename": "system/stack/a2dp/a2dp_codec_config.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-05T14:08:35Z",
+      "side": 1,
+      "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
