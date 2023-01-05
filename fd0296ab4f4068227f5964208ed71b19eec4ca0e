@@ -16,6 +16,29 @@
       "message": "Can you please split the CL? For example there can be one CL for stack changes, one for JNI changes and one for Framework changes. Smaller CLs will be easy to review. Thanks",
       "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "025d17c5_ae489987",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T19:55:09Z",
+      "side": 1,
+      "message": "Can you move the nullable to be just before the `public byte[]` ?",
+      "range": {
+        "startLine": 471,
+        "startChar": 5,
+        "endLine": 471,
+        "endChar": 13
+      },
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
