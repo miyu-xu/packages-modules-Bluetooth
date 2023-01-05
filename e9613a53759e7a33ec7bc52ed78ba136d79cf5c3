@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c39eab32_2660986d",
+        "filename": "system/bta/dm/bta_dm_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T06:52:14Z",
+      "side": 1,
+      "message": "It\u0027s because the comment is before the space (like for GATTC 14) but here there was no line jump.\n\nFixed !\nThanks for the sharp eye !",
+      "parentUuid": "db5a8e0f_7ce45cdb",
+      "range": {
+        "startLine": 363,
+        "startChar": 49,
+        "endLine": 363,
+        "endChar": 66
+      },
+      "revId": "e9613a53759e7a33ec7bc52ed78ba136d79cf5c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00f1fcbe_d16bc507",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b110750e_50c13f21",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T06:52:14Z",
+      "side": 1,
+      "message": "I don\u0027t understand how I miss this.\nthanks",
+      "parentUuid": "00f1fcbe_d16bc507",
+      "range": {
+        "startLine": 414,
+        "startChar": 5,
+        "endLine": 414,
+        "endChar": 7
+      },
+      "revId": "e9613a53759e7a33ec7bc52ed78ba136d79cf5c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9a75704_63d23b54",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-05T05:58:47Z",
       "side": 1,
       "message": "get?",
+      "range": {
+        "startLine": 550,
+        "startChar": 19,
+        "endLine": 550,
+        "endChar": 20
+      },
+      "revId": "e9613a53759e7a33ec7bc52ed78ba136d79cf5c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17753bf9_0b50608f",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T06:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9a75704_63d23b54",
       "range": {
         "startLine": 550,
         "startChar": 19,
