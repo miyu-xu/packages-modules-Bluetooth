@@ -279,6 +279,12 @@
 #define BTM_NAME_RESOLVE_RETRY_DELAY_SEC 300
 #endif
 
+/* The max number of seconds in one remote name resolving session. After
+ * reaching the limit, we resume scanning instead of resolving more names. */
+#ifndef BTM_NAME_RESOLVE_DURATION_SEC
+#define BTM_NAME_RESOLVE_DURATION_SEC 10
+#endif
+
 /* Sets the Page_Scan_Window:  the length of time that the device is performing
  * a page scan. */
 #ifndef BTM_DEFAULT_CONN_WINDOW
