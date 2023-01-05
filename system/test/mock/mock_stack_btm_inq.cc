@@ -181,3 +181,10 @@ bool BTM_IsRemoteNameKnown(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   mock_function_count_map[__func__]++;
   return false;
 }
+void BTM_ReportRemoteNameFailure(const RawAddress& p_bda) {
+  mock_function_count_map[__func__]++;
+}
+tBTM_REMOTE_NAME_FAIL_ENT* BTM_GetRemoteNameFailure(const RawAddress& p_bda) {
+  mock_function_count_map[__func__]++;
+  return nullptr;
+}
