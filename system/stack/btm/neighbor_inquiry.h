@@ -255,6 +255,11 @@ typedef union /* contains the inquiry filter condition */
   tBTM_COD_COND cod_cond;
 } tBTM_INQ_FILT_COND;
 
+typedef struct {
+  RawAddress bd_addr;
+  uint64_t fail_time_ms;
+} tBTM_REMOTE_NAME_FAIL_ENT;
+
 #define BTM_INQ_RESULT_BR 0x01
 #define BTM_INQ_RESULT_BLE 0x02
 

@@ -310,6 +310,8 @@ typedef struct tBTM_CB {
 
   std::shared_ptr<TimestampedStringCircularBuffer> history_{nullptr};
 
+  list_t* rnr_fail_cache;
+
   void Init(uint8_t initial_security_mode) {
     memset(&cfg, 0, sizeof(cfg));
     memset(&devcb, 0, sizeof(devcb));
@@ -353,6 +355,8 @@ typedef struct tBTM_CB {
         kBtmLogHistoryBufferSize);
     CHECK(history_ != nullptr);
     history_->Push(std::string("Initialized btm history"));
+
+    rnr_fail_cache = list_new(osi_free);
   }
 
   void Free() {
@@ -379,6 +383,9 @@ typedef struct tBTM_CB {
 
     alarm_free(execution_wait_timer);
     execution_wait_timer = nullptr;
+
+    list_free(rnr_fail_cache);
+    rnr_fail_cache = nullptr;
   }
 
  private:
