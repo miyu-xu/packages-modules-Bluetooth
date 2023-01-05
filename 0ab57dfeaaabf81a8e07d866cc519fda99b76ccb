@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7380aaa1_24c9ef32",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T21:39:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4afab1c6_13c9b23b",
+      "range": {
+        "startLine": 488,
+        "startChar": 0,
+        "endLine": 492,
+        "endChar": 3
+      },
+      "revId": "0ab57dfeaaabf81a8e07d866cc519fda99b76ccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94c3f3ac_0a697f1c",
@@ -84,6 +108,30 @@
       "writtenOn": "2022-12-12T17:24:18Z",
       "side": 1,
       "message": "nit: rename to hidl_callbacks_",
+      "range": {
+        "startLine": 522,
+        "startChar": 36,
+        "endLine": 522,
+        "endChar": 46
+      },
+      "revId": "0ab57dfeaaabf81a8e07d866cc519fda99b76ccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "497f1e90_65c194dd",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T21:39:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94c3f3ac_0a697f1c",
       "range": {
         "startLine": 522,
         "startChar": 36,

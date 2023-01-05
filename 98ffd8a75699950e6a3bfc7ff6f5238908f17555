@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63d19cb4_7fbfee9a",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T21:39:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16caa929_edb26232",
+      "range": {
+        "startLine": 414,
+        "startChar": 29,
+        "endLine": 414,
+        "endChar": 55
+      },
+      "revId": "98ffd8a75699950e6a3bfc7ff6f5238908f17555",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "827668ff_41819a78",
@@ -96,6 +120,30 @@
       "writtenOn": "2022-12-12T17:41:17Z",
       "side": 1,
       "message": "You can use a lambda here to avoid the additional static function.",
+      "range": {
+        "startLine": 419,
+        "startChar": 50,
+        "endLine": 419,
+        "endChar": 72
+      },
+      "revId": "98ffd8a75699950e6a3bfc7ff6f5238908f17555",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc9d63c1_6eabd1c0",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T21:39:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "827668ff_41819a78",
       "range": {
         "startLine": 419,
         "startChar": 50,
