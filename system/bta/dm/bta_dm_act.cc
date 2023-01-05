@@ -36,6 +36,7 @@
 #include "btif/include/btif_dm.h"
 #include "btif/include/btif_storage.h"
 #include "btif/include/stack_manager.h"
+#include "common/time_util.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
 #include "gd/common/init_flags.h"
@@ -1035,6 +1036,9 @@ void bta_dm_inq_cmpl(uint8_t num) {
      */
     bta_dm_search_cb.name_discover_done = false;
     bta_dm_search_cb.peer_name[0] = 0;
+    bta_dm_search_cb.name_discover_threshold_time =
+        bluetooth::common::time_get_os_boottime_ms() +
+        1000 * BTM_NAME_RESOLVE_DURATION_SEC;
     bta_dm_discover_device(
         bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
   } else {
@@ -1701,25 +1705,35 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
  *
  ******************************************************************************/
 static void bta_dm_discover_next_device(void) {
+  uint64_t time_now = bluetooth::common::time_get_os_boottime_ms();
+
   APPL_TRACE_DEBUG("bta_dm_discover_next_device");
 
-  /* searching next device on inquiry result */
-  bta_dm_search_cb.p_btm_inq_info =
-      BTM_InqDbNext(bta_dm_search_cb.p_btm_inq_info);
-  if (bta_dm_search_cb.p_btm_inq_info != NULL) {
-    bta_dm_search_cb.name_discover_done = false;
-    bta_dm_search_cb.peer_name[0] = 0;
-    bta_dm_discover_device(
-        bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
+  /* continue discovery only if we still have time to spare */
+  if (bta_dm_search_cb.name_discover_threshold_time == 0 ||
+      time_now <= bta_dm_search_cb.name_discover_threshold_time) {
+    /* searching next device on inquiry result */
+    bta_dm_search_cb.p_btm_inq_info =
+        BTM_InqDbNext(bta_dm_search_cb.p_btm_inq_info);
+    if (bta_dm_search_cb.p_btm_inq_info != NULL) {
+      bta_dm_search_cb.name_discover_done = false;
+      bta_dm_search_cb.peer_name[0] = 0;
+      bta_dm_discover_device(
+          bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
+      return;
+    }
   } else {
-    tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
-
-    /* no devices, search complete */
-    bta_dm_search_cb.services = 0;
-
-    p_msg->hdr.event = BTA_DM_SEARCH_CMPL_EVT;
-    bta_sys_sendmsg(p_msg);
+    LOG_INFO("Name discovery takes long - dropping the rest of the queue");
   }
+
+  tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
+
+  /* no devices or time's up, search complete */
+  bta_dm_search_cb.services = 0;
+  bta_dm_search_cb.name_discover_threshold_time = 0;
+
+  p_msg->hdr.event = BTA_DM_SEARCH_CMPL_EVT;
+  bta_sys_sendmsg(p_msg);
 }
 
 /*******************************************************************************

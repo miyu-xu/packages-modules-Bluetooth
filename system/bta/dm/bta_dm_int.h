@@ -367,6 +367,7 @@ typedef struct {
   uint16_t state;
   RawAddress peer_bdaddr;
   bool name_discover_done;
+  uint64_t name_discover_threshold_time; /* Stop name discovery at this time */
   BD_NAME peer_name;
   alarm_t* search_timer;
   uint8_t service_index;
