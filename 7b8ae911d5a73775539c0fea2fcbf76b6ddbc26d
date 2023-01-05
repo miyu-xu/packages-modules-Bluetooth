@@ -22,6 +22,30 @@
       },
       "revId": "7b8ae911d5a73775539c0fea2fcbf76b6ddbc26d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c09b27_f3e091ad",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-01-05T13:50:11Z",
+      "side": 1,
+      "message": "Ack. It is not for debugging. All methods in BleScannerInterfaceImpl have such logs. So I put it down for consistency.",
+      "parentUuid": "88e77127_e03b33f7",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "7b8ae911d5a73775539c0fea2fcbf76b6ddbc26d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
