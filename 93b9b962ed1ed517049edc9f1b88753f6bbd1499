@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49263187_6e9a72be",
+        "filename": "framework/java/android/bluetooth/BluetoothCsipSetCoordinator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1576211
+      },
+      "writtenOn": "2023-01-05T14:53:47Z",
+      "side": 1,
+      "message": "Got it. I misunderstood the comment as being a change request. I\u0027m not familiar with the codebase so I\u0027m not super helpful here. Could well be an oversight, and arguably a bug from the metalaba API checker.",
+      "parentUuid": "c484afa7_c5bd0221",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "93b9b962ed1ed517049edc9f1b88753f6bbd1499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d481fdaa_17948aa0",
