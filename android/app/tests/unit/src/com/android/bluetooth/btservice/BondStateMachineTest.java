@@ -144,8 +144,16 @@ public class BondStateMachineTest {
         mBondStateMachine.sendMessage(createBondMsg2);
         TestUtils.waitForLooperToFinishScheduledTask(mBondStateMachine.getHandler().getLooper());
 
-        verify(mAdapterService, times(1)).createBondNative(eq(TEST_BT_ADDR_BYTES), anyInt());
-        verify(mAdapterService, times(1)).createBondNative(eq(TEST_BT_ADDR_BYTES_2), anyInt());
+        // one extra byte for address type
+        byte[] addrWithType = new byte[TEST_BT_ADDR_BYTES.length + 1];
+        byte[] addrWithType2 = new byte[TEST_BT_ADDR_BYTES_2.length + 1];
+        System.arraycopy(TEST_BT_ADDR_BYTES, 0, addrWithType, 0, TEST_BT_ADDR_BYTES.length);
+        System.arraycopy(TEST_BT_ADDR_BYTES_2, 0, addrWithType2, 0, TEST_BT_ADDR_BYTES_2.length);
+        addrWithType[TEST_BT_ADDR_BYTES.length] = 0;
+        addrWithType2[TEST_BT_ADDR_BYTES_2.length] = 0;
+
+        verify(mAdapterService, times(1)).createBondNative(eq(addrWithType), anyInt());
+        verify(mAdapterService, times(1)).createBondNative(eq(addrWithType2), anyInt());
     }
 
     @Test
