@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f24313bd_74569c7d",
+        "filename": "system/test/common/mock_functions.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:12:24Z",
+      "side": 1,
+      "message": "Do we need this indirection?\n\nIf we do, can we call it get_func_call_count_map() or something like that?\n\nI guess we\u0027re calling it to get the count, but it could be used to change the contents of the map.  Maybe we could have it return a const reference to the map?  I guess then you\u0027ll need two getters, one that\u0027s used in this file, that\u0027s non-const and static to this file, and one that\u0027s used externally.\n\nI\u0027m assuming that you did this to minimize changes to statements like:\nASSERT_EQ(0, get_func_call_count()[\"btif_storage_load_bonded_csis_devices\"]);\n\nI thought you\u0027d do get_func_call_count(\"btif_storage_load_bonded_csis_devices\")",
+      "range": {
+        "startLine": 22,
+        "startChar": 28,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "439a5a4f5f2ad5bbded0e47389217943f6802f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
