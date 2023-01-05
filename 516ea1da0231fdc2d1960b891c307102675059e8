@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76dd1c94_209f9036",
+        "filename": "system/main/shim/l2c_api.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:38:50Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 569,
+        "endChar": 73
+      },
+      "revId": "516ea1da0231fdc2d1960b891c307102675059e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac898dd7_8eed39a7",
+        "filename": "system/stack/acl/ble_acl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:38:50Z",
+      "side": 1,
+      "message": "this section of the CL looks like more than threading the bit through.",
+      "revId": "516ea1da0231fdc2d1960b891c307102675059e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46e1bfcd_6ba3c243",
+        "filename": "system/stack/acl/ble_acl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:38:50Z",
+      "side": 1,
+      "message": "missing braces",
+      "revId": "516ea1da0231fdc2d1960b891c307102675059e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f633302d_5e205e63",
+        "filename": "system/stack/acl/ble_acl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:38:50Z",
+      "side": 1,
+      "message": "We always have braces for if statements.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 69
+      },
+      "revId": "516ea1da0231fdc2d1960b891c307102675059e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
