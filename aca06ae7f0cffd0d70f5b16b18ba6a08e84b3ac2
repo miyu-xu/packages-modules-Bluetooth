@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bfb13a33_83f4332b",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-05T01:59:09Z",
+      "side": 1,
+      "message": "Double negation forces reader to do mentally reasoning. Let\u0027s use ENABLE in next patchset.",
+      "parentUuid": "83641608_19931945",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 28
+      },
+      "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23aa924e_795ce111",
         "filename": "system/btif/include/btif_hh.h",
         "patchSetId": 3
