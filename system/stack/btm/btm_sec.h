@@ -713,19 +713,6 @@ bool is_sec_state_equal(void* data, void* context);
 
 /*******************************************************************************
  *
- * Function         btm_sec_dev_rec_cback_event
- *
- * Description      This function calls the callback function with the given
- *                  result and clear the callback function.
- *
- * Parameters:      void
- *
- ******************************************************************************/
-void btm_sec_dev_rec_cback_event(tBTM_SEC_DEV_REC* p_dev_rec, tBTM_STATUS res,
-                                 bool is_le_transport);
-
-/*******************************************************************************
- *
  * Function         btm_sec_clear_ble_keys
  *
  * Description      This function is called to clear out the BLE keys.

@@ -266,10 +266,6 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
                        tHCI_ROLE assigned_role) {
   inc_func_call_count(__func__);
 }
-void btm_sec_dev_rec_cback_event(tBTM_SEC_DEV_REC* p_dev_rec,
-                                 tBTM_STATUS btm_status, bool is_le_transport) {
-  inc_func_call_count(__func__);
-}
 void btm_sec_dev_reset(void) { inc_func_call_count(__func__); }
 void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason,
                           std::string comment) {

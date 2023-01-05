@@ -91,6 +91,9 @@ void HACK_acl_check_sm4(tBTM_SEC_DEV_REC& p_dev_rec);
  ******************************************************************************/
 tBTM_SEC_SERV_REC* btm_sec_find_first_serv(bool is_originator, uint16_t psm);
 
+static void btm_sec_dev_rec_cback_event(tBTM_SEC_DEV_REC* p_dev_rec,
+                                        tBTM_STATUS btm_status,
+                                        bool is_le_transport);
 static tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec);
 static bool btm_sec_start_get_name(tBTM_SEC_DEV_REC* p_dev_rec);
 static void btm_sec_wait_and_start_authentication(tBTM_SEC_DEV_REC* p_dev_rec);
@@ -4789,8 +4792,9 @@ static const char* btm_pair_state_descr(tBTM_PAIRING_STATE state) {
  * Parameters:      void
  *
  ******************************************************************************/
-void btm_sec_dev_rec_cback_event(tBTM_SEC_DEV_REC* p_dev_rec,
-                                 tBTM_STATUS btm_status, bool is_le_transport) {
+static void btm_sec_dev_rec_cback_event(tBTM_SEC_DEV_REC* p_dev_rec,
+                                        tBTM_STATUS btm_status,
+                                        bool is_le_transport) {
   ASSERT(p_dev_rec != nullptr);
   LOG_DEBUG("transport=%s, btm_status=%s", is_le_transport ? "le" : "classic",
             btm_status_text(btm_status).c_str());
