@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.gatt;
 
+import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
@@ -41,7 +42,10 @@ import android.bluetooth.IBluetoothGattServerCallback;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.DistanceMeasurementMethod;
+import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IAdvertisingSetCallback;
+import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.bluetooth.le.IPeriodicAdvertisingCallback;
 import android.bluetooth.le.IScannerCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
@@ -1768,9 +1772,81 @@ public class GattService extends ProfileService {
             }
             return service.numHwTrackFiltersAvailable(attributionSource);
         }
-    }
 
-    ;
+        @Override
+        public void getSupportedDistanceMeasurementMethods(AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getSupportedDistanceMeasurementMethods(attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        private List<DistanceMeasurementMethod> getSupportedDistanceMeasurementMethods(
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null || !callerIsSystemOrActiveOrManagedUser(service, TAG,
+                    "GattService getSupportedDistanceMeasurementMethods")
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                    service, attributionSource, "GattService startDistanceMeasurement")) {
+                return new ArrayList<>();
+            }
+            return Arrays.asList(service.getSupportedDistanceMeasurementMethods(attributionSource));
+        }
+
+        @Override
+        public void startDistanceMeasurement(ParcelUuid uuid,
+                DistanceMeasurementParams distanceMeasurementParams,
+                IDistanceMeasurementCallback callback, AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            try {
+                startDistanceMeasurement(uuid, distanceMeasurementParams, callback,
+                        attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        private void startDistanceMeasurement(ParcelUuid uuid,
+                DistanceMeasurementParams distanceMeasurementParams,
+                IDistanceMeasurementCallback callback, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null || !callerIsSystemOrActiveOrManagedUser(service, TAG,
+                    "startDistanceMeasurement") || !Utils.checkConnectPermissionForDataDelivery(
+                    service, attributionSource, "GattService startDistanceMeasurement")) {
+                return;
+            }
+            service.startDistanceMeasurement(uuid, distanceMeasurementParams, callback,
+                    attributionSource);
+        }
+
+        @Override
+        public void stopDistanceMeasurement(ParcelUuid uuid, BluetoothDevice device, int method,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(stopDistanceMeasurement(uuid, device, method, attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        private int stopDistanceMeasurement(ParcelUuid uuid, BluetoothDevice device, int method,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            } else if (!callerIsSystemOrActiveOrManagedUser(service, TAG,
+                    "stopDistanceMeasurement")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            } else if (!Utils.checkConnectPermissionForDataDelivery(
+                    service, attributionSource, "GattService stopDistanceMeasurement")) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            return service.stopDistanceMeasurement(uuid, device, method, attributionSource);
+        }
+    };
 
     /**************************************************************************
      * Callback functions - CLIENT
@@ -3485,6 +3561,37 @@ public class GattService extends ProfileService {
             return;
         }
         mAdvertiseManager.setPeriodicAdvertisingEnable(advertiserId, enable);
+    }
+
+    /**************************************************************************
+     * Distance Measurement
+     *************************************************************************/
+
+    DistanceMeasurementMethod[] getSupportedDistanceMeasurementMethods(
+            AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "GattService startDistanceMeasurement")) {
+            return new DistanceMeasurementMethod[0];
+        }
+        // TODO(b/256055210): Implement DistanceMeasurementManager in Bluetooth APP
+        // return mDistanceMeasurementManager.getSupportedMethods();
+        return new DistanceMeasurementMethod[0];
+    }
+
+
+    void startDistanceMeasurement(ParcelUuid uuid,
+            DistanceMeasurementParams distanceMeasurementParams,
+            IDistanceMeasurementCallback callback, AttributionSource attributionSource) {
+        // TODO(b/256055210): Implement DistanceMeasurementManager in Bluetooth APP
+        // mDistanceMeasurementManager.startDistanceMeasurement(uuid, distanceMeasurementParams,
+        // callback);
+    }
+
+    int stopDistanceMeasurement(ParcelUuid uuid, BluetoothDevice device, int method,
+            AttributionSource attributionSource) {
+        // TODO(b/256055210): Implement DistanceMeasurementManager in Bluetooth APP
+        // mDistanceMeasurementManager.stopDistanceMeasurement(uuid, device, method, false);
+        return BluetoothStatusCodes.SUCCESS;
     }
 
     /**************************************************************************
