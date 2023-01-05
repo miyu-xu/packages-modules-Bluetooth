@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc170d29_e9b06a33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-05T01:15:54Z",
+      "side": 1,
+      "message": "Bypass presubmit reasons:\n- This fixes the Floss build (which is unused on Android) and which unblocks the flossbuild_gcp presubmit + postsubmit builders.",
+      "revId": "6fcebc89f5991c94aa9dc20dd6173d2d0c8f7802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
