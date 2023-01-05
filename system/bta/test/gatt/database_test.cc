@@ -124,7 +124,10 @@ TEST(GattCacheTest, stored_attribute_to_binary_service_test) {
 
   // useful for debugging:
   // LOG(ERROR) << " " << base::HexEncode(&attr, len);
-  EXPECT_EQ(memcmp(binary_form, &attr, len), 0);
+
+  // Do not compare last 2 bytes which are padding as
+  // x86 can use non-zero padding causing the test to fail
+  EXPECT_EQ(memcmp(binary_form, &attr, len - 2), 0);
 }
 
 /* This test makes sure that Service represented in StoredAttribute have proper
