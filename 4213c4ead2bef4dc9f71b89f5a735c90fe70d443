@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a6392bc_506c1283",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-05T11:14:33Z",
+      "side": 1,
+      "message": "Q) Is it possible to use verify for final methods?",
+      "range": {
+        "startLine": 526,
+        "startChar": 30,
+        "endLine": 526,
+        "endChar": 42
+      },
+      "revId": "4213c4ead2bef4dc9f71b89f5a735c90fe70d443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
