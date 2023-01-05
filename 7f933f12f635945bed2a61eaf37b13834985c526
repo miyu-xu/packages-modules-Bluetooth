@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d60abbb1_0f8a1e64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T05:31:16Z",
+      "side": 1,
+      "message": "Anytime you are running `repo upload` to upload the change it should run some hook that check the format of your commit and output any error. (because it is not recommended to do `git push` to upload aosp changes cf [offical documentation](https://source.android.com/docs/setup/contribute/submit-patches#upload-to-gerrit))\nIn your case it should even suggest an automatic fix that consist in running clang-format.\n\nIf for some reason you don\u0027t have the hook (which is weird, you should have it) you can manually run the `clang-format` on the file your are uploading. There is a nice variation on this command to only format your patch set and not the whole file by either:\n* running `git clang-format` while you only have your change as staged and not already committed\n* running `git clang-format HEAD~1` when your commit is the last one in your local tree. (then amend before uploading)",
+      "parentUuid": "2527209b_44b12c5f",
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5087f6b8_99f677c1",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 11
@@ -124,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "575e93ba_b3cd2059",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T05:31:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ed3f76b3_b7b9e34f",
+      "range": {
+        "startLine": 1101,
+        "startChar": 29,
+        "endLine": 1101,
+        "endChar": 37
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ed12a0a_86efda80",
@@ -161,6 +203,30 @@
       "side": 1,
       "message": "On purpose, for other profiles it could be like if we want to scale as above\n\n   const UINT16 servclass_uuids[] \u003d {\n     UUID_SERVCLASS_AUDIO_SINK,\n     UUID_SERVCLASS_AV_REMOTE_CONTROL,\n     UUID_SERVCLASS_AV_REM_CTRL_TARGET,\n   };\n\n   const UINT16 btprofile_uuids[] \u003d {\n     UUID_SERVCLASS_ADV_AUDIO_DISTRIBUTION,\n     UUID_SERVCLASS_AV_REMOTE_CONTROL,\n     UUID_SERVCLASS_AV_REMOTE_CONTROL,\n   };",
       "parentUuid": "7ed12a0a_86efda80",
+      "range": {
+        "startLine": 1105,
+        "startChar": 4,
+        "endLine": 1105,
+        "endChar": 36
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86e7afd7_3c29da36",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T05:31:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "01dd3717_4270dd4a",
       "range": {
         "startLine": 1105,
         "startChar": 4,
@@ -335,6 +401,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c5b7543_58b0ae4d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T05:31:16Z",
+      "side": 1,
+      "message": "I guess this can be done later when the ToString will be removed everywhere.\nLet\u0027s skip it for this change",
+      "parentUuid": "0074cb1b_3549fd5e",
+      "range": {
+        "startLine": 1127,
+        "startChar": 30,
+        "endLine": 1127,
+        "endChar": 73
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d065d193_c176ec99",
@@ -372,6 +462,30 @@
       "side": 1,
       "message": "Looks Good, made changes for same pending for testing now though\nhowever, for\n.store_audio_version \u003d store_a2dp_version, -\u003e it\u0027s for profile feature not version as version we already storing in main function.\n\nSome profiles don\u0027t have feature like A2DP then it might be dummy empty OR null impl if it will be there.",
       "parentUuid": "d065d193_c176ec99",
+      "range": {
+        "startLine": 1138,
+        "startChar": 0,
+        "endLine": 1138,
+        "endChar": 65
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34d3bf11_cccb0031",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T05:31:16Z",
+      "side": 1,
+      "message": "Mmm we can then imagine using std::Optional with an empty value when not needed...\nbut if there is nothing for a2dp right now, let\u0027s give this task to the next CL as we are already doing a lot here",
+      "parentUuid": "129359e5_2a64206e",
       "range": {
         "startLine": 1138,
         "startChar": 0,
@@ -654,6 +768,30 @@
       "side": 1,
       "message": "I think so considering feature is there in 2 bytes as below where cover art is in next byte\n\n\t\t\tAttribute: Supported Features\n\t\t\t\tCategory 1: Not Supported\n\t\t\t\tCategory 2: Supported\n\t\t\t\tCategory 3: Not Supported\n\t\t\t\tCategory 4: Not Supported\n\t\t\t\tPlayer Application Settings.: Not Supported\n\t\t\t\tGroup Navigation: Not Supported\n\t\t\t\tSupports browsing: Not Supported\n\t\t\t\tSupports Multi Media Applications: Not Supported\n\t\t\t\tSupports Cover Art: Not Supported\n\t\t\t\tRFA: Not Supported",
       "parentUuid": "9e21633b_65bbd3f5",
+      "range": {
+        "startLine": 1582,
+        "startChar": 22,
+        "endLine": 1582,
+        "endChar": 55
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e78420f8_da9466d4",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T05:31:16Z",
+      "side": 1,
+      "message": "I am sorry, I don\u0027t understand your comment.\nWhy does this listing ensure p_attr.value_ptr is always bigger than AVRCP_SUPPORTED_FEATURES_POSITION ?\nShouldn\u0027t we check `p_attr-\u003evalue_ptr !\u003d null \u0026\u0026 p_attr-\u003elen \u003e AVRCP_SUPPORTED_FEATURES_POSITION` at the start of the method ?\n\n(I may miss something here, let me know if it\u0027s the case)",
+      "parentUuid": "888f9696_d1ae3898",
       "range": {
         "startLine": 1582,
         "startChar": 22,
