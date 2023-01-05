@@ -587,6 +587,16 @@ static int create_bond(const RawAddress* bd_addr, int transport) {
   return BT_STATUS_SUCCESS;
 }
 
+static int create_bond_with_addrtype(const RawAddress* bd_addr,
+                                     uint8_t addr_type, int transport) {
+  if (!interface_ready()) return BT_STATUS_NOT_READY;
+  if (btif_dm_pairing_is_busy()) return BT_STATUS_BUSY;
+
+  do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_create_bond_with_addrtype,
+                                              *bd_addr, addr_type, transport));
+  return BT_STATUS_SUCCESS;
+}
+
 static int create_bond_out_of_band(const RawAddress* bd_addr, int transport,
                                    const bt_oob_data_t* p192_data,
                                    const bt_oob_data_t* p256_data) {
@@ -1031,7 +1041,8 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     .set_event_filter_connection_setup_all_devices =
         set_event_filter_connection_setup_all_devices,
     .get_wbs_supported = get_wbs_supported,
-    .metadata_changed = metadata_changed};
+    .metadata_changed = metadata_changed,
+    .create_bond_with_addrtype = create_bond_with_addrtype};
 
 // callback reporting helpers
 
