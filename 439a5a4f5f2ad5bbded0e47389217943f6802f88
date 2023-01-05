@@ -39,6 +39,30 @@
       },
       "revId": "439a5a4f5f2ad5bbded0e47389217943f6802f88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be14e21b_758a09f0",
+        "filename": "system/test/common/mock_functions.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-05T07:16:29Z",
+      "side": 1,
+      "message": "oh...\nI like your suggestion. Now I do not need to export the getter at all and can restrain the map to mock_function. Any extra operation will need to be added to this file now.\n\n\u003eI\u0027m assuming that you did this to minimize changes to statements like:\n\n3K lines... We are no longer caring about minimizing stuff here ᕕ( ᐛ )ᕗ",
+      "parentUuid": "f24313bd_74569c7d",
+      "range": {
+        "startLine": 22,
+        "startChar": 28,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "439a5a4f5f2ad5bbded0e47389217943f6802f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
