@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71637c5d_724bfe7a",
+        "filename": "system/gd/hci/facade/le_advertising_manager_facade.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:30:53Z",
+      "side": 1,
+      "message": "If there\u0027s only one, why name it Extended?",
+      "range": {
+        "startLine": 172,
+        "startChar": 20,
+        "endLine": 172,
+        "endChar": 28
+      },
+      "revId": "80ce08cbb04f695af05f0f89f91f1dd3b8ab0b7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
