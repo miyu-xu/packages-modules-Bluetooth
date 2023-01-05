@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a388d1_21b85eca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T06:13:33Z",
+      "side": 1,
+      "message": "I noticed why we need the indirection, but I forgot to update the comment.  I guess that\u0027s a sign that the comment was too long.",
+      "revId": "439a5a4f5f2ad5bbded0e47389217943f6802f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f24313bd_74569c7d",
