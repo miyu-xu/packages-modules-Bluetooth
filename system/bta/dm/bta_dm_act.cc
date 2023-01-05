@@ -1775,6 +1775,14 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
     bta_dm_search_cb.name_discover_done = true;
   }
 
+  /* Skip if the peer is known to be problematic on remote name resolving */
+  if (!bta_dm_search_cb.name_discover_done &&
+      BTM_GetRemoteNameFailure(remote_bd_addr)) {
+    LOG_DEBUG("Skipping name discovery for unresponsive peer:%s",
+              PRIVATE_ADDRESS(remote_bd_addr));
+    bta_dm_search_cb.name_discover_done = true;
+  }
+
   /* if name discovery is not done and application needs remote name */
   if ((!bta_dm_search_cb.name_discover_done) &&
       ((bta_dm_search_cb.p_btm_inq_info == NULL) ||
@@ -2053,6 +2061,10 @@ static void bta_dm_remname_cback(void* p) {
 
   if (bta_dm_search_cb.transport == BT_TRANSPORT_LE) {
     GAP_BleReadPeerPrefConnParams(bta_dm_search_cb.peer_bdaddr);
+  }
+
+  if (p_remote_name->hci_status != HCI_SUCCESS) {
+    BTM_ReportRemoteNameFailure(bta_dm_search_cb.peer_bdaddr);
   }
 
   tBTA_DM_REM_NAME* p_msg =

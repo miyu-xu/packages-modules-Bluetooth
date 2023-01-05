@@ -501,6 +501,35 @@ tBTM_INQ_INFO* BTM_InqDbNext(tBTM_INQ_INFO* p_cur);
  ******************************************************************************/
 tBTM_STATUS BTM_ClearInqDb(const RawAddress* p_bda);
 
+/*******************************************************************************
+ *
+ * Function         BTM_ReportRemoteNameFailure
+ *
+ * Description      This function is called to indicate that a specific device
+ *                  fails the remote name request procedure.
+ *
+ * Parameter        p_bda - address of device to report
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTM_ReportRemoteNameFailure(const RawAddress& p_bda);
+
+/*******************************************************************************
+ *
+ * Function         BTM_GetRemoteNameFailure
+ *
+ * Description      This function is called to check whether a specific device
+ *                  recently fails the remote name request procedure.
+ *
+ * Parameter        p_bda - address of device to query
+ *
+ * Returns          tBTM_REMOTE_NAME_FAIL_ENT* pointing to the failure entry
+ *                  if address is found, or NULL otherwise.
+ *
+ ******************************************************************************/
+tBTM_REMOTE_NAME_FAIL_ENT* BTM_GetRemoteNameFailure(const RawAddress& p_bda);
+
 /*****************************************************************************
  *  (e)SCO CHANNEL MANAGEMENT FUNCTIONS
  ****************************************************************************/

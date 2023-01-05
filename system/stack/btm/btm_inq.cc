@@ -177,6 +177,7 @@ static const uint8_t* btm_eir_get_uuid_list(const uint8_t* p_eir,
                                             size_t eir_len, uint8_t uuid_size,
                                             uint8_t* p_num_uuid,
                                             uint8_t* p_uuid_list_type);
+static void btm_refresh_remote_name_failure_cache(void);
 
 void SendRemoteNameRequest(const RawAddress& raw_address) {
   if (bluetooth::shim::is_gd_shim_enabled()) {
@@ -785,6 +786,61 @@ tBTM_STATUS BTM_ClearInqDb(const RawAddress* p_bda) {
   btm_clr_inq_db(p_bda);
 
   return (BTM_SUCCESS);
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_ReportRemoteNameFailure
+ *
+ * Description      This function is called to indicate that a specific device
+ *                  fails the remote name request procedure.
+ *
+ * Parameter        p_bda - address of device to report
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTM_ReportRemoteNameFailure(const RawAddress& p_bda) {
+  tBTM_REMOTE_NAME_FAIL_ENT* entry;
+  uint64_t time_now = bluetooth::common::time_get_os_boottime_ms();
+
+  entry = BTM_GetRemoteNameFailure(p_bda);
+  if (!entry) {
+    entry = (tBTM_REMOTE_NAME_FAIL_ENT*)osi_malloc(
+        sizeof(tBTM_REMOTE_NAME_FAIL_ENT));
+    entry->bd_addr = p_bda;
+    list_append(btm_cb.rnr_fail_cache, entry);
+  }
+
+  entry->fail_time_ms = time_now;
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_GetRemoteNameFailure
+ *
+ * Description      This function is called to check whether a specific device
+ *                  recently fails the remote name request procedure.
+ *
+ * Parameter        p_bda - address of device to query
+ *
+ * Returns          tBTM_REMOTE_NAME_FAIL_ENT* pointing to the failure entry
+ *                  if address is found, or NULL otherwise.
+ *
+ ******************************************************************************/
+tBTM_REMOTE_NAME_FAIL_ENT* BTM_GetRemoteNameFailure(const RawAddress& p_bda) {
+  tBTM_REMOTE_NAME_FAIL_ENT* entry;
+
+  btm_refresh_remote_name_failure_cache();
+  for (list_node_t* node = list_begin(btm_cb.rnr_fail_cache);
+       node != list_end(btm_cb.rnr_fail_cache); node = list_next(node)) {
+    entry = (tBTM_REMOTE_NAME_FAIL_ENT*)list_node(node);
+    if (entry->bd_addr == p_bda) {
+      return entry;
+    }
+  }
+
+  return NULL;
 }
 
 /*******************************************************************************
@@ -1960,5 +2016,37 @@ void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results) {
       p_uuid_data += Uuid::kNumBytes128;
       if (uuid16) BTM_AddEirService(p_results->eir_uuid, uuid16);
     }
+  }
+}
+
+/*******************************************************************************
+ *
+ * Function         btm_refresh_remote_name_failure_cache
+ *
+ * Description      This function is called to clear the obsolete entries from
+ *                  the list of devices that fail the remote name resolving
+ *                  procedure some time ago.
+ *
+ * Parameters       None
+ *
+ * Returns          None
+ *
+ ******************************************************************************/
+static void btm_refresh_remote_name_failure_cache(void) {
+  tBTM_REMOTE_NAME_FAIL_ENT* entry;
+  uint64_t delta_ms;
+  uint64_t now_ms = bluetooth::common::time_get_os_boottime_ms();
+
+  while (!list_is_empty(btm_cb.rnr_fail_cache)) {
+    entry = (tBTM_REMOTE_NAME_FAIL_ENT*)list_front(btm_cb.rnr_fail_cache);
+    delta_ms = now_ms - entry->fail_time_ms;
+
+    if (delta_ms > 1000 * BTM_NAME_RESOLVE_RETRY_DELAY_SEC) {
+      list_remove(btm_cb.rnr_fail_cache, entry);
+      continue;
+    }
+
+    /* The rest of the list don't need removal, since it is ordered by time. */
+    break;
   }
 }

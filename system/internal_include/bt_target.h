@@ -273,6 +273,12 @@
 #define BTM_INQ_DB_SIZE 40
 #endif
 
+/* The number of seconds to wait before allowing the next attempt to resolve
+ * the remote name of a previously unresolvable device. */
+#ifndef BTM_NAME_RESOLVE_RETRY_DELAY_SEC
+#define BTM_NAME_RESOLVE_RETRY_DELAY_SEC 300
+#endif
+
 /* Sets the Page_Scan_Window:  the length of time that the device is performing
  * a page scan. */
 #ifndef BTM_DEFAULT_CONN_WINDOW
