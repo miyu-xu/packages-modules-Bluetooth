@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0f573bb_8e6fc57f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-05T17:50:53Z",
+      "side": 1,
+      "message": "Will add a bug for this",
+      "parentUuid": "7b2aef69_94322f67",
+      "revId": "f24f9ee97437e005eb25a9fe6059449b49d09894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "661ac2c8_f4c17b7c",
         "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
         "patchSetId": 7
