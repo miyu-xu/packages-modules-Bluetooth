@@ -55,6 +55,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "204d45c0_2e145600",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-05T22:58:38Z",
+      "side": 1,
+      "message": "nit: one extra space on lines 95 and 96 to line up the javadoc comment",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "025d17c5_ae489987",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 2
@@ -72,6 +89,23 @@
         "endLine": 471,
         "endChar": 13
       },
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9606c15_586ee473",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-05T22:58:38Z",
+      "side": 1,
+      "message": "Please add @param tags to describe each param",
       "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
