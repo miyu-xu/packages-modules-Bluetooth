@@ -43,6 +43,7 @@ import android.os.Process;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.obex.ClientOperation;
@@ -50,6 +51,8 @@ import com.android.obex.ClientSession;
 import com.android.obex.HeaderSet;
 import com.android.obex.ObexTransport;
 import com.android.obex.ResponseCodes;
+
+import com.google.common.annotations.VisibleForTesting;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -65,15 +68,19 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
     private static final boolean D = Constants.DEBUG;
     private static final boolean V = Constants.VERBOSE;
 
-    private ClientThread mThread;
+    @VisibleForTesting
+    ClientThread mThread;
 
-    private ObexTransport mTransport;
+    @VisibleForTesting
+    ObexTransport mTransport;
 
-    private Context mContext;
+    @VisibleForTesting
+    Context mContext;
 
     private volatile boolean mInterrupted;
 
-    private volatile boolean mWaitingForRemote;
+    @VisibleForTesting
+    volatile boolean mWaitingForRemote;
 
     private Handler mCallback;
 
@@ -138,7 +145,8 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
         return done;
     }
 
-    private class ClientThread extends Thread {
+    @VisibleForTesting
+    class ClientThread extends Thread {
 
         private static final int SLEEP_TIME = 500;
 
@@ -150,7 +158,8 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
 
         private ObexTransport mTransport1;
 
-        private ClientSession mCs;
+        @VisibleForTesting
+        ClientSession mCs;
 
         private WakeLock mWakeLock;
 
@@ -368,14 +377,15 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
                 updateValues.put(BluetoothShare.FILENAME_HINT, fileInfo.mFileName);
                 updateValues.put(BluetoothShare.TOTAL_BYTES, fileInfo.mLength);
                 updateValues.put(BluetoothShare.MIMETYPE, fileInfo.mMimetype);
-
-                mContext1.getContentResolver().update(contentUri, updateValues, null, null);
+                BluetoothMethodProxy.getInstance().contentResolverUpdate(
+                        mContext1.getContentResolver(), contentUri, updateValues, null, null);
 
             }
             return fileInfo;
         }
 
-        private int sendFile(BluetoothOppSendFileInfo fileInfo) {
+        @VisibleForTesting
+        int sendFile(BluetoothOppSendFileInfo fileInfo) {
             boolean error = false;
             int responseCode = -1;
             long position = 0;
