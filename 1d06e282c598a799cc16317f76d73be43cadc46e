@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cb51306_0bc389a7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-05T11:41:17Z",
+      "side": 1,
+      "message": "How about creating a variable for `listing.getList().get(0)` and `listing.getList().get(1)`? with proper names - something like emailOOO?\n\nSame for below method",
+      "range": {
+        "startLine": 1092,
+        "startChar": 19,
+        "endLine": 1092,
+        "endChar": 43
+      },
+      "revId": "1d06e282c598a799cc16317f76d73be43cadc46e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
