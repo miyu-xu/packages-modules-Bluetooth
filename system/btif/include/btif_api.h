@@ -226,6 +226,16 @@ void btif_dm_create_bond(const RawAddress bd_addr, int transport);
 
 /*******************************************************************************
  *
+ * Function         btif_dm_create_bond_with_addrtype
+ *
+ * Description      Initiate bonding with the specified device with address type
+ *
+ ******************************************************************************/
+void btif_dm_create_bond_with_addrtype(const RawAddress bd_addr,
+                                       uint8_t addr_type, int transport);
+
+/*******************************************************************************
+ *
  * Function         btif_dm_create_bond_out_of_band
  *
  * Description      Initiate bonding with the specified device using OOB data.
