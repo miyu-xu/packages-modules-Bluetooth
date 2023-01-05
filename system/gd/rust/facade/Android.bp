@@ -35,7 +35,6 @@ rust_binary {
       "libbluetooth_with_facades",
       "libfutures",
       "libgrpcio",
-      "liblazy_static",
       "libtokio",
       "libnix",
       "libbt_common",
