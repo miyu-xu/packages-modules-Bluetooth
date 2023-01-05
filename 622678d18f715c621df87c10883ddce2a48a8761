@@ -143,6 +143,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92eb1d7f_a284abec",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-05T20:47:42Z",
+      "side": 1,
+      "message": "What are you trying to accomplish here?  Seems like there is a stream of bytes you want to read in.  So you read the orgId\n\n`int orgId \u003d in.readInt();`\n\nThen you want to do a check on the orgId?  Or do you want to read yet another byte and hope it is non zero?\n\n```\nif (in.readInt() \u003d\u003d 1) {\n\n}\n```\n\nThen it seems that the flags and flagsmask are read in, then another read happens.\n\nI think this parceling needs to be discussed.  Based on your code this is how I imagine the packet to look.\n\n\u0027:\u0027 separates octets\n\n```\n[orgId : bool hasTdsInfo : tdsFlags : tdsFlagsMask : bool hasWifiNanHashInfo : wifiNanHashLength ]\n```\n\nCan you describe your expectations on data structure?",
+      "parentUuid": "fab3b0d7_b852867a",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba6e57ec_1b64dd65",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 1

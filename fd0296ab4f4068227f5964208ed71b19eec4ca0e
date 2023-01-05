@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "598b5114_e8d916b4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanFilterQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-05T20:47:42Z",
+      "side": 1,
+      "message": "isn\u0027t TDS opcode 8?  does it matter to match to this?",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "025d17c5_ae489987",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 2
