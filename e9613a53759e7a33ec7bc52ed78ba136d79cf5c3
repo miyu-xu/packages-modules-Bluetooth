@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5a8e0f_7ce45cdb",
+        "filename": "system/bta/dm/bta_dm_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-05T05:53:54Z",
+      "side": 1,
+      "message": "This looks odd.  Was it supposed to be left on a separate line?",
+      "range": {
+        "startLine": 363,
+        "startChar": 49,
+        "endLine": 363,
+        "endChar": 66
+      },
+      "revId": "e9613a53759e7a33ec7bc52ed78ba136d79cf5c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
