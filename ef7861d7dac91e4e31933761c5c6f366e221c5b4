@@ -16,6 +16,24 @@
       "message": "Should we use `sendEmptyMessageAtTime` instead? A 24hr delay sounds really scary to me...",
       "revId": "ef7861d7dac91e4e31933761c5c6f366e221c5b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f127fb2_3d156fc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T06:44:54Z",
+      "side": 1,
+      "message": "Same thing no?\none is calling the other",
+      "parentUuid": "893055bd_99e9f5de",
+      "revId": "ef7861d7dac91e4e31933761c5c6f366e221c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
