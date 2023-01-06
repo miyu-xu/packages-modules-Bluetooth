@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe9f651_647e9e54",
+        "filename": "system/gd/security/test/pairing_handler_le_pair_test.cc",
+        "patchSetId": 40
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-06T14:54:12Z",
+      "side": 1,
+      "message": "remove this",
+      "revId": "fab2941177c24e7e4caebd04313c80f2d35ef8ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
