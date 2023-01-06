@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "935f7128_6540703e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-06T02:19:53Z",
+      "side": 1,
+      "message": "The legacy stack may want to read it immediately / in response to some API invocation. I agree that it seems implausible, but it\u0027s still a race.",
+      "parentUuid": "18bd452d_fea699c1",
+      "range": {
+        "startLine": 11,
+        "startChar": 22,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "5c7ca734636d0e2196551c9ca65f4b7f9f4fc32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab2a5700_6c7fc1f6",
         "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
         "patchSetId": 14
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-05T06:39:56Z",
       "side": 1,
       "message": "Do we need this and a std::optional for the advertising_set_id?\n\nIt feels like the advertising_set_id should always be populated if we\u0027re peripheral, and never populated if we\u0027re Central.\n\nCan we simplify it?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "5c7ca734636d0e2196551c9ca65f4b7f9f4fc32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57755e1b_2f668ed7",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-06T02:19:53Z",
+      "side": 1,
+      "message": "The std::optional is needed for legacy advertising, since then we don\u0027t have a set ID.\n\nThis case is needed when we store the connection inside le_impl before sending it upwards. Constructing the connection later is possible but messy since we\u0027d need to store all the parameters + the queue in another struct, so I thought the simpler way is to just have a variant that is never realized after we return upwards.",
+      "parentUuid": "ab2a5700_6c7fc1f6",
       "range": {
         "startLine": 46,
         "startChar": 0,
