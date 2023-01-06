@@ -467,6 +467,10 @@ void bta_hh_co_close(uint8_t dev_handle, uint8_t app_id) {
           "dev_status = %d, dev_handle =%d",
           __func__, p_dev->dev_status, p_dev->dev_handle);
       btif_hh_close_poll_thread(p_dev);
+      if (p_dev->fd >= 0) {
+        bta_hh_co_destroy(p_dev->fd);
+        p_dev->fd = -1;
+      }
       break;
     }
   }
