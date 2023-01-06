@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db1610d8_8a76362c",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-06T02:50:48Z",
+      "side": 1,
+      "message": "Is it possible that osi_malloc() return a null pointer? If so, we\u0027d better add some guard here.",
+      "range": {
+        "startLine": 810,
+        "startChar": 0,
+        "endLine": 810,
+        "endChar": 51
+      },
+      "revId": "290a0f56de233eac4db55a9ec32bd6ad12e1a385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7796ab_9a9e3248",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2043,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-06T02:50:48Z",
+      "side": 1,
+      "message": "Overflow could happens. We can calculate the delta time to avoid this risk.\n\nuint64_t now_ms \u003d bluetooth::common::time_get_os_boottime_ms();\nuint64_t delta_ms \u003d now_ms - entry-\u003efail_time_ms;\nif (delta_ms \u003e 1000 * BTM_NAME_RESOLVE_RETRY_DELAY_SEC) {\n   ...\n}",
+      "range": {
+        "startLine": 2043,
+        "startChar": 0,
+        "endLine": 2043,
+        "endChar": 44
+      },
+      "revId": "290a0f56de233eac4db55a9ec32bd6ad12e1a385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
