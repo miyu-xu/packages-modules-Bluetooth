@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75cbb9cc_b470f81e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T05:23:09Z",
+      "side": 1,
+      "message": "it feel a bit weird to ask native before logging...",
+      "revId": "bf01a5bfdf898da7f01060bfa21c3f07e1b74600",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
