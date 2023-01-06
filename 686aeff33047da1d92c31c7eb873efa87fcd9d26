@@ -22,6 +22,30 @@
       },
       "revId": "686aeff33047da1d92c31c7eb873efa87fcd9d26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85bdb085_2fac61f8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2023-01-06T02:12:20Z",
+      "side": 1,
+      "message": "Yes, from our offline discussion: I have tried without it and Mockito is giving errors. I\u0027m not exactly sure but my guess is the test `AdvertiseManagerTest` is in the same package so we have no problem using `AdvertiseManager` there but the Mockito library initiates the mocked instance in another package? Possible its own `com.mock.(*)`. And that\u0027s why it requires this class to be public? It can\u0027t reach the package private `com.bluetooth.(*)` classes and gives an error.",
+      "parentUuid": "9699c485_e25f9f58",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 6
+      },
+      "revId": "686aeff33047da1d92c31c7eb873efa87fcd9d26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
