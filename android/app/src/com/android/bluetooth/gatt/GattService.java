@@ -53,6 +53,8 @@ import android.companion.AssociationInfo;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.Resources;
 import android.net.MacAddress;
 import android.os.Binder;
 import android.os.Build;
@@ -96,10 +98,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
-
-import android.content.res.Resources;
-
-/**
  * Provides Bluetooth Gatt profile, as a service in
  * the Bluetooth application.
  * @hide
@@ -1096,6 +1094,34 @@ public class GattService extends ProfileService {
                 return;
             }
             service.readRemoteRssi(clientIf, address, attributionSource);
+        }
+
+        @Override
+        public void getAclHandle(
+                int clientIf,
+        public void getAclHandle(
+                int clientIf,
+                String address,
+                int transport,
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getAclHandle(clientIf, address, transport, attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+
+        private int getAclHandle(
+                int clientIf, String address, int transport, AttributionSource attributionSource) {
+
+        private int getAclHandle(
+                int clientIf, String address, int transport, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
+            }
+            return service.getAclHandle(clientIf, address, transport, attributionSource);
         }
 
         @Override
@@ -2539,6 +2565,34 @@ public class GattService extends ProfileService {
         }
     }
 
+            Log.d(
+                    TAG,
+                    "onGetAclHandle() - clientIf="
+                            + clientIf
+                            + " address="
+                            + address
+                            + ", transport="
+                            + transport
+                            + ", handle="
+                            + handle);
+            Log.d(
+                    TAG,
+                    "onGetAclHandle() - clientIf="
+                            + clientIf
+                            + " address="
+                            + address
+                            + ", transport="
+                            + transport
+                            + ", handle="
+                            + handle);
+        }
+
+        ClientMap.App app = mClientMap.getById(clientIf);
+        if (app != null) {
+            app.callback.onGetAclHandle(address, transport, handle);
+        }
+    }
+
     void onScanFilterEnableDisabled(int action, int status, int clientIf) {
         if (DBG) {
             Log.d(TAG, "onScanFilterEnableDisabled() - clientIf=" + clientIf + ", status=" + status
@@ -3901,6 +3955,21 @@ public class GattService extends ProfileService {
             Log.d(TAG, "readRemoteRssi() - address=" + address);
         }
         mNativeInterface.gattClientReadRemoteRssi(clientIf, address);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    int getAclHandle(
+            int clientIf, String address, int transport, AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "GattService readRemoteRssi")) {
+            return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+        }
+
+        if (DBG) {
+            Log.d(TAG, "readRemoteRssi() - address=" + address);
+        }
+        mNativeInterface.gattClientGetAclHandle(clientIf, address, transport);
+        return BluetoothStatusCodes.SUCCESS;
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)

@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.gatt;
 
-import android.bluetooth.BluetoothDevice;
 import android.os.RemoteException;
 
 import java.util.ArrayList;
@@ -179,6 +178,11 @@ public class GattNativeInterface {
         getGattService().onReadRemoteRssi(clientIf, address, rssi, status);
     }
 
+    void onGetAclHandle(int clientIf, String address, int transport, int handle)
+            throws RemoteException {
+        getGattService().onGetAclHandle(clientIf, address, transport, handle);
+    }
+
     void onScanFilterEnableDisabled(int action, int status, int clientIf) {
         getGattService().onScanFilterEnableDisabled(action, status, clientIf);
     }
@@ -336,6 +340,9 @@ public class GattNativeInterface {
     private native void gattClientRegisterForNotificationsNative(int clientIf, String address,
             int handle, boolean enable);
     private native void gattClientReadRemoteRssiNative(int clientIf, String address);
+
+    private native void gattClientGetAclHandleNative(int clientIf, String address, int transport);
+
     private native void gattClientConfigureMTUNative(int connId, int mtu);
     private native void gattConnectionParameterUpdateNative(int clientIf, String address,
             int minInterval, int maxInterval, int latency, int timeout, int minConnectionEventLen,
@@ -530,6 +537,17 @@ public class GattNativeInterface {
      */
     public void gattClientReadRemoteRssi(int clientIf, String address) {
         gattClientReadRemoteRssiNative(clientIf, address);
+    }
+
+    /**
+     * Read the ACL handle for a connected remote device on the given transport
+     *
+     * @param clientIf
+     * @param address
+     * @param transport
+     */
+    public void gattClientGetAclHandle(int clientIf, String address, int transport) {
+        gattClientGetAclHandleNative(clientIf, address, transport);
     }
 
     /**
