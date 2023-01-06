@@ -16,6 +16,52 @@
       "message": "Hello Thomas, Hello Charlie,\n\nWe have submitted the CL for OPP/CL with 4 test cases. Request to provide your comments.\n\nNote: Created and Saved BMP image file. Same file is sent to PTS\n\nThanks,\nDhananjaya",
       "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14381fbd_303d1adc",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-06T21:08:42Z",
+      "side": 1,
+      "message": "Hi,\n\nI think the SendFile function should only send a file and not create one. What do you think about creating a file in the init ?",
+      "range": {
+        "startLine": 124,
+        "startChar": 6,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abbdc069_81d3dfa6",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-06T21:08:42Z",
+      "side": 1,
+      "message": "Not sure to understand what this is used for ?",
+      "range": {
+        "startLine": 126,
+        "startChar": 6,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
