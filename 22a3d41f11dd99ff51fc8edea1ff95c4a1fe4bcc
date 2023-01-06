@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5c03f23_55bed489",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-06T00:10:07Z",
+      "side": 1,
+      "message": "LGTM, I\u0027ll let Nicolas give the final +2",
+      "revId": "22a3d41f11dd99ff51fc8edea1ff95c4a1fe4bcc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
