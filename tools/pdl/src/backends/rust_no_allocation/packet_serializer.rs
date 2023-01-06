@@ -27,7 +27,7 @@ pub fn generate_packet_serializer(
 
     let builder_fields = fields
         .iter()
-        .map(|field| {
+        .filter_map(|field| {
             match field {
                 ast::Field::Padding { .. }
                 | ast::Field::Reserved { .. }
@@ -71,7 +71,6 @@ pub fn generate_packet_serializer(
                 }
             }
         })
-        .filter_map(|x| x)
         .map(|(id, typ)| {
             let id_ident = format_ident!("{id}");
             quote! { pub #id_ident: #typ }
@@ -95,15 +94,13 @@ pub fn generate_packet_serializer(
                 let field_ident = format_ident!("{field_id}");
 
                 // if the element-size is fixed, we can directly multiply
-                if let Some(element_width) = curr_schema.computed_values.get(&ComputedValueId::FieldElementSize(field_id)) {
-                    if let ComputedValue::Constant(element_width) = element_width {
-                        return quote! {
-                            writer.write_bits(
-                                #width,
-                                || (self.#field_ident.len() * #element_width)
-                                    .try_into().or(Err(SerializeError::IntegerConversionFailure))
-                            )?;
-                        }
+                if let Some(ComputedValue::Constant(element_width)) = curr_schema.computed_values.get(&ComputedValueId::FieldElementSize(field_id)) {
+                    return quote! {
+                        writer.write_bits(
+                            #width,
+                            || (self.#field_ident.len() * #element_width)
+                                .try_into().or(Err(SerializeError::IntegerConversionFailure))
+                        )?;
                     }
                 }
 

@@ -16,13 +16,13 @@
 
 mod ffi;
 
-use std::{fmt::Debug, thread};
+use std::{fmt::Debug, rc::Rc, thread};
 
 use cxx::UniquePtr;
 pub use ffi::Uuid;
 use log::info;
 
-use crate::{gatt::GattJniCallbacks, GlobalModuleRegistry};
+use crate::{gatt::GattCallbacks, GlobalModuleRegistry};
 
 use self::ffi::GattServerCallbacks;
 
@@ -40,9 +40,9 @@ impl Debug for RawAddress {
     }
 }
 
-struct GattJniCallbacksImpl(UniquePtr<GattServerCallbacks>);
+struct GattCallbacksImpl(UniquePtr<GattServerCallbacks>);
 
-impl GattJniCallbacks for GattJniCallbacksImpl {
+impl GattCallbacks for GattCallbacksImpl {
     fn ack(&self, _x: &str) {
         info!("Rust POC has started!")
     }
@@ -50,6 +50,6 @@ impl GattJniCallbacks for GattJniCallbacksImpl {
 
 fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>) {
     thread::spawn(move || {
-        GlobalModuleRegistry::start(&GattJniCallbacksImpl(gatt_server_callbacks));
+        GlobalModuleRegistry::start(Rc::new(GattCallbacksImpl(gatt_server_callbacks)));
     });
 }
