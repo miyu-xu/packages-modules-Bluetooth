@@ -874,6 +874,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           bta_hh_co_destroy(p_dev->fd);
           p_dev->fd = -1;
         }
+        p_dev->btif_hh_promise.set_value(true);
         HAL_CBACK(bt_hh_callbacks, connection_state_cb, &(p_dev->bd_addr),
                   p_dev->dev_status);
       } else {

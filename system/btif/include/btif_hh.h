@@ -24,6 +24,7 @@
 #include <hardware/bt_hh.h>
 #include <pthread.h>
 #include <stdint.h>
+#include <future>
 
 #include "bta/include/bta_hh_api.h"
 #include "osi/include/alarm.h"
@@ -96,6 +97,7 @@ typedef struct {
   uint8_t sub_class;
   uint8_t app_id;
   int fd;
+  std::promise<bool> btif_hh_promise;
   bool ready_for_data;
   pthread_t hh_poll_thread_id;
   pid_t pid{-1};
