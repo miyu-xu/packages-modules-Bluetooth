@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cbb47912_7e8d2739",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-01-06T00:26:40Z",
+      "side": 1,
+      "message": "Memset works but for some reason writing the data corrupts the padding. Also, the values tends to change.",
+      "parentUuid": "49d4ac4f_7c5df883",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "ee10a50bfd705255e89f28a1eba30137bca106a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "020b865f_d1ec5adc",
         "filename": "system/bta/test/gatt/database_test.cc",
         "patchSetId": 2
