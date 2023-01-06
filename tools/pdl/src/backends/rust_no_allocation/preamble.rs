@@ -64,10 +64,7 @@ impl<'a> BitSlice<'a> {
     }
 
     fn byte_at(&self, index: usize) -> Result<u8, ParseError> {
-        self.backing
-            .get(index)
-            .ok_or_else(|| panic!("eek (index={index}, backing={:?})", self.backing))
-            .copied()
+        self.backing.get(index).ok_or(ParseError::OutOfBoundsAccess).copied()
     }
 }
 

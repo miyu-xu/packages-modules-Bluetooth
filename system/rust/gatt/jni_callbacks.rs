@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /// These callbacks are expected to be made available to the GattModule from JNI.
-pub trait GattJniCallbacks {
+pub trait GattCallbacks {
     /// TEMP
     fn ack(&self, x: &str);
 }
