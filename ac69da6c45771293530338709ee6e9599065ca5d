@@ -16,6 +16,23 @@
       "message": "Thanks!",
       "revId": "ac69da6c45771293530338709ee6e9599065ca5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "311a4720_4ffe560c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-06T17:57:40Z",
+      "side": 1,
+      "message": "Test failures are all pre-existing and changes should not affect them (only the topshim change affects Android and even that adds something new so it should fail compile, not test).",
+      "revId": "ac69da6c45771293530338709ee6e9599065ca5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
