@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8be5f911_b551805e",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-06T05:19:42Z",
+      "side": 1,
+      "message": "Not possible, osi_malloc() will crash if there\u0027s no memory.\nThere is also a lot of examples on this codebase directly using osi_malloc() returned address without the null check.\n\nhttp://cs/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/osi/src/allocator.cc;l\u003d59;rcl\u003d55bff9d1f95ffd0e973944815a6c0a2ac0ca9d3a",
+      "parentUuid": "db1610d8_8a76362c",
+      "range": {
+        "startLine": 810,
+        "startChar": 0,
+        "endLine": 810,
+        "endChar": 51
+      },
+      "revId": "290a0f56de233eac4db55a9ec32bd6ad12e1a385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf7796ab_9a9e3248",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-06T02:50:48Z",
       "side": 1,
       "message": "Overflow could happens. We can calculate the delta time to avoid this risk.\n\nuint64_t now_ms \u003d bluetooth::common::time_get_os_boottime_ms();\nuint64_t delta_ms \u003d now_ms - entry-\u003efail_time_ms;\nif (delta_ms \u003e 1000 * BTM_NAME_RESOLVE_RETRY_DELAY_SEC) {\n   ...\n}",
+      "range": {
+        "startLine": 2043,
+        "startChar": 0,
+        "endLine": 2043,
+        "endChar": 44
+      },
+      "revId": "290a0f56de233eac4db55a9ec32bd6ad12e1a385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbcafcab_09d6b8a0",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2043,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-06T05:19:42Z",
+      "side": 1,
+      "message": "Good observation - will fix.",
+      "parentUuid": "bf7796ab_9a9e3248",
       "range": {
         "startLine": 2043,
         "startChar": 0,
