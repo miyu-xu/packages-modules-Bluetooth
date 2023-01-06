@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56302ce9_f7a7e55c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-06T01:20:25Z",
+      "side": 1,
+      "message": "Can you add a test here: packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java\n?",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "7d99942e3dc06719afb7f42f0128a065ec9dd46b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
