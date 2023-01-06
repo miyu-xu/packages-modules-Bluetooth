@@ -16,6 +16,23 @@
       "message": "@sungsoo@google.com @siyuanh@google.com can you review or find the appropriate reviewers for this change? Thanks!",
       "revId": "cab39d9730f92ff7727a633113b7ae2a2e83c1a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f1eb138_12eccf33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-06T18:07:21Z",
+      "side": 1,
+      "message": "Cargo.toml is only used for ChromeOS/Linux builds. Test failures look unrelated.",
+      "revId": "cab39d9730f92ff7727a633113b7ae2a2e83c1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
