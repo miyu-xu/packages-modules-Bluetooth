@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d4ac4f_7c5df883",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-06T00:24:40Z",
+      "side": 1,
+      "message": "The memset doesn\u0027t work?  Writing the data corrupts the padding?\n\nIs it always the same value?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "ee10a50bfd705255e89f28a1eba30137bca106a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "020b865f_d1ec5adc",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-06T00:24:40Z",
+      "side": 1,
+      "message": "should this be len - 2 (and then don\u0027t include the padding)?",
+      "range": {
+        "startLine": 117,
+        "startChar": 22,
+        "endLine": 117,
+        "endChar": 26
+      },
+      "revId": "ee10a50bfd705255e89f28a1eba30137bca106a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
