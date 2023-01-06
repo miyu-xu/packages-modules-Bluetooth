@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d8e82e1_8756073c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanFilterQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-06T07:15:21Z",
+      "side": 1,
+      "message": "ApcfFilterType is different with ApcfOpcode.\nThis match the bit masks of APCF_Feature_Selection",
+      "parentUuid": "598b5114_e8d916b4",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef834ca5_3c971e9a",
@@ -123,6 +141,69 @@
       "writtenOn": "2023-01-05T22:58:38Z",
       "side": 1,
       "message": "Please add @param tags to describe each param",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "012ff175_9f743808",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5126,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-06T07:15:21Z",
+      "side": 1,
+      "message": "tds_data_filter",
+      "range": {
+        "startLine": 5126,
+        "startChar": 2,
+        "endLine": 5126,
+        "endChar": 16
+      },
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9377e16_5c30a55f",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-06T07:15:21Z",
+      "side": 1,
+      "message": "if (!is_tds_data_filter_supported_) {\n   LOG_ERROR(\"TDS data filter isn\u0027t supported\");\n   return;\n}",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f20e456_a96fd18e",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1485,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-06T07:15:21Z",
+      "side": 1,
+      "message": "We should check if tds_data_filter supported or not as well",
+      "range": {
+        "startLine": 1485,
+        "startChar": 4,
+        "endLine": 1485,
+        "endChar": 72
+      },
       "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
