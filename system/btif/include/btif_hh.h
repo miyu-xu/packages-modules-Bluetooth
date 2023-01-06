@@ -88,6 +88,7 @@ typedef struct {
   uint8_t sub_class;
   uint8_t app_id;
   int fd;
+  semaphore_t* fd_semaphore;
   bool ready_for_data;
   pthread_t hh_poll_thread_id;
   pid_t pid{-1};
