@@ -46,6 +46,29 @@
       },
       "revId": "12ae51c0fd5272b914398ecb1da2f03597bfa858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "996ac408_38d6a81a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-06T07:59:43Z",
+      "side": 1,
+      "message": "Could not understand why the wrapper should exist.\nCan\u0027t we use `mStateMachine.hasDeferredMessages()` without wrapper class?",
+      "range": {
+        "startLine": 383,
+        "startChar": 8,
+        "endLine": 383,
+        "endChar": 100
+      },
+      "revId": "12ae51c0fd5272b914398ecb1da2f03597bfa858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
