@@ -28,6 +28,9 @@ cxx = "*"
 android_logger = "*"
 jni = "*"
 paste = "*"
+async-trait = "*"
+tokio-test = "0.4.2"
+tokio = "1.23.0"
 
 [lib]
 crate-type = ["rlib"]

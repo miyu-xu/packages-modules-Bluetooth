@@ -244,6 +244,8 @@ pub fn generate_packet(
 
     let packet_end_offset = ComputedOffsetId::PacketEnd.call_fn();
 
+    let owned_id_ident = format_ident!("Owned{id_ident}");
+
     Ok(quote! {
         #[derive(Clone, Copy, Debug)]
         pub struct #id_ident<'a> {
@@ -276,10 +278,56 @@ pub fn generate_packet(
                 Ok(())
             }
 
-            pub fn try_parse<'b>(parent: #parent_ident<'a>) -> Result<Self, ParseError> {
+            pub fn try_parse_from_buffer(buf: impl Into<SizedBitSlice<'a>>) -> Result<Self, ParseError> {
+                let out = Self { buf: buf.into().into() };
+                out.validate()?;
+                Ok(out)
+            }
+
+            pub fn try_parse(parent: #parent_ident<'a>) -> Result<Self, ParseError> {
                 let out = Self { buf: #buffer_extractor };
                 out.validate()?;
                 Ok(out)
+            }
+
+            pub fn to_owned(&self) -> #owned_id_ident {
+                #owned_id_ident {
+                    buf: self.buf.backing.to_owned().into(),
+                    start_bit_offset: self.buf.start_bit_offset,
+                    end_bit_offset: self.buf.end_bit_offset,
+                }
+            }
+        }
+
+        #[derive(Debug)]
+        pub struct #owned_id_ident {
+            buf: Box<[u8]>,
+            start_bit_offset: usize,
+            end_bit_offset: usize,
+        }
+
+        impl #owned_id_ident {
+            pub fn try_parse(buf: Box<[u8]>) -> Result<Self, ParseError> {
+                #id_ident::try_parse_from_buffer(&buf[..])?;
+                let end_bit_offset = buf.len() * 8;
+                Ok(Self { buf, start_bit_offset: 0, end_bit_offset })
+            }
+
+            pub fn view<'a>(&'a self) -> #id_ident<'a> {
+                #id_ident {
+                    buf: SizedBitSlice(BitSlice {
+                        backing: &self.buf[..],
+                        start_bit_offset: self.start_bit_offset,
+                        end_bit_offset: self.end_bit_offset,
+                    })
+                    .into(),
+                }
+            }
+        }
+
+        impl<'a> From<&'a #owned_id_ident> for #id_ident<'a> {
+            fn from(x: &'a #owned_id_ident) -> Self {
+                x.view()
             }
         }
     })

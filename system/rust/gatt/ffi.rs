@@ -38,6 +38,28 @@ mod inner {
         fn on_register_server(self: &GattServerCallbacks, status: i32, server_if: i32, uuid: &Uuid);
     }
 
+    #[namespace = "bluetooth::shim::arbiter"]
+    enum InterceptAction {
+        #[cxx_name = "FORWARD"]
+        Forward = 0u32,
+        #[cxx_name = "DROP"]
+        Drop = 1u32,
+    }
+
+    #[namespace = "bluetooth::shim::arbiter"]
+    unsafe extern "C++" {
+        include!("stack/arbiter/acl_arbiter.h");
+        type InterceptAction;
+
+        fn StoreCallbacksFromRust(
+            on_le_connect: fn(handle: u16),
+            on_le_disconnect: fn(handle: u16),
+            intercept_packet: fn(handle: u16, packet: Vec<u8>) -> InterceptAction,
+        );
+
+        fn SendPacketToPeer(handle: u16, packet: Vec<u8>);
+    }
+
     #[namespace = "bluetooth::gatt"]
     extern "Rust" {
         fn start();
@@ -48,5 +70,4 @@ fn start() {
     do_in_rust_thread(|modules| {
         modules.gatt_module.start();
     })
-    .expect("Rust call failed");
 }
