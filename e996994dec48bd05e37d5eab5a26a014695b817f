@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "941fff9c_6c6c3d8a",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-06T02:34:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33780d1b_fc2ecf5f",
+      "revId": "e996994dec48bd05e37d5eab5a26a014695b817f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca3c9293_93adce3d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-05T00:50:25Z",
       "side": 1,
       "message": "nit: Use \"{@code true}\" and \"{@code false}\" so the boolean values are shown properly in the generated docs. Something like \"{@code true} if the advertisement will be discoverable, {@code false} otherwise\".\n\nRelevant section of the API guidelines: go/android-api-guidelines#code-font",
+      "revId": "e996994dec48bd05e37d5eab5a26a014695b817f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a26dd51_3b6418b5",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-06T02:34:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca3c9293_93adce3d",
       "revId": "e996994dec48bd05e37d5eab5a26a014695b817f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
