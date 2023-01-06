@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c67790_5898494a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2023-01-06T00:24:24Z",
+      "side": 1,
+      "message": "btw, i created this just to cherry-pick to my tree. Jakub, can you please look into this patch and revert/fix-forward?",
+      "revId": "d3b93a5e8ca349386684b07661b222386401ade6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
