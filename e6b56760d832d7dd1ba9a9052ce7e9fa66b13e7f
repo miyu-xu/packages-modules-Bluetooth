@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "521bf4f1_36e8ea2a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-06T19:02:24Z",
+      "side": 1,
+      "message": "Here I think we should use `getAddressForLogging` because it is showing the address explicitly.\n\nThe reason for not using `toStringForLogging` is: `toStringForLogging` is meant to return a  string repr of the device, maybe in the future more info will be added to it, e.g., whether it is a classic device or LE device",
+      "parentUuid": "8023236a_df1dfb8e",
+      "range": {
+        "startLine": 1446,
+        "startChar": 54,
+        "endLine": 1446,
+        "endChar": 74
+      },
+      "revId": "e6b56760d832d7dd1ba9a9052ce7e9fa66b13e7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a313c22a_30f51999",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-04T18:09:18Z",
       "side": 1,
       "message": "remove `this` for consistency",
+      "range": {
+        "startLine": 2013,
+        "startChar": 56,
+        "endLine": 2013,
+        "endChar": 60
+      },
+      "revId": "e6b56760d832d7dd1ba9a9052ce7e9fa66b13e7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2009e00c_807a7596",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2013,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-06T19:02:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a313c22a_30f51999",
       "range": {
         "startLine": 2013,
         "startChar": 56,
