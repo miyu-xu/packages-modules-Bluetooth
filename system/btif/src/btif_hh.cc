@@ -864,6 +864,10 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
          */
         if (p_dev->local_vup) {
           p_dev->local_vup = false;
+          if (p_dev->fd_semaphore) {
+            semaphore_free(p_dev->fd_semaphore);
+            p_dev->fd_semaphore = NULL;
+          }
           BTA_DmRemoveDevice(p_dev->bd_addr);
         }
 
@@ -874,6 +878,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           bta_hh_co_destroy(p_dev->fd);
           p_dev->fd = -1;
         }
+        if (p_dev->fd_semaphore) semaphore_post(p_dev->fd_semaphore);
         HAL_CBACK(bt_hh_callbacks, connection_state_cb, &(p_dev->bd_addr),
                   p_dev->dev_status);
       } else {

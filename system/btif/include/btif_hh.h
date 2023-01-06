@@ -29,6 +29,7 @@
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "types/raw_address.h"
+#include "osi/include/semaphore.h"
 
 /*******************************************************************************
  *  Constants & Macros
@@ -88,6 +89,7 @@ typedef struct {
   uint8_t sub_class;
   uint8_t app_id;
   int fd;
+  semaphore_t* fd_semaphore;
   bool ready_for_data;
   pthread_t hh_poll_thread_id;
   pid_t pid{-1};
