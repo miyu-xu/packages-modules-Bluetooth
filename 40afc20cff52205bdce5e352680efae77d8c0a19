@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ab97e9f_7394bf99",
+        "filename": "system/gd/l2cap/classic/internal/fixed_channel_impl.h",
+        "patchSetId": 36
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-06T18:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01aa5c6b_683fb15f",
+      "range": {
+        "startLine": 61,
+        "startChar": 29,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "40afc20cff52205bdce5e352680efae77d8c0a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "773b04b1_d3575a3c",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9457907d_bc8f282c",
+        "filename": "system/gd/l2cap/classic/internal/fixed_channel_impl.h",
+        "patchSetId": 36
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-06T18:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "773b04b1_d3575a3c",
+      "range": {
+        "startLine": 67,
+        "startChar": 55,
+        "endLine": 67,
+        "endChar": 65
+      },
+      "revId": "40afc20cff52205bdce5e352680efae77d8c0a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b616ecf_3c2c911e",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-11-28T20:11:19Z",
       "side": 1,
       "message": "Add a bug number 🙏",
+      "range": {
+        "startLine": 765,
+        "startChar": 3,
+        "endLine": 765,
+        "endChar": 7
+      },
+      "revId": "40afc20cff52205bdce5e352680efae77d8c0a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bdacd9e_0b229d94",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 36
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-06T18:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b616ecf_3c2c911e",
       "range": {
         "startLine": 765,
         "startChar": 3,
