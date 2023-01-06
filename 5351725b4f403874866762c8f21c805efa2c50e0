@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96d227cd_6380e84d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1576211
+      },
+      "writtenOn": "2023-01-06T14:35:15Z",
+      "side": 1,
+      "message": "Added a fix for the failing test, as recommented by Paul (in Reviewers).",
+      "revId": "5351725b4f403874866762c8f21c805efa2c50e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
