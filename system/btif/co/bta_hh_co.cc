@@ -491,6 +491,19 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
   fixed_queue_free(p_dev->set_rpt_id_queue, nullptr);
   p_dev->set_rpt_id_queue = nullptr;
 #endif  // ENABLE_UHID_SET_REPORT
+    if (p_dev->dev_status != BTHH_CONN_STATE_UNKNOWN &&
+        p_dev->dev_handle == dev_handle) {
+      APPL_TRACE_WARNING(
+          "%s: Found an existing device with the same handle "
+          "dev_status = %d, dev_handle =%d",
+          __func__, p_dev->dev_status, p_dev->dev_handle);
+      btif_hh_close_poll_thread(p_dev);
+      if (p_dev->fd >= 0) {
+        bta_hh_co_destroy(p_dev->fd);
+        p_dev->fd = -1;
+      }
+      break;
+    }
 
   /* Stop the polling thread */
   if (p_dev->hh_keep_polling) {
