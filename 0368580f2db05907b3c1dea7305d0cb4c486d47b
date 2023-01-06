@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "383f0a8b_beeafd39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-06T10:20:23Z",
+      "side": 1,
+      "message": "How about BluetoothMapContentObserver.handleContactListChanges?",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 68
+      },
+      "revId": "0368580f2db05907b3c1dea7305d0cb4c486d47b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb8825fa_a3f524d3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1592,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-06T10:20:23Z",
+      "side": 1,
+      "message": "minor) 11?",
+      "range": {
+        "startLine": 1592,
+        "startChar": 66,
+        "endLine": 1592,
+        "endChar": 72
+      },
+      "revId": "0368580f2db05907b3c1dea7305d0cb4c486d47b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
