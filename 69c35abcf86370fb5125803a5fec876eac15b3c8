@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e3a1866_669cb5a5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-06T20:14:49Z",
+      "side": 1,
+      "message": "@kaishi@google.com, we forced to use long report delay \u003e 10 min. There is no public API to flush batch scan from apps. If apps want to retrieve the batch scan results in the middle of report delay during screen off, there is no other way except for waiting for screen on. I think we can call handleFlushBatchResults() in  handleStopScan() instead of here. Then, when apps stop scan during screen on, regular scan will stop immediately. When apps stop scan during screen off, batch scan results will be flushed and stop in order.\n\nDoes it make sense?",
+      "range": {
+        "startLine": 665,
+        "startChar": 20,
+        "endLine": 665,
+        "endChar": 52
+      },
+      "revId": "69c35abcf86370fb5125803a5fec876eac15b3c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
