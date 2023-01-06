@@ -361,7 +361,11 @@ void bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
           "address=%s, attr_mask=0x%04x, sub_class=0x%02x, app_id=%d",
           __func__, p_dev->dev_status, ADDRESS_TO_LOGGABLE_CSTR(p_dev->bd_addr),
           p_dev->attr_mask, p_dev->sub_class, p_dev->app_id);
-
+      if (p_dev->fd_semaphore) {
+        semaphore_wait(p_dev->fd_semaphore);
+        semaphore_free(p_dev->fd_semaphore);
+        p_dev->fd_semaphore = NULL;
+      }
       if (p_dev->fd < 0) {
         p_dev->fd = open(dev_path, O_RDWR | O_CLOEXEC);
         if (p_dev->fd < 0) {
@@ -467,6 +471,8 @@ void bta_hh_co_close(uint8_t dev_handle, uint8_t app_id) {
           "dev_status = %d, dev_handle =%d",
           __func__, p_dev->dev_status, p_dev->dev_handle);
       btif_hh_close_poll_thread(p_dev);
+      if (!p_dev->fd_semaphore)
+        p_dev->fd_semaphore = semaphore_new(0);
       break;
     }
   }
