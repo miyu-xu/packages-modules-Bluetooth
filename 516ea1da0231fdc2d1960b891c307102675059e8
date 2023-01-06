@@ -100,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d7b7c16_67fcc92f",
+        "filename": "system/stack/acl/ble_acl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-06T02:34:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46e1bfcd_6ba3c243",
+      "revId": "516ea1da0231fdc2d1960b891c307102675059e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f633302d_5e205e63",
