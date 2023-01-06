@@ -63,6 +63,30 @@
       },
       "revId": "6dd4270306fff63c6ff20bc2e0cf7b5cafbf85df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "309f8c56_983d5cf6",
+        "filename": "tools/rootcanal/model/setup/phy_layer_factory.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-06T18:28:21Z",
+      "side": 1,
+      "message": "Add a static_cast before returning to make it obvious that it\u0027s intentional?",
+      "parentUuid": "882a1dcb_e8620ef1",
+      "range": {
+        "startLine": 80,
+        "startChar": 9,
+        "endLine": 80,
+        "endChar": 16
+      },
+      "revId": "6dd4270306fff63c6ff20bc2e0cf7b5cafbf85df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
