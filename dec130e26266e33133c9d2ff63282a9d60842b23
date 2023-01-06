@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc7b0e8_26044fe8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-06T04:48:50Z",
+      "side": 1,
+      "message": "Why should we mock them if we can use the actual instance? And by the way the some attributes will be used so I think mocking doesn\u0027t have much benefit.",
+      "parentUuid": "a02b4353_92a1931c",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 29
+      },
+      "revId": "dec130e26266e33133c9d2ff63282a9d60842b23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af04be47_c46cd596",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf70892c_edebbcbd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-06T04:48:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af04be47_c46cd596",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 25
+      },
+      "revId": "dec130e26266e33133c9d2ff63282a9d60842b23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af8aeef7_b6ee4c18",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-04T08:02:41Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 139,
+        "startChar": 8,
+        "endLine": 139,
+        "endChar": 29
+      },
+      "revId": "dec130e26266e33133c9d2ff63282a9d60842b23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3150eebc_a0747ef6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-06T04:48:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af8aeef7_b6ee4c18",
       "range": {
         "startLine": 139,
         "startChar": 8,
