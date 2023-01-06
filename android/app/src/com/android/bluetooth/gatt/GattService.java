@@ -53,6 +53,8 @@ import android.companion.AssociationInfo;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.Resources;
 import android.net.MacAddress;
 import android.os.Binder;
 import android.os.Build;
@@ -96,10 +98,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
-
-import android.content.res.Resources;
-
-/**
  * Provides Bluetooth Gatt profile, as a service in
  * the Bluetooth application.
  * @hide
@@ -179,16 +177,15 @@ public class GattService extends ProfileService {
             UUID.fromString("00001846-0000-1000-8000-00805F9B34FB"), // CSIS
     };
 
-    /**
-     * Example raw beacons captured from a Blue Charm BC011
-     */
-    private static final String[] TEST_MODE_BEACONS = new String[] {
-            "020106",
-            "0201060303AAFE1716AAFE10EE01626C7565636861726D626561636F6E730009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
-            "0201060303AAFE1716AAFE00EE626C7565636861726D31000000000001000009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
-            "0201060303AAFE1116AAFE20000BF017000008874803FB93540916802069080EFE13551109426C7565436861726D5F313639363835000000000000000000",
-            "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
-    };
+    /** Example raw beacons captured from a Blue Charm BC011 */
+    private static final String[] TEST_MODE_BEACONS =
+            new String[] {
+                "020106",
+                "0201060303AAFE1716AAFE10EE01626C7565636861726D626561636F6E730009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+                "0201060303AAFE1716AAFE00EE626C7565636861726D31000000000001000009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+                "0201060303AAFE1116AAFE20000BF017000008874803FB93540916802069080EFE13551109426C7565436861726D5F313639363835000000000000000000",
+                "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
+            };
 
     /**
      * Keep the arguments passed in for the PendingIntent.
@@ -1096,6 +1093,34 @@ public class GattService extends ProfileService {
                 return;
             }
             service.readRemoteRssi(clientIf, address, attributionSource);
+        }
+
+        @Override
+        public void getAclHandle(
+                int clientIf,
+        public void getAclHandle(
+                int clientIf,
+                String address,
+                int transport,
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getAclHandle(clientIf, address, transport, attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+
+        private int getAclHandle(
+                int clientIf, String address, int transport, AttributionSource attributionSource) {
+
+        private int getAclHandle(
+                int clientIf, String address, int transport, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
+            }
+            return service.getAclHandle(clientIf, address, transport, attributionSource);
         }
 
         @Override
@@ -2539,6 +2564,34 @@ public class GattService extends ProfileService {
         }
     }
 
+            Log.d(
+                    TAG,
+                    "onGetAclHandle() - clientIf="
+                            + clientIf
+                            + " address="
+                            + address
+                            + ", transport="
+                            + transport
+                            + ", handle="
+                            + handle);
+            Log.d(
+                    TAG,
+                    "onGetAclHandle() - clientIf="
+                            + clientIf
+                            + " address="
+                            + address
+                            + ", transport="
+                            + transport
+                            + ", handle="
+                            + handle);
+        }
+
+        ClientMap.App app = mClientMap.getById(clientIf);
+        if (app != null) {
+            app.callback.onGetAclHandle(address, transport, handle);
+        }
+    }
+
     void onScanFilterEnableDisabled(int action, int status, int clientIf) {
         if (DBG) {
             Log.d(TAG, "onScanFilterEnableDisabled() - clientIf=" + clientIf + ", status=" + status
@@ -3894,13 +3947,28 @@ public class GattService extends ProfileService {
     void readRemoteRssi(int clientIf, String address, AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService readRemoteRssi")) {
-            return;
-        }
+    int getAclHandle(
+            int clientIf, String address, int transport, AttributionSource attributionSource) {
 
         if (DBG) {
             Log.d(TAG, "readRemoteRssi() - address=" + address);
         }
         mNativeInterface.gattClientReadRemoteRssi(clientIf, address);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    int getAclHandle(
+            int clientIf, String address, int transport, AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "GattService readRemoteRssi")) {
+            return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+        }
+
+        if (DBG) {
+            Log.d(TAG, "readRemoteRssi() - address=" + address);
+        }
+        mNativeInterface.gattClientGetAclHandle(clientIf, address, transport);
+        return BluetoothStatusCodes.SUCCESS;
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
