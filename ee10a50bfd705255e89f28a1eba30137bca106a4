@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3d385da_40db1150",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-06T00:36:39Z",
+      "side": 1,
+      "message": "Can we remove the memset, then?  Replace it with a comment that says it isn\u0027t safe?\n\nI think we should remove all of the memsets.  Most likely, we don\u0027t memset in the code every time we have an attribute.",
+      "parentUuid": "cbb47912_7e8d2739",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "ee10a50bfd705255e89f28a1eba30137bca106a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "020b865f_d1ec5adc",
         "filename": "system/bta/test/gatt/database_test.cc",
         "patchSetId": 2
@@ -61,6 +85,30 @@
       "writtenOn": "2023-01-06T00:24:40Z",
       "side": 1,
       "message": "should this be len - 2 (and then don\u0027t include the padding)?",
+      "range": {
+        "startLine": 117,
+        "startChar": 22,
+        "endLine": 117,
+        "endChar": 26
+      },
+      "revId": "ee10a50bfd705255e89f28a1eba30137bca106a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f01ec78_c41cb6ad",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-06T00:36:39Z",
+      "side": 1,
+      "message": "Never mind.  Maybe just say \"padding\" instead of \"cleared padding\" in the comment.",
+      "parentUuid": "020b865f_d1ec5adc",
       "range": {
         "startLine": 117,
         "startChar": 22,
