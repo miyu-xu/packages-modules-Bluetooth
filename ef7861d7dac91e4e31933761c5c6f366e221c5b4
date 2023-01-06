@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "893055bd_99e9f5de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-06T06:42:39Z",
+      "side": 1,
+      "message": "Should we use `sendEmptyMessageAtTime` instead? A 24hr delay sounds really scary to me...",
+      "revId": "ef7861d7dac91e4e31933761c5c6f366e221c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
