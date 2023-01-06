@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "203ae7ee_028e4037",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T06:37:31Z",
+      "side": 1,
+      "message": "Check Conents is complaining about trailing whitespace.\nAre you running the pre-submit hook when uploading the change (AKA repo upload should run some verification on the format)\nYou also have this issue on native. You should run clang-format on your change",
+      "range": {
+        "startLine": 199,
+        "startChar": 44,
+        "endLine": 199,
+        "endChar": 73
+      },
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
