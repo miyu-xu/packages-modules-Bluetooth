@@ -16,6 +16,24 @@
       "message": "LGTM, I\u0027ll let Nicolas give the final +2",
       "revId": "22a3d41f11dd99ff51fc8edea1ff95c4a1fe4bcc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c93dc5f5_2982d764",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1118598
+      },
+      "writtenOn": "2023-01-06T01:21:34Z",
+      "side": 1,
+      "message": "I\u0027m not qualified to give a +2 tbh, I know very little Rust or BT. Happy to give a +1 for the general API.\n\n@abhishekpandit@google.com, i32::Max - 1 work for as a binary value for Invalid?",
+      "parentUuid": "a5c03f23_55bed489",
+      "revId": "22a3d41f11dd99ff51fc8edea1ff95c4a1fe4bcc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
