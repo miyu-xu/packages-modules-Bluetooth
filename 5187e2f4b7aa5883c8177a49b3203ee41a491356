@@ -1,0 +1,596 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e5594d_0d24aedd",
+        "filename": "system/btif/src/btif_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "can `auth-\u003ebd_name` be null and do we need to check it ?",
+      "range": {
+        "startLine": 81,
+        "startChar": 39,
+        "endLine": 81,
+        "endChar": 46
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42a889ba_f821afe6",
+        "filename": "system/btif/src/btif_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "The comment in this method are indeed needed. I would have got lost without it.\nI was wondering if we should split in smaller method but I failed to convinced myself about it.",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 43
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b6296c4_c887ceb3",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "do we need to lock config_lock here ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 8
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd9efc9_f35e876d",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "You can remove `__func__` in all `LOG_XXX(` as this is already included in the macro",
+      "range": {
+        "startLine": 90,
+        "startChar": 65,
+        "endLine": 90,
+        "endChar": 73
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a8a9272_53f547bc",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "delete ?",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 16
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df9e13f5_220388ca",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Why not calling config_new directly and remove this ?\n\n\"config\" is both a global and a local variable, if this is not deleted can we change the name ?",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 1
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488c1c79_8e65da23",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Why are we passing the config as a parameter in this method, not in the next one ?\nIf we want it as a parameter and enforce the not null, can we instead take a cpp Reference ?",
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b7d6e11_f36a138a",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Can\u0027t you just write:\n```\n  for (auto\u0026 entry : config-\u003esections) {\n    entry.entries.sort(comp);\n  }\n```",
+      "range": {
+        "startLine": 220,
+        "startChar": 2,
+        "endLine": 221,
+        "endChar": 17
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac4eb5cf_77be7d57",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Why do we need this ? (same in other method below)",
+      "range": {
+        "startLine": 227,
+        "startChar": 2,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25dcdec9_0f4d23ea",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "config_* are using `string \u0026` as parameter.\nYou can remove a few CHECK if take a `const string \u0026` in these wrapper\n\nAnd I think you don\u0027t even need to modify the caller side as this is using define macro to call",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 25
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab98f6d0_545be205",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "You do not need to `get()`.\nonly `config_has_section(*config, section)` (same everywhere).",
+      "range": {
+        "startLine": 233,
+        "startChar": 36,
+        "endLine": 233,
+        "endChar": 39
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e5daf3c_10676e39",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Other wrapper are used to mock, but here the mock is done outside of the method.\nIs there a valid reason ? \nI feel like this is error-prone. If we must have the lock outside, is there a way to mention that it must be call with the lock ? (I looked across this file and it looks good but the method is not static)",
+      "range": {
+        "startLine": 255,
+        "startChar": 25,
+        "endLine": 255,
+        "endChar": 31
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aa6ac16_d970d6d7",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "I have to say that these method annoy me, because they all do the same.\n\nCan we do a macro like:\n```\n#define DEVICE_IOT_CONFIG_ADDR(method, addr, ...) \\\n   device_iot_config_##method(addr.ToString().c_str(), ##__VA_ARGS__)\n```\n\nand then you call it like this:\n```\nDEVICE_IOT_CONFIG_ADDR(int_add_one, bd_addr, foo);\nDEVICE_IOT_CONFIG_ADDR(set_int, bd_addr, bar, 42);\n```\n\nI am open to better suggestion !",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 1
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26100657_a293277d",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "can you explictly say \n```\n  if (endptr \u003d\u003d null || endptr[0] !\u003d \u0027\\0\u0027) return false;\n```\n  \nI know it\u0027s the same behavior and there is no risk for endptr to not be null, but comparing the char as a char helps reading the condition",
+      "range": {
+        "startLine": 366,
+        "startChar": 7,
+        "endLine": 366,
+        "endChar": 13
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09f952da_75224b6b",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "I am not sure we want a log here, do we ?\nYou can leak some key/value that are usually masked in the log (like raw_address)\n\nsame in device_iot_config_set_str",
+      "range": {
+        "startLine": 390,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 77
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be5212c4_2926b09d",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "What datatype `bin` is ?\n\nThis method is only called from tests -\u003e remove ?",
+      "range": {
+        "startLine": 481,
+        "startChar": 27,
+        "endLine": 481,
+        "endChar": 30
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a089a90_b756da23",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Only called from tests -\u003e removed ?\nor maybe it\u0027s not intended",
+      "range": {
+        "startLine": 517,
+        "startChar": 7,
+        "endLine": 517,
+        "endChar": 39
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b8c217_b2bd60d8",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "never called",
+      "range": {
+        "startLine": 581,
+        "startChar": 5,
+        "endLine": 581,
+        "endChar": 29
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda21395_27de33e3",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "rename to take into account it\u0027s an async operation",
+      "range": {
+        "startLine": 592,
+        "startChar": 5,
+        "endLine": 592,
+        "endChar": 27
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b75ea08f_913fc828",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Only called from tests",
+      "range": {
+        "startLine": 616,
+        "startChar": 5,
+        "endLine": 616,
+        "endChar": 28
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f82668_edee3522",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "both device_iot_config_get_device_num and device_iot_config_restrict_device_num\ntake a config parameter. but other method used the global. (and with the same name for the other method as the global)",
+      "range": {
+        "startLine": 659,
+        "startChar": 4,
+        "endLine": 659,
+        "endChar": 36
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f30291_437f0c28",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "```\nfor (const auto\u0026 it : conf-\u003esections) {\n```\n?",
+      "range": {
+        "startLine": 665,
+        "startChar": 2,
+        "endLine": 665,
+        "endChar": 32
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca113215_40aaa13a",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Is it enough ?\nThis property is true when we had an issue to factory reset, it doesn\u0027t look like the intended way for doing it.\ncf where it is set:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d1648;drc\u003d82db49983049246cffc7aae33fb319bb665f7401\n\nI understand this has\nThe property is set to true if bluetooth is turned off while the reset is started",
+      "range": {
+        "startLine": 766,
+        "startChar": 19,
+        "endLine": 766,
+        "endChar": 41
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86d7242f_3bfdb00d",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "osi_property_get_bool ? and then get read of the method",
+      "range": {
+        "startLine": 766,
+        "startChar": 2,
+        "endLine": 766,
+        "endChar": 18
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b4891c2_dc04b265",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "Why we need it ?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db38dca_c9674bf4",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T00:35:37Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
