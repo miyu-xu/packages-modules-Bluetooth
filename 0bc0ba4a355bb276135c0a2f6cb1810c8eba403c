@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f795cff9_ab2c625f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-06T16:31:12Z",
+      "side": 1,
+      "message": "I\u0027d rather not change the behavior to match the test.  It seems like a chance for a different race condition.\n\nCan we just verify the next step, instead?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 52
+      },
+      "revId": "0bc0ba4a355bb276135c0a2f6cb1810c8eba403c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
