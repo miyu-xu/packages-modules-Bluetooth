@@ -167,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5cc1e8b_b3b687d0",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-06T02:04:14Z",
+      "side": 1,
+      "message": "If you look at the writeParcel, the `mOrgId` is used as a condition to write the remaining (flag/mask...)\n\nBut this CL is putting twice the associated data in the parcel: (cf my comment above)\n```\ndest.writeInt(mOrgId);\ndest.writeInt(mOrgId \u003c 0 ? 0 : 1);\n```\nI was just mentionnning that maybe we can just skip the 0:1 logging",
+      "parentUuid": "92eb1d7f_a284abec",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba6e57ec_1b64dd65",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 1
