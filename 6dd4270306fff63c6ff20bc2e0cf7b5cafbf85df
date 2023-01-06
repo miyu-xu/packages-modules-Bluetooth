@@ -39,6 +39,30 @@
       },
       "revId": "6dd4270306fff63c6ff20bc2e0cf7b5cafbf85df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "882a1dcb_e8620ef1",
+        "filename": "tools/rootcanal/model/setup/phy_layer_factory.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-06T18:05:43Z",
+      "side": 1,
+      "message": "That\u0027s intentional, to avoid the wrap over reaching 128",
+      "parentUuid": "d402d259_3f024f60",
+      "range": {
+        "startLine": 80,
+        "startChar": 9,
+        "endLine": 80,
+        "endChar": 16
+      },
+      "revId": "6dd4270306fff63c6ff20bc2e0cf7b5cafbf85df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
