@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19533596_c7f18d16",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-06T06:24:27Z",
+      "side": 1,
+      "message": "Where is this class located?",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 49
+      },
+      "revId": "12ae51c0fd5272b914398ecb1da2f03597bfa858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
