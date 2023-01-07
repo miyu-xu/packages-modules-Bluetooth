@@ -33,6 +33,23 @@
       "message": "Set Ready For Review",
       "revId": "f39c9b7a89c342b5346a138d54952a43ffe18cf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ced5d8a_c09b5ff3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-01-07T09:18:04Z",
+      "side": 1,
+      "message": "Hi @optedoblivion@google.com could you help take a look at this?\nA friendly ping.",
+      "revId": "f39c9b7a89c342b5346a138d54952a43ffe18cf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
