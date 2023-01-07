@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "659517e2_bdfcb7ac",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-07T04:30:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfb13a33_83f4332b",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 28
+      },
+      "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23aa924e_795ce111",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78cc3327_59626ba7",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-07T04:30:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23aa924e_795ce111",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 6
+      },
+      "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ac8a5bf_a4b5d801",
@@ -84,6 +132,24 @@
       "writtenOn": "2023-01-04T22:27:33Z",
       "side": 1,
       "message": "Unrelated white-space change.",
+      "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6826ac7_e099816c",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1898,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-07T04:30:49Z",
+      "side": 1,
+      "message": "ACK. Here\u0027s the hexdump before this change:\n\n$ hexdump -C btif_hh.cc | tail -n 5\n00010ad0  28 70 5f 64 65 76 2d 3e  62 64 5f 61 64 64 72 29  |(p_dev-\u003ebd_addr)|\n00010ae0  29 3b 0a 20 20 20 20 7d  0a 20 20 7d 0a 7d 0a 23  |);.    }.  }.}.#|\n00010af0  75 6e 64 65 66 20 44 55  4d 50 53 59 53 5f 54 41  |undef DUMPSYS_TA|\n00010b00  47                                                |G|\n\nThe original file could have been edited by a non-UNIX editor before and thus miss EOL (\u0027\\n\u0027). As this is what UNIX editors expect, it\u0027s fair for a UNIX editor to add an EOL back.",
+      "parentUuid": "9ac8a5bf_a4b5d801",
       "revId": "aca06ae7f0cffd0d70f5b16b18ba6a08e84b3ac2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
