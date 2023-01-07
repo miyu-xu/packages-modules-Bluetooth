@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c4b2f59_31b14551",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1894,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-01-07T00:28:22Z",
+      "side": 1,
+      "message": "should this be on BluetoothGatt or BluetoothDevice? What about classic devices or CoC?",
+      "range": {
+        "startLine": 1894,
+        "startChar": 15,
+        "endLine": 1894,
+        "endChar": 27
+      },
+      "revId": "e843c72b63f1a17515fc843636c87c308b6ff40c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
