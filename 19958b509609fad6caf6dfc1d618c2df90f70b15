@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "398a029f_6a3a3526",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-07T03:45:19Z",
+      "side": 1,
+      "message": "Bypass presubmit as 3 of the errors are not related to this patch.",
+      "revId": "19958b509609fad6caf6dfc1d618c2df90f70b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
