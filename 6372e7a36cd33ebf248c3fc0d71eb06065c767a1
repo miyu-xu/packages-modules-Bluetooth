@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45edd9b_19bad76b",
+        "filename": "system/gd/l2cap/le/internal/fixed_channel_impl.cc",
+        "patchSetId": 43
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-07T22:55:04Z",
+      "side": 1,
+      "message": "It is supposed to be a TODO tracked in a bug ?\n\nI don\u0027t think anyone will ever look at it if it stay like this",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "6372e7a36cd33ebf248c3fc0d71eb06065c767a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
