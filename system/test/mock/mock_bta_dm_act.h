@@ -163,9 +163,11 @@ extern struct BTA_dm_report_role_change BTA_dm_report_role_change;
 // Return: void
 struct bta_dm_acl_up {
   std::function<void(const RawAddress& bd_addr, tBT_TRANSPORT transport)> body{
-      [](const RawAddress& bd_addr, tBT_TRANSPORT transport) {}};
-  void operator()(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
-    body(bd_addr, transport);
+      [](const RawAddress& bd_addr, tBT_TRANSPORT transport,
+         uint16_t acl_handle) {}};
+  void operator()(const RawAddress& bd_addr, tBT_TRANSPORT transport,
+                  uint16_t acl_handle) {
+    body(bd_addr, transport, acl_handle);
   };
 };
 extern struct bta_dm_acl_up bta_dm_acl_up;
