@@ -84,18 +84,14 @@ class TestHciHal : public hal::HciHal {
   void sendHciCommand(hal::HciPacket command) override {
     outgoing_commands_.push_back(std::move(command));
     if (sent_command_promise_ != nullptr) {
-      auto promise = std::move(sent_command_promise_);
-      sent_command_promise_.reset();
-      promise->set_value();
+      sent_command_promise_.release()->set_value();
     }
   }
 
   void sendAclData(hal::HciPacket data) override {
     outgoing_acl_.push_back(std::move(data));
     if (sent_acl_promise_ != nullptr) {
-      auto promise = std::move(sent_acl_promise_);
-      sent_acl_promise_.reset();
-      promise->set_value();
+      sent_acl_promise_.release()->set_value();
     }
   }
 
@@ -106,9 +102,7 @@ class TestHciHal : public hal::HciHal {
   void sendIsoData(hal::HciPacket data) override {
     outgoing_iso_.push_back(std::move(data));
     if (sent_iso_promise_ != nullptr) {
-      auto promise = std::move(sent_iso_promise_);
-      sent_iso_promise_.reset();
-      promise->set_value();
+      sent_iso_promise_.release()->set_value();
     }
   }
 

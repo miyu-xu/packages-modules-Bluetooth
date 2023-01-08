@@ -124,8 +124,7 @@ class TestAclConnectionInterface : public hci::AclConnectionInterface {
     command_queue_.push(std::move(command));
     command_status_callbacks.push_back(std::move(on_status));
     if (command_promise_ != nullptr) {
-      command_promise_->set_value();
-      command_promise_.reset();
+      command_promise_.release()->set_value();
     }
   }
 
@@ -136,8 +135,7 @@ class TestAclConnectionInterface : public hci::AclConnectionInterface {
     command_queue_.push(std::move(command));
     command_complete_callbacks.push_back(std::move(on_complete));
     if (command_promise_ != nullptr) {
-      command_promise_->set_value();
-      command_promise_.reset();
+      command_promise_.release()->set_value();
     }
   }
 
