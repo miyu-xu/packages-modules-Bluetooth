@@ -16,13 +16,12 @@
 
 mod ffi;
 
-use std::{fmt::Debug, thread};
+use std::{fmt::Debug, rc::Rc, thread};
 
 use cxx::UniquePtr;
 pub use ffi::Uuid;
-use log::info;
 
-use crate::{gatt::GattJniCallbacks, GlobalModuleRegistry};
+use crate::{gatt::{GattCallbacks, ids::{ConnectionId, TransactionId, AttHandle}}, GlobalModuleRegistry};
 
 use self::ffi::GattServerCallbacks;
 
@@ -30,26 +29,40 @@ use self::ffi::GattServerCallbacks;
 ///
 /// Try to avoid using in favor of an Address tagged with the AddressType
 #[repr(C)]
-pub struct RawAddress {
-    address: [u8; 6],
-}
+pub struct RawAddress(pub [u8; 6]);
 
 impl Debug for RawAddress {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "xx:xx:xx:xx:{:02x}:{:02x}", self.address[4], self.address[5],)
+        write!(f, "xx:xx:xx:xx:{:02x}:{:02x}", self.0[4], self.0[5],)
     }
 }
 
-struct GattJniCallbacksImpl(UniquePtr<GattServerCallbacks>);
+struct GattCallbacksImpl(UniquePtr<GattServerCallbacks>);
 
-impl GattJniCallbacks for GattJniCallbacksImpl {
-    fn ack(&self, _x: &str) {
-        info!("Rust POC has started!")
+impl GattCallbacks for GattCallbacksImpl {
+    fn on_server_read_characteristic(
+        &self,
+        address: RawAddress,
+        conn_id: ConnectionId,
+        trans_id: TransactionId,
+        handle: AttHandle,
+        offset: u32,
+        is_long: bool,
+    ) {
+        self.0
+            .as_ref()
+            .unwrap()
+            .on_server_read_characteristic(conn_id.0, trans_id.0, &address.0, handle.0, offset, is_long);
     }
 }
 
 fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>) {
     thread::spawn(move || {
-        GlobalModuleRegistry::start(&GattJniCallbacksImpl(gatt_server_callbacks));
+        GlobalModuleRegistry::start(Rc::new(GattCallbacksImpl(gatt_server_callbacks)));
     });
+}
+
+/// Get the raw bytes (in big-endian order) for a C++ UUID
+pub fn get_128_be_uuid_bytes(uuid: &Uuid) -> &[u8; 16] {
+    ffi::get_128_be_uuid_bytes(uuid).try_into().expect("ffi should give us exactly 16 bytes")
 }
