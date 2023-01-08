@@ -143,8 +143,9 @@ void Reactor::Run() {
       timeout_ms = -1;
       waiting_for_idle = false;
       std::scoped_lock<std::mutex> lock(mutex_);
-      idle_promise_->set_value();
-      idle_promise_ = nullptr;
+      std::promise<void>* prom = idle_promise_.release();
+      prom->set_value();
+      delete prom;
     }
 
     for (int i = 0; i < count; ++i) {
@@ -275,11 +276,11 @@ bool Reactor::WaitForUnregisteredReactable(std::chrono::milliseconds timeout) {
 }
 
 bool Reactor::WaitForIdle(std::chrono::milliseconds timeout) {
-  auto promise = std::make_shared<std::promise<void>>();
+  auto promise = std::make_unique<std::promise<void>>();
   auto future = std::make_unique<std::future<void>>(promise->get_future());
   {
     std::lock_guard<std::mutex> lock(mutex_);
-    idle_promise_ = promise;
+    idle_promise_ = std::move(promise);
   }
 
   auto control = eventfd_write(control_fd_, kWaitForIdle);
