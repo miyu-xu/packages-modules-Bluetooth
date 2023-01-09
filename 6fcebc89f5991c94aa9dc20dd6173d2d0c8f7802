@@ -33,6 +33,24 @@
       "message": "Why was this not a problem before? Did we change/upgrade any build tool?",
       "revId": "6fcebc89f5991c94aa9dc20dd6173d2d0c8f7802",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c01d5ab5_50c1ff1f",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-09T22:48:04Z",
+      "side": 1,
+      "message": "There was an `extern use bt_shim` here before. Another CL removed all `extern use` in Android because it interfered with proper dependency management. \n\nThis was pre-submit bypassed because they were encountering a cxx bug that had a similar signature as they caused. (I reviewed it and missed this use being removed)",
+      "parentUuid": "1fff54f2_3d2deca1",
+      "revId": "6fcebc89f5991c94aa9dc20dd6173d2d0c8f7802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
