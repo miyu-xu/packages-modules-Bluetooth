@@ -40,6 +40,7 @@ import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IpcDataCache;
 import android.os.Parcel;
@@ -1754,6 +1755,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             Log.e(TAG, "BT not enabled. Cannot set Remote Device name");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else {
+            rotatePreferredAudioProfile();
             try {
                 final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.setRemoteAlias(this, alias, mAttributionSource, recv);
@@ -3621,6 +3623,43 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             }
         }
         return defaultValue;
+    }
+
+    private boolean mLastModifiedDuplex;
+
+    private void rotatePreferredAudioProfile() {
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        Bundle preferredAudioProfiles = adapter.getPreferredAudioProfiles(this);
+        if (mLastModifiedDuplex) {
+            int outputAudioProfile = preferredAudioProfiles.getInt(
+                    BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY);
+            if (outputAudioProfile == BluetoothProfile.LE_AUDIO) {
+                outputAudioProfile = BluetoothProfile.A2DP;
+            } else {
+                outputAudioProfile = BluetoothProfile.LE_AUDIO;
+            }
+            Log.i(TAG, "Rotating preferred audio profile for AUDIO_MODE_OUTPUT_ONLY to "
+                    + "profile=" + BluetoothProfile.getProfileName(outputAudioProfile));
+            preferredAudioProfiles.putInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY,
+                    outputAudioProfile);
+            mLastModifiedDuplex = false;
+        } else {
+            int duplexAudioProfile = preferredAudioProfiles.getInt(
+                    BluetoothAdapter.AUDIO_MODE_DUPLEX);
+            if (duplexAudioProfile == BluetoothProfile.LE_AUDIO) {
+                duplexAudioProfile = BluetoothProfile.HEADSET;
+            } else {
+                duplexAudioProfile = BluetoothProfile.LE_AUDIO;
+            }
+            Log.i(TAG, "Rotating preferred audio profile for AUDIO_MODE_DUPLEX to profile="
+                    + BluetoothProfile.getProfileName(duplexAudioProfile));
+            preferredAudioProfiles.putInt(BluetoothAdapter.AUDIO_MODE_DUPLEX, duplexAudioProfile);
+            mLastModifiedDuplex = true;
+        }
+        int changeRequest = adapter.setPreferredAudioProfiles(this, preferredAudioProfiles);
+        if (changeRequest != BluetoothStatusCodes.SUCCESS) {
+            Log.e(TAG, "Rotating preferred audio profiles failed with code=" + changeRequest);
+        }
     }
 
     private static void log(String msg) {
