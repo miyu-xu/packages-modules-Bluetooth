@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cd98dd8_66000b3e",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T21:30:46Z",
+      "side": 1,
+      "message": "ASSERT_NE ?",
+      "range": {
+        "startLine": 510,
+        "startChar": 4,
+        "endLine": 510,
+        "endChar": 10
+      },
+      "revId": "3272cb107f8f1b5bdfbe22ba1478866efb8c7f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4ce97ed_08c792d1",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T21:30:46Z",
+      "side": 1,
+      "message": "ASSERT_TRUE?",
+      "range": {
+        "startLine": 511,
+        "startChar": 4,
+        "endLine": 511,
+        "endChar": 10
+      },
+      "revId": "3272cb107f8f1b5bdfbe22ba1478866efb8c7f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93aa04ad_74619447",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T21:30:46Z",
+      "side": 1,
+      "message": "Do we need to expose this?  If it\u0027s only used in testing, I\u0027d rather just use GetRole and GetAddress.",
+      "range": {
+        "startLine": 1604,
+        "startChar": 18,
+        "endLine": 1604,
+        "endChar": 37
+      },
+      "revId": "3272cb107f8f1b5bdfbe22ba1478866efb8c7f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
