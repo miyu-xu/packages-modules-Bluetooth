@@ -69,6 +69,30 @@
       },
       "revId": "12ae51c0fd5272b914398ecb1da2f03597bfa858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60cbd0a0_62d5358b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T00:48:28Z",
+      "side": 1,
+      "message": "I got an error without this.\n\npackages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachineTest.java:383: error: hasDeferredMessages(int) has protected access in StateMachine\n        Assert.assertTrue(mStateMachine.hasDeferredMessages(",
+      "parentUuid": "996ac408_38d6a81a",
+      "range": {
+        "startLine": 383,
+        "startChar": 8,
+        "endLine": 383,
+        "endChar": 100
+      },
+      "revId": "12ae51c0fd5272b914398ecb1da2f03597bfa858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
