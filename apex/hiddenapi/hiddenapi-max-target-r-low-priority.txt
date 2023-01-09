@@ -1,2 +1,0 @@
-Landroid/bluetooth/IBluetooth$Stub;->TRANSACTION_enable:I
-Landroid/bluetooth/IBluetoothManager$Stub;->TRANSACTION_enable:I
