@@ -46,6 +46,30 @@
       },
       "revId": "6372e7a36cd33ebf248c3fc0d71eb06065c767a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17970f6b_6c87af1f",
+        "filename": "system/gd/l2cap/le/internal/fixed_channel_impl.cc",
+        "patchSetId": 43
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-09T19:39:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e56ffa48_373eb6d1",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "6372e7a36cd33ebf248c3fc0d71eb06065c767a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
