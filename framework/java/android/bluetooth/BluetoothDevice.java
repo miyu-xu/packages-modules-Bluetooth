@@ -1635,6 +1635,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             Log.e(TAG, "BT not enabled. Cannot set Remote Device name");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else {
+            rotatePreferredAudioProfile();
             try {
                 final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.setRemoteAlias(this, alias, mAttributionSource, recv);
@@ -3555,6 +3556,36 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             }
         }
         return defaultValue;
+    }
+
+    private boolean mLastModifiedDuplex;
+
+    private void rotatePreferredAudioProfile() {
+        Bundle preferredAudioProfiles = getPreferredAudioProfiles();
+        if (mLastModifiedDuplex) {
+            int outputAudioProfile = preferredAudioProfiles.getInt(AUDIO_MODE_OUTPUT_ONLY);
+            if (outputAudioProfile == BluetoothProfile.LE_AUDIO) {
+                outputAudioProfile = BluetoothProfile.A2DP;
+            } else {
+                outputAudioProfile = BluetoothProfile.LE_AUDIO;
+            }
+            Log.i(TAG, "Rotating preferred audio profile for mode=" + AUDIO_MODE_OUTPUT_ONLY
+                    + " to profile=" + outputAudioProfile);
+            preferredAudioProfiles.putInt(AUDIO_MODE_OUTPUT_ONLY, outputAudioProfile);
+            mLastModifiedDuplex = false;
+        } else {
+            int duplexAudioProfile = preferredAudioProfiles.getInt(AUDIO_MODE_DUPLEX);
+            if (duplexAudioProfile == BluetoothProfile.LE_AUDIO) {
+                duplexAudioProfile = BluetoothProfile.HEADSET;
+            } else {
+                duplexAudioProfile = BluetoothProfile.LE_AUDIO;
+            }
+            Log.i(TAG, "Rotating preferred audio profile for mode=" + AUDIO_MODE_DUPLEX
+                    + " to profile=" + duplexAudioProfile);
+            preferredAudioProfiles.putInt(AUDIO_MODE_DUPLEX, duplexAudioProfile);
+            mLastModifiedDuplex = true;
+        }
+        setPreferredAudioProfiles(preferredAudioProfiles);
     }
 
     private static void log(String msg) {
