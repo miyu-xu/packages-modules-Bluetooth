@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20f6700d_2706aba3",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T21:41:58Z",
+      "side": 1,
+      "message": "If this were \"was_discoverable\", would that make more sense?  I think is_discoverable and is_discovering is just different enough and just similar enough to make it odd.",
+      "range": {
+        "startLine": 1724,
+        "startChar": 47,
+        "endLine": 1724,
+        "endChar": 61
+      },
+      "revId": "a6c135ce0cb55a0304b20e40476f1a4379025008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
