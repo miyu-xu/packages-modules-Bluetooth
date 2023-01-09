@@ -22,6 +22,30 @@
       },
       "revId": "a6c135ce0cb55a0304b20e40476f1a4379025008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09dd0fdb_01e02102",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-09T22:44:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20f6700d_2706aba3",
+      "range": {
+        "startLine": 1724,
+        "startChar": 47,
+        "endLine": 1724,
+        "endChar": 61
+      },
+      "revId": "a6c135ce0cb55a0304b20e40476f1a4379025008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
