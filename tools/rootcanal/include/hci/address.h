@@ -41,7 +41,9 @@ class Address final : public packet::CustomFieldFixedSizeInterface<Address> {
   std::array<uint8_t, kLength> address = {};
 
   constexpr Address() = default;
-  constexpr Address(std::array<uint8_t, kLength> const& address);
+  constexpr Address(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4,
+                    uint8_t b5) noexcept;
+  constexpr Address(std::array<uint8_t, kLength> const& address) noexcept;
   Address(const uint8_t (&address)[kLength]);
   Address(std::initializer_list<uint8_t> l);
 
