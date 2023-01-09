@@ -2332,6 +2332,43 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
+     * Checks if the remote device supports LE Audio duplex (output and input).
+     * @param device the remote device to check
+     * @return {@code true} if LE Audio duplex is supported, {@code false} otherwise
+     */
+    public boolean isLeAudioDuplexSupported(BluetoothDevice device) {
+        int groupId = getGroupId(device);
+        if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
+            return false;
+        }
+
+        LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
+        if (descriptor == null) {
+            return false;
+        }
+        return (descriptor.mDirection & AUDIO_DIRECTION_OUTPUT_BIT) != 0
+                && (descriptor.mDirection & AUDIO_DIRECTION_INPUT_BIT) != 0;
+    }
+
+    /**
+     * Checks if the remote device supports LE Audio output
+     * @param device the remote device to check
+     * @return {@code true} if LE Audio output is supported, {@code false} otherwise
+     */
+    public boolean isLeAudioOutputSupported(BluetoothDevice device) {
+        int groupId = getGroupId(device);
+        if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
+            return false;
+        }
+
+        LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
+        if (descriptor == null) {
+            return false;
+        }
+        return (descriptor.mDirection & AUDIO_DIRECTION_OUTPUT_BIT) != 0;
+    }
+
+    /**
      * Binder object: must be a static class or memory leak may occur
      */
     @VisibleForTesting
