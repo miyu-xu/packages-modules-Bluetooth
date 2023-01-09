@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b79cde0c_1876fc74",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-09T21:56:03Z",
+      "side": 1,
+      "message": "I want this to crash hard if it breaks, since it would indicate a bug in the test, not a bug in the SUT.\n\nIt\u0027s also consistent with what is done elsewhere, I think. (see: https://source.corp.google.com/search?q\u003d%22ASSERT(thread_-%3EGetReactor()-%3EWaitForIdle(2s));%22\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master%20file:packages%2Fmodules%2FBluetooth)",
+      "parentUuid": "6cd98dd8_66000b3e",
+      "range": {
+        "startLine": 510,
+        "startChar": 4,
+        "endLine": 510,
+        "endChar": 10
+      },
+      "revId": "3272cb107f8f1b5bdfbe22ba1478866efb8c7f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4ce97ed_08c792d1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59765243_e71141c3",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-09T21:56:03Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "b4ce97ed_08c792d1",
+      "range": {
+        "startLine": 511,
+        "startChar": 4,
+        "endLine": 511,
+        "endChar": 10
+      },
+      "revId": "3272cb107f8f1b5bdfbe22ba1478866efb8c7f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93aa04ad_74619447",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-09T21:30:46Z",
       "side": 1,
       "message": "Do we need to expose this?  If it\u0027s only used in testing, I\u0027d rather just use GetRole and GetAddress.",
+      "range": {
+        "startLine": 1604,
+        "startChar": 18,
+        "endLine": 1604,
+        "endChar": 37
+      },
+      "revId": "3272cb107f8f1b5bdfbe22ba1478866efb8c7f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f02d75a2_5352b48f",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-09T21:56:03Z",
+      "side": 1,
+      "message": "It\u0027s used in later CLs in the stack.",
+      "parentUuid": "93aa04ad_74619447",
       "range": {
         "startLine": 1604,
         "startChar": 18,
