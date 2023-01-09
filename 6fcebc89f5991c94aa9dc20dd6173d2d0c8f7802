@@ -51,6 +51,24 @@
       "parentUuid": "1fff54f2_3d2deca1",
       "revId": "6fcebc89f5991c94aa9dc20dd6173d2d0c8f7802",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c163adae_952e4977",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-09T22:56:43Z",
+      "side": 1,
+      "message": "Thanks for context!",
+      "parentUuid": "c01d5ab5_50c1ff1f",
+      "revId": "6fcebc89f5991c94aa9dc20dd6173d2d0c8f7802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
