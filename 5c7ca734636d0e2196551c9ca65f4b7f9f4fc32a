@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "422d01ce_d6a117ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T18:13:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "935f7128_6540703e",
+      "range": {
+        "startLine": 11,
+        "startChar": 22,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "5c7ca734636d0e2196551c9ca65f4b7f9f4fc32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab2a5700_6c7fc1f6",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "I think it\u0027s fine to have a zero set ID in the legacy case...",
       "parentUuid": "57755e1b_2f668ed7",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "5c7ca734636d0e2196551c9ca65f4b7f9f4fc32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c50d73e_7f1d39f2",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T18:13:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7ec54741_0719e8ef",
       "range": {
         "startLine": 46,
         "startChar": 0,
