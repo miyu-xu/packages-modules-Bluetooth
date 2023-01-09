@@ -22,6 +22,30 @@
       },
       "revId": "6c1c2bec372c10db82a14ebd1fa478ce8fd38f1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0194a0c_3e87489e",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-09T20:51:26Z",
+      "side": 1,
+      "message": "It\u0027s used for ChromeOS only. This is how we read in values we want for these sysprops",
+      "parentUuid": "91dad4c5_2191be03",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 51
+      },
+      "revId": "6c1c2bec372c10db82a14ebd1fa478ce8fd38f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
