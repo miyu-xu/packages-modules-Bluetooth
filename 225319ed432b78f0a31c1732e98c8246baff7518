@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1e7707_132abc4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-09T19:33:24Z",
+      "side": 1,
+      "message": "Hi Snehal,\n\nI am not sure to understand why there is so much changed in hfp.py for an AVRCP CL.\n\nAlso, can you please have a look to the pts-bot presubmit failure please?\n\nThanks",
+      "revId": "225319ed432b78f0a31c1732e98c8246baff7518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
