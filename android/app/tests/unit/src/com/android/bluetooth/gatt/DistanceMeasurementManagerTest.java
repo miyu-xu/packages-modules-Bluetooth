@@ -1,0 +1,210 @@
+/*
+ * Copyright (C) 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.android.bluetooth.gatt;
+
+import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.Mockito.after;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.le.DistanceMeasurementParams;
+import android.bluetooth.le.DistanceMeasurementResult;
+import android.bluetooth.le.DistanceMeasurementSession;
+import android.bluetooth.le.IDistanceMeasurementCallback;
+import android.os.HandlerThread;
+import android.os.RemoteException;
+
+import androidx.test.filters.SmallTest;
+import androidx.test.runner.AndroidJUnit4;
+
+import com.android.bluetooth.btservice.AdapterService;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.UUID;
+
+/**
+ * Test cases for {@link DistanceMeasurementManager}.
+ */
+@SmallTest
+@RunWith(AndroidJUnit4.class)
+public class DistanceMeasurementManagerTest {
+    @Mock private DistanceMeasurementNativeInterface mDistanceMeasurementNativeInterface;
+    @Mock private AdapterService mAdapterService;
+    @Mock private IDistanceMeasurementCallback mCallback;
+    private DistanceMeasurementManager mDistanceMeasurementManager;
+    private UUID mUuid;
+    private BluetoothDevice mDevice;
+
+    private static final String IDENTITY_ADDRESS = "00:01:02:03:04:05";
+    private static final int RSSI_FREQUENCY_LOW = 3000;
+
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+        doReturn(IDENTITY_ADDRESS).when(mAdapterService).getIdentityAddress(IDENTITY_ADDRESS);
+        mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
+        mDistanceMeasurementManager.start();
+        mDistanceMeasurementManager.mDistanceMeasurementNativeInterface =
+                mDistanceMeasurementNativeInterface;
+        mUuid = UUID.randomUUID();
+        mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(IDENTITY_ADDRESS);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        mDistanceMeasurementManager.cleanup();
+    }
+
+    @Test
+    public void testStartRssiTracker() {
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(mDevice)
+                .setDuration(1000)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .setMethod(DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI)
+                .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        verify(mDistanceMeasurementNativeInterface).startDistanceMeasurement(
+            IDENTITY_ADDRESS, RSSI_FREQUENCY_LOW,
+            DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+    }
+
+    @Test
+    public void testStopRssiTracker() {
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(mDevice)
+                .setDuration(1000)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .setMethod(DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI)
+                .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        mDistanceMeasurementManager.stopDistanceMeasurement(mUuid, mDevice,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI, false);
+        verify(mDistanceMeasurementNativeInterface).stopDistanceMeasurement(
+            IDENTITY_ADDRESS, DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+    }
+
+    @Test
+    public void testHandleRssiStarted() throws RemoteException {
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(mDevice)
+                .setDuration(1000)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .setMethod(DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI)
+                .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        verify(mDistanceMeasurementNativeInterface).startDistanceMeasurement(
+            IDENTITY_ADDRESS, RSSI_FREQUENCY_LOW,
+            DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        mDistanceMeasurementManager.onDistanceMeasurementStarted(IDENTITY_ADDRESS,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        verify(mCallback).onStarted(mDevice);
+    }
+
+    @Test
+    public void testHandleRssiStartFail() throws RemoteException {
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(mDevice)
+                .setDuration(1000)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .setMethod(DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI)
+                .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        verify(mDistanceMeasurementNativeInterface).startDistanceMeasurement(
+            IDENTITY_ADDRESS, RSSI_FREQUENCY_LOW,
+            DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        mDistanceMeasurementManager.onDistanceMeasurementStartFail(IDENTITY_ADDRESS,
+                DistanceMeasurementSession.Callback.REASON_INTERNAL_ERROR,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        verify(mCallback).onStartFail(mDevice,
+                DistanceMeasurementSession.Callback.REASON_INTERNAL_ERROR);
+    }
+
+    @Test
+    public void testHandleRssiStopped() throws RemoteException {
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(mDevice)
+                .setDuration(1000)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .setMethod(DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI)
+                .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        mDistanceMeasurementManager.onDistanceMeasurementStarted(IDENTITY_ADDRESS,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        verify(mCallback).onStarted(mDevice);
+
+        mDistanceMeasurementManager.onDistanceMeasurementStopped(IDENTITY_ADDRESS,
+                DistanceMeasurementSession.Callback.REASON_REMOTE_REQUEST,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        verify(mCallback).onStopped(mDevice,
+                DistanceMeasurementSession.Callback.REASON_REMOTE_REQUEST);
+    }
+
+    @Test
+    public void testHandleRssiResult() throws RemoteException {
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(mDevice)
+                .setDuration(1000)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .setMethod(DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI)
+                .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        mDistanceMeasurementManager.onDistanceMeasurementStarted(IDENTITY_ADDRESS,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        verify(mCallback).onStarted(mDevice);
+
+        mDistanceMeasurementManager.onDistanceMeasurementResult(IDENTITY_ADDRESS,
+                100, 100, -1, -1, -1, -1,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        ArgumentCaptor<DistanceMeasurementResult> result =
+                ArgumentCaptor.forClass(DistanceMeasurementResult.class);
+        verify(mCallback, times(1)).onResult(eq(mDevice), result.capture());
+        assertThat(result.getValue().getMeters()).isEqualTo(1.00);
+        assertThat(result.getValue().getErrorMeters()).isEqualTo(1.00);
+        assertThat(result.getValue().getAzimuthAngle()).isEqualTo(Double.NaN);
+        assertThat(result.getValue().getErrorAzimuthAngle()).isEqualTo(Double.NaN);
+        assertThat(result.getValue().getAltitudeAngle()).isEqualTo(Double.NaN);
+        assertThat(result.getValue().getErrorAltitudeAngle()).isEqualTo(Double.NaN);
+    }
+
+    @Test
+    public void testReceivedResultAfterStopped() throws RemoteException {
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(mDevice)
+                .setDuration(1000)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .setMethod(DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI)
+                .build();
+        mDistanceMeasurementManager.startDistanceMeasurement(mUuid, params, mCallback);
+        mDistanceMeasurementManager.stopDistanceMeasurement(mUuid, mDevice,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI, false);
+        verify(mDistanceMeasurementNativeInterface).stopDistanceMeasurement(
+            IDENTITY_ADDRESS, DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        mDistanceMeasurementManager.onDistanceMeasurementResult(IDENTITY_ADDRESS,
+                100, 100, -1, -1, -1, -1,
+                DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI);
+        DistanceMeasurementResult result = new DistanceMeasurementResult.Builder()
+                        .setMeters(1.00)
+                        .setErrorMeters(1.00).build();
+        verify(mCallback, after(100).never()).onResult(mDevice, result);
+    }
+}
