@@ -103,7 +103,7 @@ class Reactor {
   std::atomic<bool> is_running_;
   std::list<Reactable*> invalidation_list_;
   std::shared_ptr<std::future<void>> executing_reactable_finished_;
-  std::shared_ptr<std::promise<void>> idle_promise_;
+  std::unique_ptr<std::promise<void>> idle_promise_;
 };
 
 }  // namespace os
