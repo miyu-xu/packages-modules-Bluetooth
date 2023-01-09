@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a76deb_867327ed",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-09T15:34:17Z",
+      "side": 1,
+      "message": "Is it possible that `broadcast_config.sampling_rate` not in the `bcast_high_reliability_qos` originally? If so,\n\n```\n auto it \u003d bcast_high_reliability_qos[broadcast_config.sampling_rate].find(\n          broadcast_config.frame_duration)\n```\n\nwill allocate a space for `broadcast_config.sampling_rate` inside the map `bcast_high_reliability_qos`.\n\nanother workaround is first check\n\n```\nbool existed \u003d bcast_high_reliability_qos.find(broadcast_config.sampling_rate) !\u003d bcast_high_reliability_qos.end() \n             \u0026\u0026 bcast_high_reliability_qos[broadcast_config.sampling_rate].find(broadcast_config.frame_duration) \n             !\u003d bcast_high_reliability_qos[broadcast_config.sampling_rate].end()\n```\n\nwith this, we would not allocate extra space for those `sample_rate` not in the map originally.",
+      "range": {
+        "startLine": 190,
+        "startChar": 6,
+        "endLine": 191,
+        "endChar": 43
+      },
+      "revId": "f45975a497dfc71c434ed1fcc233943e576f3a6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
