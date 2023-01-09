@@ -501,7 +501,11 @@ class BtifAvSource {
                      << ": unable to set active peer to empty in BtaAvCo";
       }
       btif_a2dp_source_end_session(active_peer_);
-      btif_a2dp_source_shutdown();
+      std::promise<void> shutdown_complete_promise;
+      std::future<void> shutdown_complete_future =
+          shutdown_complete_promise.get_future();
+      btif_a2dp_source_shutdown(std::move(shutdown_complete_promise));
+      shutdown_complete_future.wait();
       active_peer_ = peer_address;
       peer_ready_promise.set_value();
       return true;
