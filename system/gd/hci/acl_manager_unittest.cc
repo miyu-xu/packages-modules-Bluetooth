@@ -320,9 +320,8 @@ class TestHciLayer : public HciLayer {
  private:
   void Notify() {
     if (hci_command_promise_ != nullptr) {
-      std::promise<void>* prom = hci_command_promise_.release();
-      prom->set_value();
-      delete prom;
+      hci_command_promise_->set_value();
+      hci_command_promise_.reset();
     }
   }
 
@@ -373,9 +372,8 @@ class MockLeConnectionCallbacks : public LeConnectionCallbacks {
   void OnLeConnectSuccess(AddressWithType address_with_type, std::unique_ptr<LeAclConnection> connection) override {
     le_connections_.push_back(std::move(connection));
     if (le_connection_promise_ != nullptr) {
-      std::promise<void>* prom = le_connection_promise_.release();
-      prom->set_value();
-      delete prom;
+      le_connection_promise_->set_value();
+      le_connection_promise_.reset();
     }
   }
   MOCK_METHOD(void, OnLeConnectFail, (AddressWithType, ErrorCode reason, bool locally_initiated), (override));
