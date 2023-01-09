@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fffb846_9bd4cf06",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-09T15:21:48Z",
+      "side": 1,
+      "message": "May I know why it is 1024 here?",
+      "range": {
+        "startLine": 1053,
+        "startChar": 4,
+        "endLine": 1053,
+        "endChar": 19
+      },
+      "revId": "908a86488c0c268a8458f4dfd83aa2be2813ec0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
