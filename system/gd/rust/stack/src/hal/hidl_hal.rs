@@ -2,7 +2,6 @@
 use crate::hal::internal::{InnerHal, RawHal};
 use bt_packets::hci::{AclPacket, CommandPacket, EventPacket, IsoPacket, Packet, ScoPacket};
 use gddi::{module, provides};
-use lazy_static::lazy_static;
 use std::sync::Arc;
 use std::sync::Mutex;
 use tokio::runtime::Runtime;

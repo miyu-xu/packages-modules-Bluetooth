@@ -1,4 +1,3 @@
-use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 use std::convert::{TryFrom, TryInto};
 use std::ffi::CString;
