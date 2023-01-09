@@ -162,6 +162,7 @@ void NotifyAclLinkUp(tACL_CONN& p_acl) {
     return;
   }
   p_acl.link_up_issued = true;
+  LOG_INFO("Notifying that the ACL Link is UP %s", p_acl.remote_addr.ToString().c_str());
   BTA_dm_acl_up(p_acl.remote_addr, p_acl.transport);
 }
 
@@ -169,6 +170,7 @@ void NotifyAclLinkDown(tACL_CONN& p_acl) {
   /* Only notify if link up has had a chance to be issued */
   if (p_acl.link_up_issued) {
     p_acl.link_up_issued = false;
+    LOG_INFO("Notifying that the ACL Link is UP %s", p_acl.remote_addr.ToString().c_str());
     BTA_dm_acl_down(p_acl.remote_addr, p_acl.transport);
   }
 }
