@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c8fe92_26a738e7",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T02:23:08Z",
+      "side": 1,
+      "message": "Do we really need this?",
+      "range": {
+        "startLine": 71,
+        "startChar": 5,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "8bd2816f3cb48e9f241bd597031568ba58d36905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a7e951_644ff7fc",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T02:23:08Z",
+      "side": 1,
+      "message": "Do we really need this?",
+      "range": {
+        "startLine": 74,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 22
+      },
+      "revId": "8bd2816f3cb48e9f241bd597031568ba58d36905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b030979_8e45af6c",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T02:23:08Z",
+      "side": 1,
+      "message": "Do we really need this?",
+      "range": {
+        "startLine": 77,
+        "startChar": 5,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "8bd2816f3cb48e9f241bd597031568ba58d36905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a8f47c_d0c4576b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexClientSessionTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T02:23:08Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "8bd2816f3cb48e9f241bd597031568ba58d36905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0017ae79_938759c1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexClientSessionTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T02:23:08Z",
+      "side": 1,
+      "message": "why do we need to spy this?",
+      "range": {
+        "startLine": 70,
+        "startChar": 25,
+        "endLine": 70,
+        "endChar": 28
+      },
+      "revId": "8bd2816f3cb48e9f241bd597031568ba58d36905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ede41c09_b6532d01",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexClientSessionTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T02:23:08Z",
+      "side": 1,
+      "message": "What\u0027s the benefit to test this?\n\nI think we can minimize the use of @VisibleForTesting w/o this test.",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 51
+      },
+      "revId": "8bd2816f3cb48e9f241bd597031568ba58d36905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "872a47ca_f16373f5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexClientSessionTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-09T02:23:08Z",
+      "side": 1,
+      "message": "How did you verify this?",
+      "range": {
+        "startLine": 96,
+        "startChar": 29,
+        "endLine": 96,
+        "endChar": 55
+      },
+      "revId": "8bd2816f3cb48e9f241bd597031568ba58d36905",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
