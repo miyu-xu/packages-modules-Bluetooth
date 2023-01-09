@@ -32,7 +32,9 @@ import android.bluetooth.IBluetoothGattCallback;
 import android.bluetooth.IBluetoothGattServerCallback;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertisingSetParameters;
+import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IAdvertisingSetCallback;
+import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.bluetooth.le.IPeriodicAdvertisingCallback;
 import android.bluetooth.le.IScannerCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
@@ -94,6 +96,7 @@ public class GattServiceTest {
     @Mock private GattService.PendingIntentInfo mPiInfo;
     @Mock private AdvertiseManager mAdvertiseManager;
     @Mock private PeriodicScanManager mPeriodicScanManager;
+    @Mock private DistanceMeasurementManager mDistanceMeasurementManager;
     @Mock private ScanManager mScanManager;
     @Mock private Set<String> mReliableQueue;
     @Mock private GattService.ServerMap mServerMap;
@@ -143,6 +146,7 @@ public class GattServiceTest {
         mService.mScannerMap = mScannerMap;
         mService.mAdvertiseManager = mAdvertiseManager;
         mService.mPeriodicScanManager = mPeriodicScanManager;
+        mService.mDistanceMeasurementManager = mDistanceMeasurementManager;
         mService.mScanManager = mScanManager;
         mService.mReliableQueue = mReliableQueue;
         mService.mServerMap = mServerMap;
@@ -749,6 +753,34 @@ public class GattServiceTest {
     public void numHwTrackFiltersAvailable() {
         mService.numHwTrackFiltersAvailable(mAttributionSource);
         verify(mScanManager).getCurrentUsedTrackingAdvertisement();
+    }
+
+    @Test
+    public void getSupportedDistanceMeasurementMethods() {
+        mService.getSupportedDistanceMeasurementMethods(mAttributionSource);
+        verify(mDistanceMeasurementManager).getSupportedDistanceMeasurementMethods();
+    }
+
+    @Test
+    public void startDistanceMeasurement() {
+        UUID uuid = UUID.randomUUID();
+        BluetoothDevice device = mAdapter.getRemoteDevice("00:01:02:03:04:05");
+        DistanceMeasurementParams params = new DistanceMeasurementParams.Builder(device)
+                .setDuration(123)
+                .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
+                .build();
+        IDistanceMeasurementCallback callback = mock(IDistanceMeasurementCallback.class);
+        mService.startDistanceMeasurement(uuid, params, callback, mAttributionSource);
+        verify(mDistanceMeasurementManager).startDistanceMeasurement(uuid, params, callback);
+    }
+
+    @Test
+    public void stopDistanceMeasurement() {
+        UUID uuid = UUID.randomUUID();
+        BluetoothDevice device = mAdapter.getRemoteDevice("00:01:02:03:04:05");
+        int method = DistanceMeasurementParams.DISTANCE_MEASUREMENT_METHOD_RSSI;
+        mService.stopDistanceMeasurement(uuid, device, method, mAttributionSource);
+        verify(mDistanceMeasurementManager).stopDistanceMeasurement(uuid, device, method, false);
     }
 
     @Test
