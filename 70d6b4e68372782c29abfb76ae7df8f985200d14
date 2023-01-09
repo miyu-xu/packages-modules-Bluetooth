@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc664325_0f2f933a",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T21:11:26Z",
+      "side": 1,
+      "message": "remove? The memset isn\u0027t unsafe.  Something later was setting the values, right?",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 31
+      },
+      "revId": "70d6b4e68372782c29abfb76ae7df8f985200d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4bb31e2_ce06578c",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T21:11:26Z",
+      "side": 1,
+      "message": "While we\u0027re here, can we remove all of the memsets?",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 33
+      },
+      "revId": "70d6b4e68372782c29abfb76ae7df8f985200d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
