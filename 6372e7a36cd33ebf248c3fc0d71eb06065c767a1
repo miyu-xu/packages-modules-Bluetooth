@@ -22,6 +22,30 @@
       },
       "revId": "6372e7a36cd33ebf248c3fc0d71eb06065c767a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56ffa48_373eb6d1",
+        "filename": "system/gd/l2cap/le/internal/fixed_channel_impl.cc",
+        "patchSetId": 43
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-09T19:37:46Z",
+      "side": 1,
+      "message": "The comment is not needed anymore, already using the correct API.",
+      "parentUuid": "d45edd9b_19bad76b",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "6372e7a36cd33ebf248c3fc0d71eb06065c767a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
