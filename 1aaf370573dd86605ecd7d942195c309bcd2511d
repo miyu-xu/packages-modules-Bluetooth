@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "393d14c6_a6d1f319",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-09T00:14:21Z",
+      "side": 1,
+      "message": "Hi John Lai,\n\nI would prefer that we do not expand the usage of flags that alter the behavior of the stack only for testing.\n\nThe principe of this in itself is problematic as this means that we are testing a different version of the stack that will never exist other than for the purpose of testing.\n\nI understand that sometimes it can help to more simply test some branches of the code (because they are difficult to reach) but I still feel that we should not rely on this and instead write the proper test that will exercise the full behavior of this branch.\n\nFor your specific case, the PTS, as it\u0027s a Blackbox, we often see the use of flags in the ecosystem but I would like for us to stop doing that.\n\nWe should instead:\n- If the tested behavior is not implemented by the stack, disable the test.\n- If the test is too restrictive on the set of accepted parameters or implementations, fill a Test Case Errata and ask a Test Case Waiver if needed.\n- If the tested feature is mandatory but not implemented by Android, implement it.\n- If the test is mandatory and we think it should not be, fill a Test Case Errata\n\nFor `AVDTP/SRC/INT/SIG/SMG/BV-23-C` it seems that we are in none of thoses cases and this flag is only a way to pass this test more simply, so we should try to look at the other ways where the stack sends an Abort request and trigger this branch instead.\n\nBased on the Test Suite document it seems that the Abort is exepcted to be sent from a configured state, so any `AVDT_SCB_SND_ABORT_REQ` in [`avdt_scb_st_conf`](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/avdt/avdt_scb.cc;l\u003d234) should trigger this behavior ( AVDT_RemoveStream or AVDT_CloseReq) looking at bit upper in the stack, it seems that me might get this behavior if we ask for a A2DP disconnection",
+      "revId": "1aaf370573dd86605ecd7d942195c309bcd2511d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "789fecd9_700f9826",
         "filename": "system/gd/sysprops/sysprops_module.cc",
         "patchSetId": 3
