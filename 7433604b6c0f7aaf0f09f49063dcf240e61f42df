@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "999acd44_193883b4",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-09T01:05:36Z",
+      "side": 1,
+      "message": "From `release` documentation: `The caller is responsible for deleting the object.`\n\nSo I guess here we want to do\n```\nauto promise \u003d packet_promise_.release()\npromise-\u003eset_value();\ndelete promise\n```",
+      "revId": "7433604b6c0f7aaf0f09f49063dcf240e61f42df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
