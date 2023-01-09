@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78bb57af_0893ca33",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2122,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-09T22:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abbf51ba_3258d40c",
+      "revId": "e4201c5673c737b59c219a159f8c8fbac0ac63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26fa5c05_7a05e815",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-09T22:28:58Z",
       "side": 1,
       "message": "Make sure you also include the @RequiresBluetoothConnectPermission annotation",
+      "revId": "e4201c5673c737b59c219a159f8c8fbac0ac63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda49d38_45d9d888",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2126,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-09T22:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26fa5c05_7a05e815",
       "revId": "e4201c5673c737b59c219a159f8c8fbac0ac63c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
