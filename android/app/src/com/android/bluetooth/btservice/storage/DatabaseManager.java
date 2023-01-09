@@ -796,8 +796,8 @@ public class DatabaseManager {
 
             // Updates preferred audio profiles for the device
             Metadata metadata = mMetadataCache.get(address);
-            int outputProfile = modeToProfileBundle.getInt(BluetoothDevice.AUDIO_MODE_OUTPUT_ONLY);
-            int duplexProfile = modeToProfileBundle.getInt(BluetoothDevice.AUDIO_MODE_DUPLEX);
+            int outputProfile = modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY);
+            int duplexProfile = modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX);
             if (outputProfile != 0) {
                 Log.i(TAG, "setPreferredAudioProfiles: Updating output only audio profile for "
                         + "device: " + device + " to "
@@ -847,11 +847,11 @@ public class DatabaseManager {
 
             Bundle modeToProfileBundle = new Bundle();
             if (outputOnlyProfile != 0) {
-                modeToProfileBundle.putInt(BluetoothDevice.AUDIO_MODE_OUTPUT_ONLY,
+                modeToProfileBundle.putInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY,
                         outputOnlyProfile);
             }
             if (duplexProfile != 0) {
-                modeToProfileBundle.putInt(BluetoothDevice.AUDIO_MODE_DUPLEX, duplexProfile);
+                modeToProfileBundle.putInt(BluetoothAdapter.AUDIO_MODE_DUPLEX, duplexProfile);
             }
 
             return modeToProfileBundle;

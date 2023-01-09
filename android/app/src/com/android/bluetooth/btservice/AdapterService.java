@@ -61,6 +61,7 @@ import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothConnectionCallback;
 import android.bluetooth.IBluetoothMetadataListener;
 import android.bluetooth.IBluetoothOobDataCallback;
+import android.bluetooth.IBluetoothPreferredAudioProfilesCallback;
 import android.bluetooth.IBluetoothSocketManager;
 import android.bluetooth.IncomingRfcommSocketInfo;
 import android.bluetooth.OobData;
@@ -279,6 +280,8 @@ public class AdapterService extends Service {
             mMetadataListeners = new HashMap<>();
     private final HashMap<String, Integer> mProfileServicesState = new HashMap<String, Integer>();
     private Set<IBluetoothConnectionCallback> mBluetoothConnectionCallbacks = new HashSet<>();
+    private RemoteCallbackList<IBluetoothPreferredAudioProfilesCallback>
+            mPreferredAudioProfilesCallbacks;
     //Only BluetoothManagerService should be registered
     private RemoteCallbackList<IBluetoothCallback> mCallbacks;
     private int mCurrentRequestId;
@@ -511,6 +514,8 @@ public class AdapterService extends Service {
         initNative(mUserManager.isGuestUser(), isCommonCriteriaMode(), configCompareResult,
                 getInitFlags(), isAtvDevice, getApplicationInfo().dataDir);
         mNativeAvailable = true;
+        mPreferredAudioProfilesCallbacks =
+                new RemoteCallbackList<IBluetoothPreferredAudioProfilesCallback>();
         mCallbacks = new RemoteCallbackList<IBluetoothCallback>();
         mAppOps = getSystemService(AppOpsManager.class);
         //Load the name and address
@@ -997,6 +1002,10 @@ public class AdapterService extends Service {
         if (mBinder != null) {
             mBinder.cleanup();
             mBinder = null;  //Do not remove. Otherwise Binder leak!
+        }
+
+        if (mPreferredAudioProfilesCallbacks != null) {
+            mPreferredAudioProfilesCallbacks.kill();
         }
 
         if (mCallbacks != null) {
@@ -4128,6 +4137,78 @@ public class AdapterService extends Service {
 
             enforceBluetoothPrivilegedPermission(service);
             return service.mDatabaseManager.getPreferredAudioProfiles(device);
+        }
+
+        @Override
+        public void registerPreferredAudioProfilesChangedCallback(BluetoothDevice device,
+                IBluetoothPreferredAudioProfilesCallback callback,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(registerPreferredAudioProfilesChangedCallback(device, callback,
+                        attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
+        private int registerPreferredAudioProfilesChangedCallback(BluetoothDevice device,
+                IBluetoothPreferredAudioProfilesCallback callback, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(service, TAG,
+                    "registerPreferredAudioProfilesChangedCallback")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+
+            service.mPreferredAudioProfilesCallbacks.register(callback, device);
+            return BluetoothStatusCodes.SUCCESS;
+        }
+
+        @Override
+        public void unregisterPreferredAudioProfilesChangedCallback(BluetoothDevice device,
+                IBluetoothPreferredAudioProfilesCallback callback,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(unregisterPreferredAudioProfilesChangedCallback(device, callback,
+                        attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
+        private int unregisterPreferredAudioProfilesChangedCallback(BluetoothDevice device,
+                IBluetoothPreferredAudioProfilesCallback callback, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(service, TAG,
+                    "unregisterPreferredAudioProfilesChangedCallback")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+
+            if (!service.mPreferredAudioProfilesCallbacks.unregister(callback)) {
+                Log.e(TAG, "unregisterPreferredAudioProfilesChangedCallback: callback was never "
+                        + "registered");
+                return BluetoothStatusCodes.ERROR_CALLBACK_IS_NOT_REGISTERED;
+            }
+            return BluetoothStatusCodes.SUCCESS;
         }
     }
 
