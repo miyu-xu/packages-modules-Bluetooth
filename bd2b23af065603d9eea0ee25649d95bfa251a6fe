@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d23a94_dcd4c039",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004882
+      },
+      "writtenOn": "2023-01-09T13:28:42Z",
+      "side": 1,
+      "message": "Moving this to AOSP now that this applies to master.",
+      "revId": "bd2b23af065603d9eea0ee25649d95bfa251a6fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
