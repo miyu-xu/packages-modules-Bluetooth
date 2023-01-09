@@ -46,6 +46,30 @@
       },
       "revId": "52425905fc6b7d405f9372526c84d4c58a4b0c82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a92daca3_5b54e33a",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-09T21:16:58Z",
+      "side": 1,
+      "message": "`I don\u0027t see this being used anywhere.`\n\nMerged into another CL where it is used.",
+      "parentUuid": "b8b04b6c_984f8311",
+      "range": {
+        "startLine": 98,
+        "startChar": 45,
+        "endLine": 98,
+        "endChar": 72
+      },
+      "revId": "52425905fc6b7d405f9372526c84d4c58a4b0c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
