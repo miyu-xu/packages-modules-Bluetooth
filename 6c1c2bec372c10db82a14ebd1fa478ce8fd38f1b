@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91dad4c5_2191be03",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T20:47:44Z",
+      "side": 1,
+      "message": "Do we still need this?  Where is it used?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 51
+      },
+      "revId": "6c1c2bec372c10db82a14ebd1fa478ce8fd38f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
