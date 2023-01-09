@@ -287,6 +287,8 @@ public class GattService extends ProfileService {
     @VisibleForTesting
     PeriodicScanManager mPeriodicScanManager;
     @VisibleForTesting
+    DistanceMeasurementManager mDistanceMeasurementManager;
+    @VisibleForTesting
     ScanManager mScanManager;
     private AppOpsManager mAppOps;
     private CompanionDeviceManager mCompanionManager;
@@ -354,6 +356,9 @@ public class GattService extends ProfileService {
         mPeriodicScanManager = new PeriodicScanManager(mAdapterService);
         mPeriodicScanManager.start();
 
+        mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
+        mDistanceMeasurementManager.start();
+
         setGattService(this);
         return true;
     }
@@ -392,6 +397,9 @@ public class GattService extends ProfileService {
         }
         if (mPeriodicScanManager != null) {
             mPeriodicScanManager.cleanup();
+        }
+        if (mDistanceMeasurementManager != null) {
+            mDistanceMeasurementManager.cleanup();
         }
     }
 
@@ -1812,7 +1820,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.startDistanceMeasurement(uuid, distanceMeasurementParams, callback,
+            service.startDistanceMeasurement(uuid.getUuid(), distanceMeasurementParams, callback,
                     attributionSource);
         }
 
@@ -1833,7 +1841,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.stopDistanceMeasurement(uuid, device, method, attributionSource);
+            service.stopDistanceMeasurement(uuid.getUuid(), device, method, attributionSource);
         }
     };
 
@@ -3559,35 +3567,31 @@ public class GattService extends ProfileService {
     DistanceMeasurementMethod[] getSupportedDistanceMeasurementMethods(
             AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
-                this, attributionSource, "GattService startDistanceMeasurement")) {
+                this, attributionSource, "GattService getSupportedDistanceMeasurementMethods")) {
             return new DistanceMeasurementMethod[0];
         }
-        // TODO(b/256055210): Implement DistanceMeasurementManager in Bluetooth APP
-        // return mDistanceMeasurementManager.getSupportedMethods();
-        return new DistanceMeasurementMethod[0];
+        return mDistanceMeasurementManager.getSupportedDistanceMeasurementMethods();
     }
 
 
-    void startDistanceMeasurement(ParcelUuid uuid,
+    void startDistanceMeasurement(UUID uuid,
             DistanceMeasurementParams distanceMeasurementParams,
             IDistanceMeasurementCallback callback, AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService startDistanceMeasurement")) {
             return;
         }
-        // TODO(b/256055210): Implement DistanceMeasurementManager in Bluetooth APP
-        // mDistanceMeasurementManager.startDistanceMeasurement(uuid, distanceMeasurementParams,
-        // callback);
+        mDistanceMeasurementManager.startDistanceMeasurement(uuid, distanceMeasurementParams,
+                callback);
     }
 
-    void stopDistanceMeasurement(ParcelUuid uuid, BluetoothDevice device, int method,
+    void stopDistanceMeasurement(UUID uuid, BluetoothDevice device, int method,
             AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService stopDistanceMeasurement")) {
             return;
         }
-        // TODO(b/256055210): Implement DistanceMeasurementManager in Bluetooth APP
-        // mDistanceMeasurementManager.stopDistanceMeasurement(uuid, device, method, false);
+        mDistanceMeasurementManager.stopDistanceMeasurement(uuid, device, method, false);
     }
 
     /**************************************************************************
