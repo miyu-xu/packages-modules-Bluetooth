@@ -46,6 +46,30 @@
       },
       "revId": "6c1c2bec372c10db82a14ebd1fa478ce8fd38f1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec54b8b_112535c6",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-09T21:07:31Z",
+      "side": 1,
+      "message": "The name is different from what is read below, and if it\u0027s just for Floss, we shouldn\u0027t need it in libsysprop or sepolicy.",
+      "parentUuid": "e0194a0c_3e87489e",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 51
+      },
+      "revId": "6c1c2bec372c10db82a14ebd1fa478ce8fd38f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
