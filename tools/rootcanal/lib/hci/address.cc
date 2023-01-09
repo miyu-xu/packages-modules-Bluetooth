@@ -27,8 +27,12 @@
 namespace bluetooth {
 namespace hci {
 
-const Address Address::kAny{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-const Address Address::kEmpty{0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+const Address Address::kAny(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF);
+const Address Address::kEmpty(0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+
+constexpr Address::Address(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t b3,
+                           uint8_t b4, uint8_t b5)
+    : address({b0, b1, b2, b3, b4, b5}) {}
 
 // Address cannot initialize member variables as it is a POD type
 // NOLINTNEXTLINE(cppcoreguidelines-pro-type-member-init)
