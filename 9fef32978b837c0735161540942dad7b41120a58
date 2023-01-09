@@ -16,6 +16,24 @@
       "message": "How does this works ?\nI would expect this CL to be no-op because \n1. there is memset 2 line above\n2. the .value{} is already setting the value to 0\n\n\nbut in the same time the test dashboard is now passing.\n\n@bidsharma@google.com / @cmanton@google.com",
       "revId": "9fef32978b837c0735161540942dad7b41120a58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51d744e1_d07d434d",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-01-09T22:01:17Z",
+      "side": 1,
+      "message": "Yes, now I think the CL is a no-op. Instead we should not compare the padding values. Because the initialization of those are platform dependent.",
+      "parentUuid": "227d0680_4b8698cb",
+      "revId": "9fef32978b837c0735161540942dad7b41120a58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
