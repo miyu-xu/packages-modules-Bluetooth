@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec7b6170_35dcf943",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-09T17:00:25Z",
+      "side": 1,
+      "message": "CSIS profile is connected after pairing already took place, and we decided which profiles to connect. Isn\u0027t it too late to try figure device model, and wether it should be LE Audio enabled then ?",
+      "range": {
+        "startLine": 1254,
+        "startChar": 0,
+        "endLine": 1256,
+        "endChar": 67
+      },
+      "revId": "908a86488c0c268a8458f4dfd83aa2be2813ec0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9fffb846_9bd4cf06",
         "filename": "system/stack/eatt/eatt_impl.h",
         "patchSetId": 1
