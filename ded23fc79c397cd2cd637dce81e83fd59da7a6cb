@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8599352c_a0cf8391",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "remove, just LOG(INFO) is enough",
+      "range": {
+        "startLine": 578,
+        "startChar": 15,
+        "endLine": 578,
+        "endChar": 38
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a459029_fe464eec",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "I understand that that btif_av_both_enable is checking if both sink and source are enabled but for consistency reasons, please still flag protect this.",
+      "range": {
+        "startLine": 780,
+        "startChar": 1,
+        "endLine": 787,
+        "endChar": 3
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66490b4d_3b66f3d3",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "flag protect",
+      "range": {
+        "startLine": 795,
+        "startChar": 1,
+        "endLine": 802,
+        "endChar": 3
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4ff5e37_ab9eda4d",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1071,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "flag protect",
+      "range": {
+        "startLine": 1061,
+        "startChar": 1,
+        "endLine": 1071,
+        "endChar": 3
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0817c210_cbef455d",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "flag protect",
+      "range": {
+        "startLine": 1091,
+        "startChar": 1,
+        "endLine": 1092,
+        "endChar": 70
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "744f8be6_c5beadae",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "flag protect",
+      "range": {
+        "startLine": 1191,
+        "startChar": 2,
+        "endLine": 1194,
+        "endChar": 12
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd159d7_0c395949",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "flag protect",
+      "range": {
+        "startLine": 1250,
+        "startChar": 0,
+        "endLine": 1250,
+        "endChar": 43
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "999c5c5b_6c78692b",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1273,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-09T20:08:39Z",
+      "side": 1,
+      "message": "flag protect",
+      "range": {
+        "startLine": 1262,
+        "startChar": 2,
+        "endLine": 1273,
+        "endChar": 3
+      },
+      "revId": "ded23fc79c397cd2cd637dce81e83fd59da7a6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
