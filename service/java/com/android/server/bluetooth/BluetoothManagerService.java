@@ -1151,6 +1151,13 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
         // Check if packageName belongs to callingUid
         final int callingUid = Binder.getCallingUid();
         final boolean isCallerSystem = UserHandle.getAppId(callingUid) == Process.SYSTEM_UID;
+        Log.e(TAG, "WILLIAM -"
+                + " callingUid=" + callingUid
+                + ", appId=" + UserHandle.getAppId(callingUid)
+                + ", system_uid=" + Process.SYSTEM_UID
+                + ", shell=" + Process.SHELL_UID
+                + ", pkgName=" + attributionSource.getPackageName());
+
         if (!isCallerSystem && callingUid != Process.SHELL_UID) {
             checkPackage(callingUid, attributionSource.getPackageName());
 
