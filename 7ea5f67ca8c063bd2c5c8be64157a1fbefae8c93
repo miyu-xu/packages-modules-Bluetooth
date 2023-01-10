@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc1ca5e_7b6f29dc",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-10T18:12:12Z",
+      "side": 1,
+      "message": "Are we sure that DualModeController is always constructed behind a shared_ptr ?\n\nWe should make make the constructor private and provide a helper `Create` function that always create it behind a shared_ptr",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 75
+      },
+      "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
