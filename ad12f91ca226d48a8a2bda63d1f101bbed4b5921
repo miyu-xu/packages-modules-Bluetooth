@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "755012c1_e92b5533",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T22:39:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cca219b1_95dc36f5",
+      "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3797d95_bb4ff6ee",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "Previously, i was just using wait(). Chris suggested using a timeout. Based on the log patterns i have seen in the bug, I chose 1s, but lower could have worked as well. Its just that I don\u0027t want us to run into situations where the specified timeout is too close to the actual time taken in which case we might timeout in some cases but not in others.\n\nAs for the return value, I do not want to return false here because then the change\u0027s effects would propagate to other parts of the code. I wanted the scope of this change to be limited to avoid introducing any regressions since this is an important A2DP code path.\n\nIn case of a timeout, we would default to what was happening before this change. I don\u0027t see how that could happen after this change, but if it does then we can go about making more changes.",
       "parentUuid": "f3797d95_bb4ff6ee",
+      "range": {
+        "startLine": 510,
+        "startChar": 40,
+        "endLine": 510,
+        "endChar": 42
+      },
+      "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5f8d005_d0505d6e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T22:39:34Z",
+      "side": 1,
+      "message": "Ok.\nI think we should at least add a log in case there is a timeout. (Just to know it if there is a similar bug open later that contain the change)\n\nBut you are right this should have no other impact than hitting the previous behavior",
+      "parentUuid": "70388ad0_b503f820",
       "range": {
         "startLine": 510,
         "startChar": 40,
