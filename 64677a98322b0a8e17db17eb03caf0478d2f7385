@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d4cf48a_3e2a2c42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-10T19:31:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "512011da_73a5b9c6",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 67
+      },
+      "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce41c4bb_8fa84ffa",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dddcb954_13653c1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-10T19:31:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce41c4bb_8fa84ffa",
+      "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24af2218_c5a1ee57",
@@ -54,6 +96,42 @@
       "writtenOn": "2023-01-10T09:37:31Z",
       "side": 1,
       "message": "Remove this empty line.",
+      "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6493d7b3_f535d3ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-10T19:31:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24af2218_c5a1ee57",
+      "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20da2040_a928952c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-10T19:31:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24af2218_c5a1ee57",
       "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
