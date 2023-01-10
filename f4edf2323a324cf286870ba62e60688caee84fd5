@@ -16,6 +16,23 @@
       "message": "The test you wrote :)",
       "revId": "f4edf2323a324cf286870ba62e60688caee84fd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3933d449_97cb404e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981455
+      },
+      "writtenOn": "2023-01-10T06:32:07Z",
+      "side": 1,
+      "message": "The limit of LE Extended Advertising Data length is 255 bytes (including AD TYPE) in Host. And, the limit of LE Extended advertising report length is 229 bytes in the controller.\nSo, the BT host continuously receives the extended advertising report and combines the advertising data into 255 bytes. This patch is suitable for advertising data, but for extended advertising data exceeding 229 bytes, it can cause problems in the process of combining.",
+      "revId": "f4edf2323a324cf286870ba62e60688caee84fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
