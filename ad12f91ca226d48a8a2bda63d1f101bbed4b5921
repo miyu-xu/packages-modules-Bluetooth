@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "451495bc_2b933d93",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T19:17:37Z",
+      "side": 1,
+      "message": "Don\u0027t we want to wait for the promise before exiting ? (Does thread.shutdown() wait for completion of event on the thread ?)",
+      "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3797d95_bb4ff6ee",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T19:17:37Z",
+      "side": 1,
+      "message": "Why `1s` ? In which case can this future timeout ?\nWhat should be done when we are in timeout situation (return false?) ?",
+      "range": {
+        "startLine": 510,
+        "startChar": 40,
+        "endLine": 510,
+        "endChar": 42
+      },
+      "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
