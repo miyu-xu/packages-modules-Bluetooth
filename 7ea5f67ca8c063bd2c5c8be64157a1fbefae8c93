@@ -22,6 +22,30 @@
       },
       "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf568dd3_08aec311",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-10T18:56:43Z",
+      "side": 1,
+      "message": "If we always use a shared_ptr, can we get rid of the weak pointer?  I think we can check the reference count and only run the callback if the count is greater than 1.",
+      "parentUuid": "adc1ca5e_7b6f29dc",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 75
+      },
+      "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
