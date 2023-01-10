@@ -3127,7 +3127,8 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
       btif_dm_save_ble_bonding_keys(bd_addr);
 
       if (pairing_cb.gatt_over_le ==
-          btif_dm_pairing_cb_t::ServiceDiscoveryState::NOT_STARTED) {
+          btif_dm_pairing_cb_t::ServiceDiscoveryState::NOT_STARTED &&
+          !p_auth_cmpl->is_ctkd) {
         LOG_INFO("scheduling GATT discovery over LE for %s",
                  ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
         pairing_cb.gatt_over_le =
