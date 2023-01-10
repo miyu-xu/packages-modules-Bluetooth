@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6039839c_3f65aa3a",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-01-10T07:18:25Z",
+      "side": 1,
+      "message": "Hi,\nAgreed to move to init.",
+      "parentUuid": "14381fbd_303d1adc",
+      "range": {
+        "startLine": 124,
+        "startChar": 6,
+        "endLine": 124,
+        "endChar": 23
+      },
+      "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abbdc069_81d3dfa6",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-06T21:08:42Z",
       "side": 1,
       "message": "Not sure to understand what this is used for ?",
+      "range": {
+        "startLine": 126,
+        "startChar": 6,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fab43af_fc4b9417",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-01-10T07:18:25Z",
+      "side": 1,
+      "message": "After triggering an Intent to send the file, during the process of sending file it is required to choose the Bluetooth Device from the list. So, this function waits for \"Cuttlefish\" device and then clicks on it to send the file.",
+      "parentUuid": "abbdc069_81d3dfa6",
       "range": {
         "startLine": 126,
         "startChar": 6,

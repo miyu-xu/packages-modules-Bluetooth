@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0e300e9_5457f586",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-01-10T07:18:25Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nI have done changes as per your comment.\n\nThanks,\nDhananjaya",
+      "revId": "c32de7983cfdf2c52f36de9be52298c12f225176",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
