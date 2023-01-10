@@ -123,6 +123,30 @@
       },
       "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b63cb75_8d6939b4",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-10T23:06:21Z",
+      "side": 1,
+      "message": "It is as simple as\n```\nif (!shutdown_complete_future.wait_for(1s)) {\n  LOG_ERROR();\n}\n```",
+      "parentUuid": "c5f8d005_d0505d6e",
+      "range": {
+        "startLine": 510,
+        "startChar": 40,
+        "endLine": 510,
+        "endChar": 42
+      },
+      "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
