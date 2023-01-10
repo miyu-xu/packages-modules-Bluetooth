@@ -50,6 +50,23 @@
       "message": "Hi, another friendly ping",
       "revId": "c4df2ef1cd2cbcf998157c558a619f84c7f3e266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c012733c_c6105e50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-10T19:40:18Z",
+      "side": 1,
+      "message": "LGTM but I don\u0027t have OWNERS here.",
+      "revId": "c4df2ef1cd2cbcf998157c558a619f84c7f3e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
