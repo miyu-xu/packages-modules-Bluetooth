@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec2eb393_c648cac3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1052399
+      },
+      "writtenOn": "2023-01-10T00:37:13Z",
+      "side": 1,
+      "message": "Previous presubmit build warnings at the changed lines look like existing issues before this change. Could the owner reviewers take a look and +2? Thanks.",
+      "revId": "4ec00820e2625496398f64f710cd7341a0d21b20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
