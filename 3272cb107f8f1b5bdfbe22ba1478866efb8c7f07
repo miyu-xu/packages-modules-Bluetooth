@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8307eff3_4c78bc49",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T00:50:38Z",
+      "side": 1,
+      "message": "+1, we are currently doing this everywhere on purpose.\nI know the linter is not happy with it.\n\nBut this is to prevent mis-usage of the sync_handler because a failure in a subroutine is not propagate to the test unless you wrap the call into a `ASSERT_NO_FATAL_FAILURE`\n\nWe agreed on saying that it was error-prone",
+      "parentUuid": "b79cde0c_1876fc74",
+      "range": {
+        "startLine": 510,
+        "startChar": 4,
+        "endLine": 510,
+        "endChar": 10
+      },
+      "revId": "3272cb107f8f1b5bdfbe22ba1478866efb8c7f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4ce97ed_08c792d1",
