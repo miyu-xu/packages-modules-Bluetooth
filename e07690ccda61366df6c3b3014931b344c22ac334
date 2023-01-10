@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75897838_e89855e2",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-10T14:04:07Z",
+      "side": 1,
+      "message": "Bidhya confirmed that the memset clears the padding, but it looks like initializing the structure can change the values in the padding on x86.",
+      "parentUuid": "6e489cd6_a93149d1",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5df689c_fd43dba2",
