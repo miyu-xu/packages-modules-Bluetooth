@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cacfe07a_8c478f1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2023-01-10T14:14:42Z",
+      "side": 1,
+      "message": "(Last time this broke the git_master/aosp_arm64-userdebug_tidy target, you may want to additionally run that target under Checks \u003e ... \u003e Run more builds)",
+      "revId": "f0879b0bf26fd0779ab94e246614b23bcdb2c8f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
