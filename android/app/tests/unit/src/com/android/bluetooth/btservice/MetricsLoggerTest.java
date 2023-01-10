@@ -16,7 +16,11 @@
 package com.android.bluetooth.btservice;
 
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
@@ -34,6 +38,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.google.common.hash.BloomFilter;
+import com.google.common.hash.Funnels;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +56,7 @@ public class MetricsLoggerTest {
 
     public class TestableMetricsLogger extends MetricsLogger {
         public HashMap<Integer, Long> mTestableCounters = new HashMap<>();
+        public HashMap<String, Integer> mTestableDeviceNames = new HashMap<>();
 
         @Override
         public boolean count(int key, long count) {
@@ -62,6 +70,11 @@ public class MetricsLoggerTest {
 
         @Override
         protected void cancelPendingDrain() {
+        }
+
+        @Override
+        protected void statslogBluetoothDeviceNames(String matchedString, byte[] sha256) {
+            mTestableDeviceNames.merge(matchedString, 1, Integer::sum);
         }
     }
 
@@ -206,5 +219,55 @@ public class MetricsLoggerTest {
         Assert.assertTrue(mTestableMetricsLogger.init(mMockAdapterService));
         Assert.assertTrue(mTestableMetricsLogger.isInitialized());
         Assert.assertFalse(mTestableMetricsLogger.init(mMockAdapterService));
+    }
+
+    @Test
+    public void testDeviceNameUploading() {
+        BloomFilter<byte[]> filter = BloomFilter.create(
+                Funnels.byteArrayFunnel(),
+                1000,
+                0.01);
+        filter.put(MetricsLogger.getSha256("pixel"));
+        filter.put(MetricsLogger.getSha256("pixel7"));
+        filter.put(MetricsLogger.getSha256("pixel7pro"));
+        filter.put(MetricsLogger.getSha256("airpods"));
+        filter.put(MetricsLogger.getSha256("airpodspro"));
+        filter.put(MetricsLogger.getSha256("abcgfdg"));
+
+        mTestableMetricsLogger.setBloomfilter(filter);
+        mTestableMetricsLogger.logBluetoothDeviceName("AirpoDspro");
+        Assert.assertEquals(1,
+                mTestableMetricsLogger.mTestableDeviceNames.get("airpodspro").intValue());
+
+        mTestableMetricsLogger.logBluetoothDeviceName("AirpoDs-pro");
+        Assert.assertEquals(2,
+                mTestableMetricsLogger.mTestableDeviceNames.get("airpodspro").intValue());
+
+        mTestableMetricsLogger.logBluetoothDeviceName("Someone's AirpoDs");
+        Assert.assertEquals(1,
+                mTestableMetricsLogger.mTestableDeviceNames.get("airpods").intValue());
+
+        mTestableMetricsLogger.logBluetoothDeviceName("Who's Pixel 7");
+        Assert.assertEquals(1,
+                mTestableMetricsLogger.mTestableDeviceNames.get("pixel7").intValue());
+
+        mTestableMetricsLogger.logBluetoothDeviceName("My Pixel   7   - PRO");
+        Assert.assertEquals(1,
+                mTestableMetricsLogger.mTestableDeviceNames.get("pixel7pro").intValue());
+
+        mTestableMetricsLogger.logBluetoothDeviceName("abcgfDG gdfg");
+        Assert.assertEquals(1,
+                mTestableMetricsLogger.mTestableDeviceNames.get("abcgfdg").intValue());
+
+        mTestableMetricsLogger.logBluetoothDeviceName("陈的pixel 7手机");
+        Assert.assertEquals(2,
+                mTestableMetricsLogger.mTestableDeviceNames.get("pixel7").intValue());
+
+        mTestableMetricsLogger.mTestableDeviceNames.clear();
+        mTestableMetricsLogger.logBluetoothDeviceName("SomeDevice1");
+        Assert.assertTrue(mTestableMetricsLogger.mTestableDeviceNames.isEmpty());
+
+        mTestableMetricsLogger.logBluetoothDeviceName("Some Device-2");
+        Assert.assertTrue(mTestableMetricsLogger.mTestableDeviceNames.isEmpty());
     }
 }
