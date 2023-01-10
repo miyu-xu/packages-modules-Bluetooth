@@ -22,6 +22,30 @@
       },
       "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b0680c_3051dbf5",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-10T00:10:35Z",
+      "side": 1,
+      "message": "Or maybe better `sizeof(attr) - sizeof(attr.value) +  sizeof(attr.value.service)`",
+      "parentUuid": "b5df689c_fd43dba2",
+      "range": {
+        "startLine": 130,
+        "startChar": 39,
+        "endLine": 130,
+        "endChar": 46
+      },
+      "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
