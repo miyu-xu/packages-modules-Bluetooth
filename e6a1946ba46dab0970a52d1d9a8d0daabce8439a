@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3988f1_bd4173e2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-10T23:53:05Z",
+      "side": 1,
+      "message": "The actual metric API call will be added here. The CL won\u0027t be merged until the design is approved and the one line call is added here.",
+      "revId": "e6a1946ba46dab0970a52d1d9a8d0daabce8439a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
