@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca977048_8a326453",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-10T15:43:30Z",
+      "side": 1,
+      "message": "Please use GD style logging(LOG_ERROR) instead.",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c85615c_9d95fb13",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-10T15:43:30Z",
+      "side": 1,
+      "message": "Do we need to handle the return value?\nIf it is not necessary, how about changing the function to void?",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba24db0e_39b0eed1",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-10T15:43:30Z",
+      "side": 1,
+      "message": "how about using `unordered_map`?",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "487d721c_ec329479",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-10T15:43:30Z",
+      "side": 1,
+      "message": "Please add a star(*) for this line to align with other comments.",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "859e425b_562c4606",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-10T15:43:30Z",
+      "side": 1,
+      "message": "Could we changed the function by math expression instead of the switch case?",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647ba4d5_65d41219",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-10T15:43:30Z",
+      "side": 1,
+      "message": "The function `FrameDurationConfig2Capability(uint8_t conf)` is shifted 1 with `conf` times.\nCould we simplify this function by using `log2`?",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a7b7184_d3fa2d01",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-10T15:43:30Z",
+      "side": 1,
+      "message": "Could we changed the function by math expression instead of the switch case?",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
