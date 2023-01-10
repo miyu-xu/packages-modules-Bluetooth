@@ -69,6 +69,29 @@
       "parentUuid": "5f6ca5d0_1bfcfcac",
       "revId": "f4edf2323a324cf286870ba62e60688caee84fd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3ef3d0_a468edfc",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 5710,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-10T20:53:00Z",
+      "side": 1,
+      "message": "So that\u0027s the only difference in the \"raw\" version ?\nIs creating LengthAndData structure twice costly enough to have this separate type defined ?",
+      "range": {
+        "startLine": 5710,
+        "startChar": 20,
+        "endLine": 5710,
+        "endChar": 24
+      },
+      "revId": "f4edf2323a324cf286870ba62e60688caee84fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
