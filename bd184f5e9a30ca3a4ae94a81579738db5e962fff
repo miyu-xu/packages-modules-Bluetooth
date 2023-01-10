@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d3a7463_9458d71a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-10T00:45:59Z",
+      "side": 1,
+      "message": "Android is already at 0.23 -- updating Cargo.toml to match",
+      "revId": "bd184f5e9a30ca3a4ae94a81579738db5e962fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
