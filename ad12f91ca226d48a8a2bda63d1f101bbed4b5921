@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cca219b1_95dc36f5",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-10T21:26:48Z",
+      "side": 1,
+      "message": "btif_a2dp_source_thread is a MessageLoopThread and it even if we call ShutDown(), it would still wait until the thread is idle before stopping the thread:\n\nhttps://source.corp.google.com/aosp-master/packages/modules/Bluetooth/system/common/message_loop_thread.cc;rcl\u003d9621522be55d1ea10857be4662430939a94c67c6;l\u003d144",
+      "parentUuid": "451495bc_2b933d93",
+      "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3797d95_bb4ff6ee",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2023-01-10T19:17:37Z",
       "side": 1,
       "message": "Why `1s` ? In which case can this future timeout ?\nWhat should be done when we are in timeout situation (return false?) ?",
+      "range": {
+        "startLine": 510,
+        "startChar": 40,
+        "endLine": 510,
+        "endChar": 42
+      },
+      "revId": "ad12f91ca226d48a8a2bda63d1f101bbed4b5921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70388ad0_b503f820",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-10T21:26:48Z",
+      "side": 1,
+      "message": "Previously, i was just using wait(). Chris suggested using a timeout. Based on the log patterns i have seen in the bug, I chose 1s, but lower could have worked as well. Its just that I don\u0027t want us to run into situations where the specified timeout is too close to the actual time taken in which case we might timeout in some cases but not in others.\n\nAs for the return value, I do not want to return false here because then the change\u0027s effects would propagate to other parts of the code. I wanted the scope of this change to be limited to avoid introducing any regressions since this is an important A2DP code path.\n\nIn case of a timeout, we would default to what was happening before this change. I don\u0027t see how that could happen after this change, but if it does then we can go about making more changes.",
+      "parentUuid": "f3797d95_bb4ff6ee",
       "range": {
         "startLine": 510,
         "startChar": 40,
