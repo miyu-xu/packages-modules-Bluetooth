@@ -46,6 +46,30 @@
       },
       "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b98fe1d_ad3b3e04",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-10T19:36:04Z",
+      "side": 1,
+      "message": "I guess not, because to check the reference count we need the shared_pointer to still be valid and without a weak_pointer we don\u0027t hold any reference to the object so it could be destructed in between.\n\nHowever we could use a shared_from_this instead and hold a strong reference. But I\u0027m not sure that\u0027s what we want to do.",
+      "parentUuid": "bf568dd3_08aec311",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 75
+      },
+      "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
