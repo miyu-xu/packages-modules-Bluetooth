@@ -45,6 +45,30 @@
       },
       "revId": "ef9e561408ea73dc4fc5067af9d190c55160c5da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93db4a7e_7cf65a80",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-10T10:27:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad020df7_e6ae7011",
+      "range": {
+        "startLine": 932,
+        "startChar": 0,
+        "endLine": 934,
+        "endChar": 27
+      },
+      "revId": "ef9e561408ea73dc4fc5067af9d190c55160c5da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
