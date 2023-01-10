@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "512011da_73a5b9c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-10T09:37:31Z",
+      "side": 1,
+      "message": "Please elaborate more or remove.\nIt\u0027s somewhat duped info with the title.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 67
+      },
+      "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce41c4bb_8fa84ffa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-10T09:37:31Z",
+      "side": 1,
+      "message": "It doesn\u0027t have to, but I usually use following order: Bug -\u003e Tag -\u003e Test -\u003e Change-Id",
+      "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24af2218_c5a1ee57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-10T09:37:31Z",
+      "side": 1,
+      "message": "Remove this empty line.",
+      "revId": "64677a98322b0a8e17db17eb03caf0478d2f7385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
