@@ -22,6 +22,30 @@
       },
       "revId": "91510c82a5afb30abb2707d24272df3d0226d986",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f8c93a3_b4108a39",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2023-01-10T05:18:53Z",
+      "side": 1,
+      "message": "I can see the logs now thanks to enabling `DBG`. Thank you Sungsoo.",
+      "parentUuid": "a63ff5c7_9cb27ec3",
+      "range": {
+        "startLine": 1110,
+        "startChar": 0,
+        "endLine": 1110,
+        "endChar": 85
+      },
+      "revId": "91510c82a5afb30abb2707d24272df3d0226d986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
