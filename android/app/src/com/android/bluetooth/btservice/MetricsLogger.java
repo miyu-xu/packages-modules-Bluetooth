@@ -25,6 +25,18 @@ import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
 import com.android.bluetooth.BluetoothStatsLog;
 
+import com.google.common.hash.BloomFilter;
+import com.google.common.hash.Funnels;
+import com.google.common.hash.Hasher;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 /**
@@ -32,6 +44,8 @@ import java.util.HashMap;
  */
 public class MetricsLogger {
     private static final String TAG = "BluetoothMetricsLogger";
+    private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth/metrics";
+    private static final String BLOOMFILTER_FILE = "/devices";
 
     public static final boolean DEBUG = false;
 
@@ -46,6 +60,7 @@ public class MetricsLogger {
     private AlarmManager mAlarmManager = null;
     private boolean mInitialized = false;
     static final private Object mLock = new Object();
+    private BloomFilter<byte[]> mBloomFilter = null;
 
     private AlarmManager.OnAlarmListener mOnAlarmListener = new AlarmManager.OnAlarmListener () {
         @Override
@@ -70,6 +85,22 @@ public class MetricsLogger {
         return mInitialized;
     }
 
+    private boolean initBloomFilter() {
+        try {
+            FileInputStream in = new FileInputStream(new File(BLOOMFILTER_PATH + BLOOMFILTER_FILE));
+            mBloomFilter = BloomFilter.readFrom(in, Funnels.byteArrayFunnel());
+        }
+        catch (IOException e) {
+            Log.w(TAG, "MetricsLogger can't read the BloomFilter file");
+            return false;
+        }
+        return true;
+    }
+
+    protected void setBloomfilter(BloomFilter bloomfilter) {
+        mBloomFilter = bloomfilter;
+    }
+
     public boolean init(Context context) {
         if (mInitialized) {
             return false;
@@ -77,6 +108,9 @@ public class MetricsLogger {
         mInitialized = true;
         mContext = context;
         scheduleDrains();
+        if (!initBloomFilter()) {
+            Log.w(TAG, "MetricsLogger can't initialize the bloomfilter");
+        }
         return true;
     }
 
@@ -190,5 +224,55 @@ public class MetricsLogger {
     }
     protected void cancelPendingDrain() {
         mAlarmManager.cancel(mOnAlarmListener);
+    }
+
+    protected boolean logEncryptedBluetoothDeviceName(String deviceName) {
+        // remove non alphanumeric characters and spaces, and transform to lower cases.
+        String[] words = deviceName.replaceAll(
+                "[^a-zA-Z0-9 ]", "").toLowerCase().split(" ");
+
+        // find the longest matched substring
+        String matchedString = "";
+        byte[] matchedSha256 = null;
+
+        for (int start = 0; start < words.length; start++) {
+            String toBeMatched = "";
+            for (int end = start; end < words.length; end++) {
+
+                toBeMatched += words[end];
+                byte[] sha256 = getSha256(toBeMatched);
+                if (sha256 == null) {
+                    continue;
+                }
+
+                if (mBloomFilter.mightContain(sha256)
+                        && toBeMatched.length() > matchedString.length()) {
+                    matchedString = toBeMatched;
+                    matchedSha256 = sha256;
+                }
+            }
+        }
+
+        // upload the sha256 of the longest matched string.
+        if (matchedSha256 == null) {
+            return false;
+        }
+        statslogBluetoothDeviceNames(matchedString, matchedSha256);
+        return true;
+    }
+
+    protected void statslogBluetoothDeviceNames(String matchedString, byte[] sha256) {
+        Log.d(TAG, "Uploading matched device name: " + matchedString + " " + (new String(sha256, StandardCharsets.US_ASCII)));
+    }
+
+    protected static byte[] getSha256(String name) {
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e){
+            Log.w(TAG, "No SHA-256 in MessageDigest");
+            return null;
+        }
+        return digest.digest(name.getBytes(StandardCharsets.UTF_8));
     }
 }
