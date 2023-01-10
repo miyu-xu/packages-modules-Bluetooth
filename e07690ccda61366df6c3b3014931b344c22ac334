@@ -93,6 +93,30 @@
       },
       "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed284cbe_fa670744",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-01-10T20:26:06Z",
+      "side": 1,
+      "message": "We already know last 2 bytes are the padding so just comparing the first len - 2 should be easier ??",
+      "parentUuid": "91b0680c_3051dbf5",
+      "range": {
+        "startLine": 130,
+        "startChar": 39,
+        "endLine": 130,
+        "endChar": 46
+      },
+      "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
