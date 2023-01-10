@@ -92,6 +92,30 @@
       },
       "revId": "f4edf2323a324cf286870ba62e60688caee84fd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4bbfc80_87350b75",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 5710,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-10T20:55:08Z",
+      "side": 1,
+      "message": "It\u0027s not a performance issue - the reason for the Raw version is so that we can create \"invalid\" responses in RootCanal / GD cert tests.\n\nBut since of course we should not be expecting the advertising_data field to be properly formed anyway, the Raw versions should be the only version available, and the LengthAndData[] / GapData[] variants should be deleted.",
+      "parentUuid": "0f3ef3d0_a468edfc",
+      "range": {
+        "startLine": 5710,
+        "startChar": 20,
+        "endLine": 5710,
+        "endChar": 24
+      },
+      "revId": "f4edf2323a324cf286870ba62e60688caee84fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
