@@ -117,6 +117,30 @@
       },
       "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf7b213_a90a6b6a",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-10T21:17:50Z",
+      "side": 1,
+      "message": "\u003e We already know last 2 bytes are the padding so just comparing the first len - 2 should be easier ??\n\nUntil it is not anymore, if we modify `StoredAttribute` and add things into this union that are bigger than the current members the `2` will not be a `2` anymore.\nA more unlikely thing that can happen is if struct ABI changes with a change of the compiler, or compiler flags that we use (different arch, sanitizers, ... )\n\nAlso I find it more readable to \"ask\" the compiler what is the correct value than having this magic value here.\n\nIf we want to keep the `2` we should at least add a static_assert here to be sure that our assumption is still valid in the future.",
+      "parentUuid": "ed284cbe_fa670744",
+      "range": {
+        "startLine": 130,
+        "startChar": 39,
+        "endLine": 130,
+        "endChar": 46
+      },
+      "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
