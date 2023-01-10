@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1d47a81_0df10580",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-10T07:42:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d60abbb1_0f8a1e64",
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5087f6b8_99f677c1",
@@ -344,6 +362,30 @@
       "writtenOn": "2022-12-23T00:02:47Z",
       "side": 1,
       "message": "Do we want to do the 2nd `if` when `profile_version \u003d\u003d 0` or do we want to continue to next iteration ?",
+      "range": {
+        "startLine": 1126,
+        "startChar": 0,
+        "endLine": 1126,
+        "endChar": 31
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b237cb93_284e24d0",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-10T07:42:19Z",
+      "side": 1,
+      "message": "continue next iteration",
+      "parentUuid": "2793f6aa_8f298dac",
       "range": {
         "startLine": 1126,
         "startChar": 0,
@@ -792,6 +834,30 @@
       "side": 1,
       "message": "I am sorry, I don\u0027t understand your comment.\nWhy does this listing ensure p_attr.value_ptr is always bigger than AVRCP_SUPPORTED_FEATURES_POSITION ?\nShouldn\u0027t we check `p_attr-\u003evalue_ptr !\u003d null \u0026\u0026 p_attr-\u003elen \u003e AVRCP_SUPPORTED_FEATURES_POSITION` at the start of the method ?\n\n(I may miss something here, let me know if it\u0027s the case)",
       "parentUuid": "888f9696_d1ae3898",
+      "range": {
+        "startLine": 1582,
+        "startChar": 22,
+        "endLine": 1582,
+        "endChar": 55
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e8f54e7_595caaf7",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-10T07:42:19Z",
+      "side": 1,
+      "message": "makes sense. will incorporate those.",
+      "parentUuid": "e78420f8_da9466d4",
       "range": {
         "startLine": 1582,
         "startChar": 22,

@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "873e8b78_4360c7bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-10T07:42:19Z",
+      "side": 1,
+      "message": "It\u0027s\natest net_test_stack_sdp\n\nWrote couple of TCs. Running now planning to add more",
+      "parentUuid": "135fd2ee_b7c23fa9",
+      "revId": "3969af5eb44e12dc31c94716ead97404510a9427",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a84fda18_73c5b3e2",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 13
@@ -31,6 +49,30 @@
       "writtenOn": "2023-01-05T05:31:16Z",
       "side": 1,
       "message": "Can we remove this comment if not used. I know it\u0027s was in my suggestion but I just wanted to show it as an example as I though there will be more profile in this change",
+      "range": {
+        "startLine": 1131,
+        "startChar": 6,
+        "endLine": 1142,
+        "endChar": 11
+      },
+      "revId": "3969af5eb44e12dc31c94716ead97404510a9427",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ea585ae_3a9cdf8b",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1142,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-10T07:42:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a84fda18_73c5b3e2",
       "range": {
         "startLine": 1131,
         "startChar": 6,
