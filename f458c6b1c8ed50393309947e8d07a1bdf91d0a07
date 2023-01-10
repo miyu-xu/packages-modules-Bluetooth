@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80eda8ea_b78c64d3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-10T23:46:12Z",
+      "side": 1,
+      "message": "Is there any reason that these 4 types of messages should be tested in one same test method? If none, let\u0027s split so we can test one type in one method to improve readability.",
+      "range": {
+        "startLine": 1287,
+        "startChar": 8,
+        "endLine": 1301,
+        "endChar": 82
+      },
+      "revId": "f458c6b1c8ed50393309947e8d07a1bdf91d0a07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e239227e_0fe497fe",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-10T23:46:12Z",
+      "side": 1,
+      "message": "How about adding comment something like:\n\n  // Making cursor.getCount() as 1?",
+      "range": {
+        "startLine": 1363,
+        "startChar": 8,
+        "endLine": 1364,
+        "endChar": 43
+      },
+      "revId": "f458c6b1c8ed50393309947e8d07a1bdf91d0a07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
