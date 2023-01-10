@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e489cd6_a93149d1",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-10T08:00:36Z",
+      "side": 1,
+      "message": "If that doesn\u0027t clear the padding, maybe change this code to clear it ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "e07690ccda61366df6c3b3014931b344c22ac334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5df689c_fd43dba2",
         "filename": "system/bta/test/gatt/database_test.cc",
         "patchSetId": 4
