@@ -901,7 +901,7 @@ cb_variant!(BaseCb, le_address_associate_cb -> BaseCallbacks::LeAddressAssociate
 });
 
 cb_variant!(BaseCb, acl_state_cb -> BaseCallbacks::AclState,
-u32 -> BtStatus, *mut RawAddress, bindings::bt_acl_state_t -> BtAclState, i32 -> BtTransport, bindings::bt_hci_error_code_t -> BtHciErrorCode, bindings::bt_conn_direction_t -> BtConnectionDirection, {
+u32 -> BtStatus, *mut RawAddress, bindings::bt_acl_state_t -> BtAclState, i32 -> BtTransport, bindings::bt_hci_error_code_t -> BtHciErrorCode, bindings::bt_conn_direction_t -> BtConnectionDirection, i32 -> i32 {
     let _1 = unsafe { *(_1 as *const RawAddress) };
 });
 
