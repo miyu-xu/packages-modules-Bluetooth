@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b341c25_dd803d62",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "address is passed from jni to btif, \n\nNULL check is added for safety purpose, aosp iop implementation is using pointer for address passing, hence kept same as original implementation https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/device/src/interop.cc;l\u003d87?q\u003dinterop_database_add\u0026start\u003d1  \nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/include/hardware/bluetooth.h;l\u003d778?q\u003dinterop_database_add\u0026start\u003d1",
+      "parentUuid": "07acbe0e_cbadf2eb",
+      "range": {
+        "startLine": 1012,
+        "startChar": 30,
+        "endLine": 1012,
+        "endChar": 42
+      },
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8275f5b9_20eaf1ac",
         "filename": "system/btif/test/btif_hh_test.cc",
         "patchSetId": 12

@@ -22,6 +22,30 @@
       },
       "revId": "4fecdac45670511763fea0f1c3a1daa641722a6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7983a841_59812f32",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "How to fix it for DOS generic",
+      "parentUuid": "e9fbbf7e_b8b57655",
+      "range": {
+        "startLine": 399,
+        "startChar": 12,
+        "endLine": 399,
+        "endChar": 36
+      },
+      "revId": "4fecdac45670511763fea0f1c3a1daa641722a6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

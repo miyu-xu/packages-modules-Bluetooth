@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "646ab146_7a3dbf8f",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2b3cfae7_f98fcae7",
+      "range": {
+        "startLine": 80,
+        "startChar": 23,
+        "endLine": 80,
+        "endChar": 31
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17b4a7a9_dfd06bef",
@@ -119,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60cff6a5_b4fa861e",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "address is passed from jni to btif, \n\nNULL check is added for safety purpose, aosp iop implementation is using pointer for address passing, hence kept same as original implementation https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/device/src/interop.cc;l\u003d87?q\u003dinterop_database_add\u0026start\u003d1  \nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/include/hardware/bluetooth.h;l\u003d778?q\u003dinterop_database_add\u0026start\u003d1",
+      "parentUuid": "17b4a7a9_dfd06bef",
+      "range": {
+        "startLine": 211,
+        "startChar": 38,
+        "endLine": 211,
+        "endChar": 48
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48c82338_6f6598f0",
@@ -132,6 +180,30 @@
       "writtenOn": "2022-12-14T10:05:59Z",
       "side": 1,
       "message": "const cast is not needed.",
+      "range": {
+        "startLine": 222,
+        "startChar": 46,
+        "endLine": 222,
+        "endChar": 56
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e360b44_027d47b0",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48c82338_6f6598f0",
       "range": {
         "startLine": 222,
         "startChar": 46,
@@ -306,6 +378,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b89535_2a9e0a6a",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20927240_3c470974",
+      "range": {
+        "startLine": 509,
+        "startChar": 3,
+        "endLine": 509,
+        "endChar": 11
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a8e4d6d_4a0d49d3",
@@ -425,6 +521,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b77046d_e80b6646",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "passed entry as ptr, it\u0027s allocated using osi_calloc while executing load_to_config",
+      "parentUuid": "f76ca215_eccdaddc",
+      "range": {
+        "startLine": 617,
+        "startChar": 56,
+        "endLine": 617,
+        "endChar": 61
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "290a5f10_9e369888",
         "filename": "system/device/src/interop.cc",
         "patchSetId": 9
@@ -436,6 +556,30 @@
       "writtenOn": "2022-12-14T10:05:59Z",
       "side": 1,
       "message": "This is the only case where we assigned on `src`.\n\nIt\u0027s a bit confusing.\nis it possible to take a `const\u0026 entry` in parameter and move the assignement outside of the scope of this method ?\nand then have all the `src` as const\u0026 also",
+      "range": {
+        "startLine": 653,
+        "startChar": 0,
+        "endLine": 653,
+        "endChar": 36
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "443ba177_77d2a092",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "cur len is used to remove src entry from config file, when \n interop_database_remove_addr is called.",
+      "parentUuid": "290a5f10_9e369888",
       "range": {
         "startLine": 653,
         "startChar": 0,
@@ -704,6 +848,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "696b1ec1_6faf9409",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b3d0d23_11d7d6da",
+      "range": {
+        "startLine": 953,
+        "startChar": 4,
+        "endLine": 954,
+        "endChar": 57
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0da4ba0f_bce16d99",
@@ -775,6 +943,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a55050ed_33f71486",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "719dc044_89b3e4a3",
+      "range": {
+        "startLine": 992,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 1
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8d86ca9_29c5fdfc",
@@ -800,6 +992,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "642a1b90_eae6d80b",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1003,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "We are using c string API(strncasecomp, strtok_r, stroul, etc) to parse info from key, Do you suggest any better way, if any?",
+      "parentUuid": "a8d86ca9_29c5fdfc",
+      "range": {
+        "startLine": 1003,
+        "startChar": 35,
+        "endLine": 1003,
+        "endChar": 68
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56c0a0da_68acdec2",
         "filename": "system/device/src/interop.cc",
         "patchSetId": 9
@@ -811,6 +1027,30 @@
       "writtenOn": "2022-12-14T10:05:59Z",
       "side": 1,
       "message": "do you mean `len \u003c 3 || len \u003e 6` ?",
+      "range": {
+        "startLine": 1012,
+        "startChar": 0,
+        "endLine": 1012,
+        "endChar": 29
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21750810_9dde893d",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56c0a0da_68acdec2",
       "range": {
         "startLine": 1012,
         "startChar": 0,
@@ -1174,6 +1414,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a44634cc_1bc2d47c",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1201,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "can you please point any example",
+      "parentUuid": "38c43ef2_35b6400c",
+      "range": {
+        "startLine": 1199,
+        "startChar": 1,
+        "endLine": 1201,
+        "endChar": 0
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba64ecd3_96f66f0e",
         "filename": "system/device/src/interop.cc",
         "patchSetId": 9
@@ -1185,6 +1449,30 @@
       "writtenOn": "2022-12-14T10:05:59Z",
       "side": 1,
       "message": "early return will help for readibility:\n```\nif (init \u003d\u003d -1) {\n  LOG\n  return;\n}\n```",
+      "range": {
+        "startLine": 1266,
+        "startChar": 0,
+        "endLine": 1266,
+        "endChar": 36
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e6d6ac1_60622969",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba64ecd3_96f66f0e",
       "range": {
         "startLine": 1266,
         "startChar": 0,
@@ -1265,6 +1553,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b31058a_77e254bb",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5d74346_0d4b0b9a",
+      "range": {
+        "startLine": 1293,
+        "startChar": 12,
+        "endLine": 1293,
+        "endChar": 32
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99662361_0c122ba1",
@@ -1288,6 +1600,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d930bd88_8eb9a407",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99662361_0c122ba1",
+      "range": {
+        "startLine": 1298,
+        "startChar": 2,
+        "endLine": 1304,
+        "endChar": 3
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3086e2f_28d1eecc",
@@ -1301,6 +1637,30 @@
       "writtenOn": "2022-12-14T10:05:59Z",
       "side": 1,
       "message": "parameter is set but not used\n\nthis is the case for most of the `interop_database_match_(` call (not all)\n\nbut we can replace this by a NULL parameter directly",
+      "range": {
+        "startLine": 1415,
+        "startChar": 22,
+        "endLine": 1415,
+        "endChar": 31
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95eeac53_e93cc75c",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3086e2f_28d1eecc",
       "range": {
         "startLine": 1415,
         "startChar": 22,

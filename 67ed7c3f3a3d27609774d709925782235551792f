@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fe73138_1d7be33e",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e557ef1_02d41945",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 3
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5697c998_5fb035b5",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-29T19:26:25Z",
       "side": 1,
       "message": "This if is always true.\n`!\u003d EINVAL || !\u003d ERANGE`\n\nWhat we want is returning true if the three condition are ok at the same time\nAKA:\n```\nreturn e !\u003d NULL \u0026\u0026 errno !\u003d EINVAL \u0026\u0026 errno !\u003d ERANGE;\n```",
+      "range": {
+        "startLine": 846,
+        "startChar": 7,
+        "endLine": 846,
+        "endChar": 58
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e33e92f_ab8e2c8b",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5697c998_5fb035b5",
       "range": {
         "startLine": 846,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18a2e381_9944bcd5",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46b90685_0a2b8f7a",
+      "range": {
+        "startLine": 876,
+        "startChar": 7,
+        "endLine": 876,
+        "endChar": 12
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97f4a7cb_f13db4e2",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-29T19:26:25Z",
       "side": 1,
       "message": "Check if token is not null before calling strtok_r",
+      "range": {
+        "startLine": 898,
+        "startChar": 6,
+        "endLine": 898,
+        "endChar": 7
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b2b1647_d2b46cdc",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97f4a7cb_f13db4e2",
       "range": {
         "startLine": 898,
         "startChar": 6,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4577ab1e_c8a1457e",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5c449a5_847da1b6",
+      "range": {
+        "startLine": 902,
+        "startChar": 16,
+        "endLine": 902,
+        "endChar": 26
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cecf9c74_d01c15bc",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff385d08_8964fb07",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "For strlcpy, no need to check for error no https://linux.die.net/man/3/strlcpy\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/btm/btm_dev.cc;l\u003d107?q\u003dstrlcpy%20bluetooth",
+      "parentUuid": "cecf9c74_d01c15bc",
+      "range": {
+        "startLine": 916,
+        "startChar": 4,
+        "endLine": 916,
+        "endChar": 11
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd7e1127_96f5d4f2",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-12-29T19:26:25Z",
       "side": 1,
       "message": "lmp_ver could be switch to be uint16 (and in the caller too) so we can call token_to_ul. And only when assigning it to lmp_version_entry we cast it to uint8...\n\nBut is not perfect I agree so I let you decide for it",
+      "range": {
+        "startLine": 921,
+        "startChar": 5,
+        "endLine": 921,
+        "endChar": 12
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b6d693_138d9df0",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-10T15:37:06Z",
+      "side": 1,
+      "message": "Lmp version is 1 Octet or , So want to keep it current implementation",
+      "parentUuid": "cd7e1127_96f5d4f2",
       "range": {
         "startLine": 921,
         "startChar": 5,
