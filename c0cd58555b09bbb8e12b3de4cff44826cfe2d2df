@@ -110,6 +110,30 @@
       },
       "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97314abf_14c76ae2",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-10T14:36:17Z",
+      "side": 1,
+      "message": "Ok got it",
+      "parentUuid": "0fab43af_fc4b9417",
+      "range": {
+        "startLine": 126,
+        "startChar": 6,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "c0cd58555b09bbb8e12b3de4cff44826cfe2d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
