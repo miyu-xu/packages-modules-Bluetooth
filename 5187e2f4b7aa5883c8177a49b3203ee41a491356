@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b8e406c_bbd89ddb",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "629ee979_eaa655c1",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 8
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dd9efc9_f35e876d",
@@ -294,6 +318,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78efa811_5246db7c",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "I see, I thought everything was private and not an api.",
+      "parentUuid": "d9b33648_854e93e2",
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b7d6e11_f36a138a",
@@ -378,6 +420,30 @@
       "side": 1,
       "message": "Since this feature is behind a feature flag and it can be switched on/off at any time, I thought that the best way would be to initialize/clean_up the module even if the feature is disabled, and then only add information if it is enabled.",
       "parentUuid": "ac4eb5cf_77be7d57",
+      "range": {
+        "startLine": 227,
+        "startChar": 2,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a19796ee_b8f1bbad",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "I see.\nThe `CHECK` made me think it was gonna assert if condition wasn\u0027t made\nCan we name it with a less scary name ? 😂\n\nsmthing like IS_FEATURE_ENABLED_OR_RETURN or else, my naming is not very good neither. or maybe oneline the condition if it\u0027s possible (not sure it\u0027s a namespace .. :/\n```\n    if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return false;\n```",
+      "parentUuid": "401a622f_79517d80",
       "range": {
         "startLine": 227,
         "startChar": 2,
@@ -717,6 +783,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4adfc15_8e6fd0ee",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "Agreed, make sense to keep them if they are here as api.",
+      "parentUuid": "ae2442dc_ba125887",
+      "range": {
+        "startLine": 481,
+        "startChar": 27,
+        "endLine": 481,
+        "endChar": 30
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a089a90_b756da23",
@@ -740,6 +830,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d5c272e_0e7dbc0e",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8a089a90_b756da23",
+      "range": {
+        "startLine": 517,
+        "startChar": 7,
+        "endLine": 517,
+        "endChar": 39
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26b8c217_b2bd60d8",
@@ -753,6 +867,30 @@
       "writtenOn": "2023-01-06T00:35:37Z",
       "side": 1,
       "message": "never called",
+      "range": {
+        "startLine": 581,
+        "startChar": 5,
+        "endLine": 581,
+        "endChar": 29
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5a59907_5a1da2db",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "26b8c217_b2bd60d8",
       "range": {
         "startLine": 581,
         "startChar": 5,
@@ -833,6 +971,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5bf95f9_7800c1cc",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b75ea08f_913fc828",
+      "range": {
+        "startLine": 616,
+        "startChar": 5,
+        "endLine": 616,
+        "endChar": 28
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3f82668_edee3522",
@@ -870,6 +1032,30 @@
       "side": 1,
       "message": "Some methods are the public API and they are used from outside of the device_iot_config module so they assume some pre-initalized config state. Others are internal and I made them non-static just to be able to test them. They are declared in an internal header file. I will change them to refs.",
       "parentUuid": "f3f82668_edee3522",
+      "range": {
+        "startLine": 659,
+        "startChar": 4,
+        "endLine": 659,
+        "endChar": 36
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8e0d6c_7f5b8dd2",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d884282b_983cd696",
       "range": {
         "startLine": 659,
         "startChar": 4,
@@ -1016,6 +1202,30 @@
         "startChar": 2,
         "endLine": 766,
         "endChar": 18
+      },
+      "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a596768_08f627e7",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "I think it will not work, or at least not always.\nI think we need to catch the call to factory reset from [here](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/bluetooth.cc;l\u003d943?q\u003dpackages%2Fmodules%2FBluetooth%2Fsystem%2Fbtif%2Fsrc%2Fbluetooth.cc)",
+      "parentUuid": "16bd77e9_047e104f",
+      "range": {
+        "startLine": 766,
+        "startChar": 19,
+        "endLine": 766,
+        "endChar": 41
       },
       "revId": "5187e2f4b7aa5883c8177a49b3203ee41a491356",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"

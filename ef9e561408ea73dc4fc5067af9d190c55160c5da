@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73cb1c5a_5801e8d4",
+        "filename": "system/device/include/device_iot_config.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "I would not have added this at all. But you are right, it make it clearer",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "ef9e561408ea73dc4fc5067af9d190c55160c5da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad020df7_e6ae7011",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-10T03:05:55Z",
+      "side": 1,
+      "message": "You can directly create the string\n```\nstd::string key \u003d IOT_CONF_KEY_RT_SUPP_FEATURES  \"_\"  + std::to_string(0);\n```\n(same below)",
+      "range": {
+        "startLine": 932,
+        "startChar": 0,
+        "endLine": 934,
+        "endChar": 27
+      },
+      "revId": "ef9e561408ea73dc4fc5067af9d190c55160c5da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
