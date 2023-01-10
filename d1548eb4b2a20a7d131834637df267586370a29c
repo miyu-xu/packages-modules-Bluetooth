@@ -16,6 +16,24 @@
       "message": "No sure our current policy and piling on arbitrary timeouts is not a great strategy, but maybe some timeout here ?\n\nI\u0027m not sure how readily the a2dp thread could be hung such that this never returns.",
       "revId": "d1548eb4b2a20a7d131834637df267586370a29c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "879edc3f_136048a7",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-10T17:58:58Z",
+      "side": 1,
+      "message": "Yup, although I don\u0027t envision an A2DP thread lock up in this case but it does make sense to have some sort of timeout in case that happens.",
+      "parentUuid": "13a92e7f_55bf3e58",
+      "revId": "d1548eb4b2a20a7d131834637df267586370a29c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
