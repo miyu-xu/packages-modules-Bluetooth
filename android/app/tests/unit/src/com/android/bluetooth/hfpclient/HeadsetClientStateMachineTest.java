@@ -1,4 +1,25 @@
+/*
+ * Copyright 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.android.bluetooth.hfpclient;
+
+import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_CONNECTING;
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTING;
 
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.AT_OK;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.ENTER_PRIVATE_MODE;
@@ -21,6 +42,7 @@ import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Pair;
 
@@ -47,18 +69,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.hamcrest.MockitoHamcrest;
 
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Test cases for {@link HeadsetClientStateMachine}.
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class HeadsetClientStateMachineTest {
     private BluetoothAdapter mAdapter;
     private HandlerThread mHandlerThread;
-    private HeadsetClientStateMachine mHeadsetClientStateMachine;
+    private HeadsetClientStateMachineWrapper mHeadsetClientStateMachine;
     private BluetoothDevice mTestDevice;
     private Context mTargetContext;
 
@@ -77,6 +103,7 @@ public class HeadsetClientStateMachineTest {
     private static final int QUERY_CURRENT_CALLS_WAIT_MILLIS = 2000;
     private static final int QUERY_CURRENT_CALLS_TEST_WAIT_MILLIS = QUERY_CURRENT_CALLS_WAIT_MILLIS
             * 3 / 2;
+    private static final int TIMEOUT_MS = 1000;
 
     @Before
     public void setUp() throws Exception {
@@ -109,9 +136,8 @@ public class HeadsetClientStateMachineTest {
         mHandlerThread = new HandlerThread("HeadsetClientStateMachineTestHandlerThread");
         mHandlerThread.start();
         // Manage looper execution in main test thread explicitly to guarantee timing consistency
-        mHeadsetClientStateMachine =
-                new HeadsetClientStateMachine(mHeadsetClientService, mHandlerThread.getLooper(),
-                                              mNativeInterface);
+        mHeadsetClientStateMachine = spy(new HeadsetClientStateMachineWrapper(mHeadsetClientService,
+                mHandlerThread.getLooper(), mNativeInterface));
         mHeadsetClientStateMachine.start();
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
     }
@@ -1072,5 +1098,54 @@ public class HeadsetClientStateMachineTest {
 
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
         verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,1,2,1");
+    }
+
+    @Test
+    public void testDumpDoesNotCrash() {
+        mHeadsetClientStateMachine.dump(new StringBuilder());
+    }
+
+    @Test
+    public void testProcessDisconnectMessage_onDisconnectedState() {
+        mHeadsetClientStateMachine.sendMessage(HeadsetClientStateMachine.DISCONNECT);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+        Assert.assertEquals(STATE_DISCONNECTED,
+                mHeadsetClientStateMachine.getConnectionState(mTestDevice));
+    }
+
+    @Test
+    public void testProcessConnectMessage_onDisconnectedState() {
+        mHeadsetClientStateMachine.sendMessage(HeadsetClientStateMachine.CONNECT);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+        Assert.assertEquals(STATE_DISCONNECTED,
+                mHeadsetClientStateMachine.getConnectionState(mTestDevice));
+
+        doReturn(true).when(mNativeInterface).connect(any(BluetoothDevice.class));
+        sendMessageAndVerifyTransition(
+                mHeadsetClientStateMachine.obtainMessage(HeadsetClientStateMachine.CONNECT),
+                HeadsetClientStateMachine.Connecting.class);
+    }
+
+    private <T> void sendMessageAndVerifyTransition(Message msg, Class<T> type) {
+        Mockito.clearInvocations(mHeadsetClientService);
+        mHeadsetClientStateMachine.sendMessage(msg);
+        // Verify that one connection state broadcast is executed
+        verify(mHeadsetClientService, timeout(TIMEOUT_MS)).sendBroadcastMultiplePermissions(
+                any(Intent.class), any(String[].class), any(BroadcastOptions.class)
+        );
+        Assert.assertThat(mHeadsetClientStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(type));
+    }
+
+    public static class HeadsetClientStateMachineWrapper extends HeadsetClientStateMachine {
+
+        HeadsetClientStateMachineWrapper(HeadsetClientService context, Looper looper,
+                NativeInterface nativeInterface) {
+            super(context, looper, nativeInterface);
+        }
+
+        public boolean doesSuperHaveDeferredMessages(int what) {
+            return super.hasDeferredMessages(what);
+        }
     }
 }
