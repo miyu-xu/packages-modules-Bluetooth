@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfa08a2b_254a072c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 46
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-01-10T23:47:17Z",
+      "side": 1,
+      "message": "presubmit failure caused by unrelated, unknown issues",
+      "revId": "6c42d4b82bed7d110cdcc13bfc725a36141aec9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
