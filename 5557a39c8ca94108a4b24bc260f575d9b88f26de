@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b80494_19a138e6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-10T22:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e41b73ba_cc49592f",
+      "range": {
+        "startLine": 612,
+        "startChar": 31,
+        "endLine": 612,
+        "endChar": 43
+      },
+      "revId": "5557a39c8ca94108a4b24bc260f575d9b88f26de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8109012a_3c20b858",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-10T15:40:08Z",
       "side": 1,
       "message": "What is the reason for this change?\n\nIMO `0x01 \u003c\u003c 0` is not more readable than `1`.\n\nI read this as\n\"Take hex 1 and shift left 0 times to make 1\"\n\nvs\n\n\"1\"\n\nI\u0027d prefer to keep the numbers as is for readability sake.",
+      "range": {
+        "startLine": 85,
+        "startChar": 56,
+        "endLine": 85,
+        "endChar": 65
+      },
+      "revId": "5557a39c8ca94108a4b24bc260f575d9b88f26de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc67483_717df756",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-10T22:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8109012a_3c20b858",
       "range": {
         "startLine": 85,
         "startChar": 56,
