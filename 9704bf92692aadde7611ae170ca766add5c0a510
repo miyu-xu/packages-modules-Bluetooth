@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb526aff_e7315e03",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-11T17:13:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "188b7f64_a7d82c0f",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b523338_06c81887",
@@ -201,6 +225,30 @@
       "side": 1,
       "message": "No, that should be handled fine by the `get_uint(3)` call: we get `u32` back, but it won\u0027t contain garbage in the top bits.",
       "parentUuid": "8627b929_c029c7c1",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6cb32ff_0f788631",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-11T17:13:26Z",
+      "side": 1,
+      "message": "I am not sure..\nTaking this example above, the generated code will be something like\n```\nlet chunk \u003d get_u32(); // No masking since all fields fit on 32bits\nlet a \u003d (chunk \u0026 0x3) as u8;\nlet b \u003d (chunk \u003e\u003e 2); // Mask not applied because width % 8 \u003d\u003d 0\nlet c \u003d ((chunk \u003e\u003e 26) \u0026 0x3f) as u8;\n```\nThe field `b` should have been masked with `0xffffff` here.",
+      "parentUuid": "2b4321fa_844b445a",
       "range": {
         "startLine": 120,
         "startChar": 15,
