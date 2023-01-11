@@ -161,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "adeedae1_789470c9",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:02:10Z",
+      "side": 1,
+      "message": "I\u0027ve sent the unfinished comment. \nIt was added as variable cause it was used more than once, and 0xEDC has no other meaning in this case.",
+      "parentUuid": "765de5df_4d0b981f",
+      "range": {
+        "startLine": 244,
+        "startChar": 19,
+        "endLine": 244,
+        "endChar": 42
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85327c33_24357259",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 7
