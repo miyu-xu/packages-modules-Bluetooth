@@ -22,6 +22,30 @@
       },
       "revId": "7d99942e3dc06719afb7f42f0128a065ec9dd46b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b325387_335dc852",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1949180
+      },
+      "writtenOn": "2023-01-11T08:33:10Z",
+      "side": 1,
+      "message": "I add a test but I don\u0027t config AOSP compile environment on my local personal computer. Can you help me review and run test?",
+      "parentUuid": "56302ce9_f7a7e55c",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "7d99942e3dc06719afb7f42f0128a065ec9dd46b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
