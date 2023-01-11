@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8476e0e_63720b3d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-11T00:04:37Z",
+      "side": 1,
+      "message": "nit: not \"encrypted\" - maybe \"anonymized\" or \"deidentified\"?",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b6cfbaa_1ca02d90",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-11T00:04:37Z",
+      "side": 1,
+      "message": "Do you want any kind of versioning here?",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a389ef3_9495dd83",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-11T00:04:37Z",
+      "side": 1,
+      "message": "return false here?\n\nAlso maybe set mInitialized at the end?",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32f2ef0a_cd384073",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-11T00:04:37Z",
+      "side": 1,
+      "message": "Where is this called?",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f63304_bcc45657",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-11T00:04:37Z",
+      "side": 1,
+      "message": "Some sanity checking here to avoid excessively long sequences might be nice (e.g. 100 words with an N^3 algorithm will actually get slow)",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
