@@ -22,6 +22,30 @@
       },
       "revId": "c66df7bd7a899032ff62a5c99f563b15c6abd59b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c080033_31d6fcdf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-11T05:23:16Z",
+      "side": 1,
+      "message": "3. Either NPE or an error related to unwraping null value. I think for commit message this is enough to explain",
+      "parentUuid": "0ebdc5d5_ec8d0c31",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 153
+      },
+      "revId": "c66df7bd7a899032ff62a5c99f563b15c6abd59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
