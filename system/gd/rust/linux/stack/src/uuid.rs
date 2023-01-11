@@ -108,6 +108,7 @@ lazy_static! {
     static ref SUPPORTED_PROFILES: HashSet<Profile> = [
         Profile::A2dpSink,
         Profile::A2dpSource,
+        Profile::AvrcpController,
         Profile::Bas,
         Profile::Hsp,
         Profile::Hfp,
