@@ -22,8 +22,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "bta_api.h"
-#include "btif_common.h"
+#include "bta/include/bta_api.h"
+#include "btif/include/btif_common.h"
 #include "osi/include/compat.h"
 #include "osi/include/config.h"
 #include "osi/include/log.h"
