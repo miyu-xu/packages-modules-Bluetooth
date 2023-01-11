@@ -16,9 +16,10 @@
 
 #include "model/hci/h4_parser.h"  // for H4Parser, PacketType, H4Pars...
 
-#include <stddef.h>  // for size_t
-
+#include <array>
+#include <cstddef>     // for size_t
 #include <cstdint>     // for uint8_t, int32_t
+#include <cstring>
 #include <functional>  // for function
 #include <utility>     // for move
 #include <vector>      // for vector
@@ -60,12 +61,13 @@ size_t H4Parser::HciGetPacketLengthForType(PacketType type,
 
 H4Parser::H4Parser(PacketReadCallback command_cb, PacketReadCallback event_cb,
                    PacketReadCallback acl_cb, PacketReadCallback sco_cb,
-                   PacketReadCallback iso_cb)
+                   PacketReadCallback iso_cb, bool enable_recovery_state)
     : command_cb_(std::move(command_cb)),
       event_cb_(std::move(event_cb)),
       acl_cb_(std::move(acl_cb)),
       sco_cb_(std::move(sco_cb)),
-      iso_cb_(std::move(iso_cb)) {}
+      iso_cb_(std::move(iso_cb)),
+      enable_recovery_state_(enable_recovery_state) {}
 
 void H4Parser::OnPacketReady() {
   switch (hci_packet_type_) {
@@ -96,18 +98,20 @@ size_t H4Parser::BytesRequested() {
   switch (state_) {
     case HCI_TYPE:
       return 1;
+    case HCI_RECOVERY:
     case HCI_PREAMBLE:
     case HCI_PAYLOAD:
       return bytes_wanted_;
   }
 }
 
-bool H4Parser::Consume(uint8_t* buffer, int32_t bytes_read) {
+bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
   size_t bytes_to_read = BytesRequested();
   if (bytes_read <= 0) {
     LOG_INFO("remote disconnected, or unhandled error?");
     return false;
   }
+
   if ((uint32_t)bytes_read > BytesRequested()) {
     LOG_ALWAYS_FATAL("More bytes read (%u) than expected (%u)!",
                      static_cast<int>(bytes_read),
@@ -123,12 +127,21 @@ bool H4Parser::Consume(uint8_t* buffer, int32_t bytes_read) {
           H4Parser::EVENT_PREAMBLE_SIZE,
           H4Parser::ISO_PREAMBLE_SIZE,
       };
+
   switch (state_) {
     case HCI_TYPE:
       // bytes_read >= 1
       packet_type_ = *buffer;
       packet_.clear();
       break;
+
+    case HCI_RECOVERY:
+      for (int n = 0; n < bytes_read; n++) {
+        LOG_WARN("Received byte in recovery state : 0x%x",
+                 static_cast<unsigned>(buffer[n]));
+      }
+      [[fallthrough]];
+
     case HCI_PREAMBLE:
     case HCI_PAYLOAD:
       packet_.insert(packet_.end(), buffer, buffer + bytes_read);
@@ -144,13 +157,21 @@ bool H4Parser::Consume(uint8_t* buffer, int32_t bytes_read) {
           hci_packet_type_ != PacketType::COMMAND &&
           hci_packet_type_ != PacketType::EVENT &&
           hci_packet_type_ != PacketType::ISO) {
-        LOG_ALWAYS_FATAL("Unimplemented packet type %hhd", packet_type_);
+        if (!enable_recovery_state_) {
+          LOG_ALWAYS_FATAL("Received invalid packet type 0x%x",
+                           static_cast<unsigned>(packet_type_));
+        }
+        LOG_ERROR("Received invalid packet type 0x%x, entering recovery state",
+                  static_cast<unsigned>(packet_type_));
+        state_ = HCI_RECOVERY;
+        bytes_wanted_ = 4;  // HCI Reset command length.
+        break;
       }
       state_ = HCI_PREAMBLE;
       bytes_wanted_ = preamble_size[static_cast<size_t>(hci_packet_type_)];
       break;
-    case HCI_PREAMBLE:
 
+    case HCI_PREAMBLE:
       if (bytes_wanted_ == 0) {
         size_t payload_size =
             HciGetPacketLengthForType(hci_packet_type_, packet_.data());
@@ -163,11 +184,43 @@ bool H4Parser::Consume(uint8_t* buffer, int32_t bytes_read) {
         }
       }
       break;
+
     case HCI_PAYLOAD:
       if (bytes_wanted_ == 0) {
         OnPacketReady();
         state_ = HCI_TYPE;
       }
+      break;
+
+    case HCI_RECOVERY:
+      if (bytes_wanted_ != 0) {
+        break;
+      }
+
+      // Skip all received bytes until the HCI Reset command is received
+      // as the sequence of bytes 0x01 0x03 0x0c 0x00.
+      // The parser can end up in a bad state when Cuttlefish is restarted.
+      constexpr std::array<uint8_t, 4> reset_command{0x01, 0x03, 0x0c, 0x00};
+
+      // Last received bytes do not match the reset command.
+      // Drop the first byte and start over.
+      if (std::memcmp(packet_.data(), reset_command.data(),
+                      reset_command.size()) != 0) {
+        packet_.erase(packet_.begin());
+        bytes_wanted_ = 1;
+      }
+
+      // Received full reset command.
+      // Forward the command to the handler and return
+      // to the normal operating mode.
+      else {
+        LOG_INFO("Received HCI Reset command, exiting recovery state");
+        hci_packet_type_ = PacketType::COMMAND;
+        packet_.erase(packet_.begin());
+        OnPacketReady();
+        state_ = HCI_TYPE;
+      }
+
       break;
   }
   return true;
