@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a07364a9_d308fadc",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-11T21:29:31Z",
+      "side": 1,
+      "message": "I am not sure if the constexpr makes a difference compared to const in this case.\nNeed to check on godbolt.",
+      "parentUuid": "540915fc_a4998621",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 52
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ae913e0_b1dde2b9",
         "filename": "tools/rootcanal/model/hci/h4_parser.cc",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-11T21:19:33Z",
       "side": 1,
       "message": "This could be very verbose.  Do we want 200 warnings while we\u0027re finishing the packet?",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 47
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45e32e1_4968924d",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-11T21:29:31Z",
+      "side": 1,
+      "message": "I feel it is better to have more in this case, as it could be important to understand what is happening. To rephrase it:\n- best case scenario: board reset and we get just a few remaining bytes before the reset command\n- worst case scenario: we have no idea what is happening, and having these logs could help figure that out",
+      "parentUuid": "7ae913e0_b1dde2b9",
       "range": {
         "startLine": 143,
         "startChar": 0,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "026548e3_ec855029",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-11T21:29:31Z",
+      "side": 1,
+      "message": "See the added unit test for a sample case.\nWe need to match a stream of bytes and not simply bytes four by four to match a",
+      "parentUuid": "14311a89_30955045",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 7
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d2e9f5c_de38d494",
         "filename": "tools/rootcanal/model/hci/h4_parser.cc",
         "patchSetId": 2
@@ -100,6 +172,30 @@
       "writtenOn": "2023-01-11T21:19:33Z",
       "side": 1,
       "message": "case HCI_RECOVERY:\n  if (packet_.size() \u003d\u003d recovery_sequence.size()) {\n    OnPacketReady();\n    state_ \u003d HCI_TYPE;\n  }\n  break;",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 12
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c23471_154d1670",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-11T21:29:31Z",
+      "side": 1,
+      "message": "I don\u0027t like splitting the logic like this...",
+      "parentUuid": "0d2e9f5c_de38d494",
       "range": {
         "startLine": 223,
         "startChar": 0,
