@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c7472a1_46e7df3e",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-11T16:53:58Z",
+      "side": 1,
+      "message": "I think it\u0027s safe to just re-register after being informed that device is in STATE_CONNECTED. I believe that well designed peripheral initially would read interesting data from service, rather that waiting for notification with initial state of MCS.",
+      "parentUuid": "e260a66c_abaffe61",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 86
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9efdf745_098e3b32",
         "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
         "patchSetId": 6
