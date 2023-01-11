@@ -22,6 +22,30 @@
       },
       "revId": "c84e1d9f76ce975ca363e484d48788a602fa2588",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4230cb93_c8a8506c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-11T19:07:55Z",
+      "side": 1,
+      "message": "This is a false positive because of a bad regex - it thinks `\u0026\u0026 connection-\u003e...` is `\u0026 \u0026connection-\u003e...`. (see https://source.corp.google.com/piper///depot/google3/wireless/android/busytown/ayeaye/config/analyzers/check_contents/check_contents.gcl;l\u003d918)",
+      "parentUuid": "1e4fa7eb_224ecad4",
+      "range": {
+        "startLine": 262,
+        "startChar": 53,
+        "endLine": 262,
+        "endChar": 63
+      },
+      "revId": "c84e1d9f76ce975ca363e484d48788a602fa2588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
