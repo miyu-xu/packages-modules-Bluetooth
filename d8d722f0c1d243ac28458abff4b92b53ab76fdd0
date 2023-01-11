@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "d8d722f0c1d243ac28458abff4b92b53ab76fdd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbee1a43_80af492b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-11T07:56:22Z",
+      "side": 1,
+      "message": "Please fix build warnings",
+      "revId": "d8d722f0c1d243ac28458abff4b92b53ab76fdd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
