@@ -16,6 +16,24 @@
       "message": "Hi Chris,\n\nWe see this change (patch set 7) is causing perf boottime reg\n\nMetric init_bootanim_DURATION-mean has regressed; its value is 14425.20 here, and increased from historical average 13398.73 by 1026.47 (7.66%).\n\nhttps://screenshot.googleplex.com/LJ7VSFayfkyfnQY\n\nhttps://crystalball-presubmit.corp.google.com/dashboard/I07400010122854201\n\nPlease fix the regression before merging this change",
       "revId": "bbb786a0db1e1c508e0a2deeb59d73017cf029f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e398ca_27f7487d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-11T17:43:15Z",
+      "side": 1,
+      "message": "I don\u0027t see how this causes a regression in boot time as this code doesn\u0027t execute during boot.",
+      "parentUuid": "c953d3f6_5e5569ef",
+      "revId": "bbb786a0db1e1c508e0a2deeb59d73017cf029f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
