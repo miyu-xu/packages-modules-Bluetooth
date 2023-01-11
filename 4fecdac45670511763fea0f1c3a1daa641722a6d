@@ -46,6 +46,30 @@
       },
       "revId": "4fecdac45670511763fea0f1c3a1daa641722a6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0166ff29_33bc8520",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-11T05:30:21Z",
+      "side": 1,
+      "message": "You are adding this at the top of the file\n```\n#if defined(OS_GENERIC)\nstatic const char* INTEROP_FILE_PATH \u003d \"interop_database.conf\";\n#else   // !defined(OS_GENERIC)\nstatic const char* INTEROP_DYNAMIC_FILE_PATH \u003d\n    \"/data/misc/bluedroid/interop_database_dynamic.conf\";\nstatic const char* INTEROP_STATIC_FILE_PATH \u003d\n    \"/apex/com.android.btservices/etc/bluetooth/interop_database.conf\";\n#endif  // defined(OS_GENERIC)\n```\n\n\nThe consequence is that:\n* OS_GENERIC has  `INTEROP_FILE_PATH`\n* !OS_GENERIC has `INTEROP_DYNAMIC_FILE_PATH` and `INTEROP_STATIC_FILE_PATH`\n\nYou need to reflect this when using the variable.\n\nI think what you want is to :\n* Rename INTEROP_FILE_PATH to be INTEROP_STATIC_FILE_PATH\n* add a `if not defined OS_GENERIC` around everything related to dynamic config as you are not managing this option in os_generic\n\n\nThen you should try it by running the test on a host target like this:\n```\natest --host net_test_device\n```\n\nI tried it and I noticed you need a small change in the bp to test it this way (aosp/2380866 - merged today)",
+      "parentUuid": "7983a841_59812f32",
+      "range": {
+        "startLine": 399,
+        "startChar": 12,
+        "endLine": 399,
+        "endChar": 36
+      },
+      "revId": "4fecdac45670511763fea0f1c3a1daa641722a6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

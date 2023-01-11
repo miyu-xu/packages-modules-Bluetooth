@@ -328,6 +328,29 @@
       },
       "revId": "67ed7c3f3a3d27609774d709925782235551792f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de9b42e3_f5148288",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-11T05:30:21Z",
+      "side": 1,
+      "message": "`entry.entry_type.lmp_version_entry.addr \u003d addr` ? (same above)",
+      "range": {
+        "startLine": 1728,
+        "startChar": 2,
+        "endLine": 1728,
+        "endChar": 8
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

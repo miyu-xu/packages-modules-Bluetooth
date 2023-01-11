@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a5a615c_579732e9",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-11T05:30:21Z",
+      "side": 1,
+      "message": "Okay to go with this extra file and not to use gd storage module.\nReason being:\n* The stored data is completely different and it would be nice to separate it\n* This will not remove a lot of code from this CL\n\n\nI think want to delete the file on network factory reset but I do not know how to do it from the top of my head so let\u0027s keep this for later",
+      "parentUuid": "2b3cfae7_f98fcae7",
+      "range": {
+        "startLine": 80,
+        "startChar": 23,
+        "endLine": 80,
+        "endChar": 31
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17b4a7a9_dfd06bef",
@@ -1474,6 +1498,30 @@
       "side": 1,
       "message": "can you please point any example",
       "parentUuid": "38c43ef2_35b6400c",
+      "range": {
+        "startLine": 1199,
+        "startChar": 1,
+        "endLine": 1201,
+        "endChar": 0
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9873a52_b50a6923",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1201,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-11T05:30:21Z",
+      "side": 1,
+      "message": "I gave the example in another comment:\n```\n    std::string bdstr \u003d std::string(key);\n    bdstr +\u003d RawAddress::kEmpty.ToColonSepHexString()\n            .substr(bdstr.length(), std::string::npos);\n```\n\nBut since you change the code to enforce key length \u003d\u003d 3 (previously it was between 3 and 6), your current implementation looks good",
+      "parentUuid": "a44634cc_1bc2d47c",
       "range": {
         "startLine": 1199,
         "startChar": 1,
