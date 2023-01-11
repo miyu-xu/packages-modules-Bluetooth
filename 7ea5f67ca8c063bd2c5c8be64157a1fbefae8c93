@@ -70,6 +70,30 @@
       },
       "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b68a9b46_be24c388",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-11T08:25:24Z",
+      "side": 1,
+      "message": "We do not care about executing the task callback for a controller that was dropped everywhere else, so it does not make sense to hold a strong (shared_ptr) reference to this. Instead the weak reference (weak_ptr) allows us to safely check if the controller was deleted and drop the callback in this case.\n\nAs far as I could tell DualModeController (or the inheriting class HciDevice) is always created behind a shared_ptr.",
+      "parentUuid": "5b98fe1d_ad3b3e04",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 75
+      },
+      "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
