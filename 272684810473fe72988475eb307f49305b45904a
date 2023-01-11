@@ -22,6 +22,30 @@
       },
       "revId": "272684810473fe72988475eb307f49305b45904a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ace77b86_34b47e17",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-11T21:37:44Z",
+      "side": 1,
+      "message": "I just moved the same statement into this enclosing block checking for br_edr.\n\nI agree the naming is awkward...as the capitals are for external but lower case internal.",
+      "parentUuid": "9d035bc3_2ca9c4e6",
+      "range": {
+        "startLine": 417,
+        "startChar": 4,
+        "endLine": 417,
+        "endChar": 11
+      },
+      "revId": "272684810473fe72988475eb307f49305b45904a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
