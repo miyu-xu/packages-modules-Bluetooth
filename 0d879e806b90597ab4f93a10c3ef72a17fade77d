@@ -16,6 +16,24 @@
       "message": "we should compare `leadDevice` instead of `device.`",
       "revId": "0d879e806b90597ab4f93a10c3ef72a17fade77d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7248e409_b6b3f41b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2088,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-11T15:25:05Z",
+      "side": 1,
+      "message": "This is under re-analyses since the root cause may be other than expected - lets keep this CL as WIP now",
+      "parentUuid": "06421b17_4c03b98d",
+      "revId": "0d879e806b90597ab4f93a10c3ef72a17fade77d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
