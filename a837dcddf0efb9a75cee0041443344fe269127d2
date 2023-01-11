@@ -567,6 +567,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be7415a1_99130a18",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-11T07:12:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4b77046d_e80b6646",
+      "range": {
+        "startLine": 617,
+        "startChar": 56,
+        "endLine": 617,
+        "endChar": 61
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "290a5f10_9e369888",
@@ -1028,6 +1052,30 @@
       "side": 1,
       "message": "We are using c string API(strncasecomp, strtok_r, stroul, etc) to parse info from key, Do you suggest any better way, if any?",
       "parentUuid": "a8d86ca9_29c5fdfc",
+      "range": {
+        "startLine": 1003,
+        "startChar": 35,
+        "endLine": 1003,
+        "endChar": 68
+      },
+      "revId": "a837dcddf0efb9a75cee0041443344fe269127d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e951539_2cecf3c1",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1003,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-11T07:12:23Z",
+      "side": 1,
+      "message": "No, you are right. it would require rewriting all the parser. let\u0027s keep it like this",
+      "parentUuid": "642a1b90_eae6d80b",
       "range": {
         "startLine": 1003,
         "startChar": 35,
