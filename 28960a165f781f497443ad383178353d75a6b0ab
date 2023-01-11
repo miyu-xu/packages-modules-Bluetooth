@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b9a7a9_3e43f931",
+        "filename": "system/stack/gatt/gatt_db.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:25:57Z",
+      "side": 1,
+      "message": "If it\u0027s discoverable, we don\u0027t care about the rest of the checks?",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 3
+      },
+      "revId": "28960a165f781f497443ad383178353d75a6b0ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
