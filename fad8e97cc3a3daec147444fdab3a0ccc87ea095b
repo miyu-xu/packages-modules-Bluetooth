@@ -88,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fa784fa_7918dc52",
+        "filename": "system/gd/dumpsys/init_flags.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d1b4802_f2aa6d38",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fd790e0_d957574f",
@@ -101,6 +125,30 @@
       "writtenOn": "2022-12-21T21:06:16Z",
       "side": 1,
       "message": "What does this handle enable ?",
+      "range": {
+        "startLine": 244,
+        "startChar": 19,
+        "endLine": 244,
+        "endChar": 42
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "765de5df_4d0b981f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "as per offline chat, some qualcomm debug logs. Was used more than once",
+      "parentUuid": "0fd790e0_d957574f",
       "range": {
         "startLine": 244,
         "startChar": 19,
@@ -312,6 +360,30 @@
       "writtenOn": "2022-12-21T21:06:16Z",
       "side": 1,
       "message": "naive question:\nIsRfcommChannel can be true but the ctrl not a RFCOMM ?\nIn which case does this happen ?",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 33
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06385c82_959ed9fe",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "@quic_xiaowang@quicinc.com could you help on that?",
+      "parentUuid": "fda2d808_5af561d9",
       "range": {
         "startLine": 835,
         "startChar": 0,

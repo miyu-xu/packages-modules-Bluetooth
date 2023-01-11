@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d66ceed_a9ddf3a4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "203ae7ee_028e4037",
+      "range": {
+        "startLine": 199,
+        "startChar": 44,
+        "endLine": 199,
+        "endChar": 73
+      },
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99dffa82_ca5e3d58",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "Perhaps this should be `*_is_enabled` to be in line with the others. And should be next to `gd_hal_snoop_logger_socket_is_enabled`? This is a minor thing so feel free to ignore.",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b0e74a_1bad5fce",
+        "filename": "system/gd/common/init_flags.fbs",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "99dffa82_ca5e3d58",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ab3a4e_1190c54c",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60e833b0_64c5c420",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65cf584d_688bcd27",
@@ -71,6 +131,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "I don\u0027t think this cast is necessary.",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae418900_2cdf5438",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65cf584d_688bcd27",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "159c1862_cdd103c0",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6167c3c8_b960adf9",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05420057_d868966f",
@@ -105,6 +201,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "No need to check length since you are overwriting it and you can also assume that if length \u003d\u003d 0 then you will not be here (if you apply the suggestions from previous comments).",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "232a52c2_f9b67377",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05420057_d868966f",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +240,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abba740e_ae7cd027",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2e36665_8f62cc93",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99fe6ea6_8a85f36c",
@@ -139,6 +271,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "payload_fill_magic length is known at compile time so define a constexpr.",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5196850e_b3338939",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99fe6ea6_8a85f36c",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -160,6 +310,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f55d52da_2a25c576",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "86277144_aa9c6864",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c97f2ee_49619200",
@@ -173,6 +341,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "These are known at compile time.",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d384a3f_f504e345",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c97f2ee_49619200",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -194,6 +380,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36941a65_86fdffd5",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6f2a805_2f4dab8e",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01aa62c4_98e8f492",
@@ -207,6 +411,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "Not sure but maybe `current_offset` should also be uint32_t?",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c8d2e44_249f0696",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "It won\u0027t be more than 255",
+      "parentUuid": "01aa62c4_98e8f492",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -228,6 +450,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "822eecd4_ad1b220f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b2b8cb19_3e2879fb",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc904db0_f8d53e16",
@@ -241,6 +481,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "Exit early here.",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84fb6b16_1e2952d1",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 861,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc904db0_f8d53e16",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -262,6 +520,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7050d7a_efc2acab",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48acabef_a72b5871",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e7abc50_b94d8168",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48acabef_a72b5871",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae7eec40_93e5d8af",
@@ -275,6 +569,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "std::stringstream ss;\n     ss \u003c\u003c std::hex;\n\n     for( int i(0) ; i \u003c len; ++i )\n         ss \u003c\u003c std::setw(2) \u003c\u003c std::setfill(\u00270\u0027) \u003c\u003c (int)data[i];\n\n     return ss.str();",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7b62226_0abc9f32",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "This was just my debug function, shouldn\u0027t be here. I remove it in the upcoming patchset",
+      "parentUuid": "ae7eec40_93e5d8af",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -296,6 +608,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40631d22_9aa70b3f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e27694c_235cde30",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "154a3b55_5082cef7",
@@ -309,6 +639,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "use auto",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b6bacf3_b8d7c32c",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "154a3b55_5082cef7",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -330,6 +678,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "645980c2_c34827f2",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1139,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "846839f7_05440606",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70aae8da_1c5b57cf",
@@ -343,6 +709,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "Should probably return true?",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c0b5b15_4914dcbf",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1141,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70aae8da_1c5b57cf",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -364,6 +748,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78d3e758_03cf6bb0",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bbbe6c0_db267910",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22b0a714_f747c0a8",
@@ -377,6 +779,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "Doing this filtering in a separate method could improve readability.",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb68acb0_95ec6786",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22b0a714_f747c0a8",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -398,6 +818,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a324e8_54ec0855",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b85b9b5_b37ec1aa",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51e01cda_2edd9bea",
@@ -415,6 +853,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e624915c_bb52b060",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1197,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51e01cda_2edd9bea",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37243e73_ff119125",
@@ -428,6 +884,24 @@
       "writtenOn": "2023-01-10T18:07:53Z",
       "side": 1,
       "message": "Indentation?",
+      "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be6fc95_78d9d62f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1353,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-11T18:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37243e73_ff119125",
       "revId": "73cfae9da79cebe76d00fa09090bbfe7e631f4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
