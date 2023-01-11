@@ -3816,6 +3816,10 @@ public class AdapterService extends Service {
                 receiver.propagateException(e);
             }
         }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
         private int getAudioPolicyRemoteSupported(BluetoothDevice device,
                 AttributionSource source) {
             AdapterService service = getService();
@@ -3838,6 +3842,10 @@ public class AdapterService extends Service {
                 receiver.propagateException(e);
             }
         }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
         private int setAudioPolicy(BluetoothDevice device, BluetoothAudioPolicy policies,
                 AttributionSource source) {
             AdapterService service = getService();
@@ -3862,6 +3870,10 @@ public class AdapterService extends Service {
                 receiver.propagateException(e);
             }
         }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
         private BluetoothAudioPolicy getAudioPolicy(BluetoothDevice device,
                 AttributionSource source) {
             AdapterService service = getService();
