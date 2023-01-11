@@ -93,6 +93,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e91e46ca_72008311",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-11T16:51:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bf34444_f42347fa",
+      "range": {
+        "startLine": 100,
+        "startChar": 35,
+        "endLine": 100,
+        "endChar": 37
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b24b794_3bc037a6",
@@ -116,6 +140,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01c1a5e7_fe90be86",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-11T16:51:44Z",
+      "side": 1,
+      "message": "Nice!",
+      "parentUuid": "9b24b794_3bc037a6",
+      "range": {
+        "startLine": 105,
+        "startChar": 37,
+        "endLine": 105,
+        "endChar": 48
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8627b929_c029c7c1",
@@ -129,6 +177,30 @@
       "writtenOn": "2022-12-20T18:31:23Z",
       "side": 1,
       "message": "You also need to apply the mask for some sizes that are multiple of 8:\n```\na: 2\nb: 24 // Needs a mask as well\nc: 6\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4321fa_844b445a",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-11T16:51:44Z",
+      "side": 1,
+      "message": "No, that should be handled fine by the `get_uint(3)` call: we get `u32` back, but it won\u0027t contain garbage in the top bits.",
+      "parentUuid": "8627b929_c029c7c1",
       "range": {
         "startLine": 120,
         "startChar": 15,
