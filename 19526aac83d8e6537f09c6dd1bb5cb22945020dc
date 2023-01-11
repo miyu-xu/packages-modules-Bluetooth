@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08dbfe43_b99ddb50",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-11T01:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8476e0e_63720b3d",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b6cfbaa_1ca02d90",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-11T00:04:37Z",
       "side": 1,
       "message": "Do you want any kind of versioning here?",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e6b8e8b_95c4a93f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-11T01:42:47Z",
+      "side": 1,
+      "message": "Not for now. The version shouldn\u0027t affect our logic so keep one file for simplicity",
+      "parentUuid": "2b6cfbaa_1ca02d90",
       "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb5afef6_39082cc7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-11T01:42:47Z",
+      "side": 1,
+      "message": "The class is for multiple things for metrics. We still want to use this class even if the bloomfilter isn\u0027t initialized. Will add a comment",
+      "parentUuid": "8a389ef3_9495dd83",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32f2ef0a_cd384073",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aee85d6a_49c77c6a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-11T01:42:47Z",
+      "side": 1,
+      "message": "In adapterproperties when profile connection is initiated. We can always add other occurrences later",
+      "parentUuid": "32f2ef0a_cd384073",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4f63304_bcc45657",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-01-11T00:04:37Z",
       "side": 1,
       "message": "Some sanity checking here to avoid excessively long sequences might be nice (e.g. 100 words with an N^3 algorithm will actually get slow)",
+      "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "997dbf2f_ac9cf3e9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-11T01:42:47Z",
+      "side": 1,
+      "message": "Good idea!!",
+      "parentUuid": "e4f63304_bcc45657",
       "revId": "19526aac83d8e6537f09c6dd1bb5cb22945020dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
