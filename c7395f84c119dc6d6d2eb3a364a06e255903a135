@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c39412_27cfeb66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:19:33Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "540915fc_a4998621",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:19:33Z",
+      "side": 1,
+      "message": "nit: I would prefer to name it reset command.  Could it be constexpr?",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 52
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ae913e0_b1dde2b9",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:19:33Z",
+      "side": 1,
+      "message": "This could be very verbose.  Do we want 200 warnings while we\u0027re finishing the packet?",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 47
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14311a89_30955045",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:19:33Z",
+      "side": 1,
+      "message": "I feel like this belongs on line 222 to go with the rest of this design.\n\nI think I\u0027m missing why it needs to be more complex than the HCI_PAYLOAD case.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 7
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d2e9f5c_de38d494",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:19:33Z",
+      "side": 1,
+      "message": "case HCI_RECOVERY:\n  if (packet_.size() \u003d\u003d recovery_sequence.size()) {\n    OnPacketReady();\n    state_ \u003d HCI_TYPE;\n  }\n  break;",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 12
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
