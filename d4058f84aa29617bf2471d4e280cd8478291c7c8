@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b358da69_ac8dbf82",
+        "filename": "system/test/stub/osi.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-11T08:21:22Z",
+      "side": 1,
+      "message": "where does this magic number come from ?\n\nWould it be hard to use the mock properly in HAS test with\nON_CALL(...,).WillOnce(Return(new uint8_t[30])); ?",
+      "range": {
+        "startLine": 383,
+        "startChar": 31,
+        "endLine": 383,
+        "endChar": 33
+      },
+      "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
