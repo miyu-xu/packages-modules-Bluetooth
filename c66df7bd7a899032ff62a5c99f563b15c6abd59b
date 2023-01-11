@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ebdc5d5_ec8d0c31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-11T01:38:40Z",
+      "side": 1,
+      "message": "1. Please break lines. AFAIK, commit message limit 70 characters per line.\n2. What about followings?\n This CL fixes a null pointer exception in BluetoothOppLauncherActivityTest#sendFileInfo_finishImmediately.\n NPE happens when matching for doThrow and when showing toast message\n3. Does doThrow throw NPE when any() is used instead of anyBoolean()?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 153
+      },
+      "revId": "c66df7bd7a899032ff62a5c99f563b15c6abd59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
