@@ -87,7 +87,6 @@ import android.os.PowerManager;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.os.SystemClock;
-import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.DeviceConfig;
@@ -193,11 +192,17 @@ public class AdapterService extends Service {
     private static final String ACTION_ALARM_WAKEUP =
             "com.android.bluetooth.btservice.action.ALARM_WAKEUP";
 
-    static final String BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY = "persist.bluetooth.btsnooplogmode";
-    static final String BLUETOOTH_BTSNOOP_DEFAULT_MODE_PROPERTY =
-            "persist.bluetooth.btsnoopdefaultmode";
-    private String mSnoopLogSettingAtEnable = "empty";
-    private String mDefaultSnoopLogSettingAtEnable = "empty";
+    private static BluetoothProperties.snoop_log_mode_values sSnoopLogSettingAtEnable =
+            BluetoothProperties.snoop_log_mode_values.EMPTY;
+    private static String sDefaultSnoopLogSettingAtEnable = "empty";
+    private static List<BluetoothProperties.snoop_log_filter_types_values>
+            sSnoopLogFilterTypeSettingAtEnable;
+    private static BluetoothProperties.snoop_log_filter_profile_pbap_values
+            sSnoopLogFilterProfilesPbapModeSettingAtEnable =
+                    BluetoothProperties.snoop_log_filter_profile_pbap_values.EMPTY;
+    private static BluetoothProperties.snoop_log_filter_profile_map_values
+            sSnoopLogFilterProfilesMapModeSettingAtEnable =
+                    BluetoothProperties.snoop_log_filter_profile_map_values.EMPTY;
 
     public static final String BLUETOOTH_PRIVILEGED =
             android.Manifest.permission.BLUETOOTH_PRIVILEGED;
@@ -805,30 +810,50 @@ public class AdapterService extends Service {
 
         // Turn the Adapter all the way off if we are disabling and the snoop log setting changed.
         if (newState == BluetoothAdapter.STATE_BLE_TURNING_ON) {
-            mSnoopLogSettingAtEnable =
-                    SystemProperties.get(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY, "empty");
-            mDefaultSnoopLogSettingAtEnable =
+            sSnoopLogSettingAtEnable = BluetoothProperties.snoop_log_mode()
+                    .orElse(BluetoothProperties.snoop_log_mode_values.EMPTY);
+            sDefaultSnoopLogSettingAtEnable =
                     Settings.Global.getString(getContentResolver(),
                             Settings.Global.BLUETOOTH_BTSNOOP_DEFAULT_MODE);
+
+            sSnoopLogFilterTypeSettingAtEnable = BluetoothProperties.snoop_log_filter_types();
+            sSnoopLogFilterProfilesPbapModeSettingAtEnable =
+                    BluetoothProperties.snoop_log_filter_profile_pbap()
+                    .orElse(BluetoothProperties.snoop_log_filter_profile_pbap_values.EMPTY);
+            sSnoopLogFilterProfilesMapModeSettingAtEnable =
+                    BluetoothProperties.snoop_log_filter_profile_map()
+                    .orElse(BluetoothProperties.snoop_log_filter_profile_map_values.EMPTY);
+
             BluetoothProperties.snoop_default_mode(
                     BluetoothProperties.snoop_default_mode_values.DISABLED);
             for (BluetoothProperties.snoop_default_mode_values value :
                     BluetoothProperties.snoop_default_mode_values.values()) {
-                if (value.getPropValue().equals(mDefaultSnoopLogSettingAtEnable)) {
+                if (value.getPropValue().equals(sDefaultSnoopLogSettingAtEnable)) {
                     BluetoothProperties.snoop_default_mode(value);
                 }
             }
         } else if (newState == BluetoothAdapter.STATE_BLE_ON
                    && prevState != BluetoothAdapter.STATE_OFF) {
-            String snoopLogSetting =
-                    SystemProperties.get(BLUETOOTH_BTSNOOP_LOG_MODE_PROPERTY, "empty");
-            String snoopDefaultModeSetting =
+            var snoopLogSetting = BluetoothProperties.snoop_log_mode()
+                    .orElse(BluetoothProperties.snoop_log_mode_values.EMPTY);
+            var snoopDefaultModeSetting =
                     Settings.Global.getString(getContentResolver(),
                             Settings.Global.BLUETOOTH_BTSNOOP_DEFAULT_MODE);
+            var snoopLogFilterTypeSetting = BluetoothProperties.snoop_log_filter_types();
+            var snoopLogFilterProfilesPbapModeSetting =
+                    BluetoothProperties.snoop_log_filter_profile_pbap()
+                    .orElse(BluetoothProperties.snoop_log_filter_profile_pbap_values.EMPTY);
+            var snoopLogFilterProfilesMapModeSetting =
+                    BluetoothProperties.snoop_log_filter_profile_map()
+                    .orElse(BluetoothProperties.snoop_log_filter_profile_map_values.EMPTY);
 
-            if (!TextUtils.equals(mSnoopLogSettingAtEnable, snoopLogSetting)
-                    || !TextUtils.equals(mDefaultSnoopLogSettingAtEnable,
-                            snoopDefaultModeSetting)) {
+            if (!(sSnoopLogSettingAtEnable == snoopLogSetting)
+                    || !(sDefaultSnoopLogSettingAtEnable == snoopDefaultModeSetting)
+                    || !sSnoopLogFilterTypeSettingAtEnable.equals(snoopLogFilterTypeSetting)
+                    || !(sSnoopLogFilterProfilesPbapModeSettingAtEnable
+                            == snoopLogFilterProfilesPbapModeSetting)
+                    || !(sSnoopLogFilterProfilesMapModeSettingAtEnable
+                            == snoopLogFilterProfilesMapModeSetting)) {
                 mAdapterStateMachine.sendMessage(AdapterState.BLE_TURN_OFF);
             }
         }
@@ -5326,8 +5351,8 @@ public class AdapterService extends Service {
 
         writer.println();
         mAdapterProperties.dump(fd, writer, args);
-        writer.println("mSnoopLogSettingAtEnable = " + mSnoopLogSettingAtEnable);
-        writer.println("mDefaultSnoopLogSettingAtEnable = " + mDefaultSnoopLogSettingAtEnable);
+        writer.println("sSnoopLogSettingAtEnable = " + sSnoopLogSettingAtEnable);
+        writer.println("sDefaultSnoopLogSettingAtEnable = " + sDefaultSnoopLogSettingAtEnable);
 
         writer.println();
         writer.println("Enabled Profile Services:");
