@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d4e5312_9aadd2c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-01-11T12:49:46Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nSubmitted 9 L2CAP test cases.\nRequest you to provide your inputs.\n\nThank you.\n\nRegards,\nFahad",
+      "revId": "9a884ec9aab37c69dcf4736e9f21f26d0da32e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
