@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94634838_250c1d32",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-01-11T04:26:16Z",
+      "side": 1,
+      "message": "Got it. Split into 4 tests for each type of message :)",
+      "parentUuid": "80eda8ea_b78c64d3",
+      "range": {
+        "startLine": 1287,
+        "startChar": 8,
+        "endLine": 1301,
+        "endChar": 82
+      },
+      "revId": "f458c6b1c8ed50393309947e8d07a1bdf91d0a07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e239227e_0fe497fe",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-10T23:46:12Z",
       "side": 1,
       "message": "How about adding comment something like:\n\n  // Making cursor.getCount() as 1?",
+      "range": {
+        "startLine": 1363,
+        "startChar": 8,
+        "endLine": 1364,
+        "endChar": 43
+      },
+      "revId": "f458c6b1c8ed50393309947e8d07a1bdf91d0a07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b277ee_ab1ff6ba",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-01-11T04:26:16Z",
+      "side": 1,
+      "message": "Added!",
+      "parentUuid": "e239227e_0fe497fe",
       "range": {
         "startLine": 1363,
         "startChar": 8,
