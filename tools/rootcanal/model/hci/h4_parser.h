@@ -52,7 +52,7 @@ class H4Parser {
            PacketReadCallback iso_cb);
 
   // Consumes the given number of bytes, returns true on success.
-  bool Consume(uint8_t* buffer, int32_t bytes);
+  bool Consume(const uint8_t* buffer, int32_t bytes);
 
   // The maximum number of bytes the parser can consume in the current state.
   size_t BytesRequested();
