@@ -396,6 +396,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2228948_34337109",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-11T08:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b237cb93_284e24d0",
+      "range": {
+        "startLine": 1126,
+        "startChar": 0,
+        "endLine": 1126,
+        "endChar": 31
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "767aeed5_8b0d6b8d",
@@ -858,6 +882,30 @@
       "side": 1,
       "message": "makes sense. will incorporate those.",
       "parentUuid": "e78420f8_da9466d4",
+      "range": {
+        "startLine": 1582,
+        "startChar": 22,
+        "endLine": 1582,
+        "endChar": 55
+      },
+      "revId": "7f933f12f635945bed2a61eaf37b13834985c526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76aa198_a6750b76",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1582,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-11T08:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e8f54e7_595caaf7",
       "range": {
         "startLine": 1582,
         "startChar": 22,
