@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63f27dac_da2b6ef1",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-11T16:29:59Z",
+      "side": 1,
+      "message": "please remove whitespace as suggested. This and other instances",
+      "range": {
+        "startLine": 589,
+        "startChar": 71,
+        "endLine": 589,
+        "endChar": 75
+      },
+      "revId": "ccdf402cee03b4de18395555625c74a1361636b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cdb3986_120246b7",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-11T16:29:59Z",
+      "side": 1,
+      "message": "\"coexit\" \u003d\u003e \"coexist\", this and other places",
+      "range": {
+        "startLine": 230,
+        "startChar": 46,
+        "endLine": 230,
+        "endChar": 52
+      },
+      "revId": "ccdf402cee03b4de18395555625c74a1361636b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c852a512_38753d5c",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2023-01-11T16:29:59Z",
+      "side": 1,
+      "message": "you are overriding the value of the is_new_avrcp passed to this function. Shouldn\u0027t you be using that value instead of \"false\"?",
+      "range": {
+        "startLine": 1151,
+        "startChar": 3,
+        "endLine": 1151,
+        "endChar": 90
+      },
+      "revId": "ccdf402cee03b4de18395555625c74a1361636b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
