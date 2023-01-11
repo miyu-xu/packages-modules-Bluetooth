@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c858915_4a2cc7d4",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:21:26Z",
+      "side": 1,
+      "message": "unrelated formatting change?",
+      "range": {
+        "startLine": 190,
+        "startChar": 4,
+        "endLine": 190,
+        "endChar": 8
+      },
+      "revId": "b843136d414e4f4dc39b570f643f0fceb9f97d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b209ede2_f92a9d1c",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T21:21:26Z",
+      "side": 1,
+      "message": "I would follow the comment style from line 200.",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 7
+      },
+      "revId": "b843136d414e4f4dc39b570f643f0fceb9f97d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
