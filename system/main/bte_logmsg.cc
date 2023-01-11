@@ -26,17 +26,17 @@
 #include <sys/time.h>
 #include <time.h>
 
-#include "bta_api.h"
-#include "btm_api.h"
-#include "btu.h"
-#include "l2c_api.h"
-#include "main_int.h"
+#include "bta/include/bta_api.h"
+#include "internal_include/stack_config.h"
+#include "main/main_int.h"
 #include "osi/include/config.h"
 #include "osi/include/log.h"
-#include "port_api.h"
-#include "sdp_api.h"
-#include "smp_api.h"
-#include "stack_config.h"
+#include "stack/include/btm_api.h"
+#include "stack/include/btu.h"
+#include "stack/include/l2c_api.h"
+#include "stack/include/port_api.h"
+#include "stack/include/sdp_api.h"
+#include "stack/include/smp_api.h"
 
 #ifndef BTE_LOG_BUF_SIZE
 #define BTE_LOG_BUF_SIZE 256
