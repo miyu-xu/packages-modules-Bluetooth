@@ -55,6 +55,7 @@ import android.os.Process;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.IObexConnectionHandler;
 import com.android.bluetooth.ObexServerSockets;
@@ -1116,17 +1117,18 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
     }
 
     // Run in a background thread at boot.
-    private static void trimDatabase(ContentResolver contentResolver) {
+    @VisibleForTesting
+    static void trimDatabase(ContentResolver contentResolver) {
         // remove the invisible/unconfirmed inbound shares
-        int delNum = contentResolver.delete(BluetoothShare.CONTENT_URI, WHERE_INVISIBLE_UNCONFIRMED,
-                null);
+        int delNum = BluetoothMethodProxy.getInstance().contentResolverDelete(
+                contentResolver, BluetoothShare.CONTENT_URI, WHERE_INVISIBLE_UNCONFIRMED, null);
         if (V) {
             Log.v(TAG, "Deleted shares, number = " + delNum);
         }
 
         // Keep the latest inbound and successful shares.
-        Cursor cursor =
-                contentResolver.query(BluetoothShare.CONTENT_URI, new String[]{BluetoothShare._ID},
+        Cursor cursor = BluetoothMethodProxy.getInstance().contentResolverQuery(
+                contentResolver, BluetoothShare.CONTENT_URI, new String[]{BluetoothShare._ID},
                         WHERE_INBOUND_SUCCESS, null, BluetoothShare._ID); // sort by id
         if (cursor == null) {
             return;
@@ -1138,8 +1140,8 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
             if (cursor.moveToPosition(numToDelete)) {
                 int columnId = cursor.getColumnIndexOrThrow(BluetoothShare._ID);
                 long id = cursor.getLong(columnId);
-                delNum = contentResolver.delete(BluetoothShare.CONTENT_URI,
-                        BluetoothShare._ID + " < " + id, null);
+                delNum = BluetoothMethodProxy.getInstance().contentResolverDelete(contentResolver,
+                        BluetoothShare.CONTENT_URI, BluetoothShare._ID + " < " + id, null);
                 if (V) {
                     Log.v(TAG, "Deleted old inbound success share: " + delNum);
                 }
