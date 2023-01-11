@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30e437c6_b23d4cdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-11T18:40:49Z",
+      "side": 1,
+      "message": "A null check should be used as this method may return `null`\n```\npublic final @Nullable ContentProviderClient acquireContentProviderClient(@NonNull Uri uri)\n```",
+      "revId": "998a0952555312db4608adc86089153b38e5cad3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
