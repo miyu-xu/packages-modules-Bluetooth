@@ -45,6 +45,30 @@
       },
       "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d23d2e09_5a19f17a",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-11T16:50:30Z",
+      "side": 1,
+      "message": "There is no need to add additional entry (store) in database for the same UUID when re-registering for notifiactions. There are two cases of setCcc call:\n\n1) When peripherall writes Ccc (store this value)\n2) When re-registering Ccc after connecting to already bonded device (don\u0027t store - it should be already stored)",
+      "parentUuid": "9efdf745_098e3b32",
+      "range": {
+        "startLine": 1057,
+        "startChar": 81,
+        "endLine": 1057,
+        "endChar": 94
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
