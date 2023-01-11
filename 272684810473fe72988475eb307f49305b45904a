@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d035bc3_2ca9c4e6",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-11T19:50:16Z",
+      "side": 1,
+      "message": "nit: This doesn\u0027t look like it belongs here.  Is there a btm_pm_... That would fit better?",
+      "range": {
+        "startLine": 417,
+        "startChar": 4,
+        "endLine": 417,
+        "endChar": 11
+      },
+      "revId": "272684810473fe72988475eb307f49305b45904a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
