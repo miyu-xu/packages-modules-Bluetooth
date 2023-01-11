@@ -102,7 +102,7 @@ size_t H4Parser::BytesRequested() {
   }
 }
 
-bool H4Parser::Consume(uint8_t* buffer, int32_t bytes_read) {
+bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
   size_t bytes_to_read = BytesRequested();
   if (bytes_read <= 0) {
     LOG_INFO("remote disconnected, or unhandled error?");
