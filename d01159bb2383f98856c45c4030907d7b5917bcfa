@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d86adaec_0b1f51a7",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-01-11T19:09:02Z",
+      "side": 0,
+      "message": "Do we sacrifice the proper `alarm_mock.h` to get the same mocked property functionality you just delete here, but from another compilation unit \u0027/stub/osi.cc\u0027, and with more primitive alarm mock? What do we gain? Did I miss something?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 1
+      },
+      "revId": "d01159bb2383f98856c45c4030907d7b5917bcfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

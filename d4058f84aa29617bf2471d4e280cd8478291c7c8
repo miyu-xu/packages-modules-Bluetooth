@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6902dc8b_fdb986b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-01-11T19:09:02Z",
+      "side": 1,
+      "message": "It seems to me that these tests are not broken.",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ee85a97_52c91bd1",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3149,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-01-11T19:09:02Z",
+      "side": 1,
+      "message": "I think that each the EXPECT_CALL above was verifying each step, and now this only checks the end result.",
+      "range": {
+        "startLine": 3147,
+        "startChar": 0,
+        "endLine": 3149,
+        "endChar": 53
+      },
+      "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b358da69_ac8dbf82",
