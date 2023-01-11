@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c317e28b_3155ea1b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-11T04:06:43Z",
+      "side": 1,
+      "message": "Please check whether the corresponding batch and share were removed or not.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 58
+      },
+      "revId": "4d8888e03924caac07b2b52848846aeb07b20f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
