@@ -22,6 +22,30 @@
       },
       "revId": "28960a165f781f497443ad383178353d75a6b0ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12fc513b_4ab25045",
+        "filename": "system/stack/gatt/gatt_db.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-11T21:31:57Z",
+      "side": 1,
+      "message": "Yes. The `GATT_PERM_*` masks are additive - i.e. if we have `GATT_PERM_READ_ENCRYPTED` and `GATT_PERM_WRITE`, then we can BOTH read-if-encrypted and unconditionally write.\n\nThus, if we match READ_IF_DISCOVERABLE, and are discoverable, then we should succeed.\n\nThe reason these checks appear to be subtractive, is because they are comparing against these \"composite\" bitmasks: https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/stack/include/gatt_api.h;l\u003d293\n\nI don\u0027t know why they do that, but the behavior is the same as if we checked against the masks directly.",
+      "parentUuid": "80b9a7a9_3e43f931",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 3
+      },
+      "revId": "28960a165f781f497443ad383178353d75a6b0ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
