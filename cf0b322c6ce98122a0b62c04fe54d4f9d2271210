@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cffef9dc_d1a80f70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-12T19:33:44Z",
+      "side": 1,
+      "message": "Please fix: missing Bug tag in commit message",
+      "revId": "cf0b322c6ce98122a0b62c04fe54d4f9d2271210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
