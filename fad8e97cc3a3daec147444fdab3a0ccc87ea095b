@@ -183,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23b1eafc_04ce6bb2",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T18:47:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "adeedae1_789470c9",
+      "range": {
+        "startLine": 244,
+        "startChar": 19,
+        "endLine": 244,
+        "endChar": 42
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85327c33_24357259",
