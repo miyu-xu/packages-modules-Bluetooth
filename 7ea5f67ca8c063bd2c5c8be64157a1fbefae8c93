@@ -94,6 +94,30 @@
       },
       "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7be77c8_ae44664a",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T21:19:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b68a9b46_be24c388",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 75
+      },
+      "revId": "7ea5f67ca8c063bd2c5c8be64157a1fbefae8c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
