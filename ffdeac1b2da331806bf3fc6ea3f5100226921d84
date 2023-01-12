@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03d77713_960618ee",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T18:20:01Z",
+      "side": 1,
+      "message": "I liked this part better the way you had it.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "ffdeac1b2da331806bf3fc6ea3f5100226921d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd91f8e_4575d4e5",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T18:20:01Z",
+      "side": 1,
+      "message": "This is a bit confusing, since we really only want one at a time.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 56
+      },
+      "revId": "ffdeac1b2da331806bf3fc6ea3f5100226921d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9beeaf2_cc073a4c",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T18:20:01Z",
+      "side": 1,
+      "message": "I liked the fallthrough here better.",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 22
+      },
+      "revId": "ffdeac1b2da331806bf3fc6ea3f5100226921d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77aeb603_9b1ff8ac",
+        "filename": "tools/rootcanal/test/h4_parser_unittest.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T18:20:01Z",
+      "side": 1,
+      "message": "I think this test should also test that RESET was received.  See the CL I uploaded.",
+      "revId": "ffdeac1b2da331806bf3fc6ea3f5100226921d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
