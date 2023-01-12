@@ -593,6 +593,9 @@ void avdt_scb_hdl_setconfig_cmd(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
         avdt_scb_rej_not_in_use(p_scb, p_data);
         return;
       }
+      if (p_scb->p_ccb != NULL) {
+        alarm_cancel(p_scb->p_ccb->idle_ccb_timer);
+      }
       /* set sep as in use */
       p_scb->in_use = true;
 
@@ -1331,6 +1334,9 @@ void avdt_scb_snd_setconfig_req(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
         p_data->msg.config_cmd.hdr.ccb_idx);
     avdt_scb_rej_not_in_use(p_scb, p_data);
     return;
+  }
+  if (p_scb->p_ccb != NULL) {
+    alarm_cancel(p_scb->p_ccb->idle_ccb_timer);
   }
   p_scb->in_use = true;
   p_scb->peer_seid = p_data->msg.config_cmd.hdr.seid;
