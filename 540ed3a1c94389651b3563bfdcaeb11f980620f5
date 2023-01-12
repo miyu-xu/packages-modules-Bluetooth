@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f79e07fb_69f34041",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-12T23:51:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdf99ab8_de28a03d",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 9
+      },
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49978634_e36f401b",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-01-12T22:22:03Z",
       "side": 1,
       "message": "if this function can fail, maybe it should return boolean or status?",
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83a1f5b3_0a72f5b0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2055,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-12T23:51:30Z",
+      "side": 1,
+      "message": "Good point. Returning a bool",
+      "parentUuid": "49978634_e36f401b",
       "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8884a1a_7d8d0561",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2071,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-12T23:51:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e54ad571_7961f9c2",
+      "range": {
+        "startLine": 2068,
+        "startChar": 0,
+        "endLine": 2071,
+        "endChar": 9
+      },
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98d1c238_93ff4e80",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-01-12T22:22:03Z",
       "side": 1,
       "message": "can we avoid naked unwrap here?",
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6a4315_d3478155",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2075,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-12T23:51:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98d1c238_93ff4e80",
       "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
