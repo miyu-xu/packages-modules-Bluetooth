@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c01b63f_e5e3682a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/PeriodicAdvertisementResultTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T00:28:41Z",
+      "side": 1,
+      "message": "Please use a different address with an empty address. BT framework using this as an empty address.",
+      "range": {
+        "startLine": 34,
+        "startChar": 57,
+        "endLine": 34,
+        "endChar": 74
+      },
+      "revId": "b132b2e3242f685afe6a907c2e38d7a5f44f3446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
