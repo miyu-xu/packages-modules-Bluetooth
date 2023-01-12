@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19b0104e_a7078cd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-12T02:36:07Z",
+      "side": 1,
+      "message": "Hi Myles and Chen, would you please take a look at this change? The presubmit failure is because of an open bug b/262476965.",
+      "revId": "37af80c9335106f4f7d03dd9e1ad90492403b02d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
