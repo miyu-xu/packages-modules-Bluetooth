@@ -33,6 +33,23 @@
       "message": "I think this is looking good.\nWe just need to add the feature flagging to be able to merge the change\n\nHere it\u0027s an example of how it has been done for subrating\n\nhttps://android.googlesource.com/platform/packages/modules/Bluetooth/+/abdf101ae51703ec475d3f2811cfa6177fc74669",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d17bf993_5210a0fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T00:48:44Z",
+      "side": 1,
+      "message": "Unfortunately the CL doesn\u0027t build as it is because of libbluetooth-core.\nYou can reproduce the build failure with `m libbluetooth-core`.\n\nI uploaded a follow-up [patch](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2384374)\n(and [here](https://android.googlesource.com/platform/packages/modules/Bluetooth/+/3473a2a1d8a0131675f140fa8f914371f9295311) the external link if you have trouble to access the first gerrit link)\n\n\n\nCan you squash the content of it into this one ? (in order to only merge one valid CL and not rely on another CL to build this one)",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
