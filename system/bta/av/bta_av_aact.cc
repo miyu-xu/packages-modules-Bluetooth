@@ -2494,6 +2494,7 @@ void bta_av_str_closed(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     event = BTA_AV_OPEN_EVT;
     p_scb->open_status = BTA_AV_SUCCESS;
 
+    p_scb->p_cos->close(p_scb->hndl, p_scb->PeerAddress());
     bta_sys_conn_close(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
     bta_av_cleanup(p_scb, p_data);
     (*bta_av_cb.p_cback)(event, &data);
