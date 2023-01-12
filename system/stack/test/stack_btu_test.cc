@@ -34,7 +34,7 @@ void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {}
 
 class StackBtuTest : public ::testing::Test {
  protected:
-  void SetUp() override { mock_function_count_map.clear(); }
+  void SetUp() override { reset_mock_function_count_map(); }
 };
 
 TEST_F(StackBtuTest, post_on_main) {}
