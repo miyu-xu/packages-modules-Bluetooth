@@ -194,6 +194,8 @@ EXPORT_SYMBOL module_t device_iot_config_module = {
     .clean_up = device_iot_config_module_clean_up};
 
 void device_iot_config_write(uint16_t event, UNUSED_ATTR char* p_param) {
+  if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return;
+
   CHECK(config != NULL);
   CHECK(config_timer != NULL);
 
@@ -231,6 +233,8 @@ bool device_iot_config_has_key_value(const std::string& section,
 }
 
 void device_iot_config_save_async(void) {
+  if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return;
+
   CHECK(config != NULL);
   CHECK(config_timer != NULL);
 
@@ -240,6 +244,8 @@ void device_iot_config_save_async(void) {
 }
 
 int device_iot_config_get_device_num(const config_t& conf) {
+  if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return 0;
+
   int devices = 0;
 
   for (const auto& entry : conf.sections) {
