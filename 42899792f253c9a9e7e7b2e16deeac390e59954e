@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f121fe05_1d925908",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexClientSessionTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T04:28:26Z",
+      "side": 1,
+      "message": "Doesn\u0027t it mean you are testing the sendFile when not connected?",
+      "range": {
+        "startLine": 176,
+        "startChar": 9,
+        "endLine": 176,
+        "endChar": 81
+      },
+      "revId": "42899792f253c9a9e7e7b2e16deeac390e59954e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
