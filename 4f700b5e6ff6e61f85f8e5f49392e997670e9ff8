@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a5a672_1ba837cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T06:46:11Z",
+      "side": 1,
+      "message": "`DistanceMeasurementManager.java` and `DistanceMeasurementMethod.java` are at 0% coverage.\n\nLooking at the Cts test there is no associate test for the API neither\n\nThere is a file that match withr `DistanceMeasurementSession.java` but there is no coverage either. Can you look at it again ?",
+      "revId": "4f700b5e6ff6e61f85f8e5f49392e997670e9ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfe83982_1da12072",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T06:46:11Z",
+      "side": 1,
+      "message": "In this API, we are never checking the error path.\nWe can add some test that assertThrow on IllegalStateException and  IllegalArgumentException",
+      "revId": "4f700b5e6ff6e61f85f8e5f49392e997670e9ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
