@@ -506,6 +506,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53abf0eb_7925540f",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-12T14:40:45Z",
+      "side": 1,
+      "message": "Sounds reasonable.",
+      "parentUuid": "3933bcdf_8a4ab60e",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "341db581_fb626a3e",
         "filename": "system/stack/gatt/gatt_api.cc",
         "patchSetId": 5
@@ -670,6 +688,24 @@
       "side": 1,
       "message": "there is one in line 1096. Is it what you are looking for?",
       "parentUuid": "42c10d4f_8d12e5c7",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33656215_e860be37",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-12T14:40:45Z",
+      "side": 1,
+      "message": "Ok, it looks like it\u0027s already done in 1109 - I\u0027ve missed it.",
+      "parentUuid": "9134ce70_fd292dab",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
