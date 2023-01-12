@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da0f1c2_2f21a216",
+        "filename": "system/stack/gatt/gatt_db.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T21:41:55Z",
+      "side": 1,
+      "message": "Prefer not to have empty checks...  What do you think about this:\n\nif (!sec_flag.can_read_discoverable_characteristics) {\n  // Check for encryption\n  ...\n}",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "c38d822ab466a42617c1873be040fd5416e31574",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
