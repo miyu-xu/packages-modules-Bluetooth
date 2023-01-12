@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5673e285_8169ba54",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-12T12:15:41Z",
+      "side": 1,
+      "message": "This is for the second bud, if the first bud we connected, and we found there is other member available, then we can set the model name for the second device as the same as the first bud.",
+      "parentUuid": "ec7b6170_35dcf943",
+      "range": {
+        "startLine": 1254,
+        "startChar": 0,
+        "endLine": 1256,
+        "endChar": 67
+      },
+      "revId": "908a86488c0c268a8458f4dfd83aa2be2813ec0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fffb846_9bd4cf06",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-09T15:21:48Z",
       "side": 1,
       "message": "May I know why it is 1024 here?",
+      "range": {
+        "startLine": 1053,
+        "startChar": 4,
+        "endLine": 1053,
+        "endChar": 19
+      },
+      "revId": "908a86488c0c268a8458f4dfd83aa2be2813ec0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3b1d154_907167ba",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-01-12T12:15:41Z",
+      "side": 1,
+      "message": "Changed to use bt_bdname_t instead.",
+      "parentUuid": "9fffb846_9bd4cf06",
       "range": {
         "startLine": 1053,
         "startChar": 4,
