@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78cc29b9_81f8155f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca977048_8a326453",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c85615c_9d95fb13",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-10T15:43:30Z",
       "side": 1,
       "message": "Do we need to handle the return value?\nIf it is not necessary, how about changing the function to void?",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5dc698e_9c9fdf59",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:23Z",
+      "side": 1,
+      "message": "I add log to debug easier",
+      "parentUuid": "4c85615c_9d95fb13",
       "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "621d8b90_452bfb27",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba24db0e_39b0eed1",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "487d721c_ec329479",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-01-10T15:43:30Z",
       "side": 1,
       "message": "Please add a star(*) for this line to align with other comments.",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "746e6af5_b45761f6",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "487d721c_ec329479",
       "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d0dbdda_65e13abe",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "859e425b_562c4606",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "647ba4d5_65d41219",
@@ -103,6 +193,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c7c0b9c_094c5694",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "647ba4d5_65d41219",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a7b7184_d3fa2d01",
@@ -116,6 +224,24 @@
       "writtenOn": "2023-01-10T15:43:30Z",
       "side": 1,
       "message": "Could we changed the function by math expression instead of the switch case?",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "163b070e_f6a612ba",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a7b7184_d3fa2d01",
       "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
