@@ -16,6 +16,40 @@
       "message": "Thanks for the review. Updated it.",
       "revId": "af60c74515ca243176ed3fe7f63dadd32810e44a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76ed677_dfc72ada",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-12T01:27:59Z",
+      "side": 1,
+      "message": "Use @link to link the constant",
+      "revId": "af60c74515ca243176ed3fe7f63dadd32810e44a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7685fe64_28fc4bfb",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-12T01:27:59Z",
+      "side": 1,
+      "message": "nit: end sentence in a period for doc parsing",
+      "revId": "af60c74515ca243176ed3fe7f63dadd32810e44a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
