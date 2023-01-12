@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3ab6dc8_697930b8",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T08:29:19Z",
+      "side": 1,
+      "message": "it is perfectly fine for bonded remote to rely on the Notifications and not reading all the characteristics.\nSomeone  can say that this is a well designed Client, which is not spamming the air but rather relies on the GATT features.\n\nIf it is fairly easy to move that different place I would suggest to do it. If it takes too much, for now it should be good to have it like this.",
+      "parentUuid": "e260a66c_abaffe61",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 86
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9efdf745_098e3b32",
         "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
         "patchSetId": 6
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "There is no need to add additional entry (store) in database for the same UUID when re-registering for notifiactions. There are two cases of setCcc call:\n\n1) When peripherall writes Ccc (store this value)\n2) When re-registering Ccc after connecting to already bonded device (don\u0027t store - it should be already stored)",
       "parentUuid": "9efdf745_098e3b32",
+      "range": {
+        "startLine": 1057,
+        "startChar": 81,
+        "endLine": 1057,
+        "endChar": 94
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56657699_8ce8b73e",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T08:29:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d23d2e09_5a19f17a",
       "range": {
         "startLine": 1057,
         "startChar": 81,
