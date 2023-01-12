@@ -257,6 +257,9 @@ static btif_dm_oob_cb_t oob_cb;
 static btif_dm_metadata_cb_t metadata_cb{.le_audio_cache{40}};
 static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport);
+static void btif_dm_cb_create_bond_le(const RawAddress bd_addr,
+                                      tBLE_ADDR_TYPE addr_type,
+                                      tBT_TRANSPORT transport);
 static void btif_update_remote_properties(const RawAddress& bd_addr,
                                           BD_NAME bd_name, DEV_CLASS dev_class,
                                           tBT_DEVICE_TYPE dev_type);
@@ -744,6 +747,55 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
 
 /*******************************************************************************
  *
+ * Function         btif_dm_cb_create_bond_le
+ *
+ * Description      Create bond initiated with le device from the BTIF thread
+ *context Special handling for HID devices
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void btif_dm_cb_create_bond_le(const RawAddress bd_addr,
+                                      tBLE_ADDR_TYPE addr_type,
+                                      tBT_TRANSPORT transport) {
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+
+  if (transport == BT_TRANSPORT_AUTO && is_device_le_audio_capable(bd_addr)) {
+    LOG_INFO("LE Audio capable, forcing LE transport for Bonding");
+    transport = BT_TRANSPORT_LE;
+  }
+
+  int device_type = 0;
+  std::string addrstr = bd_addr.ToString();
+  const char* bdstr = addrstr.c_str();
+
+  /* Handle only LE create bond with random address case */
+  if (!btif_config_get_int(bdstr, "DevType", &device_type)) {
+    btif_config_set_int(bdstr, "DevType", BT_DEVICE_TYPE_BLE);
+  }
+
+  tBLE_ADDR_TYPE tmp_addr_type = BLE_ADDR_PUBLIC;
+  if (btif_storage_get_remote_addr_type(&bd_addr, &tmp_addr_type) !=
+      BT_STATUS_SUCCESS) {
+    btif_storage_set_remote_addr_type(&bd_addr, addr_type);
+  } else {
+    addr_type = tmp_addr_type;
+  }
+
+  if (btif_config_get_int(bdstr, "DevType", &device_type) &&
+      (btif_storage_get_remote_addr_type(&bd_addr, &addr_type) ==
+       BT_STATUS_SUCCESS)) {
+    BTA_DmAddBleDevice(bd_addr, addr_type,
+                       static_cast<tBT_DEVICE_TYPE>(device_type));
+  }
+
+  BTA_DmBond(bd_addr, addr_type, transport, device_type);
+  /*  Track  originator of bond creation  */
+  pairing_cb.is_local_initiated = true;
+}
+
+/*******************************************************************************
+ *
  * Function         btif_dm_get_connection_state
  *
  * Description      Returns whether the remote device is currently connected
@@ -1013,6 +1065,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
   pairing_cb.fail_reason = p_auth_cmpl->fail_reason;
 
   RawAddress bd_addr = p_auth_cmpl->bd_addr;
+  tBLE_ADDR_TYPE addr_type = p_auth_cmpl->addr_type;
   if (!bluetooth::shim::is_gd_security_enabled()) {
     if ((p_auth_cmpl->success) && (p_auth_cmpl->key_present)) {
       if ((p_auth_cmpl->key_type < HCI_LKEY_TYPE_DEBUG_COMB) ||
@@ -1158,7 +1211,11 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
           BTIF_TRACE_WARNING("%s() - Pairing timeout; retrying (%d) ...",
                              __func__, pairing_cb.timeout_retries);
           --pairing_cb.timeout_retries;
-          btif_dm_cb_create_bond(bd_addr, BT_TRANSPORT_AUTO);
+          if (addr_type == BLE_ADDR_RANDOM) {
+            btif_dm_cb_create_bond_le(bd_addr, addr_type, BT_TRANSPORT_AUTO);
+          } else {
+            btif_dm_cb_create_bond(bd_addr, BT_TRANSPORT_AUTO);
+          }
           return;
         }
         FALLTHROUGH_INTENDED; /* FALLTHROUGH */
@@ -1189,7 +1246,11 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
           /* Create the Bond once again */
           BTIF_TRACE_WARNING("%s() auto pair failed. Reinitiate Bond",
                              __func__);
-          btif_dm_cb_create_bond(bd_addr, BT_TRANSPORT_AUTO);
+          if (addr_type == BLE_ADDR_RANDOM) {
+            btif_dm_cb_create_bond_le(bd_addr, addr_type, BT_TRANSPORT_AUTO);
+          } else {
+            btif_dm_cb_create_bond(bd_addr, BT_TRANSPORT_AUTO);
+          }
           return;
         } else {
           /* if autopair attempts are more than 1, or not attempted */
@@ -2225,6 +2286,24 @@ void btif_dm_create_bond(const RawAddress bd_addr, int transport) {
 
   pairing_cb.timeout_retries = NUM_TIMEOUT_RETRIES;
   btif_dm_cb_create_bond(bd_addr, transport);
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_dm_create_bond_le
+ *
+ * Description      Initiate bonding with the specified device over le transport
+ *
+ ******************************************************************************/
+void btif_dm_create_bond_le(const RawAddress bd_addr, tBLE_ADDR_TYPE addr_type,
+                            int transport) {
+  BTIF_TRACE_EVENT("%s: bd_addr=%s, addr_type=%d, transport=%d", __func__,
+                   ADDRESS_TO_LOGGABLE_CSTR(bd_addr), addr_type, transport);
+  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND,
+                            pairing_cb.state);
+
+  pairing_cb.timeout_retries = NUM_TIMEOUT_RETRIES;
+  btif_dm_cb_create_bond_le(bd_addr, addr_type, transport);
 }
 
 /*******************************************************************************
