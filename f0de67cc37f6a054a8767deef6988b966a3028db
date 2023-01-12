@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cf2b554_18f7bcec",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-01-12T09:23:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5dc698e_9c9fdf59",
+      "revId": "f0de67cc37f6a054a8767deef6988b966a3028db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba24db0e_39b0eed1",
