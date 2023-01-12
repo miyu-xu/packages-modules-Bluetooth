@@ -16,6 +16,24 @@
       "message": "Might have to remove this TO line for the change.",
       "revId": "8a7b88ad376ec85ac87a2d302108895be83c5a97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34872ae7_544c4e10",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T06:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50caf41c_2c8d4b17",
+      "revId": "8a7b88ad376ec85ac87a2d302108895be83c5a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
