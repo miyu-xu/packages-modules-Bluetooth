@@ -36,6 +36,7 @@
 #include <vector>
 
 #include "btif/include/btif_config.h"
+#include "btif/include/stack_manager.h"
 #include "device/include/interop.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
@@ -1428,7 +1429,8 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
     return;
   }
 
-  uint16_t dut_avrcp_version = AVRC_GetProfileVersion();
+  uint16_t dut_avrcp_version =
+      GetInterfaceToProfiles()->profileSpecific_HACK->AVRC_GetProfileVersion();
   LOG_INFO("Current DUT AVRCP Version %x", dut_avrcp_version);
   // Some remote devices will have interoperation issue when receive higher
   // AVRCP version. If those devices are in IOP database and our version higher
