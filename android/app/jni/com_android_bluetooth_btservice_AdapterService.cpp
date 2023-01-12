@@ -1124,7 +1124,7 @@ static jboolean cancelDiscoveryNative(JNIEnv* env, jobject obj) {
 }
 
 static jboolean createBondNative(JNIEnv* env, jobject obj, jbyteArray address,
-                                 jint transport) {
+                                 jint addrType, jint transport) {
   ALOGV("%s", __func__);
 
   if (!sBluetoothInterface) return JNI_FALSE;
