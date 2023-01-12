@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "844e4601_7761ce56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T08:24:47Z",
+      "side": 1,
+      "message": "This is not LeAudio specific. This is GATT specific thing, and yes, I also think it shall be done in GATT native layer. Unfortunatelly, the design is different, and GATT server which is in Java needs to take care for it by itself in Java.\n\nWhen we move gMCS to Native at some point of time, we will keep it in Native.",
+      "parentUuid": "92dafec9_86ab8fac",
+      "revId": "e69025ab1fb6ce3e94079e209fa2e34071397488",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bb0d820_efc2f6a5",
