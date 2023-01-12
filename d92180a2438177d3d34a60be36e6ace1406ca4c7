@@ -269,6 +269,30 @@
       },
       "revId": "d92180a2438177d3d34a60be36e6ace1406ca4c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b38f95_28a57bec",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T18:05:33Z",
+      "side": 1,
+      "message": "Is this one special?",
+      "parentUuid": "90fa39f2_2b16a99b",
+      "range": {
+        "startLine": 556,
+        "startChar": 29,
+        "endLine": 556,
+        "endChar": 36
+      },
+      "revId": "d92180a2438177d3d34a60be36e6ace1406ca4c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
