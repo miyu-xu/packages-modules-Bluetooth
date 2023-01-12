@@ -12,8 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+use crate::core::RawAddress;
+
+use super::ids::{ConnectionId, TransactionId, AttHandle};
+
 /// These callbacks are expected to be made available to the GattModule from JNI.
-pub trait GattJniCallbacks {
-    /// TEMP
-    fn ack(&self, x: &str);
+pub trait GattCallbacks {
+    /// Invoked when a client tries to read a characteristic. Expects a response using bluetooth::gatt::send_response();
+    fn on_server_read_characteristic(
+        &self,
+        address: RawAddress,
+        conn_id: ConnectionId,
+        trans_id: TransactionId,
+        handle: AttHandle,
+        offset: u32,
+        is_long: bool,
+    );
 }
