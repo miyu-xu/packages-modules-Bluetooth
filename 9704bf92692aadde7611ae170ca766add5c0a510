@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b648901_64dc4b43",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-12T08:28:17Z",
+      "side": 1,
+      "message": "Yes, this is definitely something which we\u0027ll have to solve. I would prefer to solve it a bit later since I\u0027m focusing on getting the features working right now.",
+      "parentUuid": "a5904267_91ebdd79",
+      "range": {
+        "startLine": 96,
+        "startChar": 40,
+        "endLine": 96,
+        "endChar": 45
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bf34444_f42347fa",
         "filename": "tools/pdl/src/backends/rust/parser.rs",
         "patchSetId": 7
@@ -249,6 +273,30 @@
       "side": 1,
       "message": "I am not sure..\nTaking this example above, the generated code will be something like\n```\nlet chunk \u003d get_u32(); // No masking since all fields fit on 32bits\nlet a \u003d (chunk \u0026 0x3) as u8;\nlet b \u003d (chunk \u003e\u003e 2); // Mask not applied because width % 8 \u003d\u003d 0\nlet c \u003d ((chunk \u003e\u003e 26) \u0026 0x3f) as u8;\n```\nThe field `b` should have been masked with `0xffffff` here.",
       "parentUuid": "2b4321fa_844b445a",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70887d9e_129c7ae1",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-12T08:28:17Z",
+      "side": 1,
+      "message": "Oh, you are right! Thanks 😊",
+      "parentUuid": "c6cb32ff_0f788631",
       "range": {
         "startLine": 120,
         "startChar": 15,
