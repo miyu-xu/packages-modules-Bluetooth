@@ -129,6 +129,8 @@ class BtifA2dpSinkControlBlock {
 // Mutex for below data structures.
 static std::mutex g_mutex;
 
+static int handler_running = 0;
+
 static BtifA2dpSinkControlBlock btif_a2dp_sink_cb("bt_a2dp_sink_worker_thread");
 
 static std::atomic<int> btif_a2dp_sink_state{BTIF_A2DP_SINK_STATE_OFF};
@@ -213,6 +215,10 @@ static void btif_a2dp_sink_init_delayed() {
 
 bool btif_a2dp_sink_startup() {
   LOG_INFO("%s", __func__);
+  {
+    LockGuard lock(g_mutex);
+    handler_running = 0;
+  }
   btif_a2dp_sink_cb.worker_thread.DoInThread(
       FROM_HERE, base::BindOnce(btif_a2dp_sink_startup_delayed));
   return true;
@@ -487,7 +493,14 @@ static void btif_a2dp_sink_audio_handle_stop_decoding() {
 }
 
 static void btif_decode_alarm_cb(UNUSED_ATTR void* context) {
-  LockGuard lock(g_mutex);
+  {
+    LockGuard lock(g_mutex);
+    if (handler_running == 1) {
+      APPL_TRACE_WARNING("%s: sink handler already running", __func__);
+      return;
+    }
+    handler_running = 1;
+  }
   btif_a2dp_sink_cb.worker_thread.DoInThread(
       FROM_HERE, base::BindOnce(btif_a2dp_sink_avk_handle_timer));
 }
@@ -545,6 +558,8 @@ static void btif_a2dp_sink_handle_inc_media(BT_HDR* p_msg) {
 
 static void btif_a2dp_sink_avk_handle_timer() {
   LockGuard lock(g_mutex);
+  /* Re-arm this handler when the lock releases */
+  handler_running = 0;
 
   BT_HDR* p_msg;
   if (fixed_queue_is_empty(btif_a2dp_sink_cb.rx_audio_queue)) {
