@@ -138,6 +138,10 @@ static const char* interop_feature_string_(const interop_feature_t feature) {
     CASE_RETURN_STR(INTEROP_DISABLE_ROLE_SWITCH)
     CASE_RETURN_STR(INTEROP_HID_HOST_LIMIT_SNIFF_INTERVAL)
     CASE_RETURN_STR(INTEROP_DISABLE_NAME_REQUEST)
+    /** M: some device may have problem in reconnect flow,
+     * need we initiate connection after signalling timeout @{ */
+    CASE_RETURN_STR(INTEROP_A2DP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT)
+    /** @} */
     CASE_RETURN_STR(INTEROP_AVRCP_1_4_ONLY)
     CASE_RETURN_STR(INTEROP_DISABLE_SNIFF)
     CASE_RETURN_STR(INTEROP_DISABLE_AVDTP_SUSPEND)

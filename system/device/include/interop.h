@@ -101,6 +101,11 @@ typedef enum {
   // but will block pairing.
   INTEROP_DISABLE_NAME_REQUEST,
 
+  /** M: some device may have problem in reconnect flow,
+     * need we initiate connection after signalling timeout @{ */
+  INTEROP_A2DP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT,
+  /** @} */
+
   // Respond AVRCP profile version only 1.4 for some device.
   INTEROP_AVRCP_1_4_ONLY,
 
