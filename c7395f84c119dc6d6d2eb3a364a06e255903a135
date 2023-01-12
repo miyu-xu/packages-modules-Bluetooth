@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70da0af8_13132254",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-12T09:06:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a07364a9_d308fadc",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 52
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ae913e0_b1dde2b9",
@@ -207,6 +231,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a895e92_ce7eb496",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-12T09:06:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3e574f9_c2bb307e",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 7
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d2e9f5c_de38d494",
@@ -268,6 +316,30 @@
       "side": 1,
       "message": "It\u0027s the way the file is written.  I don\u0027t like mixing the logic.  It makes it too hard to compare.",
       "parentUuid": "e9c23471_154d1670",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 12
+      },
+      "revId": "c7395f84c119dc6d6d2eb3a364a06e255903a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a099cd_1e9e412c",
+        "filename": "tools/rootcanal/model/hci/h4_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-12T09:06:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "785eade5_185cebd2",
       "range": {
         "startLine": 223,
         "startChar": 0,
