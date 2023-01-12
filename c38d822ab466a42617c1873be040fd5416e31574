@@ -22,6 +22,30 @@
       },
       "revId": "c38d822ab466a42617c1873be040fd5416e31574",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70cbff6b_0b0d0836",
+        "filename": "system/stack/gatt/gatt_db.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-12T22:24:58Z",
+      "side": 1,
+      "message": "I considered that but I thought this was a bit easier to read than a tiny `!`. See discussion (but no conclusion) here: https://yaqs.corp.google.com/eng/q/5430573691492630528\n\nHappy to change if you prefer?",
+      "parentUuid": "9da0f1c2_2f21a216",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "c38d822ab466a42617c1873be040fd5416e31574",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
