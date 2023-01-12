@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "458ea595_b1b86ee0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T04:20:26Z",
+      "side": 1,
+      "message": "This test does not actually check whether it trims redundant records or not.\nInstead it check whether delete is called twice when there are more than MAX_RECORDS_INI_DATABASE rows.\n\nPlease rename it accordingly or change the code accordingly.\n\nAnd please \"KEEP THIS IN MIND\". You had the same mistakes in other CLs as well.",
+      "range": {
+        "startLine": 134,
+        "startChar": 29,
+        "endLine": 134,
+        "endChar": 50
+      },
+      "revId": "40548068d2f2e604865e9562cb02a6e0fd2a9d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d44598f_eb8d9fa7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T04:20:26Z",
+      "side": 1,
+      "message": "return value doesn\u0027t look important. Please add a comment like follows\n\n1 /* any int is Ok */",
+      "range": {
+        "startLine": 137,
+        "startChar": 17,
+        "endLine": 137,
+        "endChar": 18
+      },
+      "revId": "40548068d2f2e604865e9562cb02a6e0fd2a9d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d928e5d6_afbfc790",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T04:20:26Z",
+      "side": 1,
+      "message": "Use MAX_RECORDS_IN_DATABASE + alpha",
+      "range": {
+        "startLine": 141,
+        "startChar": 29,
+        "endLine": 141,
+        "endChar": 32
+      },
+      "revId": "40548068d2f2e604865e9562cb02a6e0fd2a9d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
