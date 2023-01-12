@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cb8d635_6cf741ee",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-12T08:32:33Z",
+      "side": 1,
+      "message": "So it means that non-connected device would be registered for notification ?",
+      "parentUuid": "a3ab6dc8_697930b8",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 86
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9efdf745_098e3b32",
         "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
         "patchSetId": 6
