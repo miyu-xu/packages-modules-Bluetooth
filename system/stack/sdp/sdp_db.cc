@@ -336,25 +336,9 @@ bool SDP_DeleteRecord(uint32_t handle) {
   return (false);
 }
 
-/*******************************************************************************
- *
- * Function         SDP_AddAttribute
- *
- * Description      This function is called to add an attribute to a record.
- *                  This would be through the SDP database maintenance API.
- *                  If the attribute already exists in the record, it is
- *                  replaced with the new value.
- *
- * NOTE             Attribute values must be passed as a Big Endian stream.
- *
- * Returns          true if added OK, else false
- *
- ******************************************************************************/
-bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
-                      uint32_t attr_len, uint8_t* p_val) {
-  uint16_t xx, yy, zz;
-  tSDP_RECORD* p_rec = &sdp_cb.server_db.record[0];
-
+static void debug_print_attribute(uint32_t handle, uint16_t attr_id,
+                                  uint8_t attr_type, uint32_t attr_len,
+                                  uint8_t* p_val) {
   if (sdp_cb.trace_level >= BT_TRACE_LEVEL_DEBUG) {
     if ((attr_type == UINT_DESC_TYPE) ||
         (attr_type == TWO_COMP_INT_DESC_TYPE) ||
@@ -380,7 +364,7 @@ bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
           handle, attr_id, attr_type, attr_len, p_val, *p_val);
     } else if ((attr_type == TEXT_STR_DESC_TYPE) ||
                (attr_type == URL_DESC_TYPE)) {
-      if (p_val[attr_len - 1] == '\0') {
+      if (attr_len > 0 && p_val[attr_len - 1] == '\0') {
         SDP_TRACE_DEBUG(
             "SDP_AddAttribute: handle:%X, id:%04X, type:%d, len:%d, p_val:%p, "
             "*p_val:%s",
@@ -396,6 +380,28 @@ bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
           handle, attr_id, attr_type, attr_len, p_val);
     }
   }
+}
+
+/*******************************************************************************
+ *
+ * Function         SDP_AddAttribute
+ *
+ * Description      This function is called to add an attribute to a record.
+ *                  This would be through the SDP database maintenance API.
+ *                  If the attribute already exists in the record, it is
+ *                  replaced with the new value.
+ *
+ * NOTE             Attribute values must be passed as a Big Endian stream.
+ *
+ * Returns          true if added OK, else false
+ *
+ ******************************************************************************/
+bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
+                      uint32_t attr_len, uint8_t* p_val) {
+  uint16_t xx, yy, zz;
+  tSDP_RECORD* p_rec = &sdp_cb.server_db.record[0];
+
+  debug_print_attribute(handle, attr_id, attr_type, attr_len, p_val);
 
   /* Find the record in the database */
   for (zz = 0; zz < sdp_cb.server_db.num_records; zz++, p_rec++) {
