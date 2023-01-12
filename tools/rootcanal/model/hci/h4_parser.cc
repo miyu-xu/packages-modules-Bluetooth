@@ -135,10 +135,9 @@ bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
       break;
 
     case HCI_RECOVERY: {
-      // Skip all received bytes until the HCI Reset command is received
-      // as the sequence of bytes 0x01 0x03 0x0c 0x00.
-      // The parser can end up in a bad state when Cuttlefish is restarted.
-      const std::array<uint8_t, 4> recovery_sequence{0x01, 0x03, 0x0c, 0x00};
+      // Skip all received bytes until the HCI Reset command is received.
+      // The parser can end up in a bad state when the host is restarted.
+      const std::array<uint8_t, 4> reset_command{0x01, 0x03, 0x0c, 0x00};
       size_t offset = packet_.size();
       LOG_WARN("Received byte in recovery state : 0x%x",
                static_cast<unsigned>(*buffer));
@@ -146,28 +145,18 @@ bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
 
       // Last byte does not match expected byte in the sequence.
       // Drop all the bytes and start over.
-      if (packet_[offset] != recovery_sequence[offset]) {
-        // The mismatched byte can also be the first of the
-        // correct sequence.
+      if (packet_[offset] != reset_command[offset]) {
         packet_.clear();
-        if (*buffer == recovery_sequence[0]) {
+        // The mismatched byte can also be the first of the correct sequence.
+        if (*buffer == reset_command[0]) {
           packet_.push_back(*buffer);
         }
-        return true;
       }
 
-      // Received full reset command.
-      // Forward the command to the handler and return
-      // to the normal operating mode.
-      if (packet_.size() == recovery_sequence.size()) {
+      if (packet_.size() == reset_command.size()) {
         LOG_INFO("Received HCI Reset command, exiting recovery state");
-        hci_packet_type_ = PacketType::COMMAND;
-        packet_.erase(packet_.begin());
-        OnPacketReady();
-        state_ = HCI_TYPE;
-        return true;
+        bytes_wanted_ = 0;
       }
-
       break;
     }
 
@@ -193,10 +182,12 @@ bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
         LOG_ERROR("Received invalid packet type 0x%x, entering recovery state",
                   static_cast<unsigned>(packet_type_));
         state_ = HCI_RECOVERY;
-        break;
+        hci_packet_type_ = PacketType::COMMAND;
+        bytes_wanted_ = 1;
+      } else {
+        state_ = HCI_PREAMBLE;
+        bytes_wanted_ = preamble_size[static_cast<size_t>(hci_packet_type_)];
       }
-      state_ = HCI_PREAMBLE;
-      bytes_wanted_ = preamble_size[static_cast<size_t>(hci_packet_type_)];
       break;
 
     case HCI_PREAMBLE:
@@ -213,14 +204,12 @@ bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
       }
       break;
 
+    case HCI_RECOVERY:
     case HCI_PAYLOAD:
       if (bytes_wanted_ == 0) {
         OnPacketReady();
         state_ = HCI_TYPE;
       }
-      break;
-
-    case HCI_RECOVERY:
       break;
   }
   return true;
