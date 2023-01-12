@@ -398,17 +398,16 @@ static void debug_print_attribute(uint32_t handle, uint16_t attr_id,
  ******************************************************************************/
 bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
                       uint32_t attr_len, uint8_t* p_val) {
-  uint16_t xx, yy, zz;
-  tSDP_RECORD* p_rec = &sdp_cb.server_db.record[0];
-
   debug_print_attribute(handle, attr_id, attr_type, attr_len, p_val);
 
   /* Find the record in the database */
-  for (zz = 0; zz < sdp_cb.server_db.num_records; zz++, p_rec++) {
+  tSDP_RECORD* p_rec = &sdp_cb.server_db.record[0];
+  for (uint16_t zz = 0; zz < sdp_cb.server_db.num_records; zz++, p_rec++) {
     if (p_rec->record_handle == handle) {
       tSDP_ATTRIBUTE* p_attr = &p_rec->attribute[0];
 
       /* Found the record. Now, see if the attribute already exists */
+      uint16_t xx;
       for (xx = 0; xx < p_rec->num_attributes; xx++, p_attr++) {
         /* The attribute exists. replace it */
         if (p_attr->id == attr_id) {
@@ -425,7 +424,7 @@ bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
         p_attr = &p_rec->attribute[p_rec->num_attributes];
       else {
         /* Since the attributes are kept in sorted order, insert ours here */
-        for (yy = p_rec->num_attributes; yy > xx; yy--)
+        for (uint16_t yy = p_rec->num_attributes; yy > xx; yy--)
           p_rec->attribute[yy] = p_rec->attribute[yy - 1];
       }
 
