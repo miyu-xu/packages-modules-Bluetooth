@@ -46,6 +46,30 @@
       },
       "revId": "d01159bb2383f98856c45c4030907d7b5917bcfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb489739_ecc2362b",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-01-12T15:18:46Z",
+      "side": 0,
+      "message": "Right... this implementation with map was indeed naive as it used just the pointer values as keys. I didn\u0027t notice this at first.\n\nAnd since pulling just individual files like \"../test/mock/mock_osi_properties.cc\" into the Android.bp from the directory above the current directory is forbidden, we have to take the whole module.",
+      "parentUuid": "e8ab5606_61f6b44c",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 1
+      },
+      "revId": "d01159bb2383f98856c45c4030907d7b5917bcfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
