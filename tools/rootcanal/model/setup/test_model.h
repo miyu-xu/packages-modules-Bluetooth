@@ -16,11 +16,11 @@
 
 #pragma once
 
-#include <stddef.h>  // for size_t
-
 #include <chrono>      // for milliseconds
+#include <cstddef>     // for size_t
 #include <functional>  // for function
 #include <memory>      // for shared_ptr
+#include <mutex>
 #include <string>      // for string
 #include <vector>      // for vector
 
@@ -131,6 +131,11 @@ class TestModel {
   AsyncUserId model_user_id_;
   AsyncTaskId timer_tick_task_{kInvalidTaskId};
   std::chrono::milliseconds timer_period_{};
+
+  // Mutex for synchronizing mutations of the scene (Phy devices and layers).
+  // Correct synchronization could be achieved by scheduling all changes on the
+  // event thread, but this is less error prone.
+  std::recursive_mutex synchronization_mutex_;
 };
 
 }  // namespace rootcanal

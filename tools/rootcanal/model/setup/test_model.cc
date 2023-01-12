@@ -84,23 +84,23 @@ void TestModel::StopTimer() {
 }
 
 size_t TestModel::Add(std::shared_ptr<Device> device) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   devices_.push_back(std::move(device));
   return devices_.size() - 1;
 }
 
 void TestModel::Del(size_t device_index) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   if (device_index >= devices_.size() || devices_[device_index] == nullptr) {
     LOG_WARN("Unknown device %zu", device_index);
     return;
   }
-  schedule_task_(model_user_id_, std::chrono::milliseconds(0),
-                 [this, device_index]() {
-                   devices_[device_index]->UnregisterPhyLayers();
-                   devices_[device_index] = nullptr;
-                 });
+  devices_[device_index]->UnregisterPhyLayers();
+  devices_[device_index] = nullptr;
 }
 
 size_t TestModel::AddPhy(Phy::Type phy_type) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   size_t factory_id = phys_.size();
   phys_.push_back(std::move(CreatePhy(phy_type, factory_id)));
   return factory_id;
@@ -111,16 +111,16 @@ std::unique_ptr<PhyLayerFactory> TestModel::CreatePhy(Phy::Type phy_type, size_t
 }
 
 void TestModel::DelPhy(size_t phy_index) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   if (phy_index >= phys_.size()) {
     LOG_WARN("Unknown phy at index %zu", phy_index);
     return;
   }
-  schedule_task_(
-      model_user_id_, std::chrono::milliseconds(0),
-      [this, phy_index]() { phys_[phy_index]->UnregisterAllPhyLayers(); });
+  phys_[phy_index]->UnregisterAllPhyLayers();
 }
 
 void TestModel::AddDeviceToPhy(size_t device_index, size_t phy_index) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   if (device_index >= devices_.size() || devices_[device_index] == nullptr) {
     LOG_WARN("Unknown device %zu", device_index);
     return;
@@ -138,6 +138,7 @@ void TestModel::AddDeviceToPhy(size_t device_index, size_t phy_index) {
 }
 
 void TestModel::DelDeviceFromPhy(size_t device_index, size_t phy_index) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   if (device_index >= devices_.size() || devices_[device_index] == nullptr) {
     LOG_WARN("Unknown device %zu", device_index);
     return;
@@ -156,6 +157,7 @@ void TestModel::DelDeviceFromPhy(size_t device_index, size_t phy_index) {
 
 void TestModel::AddLinkLayerConnection(std::shared_ptr<Device> dev,
                                        Phy::Type phy_type) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   LOG_INFO("Adding a new link layer connection of type: %s",
            phy_type == Phy::Type::BR_EDR ? "BR_EDR" : "LOW_ENERGY");
   int index = Add(dev);
@@ -195,6 +197,7 @@ size_t TestModel::AddHciConnection(std::shared_ptr<HciDevice> dev) {
   }};
   dev->SetAddress(bluetooth_address);
 
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   LOG_INFO("Initialized device with address %s",
            bluetooth_address.ToString().c_str());
 
@@ -217,6 +220,7 @@ size_t TestModel::AddHciConnection(std::shared_ptr<HciDevice> dev) {
 }
 
 void TestModel::OnConnectionClosed(size_t index, AsyncUserId user_id) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   if (index >= devices_.size() || devices_[index] == nullptr) {
     LOG_WARN("Unknown device %zu", index);
     return;
@@ -228,6 +232,7 @@ void TestModel::OnConnectionClosed(size_t index, AsyncUserId user_id) {
 }
 
 void TestModel::SetDeviceAddress(size_t index, Address address) {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   if (index >= devices_.size() || devices_[index] == nullptr) {
     LOG_WARN("Can't find device %zu", index);
     return;
@@ -236,6 +241,7 @@ void TestModel::SetDeviceAddress(size_t index, Address address) {
 }
 
 const std::string& TestModel::List() {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   list_string_ = "";
   list_string_ += " Devices: \r\n";
   for (size_t i = 0; i < devices_.size(); i++) {
@@ -255,6 +261,7 @@ const std::string& TestModel::List() {
 }
 
 void TestModel::TimerTick() {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   for (size_t i = 0; i < devices_.size(); i++) {
     if (devices_[i] != nullptr) {
       devices_[i]->TimerTick();
@@ -263,16 +270,15 @@ void TestModel::TimerTick() {
 }
 
 void TestModel::Reset() {
+  std::lock_guard<std::recursive_mutex> guard(synchronization_mutex_);
   StopTimer();
-  schedule_task_(model_user_id_, std::chrono::milliseconds(0), [this]() {
-    LOG_INFO("Running Reset task");
-    for (size_t i = 0; i < devices_.size(); i++) {
-      if (devices_[i] != nullptr) {
-        devices_[i]->UnregisterPhyLayers();
-      }
+  LOG_INFO("Running Reset task");
+  for (size_t i = 0; i < devices_.size(); i++) {
+    if (devices_[i] != nullptr) {
+      devices_[i]->UnregisterPhyLayers();
     }
-    devices_.clear();
-  });
+  }
+  devices_.clear();
 }
 
 }  // namespace rootcanal
