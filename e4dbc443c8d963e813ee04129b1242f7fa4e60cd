@@ -91,6 +91,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "002ee5a5_51b3f867",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "do you mean GATT to set maximum MTU after connection, no matter if there is a request for that?\n\nThis was my first idea, but then we conclude to do that only whenever there is user which requires anything more then default so we are not changing previous behavior too much.\n\nEventually we might do that as well.",
+      "parentUuid": "a4491c89_498ac227",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "59dbbd0f_a814503f",
         "filename": "system/bta/gatt/bta_gattc_act.cc",
         "patchSetId": 5
@@ -129,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8818b875_a06bc059",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57dc1804_b1d9c385",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d02e2358_9129450e",
@@ -142,6 +178,24 @@
       "writtenOn": "2022-12-29T17:23:09Z",
       "side": 1,
       "message": "This function become senseless after such change.\n\nCaller would like to configure MTU to \"uint16_t mtu\" which is never used in scope of this method.\n\nbtw. I like the idea of just set maximum possible for \"Device\" MTU only once. I don\u0027t see reason to set lower value with some research e.g. apps can configure their own MTU.",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec81239_f7a50272",
+        "filename": "system/bta/gatt/bta_gattc_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Yes, now user request value, but whatever is requested, stack says maximum to the remote side.\nThis is intentional and the only way we can solve the problem of handling multiple MTU request from muiltiple applications, having in mind that MTU Exchange can be done only once on the link.",
+      "parentUuid": "d02e2358_9129450e",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -192,6 +246,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d88aa4f0_39306844",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "This old be hard as this is the designed way to proceed with outstanding requests.\nI would just stick to that and see what happens.",
+      "parentUuid": "66dec281_bb535008",
+      "range": {
+        "startLine": 376,
+        "startChar": 6,
+        "endLine": 376,
+        "endChar": 33
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e25d8874_63bd5e46",
@@ -228,6 +306,48 @@
       "writtenOn": "2022-12-29T17:23:09Z",
       "side": 1,
       "message": "Format of this comment is broken and something is probably missing here:\n`This function shall be called before calling GATTC_ConfgureMTU in order to`",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "879cf00f_c7ac5c68",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e25d8874_63bd5e46",
+      "range": {
+        "startLine": 730,
+        "startChar": 29,
+        "endLine": 730,
+        "endChar": 31
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6555a3_2df01161",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b154df24_5c11cc97",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -272,6 +392,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5b336c_b9dd8465",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1360871f_febed4ec",
+      "range": {
+        "startLine": 742,
+        "startChar": 55,
+        "endLine": 742,
+        "endChar": 58
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08fd2fd4_c4429754",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13249c71_a3f6d654",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87719317_974a2f82",
@@ -289,6 +451,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e8e7a41_d9793c43",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "In general it should not be - but since gatt_set_conn_id_waiting_for_mtu_exchange() check p_tcb if it is null, we need to handle that error path also here.",
+      "parentUuid": "87719317_974a2f82",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfc93335_987a9c26",
@@ -302,6 +482,24 @@
       "writtenOn": "2022-12-29T17:23:09Z",
       "side": 1,
       "message": "This was confusing me a little bit. I thought that this may mean \"MTU exchange is not done yet but may be already pending\"",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3933bcdf_8a4ab60e",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Do you think that we need some more description in the line 739?",
+      "parentUuid": "bfc93335_987a9c26",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -341,6 +539,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dd8ed00_3d42859e",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "I will handle it as per other comment below. thx.",
+      "parentUuid": "d3b1d3b3_37ced3d0",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "823b7f5d_c2457da4",
@@ -354,6 +570,30 @@
       "writtenOn": "2022-12-29T16:33:19Z",
       "side": 1,
       "message": "nit: I think there\u0027s something like std::list::swap which does the shallow copy/swap",
+      "range": {
+        "startLine": 783,
+        "startChar": 2,
+        "endLine": 785,
+        "endChar": 15
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b0f0cfb_a6b7fe10",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "823b7f5d_c2457da4",
       "range": {
         "startLine": 783,
         "startChar": 2,
@@ -381,6 +621,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a714277a_8040b68a",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "will change to  LOG_INFO(\"Local pending MTU %d, Remote (%s) MTU %d\",",
+      "parentUuid": "d8e24d2d_66876bed",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42c10d4f_8d12e5c7",
@@ -394,6 +652,24 @@
       "writtenOn": "2022-12-29T17:23:09Z",
       "side": 1,
       "message": "Maybe there should be check for default LE ATT_MTU ?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9134ce70_fd292dab",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "there is one in line 1096. Is it what you are looking for?",
+      "parentUuid": "42c10d4f_8d12e5c7",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -415,6 +691,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ded485a_01297424",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1113,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "1) ack\n2) those information are already on line 1101.",
+      "parentUuid": "be88d6d8_b56145d3",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e16da6b5_fe22449d",
@@ -432,6 +726,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8faf4b1_57ac1edc",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e16da6b5_fe22449d",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0efcb715_15c47e93",
@@ -445,6 +757,24 @@
       "writtenOn": "2022-12-29T17:23:09Z",
       "side": 1,
       "message": "Is this intentional that transport is parameter ?",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7b0ffe_7e97c599",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "yes it is.",
+      "parentUuid": "0efcb715_15c47e93",
       "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -489,6 +819,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce2c9572_1652288b",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2a60452_87a345d8",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa194bbc_4c28e0c6",
@@ -502,6 +850,30 @@
       "writtenOn": "2022-12-29T16:33:19Z",
       "side": 1,
       "message": "...something is missing here?",
+      "range": {
+        "startLine": 918,
+        "startChar": 29,
+        "endLine": 918,
+        "endChar": 31
+      },
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b50448ee_60a5806f",
+        "filename": "system/stack/include/gatt_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T13:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa194bbc_4c28e0c6",
       "range": {
         "startLine": 918,
         "startChar": 29,
