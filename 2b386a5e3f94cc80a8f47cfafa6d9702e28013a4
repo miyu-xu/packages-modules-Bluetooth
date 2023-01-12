@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a680cb1_c91e8f90",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T06:38:00Z",
+      "side": 1,
+      "message": "Rename to `unusedParams` or remove the parameter to silent the Error Prone warning",
+      "range": {
+        "startLine": 118,
+        "startChar": 38,
+        "endLine": 118,
+        "endChar": 44
+      },
+      "revId": "2b386a5e3f94cc80a8f47cfafa6d9702e28013a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1dcbdfe_bde59d6b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/DistanceMeasurementManagerTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T06:38:00Z",
+      "side": 1,
+      "message": "Not used. Delete ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 46
+      },
+      "revId": "2b386a5e3f94cc80a8f47cfafa6d9702e28013a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
