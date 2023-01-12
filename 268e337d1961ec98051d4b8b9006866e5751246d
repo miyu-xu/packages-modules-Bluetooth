@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2843e162_3401341d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpVolumeManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T00:16:18Z",
+      "side": 1,
+      "message": "Please don\u0027t use 00s. It is used for an empty address by the framework.",
+      "range": {
+        "startLine": 47,
+        "startChar": 57,
+        "endLine": 47,
+        "endChar": 74
+      },
+      "revId": "268e337d1961ec98051d4b8b9006866e5751246d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9e5601_6709183c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpVolumeManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T00:16:18Z",
+      "side": 1,
+      "message": "Use TEST_DEVICE_MAX_VOUME isntead.",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 27
+      },
+      "revId": "268e337d1961ec98051d4b8b9006866e5751246d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d15ee7ec_bd4810e9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpVolumeManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-12T00:16:18Z",
+      "side": 1,
+      "message": "I feel this can fail depends on the device max volume with extreme values such as 1, 2, 3?\n\nWhat about using isIn(Range)? \n\nhttps://source.corp.google.com/android/frameworks/base/services/tests/servicestests/src/com/android/server/pm/UserManagerTest.java;l\u003d983?q\u003disin%5C",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 48
+      },
+      "revId": "268e337d1961ec98051d4b8b9006866e5751246d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
