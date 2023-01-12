@@ -16,6 +16,23 @@
       "message": "Please take a look. Thanks!",
       "revId": "45953959ad85ab5330a0256236d2b026cbfe235a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad0c9b07_1664d33d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-12T22:11:11Z",
+      "side": 1,
+      "message": "Please add public documentation",
+      "revId": "45953959ad85ab5330a0256236d2b026cbfe235a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
