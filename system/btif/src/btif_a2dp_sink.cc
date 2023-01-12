@@ -60,7 +60,8 @@ enum {
   BTIF_A2DP_SINK_STATE_OFF,
   BTIF_A2DP_SINK_STATE_STARTING_UP,
   BTIF_A2DP_SINK_STATE_RUNNING,
-  BTIF_A2DP_SINK_STATE_SHUTTING_DOWN
+  BTIF_A2DP_SINK_STATE_SHUTTING_DOWN,
+  BTIF_A2DP_SINK_STATE_SUSPENDED
 };
 
 /* BTIF Media Sink command event definition */
@@ -157,6 +158,7 @@ static void btif_a2dp_sink_audio_rx_flush_event();
 static void btif_a2dp_sink_clear_track_event_req();
 static void btif_a2dp_sink_on_start_event();
 static void btif_a2dp_sink_on_suspend_event();
+static void btif_a2dp_sink_on_decode_complete(uint8_t* data, uint32_t len);
 
 UNUSED_ATTR static const char* dump_media_event(uint16_t event) {
   switch (event) {
@@ -447,6 +449,9 @@ void btif_a2dp_sink_on_suspended(UNUSED_ATTR tBTA_AV_SUSPEND* p_av_suspend) {
 
   if (btif_a2dp_sink_state == BTIF_A2DP_SINK_STATE_OFF) return;
   btif_a2dp_sink_audio_handle_stop_decoding();
+  btif_a2dp_sink_state = BTIF_A2DP_SINK_STATE_SUSPENDED;
+  LOG_INFO("%s: cleanup decoder!!", __func__);
+  btif_a2dp_sink_cb.decoder_interface->decoder_cleanup();
 }
 
 bool btif_a2dp_sink_on_start() {
@@ -508,6 +513,22 @@ static void btif_a2dp_sink_audio_handle_start_decoding() {
   LOG_INFO("%s", __func__);
   if (btif_a2dp_sink_cb.decode_alarm != nullptr)
     return;  // Already started decoding
+
+  if (btif_a2dp_sink_state == BTIF_A2DP_SINK_STATE_SUSPENDED) {
+    btif_a2dp_sink_cb.decoder_interface = bta_av_co_get_decoder_interface();
+    if (btif_a2dp_sink_cb.decoder_interface == NULL) {
+      LOG_ERROR("%s: cannot stream audio: no source decoder interface",
+                __func__);
+      return;
+    }
+    LOG_ERROR("%s: suspended reinit decoder!!", __func__);
+
+    if (!btif_a2dp_sink_cb.decoder_interface->decoder_init(
+            btif_a2dp_sink_on_decode_complete)) {
+      LOG_ERROR("%s: failed to initialize decoder", __func__);
+      return;
+    }
+  }
 
 #ifndef OS_GENERIC
   BtifAvrcpAudioTrackStart(btif_a2dp_sink_cb.audio_track);
