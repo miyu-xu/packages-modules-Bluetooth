@@ -1124,7 +1124,7 @@ static jboolean cancelDiscoveryNative(JNIEnv* env, jobject obj) {
 }
 
 static jboolean createBondNative(JNIEnv* env, jobject obj, jbyteArray address,
-                                 jint transport) {
+                                 jint addrType, jint transport) {
   ALOGV("%s", __func__);
 
   if (!sBluetoothInterface) return JNI_FALSE;
@@ -1864,7 +1864,7 @@ static JNINativeMethod sMethods[] = {
     {"setDevicePropertyNative", "([BI[B)Z", (void*)setDevicePropertyNative},
     {"startDiscoveryNative", "()Z", (void*)startDiscoveryNative},
     {"cancelDiscoveryNative", "()Z", (void*)cancelDiscoveryNative},
-    {"createBondNative", "([BI)Z", (void*)createBondNative},
+    {"createBondNative", "([BII)Z", (void*)createBondNative},
     {"createBondOutOfBandNative",
      "([BILandroid/bluetooth/OobData;Landroid/bluetooth/OobData;)Z",
      (void*)createBondOutOfBandNative},
