@@ -16,6 +16,23 @@
       "message": "Thanks for the review. Updated.",
       "revId": "90e39213b770faa5816d2a84ac123c2c40b85ccb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5489910b_512c7a2a",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-12T19:35:50Z",
+      "side": 1,
+      "message": "Looks like you added a second javadocs for this field. Please compress these to one javadoc.",
+      "revId": "90e39213b770faa5816d2a84ac123c2c40b85ccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
