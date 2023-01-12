@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "199e2336_aa46e5ab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-12T07:29:47Z",
+      "side": 1,
+      "message": "V12?",
+      "range": {
+        "startLine": 1421,
+        "startChar": 79,
+        "endLine": 1421,
+        "endChar": 81
+      },
+      "revId": "084230c095999037b013117db6909256b8bf29be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a689f6b9_f2612283",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-12T07:29:47Z",
+      "side": 1,
+      "message": "Q) What are the difference btw. threadId/deletedThreadId/unDeletedThreadId?",
+      "range": {
+        "startLine": 1525,
+        "startChar": 72,
+        "endLine": 1525,
+        "endChar": 89
+      },
+      "revId": "084230c095999037b013117db6909256b8bf29be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
