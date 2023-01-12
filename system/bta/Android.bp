@@ -243,6 +243,7 @@ cc_test {
         ":OsiCompatSources",
         ":TestCommonLogMsg",
         ":TestCommonMainHandler",
+        ":TestCommonMockFunctions",
         ":TestMockBtif",
         ":TestMockDevice",
         ":TestMockMainShim",
@@ -360,6 +361,7 @@ cc_test {
         "packages/modules/Bluetooth/system/osi/include",
     ],
     srcs : [
+        ":TestCommonMockFunctions",
         ":TestMockBtif",
         ":TestMockMainShimLeScanning",
         "csis/csis_client.cc",
@@ -410,6 +412,7 @@ cc_test {
         "packages/modules/Bluetooth/system/bta/include",
     ],
     srcs : [
+        ":TestCommonMockFunctions",
         ":TestMockBtif",
         "groups/groups_test.cc",
         "groups/groups.cc",
@@ -455,6 +458,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs : [
+        ":TestCommonMockFunctions",
         ":TestMockOsi",
         "gatt/database.cc",
         "gatt/database_builder.cc",
@@ -588,8 +592,9 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs : [
-        ":TestStubOsi",
+        ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
+        ":TestStubOsi",
         "test/common/bta_gatt_api_mock.cc",
         "test/common/bta_gatt_queue_mock.cc",
         "test/common/btm_api_mock.cc",
@@ -662,8 +667,9 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs : [
-        ":TestStubOsi",
+        ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
+        ":TestStubOsi",
         "gatt/database.cc",
         "gatt/database_builder.cc",
         "le_audio/client.cc",
@@ -764,6 +770,7 @@ cc_test {
         "le_audio/le_audio_types.cc",
         "le_audio/mock_iso_manager.cc",
         "le_audio/mock_codec_manager.cc",
+        ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
     ],
     shared_libs: [
@@ -820,6 +827,7 @@ cc_test {
         "le_audio/mock_iso_manager.cc",
         "test/common/mock_controller.cc",
         "le_audio/mock_codec_manager.cc",
+        ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
     ],
     shared_libs: [
