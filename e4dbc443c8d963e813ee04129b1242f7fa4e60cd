@@ -522,6 +522,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcceda0d_7b0c87be",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T14:41:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53abf0eb_7925540f",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "341db581_fb626a3e",
