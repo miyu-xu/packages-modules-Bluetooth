@@ -157,6 +157,14 @@ static const interop_addr_entry_t interop_addr_database[] = {
     // because BR/EDR address and ADV random address are the same
     {{{0xd4, 0x7a, 0xe2, 0, 0, 0}}, 3, INTEROP_DISABLE_NAME_REQUEST},
 
+    /** M: some device may have problem in reconnect flow,
+     * need we initiate connection after signalling timeout @{ */
+    // Mifa_F1
+    {{{0x00, 0xe0, 0x4c, 0, 0, 0}}, 3, INTEROP_A2DP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT},
+    // Mi rabbit
+    {{{0x00, 0x9e, 0xc8, 0, 0, 0}}, 3, INTEROP_A2DP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT},
+    /** @} */
+
     // SUBARU Carkit
     {{{0x48, 0xf0, 0x7b, 0, 0, 0}}, 3, INTEROP_AVRCP_1_4_ONLY},
 

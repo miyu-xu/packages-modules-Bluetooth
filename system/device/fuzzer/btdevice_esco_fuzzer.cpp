@@ -38,6 +38,10 @@ constexpr interop_feature_t kInteropFeature[] = {
     interop_feature_t::INTEROP_DISABLE_ROLE_SWITCH,
     interop_feature_t::INTEROP_HID_HOST_LIMIT_SNIFF_INTERVAL,
     interop_feature_t::INTEROP_DISABLE_NAME_REQUEST,
+    /** M: some device may have problem in reconnect flow,
+     * need we initiate connection after signalling timeout @{ */
+    interop_feature_t::INTEROP_A2DP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT,
+    /** @} */
     interop_feature_t::INTEROP_AVRCP_1_4_ONLY,
     interop_feature_t::INTEROP_DISABLE_SNIFF,
     interop_feature_t::INTEROP_DISABLE_AVDTP_SUSPEND,
