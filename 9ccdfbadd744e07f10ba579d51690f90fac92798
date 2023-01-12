@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab02ea0_d81f215d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5917,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-12T19:16:34Z",
+      "side": 1,
+      "message": "I would prefer to add a new int for the addressType.  I don\u0027t want to have confusion about the format.",
+      "range": {
+        "startLine": 5917,
+        "startChar": 43,
+        "endLine": 5917,
+        "endChar": 65
+      },
+      "revId": "9ccdfbadd744e07f10ba579d51690f90fac92798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
