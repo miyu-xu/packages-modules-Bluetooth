@@ -22,6 +22,30 @@
       },
       "revId": "d01159bb2383f98856c45c4030907d7b5917bcfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ab5606_61f6b44c",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T08:43:04Z",
+      "side": 0,
+      "message": "This fake_osi_bool_props is not the one which used when code runs.\n\nSo in fact, it never worked here. It was OK so far, because we did not test with different props set, but now, in order to trigger some actions, we need to disable cache.\n\nI also was not happy for doing this, but it was the only way I saw.\nLuckily, even we removed alarm_mock.h, we still can verify proper alarm_free and alarm_new calls - so in terms of functionality we are not loosing anything.\n\nIf you have any suggestions on how to do it better, let me know.",
+      "parentUuid": "d86adaec_0b1f51a7",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 1
+      },
+      "revId": "d01159bb2383f98856c45c4030907d7b5917bcfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

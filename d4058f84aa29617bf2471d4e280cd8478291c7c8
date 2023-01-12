@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58837247_1f29130d",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3149,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T08:43:04Z",
+      "side": 1,
+      "message": "correct, but still should be good enough. Or maybe you suggest to add some \n ASSERT_EQ(0, mock_function_count_map[\"alarm_free\"]); on the way to keep parity with previous code?",
+      "parentUuid": "0ee85a97_52c91bd1",
+      "range": {
+        "startLine": 3147,
+        "startChar": 0,
+        "endLine": 3149,
+        "endChar": 53
+      },
+      "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b358da69_ac8dbf82",
         "filename": "system/test/stub/osi.cc",
         "patchSetId": 1
@@ -60,6 +84,30 @@
       "writtenOn": "2023-01-11T08:21:22Z",
       "side": 1,
       "message": "where does this magic number come from ?\n\nWould it be hard to use the mock properly in HAS test with\nON_CALL(...,).WillOnce(Return(new uint8_t[30])); ?",
+      "range": {
+        "startLine": 383,
+        "startChar": 31,
+        "endLine": 383,
+        "endChar": 33
+      },
+      "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49498d92_b2a0d5dc",
+        "filename": "system/test/stub/osi.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-12T08:43:04Z",
+      "side": 1,
+      "message": "proper mock is in alarm_mock.h, but that duplicates what is in stub/osi.cc\n\nMaybe we can straight it out someday.\nAnyways, if this stub/osi.cc is used, the way to verify it is to check mock_function_count_map",
+      "parentUuid": "b358da69_ac8dbf82",
       "range": {
         "startLine": 383,
         "startChar": 31,
