@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf99ab8_de28a03d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-12T22:22:03Z",
+      "side": 1,
+      "message": "You can use Option::map:\n```\nreturn self.xxx.map(|conn| conn.conn_id)\n```",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 9
+      },
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49978634_e36f401b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2055,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-12T22:22:03Z",
+      "side": 1,
+      "message": "if this function can fail, maybe it should return boolean or status?",
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e54ad571_7961f9c2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2071,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-12T22:22:03Z",
+      "side": 1,
+      "message": "you can avoid naked unwrap below by unwrapping here with match statement like server_connect above.",
+      "range": {
+        "startLine": 2068,
+        "startChar": 0,
+        "endLine": 2071,
+        "endChar": 9
+      },
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d1c238_93ff4e80",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2075,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-12T22:22:03Z",
+      "side": 1,
+      "message": "can we avoid naked unwrap here?",
+      "revId": "540ed3a1c94389651b3563bfdcaeb11f980620f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
