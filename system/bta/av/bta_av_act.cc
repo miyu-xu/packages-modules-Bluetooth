@@ -41,6 +41,10 @@
 #include "stack/include/l2c_api.h"
 #include "types/raw_address.h"
 
+/** M: Fix Some BT sink device signalling would be failed @{ */
+#include "device/include/interop.h"
+/** @} */
+
 /*****************************************************************************
  *  Constants
  ****************************************************************************/
@@ -1501,6 +1505,15 @@ void bta_av_sig_chg(tBTA_AV_DATA* p_data) {
         if (!p_scb->accept_signalling_timer) {
           p_scb->accept_signalling_timer = alarm_new("accept_signalling_timer");
         }
+        /** M: Fix Some BT sink device signalling would be failed @{ */
+        if (interop_match_addr(INTEROP_A2DP_DUT_QUICK_SIGNALLING,
+            &(p_scb->PeerAddress()))) {
+          bta_av_accept_signalling_timer_cback(UINT_TO_PTR(xx));
+          APPL_TRACE_DEBUG("%s: iot device source signalling,sig_chg conn_lcb: 0x%x",
+                           __func__, p_cb->conn_lcb);
+          return;
+        }
+        /** @} */
         alarm_set_on_mloop(
             p_scb->accept_signalling_timer, BTA_AV_ACCEPT_SIGNALLING_TIMEOUT_MS,
             bta_av_accept_signalling_timer_cback, UINT_TO_PTR(xx));

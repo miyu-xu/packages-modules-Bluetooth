@@ -101,6 +101,12 @@ typedef enum {
   // but will block pairing.
   INTEROP_DISABLE_NAME_REQUEST,
 
+  /** M: Fix Some BT sink device signalling would be failed @{ */
+  // Some BT sink device signalling would be failed because it set
+  // wrong samplerate to DUT. so DUT start signnaling event avdtp ch connected by peer.
+  INTEROP_A2DP_DUT_QUICK_SIGNALLING,
+  /** @} */
+
   // Respond AVRCP profile version only 1.4 for some device.
   INTEROP_AVRCP_1_4_ONLY,
 

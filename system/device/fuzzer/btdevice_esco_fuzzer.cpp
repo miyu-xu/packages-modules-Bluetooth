@@ -38,6 +38,9 @@ constexpr interop_feature_t kInteropFeature[] = {
     interop_feature_t::INTEROP_DISABLE_ROLE_SWITCH,
     interop_feature_t::INTEROP_HID_HOST_LIMIT_SNIFF_INTERVAL,
     interop_feature_t::INTEROP_DISABLE_NAME_REQUEST,
+    /** M: Fix Some BT sink device signalling would be failed @{ */
+    interop_feature_t::INTEROP_A2DP_DUT_QUICK_SIGNALLING,
+    /** @} */
     interop_feature_t::INTEROP_AVRCP_1_4_ONLY,
     interop_feature_t::INTEROP_DISABLE_SNIFF,
     interop_feature_t::INTEROP_DISABLE_AVDTP_SUSPEND,

@@ -157,6 +157,12 @@ static const interop_addr_entry_t interop_addr_database[] = {
     // because BR/EDR address and ADV random address are the same
     {{{0xd4, 0x7a, 0xe2, 0, 0, 0}}, 3, INTEROP_DISABLE_NAME_REQUEST},
 
+    /** M: Fix Some BT sink device signalling would be failed @{ */
+    // Bose QC35 II
+    {{{0x2c, 0x41, 0xa1, 0, 0, 0}}, 3, INTEROP_A2DP_DUT_QUICK_SIGNALLING},
+    {{{0x4c, 0x87, 0x5d, 0, 0, 0}}, 3, INTEROP_A2DP_DUT_QUICK_SIGNALLING},
+    /** @} */
+
     // SUBARU Carkit
     {{{0x48, 0xf0, 0x7b, 0, 0, 0}}, 3, INTEROP_AVRCP_1_4_ONLY},
 
