@@ -56,7 +56,8 @@ bool a2dp_sbc_decoder_init(decoded_data_callback_t decode_callback) {
 }
 
 void a2dp_sbc_decoder_cleanup(void) {
-  // Do nothing.
+  memset(a2dp_sbc_decoder_cb.decode_buf, 0, sizeof(a2dp_sbc_decoder_cb.decode_buf));
+  memset(&a2dp_sbc_decoder_cb, 0, sizeof(a2dp_sbc_decoder_cb));
 }
 
 bool a2dp_sbc_decoder_decode_packet(BT_HDR* p_buf) {
