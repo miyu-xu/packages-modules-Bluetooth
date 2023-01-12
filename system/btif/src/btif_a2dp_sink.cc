@@ -128,7 +128,9 @@ class BtifA2dpSinkControlBlock {
 
 // Mutex for below data structures.
 static std::mutex g_mutex;
-
+/**M : Fix a2dp sink SUSPEND issue @{ */
+static volatile int timer_running = 0;
+/** @} */
 static BtifA2dpSinkControlBlock btif_a2dp_sink_cb("bt_a2dp_sink_worker_thread");
 
 static std::atomic<int> btif_a2dp_sink_state{BTIF_A2DP_SINK_STATE_OFF};
@@ -213,6 +215,12 @@ static void btif_a2dp_sink_init_delayed() {
 
 bool btif_a2dp_sink_startup() {
   LOG_INFO("%s", __func__);
+  /**M : Fix a2dp sink SUSPEND issue @{ */
+  {
+    LockGuard lock(g_mutex);
+    timer_running = 0;
+  }
+  /** @} */
   btif_a2dp_sink_cb.worker_thread.DoInThread(
       FROM_HERE, base::BindOnce(btif_a2dp_sink_startup_delayed));
   return true;
@@ -487,7 +495,16 @@ static void btif_a2dp_sink_audio_handle_stop_decoding() {
 }
 
 static void btif_decode_alarm_cb(UNUSED_ATTR void* context) {
-  LockGuard lock(g_mutex);
+  /**M : Fix a2dp sink SUSPEND issue @{ */
+  {
+    LockGuard lock(g_mutex);
+    if (timer_running == 1) {
+      APPL_TRACE_WARNING("%s: sink timer is running, skip", __func__);
+      return;
+    }
+    timer_running = 1;
+  }
+  /** @} */
   btif_a2dp_sink_cb.worker_thread.DoInThread(
       FROM_HERE, base::BindOnce(btif_a2dp_sink_avk_handle_timer));
 }
@@ -549,6 +566,9 @@ static void btif_a2dp_sink_avk_handle_timer() {
   BT_HDR* p_msg;
   if (fixed_queue_is_empty(btif_a2dp_sink_cb.rx_audio_queue)) {
     APPL_TRACE_DEBUG("%s: empty queue", __func__);
+    /**M : Fix a2dp sink SUSPEND issue @{ */
+    timer_running = 0;
+	/** @} */
     return;
   }
 
@@ -556,11 +576,17 @@ static void btif_a2dp_sink_avk_handle_timer() {
   if (btif_a2dp_sink_cb.rx_focus_state == BTIF_A2DP_SINK_FOCUS_NOT_GRANTED) {
     APPL_TRACE_DEBUG("%s: skipping frames since focus is not present",
                      __func__);
+    /**M : Fix a2dp sink SUSPEND issue @{ */
+    timer_running = 0;
+	/** @} */
     return;
   }
   /* Play only in BTIF_A2DP_SINK_FOCUS_GRANTED case */
   if (btif_a2dp_sink_cb.rx_flush) {
     fixed_queue_flush(btif_a2dp_sink_cb.rx_audio_queue, osi_free);
+    /**M : Fix a2dp sink SUSPEND issue @{ */
+    timer_running = 0;
+	/** @} */
     return;
   }
 
@@ -568,6 +594,9 @@ static void btif_a2dp_sink_avk_handle_timer() {
   while (true) {
     p_msg = (BT_HDR*)fixed_queue_try_dequeue(btif_a2dp_sink_cb.rx_audio_queue);
     if (p_msg == NULL) {
+      /**M : Fix a2dp sink SUSPEND issue @{ */
+      timer_running = 0;
+      /** @} */
       break;
     }
     APPL_TRACE_DEBUG("%s: number of packets in queue %zu", __func__,
