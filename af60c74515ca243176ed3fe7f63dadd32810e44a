@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70650915_4c3f7226",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-12T02:44:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d76ed677_dfc72ada",
+      "revId": "af60c74515ca243176ed3fe7f63dadd32810e44a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7685fe64_28fc4bfb",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-01-12T01:27:59Z",
       "side": 1,
       "message": "nit: end sentence in a period for doc parsing",
+      "revId": "af60c74515ca243176ed3fe7f63dadd32810e44a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70080e49_448e0e07",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-01-12T02:44:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7685fe64_28fc4bfb",
       "revId": "af60c74515ca243176ed3fe7f63dadd32810e44a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
