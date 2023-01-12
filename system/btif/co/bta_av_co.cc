@@ -388,6 +388,15 @@ class BtaAvCo {
    */
   bool SetActivePeer(const RawAddress& peer_address);
 
+  /**M: @{save new codec config for codec dynamic switch  */
+  /**
+   * Save the reconfig codec
+   *
+   * @param new_codec_config the new codec config
+   */
+   void SaveCodec(const uint8_t* new_codec_config);
+   /** @} */
+
   /**
    * Get the encoder parameters for a peer.
    *
@@ -1463,6 +1472,12 @@ bool BtaAvCo::SetActivePeer(const RawAddress& peer_address) {
   return true;
 }
 
+/**M: @{save new codec config for codec dynamic switch  */
+void BtaAvCo::SaveCodec(const uint8_t* new_codec_config) {
+  memcpy(codec_config_, new_codec_config, sizeof(codec_config_));
+}
+/** @} */
+
 void BtaAvCo::GetPeerEncoderParameters(
     const RawAddress& peer_address,
     tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params) {
@@ -2244,6 +2259,12 @@ void bta_av_co_audio_update_mtu(tBTA_AV_HNDL bta_av_handle,
 bool bta_av_co_set_active_peer(const RawAddress& peer_address) {
   return bta_av_co_cb.SetActivePeer(peer_address);
 }
+
+/**M: @{save new codec config for codec dynamic switch  */
+void bta_av_co_save_codec(const uint8_t* new_codec_config) {
+  return bta_av_co_cb.SaveCodec(new_codec_config);
+}
+/**@}*/
 
 void bta_av_co_get_peer_params(const RawAddress& peer_address,
                                tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params) {
