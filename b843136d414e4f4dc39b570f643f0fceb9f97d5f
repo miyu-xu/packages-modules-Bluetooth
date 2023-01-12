@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d8b8821_75fc2882",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T01:17:34Z",
+      "side": 1,
+      "message": "Can you keep the format to what it was previously ?",
+      "range": {
+        "startLine": 153,
+        "startChar": 17,
+        "endLine": 165,
+        "endChar": 22
+      },
+      "revId": "b843136d414e4f4dc39b570f643f0fceb9f97d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c858915_4a2cc7d4",
         "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
         "patchSetId": 21
@@ -42,6 +65,29 @@
         "startChar": 4,
         "endLine": 195,
         "endChar": 7
+      },
+      "revId": "b843136d414e4f4dc39b570f643f0fceb9f97d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "107e2dcc_fa215e8e",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-12T01:17:34Z",
+      "side": 1,
+      "message": "Can we revert the format to what it was ?",
+      "range": {
+        "startLine": 268,
+        "startChar": 8,
+        "endLine": 288,
+        "endChar": 22
       },
       "revId": "b843136d414e4f4dc39b570f643f0fceb9f97d5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
