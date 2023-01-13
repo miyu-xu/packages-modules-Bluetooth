@@ -46,14 +46,17 @@
 
 package com.android.bluetooth.le_audio;
 
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothProfile;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.BluetoothProfileConnectionInfo;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.ProfileService;
@@ -75,6 +78,7 @@ final class LeAudioStateMachine extends StateMachine {
     @VisibleForTesting
     static final int STACK_EVENT = 101;
     private static final int CONNECT_TIMEOUT = 201;
+    static final int ACTIVE_DEVICE_CHANGE_EVENT = 301;
 
     @VisibleForTesting
     static int sConnectTimeoutMs = 30000;        // 30s
@@ -88,15 +92,31 @@ final class LeAudioStateMachine extends StateMachine {
     private int mLastConnectionState = -1;
 
     private LeAudioService mService;
+    private AudioManager mAudioManager;
     private LeAudioNativeInterface mNativeInterface;
 
     private final BluetoothDevice mDevice;
 
-    LeAudioStateMachine(BluetoothDevice device, LeAudioService svc,
+    public class ActiveDeviceChangeEvent {
+        ActiveDeviceChangeEvent() {
+            mActiveAudioDevice = null;
+            mPreviousActiveDevice = null;
+            volume = 0;
+            isOutputDevice = true;
+        }
+
+        public BluetoothDevice mActiveAudioDevice;
+        public BluetoothDevice mPreviousActiveDevice;
+        public Integer volume;
+        public boolean isOutputDevice;
+    }
+
+    LeAudioStateMachine(BluetoothDevice device, LeAudioService svc, AudioManager audioManager,
             LeAudioNativeInterface nativeInterface, Looper looper) {
         super(TAG, looper);
         mDevice = device;
         mService = svc;
+        mAudioManager = audioManager;
         mNativeInterface = nativeInterface;
 
         mDisconnected = new Disconnected();
@@ -113,9 +133,10 @@ final class LeAudioStateMachine extends StateMachine {
     }
 
     static LeAudioStateMachine make(BluetoothDevice device, LeAudioService svc,
-            LeAudioNativeInterface nativeInterface, Looper looper) {
+            AudioManager audioManager, LeAudioNativeInterface nativeInterface, Looper looper) {
         Log.i(TAG, "make for device");
-        LeAudioStateMachine LeAudioSm = new LeAudioStateMachine(device, svc, nativeInterface, looper);
+        LeAudioStateMachine LeAudioSm = new LeAudioStateMachine(device, svc, audioManager,
+                nativeInterface, looper);
         LeAudioSm.start();
         return LeAudioSm;
     }
@@ -191,6 +212,26 @@ final class LeAudioStateMachine extends StateMachine {
                         default:
                             Log.e(TAG, "Disconnected: ignoring stack event: " + event);
                             break;
+                    }
+                    break;
+                case ACTIVE_DEVICE_CHANGE_EVENT:
+                    ActiveDeviceChangeEvent activeDeviceChangeEvent =
+                            (ActiveDeviceChangeEvent) message.obj;
+
+                    final boolean suppressNoisyIntent =
+                            activeDeviceChangeEvent.mActiveAudioDevice != null;
+
+                    if (activeDeviceChangeEvent.isOutputDevice) {
+                        mAudioManager.handleBluetoothActiveDeviceChanged(
+                                activeDeviceChangeEvent.mActiveAudioDevice,
+                                activeDeviceChangeEvent.mPreviousActiveDevice,
+                                mService.getLeAudioOutputProfile(suppressNoisyIntent,
+                                        activeDeviceChangeEvent.volume));
+                    } else {
+                        mAudioManager.handleBluetoothActiveDeviceChanged(
+                                activeDeviceChangeEvent.mActiveAudioDevice,
+                                activeDeviceChangeEvent.mPreviousActiveDevice,
+                                BluetoothProfileConnectionInfo.createLeAudioInfo(false, false));
                     }
                     break;
                 default:
@@ -294,6 +335,9 @@ final class LeAudioStateMachine extends StateMachine {
                             break;
                     }
                     break;
+                case ACTIVE_DEVICE_CHANGE_EVENT:
+                    deferMessage(message);
+                    break;
                 default:
                     return NOT_HANDLED;
             }
@@ -379,6 +423,9 @@ final class LeAudioStateMachine extends StateMachine {
                             Log.e(TAG, "Disconnecting: ignoring stack event: " + event);
                             break;
                     }
+                    break;
+                case ACTIVE_DEVICE_CHANGE_EVENT:
+                    deferMessage(message);
                     break;
                 default:
                     return NOT_HANDLED;
@@ -472,6 +519,23 @@ final class LeAudioStateMachine extends StateMachine {
                         default:
                             Log.e(TAG, "Connected: ignoring stack event: " + event);
                             break;
+                    }
+                    break;
+                case ACTIVE_DEVICE_CHANGE_EVENT:
+                    ActiveDeviceChangeEvent activeDeviceChangeEvent =
+                            (ActiveDeviceChangeEvent) message.obj;
+
+                    if (activeDeviceChangeEvent.isOutputDevice) {
+                        mAudioManager.handleBluetoothActiveDeviceChanged(
+                                activeDeviceChangeEvent.mActiveAudioDevice,
+                                activeDeviceChangeEvent.mPreviousActiveDevice,
+                                mService.getLeAudioOutputProfile(true,
+                                        activeDeviceChangeEvent.volume));
+                    } else {
+                        mAudioManager.handleBluetoothActiveDeviceChanged(
+                                activeDeviceChangeEvent.mActiveAudioDevice,
+                                activeDeviceChangeEvent.mPreviousActiveDevice,
+                                BluetoothProfileConnectionInfo.createLeAudioInfo(false, false));
                     }
                     break;
                 default:
