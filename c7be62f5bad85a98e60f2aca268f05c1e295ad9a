@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79791182_fbf1d876",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-13T08:01:08Z",
+      "side": 1,
+      "message": "I don\u0027t know whats the behavior of gatt service in case of trying to \"send\" notifications to non-connected device. I believe this may be an unexpected result.",
+      "parentUuid": "c1ba3a57_027ae33b",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 86
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9efdf745_098e3b32",
         "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
         "patchSetId": 6
