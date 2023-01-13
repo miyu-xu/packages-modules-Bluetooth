@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7aa748_5355280a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/BondStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-13T23:25:05Z",
+      "side": 1,
+      "message": "definitely, let me add some cases here.",
+      "parentUuid": "924dfcb5_44a03cb4",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 48
+      },
+      "revId": "3969de3e5340c88aa38567d055b640b747bfa9fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "217df4c3_cdafbb7e",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15746e83_809e6ed0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/BondStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-13T23:25:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "217df4c3_cdafbb7e",
+      "range": {
+        "startLine": 117,
+        "startChar": 16,
+        "endLine": 117,
+        "endChar": 24
+      },
+      "revId": "3969de3e5340c88aa38567d055b640b747bfa9fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d13bb0ff_0e41fecf",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-13T17:51:30Z",
       "side": 1,
       "message": "same thing here.",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 23
+      },
+      "revId": "3969de3e5340c88aa38567d055b640b747bfa9fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e593df32_53201ee2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/BondStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-13T23:25:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d13bb0ff_0e41fecf",
       "range": {
         "startLine": 149,
         "startChar": 16,
