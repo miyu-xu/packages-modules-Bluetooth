@@ -1397,6 +1397,7 @@ cc_test {
         "sdp/sdp_main.cc",
         "sdp/sdp_utils.cc",
         "test/sdp/stack_sdp_test.cc",
+        "test/sdp/stack_sdp_db_test.cc",
         "test/sdp/stack_sdp_utils_test.cc",
     ],
     shared_libs: [
