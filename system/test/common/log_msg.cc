@@ -15,5 +15,26 @@
  */
 
 #include <cstdint>
+#include <functional>
 
-extern "C" void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {}
+#define LOG_TAG "TEST"
+
+#include "osi/include/log.h"
+
+namespace {
+constexpr size_t kTestBufferLogSize = 512;
+}  // namespace
+
+std::function<void(uint32_t, const char*)> test_common_log_msg =
+    [](uint32_t trace_set_mask, const char* buffer) {};
+
+extern "C" void LogMsg(uint32_t trace_set_mask, const char* fmt_str, ...) {
+  char buffer[kTestBufferLogSize];
+
+  va_list ap;
+  va_start(ap, fmt_str);
+  vsnprintf(buffer, kTestBufferLogSize, fmt_str, ap);
+  va_end(ap);
+
+  test_common_log_msg(trace_set_mask, buffer);
+}
