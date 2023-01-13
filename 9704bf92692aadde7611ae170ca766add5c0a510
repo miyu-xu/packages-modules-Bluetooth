@@ -329,6 +329,30 @@
       },
       "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b02d9509_94ccdffc",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-13T09:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70887d9e_129c7ae1",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "9704bf92692aadde7611ae170ca766add5c0a510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
