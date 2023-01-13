@@ -22,6 +22,30 @@
       },
       "revId": "42899792f253c9a9e7e7b2e16deeac390e59954e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fd73b3_bf225112",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppObexClientSessionTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-01-13T06:31:34Z",
+      "side": 1,
+      "message": "sendFile should not be execute if mConnected \u003d false. But actually this test doesn\u0027t care about mConnected, and this can simulate actual case that can happen in real life, because mConnected doesn\u0027t reflect the real connection state of the obexsession. Sometimes mConnected \u003d true but the obexsession connection is disconnected \u003d\u003e it will throw in mCs.put\n\nI changed the test name to better explain it",
+      "parentUuid": "f121fe05_1d925908",
+      "range": {
+        "startLine": 176,
+        "startChar": 9,
+        "endLine": 176,
+        "endChar": 81
+      },
+      "revId": "42899792f253c9a9e7e7b2e16deeac390e59954e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
