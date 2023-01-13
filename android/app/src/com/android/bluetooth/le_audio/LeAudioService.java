@@ -53,6 +53,7 @@ import android.os.Parcel;
 import android.os.ParcelUuid;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 import android.util.Pair;
@@ -86,6 +87,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class LeAudioService extends ProfileService {
     private static final boolean DBG = true;
     private static final String TAG = "LeAudioService";
+    private static final String INBAND_RINGTONE_PROPERTY_DISABLED =
+                    "persist.bluetooth.leaudio.inband.ringtone.disabled";
 
     // Timeout for state machine thread join, to prevent potential ANR.
     private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1000;
@@ -1838,6 +1841,15 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
+     * Is inband call enabled.
+     *
+     * @return true if enabled, false otherwise.
+     */
+    public boolean isInbandRingtoneEnabled() {
+        return !SystemProperties.getBoolean(INBAND_RINGTONE_PROPERTY_DISABLED, false);
+    }
+
+    /**
      * Set In Call state
      * @param inCall True if device in call (any state), false otherwise.
      */
@@ -2521,6 +2533,25 @@ public class LeAudioService extends ProfileService {
                 if (service != null) {
                     enforceBluetoothPrivilegedPermission(service);
                     result = service.getAudioLocation(device);
+                }
+                receiver.send(result);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void isInbandRingtoneEnabled(AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                Objects.requireNonNull(source, "source cannot be null");
+                Objects.requireNonNull(receiver, "receiver cannot be null");
+
+                LeAudioService service = getService(source);
+                boolean result = false;
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    result = service.isInbandRingtoneEnabled();
                 }
                 receiver.send(result);
             } catch (RuntimeException e) {
