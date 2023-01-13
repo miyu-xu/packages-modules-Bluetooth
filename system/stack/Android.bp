@@ -602,6 +602,7 @@ cc_test {
     ],
     srcs: [
         ":TestMockStackBtm",
+        ":TestMockStackSdp",
         "gatt/gatt_utils.cc",
         "test/common/mock_eatt.cc",
         "test/common/mock_gatt_layer.cc",
