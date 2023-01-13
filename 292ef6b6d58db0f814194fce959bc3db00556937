@@ -22,6 +22,30 @@
       },
       "revId": "292ef6b6d58db0f814194fce959bc3db00556937",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42345529_a3468bb3",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-13T10:37:55Z",
+      "side": 1,
+      "message": "I also like error code more than trimming value, because we hide issue when trimming. With error code it is easy to find the problem.\n\nAlso, even the layer above does something smart, we should also make sure, here we do not copy data over bounds.",
+      "parentUuid": "8a6b84a5_0ae284b7",
+      "range": {
+        "startLine": 970,
+        "startChar": 6,
+        "endLine": 970,
+        "endChar": 34
+      },
+      "revId": "292ef6b6d58db0f814194fce959bc3db00556937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
