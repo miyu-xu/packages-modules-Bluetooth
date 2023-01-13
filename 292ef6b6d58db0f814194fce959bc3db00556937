@@ -46,6 +46,30 @@
       },
       "revId": "292ef6b6d58db0f814194fce959bc3db00556937",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b04f6e18_40674a4a",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-13T13:10:37Z",
+      "side": 1,
+      "message": "Jakub, status GATT_INVALID_ATTR_LEN is a standard error code which is returned by the remote devices in case the value has invalid length.\n\nSo this kind of error is nothing new and could happen already without this fix. Maybe Java layer translates this to the specified error codes listed in he mentioned here:\n\nhttps://developer.android.com/reference/android/bluetooth/BluetoothGatt#writeCharacteristic(android.bluetooth.BluetoothGattCharacteristic,%20byte[],%20int)\n\n?",
+      "parentUuid": "42345529_a3468bb3",
+      "range": {
+        "startLine": 970,
+        "startChar": 6,
+        "endLine": 970,
+        "endChar": 34
+      },
+      "revId": "292ef6b6d58db0f814194fce959bc3db00556937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
