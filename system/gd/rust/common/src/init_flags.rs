@@ -228,7 +228,7 @@ init_flags!(
         queue_l2cap_coc_while_encrypting = true,
         redact_log = true,
         sdp_serialization = true,
-        sdp_skip_rnr_if_known = true,
+        sdp_skip_rnr_if_known = false,
         set_min_encryption = true,
         subrating = true,
         trigger_advertising_callbacks_on_first_resume_after_pause = true,
