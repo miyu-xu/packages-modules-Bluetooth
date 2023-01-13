@@ -35,6 +35,7 @@ import io.grpc.stub.ServerCallStreamObserver
 import io.grpc.stub.StreamObserver
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.util.UUID
 import java.util.concurrent.CancellationException
 import java.util.stream.Collectors
 import kotlinx.coroutines.CoroutineScope
@@ -309,6 +310,16 @@ val Connection.transport: Int
 
 fun BluetoothDevice.toByteString() =
   ByteString.copyFrom(MacAddress.fromString(this.address).toByteArray())!!
+
+fun isUUID16(uuid: UUID): Boolean {
+  val uuid16PatternMatcher = Regex("0000\\w{4}-0000-1000-8000-00805f9b34fb")
+  return uuid16PatternMatcher.matches(uuid.toString())
+}
+
+fun isUUID32(uuid: UUID): Boolean {
+  val uuid32PatternMatcher = Regex("\\w{4}(?<!0000)\\w{4}-0000-1000-8000-00805f9b34fb")
+  return uuid32PatternMatcher.matches(uuid.toString())
+}
 
 fun BluetoothDevice.toConnection(transport: Int): Connection {
   val internal_connection_ref =
