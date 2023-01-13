@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "924dfcb5_44a03cb4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/BondStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T17:51:30Z",
+      "side": 1,
+      "message": "Could we create a test here that gets an LE device and makes sure that the correct address type comes through?",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 48
+      },
+      "revId": "3969de3e5340c88aa38567d055b640b747bfa9fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "217df4c3_cdafbb7e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/BondStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T17:51:30Z",
+      "side": 1,
+      "message": "I think we should check this.  Here it should be public.",
+      "range": {
+        "startLine": 117,
+        "startChar": 16,
+        "endLine": 117,
+        "endChar": 24
+      },
+      "revId": "3969de3e5340c88aa38567d055b640b747bfa9fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d13bb0ff_0e41fecf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/BondStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T17:51:30Z",
+      "side": 1,
+      "message": "same thing here.",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 23
+      },
+      "revId": "3969de3e5340c88aa38567d055b640b747bfa9fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
