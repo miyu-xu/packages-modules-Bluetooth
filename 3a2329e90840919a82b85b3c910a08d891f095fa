@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b385d50_aea6a025",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-01-13T04:07:16Z",
+      "side": 1,
+      "message": "Also rename get_report \u003d\u003e get_hid_report, set_report \u003d\u003e set_hid_report and send_data \u003d\u003e send_hid_data.",
+      "revId": "3a2329e90840919a82b85b3c910a08d891f095fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
