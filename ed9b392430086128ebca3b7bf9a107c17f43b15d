@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16654de0_1266e3a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T17:59:31Z",
+      "side": 1,
+      "message": "This looks good to me.  One question and then some tests :)",
+      "revId": "ed9b392430086128ebca3b7bf9a107c17f43b15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e6a0fd9_f6b05112",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T17:59:31Z",
+      "side": 1,
+      "message": "What if transport is AUTO and addr_type \u003d\u003d BLE_ADDR_RANDOM?\n\nMaybe:\nif (transport \u003d\u003d TRANSPORT_LE || addr_type \u003d\u003d BLE_ADDR_RANDOM) ?\n\nHmmm..\nDual mode devices\n\nif (transport !\u003d TRANSPORT_BREDR \u0026\u0026 addr_type \u003d\u003d BLE_ADDR_RANDOM) ?\n\nI guess we\u0027re still passing the transport.\n\nif (addr_type \u003d\u003d BLE_ADDR_RANDOM) ?\n\nIt\u0027s obvious that we need a few test cases here :)",
+      "range": {
+        "startLine": 1143,
+        "startChar": 0,
+        "endLine": 1144,
+        "endChar": 71
+      },
+      "revId": "ed9b392430086128ebca3b7bf9a107c17f43b15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd07e24b_f3c6ff76",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T17:59:31Z",
+      "side": 1,
+      "message": "nit: odd formatting",
+      "range": {
+        "startLine": 753,
+        "startChar": 1,
+        "endLine": 753,
+        "endChar": 42
+      },
+      "revId": "ed9b392430086128ebca3b7bf9a107c17f43b15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
