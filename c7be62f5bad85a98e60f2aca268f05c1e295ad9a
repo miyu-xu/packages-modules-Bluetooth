@@ -170,6 +170,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83c6de06_302ae5d9",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T19:36:05Z",
+      "side": 1,
+      "message": "This is still actionable ? Please update this patch. Thanks!",
+      "parentUuid": "d4474c56_fb726fcc",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 86
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9efdf745_098e3b32",
         "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
         "patchSetId": 6
