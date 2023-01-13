@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4474c56_fb726fcc",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-13T14:16:05Z",
+      "side": 1,
+      "message": "I think all is in our hands.\n\nWhat I would do is here:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java;l\u003d1318;drc\u003ddcd4e8e54ecbb3c494de8314a794a24d90290818?q\u003dMediaControlGatt\n\nadd something like this:\n\nif (device.isConnected() \u003d\u003d false) {\n  continue;\n}",
+      "parentUuid": "79791182_fbf1d876",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 86
+      },
+      "revId": "c7be62f5bad85a98e60f2aca268f05c1e295ad9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9efdf745_098e3b32",
         "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
         "patchSetId": 6
