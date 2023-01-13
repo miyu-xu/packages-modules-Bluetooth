@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4283784_55b0d23f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-13T16:12:03Z",
+      "side": 1,
+      "message": "Some build errors for PRIVATE_ADDRESS missing.\n\nLGTM in general once those build issues are resolved.",
+      "revId": "39fafb7ae28b39526086a8356adf2eb79ad9b79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
