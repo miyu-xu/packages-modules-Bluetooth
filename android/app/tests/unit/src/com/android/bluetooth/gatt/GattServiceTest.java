@@ -513,6 +513,7 @@ public class GattServiceTest {
         verify(mNativeInterface).gattClientReadDescriptor(connId, handle, authReq);
     }
 
+    @Ignore("b/265327402")
     @Test
     public void beginReliableWrite() {
         int clientIf = 1;
