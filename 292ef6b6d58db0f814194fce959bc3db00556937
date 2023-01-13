@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a6b84a5_0ae284b7",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T09:58:55Z",
+      "side": 1,
+      "message": "Some time ago I proposed change doing same thing, but one layer above:\ngo/aog/2282794\n\nBut then we had some discussions with Rahul and noticed that BTGATT_MAX_ATTR_LEN was not updated when GATT_MAX_ATTR_LEN was lowered to 512.\n\nSo maybe also lower the BTGATT_MAX_ATTR_LEN to 512 ? It would trim the values coming from Java, instead of returning error code.\n\n\nI actually like returning error code more than trimming the value, but you should also update comment on https://developer.android.com/reference/android/bluetooth/BluetoothGatt#writeCharacteristic(android.bluetooth.BluetoothGattCharacteristic,%20byte[],%20int)\n\nAnd define error code returned to Java, as now it\u0027s not specified what 0x0d means in java, and in \"Returns\" section.\n\n\nShould same be done for write descriptor ?",
+      "range": {
+        "startLine": 970,
+        "startChar": 6,
+        "endLine": 970,
+        "endChar": 34
+      },
+      "revId": "292ef6b6d58db0f814194fce959bc3db00556937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
