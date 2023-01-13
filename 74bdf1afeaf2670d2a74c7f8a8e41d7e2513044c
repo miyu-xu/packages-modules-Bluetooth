@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c37d347a_74e379eb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T20:05:55Z",
+      "side": 1,
+      "message": "NIT: we\u0027re moving towards using Flags, why not use flag for this instead ?\nI guess we\u0027ll end up with some peripheral-specific logic in future, with workarounds, so this can stay for now.",
+      "range": {
+        "startLine": 1849,
+        "startChar": 8,
+        "endLine": 1849,
+        "endChar": 86
+      },
+      "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
