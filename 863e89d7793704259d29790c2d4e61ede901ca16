@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea646a1_7fc41c2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T20:45:27Z",
+      "side": 1,
+      "message": "There are plenty good changes in this CL, but it can\u0027t get in in this form.\nMTU is now tightly correlated with DLE, see packages/modules/Bluetooth/system/stack/gatt/gatt_cl.cc;l\u003d1105\n\nusing maximum MTU value now could cause problems with scheduling in controller. Let\u0027s have more discussion about that next week.",
+      "revId": "863e89d7793704259d29790c2d4e61ede901ca16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
