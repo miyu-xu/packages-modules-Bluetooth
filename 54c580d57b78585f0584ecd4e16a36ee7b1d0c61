@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e77bb3f_6b9162f5",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27d13305_7077ec69",
+      "range": {
+        "startLine": 184,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 13
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdf0d0c2_2be2304c",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "This class is not done, this CL is here to reflect on ideas on implementation",
       "parentUuid": "cdf0d0c2_2be2304c",
+      "range": {
+        "startLine": 207,
+        "startChar": 16,
+        "endLine": 207,
+        "endChar": 30
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5ce5c42_d4cf0236",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "671939c4_1866e73c",
       "range": {
         "startLine": 207,
         "startChar": 16,
@@ -159,6 +207,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46fda209_6019dd8e",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9099dccc_e15c3df7",
+      "range": {
+        "startLine": 267,
+        "startChar": 12,
+        "endLine": 270,
+        "endChar": 29
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dff3d1d8_f980fecb",
@@ -206,6 +278,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31cb7d65_d0e5669c",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69cf4075_61777b65",
+      "range": {
+        "startLine": 280,
+        "startChar": 11,
+        "endLine": 283,
+        "endChar": 24
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c5835e8_939328b1",
@@ -243,6 +339,30 @@
       "side": 1,
       "message": "This class is not done, this CL is here to reflect on ideas on implementation",
       "parentUuid": "9c5835e8_939328b1",
+      "range": {
+        "startLine": 299,
+        "startChar": 14,
+        "endLine": 301,
+        "endChar": 17
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b38702a6_71e5ad46",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bef918b_9aaa6d16",
       "range": {
         "startLine": 299,
         "startChar": 14,
