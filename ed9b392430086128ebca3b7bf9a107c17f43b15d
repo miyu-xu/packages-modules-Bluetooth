@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e5424ee_d91c6bb7",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-13T23:23:50Z",
+      "side": 1,
+      "message": "yea, thinking twice, maybe \"if (transport !\u003d TRANSPORT_BREDR \u0026\u0026 addr_type \u003d\u003d BLE_ADDR_RANDOM)\" is better option? I will double check this with some e2e tests, and maybe adding some unit tests as well.",
+      "parentUuid": "1e6a0fd9_f6b05112",
+      "range": {
+        "startLine": 1143,
+        "startChar": 0,
+        "endLine": 1144,
+        "endChar": 71
+      },
+      "revId": "ed9b392430086128ebca3b7bf9a107c17f43b15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd07e24b_f3c6ff76",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-13T17:59:31Z",
       "side": 1,
       "message": "nit: odd formatting",
+      "range": {
+        "startLine": 753,
+        "startChar": 1,
+        "endLine": 753,
+        "endChar": 42
+      },
+      "revId": "ed9b392430086128ebca3b7bf9a107c17f43b15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9def9d19_0a3623c9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-13T23:23:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd07e24b_f3c6ff76",
       "range": {
         "startLine": 753,
         "startChar": 1,
