@@ -22,6 +22,30 @@
       },
       "revId": "c4719c6bf6eec03599255c176344bf9685d03cbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f760bc7_ab45d1c7",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-13T14:18:27Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll move the scope-changes from the next CL to this one.",
+      "parentUuid": "55e0dc19_f7ef8607",
+      "range": {
+        "startLine": 299,
+        "startChar": 16,
+        "endLine": 299,
+        "endChar": 39
+      },
+      "revId": "c4719c6bf6eec03599255c176344bf9685d03cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
