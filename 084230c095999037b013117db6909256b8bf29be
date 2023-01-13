@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f5c7d72_67672a8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-01-13T01:46:51Z",
+      "side": 1,
+      "message": "Thanks for pointing this out :) Fixed!",
+      "parentUuid": "199e2336_aa46e5ab",
+      "range": {
+        "startLine": 1421,
+        "startChar": 79,
+        "endLine": 1421,
+        "endChar": 81
+      },
+      "revId": "084230c095999037b013117db6909256b8bf29be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a689f6b9_f2612283",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-12T07:29:47Z",
       "side": 1,
       "message": "Q) What are the difference btw. threadId/deletedThreadId/unDeletedThreadId?",
+      "range": {
+        "startLine": 1525,
+        "startChar": 72,
+        "endLine": 1525,
+        "endChar": 89
+      },
+      "revId": "084230c095999037b013117db6909256b8bf29be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "918f7e35_eb6a4f9d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-01-13T01:46:51Z",
+      "side": 1,
+      "message": "There is only one deletedThreadId which is -1(defined in BluetoothMapContentObserver.DELETED_THREAD_ID), and all other thread ids are undeleted thread ids. I could have just used TEST_THREAD_ID for the undeleted case, but made an undeletedThreadId variable for clarity.\n\nThey go into different branches which creates instances of BluetoothMapContentObserver.Event class with different types, based on delete or undelete.",
+      "parentUuid": "a689f6b9_f2612283",
       "range": {
         "startLine": 1525,
         "startChar": 72,
