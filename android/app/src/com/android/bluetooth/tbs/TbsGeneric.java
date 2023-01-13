@@ -30,6 +30,7 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ServiceFactory;
@@ -52,6 +53,10 @@ public class TbsGeneric {
 
     private static final String TAG = "TbsGeneric";
     private static final boolean DBG = true;
+
+    /* Same as in LeAudioService.java */
+    private static final String INBAND_RINGTONE_PROPERTY_DISABLED =
+                    "persist.bluetooth.leaudio.inband.ringtone.disabled";
 
     private static final String UCI = "GTBS";
     private static final String DEFAULT_PROVIDER_NAME = "none";
@@ -192,8 +197,17 @@ public class TbsGeneric {
             mTbsGatt.clearSilentModeFlag();
         }
 
-        // Android supports inband ringtone
-        mTbsGatt.setInbandRingtoneFlag();
+        boolean inband_disabled =
+                SystemProperties.getBoolean(INBAND_RINGTONE_PROPERTY_DISABLED, false);
+        if (inband_disabled) {
+            mTbsGatt.clearInbandRingtoneFlag();
+        } else {
+            mTbsGatt.setInbandRingtoneFlag();
+        }
+
+        if (DBG) {
+            Log.d(TAG, "Inband ringtone enabled = " + !inband_disabled);
+        }
 
         mReceiver = new Receiver();
         mTbsGatt.getContext().registerReceiver(mReceiver,
