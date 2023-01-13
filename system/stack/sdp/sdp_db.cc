@@ -408,10 +408,9 @@ bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
     return false;
   }
 
-  tSDP_ATTRIBUTE* p_attr = &p_rec->attribute[0];
-
   /* Found the record. Now, see if the attribute already exists */
-  uint16_t xx;
+  uint16_t xx;  // attribute index within sdp record
+  tSDP_ATTRIBUTE* p_attr = &p_rec->attribute[0];
   for (xx = 0; xx < p_rec->num_attributes; xx++, p_attr++) {
     /* The attribute exists. replace it */
     if (p_attr->id == attr_id) {
@@ -421,51 +420,66 @@ bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
     if (p_attr->id > attr_id) break;
   }
 
-  if (p_rec->num_attributes == SDP_MAX_REC_ATTR) return (false);
-
   /* If not found, see if we can allocate a new entry */
-  if (xx == p_rec->num_attributes)
-    p_attr = &p_rec->attribute[p_rec->num_attributes];
-  else {
-    /* Since the attributes are kept in sorted order, insert ours here */
-    for (uint16_t yy = p_rec->num_attributes; yy > xx; yy--)
-      p_rec->attribute[yy] = p_rec->attribute[yy - 1];
+  if (p_rec->num_attributes == SDP_MAX_REC_ATTR) {
+    LOG_WARN("Unable to add attribute as number of attributes is full max:%hu",
+             p_rec->num_attributes);
+    return false;
   }
 
-  p_attr->id = attr_id;
-  p_attr->type = attr_type;
-  p_attr->len = attr_len;
-
+  // Ensure this attribute will fit within the SDP maximium buffer size
   if (p_rec->free_pad_ptr + attr_len >= SDP_MAX_PAD_LEN) {
-    /* do truncate only for text string type descriptor */
+    // do truncate only for text string type descriptor
     if (attr_type == TEXT_STR_DESC_TYPE) {
-      SDP_TRACE_WARNING(
-          "SDP_AddAttribute: attr_len:%d too long. truncate to (%d)", attr_len,
-          SDP_MAX_PAD_LEN - p_rec->free_pad_ptr);
+      LOG_WARN(
+          "Attribute length too long truncating handle:%hu attr_id:%hu %d=>%d",
+          handle, attr_id, attr_len, SDP_MAX_PAD_LEN - p_rec->free_pad_ptr);
 
       attr_len = SDP_MAX_PAD_LEN - p_rec->free_pad_ptr;
       p_val[SDP_MAX_PAD_LEN - p_rec->free_pad_ptr - 1] = '\0';
-    } else
+    } else {
+      LOG_WARN(
+          "Truncating non-string attribute type to zero handle:%u attr_id:%hu",
+          handle, attr_id);
       attr_len = 0;
+    }
   }
 
-  if ((attr_len > 0) && (p_val != 0)) {
-    p_attr->len = attr_len;
-    memcpy(&p_rec->attr_pad[p_rec->free_pad_ptr], p_val, (size_t)attr_len);
-    p_attr->value_ptr = &p_rec->attr_pad[p_rec->free_pad_ptr];
-    p_rec->free_pad_ptr += attr_len;
-  } else if ((attr_len == 0 &&
-              p_attr->len !=
-                  0) || /* if truncate to 0 length, simply don't add */
-             p_val == 0) {
-    SDP_TRACE_ERROR(
-        "SDP_AddAttribute fail, length exceed maximum: ID %d: attr_len:%d ",
-        attr_id, attr_len);
-    p_attr->id = p_attr->type = p_attr->len = 0;
-    return (false);
+  if (attr_len == 0 || p_val == nullptr) {
+    // if truncate to 0 length, simply don't add
+    LOG_ERROR(
+        "Unable to add attribute length exceed maximum handle:%u attr_id:%hu "
+        "attr_len:%u",
+        handle, attr_id, attr_len);
+    return false;
   }
+
+  // Attribute ready to be inserted into database
+  // If last one simply append
+  if (xx == p_rec->num_attributes) {
+    p_attr = &p_rec->attribute[p_rec->num_attributes];
+  } else {
+    // Otherwise since the attributes are kept in sorted order, insert ours
+    // here
+    for (uint16_t yy = p_rec->num_attributes; yy > xx; yy--) {
+      p_rec->attribute[yy] = p_rec->attribute[yy - 1];
+    }
+  }
+  // Copy attribute data into SDP buffer
+  memcpy(&p_rec->attr_pad[p_rec->free_pad_ptr], p_val, (size_t)attr_len);
+
+  // Update the attribute header
+  *p_attr = {
+      .len = attr_len,
+      .value_ptr = &p_rec->attr_pad[p_rec->free_pad_ptr],
+      .id = attr_id,
+      .type = attr_type,
+  };
+
+  // Update global SDP buffer state
   p_rec->num_attributes++;
-  return (true);
+  p_rec->free_pad_ptr += attr_len;
+  return true;
 }
 
 /*******************************************************************************
