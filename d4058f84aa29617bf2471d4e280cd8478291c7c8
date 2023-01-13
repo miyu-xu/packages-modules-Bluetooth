@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60fa5a2d_39ebdda2",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3149,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-13T15:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d84f5b5_535f9a6f",
+      "range": {
+        "startLine": 3147,
+        "startChar": 0,
+        "endLine": 3149,
+        "endChar": 53
+      },
+      "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b358da69_ac8dbf82",
