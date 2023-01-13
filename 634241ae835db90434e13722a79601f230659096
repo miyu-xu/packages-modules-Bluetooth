@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad6da5e4_6fcf6189",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2724,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T06:09:04Z",
+      "side": 1,
+      "message": "I kind of like the encapsulation, but I kind of hate that we have to call getCallingUid() so much more often.\n\nI thought about suggesting\n\nprivate static boolean isSystem(int uid) {\n  return uid \u003d\u003d Process.SHELL_UID;\n}\n\nBut I\u0027m not sure it helps much.  Maybe it does for all the places we have to call multiple.  How big of a deal is it?  I don\u0027t know. getCallingUid() is marked CriticalNative, so it\u0027s supposed to be fast...",
+      "range": {
+        "startLine": 2724,
+        "startChar": 35,
+        "endLine": 2724,
+        "endChar": 57
+      },
+      "revId": "634241ae835db90434e13722a79601f230659096",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
