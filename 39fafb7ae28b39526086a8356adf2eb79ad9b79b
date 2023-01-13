@@ -16,6 +16,23 @@
       "message": "Some build errors for PRIVATE_ADDRESS missing.\n\nLGTM in general once those build issues are resolved.",
       "revId": "39fafb7ae28b39526086a8356adf2eb79ad9b79b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f350d9b3_c8806458",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-13T17:30:29Z",
+      "side": 1,
+      "message": "maybe you wanted this: ADDRESS_TO_LOGGABLE_CSTR ?",
+      "revId": "39fafb7ae28b39526086a8356adf2eb79ad9b79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
