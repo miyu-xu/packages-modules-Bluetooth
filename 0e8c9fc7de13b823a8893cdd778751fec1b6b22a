@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5860261_06385b64",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T20:10:53Z",
+      "side": 1,
+      "message": "This is redefinition of LeAudioService.INBAND_RINGTONE_PROPERTY_DISABLED.\nIf it\u0027s used in multiple places, maybe define it in AdapterSerbice, there are couple PROPERTY strings defined there.",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 73
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa85458c_2eca58d4",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T20:10:53Z",
+      "side": 1,
+      "message": "NIT: can we make this into \"...inband.ringtone.enabled\" I think it\u0027s easier to parse all logic when enabled \u003d\u003d true .",
+      "range": {
+        "startLine": 59,
+        "startChar": 63,
+        "endLine": 59,
+        "endChar": 71
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
