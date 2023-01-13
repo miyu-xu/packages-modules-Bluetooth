@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c591bee_f3c7d90b",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-13T15:15:13Z",
+      "side": 1,
+      "message": "Argh, I think I only updated the field in `serializer.rs`.",
+      "parentUuid": "4d94bf63_2c1b240e",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 6,
+        "endChar": 10
+      },
+      "revId": "c8421ce4202fade3bb6af5e484c49c1fbe809bbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b909bb5f_86b1e0fe",
