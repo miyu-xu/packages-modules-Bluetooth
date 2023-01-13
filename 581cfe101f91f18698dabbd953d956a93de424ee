@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79578288_a77c5ba5",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4337,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T08:33:11Z",
+      "side": 1,
+      "message": "bta_dm_search_cb.conn_id is global. Close event is per client and per device.\n\nShould you check if the close event is sent for the device that was actually performing service discovery? Should this be inside the if() below ?",
+      "range": {
+        "startLine": 4337,
+        "startChar": 8,
+        "endLine": 4337,
+        "endChar": 56
+      },
+      "revId": "581cfe101f91f18698dabbd953d956a93de424ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
