@@ -131,6 +131,10 @@ impl<'a> FieldParser<'a> {
                         let #id = #type_id::#from_u(#v).unwrap();
                     }
                 }
+                ast::Field::Reserved { .. } => {
+                    // Nothing to do here.
+                    quote! {}
+                }
                 _ => todo!(),
             });
         }
