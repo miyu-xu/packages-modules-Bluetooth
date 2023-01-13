@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f44a5ae8_42a6c559",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T19:22:56Z",
+      "side": 1,
+      "message": "nit: has_lenc_and_address_is_equal ?",
+      "range": {
+        "startLine": 376,
+        "startChar": 12,
+        "endLine": 376,
+        "endChar": 14
+      },
+      "revId": "39fafb7ae28b39526086a8356adf2eb79ad9b79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f350d9b3_c8806458",
         "filename": "system/stack/btm/btm_dev.cc",
         "patchSetId": 1
@@ -31,6 +54,52 @@
       "writtenOn": "2023-01-13T17:30:29Z",
       "side": 1,
       "message": "maybe you wanted this: ADDRESS_TO_LOGGABLE_CSTR ?",
+      "revId": "39fafb7ae28b39526086a8356adf2eb79ad9b79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c94d0a_9faa7519",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T19:22:56Z",
+      "side": 1,
+      "message": "nit: remove the old LE record?\n\nIn my mind, p_target_rec is the \"combined\" record.",
+      "range": {
+        "startLine": 503,
+        "startChar": 20,
+        "endLine": 503,
+        "endChar": 28
+      },
+      "revId": "39fafb7ae28b39526086a8356adf2eb79ad9b79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef62da9d_eba20b20",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-13T19:22:56Z",
+      "side": 1,
+      "message": "Should we do this only when we know we just did CTKD?\n\nOnly when the device is dual-mode?",
+      "range": {
+        "startLine": 1005,
+        "startChar": 0,
+        "endLine": 1005,
+        "endChar": 36
+      },
       "revId": "39fafb7ae28b39526086a8356adf2eb79ad9b79b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
