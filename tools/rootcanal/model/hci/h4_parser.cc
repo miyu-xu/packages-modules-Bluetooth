@@ -132,34 +132,41 @@ bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
       packet_.clear();
       break;
 
-    case HCI_RECOVERY: {
+    case HCI_RECOVERY:
       // Skip all received bytes until the HCI Reset command is received.
       // The parser can end up in a bad state when the host is restarted.
-      const std::array<uint8_t, 4> reset_command{0x01, 0x03, 0x0c, 0x00};
-      size_t offset = packet_.size();
       LOG_WARN("Received byte in recovery state : 0x%x",
                static_cast<unsigned>(*buffer));
-      packet_.push_back(*buffer);
 
-      // Last byte does not match expected byte in the sequence.
-      // Drop all the bytes and start over.
-      if (packet_[offset] != reset_command[offset]) {
-        packet_.clear();
-        // The mismatched byte can also be the first of the correct sequence.
-        if (*buffer == reset_command[0]) {
+      // If the incoming byte is the PacketType for the Reset command, save it.
+      if (hci_packet_type_ == PacketType::UNKNOWN &&
+          static_cast<PacketType>(*buffer) == PacketType::COMMAND) {
+        hci_packet_type_ = PacketType::COMMAND;
+      } else {
+        const std::array<uint8_t, 3> reset_command{0x03, 0x0c, 0x00};
+
+        // If the incoming byte is the next one in the sequence, push it.
+        if (reset_command[packet_.size()] == *buffer) {
           packet_.push_back(*buffer);
+
+          // Received full reset command.
+          if (packet_.size() == reset_command.size()) {
+            LOG_INFO("Received HCI Reset command, exiting recovery state");
+            bytes_wanted_ = 0;
+          }
+        } else {
+          // Drop all the bytes and start over.
+          packet_.clear();
+
+          // The mismatched byte might be a the command type
+          if (static_cast<PacketType>(*buffer) == PacketType::COMMAND) {
+            hci_packet_type_ = PacketType::COMMAND;
+          } else {
+            hci_packet_type_ = PacketType::UNKNOWN;
+          }
         }
       }
-
-      // Received full reset command.
-      if (packet_.size() == reset_command.size()) {
-        LOG_INFO("Received HCI Reset command, exiting recovery state");
-        // Pop the Idc from the received packet.
-        packet_.erase(packet_.begin());
-        bytes_wanted_ = 0;
-      }
       break;
-    }
 
     case HCI_PREAMBLE:
     case HCI_PAYLOAD:
@@ -183,7 +190,7 @@ bool H4Parser::Consume(const uint8_t* buffer, int32_t bytes_read) {
         LOG_ERROR("Received invalid packet type 0x%x, entering recovery state",
                   static_cast<unsigned>(packet_type_));
         state_ = HCI_RECOVERY;
-        hci_packet_type_ = PacketType::COMMAND;
+        hci_packet_type_ = PacketType::UNKNOWN;
         bytes_wanted_ = 1;
       } else {
         state_ = HCI_PREAMBLE;
