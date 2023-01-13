@@ -164,6 +164,30 @@
       },
       "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6515c6b8_8b37229d",
+        "filename": "system/test/stub/osi.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-13T18:57:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49498d92_b2a0d5dc",
+      "range": {
+        "startLine": 383,
+        "startChar": 31,
+        "endLine": 383,
+        "endChar": 33
+      },
+      "revId": "d4058f84aa29617bf2471d4e280cd8478291c7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
