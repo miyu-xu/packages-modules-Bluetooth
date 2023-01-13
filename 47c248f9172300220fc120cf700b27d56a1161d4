@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "393cc238_a9a6af8c",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-13T14:23:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e86c582c_d7710042",
+      "range": {
+        "startLine": 35,
+        "startChar": 26,
+        "endLine": 35,
+        "endChar": 29
+      },
+      "revId": "47c248f9172300220fc120cf700b27d56a1161d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c35fe47_d62bd618",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-20T18:37:06Z",
       "side": 1,
       "message": "nit: leave a todo for removing the unwrap",
+      "range": {
+        "startLine": 143,
+        "startChar": 56,
+        "endLine": 143,
+        "endChar": 62
+      },
+      "revId": "47c248f9172300220fc120cf700b27d56a1161d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fd9c0cc_96fc4a49",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-13T14:23:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c35fe47_d62bd618",
       "range": {
         "startLine": 143,
         "startChar": 56,
