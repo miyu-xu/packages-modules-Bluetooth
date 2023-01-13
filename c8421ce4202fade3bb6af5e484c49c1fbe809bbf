@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce92b86a_2d151ac5",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-13T13:20:12Z",
+      "side": 1,
+      "message": "nit: shift is a better name in this context; offset has a connotation of being a _byte_ offset",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 6,
+        "endChar": 10
+      },
+      "revId": "c8421ce4202fade3bb6af5e484c49c1fbe809bbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b909bb5f_86b1e0fe",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-13T13:20:12Z",
+      "side": 1,
+      "message": "That condition shouldn\u0027t be necessary",
+      "range": {
+        "startLine": 112,
+        "startChar": 52,
+        "endLine": 112,
+        "endChar": 77
+      },
+      "revId": "c8421ce4202fade3bb6af5e484c49c1fbe809bbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b00392f_cba12a0b",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-13T13:20:12Z",
+      "side": 1,
+      "message": "nit: `!single_value` is more explicit",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "c8421ce4202fade3bb6af5e484c49c1fbe809bbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
