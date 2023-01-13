@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573dc8f5_8cfa9a4e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "Could you double check which year is the correct one?\n\n1. the date when copyright added.\n2. the date when the file added.",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eba73a5_961f63de",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "_CmdResultWithEmptyQueuedActions?",
+      "range": {
+        "startLine": 1196,
+        "startChar": 37,
+        "endLine": 1196,
+        "endChar": 47
+      },
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9206e105_1f75fb44",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "Could you add testProcessStackEvent_Call_onConnectingState() that verifies deferMessage?",
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f31c159_75e35fcb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "Missing tests for the connected state?",
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3583e0aa_893f1282",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1264,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "It looks you can verify native interface.\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java;l\u003d707",
+      "range": {
+        "startLine": 1263,
+        "startChar": 8,
+        "endLine": 1264,
+        "endChar": 82
+      },
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a568c3f_99f67cb5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1268,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "ConnectionStateChanged",
+      "range": {
+        "startLine": 1268,
+        "startChar": 38,
+        "endLine": 1268,
+        "endChar": 62
+      },
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec9c7bd_34ae174d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "You can verify other cases first then disconnected case in this test.",
+      "range": {
+        "startLine": 1271,
+        "startChar": 51,
+        "endLine": 1271,
+        "endChar": 80
+      },
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f916ee59_8e6e130b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "AudioStateChanged",
+      "range": {
+        "startLine": 1281,
+        "startChar": 38,
+        "endLine": 1281,
+        "endChar": 57
+      },
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00405993_90b4f866",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-13T08:14:18Z",
+      "side": 1,
+      "message": "ditto. You can verify states case before this.",
+      "range": {
+        "startLine": 1284,
+        "startChar": 51,
+        "endLine": 1284,
+        "endChar": 75
+      },
+      "revId": "4dad6bc509ff9a4f4716af6f2a19eb8f418cab3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
