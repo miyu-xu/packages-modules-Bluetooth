@@ -31,6 +31,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.HandlerThread;
 
@@ -62,6 +63,7 @@ public class LeAudioStateMachineTest {
     @Mock private AdapterService mAdapterService;
     @Mock private LeAudioService mLeAudioService;
     @Mock private LeAudioNativeInterface mLeAudioNativeInterface;
+    @Mock private AudioManager mAudioManager;
 
     @Before
     public void setUp() throws Exception {
@@ -78,7 +80,7 @@ public class LeAudioStateMachineTest {
         // Set up thread and looper
         mHandlerThread = new HandlerThread("LeAudioStateMachineTestHandlerThread");
         mHandlerThread.start();
-        mLeAudioStateMachine = new LeAudioStateMachine(mTestDevice, mLeAudioService,
+        mLeAudioStateMachine = new LeAudioStateMachine(mTestDevice, mLeAudioService, mAudioManager,
                 mLeAudioNativeInterface, mHandlerThread.getLooper());
         // Override the timeout value to speed up the test
         mLeAudioStateMachine.sConnectTimeoutMs = 1000;     // 1s
