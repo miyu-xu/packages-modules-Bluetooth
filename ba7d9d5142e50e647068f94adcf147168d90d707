@@ -22,6 +22,30 @@
       },
       "revId": "ba7d9d5142e50e647068f94adcf147168d90d707",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa707c86_b06c5226",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-13T15:13:31Z",
+      "side": 1,
+      "message": "It is in the commit body",
+      "parentUuid": "8658f87f_881e6789",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "ba7d9d5142e50e647068f94adcf147168d90d707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
