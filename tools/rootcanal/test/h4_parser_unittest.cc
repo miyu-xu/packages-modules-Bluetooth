@@ -153,12 +153,12 @@ TEST_F(H4ParserTest, Recovery) {
   ASSERT_TRUE(parser_.Consume(&invalid_packet_type, 1));
   ASSERT_EQ(parser_.CurrentState(), H4Parser::State::HCI_RECOVERY);
 
-  const std::array<uint8_t, 4> reset_command{0x01, 0x03, 0x0c, 0x00};
+  const std::array<uint8_t, 4> reset_sequence{0x01, 0x03, 0x0c, 0x00};
 
   // Send prefixes of the HCI Reset command, restarting over from the start.
   for (size_t n = 1; n < 4; n++) {
     for (size_t i = 0; i < n; i++) {
-      ASSERT_TRUE(parser_.Consume(&reset_command[i], 1));
+      ASSERT_TRUE(parser_.Consume(&reset_sequence[i], 1));
       ASSERT_EQ(parser_.CurrentState(), H4Parser::State::HCI_RECOVERY);
     }
   }
@@ -166,7 +166,7 @@ TEST_F(H4ParserTest, Recovery) {
   // Finally send the full HCI Reset command.
   for (size_t i = 0; i < 4; i++) {
     ASSERT_EQ(parser_.CurrentState(), H4Parser::State::HCI_RECOVERY);
-    ASSERT_TRUE(parser_.Consume(&reset_command[i], 1));
+    ASSERT_TRUE(parser_.Consume(&reset_sequence[i], 1));
   }
 
   // Validate that the HCI recovery state is exited,
@@ -176,9 +176,9 @@ TEST_F(H4ParserTest, Recovery) {
 
   // Validate that the HCI Reset command was correctly received.
   ASSERT_EQ(type_, PacketType::COMMAND);
-  ASSERT_EQ(packet_.size(), reset_command.size() - 1);
-  for (size_t i = 1; i < packet_.size(); i++) {
-    ASSERT_EQ(packet_[i - 1], reset_command[i]);
+  ASSERT_EQ(packet_.size(), reset_sequence.size() - 1);
+  for (size_t i = 0; i < packet_.size(); i++) {
+    ASSERT_EQ(packet_[i], reset_sequence[i + 1]);
   }
 }
 
