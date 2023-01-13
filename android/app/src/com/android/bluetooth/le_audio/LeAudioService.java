@@ -1034,6 +1034,41 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    private void handleLeAudioActiveDeviceChange(BluetoothDevice previousActiveDevice,
+            Integer volume, boolean isOutputDevice) {
+        /* State machine handler is in other thread and it may be in transition. To eliminate
+         * race with state change, get device state and send AudioManager call from its
+         * context to set proper noisy intent value.
+         */
+        if (previousActiveDevice != null) {
+            LeAudioDeviceDescriptor descriptor = getDeviceDescriptor(previousActiveDevice);
+            if (descriptor == null) {
+                Log.e(TAG, "handleLeAudioActiveDeviceChange: No valid descriptor for device: "
+                        + previousActiveDevice);
+                return;
+            }
+
+            LeAudioStateMachine.ActiveDeviceChangeEvent activeDeviceChangeEvent =
+                    descriptor.mStateMachine.new ActiveDeviceChangeEvent();
+            activeDeviceChangeEvent.mActiveAudioDevice = isOutputDevice ? mActiveAudioOutDevice
+                    : mActiveAudioInDevice;
+            activeDeviceChangeEvent.mPreviousActiveDevice = previousActiveDevice;
+            activeDeviceChangeEvent.volume = volume;
+            activeDeviceChangeEvent.isOutputDevice = isOutputDevice;
+            descriptor.mStateMachine.sendMessage(LeAudioStateMachine.ACTIVE_DEVICE_CHANGE_EVENT,
+                    activeDeviceChangeEvent);
+        } else {
+            if (isOutputDevice) {
+                mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
+                        previousActiveDevice, getLeAudioOutputProfile(true, volume));
+            } else {
+                mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioInDevice,
+                        previousActiveDevice,
+                        BluetoothProfileConnectionInfo.createLeAudioInfo(false, false));
+            }
+        }
+    }
+
     /**
      * Report the active devices change to the active device manager and the media framework.
      * @param groupId id of group which devices should be updated
@@ -1050,6 +1085,12 @@ public class LeAudioService extends ProfileService {
 
         if (isActive) {
             device = getFirstDeviceFromGroup(groupId);
+
+            LeAudioDeviceDescriptor descriptor = getDeviceDescriptor(device);
+            if (descriptor == null) {
+                Log.e(TAG, "updateActiveDevices: No valid descriptor for device: " + device);
+                return false;
+            }
         }
 
         boolean isNewActiveOutDevice = updateActiveOutDevice(device, groupId,
@@ -1083,19 +1124,11 @@ public class LeAudioService extends ProfileService {
             if (mActiveAudioOutDevice != null) {
                 volume = getAudioDeviceGroupVolume(groupId);
             }
-
-            final boolean suppressNoisyIntent = (mActiveAudioOutDevice != null)
-                    || (getConnectionState(previousActiveOutDevice)
-                    == BluetoothProfile.STATE_CONNECTED);
-
-            mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
-                    previousActiveOutDevice, getLeAudioOutputProfile(suppressNoisyIntent, volume));
+            handleLeAudioActiveDeviceChange(previousActiveOutDevice, volume, true);
         }
 
         if (isNewActiveInDevice) {
-            mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioInDevice,
-                    previousActiveInDevice, BluetoothProfileConnectionInfo.createLeAudioInfo(false,
-                            false));
+            handleLeAudioActiveDeviceChange(previousActiveInDevice, 0, false);
         }
 
         return mActiveAudioOutDevice != null;
@@ -1687,7 +1720,7 @@ public class LeAudioService extends ProfileService {
             Log.d(TAG, "Creating a new state machine for " + device);
         }
 
-        sm = LeAudioStateMachine.make(device, this,
+        sm = LeAudioStateMachine.make(device, this, mAudioManager,
                 mLeAudioNativeInterface, mStateMachinesThread.getLooper());
         descriptor.mStateMachine = sm;
         return sm;
