@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27d13305_7077ec69",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:20Z",
+      "side": 1,
+      "message": "This class is not done, this CL is here to reflect on ideas on implementation",
+      "parentUuid": "8539eace_426f6e7a",
+      "range": {
+        "startLine": 184,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 13
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cdf0d0c2_2be2304c",
         "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2023-01-13T02:29:25Z",
       "side": 1,
       "message": "mSettingsText ?",
+      "range": {
+        "startLine": 207,
+        "startChar": 16,
+        "endLine": 207,
+        "endChar": 30
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "671939c4_1866e73c",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:20Z",
+      "side": 1,
+      "message": "This class is not done, this CL is here to reflect on ideas on implementation",
+      "parentUuid": "cdf0d0c2_2be2304c",
       "range": {
         "startLine": 207,
         "startChar": 16,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9099dccc_e15c3df7",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:20Z",
+      "side": 1,
+      "message": "This class is not done, this CL is here to reflect on ideas on implementation",
+      "parentUuid": "600fcb3d_cab56fb5",
+      "range": {
+        "startLine": 267,
+        "startChar": 12,
+        "endLine": 270,
+        "endChar": 29
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dff3d1d8_f980fecb",
         "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
         "patchSetId": 1
@@ -112,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69cf4075_61777b65",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:20Z",
+      "side": 1,
+      "message": "This class is not done, this CL is here to reflect on ideas on implementation",
+      "parentUuid": "dff3d1d8_f980fecb",
+      "range": {
+        "startLine": 280,
+        "startChar": 11,
+        "endLine": 283,
+        "endChar": 24
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c5835e8_939328b1",
         "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
         "patchSetId": 1
@@ -123,6 +219,30 @@
       "writtenOn": "2023-01-13T02:29:25Z",
       "side": 1,
       "message": "if the value is not valid, we don\u0027t say anything.\nShould it throw a IllegalArgumentException instead ? same below",
+      "range": {
+        "startLine": 299,
+        "startChar": 14,
+        "endLine": 301,
+        "endChar": 17
+      },
+      "revId": "54c580d57b78585f0584ecd4e16a36ee7b1d0c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bef918b_9aaa6d16",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T02:34:20Z",
+      "side": 1,
+      "message": "This class is not done, this CL is here to reflect on ideas on implementation",
+      "parentUuid": "9c5835e8_939328b1",
       "range": {
         "startLine": 299,
         "startChar": 14,
