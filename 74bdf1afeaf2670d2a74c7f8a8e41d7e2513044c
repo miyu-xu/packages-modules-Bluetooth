@@ -83,6 +83,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "14d98c43_e7feb735",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T23:49:43Z",
+      "side": 1,
+      "message": "Where is this set?\nIf this is a new property we should go with sysprops and use the generated API instead of using SystemProperties.\nYou will also need to add this to the SEPolicy",
+      "range": {
+        "startLine": 91,
+        "startChar": 21,
+        "endLine": 91,
+        "endChar": 71
+      },
+      "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c37d347a_74e379eb",
@@ -125,6 +148,52 @@
         "startChar": 8,
         "endLine": 1849,
         "endChar": 86
+      },
+      "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b6c3c8_54ce5c9f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T23:49:43Z",
+      "side": 1,
+      "message": "Nit: missing dot",
+      "range": {
+        "startLine": 1265,
+        "startChar": 52,
+        "endLine": 1265,
+        "endChar": 54
+      },
+      "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ba1ffe_5d306fc9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1268,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-13T23:49:43Z",
+      "side": 1,
+      "message": "Nit: please remove this empty line",
+      "range": {
+        "startLine": 1268,
+        "startChar": 5,
+        "endLine": 1268,
+        "endChar": 6
       },
       "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
