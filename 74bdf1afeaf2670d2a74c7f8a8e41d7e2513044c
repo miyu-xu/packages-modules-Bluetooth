@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c152833_6f76c895",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-01-13T23:32:19Z",
+      "side": 1,
+      "message": "this has to be done before the CL can be submitted.",
+      "parentUuid": "84519fa6_fd01fa16",
+      "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4293c21_d7e717e2",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2023-01-13T23:31:12Z",
       "side": 1,
       "message": "now I see this, it looks like a re-definition of the one in TbsGeneric",
+      "range": {
+        "startLine": 90,
+        "startChar": 32,
+        "endLine": 90,
+        "endChar": 65
+      },
+      "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "872187bf_7270cd84",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-01-13T23:32:19Z",
+      "side": 1,
+      "message": "Please reduce them to one definition.",
+      "parentUuid": "b4293c21_d7e717e2",
       "range": {
         "startLine": 90,
         "startChar": 32,
