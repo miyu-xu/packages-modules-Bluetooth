@@ -140,12 +140,9 @@ public class HidHostService extends ProfileService {
         setHidHostService(null);
     }
 
-    private BluetoothDevice getDevice(byte[] address) {
-        return mAdapterService.getDeviceFromByte(address);
-    }
-
     private byte[] getByteAddress(BluetoothDevice device) {
-        return mAdapterService.getByteIdentityAddress(device);
+        // DO NOT SUBMIT! This breaks HID when doing LE->BREDR CTKD, but fixes HOGP with RPA
+        return Utils.getByteAddress(device);
     }
 
     public static synchronized HidHostService getHidHostService() {
