@@ -84,8 +84,20 @@ struct MsftExtensionManager::impl {
 
   void handle_le_monitor_device_event(MsftLeMonitorDeviceEventPayloadView view) {
     ASSERT(view.IsValid());
-    LOG_WARN("The Microsoft MSFT_LE_MONITOR_DEVICE_EVENT is not supported yet.");
-    // TODO: to call a callback here.
+
+    AdvertisingFilterOnFoundOnLostInfo on_found_on_lost_info;
+    // The monitor state is 0x00 when the controller stops monitoring the device.
+    if (view.GetMonitorState() == 0x00) {
+      on_found_on_lost_info.advertiser_info_present = AdvtInfoPresent::NO_ADVT_INFO_PRESENT;
+    } else if (view.GetMonitorState() == 0x01) {
+      on_found_on_lost_info.advertiser_info_present = AdvtInfoPresent::ADVT_INFO_PRESENT;
+    } else {
+      LOG_WARN("The Microsoft vendor event monitor state is invalid.");
+      return;
+    }
+    on_found_on_lost_info.advertiser_address_type = view.GetAddressType();
+    on_found_on_lost_info.advertiser_address = view.GetBdAddr();
+    scanning_callbacks_->OnTrackAdvFoundLost(on_found_on_lost_info);
   }
 
   void handle_msft_events(VendorSpecificEventView view) {
@@ -169,6 +181,10 @@ struct MsftExtensionManager::impl {
     hci_layer_->EnqueueCommand(
         MsftLeSetAdvFilterEnableBuilder::Create(static_cast<OpCode>(msft_.opcode.value()), enable),
         module_handler_->BindOnceOn(this, &impl::on_msft_adv_monitor_enable_complete));
+  }
+
+  void set_scanning_callback(ScanningCallback* callbacks) {
+    scanning_callbacks_ = callbacks;
   }
 
   /*
@@ -268,6 +284,7 @@ struct MsftExtensionManager::impl {
   MsftAdvMonitorAddCallback msft_adv_monitor_add_cb_;
   MsftAdvMonitorRemoveCallback msft_adv_monitor_remove_cb_;
   MsftAdvMonitorEnableCallback msft_adv_monitor_enable_cb_;
+  ScanningCallback* scanning_callbacks_;
 };
 
 MsftExtensionManager::MsftExtensionManager() {
@@ -313,6 +330,10 @@ void MsftExtensionManager::MsftAdvMonitorRemove(
 
 void MsftExtensionManager::MsftAdvMonitorEnable(bool enable, MsftAdvMonitorEnableCallback cb) {
   CallOn(pimpl_.get(), &impl::msft_adv_monitor_enable, enable, cb);
+}
+
+void MsftExtensionManager::SetScanningCallback(ScanningCallback* callbacks) {
+  CallOn(pimpl_.get(), &impl::set_scanning_callback, callbacks);
 }
 
 }  // namespace hci
