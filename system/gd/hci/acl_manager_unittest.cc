@@ -405,11 +405,7 @@ class AclManagerBaseTest : public ::testing::Test {
   }
 
   void sync_client_handler() {
-    std::promise<void> promise;
-    auto future = promise.get_future();
-    client_handler_->Post(common::BindOnce(&std::promise<void>::set_value, common::Unretained(&promise)));
-    auto future_status = future.wait_for(std::chrono::seconds(1));
-    ASSERT_EQ(future_status, std::future_status::ready);
+    ASSERT(thread_.GetReactor()->WaitForIdle(1s));
   }
 
   TestHciLayer* test_hci_layer_ = nullptr;
