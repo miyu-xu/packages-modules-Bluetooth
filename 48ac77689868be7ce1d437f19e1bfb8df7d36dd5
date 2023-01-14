@@ -16,6 +16,24 @@
       "message": "we can set flag values in our init script",
       "revId": "48ac77689868be7ce1d437f19e1bfb8df7d36dd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2d51d0b_4cd9e9ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-14T01:02:46Z",
+      "side": 1,
+      "message": "ACK. This is also a regression to Android devices, cmanton@, FYI.",
+      "parentUuid": "452a7e26_a6964cf0",
+      "revId": "48ac77689868be7ce1d437f19e1bfb8df7d36dd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
