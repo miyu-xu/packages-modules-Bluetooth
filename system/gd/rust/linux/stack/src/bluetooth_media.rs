@@ -61,12 +61,6 @@ pub trait IBluetoothMedia {
     fn connect(&mut self, address: String);
     fn disconnect(&mut self, address: String);
 
-    // Set the device as the active A2DP device
-    fn set_active_device(&mut self, address: String);
-
-    // Set the device as the active HFP device
-    fn set_hfp_active_device(&mut self, address: String);
-
     fn set_audio_config(
         &mut self,
         sample_rate: i32,
@@ -346,6 +340,14 @@ impl BluetoothMedia {
         }
     }
 
+    fn set_a2dp_active_device(&mut self, addr: RawAddress) {
+        match self.a2dp.as_mut() {
+            Some(a2dp) => a2dp.set_active_device(addr),
+            None => warn!("Uninitialized A2DP to set active device"),
+        }
+        self.uinput.set_active_device(addr.to_string());
+    }
+
     pub fn dispatch_a2dp_callbacks(&mut self, cb: A2dpCallbacks) {
         match cb {
             A2dpCallbacks::ConnectionState(addr, state, error) => {
@@ -365,9 +367,13 @@ impl BluetoothMedia {
                         info!("[{}]: a2dp connected.", addr.to_string());
                         self.a2dp_states.insert(addr, state);
                         self.add_connected_profile(addr, uuid::Profile::A2dpSink);
+                        self.set_a2dp_active_device(addr);
                     }
                     BtavConnectionState::Disconnected => {
                         info!("[{}]: a2dp disconnected.", addr.to_string());
+                        self.set_a2dp_active_device(
+                            RawAddress::from_string("00:00:00:00:00:00").unwrap(),
+                        );
                         self.a2dp_states.remove(&addr);
                         self.a2dp_caps.remove(&addr);
                         self.a2dp_audio_state.remove(&addr);
@@ -503,6 +509,15 @@ impl BluetoothMedia {
         }
     }
 
+    fn set_hfp_active_device(&mut self, addr: RawAddress) {
+        match self.hfp.as_mut() {
+            Some(hfp) => {
+                hfp.set_active_device(addr);
+            }
+            None => warn!("Uninitialized HFP to set active device"),
+        }
+    }
+
     pub fn dispatch_hfp_callbacks(&mut self, cb: HfpCallbacks) {
         match cb {
             HfpCallbacks::ConnectionState(state, addr) => {
@@ -529,6 +544,7 @@ impl BluetoothMedia {
                             self.hfp_cap.insert(addr, HfpCodecCapability::CVSD);
                         }
                         self.add_connected_profile(addr, uuid::Profile::Hfp);
+                        self.set_hfp_active_device(addr);
                     }
                     BthfConnectionState::Disconnected => {
                         info!("[{}]: hfp disconnected.", addr.to_string());
@@ -1186,39 +1202,6 @@ impl IBluetoothMedia for BluetoothMedia {
                 }
                 _ => warn!("Unknown profile: {:?}", profile),
             }
-        }
-    }
-
-    fn set_active_device(&mut self, address: String) {
-        let addr = match RawAddress::from_string(address.clone()) {
-            None => {
-                warn!("Invalid device address {}", address);
-                return;
-            }
-            Some(addr) => addr,
-        };
-
-        match self.a2dp.as_mut() {
-            Some(a2dp) => a2dp.set_active_device(addr),
-            None => warn!("Uninitialized A2DP to set active device"),
-        }
-        self.uinput.set_active_device(addr.to_string());
-    }
-
-    fn set_hfp_active_device(&mut self, address: String) {
-        let addr = match RawAddress::from_string(address.clone()) {
-            None => {
-                warn!("Invalid device address {}", address);
-                return;
-            }
-            Some(addr) => addr,
-        };
-
-        match self.hfp.as_mut() {
-            Some(hfp) => {
-                hfp.set_active_device(addr);
-            }
-            None => warn!("Uninitialized HFP to set active device"),
         }
     }
 
