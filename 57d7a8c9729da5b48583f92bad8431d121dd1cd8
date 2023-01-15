@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3a795a_b2b2d4ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985846
+      },
+      "writtenOn": "2023-01-15T02:38:47Z",
+      "side": 1,
+      "message": "2388850: Add #defines for riscv64 | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2388850",
+      "revId": "57d7a8c9729da5b48583f92bad8431d121dd1cd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
