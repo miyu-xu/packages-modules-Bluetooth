@@ -50,6 +50,42 @@
       "message": "Unfortunately the CL doesn\u0027t build as it is because of libbluetooth-core.\nYou can reproduce the build failure with `m libbluetooth-core`.\n\nI uploaded a follow-up [patch](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2384374)\n(and [here](https://android.googlesource.com/platform/packages/modules/Bluetooth/+/3473a2a1d8a0131675f140fa8f914371f9295311) the external link if you have trouble to access the first gerrit link)\n\n\n\nCan you squash the content of it into this one ? (in order to only merge one valid CL and not rely on another CL to build this one)",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f3aa22_36c4c37e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-15T10:24:41Z",
+      "side": 1,
+      "message": "I am not sure about it\u0027s purpose. It\u0027s an enhancement on already added feature. Do you think it\u0027s still required? \nLet me know if I miss something from overall process perspective from Google code merge.\n\nI am following,\nsource build/envsetup.sh \u0026\u0026 banchan com.android.btservices module_arm64\nUNBUNDLED_BUILD_SDKS_FROM_SOURCE\u003dtrue m apps_only dist\nI have unit tested and integration tested it works OK.\nbut it seems there are more workflow for final merge apart from that like \n\nm libbluetooth-core\nfeature flagging etc.",
+      "parentUuid": "ecf0b3b4_da2abb71",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "976e72fa_fb257941",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-15T10:24:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d17bf993_5210a0fc",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
