@@ -22,6 +22,30 @@
       },
       "revId": "0abd88682f4c2b43d2fded83d0fdfda0360891ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1f1ee4_c06c21eb",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T13:02:06Z",
+      "side": 1,
+      "message": "since handles changed (or at lease there is a high chance for that), there is no reason to stay registered. What do you think?",
+      "parentUuid": "0cca9829_f39b7204",
+      "range": {
+        "startLine": 32,
+        "startChar": 26,
+        "endLine": 32,
+        "endChar": 49
+      },
+      "revId": "0abd88682f4c2b43d2fded83d0fdfda0360891ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
