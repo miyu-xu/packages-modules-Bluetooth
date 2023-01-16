@@ -126,9 +126,9 @@ config("target_defaults") {
     "BTIF_HF_FEATURES=0x00000240",
   ]
 
-  if (!(defined(use.bt_nonstandard_codecs) && use.bt_nonstandard_codecs)) {
-    defines += [ "EXCLUDE_NONSTANDARD_CODECS" ]
-  }
+  # if (!(defined(use.bt_nonstandard_codecs) && use.bt_nonstandard_codecs)) {
+  #   defines += [ "EXCLUDE_NONSTANDARD_CODECS" ]
+  # }
 
   configs = [ ":external_libchrome" ]
 
@@ -209,7 +209,7 @@ pkg_config("pkg_tinyxml2") {
 # To use non-standard codecs (i.e. ldac, aac, aptx), set this use flag when
 # building. These codecs may have licensing issues that need to be resolved
 # first.
-if (defined(use.bt_nonstandard_codecs) && use.bt_nonstandard_codecs) {
+if (false) {
   config("external_aac") {
     configs = [ ":pkg_aac" ]
   }

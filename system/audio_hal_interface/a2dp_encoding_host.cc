@@ -106,6 +106,8 @@ namespace a2dp {
 // Invoked by audio server to set audio config (PCM for now)
 bool SetAudioConfig(AudioConfig config) {
   btav_a2dp_codec_config_t codec_config;
+  codec_config.codec_type = BTAV_A2DP_CODEC_INDEX_SOURCE_AAC;
+  codec_config.codec_priority = BTAV_A2DP_CODEC_PRIORITY_HIGHEST;
   codec_config.sample_rate = config.sample_rate;
   codec_config.bits_per_sample = config.bits_per_sample;
   codec_config.channel_mode = config.channel_mode;

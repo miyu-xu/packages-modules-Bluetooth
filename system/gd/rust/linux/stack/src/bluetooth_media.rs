@@ -1788,6 +1788,14 @@ impl IBluetoothMedia for BluetoothMedia {
         match self.a2dp_states.get(&addr) {
             Some(BtavConnectionState::Connected) => {
                 if let Some(a2dp) = self.a2dp.as_mut() {
+                    a2dp.config_codec(
+                        addr,
+                        vec![A2dpCodecConfig {
+                            codec_type: 1,
+                            codec_priority: 9000000,
+                            ..Default::default()
+                        }],
+                    );
                     a2dp.set_active_device(addr);
                     self.uinput.set_active_device(addr.to_string());
                 } else {

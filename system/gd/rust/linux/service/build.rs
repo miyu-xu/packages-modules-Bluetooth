@@ -16,6 +16,9 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=flatbuffers");
     println!("cargo:rustc-link-lib=dylib=protobuf");
     println!("cargo:rustc-link-lib=dylib=resolv");
+    println!("cargo:rustc-link-lib=dylib=avutil");
+    println!("cargo:rustc-link-lib=dylib=avcodec");
+    println!("cargo:rustc-link-lib=dylib=avformat");
 
     // Clang requires -lc++ instead of -lstdc++
     println!("cargo:rustc-link-lib=c++");
