@@ -1,0 +1,22 @@
+source_set("aptxhd_encoder") {
+  sources = [
+    "src/aptXHDbtenc.c",
+    "src/ProcessSubband.c",
+    "src/QmfConv.c",
+    "src/QuantiseDifference.c",
+  ]
+
+  include_dirs = [
+    "include",
+    "//bt/system/internal_include",
+    "//bt/system/stack/include",
+  ]
+
+  configs += [ "//bt/system:target_defaults" ]
+}
+
+static_library("libaptxhd_enc") {
+  deps = [
+    ":aptxhd_encoder",
+  ]
+}

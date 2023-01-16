@@ -32,8 +32,10 @@
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
 #include "a2dp_vendor_aptx.h"
 #include "a2dp_vendor_aptx_hd.h"
+#ifndef TARGET_FLOSS
 #include "a2dp_vendor_ldac.h"
 #include "a2dp_vendor_opus.h"
+#endif
 #endif
 
 #include "bta/av/bta_av_int.h"
@@ -124,14 +126,15 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       codec_config = new A2dpCodecConfigAacSource(codec_priority);
       break;
-    case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
-      codec_config = new A2dpCodecConfigAacSink(codec_priority);
-      break;
     case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX:
       codec_config = new A2dpCodecConfigAptx(codec_priority);
       break;
     case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD:
       codec_config = new A2dpCodecConfigAptxHd(codec_priority);
+      break;
+#ifndef TARGET_FLOSS
+    case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
+      codec_config = new A2dpCodecConfigAacSink(codec_priority);
       break;
     case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
       codec_config = new A2dpCodecConfigLdacSource(codec_priority);
@@ -145,6 +148,7 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SINK_OPUS:
       codec_config = new A2dpCodecConfigOpusSink(codec_priority);
       break;
+#endif
 #endif
     case BTAV_A2DP_CODEC_INDEX_MAX:
     default:
@@ -223,6 +227,7 @@ bool A2dpCodecConfig::getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload) {
       p_a2dp_offload->codec_info[3] = (vendor_id & 0xFF000000) >> 24;
       p_a2dp_offload->codec_info[4] = (codec_id & 0x000000FF);
       p_a2dp_offload->codec_info[5] = (codec_id & 0x0000FF00) >> 8;
+#ifndef TARGET_FLOSS
       if (vendor_id == A2DP_LDAC_VENDOR_ID && codec_id == A2DP_LDAC_CODEC_ID) {
         if (codec_config_.codec_specific_1 == 0) {  // default is 0, ABR
           p_a2dp_offload->codec_info[6] =
@@ -254,6 +259,7 @@ bool A2dpCodecConfig::getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload) {
         LOG_VERBOSE("%s: Ldac specific channelmode =%d", __func__,
                     p_a2dp_offload->codec_info[7]);
       }
+#endif
       break;
 #endif
     default:
@@ -545,9 +551,9 @@ int A2DP_IotGetPeerSinkCodecType(const uint8_t* p_codec_info) {
       } else if (codec_id == A2DP_APTX_HD_CODEC_ID_BLUETOOTH &&
                  vendor_id == A2DP_APTX_HD_VENDOR_ID) {
         peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_APTXHD;
-      } else if (codec_id == A2DP_LDAC_CODEC_ID &&
-                 vendor_id == A2DP_LDAC_VENDOR_ID) {
-        peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_LDAC;
+        // } else if (codec_id == A2DP_LDAC_CODEC_ID &&
+        //            vendor_id == A2DP_LDAC_VENDOR_ID) {
+        //   peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_LDAC;
       }
       break;
     }
@@ -1477,8 +1483,10 @@ const char* A2DP_CodecIndexStr(btav_a2dp_codec_index_t codec_index) {
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       return A2DP_CodecIndexStrAac();
+#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
       return A2DP_CodecIndexStrAacSink();
+#endif
 #endif
     default:
       break;
@@ -1508,8 +1516,10 @@ bool A2DP_InitCodecConfig(btav_a2dp_codec_index_t codec_index,
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       return A2DP_InitCodecConfigAac(p_cfg);
+#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
       return A2DP_InitCodecConfigAacSink(p_cfg);
+#endif
 #endif
     default:
       break;
