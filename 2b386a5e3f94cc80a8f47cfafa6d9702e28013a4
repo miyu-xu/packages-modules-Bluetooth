@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e3b472_af8f5e72",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-16T12:55:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a680cb1_c91e8f90",
+      "range": {
+        "startLine": 118,
+        "startChar": 38,
+        "endLine": 118,
+        "endChar": 44
+      },
+      "revId": "2b386a5e3f94cc80a8f47cfafa6d9702e28013a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1dcbdfe_bde59d6b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-12T06:38:00Z",
       "side": 1,
       "message": "Not used. Delete ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 46
+      },
+      "revId": "2b386a5e3f94cc80a8f47cfafa6d9702e28013a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a701208_1bb0764a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/DistanceMeasurementManagerTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-16T12:55:50Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "d1dcbdfe_bde59d6b",
       "range": {
         "startLine": 66,
         "startChar": 29,
