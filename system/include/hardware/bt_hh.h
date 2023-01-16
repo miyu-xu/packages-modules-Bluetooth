@@ -210,6 +210,12 @@ typedef struct {
   /** Send data to HID device. */
   bt_status_t (*send_data)(RawAddress* bd_addr, char* data);
 
+  /** Activate or deactivate LE HID. */
+  void (*activate_hogp)(bool active);
+
+  /** Activate or deactivate classic HID. */
+  void (*activate_hidp)(bool active);
+
   /** Closes the interface. */
   void (*cleanup)(void);
 

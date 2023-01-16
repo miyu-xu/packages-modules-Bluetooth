@@ -356,3 +356,25 @@ void BTA_HhRemoveDev(uint8_t dev_handle) {
 
   bta_sys_sendmsg(p_buf);
 }
+
+/*******************************************************************************
+ *
+ * Function         BTA_HhActivateHOGP
+ *
+ * Description      Activate or deactivate LE HID.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTA_HhActivateHOGP(bool active) { bta_hh_activate_hogp(active); }
+
+/*******************************************************************************
+ *
+ * Function         BTA_HhActivateHIDP
+ *
+ * Description      Activate or deactivate classic HID.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTA_HhActivateHIDP(bool active) { bta_hh_activate_hidp(active); }

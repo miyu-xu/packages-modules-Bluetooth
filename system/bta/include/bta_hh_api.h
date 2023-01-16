@@ -520,4 +520,26 @@ extern void BTA_HhAddDev(const RawAddress& bda, tBTA_HH_ATTR_MASK attr_mask,
  ******************************************************************************/
 extern void BTA_HhRemoveDev(uint8_t dev_handle);
 
+/*******************************************************************************
+ *
+ * Function         BTA_HhActivateHOGP
+ *
+ * Description      Activate or deactivate LE HID.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+extern void BTA_HhActivateHOGP(bool active);
+
+/*******************************************************************************
+ *
+ * Function         BTA_HhActivateHIDP
+ *
+ * Description      Activate or deactivate classic HID.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+extern void BTA_HhActivateHIDP(bool active);
+
 #endif /* BTA_HH_API_H */

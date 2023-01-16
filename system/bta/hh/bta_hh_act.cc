@@ -52,6 +52,9 @@ constexpr char kBtmLogTag[] = "HIDH";
 
 }
 
+/* Flag that can be dynamically set to allow or disallow HIDP connection */
+static bool is_hidp_activated = true;
+
 /*****************************************************************************
  *  Local Function prototypes
  ****************************************************************************/
@@ -578,6 +581,11 @@ void bta_hh_open_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       p_data ? (uint8_t)p_data->hid_cback.hdr.layer_specific : p_cb->hid_handle;
 
   APPL_TRACE_EVENT("%s:  Device[%d] connected", __func__, dev_handle);
+
+  if (!is_hidp_activated) {
+    LOG_DEBUG("HIDP not activated. Ignore HID open request");
+    return;
+  }
 
   /* SDP has been done */
   if (p_cb->app_id != 0) {
@@ -1113,6 +1121,18 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   }
   return;
 }
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_activate_hidp
+ *
+ * Description      Active or deactive internal classic HID.
+ *
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void bta_hh_activate_hidp(bool active) { is_hidp_activated = active; }
 
 /*****************************************************************************
  *  Static Function

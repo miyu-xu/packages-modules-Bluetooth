@@ -717,6 +717,30 @@ void btif_hh_getreport(btif_hh_device_t* p_dev, bthh_report_type_t r_type,
   BTA_HhGetReport(p_dev->dev_handle, r_type, reportId, bufferSize);
 }
 
+/*******************************************************************************
+ *
+ * Function         activate_hogp
+ *
+ * Description      Activate or deactivate LE HID.
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+
+static void activate_hogp(bool active) { BTA_HhActivateHOGP(active); }
+
+/*******************************************************************************
+ *
+ * Function         activate_hidp
+ *
+ * Description      Activate or deactivate classic HID.
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+
+static void activate_hidp(bool active) { BTA_HhActivateHIDP(active); }
+
 /*****************************************************************************
  *   Section name (Group of functions)
  ****************************************************************************/
@@ -1836,6 +1860,8 @@ static const bthh_interface_t bthhInterface = {
     get_report_reply,
     set_report,
     send_data,
+    activate_hogp,
+    activate_hidp,
     cleanup,
 };
 

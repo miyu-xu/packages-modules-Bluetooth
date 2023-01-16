@@ -84,6 +84,8 @@ extern void bta_dm_process_delete_key_RC_to_unpair(const RawAddress& bd_addr);
 
 static const char* bta_hh_le_rpt_name[4] = {"UNKNOWN", "INPUT", "OUTPUT",
                                             "FEATURE"};
+/* Flag that can be dynamically set to allow or disallow HOGP connection */
+static bool is_hogp_activated = true;
 
 /*******************************************************************************
  *
@@ -1112,6 +1114,11 @@ void bta_hh_gatt_open(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_buf) {
 
   /* if received invalid callback data , ignore it */
   if (p_cb == NULL || p_data == NULL) return;
+
+  if (!is_hogp_activated) {
+    LOG_DEBUG("HOGP not activated. Ignore LE HID open request");
+    return;
+  }
 
   p2 = p_data->remote_bda.address;
 
@@ -2180,3 +2187,14 @@ static void bta_hh_process_cache_rpt(tBTA_HH_DEV_CB* p_cb,
     }
   }
 }
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_activate_hogp
+ *
+ * Description      Activate or deactivate internal LE HID
+ *
+ * Parameters:
+ *
+ ******************************************************************************/
+void bta_hh_activate_hogp(bool active) { is_hogp_activated = active; }
