@@ -22,6 +22,57 @@
       },
       "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54681773_b1b9cb48",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T20:26:02Z",
+      "side": 1,
+      "message": "please add logs here",
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0408f5_28df3c74",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T20:26:02Z",
+      "side": 1,
+      "message": "please add log",
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a4bf612_7f9497c9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T20:26:02Z",
+      "side": 1,
+      "message": "please add logs",
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
