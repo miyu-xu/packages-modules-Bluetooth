@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f059281a_86923d06",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T20:24:04Z",
+      "side": 1,
+      "message": "what happens if previosActiveDevice just got unbonded ?\n\nI guess previousActiveDevice will be `!\u003d null ` but there will be no LeAudioDeviceDescriptor",
+      "range": {
+        "startLine": 1045,
+        "startChar": 12,
+        "endLine": 1045,
+        "endChar": 32
+      },
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
