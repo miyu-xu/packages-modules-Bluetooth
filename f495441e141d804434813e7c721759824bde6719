@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2e1efe_71b2cf5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T20:04:27Z",
+      "side": 1,
+      "message": "did you possibly test it manual with devices supporting CCP ?",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 23
+      },
+      "revId": "f495441e141d804434813e7c721759824bde6719",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
