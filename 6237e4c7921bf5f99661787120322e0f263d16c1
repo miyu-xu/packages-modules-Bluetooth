@@ -22,6 +22,30 @@
       },
       "revId": "6237e4c7921bf5f99661787120322e0f263d16c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8453971b_a17c954c",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1914,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T13:00:38Z",
+      "side": 1,
+      "message": "intention is to get \"Service change event\"",
+      "parentUuid": "9d0ab3e6_546fcab6",
+      "range": {
+        "startLine": 1914,
+        "startChar": 3,
+        "endLine": 1914,
+        "endChar": 71
+      },
+      "revId": "6237e4c7921bf5f99661787120322e0f263d16c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
