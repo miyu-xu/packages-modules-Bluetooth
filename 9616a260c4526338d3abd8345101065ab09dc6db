@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea503f5_836d15a0",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2023-01-16T13:04:21Z",
+      "side": 1,
+      "message": "This does not build since semaphore is not included. I tried adding \"osi/semaphore.h\", but that seems to be only for internal use and not generally used in the BT stack (so far).\n\nCould you make sure this builds, thank you!",
+      "revId": "9616a260c4526338d3abd8345101065ab09dc6db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
