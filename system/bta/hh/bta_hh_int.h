@@ -334,6 +334,9 @@ extern void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
 extern void bta_hh_le_notify_enc_cmpl(tBTA_HH_DEV_CB* p_cb,
                                       const tBTA_HH_DATA* p_data);
 
+extern void bta_hh_activate_hogp(bool active);
+extern void bta_hh_activate_hidp(bool active);
+
 #if (BTA_HH_DEBUG == TRUE)
 extern void bta_hh_trace_dev_db(void);
 #endif
