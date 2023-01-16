@@ -230,6 +230,11 @@ init_flags!(
         redact_log = true,
         sdp_serialization = true,
         sdp_skip_rnr_if_known = true,
+        // LINT.ThenChange(/system/gd/common/init_flags.fbs)
+        // LINT.IfChange
+        send_bluetooth_quality_report_as_intent,
+        // LINT.ThenChange(/android/app/src/com/android/bluetooth/btservice/AdapterService.java)
+        // LINT.IfChange
         set_min_encryption = true,
         subrating = true,
         trigger_advertising_callbacks_on_first_resume_after_pause = true,
