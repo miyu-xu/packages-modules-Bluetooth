@@ -122,6 +122,24 @@
       "parentUuid": "12152846_872f3c4b",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "135368ab_15150eb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-16T14:38:58Z",
+      "side": 1,
+      "message": "I am not sure about it\u0027s purpose. It\u0027s an enhancement on already added feature. Do you think it\u0027s still required?\n\nYes it is. All new feature / improvement needs to be flagged whenever possible.\n\u003cSagar\u003e Is it possible to provide a change for it I will squash it. Sorry I am not familiar as we don\u0027t follow such thing here also I am unsure what value add it brings in. \n\nunit test seems suddenly start to fail\n\u003cSagar\u003e Appreciate if you can provide a squash for this as well. I will incorporate both in final change and complete review workflow for final merge.\n\n\nFail logs for unit test\narm64-v8a net_test_stack_sdp\n----------------------------\nnet_test_stack_sdp (23 Tests)\n[1/23] StackSdpMainTest#sdp_service_search_request: PASSED (0ms)\n[2/23] StackSdpMainTest#sdp_service_search_request_queuing: PASSED (0ms)\n[3/23] StackSdpMainTest#sdp_service_search_request_queuing_race_condition: PASSED (0ms)\n[4/23] StackSdpMainTest#discovery_state_text: PASSED (0ms)\n[5/23] StackSdpUtilsTest#sdpu_set_avrc_target_version_device_in_iop_table_versoin_1_4: FAILED (132ms)\n\nSTACKTRACE:\nNo test results.\n\nRUNNER ERROR: Test run incomplete. Expected 23 tests, received 4\n\n\nSummary (Test executed with 1 devices.)\n-------\narm64-v8a net_test_stack_sdp: Passed: 4, Failed: 1, Ignored: 0, Assumption Failed: 0,   (Completed With ERRORS)\n\n1 test failed\n-------------\nStackSdpUtilsTest#sdpu_set_avrc_target_version_device_in_iop_table_versoin_1_4\nTest Logs have saved in /tmp/atest_result/20230116_101028_rwutyzl8/log\nRun \u0027atest --history\u0027 to review test result history.",
+      "parentUuid": "e05d7408_ee6f835c",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
