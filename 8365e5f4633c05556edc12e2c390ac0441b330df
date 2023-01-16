@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf53c792_f46999c4",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothQualityReport.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-16T15:26:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa75d91a_f890689b",
+      "range": {
+        "startLine": 72,
+        "startChar": 48,
+        "endLine": 72,
+        "endChar": 65
+      },
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8838ded1_759da289",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-01-16T11:26:48Z",
       "side": 1,
       "message": "Use pass-by-ref in all of those args. You won\u0027t need the `ifs`.",
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc95d068_8808d57a",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-16T15:26:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8838ded1_759da289",
       "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46481937_eef1f8f3",
+        "filename": "system/include/hardware/bt_bqr.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-16T15:26:07Z",
+      "side": 1,
+      "message": "As per offline chat, it has to be passed by value.",
+      "parentUuid": "96e4cabe_77839e19",
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d19fb32b_c1d03221",
@@ -71,6 +131,24 @@
       "writtenOn": "2023-01-16T11:26:48Z",
       "side": 1,
       "message": "Pass RawAddress by reference.",
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d9137f5_82bfa8c7",
+        "filename": "system/include/hardware/bt_bqr.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-16T15:26:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d19fb32b_c1d03221",
       "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
