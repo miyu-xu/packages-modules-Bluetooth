@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66881cbe_6fb4b8b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-16T20:16:34Z",
+      "side": 1,
+      "message": "Looks like LeAudioTest are failing",
+      "revId": "c7911d8f49c5892dcf09432d5f9fe99aa6da96c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
