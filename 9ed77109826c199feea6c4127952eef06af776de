@@ -104,6 +104,24 @@
       "parentUuid": "a4f3aa22_36c4c37e",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05d7408_ee6f835c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-16T09:28:30Z",
+      "side": 1,
+      "message": "\u003e I am not sure about it\u0027s purpose. It\u0027s an enhancement on already added feature. Do you think it\u0027s still required?\n\nYes it is. All new feature / improvement needs to be flagged whenever possible.\n\n\u003e unit test seems suddenly start to fail\n\nLooks like we need to initialize the callback to get the Avrcp.\n\nI notice there is the [InitializeCoreInterface](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/test/common/core_interface.cc;l\u003d70?q\u003dInitializeCoreInterface\u0026sq\u003d)\nThat will initialize the stack with a mock of the interface, but I don\u0027t see a lot of usage and no-one override the HACK_ProfileInterface in it.\nSorry this is unknown territory for me\n @aryarahul@google.com can you help with some guidance on how do you want test to provide the HACK_ProfileInterface callback ?",
+      "parentUuid": "12152846_872f3c4b",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
