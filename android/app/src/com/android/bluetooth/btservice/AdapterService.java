@@ -526,10 +526,17 @@ public class AdapterService extends Service {
 
         mBluetoothKeystoreService.initJni();
 
-        mBluetoothQualityReportNativeInterface = Objects.requireNonNull(
-                BluetoothQualityReportNativeInterface.getInstance(),
-                "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
-        mBluetoothQualityReportNativeInterface.init();
+        boolean isBqrEnabled =
+                DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH,
+                        "INIT_send_bluetooth_quality_report_as_intent",
+                        false);
+        if (isBqrEnabled) {
+            mBluetoothQualityReportNativeInterface =
+                    Objects.requireNonNull(
+                            BluetoothQualityReportNativeInterface.getInstance(),
+                            "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
+            mBluetoothQualityReportNativeInterface.init();
+        }
 
         mSdpManager = SdpManager.init(this);
         registerReceiver(mAlarmBroadcastReceiver, new IntentFilter(ACTION_ALARM_WAKEUP));

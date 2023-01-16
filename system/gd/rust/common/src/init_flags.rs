@@ -229,6 +229,7 @@ init_flags!(
         redact_log = true,
         sdp_serialization = true,
         sdp_skip_rnr_if_known = true,
+        send_bluetooth_quality_report_as_intent,
         set_min_encryption = true,
         subrating = true,
         trigger_advertising_callbacks_on_first_resume_after_pause = true,
