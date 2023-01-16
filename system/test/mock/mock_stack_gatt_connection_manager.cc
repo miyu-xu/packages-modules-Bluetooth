@@ -94,3 +94,8 @@ bool connection_manager::is_background_connection(const RawAddress& address) {
   inc_func_call_count(__func__);
   return false;
 }
+
+void connection_manager::set_le_audio_stream_callback(
+    base::Callback<bool(const RawAddress&)> cb) {
+  inc_func_call_count(__func__);
+}

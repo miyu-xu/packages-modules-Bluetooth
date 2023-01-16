@@ -26,6 +26,11 @@ void bluetooth::manager::SetMockBtmInterface(
   btm_interface = mock_btm_interface;
 }
 
+void BTM_SetLeAudioStreamCallback(base::Callback<bool(const RawAddress&)> cb) {
+  LOG_ASSERT(btm_interface) << "Mock btm interface not set!";
+  return btm_interface->SetLeAudioStreamCallback(cb);
+}
+
 bool BTM_GetSecurityFlagsByTransport(const RawAddress& bd_addr,
                                      uint8_t* p_sec_flags,
                                      tBT_TRANSPORT transport) {
