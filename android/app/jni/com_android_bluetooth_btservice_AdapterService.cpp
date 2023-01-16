@@ -15,25 +15,23 @@
  */
 
 #define LOG_TAG "BluetoothServiceJni"
-#include "com_android_bluetooth.h"
-#include "hardware/bt_sock.h"
-#include "utils/Log.h"
-#include "utils/misc.h"
-
 #include <dlfcn.h>
 #include <errno.h>
+#include <fcntl.h>
+#include <hardware/bluetooth.h>
+#include <nativehelper/JNIPlatformHelp.h>
 #include <pthread.h>
 #include <string.h>
-
-#include <fcntl.h>
 #include <sys/prctl.h>
 #include <sys/stat.h>
 
-#include <hardware/bluetooth.h>
-#include <nativehelper/JNIPlatformHelp.h>
 #include <mutex>
 
-#include <pthread.h>
+#include "com_android_bluetooth.h"
+#include "gd/common/init_flags.h"
+#include "hardware/bt_sock.h"
+#include "utils/Log.h"
+#include "utils/misc.h"
 
 using bluetooth::Uuid;
 #ifndef DYNAMIC_LOAD_BLUETOOTH
