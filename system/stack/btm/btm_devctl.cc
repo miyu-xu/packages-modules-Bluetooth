@@ -740,6 +740,20 @@ static void BTM_BT_Quality_Report_VSE_CBack(uint8_t length,
 
 /*******************************************************************************
  *
+ * Function         BTM_SetLeAudioStreamCallback
+ *
+ * Description      Used by lower layers to find out if there is an audio stream
+ *                  for the Le Audio group with given device.
+ *
+ * Parameters:      callback to set
+ *
+ ******************************************************************************/
+void BTM_SetLeAudioStreamCallback(
+    base::Callback<bool(const RawAddress& /* address */)> cb) {
+  connection_manager::set_le_audio_stream_callback(std::move(cb));
+}
+/*******************************************************************************
+ *
  * Function         BTM_BT_Quality_Report_VSE_Register
  *
  * Description      Register/Deregister for Bluetooth Quality Report VSE sub
