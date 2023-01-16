@@ -18,6 +18,8 @@
 
 #pragma once
 
+#include <base/bind.h>
+
 #include <set>
 
 #include "types/raw_address.h"
@@ -62,5 +64,7 @@ extern void on_connection_timed_out(uint8_t app_id, const RawAddress& address);
 extern void on_connection_timed_out_from_shim(const RawAddress& address);
 
 extern bool is_background_connection(const RawAddress& address);
+extern void set_le_audio_stream_callback(
+    base::Callback<bool(const RawAddress&)> cb);
 
 }  // namespace connection_manager

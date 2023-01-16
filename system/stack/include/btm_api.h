@@ -940,6 +940,8 @@ uint16_t BTM_GetMaxPacketSize(const RawAddress& addr);
 extern tBTM_STATUS BTM_BT_Quality_Report_VSE_Register(
     bool is_register, tBTM_BT_QUALITY_REPORT_RECEIVER* p_bqr_report_receiver);
 
+void BTM_SetLeAudioStreamCallback(base::Callback<bool(const RawAddress&)> cb);
+
 uint8_t btm_ble_read_sec_key_size(const RawAddress& bd_addr);
 
 typedef void(BTM_CONSOLIDATION_CB)(const RawAddress& identity_addr,

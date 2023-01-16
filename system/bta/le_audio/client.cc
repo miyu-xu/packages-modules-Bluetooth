@@ -51,6 +51,7 @@
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
 #include "stack/btm/btm_sec.h"
+#include "stack/include/btm_api.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "state_machine.h"
 #include "storage_helper.h"
@@ -258,6 +259,16 @@ class LeAudioClientImpl : public LeAudioClient {
             IsTargetedAnnouncementReconnectionMode()) {
       LOG_INFO(" Reconnection mode: TARGETED_ANNOUNCEMENTS");
       reconnection_mode_ = BTM_BLE_BKG_CONNECT_TARGETED_ANNOUNCEMENTS;
+
+      BTM_SetLeAudioStreamCallback(
+          base::Bind([](const RawAddress& addr) -> bool {
+            /* If there's no instance we are most likely shutting
+             * down the whole stack and we can ignore this event.
+             */
+            if (instance == nullptr) return false;
+            return instance->IsDeviceGroupStreaming(addr);
+          }));
+
     } else {
       LOG_INFO(" Reconnection mode: ALLOW_LIST");
       reconnection_mode_ = BTM_BLE_BKG_CONNECT_ALLOW_LIST;
@@ -955,6 +966,21 @@ class LeAudioClientImpl : public LeAudioClient {
   void SetInCall(bool in_call) override {
     LOG_DEBUG("in_call: %d", in_call);
     in_call_ = in_call;
+  }
+
+  bool IsDeviceGroupStreaming(const RawAddress& addr) {
+    LOG_DEBUG("%s", addr.ToString().c_str());
+
+    if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
+      return false;
+    }
+
+    auto leAudioDevice = leAudioDevices_.FindByAddress(addr);
+    if (!leAudioDevice) {
+      return false;
+    }
+
+    return leAudioDevice->group_id_ == active_group_id_;
   }
 
   void StartAudioSession(LeAudioDeviceGroup* group,

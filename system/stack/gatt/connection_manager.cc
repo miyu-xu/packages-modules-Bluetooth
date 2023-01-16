@@ -45,6 +45,9 @@
 
 constexpr char kBtmLogTag[] = "TA";
 
+static base::Callback<bool(const RawAddress& /* address */)>
+    stream_check_callback_;
+
 struct closure_data {
   base::OnceClosure user_task;
   base::Location posted_from;
@@ -165,14 +168,17 @@ static void target_announcement_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
     return;
   }
 
-  if (!IsTargetedAnnouncement(p_eir, eir_len)) {
+  bool ta_found = IsTargetedAnnouncement(p_eir, eir_len);
+  if (!ta_found) {
     LOG_DEBUG("Not a targeted announcement for device %s",
               ADDRESS_TO_LOGGABLE_CSTR(addr));
-    return;
+    if (!stream_check_callback_ || !stream_check_callback_.Run(addr)) {
+      return;
+    }
   }
 
-  LOG_INFO("Found targeted announcement for device %s",
-           ADDRESS_TO_LOGGABLE_CSTR(addr));
+  LOG_INFO("Found %s announcement for device %s",
+           (ta_found ? "targeted" : "general"), ADDRESS_TO_LOGGABLE_CSTR(addr));
 
   if (it->second.is_in_accept_list) {
     LOG_INFO("Device %s is already connecting", ADDRESS_TO_LOGGABLE_CSTR(addr));
@@ -184,7 +190,8 @@ static void target_announcement_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
     return;
   }
 
-  BTM_LogHistory(kBtmLogTag, addr, "Found TA from");
+  BTM_LogHistory(kBtmLogTag, addr,
+                 (ta_found ? "Found TA from" : "Found GA from"));
 
   /* Take fist app_id and use it for direct_connect */
   auto app_id = *(it->second.doing_targeted_announcements_conn.begin());
@@ -555,6 +562,11 @@ bool direct_connect_remove(uint8_t app_id, const RawAddress& address) {
   }
 
   return true;
+}
+
+void set_le_audio_stream_callback(
+    base::Callback<bool(const RawAddress& /* address */)> cb) {
+  stream_check_callback_ = std::move(cb);
 }
 
 void dump(int fd) {

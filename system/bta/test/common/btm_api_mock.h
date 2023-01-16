@@ -56,6 +56,8 @@ class BtmInterface {
                                  std::vector<uint8_t> vendor_config) = 0;
   virtual tBTM_INQ_INFO* BTM_InqDbFirst() = 0;
   virtual tBTM_INQ_INFO* BTM_InqDbNext(tBTM_INQ_INFO* p_cur) = 0;
+  virtual void SetLeAudioStreamCallback(
+      base::Callback<bool(const RawAddress&)> cb) = 0;
   virtual ~BtmInterface() = default;
 };
 
@@ -101,6 +103,8 @@ class MockBtmInterface : public BtmInterface {
   MOCK_METHOD((tBTM_INQ_INFO*), BTM_InqDbFirst, (), (override));
   MOCK_METHOD((tBTM_INQ_INFO*), BTM_InqDbNext, (tBTM_INQ_INFO * p_cur),
               (override));
+  MOCK_METHOD(void, SetLeAudioStreamCallback,
+              (base::Callback<bool(const RawAddress&)>), (override));
 };
 
 /**
