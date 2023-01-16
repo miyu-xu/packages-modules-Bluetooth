@@ -60,6 +60,8 @@ flatbuffers::Offset<bluetooth::common::InitFlagsData> bluetooth::dumpsys::InitFl
   builder.add_redact_log_is_enabled(initFlags::redact_log_is_enabled());
   builder.add_sdp_serialization_is_enabled(initFlags::sdp_serialization_is_enabled());
   builder.add_sdp_skip_rnr_if_known_is_enabled(initFlags::sdp_skip_rnr_if_known_is_enabled());
+  builder.add_send_bluetooth_quality_report_as_intent_is_enabled(
+      initFlags::send_bluetooth_quality_report_as_intent_is_enabled());
   builder.add_set_min_encryption_is_enabled(bluetooth::common::init_flags::set_min_encryption_is_enabled());
   builder.add_subrating_is_enabled(initFlags::subrating_is_enabled());
   builder.add_trigger_advertising_callbacks_on_first_resume_after_pause_is_enabled(
