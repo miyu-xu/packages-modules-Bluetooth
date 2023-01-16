@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df14eba7_1e77f82e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-16T02:28:59Z",
+      "side": 1,
+      "message": "Pre-submit failure is unrelated to this change.\n\nWe are ready for Qualcomm-Review",
+      "revId": "4a9f28703d3605bc269d7641b3092383925f654c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
