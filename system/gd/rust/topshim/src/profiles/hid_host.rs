@@ -1,5 +1,5 @@
 use crate::bindings::root as bindings;
-use crate::btif::{BluetoothInterface, BtStatus, RawAddress, SupportedProfiles, ToggleableProfile};
+use crate::btif::{BluetoothInterface, BtStatus, RawAddress, SupportedProfiles};
 use crate::ccall;
 use crate::profiles::hid_host::bindings::bthh_interface_t;
 use crate::topstack::get_dispatchers;
@@ -8,7 +8,7 @@ use crate::utils::LTCheckedPtrMut;
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
-use topshim_macros::{cb_variant, profile_enabled_or};
+use topshim_macros::cb_variant;
 
 use log::warn;
 
@@ -159,31 +159,10 @@ unsafe impl Send for RawHHWrapper {}
 pub struct HidHost {
     internal: RawHHWrapper,
     is_init: bool,
-    _is_enabled: bool,
+    pub is_hogp_activated: bool,
+    pub is_hidp_activated: bool,
     // Keep callback object in memory (underlying code doesn't make copy)
     callbacks: Option<Box<bindings::bthh_callbacks_t>>,
-}
-
-impl ToggleableProfile for HidHost {
-    fn is_enabled(&self) -> bool {
-        self._is_enabled
-    }
-
-    fn enable(&mut self) -> bool {
-        let cb_ptr = LTCheckedPtrMut::from(self.callbacks.as_mut().unwrap());
-
-        let init = ccall!(self, init, cb_ptr.into());
-        self.is_init = BtStatus::from(init) == BtStatus::Success;
-        self._is_enabled = self.is_init;
-        true
-    }
-
-    #[profile_enabled_or(false)]
-    fn disable(&mut self) -> bool {
-        ccall!(self, cleanup);
-        self._is_enabled = false;
-        true
-    }
 }
 
 impl HidHost {
@@ -192,9 +171,26 @@ impl HidHost {
         HidHost {
             internal: RawHHWrapper { raw: r as *const bthh_interface_t },
             is_init: false,
-            _is_enabled: false,
+            is_hogp_activated: false,
+            is_hidp_activated: false,
             callbacks: None,
         }
+    }
+
+    fn enable(&mut self) -> bool {
+        let cb_ptr = LTCheckedPtrMut::from(self.callbacks.as_mut().unwrap());
+
+        let init = ccall!(self, init, cb_ptr.into());
+        self.is_init = BtStatus::from(init) == BtStatus::Success;
+        // default HOGP and HIDP are activated
+        self.is_hogp_activated = true;
+        self.is_hidp_activated = true;
+        true
+    }
+
+    fn disable(&mut self) -> bool {
+        ccall!(self, cleanup);
+        true
     }
 
     pub fn is_initialized(&self) -> bool {
@@ -220,34 +216,29 @@ impl HidHost {
 
         self.callbacks = Some(callbacks);
 
-        true
+        self.enable()
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn connect(&self, addr: &mut RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(self, connect, addr_ptr.into()))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn disconnect(&self, addr: &mut RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(self, disconnect, addr_ptr.into()))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn virtual_unplug(&self, addr: &mut RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(self, virtual_unplug, addr_ptr.into()))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_info(&self, addr: &mut RawAddress, info: BthhHidInfo) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(self, set_info, addr_ptr.into(), info))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn get_protocol(&self, addr: &mut RawAddress, mode: BthhProtocolMode) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(
@@ -258,7 +249,6 @@ impl HidHost {
         ))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_protocol(&self, addr: &mut RawAddress, mode: BthhProtocolMode) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(
@@ -269,19 +259,16 @@ impl HidHost {
         ))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn get_idle_time(&self, addr: &mut RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(self, get_idle_time, addr_ptr.into()))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_idle_time(&self, addr: &mut RawAddress, idle_time: u8) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         BtStatus::from(ccall!(self, set_idle_time, addr_ptr.into(), idle_time))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn get_report(
         &self,
         addr: &mut RawAddress,
@@ -300,7 +287,6 @@ impl HidHost {
         ))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn get_report_reply(
         &self,
         addr: &mut RawAddress,
@@ -319,7 +305,6 @@ impl HidHost {
         ))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_report(
         &self,
         addr: &mut RawAddress,
@@ -337,7 +322,6 @@ impl HidHost {
         ))
     }
 
-    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn send_data(&mut self, addr: &mut RawAddress, data: &mut [u8]) -> BtStatus {
         let addr_ptr = LTCheckedPtrMut::from_ref(addr);
         let data_ptr = LTCheckedPtrMut::from(data);
@@ -349,7 +333,20 @@ impl HidHost {
         ))
     }
 
-    #[profile_enabled_or]
+    pub fn activate_hogp(&mut self, active: bool) {
+        if self.is_hogp_activated != active {
+            ccall!(self, activate_hogp, active.into());
+            self.is_hogp_activated = active;
+        }
+    }
+
+    pub fn activate_hidp(&mut self, active: bool) {
+        if self.is_hidp_activated != active {
+            ccall!(self, activate_hidp, active.into());
+            self.is_hidp_activated = active;
+        }
+    }
+
     pub fn cleanup(&mut self) {
         ccall!(self, cleanup)
     }

@@ -4,8 +4,7 @@ use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
     BtBondState, BtConnectionDirection, BtConnectionState, BtDeviceType, BtDiscoveryState,
     BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode, BtSspVariant, BtState, BtStatus,
-    BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress, ToggleableProfile, Uuid,
-    Uuid128Bit,
+    BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress, Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     metrics,
@@ -463,7 +462,11 @@ impl Bluetooth {
 
         match profile {
             Profile::Hid => {
-                self.hh.as_mut().unwrap().disable();
+                self.hh.as_mut().unwrap().activate_hidp(false);
+            }
+
+            Profile::Hogp => {
+                self.hh.as_mut().unwrap().activate_hogp(false);
             }
 
             Profile::A2dpSource | Profile::Hfp => {
@@ -481,7 +484,11 @@ impl Bluetooth {
 
         match profile {
             Profile::Hid => {
-                self.hh.as_mut().unwrap().enable();
+                self.hh.as_mut().unwrap().activate_hidp(true);
+            }
+
+            Profile::Hogp => {
+                self.hh.as_mut().unwrap().activate_hogp(true);
             }
 
             Profile::A2dpSource | Profile::Hfp => {
@@ -498,7 +505,9 @@ impl Bluetooth {
         }
 
         match profile {
-            Profile::Hid => Some(!self.hh.is_none() && self.hh.as_ref().unwrap().is_enabled()),
+            Profile::Hid => Some(self.hh.as_ref().unwrap().is_hidp_activated),
+
+            Profile::Hogp => Some(self.hh.as_ref().unwrap().is_hogp_activated),
 
             Profile::A2dpSource | Profile::Hfp => {
                 self.bluetooth_media.lock().unwrap().is_profile_enabled(profile)
