@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa75d91a_f890689b",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothQualityReport.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-16T11:26:48Z",
+      "side": 1,
+      "message": "Might be worth checking if `method_bqrDeliver` is initialized?",
+      "range": {
+        "startLine": 72,
+        "startChar": 48,
+        "endLine": 72,
+        "endChar": 65
+      },
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8838ded1_759da289",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-16T11:26:48Z",
+      "side": 1,
+      "message": "Use pass-by-ref in all of those args. You won\u0027t need the `ifs`.",
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96e4cabe_77839e19",
+        "filename": "system/include/hardware/bt_bqr.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-16T11:26:48Z",
+      "side": 1,
+      "message": "Can we pass RawAddress and bqr_raw_data by reference?",
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19fb32b_c1d03221",
+        "filename": "system/include/hardware/bt_bqr.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-16T11:26:48Z",
+      "side": 1,
+      "message": "Pass RawAddress by reference.",
+      "revId": "8365e5f4633c05556edc12e2c390ac0441b330df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
