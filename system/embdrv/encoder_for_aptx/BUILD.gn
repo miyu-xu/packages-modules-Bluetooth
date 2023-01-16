@@ -1,0 +1,22 @@
+source_set("aptx_encoder") {
+  sources = [
+    "src/aptXbtenc.c",
+    "src/ProcessSubband.c",
+    "src/QmfConv.c",
+    "src/QuantiseDifference.c",
+  ]
+
+  include_dirs = [
+    "include",
+    "//bt/system/internal_include",
+    "//bt/system/stack/include",
+  ]
+
+  configs += [ "//bt/system:target_defaults" ]
+}
+
+static_library("libaptx_enc") {
+  deps = [
+    ":aptx_encoder",
+  ]
+}

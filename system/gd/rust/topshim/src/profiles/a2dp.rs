@@ -364,6 +364,11 @@ impl A2dp {
         self.internal.set_audio_config(config);
     }
 
+    #[profile_enabled_or]
+    pub fn config_codec(&self, addr: RawAddress, config: Vec<A2dpCodecConfig>) {
+        self.internal.config_codec(addr, config);
+    }
+
     #[profile_enabled_or(false)]
     pub fn start_audio_request(&self) -> bool {
         self.internal.start_audio_request()

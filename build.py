@@ -59,7 +59,7 @@ COMMON_MK_COMMIT = "136c3e114b65f2c6c5f026376c2e75c73c2478a3"
 # Default use flags.
 USE_DEFAULTS = {
     'android': False,
-    'bt_nonstandard_codecs': False,
+    'bt_nonstandard_codecs': True,
     'test': False,
 }
 

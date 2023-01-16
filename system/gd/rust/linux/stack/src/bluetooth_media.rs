@@ -1788,7 +1788,17 @@ impl IBluetoothMedia for BluetoothMedia {
         };
 
         match self.a2dp.as_mut() {
-            Some(a2dp) => a2dp.set_active_device(addr),
+            Some(a2dp) => {
+                a2dp.config_codec(
+                    addr,
+                    vec![A2dpCodecConfig {
+                        codec_type: 1,
+                        codec_priority: 9000000,
+                        ..Default::default()
+                    }],
+                );
+                a2dp.set_active_device(addr);
+            }
             None => warn!("Uninitialized A2DP to set active device"),
         }
         self.uinput.set_active_device(addr.to_string());
