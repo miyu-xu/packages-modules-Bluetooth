@@ -351,6 +351,30 @@
       },
       "revId": "67ed7c3f3a3d27609774d709925782235551792f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a49446e1_dc8a0f30",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-16T14:26:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de9b42e3_f5148288",
+      "range": {
+        "startLine": 1728,
+        "startChar": 2,
+        "endLine": 1728,
+        "endChar": 8
+      },
+      "revId": "67ed7c3f3a3d27609774d709925782235551792f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -443,6 +443,24 @@
       "parentUuid": "bfc3f728_5bf42c53",
       "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a6581c_2d1d9f33",
+        "filename": "system/device/test/interop_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-16T14:26:41Z",
+      "side": 1,
+      "message": "I fixed OS_Generic(host testcase for non android platform) failure in different way for any particular testcase.\n1. Automatically creating temp file on tmp folder path(eg. /tmp/interop_database.conf for linux), once any host testcase is started \n2. adding some INTEROP_STATIC_FILE_CONTENT, which are needed for test execution\n3. remove temp file , once test execution is finished",
+      "parentUuid": "b845b011_00c8f145",
+      "revId": "11eda4498b1e2c9f18f8f55fa2a4d2b5a8aa54e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

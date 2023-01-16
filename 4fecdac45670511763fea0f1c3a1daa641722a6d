@@ -70,6 +70,30 @@
       },
       "revId": "4fecdac45670511763fea0f1c3a1daa641722a6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7334c6b_8ea270e6",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-16T14:26:41Z",
+      "side": 1,
+      "message": "OS_Generic has been fixed now",
+      "parentUuid": "0166ff29_33bc8520",
+      "range": {
+        "startLine": 399,
+        "startChar": 12,
+        "endLine": 399,
+        "endChar": 36
+      },
+      "revId": "4fecdac45670511763fea0f1c3a1daa641722a6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
