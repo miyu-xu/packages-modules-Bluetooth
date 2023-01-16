@@ -32,8 +32,10 @@
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
 #include "a2dp_vendor_aptx.h"
 #include "a2dp_vendor_aptx_hd.h"
+#ifndef TARGET_FLOSS
 #include "a2dp_vendor_ldac.h"
 #include "a2dp_vendor_opus.h"
+#endif
 #endif
 
 #include "bta/av/bta_av_int.h"
@@ -124,14 +126,15 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       codec_config = new A2dpCodecConfigAacSource(codec_priority);
       break;
-    case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
-      codec_config = new A2dpCodecConfigAacSink(codec_priority);
-      break;
     case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX:
       codec_config = new A2dpCodecConfigAptx(codec_priority);
       break;
     case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD:
       codec_config = new A2dpCodecConfigAptxHd(codec_priority);
+      break;
+#ifndef TARGET_FLOSS
+    case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
+      codec_config = new A2dpCodecConfigAacSink(codec_priority);
       break;
     case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
       codec_config = new A2dpCodecConfigLdacSource(codec_priority);
@@ -145,6 +148,7 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SINK_OPUS:
       codec_config = new A2dpCodecConfigOpusSink(codec_priority);
       break;
+#endif
 #endif
     case BTAV_A2DP_CODEC_INDEX_MAX:
     default:
@@ -171,7 +175,7 @@ int A2dpCodecConfig::getTrackBitRate() const {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetBitrateSbc();
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetBitRateAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -209,7 +213,7 @@ bool A2dpCodecConfig::getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload) {
       p_a2dp_offload->codec_info[3] =
           codec_config[3];  // Sample freq | channel mode
       break;
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       p_a2dp_offload->codec_info[0] = codec_config[3];  // object type
       p_a2dp_offload->codec_info[1] = codec_config[6];  // VBR | BR
@@ -223,6 +227,7 @@ bool A2dpCodecConfig::getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload) {
       p_a2dp_offload->codec_info[3] = (vendor_id & 0xFF000000) >> 24;
       p_a2dp_offload->codec_info[4] = (codec_id & 0x000000FF);
       p_a2dp_offload->codec_info[5] = (codec_id & 0x0000FF00) >> 8;
+#ifndef TARGET_FLOSS
       if (vendor_id == A2DP_LDAC_VENDOR_ID && codec_id == A2DP_LDAC_CODEC_ID) {
         if (codec_config_.codec_specific_1 == 0) {  // default is 0, ABR
           p_a2dp_offload->codec_info[6] =
@@ -254,6 +259,7 @@ bool A2dpCodecConfig::getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload) {
         LOG_VERBOSE("%s: Ldac specific channelmode =%d", __func__,
                     p_a2dp_offload->codec_info[7]);
       }
+#endif
       break;
 #endif
     default:
@@ -1015,7 +1021,7 @@ bool A2DP_IsSourceCodecValid(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_IsSourceCodecValidSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_IsSourceCodecValidAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1036,7 +1042,7 @@ bool A2DP_IsSinkCodecValid(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_IsSinkCodecValidSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_IsSinkCodecValidAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1057,7 +1063,7 @@ bool A2DP_IsPeerSourceCodecValid(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_IsPeerSourceCodecValidSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_IsPeerSourceCodecValidAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1078,7 +1084,7 @@ bool A2DP_IsPeerSinkCodecValid(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_IsPeerSinkCodecValidSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_IsPeerSinkCodecValidAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1099,7 +1105,7 @@ bool A2DP_IsSinkCodecSupported(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_IsSinkCodecSupportedSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_IsSinkCodecSupportedAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1121,7 +1127,7 @@ bool A2DP_IsPeerSourceCodecSupported(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_IsPeerSourceCodecSupportedSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_IsPeerSourceCodecSupportedAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1145,7 +1151,7 @@ bool A2DP_UsesRtpHeader(bool content_protection_enabled,
 
   if (codec_type != A2DP_MEDIA_CT_NON_A2DP) return true;
 
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
   return A2DP_VendorUsesRtpHeader(content_protection_enabled, p_codec_info);
 #else
   return true;
@@ -1165,7 +1171,7 @@ const char* A2DP_CodecName(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_CodecNameSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_CodecNameAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1189,7 +1195,7 @@ bool A2DP_CodecTypeEquals(const uint8_t* p_codec_info_a,
   switch (codec_type_a) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_CodecTypeEqualsSbc(p_codec_info_a, p_codec_info_b);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_CodecTypeEqualsAac(p_codec_info_a, p_codec_info_b);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1213,7 +1219,7 @@ bool A2DP_CodecEquals(const uint8_t* p_codec_info_a,
   switch (codec_type_a) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_CodecEqualsSbc(p_codec_info_a, p_codec_info_b);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_CodecEqualsAac(p_codec_info_a, p_codec_info_b);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1235,7 +1241,7 @@ int A2DP_GetTrackSampleRate(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetTrackSampleRateSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetTrackSampleRateAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1257,7 +1263,7 @@ int A2DP_GetTrackBitsPerSample(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetTrackBitsPerSampleSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetTrackBitsPerSampleAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1279,7 +1285,7 @@ int A2DP_GetTrackChannelCount(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetTrackChannelCountSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetTrackChannelCountAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1301,7 +1307,7 @@ int A2DP_GetSinkTrackChannelType(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetSinkTrackChannelTypeSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetSinkTrackChannelTypeAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1322,7 +1328,7 @@ bool A2DP_GetPacketTimestamp(const uint8_t* p_codec_info, const uint8_t* p_data,
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetPacketTimestampSbc(p_codec_info, p_data, p_timestamp);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetPacketTimestampAac(p_codec_info, p_data, p_timestamp);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1343,7 +1349,7 @@ bool A2DP_BuildCodecHeader(const uint8_t* p_codec_info, BT_HDR* p_buf,
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_BuildCodecHeaderSbc(p_codec_info, p_buf, frames_per_packet);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_BuildCodecHeaderAac(p_codec_info, p_buf, frames_per_packet);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1367,7 +1373,7 @@ const tA2DP_ENCODER_INTERFACE* A2DP_GetEncoderInterface(
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetEncoderInterfaceSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetEncoderInterfaceAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1390,7 +1396,7 @@ const tA2DP_DECODER_INTERFACE* A2DP_GetDecoderInterface(
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_GetDecoderInterfaceSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_GetDecoderInterfaceAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1410,7 +1416,7 @@ bool A2DP_AdjustCodec(uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_AdjustCodecSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_AdjustCodecAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1432,7 +1438,7 @@ btav_a2dp_codec_index_t A2DP_SourceCodecIndex(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_SourceCodecIndexSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_SourceCodecIndexAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1454,7 +1460,7 @@ btav_a2dp_codec_index_t A2DP_SinkCodecIndex(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_SinkCodecIndexSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_SinkCodecIndexAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1477,14 +1483,16 @@ const char* A2DP_CodecIndexStr(btav_a2dp_codec_index_t codec_index) {
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       return A2DP_CodecIndexStrAac();
+#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
       return A2DP_CodecIndexStrAacSink();
+#endif
 #endif
     default:
       break;
   }
 
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
   if (codec_index < BTAV_A2DP_CODEC_INDEX_MAX)
     return A2DP_VendorCodecIndexStr(codec_index);
 #endif
@@ -1508,14 +1516,16 @@ bool A2DP_InitCodecConfig(btav_a2dp_codec_index_t codec_index,
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       return A2DP_InitCodecConfigAac(p_cfg);
+#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
       return A2DP_InitCodecConfigAacSink(p_cfg);
+#endif
 #endif
     default:
       break;
   }
 
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
   if (codec_index < BTAV_A2DP_CODEC_INDEX_MAX)
     return A2DP_VendorInitCodecConfig(codec_index, p_cfg);
 #endif
@@ -1529,7 +1539,7 @@ std::string A2DP_CodecInfoString(const uint8_t* p_codec_info) {
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_CodecInfoStringSbc(p_codec_info);
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       return A2DP_CodecInfoStringAac(p_codec_info);
     case A2DP_MEDIA_CT_NON_A2DP:
@@ -1550,7 +1560,7 @@ int A2DP_GetEecoderEffectiveFrameSize(const uint8_t* p_codec_info) {
     case A2DP_MEDIA_CT_SBC:
       a2dp_encoder_interface = A2DP_GetEncoderInterfaceSbc(p_codec_info);
       break;
-#if !defined(EXCLUDE_NONSTANDARD_CODECS)
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) && !TARGET_FLOSS
     case A2DP_MEDIA_CT_AAC:
       a2dp_encoder_interface = A2DP_GetEncoderInterfaceAac(p_codec_info);
       break;
