@@ -115,6 +115,29 @@ impl<'a> FieldParser<'a> {
                         let #id = #v;
                     }
                 }
+                ast::Field::Fixed { enum_id: Some(enum_id), tag_id: Some(tag_id), .. } => {
+                    let enum_id = format_ident!("{enum_id}");
+                    let tag_id = format_ident!("{tag_id}");
+                    quote! {
+                        if #v != #enum_id::#tag_id as #value_type {
+                            return Err(Error::InvalidFixedValue {
+                                expected: #enum_id::#tag_id as u64,
+                                actual: #v as u64,
+                            });
+                        }
+                    }
+                }
+                ast::Field::Fixed { value: Some(value), .. } => {
+                    let value = proc_macro2::Literal::usize_unsuffixed(*value);
+                    quote! {
+                        if #v != #value {
+                            return Err(Error::InvalidFixedValue {
+                                expected: #value,
+                                actual: #v as u64,
+                            });
+                        }
+                    }
+                }
                 ast::Field::Typedef { id, type_id, .. } => {
                     let id = format_ident!("{id}");
                     let type_id = format_ident!("{type_id}");
