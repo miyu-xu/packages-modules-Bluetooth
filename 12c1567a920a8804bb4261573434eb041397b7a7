@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc5a984d_8f0e0e20",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-01-17T08:32:48Z",
+      "side": 1,
+      "message": "TBH I don\u0027t fully get the existing logic, but it seems to me that in line #1507 we\u0027ve subtracted `active_ases` from the configuration ASE count, but yet we always decrement the needed_ase counter in this loop, even if we come across an already active ASE?",
+      "range": {
+        "startLine": 1526,
+        "startChar": 4,
+        "endLine": 1530,
+        "endChar": 7
+      },
+      "revId": "12c1567a920a8804bb4261573434eb041397b7a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
