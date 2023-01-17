@@ -34,4 +34,3 @@ tokio = "1.23.0"
 
 [lib]
 crate-type = ["rlib"]
-path = "lib.rs"

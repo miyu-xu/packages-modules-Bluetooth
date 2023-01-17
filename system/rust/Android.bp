@@ -38,7 +38,7 @@ rust_ffi_static {
     name: "libbluetooth_core_rs",
     crate_name: "bluetooth_core",
     defaults: ["libbluetooth_core_rs_defaults"],
-    srcs: ["lib.rs"],
+    srcs: ["src/lib.rs"],
     target: {
         android: {
             rustlibs: [
@@ -72,7 +72,7 @@ rust_ffi_static {
 rust_test_host {
     name: "libbluetooth_core_rs_test",
     defaults: ["libbluetooth_core_rs_defaults"],
-    srcs: ["lib.rs"],
+    srcs: ["src/lib.rs"],
     rustlibs: [
         "liblog_rust",
         "libcxx",
@@ -87,8 +87,14 @@ cc_library_static {
     defaults: [
         "libchrome_support_defaults",
     ],
+    srcs: [
+        "src/gatt/ffi/gatt_shim.cc",
+    ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/stack/include",
+        "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/types",
     ],
@@ -136,8 +142,8 @@ cc_library_static {
 filegroup {
     name: "libbluetooth_core_rs_ffi",
     srcs: [
-        "core/ffi.rs",
-        "gatt/ffi.rs",
+        "src/core/ffi.rs",
+        "src/gatt/ffi.rs",
     ],
 }
 

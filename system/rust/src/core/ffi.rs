@@ -34,14 +34,16 @@ mod inner {
     }
 
     #[namespace = "bluetooth::hci::rust_shim"]
-    extern "C++" {
-        include!("core/hci_shim.h");
+    unsafe extern "C++" {
+        include!("src/core/hci_shim.h");
         type RawAddress = super::super::RawAddress;
+
+        fn get_128_be_uuid_bytes(uuid: &Uuid) -> &[u8];
     }
 
     #[namespace = "bluetooth::gatt"]
     extern "C++" {
-        include!("gatt/gatt_shim.h");
+        include!("src/gatt/ffi/gatt_shim.h");
         type GattServerCallbacks = crate::gatt::GattServerCallbacks;
     }
 
