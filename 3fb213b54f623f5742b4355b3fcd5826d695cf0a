@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bdbb84d_6077d6f3",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothQualityReport.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-17T22:34:36Z",
+      "side": 1,
+      "message": "Other Jni also check for mCallbacksObj to be !\u003d null.\nShould we add it as well ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 33,
+        "endLine": 73,
+        "endChar": 46
+      },
+      "revId": "3fb213b54f623f5742b4355b3fcd5826d695cf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc1ce06c_49d16411",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-17T22:34:36Z",
+      "side": 1,
+      "message": "I don\u0027t understand this if. Was your intent to check `tmp_lmp_ver !\u003d 0` ? Or was it a pointer check ?\nSince you moved from `uint8_t* lmp_version` to `uint8_t\u0026 lmp_version` I assume this was a ptr check and need to simply be removed (same below)",
+      "range": {
+        "startLine": 668,
+        "startChar": 8,
+        "endLine": 668,
+        "endChar": 19
+      },
+      "revId": "3fb213b54f623f5742b4355b3fcd5826d695cf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a067d972_c0d4fd4b",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-17T22:34:36Z",
+      "side": 1,
+      "message": "ADDRESS_TO_LOGGABLE_CSTR(bd_addr)",
+      "range": {
+        "startLine": 714,
+        "startChar": 26,
+        "endLine": 714,
+        "endChar": 52
+      },
+      "revId": "3fb213b54f623f5742b4355b3fcd5826d695cf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
