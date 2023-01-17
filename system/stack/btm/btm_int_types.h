@@ -368,6 +368,13 @@ typedef struct tBTM_CB {
     fixed_queue_free(sec_pending_q, nullptr);
     sec_pending_q = nullptr;
 
+    list_node_t* end = list_end(sec_dev_rec);
+    for (list_node_t* node = list_begin(sec_dev_rec); node != end;
+         node = list_next(node)) {
+      tBTM_SEC_DEV_REC* p_dev_rec =
+          static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
+      *p_dev_rec = {};
+    }
     list_free(sec_dev_rec);
     sec_dev_rec = nullptr;
 
