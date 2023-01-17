@@ -16,7 +16,9 @@
 
 #include <array>
 
+#include "bluetooth/uuid.h"
 #include "gd/hci/address.h"
+#include "rust/cxx.h"
 
 namespace bluetooth {
 namespace hci {
@@ -24,6 +26,12 @@ namespace rust_shim {
 struct RawAddress {
   std::array<uint8_t, hci::Address::kLength> address = {};
 };
+
+inline ::rust::Slice<const uint8_t> get_128_be_uuid_bytes(const Uuid& uuid) {
+  auto& data = uuid.To128BitBE();
+  return {data.data(), data.size()};
+}
+
 }  // namespace rust_shim
 }  // namespace hci
 }  // namespace bluetooth

@@ -16,10 +16,17 @@
 //! We expect GD C++ to already be running so we can use entry.cc to obtain references to C++ modules.
 //! In production, this should be triggered from JNI so we can inject JniCallbacks.
 
-use gatt::GattJniCallbacks;
-use log::warn;
-use std::sync::mpsc;
+#![feature(mixed_integer_ops)]
+
+use gatt::GattCallbacks;
+use log::{info, warn};
+use tokio::task::LocalSet;
+
+use std::rc::Rc;
 use std::sync::Mutex;
+use tokio::runtime::Builder;
+
+use tokio::sync::mpsc;
 
 #[cfg(feature = "via_android_bp")]
 mod do_not_use {
@@ -30,6 +37,8 @@ mod do_not_use {
 
 pub mod core;
 pub mod gatt;
+mod packets;
+mod utils;
 
 /// The owner of the main Rust thread on which all Rust modules run
 pub struct GlobalModuleRegistry {
@@ -38,48 +47,57 @@ pub struct GlobalModuleRegistry {
 
 /// The ModuleViews lets us access all publicly accessible Rust modules from Java / C++ while the stack is
 /// running. If a module should not be exposed outside of Rust GD, there is no need to include it here.
-pub struct ModuleViews<'a, 'b>
-where
-    'b: 'a,
-{
+pub struct ModuleViews<'a> {
+    /// Receives synchronous callbacks from JNI
+    pub gatt_callbacks: Rc<gatt::callbacks::CallbackTransactionManager>,
     /// Proxies calls into GATT server
-    pub gatt_module: &'a gatt::GattModule<'b>,
+    pub gatt_module: &'a mut gatt::server::GattModule,
 }
 
 impl GlobalModuleRegistry {
     /// Handles bringup of all Rust modules. This occurs after GD C++ modules have started, but before the legacy stack
     /// has initialized.
     /// Must be invoked from the Rust thread after JNI initializes it and passes in JNI modules.
-    pub fn start(gatt_callbacks: &dyn GattJniCallbacks) {
-        let (tx, rx) = mpsc::channel::<BoxedMainThreadCallback>();
+    pub fn start(gatt_callbacks: Rc<dyn GattCallbacks>) {
+        info!("starting Rust modules");
+        let rt = Builder::new_current_thread()
+            .enable_all()
+            .build()
+            .expect("failed to start tokio runtime");
+        let local = LocalSet::new();
+
+        let (tx, mut rx) = mpsc::unbounded_channel::<BoxedMainThreadCallback>();
         let prev_registry = GLOBAL_MODULE_REGISTRY.lock().unwrap().replace(Self { task_tx: tx });
 
         // initialization should ony happen once
         assert!(prev_registry.is_none());
 
-        // First, load GD modules (as they should be available now).
-        // As nothing stops us from having multiple such modules, their constructors are unsafe
-        // To avoid having multiple mutable references to interior modules, we wrap them in a Rust shim that owns the single mutable reference
-        // see https://users.rust-lang.org/t/single-mutable-reference-rule-and-ffi/50546/6
-        // TODO: put some modules here
+        // First, setup FFI and C++ modules
+        gatt::arbiter::initialize_arbiter();
 
-        // Then we have the pure-Rust modules
-        let gatt_module = &gatt::GattModule::new(gatt_callbacks);
+        // We now enter the runtime
+        local.block_on(&rt, async {
+            // Then we have the pure-Rust modules
+            let gatt_callbacks =
+                Rc::new(gatt::callbacks::CallbackTransactionManager::new(gatt_callbacks));
+            let gatt_module = &mut gatt::server::GattModule::new(gatt_callbacks.clone());
 
-        // All modules that are visible from incoming JNI / top-level interfaces should be exposed here
-        let modules = ModuleViews { gatt_module };
+            // All modules that are visible from incoming JNI / top-level interfaces should be exposed here
+            let mut modules = ModuleViews { gatt_callbacks, gatt_module };
 
-        // This is the core event loop that serializes incoming requests into the Rust thread
-        // do_in_rust_thread lets us post into here from foreign threads
-        while let Ok(f) = rx.recv() {
-            f(&modules);
-        }
+            // This is the core event loop that serializes incoming requests into the Rust thread
+            // do_in_rust_thread lets us post into here from foreign threads
+            info!("starting Tokio event loop");
+            while let Some(f) = rx.recv().await {
+                f(&mut modules)
+            }
+        });
         warn!("Rust thread queue has stopped, shutting down executor thread");
     }
 }
 
-type BoxedMainThreadCallback = Box<dyn FnOnce(&ModuleViews) + Send>;
-type MainThreadTx = mpsc::Sender<BoxedMainThreadCallback>;
+type BoxedMainThreadCallback = Box<dyn for<'a> FnOnce(&'a mut ModuleViews) + Send + 'static>;
+type MainThreadTx = mpsc::UnboundedSender<BoxedMainThreadCallback>;
 
 static GLOBAL_MODULE_REGISTRY: Mutex<Option<GlobalModuleRegistry>> = Mutex::new(None);
 
@@ -99,8 +117,12 @@ thread_local! {
 /// at startup. If you are passing callbacks into C++, don't use this method either - instead, acquire a clone of
 /// MAIN_THREAD_TX when the callback is created. This ensures that we never have "invalid" callbacks that may still work
 /// depending on when the GLOBAL_MODULE_REGISTRY is initialized.
-pub fn do_in_rust_thread(
-    f: impl FnOnce(&ModuleViews) + Send + 'static,
-) -> Result<(), mpsc::SendError<BoxedMainThreadCallback>> {
-    MAIN_THREAD_TX.with(|tx| tx.send(Box::new(f)))
+pub fn do_in_rust_thread<F>(f: F)
+where
+    F: for<'a> FnOnce(&'a mut ModuleViews) + Send + 'static,
+{
+    let ret = MAIN_THREAD_TX.with(|tx| tx.send(Box::new(f)));
+    if ret.is_err() {
+        panic!("Rust call failed");
+    }
 }

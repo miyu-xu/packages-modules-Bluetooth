@@ -14,19 +14,13 @@
 
 #pragma once
 
-#include <base/bind.h>
-#include <base/location.h>
-
 #include <cstdint>
 
 #include "include/hardware/bluetooth.h"
 #include "include/hardware/bt_common_types.h"
 #include "include/hardware/bt_gatt_client.h"
 #include "include/hardware/bt_gatt_server.h"
-#include "types/bluetooth/uuid.h"
-
-extern bt_status_t do_in_jni_thread(const base::Location& from_here,
-                                    base::OnceClosure task);
+#include "rust/cxx.h"
 
 namespace bluetooth {
 namespace gatt {
@@ -36,11 +30,14 @@ class GattServerCallbacks {
   GattServerCallbacks(const btgatt_server_callbacks_t& callbacks)
       : callbacks(callbacks){};
 
-  void OnRegisterServer(int32_t status, int32_t server_if,
-                        const Uuid& uuid) const {
-    do_in_jni_thread(FROM_HERE, base::Bind(callbacks.register_server_cb, status,
-                                           server_if, uuid));
-  }
+  void OnServerReadCharacteristic(uint16_t conn_id,
+                                  uint32_t trans_id, uint16_t attr_handle,
+                                  uint32_t offset, bool is_long) const;
+
+  void OnServerWriteCharacteristic(uint16_t conn_id, uint32_t trans_id,
+                                   uint16_t attr_handle, uint32_t offset,
+                                   bool need_response, bool is_prepare,
+                                   ::rust::Slice<const uint8_t> value) const;
 
  private:
   const btgatt_server_callbacks_t& callbacks;
