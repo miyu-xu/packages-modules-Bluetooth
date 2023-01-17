@@ -65,8 +65,8 @@ public class BluetoothPrefsTest {
             Thread.sleep(1_000);
             mActivityScenario.close();
         }
-
         enableActivity(false);
+        Intents.release();
     }
 
     @Test
