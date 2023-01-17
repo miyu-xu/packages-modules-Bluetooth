@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bea9060_e2a67734",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-17T01:58:45Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "e3a5a672_1ba837cd",
+      "revId": "4f700b5e6ff6e61f85f8e5f49392e997670e9ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfe83982_1da12072",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-12T06:46:11Z",
       "side": 1,
       "message": "In this API, we are never checking the error path.\nWe can add some test that assertThrow on IllegalStateException and  IllegalArgumentException",
+      "revId": "4f700b5e6ff6e61f85f8e5f49392e997670e9ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93fd2e91_66137276",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-17T01:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfe83982_1da12072",
       "revId": "4f700b5e6ff6e61f85f8e5f49392e997670e9ff8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
