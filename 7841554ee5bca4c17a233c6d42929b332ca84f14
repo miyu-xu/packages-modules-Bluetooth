@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96a0f4f3_14a27102",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-01-17T23:00:28Z",
+      "side": 1,
+      "message": "Why CONNECTION_PRIORITY_BALANCED? I guess we should connectGatt with CONNECTION_PRIORITY_LOW_POWER or CONNECTION_PRIORITY_DEFAULT and let apps change it when required.",
+      "revId": "7841554ee5bca4c17a233c6d42929b332ca84f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
