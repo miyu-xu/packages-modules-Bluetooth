@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a8913c5_34904d4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-17T04:07:26Z",
+      "side": 1,
+      "message": "Please do not merge this. The fix is here:\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2390912",
+      "revId": "96bc2e95561fa4de1b69d523e3637f8c9a508722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
