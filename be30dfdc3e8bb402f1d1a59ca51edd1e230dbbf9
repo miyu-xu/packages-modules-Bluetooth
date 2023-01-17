@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89c8915b_631cc3c1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-17T16:25:17Z",
+      "side": 1,
+      "message": "I\u0027ve tested it bit more and see that in one case it was not guarded (group configuration change) - will upload next version.",
+      "parentUuid": "3f6de9a9_02eeb25f",
+      "range": {
+        "startLine": 1045,
+        "startChar": 12,
+        "endLine": 1045,
+        "endChar": 32
+      },
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54681773_b1b9cb48",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
         "patchSetId": 6
