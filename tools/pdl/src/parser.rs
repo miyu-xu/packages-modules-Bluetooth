@@ -302,79 +302,83 @@ fn parse_field(node: Node<'_>, context: &Context) -> Result<ast::Field, String> 
     let loc = node.as_loc(context);
     let rule = node.as_rule();
     let mut children = node.children();
-    Ok(match rule {
-        Rule::checksum_field => {
-            let field_id = parse_identifier(&mut children)?;
-            ast::Field::Checksum { loc, field_id }
-        }
-        Rule::padding_field => {
-            let size = parse_integer(&mut children)?;
-            ast::Field::Padding { loc, size }
-        }
-        Rule::size_field => {
-            let field_id = match children.next() {
-                Some(n) if n.as_rule() == Rule::identifier => n.as_string(),
-                Some(n) if n.as_rule() == Rule::payload_identifier => n.as_string(),
-                Some(n) if n.as_rule() == Rule::body_identifier => n.as_string(),
-                Some(n) => err_unexpected_rule(Rule::identifier, n.as_rule())?,
-                None => err_missing_rule(Rule::identifier)?,
-            };
-            let width = parse_integer(&mut children)?;
-            ast::Field::Size { loc, field_id, width }
-        }
-        Rule::count_field => {
-            let field_id = parse_identifier(&mut children)?;
-            let width = parse_integer(&mut children)?;
-            ast::Field::Count { loc, field_id, width }
-        }
-        Rule::body_field => ast::Field::Body { loc },
-        Rule::payload_field => {
-            let size_modifier = parse_size_modifier_opt(&mut children);
-            ast::Field::Payload { loc, size_modifier }
-        }
-        Rule::fixed_field => {
-            let (tag_id, value) = parse_identifier_or_integer(&mut children)?;
-            let (enum_id, width) = parse_identifier_or_integer(&mut children)?;
-            ast::Field::Fixed { loc, enum_id, tag_id, width, value }
-        }
-        Rule::reserved_field => {
-            let width = parse_integer(&mut children)?;
-            ast::Field::Reserved { loc, width }
-        }
-        Rule::array_field => {
-            let id = parse_identifier(&mut children)?;
-            let (type_id, width) = parse_identifier_or_integer(&mut children)?;
-            let (size, size_modifier) = match children.next() {
-                Some(n) if n.as_rule() == Rule::integer => (Some(n.as_usize()?), None),
-                Some(n) if n.as_rule() == Rule::size_modifier => (None, Some(n.as_string())),
-                Some(n) => {
-                    return Err(format!(
-                        "expected rule {:?} or {:?}, got {:?}",
-                        Rule::integer,
-                        Rule::size_modifier,
-                        n.as_rule()
-                    ))
-                }
-                None => (None, None),
-            };
-            ast::Field::Array { loc, id, type_id, width, size, size_modifier }
-        }
-        Rule::scalar_field => {
-            let id = parse_identifier(&mut children)?;
-            let width = parse_integer(&mut children)?;
-            ast::Field::Scalar { loc, id, width }
-        }
-        Rule::typedef_field => {
-            let id = parse_identifier(&mut children)?;
-            let type_id = parse_identifier(&mut children)?;
-            ast::Field::Typedef { loc, id, type_id }
-        }
-        Rule::group_field => {
-            let group_id = parse_identifier(&mut children)?;
-            let constraints = parse_constraint_list_opt(&mut children, context)?;
-            ast::Field::Group { loc, group_id, constraints }
-        }
-        _ => return Err(format!("expected rule *_field, got {:?}", rule)),
+    Ok(ast::Field {
+        loc,
+        size: ast::Size::Unknown,
+        desc: match rule {
+            Rule::checksum_field => {
+                let field_id = parse_identifier(&mut children)?;
+                ast::FieldDesc::Checksum { field_id }
+            }
+            Rule::padding_field => {
+                let size = parse_integer(&mut children)?;
+                ast::FieldDesc::Padding { size }
+            }
+            Rule::size_field => {
+                let field_id = match children.next() {
+                    Some(n) if n.as_rule() == Rule::identifier => n.as_string(),
+                    Some(n) if n.as_rule() == Rule::payload_identifier => n.as_string(),
+                    Some(n) if n.as_rule() == Rule::body_identifier => n.as_string(),
+                    Some(n) => err_unexpected_rule(Rule::identifier, n.as_rule())?,
+                    None => err_missing_rule(Rule::identifier)?,
+                };
+                let width = parse_integer(&mut children)?;
+                ast::FieldDesc::Size { field_id, width }
+            }
+            Rule::count_field => {
+                let field_id = parse_identifier(&mut children)?;
+                let width = parse_integer(&mut children)?;
+                ast::FieldDesc::Count { field_id, width }
+            }
+            Rule::body_field => ast::FieldDesc::Body,
+            Rule::payload_field => {
+                let size_modifier = parse_size_modifier_opt(&mut children);
+                ast::FieldDesc::Payload { size_modifier }
+            }
+            Rule::fixed_field => {
+                let (tag_id, value) = parse_identifier_or_integer(&mut children)?;
+                let (enum_id, width) = parse_identifier_or_integer(&mut children)?;
+                ast::FieldDesc::Fixed { enum_id, tag_id, width, value }
+            }
+            Rule::reserved_field => {
+                let width = parse_integer(&mut children)?;
+                ast::FieldDesc::Reserved { width }
+            }
+            Rule::array_field => {
+                let id = parse_identifier(&mut children)?;
+                let (type_id, width) = parse_identifier_or_integer(&mut children)?;
+                let (size, size_modifier) = match children.next() {
+                    Some(n) if n.as_rule() == Rule::integer => (Some(n.as_usize()?), None),
+                    Some(n) if n.as_rule() == Rule::size_modifier => (None, Some(n.as_string())),
+                    Some(n) => {
+                        return Err(format!(
+                            "expected rule {:?} or {:?}, got {:?}",
+                            Rule::integer,
+                            Rule::size_modifier,
+                            n.as_rule()
+                        ))
+                    }
+                    None => (None, None),
+                };
+                ast::FieldDesc::Array { id, type_id, width, size, size_modifier }
+            }
+            Rule::scalar_field => {
+                let id = parse_identifier(&mut children)?;
+                let width = parse_integer(&mut children)?;
+                ast::FieldDesc::Scalar { id, width }
+            }
+            Rule::typedef_field => {
+                let id = parse_identifier(&mut children)?;
+                let type_id = parse_identifier(&mut children)?;
+                ast::FieldDesc::Typedef { id, type_id }
+            }
+            Rule::group_field => {
+                let group_id = parse_identifier(&mut children)?;
+                let constraints = parse_constraint_list_opt(&mut children, context)?;
+                ast::FieldDesc::Group { group_id, constraints }
+            }
+            _ => return Err(format!("expected rule *_field, got {:?}", rule)),
+        },
     })
 }
 
@@ -427,21 +431,21 @@ fn parse_toplevel(root: Node<'_>, context: &Context) -> Result<ast::File, String
                 let id = parse_identifier(&mut children)?;
                 let width = parse_integer(&mut children)?;
                 let function = parse_string(&mut children)?;
-                file.declarations.push(ast::Decl::Checksum { id, loc, function, width })
+                file.declarations.push(ast::Decl::checksum(loc, id, function, width))
             }
             Rule::custom_field_declaration => {
                 let mut children = node.children();
                 let id = parse_identifier(&mut children)?;
                 let width = parse_integer_opt(&mut children)?;
                 let function = parse_string(&mut children)?;
-                file.declarations.push(ast::Decl::CustomField { id, loc, function, width })
+                file.declarations.push(ast::Decl::custom_field(loc, id, function, width))
             }
             Rule::enum_declaration => {
                 let mut children = node.children();
                 let id = parse_identifier(&mut children)?;
                 let width = parse_integer(&mut children)?;
                 let tags = parse_enum_tag_list(&mut children, context)?;
-                file.declarations.push(ast::Decl::Enum { id, loc, width, tags })
+                file.declarations.push(ast::Decl::enum_(loc, id, width, tags))
             }
             Rule::packet_declaration => {
                 let mut children = node.children();
@@ -449,13 +453,7 @@ fn parse_toplevel(root: Node<'_>, context: &Context) -> Result<ast::File, String
                 let parent_id = parse_identifier_opt(&mut children)?;
                 let constraints = parse_constraint_list_opt(&mut children, context)?;
                 let fields = parse_field_list_opt(&mut children, context)?;
-                file.declarations.push(ast::Decl::Packet {
-                    id,
-                    loc,
-                    parent_id,
-                    constraints,
-                    fields,
-                })
+                file.declarations.push(ast::Decl::packet(loc, id, parent_id, constraints, fields))
             }
             Rule::struct_declaration => {
                 let mut children = node.children();
@@ -463,19 +461,13 @@ fn parse_toplevel(root: Node<'_>, context: &Context) -> Result<ast::File, String
                 let parent_id = parse_identifier_opt(&mut children)?;
                 let constraints = parse_constraint_list_opt(&mut children, context)?;
                 let fields = parse_field_list_opt(&mut children, context)?;
-                file.declarations.push(ast::Decl::Struct {
-                    id,
-                    loc,
-                    parent_id,
-                    constraints,
-                    fields,
-                })
+                file.declarations.push(ast::Decl::struct_(loc, id, parent_id, constraints, fields))
             }
             Rule::group_declaration => {
                 let mut children = node.children();
                 let id = parse_identifier(&mut children)?;
                 let fields = parse_field_list(&mut children, context)?;
-                file.declarations.push(ast::Decl::Group { id, loc, fields })
+                file.declarations.push(ast::Decl::group(loc, id, fields))
             }
             Rule::test_declaration => {}
             Rule::EOI => (),

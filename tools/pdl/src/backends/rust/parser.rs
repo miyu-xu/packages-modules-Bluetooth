@@ -143,14 +143,14 @@ impl<'a> FieldParser<'a> {
                 v = quote! { #v as #value_type };
             }
 
-            self.code.push(match field {
-                ast::Field::Scalar { id, .. } => {
+            self.code.push(match &field.desc {
+                ast::FieldDesc::Scalar { id, .. } => {
                     let id = format_ident!("{id}");
                     quote! {
                         let #id = #v;
                     }
                 }
-                ast::Field::Typedef { id, type_id, .. } => {
+                ast::FieldDesc::Typedef { id, type_id, .. } => {
                     let id = format_ident!("{id}");
                     let type_id = format_ident!("{type_id}");
                     let from_u = format_ident!("from_u{}", value_type.width);

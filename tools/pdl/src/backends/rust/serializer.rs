@@ -83,8 +83,8 @@ impl<'a> FieldSerializer<'a> {
     fn add_bit_field(&mut self, field: &ast::Field) {
         let width = field.width(self.scope).unwrap();
 
-        match field {
-            ast::Field::Scalar { id, width, .. } => {
+        match &field.desc {
+            ast::FieldDesc::Scalar { id, width, .. } => {
                 let field_name = format_ident!("{id}");
                 let field_type = types::Integer::new(*width);
                 if field_type.width > *width {
@@ -101,7 +101,7 @@ impl<'a> FieldSerializer<'a> {
                 }
                 self.chunk.push(BitField { value: quote!(self.#field_name), shift: self.shift });
             }
-            ast::Field::Typedef { id, .. } => {
+            ast::FieldDesc::Typedef { id, .. } => {
                 let field_name = format_ident!("{id}");
                 let field_type = types::Integer::new(width);
                 let to_u = format_ident!("to_u{}", field_type.width);

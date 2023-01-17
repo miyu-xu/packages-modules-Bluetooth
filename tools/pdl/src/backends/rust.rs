@@ -237,8 +237,8 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
 }
 
 fn generate_decl(scope: &lint::Scope<'_>, file: &ast::File, decl: &ast::Decl) -> String {
-    match decl {
-        ast::Decl::Packet { id, constraints, fields, parent_id, .. } => generate_packet_decl(
+    match &decl.desc {
+        ast::DeclDesc::Packet { id, constraints, fields, parent_id, .. } => generate_packet_decl(
             scope,
             file.endianness.value,
             id,
@@ -247,7 +247,7 @@ fn generate_decl(scope: &lint::Scope<'_>, file: &ast::File, decl: &ast::Decl) ->
             parent_id.as_deref(),
         )
         .to_string(),
-        ast::Decl::Enum { id, tags, .. } => generate_enum_decl(id, tags).to_string(),
+        ast::DeclDesc::Enum { id, tags, .. } => generate_enum_decl(id, tags).to_string(),
         _ => todo!("unsupported Decl::{:?}", decl),
     }
 }

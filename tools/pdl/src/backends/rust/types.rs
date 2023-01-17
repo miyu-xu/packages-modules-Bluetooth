@@ -34,12 +34,12 @@ impl quote::ToTokens for Integer {
 }
 
 pub fn rust_type(field: &ast::Field) -> proc_macro2::TokenStream {
-    match field {
-        ast::Field::Scalar { width, .. } => {
+    match &field.desc {
+        ast::FieldDesc::Scalar { width, .. } => {
             let field_type = Integer::new(*width);
             quote!(#field_type)
         }
-        ast::Field::Typedef { type_id, .. } => {
+        ast::FieldDesc::Typedef { type_id, .. } => {
             let field_type = format_ident!("{type_id}");
             quote!(#field_type)
         }
