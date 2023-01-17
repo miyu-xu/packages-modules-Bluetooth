@@ -349,6 +349,10 @@ impl Field {
             | Field::Size { width, .. }
             | Field::Count { width, .. }
             | Field::Reserved { width, .. } => Some(*width),
+            Field::Fixed { width, .. } => {
+                width.or_else(|| self.declaration(scope)?.width(scope, false))
+            }
+            Field::Padding { .. } => todo!(),
             Field::Array { size: Some(size), width, .. } => {
                 let width = width.or_else(|| self.declaration(scope)?.width(scope, false))?;
                 Some(width * size)
