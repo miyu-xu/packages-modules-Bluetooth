@@ -70,6 +70,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be9f0981_fbb0827c",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-17T08:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54ce1fb8_3282c565",
+      "range": {
+        "startLine": 234,
+        "startChar": 34,
+        "endLine": 234,
+        "endChar": 47
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ff571d6_7b3a4613",
@@ -83,6 +107,30 @@
       "writtenOn": "2022-12-20T19:05:55Z",
       "side": 1,
       "message": "Invalid for vectors of struct or large integers.\nFor structures:\n```self.field.iter().map(|s| s.size()).sum::\u003cuN\u003e()```\nFor integers:\n```self.field.len() * N```",
+      "range": {
+        "startLine": 83,
+        "startChar": 57,
+        "endLine": 83,
+        "endChar": 60
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c989580d_1beb2065",
+        "filename": "tools/pdl/src/backends/rust/serializer.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-17T08:01:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ff571d6_7b3a4613",
       "range": {
         "startLine": 83,
         "startChar": 57,
