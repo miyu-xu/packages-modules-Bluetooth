@@ -1912,7 +1912,8 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
           (int)p_data->link_up.transport_link_type, HCI_SUCCESS,
           btm_is_acl_locally_initiated()
               ? bt_conn_direction_t::BT_CONN_DIRECTION_OUTGOING
-              : bt_conn_direction_t::BT_CONN_DIRECTION_INCOMING);
+              : bt_conn_direction_t::BT_CONN_DIRECTION_INCOMING,
+          p_data->link_up.acl_handle);
       break;
 
     case BTA_DM_LINK_UP_FAILED_EVT:
@@ -1922,7 +1923,8 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
           p_data->link_up_failed.status,
           btm_is_acl_locally_initiated()
               ? bt_conn_direction_t::BT_CONN_DIRECTION_OUTGOING
-              : bt_conn_direction_t::BT_CONN_DIRECTION_INCOMING);
+              : bt_conn_direction_t::BT_CONN_DIRECTION_INCOMING,
+          -1);
       break;
 
     case BTA_DM_LINK_DOWN_EVT: {
@@ -1950,7 +1952,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
           BT_STATUS_SUCCESS, bd_addr, BT_ACL_STATE_DISCONNECTED,
           (int)p_data->link_down.transport_link_type,
           static_cast<bt_hci_error_code_t>(btm_get_acl_disc_reason_code()),
-          direction);
+          direction, -1);
       LOG_DEBUG(
           "Sent BT_ACL_STATE_DISCONNECTED upward as ACL link down event "
           "device:%s reason:%s",
