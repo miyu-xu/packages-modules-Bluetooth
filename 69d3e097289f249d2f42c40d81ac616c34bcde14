@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8753ea1f_a9fdd092",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-17T06:41:05Z",
+      "side": 1,
+      "message": "The previous pre-submit failed on what appear to be unrelated failure.\nI think we are clear for bypass.\n\nI am talking about the build failure on R11, the pts-bot and the emulator",
+      "revId": "69d3e097289f249d2f42c40d81ac616c34bcde14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
