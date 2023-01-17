@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "089702da_8f81687b",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-17T16:52:20Z",
+      "side": 1,
+      "message": "Yes... something like that could be nice! I ended up with something similar to what you say in the `ArrayShape` enum inside `add_array_field`:\n\n```rust\n// The \"shape\" of the array, i.e., the number of elements\n// given via a static count, a count field, a size field, or\n// unknown.\nenum ArrayShape {\n    Static(usize),                  // Static count\n    CountField(proc_macro2::Ident), // Count based on count field\n    SizeField(proc_macro2::Ident),  // Count based on size and field\n    Unknown,                        // Variable count based on remaining bytes\n}\n```\n\nOne thing I noticed while wrangling this code, is that the \"implicitness\" of which fields we can have present at the same time is causing trouble.\n\nI think we can refactor the AST in the future to provide enums when only some field combinations make sense. So instead of\n\n```rust\nArray {\n    loc: SourceRange,\n    id: String,\n    width: Option\u003cusize\u003e,\n    type_id: Option\u003cString\u003e,\n    size_modifier: Option\u003cString\u003e,\n    size: Option\u003cusize\u003e,\n},\n```\n\nwith 4 `Option` fields, we would need an enum which ensures that only valid combinations can ever occur.\n\nAs for your suggestion here: I\u0027m using `field.width` in several places, but I\u0027m not sure I can unpack the enum you suggest in those places... I will have to look more at it.",
+      "parentUuid": "101fb26b_b4602a98",
+      "range": {
+        "startLine": 262,
+        "startChar": 72,
+        "endLine": 262,
+        "endChar": 85
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e96cf154_814f5f6e",
         "filename": "tools/pdl/src/backends/rust/parser.rs",
         "patchSetId": 9
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-20T19:05:55Z",
       "side": 1,
       "message": "nit: Move this check as a guarded match case:\n```\nmatch field {\n  _ if field.is_bitfield() \u003d\u003e self.add_bit_field(field),\n  ..\n```",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 9
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d83b22f_64c70345",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-17T16:52:20Z",
+      "side": 1,
+      "message": "Oh, that\u0027s very nice!",
+      "parentUuid": "e96cf154_814f5f6e",
       "range": {
         "startLine": 36,
         "startChar": 8,
