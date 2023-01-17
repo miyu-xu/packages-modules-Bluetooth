@@ -50,7 +50,7 @@ class Device {
   const Address& GetAddress() const { return address_; }
 
   // Let the device know that time has passed.
-  virtual void TimerTick() {}
+  virtual void Tick() {}
 
   void RegisterPhyLayer(std::shared_ptr<PhyLayer> phy);
 
@@ -58,8 +58,8 @@ class Device {
 
   void UnregisterPhyLayer(Phy::Type phy_type, uint32_t factory_id);
 
-  virtual void IncomingPacket(model::packets::LinkLayerPacketView packet,
-                              int8_t rssi){};
+  virtual void ReceiveLinkLayerPacket(
+      model::packets::LinkLayerPacketView packet, int8_t rssi){};
 
   virtual void SendLinkLayerPacket(
       std::shared_ptr<model::packets::LinkLayerPacketBuilder> packet,

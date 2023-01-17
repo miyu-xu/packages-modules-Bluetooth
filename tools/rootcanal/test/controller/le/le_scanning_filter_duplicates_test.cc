@@ -125,7 +125,7 @@ class LeScanningFilterDuplicates : public ::testing::Test {
   };
 
   void SendPacket(model::packets::LinkLayerPacketView packet) {
-    controller_.IncomingPacket(packet, -90);
+    controller_.ReceiveLinkLayerPacket(packet, -90);
   }
 
   /// Helper for sending the provided packet to the controller then checking if
@@ -385,7 +385,7 @@ TEST_F(LeScanningFilterDuplicates, ResetHistoryAfterEachPeriod) {
   ASSERT_EQ(kFiltered, SendPacketAndCheck(LeScanResponse({0})));
 
   std::this_thread::sleep_for(std::chrono::milliseconds(1300));
-  controller_.TimerTick();
+  controller_.Tick();
 
   ASSERT_EQ(kReported, SendPacketAndCheck(LeExtendedAdvertisingPdu()));
   ASSERT_EQ(kReported, SendPacketAndCheck(LeScanResponse({0})));

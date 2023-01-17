@@ -41,12 +41,12 @@ std::string DualModeController::GetTypeString() const {
   return "Simulated Bluetooth Controller";
 }
 
-void DualModeController::IncomingPacket(
+void DualModeController::ReceiveLinkLayerPacket(
     model::packets::LinkLayerPacketView incoming, int8_t rssi) {
   link_layer_controller_.IncomingPacket(incoming, rssi);
 }
 
-void DualModeController::TimerTick() { link_layer_controller_.TimerTick(); }
+void DualModeController::Tick() { link_layer_controller_.Tick(); }
 
 void DualModeController::Close() {
   link_layer_controller_.Close();

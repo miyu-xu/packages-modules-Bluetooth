@@ -36,7 +36,7 @@ BaseBandSniffer::BaseBandSniffer(const std::string& filename) {
   output_.flush();
 }
 
-void BaseBandSniffer::TimerTick() {}
+void BaseBandSniffer::Tick() {}
 
 void BaseBandSniffer::AppendRecord(
     std::unique_ptr<bredr_bb::BaseBandPacketBuilder> packet) {
@@ -93,8 +93,8 @@ static uint32_t BuildBtPacketHeader(uint8_t uap, uint8_t lt_addr,
   return header;
 }
 
-void BaseBandSniffer::IncomingPacket(model::packets::LinkLayerPacketView packet,
-                                     int8_t /*rssi*/) {
+void BaseBandSniffer::ReceiveLinkLayerPacket(
+    model::packets::LinkLayerPacketView packet, int8_t /*rssi*/) {
   auto packet_type = packet.GetType();
   auto address = packet.GetSourceAddress();
 

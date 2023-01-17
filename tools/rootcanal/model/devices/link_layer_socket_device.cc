@@ -36,7 +36,7 @@ LinkLayerSocketDevice::LinkLayerSocketDevice(
       phy_type_(phy_type),
       size_bytes_(std::make_shared<std::vector<uint8_t>>(kSizeBytes)) {}
 
-void LinkLayerSocketDevice::TimerTick() {
+void LinkLayerSocketDevice::Tick() {
   if (receiving_size_) {
     ssize_t bytes_received =
         socket_->Recv(size_bytes_->data() + offset_, kSizeBytes);
@@ -98,7 +98,7 @@ void LinkLayerSocketDevice::Close() {
   Device::Close();
 }
 
-void LinkLayerSocketDevice::IncomingPacket(
+void LinkLayerSocketDevice::ReceiveLinkLayerPacket(
     model::packets::LinkLayerPacketView packet, int8_t /*rssi*/) {
   auto size_packet = bluetooth::packet::RawBuilder();
   size_packet.AddOctets4(packet.size());

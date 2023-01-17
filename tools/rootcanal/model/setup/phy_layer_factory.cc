@@ -92,9 +92,9 @@ void PhyLayerFactory::Send(model::packets::LinkLayerPacketView packet,
   }
 }
 
-void PhyLayerFactory::TimerTick() {
+void PhyLayerFactory::Tick() {
   for (auto& phy : phy_layers_) {
-    phy->TimerTick();
+    phy->Tick();
   }
 }
 
@@ -149,6 +149,6 @@ void PhyLayerImpl::Receive(model::packets::LinkLayerPacketView packet,
   transmit_to_device_(packet, rssi);
 }
 
-void PhyLayerImpl::TimerTick() {}
+void PhyLayerImpl::Tick() {}
 
 }  // namespace rootcanal

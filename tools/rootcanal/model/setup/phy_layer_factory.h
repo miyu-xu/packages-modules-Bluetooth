@@ -47,7 +47,7 @@ class PhyLayerFactory {
 
   void UnregisterAllPhyLayers();
 
-  virtual void TimerTick();
+  virtual void Tick();
 
   virtual std::string ToString() const;
 
@@ -86,7 +86,7 @@ class PhyLayerImpl : public PhyLayer {
                int8_t rssi) override;
   void Unregister() override;
   bool IsFactoryId(uint32_t factory_id) override;
-  void TimerTick() override;
+  void Tick() override;
 
  private:
   PhyLayerFactory* factory_;

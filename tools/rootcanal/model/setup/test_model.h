@@ -59,10 +59,10 @@ class TestModel {
   // Commands:
 
   // Add a device, return its index
-  size_t Add(std::shared_ptr<Device> device);
+  size_t AddDevice(std::shared_ptr<Device> device);
 
   // Remove devices by index
-  void Del(size_t device_index);
+  void RemoveDevice(size_t device_index);
 
   // Add phy, return its index
   size_t AddPhy(Phy::Type phy_type);
@@ -72,13 +72,13 @@ class TestModel {
                                                      size_t factory_id);
 
   // Remove phy by index
-  void DelPhy(size_t phy_index);
+  void RemovePhy(size_t phy_index);
 
   // Add device to phy
   void AddDeviceToPhy(size_t device_index, size_t phy_index);
 
   // Remove device from phy
-  void DelDeviceFromPhy(size_t device_index, size_t phy_index);
+  void RemoveDeviceFromPhy(size_t device_index, size_t phy_index);
 
   // Handle incoming remote connections
   void AddLinkLayerConnection(std::shared_ptr<Device> dev, Phy::Type phy_type);
@@ -95,7 +95,7 @@ class TestModel {
   void SetDeviceAddress(size_t device_index, Address device_address);
 
   // Let devices know about the passage of time
-  void TimerTick();
+  void Tick();
   void StartTimer();
   void StopTimer();
   void SetTimerPeriod(std::chrono::milliseconds new_period);

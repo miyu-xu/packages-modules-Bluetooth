@@ -45,10 +45,10 @@ class BaseBandSniffer : public Device {
     return "baseband_sniffer";
   }
 
-  virtual void IncomingPacket(model::packets::LinkLayerPacketView packet,
-                              int8_t rssi) override;
+  virtual void ReceiveLinkLayerPacket(
+      model::packets::LinkLayerPacketView packet, int8_t rssi) override;
 
-  virtual void TimerTick() override;
+  virtual void Tick() override;
 
  private:
   void AppendRecord(std::unique_ptr<bredr_bb::BaseBandPacketBuilder> packet);

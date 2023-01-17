@@ -48,10 +48,10 @@ class LinkLayerSocketDevice : public Device {
     return "link_layer_socket_device";
   }
 
-  virtual void IncomingPacket(model::packets::LinkLayerPacketView packet,
-                              int8_t rssi) override;
+  virtual void ReceiveLinkLayerPacket(
+      model::packets::LinkLayerPacketView packet, int8_t rssi) override;
 
-  virtual void TimerTick() override;
+  virtual void Tick() override;
 
   static constexpr size_t kSizeBytes = sizeof(uint32_t);
 

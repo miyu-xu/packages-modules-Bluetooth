@@ -40,7 +40,7 @@ class PhyLayer {
   virtual void Receive(model::packets::LinkLayerPacketView packet,
                        int8_t rssi) = 0;
 
-  virtual void TimerTick() = 0;
+  virtual void Tick() = 0;
 
   virtual bool IsFactoryId(uint32_t factory_id) = 0;
 

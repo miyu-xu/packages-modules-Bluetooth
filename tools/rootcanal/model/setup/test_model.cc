@@ -73,9 +73,9 @@ void TestModel::SetTimerPeriod(std::chrono::milliseconds new_period) {
 
 void TestModel::StartTimer() {
   LOG_INFO("StartTimer()");
-  timer_tick_task_ = schedule_periodic_task_(
-      model_user_id_, std::chrono::milliseconds(0), timer_period_,
-      [this]() { TestModel::TimerTick(); });
+  timer_tick_task_ =
+      schedule_periodic_task_(model_user_id_, std::chrono::milliseconds(0),
+                              timer_period_, [this]() { TestModel::Tick(); });
 }
 
 void TestModel::StopTimer() {
@@ -84,12 +84,12 @@ void TestModel::StopTimer() {
   timer_tick_task_ = kInvalidTaskId;
 }
 
-size_t TestModel::Add(std::shared_ptr<Device> device) {
+size_t TestModel::AddDevice(std::shared_ptr<Device> device) {
   devices_.push_back(std::move(device));
   return devices_.size() - 1;
 }
 
-void TestModel::Del(size_t device_index) {
+void TestModel::RemoveDevice(size_t device_index) {
   if (device_index >= devices_.size() || devices_[device_index] == nullptr) {
     LOG_WARN("Unknown device %zu", device_index);
     return;
@@ -111,7 +111,7 @@ std::unique_ptr<PhyLayerFactory> TestModel::CreatePhy(Phy::Type phy_type, size_t
   return std::make_unique<PhyLayerFactory>(phy_type, factory_id);
 }
 
-void TestModel::DelPhy(size_t phy_index) {
+void TestModel::RemovePhy(size_t phy_index) {
   if (phy_index >= phys_.size()) {
     LOG_WARN("Unknown phy at index %zu", phy_index);
     return;
@@ -133,12 +133,12 @@ void TestModel::AddDeviceToPhy(size_t device_index, size_t phy_index) {
   auto dev = devices_[device_index];
   dev->RegisterPhyLayer(phys_[phy_index]->GetPhyLayer(
       [dev](model::packets::LinkLayerPacketView packet, int8_t rssi) {
-        dev->IncomingPacket(std::move(packet), rssi);
+        dev->ReceiveLinkLayerPacket(std::move(packet), rssi);
       },
       device_index));
 }
 
-void TestModel::DelDeviceFromPhy(size_t device_index, size_t phy_index) {
+void TestModel::RemoveDeviceFromPhy(size_t device_index, size_t phy_index) {
   if (device_index >= devices_.size() || devices_[device_index] == nullptr) {
     LOG_WARN("Unknown device %zu", device_index);
     return;
@@ -159,7 +159,7 @@ void TestModel::AddLinkLayerConnection(std::shared_ptr<Device> dev,
                                        Phy::Type phy_type) {
   LOG_INFO("Adding a new link layer connection of type: %s",
            phy_type == Phy::Type::BR_EDR ? "BR_EDR" : "LOW_ENERGY");
-  int index = Add(dev);
+  int index = AddDevice(dev);
   AsyncUserId user_id = get_user_id_();
 
   for (size_t i = 0; i < phys_.size(); i++) {
@@ -185,7 +185,7 @@ void TestModel::AddRemote(const std::string& server, int port,
 }
 
 size_t TestModel::AddHciConnection(std::shared_ptr<HciDevice> dev) {
-  size_t index = Add(std::static_pointer_cast<Device>(dev));
+  size_t index = AddDevice(std::static_pointer_cast<Device>(dev));
   auto bluetooth_address = Address{{
       uint8_t(index),
       bluetooth_address_prefix_[4],
@@ -255,10 +255,10 @@ const std::string& TestModel::List() {
   return list_string_;
 }
 
-void TestModel::TimerTick() {
+void TestModel::Tick() {
   for (size_t i = 0; i < devices_.size(); i++) {
     if (devices_[i] != nullptr) {
-      devices_[i]->TimerTick();
+      devices_[i]->Tick();
     }
   }
 }

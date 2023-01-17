@@ -64,7 +64,7 @@ class BaseController : public DualModeController {
   void Start() {
     if (timer_task_id_ == kInvalidTaskId) {
       timer_task_id_ = async_manager_.ExecAsyncPeriodically(
-          0, 0ms, 5ms, [this]() { this->TimerTick(); });
+          0, 0ms, 5ms, [this]() { this->Tick(); });
     }
   }
 
@@ -229,7 +229,7 @@ PYBIND11_MODULE(lib_rootcanal_python3, m) {
           std::cerr << "Dropping malformed LL packet" << std::endl;
           return;
         }
-        controller->IncomingPacket(std::move(packet), rssi);
+        controller->ReceiveLinkLayerPacket(std::move(packet), rssi);
       });
 }
 
