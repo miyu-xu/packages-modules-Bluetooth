@@ -27,6 +27,7 @@ import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
+import android.app.compat.CompatChanges;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
 import android.bluetooth.annotations.RequiresBluetoothScanPermission;
@@ -34,8 +35,11 @@ import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
 import android.companion.AssociationRequest;
 import android.compat.annotation.UnsupportedAppUsage;
+import android.compat.annotation.ChangeId;
+import android.compat.annotation.EnabledSince;
 import android.content.AttributionSource;
 import android.content.Context;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -841,6 +845,17 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.device.action.PAIRING_REQUEST";
 
     /**
+     * Starting with {@link android.os.Build.VERSION_CODES#UPSIDE_DOWN_CAKE},
+     * The return value of {@link BluetoothDevice#toString()} is changed.
+     * If the redact_log=true passed to bluetooth process as init flag,
+     * {@link BluetoothDevice#toString()} returns a redacted string
+     * representation of the MAC address of this device.
+     */
+    @ChangeId
+    @EnabledSince(targetSdkVersion = android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    static final long CHANGE_TOSTRING_RET_VALUE = 265103382L;
+
+    /**
      * Broadcast Action: This intent is used to broadcast PAIRING CANCEL
      *
      * @hide
@@ -1407,15 +1422,27 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     /**
      * Returns a string representation of this BluetoothDevice.
      * <p>Currently this is the Bluetooth hardware address, for example
-     * "00:11:22:AA:BB:CC". However, you should always use {@link #getAddress}
-     * if you explicitly require the Bluetooth hardware address in case the
-     * {@link #toString} representation changes in the future.
+     * "00:11:22:AA:BB:CC".
+     * However, since {@link android.os.Build.VERSION_CODES#UPSIDE_DOWN_CAKE},
+     * the returned address becomes readacted with the first 4 bytes repalced
+     * with "XX", e.g. "XX:XX:XX:XX:BB:CC", if the bluetooth stack is started
+     * with log redaction enabled.
+     * Warning: The return value of {@link #toString} may change in the future,
+     * thus apps should never rely on the return value of {@link #toString} in
+     * their logic except logging, use other appropriate APIs
+     * instead. E.g., if you explicitly require the Bluetooth hardware
+     * address, {@link #getAddress} should be used.
      *
      * @return string representation of this BluetoothDevice
      */
     @Override
     public String toString() {
-        return mAddress;
+        final int callingUid = Binder.getCallingUid();
+        if (!CompatChanges.isChangeEnabled(CHANGE_TOSTRING_RET_VALUE, callingUid)) {
+          return mAddress;
+        }
+
+        return toStringForLogging();
     }
 
     private static boolean shouldLogBeRedacted() {
