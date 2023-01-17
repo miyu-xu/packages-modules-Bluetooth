@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcd803cf_6caca57a",
+        "filename": "system/bta/test/bta_dip_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-17T22:47:34Z",
+      "side": 1,
+      "message": "You could also do this:\n\nUuid userdata\nmemcpy((void*)\u0026userdata, ...)\n\nNo dynamic memory needed",
+      "revId": "c175b0157c4df7cc6556c79d040c46d812d566f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d64f397_1359db94",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-17T22:47:34Z",
+      "side": 1,
+      "message": "std::make_unique()",
+      "revId": "c175b0157c4df7cc6556c79d040c46d812d566f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe3f83f4_3993b0b3",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-17T22:47:34Z",
+      "side": 1,
+      "message": "I see trying to apply RAII here, but unsure why as this is a trivial test.",
+      "revId": "c175b0157c4df7cc6556c79d040c46d812d566f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
