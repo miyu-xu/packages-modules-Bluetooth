@@ -12,8 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// These callbacks are expected to be made available to the GattModule from JNI.
-pub trait GattJniCallbacks {
-    /// TEMP
-    fn ack(&self, x: &str);
-}
+//! This module is a simple GATT server that shares the ATT channel with the existing C++ GATT client.
+//! See go/private-gatt-in-platform for the design.
+
+pub mod arbiter;
+pub mod callbacks;
+pub mod channel;
+mod ffi;
+pub mod ids;
+pub mod server;
+
+pub use self::callbacks::GattCallbacks;
+
+pub use ffi::GattServerCallbacks;

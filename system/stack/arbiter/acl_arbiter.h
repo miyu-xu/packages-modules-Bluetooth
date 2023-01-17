@@ -39,9 +39,9 @@ enum class InterceptAction {
 
 class AclArbiter {
  public:
-  virtual void OnLeConnect(const RawAddress& address, uint16_t handle) = 0;
-  virtual void OnLeDisconnect(const RawAddress& address) = 0;
-  virtual InterceptAction InterceptAttPacket(const RawAddress& address,
+  virtual void OnLeConnect(uint8_t tcb_idx, uint16_t advertiser_id) = 0;
+  virtual void OnLeDisconnect(uint8_t tcb_idx) = 0;
+  virtual InterceptAction InterceptAttPacket(uint8_t tcb_idx,
                                              const BT_HDR* packet) = 0;
 
   AclArbiter() = default;
@@ -51,12 +51,12 @@ class AclArbiter {
 };
 
 void StoreCallbacksFromRust(
-    ::rust::Fn<void(uint16_t handle)> on_le_connect,
-    ::rust::Fn<void(uint16_t handle)> on_le_disconnect,
-    ::rust::Fn<InterceptAction(uint16_t handle, ::rust::Vec<uint8_t> buffer)>
+    ::rust::Fn<void(uint8_t tcb_idx, uint8_t advertiser)> on_le_connect,
+    ::rust::Fn<void(uint8_t tcb_idx)> on_le_disconnect,
+    ::rust::Fn<InterceptAction(uint8_t tcb_idx, ::rust::Vec<uint8_t> buffer)>
         intercept_packet);
 
-void SendPacketToPeer(uint16_t handle, ::rust::Vec<uint8_t> buffer);
+void SendPacketToPeer(uint8_t tcb_idx, ::rust::Vec<uint8_t> buffer);
 
 AclArbiter& GetArbiter();
 

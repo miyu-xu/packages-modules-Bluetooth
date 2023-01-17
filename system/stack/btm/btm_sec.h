@@ -25,6 +25,7 @@
 #pragma once
 #include <cstdint>
 
+#include "optional"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/btm_api_types.h"

@@ -26,11 +26,12 @@
 #include <shared_mutex>
 
 #include "com_android_bluetooth.h"
-#include "core/ffi.rs.h"
-#include "gatt/ffi.rs.h"
 #include "gd/common/init_flags.h"
 #include "hardware/bt_gatt.h"
-#include "rust/gatt/gatt_shim.h"
+#include "rust/cxx.h"
+#include "rust/src/gatt/ffi/gatt_shim.h"
+#include "src/core/ffi.rs.h"
+#include "src/gatt/ffi.rs.h"
 #include "utils/Log.h"
 #define info(fmt, ...) ALOGI("%s(L%d): " fmt, __func__, __LINE__, ##__VA_ARGS__)
 #define debug(fmt, ...) \
@@ -624,6 +625,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
  */
 
 void btgatts_register_app_cb(int status, int server_if, const Uuid& uuid) {
+  bluetooth::gatt::open_server(server_if);
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid() || !mCallbacksObj) return;
@@ -646,6 +648,19 @@ void btgatts_connection_cb(int conn_id, int server_if, int connected,
 void btgatts_service_added_cb(int status, int server_if,
                               const btgatt_db_element_t* service,
                               size_t service_count) {
+  // mirror in Rust side to keep in sync
+  if (status == 0x00 /* SUCCESS */) {
+    auto service_records = rust::Vec<bluetooth::gatt::GattRecord>();
+    for (size_t i = 0; i != service_count; ++i) {
+      auto& curr_service = service[i];
+      service_records.push_back(bluetooth::gatt::GattRecord{
+          curr_service.uuid, (bluetooth::gatt::GattRecordType)curr_service.type,
+          curr_service.attribute_handle, curr_service.properties,
+          curr_service.extended_properties, curr_service.permissions});
+    }
+    bluetooth::gatt::add_service(server_if, std::move(service_records));
+  }
+
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid() || !mCallbacksObj) return;
@@ -664,6 +679,8 @@ void btgatts_service_added_cb(int status, int server_if,
 }
 
 void btgatts_service_stopped_cb(int status, int server_if, int srvc_handle) {
+  bluetooth::gatt::remove_service(server_if, srvc_handle);
+
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid() || !mCallbacksObj) return;
@@ -672,6 +689,8 @@ void btgatts_service_stopped_cb(int status, int server_if, int srvc_handle) {
 }
 
 void btgatts_service_deleted_cb(int status, int server_if, int srvc_handle) {
+  bluetooth::gatt::remove_service(server_if, srvc_handle);
+
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid() || !mCallbacksObj) return;
@@ -1896,14 +1915,13 @@ static void gattServerRegisterAppNative(JNIEnv* env, jobject object,
   if (!sGattIf) return;
   Uuid uuid = from_java_uuid(app_uuid_msb, app_uuid_lsb);
 
-  bluetooth::gatt::start();
-
   sGattIf->server->register_server(uuid, eatt_support);
 }
 
 static void gattServerUnregisterAppNative(JNIEnv* env, jobject object,
                                           jint serverIf) {
   if (!sGattIf) return;
+  bluetooth::gatt::close_server(serverIf);
   sGattIf->server->unregister_server(serverIf);
 }
 
@@ -2089,7 +2107,13 @@ static void gattServerSendResponseNative(JNIEnv* env, jobject object,
     env->ReleaseByteArrayElements(val, array, JNI_ABORT);
   }
 
-  sGattIf->server->send_response(conn_id, trans_id, status, response);
+  if (bluetooth::gatt::is_connection_isolated(conn_id)) {
+    auto data = ::rust::Slice<const uint8_t>(response.attr_value.value,
+                                             response.attr_value.len);
+    bluetooth::gatt::send_response(server_if, conn_id, trans_id, status, data);
+  } else {
+    sGattIf->server->send_response(conn_id, trans_id, status, response);
+  }
 }
 
 static void advertiseClassInitNative(JNIEnv* env, jclass clazz) {
@@ -2237,12 +2261,10 @@ static void ble_advertising_set_timeout_cb(uint8_t advertiser_id,
                                false, status);
 }
 
-static void startAdvertisingSetNative(JNIEnv* env, jobject object,
-                                      jobject parameters, jbyteArray adv_data,
-                                      jbyteArray scan_resp,
-                                      jobject periodic_parameters,
-                                      jbyteArray periodic_data, jint duration,
-                                      jint maxExtAdvEvents, jint reg_id) {
+static void startAdvertisingSetNative(
+    JNIEnv* env, jobject object, jobject parameters, jbyteArray adv_data,
+    jbyteArray scan_resp, jobject periodic_parameters, jbyteArray periodic_data,
+    jint duration, jint maxExtAdvEvents, jint reg_id, jint server_if) {
   if (!sGattIf) return;
 
   jbyte* scan_resp_data = env->GetByteArrayElements(scan_resp, NULL);
@@ -2266,15 +2288,22 @@ static void startAdvertisingSetNative(JNIEnv* env, jobject object,
       periodic_data_data, periodic_data_data + periodic_data_len);
   env->ReleaseByteArrayElements(periodic_data, periodic_data_data, JNI_ABORT);
 
-  sGattIf->advertiser->StartAdvertisingSet(
+  auto advertiser_id = sGattIf->advertiser->StartAdvertisingSet(
       reg_id, base::Bind(&ble_advertising_set_started_cb, reg_id), params,
       data_vec, scan_resp_vec, periodicParams, periodic_data_vec, duration,
       maxExtAdvEvents, base::Bind(ble_advertising_set_timeout_cb));
+
+  // tie advertiser ID to server_if
+  if (server_if != 0) {
+    bluetooth::gatt::associate_server_with_advertiser(server_if, advertiser_id);
+  }
 }
 
 static void stopAdvertisingSetNative(JNIEnv* env, jobject object,
                                      jint advertiser_id) {
   if (!sGattIf) return;
+
+  bluetooth::gatt::clear_advertiser(advertiser_id);
 
   sGattIf->advertiser->Unregister(advertiser_id);
 }
@@ -2507,7 +2536,7 @@ static JNINativeMethod sAdvertiseMethods[] = {
     {"cleanupNative", "()V", (void*)advertiseCleanupNative},
     {"startAdvertisingSetNative",
      "(Landroid/bluetooth/le/AdvertisingSetParameters;[B[BLandroid/bluetooth/"
-     "le/PeriodicAdvertisingParameters;[BIII)V",
+     "le/PeriodicAdvertisingParameters;[BIIII)V",
      (void*)startAdvertisingSetNative},
     {"getOwnAddressNative", "(I)V", (void*)getOwnAddressNative},
     {"stopAdvertisingSetNative", "(I)V", (void*)stopAdvertisingSetNative},
