@@ -22,6 +22,30 @@
       },
       "revId": "12c1567a920a8804bb4261573434eb041397b7a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe69beb_d380f4ff",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-17T09:02:02Z",
+      "side": 1,
+      "message": "that is correct. Needed ases is the number of the ASEs needed to fullfil configuration requirements.\nSometimes, we take ASE which is already in the scenario and is active - this is why we should count it in.",
+      "parentUuid": "bc5a984d_8f0e0e20",
+      "range": {
+        "startLine": 1526,
+        "startChar": 4,
+        "endLine": 1530,
+        "endChar": 7
+      },
+      "revId": "12c1567a920a8804bb4261573434eb041397b7a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
