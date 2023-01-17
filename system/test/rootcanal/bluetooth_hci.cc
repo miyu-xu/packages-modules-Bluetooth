@@ -187,7 +187,7 @@ Return<void> BluetoothHci::initialize_impl(
       [this](AsyncTaskId task) { async_manager_.CancelAsyncTask(task); });
 
   // Add the controller as a device in the model.
-  size_t controller_index = test_model_.Add(controller_);
+  size_t controller_index = test_model_.AddDevice(controller_);
   size_t low_energy_phy_index =
       test_model_.AddPhy(rootcanal::Phy::Type::LOW_ENERGY);
   size_t classic_phy_index = test_model_.AddPhy(rootcanal::Phy::Type::BR_EDR);
