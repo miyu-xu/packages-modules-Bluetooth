@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ba17f12d_4a824809",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2023,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-17T19:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3b9f2ae_1035d901",
+      "range": {
+        "startLine": 2023,
+        "startChar": 36,
+        "endLine": 2023,
+        "endChar": 61
+      },
+      "revId": "5b3eac69eb66eb116aa40927a1dd701590354603",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "864d1a62_b4689776",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 2
