@@ -35,6 +35,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -69,6 +70,7 @@ public class BluetoothPrefsTest {
         enableActivity(false);
     }
 
+    @Ignore("b/265140063")
     @Test
     public void initialize_launchesBluetoothSettingsActivity() {
         intended(IntentMatchers.hasAction(BluetoothPrefs.BLUETOOTH_SETTING_ACTION));
