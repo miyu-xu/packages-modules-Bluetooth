@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4700acf5_d1ca4f1e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1430,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-01-17T08:36:28Z",
+      "side": 1,
+      "message": "`0x` prefixed for consistency?",
+      "range": {
+        "startLine": 1430,
+        "startChar": 62,
+        "endLine": 1430,
+        "endChar": 65
+      },
+      "revId": "a390a2052f72ae8f24bdecfb36efd19f49ccee41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f73758c_8185c9a2",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-01-17T08:36:28Z",
+      "side": 1,
+      "message": "nit: extra space",
+      "range": {
+        "startLine": 1442,
+        "startChar": 52,
+        "endLine": 1442,
+        "endChar": 53
+      },
+      "revId": "a390a2052f72ae8f24bdecfb36efd19f49ccee41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
