@@ -206,23 +206,23 @@ pub fn generate_test_file() -> Result<String, String> {
     let packet_lookup = ast
         .declarations
         .iter()
-        .filter_map(|decl| match decl {
-            ast::Decl::Packet { id, fields, .. } | ast::Decl::Struct { id, fields, .. } => Some((
+        .filter_map(|decl| match &decl.desc {
+            ast::DeclDesc::Packet { id, fields, .. } | ast::DeclDesc::Struct { id, fields, .. } => Some((
                 id.as_str(),
                 fields
                     .iter()
-                    .filter_map(|field| match field {
-                        ast::Field::Body { .. } | ast::Field::Payload { .. } => {
+                    .filter_map(|field| match &field.desc {
+                        ast::FieldDesc::Body { .. } | ast::FieldDesc::Payload { .. } => {
                             Some(("payload", None))
                         }
-                        ast::Field::Array { id, type_id, .. } => match type_id {
+                        ast::FieldDesc::Array { id, type_id, .. } => match type_id {
                             Some(type_id) => Some((id.as_str(), Some(type_id.as_str()))),
                             None => Some((id.as_str(), None)),
                         },
-                        ast::Field::Typedef { id, type_id, .. } => {
+                        ast::FieldDesc::Typedef { id, type_id, .. } => {
                             Some((id.as_str(), Some(type_id.as_str())))
                         }
-                        ast::Field::Scalar { id, .. } => Some((id.as_str(), None)),
+                        ast::FieldDesc::Scalar { id, .. } => Some((id.as_str(), None)),
                         _ => None,
                     })
                     .collect::<HashMap<_, _>>(),
