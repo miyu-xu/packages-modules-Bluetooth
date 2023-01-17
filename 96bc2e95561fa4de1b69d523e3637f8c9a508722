@@ -16,6 +16,24 @@
       "message": "Please do not merge this. The fix is here:\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2390912",
       "revId": "96bc2e95561fa4de1b69d523e3637f8c9a508722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb72fbd1_02011f2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-17T04:09:15Z",
+      "side": 1,
+      "message": "Thanks for pointing that out. It would have been merged otherwise !",
+      "parentUuid": "0a8913c5_34904d4a",
+      "revId": "96bc2e95561fa4de1b69d523e3637f8c9a508722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
