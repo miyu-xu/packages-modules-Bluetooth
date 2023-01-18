@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a126bdb8_8f3e2af9",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T19:42:04Z",
+      "side": 1,
+      "message": "I don\u0027t know if this is a proper default value.\n\nCould this also be used ?\n\n```\nout-\u003echannel_mask_ \u003d {};\n```",
+      "revId": "51af473455960613e764d80eefc1b5ceeb599967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
