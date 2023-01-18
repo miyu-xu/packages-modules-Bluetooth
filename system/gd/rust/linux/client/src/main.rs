@@ -1,4 +1,6 @@
-use clap::{value_t, App, Arg};
+#[macro_use]
+extern crate clap;
+use clap::{App, Arg};
 
 use std::collections::{HashMap, HashSet};
 use std::sync::{Arc, Mutex};

@@ -1,4 +1,7 @@
 //! Main BT lifecycle support
+#[cfg(target_os = "android")]
+#[macro_use]
+extern crate lazy_static;
 
 pub mod hal;
 pub mod hci;
