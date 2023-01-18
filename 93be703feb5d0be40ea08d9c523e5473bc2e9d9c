@@ -16,6 +16,24 @@
       "message": "Just checking:\nIs this change still needed or do you plan to use the dynamic interop file ?\nI think it would be better to only add one file for all the interop.",
       "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "268d4ca7_e01c49f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2023-01-18T08:27:21Z",
+      "side": 1,
+      "message": "These are local feature flag https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2348726/2/system/conf/bt_profile.conf  to enable/disable profile feature, these can not be added in dynamic interop file,  can you please suggest any better way to enable/disable, if any.",
+      "parentUuid": "e5cb9d69_5613298b",
+      "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
