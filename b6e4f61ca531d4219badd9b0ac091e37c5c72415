@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed1c9db6_f72f360e",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 5240,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-01-18T02:45:14Z",
+      "side": 1,
+      "message": "could we restrict to some services only?\n\nwhat if some OEM 1P app calls this API?",
+      "range": {
+        "startLine": 5240,
+        "startChar": 17,
+        "endLine": 5240,
+        "endChar": 32
+      },
+      "revId": "b6e4f61ca531d4219badd9b0ac091e37c5c72415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
