@@ -34,6 +34,24 @@
       "parentUuid": "06421b17_4c03b98d",
       "revId": "0d879e806b90597ab4f93a10c3ef72a17fade77d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2e3b5b5_6b48450f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2088,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-18T09:34:29Z",
+      "side": 1,
+      "message": "so this CL is not ready? If so please make it clear so we don\u0027t merge it.",
+      "parentUuid": "7248e409_b6b3f41b",
+      "revId": "0d879e806b90597ab4f93a10c3ef72a17fade77d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
