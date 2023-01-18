@@ -70,6 +70,24 @@
       "parentUuid": "13dd7cf3_4c33d57e",
       "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5991e4fe_61c92283",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T09:01:13Z",
+      "side": 1,
+      "message": "I do think minimizing the config files is something good.\nBut Let me check with some other people before making any changes. I\u0027ll try to send a new comment tomorrow",
+      "parentUuid": "98b3a930_28d73c78",
+      "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
