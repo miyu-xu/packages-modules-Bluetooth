@@ -16,6 +16,24 @@
       "message": "don;t we need here `|| !device.isConnected())` ?",
       "revId": "ae66a49199c05f388036521ab35a032d4462326b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96fb8ccd_d3253e63",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-18T10:32:11Z",
+      "side": 1,
+      "message": "Line #1422 should iterate by only connected devices - this should be fine.",
+      "parentUuid": "0f5e5afc_c14ec83b",
+      "revId": "ae66a49199c05f388036521ab35a032d4462326b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
