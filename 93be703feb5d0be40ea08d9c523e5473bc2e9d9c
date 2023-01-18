@@ -88,6 +88,24 @@
       "parentUuid": "98b3a930_28d73c78",
       "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed79965_d3596b26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T19:09:38Z",
+      "side": 1,
+      "message": "Hi Nitin,\nI have an alternative approach. What about using systemproperties for that ?\nI notice [avrcp](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/avrc/avrc_api.cc;l\u003d963;drc\u003d78e921d3f684515b4dd9b40626caf11993838490) is already doing such thing",
+      "parentUuid": "5991e4fe_61c92283",
+      "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
