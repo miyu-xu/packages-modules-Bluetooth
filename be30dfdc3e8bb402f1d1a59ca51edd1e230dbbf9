@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e7d392b_0c460640",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-18T09:22:49Z",
+      "side": 1,
+      "message": "This may require additional clarification from Audio Framework team.",
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f059281a_86923d06",
