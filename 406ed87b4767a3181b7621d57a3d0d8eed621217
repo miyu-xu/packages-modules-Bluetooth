@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b826c2a_db757a98",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-18T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ba3e8da_7356c7c7",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fd43460_7f5efe66",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-05T14:08:35Z",
       "side": 1,
       "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f58566c9_6ca08e7a",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-18T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fd43460_7f5efe66",
       "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72047edb_4de432b5",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-18T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d16954a_01649353",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ced91d85_e47faceb",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-01-05T14:08:35Z",
       "side": 1,
       "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f38b4f20_e2629eda",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-18T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ced91d85_e47faceb",
       "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5109c5e4_48eb5e73",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-18T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "719ab242_c1621bf1",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccf2bb49_e44fa247",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-01-05T14:08:35Z",
       "side": 1,
       "message": "TODO",
+      "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb61e3bc_83d269cf",
+        "filename": "system/stack/a2dp/a2dp_codec_config.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-01-18T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccf2bb49_e44fa247",
       "revId": "406ed87b4767a3181b7621d57a3d0d8eed621217",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
