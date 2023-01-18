@@ -22,6 +22,30 @@
       },
       "revId": "b6e4f61ca531d4219badd9b0ac091e37c5c72415",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06687802_7a3d681a",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 5240,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-18T23:34:29Z",
+      "side": 1,
+      "message": "I restricted the call to system server, but I don\u0027t think there\u0027s any more we can do",
+      "parentUuid": "ed1c9db6_f72f360e",
+      "range": {
+        "startLine": 5240,
+        "startChar": 17,
+        "endLine": 5240,
+        "endChar": 32
+      },
+      "revId": "b6e4f61ca531d4219badd9b0ac091e37c5c72415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
