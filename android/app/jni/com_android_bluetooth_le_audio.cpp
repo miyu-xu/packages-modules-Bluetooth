@@ -990,9 +990,10 @@ static void BroadcasterClassInitNative(JNIEnv* env, jclass clazz) {
 
   jclass jniBluetoothLeBroadcastMetadataClass =
       env->FindClass("android/bluetooth/BluetoothLeBroadcastMetadata");
-  android_bluetooth_BluetoothLeBroadcastMetadata.constructor = env->GetMethodID(
-      jniBluetoothLeBroadcastMetadataClass, "<init>",
-      "(ILandroid/bluetooth/BluetoothDevice;IIIZ[BILjava/util/List;)V");
+  android_bluetooth_BluetoothLeBroadcastMetadata.constructor =
+      env->GetMethodID(jniBluetoothLeBroadcastMetadataClass, "<init>",
+                       "(ILandroid/bluetooth/BluetoothDevice;IIIZZLjava/lang/"
+                       "String;[BILjava/util/List;)V");
 }
 
 static void BroadcasterInitNative(JNIEnv* env, jobject object) {
