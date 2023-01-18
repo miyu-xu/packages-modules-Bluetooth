@@ -763,6 +763,7 @@ pub(crate) trait BtifBluetoothCallbacks {
         link_type: BtTransport,
         hci_reason: BtHciErrorCode,
         conn_direction: BtConnectionDirection,
+        acl_handle: u16,
     ) {
     }
 
@@ -1124,6 +1125,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
         link_type: BtTransport,
         hci_reason: BtHciErrorCode,
         conn_direction: BtConnectionDirection,
+        acl_handle: u16,
     ) {
         if status != BtStatus::Success {
             warn!(
