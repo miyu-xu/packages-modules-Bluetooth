@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f246814_fb1ccade",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5886,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T23:18:27Z",
+      "side": 1,
+      "message": "This not a param of the method and will trigger errorProne linter",
+      "range": {
+        "startLine": 5886,
+        "startChar": 15,
+        "endLine": 5886,
+        "endChar": 22
+      },
+      "revId": "0ebc16bc3b434bab7fd6d960f6e476a694681711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
