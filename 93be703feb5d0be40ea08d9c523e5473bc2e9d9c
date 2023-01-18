@@ -52,6 +52,24 @@
       "parentUuid": "268d4ca7_e01c49f2",
       "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98b3a930_28d73c78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2023-01-18T08:58:50Z",
+      "side": 1,
+      "message": "Mostly debug features are enabled/disabled in bt_stack.conf.  But We can add it in bt_stack.conf to avoid new conf file.",
+      "parentUuid": "13dd7cf3_4c33d57e",
+      "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
