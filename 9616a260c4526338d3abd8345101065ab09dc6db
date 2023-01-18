@@ -16,6 +16,24 @@
       "message": "This does not build since semaphore is not included. I tried adding \"osi/semaphore.h\", but that seems to be only for internal use and not generally used in the BT stack (so far).\n\nCould you make sure this builds, thank you!",
       "revId": "9616a260c4526338d3abd8345101065ab09dc6db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c2332b_14ca063c",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2023-01-18T13:11:53Z",
+      "side": 1,
+      "message": "I tried also with \"osi/include/semaphore.h\", still build issue:\n```\nBuildbot Version: androidbuild_buildbot_20230109.00_RC00\nMachine: prod-2004-3240\n...\" build/soong/soong_ui.bash --make-mode TARGET_PRODUCT\u003daosp_arm64 TARGET_BUILD_VARIANT\u003duserdebug droid dist DIST_DIR\u003d/buildbot/dist_dirs/aosp-master-linux-aosp_arm64-userdebug/P48009759 platform_tests\nFAILED: out/soong/.intermediates/packages/modules/Bluetooth/system/btif/libbtif/android_arm_armv8-a_static_cfi/obj/packages/modules/Bluetooth/system/btif/co/bta_hh_co.o\n...rmediates/packages/modules/Bluetooth/system/btif/libbtif/android_arm_armv8-a_static_cfi/obj/packages/modules/Bluetooth/system/btif/co/bta_hh_co.o packages/modules/Bluetooth/system/btif/co/bta_hh_co.cc\nIn file included from packages/modules/Bluetooth/system/btif/co/bta_hh_co.cc:35:\npackages/modules/Bluetooth/system/btif/include/btif_hh.h:32:10: fatal error: \u0027osi/include/semaphore.h\u0027 file not found\n#include \"osi/include/semaphore.h\"\n         ^~~~~~~~~~~~~~~~~~~~~~~~~\n1 error generated.\n```",
+      "parentUuid": "9ea503f5_836d15a0",
+      "revId": "9616a260c4526338d3abd8345101065ab09dc6db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
