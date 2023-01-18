@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd51f264_e5a4570f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-18T01:32:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2859456d_68b90018",
+      "range": {
+        "startLine": 753,
+        "startChar": 2,
+        "endLine": 753,
+        "endChar": 42
+      },
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b7ea65b_6555432f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-18T00:34:14Z",
       "side": 1,
       "message": "Since this is \"create_bond_le\", should we force BT_TRANSPORT_LE all the time?",
+      "range": {
+        "startLine": 765,
+        "startChar": 4,
+        "endLine": 765,
+        "endChar": 32
+      },
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6577471_677ef86c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-18T01:32:37Z",
+      "side": 1,
+      "message": "yes, i doubled check this, seems it\u0027s safe to force it here. https://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/stack/btm/btm_sec.cc;l\u003d885?q\u003dBTM_SecBond\u0026sq\u003dpackage:%5Eandroid-internal$",
+      "parentUuid": "4b7ea65b_6555432f",
       "range": {
         "startLine": 765,
         "startChar": 4,
@@ -82,6 +130,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb19cbd7_e88077d8",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-18T01:32:37Z",
+      "side": 1,
+      "message": "my understanding is before we initiate bonding here, we need to add it to security data base first, storing the addr, type... then this entry will be retrieved later by bonding process.\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/stack/btm/btm_sec.cc;bpv\u003d1;bpt\u003d1;rcl\u003dd3dca9ad2563dc5cbbd2aaf7a3c0d874981b1187;l\u003d711\n\nwe have similar use case for OOB bonding in this file: https://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d2322?q\u003dbtif_dm_cb_create_bond",
+      "parentUuid": "2d9f4e32_668d8afe",
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95e66fd8_3602cb31",
@@ -105,6 +171,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdf3c0ba_12aa206a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-18T01:32:37Z",
+      "side": 1,
+      "message": "same as above, i thinking removing this should be good since we have the check for RANDOM addr",
+      "parentUuid": "95e66fd8_3602cb31",
+      "range": {
+        "startLine": 1192,
+        "startChar": 58,
+        "endLine": 1192,
+        "endChar": 75
+      },
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69b40668_01e3e810",
@@ -118,6 +208,30 @@
       "writtenOn": "2023-01-18T00:34:14Z",
       "side": 1,
       "message": "Do we need the transport here?",
+      "range": {
+        "startLine": 691,
+        "startChar": 24,
+        "endLine": 691,
+        "endChar": 37
+      },
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1ed3e00_378d6847",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-18T01:32:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "69b40668_01e3e810",
       "range": {
         "startLine": 691,
         "startChar": 24,
