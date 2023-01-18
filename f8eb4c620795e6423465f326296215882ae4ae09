@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b76b9362_187d1bd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:49:55Z",
+      "side": 1,
+      "message": "Hi Allam,\nDo you have some test you can upload for this change ?\nCan you also add the feature flagging ? (You\u0027ll find a example of this [here](https://android.googlesource.com/platform/packages/modules/Bluetooth/+/abdf101ae51703ec475d3f2811cfa6177fc74669) Let me know if you have any trouble | please keep the flag in alphabetical sort, flag name could be something like `dynamic_hf_version`)",
+      "revId": "f8eb4c620795e6423465f326296215882ae4ae09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
