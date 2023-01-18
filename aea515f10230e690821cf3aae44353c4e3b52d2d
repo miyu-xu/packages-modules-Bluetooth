@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "458aa02d_3eda8864",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppPreference.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-01-18T23:38:08Z",
+      "side": 0,
+      "message": "1. Shouldn\u0027t it return null when remoteDevice is null?\n2. Could you double check that not throwing NPE wouldn\u0027t cause any side effects?",
+      "range": {
+        "startLine": 104,
+        "startChar": 42,
+        "endLine": 104,
+        "endChar": 54
+      },
+      "revId": "aea515f10230e690821cf3aae44353c4e3b52d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
