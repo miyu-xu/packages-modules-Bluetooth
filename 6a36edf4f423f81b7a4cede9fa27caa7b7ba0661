@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8ed092_65dd01d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-01-18T09:52:01Z",
+      "side": 1,
+      "message": "Hi Martin,\n\nCould you review the libbluetooth part?\n\nThanks",
+      "revId": "6a36edf4f423f81b7a4cede9fa27caa7b7ba0661",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
