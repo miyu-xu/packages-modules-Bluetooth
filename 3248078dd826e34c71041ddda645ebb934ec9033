@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2859456d_68b90018",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-18T00:34:14Z",
+      "side": 1,
+      "message": "There\u0027s no HID handling left",
+      "range": {
+        "startLine": 753,
+        "startChar": 2,
+        "endLine": 753,
+        "endChar": 42
+      },
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b7ea65b_6555432f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-18T00:34:14Z",
+      "side": 1,
+      "message": "Since this is \"create_bond_le\", should we force BT_TRANSPORT_LE all the time?",
+      "range": {
+        "startLine": 765,
+        "startChar": 4,
+        "endLine": 765,
+        "endChar": 32
+      },
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62b4ca53_df497695",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
@@ -14,6 +60,70 @@
       "writtenOn": "2023-01-18T00:22:37Z",
       "side": 1,
       "message": "from my local testing, i found we need this to get it working. so i keep it here.",
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d9f4e32_668d8afe",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-18T00:34:14Z",
+      "side": 1,
+      "message": "Can we add a TODO that says it shouldn\u0027t be needed, or at least to find out why it\u0027s needed?",
+      "parentUuid": "62b4ca53_df497695",
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e66fd8_3602cb31",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-18T00:34:14Z",
+      "side": 1,
+      "message": "DO we know the TRANSPORT here?",
+      "range": {
+        "startLine": 1192,
+        "startChar": 58,
+        "endLine": 1192,
+        "endChar": 75
+      },
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b40668_01e3e810",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-18T00:34:14Z",
+      "side": 1,
+      "message": "Do we need the transport here?",
+      "range": {
+        "startLine": 691,
+        "startChar": 24,
+        "endLine": 691,
+        "endChar": 37
+      },
       "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
