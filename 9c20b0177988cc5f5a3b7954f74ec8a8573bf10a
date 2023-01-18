@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835cdf18_f0ce2535",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1666,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T19:11:28Z",
+      "side": 1,
+      "message": "Use this to ensure default values.\n\nThen any non-standard default values may be placed within `btav_a2dp_codec_config_t`\n\n```\nbtav_a2dp_codec_config_t codec_config {};\n```",
+      "revId": "9c20b0177988cc5f5a3b7954f74ec8a8573bf10a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
