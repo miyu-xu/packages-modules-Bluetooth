@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd2dffe_5497615b",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2298,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T19:12:31Z",
+      "side": 1,
+      "message": "Use this to ensure default values.\n\n```\ntBTA_UTL_COD cod {}\n```",
+      "revId": "efa59f071deba6ae65004a48fb5a44f16e95c8a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
