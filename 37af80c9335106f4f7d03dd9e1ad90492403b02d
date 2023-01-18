@@ -16,6 +16,46 @@
       "message": "Hi Myles and Chen, would you please take a look at this change? The presubmit failure is because of an open bug b/262476965.",
       "revId": "37af80c9335106f4f7d03dd9e1ad90492403b02d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76eb36a1_07b613b6",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-18T16:47:50Z",
+      "side": 1,
+      "message": "ENABLE ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 11
+      },
+      "revId": "37af80c9335106f4f7d03dd9e1ad90492403b02d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d590dd31_c7ec1261",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1898,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-18T16:47:50Z",
+      "side": 1,
+      "message": "unrelated whitespace change.  Please remove.",
+      "revId": "37af80c9335106f4f7d03dd9e1ad90492403b02d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
