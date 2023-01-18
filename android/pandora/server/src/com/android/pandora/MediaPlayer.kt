@@ -21,6 +21,7 @@ import android.content.Intent
 import android.media.*
 import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
+import java.io.Closeable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -28,7 +29,7 @@ import pandora.MediaPlayerGrpc.MediaPlayerImplBase
 import pandora.MediaPlayerProto.*
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
-class MediaPlayer(val context: Context) : MediaPlayerImplBase() {
+class MediaPlayer(val context: Context) : MediaPlayerImplBase(), Closeable {
   private val TAG = "PandoraMediaPlayer"
 
   private val scope: CoroutineScope
@@ -97,6 +98,9 @@ class MediaPlayer(val context: Context) : MediaPlayerImplBase() {
     }
   }
 
+<<<<<<< PATCH SET (2511d1 Pandora: Do not crash when a profile proxy is null)
+  override fun close() {
+=======
   override fun updateQueue(request: Empty, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
       MediaPlayerBrowserService.instance.updateQueue()
@@ -105,6 +109,7 @@ class MediaPlayer(val context: Context) : MediaPlayerImplBase() {
   }
 
   fun deinit() {
+>>>>>>> BASE      (41b7d6 Merge "Refactoring API names to increase scope for future")
     // Deinit the CoroutineScope
     scope.cancel()
   }

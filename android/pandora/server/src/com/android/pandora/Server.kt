@@ -20,8 +20,10 @@ import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.util.Log
+import io.grpc.BindableService
 import io.grpc.Server as GrpcServer
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
+import java.io.Closeable
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Server(context: Context) {
@@ -29,6 +31,8 @@ class Server(context: Context) {
   private val TAG = "PandoraServer"
   private val GRPC_PORT = 8999
 
+<<<<<<< PATCH SET (2511d1 Pandora: Do not crash when a profile proxy is null)
+=======
   private var host: Host
   private var a2dp: A2dp? = null
   private var a2dpSink: A2dpSink? = null
@@ -45,9 +49,13 @@ class Server(context: Context) {
   private var security: Security
   private var securityStorage: SecurityStorage
   private var androidInternal: AndroidInternal
+>>>>>>> BASE      (41b7d6 Merge "Refactoring API names to increase scope for future")
   private var grpcServer: GrpcServer
+  private var services: List<BindableService>
 
   init {
+<<<<<<< PATCH SET (2511d1 Pandora: Do not crash when a profile proxy is null)
+=======
     security = Security(context)
     host = Host(context, security, this)
     avrcp = Avrcp(context)
@@ -76,24 +84,36 @@ class Server(context: Context) {
         .addService(securityStorage)
         .addService(androidInternal)
 
+>>>>>>> BASE      (41b7d6 Merge "Refactoring API names to increase scope for future")
     val bluetoothAdapter = context.getSystemService(BluetoothManager::class.java)!!.adapter
-    val is_a2dp_source = bluetoothAdapter.getSupportedProfiles().contains(BluetoothProfile.A2DP)
-    if (is_a2dp_source) {
-      a2dp = A2dp(context)
-      grpcServerBuilder.addService(a2dp!!)
-    } else {
-      a2dpSink = A2dpSink(context)
-      grpcServerBuilder.addService(a2dpSink!!)
-    }
 
-    val is_hfp_hf = bluetoothAdapter.getSupportedProfiles().contains(BluetoothProfile.HEADSET_CLIENT)
-    if (is_hfp_hf) {
-      hfpHandsfree = HfpHandsfree(context)
-      grpcServerBuilder.addService(hfpHandsfree!!)
-    } else {
-      hfp = Hfp(context)
-      grpcServerBuilder.addService(hfp!!)
-    }
+    val security = Security(context)
+    services =
+      listOf(
+        security,
+        Host(context, security, this),
+        L2cap(context),
+        MediaPlayer(context),
+        Rfcomm(context),
+        SecurityStorage(context),
+        AndroidInternal(context),
+      ) +
+        mapOf(
+            BluetoothProfile.A2DP to ::A2dp,
+            BluetoothProfile.A2DP_SINK to ::A2dpSink,
+            BluetoothProfile.AVRCP to ::Avrcp,
+            BluetoothProfile.GATT to ::Gatt,
+            BluetoothProfile.HEADSET to ::Hfp,
+            BluetoothProfile.HEADSET_CLIENT to ::HfpHandsfree,
+            BluetoothProfile.HID_HOST to ::Hid,
+            BluetoothProfile.PBAP to ::Pbap,
+          )
+          .filter { bluetoothAdapter.getSupportedProfiles().contains(it.key) == true }
+          .map { it.value(context) }
+
+    val grpcServerBuilder = NettyServerBuilder.forPort(GRPC_PORT)
+
+    services.forEach { grpcServerBuilder.addService(it) }
 
     grpcServer = grpcServerBuilder.build()
 
@@ -106,6 +126,9 @@ class Server(context: Context) {
 
   fun awaitTermination() = grpcServer.awaitTermination()
 
+<<<<<<< PATCH SET (2511d1 Pandora: Do not crash when a profile proxy is null)
+  fun deinit() = services.forEach { if (it is Closeable) it.close() }
+=======
   fun deinit() {
     host.deinit()
     a2dp?.deinit()
@@ -124,4 +147,5 @@ class Server(context: Context) {
     securityStorage.deinit()
     androidInternal.deinit()
   }
+>>>>>>> BASE      (41b7d6 Merge "Refactoring API names to increase scope for future")
 }
