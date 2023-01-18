@@ -16,6 +16,23 @@
       "message": "test: manual verification that incoming/outgoing LE connections both continue to work",
       "revId": "2a6137f7374d47b3a9307516af2c0107f5dca887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e68e07_21be3bee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-18T18:14:30Z",
+      "side": 1,
+      "message": "build failures are in asop-emu-master and not due to this CL, pts-bot + unit test failures are unrelated",
+      "revId": "2a6137f7374d47b3a9307516af2c0107f5dca887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
