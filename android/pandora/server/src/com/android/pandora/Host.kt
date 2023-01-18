@@ -44,6 +44,7 @@ import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import java.nio.ByteBuffer
+import java.io.Closeable
 import java.time.Duration
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
@@ -70,7 +71,7 @@ class Host(
   private val context: Context,
   private val security: Security,
   private val server: Server
-) : HostImplBase() {
+) : HostImplBase(), Closeable {
   private val TAG = "PandoraHost"
 
   private val scope: CoroutineScope
@@ -103,7 +104,7 @@ class Host(
     flow = intentFlow(context, intentFilter).shareIn(scope, SharingStarted.Eagerly)
   }
 
-  fun deinit() {
+  override fun close() {
     scope.cancel()
   }
 
