@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34bb45d_afd00d2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T19:06:05Z",
+      "side": 1,
+      "message": "As long as the shift adheres to this convention then wraparound will not occur\n\n```\n#if GATT_MAX_APPS \u003c\u003d 8\ntypedef uint8_t tBTA_GATTC_CIF_MASK;\n#elif GATT_MAX_APPS \u003c\u003d 16\ntypedef uint16_t tBTA_GATTC_CIF_MASK;\n#elif GATT_MAX_APPS \u003c\u003d 32\ntypedef uint32_t tBTA_GATTC_CIF_MASK;\n#endif\n```",
+      "revId": "bfaab6bcb515c38970c4b8629c9cba754177eb95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
