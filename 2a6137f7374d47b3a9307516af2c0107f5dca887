@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "212d3825_b9cd15a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-18T02:36:39Z",
+      "side": 1,
+      "message": "test: manual verification that incoming/outgoing LE connections both continue to work",
+      "revId": "2a6137f7374d47b3a9307516af2c0107f5dca887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
