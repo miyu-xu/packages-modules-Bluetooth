@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4261dfc6_fb1cd7d0",
+        "filename": "system/bta/hf_client/bta_hf_client_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T19:45:26Z",
+      "side": 1,
+      "message": "Prefer:\n\n```\ntBTA_UTL_COD cod \u003d {\n  .minor \u003d BTM_COD_MINOR_UNCLASSIFIED,\n  .major \u003d BTM_COD_MAJOR_UNCLASSIFIED,\n  .service \u003d 0,\n};",
+      "revId": "5e16548b94e67879546f9c5cab7d60990c418750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
