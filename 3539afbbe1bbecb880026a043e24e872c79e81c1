@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c11ec1e_abf5ec00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-18T21:25:44Z",
+      "side": 1,
+      "message": "Can you please say which PTS test case is failing ?",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
