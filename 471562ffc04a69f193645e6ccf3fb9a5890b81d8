@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bab6e65_082d602a",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T19:09:14Z",
+      "side": 1,
+      "message": "This not the first item in the list so it would not be the default entry.  However, the data will at least be guaranteed to be valid.\n\n```\n  enum : uint8_t {\n    FOLDER,\n    SONG,\n  } type;\n```",
+      "revId": "471562ffc04a69f193645e6ccf3fb9a5890b81d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
