@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62b4ca53_df497695",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-18T00:22:37Z",
+      "side": 1,
+      "message": "from my local testing, i found we need this to get it working. so i keep it here.",
+      "revId": "3248078dd826e34c71041ddda645ebb934ec9033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
