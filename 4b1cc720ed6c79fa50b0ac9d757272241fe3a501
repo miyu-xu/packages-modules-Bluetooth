@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3671d7f9_8cecb894",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T02:23:13Z",
+      "side": 1,
+      "message": "BluetoothDevice.ERROR",
+      "range": {
+        "startLine": 2479,
+        "startChar": 23,
+        "endLine": 2479,
+        "endChar": 25
+      },
+      "revId": "4b1cc720ed6c79fa50b0ac9d757272241fe3a501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57b3d5c8_e882a6e5",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T02:23:13Z",
+      "side": 1,
+      "message": "I am surprised we need to defined this.\nWasn\u0027t it already defined somewhere ?",
+      "range": {
+        "startLine": 186,
+        "startChar": 19,
+        "endLine": 186,
+        "endChar": 37
+      },
+      "revId": "4b1cc720ed6c79fa50b0ac9d757272241fe3a501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
