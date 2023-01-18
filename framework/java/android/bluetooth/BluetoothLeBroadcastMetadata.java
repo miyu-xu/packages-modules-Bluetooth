@@ -50,6 +50,8 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
     private final int mBroadcastId;
     private final int mPaSyncInterval;
     private final boolean mIsEncrypted;
+    private final boolean mIsPublicBroadcast;
+    private final String mBroadcastName;
     private final byte[] mBroadcastCode;
 
     // BASE structure
@@ -62,9 +64,17 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
     // Sub group info numSubGroup = mSubGroups.length
     private final List<BluetoothLeBroadcastSubgroup> mSubgroups;
 
-    private BluetoothLeBroadcastMetadata(int sourceAddressType,
-            BluetoothDevice sourceDevice, int sourceAdvertisingSid, int broadcastId,
-            int paSyncInterval, boolean isEncrypted, byte[] broadcastCode, int presentationDelay,
+    private BluetoothLeBroadcastMetadata(
+            int sourceAddressType,
+            BluetoothDevice sourceDevice,
+            int sourceAdvertisingSid,
+            int broadcastId,
+            int paSyncInterval,
+            boolean isEncrypted,
+            boolean isPublicBroadcast,
+            String broadcastName,
+            byte[] broadcastCode,
+            int presentationDelay,
             List<BluetoothLeBroadcastSubgroup> subgroups) {
         mSourceAddressType = sourceAddressType;
         mSourceDevice = sourceDevice;
@@ -72,6 +82,8 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
         mBroadcastId = broadcastId;
         mPaSyncInterval = paSyncInterval;
         mIsEncrypted = isEncrypted;
+        mIsPublicBroadcast = isPublicBroadcast;
+        mBroadcastName = broadcastName;
         mBroadcastCode = broadcastCode;
         mPresentationDelayMicros = presentationDelay;
         mSubgroups = subgroups;
@@ -89,6 +101,8 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
                 && mBroadcastId == other.getBroadcastId()
                 && mPaSyncInterval == other.getPaSyncInterval()
                 && mIsEncrypted == other.isEncrypted()
+                && mIsPublicBroadcast == other.isPublicBroadcast()
+                && mBroadcastName == other.getBroadcastName()
                 && Arrays.equals(mBroadcastCode, other.getBroadcastCode())
                 && mPresentationDelayMicros == other.getPresentationDelayMicros()
                 && mSubgroups.equals(other.getSubgroups());
@@ -96,9 +110,18 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(mSourceAddressType, mSourceDevice, mSourceAdvertisingSid,
-                mBroadcastId, mPaSyncInterval, mIsEncrypted, Arrays.hashCode(mBroadcastCode),
-                mPresentationDelayMicros, mSubgroups);
+        return Objects.hash(
+                mSourceAddressType,
+                mSourceDevice,
+                mSourceAdvertisingSid,
+                mBroadcastId,
+                mPaSyncInterval,
+                mIsEncrypted,
+                mIsPublicBroadcast,
+                mBroadcastName,
+                Arrays.hashCode(mBroadcastCode),
+                mPresentationDelayMicros,
+                mSubgroups);
     }
 
     /**
@@ -182,6 +205,28 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
     }
 
     /**
+     * Return true if the Broadcast Source is a public broadcast.
+     *
+     * @return true if the Broadcast Source is a public broadcast
+     * @hide
+     */
+    @SystemApi
+    public boolean isPublicBroadcast() {
+        return mIsPublicBroadcast;
+    }
+
+    /**
+     * Get the broadcast name as UTF-8 format.
+     *
+     * @return broadcast name or null for the non-public broadcast
+     * @hide
+     */
+    @SystemApi
+    public @Nullable String getBroadcastName() {
+        return mBroadcastName;
+    }
+
+    /**
      * Get the Broadcast Code currently set for this Broadcast Source.
      *
      * Only needed when encryption is enabled
@@ -251,6 +296,8 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
         out.writeInt(mBroadcastId);
         out.writeInt(mPaSyncInterval);
         out.writeBoolean(mIsEncrypted);
+        out.writeBoolean(mIsPublicBroadcast);
+        out.writeString(mBroadcastName);
         if (mBroadcastCode != null) {
             out.writeInt(mBroadcastCode.length);
             out.writeByteArray(mBroadcastCode);
@@ -264,46 +311,49 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
 
     /**
      * A {@link Parcelable.Creator} to create {@link BluetoothLeBroadcastMetadata} from parcel.
+     *
      * @hide
      */
-    @SystemApi
-    @NonNull
-    public static final Creator<BluetoothLeBroadcastMetadata> CREATOR = new Creator<>() {
-        public @NonNull BluetoothLeBroadcastMetadata createFromParcel(@NonNull Parcel in) {
-            Builder builder = new Builder();
-            final int sourceAddressType = in.readInt();
-            final int deviceExist = in.readInt();
-            BluetoothDevice sourceDevice = null;
-            if (deviceExist == 1) {
-                sourceDevice = in.readTypedObject(BluetoothDevice.CREATOR);
-            }
-            builder.setSourceDevice(sourceDevice, sourceAddressType);
-            builder.setSourceAdvertisingSid(in.readInt());
-            builder.setBroadcastId(in.readInt());
-            builder.setPaSyncInterval(in.readInt());
-            builder.setEncrypted(in.readBoolean());
-            final int codeLen = in.readInt();
-            byte[] broadcastCode = null;
-            if (codeLen != -1) {
-                broadcastCode = new byte[codeLen];
-                if (codeLen > 0) {
-                    in.readByteArray(broadcastCode);
+    @SystemApi @NonNull
+    public static final Creator<BluetoothLeBroadcastMetadata> CREATOR =
+            new Creator<>() {
+                public @NonNull BluetoothLeBroadcastMetadata createFromParcel(@NonNull Parcel in) {
+                    Builder builder = new Builder();
+                    final int sourceAddressType = in.readInt();
+                    final int deviceExist = in.readInt();
+                    BluetoothDevice sourceDevice = null;
+                    if (deviceExist == 1) {
+                        sourceDevice = in.readTypedObject(BluetoothDevice.CREATOR);
+                    }
+                    builder.setSourceDevice(sourceDevice, sourceAddressType);
+                    builder.setSourceAdvertisingSid(in.readInt());
+                    builder.setBroadcastId(in.readInt());
+                    builder.setPaSyncInterval(in.readInt());
+                    builder.setEncrypted(in.readBoolean());
+                    builder.setPublicBroadcast(in.readBoolean());
+                    builder.setBroadcastName(in.readString());
+                    final int codeLen = in.readInt();
+                    byte[] broadcastCode = null;
+                    if (codeLen != -1) {
+                        broadcastCode = new byte[codeLen];
+                        if (codeLen > 0) {
+                            in.readByteArray(broadcastCode);
+                        }
+                    }
+                    builder.setBroadcastCode(broadcastCode);
+                    builder.setPresentationDelayMicros(in.readInt());
+                    final List<BluetoothLeBroadcastSubgroup> subgroups = new ArrayList<>();
+                    in.readTypedList(subgroups, BluetoothLeBroadcastSubgroup.CREATOR);
+                    for (BluetoothLeBroadcastSubgroup subgroup : subgroups) {
+                        builder.addSubgroup(subgroup);
+                    }
+                    return builder.build();
                 }
-            }
-            builder.setBroadcastCode(broadcastCode);
-            builder.setPresentationDelayMicros(in.readInt());
-            final List<BluetoothLeBroadcastSubgroup> subgroups = new ArrayList<>();
-            in.readTypedList(subgroups, BluetoothLeBroadcastSubgroup.CREATOR);
-            for (BluetoothLeBroadcastSubgroup subgroup : subgroups) {
-                builder.addSubgroup(subgroup);
-            }
-            return builder.build();
-        }
 
-        public @NonNull BluetoothLeBroadcastMetadata[] newArray(int size) {
-            return new BluetoothLeBroadcastMetadata[size];
-        }
-    };
+                public @NonNull BluetoothLeBroadcastMetadata[] newArray(int size) {
+                    return new BluetoothLeBroadcastMetadata[size];
+                }
+            };
 
     private static final int UNKNOWN_VALUE_PLACEHOLDER = -1;
 
@@ -320,6 +370,8 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
         private int mBroadcastId = UNKNOWN_VALUE_PLACEHOLDER;
         private int mPaSyncInterval = UNKNOWN_VALUE_PLACEHOLDER;
         private boolean mIsEncrypted = false;
+        private boolean mIsPublicBroadcast = false;
+        private String mBroadcastName = null;
         private byte[] mBroadcastCode = null;
         private int mPresentationDelayMicros = UNKNOWN_VALUE_PLACEHOLDER;
         private List<BluetoothLeBroadcastSubgroup> mSubgroups = new ArrayList<>();
@@ -346,6 +398,8 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
             mBroadcastId = original.getBroadcastId();
             mPaSyncInterval = original.getPaSyncInterval();
             mIsEncrypted = original.isEncrypted();
+            mIsPublicBroadcast = original.isPublicBroadcast();
+            mBroadcastName = original.getBroadcastName();
             mBroadcastCode = original.getBroadcastCode();
             mPresentationDelayMicros = original.getPresentationDelayMicros();
             mSubgroups = original.getSubgroups();
@@ -447,6 +501,32 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
         }
 
         /**
+         * Set whether the Public Broadcast is on for this Broadcast Source
+         *
+         * @param isPublicBroadcast whether the Public Broadcast is on
+         * @return this builder
+         * @hide
+         */
+        @SystemApi
+        public @NonNull Builder setPublicBroadcast(boolean isPublicBroadcast) {
+            mIsPublicBroadcast = isPublicBroadcast;
+            return this;
+        }
+
+        /**
+         * Set broadcast name for the broadcast source.
+         *
+         * @param broadcastName Broadcast name for this broadcast source, null if no name provided
+         * @return this builder
+         * @hide
+         */
+        @SystemApi
+        public @NonNull Builder setBroadcastName(@Nullable String broadcastName) {
+            mBroadcastName = broadcastName;
+            return this;
+        }
+
+        /**
          * Set the Broadcast Code currently set for this Broadcast Source.
          *
          * Only needed when encryption is enabled
@@ -540,9 +620,18 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
             if (mSubgroups.isEmpty()) {
                 throw new IllegalArgumentException("Must contain at least one subgroup");
             }
-            return new BluetoothLeBroadcastMetadata(mSourceAddressType, mSourceDevice,
-                    mSourceAdvertisingSid, mBroadcastId, mPaSyncInterval, mIsEncrypted,
-                    mBroadcastCode, mPresentationDelayMicros, mSubgroups);
+            return new BluetoothLeBroadcastMetadata(
+                    mSourceAddressType,
+                    mSourceDevice,
+                    mSourceAdvertisingSid,
+                    mBroadcastId,
+                    mPaSyncInterval,
+                    mIsEncrypted,
+                    mIsPublicBroadcast,
+                    mBroadcastName,
+                    mBroadcastCode,
+                    mPresentationDelayMicros,
+                    mSubgroups);
         }
     }
 }
