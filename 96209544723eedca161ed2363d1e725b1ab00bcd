@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3814140a_70367690",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T00:34:58Z",
+      "side": 1,
+      "message": "Need to be replace with\n```\nGetInterfaceToProfiles()-\u003eevents-\u003einvoke_adapter_properties_cb(BT_STATUS_SUCCESS, 1, \u0026wlplayers_prop);\n```\n\n(noticed with build failure with the `m libbluetooth-core`)",
+      "range": {
+        "startLine": 1818,
+        "startChar": 2,
+        "endLine": 1818,
+        "endChar": 30
+      },
+      "revId": "96209544723eedca161ed2363d1e725b1ab00bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
