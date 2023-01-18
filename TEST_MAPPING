@@ -1,4 +1,10 @@
 {
+  "mainline-presubmit": [
+    {
+      // Install com.google.android.btservices.apex and run the test
+      "name": "GoogleBluetoothInstrumentationTests[com.google.android.btservices.apex]"
+    }
+  ],
   "presubmit": [
     // android_test targets
     {
@@ -6,9 +12,6 @@
     },
     {
       "name": "BluetoothInstrumentationTests"
-    },
-    {
-      "name": "GoogleBluetoothInstrumentationTests"
     },
     {
       "name": "FrameworkBluetoothTests"
