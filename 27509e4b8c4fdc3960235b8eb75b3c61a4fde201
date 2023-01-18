@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53585cf9_f7005de3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-18T21:37:00Z",
+      "side": 1,
+      "message": "As a whole I\u0027d like to see some design doc around this change and we should run regression tests on it to see if any interop issues with Android occurs.",
+      "revId": "27509e4b8c4fdc3960235b8eb75b3c61a4fde201",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16ebbf74_fb83296e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1729,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-18T21:37:00Z",
+      "side": 1,
+      "message": "This union isn\u0027t zero initialized.  (usually done by memset, but we don\u0027t allow that in this codebase)  Which means that any of the values in the struct other than event will be random values.\n\n```\ntypedef struct {\n  uint16_t event;\n  uint16_t len;\n  uint16_t offset;\n  uint16_t layer_specific;\n  uint8_t data[];\n} BT_HDR;\n```\n\nCould you zero initialize this as there\u0027s no need to work with a pointer here.\n\nI would recommend something like this.\n```\ntBTA_DM_MSG p_msg \u003d {}\np_msg.hdr.event \u003d BTA_DM_SEARCH_CMPL_EVT;\nbta_sys_sendmsg(\u0026p_msg);\n```\n\nAlso you could group the initialization with the setting to be more readable.",
+      "revId": "27509e4b8c4fdc3960235b8eb75b3c61a4fde201",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
