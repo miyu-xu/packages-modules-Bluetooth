@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e71acd5_f14e9be6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49f7360c_fefd7df8",
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5af1e336_e95c51d0",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "Please run clang-format on your change",
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58129da0_f53f86ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5af1e336_e95c51d0",
       "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -293,6 +329,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b59f3ae1_e44892e0",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9400c592_cda6f53f",
+      "range": {
+        "startLine": 114,
+        "startChar": 59,
+        "endLine": 114,
+        "endChar": 69
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73acc356_c8dc388c",
@@ -386,6 +446,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3c6858e_d69779bb",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14f35c57_38c3b065",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 13
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a42bfea_f01cfcf9",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ee7d5290_b43a08fe",
+      "range": {
+        "startLine": 126,
+        "startChar": 33,
+        "endLine": 126,
+        "endChar": 59
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "876c0bb1_407d701d",
@@ -399,6 +507,30 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "use `property_get_bool` instead",
+      "range": {
+        "startLine": 130,
+        "startChar": 17,
+        "endLine": 131,
+        "endChar": 43
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2838c0c_05466313",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "876c0bb1_407d701d",
       "range": {
         "startLine": 130,
         "startChar": 17,
@@ -432,6 +564,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf42661_3e19f0ce",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5677f6f0_d0178030",
+      "range": {
+        "startLine": 134,
+        "startChar": 33,
+        "endLine": 134,
+        "endChar": 66
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec2d3b08_3d8ae44f",
@@ -445,6 +601,30 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "can we replace with a define to avoid the magic value in the code ?",
+      "range": {
+        "startLine": 136,
+        "startChar": 62,
+        "endLine": 136,
+        "endChar": 66
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b5d2a79_e32c04e8",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec2d3b08_3d8ae44f",
       "range": {
         "startLine": 136,
         "startChar": 62,
@@ -478,6 +658,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44bf899b_28e27663",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7920a467_916e8904",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 64
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab4e15a9_3fa4a627",
@@ -491,6 +695,30 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "This log and this if is written 4 times.\nMaybe we can split it in separate method:\n\n```\nvoid hfp_fallback(bool \u0026is_hfp_fallback, const tSDP_ATTRIBUTE* p_attr) {\n  if (!is_hfp_fallback) {\n    return;\n  }\n  // p_attr is always !\u003d nullptr when is_hfp_fallback is true\n  SDP_TRACE_ERROR(\"Restore HFP version to 1.6\");\n  /* Update HFP version back to 1.6 */\n  p_attr-\u003evalue_ptr[PROFILE_VERSION_POSITION] \u003d HFP_VERSION_1_6 \u0026 0xFF;\n  is_hfp_fallback \u003d false;\n}\n```",
+      "range": {
+        "startLine": 534,
+        "startChar": 3,
+        "endLine": 539,
+        "endChar": 7
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "207f3c54_9b953e57",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab4e15a9_3fa4a627",
       "range": {
         "startLine": 534,
         "startChar": 3,
@@ -524,6 +752,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d864d5fb_aacbe9b3",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e60a35b6_471e222a",
+      "range": {
+        "startLine": 817,
+        "startChar": 58,
+        "endLine": 817,
+        "endChar": 62
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "827b901a_02b266de",
@@ -537,6 +789,30 @@
       "writtenOn": "2022-12-21T22:57:42Z",
       "side": 1,
       "message": "Please use the `false` and `true` from cpp instead of `FALSE` / `TRUE` (same everywhere)",
+      "range": {
+        "startLine": 818,
+        "startChar": 30,
+        "endLine": 818,
+        "endChar": 35
+      },
+      "revId": "1c8c96bd5d4049dddf98b1f4295690a2648dc7e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bebc7e1_1464bf01",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T07:45:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "827b901a_02b266de",
       "range": {
         "startLine": 818,
         "startChar": 30,
