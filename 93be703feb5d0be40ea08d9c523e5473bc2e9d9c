@@ -34,6 +34,24 @@
       "parentUuid": "e5cb9d69_5613298b",
       "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13dd7cf3_4c33d57e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T08:48:31Z",
+      "side": 1,
+      "message": "Sorry I mixed-up the different config.\n\nWhat about adding to `bt_stack.conf` ? It looks like it could be a good fit without adding a full module",
+      "parentUuid": "268d4ca7_e01c49f2",
+      "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
