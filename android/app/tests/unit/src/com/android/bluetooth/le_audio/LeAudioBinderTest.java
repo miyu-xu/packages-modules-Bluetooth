@@ -308,6 +308,16 @@ public class LeAudioBinderTest {
     }
 
     @Test
+    public void startBroadcastGroup() {
+        BluetoothLeBroadcastSettings broadcastSettings =
+                new BluetoothLeBroadcastSettings.Builder().build();
+        AttributionSource source = new AttributionSource.Builder(0).build();
+
+        mBinder.startBroadcastGroup(broadcastSettings, source);
+        verify(mMockService).createBroadcast(broadcastSettings);
+    }
+
+    @Test
     public void stopBroadcast() {
         int id = 1;
         AttributionSource source = new AttributionSource.Builder(0).build();
@@ -325,6 +335,17 @@ public class LeAudioBinderTest {
 
         mBinder.updateBroadcast(id, metadata, source);
         verify(mMockService).updateBroadcast(id, metadata);
+    }
+
+    @Test
+    public void updateBroadcastGroup() {
+        int id = 1;
+        BluetoothLeBroadcastSettings broadcastSettings =
+                new BluetoothLeBroadcastSettings.Builder().build();
+        AttributionSource source = new AttributionSource.Builder(0).build();
+
+        mBinder.updateBroadcastGroup(id, broadcastSettings, source);
+        verify(mMockService).updateBroadcast(id, broadcastSettings);
     }
 
     @Test
@@ -356,6 +377,24 @@ public class LeAudioBinderTest {
 
         mBinder.getMaximumNumberOfBroadcasts(source, recv);
         verify(mMockService).getMaximumNumberOfBroadcasts();
+    }
+
+    @Test
+    public void getMaximumStreamsPerBroadcast() {
+        AttributionSource source = new AttributionSource.Builder(0).build();
+        final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+
+        mBinder.getMaximumStreamsPerBroadcast(source, recv);
+        verify(mMockService).getMaximumStreamsPerBroadcast();
+    }
+
+    @Test
+    public void getMaximumSubgroupsPerBroadcast() {
+        AttributionSource source = new AttributionSource.Builder(0).build();
+        final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+
+        mBinder.getMaximumSubgroupsPerBroadcast(source, recv);
+        verify(mMockService).getMaximumSubgroupsPerBroadcast();
     }
 
     @Test
