@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd88a12_b6408475",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T19:17:36Z",
+      "side": 1,
+      "message": "Prefer:\n\n```\n tBTA_AV bta_av_data \u003d {\n   .rc_open \u003d {\n     .rc_handle \u003d BTA_AV_RC_HANDLE_NONE,\n     .cover_art_psm \u003d 0,\n     .peer_features \u003d p_scb-\u003ePeerAddress(),\n     .peer_addr \u003d p_scb-\u003ePeerAddress(),\n     .status \u003d BTA_AV_FAIL_SDP,\n   },\n };\n\n```\n\n1. The values are ordered in the same sequence as defined in the structure.\n2. All values are guaranteed to be set.\n3. The code reader will identify key aspects quicker",
+      "revId": "d0f45aaa6d9652ec75584c926e8278622421a223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
