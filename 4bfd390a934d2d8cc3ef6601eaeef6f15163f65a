@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d40dcfb_f3d7cb92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-18T18:57:40Z",
+      "side": 1,
+      "message": "```\n#define A2DP_APTX_FUTURE_1 0x00\n#define A2DP_APTX_FUTURE_2 0x00\n```",
+      "revId": "4bfd390a934d2d8cc3ef6601eaeef6f15163f65a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
