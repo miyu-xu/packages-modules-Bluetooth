@@ -16,6 +16,23 @@
       "message": "Hi Martin, ping for review. Thanks!",
       "revId": "0ab698cec531988ebe5082f9b337f640f2eb280c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c438b8bc_f2a24494",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2067,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-18T20:33:35Z",
+      "side": 1,
+      "message": "Does this list ever get cleared other than stack reboot?",
+      "revId": "0ab698cec531988ebe5082f9b337f640f2eb280c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
