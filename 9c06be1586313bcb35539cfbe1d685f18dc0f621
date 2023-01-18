@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7f9701_9679f8bc",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 1275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T06:51:55Z",
+      "side": 1,
+      "message": "Check flag here ?",
+      "range": {
+        "startLine": 1275,
+        "startChar": 0,
+        "endLine": 1275,
+        "endChar": 51
+      },
+      "revId": "9c06be1586313bcb35539cfbe1d685f18dc0f621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eee38016_dc13f6a8",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T06:51:55Z",
+      "side": 1,
+      "message": "check flag here",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 55
+      },
+      "revId": "9c06be1586313bcb35539cfbe1d685f18dc0f621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d278a2_f6e3aa3e",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T06:51:55Z",
+      "side": 1,
+      "message": "check flag here",
+      "range": {
+        "startLine": 697,
+        "startChar": 0,
+        "endLine": 697,
+        "endChar": 57
+      },
+      "revId": "9c06be1586313bcb35539cfbe1d685f18dc0f621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b85ec9d_cc324fb7",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T06:51:55Z",
+      "side": 1,
+      "message": "check flag here and set dut_avrcp_version to avrcp_version if flag is not set ?",
+      "range": {
+        "startLine": 1432,
+        "startChar": 0,
+        "endLine": 1432,
+        "endChar": 79
+      },
+      "revId": "9c06be1586313bcb35539cfbe1d685f18dc0f621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86e1cc59_a64349d0",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T06:51:55Z",
+      "side": 1,
+      "message": "Should we had a flag check here and return without UINT16_TO_BE_FIELD in case avrcp_version \u003c\u003d cached_version ?",
+      "revId": "9c06be1586313bcb35539cfbe1d685f18dc0f621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

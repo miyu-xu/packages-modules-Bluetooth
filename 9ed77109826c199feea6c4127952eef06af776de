@@ -140,6 +140,24 @@
       "parentUuid": "e05d7408_ee6f835c",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c37579_1b3546f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-18T06:51:55Z",
+      "side": 1,
+      "message": "Thanks to Rahul we will be able to solve the failing test soon.\nWe are currently checking-in [aosp/2390968](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2390968) to facilitate test on top of the coreInterface.\n\nYou will need to rebase this change on top of it (or wait for it to be merged — hopefully tomorrow)\nAnd after that you will need to squash aosp/2390969 into your CL\n\n\nAs per the init_flags it should be straight forward as there is already a ton of example of it. Just do as in [the cl mentioned above](https://android.googlesource.com/platform/packages/modules/Bluetooth/+/abdf101ae51703ec475d3f2811cfa6177fc74669):\n* choose a flag name. (What do you think of `dynamic_avrcp_version` ? feel free to do something else)\n* add the entry in all 4 init_flags files (please keep the alphabetical sort)\n  - note the [rust macro](https://android.googlesource.com/platform/packages/modules/Bluetooth/+/abdf101ae51703ec475d3f2811cfa6177fc74669/system/gd/rust/common/src/init_flags.rs#205) will generate the method with [\u003cflags\u003eis_enabled()](https://android.googlesource.com/platform/packages/modules/Bluetooth/+/abdf101ae51703ec475d3f2811cfa6177fc74669/system/gd/rust/shim/src/init_flags.rs)\n* add the flag check on entry point (I put comment in this CL to some location but please double check if it make sense)\n* eventually add the import if it complain at build (`#include \"common/init_flags.h\"`)",
+      "parentUuid": "135368ab_15150eb8",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
