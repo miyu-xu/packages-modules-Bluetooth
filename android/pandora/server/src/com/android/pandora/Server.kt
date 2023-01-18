@@ -20,6 +20,7 @@ import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.util.Log
+import io.grpc.BindableService
 import io.grpc.Server as GrpcServer
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
 
@@ -32,12 +33,12 @@ class Server(context: Context) {
   private var host: Host
   private var a2dp: A2dp? = null
   private var a2dpSink: A2dpSink? = null
-  private var avrcp: Avrcp
-  private var gatt: Gatt
+  private var avrcp: Avrcp? = null
+  private var gatt: Gatt? = null
   private var hfp: Hfp? = null
   private var hfpHandsfree: HfpHandsfree? = null
-  private var hid: Hid
-  private var l2cap: L2cap
+  private var hid: Hid? = null
+  private var l2cap: L2cap? = null
   private var mediaplayer: MediaPlayer
   private var pbap: Pbap
   private var rfcomm: Rfcomm
@@ -49,10 +50,6 @@ class Server(context: Context) {
   init {
     security = Security(context)
     host = Host(context, security, this)
-    avrcp = Avrcp(context)
-    gatt = Gatt(context)
-    hid = Hid(context)
-    l2cap = L2cap(context)
     mediaplayer = MediaPlayer(context)
     pbap = Pbap(context)
     rfcomm = Rfcomm(context)
@@ -62,34 +59,32 @@ class Server(context: Context) {
     val grpcServerBuilder =
       NettyServerBuilder.forPort(GRPC_PORT)
         .addService(host)
-        .addService(avrcp)
-        .addService(gatt)
-        .addService(hid)
-        .addService(l2cap)
+        .addService(security)
         .addService(mediaplayer)
         .addService(pbap)
         .addService(rfcomm)
-        .addService(security)
         .addService(securityStorage)
         .addService(androidInternal)
+
+    avrcp = grpcServerBuilder.addNullableService<Avrcp>() { Avrcp(context) }
+    gatt = grpcServerBuilder.addNullableService<Gatt>() { Gatt(context) }
+    hid = grpcServerBuilder.addNullableService<Hid>() { Hid(context) }
+    l2cap = grpcServerBuilder.addNullableService<L2cap>() { L2cap(context) }
 
     val bluetoothAdapter = context.getSystemService(BluetoothManager::class.java)!!.adapter
     val is_a2dp_source = bluetoothAdapter.getSupportedProfiles().contains(BluetoothProfile.A2DP)
     if (is_a2dp_source) {
-      a2dp = A2dp(context)
-      grpcServerBuilder.addService(a2dp!!)
+      a2dp = grpcServerBuilder.addNullableService<A2dp> { A2dp(context) }
     } else {
-      a2dpSink = A2dpSink(context)
-      grpcServerBuilder.addService(a2dpSink!!)
+      a2dpSink = grpcServerBuilder.addNullableService<A2dpSink> { A2dpSink(context) }
     }
 
-    val is_hfp_hf = bluetoothAdapter.getSupportedProfiles().contains(BluetoothProfile.HEADSET_CLIENT)
+    val is_hfp_hf =
+      bluetoothAdapter.getSupportedProfiles().contains(BluetoothProfile.HEADSET_CLIENT)
     if (is_hfp_hf) {
-      hfpHandsfree = HfpHandsfree(context)
-      grpcServerBuilder.addService(hfpHandsfree!!)
+      hfpHandsfree = grpcServerBuilder.addNullableService<HfpHandsfree> { HfpHandsfree(context) }
     } else {
-      hfp = Hfp(context)
-      grpcServerBuilder.addService(hfp!!)
+      hfp = grpcServerBuilder.addNullableService<Hfp> { Hfp(context) }
     }
 
     grpcServer = grpcServerBuilder.build()
@@ -103,16 +98,29 @@ class Server(context: Context) {
 
   fun awaitTermination() = grpcServer.awaitTermination()
 
+  fun <T> NettyServerBuilder.addNullableService(createService: () -> T): T? where
+  T : BindableService? {
+    val service =
+      try {
+        createService()
+      } catch (e: Exception) {
+        null
+      }
+    service?.let { this.addService(it) }
+
+    return service
+  }
+
   fun deinit() {
     host.deinit()
     a2dp?.deinit()
     a2dpSink?.deinit()
-    avrcp.deinit()
-    gatt.deinit()
+    avrcp?.deinit()
+    gatt?.deinit()
     hfp?.deinit()
     hfpHandsfree?.deinit()
-    hid.deinit()
-    l2cap.deinit()
+    hid?.deinit()
+    l2cap?.deinit()
     mediaplayer.deinit()
     pbap.deinit()
     rfcomm.deinit()
