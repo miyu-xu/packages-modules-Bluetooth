@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aac63a98_1aee3602",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-18T08:52:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebd546d9_dd9b283b",
+      "range": {
+        "startLine": 1193,
+        "startChar": 5,
+        "endLine": 1193,
+        "endChar": 6
+      },
+      "revId": "b3e535a4d9ad37a381fdfa7754200c73c05345db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7060efc4_ab10819c",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-01-17T18:16:47Z",
       "side": 1,
       "message": "Should DistanceMeasurementManager be a singleton and BluetoothAdapter retrieve the instance with `getInstance()` instead of storing an instance here?",
+      "revId": "b3e535a4d9ad37a381fdfa7754200c73c05345db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cee046c_4805ecec",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-18T08:52:49Z",
+      "side": 1,
+      "message": "In general cases, BluetoothAdapter is singleton for Android APPs, so we will not create multi DistanceMeasurementManager. We have same logic for getBluetoothLeScanner(), getPeriodicAdvertisingManager() and getBluetoothLeAdvertiser(), I would like to follow them.\nThanks!",
+      "parentUuid": "7060efc4_ab10819c",
       "revId": "b3e535a4d9ad37a381fdfa7754200c73c05345db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aa63368_90c6521a",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-18T08:52:49Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "4b8266ac_378c0be1",
+      "revId": "b3e535a4d9ad37a381fdfa7754200c73c05345db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99d20d4a_3fb7fde5",
@@ -71,6 +131,24 @@
       "writtenOn": "2023-01-17T18:16:47Z",
       "side": 1,
       "message": "I\u0027m not entirely sure how this class is used, how is the id used?\nShouldn\u0027t `getSupportedMethods` return the flags os supported features instead of a class?",
+      "revId": "b3e535a4d9ad37a381fdfa7754200c73c05345db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1738c311_8ecfa021",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-18T08:52:49Z",
+      "side": 1,
+      "message": "This class helps Apps to check capability about angle measurement.\nI updated the java doc.\nThanks!",
+      "parentUuid": "99d20d4a_3fb7fde5",
       "revId": "b3e535a4d9ad37a381fdfa7754200c73c05345db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
