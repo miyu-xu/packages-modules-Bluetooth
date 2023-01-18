@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0728cedb_c2156fb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-18T01:16:01Z",
+      "side": 1,
+      "message": "Hi William, sorry for causing this.\n\nInstead of reverting this, I\u0027d rather remove this test.\nCould you review +2 below CL? Thanks!\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2392314",
+      "revId": "b0c9a338212b060b6ec17570606d757bdfc3f4ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
