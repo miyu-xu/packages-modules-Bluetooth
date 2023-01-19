@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c6b92b1_14f9fdaf",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:32:56Z",
+      "side": 1,
+      "message": "memset not allowed, zero init the struct instead.",
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "976c37d3_6be674df",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:32:56Z",
+      "side": 1,
+      "message": "shouldn\u0027t log bt addresses unless it is obfuscated/truncated",
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d3736a_3b264c9b",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:32:56Z",
+      "side": 1,
+      "message": "formatting, use the repo hook",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 9
+      },
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb877383_d6e06d6a",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:32:56Z",
+      "side": 1,
+      "message": "```\nif (cd \u003d\u003d 0 || cod \u003d\u003d 0x1f00 ) {\n  cod \u003d (old_cod \u003d\u003d 0) ? 0x1f00 : old_cod;\n}\n```",
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e7b586b_2618c551",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:32:56Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 231,
+        "startChar": 52,
+        "endLine": 231,
+        "endChar": 54
+      },
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4278bca3_e2320a0c",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:32:56Z",
+      "side": 1,
+      "message": "please remove these",
+      "range": {
+        "startLine": 233,
+        "startChar": 2,
+        "endLine": 233,
+        "endChar": 11
+      },
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
