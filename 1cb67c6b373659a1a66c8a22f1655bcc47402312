@@ -953,6 +953,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15365d55_77f5109a",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2023-01-19T10:41:37Z",
+      "side": 1,
+      "message": "Removed this code with new logic",
+      "parentUuid": "1adeb345_f0443d39",
+      "range": {
+        "startLine": 533,
+        "startChar": 35,
+        "endLine": 533,
+        "endChar": 56
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d0775d7_9367ef5c",
@@ -1013,6 +1037,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "Replace with getOrDefault() should facilitate the next if later (same for remoteVersion.get)",
+      "range": {
+        "startLine": 536,
+        "startChar": 44,
+        "endLine": 536,
+        "endChar": 47
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75f8168d_1a406921",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2023-01-19T10:41:37Z",
+      "side": 1,
+      "message": "Removed this code with new logic",
+      "parentUuid": "d5302549_1cfc8c26",
       "range": {
         "startLine": 536,
         "startChar": 44,
