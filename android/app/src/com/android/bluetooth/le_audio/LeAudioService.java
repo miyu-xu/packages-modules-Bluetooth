@@ -1283,6 +1283,7 @@ public class LeAudioService extends ProfileService {
     void messageFromNative(LeAudioStackEvent stackEvent) {
         Log.d(TAG, "Message from native: " + stackEvent);
         BluetoothDevice device = stackEvent.device;
+        Intent intent = null;
 
         if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED) {
             // Some events require device state machine
@@ -1555,6 +1556,10 @@ public class LeAudioService extends ProfileService {
                 Pair<Integer, Integer> ccidInformation = entry.getValue();
                 setCcidInformation(userUuid, ccidInformation.first, ccidInformation.second);
             }
+        }
+
+        if (intent != null) {
+            sendBroadcast(intent, BLUETOOTH_CONNECT);
         }
     }
 
