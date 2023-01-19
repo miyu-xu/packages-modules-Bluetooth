@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "172466b3_a4427136",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-19T10:42:06Z",
+      "side": 1,
+      "message": "Should then be a kind of mechanism with \"reference\" count or any knowledge that would remove device when no client will be interested in connection ?",
+      "revId": "40709811513d03719f5cff741b06def531c7a181",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
