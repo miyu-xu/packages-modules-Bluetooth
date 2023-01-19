@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1343241_b194dcf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-19T14:56:17Z",
+      "side": 1,
+      "message": "@sattiraju@google.com can someone start review this. I have attached CTS gerrit also.\nhttps://android-review.googlesource.com/c/platform/cts/+/2393392",
+      "revId": "e1794183781ecfee44027c3e1f252df93faf6457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
