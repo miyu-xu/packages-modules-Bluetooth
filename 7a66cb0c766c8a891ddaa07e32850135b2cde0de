@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541a9337_987370ed",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-01-19T08:13:15Z",
+      "side": 1,
+      "message": "I\u0027m not sure this class should be called as \u0027Wrapper\u0027, since it does not wrap any class. \nHow about TestHeadsetClientStateMachine?\n\nI know it is same with CSIP statemachine test, but I found it unnatural just now 😂",
+      "range": {
+        "startLine": 1400,
+        "startChar": 24,
+        "endLine": 1400,
+        "endChar": 56
+      },
+      "revId": "7a66cb0c766c8a891ddaa07e32850135b2cde0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
