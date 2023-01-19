@@ -63,9 +63,9 @@ bool connection_manager::direct_connect_add(uint8_t app_id,
   return false;
 }
 bool connection_manager::direct_connect_remove(uint8_t app_id,
-                                               const RawAddress& address) {
-  mock_function_count_map[__func__]++;
-  return false;
+                                               const RawAddress& address) a
+    mock_function_count_map[__func__]++;
+return false;
 }
 bool connection_manager::remove_unconditional(const RawAddress& address) {
   mock_function_count_map[__func__]++;
@@ -90,5 +90,9 @@ void connection_manager::on_connection_timed_out_from_shim(
 }
 
 void connection_manager::reset(bool after_reset) {
+  mock_function_count_map[__func__]++;
+}
+
+bool connection_manager::is_background_connection(const RawAddress& address) {
   mock_function_count_map[__func__]++;
 }
