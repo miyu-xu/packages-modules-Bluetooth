@@ -33,6 +33,24 @@
       "message": "Does this list ever get cleared other than stack reboot?",
       "revId": "0ab698cec531988ebe5082f9b337f640f2eb280c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5cf75f_bd0ba2eb",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2067,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-19T23:34:48Z",
+      "side": 1,
+      "message": "there is an expiration check every time the list is accessed in btm_refresh_remote_name_failure_cache. If entry is expired, they are removed.",
+      "parentUuid": "c438b8bc_f2a24494",
+      "revId": "0ab698cec531988ebe5082f9b337f640f2eb280c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
