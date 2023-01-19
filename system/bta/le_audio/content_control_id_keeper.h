@@ -17,26 +17,21 @@
 #pragma once
 
 #include <memory>
-#include <vector>
-
-#include "le_audio_types.h"
 
 namespace le_audio {
 
 class ContentControlIdKeeper {
  public:
   ContentControlIdKeeper();
-  ~ContentControlIdKeeper() = default;
+  virtual ~ContentControlIdKeeper() = default;
   static ContentControlIdKeeper* GetInstance(void) {
     static ContentControlIdKeeper* instance = new ContentControlIdKeeper();
     return instance;
   }
   void Start(void);
   void Stop(void);
-  void SetCcid(types::LeAudioContextType context_type, int ccid);
-  void SetCcid(const types::AudioContexts& contexts, int ccid);
-  int GetCcid(types::LeAudioContextType context_type) const;
-  std::vector<uint8_t> GetAllCcids(const types::AudioContexts& contexts) const;
+  virtual void SetCcid(uint16_t context_type, int ccid);
+  virtual int GetCcid(uint16_t context_type) const;
 
  private:
   struct impl;

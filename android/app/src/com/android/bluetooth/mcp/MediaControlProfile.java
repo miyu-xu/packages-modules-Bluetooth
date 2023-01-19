@@ -677,7 +677,7 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
 
             // Instantiate a Service Instance and it's state machine
             int ccid = ContentControlIdKeeper.acquireCcid(BluetoothUuid.GENERIC_MEDIA_CONTROL,
-                    BluetoothLeAudio.CONTEXT_TYPE_MEDIA | BluetoothLeAudio.CONTEXT_TYPE_LIVE);
+                    BluetoothLeAudio.CONTEXT_TYPE_MEDIA);
             if (ccid == ContentControlIdKeeper.CCID_INVALID) {
                 Log.e(TAG, "Unable to acquire valid CCID!");
                 return;

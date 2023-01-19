@@ -148,8 +148,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     auto context_type = group->GetConfigurationContextType();
     auto metadata_context_type = group->GetMetadataContexts();
 
-    auto ccids = le_audio::ContentControlIdKeeper::GetInstance()->GetAllCcids(
-        metadata_context_type);
+    auto ccid = le_audio::ContentControlIdKeeper::GetInstance()->GetCcid(
+        static_cast<uint16_t>(context_type));
+    std::vector<uint8_t> ccids;
+    if (ccid != -1) {
+      ccids.push_back(static_cast<uint8_t>(ccid));
+    }
+
     if (!group->Configure(context_type, metadata_context_type, ccids)) {
       LOG_ERROR(" failed to set ASE configuration");
       return false;
