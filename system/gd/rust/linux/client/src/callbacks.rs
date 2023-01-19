@@ -771,6 +771,10 @@ impl IBluetoothGattServerCallback for BtGattServerCallback {
             _addr
         );
     }
+
+    fn on_service_added(&self, _status: GattStatus, _service: BluetoothGattService) {
+        print_info!("GATT service added with status = {}, service = {:?}", _status, _service)
+    }
 }
 
 impl RPCProxy for BtGattServerCallback {
