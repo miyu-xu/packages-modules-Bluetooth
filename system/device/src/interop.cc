@@ -52,17 +52,20 @@
 #include "types/raw_address.h"
 
 #if defined(OS_GENERIC)
-#include <filesystem>
 #include <base/files/file_util.h>
+
+#include <filesystem>
 
 static const std::filesystem::path kDynamicConfigFileConfigFile =
     std::filesystem::temp_directory_path() / "interop_database_dynamic.conf";
-static const char* INTEROP_DYNAMIC_FILE_PATH = kDynamicConfigFileConfigFile.c_str();
+static const char* INTEROP_DYNAMIC_FILE_PATH =
+    kDynamicConfigFileConfigFile.c_str();
 
 static const std::filesystem::path kStaticConfigFileConfigFile =
     std::filesystem::temp_directory_path() / "interop_database.conf";
 
-static const char* INTEROP_STATIC_FILE_PATH = kStaticConfigFileConfigFile.c_str();
+static const char* INTEROP_STATIC_FILE_PATH =
+    kStaticConfigFileConfigFile.c_str();
 #else   // !defined(OS_GENERIC)
 static const char* INTEROP_DYNAMIC_FILE_PATH =
     "/data/misc/bluedroid/interop_database_dynamic.conf";
@@ -186,8 +189,8 @@ static void load_config();
 static void interop_database_add_(interop_db_entry_t* db_entry, bool persist);
 static bool interop_database_remove_(interop_db_entry_t* entry);
 static bool interop_database_match(interop_db_entry_t* entry,
-                                    interop_db_entry_t** ret_entry,
-                                    interop_entry_type entry_type);
+                                   interop_db_entry_t** ret_entry,
+                                   interop_entry_type entry_type);
 static void interop_config_flush(void);
 static bool interop_config_remove(const std::string& section,
                                   const std::string& key);
@@ -437,7 +440,6 @@ static void interop_config_flush(void) {
   pthread_mutex_lock(&file_lock);
   config_save(*config_dynamic, INTEROP_DYNAMIC_FILE_PATH);
   pthread_mutex_unlock(&file_lock);
-
 }
 
 static bool interop_config_remove(const std::string& section,
@@ -487,7 +489,8 @@ int interop_feature_name_to_feature_id(const char* feature_name) {
   return it->second;
 }
 
-static bool interop_config_add_or_remove(interop_db_entry_t* db_entry, bool add) {
+static bool interop_config_add_or_remove(interop_db_entry_t* db_entry,
+                                         bool add) {
   bool status = true;
   std::string key;
   std::string value;
@@ -496,11 +499,10 @@ static bool interop_config_add_or_remove(interop_db_entry_t* db_entry, bool add)
   // add it to the config file as well
   switch (db_entry->bl_type) {
     case INTEROP_BL_TYPE_ADDR: {
-
       interop_addr_entry_t addr_entry = db_entry->entry_type.addr_entry;
 
-      const std::string bdstr = addr_entry.addr.ToColonSepHexString()
-                        .substr(0, addr_entry.length * 3 - 1);
+      const std::string bdstr = addr_entry.addr.ToColonSepHexString().substr(
+          0, addr_entry.length * 3 - 1);
 
       feature = db_entry->entry_type.addr_entry.feature;
       key.assign(bdstr);
@@ -543,8 +545,8 @@ static bool interop_config_add_or_remove(interop_db_entry_t* db_entry, bool add)
           db_entry->entry_type.ssr_max_lat_entry;
       char m_ssr_max_lat[KEY_MAX_LENGTH] = {'\0'};
 
-      const std::string bdstr = ssr_entry.addr.ToColonSepHexString()
-                        .substr(0, 3 * 3 - 1);
+      const std::string bdstr =
+          ssr_entry.addr.ToColonSepHexString().substr(0, 3 * 3 - 1);
 
       snprintf(m_ssr_max_lat, sizeof(m_ssr_max_lat), "%s-0x%04x", bdstr.c_str(),
                db_entry->entry_type.ssr_max_lat_entry.max_lat);
@@ -570,11 +572,11 @@ static bool interop_config_add_or_remove(interop_db_entry_t* db_entry, bool add)
       interop_lmp_version_t lmp_version_entry =
           db_entry->entry_type.lmp_version_entry;
       char m_lmp_version[KEY_MAX_LENGTH] = {'\0'};
-      const std::string bdstr = lmp_version_entry.addr.ToColonSepHexString()
-                    .substr(0, 3 * 3 - 1);
+      const std::string bdstr =
+          lmp_version_entry.addr.ToColonSepHexString().substr(0, 3 * 3 - 1);
 
-      snprintf(m_lmp_version, sizeof(m_lmp_version), "%s-0x%02x-0x%04x", bdstr.c_str(),
-               db_entry->entry_type.lmp_version_entry.lmp_ver,
+      snprintf(m_lmp_version, sizeof(m_lmp_version), "%s-0x%02x-0x%04x",
+               bdstr.c_str(), db_entry->entry_type.lmp_version_entry.lmp_ver,
                db_entry->entry_type.lmp_version_entry.lmp_sub_ver);
 
       feature = db_entry->entry_type.lmp_version_entry.feature;
@@ -590,12 +592,10 @@ static bool interop_config_add_or_remove(interop_db_entry_t* db_entry, bool add)
   }
 
   if (status) {
-     if (add) {
-      interop_config_set_str(interop_feature_string_(feature), key,
-                             value);
+    if (add) {
+      interop_config_set_str(interop_feature_string_(feature), key, value);
     } else {
-      interop_config_remove(interop_feature_string_(feature),
-                           key);
+      interop_config_remove(interop_feature_string_(feature), key);
     }
     interop_config_flush();
   }
@@ -605,10 +605,10 @@ static bool interop_config_add_or_remove(interop_db_entry_t* db_entry, bool add)
 
 static void interop_database_add_(interop_db_entry_t* db_entry, bool persist) {
   interop_db_entry_t* ret_entry = NULL;
-  bool match_found = interop_database_match(
-                        db_entry, &ret_entry,
-                        (interop_entry_type)(INTEROP_ENTRY_TYPE_STATIC |
-                        INTEROP_ENTRY_TYPE_DYNAMIC));
+  bool match_found =
+      interop_database_match(db_entry, &ret_entry,
+                             (interop_entry_type)(INTEROP_ENTRY_TYPE_STATIC |
+                                                  INTEROP_ENTRY_TYPE_DYNAMIC));
 
   if (match_found) {
     // return as the entry is already present
@@ -630,12 +630,11 @@ static void interop_database_add_(interop_db_entry_t* db_entry, bool persist) {
   }
 
   interop_config_add_or_remove(db_entry, true);
-
 }
 
 static bool interop_database_match(interop_db_entry_t* entry,
-                                    interop_db_entry_t** ret_entry,
-                                    interop_entry_type entry_type) {
+                                   interop_db_entry_t** ret_entry,
+                                   interop_entry_type entry_type) {
   CHECK(entry);
   bool found = false;
   pthread_mutex_lock(&interop_list_lock);
@@ -669,7 +668,7 @@ static bool interop_database_match(interop_db_entry_t* entry,
         interop_addr_entry_t* cur = &db_entry->entry_type.addr_entry;
         if ((src->feature == cur->feature) &&
             (!memcmp(&src->addr, &cur->addr, cur->length))) {
-          /* cur len is used to remove src entry from config file, when 
+          /* cur len is used to remove src entry from config file, when
            * interop_database_remove_addr is called. */
           src->length = cur->length;
           found = true;
@@ -796,15 +795,15 @@ static char* trim(char* str) {
   return str;
 }
 
- bool token_to_ul(char *token, uint16_t *ul) {
-    char *e;
-    bool ret_value = false;
+bool token_to_ul(char* token, uint16_t* ul) {
+  char* e;
+  bool ret_value = false;
 
-    token = trim(token);
-    errno = 0;
-    *ul = (uint16_t)strtoul(token, &e, 16);
-    if ((e != NULL) && errno != EINVAL && errno != ERANGE) ret_value = true;
-    return ret_value;
+  token = trim(token);
+  errno = 0;
+  *ul = (uint16_t)strtoul(token, &e, 16);
+  if ((e != NULL) && errno != EINVAL && errno != ERANGE) ret_value = true;
+  return ret_value;
 }
 
 static bool get_vendor_product_id(char* vendorstr, uint16_t* vendor,
@@ -817,7 +816,8 @@ static bool get_vendor_product_id(char* vendorstr, uint16_t* vendor,
     ret_value = token_to_ul(token, vendor);
   }
 
-  if (ret_value && (token = strtok_r(NULL, VENDOR_VALUE_SEPARATOR, &saveptr)) != NULL) {
+  if (ret_value &&
+      (token = strtok_r(NULL, VENDOR_VALUE_SEPARATOR, &saveptr)) != NULL) {
     ret_value = token_to_ul(token, product);
   }
   return ret_value;
@@ -854,7 +854,7 @@ static bool get_addr_range(char* str, RawAddress* addr_start,
     strlcpy(addr_start_str, token, 18);
     if (!RawAddress::FromString(addr_start_str, *addr_start)) return false;
   } else {
-      return false;
+    return false;
   }
 
   if ((token = strtok_r(NULL, VENDOR_VALUE_SEPARATOR, &saveptr)) != NULL) {
@@ -907,8 +907,7 @@ bool load_to_database(int feature, const char* key, const char* value,
 
     std::string bdstr(key);
     std::string append_str(":00");
-    for (int i = 6; i > len; i--)
-       bdstr.append(append_str);
+    for (int i = 6; i > len; i--) bdstr.append(append_str);
 
     if (!RawAddress::FromString(bdstr, addr)) {
       LOG_WARN(
@@ -936,7 +935,8 @@ bool load_to_database(int feature, const char* key, const char* value,
         (interop_db_entry_t*)osi_calloc(sizeof(interop_db_entry_t));
     entry->bl_type = INTEROP_BL_TYPE_NAME;
     entry->bl_entry_type = entry_type;
-    memcpy(&entry->entry_type.name_entry.name, key, strlen(key));
+    strlcpy(entry->entry_type.name_entry.name, key,
+            sizeof(entry->entry_type.name_entry.name));
     entry->entry_type.name_entry.feature = (interop_feature_t)feature;
     entry->entry_type.name_entry.length = strlen(key);
     interop_database_add_(entry, false);
@@ -950,9 +950,7 @@ bool load_to_database(int feature, const char* key, const char* value,
       return false;
     }
 
-    if (token_to_ul((char *)key, &manufacturer) == false)
-      return false;
-
+    if (token_to_ul((char*)key, &manufacturer) == false) return false;
 
     interop_db_entry_t* entry =
         (interop_db_entry_t*)osi_calloc(sizeof(interop_db_entry_t));
@@ -964,8 +962,8 @@ bool load_to_database(int feature, const char* key, const char* value,
 
   } else if (!strncasecmp(value, VNDR_PRDT_BASED, strlen(VNDR_PRDT_BASED))) {
     uint16_t vendor_id;
-    uint16_t product_id;
-    char tmp_key[VALID_VNDR_PRDT_LEN+1] = {'\0'};
+    uint16_t product_id = 0;
+    char tmp_key[VALID_VNDR_PRDT_LEN + 1] = {'\0'};
 
     if (strlen(key) != VALID_VNDR_PRDT_LEN) {
       LOG_WARN("ignoring %s due to invalid vendor/product id in config file",
@@ -1043,8 +1041,7 @@ bool load_to_database(int feature, const char* key, const char* value,
       return false;
     }
 
-    if (token_to_ul((char *)key, &version) == false)
-      return false;
+    if (token_to_ul((char*)key, &version) == false) return false;
 
     interop_db_entry_t* entry =
         (interop_db_entry_t*)osi_calloc(sizeof(interop_db_entry_t));
@@ -1116,8 +1113,8 @@ bool load_to_database(int feature, const char* key, const char* value,
     strlcpy(tmp_key, key, VALID_ADDR_RANGE_LEN + 1);
     if (!get_addr_range(tmp_key, &addr_start, &addr_end)) {
       LOG_WARN("key: %s addr_start %s or addr end  %s is added to interop list",
-                key, ADDRESS_TO_LOGGABLE_CSTR(addr_start),
-                ADDRESS_TO_LOGGABLE_CSTR(addr_end));
+               key, ADDRESS_TO_LOGGABLE_CSTR(addr_start),
+               ADDRESS_TO_LOGGABLE_CSTR(addr_end));
 
       return false;
     }
@@ -1147,7 +1144,8 @@ static void load_config() {
   pthread_mutex_lock(&file_lock);
   for (const section_t& sec : config_static.get()->sections) {
     int feature = -1;
-    if ((feature = interop_feature_name_to_feature_id(sec.name.c_str())) != -1) {
+    if ((feature = interop_feature_name_to_feature_id(sec.name.c_str())) !=
+        -1) {
       for (const entry_t& entry : sec.entries) {
         load_to_database(feature, entry.key.c_str(), entry.value.c_str(),
                          INTEROP_ENTRY_TYPE_STATIC);
@@ -1157,7 +1155,8 @@ static void load_config() {
 
   for (const section_t& sec : config_dynamic.get()->sections) {
     int feature = -1;
-    if ((feature = interop_feature_name_to_feature_id(sec.name.c_str())) != -1) {
+    if ((feature = interop_feature_name_to_feature_id(sec.name.c_str())) !=
+        -1) {
       for (const entry_t& entry : sec.entries) {
         load_to_database(feature, entry.key.c_str(), entry.value.c_str(),
                          INTEROP_ENTRY_TYPE_DYNAMIC);
@@ -1165,7 +1164,6 @@ static void load_config() {
     }
   }
   pthread_mutex_unlock(&file_lock);
-
 }
 
 static void interop_config_cleanup(void) {
@@ -1196,13 +1194,17 @@ void interop_database_add_addr(const uint16_t feature, const RawAddress* addr,
 
 void interop_database_add_name(const uint16_t feature, const char* name) {
   CHECK(name);
+  const size_t name_length = strlen(name);
+  CHECK(name_length < KEY_MAX_LENGTH);
+
   interop_db_entry_t* entry =
       (interop_db_entry_t*)osi_calloc(sizeof(interop_db_entry_t));
   entry->bl_type = INTEROP_BL_TYPE_NAME;
   entry->bl_entry_type = INTEROP_ENTRY_TYPE_DYNAMIC;
-  memcpy(&entry->entry_type.name_entry.name, name, strlen(name));
+  strlcpy(entry->entry_type.name_entry.name, name,
+          sizeof(entry->entry_type.name_entry.name));
   entry->entry_type.name_entry.feature = (interop_feature_t)feature;
-  entry->entry_type.name_entry.length = strlen(name);
+  entry->entry_type.name_entry.length = name_length;
   interop_database_add_(entry, true);
 }
 
@@ -1238,7 +1240,7 @@ void interop_database_add_addr_max_lat(const interop_feature_t feature,
       (interop_db_entry_t*)osi_calloc(sizeof(interop_db_entry_t));
   entry->bl_type = INTEROP_BL_TYPE_SSR_MAX_LAT;
   entry->bl_entry_type = INTEROP_ENTRY_TYPE_DYNAMIC;
-  memcpy(&entry->entry_type.ssr_max_lat_entry.addr, addr, 6);
+  entry->entry_type.ssr_max_lat_entry.addr = *addr;
   entry->entry_type.ssr_max_lat_entry.feature = feature;
   entry->entry_type.ssr_max_lat_entry.max_lat = max_lat;
   interop_database_add_(entry, true);
@@ -1265,7 +1267,7 @@ void interop_database_add_addr_lmp_version(const interop_feature_t feature,
       (interop_db_entry_t*)osi_calloc(sizeof(interop_db_entry_t));
   entry->bl_type = INTEROP_BL_TYPE_LMP_VERSION;
   entry->bl_entry_type = INTEROP_ENTRY_TYPE_DYNAMIC;
-  memcpy(&entry->entry_type.lmp_version_entry.addr, addr, 6);
+  entry->entry_type.lmp_version_entry.addr = *addr;
   entry->entry_type.lmp_version_entry.feature = feature;
   entry->entry_type.lmp_version_entry.lmp_ver = lmp_ver;
   entry->entry_type.lmp_version_entry.lmp_sub_ver = lmp_sub_ver;
@@ -1302,8 +1304,7 @@ bool interop_database_match_name(const interop_feature_t feature,
   interop_db_entry_t entry;
 
   entry.bl_type = INTEROP_BL_TYPE_NAME;
-  strlcpy(entry.entry_type.name_entry.name, trim(trim_name),
-          KEY_MAX_LENGTH);
+  strlcpy(entry.entry_type.name_entry.name, trim(trim_name), KEY_MAX_LENGTH);
   entry.entry_type.name_entry.feature = (interop_feature_t)feature;
   entry.entry_type.name_entry.length = strlen(entry.entry_type.name_entry.name);
 
@@ -1344,9 +1345,8 @@ bool interop_database_match_addr(const interop_feature_t feature,
   entry.entry_type.addr_range_entry.addr_start = *addr;
   entry.entry_type.addr_range_entry.feature = (interop_feature_t)feature;
 
-  if (interop_database_match(
-          &entry, NULL,
-          (interop_entry_type)(INTEROP_ENTRY_TYPE_STATIC))) {
+  if (interop_database_match(&entry, NULL,
+                             (interop_entry_type)(INTEROP_ENTRY_TYPE_STATIC))) {
     LOG_WARN("Device %s is a match for interop workaround %s.",
              ADDRESS_TO_LOGGABLE_CSTR(*addr), interop_feature_string_(feature));
     return true;
@@ -1387,7 +1387,7 @@ bool interop_database_match_addr_get_max_lat(const interop_feature_t feature,
   entry.bl_type = INTEROP_BL_TYPE_SSR_MAX_LAT;
 
   entry.entry_type.ssr_max_lat_entry.feature = feature;
-  memcpy(&entry.entry_type.ssr_max_lat_entry.addr, addr, sizeof(RawAddress));
+  entry.entry_type.ssr_max_lat_entry.addr = *addr;
   entry.entry_type.ssr_max_lat_entry.feature = feature;
   if (interop_database_match(
           &entry, &ret_entry,
@@ -1608,7 +1608,7 @@ bool interop_database_remove_addr_max_lat(const interop_feature_t feature,
   entry.bl_type = INTEROP_BL_TYPE_SSR_MAX_LAT;
   entry.bl_entry_type = INTEROP_ENTRY_TYPE_DYNAMIC;
 
-  memcpy(&entry.entry_type.ssr_max_lat_entry.addr, addr, sizeof(RawAddress));
+  entry.entry_type.ssr_max_lat_entry.addr = *addr;
   entry.entry_type.ssr_max_lat_entry.feature = feature;
   entry.entry_type.ssr_max_lat_entry.max_lat = max_lat;
 

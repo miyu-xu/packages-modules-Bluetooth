@@ -25,13 +25,15 @@
 #include "types/raw_address.h"
 
 #if defined(OS_GENERIC)
-#include <filesystem>
 #include <base/files/file_util.h>
+
+#include <filesystem>
 
 static const std::filesystem::path kStaticConfigFileConfigFile =
     std::filesystem::temp_directory_path() / "interop_database.conf";
 
-static const char* INTEROP_STATIC_FILE_PATH = kStaticConfigFileConfigFile.c_str();
+static const char* INTEROP_STATIC_FILE_PATH =
+    kStaticConfigFileConfigFile.c_str();
 static const char INTEROP_STATIC_FILE_CONTENT[] =
     "                                                                                        \n\
 #Disable secure connections                                                                  \n\
@@ -71,9 +73,9 @@ CK87BT = Name_Based                                                             
 0x05ac-0x0255 = Vndr_Prdt_Based                                                              \n\
                                                                                              \n\
 # Some HID devices have problematic behaviour where when hid link is in Sniff                \n\
-# and DUT is in Slave role for SCO link ( not eSCO) any solution cannot maintain             \n\
+# and DUT is in Peripheral role for SCO link ( not eSCO) any solution cannot maintain        \n\
 # the link as  SCO scheduling over a short period will overlap with Sniff link due to        \n\
-# slave drift.                                                                               \n\
+# peripheral drift.                                                                          \n\
 # To avoid degrading the user experience with those devices, sniff is disabled from          \n\
 # link policy when sco is active, and enabled when sco is disabled.                          \n\
 [INTEROP_DISABLE_SNIFF_DURING_SCO]                                                           \n\
@@ -96,9 +98,10 @@ class InteropTest : public ::testing::Test {
  protected:
   virtual void SetUp() override {
 #if defined(OS_GENERIC)
-    FILE* fp = fopen(INTEROP_STATIC_FILE_PATH, "wt");
+    FILE* fp = fopen(INTEROP_STATIC_FILE_PATH, "wte");
     ASSERT_NE(fp, nullptr);
-    ASSERT_EQ(fwrite(INTEROP_STATIC_FILE_CONTENT, 1, sizeof(INTEROP_STATIC_FILE_CONTENT), fp),
+    ASSERT_EQ(fwrite(INTEROP_STATIC_FILE_CONTENT, 1,
+                     sizeof(INTEROP_STATIC_FILE_CONTENT), fp),
               sizeof(INTEROP_STATIC_FILE_CONTENT));
     ASSERT_EQ(fclose(fp), 0);
 #endif
@@ -107,10 +110,8 @@ class InteropTest : public ::testing::Test {
 #if defined(OS_GENERIC)
     EXPECT_TRUE(std::filesystem::remove(kStaticConfigFileConfigFile));
 #endif
-
   }
 };
-
 
 TEST_F(InteropTest, test_lookup_hit) {
   module_init(&interop_module);
