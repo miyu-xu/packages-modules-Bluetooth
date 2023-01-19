@@ -38,13 +38,13 @@ class MediaPlayerBrowserService : MediaBrowserService() {
 
   override fun onCreate() {
     super.onCreate()
-    setupMediaSession()
     initBrowseFolderList()
+    setupMediaSession()
     instance = this
   }
 
-  fun deinit() {
-    // Releasing MediaSession instance
+  override fun onDestroy() {
+    super.onDestroy()
     mediaSession.setActive(false)
     mediaSession.release()
   }
@@ -56,13 +56,15 @@ class MediaPlayerBrowserService : MediaBrowserService() {
       MediaSession.FLAG_HANDLES_MEDIA_BUTTONS or MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS
     )
     mediaSession.setCallback(mSessionCallback)
+    initQueue()
+    mediaSession.setQueue(queue)
     playbackStateBuilder =
       PlaybackState.Builder()
         .setState(PlaybackState.STATE_NONE, 0, 1.0f)
         .setActions(getAvailableActions())
+        .setActiveQueueItemId(QUEUE_START_INDEX.toLong())
     mediaSession.setPlaybackState(playbackStateBuilder.build())
     mediaSession.setMetadata(null)
-    mediaSession.setQueue(queue)
     mediaSession.setQueueTitle(NOW_PLAYING_PREFIX)
     mediaSession.isActive = true
     sessionToken = mediaSession.sessionToken
@@ -78,16 +80,12 @@ class MediaPlayerBrowserService : MediaBrowserService() {
       PlaybackState.ACTION_PAUSE
 
   private fun setPlaybackState(state: Int) {
-    playbackStateBuilder.setState(state, 0, 1.0f)
+    playbackStateBuilder.setState(state, 0, 1.0f).setActiveQueueItemId(currentTrack.toLong())
     mediaSession.setPlaybackState(playbackStateBuilder.build())
   }
 
   fun play() {
-    if (currentTrack == -1) {
-      currentTrack = QUEUE_START_INDEX
-      initQueue()
-      mediaSession.setQueue(queue)
-    }
+    if (currentTrack == -1 || currentTrack == QUEUE_SIZE) currentTrack = QUEUE_START_INDEX else currentTrack += 1
     setPlaybackState(PlaybackState.STATE_PLAYING)
     mediaSession.setMetadata(metadataItems.get("" + currentTrack))
   }
@@ -110,25 +108,23 @@ class MediaPlayerBrowserService : MediaBrowserService() {
   }
 
   fun forward() {
-    if (currentTrack == QUEUE_SIZE) currentTrack = QUEUE_START_INDEX else currentTrack += 1
+    if (currentTrack == QUEUE_SIZE || currentTrack == -1) currentTrack = QUEUE_START_INDEX else currentTrack += 1
     setPlaybackState(PlaybackState.STATE_SKIPPING_TO_NEXT)
     mediaSession.setMetadata(metadataItems.get("" + currentTrack))
+    setPlaybackState(PlaybackState.STATE_PLAYING)
   }
 
   fun backward() {
-    if (currentTrack == QUEUE_START_INDEX) currentTrack = QUEUE_SIZE else currentTrack -= 1
+    if (currentTrack == QUEUE_START_INDEX || currentTrack == -1) currentTrack = QUEUE_SIZE else currentTrack -= 1
     setPlaybackState(PlaybackState.STATE_SKIPPING_TO_PREVIOUS)
     mediaSession.setMetadata(metadataItems.get("" + currentTrack))
+    setPlaybackState(PlaybackState.STATE_PLAYING)
   }
 
   fun setLargeMetadata() {
-    mediaSession.setMetadata(
-      MediaMetadata.Builder()
-        .putString(MediaMetadata.METADATA_KEY_MEDIA_ID, "MEDIA_ID")
-        .putString(MediaMetadata.METADATA_KEY_TITLE, generateAlphanumericString(512))
-        .putString(MediaMetadata.METADATA_KEY_ARTIST, generateAlphanumericString(512))
-        .build()
-    )
+    currentTrack = QUEUE_SIZE
+    mediaSession.setMetadata(metadataItems.get("" + currentTrack))
+    setPlaybackState(PlaybackState.STATE_PLAYING)
   }
 
   private val mSessionCallback: MediaSession.Callback =
@@ -185,7 +181,8 @@ class MediaPlayerBrowserService : MediaBrowserService() {
         MediaMetadata.Builder()
           .putString(MediaMetadata.METADATA_KEY_MEDIA_ID, NOW_PLAYING_PREFIX + item)
           .putString(MediaMetadata.METADATA_KEY_TITLE, "Title$item")
-          .putString(MediaMetadata.METADATA_KEY_ARTIST, "Artist$item")
+          .putString(MediaMetadata.METADATA_KEY_ARTIST, if (item != QUEUE_SIZE) "Artist$item" else generateAlphanumericString(512))
+          .putString(MediaMetadata.METADATA_KEY_ALBUM, if (item != QUEUE_SIZE) "Album$item" else generateAlphanumericString(512))
           .putLong(MediaMetadata.METADATA_KEY_TRACK_NUMBER, item.toLong())
           .putLong(MediaMetadata.METADATA_KEY_NUM_TRACKS, QUEUE_SIZE.toLong())
           .build()

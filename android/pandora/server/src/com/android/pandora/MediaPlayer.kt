@@ -100,5 +100,7 @@ class MediaPlayer(val context: Context) : MediaPlayerImplBase() {
     scope.cancel()
     // Stop service
     context.stopService(Intent(context, MediaPlayerBrowserService::class.java))
+    // Wait till the Service is completely destroyed
+    Thread.sleep(300)
   }
 }
