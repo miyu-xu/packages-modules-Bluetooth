@@ -16,6 +16,24 @@
       "message": "Should then be a kind of mechanism with \"reference\" count or any knowledge that would remove device when no client will be interested in connection ?",
       "revId": "40709811513d03719f5cff741b06def531c7a181",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4a0964b_b4c15dbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-19T20:08:06Z",
+      "side": 1,
+      "message": "That is handled by the connection manager\n\n`packages/modules/Bluetooth/system/stack/gatt/connection_manager.cc`\n```\nbool direct_connect_remove(uint8_t app_id, const RawAddress\u0026 address) {\n...\n  auto it \u003d bgconn_dev.find(address);\n  if (it \u003d\u003d bgconn_dev.end()) {\n    LOG_WARN(\"Unable to find background connection to remove\");\n    return false;\n  }\n\n  auto app_it \u003d it-\u003esecond.doing_direct_conn.find(app_id);\n  if (app_it \u003d\u003d it-\u003esecond.doing_direct_conn.end()) {\n    LOG_WARN(\"Unable to find direct connection to remove\");\n    return false;\n  }\n```",
+      "parentUuid": "172466b3_a4427136",
+      "revId": "40709811513d03719f5cff741b06def531c7a181",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
