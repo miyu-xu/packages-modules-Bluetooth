@@ -1411,7 +1411,8 @@ public class LeAudioService extends ProfileService {
         synchronized (mGroupLock) {
             LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
             if (descriptor == null || descriptor.mIsActive) {
-                Log.e(TAG, "no descriptors for group: " + groupId + " or group already active");
+                Log.e(TAG, "handleGroupTransitToActive: no descriptors for group: " + groupId
+                        + " or group already active");
                 return;
             }
 
@@ -1428,7 +1429,8 @@ public class LeAudioService extends ProfileService {
         synchronized (mGroupLock) {
             LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
             if (descriptor == null || !descriptor.mIsActive) {
-                Log.e(TAG, "no descriptors for group: " + groupId + " or group already inactive");
+                Log.e(TAG, "handleGroupTransitToInactive: no descriptors for group: " + groupId
+                        + " or group already inactive");
                 return;
             }
 
@@ -1622,7 +1624,7 @@ public class LeAudioService extends ProfileService {
                     }
                     descriptor.mDirection = direction;
                 } else {
-                    Log.e(TAG, "no descriptors for group: " + groupId);
+                    Log.e(TAG, "messageFromNative: no descriptors for group: " + groupId);
                 }
             }
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_SINK_AUDIO_LOCATION_AVAILABLE) {
@@ -1917,7 +1919,8 @@ public class LeAudioService extends ProfileService {
             if (descriptor != null) {
                 descriptor.mIsConnected = true;
             } else {
-                Log.e(TAG, "no descriptors for group: " + deviceDescriptor.mGroupId);
+                Log.e(TAG, "connectionStateChanged(STATE_CONNECTED): no descriptors for group: "
+                        + deviceDescriptor.mGroupId);
             }
         }
         // Check if the device is disconnected - if unbond, remove the state machine
@@ -1933,7 +1936,8 @@ public class LeAudioService extends ProfileService {
             synchronized (mGroupLock) {
                 LeAudioGroupDescriptor descriptor = getGroupDescriptor(deviceDescriptor.mGroupId);
                 if (descriptor == null) {
-                    Log.e(TAG, "no descriptors for group: " + deviceDescriptor.mGroupId);
+                    Log.e(TAG, "connectionStateChanged(STATE_DISCONNECTED): no descriptors for "
+                            + "group: " + deviceDescriptor.mGroupId);
                     return;
                 }
 
