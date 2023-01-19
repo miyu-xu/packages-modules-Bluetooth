@@ -38,6 +38,8 @@ public class BluetoothDeviceConfigListener {
 
     private static final int DEFAULT_APM_ENHANCEMENT = 0;
     private static final int DEFAULT_BT_APM_STATE = 0;
+    private static final String DEVICE_NAME_BLOOMFILTER_PARAMETER_NAME = "device_name_bloomfilter";
+
 
     private final BluetoothManagerService mService;
     private final boolean mLogDebug;
@@ -80,6 +82,7 @@ public class BluetoothDeviceConfigListener {
                 public void onPropertiesChanged(DeviceConfig.Properties newProperties) {
                     boolean apmEnhancement = newProperties.getBoolean(
                             APM_ENHANCEMENT, mPrevApmEnhancement);
+                    Log.w(TAG, "aaaaaaaaaaaaa1 receive from server " + apmEnhancement);
                     if (apmEnhancement != mPrevApmEnhancement) {
                         mPrevApmEnhancement = apmEnhancement;
                         Settings.Global.putInt(mContext.getContentResolver(),
@@ -88,12 +91,16 @@ public class BluetoothDeviceConfigListener {
 
                     boolean btApmState = newProperties.getBoolean(
                             BT_DEFAULT_APM_STATE, mPrevBtApmState);
+                    Log.w(TAG, "aaaaaaaaaaaaa2 receive from server " + btApmState);
                     if (btApmState != mPrevBtApmState) {
                         mPrevBtApmState = btApmState;
                         Settings.Global.putInt(mContext.getContentResolver(),
                                 BT_DEFAULT_APM_STATE, btApmState ? 1 : 0);
                     }
 
+                    String bloomfilterString = newProperties.getString(
+                            DEVICE_NAME_BLOOMFILTER_PARAMETER_NAME, "");
+                    Log.w(TAG, "aaaaaaaaaaaaa3 receive from server " + bloomfilterString);
                     if (mConfigChangeTracker.shouldRestartWhenPropertiesUpdated(newProperties)) {
                         Log.d(TAG, "Properties changed, enqueuing restart");
                         mService.onInitFlagsChanged();
