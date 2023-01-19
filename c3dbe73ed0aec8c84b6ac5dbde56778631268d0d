@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfff0e98_c6ccb3e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-01-19T07:16:01Z",
+      "side": 1,
+      "message": "Hi,\n\nAdded 8 AVRCP testcases and fix related to falkiness. \n\n\nObservation on Flakiness:\nIssue: Few times MediaPlayerBrowserService is not completely destroyed after invoking context.StopService() in deinit() of MediaPlayer.kt. Observed that the same instance/object of service is used in the next text case which runs in the batch. So, some flakiness is observed due to this issue.\n\nSolution: Added 300 milliseconds waiting time after context.StopService() is invoked. So that the system gets ample time to destroy the service completely. With this change we have observed that the probability of flakiness has reduced drastically. But not completely resolved.\n\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "c3dbe73ed0aec8c84b6ac5dbde56778631268d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
