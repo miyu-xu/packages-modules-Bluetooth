@@ -16,6 +16,23 @@
       "message": "bypassing for same reason as aosp/2364248",
       "revId": "c17b012f595b473ee3886ec5f89a9789513545da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50619409_e0885a73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-19T05:34:49Z",
+      "side": 1,
+      "message": "bypassing for same reason as aosp/2364248",
+      "revId": "c17b012f595b473ee3886ec5f89a9789513545da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
