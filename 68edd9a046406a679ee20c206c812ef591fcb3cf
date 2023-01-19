@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fceebd2_a61c75a5",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:37:33Z",
+      "side": 1,
+      "message": "uint32_t remote_dev_type \u003d 0;\nBTIF_STORAGE_FILL_PROPERTY(\u0026properties, BT_PROPERTY_TYPE_OF_DEVICE,\n               sizeof(remote_dev_type), \u0026remote_dev_type);\ndev_type \u003d (btif_storage_get_remote_device_property(\u0026bd_addr, \u0026properties) \u003d\u003d BT_STATUS_SUCCESS) ? (bt_device_type_t)(remote_dev_type | device_type) : (bt_device_type_t)device_type;",
+      "revId": "68edd9a046406a679ee20c206c812ef591fcb3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a03961_c4c3969a",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:37:33Z",
+      "side": 1,
+      "message": "formatting",
+      "range": {
+        "startLine": 154,
+        "startChar": 1,
+        "endLine": 155,
+        "endChar": 14
+      },
+      "revId": "68edd9a046406a679ee20c206c812ef591fcb3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dca762ce_47645953",
         "filename": "system/btif/src/btif_ble_scanner.cc",
         "patchSetId": 3
@@ -20,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51ba78d7_55a3f734",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:37:33Z",
+      "side": 1,
+      "message": "yeah either use a ternary or drop the else block.  Also always use braces `{}`",
+      "parentUuid": "dca762ce_47645953",
+      "revId": "68edd9a046406a679ee20c206c812ef591fcb3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "756d7927_39123858",
         "filename": "system/btif/src/btif_ble_scanner.cc",
         "patchSetId": 3
@@ -31,6 +89,29 @@
       "writtenOn": "2022-12-07T22:15:02Z",
       "side": 1,
       "message": "Update the condition to this: (remote_dev_type !\u003d dev_type \u0026\u0026 dev_type !\u003d 0)\nThis will make sure that the cast from tBT_DEVICE_TYPE to bt_device_type_t resulted in a valid value.",
+      "revId": "68edd9a046406a679ee20c206c812ef591fcb3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e0be51d_a07fdad6",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:37:33Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 174,
+        "startChar": 1,
+        "endLine": 174,
+        "endChar": 11
+      },
       "revId": "68edd9a046406a679ee20c206c812ef591fcb3cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
