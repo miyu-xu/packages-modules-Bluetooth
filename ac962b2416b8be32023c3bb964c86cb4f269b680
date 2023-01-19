@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e172449_7ce0cb7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-19T05:30:26Z",
+      "side": 1,
+      "message": "bypassing for same reason as aosp/2364248",
+      "revId": "ac962b2416b8be32023c3bb964c86cb4f269b680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
