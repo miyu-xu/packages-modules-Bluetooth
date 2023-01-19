@@ -193,7 +193,6 @@ public class CompanionManager {
                             + device + " " + e);
                 }
             }
-            mMetadataListeningDevices.clear();
 
             SharedPreferences.Editor pref = getCompanionPreferences().edit();
             pref.putString(COMPANION_DEVICE_KEY, mCompanionDevice.getAddress());
@@ -218,48 +217,24 @@ public class CompanionManager {
                 // We already have the companion device, do not care bond state change any more.
                 return;
             }
-            switch (state) {
-                case BluetoothDevice.BOND_BONDING:
-                    registerMetadataListener(device);
-                    break;
-                case BluetoothDevice.BOND_NONE:
-                    removeMetadataListener(device);
-                    break;
-                default:
-                    break;
+            if (state == BluetoothDevice.BOND_BONDED) {
+                registerMetadataListener(device);
             }
         }
     }
 
     private void registerMetadataListener(BluetoothDevice device) {
         synchronized (mMetadataListeningDevices) {
-            Log.d(TAG, "register metadata listener: " + device);
             try {
                 mAdapter.addOnMetadataChangedListener(
                         device, mAdapterService.getMainExecutor(), mMetadataListener);
             } catch (IllegalArgumentException e) {
-                Log.e(TAG, "failed to register metadata listener for "
+                Log.e(TAG, "failed to unregister metadata listener for "
                         + device + " " + e);
             }
             mMetadataListeningDevices.add(device);
         }
     }
-
-    private void removeMetadataListener(BluetoothDevice device) {
-        synchronized (mMetadataListeningDevices) {
-            if (!mMetadataListeningDevices.contains(device)) return;
-
-            Log.d(TAG, "remove metadata listener: " + device);
-            try {
-                mAdapter.removeOnMetadataChangedListener(device, mMetadataListener);
-            } catch (IllegalArgumentException e) {
-                Log.e(TAG, "failed to unregister metadata listener for "
-                        + device + " " + e);
-            }
-            mMetadataListeningDevices.remove(device);
-        }
-    }
-
 
     /**
      * Method to get the stored companion device
