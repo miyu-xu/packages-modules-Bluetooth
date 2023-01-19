@@ -140,6 +140,7 @@ class Host(
       bluetoothAdapter.clearBluetooth()
 
       stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
+      delay(1000L)
       Log.i(TAG, "Shutdown the gRPC Server")
       server.shutdown()
 
