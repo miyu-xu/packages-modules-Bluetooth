@@ -16,6 +16,23 @@
       "message": "Chris - I think you worked on the RnR changes recently. Would you be able to review this?",
       "revId": "21a28cc13a762370f5f866aae117849cc4ebbb33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b1a7d84_44aa8d88",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1381,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-19T18:10:01Z",
+      "side": 1,
+      "message": "I think that indirection layer should also be applied here too.",
+      "revId": "21a28cc13a762370f5f866aae117849cc4ebbb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
