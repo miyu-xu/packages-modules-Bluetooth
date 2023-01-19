@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ad01ea_f088a8f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T21:31:02Z",
+      "side": 1,
+      "message": "-2 to make sure this topic is not merged for now.\nWaiting on the aosp/2393239 CL to be merged before fully abandoning the CL",
+      "revId": "65d26e26e48f69cbe15b1ab75570d68322f30ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
