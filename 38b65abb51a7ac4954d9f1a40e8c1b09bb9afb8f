@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36e4914d_2864b1f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:27:44Z",
+      "side": 1,
+      "message": "Would like to discuss more before submitting.\n\nManual testing doesn\u0027t cover all of the scan cases supported.  Please add a test for this as well.",
+      "revId": "38b65abb51a7ac4954d9f1a40e8c1b09bb9afb8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "787dc325_45de14d4",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2023-01-19T16:27:44Z",
+      "side": 1,
+      "message": "before this read\n\nIf the address type is not random or there is a eir remote name, perform this function.\n\nWhich means before it was running this code block for the other addr types.  Now it no longer will\n\n```\n#define BLE_ADDR_PUBLIC 0x00\n#define BLE_ADDR_RANDOM 0x01\n#define BLE_ADDR_PUBLIC_ID 0x02\n#define BLE_ADDR_RANDOM_ID 0x03\n#define BLE_ADDR_ANONYMOUS 0xFF\n```\n\nYou can see we have multiple types here.  Realistically, PUBLIC will be the one used other than RANDOM.  So now you\u0027ve made it for PUBLIC address type where it will not run this block of code anymore.  The fix is supposed to be for RANDOM addresses.\n\nAdditionally, once you get doen into the code block there is another check fo EIR remote name existing which is no longer required since that is the only way to enter the block.\n\nDo you have a design or doc that explains how this solves the issue?",
+      "revId": "38b65abb51a7ac4954d9f1a40e8c1b09bb9afb8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
