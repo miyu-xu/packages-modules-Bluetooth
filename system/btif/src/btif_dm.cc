@@ -1779,7 +1779,7 @@ static void btif_dm_update_allowlisted_media_players() {
   uint8_t num_wlplayers = 0;
   uint8_t i = 0, buf_len = 0;
   bt_property_t wlplayers_prop;
-  list_t* wl_players = list_new(osi_free);
+  list_t* wl_players = list_new(nullptr);
   if (!wl_players) {
     LOG_ERROR("Unable to allocate space for allowlist players");
     return;
@@ -1789,6 +1789,7 @@ static void btif_dm_update_allowlisted_media_players() {
   wlplayers_prop.len = 0;
   if (!interop_get_allowlisted_media_players_list(&wl_players)) {
     LOG_DEBUG("Allowlisted media players not found");
+    list_free(wl_players);
     return;
   }
   num_wlplayers = list_length(wl_players);
@@ -1796,6 +1797,7 @@ static void btif_dm_update_allowlisted_media_players() {
 
   /* Now send the callback */
   if (num_wlplayers <= 0) {
+    list_free(wl_players);
     return;
   }
   /*find the total number of bytes and allocate memory */
@@ -1817,6 +1819,7 @@ static void btif_dm_update_allowlisted_media_players() {
 
   GetInterfaceToProfiles()->events->invoke_adapter_properties_cb(
       BT_STATUS_SUCCESS, 1, &wlplayers_prop);
+  list_free(wl_players)
 }
 
 void BTIF_dm_report_inquiry_status_change(tBTM_STATUS status) {
