@@ -21,4 +21,5 @@ members = [
   "system/gd/rust/linux/mgmt",
   "system/gd/rust/linux/service",
   "system/gd/rust/linux/client",
+  "system/rust",
 ]
