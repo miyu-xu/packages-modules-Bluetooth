@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "619ac53c_ffb94194",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-19T04:42:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76eb36a1_07b613b6",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 11
+      },
+      "revId": "37af80c9335106f4f7d03dd9e1ad90492403b02d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d590dd31_c7ec1261",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-01-18T16:47:50Z",
       "side": 1,
       "message": "unrelated whitespace change.  Please remove.",
+      "revId": "37af80c9335106f4f7d03dd9e1ad90492403b02d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "612068f3_a09cb467",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1898,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-01-19T04:42:08Z",
+      "side": 1,
+      "message": "Ack. It\u0027s explained in previous patchset:\n```\nHere\u0027s the hexdump before this change:\n\n$ hexdump -C btif_hh.cc | tail -n 5\n00010ad0 28 70 5f 64 65 76 2d 3e 62 64 5f 61 64 64 72 29 |(p_dev-\u003ebd_addr)|\n00010ae0 29 3b 0a 20 20 20 20 7d 0a 20 20 7d 0a 7d 0a 23 |);. }. }.}.#|\n00010af0 75 6e 64 65 66 20 44 55 4d 50 53 59 53 5f 54 41 |undef DUMPSYS_TA|\n00010b00 47 |G|\n\nThe original file could have been edited by a non-UNIX editor before and thus miss EOL (\u0027\\n\u0027). As this is what UNIX editors expect, it\u0027s fair for a UNIX editor to add an EOL back.\n```",
+      "parentUuid": "d590dd31_c7ec1261",
       "revId": "37af80c9335106f4f7d03dd9e1ad90492403b02d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
