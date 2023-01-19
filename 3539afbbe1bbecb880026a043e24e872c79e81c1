@@ -16,6 +16,74 @@
       "message": "Can you please say which PTS test case is failing ?",
       "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8868c0d7_4aa45b89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-19T12:18:53Z",
+      "side": 1,
+      "message": "Thank you for the patch. Please create out of it 2 patches, which are valid fixes.",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3459268_e2bc57ce",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-19T12:18:53Z",
+      "side": 1,
+      "message": "Thanks. This is valid fix. Please remove comments about PTS and upload as a separate patch.",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d30ec30_e38fd53e",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-19T12:18:53Z",
+      "side": 1,
+      "message": "Would be good to have logs here as I would expect that p_ccb is not there only if p_lcb is removed.\n\nAnyway, this additional check does not hurt, - please upload as a separate fix and please remove comments around the check.\n\nThank you",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c7a044_d354d2c3",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-19T12:18:53Z",
+      "side": 1,
+      "message": "this part is probably not valid as `l2c_csm_indicate_connection_open` suppose to be called only in the non-ecoc path.\n\nPlease provide logs which would show it is not like that.\n\nThank you.",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
