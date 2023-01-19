@@ -34,6 +34,24 @@
       "parentUuid": "9ea503f5_836d15a0",
       "revId": "9616a260c4526338d3abd8345101065ab09dc6db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0b3122_99dcd92d",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-19T00:31:22Z",
+      "side": 1,
+      "message": "osi semaphores are no longer supported.\n\nUse std::promise\u003c\u003e to synchronize between threads",
+      "parentUuid": "37c2332b_14ca063c",
+      "revId": "9616a260c4526338d3abd8345101065ab09dc6db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
