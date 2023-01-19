@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e10ed9_133477a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1052399
+      },
+      "writtenOn": "2023-01-19T21:22:33Z",
+      "side": 1,
+      "message": "I believe that the failed presubmit tests are unrelated to this change.\nCould owners/reviewers help verify this and suggest if any change is\nrequired for the other lint warnings?\nThanks.",
+      "revId": "e64e87dda5a6e9a4135d32e7ed76f384c9b89473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
