@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "834debf8_53a93c1b",
+        "filename": "system/stack/sdp/sdp_db.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T16:43:25Z",
+      "side": 1,
+      "message": "Is this not called ? Can we delete it if we are not calling it ?",
+      "range": {
+        "startLine": 709,
+        "startChar": 5,
+        "endLine": 709,
+        "endChar": 40
+      },
+      "revId": "dc7e6e3d768d24397f6eda4f2a3fa9f0e883fa57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a48ecd6_19630a19",
         "filename": "system/stack/sdp/sdp_server.cc",
         "patchSetId": 3
