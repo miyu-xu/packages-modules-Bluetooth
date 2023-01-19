@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06fe00f0_0dab59d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e20ee055_86ffb3de",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 2
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "099a7211_a1780a51",
@@ -179,6 +203,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afff30ea_1734e87e",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "20578538_60461003",
+      "range": {
+        "startLine": 200,
+        "startChar": 36,
+        "endLine": 200,
+        "endChar": 42
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e9f986_ed29ab1a",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "db0f980d_30bb2038",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 13
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c11ba2c_32f4a005",
@@ -215,6 +287,54 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "`sRemoteVersion` ?",
+      "range": {
+        "startLine": 202,
+        "startChar": 45,
+        "endLine": 202,
+        "endChar": 58
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c095d53_36f6abb2",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9c11ba2c_32f4a005",
+      "range": {
+        "startLine": 199,
+        "startChar": 70,
+        "endLine": 202,
+        "endChar": 92
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2dfa86_effe9898",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "58ca597e_744e93da",
       "range": {
         "startLine": 202,
         "startChar": 45,
@@ -387,6 +507,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6084165d_9609d45c",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "abddd10c_95a15c91",
+      "range": {
+        "startLine": 431,
+        "startChar": 20,
+        "endLine": 431,
+        "endChar": 45
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d43cf779_69c2af45",
@@ -410,6 +554,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be8283a_79f8d2a2",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d43cf779_69c2af45",
+      "range": {
+        "startLine": 445,
+        "startChar": 20,
+        "endLine": 445,
+        "endChar": 44
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab398e0d_3247aa71",
@@ -423,6 +591,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "rename to partial_address",
+      "range": {
+        "startLine": 471,
+        "startChar": 26,
+        "endLine": 471,
+        "endChar": 33
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db02cf77_766fa452",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab398e0d_3247aa71",
       "range": {
         "startLine": 471,
         "startChar": 26,
@@ -551,6 +743,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbdbb7c6_4e95057b",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f67645e_41da5eb4",
+      "range": {
+        "startLine": 481,
+        "startChar": 29,
+        "endLine": 481,
+        "endChar": 39
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c23c73e_8d04e0ca",
@@ -609,6 +825,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d4a88e5_d71a471e",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4a1b303_6a310b86",
+      "range": {
+        "startLine": 485,
+        "startChar": 11,
+        "endLine": 486,
+        "endChar": 76
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85eee75a_fa935bee",
@@ -622,6 +862,24 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "There is already this utility method in packages/modules/Bluetooth/android/app/src/com/android/bluetooth/Utils.java\nand you want to call the  `byteArrayToShort` variant",
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5963c2b_1467775b",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "85eee75a_fa935bee",
       "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -788,6 +1046,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10cd5efd_9e68ddbf",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f81bc1f7_16671b4e",
+      "range": {
+        "startLine": 558,
+        "startChar": 19,
+        "endLine": 558,
+        "endChar": 29
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f818971_1c938cf4",
@@ -880,6 +1162,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae3e16ca_f9132955",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d913898e_0693934f",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 940,
+        "endChar": 5
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38641484_08c0a77a",
@@ -916,6 +1222,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "replace with:\n```\nADDRESS_TO_LOGGABLE_CSTR(remote_address)\n```",
+      "range": {
+        "startLine": 1107,
+        "startChar": 6,
+        "endLine": 1107,
+        "endChar": 39
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12078fa4_453074ce",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "156bf6fb_d165c9ed",
       "range": {
         "startLine": 1107,
         "startChar": 6,
@@ -996,6 +1326,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1aad652_356c8b26",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "634f0371_8fd354ac",
+      "range": {
+        "startLine": 1167,
+        "startChar": 4,
+        "endLine": 1167,
+        "endChar": 20
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bcd125e_6ab6c43b",
@@ -1009,6 +1363,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "is the comment intended ?",
+      "range": {
+        "startLine": 1301,
+        "startChar": 0,
+        "endLine": 1304,
+        "endChar": 12
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5ca6e87_d10ed9e3",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8bcd125e_6ab6c43b",
       "range": {
         "startLine": 1301,
         "startChar": 0,

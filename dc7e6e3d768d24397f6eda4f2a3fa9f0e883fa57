@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b09b8320_793588b6",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-19T02:13:02Z",
+      "side": 1,
+      "message": "same value as NOTIFICATION_ID.\nIs it on purpose ?",
+      "range": {
+        "startLine": 443,
+        "startChar": 26,
+        "endLine": 443,
+        "endChar": 68
+      },
+      "revId": "dc7e6e3d768d24397f6eda4f2a3fa9f0e883fa57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
