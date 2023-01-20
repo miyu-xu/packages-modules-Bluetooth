@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f0b461_aec0d3a5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1782,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-20T00:06:45Z",
+      "side": 1,
+      "message": "Are we sure about `osi_free` ?\nlist is filled with a .c_str() of a key that belong to someone else\n```\nlist_append(*p_bl_devices, (void*)entry.key.c_str());\n```\nDoes `list_t* wl_players \u003d list_new(nullptr);` looks good to you?\n\nAnd this is a perfect transition to my second comment:\nWe should call `list_free(wl_players)` before each return point of this method. I expect calling it without the change above to generate a failure.",
+      "range": {
+        "startLine": 1782,
+        "startChar": 32,
+        "endLine": 1782,
+        "endChar": 40
+      },
+      "revId": "b665723b50bae5794c42948e882c939fe45e6965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
