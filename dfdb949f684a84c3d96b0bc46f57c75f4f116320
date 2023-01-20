@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98de7d23_1a21b41a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 3325,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-20T23:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fd59835_f7c0e0c8",
+      "revId": "dfdb949f684a84c3d96b0bc46f57c75f4f116320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b4af072_f689e3c9",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-20T22:17:18Z",
       "side": 1,
       "message": "We can remove this annotation. It\u0027s meant for legacy APIs so that we mention apps targeting older versions (before the permission changes) require the legacy permissions (BLUETOOTH or BLUETOOTH_ADMIN permission). The \"@RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)\" is sufficient for us for new APIs :)",
+      "revId": "dfdb949f684a84c3d96b0bc46f57c75f4f116320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbb6b5c6_6646104f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 3331,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-20T23:16:16Z",
+      "side": 1,
+      "message": "Thanks for the explanation :)",
+      "parentUuid": "0b4af072_f689e3c9",
       "revId": "dfdb949f684a84c3d96b0bc46f57c75f4f116320",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31afa26a_331b727e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 3335,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-20T23:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "124f6e20_3866de53",
+      "revId": "dfdb949f684a84c3d96b0bc46f57c75f4f116320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "726aeb7e_f5ea5177",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "036c869d_45235bb3",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 3429,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-20T23:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "726aeb7e_f5ea5177",
+      "revId": "dfdb949f684a84c3d96b0bc46f57c75f4f116320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "760e4819_407231ef",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-01-20T22:17:18Z",
       "side": 1,
       "message": "No need to enumerate now with the IntDef annotation",
+      "revId": "dfdb949f684a84c3d96b0bc46f57c75f4f116320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b567620_1db8b32a",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 1934,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-20T23:16:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "760e4819_407231ef",
       "revId": "dfdb949f684a84c3d96b0bc46f57c75f4f116320",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
