@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b01ea413_b9f1f743",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-20T09:42:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89c8915b_631cc3c1",
+      "range": {
+        "startLine": 1045,
+        "startChar": 12,
+        "endLine": 1045,
+        "endChar": 32
+      },
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54681773_b1b9cb48",
@@ -102,6 +126,24 @@
       "writtenOn": "2023-01-16T20:26:02Z",
       "side": 1,
       "message": "please add logs here",
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7333ead_bb0ce516",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-20T09:42:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54681773_b1b9cb48",
       "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -125,6 +167,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "661bd63e_74e19c5c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-20T09:42:17Z",
+      "side": 1,
+      "message": "Really do we want to log when message is deffer ? This is Disconnecting state - in transition.",
+      "parentUuid": "db0408f5_28df3c74",
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a4bf612_7f9497c9",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
         "patchSetId": 6
@@ -136,6 +196,24 @@
       "writtenOn": "2023-01-16T20:26:02Z",
       "side": 1,
       "message": "please add logs",
+      "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c403e443_31b1e85d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-20T09:42:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a4bf612_7f9497c9",
       "revId": "be30dfdc3e8bb402f1d1a59ca51edd1e230dbbf9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
