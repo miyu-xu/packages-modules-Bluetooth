@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da9df81_1443448e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-20T19:05:55Z",
+      "side": 1,
+      "message": "I do not like this. But I do not have a good alternative for now.\n\nWe will have an issue if we modified the default value in init_flags.rs and not here.\n\nI would prefer only one source of truth....\nCan we get an instance any time and call init anytime too but only inside the native part of bqr init we do a no-op ?",
+      "range": {
+        "startLine": 539,
+        "startChar": 16,
+        "endLine": 541,
+        "endChar": 31
+      },
+      "revId": "315f5a4208f328df07ecda91ec52de979b28ab59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
