@@ -127,14 +127,6 @@ class TestController : public Controller {
     supported_opcodes_.insert(op_code);
   }
 
-  bool SupportsBleExtendedAdvertising() const override {
-    return support_ble_extended_advertising_;
-  }
-
-  void SetBleExtendedAdvertisingSupport(bool support) {
-    support_ble_extended_advertising_ = support;
-  }
-
  protected:
   void Start() override {}
   void Stop() override {}
@@ -142,7 +134,6 @@ class TestController : public Controller {
 
  private:
   std::set<OpCode> supported_opcodes_{};
-  bool support_ble_extended_advertising_ = false;
 };
 
 class TestHciLayer : public HciLayer {
@@ -494,7 +485,6 @@ class LeScanningManagerExtendedTest : public LeScanningManagerTest {
     LeScanningManagerTest::SetUp();
     test_controller_->AddSupported(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS);
     test_controller_->AddSupported(OpCode::LE_SET_EXTENDED_SCAN_ENABLE);
-    test_controller_->SetBleExtendedAdvertisingSupport(true);
     start_le_scanning_manager();
   }
 };

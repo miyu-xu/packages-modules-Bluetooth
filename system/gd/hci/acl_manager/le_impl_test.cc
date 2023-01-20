@@ -581,7 +581,6 @@ class LeImplWithConnectionTest : public LeImplTest {
  protected:
   void SetUp() override {
     LeImplTest::SetUp();
-    set_random_device_address_policy();
 
     EXPECT_CALL(mock_le_connection_callbacks_, OnLeConnectSuccess(_, _))
         .WillOnce([&](AddressWithType addr, std::unique_ptr<LeAclConnection> conn) {
@@ -1295,7 +1294,6 @@ TEST_F(LeImplTest, on_le_event__ENHANCED_CONNECTION_COMPLETE_CENTRAL) {
 
 TEST_F(LeImplTest, on_le_event__ENHANCED_CONNECTION_COMPLETE_PERIPHERAL) {
   EXPECT_CALL(mock_le_connection_callbacks_, OnLeConnectSuccess(_, _)).Times(1);
-  set_random_device_address_policy();
   auto command = LeEnhancedConnectionCompleteBuilder::Create(
       ErrorCode::SUCCESS,
       kHciHandle,
@@ -1512,8 +1510,7 @@ TEST_F(LeImplTest, set_le_suggested_default_data_parameters) {
 }
 
 TEST_F(LeImplTest, LeSetDefaultSubrate) {
-  le_impl_->LeSetDefaultSubrate(
-      kIntervalMin, kIntervalMax, kLatency, kContinuationNumber, kTimeout);
+  le_impl_->LeSetDefaultSubrate(kIntervalMin, kIntervalMax, kLatency, kContinuationNumber, kTimeout);
   sync_handler();
   auto view = CreateAclCommandView<LeSetDefaultSubrateView>(hci_layer_->DequeueCommandBytes());
   ASSERT_TRUE(view.IsValid());
