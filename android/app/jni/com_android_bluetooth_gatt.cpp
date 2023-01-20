@@ -2134,8 +2134,6 @@ static AdvertiseParameters parseParams(JNIEnv* env, jobject i) {
 
   methodId = env->GetMethodID(clazz, "isConnectable", "()Z");
   jboolean isConnectable = env->CallBooleanMethod(i, methodId);
-  methodId = env->GetMethodID(clazz, "isDiscoverable", "()Z");
-  jboolean isDiscoverable = env->CallBooleanMethod(i, methodId);
   methodId = env->GetMethodID(clazz, "isScannable", "()Z");
   jboolean isScannable = env->CallBooleanMethod(i, methodId);
   methodId = env->GetMethodID(clazz, "isLegacy", "()Z");
@@ -2158,7 +2156,6 @@ static AdvertiseParameters parseParams(JNIEnv* env, jobject i) {
   uint16_t props = 0;
   if (isConnectable) props |= 0x01;
   if (isScannable) props |= 0x02;
-  if (isDiscoverable) props |= 0x04;
   if (isLegacy) props |= 0x10;
   if (isAnonymous) props |= 0x20;
   if (includeTxPower) props |= 0x40;

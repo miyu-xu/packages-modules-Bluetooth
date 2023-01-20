@@ -78,20 +78,14 @@ public final class AdvertiseSettings implements Parcelable {
     private final int mAdvertiseTxPowerLevel;
     private final int mAdvertiseTimeoutMillis;
     private final boolean mAdvertiseConnectable;
-    private final boolean mAdvertiseDiscoverable;
     private final int mOwnAddressType;
 
-    private AdvertiseSettings(
-            int advertiseMode,
-            int advertiseTxPowerLevel,
-            boolean advertiseConnectable,
-            boolean discoverable,
-            int advertiseTimeout,
+    private AdvertiseSettings(int advertiseMode, int advertiseTxPowerLevel,
+            boolean advertiseConnectable, int advertiseTimeout,
             @AddressTypeStatus int ownAddressType) {
         mAdvertiseMode = advertiseMode;
         mAdvertiseTxPowerLevel = advertiseTxPowerLevel;
         mAdvertiseConnectable = advertiseConnectable;
-        mAdvertiseDiscoverable = discoverable;
         mAdvertiseTimeoutMillis = advertiseTimeout;
         mOwnAddressType = ownAddressType;
     }
@@ -102,7 +96,6 @@ public final class AdvertiseSettings implements Parcelable {
         mAdvertiseConnectable = in.readInt() != 0;
         mAdvertiseTimeoutMillis = in.readInt();
         mOwnAddressType = in.readInt();
-        mAdvertiseDiscoverable = in.readInt() != 0;
     }
 
     /**
@@ -124,11 +117,6 @@ public final class AdvertiseSettings implements Parcelable {
      */
     public boolean isConnectable() {
         return mAdvertiseConnectable;
-    }
-
-    /** Returns whether the advertisement will be discoverable. */
-    public boolean isDiscoverable() {
-        return mAdvertiseDiscoverable;
     }
 
     /**
@@ -153,7 +141,6 @@ public final class AdvertiseSettings implements Parcelable {
         return "Settings [mAdvertiseMode=" + mAdvertiseMode
                 + ", mAdvertiseTxPowerLevel=" + mAdvertiseTxPowerLevel
                 + ", mAdvertiseConnectable=" + mAdvertiseConnectable
-                + ", mAdvertiseDiscoverable=" + mAdvertiseDiscoverable
                 + ", mAdvertiseTimeoutMillis=" + mAdvertiseTimeoutMillis
                 + ", mOwnAddressType=" + mOwnAddressType + "]";
     }
@@ -170,7 +157,6 @@ public final class AdvertiseSettings implements Parcelable {
         dest.writeInt(mAdvertiseConnectable ? 1 : 0);
         dest.writeInt(mAdvertiseTimeoutMillis);
         dest.writeInt(mOwnAddressType);
-        dest.writeInt(mAdvertiseDiscoverable ? 1 : 0);
     }
 
     public static final @android.annotation.NonNull Parcelable.Creator<AdvertiseSettings> CREATOR =
@@ -194,7 +180,6 @@ public final class AdvertiseSettings implements Parcelable {
         private int mTxPowerLevel = ADVERTISE_TX_POWER_MEDIUM;
         private int mTimeoutMillis = 0;
         private boolean mConnectable = true;
-        private boolean mDiscoverable = true;
         private int mOwnAddressType = AdvertisingSetParameters.ADDRESS_TYPE_DEFAULT;
 
         /**
@@ -246,17 +231,6 @@ public final class AdvertiseSettings implements Parcelable {
         }
 
         /**
-         * Set whether the advertisement type should be discoverable or non-discoverable.
-         *
-         * @param discoverable Controls whether the advertisment type will be discoverable
-         * ({@code true}) or non-discoverable ({@code false}).
-         */
-        public @NonNull Builder setDiscoverable(boolean discoverable) {
-            mDiscoverable = discoverable;
-            return this;
-        }
-
-        /**
          * Limit advertising to a given amount of time.
          *
          * @param timeoutMillis Advertising time limit. May not exceed 180000 milliseconds. A value
@@ -296,13 +270,8 @@ public final class AdvertiseSettings implements Parcelable {
          * Build the {@link AdvertiseSettings} object.
          */
         public AdvertiseSettings build() {
-            return new AdvertiseSettings(
-                    mMode,
-                    mTxPowerLevel,
-                    mConnectable,
-                    mDiscoverable,
-                    mTimeoutMillis,
-                    mOwnAddressType);
+            return new AdvertiseSettings(mMode, mTxPowerLevel, mConnectable, mTimeoutMillis,
+                mOwnAddressType);
         }
     }
 }

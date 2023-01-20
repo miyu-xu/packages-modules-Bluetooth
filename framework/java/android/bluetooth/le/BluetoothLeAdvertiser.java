@@ -129,9 +129,7 @@ public final class BluetoothLeAdvertiser {
                 throw new IllegalArgumentException("callback cannot be null");
             }
             boolean isConnectable = settings.isConnectable();
-            boolean isDiscoverable = settings.isDiscoverable();
-            boolean hasFlags = isConnectable && isDiscoverable;
-            if (totalBytes(advertiseData, hasFlags) > MAX_LEGACY_ADVERTISING_DATA_BYTES
+            if (totalBytes(advertiseData, isConnectable) > MAX_LEGACY_ADVERTISING_DATA_BYTES
                     || totalBytes(scanResponse, false) > MAX_LEGACY_ADVERTISING_DATA_BYTES) {
                 postStartFailure(callback, AdvertiseCallback.ADVERTISE_FAILED_DATA_TOO_LARGE);
                 return;
@@ -144,7 +142,6 @@ public final class BluetoothLeAdvertiser {
             AdvertisingSetParameters.Builder parameters = new AdvertisingSetParameters.Builder();
             parameters.setLegacyMode(true);
             parameters.setConnectable(isConnectable);
-            parameters.setDiscoverable(isDiscoverable);
             parameters.setScannable(true); // legacy advertisements we support are always scannable
             parameters.setOwnAddressType(settings.getOwnAddressType());
             if (settings.getMode() == AdvertiseSettings.ADVERTISE_MODE_LOW_POWER) {
@@ -384,10 +381,8 @@ public final class BluetoothLeAdvertiser {
         }
 
         boolean isConnectable = parameters.isConnectable();
-        boolean isDiscoverable = parameters.isDiscoverable();
-        boolean hasFlags = isConnectable && isDiscoverable;
         if (parameters.isLegacy()) {
-            if (totalBytes(advertiseData, hasFlags) > MAX_LEGACY_ADVERTISING_DATA_BYTES) {
+            if (totalBytes(advertiseData, isConnectable) > MAX_LEGACY_ADVERTISING_DATA_BYTES) {
                 throw new IllegalArgumentException("Legacy advertising data too big");
             }
 
@@ -409,7 +404,7 @@ public final class BluetoothLeAdvertiser {
             }
 
             int maxData = mBluetoothAdapter.getLeMaximumAdvertisingDataLength();
-            if (totalBytes(advertiseData, hasFlags) > maxData) {
+            if (totalBytes(advertiseData, isConnectable) > maxData) {
                 throw new IllegalArgumentException("Advertising data too big");
             }
 
