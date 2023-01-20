@@ -124,6 +124,24 @@
       "parentUuid": "7ed79965_d3596b26",
       "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4646f89d_755452ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-20T19:36:56Z",
+      "side": 1,
+      "message": "Mmmm interesting, I didn\u0027t thought about using init_flag for that.\nI don\u0027t think it should be use for that but FYI you can modify feature flag with the following command:\n```\nadb shell device_config put bluetooth INIT_logging_debug_enabled_for_all true\n```\n\nThe `INIT_` is needed to be added in front of the flag name that was put in the rust file. The command above match with `logging_debug_enabled_for_all`\n\n\nThe advantage of a property is that you can change it without re-installing the apex, as opposite of the file config that is mount as read-only on the phone.\nBut I do prefer adding 2 system properties than a entire module.",
+      "parentUuid": "e61fb168_93f9509c",
+      "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
