@@ -106,6 +106,24 @@
       "parentUuid": "5991e4fe_61c92283",
       "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e61fb168_93f9509c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2023-01-20T09:02:20Z",
+      "side": 1,
+      "message": "I think,  persist property can be used to enable \u0026 disable feature dynamically, persist property are good for debugging purpose.  can we use init feature flag, how can we modify init feature flag dynamically without compiling the code.",
+      "parentUuid": "7ed79965_d3596b26",
+      "revId": "93be703feb5d0be40ea08d9c523e5473bc2e9d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
