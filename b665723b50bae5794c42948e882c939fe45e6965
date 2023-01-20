@@ -22,6 +22,30 @@
       },
       "revId": "b665723b50bae5794c42948e882c939fe45e6965",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65c456d1_1d8ec044",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1782,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-20T00:09:33Z",
+      "side": 1,
+      "message": "Actually... I uploaded aosp/2393342 that contain a few more thing:\n* add the list_free\n* clang-format\n* remove memcpy on addr\n* replace some memcpy with a strlcpy for name\n* replace `slave` with `peripheral`\n\nCan you squash it into this CL ?",
+      "parentUuid": "67f0b461_aec0d3a5",
+      "range": {
+        "startLine": 1782,
+        "startChar": 32,
+        "endLine": 1782,
+        "endChar": 40
+      },
+      "revId": "b665723b50bae5794c42948e882c939fe45e6965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
