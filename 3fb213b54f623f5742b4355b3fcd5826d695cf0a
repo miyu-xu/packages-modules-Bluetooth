@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8878a28a_274b6295",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothQualityReport.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-20T10:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bdbb84d_6077d6f3",
+      "range": {
+        "startLine": 73,
+        "startChar": 33,
+        "endLine": 73,
+        "endChar": 46
+      },
+      "revId": "3fb213b54f623f5742b4355b3fcd5826d695cf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc1ce06c_49d16411",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4faa2443_5a8e2412",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-20T10:47:56Z",
+      "side": 1,
+      "message": "Of course... must have been in a hurry ; )",
+      "parentUuid": "bc1ce06c_49d16411",
+      "range": {
+        "startLine": 668,
+        "startChar": 8,
+        "endLine": 668,
+        "endChar": 19
+      },
+      "revId": "3fb213b54f623f5742b4355b3fcd5826d695cf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a067d972_c0d4fd4b",
         "filename": "system/btif/src/btif_bqr.cc",
         "patchSetId": 7
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-17T22:34:36Z",
       "side": 1,
       "message": "ADDRESS_TO_LOGGABLE_CSTR(bd_addr)",
+      "range": {
+        "startLine": 714,
+        "startChar": 26,
+        "endLine": 714,
+        "endChar": 52
+      },
+      "revId": "3fb213b54f623f5742b4355b3fcd5826d695cf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05aac1fc_41b3b3ce",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-20T10:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a067d972_c0d4fd4b",
       "range": {
         "startLine": 714,
         "startChar": 26,
