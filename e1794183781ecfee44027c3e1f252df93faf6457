@@ -16,6 +16,23 @@
       "message": "@sattiraju@google.com can someone start review this. I have attached CTS gerrit also.\nhttps://android-review.googlesource.com/c/platform/cts/+/2393392",
       "revId": "e1794183781ecfee44027c3e1f252df93faf6457",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc8751fd_fbef337f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-20T23:34:05Z",
+      "side": 1,
+      "message": "This CL contains api change but did no update the api text file.\n\nYou should run:\n```\nm framework-bluetooth.stubs.source-update-current-api\n```\nand amend your CL with the change to trigger the API-review process",
+      "revId": "e1794183781ecfee44027c3e1f252df93faf6457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
