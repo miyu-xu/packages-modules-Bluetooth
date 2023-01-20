@@ -130,11 +130,7 @@ public:
 
  // Callback from Advertising Manager to notify the advitiser (local) address
  virtual void OnAdvertisingSetTerminated(
-     ErrorCode status,
-     uint16_t conn_handle,
-     uint8_t adv_set_id,
-     hci::AddressWithType adv_address,
-     bool is_discoverable);
+     ErrorCode status, uint16_t conn_handle, uint8_t adv_set_id, hci::AddressWithType adv_address);
 
  // In order to avoid circular dependency use setter rather than module dependency.
  virtual void SetSecurityModule(security::SecurityModule* security_module);

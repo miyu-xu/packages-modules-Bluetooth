@@ -375,10 +375,6 @@ struct tBTM_SEC_DEV_REC {
                                                void* p_ref_data);
 
  public:
-  // whether the peer device can read GAP characteristics only visible in
-  // "discoverable" mode
-  bool can_read_discoverable{true};
-
   bool IsLocallyInitiated() const { return is_originator; }
 
   bool role_central;          /* true if current mode is central     */

@@ -154,8 +154,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           ErrorCode::SUCCESS,
           view.GetConnectionHandle(),
           advertiser_id,
-          advertising_sets_[advertiser_id].current_address,
-          advertising_sets_[advertiser_id].discoverable);
+          advertising_sets_[advertiser_id].current_address);
 
       enabled_sets_[advertiser_id].advertising_handle_ = kInvalidHandle;
 
@@ -207,15 +206,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     enabled_sets_[advertiser_id].advertising_handle_ = kInvalidHandle;
 
     AddressWithType advertiser_address = advertising_sets_[event_view.GetAdvertisingHandle()].current_address;
-    bool is_discoverable = advertising_sets_[event_view.GetAdvertisingHandle()].discoverable;
 
     auto status = event_view.GetStatus();
     acl_manager_->OnAdvertisingSetTerminated(
-        status,
-        event_view.GetConnectionHandle(),
-        advertiser_id,
-        advertiser_address,
-        is_discoverable);
+        status, event_view.GetConnectionHandle(), advertiser_id, advertiser_address);
     if (status == ErrorCode::LIMIT_REACHED || status == ErrorCode::ADVERTISING_TIMEOUT) {
       if (id_map_[advertiser_id] == kIdLocal) {
         if (!advertising_sets_[advertiser_id].timeout_callback.is_null()) {

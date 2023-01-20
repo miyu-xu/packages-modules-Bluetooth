@@ -47,8 +47,7 @@ typedef struct {
                        tHCI_ROLE role, uint16_t conn_interval,
                        uint16_t conn_latency, uint16_t conn_timeout,
                        const RawAddress& local_rpa, const RawAddress& peer_rpa,
-                       tBLE_ADDR_TYPE peer_addr_type,
-                       bool can_read_discoverable_characteristics);
+                       tBLE_ADDR_TYPE peer_addr_type);
   void (*on_failed)(const tBLE_BD_ADDR& address_with_type, uint16_t handle,
                     bool enhanced, tHCI_STATUS status, bool locally_initiated);
   void (*on_disconnected)(tHCI_STATUS status, uint16_t handle,

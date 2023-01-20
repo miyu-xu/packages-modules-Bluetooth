@@ -146,8 +146,7 @@ void mock_connection_le_on_connected(
     const tBLE_BD_ADDR& address_with_type, uint16_t handle, tHCI_ROLE role,
     uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout,
     const RawAddress& local_rpa, const RawAddress& peer_rpa,
-    tBLE_ADDR_TYPE peer_addr_type, bool can_read_discoverable_characteristics) {
-}
+    tBLE_ADDR_TYPE peer_addr_type) {}
 void mock_connection_le_on_failed(const tBLE_BD_ADDR& address_with_type,
                                   uint16_t handle, bool enhanced,
                                   tHCI_STATUS status, bool locally_initiated) {}
@@ -687,8 +686,7 @@ TEST_F(MainShimTest, DISABLED_LeShimAclConnection_local_disconnect) {
   // Simulate LE connection successful
   uint16_t handle = 0x1234;
   auto connection = std::make_unique<MockLeAclConnection>(
-      handle,
-      hci::acl_manager::DataAsPeripheral{local_address, std::nullopt, true},
+      handle, hci::acl_manager::DataAsPeripheral{local_address, std::nullopt},
       remote_address);
   auto raw_connection = connection.get();
   acl->OnLeConnectSuccess(remote_address, std::move(connection));
