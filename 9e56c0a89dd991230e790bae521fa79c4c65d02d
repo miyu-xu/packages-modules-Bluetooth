@@ -16,6 +16,24 @@
       "message": "```\n  // Avoid comparing padding values\n  // x86 can use non-zero padding causing the test to fail\n  constexpr size_t len_excluding_padding \u003d\n      sizeof(attr) - sizeof(attr.value) + sizeof(attr.value.service);\n  // clang-format off\n  uint8_t binary_form[len_excluding_padding] \u003d {\n      /*handle */ 0x01, 0x00,\n      /* type*/ 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0x80, 0x5F, 0x9B, 0x34, 0xFB,\n      /* service uuid */ 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0x80, 0x5F, 0x9B, 0x34, 0xFB,\n      /* end handle */ 0x1C, 0x00};\n  // clang-format on\n\n  // useful for debugging:\n  // LOG(ERROR) \u003c\u003c \" \" \u003c\u003c base::HexEncode(\u0026attr, len);\n\n  EXPECT_EQ(memcmp(binary_form, \u0026attr, len_excluding_padding), 0);\n```\n?",
       "revId": "9e56c0a89dd991230e790bae521fa79c4c65d02d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82514f32_8caac5cd",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-20T00:35:54Z",
+      "side": 1,
+      "message": "PS: I removed the padding at the end of `binary_form`",
+      "parentUuid": "6c978086_205b64a6",
+      "revId": "9e56c0a89dd991230e790bae521fa79c4c65d02d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
