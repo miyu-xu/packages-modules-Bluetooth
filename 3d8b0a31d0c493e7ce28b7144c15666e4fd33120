@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69dcb5a8_1d1840a5",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-01-20T10:54:54Z",
+      "side": 1,
+      "message": "I\u0027ll leave this be for now — I think we have a common understanding of how we want to evolve the API: move the strictness of the types up several levels to the AST so that we can only form ASTs representing correct PDL inputs. That will force the rest of the compiler to become unambiguous as well.",
+      "parentUuid": "089702da_8f81687b",
+      "range": {
+        "startLine": 262,
+        "startChar": 72,
+        "endLine": 262,
+        "endChar": 85
+      },
+      "revId": "3d8b0a31d0c493e7ce28b7144c15666e4fd33120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e96cf154_814f5f6e",
