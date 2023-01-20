@@ -125,9 +125,11 @@ TEST(GattCacheTest, stored_attribute_to_binary_service_test) {
   // useful for debugging:
   // LOG(ERROR) << " " << base::HexEncode(&attr, len);
 
-  // Do not compare last 2 bytes which are padding as
+  // Avoid comparing padding values
   // x86 can use non-zero padding causing the test to fail
-  EXPECT_EQ(memcmp(binary_form, &attr, len - 2), 0);
+  constexpr size_t len_excluding_padding =
+      sizeof(attr) - sizeof(attr.value) + sizeof(attr.value.service);
+  EXPECT_EQ(memcmp(binary_form, &attr, len_excluding_padding), 0);
 }
 
 /* This test makes sure that Service represented in StoredAttribute have proper
@@ -205,9 +207,7 @@ TEST(GattCacheTest, stored_attribute_to_binary_descriptor_test) {
   /* make sure padding at end of union is cleared */
   memset(&attr, 0, sizeof(attr));
 
-  attr = {.handle = 0x0003,
-          .type = Uuid::FromString("2902"),
-          .value = {.characteristic_extended_properties = 0x00}};
+  attr = {.handle = 0x0003, .type = Uuid::FromString("2902")};
 
   constexpr size_t len = sizeof(StoredAttribute);
   // clang-format off
@@ -220,7 +220,10 @@ TEST(GattCacheTest, stored_attribute_to_binary_descriptor_test) {
 
   // useful for debugging:
   // LOG(ERROR) << " " << base::HexEncode(&attr, len);
-  EXPECT_EQ(memcmp(binary_form, &attr, len), 0);
+  // Avoid comparing padding values
+  // x86 can use non-zero padding causing the test to fail
+  constexpr size_t len_excluding_padding = sizeof(attr) - sizeof(attr.value);
+  EXPECT_EQ(memcmp(binary_form, &attr, len_excluding_padding), 0);
 }
 
 // Example from Bluetooth SPEC V5.2, Vol 3, Part G, APPENDIX B
