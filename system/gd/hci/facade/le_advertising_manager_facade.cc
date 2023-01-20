@@ -56,8 +56,7 @@ hci::GapData GapDataFromProto(const GapDataMsg& gap_data_proto) {
   return gap_data;
 }
 
-bool AdvertisingConfigFromProto(
-    const AdvertisingConfig& config_proto, hci::AdvertisingConfig* config) {
+bool AdvertisingConfigFromProto(const AdvertisingConfig& config_proto, hci::ExtendedAdvertisingConfig* config) {
   for (const auto& elem : config_proto.advertisement()) {
     config->advertisement.push_back(GapDataFromProto(elem));
   }
@@ -130,7 +129,7 @@ bool AdvertisingConfigFromProto(
 }
 
 bool ExtendedAdvertisingConfigFromProto(
-    const ExtendedAdvertisingConfig& config_proto, hci::AdvertisingConfig* config) {
+    const ExtendedAdvertisingConfig& config_proto, hci::ExtendedAdvertisingConfig* config) {
   if (!AdvertisingConfigFromProto(config_proto.advertising_config(), config)) {
     LOG_WARN("Error parsing advertising config");
     return false;
@@ -218,7 +217,7 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
 
   ::grpc::Status CreateAdvertiser(::grpc::ServerContext* context, const CreateAdvertiserRequest* request,
                                   CreateAdvertiserResponse* response) override {
-    hci::AdvertisingConfig config = {};
+    hci::ExtendedAdvertisingConfig config = {};
     if (!AdvertisingConfigFromProto(request->config(), &config)) {
       LOG_WARN("Error parsing advertising config %s", request->SerializeAsString().c_str());
       response->set_advertiser_id(LeAdvertisingManager::kInvalidId);
@@ -246,7 +245,7 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
   ::grpc::Status ExtendedCreateAdvertiser(::grpc::ServerContext* context,
                                           const ExtendedCreateAdvertiserRequest* request,
                                           ExtendedCreateAdvertiserResponse* response) override {
-    hci::AdvertisingConfig config = {};
+    hci::ExtendedAdvertisingConfig config = {};
     if (!ExtendedAdvertisingConfigFromProto(request->config(), &config)) {
       LOG_WARN("Error parsing advertising config %s", request->SerializeAsString().c_str());
       response->set_advertiser_id(LeAdvertisingManager::kInvalidId);
@@ -293,7 +292,7 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
       ::grpc::ServerContext* context,
       const SetParametersRequest* request,
       ::google::protobuf::Empty* response) override {
-    hci::AdvertisingConfig config = {};
+    hci::ExtendedAdvertisingConfig config = {};
     if (!AdvertisingConfigFromProto(request->config(), &config)) {
       LOG_WARN("Error parsing advertising config %s", request->SerializeAsString().c_str());
       return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT, "Error while parsing advertising config");

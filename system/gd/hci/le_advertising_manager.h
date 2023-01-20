@@ -48,6 +48,10 @@ class AdvertisingConfig {
   uint8_t channel_map;
   AdvertisingFilterPolicy filter_policy;
   uint8_t tx_power;  // -127 to +20 (0x7f is no preference)
+};
+
+class ExtendedAdvertisingConfig : public AdvertisingConfig {
+ public:
   bool connectable = false;
   bool scannable = false;
   bool directed = false;
@@ -62,7 +66,8 @@ class AdvertisingConfig {
   Enable enable_scan_request_notifications = Enable::DISABLED;
   std::vector<GapData> periodic_data;
   PeriodicAdvertisingParameters periodic_advertising_parameters;
-  AdvertisingConfig() = default;
+  ExtendedAdvertisingConfig() = default;
+  ExtendedAdvertisingConfig(const AdvertisingConfig& config);
 };
 
 using AdvertiserId = uint8_t;
@@ -106,7 +111,7 @@ class LeAdvertisingManager : public bluetooth::Module {
 
   AdvertiserId ExtendedCreateAdvertiser(
       int reg_id,
-      const AdvertisingConfig config,
+      const ExtendedAdvertisingConfig config,
       const common::Callback<void(Address, AddressType)>& scan_callback,
       const common::Callback<void(ErrorCode, uint8_t, uint8_t)>& set_terminated_callback,
       uint16_t duration,
@@ -115,7 +120,7 @@ class LeAdvertisingManager : public bluetooth::Module {
 
   void StartAdvertising(
       AdvertiserId advertiser_id,
-      const AdvertisingConfig config,
+      const ExtendedAdvertisingConfig config,
       uint16_t duration,
       base::OnceCallback<void(uint8_t /* status */)> status_callback,
       base::OnceCallback<void(uint8_t /* status */)> timeout_callback,
@@ -127,7 +132,7 @@ class LeAdvertisingManager : public bluetooth::Module {
 
   void RegisterAdvertiser(base::OnceCallback<void(uint8_t /* inst_id */, uint8_t /* status */)> callback);
 
-  void SetParameters(AdvertiserId advertiser_id, AdvertisingConfig config);
+  void SetParameters(AdvertiserId advertiser_id, ExtendedAdvertisingConfig config);
 
   void SetData(AdvertiserId advertiser_id, bool set_scan_rsp, std::vector<GapData> data);
 
