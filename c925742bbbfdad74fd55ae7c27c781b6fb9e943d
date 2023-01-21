@@ -16,6 +16,24 @@
       "message": "It look like net_test_device is failing in presubmit when run against virtual device.\n\nI suppose the config is not loaded by the test but I do not know why",
       "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdfcc808_11822da0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-21T10:57:38Z",
+      "side": 1,
+      "message": "It\u0027s passing locally for host test on latest build(1/20 tip), Can you please share  all logs bugnizer, i will check once\n  \nINFO: Analyzed target //packages/modules/Bluetooth/system/device:net_test_device_host (12 packages loaded, 34 targets configured).\nINFO: Found 1 test target...\nTarget //packages/modules/Bluetooth/system/device:net_test_device_host up-to-date:\n  bazel-bin/packages/modules/Bluetooth/system/device/tradefed_test_net_test_device_host.sh\nINFO: Elapsed time: 142.490s, Critical Path: 10.92s\nINFO: 9 processes: 8 internal, 1 processwrapper-sandbox.\nINFO: Build completed successfully, 9 total actions\n//packages/modules/Bluetooth/system/device:net_test_device_host          PASSED in 5.1s\n\nExecuted 1 out of 1 test: 1 test passes.",
+      "parentUuid": "3b9ba429_dcae803a",
+      "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
