@@ -16,6 +16,24 @@
       "message": "Could we add it to `hwasan-presubmit` as well with\n```\n  \"presubmit\" : [\n    {\n      \"name\" : \"VtsHalBluetoothTargetTest\"\n    }\n  ],\n  \"hwasan-presubmit\" : [\n    {\n      \"name\" : \"VtsHalBluetoothTargetTest\"\n    }\n  ]\n```\n\n?",
       "revId": "a7a221ee8f005d5babc82ab97d2060159159a16b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8edf69e8_40e7d9fd",
+        "filename": "tools/rootcanal/TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-21T00:41:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92af8a7a_6ad76332",
+      "revId": "a7a221ee8f005d5babc82ab97d2060159159a16b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
