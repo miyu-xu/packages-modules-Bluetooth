@@ -440,6 +440,30 @@
       },
       "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d0412e7_5a6dc156",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2023-01-21T01:54:02Z",
+      "side": 1,
+      "message": "Here skips RFCOMM_SABME, RFCOMM_UA, RFCOMM_DM, RFCOMM_DISC packet type check.\nIt only check RFCOMM_UIH frame as HFP is using UIH frame to transmit PHONEBOOK information.",
+      "parentUuid": "06385c82_959ed9fe",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 33
+      },
+      "revId": "fad8e97cc3a3daec147444fdab3a0ccc87ea095b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
