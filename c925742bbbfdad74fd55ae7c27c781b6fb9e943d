@@ -34,6 +34,24 @@
       "parentUuid": "3b9ba429_dcae803a",
       "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe8ccec_cc410db2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-21T17:24:05Z",
+      "side": 1,
+      "message": "Is Virtual device test different from host test, Is virtual device related TARGET_FLOSS?",
+      "parentUuid": "cdfcc808_11822da0",
+      "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
