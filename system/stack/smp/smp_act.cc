@@ -1531,7 +1531,7 @@ void smp_br_send_pair_response(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
 void smp_pairing_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (p_cb->total_tx_unacked == 0) {
     /* process the pairing complete */
-    smp_proc_pairing_cmpl(p_cb);
+    smp_proc_pairing_cmpl(p_cb, p_data);
   }
 }
 
@@ -1543,7 +1543,7 @@ void smp_pairing_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
 void smp_pair_terminate(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   SMP_TRACE_DEBUG("%s", __func__);
   p_cb->status = SMP_CONN_TOUT;
-  smp_proc_pairing_cmpl(p_cb);
+  smp_proc_pairing_cmpl(p_cb, p_data);
 }
 
 /*******************************************************************************
@@ -1555,7 +1555,7 @@ void smp_idle_terminate(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (p_cb->flags & SMP_PAIR_FLAGS_WE_STARTED_DD) {
     SMP_TRACE_DEBUG("Pairing terminated at IDLE state.");
     p_cb->status = SMP_FAIL;
-    smp_proc_pairing_cmpl(p_cb);
+    smp_proc_pairing_cmpl(p_cb, p_data);
   }
 }
 

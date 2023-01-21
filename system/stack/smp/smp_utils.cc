@@ -953,7 +953,7 @@ void smp_reset_control_value(tSMP_CB* p_cb) {
  * Returns          void
  *
  ******************************************************************************/
-void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
+void smp_proc_pairing_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   tSMP_CALLBACK* p_callback = p_cb->p_callback;
   const RawAddress pairing_bda = p_cb->pairing_bda;
 
