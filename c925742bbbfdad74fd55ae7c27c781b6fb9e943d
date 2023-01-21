@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b9ba429_dcae803a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-21T08:54:18Z",
+      "side": 1,
+      "message": "It look like net_test_device is failing in presubmit when run against virtual device.\n\nI suppose the config is not loaded by the test but I do not know why",
+      "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
