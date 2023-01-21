@@ -53,7 +53,6 @@ import android.os.Parcel;
 import android.os.ParcelUuid;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
-import android.sysprop.BluetoothProperties;
 import android.util.Log;
 import android.util.Pair;
 
@@ -198,11 +197,11 @@ public class LeAudioService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileBapUnicastClientEnabled().orElse(false);
+        return true; //BluetoothProperties.isProfileBapUnicastClientEnabled().orElse(false);
     }
 
     public static boolean isBroadcastEnabled() {
-        return BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false);
+        return true; //BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false);
     }
 
     @Override
@@ -2127,7 +2126,7 @@ public class LeAudioService extends ProfileService {
      * This function is called when the framework registers
      * a callback with the service for this first time.
      * This is used as an indication that Bluetooth has been enabled.
-     * 
+     *
      * It is used to authorize all known LeAudio devices in the services
      * which requires that e.g. GMCS
      */
