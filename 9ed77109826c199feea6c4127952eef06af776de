@@ -176,6 +176,24 @@
       "parentUuid": "07c37579_1b3546f9",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4dd3629_d1b696ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-21T03:54:42Z",
+      "side": 1,
+      "message": "For locally enabled/disable the flag just run:\n```\nadb shell device_config put bluetooth INIT_logging_debug_enabled_for_all true\n```\n\nThe `INIT_` is needed to be added in front of the flag name that was put in the rust file. The command above match with `logging_debug_enabled_for_all`\n\nFor test, [here](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/device/test/device_iot_config_test.cc;l\u003d39;drc\u003df36760dd382fef4352f4aaaadef6367163d8c8af) is an example of usage that was implemented for the device_iot feature.",
+      "parentUuid": "67a85d22_6fa8e999",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
