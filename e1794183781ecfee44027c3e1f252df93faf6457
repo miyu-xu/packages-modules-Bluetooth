@@ -33,6 +33,24 @@
       "message": "This CL contains api change but did no update the api text file.\n\nYou should run:\n```\nm framework-bluetooth.stubs.source-update-current-api\n```\nand amend your CL with the change to trigger the API-review process",
       "revId": "e1794183781ecfee44027c3e1f252df93faf6457",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f86efc9f_8ca91cde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-22T08:29:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc8751fd_fbef337f",
+      "revId": "e1794183781ecfee44027c3e1f252df93faf6457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
