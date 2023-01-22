@@ -52,6 +52,24 @@
       "parentUuid": "cdfcc808_11822da0",
       "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8a82d31_7a0eefb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T20:27:34Z",
+      "side": 1,
+      "message": "As far as I know, virtual device should be just like a regular device, (not a host, not a floss). \nI find this really weird !\n\nThe failing test are:\n* test_lookup_hit \n* test_manufacturer_hit \n* test_name_hit \n* test_range_hit \n* test_ssr_max_latency_hit \n* test_vndr_prdt_hit\n\n\nI give only the example of one failure:\n```\npackages/modules/Bluetooth/system/device/test/interop_test.cc:588: Failure\nValue of: interop_database_match_vndr_prdt( INTEROP_REMOVE_HID_DIG_DESCRIPTOR, vendor_id, product_id)\n  Actual: false\nExpected: true\npackages/modules/Bluetooth/system/device/test/interop_test.cc:594: Failure\nValue of: interop_database_match_vndr_prdt(INTEROP_CHANGE_HID_VID_PID, vendor_id, product_id)\n  Actual: false\nExpected: true\n```\n\nSo it does looks like the config is not on the device / not loaded at start ?\n\nI am still investigating on it to understand why this is happening",
+      "parentUuid": "0fe8ccec_cc410db2",
+      "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
