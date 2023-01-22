@@ -134,6 +134,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b66836d_4e10d7bb",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T21:37:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea242260_a7ea2011",
+      "range": {
+        "startLine": 2,
+        "startChar": 45,
+        "endLine": 2,
+        "endChar": 64
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2616083_20f009e1",
@@ -147,6 +171,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "Please add the unit this delay is expected to be in a comment (I assumed ms)",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 54
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59019812_1e8a4b59",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T21:37:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e2616083_20f009e1",
       "range": {
         "startLine": 176,
         "startChar": 21,
@@ -391,6 +439,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "251e5b79_75296cf1",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T21:37:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95d4b1d3_e850cc8d",
+      "range": {
+        "startLine": 218,
+        "startChar": 29,
+        "endLine": 218,
+        "endChar": 43
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4c9a960_4b0bd6f0",
@@ -404,6 +476,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "`sIsSupportedPbap12`",
+      "range": {
+        "startLine": 220,
+        "startChar": 29,
+        "endLine": 220,
+        "endChar": 46
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50469fa4_453cee89",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T21:37:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4c9a960_4b0bd6f0",
       "range": {
         "startLine": 220,
         "startChar": 29,
@@ -907,6 +1003,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff821479_4a82fff4",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T21:37:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "269f99ca_c1d8f9eb",
+      "range": {
+        "startLine": 505,
+        "startChar": 31,
+        "endLine": 506,
+        "endChar": 71
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36925070_835b1d2b",
@@ -1187,6 +1307,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b4faa6_1534299a",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T21:37:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d76f94cd_13037e31",
+      "range": {
+        "startLine": 611,
+        "startChar": 0,
+        "endLine": 611,
+        "endChar": 28
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d913898e_0693934f",
@@ -1247,6 +1391,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "Please replace all blacklist by denylist",
+      "range": {
+        "startLine": 991,
+        "startChar": 32,
+        "endLine": 991,
+        "endChar": 41
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e15cb8e6_256e14e8",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-22T21:37:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38641484_08c0a77a",
       "range": {
         "startLine": 991,
         "startChar": 32,
