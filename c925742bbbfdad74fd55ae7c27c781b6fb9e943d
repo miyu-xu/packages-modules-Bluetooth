@@ -88,6 +88,24 @@
       "parentUuid": "f8a82d31_7a0eefb9",
       "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31c8706b_5a30a619",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-23T18:56:03Z",
+      "side": 1,
+      "message": "Hello again.\n\nAll the testing with a \"common rule\" failed. There is currently no way to do it and I would need to change soong behavior.\n\nSo I fallback on option 1 and I created a internal cherry-pick and started the presubmit on it along with the fixing CL for this.\n\nAlso we need to update the commit message in order to have a Merged-In tag.\nIt should be like the following:\n```\nTest: atest net_test_device\nBug: 252903680\nMerged-In: I959ee79fe74d0b22a26b3df1633ee88670d396d1\nChange-Id: I959ee79fe74d0b22a26b3df1633ee88670d396d1\n```\n\nI will not merge the internal CL before having the Qualcomm-Review on this change in order to keep respecting the review process. So once you uploaded the `Merged-In`, can you reach out to the team in charge of that ?\n\nThanks !",
+      "parentUuid": "89564013_463ff5f7",
+      "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
