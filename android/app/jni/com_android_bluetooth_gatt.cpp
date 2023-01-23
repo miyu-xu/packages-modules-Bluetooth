@@ -1888,6 +1888,7 @@ static void gattServerRegisterAppNative(JNIEnv* env, jobject object,
                                         jboolean eatt_support) {
   if (!sGattIf) return;
   Uuid uuid = from_java_uuid(app_uuid_msb, app_uuid_lsb);
+
   sGattIf->server->register_server(uuid, eatt_support);
 }
 
