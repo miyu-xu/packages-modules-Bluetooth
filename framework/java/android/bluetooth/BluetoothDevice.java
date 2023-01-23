@@ -323,6 +323,19 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.extra.IS_COORDINATED_SET_MEMBER";
 
     /**
+     * Used as a boolean extra field in {@link #ACTION_FOUND} intents.
+     * Indicates that the device should be hidden from a user because
+     * a physical device may make different kinds of advertisement,
+     * instead of showing as multiple separated devices, some of them should be hidden.
+     * See Bluetooth CSIP specification for more details.
+     *
+     * @hide
+     */
+    @SuppressLint("ActionValue")
+    @SystemApi
+    public static final String EXTRA_IS_SET_FOLLOWER =
+            "android.bluetooth.device.extra.IS_SET_FOLLOWER";
+    /**
      * Used as a Parcelable {@link BluetoothClass} extra field in {@link
      * #ACTION_FOUND} and {@link #ACTION_CLASS_CHANGED} intents.
      */
