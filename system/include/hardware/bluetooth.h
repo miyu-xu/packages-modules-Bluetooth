@@ -356,6 +356,13 @@ typedef enum {
   BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER,
 
   /**
+   * Description - True if Remote is hidden in UI.
+   * Access mode - GET.
+   * Data Type - bool.
+   */
+  BT_PROPERTY_REMOTE_IS_HIDDEN_IN_UI,
+
+  /**
    * Description - Appearance as specified in Assigned Numbers.
    * Access mode - GET.
    * Data Type - uint16_t.
