@@ -212,6 +212,24 @@
       "parentUuid": "c4dd3629_d1b696ee",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d672468_846a9d42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-23T20:52:36Z",
+      "side": 1,
+      "message": "What you did is good, but you are right, we can improve it a bit by having test with the feature and test without.\n\nI uploaded aosp/2399534 on top of your change to have the default with  the feature disabled and then only your new tests use the new feature.\n\nIf you can squash it, we will be good to go !\n\nI think after that we will be ready for +2 and asking the Qualcomm-Review",
+      "parentUuid": "975132d0_ee2238fc",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
