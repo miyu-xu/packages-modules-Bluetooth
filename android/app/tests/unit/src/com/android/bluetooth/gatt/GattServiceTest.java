@@ -312,6 +312,24 @@ public class GattServiceTest {
     }
 
     @Test
+    public void clientConnect() throws Exception {
+        int clientIf = 1;
+        String address = REMOTE_DEVICE_ADDRESS;
+        int addressType = BluetoothDevice.ADDRESS_TYPE_RANDOM;
+        boolean isDirect = false;
+        int transport = 2;
+        boolean opportunistic = true;
+        int connectionPriority = BluetoothGatt.CONNECTION_PRIORITY_DEFAULT;
+        int phy = 3;
+
+        mService.clientConnect(clientIf, address, addressType, isDirect, transport,
+                opportunistic, phy, connectionPriority, mAttributionSource);
+
+        verify(mNativeInterface).gattClientConnect(clientIf, address, addressType,
+                isDirect, transport, opportunistic, phy);
+    }
+
+    @Test
     public void disconnectAll() {
         Map<Integer, String> connMap = new HashMap<>();
         int clientIf = 1;
