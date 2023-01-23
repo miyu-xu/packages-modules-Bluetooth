@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ea43ba_2ba9feee",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-23T19:57:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13eaae02_fd2c029d",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 15
+      },
+      "revId": "96f6708c7bdc22cf18ec98f801ead313023f64b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fc9b3a7_a6885098",
@@ -84,6 +108,30 @@
       "writtenOn": "2023-01-23T19:45:29Z",
       "side": 1,
       "message": "nit:\n```\nif (it is Closeable) it.close()\n```\n?",
+      "range": {
+        "startLine": 78,
+        "startChar": 36,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "96f6708c7bdc22cf18ec98f801ead313023f64b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebcfa347_253cfc57",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-23T19:57:53Z",
+      "side": 1,
+      "message": "I am not sure the compiler will be able to know that `it` is indeed `Closeable` 🤔. That\u0027s why I\u0027ve \"forced\" the cast here.",
+      "parentUuid": "5fc9b3a7_a6885098",
       "range": {
         "startLine": 78,
         "startChar": 36,
