@@ -194,16 +194,19 @@ public class GattServiceBinderTest {
     public void clientConnect() throws Exception {
         int clientIf = 1;
         String address = REMOTE_DEVICE_ADDRESS;
+        int addressType = BluetoothDevice.ADDRESS_TYPE_RANDOM;
         boolean isDirect = true;
         int transport = 2;
         boolean opportunistic = true;
         int phy = 3;
 
-        mBinder.clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
+        mBinder.clientConnect(clientIf, address, addressType, isDirect,
+                transport, opportunistic, phy,
                 BluetoothGatt.CONNECTION_PRIORITY_DEFAULT, mAttributionSource,
                 SynchronousResultReceiver.get());
 
-        verify(mService).clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
+        verify(mService).clientConnect(clientIf, address, addressType, isDirect,
+                transport, opportunistic, phy,
                 BluetoothGatt.CONNECTION_PRIORITY_DEFAULT, mAttributionSource);
     }
 
