@@ -69,6 +69,9 @@ impl GlobalModuleRegistry {
         // initialization should ony happen once
         assert!(prev_registry.is_none());
 
+        // First, setup FFI and C++ modules
+        gatt::arbiter::initialize_arbiter();
+
         // We now enter the runtime
         local.block_on(&rt, async {
             // Then we have the pure-Rust modules
