@@ -19,6 +19,7 @@
 #include <cstddef>
 
 #include "bt_types.h"
+#include "btif/include/stack_manager.h"
 #include "common/init_flags.h"
 #include "device/include/interop.h"
 #include "mock_btif_config.h"
@@ -134,6 +135,7 @@ class StackSdpUtilsTest : public ::testing::Test {
  protected:
   void SetUp() override {
     bluetooth::common::InitFlags::Load(test_flags_feature_disabled);
+    GetInterfaceToProfiles()->profileSpecific_HACK->AVRC_GetProfileVersion = AVRC_GetProfileVersion;
 
     test::mock::btif_config::btif_config_get_bin.body =
         [this](const std::string& section, const std::string& key,
@@ -155,6 +157,7 @@ class StackSdpUtilsTest : public ::testing::Test {
   }
 
   void TearDown() override {
+    GetInterfaceToProfiles()->profileSpecific_HACK->AVRC_GetProfileVersion = nullptr;
     test::mock::btif_config::btif_config_get_bin_length = {};
     test::mock::btif_config::btif_config_get_bin = {};
     test::mock::osi_properties::osi_property_get_bool = {};
