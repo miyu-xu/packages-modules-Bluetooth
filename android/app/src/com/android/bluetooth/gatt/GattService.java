@@ -53,6 +53,7 @@ import android.companion.AssociationInfo;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.MacAddress;
 import android.os.Binder;
 import android.os.Build;
@@ -97,8 +98,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
-
-import android.content.res.Resources;
 
 /**
  * Provides Bluetooth Gatt profile, as a service in
@@ -787,25 +786,26 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void clientConnect(int clientIf, String address, boolean isDirect, int transport,
-                boolean opportunistic, int phy, AttributionSource attributionSource,
-                SynchronousResultReceiver receiver) {
+        public void clientConnect(int clientIf, String address, int addressType,
+                boolean isDirect, int transport, boolean opportunistic, int phy,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
             try {
-                clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
-                        attributionSource);
+                clientConnect(clientIf, address, addressType, isDirect, transport, opportunistic,
+                        phy, attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private void clientConnect(int clientIf, String address, boolean isDirect, int transport,
-                boolean opportunistic, int phy, AttributionSource attributionSource) {
+        private void clientConnect(int clientIf, String address, int addressType,
+                boolean isDirect, int transport, boolean opportunistic, int phy,
+                AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
-            service.clientConnect(clientIf, address, isDirect, transport, opportunistic, phy,
-                    attributionSource);
+            service.clientConnect(clientIf, address, addressType, isDirect, transport,
+                    opportunistic, phy, attributionSource);
         }
 
         @Override
@@ -3515,23 +3515,24 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void clientConnect(int clientIf, String address, boolean isDirect, int transport,
-            boolean opportunistic, int phy, AttributionSource attributionSource) {
+    void clientConnect(int clientIf, String address, int addressType, boolean isDirect,
+            int transport, boolean opportunistic, int phy, AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService clientConnect")) {
             return;
         }
 
         if (DBG) {
-            Log.d(TAG, "clientConnect() - address=" + address + ", isDirect=" + isDirect
-                    + ", opportunistic=" + opportunistic + ", phy=" + phy);
+            Log.d(TAG, "clientConnect() - address=" + address + ", addressType="
+                    + addressType + ", isDirect=" + isDirect + ", opportunistic="
+                    + opportunistic + ", phy=" + phy);
         }
         statsLogAppPackage(address, attributionSource.getPackageName());
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
                 BluetoothProtoEnums.CONNECTION_STATE_CONNECTING);
-        mNativeInterface.gattClientConnect(clientIf, address, isDirect, transport, opportunistic,
-                phy);
+        mNativeInterface.gattClientConnect(clientIf, address, addressType, isDirect, transport,
+                opportunistic, phy);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
