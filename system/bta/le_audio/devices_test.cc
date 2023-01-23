@@ -43,6 +43,7 @@ using ::le_audio::LeAudioDeviceGroup;
 using ::le_audio::LeAudioDevices;
 using ::le_audio::types::AseState;
 using ::le_audio::types::AudioContexts;
+using ::le_audio::types::CisType;
 using ::le_audio::types::LeAudioContextType;
 using testing::_;
 using testing::Invoke;
@@ -440,24 +441,24 @@ class LeAudioAseConfigurationTest : public Test {
     group_->AddNode(device);
 
     int ase_id = 1;
-    for (int i = 0; i < src_ase_num; i++) {
-      device->ases_.emplace_back(0x0000, 0x0000, kLeAudioDirectionSource,
-                                 ase_id++);
-    }
-
     for (int i = 0; i < snk_ase_num; i++) {
       device->ases_.emplace_back(0x0000, 0x0000, kLeAudioDirectionSink,
                                  ase_id++);
     }
 
-    for (int i = 0; i < src_ase_num_cached; i++) {
-      struct ase ase(0x0000, 0x0000, kLeAudioDirectionSource, ase_id++);
-      ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
-      device->ases_.push_back(ase);
+    for (int i = 0; i < src_ase_num; i++) {
+      device->ases_.emplace_back(0x0000, 0x0000, kLeAudioDirectionSource,
+                                 ase_id++);
     }
 
     for (int i = 0; i < snk_ase_num_cached; i++) {
       struct ase ase(0x0000, 0x0000, kLeAudioDirectionSink, ase_id++);
+      ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
+      device->ases_.push_back(ase);
+    }
+
+    for (int i = 0; i < src_ase_num_cached; i++) {
+      struct ase ase(0x0000, 0x0000, kLeAudioDirectionSource, ase_id++);
       ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
       device->ases_.push_back(ase);
     }
@@ -775,6 +776,18 @@ class LeAudioAseConfigurationTest : public Test {
             TestAsesInactive();
           }
         }
+      }
+    }
+  }
+
+  void SetAsesToChachedConfiguration(LeAudioDevice* device,
+                                     LeAudioContextType context_type,
+                                     uint8_t directions) {
+    for (struct ase& ase : device->ases_) {
+      if (ase.direction & directions) {
+        ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
+        ase.active = false;
+        ase.configured_for_context_type = context_type;
       }
     }
   }
@@ -1203,6 +1216,99 @@ TEST_F(LeAudioAseConfigurationTest, test_reconnection_media) {
   group_->CigAssignCisConnHandlesToAses(left);
 
   TestActiveAses();
+}
+
+TEST_F(LeAudioAseConfigurationTest, test_reactivation_conversational) {
+  LeAudioDevice* headset = AddTestDevice(0, 0, 2, 1);
+
+  /* Change location as by default it is stereo */
+  headset->snk_audio_locations_ = kChannelAllocationStereo;
+  headset->src_audio_locations_ =
+      ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+  group_->ReloadAudioLocations();
+
+  auto all_configurations =
+      ::le_audio::AudioSetConfigurationProvider::Get()->GetConfigurations(
+          LeAudioContextType::CONVERSATIONAL);
+  ASSERT_NE(nullptr, all_configurations);
+  ASSERT_NE(all_configurations->end(), all_configurations->begin());
+
+  /* Pick TWS configuration for conversational */
+  auto iter = std::find_if(all_configurations->begin(),
+                           all_configurations->end(), [](auto& configuration) {
+                             return configuration->name ==
+                                    "SingleDev_OneChanStereoSnk_OneChanMonoSrc_"
+                                    "16_2_Server_Preferred";
+                           });
+
+  ASSERT_NE(iter, all_configurations->end());
+
+  auto conversational_configuration = *iter;
+
+  // Build PACs for device
+  PublishedAudioCapabilitiesBuilder snk_pac_builder, src_pac_builder;
+  snk_pac_builder.Reset();
+  src_pac_builder.Reset();
+
+  /* Create PACs for conversational scenario which covers also media. Single
+   * PAC for each direction is enough.
+   */
+  for (const auto& entry : (*conversational_configuration).confs) {
+    if (entry.direction == kLeAudioDirectionSink) {
+      snk_pac_builder.Add(entry.codec, 1);
+    } else {
+      src_pac_builder.Add(entry.codec, 1);
+    }
+  }
+
+  headset->snk_pacs_ = snk_pac_builder.Get();
+  headset->src_pacs_ = src_pac_builder.Get();
+
+  ::le_audio::types::AudioLocations group_snk_audio_locations = 0;
+  ::le_audio::types::AudioLocations group_src_audio_locations = 0;
+  std::vector<uint8_t> ccid_list;
+  uint8_t number_of_already_active_ases = 0;
+
+  /* Get entry for the sink direction and use it to set configuration */
+  for (auto& ent : conversational_configuration->confs) {
+    headset->ConfigureAses(ent, group_->GetConfigurationContextType(),
+                           &number_of_already_active_ases,
+                           group_snk_audio_locations, group_src_audio_locations,
+                           false, ::le_audio::types::AudioContexts(),
+                           ccid_list);
+  }
+
+  /* Generate CISes, simulate CIG creation and assign cis handles to ASEs.*/
+  std::vector<uint16_t> handles = {0x0012, 0x0013};
+  group_->CigGenerateCisIds(LeAudioContextType::CONVERSATIONAL);
+  group_->CigAssignCisConnHandles(handles);
+  group_->CigAssignCisIds(headset);
+
+  TestActiveAses();
+
+  /* Simulate stopping stream with caching codec configuration in ASEs */
+  group_->CigUnassignCis(headset);
+  SetAsesToChachedConfiguration(
+      headset, LeAudioContextType::CONVERSATIONAL,
+      kLeAudioDirectionSink | kLeAudioDirectionSource);
+
+  /* As context type is the same as previous and no changes were made in PACs
+   * the same CIS ID can be used. This would lead to only activating group
+   * without reconfiguring CIG.
+   */
+  group_->Activate(LeAudioContextType::CONVERSATIONAL);
+
+  TestActiveAses();
+
+  /* Verify ASEs assigned CISes by counting assigned to bi-directional CISes */
+  int bi_dir_ases_count = std::count_if(
+      headset->ases_.begin(), headset->ases_.end(), [=](auto& ase) {
+        return this->group_->cises_[ase.cis_id].type ==
+               CisType::CIS_TYPE_BIDIRECTIONAL;
+      });
+
+  /* Only two ASEs can be bonded to one bi-directional CIS */
+  ASSERT_EQ(bi_dir_ases_count, 2);
 }
 }  // namespace
 }  // namespace internal

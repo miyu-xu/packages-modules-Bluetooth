@@ -1032,95 +1032,94 @@ bool LeAudioDeviceGroup::CigAssignCisIds(LeAudioDevice* leAudioDevice) {
 
   for (; ase != nullptr; ase = leAudioDevice->GetNextActiveAse(ase)) {
     uint8_t cis_id = kInvalidCisId;
-    /* CIS ID already set */
+
+    /* Try to re-use already assigned CIS */
     if (ase->cis_id != kInvalidCisId) {
-      LOG_INFO("ASE ID: %d, is already assigned CIS ID: %d, type %d", ase->id,
-               ase->cis_id, cises_[ase->cis_id].type);
-      if (!cises_[ase->cis_id].addr.IsEmpty()) {
-        LOG_INFO("Bidirectional ASE already assigned");
-        continue;
-      }
       /* Reuse existing CIS ID if available*/
       cis_id = ase->cis_id;
-    }
+      cises_[ase->cis_id].addr = leAudioDevice->address_;
 
-    /* First check if we have bidirectional ASEs. If so, assign same CIS ID.*/
-    struct ase* matching_bidir_ase =
-        leAudioDevice->GetNextActiveAseWithDifferentDirection(ase);
-
-    if (matching_bidir_ase) {
-      if (cis_id == kInvalidCisId) {
-        cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);
-      }
-
-      if (cis_id != kInvalidCisId) {
-        ase->cis_id = cis_id;
-        matching_bidir_ase->cis_id = cis_id;
-        cises_[cis_id].addr = leAudioDevice->address_;
-
+      /* Assign Bi-directional ASE if already active and assigned */
+      types::BidirectAsesPair ases_pair =
+          leAudioDevice->GetAsesByCisId(ase->cis_id);
+      if ((ases_pair.sink != nullptr && ases_pair.source != nullptr) &&
+          (ases_pair.sink->active && ases_pair.source->active)) {
         LOG_INFO(
-            " ASE ID: %d and ASE ID: %d, assigned Bi-Directional CIS ID: %d",
-            +ase->id, +matching_bidir_ase->id, +ase->cis_id);
+            "ASE ID: %d (Sink) and ASE ID: %d (Source), are already "
+            "assigned to Bi-Directional CIS ID: %d",
+            ases_pair.sink->id, ases_pair.source->id, ase->cis_id);
         continue;
       }
-
-      LOG_WARN(
-          " ASE ID: %d, unable to get free Bi-Directional CIS ID but maybe "
-          "thats fine. Try using unidirectional.",
-          ase->id);
+      /* There is possibility that this ase may a part of bidirectional CIS */
     }
 
-    if (ase->direction == types::kLeAudioDirectionSink) {
+    /* Assign bidirectional CIS */
+    struct ase* reference_ase = ase;
+    while (
+        (reference_ase = leAudioDevice->GetNextActiveAseWithDifferentDirection(
+             reference_ase))) {
+      /* Check if matching ASE is not already taken */
+      if (reference_ase->cis_id != kInvalidCisId) {
+        types::BidirectAsesPair ases_pair =
+            leAudioDevice->GetAsesByCisId(reference_ase->cis_id);
+        if ((ases_pair.sink != nullptr && ases_pair.source != nullptr) &&
+            (ases_pair.sink->active && ases_pair.source->active)) {
+          continue;
+        }
+      }
+
       if (cis_id == kInvalidCisId) {
-        cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_UNIDIRECTIONAL_SINK);
+        cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);
       }
 
       if (cis_id == kInvalidCisId) {
         LOG_WARN(
-            " Unable to get free Uni-Directional Sink CIS ID - maybe there is "
-            "bi-directional available");
-        /* This could happen when scenarios for given context type allows for
-         * Sink and Source configuration but also only Sink configuration.
-         */
-        cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);
-        if (cis_id == kInvalidCisId) {
-          LOG_ERROR("Unable to get free Uni-Directional Sink CIS ID");
-          return false;
-        }
+            "ASE ID: %d, unable to get free Bi-Directional CIS ID but "
+            "maybe thats fine. Try using unidirectional.",
+            ase->id);
+        break;
       }
 
       ase->cis_id = cis_id;
+      reference_ase->cis_id = cis_id;
       cises_[cis_id].addr = leAudioDevice->address_;
-      LOG_INFO("ASE ID: %d, assigned Uni-Directional Sink CIS ID: %d", ase->id,
-               ase->cis_id);
+      break;
+    }
+
+    if (reference_ase && (cis_id == reference_ase->cis_id)) {
+      LOG_INFO(
+          "ASE ID: %d (Sink) and ASE ID: %d (Source), assigned "
+          "to Bi-Directional CIS ID: %d",
+          ase->direction == types::kLeAudioDirectionSink ? +ase->id
+                                                         : +reference_ase->id,
+          ase->direction == types::kLeAudioDirectionSource ? +ase->id
+                                                           : +reference_ase->id,
+          cis_id);
       continue;
     }
 
-    /* Source direction */
-    ASSERT_LOG(ase->direction == types::kLeAudioDirectionSource,
-               "Expected Source direction, actual=%d", ase->direction);
-
+    /* Assign unidirectional CIS */
     if (cis_id == kInvalidCisId) {
-      cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_UNIDIRECTIONAL_SOURCE);
+      cis_id = GetFirstFreeCisId(ase->direction == types::kLeAudioDirectionSink
+                                     ? CisType::CIS_TYPE_UNIDIRECTIONAL_SINK
+                                     : CisType::CIS_TYPE_UNIDIRECTIONAL_SOURCE);
+      /* There is no dedicated uni-directional CIS, look for bi-directional */
+      if (cis_id == kInvalidCisId) {
+        cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);
+      }
     }
 
     if (cis_id == kInvalidCisId) {
-      /* This could happen when scenarios for given context type allows for
-       * Sink and Source configuration but also only Sink configuration.
-       */
-      LOG_WARN(
-          "Unable to get free Uni-Directional Source CIS ID - maybe there "
-          "is bi-directional available");
-      cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);
-      if (cis_id == kInvalidCisId) {
-        LOG_ERROR("Unable to get free Uni-Directional Source CIS ID");
-        return false;
-      }
+      LOG_ERROR(
+          "Unable to get free Uni-Directional %s CIS ID",
+          ase->direction == types::kLeAudioDirectionSink ? "Sink" : "Source");
+      return false;
     }
 
     ase->cis_id = cis_id;
     cises_[cis_id].addr = leAudioDevice->address_;
-    LOG_INFO("ASE ID: %d, assigned Uni-Directional Source CIS ID: %d", ase->id,
+    LOG_INFO("ASE ID: %d, assigned Uni-Directional %s CIS ID: %d", ase->id,
+             ase->direction == types::kLeAudioDirectionSink ? "Sink" : "Source",
              ase->cis_id);
   }
 
