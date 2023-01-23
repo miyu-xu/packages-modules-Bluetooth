@@ -1047,7 +1047,7 @@ bool LeAudioDeviceGroup::CigAssignCisIds(LeAudioDevice* leAudioDevice) {
     struct ase* matching_bidir_ase =
         leAudioDevice->GetNextActiveAseWithDifferentDirection(ase);
 
-    if (matching_bidir_ase) {
+    if (matching_bidir_ase && matching_bidir_ase->cis_id == kInvalidCisId) {
       if (cis_id == kInvalidCisId) {
         cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);
       }
