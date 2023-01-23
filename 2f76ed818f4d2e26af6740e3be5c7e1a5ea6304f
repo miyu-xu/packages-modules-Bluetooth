@@ -16,6 +16,24 @@
       "message": "If we only need to add this dependency for registering the scan callback, I\u0027d prefer not to do that.  Can we register the scan callbacks at the same place we add them to the LeScanningManager?",
       "revId": "2f76ed818f4d2e26af6740e3be5c7e1a5ea6304f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db86705_eb6dc9d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-23T21:32:07Z",
+      "side": 1,
+      "message": "Done, I moved the callback registration just like LeScanningManager. Could you PTAL if this is a better approach?",
+      "parentUuid": "0398b0d8_46a4fbf3",
+      "revId": "2f76ed818f4d2e26af6740e3be5c7e1a5ea6304f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
