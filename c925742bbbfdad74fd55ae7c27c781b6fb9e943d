@@ -70,6 +70,24 @@
       "parentUuid": "0fe8ccec_cc410db2",
       "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89564013_463ff5f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-23T06:06:01Z",
+      "side": 1,
+      "message": "Okay I can confirm the apex doesn\u0027t have the config on this branch, and I found why.\nThe issue is that you are adding a conf file to the apex and it need to be add to the mainline apex too (it redefined the prebuilt array and override the value).\nYou cannot do anything about it as it is on internal master.\n\nI see 2 ways for solving that:\n1. cherry-pick this change on internal, merge it first with another CL in the topic and then merge it on aosp (but the next person will have the same issue and it\u0027s hard to find why)\n2. I try to use a common rule between the 2 apex to not have to define the list twice. The attempt I did for that result in error so I guess there is something I am doing wrong. I will try to work on this monday as I think it\u0027s a better solution, if I can solve it we will go with the internal merge first",
+      "parentUuid": "f8a82d31_7a0eefb9",
+      "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
