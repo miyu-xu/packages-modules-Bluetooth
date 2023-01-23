@@ -324,6 +324,15 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.extra.IS_COORDINATED_SET_MEMBER";
 
     /**
+    * Used as a bool extra field in {@link #ACTION_FOUND} intents.
+    * It contains the information if device is hidden in pair new device page.
+    *
+    * @hide
+    */
+    @SystemApi
+    public static final String EXTRA_IS_HIDDEN_IN_UI =
+            "android.bluetooth.extra.IS_HIDDEN_IN_UI";
+    /**
      * Used as a Parcelable {@link BluetoothClass} extra field in {@link
      * #ACTION_FOUND} and {@link #ACTION_CLASS_CHANGED} intents.
      */
