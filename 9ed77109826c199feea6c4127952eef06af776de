@@ -194,6 +194,24 @@
       "parentUuid": "67a85d22_6fa8e999",
       "revId": "9ed77109826c199feea6c4127952eef06af776de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "975132d0_ee2238fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-01-23T10:22:08Z",
+      "side": 1,
+      "message": "I have made feature flagging related changes in my gerrit.\nSorry I didn\u0027t quite get unit test part.\nCurrently I added new tests along with that modified existing ones.\nWith feature flag enabled old and new are PASS.\nWith feature disabled some of them which are modified, and which were newly written are FAIL.\nI am not sure if all old and new should PASS after feature disable OR only old one should run and PASS only those new ones should be disabled (if yes how to do that should we mock the feature flag function also like other ones in unit tests).\nAppreciate if you help here OR give it a trial at your end as well.",
+      "parentUuid": "c4dd3629_d1b696ee",
+      "revId": "9ed77109826c199feea6c4127952eef06af776de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
