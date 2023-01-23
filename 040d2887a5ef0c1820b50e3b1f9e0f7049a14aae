@@ -16,6 +16,24 @@
       "message": "Can we have unit test for that - showing the problem and that solutions actually works?",
       "revId": "040d2887a5ef0c1820b50e3b1f9e0f7049a14aae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb63800_b1bd6649",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-23T21:42:44Z",
+      "side": 1,
+      "message": "..",
+      "parentUuid": "112710c2_8ddf3c6a",
+      "revId": "040d2887a5ef0c1820b50e3b1f9e0f7049a14aae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
