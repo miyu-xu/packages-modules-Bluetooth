@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce989d50_42621512",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-23T21:35:59Z",
+      "side": 1,
+      "message": "This is no longer needed with the changed approach of the previous CL.",
+      "revId": "fce6ce21092691f352284c02ac46a0bcc6a6d80c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
