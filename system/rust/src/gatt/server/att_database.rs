@@ -1,8 +1,10 @@
+use async_trait::async_trait;
+
 use crate::{
     gatt::ids::AttHandle,
     packets::{
-        AttHandleBuilder, AttHandleView, ParseError, Uuid128Builder, Uuid128View, Uuid16Builder,
-        Uuid16View, UuidBuilder, UuidView,
+        AttAttributeDataChild, AttErrorCode, AttHandleBuilder, AttHandleView, ParseError,
+        Uuid128Builder, Uuid128View, Uuid16Builder, Uuid16View, UuidBuilder, UuidView,
     },
 };
 
@@ -120,5 +122,36 @@ impl TryFrom<AttUuid> for Uuid16Builder {
 impl From<AttUuid> for Uuid128Builder {
     fn from(value: AttUuid) -> Self {
         Uuid128Builder { data: value.0.into_iter().collect() }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct AttAttribute {
+    pub handle: AttHandle,
+    pub uuid: AttUuid,
+    pub permissions: AttPermissions,
+}
+
+/// The attribute properties supported by the current GATT server implementation
+/// Unimplemented properties will default to false.
+#[derive(Debug, Clone)]
+pub struct AttPermissions {
+    /// Whether an attribute is readable
+    pub readable: bool,
+    /// Whether an attribute is writable
+    /// (using ATT_WRITE_REQ, so a response is expected)
+    pub writable: bool,
+}
+
+#[async_trait(?Send)]
+pub trait AttDatabase {
+    async fn read_attribute(
+        &self,
+        handle: AttHandle,
+    ) -> Result<AttAttributeDataChild, AttErrorCode>;
+    fn list_attributes(&self) -> Vec<AttAttribute>;
+
+    fn get_attribute(&self, handle: AttHandle) -> Option<AttAttribute> {
+        self.list_attributes().into_iter().find(|attr| attr.handle == handle)
     }
 }
