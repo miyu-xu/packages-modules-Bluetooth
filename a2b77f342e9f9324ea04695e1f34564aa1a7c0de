@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "298380cd_1a3b9fcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-24T18:30:46Z",
+      "side": 1,
+      "message": "Hi Etienne and Rahul,\nCan you help reviewing this API change ?",
+      "revId": "a2b77f342e9f9324ea04695e1f34564aa1a7c0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
