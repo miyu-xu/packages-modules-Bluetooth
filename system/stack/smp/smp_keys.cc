@@ -957,6 +957,9 @@ bool smp_calculate_link_key_from_long_term_key(tSMP_CB* p_cb) {
 
   SMP_TRACE_DEBUG("%s", __func__);
 
+  // adding this to see if the link key derivation fails
+  return false;
+
   if (p_cb->id_addr_rcvd && p_cb->id_addr_type == BLE_ADDR_PUBLIC) {
     SMP_TRACE_DEBUG(
         "Use rcvd identity address as BD_ADDR of LK rcvd identity address");
