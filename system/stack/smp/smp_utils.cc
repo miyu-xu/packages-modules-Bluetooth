@@ -355,6 +355,18 @@ bool smp_send_msg_to_L2CAP(const RawAddress& rem_bda, BT_HDR* p_toL2CAP) {
 
   SMP_TRACE_EVENT("%s", __func__);
 
+  // Check the commands we want to log 
+  SMP_TRACE_EVENT("SMP Over BR: %d, Status: %d, State: %d, Failure: %d, Local IO Capability: %d, Peer IO Caps: %d, Is Pair Cancel: %d, TK: %d, Loc OOB Flag: %d, Peer OOB Flag: %d", 
+    smp_cb.smp_over_br, 
+    smp_cb.status, 
+    smp_cb.state, 
+    smp_cb.failure,
+    smp_cb.local_io_capability, 
+    smp_cb.peer_io_caps,
+    smp_cb.is_pair_cancel, 
+    smp_cb.tk, 
+    smp_cb.loc_oob_flag,
+    smp_cb.peer_oob_flag);
   smp_log_metrics(rem_bda, true /* outgoing */,
                   p_toL2CAP->data + p_toL2CAP->offset, p_toL2CAP->len,
                   smp_cb.smp_over_br /* is_over_br */);
