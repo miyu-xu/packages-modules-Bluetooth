@@ -16,6 +16,69 @@
       "message": "fun fun",
       "revId": "cb905c5f60631cd2443ed58c427cc5e6d6c8d0c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88807373_1ccf8c7a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-24T18:55:36Z",
+      "side": 1,
+      "message": "You don\u0027t have to use this for new APIs, this is used for APIs that were available before the permissions change.\n`BLUETOOTH_CONNECT` should be enough here",
+      "range": {
+        "startLine": 585,
+        "startChar": 4,
+        "endLine": 585,
+        "endChar": 39
+      },
+      "revId": "cb905c5f60631cd2443ed58c427cc5e6d6c8d0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8afa77_f262491d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-24T18:55:36Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "cb905c5f60631cd2443ed58c427cc5e6d6c8d0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b164bdd9_4c8002b8",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-24T18:55:36Z",
+      "side": 1,
+      "message": "You can remove this link, you don\u0027t have to add the type of param in param description",
+      "range": {
+        "startLine": 279,
+        "startChar": 35,
+        "endLine": 279,
+        "endChar": 79
+      },
+      "revId": "cb905c5f60631cd2443ed58c427cc5e6d6c8d0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
