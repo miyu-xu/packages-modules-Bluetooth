@@ -142,6 +142,24 @@
       "parentUuid": "911f02e1_747df137",
       "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b82cd48b_b6ef9f5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2023-01-24T11:29:46Z",
+      "side": 1,
+      "message": "Hi William , can you please provide +2  on latest patch. Qualcomm-Review +1 can be set, Once you review latest patch \u0026 provide +2 on latest patch set",
+      "parentUuid": "29207cca_ca91a793",
+      "revId": "c925742bbbfdad74fd55ae7c27c781b6fb9e943d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
