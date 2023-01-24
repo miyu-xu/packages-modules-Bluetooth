@@ -22,6 +22,30 @@
       },
       "revId": "9ffd8e0e76d0f7182c12fb4f24a43c03d3b0b6ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9a232f8_428f0ebc",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-24T21:33:34Z",
+      "side": 1,
+      "message": "Reason for having this extra is to have backward compatibility. \nFor dual mode device (ASHA + LE audio), ASHA requires both earbuds to advertise as discoverable, and LE audio\u0027s CSIP requires only one earbud to advertise as discoverable. \nTo keep backward compatibility, dual mode will let both earbuds to be discoverable. \nAnd by adding this API, it can satisfy LE audio requirement from user perspective that devices won\u0027t show up as two devices for LE audio capable phone.",
+      "parentUuid": "4a5746c2_3fa42b1b",
+      "range": {
+        "startLine": 327,
+        "startChar": 4,
+        "endLine": 339,
+        "endChar": 7
+      },
+      "revId": "9ffd8e0e76d0f7182c12fb4f24a43c03d3b0b6ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
