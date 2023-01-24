@@ -16,6 +16,23 @@
       "message": "wescande@ for init_flags.rs\nsonnysasaka@ for the rest",
       "revId": "f2895081e5f4a89cb8e0eda2c6795c22f0391ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd70038_e123354a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-24T22:01:42Z",
+      "side": 1,
+      "message": "init_flags are flags set at init\n\nIt this possible to not add the setter but re-init the flags instead ? like we are doing in some [tests](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/device/test/device_iot_config_test.cc;l\u003d37;drc\u003df36760dd382fef4352f4aaaadef6367163d8c8af)\n\nThe reason for that is that some flags are only checked at init of some modules / stack. So changing them after started the stack will be a no-op.\nBy adding the setter we are saying to the dev \"go-on any flag can be updated this way\" which is false.\n\nI am throwing a curve ball here but:\nShould we instead cut the flags in 2 categories, one dynamic runtime flags that can change anytime, and the other only at init time.",
+      "revId": "f2895081e5f4a89cb8e0eda2c6795c22f0391ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
