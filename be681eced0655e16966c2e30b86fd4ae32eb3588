@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6da08b8_c8ad468d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-24T17:35:47Z",
+      "side": 1,
+      "message": "Is the extra sent when the device is hidden in settings pair new device page, or is it sent when settings page should hide the device?\n\nIf the extra is sent in order to tell the settings they should not show it, I think we should rename it and update the description to something like:\n`Indicates that the device should not be selected by user because of \u003creason not to show it\u003e`\n`EXTRA_\u003creason not to show it\u003e`\n\nAs this API can be used by any system or privileged app, it should not be described as used in a specific place I think :)",
+      "range": {
+        "startLine": 328,
+        "startChar": 54,
+        "endLine": 328,
+        "endChar": 77
+      },
+      "revId": "be681eced0655e16966c2e30b86fd4ae32eb3588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59aecd3a_559ff85c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-24T17:35:47Z",
+      "side": 1,
+      "message": "Is there something preventing you to use \"android.bluetooth.device\" instead?",
+      "range": {
+        "startLine": 334,
+        "startChar": 12,
+        "endLine": 334,
+        "endChar": 52
+      },
+      "revId": "be681eced0655e16966c2e30b86fd4ae32eb3588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
