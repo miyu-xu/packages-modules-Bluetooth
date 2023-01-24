@@ -140,6 +140,30 @@
       },
       "revId": "96f6708c7bdc22cf18ec98f801ead313023f64b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "123d9172_7a48a221",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-24T02:20:15Z",
+      "side": 1,
+      "message": "This is the nice part about it, if you do an instanceof (`is`) it does for the branch https://pl.kotl.in/Oio3CGGGb",
+      "parentUuid": "ebcfa347_253cfc57",
+      "range": {
+        "startLine": 78,
+        "startChar": 36,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "96f6708c7bdc22cf18ec98f801ead313023f64b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
