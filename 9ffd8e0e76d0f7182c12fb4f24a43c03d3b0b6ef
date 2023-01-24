@@ -46,6 +46,30 @@
       },
       "revId": "9ffd8e0e76d0f7182c12fb4f24a43c03d3b0b6ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e4c868c_67fbee6d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-24T21:57:55Z",
+      "side": 1,
+      "message": "I understand that, but \"showing the device\" isn\u0027t what BT does, that\u0027s the Settings part.\nSo I would let Settings use this extra to show it or not but name it as what it really is in our codebase: a flag saying this device is a \"counterpart device\".\n\nFor example, say one day Settings decide to show both devices and their battery differ, `IS_HIDDEN_FROM_USER` wouldn\u0027t make sense in that case I think",
+      "parentUuid": "c9a232f8_428f0ebc",
+      "range": {
+        "startLine": 327,
+        "startChar": 4,
+        "endLine": 339,
+        "endChar": 7
+      },
+      "revId": "9ffd8e0e76d0f7182c12fb4f24a43c03d3b0b6ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
