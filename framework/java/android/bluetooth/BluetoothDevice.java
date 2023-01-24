@@ -3320,8 +3320,23 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             throw new IOException();
         }
         if (DBG) Log.d(TAG, "createL2capChannel: psm=" + psm);
-        return new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, -1, true, true, this, psm,
-                null);
+        try {
+            BluetoothSocket bluetoothSocket =
+                    new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, -1, true, true, this, psm,
+                    null);
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                    + "Connection start. Mac Address " + this.getAddress() + " Port " + psm
+                    + " Authenticated " + true + " encrypted " + true);
+            return bluetoothSocket;
+        } catch (IOException e) {
+            // TODO more exceptions will be created here soon?
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                    + "Connection completed with failure. Mac Address " + this.getAddress()
+                    + " Port " + psm
+                    + " Failure: IOException"
+                    + " Authenticated " + true + " encrypted " + true);
+            throw e;
+        }
     }
 
     /**
@@ -3353,8 +3368,23 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         if (DBG) {
             Log.d(TAG, "createInsecureL2capChannel: psm=" + psm);
         }
-        return new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, -1, false, false, this, psm,
-                null);
+        try {
+            BluetoothSocket bluetoothSocket =
+                    new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, -1, false, false, this, psm,
+                    null);
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                    + "Connection start. Mac Address " + this.getAddress() + " Port " + psm
+                    + " Authenticated " + false + " encrypted " + false);
+            return bluetoothSocket;
+        } catch (IOException e) {
+            // TODO more exceptions will be created here soon?
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                    + "Connection completed with failure. Mac Address " + this.getAddress()
+                    + " Port " + psm
+                    + " Failure: IOException"
+                    + " Authenticated " + false + " encrypted " + false);
+            throw e;
+        }
     }
 
     /**

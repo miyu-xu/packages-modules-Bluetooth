@@ -168,7 +168,29 @@ public final class BluetoothServerSocket implements Closeable {
      * @throws IOException on error, for example this call was aborted, or timeout
      */
     public BluetoothSocket accept(int timeout) throws IOException {
-        return mSocket.accept(timeout);
+        try {
+            BluetoothSocket bluetoothSocket = mSocket.accept(timeout);
+            if (mSocket.getConnectionType() == BluetoothSocket.TYPE_L2CAP_LE) {
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                        + "Connection completed successfully. Mac Address "
+                        + mSocket.getRemoteDevice().getAddress()
+                        + " Port " + mChannel
+                        + " timeout " + timeout);
+            }
+            return bluetoothSocket;
+        } catch (IOException e) {
+            if (mSocket.getConnectionType() == BluetoothSocket.TYPE_L2CAP_LE) {
+                // TODO more exceptions will be created here soon?
+                // TODO Will getRemoteDevice() crash here?
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                        + "Connection completed with failure. Mac Address "
+                        + mSocket.getRemoteDevice().getAddress()
+                        + " Port " + mChannel
+                        + " Failure: IOException"
+                        + " timeout " + timeout);
+            }
+            throw e;
+        }
     }
 
     /**

@@ -451,8 +451,22 @@ public final class BluetoothSocket implements Closeable {
                 }
                 mSocketState = SocketState.CONNECTED;
             }
+            if (mType == BluetoothSocket.TYPE_L2CAP_LE) {
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                        + "Connection completed successfully. Mac Address " + mDevice.getAddress()
+                        + " Port " + mPort
+                        + " Authenticated " + mAuth + " encrypted " + mEncrypt);
+            }
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            if (mType == BluetoothSocket.TYPE_L2CAP_LE) {
+                // TODO more exceptions will be created here soon?
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                        + "Connection completed with failure. Mac Address " + mDevice.getAddress()
+                        + " Port " + mPort
+                        + " Failure: RemoteException"
+                        + " Authenticated " + mAuth + " encrypted " + mEncrypt);
+            }
             throw new IOException("unable to send RPC: " + e.getMessage());
         }
     }

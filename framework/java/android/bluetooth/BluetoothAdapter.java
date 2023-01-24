@@ -4620,25 +4620,49 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public @NonNull BluetoothServerSocket listenUsingL2capChannel()
             throws IOException {
-        BluetoothServerSocket socket =
-                            new BluetoothServerSocket(BluetoothSocket.TYPE_L2CAP_LE, true, true,
-                                      SOCKET_CHANNEL_AUTO_STATIC_NO_SDP, false, false);
-        int errno = socket.mSocket.bindListen();
-        if (errno != 0) {
-            throw new IOException("Error: " + errno);
-        }
+        try {
+            BluetoothServerSocket socket =
+                    new BluetoothServerSocket(BluetoothSocket.TYPE_L2CAP_LE, true, true,
+                            SOCKET_CHANNEL_AUTO_STATIC_NO_SDP, false, false);
+            int errno = socket.mSocket.bindListen();
+            if (errno != 0) {
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                        + "Server not created with failures. No Mac Address here. "
+                        + " No Port "// should use getPort?
+                        + " Error: errno "
+                        + " Authenticated " + true + " encrypted " + true);
+                throw new IOException("Error: " + errno);
+            }
 
-        int assignedPsm = socket.mSocket.getPort();
-        if (assignedPsm == 0) {
-            throw new IOException("Error: Unable to assign PSM value");
-        }
-        if (DBG) {
-            Log.d(TAG, "listenUsingL2capChannel: set assigned PSM to "
-                    + assignedPsm);
-        }
-        socket.setChannel(assignedPsm);
+            int assignedPsm = socket.mSocket.getPort();
+            if (assignedPsm == 0) {
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                        + "Server not created with failures. No Mac Address here. "
+                        + " Port 0 "// should use getPort?
+                        + " Error: no assignedPsm "
+                        + " Authenticated " + true + " encrypted " + true);
+                throw new IOException("Error: Unable to assign PSM value");
+            }
+            if (DBG) {
+                Log.d(TAG, "listenUsingL2capChannel: set assigned PSM to "
+                        + assignedPsm);
+            }
+            socket.setChannel(assignedPsm);
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                    + "Server created successfully. No Mac Address here. "
+                    + " Port " + assignedPsm // should use getPort?
+                    + " Authenticated " + true + " encrypted " + true);
+            return socket;
 
-        return socket;
+        } catch (IOException e) {
+            // TODO assume more exceptions wiil be reported here soon
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                    + "Server not created with failures. No Mac Address here. "
+                    + " No Port "// should use getPort?
+                    + " Error: IOException "
+                    + " Authenticated " + true + " encrypted " + true);
+            throw e;
+        }
     }
 
     /**
@@ -4668,25 +4692,49 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public @NonNull BluetoothServerSocket listenUsingInsecureL2capChannel()
             throws IOException {
-        BluetoothServerSocket socket =
+        try {
+            BluetoothServerSocket socket =
                             new BluetoothServerSocket(BluetoothSocket.TYPE_L2CAP_LE, false, false,
                                       SOCKET_CHANNEL_AUTO_STATIC_NO_SDP, false, false);
-        int errno = socket.mSocket.bindListen();
-        if (errno != 0) {
-            throw new IOException("Error: " + errno);
-        }
+            int errno = socket.mSocket.bindListen();
+            if (errno != 0) {
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                        + "Server not created with failures. No Mac Address here. "
+                        + " No Port "// should use getPort?
+                        + " Error: errno "
+                        + " Authenticated " + false + " encrypted " + false);
+                throw new IOException("Error: " + errno);
+            }
 
-        int assignedPsm = socket.mSocket.getPort();
-        if (assignedPsm == 0) {
-            throw new IOException("Error: Unable to assign PSM value");
-        }
-        if (DBG) {
-            Log.d(TAG, "listenUsingInsecureL2capChannel: set assigned PSM to "
-                    + assignedPsm);
-        }
-        socket.setChannel(assignedPsm);
+            int assignedPsm = socket.mSocket.getPort();
+            if (assignedPsm == 0) {
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                        + "Server not created with failures. No Mac Address here. "
+                        + " Port 0"// should use getPort?
+                        + " Error: errno "
+                        + " Authenticated " + false + " encrypted " + false);
+                throw new IOException("Error: Unable to assign PSM value");
+            }
+            if (DBG) {
+                Log.d(TAG, "listenUsingInsecureL2capChannel: set assigned PSM to "
+                        + assignedPsm);
+            }
+            socket.setChannel(assignedPsm);
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                    + "Server created successfully. No Mac Address here. "
+                    + " Port " + assignedPsm // should use socket.getPort?
+                    + " Authenticated " + false + " encrypted " + false);
+            return socket;
 
-        return socket;
+        } catch (IOException e) {
+            // TODO assume more exceptions wiil be reported here soon
+            Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is server. "
+                    + "Server not created with failures. No Mac Address here. "
+                    + " No Port "// should use getPort?
+                    + " Error: IOException "
+                    + " Authenticated " + false + " encrypted " + false);
+            throw e;
+        }
     }
 
     /**
