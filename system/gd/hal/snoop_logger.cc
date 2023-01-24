@@ -458,17 +458,16 @@ const std::string SnoopLogger::kSoCManufacturerQualcomm = "Qualcomm";
  *  snoopheadersfiltered  - Truncates ACL packets (non-fragment) to fixed (MAX_HCI_ACL_LEN)
  *                          number of bytes
  *  a2dppktsfiltered      - Discards A2DP media packets (non-split mode)
- *  profilesfiltered      - Filters PBAP, MAP and HFP packets (CPBR, CLCC) based on
- *                          filter mode:
- *                            fullfilter - discard whole packet
- *                            header     - truncate to fixed length
- *                            magic      - fill with a magic string, such as: "PROHIBITED"
  */
 const std::string SnoopLogger::kBtSnoopLogFilterTypeRfcommChannelFiltered = "rfcommchannelfiltered";
 const std::string SnoopLogger::kBtSnoopLogFilterTypeHeadersFiltered = "snoopheadersfiltered";
 const std::string SnoopLogger::kBtSnoopLogFilterTypeA2dpPktsFiltered = "a2dppktsfiltered";
-const std::string SnoopLogger::kBtSnoopLogFilterTypeProfilesFiltered = "profilesfiltered";
-// Currently supported profiles
+/*
+ * Filters PBAP, MAP and HFP packets (CPBR, CLCC) based on filter mode:
+ *  fullfilter - discard whole packet
+ *  header     - truncate to fixed length
+ *  magic      - fill with a magic string, such as: "PROHIBITED"
+ */
 const std::string SnoopLogger::kBtSnoopLogFilterProfilePbap = "pbap";
 const std::string SnoopLogger::kBtSnoopLogFilterProfileMap = "map";
 // persist.bluetooth.btsnooplogfilter.profiles.pbap / .map
@@ -593,16 +592,14 @@ void SnoopLogger::EnableFilters() {
     for (auto itr = kBtSnoopLogFilterTypes.begin(); itr != kBtSnoopLogFilterTypes.end(); itr++) {
       if (filter_types_prop->find(itr->name) != std::string::npos) {
         itr->enabled = true;
-
-        if (itr->name == kBtSnoopLogFilterTypeProfilesFiltered) {
-          SnoopLogger::EnableProfilesFilters();
-        }
       } else {
         itr->enabled = false;
       }
       LOG_INFO("%s, %d", itr->name.c_str(), itr->enabled);
     }
   }
+
+  SnoopLogger::EnableProfilesFilters();
 }
 
 void SnoopLogger::DisableFilters() {
@@ -610,10 +607,8 @@ void SnoopLogger::DisableFilters() {
   for (auto itr = kBtSnoopLogFilterTypes.begin(); itr != kBtSnoopLogFilterTypes.end(); itr++) {
     itr->enabled = false;
     LOG_DEBUG("%s, %d", itr->name.c_str(), itr->enabled);
-    if (itr->name == kBtSnoopLogFilterTypeProfilesFiltered) {
-      SnoopLogger::DisableProfilesFilters();
-    }
   }
+  SnoopLogger::DisableProfilesFilters();
 }
 
 bool SnoopLogger::IsFilterEnabled(std::string filter_name) {
@@ -622,6 +617,13 @@ bool SnoopLogger::IsFilterEnabled(std::string filter_name) {
   for (auto itr = kBtSnoopLogFilterTypes.begin(); itr != kBtSnoopLogFilterTypes.end(); itr++) {
     if (filter_name == itr->name) {
       return itr->enabled == true;
+    }
+  }
+
+  for (auto itr = kBtSnoopLogFilterProfiles.begin(); itr != kBtSnoopLogFilterProfiles.end();
+       itr++) {
+    if (filter_name == itr->first) {
+      return itr->second != SnoopLogger::kBtSnoopLogFilterProfileModeDisabled;
     }
   }
 
@@ -1048,8 +1050,8 @@ void SnoopLogger::RemoveA2dpMediaChannel(uint16_t conn_handle, uint16_t local_ci
 
 void SnoopLogger::SetRfcommPortOpen(
     uint16_t conn_handle, uint16_t local_cid, uint8_t dlci, uint16_t uuid, bool flow) {
-  if (btsnoop_mode_ != kBtSnoopLogModeFiltered ||
-      !IsFilterEnabled(kBtSnoopLogFilterTypeProfilesFiltered)) {
+  if (btsnoop_mode_ != kBtSnoopLogModeFiltered || (!IsFilterEnabled(kBtSnoopLogFilterProfilePbap) &&
+                                                   !IsFilterEnabled(kBtSnoopLogFilterProfileMap))) {
     return;
   }
 
@@ -1096,8 +1098,8 @@ void SnoopLogger::SetRfcommPortOpen(
 
 void SnoopLogger::SetRfcommPortClose(
     uint16_t handle, uint16_t local_cid, uint8_t dlci, uint16_t uuid) {
-  if (btsnoop_mode_ != kBtSnoopLogModeFiltered ||
-      !IsFilterEnabled(kBtSnoopLogFilterTypeProfilesFiltered)) {
+  if (btsnoop_mode_ != kBtSnoopLogModeFiltered || (!IsFilterEnabled(kBtSnoopLogFilterProfilePbap) &&
+                                                   !IsFilterEnabled(kBtSnoopLogFilterProfileMap))) {
     return;
   }
 
@@ -1121,8 +1123,8 @@ void SnoopLogger::SetRfcommPortClose(
 
 void SnoopLogger::SetL2capChannelOpen(
     uint16_t handle, uint16_t local_cid, uint16_t remote_cid, uint16_t psm, bool flow) {
-  if (btsnoop_mode_ != kBtSnoopLogModeFiltered ||
-      !IsFilterEnabled(kBtSnoopLogFilterTypeProfilesFiltered)) {
+  if (btsnoop_mode_ != kBtSnoopLogModeFiltered || (!IsFilterEnabled(kBtSnoopLogFilterProfilePbap) &&
+                                                   !IsFilterEnabled(kBtSnoopLogFilterProfileMap))) {
     return;
   }
 
@@ -1166,8 +1168,8 @@ void SnoopLogger::SetL2capChannelOpen(
 }
 
 void SnoopLogger::SetL2capChannelClose(uint16_t handle, uint16_t local_cid, uint16_t remote_cid) {
-  if (btsnoop_mode_ != kBtSnoopLogModeFiltered ||
-      !IsFilterEnabled(kBtSnoopLogFilterTypeProfilesFiltered)) {
+  if (btsnoop_mode_ != kBtSnoopLogModeFiltered || (!IsFilterEnabled(kBtSnoopLogFilterProfilePbap) &&
+                                                   !IsFilterEnabled(kBtSnoopLogFilterProfileMap))) {
     return;
   }
 
@@ -1209,7 +1211,8 @@ void SnoopLogger::FilterCapturedPacket(
     CalculateAclPacketLength(length, (uint8_t*)packet.data(), direction == Direction::INCOMING);
   }
 
-  if (IsFilterEnabled(kBtSnoopLogFilterTypeProfilesFiltered)) {
+  if (IsFilterEnabled(kBtSnoopLogFilterProfilePbap) ||
+      IsFilterEnabled(kBtSnoopLogFilterProfileMap)) {
     // If HeadersFiltered applied, do not use ProfilesFiltered
     if (length == ntohl(header.length_original)) {
       if (packet.size() + EXTRA_BUF_SIZE > DEFAULT_PACKET_SIZE) {

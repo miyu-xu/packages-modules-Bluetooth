@@ -160,7 +160,6 @@ class SnoopLogger : public ::bluetooth::Module {
   static const std::string kBtSnoopLogFilterTypeRfcommChannelFiltered;
   static const std::string kBtSnoopLogFilterTypeHeadersFiltered;
   static const std::string kBtSnoopLogFilterTypeA2dpPktsFiltered;
-  static const std::string kBtSnoopLogFilterTypeProfilesFiltered;
 
   static const std::string kBtSnoopLogFilterProfilePbap;
   static const std::string kBtSnoopLogFilterProfileMap;
@@ -178,8 +177,7 @@ class SnoopLogger : public ::bluetooth::Module {
   std::vector<SnoopFilterType> kBtSnoopLogFilterTypes = {
       {kBtSnoopLogFilterTypeRfcommChannelFiltered, false},
       {kBtSnoopLogFilterTypeHeadersFiltered, false},
-      {kBtSnoopLogFilterTypeA2dpPktsFiltered, false},
-      {kBtSnoopLogFilterTypeProfilesFiltered, false}};
+      {kBtSnoopLogFilterTypeA2dpPktsFiltered, false}};
 
   std::unordered_map<std::string, std::string> kBtSnoopLogFilterProfiles = {
       {kBtSnoopLogFilterProfilePbap, kBtSnoopLogFilterProfileModeDisabled},
