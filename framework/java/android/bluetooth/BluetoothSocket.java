@@ -153,6 +153,8 @@ public final class BluetoothSocket implements Closeable {
     private int mMaxTxPacketSize = 0; // The l2cap maximum packet size supported by the peer.
     private int mMaxRxPacketSize = 0; // The l2cap maximum packet size that can be received.
 
+    private long mSocketCreationTime = 0;
+
     private enum SocketState {
         INIT,
         CONNECTED,
@@ -203,6 +205,7 @@ public final class BluetoothSocket implements Closeable {
             BluetoothDevice device, int port, ParcelUuid uuid, boolean mitm, boolean min16DigitPin)
             throws IOException {
         if (VDBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
+        mSocketCreationTime = System.currentTimeMillis();
         if (type == BluetoothSocket.TYPE_RFCOMM && uuid == null && fd == -1
                 && port != BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
             if (port < 1 || port > MAX_RFCOMM_CHANNEL) {
@@ -279,6 +282,7 @@ public final class BluetoothSocket implements Closeable {
         mExcludeSdp = s.mExcludeSdp;
         mAuthMitm = s.mAuthMitm;
         mMin16DigitPin = s.mMin16DigitPin;
+        mSocketCreationTime = s.mSocketCreationTime;
     }
 
     private BluetoothSocket acceptSocket(String remoteAddr) throws IOException {
@@ -421,7 +425,6 @@ public final class BluetoothSocket implements Closeable {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void connect() throws IOException {
         if (mDevice == null) throw new IOException("Connect is called on null device");
-
         try {
             if (mSocketState == SocketState.CLOSED) throw new IOException("socket closed");
             IBluetooth bluetoothProxy =
@@ -451,8 +454,32 @@ public final class BluetoothSocket implements Closeable {
                 }
                 mSocketState = SocketState.CONNECTED;
             }
+            if (mType == BluetoothSocket.TYPE_L2CAP_LE) {
+                long latency = 0;
+                if (getSocketCreationTime() > 0) {
+                    latency = System.currentTimeMillis() - getSocketCreationTime();
+                }
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                        + "Connection completed successfully. Mac Address " + mDevice.getAddress()
+                        + " Port " + mPort
+                        + " latency " + latency
+                        + " Authenticated " + mAuth + " encrypted " + mEncrypt);
+            }
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            if (mType == BluetoothSocket.TYPE_L2CAP_LE) {
+                long latency = 0;
+                if (getSocketCreationTime() > 0) {
+                    latency = System.currentTimeMillis() - getSocketCreationTime();
+                }
+                // TODO more exceptions will be created here soon?
+                Log.d(TAG, "Bluetooth L2CAP CoC Metrics: Android device is client. "
+                        + "Connection completed with failure. Mac Address " + mDevice.getAddress()
+                        + " Port " + mPort
+                        + " Failure: RemoteException"
+                        + " latency " + latency
+                        + " Authenticated " + mAuth + " encrypted " + mEncrypt);
+            }
             throw new IOException("unable to send RPC: " + e.getMessage());
         }
     }
@@ -662,6 +689,10 @@ public final class BluetoothSocket implements Closeable {
     }
 
     /*package */ void removeChannel() {
+    }
+
+    /*package */ long getSocketCreationTime() {
+        return mSocketCreationTime;
     }
 
     /*package */ int getPort() {
