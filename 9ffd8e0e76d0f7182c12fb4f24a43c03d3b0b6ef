@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a5746c2_3fa42b1b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-24T20:36:20Z",
+      "side": 1,
+      "message": "Hiding the device from the UI is not really the information we communicate with this intent, that\u0027s more what the user of this extra will decide to do with it.\n\nMaybe naming should be `EXTRA_IS_SECONDARY_DEVICE` or `EXTRA_IS_CONNECTABLE`? And description to say that there shouldn\u0027t be any connect attempt on this device?",
+      "range": {
+        "startLine": 327,
+        "startChar": 4,
+        "endLine": 339,
+        "endChar": 7
+      },
+      "revId": "9ffd8e0e76d0f7182c12fb4f24a43c03d3b0b6ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
