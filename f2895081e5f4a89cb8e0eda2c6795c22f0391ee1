@@ -51,6 +51,24 @@
       "parentUuid": "2bd70038_e123354a",
       "revId": "f2895081e5f4a89cb8e0eda2c6795c22f0391ee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c00094f_9b53586e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-24T22:41:33Z",
+      "side": 1,
+      "message": "Done. PTAL",
+      "parentUuid": "e6d84266_9b58cfb9",
+      "revId": "f2895081e5f4a89cb8e0eda2c6795c22f0391ee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

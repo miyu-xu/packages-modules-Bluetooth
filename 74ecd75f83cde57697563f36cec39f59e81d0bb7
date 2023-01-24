@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "501aabc6_149df44e",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-24T22:41:33Z",
+      "side": 1,
+      "message": "I\u0027m not sure this was used anywhere during compile/test. This may need a doublecheck.",
+      "revId": "74ecd75f83cde57697563f36cec39f59e81d0bb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1c45d12_33eee313",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-24T22:41:33Z",
+      "side": 1,
+      "message": "Does this need to be reflected in `/system/gd/common/init_flags.fbs`? My guess is no (so I\u0027ll bypass the lint).",
+      "revId": "74ecd75f83cde57697563f36cec39f59e81d0bb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
