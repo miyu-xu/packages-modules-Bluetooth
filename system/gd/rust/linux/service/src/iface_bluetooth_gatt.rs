@@ -155,6 +155,65 @@ impl IBluetoothGattServerCallback for BluetoothGattServerCallbackDBus {
     fn on_service_added(&self, status: GattStatus, service: BluetoothGattService) {
         dbus_generated!()
     }
+
+    #[dbus_method("OnCharacteristicReadRequest")]
+    fn on_characteristic_read_request(
+        &self,
+        _addr: String,
+        _trans_id: i32,
+        _offset: i32,
+        _is_long: bool,
+        _handle: i32,
+    ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnDescriptorReadRequest")]
+    fn on_descriptor_read_request(
+        &self,
+        _addr: String,
+        _trans_id: i32,
+        _offset: i32,
+        _is_long: bool,
+        _handle: i32,
+    ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnCharacteristicWriteRequest")]
+    fn on_characteristic_write_request(
+        &self,
+        _addr: String,
+        _trans_id: i32,
+        _offset: i32,
+        _len: i32,
+        _is_prep: bool,
+        _need_rsp: bool,
+        _handle: i32,
+        _value: Vec<u8>,
+    ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnDescriptorWriteRequest")]
+    fn on_descriptor_write_request(
+        &self,
+        _addr: String,
+        _trans_id: i32,
+        _offset: i32,
+        _len: i32,
+        _is_prep: bool,
+        _need_rsp: bool,
+        _handle: i32,
+        _value: Vec<u8>,
+    ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnExecuteWrite")]
+    fn on_execute_write(&self, _addr: String, _trans_id: i32, _exec_write: bool) {
+        dbus_generated!()
+    }
 }
 
 // Represents Uuid128Bit as an array in D-Bus.
@@ -819,6 +878,19 @@ impl IBluetoothGatt for IBluetoothGattDBus {
 
     #[dbus_method("ClearServices")]
     fn clear_services(&self, server_id: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SendResponse")]
+    fn send_response(
+        &self,
+        server_id: i32,
+        addr: String,
+        request_id: i32,
+        status: GattStatus,
+        offset: i32,
+        value: Vec<u8>,
+    ) -> bool {
         dbus_generated!()
     }
 }
