@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65c21b00_af3ec95d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-24T20:15:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88807373_1ccf8c7a",
+      "range": {
+        "startLine": 585,
+        "startChar": 4,
+        "endLine": 585,
+        "endChar": 39
+      },
+      "revId": "cb905c5f60631cd2443ed58c427cc5e6d6c8d0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf8afa77_f262491d",
@@ -58,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f459a614_aa763eb6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-24T20:15:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf8afa77_f262491d",
+      "revId": "cb905c5f60631cd2443ed58c427cc5e6d6c8d0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b164bdd9_4c8002b8",
@@ -71,6 +113,30 @@
       "writtenOn": "2023-01-24T18:55:36Z",
       "side": 1,
       "message": "You can remove this link, you don\u0027t have to add the type of param in param description",
+      "range": {
+        "startLine": 279,
+        "startChar": 35,
+        "endLine": 279,
+        "endChar": 79
+      },
+      "revId": "cb905c5f60631cd2443ed58c427cc5e6d6c8d0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eef13de4_f41c38b6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-24T20:15:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b164bdd9_4c8002b8",
       "range": {
         "startLine": 279,
         "startChar": 35,
