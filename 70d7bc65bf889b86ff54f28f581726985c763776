@@ -16,6 +16,24 @@
       "message": "presubmit keep failing pts-bot.\nIt\u0027s always a new test failing except for A2DP/SNK/AS/BV-02-I\n@charliebout@google.com, can you confirm we can bypass pts-bot ? Or does this change is breaking something ? (Honnestly I don\u0027t think we are but I would like a double check)",
       "revId": "70d7bc65bf889b86ff54f28f581726985c763776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "341a1407_2d8dd51b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-25T18:16:32Z",
+      "side": 1,
+      "message": "I\u0027m investigating I\u0027ll let you know asap",
+      "parentUuid": "b7c752dd_4d5b99bc",
+      "revId": "70d7bc65bf889b86ff54f28f581726985c763776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
