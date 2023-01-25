@@ -16,6 +16,24 @@
       "message": "Can you add a Test: line?",
       "revId": "ba9476186c0b4e6ac98cb1e419c8faa379104a3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78ca305f_78e2f99c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1226510
+      },
+      "writtenOn": "2023-01-25T22:09:30Z",
+      "side": 1,
+      "message": "Adding Test similar to what was done in https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2376114 .",
+      "parentUuid": "935799c7_8e892cfd",
+      "revId": "ba9476186c0b4e6ac98cb1e419c8faa379104a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
