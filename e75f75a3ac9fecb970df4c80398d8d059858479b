@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39a69bda_f94c422b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-25T18:47:48Z",
+      "side": 1,
+      "message": "nit: should be \"boolean\". I see inconsistencies in this file about that, but the Java type should be boolean. The C++ type is bool.",
+      "revId": "e75f75a3ac9fecb970df4c80398d8d059858479b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a15e9dc_1523104c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-25T18:47:48Z",
+      "side": 1,
+      "message": "I would consider rewording this to be more clear about the different kinds of advertisements. Is this extra value going to be true for any device that is part of a coordinated set and not the lead device?",
+      "revId": "e75f75a3ac9fecb970df4c80398d8d059858479b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
