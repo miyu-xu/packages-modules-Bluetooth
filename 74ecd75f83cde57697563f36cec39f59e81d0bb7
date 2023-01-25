@@ -33,6 +33,24 @@
       "message": "Does this need to be reflected in `/system/gd/common/init_flags.fbs`? My guess is no (so I\u0027ll bypass the lint).",
       "revId": "74ecd75f83cde57697563f36cec39f59e81d0bb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0e7e394_70351b34",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-25T06:19:17Z",
+      "side": 1,
+      "message": "No, you are not adding a new flag, just moving it around.\nBut you don\u0027t need to bypass the lint entirely, you can just add `NO_IFTTT\u003dno change required on flag dump` to the commit message",
+      "parentUuid": "b1c45d12_33eee313",
+      "revId": "74ecd75f83cde57697563f36cec39f59e81d0bb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
