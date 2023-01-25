@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a352fc6_2ea33f92",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-25T17:53:18Z",
+      "side": 1,
+      "message": "Could we call a function here to handle freeing each node, so that it gets freed correctly each time the list changes?",
+      "range": {
+        "startLine": 340,
+        "startChar": 27,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "512438ead524cc4b8517cabcb67cd47279e47119",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7af2c1c2_1aff4b81",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-25T17:53:18Z",
+      "side": 1,
+      "message": "why +1?",
+      "range": {
+        "startLine": 396,
+        "startChar": 37,
+        "endLine": 396,
+        "endChar": 41
+      },
+      "revId": "512438ead524cc4b8517cabcb67cd47279e47119",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
