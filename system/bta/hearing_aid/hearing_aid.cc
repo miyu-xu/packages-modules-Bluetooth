@@ -31,6 +31,7 @@
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_gatt_queue.h"
 #include "bta/include/bta_hearing_aid_api.h"
+#include "bta_le_audio_api.h"
 #include "device/include/controller.h"
 #include "embdrv/g722/g722_enc_dec.h"
 #include "osi/include/compat.h"
@@ -54,6 +55,8 @@ using bluetooth::hearing_aid::ConnectionState;
 // Connection Interval
 constexpr uint16_t MIN_CE_LEN_10MS_CI = 0x0006;
 constexpr uint16_t MIN_CE_LEN_20MS_CI = 0x000C;
+constexpr uint16_t MIN_CE_LEN_20MS_LE_AUDIO_CI = 0x0000;
+constexpr uint16_t MAX_CE_LEN_20MS_CI = 0x000C;
 constexpr uint16_t CONNECTION_INTERVAL_10MS_PARAM = 0x0008;
 constexpr uint16_t CONNECTION_INTERVAL_20MS_PARAM = 0x0010;
 
@@ -242,8 +245,15 @@ class HearingAidImpl : public HearingAid {
  private:
   // Keep track of whether the Audio Service has resumed audio playback
   bool audio_running;
-  // For Testing: overwrite the MIN_CE_LEN during connection parameter updates
-  uint16_t overwrite_min_ce_len;
+  // For Testing: overwrite the MIN_CE_LEN and MAX_CE_LEN during connection
+  // parameter updates
+  int16_t overwrite_min_ce_len;
+  int16_t overwrite_max_ce_len;
+  bool is_le_audio_client_running;
+  const std::string PERSIST_MIN_CE_LEN_NAME =
+      "persist.bluetooth.hearingaidmincelen";
+  const std::string PERSIST_MAX_CE_LEN_NAME =
+      "persist.bluetooth.hearingaidmaxcelen";
 
  public:
   ~HearingAidImpl() override = default;
@@ -251,7 +261,8 @@ class HearingAidImpl : public HearingAid {
   HearingAidImpl(bluetooth::hearing_aid::HearingAidCallbacks* callbacks,
                  Closure initCb)
       : audio_running(false),
-        overwrite_min_ce_len(0),
+        overwrite_min_ce_len(-1),
+        overwrite_max_ce_len(-1),
         gatt_if(0),
         seq_counter(0),
         current_volume(VOLUME_UNKNOWN),
@@ -267,11 +278,19 @@ class HearingAidImpl : public HearingAid {
     }
     LOG_DEBUG("default_data_interval_ms=%u", default_data_interval_ms);
 
-    overwrite_min_ce_len = (uint16_t)osi_property_get_int32(
-        "persist.bluetooth.hearingaidmincelen", 0);
-    if (overwrite_min_ce_len) {
-      LOG_INFO("Overwrites MIN_CE_LEN=%u", overwrite_min_ce_len);
+    overwrite_min_ce_len =
+        (int16_t)osi_property_get_int32(PERSIST_MIN_CE_LEN_NAME.c_str(), -1);
+    if (overwrite_min_ce_len != -1) {
+      LOG_INFO("Overwrites MIN_CE_LEN=%d", overwrite_min_ce_len);
     }
+    overwrite_max_ce_len =
+        (int16_t)osi_property_get_int32(PERSIST_MAX_CE_LEN_NAME.c_str(), -1);
+    if (overwrite_max_ce_len != -1) {
+      LOG_INFO("Overwrites MAX_CE_LEN=%d", overwrite_max_ce_len);
+    }
+
+    is_le_audio_client_running = LeAudioClient::IsLeAudioClientRunning();
+    LOG_INFO("is_le_audio_client_running %d", is_le_audio_client_running);
 
     BTA_GATTC_AppRegister(
         hearingaid_gattc_callback,
@@ -292,6 +311,7 @@ class HearingAidImpl : public HearingAid {
   uint16_t UpdateBleConnParams(const RawAddress& address) {
     /* List of parameters that depends on the chosen Connection Interval */
     uint16_t min_ce_len;
+    uint16_t max_ce_len;
     uint16_t connection_interval;
 
     switch (default_data_interval_ms) {
@@ -300,7 +320,12 @@ class HearingAidImpl : public HearingAid {
         connection_interval = CONNECTION_INTERVAL_10MS_PARAM;
         break;
       case HA_INTERVAL_20_MS:
-        min_ce_len = MIN_CE_LEN_20MS_CI;
+        if (is_le_audio_client_running) {
+          min_ce_len = MIN_CE_LEN_20MS_LE_AUDIO_CI;
+        } else {
+          min_ce_len = MIN_CE_LEN_20MS_CI;
+        }
+        max_ce_len = MAX_CE_LEN_20MS_CI;
         connection_interval = CONNECTION_INTERVAL_20MS_PARAM;
         break;
       default:
@@ -310,14 +335,23 @@ class HearingAidImpl : public HearingAid {
         connection_interval = CONNECTION_INTERVAL_10MS_PARAM;
     }
 
-    if (overwrite_min_ce_len != 0) {
-      LOG_DEBUG("min_ce_len=%u is overwritten to %u", min_ce_len,
+    if (overwrite_min_ce_len != -1) {
+      LOG_DEBUG("min_ce_len=%u is overwritten to %d", min_ce_len,
                 overwrite_min_ce_len);
       min_ce_len = overwrite_min_ce_len;
     }
+    if (overwrite_max_ce_len != -1) {
+      LOG_DEBUG("max_ce_len=%u is overwritten to %d", max_ce_len,
+                overwrite_max_ce_len);
+      max_ce_len = overwrite_max_ce_len;
+    }
 
+    LOG_DEBUG(
+        "UpdateBleConnParams: L2CA_UpdateBleConnParams min_ce_len:%d "
+        "max_ce_len:%d",
+        min_ce_len, max_ce_len);
     L2CA_UpdateBleConnParams(address, connection_interval, connection_interval,
-                             0x000A, 0x0064 /*1s*/, min_ce_len, min_ce_len);
+                             0x000A, 0x0064 /*1s*/, min_ce_len, max_ce_len);
     return connection_interval;
   }
 
