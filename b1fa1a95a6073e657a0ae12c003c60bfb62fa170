@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eb1daee_c7ec7f9e",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2147,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-25T16:52:25Z",
+      "side": 1,
+      "message": "`-1` seems to already be a value that is already \"used\" in the `at_cb.indicator_lookup` array (look at the two lines under the diff). I\u0027m not sure that we should use it as the default value.",
+      "range": {
+        "startLine": 2147,
+        "startChar": 59,
+        "endLine": 2147,
+        "endChar": 62
+      },
+      "revId": "b1fa1a95a6073e657a0ae12c003c60bfb62fa170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca76bf13_d2dd4b96",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2156,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-25T16:52:25Z",
+      "side": 1,
+      "message": "```\nif (position !\u003d \u003cdefault-value, here -1\u003e \u0026\u0026 client_cb-\u003eat_cb.indicator_lookup[i] \u003d\u003d position)\n```\n?\nTo be sure to have the same behavior as the old code ?",
+      "revId": "b1fa1a95a6073e657a0ae12c003c60bfb62fa170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
