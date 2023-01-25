@@ -1,4 +1,4 @@
-use crate::packets::{AttAttributeDataChild, Builder, Serializable};
+use crate::packets::{AttAttributeDataChild, Builder};
 
 pub fn truncate_att_data(data: AttAttributeDataChild, len: usize) -> AttAttributeDataChild {
     match data {
