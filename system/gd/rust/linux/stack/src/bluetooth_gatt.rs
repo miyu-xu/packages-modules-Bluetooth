@@ -194,6 +194,10 @@ struct Server {
     cbid: u32,
     uuid: Uuid128Bit,
     services: Vec<BluetoothGattService>,
+    is_congested: bool,
+
+    // Queued on_notification_sent callback.
+    congestion_queue: Vec<(String, GattStatus)>,
 }
 
 struct Request {
@@ -245,6 +249,13 @@ impl ServerContextMap {
         }
     }
 
+    fn get_mut_by_conn_id(&mut self, conn_id: i32) -> Option<&mut Server> {
+        match self.connections.iter().find(|conn| conn.conn_id == conn_id) {
+            Some(conn) => self.get_mut_by_server_id(conn.server_id),
+            None => None,
+        }
+    }
+
     fn add(&mut self, uuid: &Uuid128Bit, callback: GattServerCallback) {
         if self.get_by_uuid(uuid).is_some() {
             return;
@@ -252,7 +263,14 @@ impl ServerContextMap {
 
         let cbid = self.callbacks.add_callback(callback);
 
-        self.servers.push(Server { id: None, cbid, uuid: uuid.clone(), services: vec![] });
+        self.servers.push(Server {
+            id: None,
+            cbid,
+            uuid: uuid.clone(),
+            services: vec![],
+            is_congested: false,
+            congestion_queue: vec![],
+        });
     }
 
     fn remove(&mut self, id: i32) {
@@ -305,6 +323,13 @@ impl ServerContextMap {
             .iter()
             .find(|conn| conn.server_id == server_id && conn.address == *address)
             .map(|conn| conn.conn_id);
+    }
+
+    fn get_address_from_conn_id(&self, conn_id: i32) -> Option<String> {
+        self.connections
+            .iter()
+            .find(|conn| conn.conn_id == conn_id)
+            .map(|conn| conn.address.clone())
     }
 
     fn add_service(&mut self, server_id: i32, service: BluetoothGattService) {
@@ -620,6 +645,16 @@ pub trait IBluetoothGatt {
         request_id: i32,
         status: GattStatus,
         offset: i32,
+        value: Vec<u8>,
+    ) -> bool;
+
+    /// Sends a notification to a remote device.
+    fn send_notification(
+        &self,
+        server_id: i32,
+        addr: String,
+        handle: i32,
+        confirm: bool,
         value: Vec<u8>,
     ) -> bool;
 }
@@ -971,6 +1006,9 @@ pub trait IBluetoothGattServerCallback: RPCProxy {
 
     /// When a previously prepared write is to be executed.
     fn on_execute_write(&self, _addr: String, _trans_id: i32, _exec_write: bool);
+
+    /// When a notification or indication has been sent to a remote device.
+    fn on_notification_sent(&self, _addr: String, _status: GattStatus);
 }
 
 /// Interface for scanner callbacks to clients, passed to
@@ -2405,6 +2443,30 @@ impl IBluetoothGatt for BluetoothGatt {
 
         true
     }
+
+    fn send_notification(
+        &self,
+        server_id: i32,
+        addr: String,
+        handle: i32,
+        confirm: bool,
+        value: Vec<u8>,
+    ) -> bool {
+        let conn_id = match self.server_context_map.get_conn_id_from_address(server_id, &addr) {
+            None => return false,
+            Some(id) => id,
+        };
+
+        self.gatt.as_ref().unwrap().lock().unwrap().server.send_indication(
+            server_id,
+            handle,
+            conn_id,
+            confirm as i32,
+            value.as_ref(),
+        );
+
+        true
+    }
 }
 
 #[btif_callbacks_dispatcher(dispatch_gatt_client_callbacks, GattClientCallbacks)]
@@ -3024,6 +3086,12 @@ pub(crate) trait BtifGattServerCallbacks {
         addr: RawAddress,
         exec_write: i32,
     );
+
+    #[btif_callback(IndicationSent)]
+    fn indication_sent_cb(&mut self, conn_id: i32, status: GattStatus);
+
+    #[btif_callback(Congestion)]
+    fn congestion_cb(&mut self, conn_id: i32, congested: bool);
 }
 
 impl BtifGattServerCallbacks for BluetoothGatt {
@@ -3245,6 +3313,63 @@ impl BtifGattServerCallbacks for BluetoothGatt {
             }
             None => {
                 warn!("Warning: No callback found for conn_id {}", conn_id);
+            }
+        }
+    }
+
+    fn indication_sent_cb(&mut self, conn_id: i32, mut status: GattStatus) {
+        let address = self.server_context_map.get_address_from_conn_id(conn_id);
+        if address.is_none() {
+            return;
+        }
+
+        let server = self.server_context_map.get_mut_by_conn_id(conn_id);
+        if server.is_none() {
+            return;
+        }
+
+        match (server, address) {
+            (Some(s), Some(addr)) => {
+                if s.is_congested {
+                    if status == GattStatus::Congested {
+                        status = GattStatus::Success;
+                    }
+
+                    s.congestion_queue.push((addr.to_string(), status));
+                    return;
+                }
+
+                let cbid = s.cbid;
+                self.server_context_map.get_callback_from_callback_id(cbid).and_then(
+                    |cb: &mut GattServerCallback| {
+                        cb.on_notification_sent(addr.to_string(), status);
+                        Some(())
+                    },
+                );
+            }
+            _ => (),
+        };
+    }
+
+    fn congestion_cb(&mut self, conn_id: i32, congested: bool) {
+        if let Some(mut server) = self.server_context_map.get_mut_by_conn_id(conn_id) {
+            server.is_congested = congested;
+            if !server.is_congested {
+                let cbid = server.cbid;
+                let mut congestion_queue: Vec<(String, GattStatus)> = vec![];
+                server.congestion_queue.retain(|v| {
+                    congestion_queue.push(v.clone());
+                    false
+                });
+
+                self.server_context_map.get_callback_from_callback_id(cbid).and_then(
+                    |cb: &mut GattServerCallback| {
+                        for callback in congestion_queue.iter() {
+                            cb.on_notification_sent(callback.0.clone(), callback.1);
+                        }
+                        Some(())
+                    },
+                );
             }
         }
     }
