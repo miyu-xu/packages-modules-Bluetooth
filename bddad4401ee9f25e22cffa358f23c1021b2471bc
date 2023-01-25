@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4a58854_2195f151",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4703,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-25T19:29:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eec79e6a_67c21310",
+      "range": {
+        "startLine": 4703,
+        "startChar": 37,
+        "endLine": 4703,
+        "endChar": 59
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e62ee43_027ef4f8",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "803f56d0_3222c67e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3319,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-25T19:29:50Z",
+      "side": 1,
+      "message": "It should be fine. It\u0027s obviously the weird behavior from API caller",
+      "parentUuid": "2e62ee43_027ef4f8",
+      "range": {
+        "startLine": 3319,
+        "startChar": 12,
+        "endLine": 3319,
+        "endChar": 71
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99cdfbf4_612b4041",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-25T18:14:10Z",
       "side": 1,
       "message": "yes, same as create insecure one",
+      "range": {
+        "startLine": 3332,
+        "startChar": 15,
+        "endLine": 3332,
+        "endChar": 62
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c10b5e_30bb40f5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3332,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-25T19:29:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "99cdfbf4_612b4041",
       "range": {
         "startLine": 3332,
         "startChar": 15,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5332932_fd4eb84f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3337,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-25T19:29:50Z",
+      "side": 1,
+      "message": "Then how to get the value here? Since it\u0027s in catch blocker, I assume I can\u0027t use bluetoothSocket.",
+      "parentUuid": "a4e7639a_7f10a16d",
+      "range": {
+        "startLine": 3337,
+        "startChar": 22,
+        "endLine": 3337,
+        "endChar": 69
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02517310_a2d52cc3",
         "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
         "patchSetId": 1
@@ -106,6 +202,30 @@
       "writtenOn": "2023-01-25T18:14:10Z",
       "side": 1,
       "message": "on server side, we are not planning to add exception reason from native layer immediately right now as there are not much usage, same for `close` method",
+      "range": {
+        "startLine": 183,
+        "startChar": 19,
+        "endLine": 183,
+        "endChar": 66
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf89b136_ca10d393",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-25T19:29:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "02517310_a2d52cc3",
       "range": {
         "startLine": 183,
         "startChar": 19,
@@ -135,6 +255,47 @@
         "endLine": 187,
         "endChar": 64
       },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7e0caf_b561de9f",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-25T19:29:50Z",
+      "side": 1,
+      "message": "If it throws exception at line 537 in your link, then getRemoteDevice() could give a null object?",
+      "parentUuid": "78dec76a_70ccc3ad",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 64
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70880663_8fc6fbae",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-25T19:29:50Z",
+      "side": 1,
+      "message": "Is this TODO accurate?",
       "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
