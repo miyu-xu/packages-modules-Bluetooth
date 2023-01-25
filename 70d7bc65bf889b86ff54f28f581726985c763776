@@ -34,6 +34,24 @@
       "parentUuid": "b7c752dd_4d5b99bc",
       "revId": "70d7bc65bf889b86ff54f28f581726985c763776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80827f2e_d01dc7cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-25T18:28:42Z",
+      "side": 1,
+      "message": "pts-bot is stable on aosp-master:\nhttps://atp.googleplex.com/tests/v2/pandora-prod-team/pts-bot?tabId\u003dtest_run\u0026offset\u003d0\u0026branchName\u003daosp-master\n\nWe got some known flakiness on the avrcp tests but we removed them until we find out the root cause. It could be worth rebase and retrying the presubmit. If it\u0027s happening again then you can have a try with a local setup.",
+      "parentUuid": "341a1407_2d8dd51b",
+      "revId": "70d7bc65bf889b86ff54f28f581726985c763776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
