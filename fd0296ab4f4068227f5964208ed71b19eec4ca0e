@@ -185,6 +185,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f580746_accc7b70",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9377e16_5c30a55f",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f20e456_a96fd18e",
@@ -198,6 +216,30 @@
       "writtenOn": "2023-01-06T07:15:21Z",
       "side": 1,
       "message": "We should check if tds_data_filter supported or not as well",
+      "range": {
+        "startLine": 1485,
+        "startChar": 4,
+        "endLine": 1485,
+        "endChar": 72
+      },
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd63524f_4c9c5d6e",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1485,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f20e456_a96fd18e",
       "range": {
         "startLine": 1485,
         "startChar": 4,
