@@ -105,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "217806c9_b8d92ca0",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "204d45c0_2e145600",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "025d17c5_ae489987",
@@ -118,6 +136,30 @@
       "writtenOn": "2023-01-05T19:55:09Z",
       "side": 1,
       "message": "Can you move the nullable to be just before the `public byte[]` ?",
+      "range": {
+        "startLine": 471,
+        "startChar": 5,
+        "endLine": 471,
+        "endChar": 13
+      },
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19a50cb4_71212475",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "025d17c5_ae489987",
       "range": {
         "startLine": 471,
         "startChar": 5,
@@ -158,6 +200,30 @@
       "writtenOn": "2023-01-06T07:15:21Z",
       "side": 1,
       "message": "tds_data_filter",
+      "range": {
+        "startLine": 5126,
+        "startChar": 2,
+        "endLine": 5126,
+        "endChar": 16
+      },
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86e02e43_1d8352e6",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5126,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "012ff175_9f743808",
       "range": {
         "startLine": 5126,
         "startChar": 2,

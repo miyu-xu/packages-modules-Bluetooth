@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ab28f46_2279ce0e",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08bddc49_96ad9147",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 42
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fab3b0d7_b852867a",
@@ -237,6 +261,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0fa85c5_16aea373",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "883f92c6_ab238cc4",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba6e57ec_1b64dd65",
@@ -250,6 +298,30 @@
       "writtenOn": "2022-12-15T19:47:29Z",
       "side": 1,
       "message": "`@NonNull`. The method is either Throwing or returning `this`, I don\u0027t think it can be null",
+      "range": {
+        "startLine": 1094,
+        "startChar": 16,
+        "endLine": 1094,
+        "endChar": 24
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc6b1562_62528fe7",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-25T15:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba6e57ec_1b64dd65",
       "range": {
         "startLine": 1094,
         "startChar": 16,
