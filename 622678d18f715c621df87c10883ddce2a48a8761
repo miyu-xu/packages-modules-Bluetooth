@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64532130_f8995ad0",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-25T18:35:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e515a32_ec3bc0b2",
+      "range": {
+        "startLine": 61,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 14
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08bddc49_96ad9147",
@@ -345,6 +369,30 @@
       "writtenOn": "2022-12-15T19:47:29Z",
       "side": 1,
       "message": "if `wifiNanHash` is `NonNull`, we should always check for it being nonNull, not only when the `orgID !\u003d WIFI_ALLIAN_ORD_ID`.\nWe could use `mWifiNanHash \u003d Objects.requireNonNull(wifiNanHash)`",
+      "range": {
+        "startLine": 1095,
+        "startChar": 35,
+        "endLine": 1095,
+        "endChar": 42
+      },
+      "revId": "622678d18f715c621df87c10883ddce2a48a8761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fa153dc_dcf4b8b2",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-25T18:35:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4b2bd7c7_108d7bbd",
       "range": {
         "startLine": 1095,
         "startChar": 35,

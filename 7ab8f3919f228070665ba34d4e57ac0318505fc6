@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c36c92_0615b71c",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-25T18:35:52Z",
+      "side": 1,
+      "message": "typo: \"specific\"",
+      "range": {
+        "startLine": 41,
+        "startChar": 33,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "7ab8f3919f228070665ba34d4e57ac0318505fc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d03df5d_e1f60fa7",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-25T18:35:52Z",
+      "side": 1,
+      "message": "Typo: \"compatibility\"",
+      "range": {
+        "startLine": 1049,
+        "startChar": 24,
+        "endLine": 1049,
+        "endChar": 35
+      },
+      "revId": "7ab8f3919f228070665ba34d4e57ac0318505fc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
