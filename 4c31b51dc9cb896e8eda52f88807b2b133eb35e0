@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe1a307_91fe8331",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-25T22:24:01Z",
+      "side": 1,
+      "message": "nit: you shouldn\u0027t need to define the type as this can be inferred by the compiler.",
+      "range": {
+        "startLine": 297,
+        "startChar": 51,
+        "endLine": 297,
+        "endChar": 64
+      },
+      "revId": "4c31b51dc9cb896e8eda52f88807b2b133eb35e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3691595_66e79594",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-25T22:24:01Z",
+      "side": 1,
+      "message": "since this is a mutable operation and does not return anything, prefer to express this imperatively instead of functional:\n```\nif let Some(s) \u003d self.get_mut_by_server_id(server_id) {\n...\n```",
+      "range": {
+        "startLine": 297,
+        "startChar": 45,
+        "endLine": 297,
+        "endChar": 48
+      },
+      "revId": "4c31b51dc9cb896e8eda52f88807b2b133eb35e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b1a037_d1caa714",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-25T22:24:01Z",
+      "side": 1,
+      "message": "nit: If there is no action for `None` case, prefer `if let Some...`. Otherwise add TODO for plan what\u0027s in `None` case.",
+      "revId": "4c31b51dc9cb896e8eda52f88807b2b133eb35e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ad30dad_57bb6c3e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2264,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-25T22:24:01Z",
+      "side": 1,
+      "message": "nit: prefer `if let Some` if `None` case is no-op.",
+      "revId": "4c31b51dc9cb896e8eda52f88807b2b133eb35e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
