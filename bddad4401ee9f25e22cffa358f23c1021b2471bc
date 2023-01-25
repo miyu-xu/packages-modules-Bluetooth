@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec79e6a_67c21310",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4703,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-25T18:14:10Z",
+      "side": 1,
+      "message": "yes, `private int mPort;  /* RFCOMM channel or L2CAP psm */` [psm is port for bluetoothsocket](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;l\u003d145;drc\u003d2f4da74c35c43e5f5bb86041eb06e9f7e621e7bd;bpv\u003d1;bpt\u003d1)",
+      "range": {
+        "startLine": 4703,
+        "startChar": 37,
+        "endLine": 4703,
+        "endChar": 59
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e62ee43_027ef4f8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3319,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-25T18:14:10Z",
+      "side": 1,
+      "message": "do we want to capture the error here?",
+      "range": {
+        "startLine": 3319,
+        "startChar": 12,
+        "endLine": 3319,
+        "endChar": 71
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99cdfbf4_612b4041",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3332,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-25T18:14:10Z",
+      "side": 1,
+      "message": "yes, same as create insecure one",
+      "range": {
+        "startLine": 3332,
+        "startChar": 15,
+        "endLine": 3332,
+        "endChar": 62
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4e7639a_7f10a16d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3337,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-25T18:14:10Z",
+      "side": 1,
+      "message": "depends on the IOException, might be not encrypted, so not always true here",
+      "range": {
+        "startLine": 3337,
+        "startChar": 22,
+        "endLine": 3337,
+        "endChar": 69
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02517310_a2d52cc3",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-25T18:14:10Z",
+      "side": 1,
+      "message": "on server side, we are not planning to add exception reason from native layer immediately right now as there are not much usage, same for `close` method",
+      "range": {
+        "startLine": 183,
+        "startChar": 19,
+        "endLine": 183,
+        "endChar": 66
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78dec76a_70ccc3ad",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-25T18:14:10Z",
+      "side": 1,
+      "message": "in the `accept` method [link](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003d2f4da74c35c43e5f5bb86041eb06e9f7e621e7bd;bpv\u003d1;bpt\u003d1;l\u003d534?q\u003dbluetoothsocket\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master), it gets remoteAddress, so I think it wont\u0027t throw exception, but it would be nice to check if it is null",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 64
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
