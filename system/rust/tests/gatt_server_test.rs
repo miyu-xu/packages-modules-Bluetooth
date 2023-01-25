@@ -4,7 +4,10 @@ use bluetooth_core::{
     gatt::{
         self,
         ids::{AttHandle, ConnectionId, ServerId, TransportIndex},
-        mocks::mock_transport::MockAttTransport,
+        mocks::{
+            mock_datastore::{MockDatastore, MockDatastoreEvents},
+            mock_transport::MockAttTransport,
+        },
         server::{
             gatt_database::{
                 AttPermissions, AttUuid, GattCharacteristicWithHandle, GattServiceWithHandle,
@@ -13,8 +16,8 @@ use bluetooth_core::{
         },
     },
     packets::{
-        AttBuilder, AttOpcode, AttReadRequestBuilder, AttReadResponseBuilder,
-        AttServiceDeclarationValueBuilder,
+        AttAttributeDataChild, AttBuilder, AttOpcode, AttReadRequestBuilder,
+        AttReadResponseBuilder, AttServiceDeclarationValueBuilder,
     },
     utils::packet::{build_att_data, build_att_view_or_crash},
 };
@@ -32,12 +35,16 @@ const HANDLE_2: AttHandle = AttHandle(5);
 const UUID_1: AttUuid = AttUuid::new([1, 2, 0, 0]);
 const UUID_2: AttUuid = AttUuid::new([1, 3, 0, 0]);
 
-fn start_gatt_module() -> (gatt::server::GattModule, UnboundedReceiver<(TransportIndex, AttBuilder)>)
-{
+fn start_gatt_module() -> (
+    gatt::server::GattModule,
+    UnboundedReceiver<MockDatastoreEvents>,
+    UnboundedReceiver<(TransportIndex, AttBuilder)>,
+) {
+    let (datastore, data_rx) = MockDatastore::new();
     let (transport, transport_rx) = MockAttTransport::new();
-    let gatt = GattModule::new(Rc::new(transport));
+    let gatt = GattModule::new(Rc::new(datastore), Rc::new(transport));
 
-    (gatt, transport_rx)
+    (gatt, data_rx, transport_rx)
 }
 
 fn create_server_and_open_connection(gatt: &mut GattModule) {
@@ -59,12 +66,37 @@ fn create_server_and_open_connection(gatt: &mut GattModule) {
 }
 
 #[test]
+fn test_connection_creation() {
+    start_test(async move {
+        // arrange
+        let (mut gatt, mut data_rx, _) = start_gatt_module();
+
+        gatt.open_gatt_server(SERVER_ID);
+        gatt.register_gatt_service(
+            SERVER_ID,
+            GattServiceWithHandle { handle: HANDLE_1, uuid: UUID_1, characteristics: vec![] },
+        )
+        .unwrap();
+
+        // act
+        gatt.on_le_connect(CONN_ID);
+
+        // assert
+        assert!(matches!(
+            data_rx.recv().await.unwrap(),
+            MockDatastoreEvents::AddConnection(CONN_ID)
+        ));
+    })
+}
+
+#[test]
 fn test_service_read() {
     start_test(async move {
         // arrange
-        let (mut gatt, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
 
         create_server_and_open_connection(&mut gatt);
+        data_rx.recv().await.unwrap();
 
         // act
         gatt.handle_packet(
@@ -86,6 +118,45 @@ fn test_service_read() {
                     })
                 }
                 .into()
+            }
+        );
+    })
+}
+
+#[test]
+fn test_characteristic_read() {
+    start_test(async move {
+        // arrange
+        let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
+
+        let data = AttAttributeDataChild::RawData(vec![5, 6, 7, 8].into_boxed_slice());
+
+        create_server_and_open_connection(&mut gatt);
+        data_rx.recv().await.unwrap();
+
+        // act
+        gatt.handle_packet(
+            CONN_ID,
+            build_att_view_or_crash(AttReadRequestBuilder { attribute_handle: HANDLE_2.into() })
+                .view(),
+        );
+        let tx = if let MockDatastoreEvents::ReadCharacteristic(CONN_ID, HANDLE_2, tx) =
+            data_rx.recv().await.unwrap()
+        {
+            tx
+        } else {
+            unreachable!()
+        };
+        tx.send(Ok(data.clone())).unwrap();
+        let (tcb_idx, resp) = transport_rx.recv().await.unwrap();
+
+        // assert
+        assert_eq!(tcb_idx, TCB_IDX);
+        assert_eq!(
+            resp,
+            AttBuilder {
+                opcode: AttOpcode::READ_RESPONSE,
+                _child_: AttReadResponseBuilder { value: build_att_data(data) }.into()
             }
         );
     })
