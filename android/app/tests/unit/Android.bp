@@ -30,6 +30,12 @@ java_defaults {
         "truth-prebuilt",
         "PlatformProperties",
         "framework-bluetooth-pre-jarjar",
+        "grpc-java-lite",
+        "grpc-java-okhttp-client-lite",
+        "opencensus-java-api",
+        "opencensus-java-contrib-grpc-metrics",
+        "pandora_experimental-grpc-java",
+        "pandora_experimental-proto-java",
     ],
 
     asset_dirs: ["src/com/android/bluetooth/btservice/storage/schemas"],
