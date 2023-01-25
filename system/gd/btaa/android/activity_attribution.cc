@@ -102,8 +102,8 @@ struct ActivityAttribution::impl {
 
     Status register_callback_status;
     bool is_register_successful = false;
-    auto control_service =
-        ISuspendControlService::fromBinder(SpAIBinder(AServiceManager_getService("suspend_control")));
+    auto control_service = ISuspendControlService::fromBinder(
+        SpAIBinder(AServiceManager_waitForService("suspend_control")));
     if (!control_service) {
       LOG_ERROR("Fail to obtain suspend_control");
       return;

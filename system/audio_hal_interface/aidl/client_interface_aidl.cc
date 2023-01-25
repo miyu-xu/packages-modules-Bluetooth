@@ -72,7 +72,7 @@ BluetoothAudioClientInterface::GetAudioCapabilities(SessionType session_type) {
     return capabilities;
   }
   auto provider_factory = IBluetoothAudioProviderFactory::fromBinder(
-      ::ndk::SpAIBinder(AServiceManager_getService(
+      ::ndk::SpAIBinder(AServiceManager_waitForService(
           kDefaultAudioProviderFactoryInterface.c_str())));
 
   if (provider_factory == nullptr) {
@@ -100,7 +100,7 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
     return;
   }
   auto provider_factory = IBluetoothAudioProviderFactory::fromBinder(
-      ::ndk::SpAIBinder(AServiceManager_getService(
+      ::ndk::SpAIBinder(AServiceManager_waitForService(
           kDefaultAudioProviderFactoryInterface.c_str())));
 
   if (provider_factory == nullptr) {
