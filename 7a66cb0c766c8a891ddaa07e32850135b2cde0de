@@ -22,6 +22,30 @@
       },
       "revId": "7a66cb0c766c8a891ddaa07e32850135b2cde0de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d5d3508_bdf2c54c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2023-01-25T00:49:07Z",
+      "side": 1,
+      "message": "I agree that `TestHeadsetClientStateMachine` makes more sense. Thank you!",
+      "parentUuid": "541a9337_987370ed",
+      "range": {
+        "startLine": 1400,
+        "startChar": 24,
+        "endLine": 1400,
+        "endChar": 56
+      },
+      "revId": "7a66cb0c766c8a891ddaa07e32850135b2cde0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
