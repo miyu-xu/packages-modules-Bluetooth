@@ -22,6 +22,8 @@ unsafe impl cxx::ExternType for RawAddress {
     type Kind = cxx::kind::Trivial;
 }
 
+unsafe impl Send for GattServerCallbacks {}
+
 #[allow(dead_code, missing_docs)]
 #[cxx::bridge]
 mod inner {
@@ -39,8 +41,14 @@ mod inner {
         fn get_128_be_uuid_bytes(uuid: &Uuid) -> &[u8];
     }
 
+    #[namespace = "bluetooth::gatt"]
+    extern "C++" {
+        include!("src/gatt/ffi/gatt_shim.h");
+        type GattServerCallbacks = crate::gatt::GattServerCallbacks;
+    }
+
     #[namespace = "bluetooth::rust_shim"]
     extern "Rust" {
-        fn init();
+        fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>);
     }
 }

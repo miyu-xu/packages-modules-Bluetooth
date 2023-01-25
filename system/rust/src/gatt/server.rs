@@ -24,20 +24,21 @@ use self::{
     server_connection::GattServerConnection,
 };
 
-use super::{channel::AttTransport, ids::AttHandle};
+use super::{callbacks::GattDatastore, channel::AttTransport, ids::AttHandle};
 use log::{error, info};
 
 #[allow(missing_docs)]
 pub struct GattModule {
-    servers: HashMap<ConnectionId, Rc<GattServerConnection<AttDatabaseImpl>>>,
-    databases: HashMap<ServerId, Rc<GattDatabase>>,
+    servers: HashMap<ConnectionId, Rc<GattServerConnection<AttDatabaseImpl<dyn GattDatastore>>>>,
+    databases: HashMap<ServerId, Rc<GattDatabase<dyn GattDatastore>>>,
+    datastore: Rc<dyn GattDatastore>,
     transport: Rc<dyn AttTransport>,
 }
 
 impl GattModule {
-    /// Constructor.
-    pub fn new(transport: Rc<dyn AttTransport>) -> Self {
-        Self { servers: HashMap::new(), databases: HashMap::new(), transport }
+    /// Constructor. Uses `datastore` to read/write characteristics.
+    pub fn new(datastore: Rc<dyn GattDatastore>, transport: Rc<dyn AttTransport>) -> Self {
+        Self { servers: HashMap::new(), databases: HashMap::new(), datastore, transport }
     }
 
     /// Handle LE link connect
@@ -45,10 +46,12 @@ impl GattModule {
         info!("connected on conn_id {conn_id:?}");
         let database = self.databases.get(&conn_id.get_server_id());
         if let Some(database) = database {
+            self.datastore.add_connection(conn_id);
+
             let transport = self.transport.clone();
             self.servers.insert(
                 conn_id,
-                GattServerConnection::new(database.get_att_database(), move |packet| {
+                GattServerConnection::new(database.get_att_database(conn_id), move |packet| {
                     transport.send_packet(conn_id.get_tcb_idx(), packet)
                 }),
             );
@@ -61,6 +64,7 @@ impl GattModule {
     pub fn on_le_disconnect(&mut self, conn_id: ConnectionId) {
         info!("disconnected conn_id {conn_id:?}");
         self.servers.remove(&conn_id);
+        self.datastore.remove_connection(conn_id);
     }
 
     /// Handle an incoming ATT packet
@@ -97,7 +101,8 @@ impl GattModule {
 
     /// Open a GATT server
     pub fn open_gatt_server(&mut self, server_id: ServerId) {
-        let old = self.databases.insert(server_id, GattDatabase::new().into());
+        let old =
+            self.databases.insert(server_id, GattDatabase::new(self.datastore.clone()).into());
         if old.is_some() {
             error!("GATT server {server_id:?} already exists but was re-opened, clobbering old value...")
         }
