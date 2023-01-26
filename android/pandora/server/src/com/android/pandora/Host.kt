@@ -43,6 +43,7 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
+import java.nio.ByteBuffer
 import java.time.Duration
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
@@ -269,17 +270,20 @@ class Host(
     responseObserver: StreamObserver<WaitLEConnectionResponse>
   ) {
     grpcUnary(scope, responseObserver) {
-      if (request.getAddressCase() != WaitLEConnectionRequest.AddressCase.PUBLIC) {
-        Log.e(TAG, "waitLEConnection: public address not provided")
-        throw Status.UNKNOWN.asException()
-      }
-
-      val bluetoothDevice =
-        if (!request.public.isEmpty()) {
-          request.public.toBluetoothDevice(bluetoothAdapter)
-        } else {
-          null
+      val (address, type) =
+        when (request.getAddressCase()!!) {
+          WaitLEConnectionRequest.AddressCase.PUBLIC ->
+            Pair(request.public, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+          WaitLEConnectionRequest.AddressCase.RANDOM ->
+            Pair(request.random, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+          WaitLEConnectionRequest.AddressCase.PUBLIC_IDENTITY ->
+            Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+          WaitLEConnectionRequest.AddressCase.RANDOM_STATIC_IDENTITY ->
+            Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+          WaitLEConnectionRequest.AddressCase.ADDRESS_NOT_SET -> throw Status.UNKNOWN.asException()
         }
+      val bluetoothDevice =
+        bluetoothAdapter.getRemoteLeDevice(address.decodeAsMacAddressToString(), type)
 
       Log.i(TAG, "waitLEConnection: device=$bluetoothDevice")
 
@@ -386,13 +390,27 @@ class Host(
     responseObserver: StreamObserver<ConnectLEResponse>
   ) {
     grpcUnary<ConnectLEResponse>(scope, responseObserver) {
-      if (request.getAddressCase() != ConnectLERequest.AddressCase.PUBLIC) {
-        Log.e(TAG, "connectLE: public address not provided")
+      if (
+        request.ownAddressType != OwnAddressType.RANDOM &&
+          request.ownAddressType != OwnAddressType.RESOLVABLE_OR_RANDOM
+      ) {
+        Log.e(TAG, "connectLE: Unsupported OwnAddressType")
         throw Status.UNKNOWN.asException()
       }
-      val address = request.public.decodeAsMacAddressToString()
+      val (address, type) =
+        when (request.getAddressCase()!!) {
+          ConnectLERequest.AddressCase.PUBLIC ->
+            Pair(request.public, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+          ConnectLERequest.AddressCase.RANDOM ->
+            Pair(request.random, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+          ConnectLERequest.AddressCase.PUBLIC_IDENTITY ->
+            Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+          ConnectLERequest.AddressCase.RANDOM_STATIC_IDENTITY ->
+            Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+          ConnectLERequest.AddressCase.ADDRESS_NOT_SET -> throw Status.UNKNOWN.asException()
+        }
       Log.i(TAG, "connectLE: $address")
-      val bluetoothDevice = scanLeDevice(address)!!
+      val bluetoothDevice = scanLeDevice(address.decodeAsMacAddressToString(), type)!!
       GattInstance(bluetoothDevice, TRANSPORT_LE, context)
         .waitForState(BluetoothProfile.STATE_CONNECTED)
       ConnectLEResponse.newBuilder()
@@ -407,13 +425,24 @@ class Host(
   ) {
     grpcUnary<GetLEConnectionResponse>(scope, responseObserver) {
       if (request.getAddressCase() != GetLEConnectionRequest.AddressCase.PUBLIC) {
-        Log.e(TAG, "connectLE: public address not provided")
+        Log.e(TAG, "getLEConnection: public address not provided")
         throw Status.UNKNOWN.asException()
       }
-      val address = request.public.decodeAsMacAddressToString()
+      val (address, type) =
+        when (request.getAddressCase()!!) {
+          GetLEConnectionRequest.AddressCase.PUBLIC ->
+            Pair(request.public, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+          GetLEConnectionRequest.AddressCase.RANDOM ->
+            Pair(request.random, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+          GetLEConnectionRequest.AddressCase.PUBLIC_IDENTITY ->
+            Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+          GetLEConnectionRequest.AddressCase.RANDOM_STATIC_IDENTITY ->
+            Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+          GetLEConnectionRequest.AddressCase.ADDRESS_NOT_SET -> throw Status.UNKNOWN.asException()
+        }
       Log.i(TAG, "getLEConnection: $address")
       val bluetoothDevice =
-        bluetoothAdapter.getRemoteLeDevice(address, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+        bluetoothAdapter.getRemoteLeDevice(address.decodeAsMacAddressToString(), type)
       if (bluetoothDevice.isConnected()) {
         GetLEConnectionResponse.newBuilder()
           .setConnection(bluetoothDevice.toConnection(TRANSPORT_LE))
@@ -425,7 +454,7 @@ class Host(
     }
   }
 
-  private fun scanLeDevice(address: String): BluetoothDevice? {
+  private fun scanLeDevice(address: String, addressType: Int): BluetoothDevice? {
     Log.d(TAG, "scanLeDevice")
     var bluetoothDevice: BluetoothDevice? = null
     runBlocking {
@@ -440,7 +469,8 @@ class Host(
             override fun onScanResult(callbackType: Int, result: ScanResult) {
               super.onScanResult(callbackType, result)
               val deviceAddress = result.device.address
-              if (deviceAddress == address) {
+              val deviceAddressType = result.device.addressType
+              if (deviceAddress == address && deviceAddressType == addressType) {
                 Log.d(TAG, "found device address: $deviceAddress")
                 trySendBlocking(result.device)
               }
@@ -590,6 +620,18 @@ class Host(
                   else -> DiscoverabilityMode.NOT_DISCOVERABLE
                 }
               dataTypesBuilder.setLeDiscoverabilityMode(mode)
+              var manufacturerData = ByteBuffer.allocate(32)
+              val manufacteurSpecificDatas = scanRecord.getManufacturerSpecificData()
+              for (i in 0..manufacteurSpecificDatas.size() - 1) {
+                val id = manufacteurSpecificDatas.keyAt(i)
+                manufacturerData
+                  .put(id.toByte())
+                  .put(id.shr(8).toByte())
+                  .put(manufacteurSpecificDatas.get(id))
+              }
+              dataTypesBuilder.setManufacturerSpecificData(
+                ByteString.copyFrom(manufacturerData.array())
+              )
               val primaryPhy =
                 when (result.getPrimaryPhy()) {
                   BluetoothDevice.PHY_LE_1M -> PrimaryPhy.PRIMARY_1M
