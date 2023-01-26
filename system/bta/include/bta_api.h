@@ -30,7 +30,7 @@
 #include <cstdint>
 #include <vector>
 
-#include "base/callback.h"
+#include "base/functional/callback.h"
 #include "bt_target.h"  // Must be first to define build configuration
 #include "osi/include/log.h"
 #include "stack/include/bt_octets.h"
