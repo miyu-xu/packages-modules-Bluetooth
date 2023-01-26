@@ -40,14 +40,26 @@
 
 void gatt_init(void) { inc_func_call_count(__func__); }
 bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
+<<<<<<< PATCH SET (281f1a Add support to connect LE Gatt with address type (2/2))
+                      tBLE_ADDR_TYPE addr_type, tBT_TRANSPORT transport,
+                      int8_t initiating_phys) {
+  mock_function_count_map[__func__]++;
+=======
                       tBT_TRANSPORT transport, int8_t initiating_phys) {
   inc_func_call_count(__func__);
+>>>>>>> BASE      (c2de6d Add support to connect LE Gatt with address type (1/2))
   return false;
 }
 bool gatt_connect(const RawAddress& rem_bda, tGATT_TCB* p_tcb,
+<<<<<<< PATCH SET (281f1a Add support to connect LE Gatt with address type (2/2))
+                  tBLE_ADDR_TYPE addr_type, tBT_TRANSPORT transport,
+                  uint8_t initiating_phys, tGATT_IF gatt_if) {
+  mock_function_count_map[__func__]++;
+=======
                   tBT_TRANSPORT transport, uint8_t initiating_phys,
                   tGATT_IF gatt_if) {
   inc_func_call_count(__func__);
+>>>>>>> BASE      (c2de6d Add support to connect LE Gatt with address type (1/2))
   return false;
 }
 bool gatt_disconnect(tGATT_TCB* p_tcb) {

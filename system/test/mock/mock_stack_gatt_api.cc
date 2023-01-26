@@ -172,11 +172,18 @@ bool GATT_CancelConnect(tGATT_IF gatt_if, const RawAddress& bd_addr,
                                                         is_direct);
 }
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
+<<<<<<< PATCH SET (281f1a Add support to connect LE Gatt with address type (2/2))
+                  tBLE_ADDR_TYPE addr_type, tBTM_BLE_CONN_TYPE connection_type,
+                  tBT_TRANSPORT transport, bool opportunistic,
+                  uint8_t initiating_phys) {
+  mock_function_count_map[__func__]++;
+=======
                   tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
                   bool opportunistic, uint8_t initiating_phys) {
   inc_func_call_count(__func__);
+>>>>>>> BASE      (c2de6d Add support to connect LE Gatt with address type (1/2))
   return test::mock::stack_gatt_api::GATT_Connect(
-      gatt_if, bd_addr, connection_type, transport, opportunistic,
+      gatt_if, bd_addr, addr_type, connection_type, transport, opportunistic,
       initiating_phys);
 }
 void GATT_Deregister(tGATT_IF gatt_if) {
@@ -229,10 +236,18 @@ bool is_active_service(const Uuid& app_uuid128, Uuid* p_svc_uuid,
 //
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
                   tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
+                  bool opportunistic, uint8_t initiating_phys) {
+  mock_function_count_map[__func__]++;
+  return test::mock::stack_gatt_api::GATT_Connect(
+      gatt_if, bd_addr, 0, connection_type, transport, opportunistic,
+      initiating_phys);
+}
+bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
+                  tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
                   bool opportunistic) {
   inc_func_call_count(__func__);
   return test::mock::stack_gatt_api::GATT_Connect(
-      gatt_if, bd_addr, connection_type, transport, opportunistic, 0);
+      gatt_if, bd_addr, 0, connection_type, transport, opportunistic, 0);
 }
 
 // END mockcify generation
