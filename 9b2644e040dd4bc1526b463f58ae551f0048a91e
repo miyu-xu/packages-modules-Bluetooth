@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03b58a24_9197702a",
+        "filename": "system/gd/arbiter/le_connection_arbiter.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1587936
+      },
+      "writtenOn": "2023-01-26T18:14:40Z",
+      "side": 1,
+      "message": "This assumes that the ACL connection between two devices are either going to one of the other.  It\u0027s unclear to me how this would work in the scenario where the underlying connection is used by both clients...  Needs more discussions.",
+      "range": {
+        "startLine": 94,
+        "startChar": 5,
+        "endLine": 108,
+        "endChar": 79
+      },
+      "revId": "9b2644e040dd4bc1526b463f58ae551f0048a91e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
