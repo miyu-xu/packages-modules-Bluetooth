@@ -12,7 +12,9 @@ use bt_topshim::btif::{BtConnectionState, BtStatus, BtTransport};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::{gatt::LePhy, ProfileConnectionState};
 use btstack::bluetooth::{BluetoothDevice, IBluetooth, IBluetoothQA};
-use btstack::bluetooth_gatt::{GattWriteType, IBluetoothGatt, ScanSettings, ScanType};
+use btstack::bluetooth_gatt::{
+    GattWriteType, IBluetoothGatt, ScanFilterCondition, ScanFilterPattern, ScanSettings, ScanType,
+};
 use btstack::socket_manager::{IBluetoothSocketManager, SocketResult};
 use btstack::uuid::{Profile, UuidHelper, UuidWrapper};
 use manager_service::iface_bluetooth_manager::IBluetoothManager;
