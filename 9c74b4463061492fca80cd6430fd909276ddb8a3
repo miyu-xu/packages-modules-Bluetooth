@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ae0f03_a64ce25c",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "nit: no need underscores as these params are used.",
+      "range": {
+        "startLine": 838,
+        "startChar": 35,
+        "endLine": 838,
+        "endChar": 40
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f915ca69_4aa168c0",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "nit: no need underscores",
+      "range": {
+        "startLine": 1523,
+        "startChar": 35,
+        "endLine": 1523,
+        "endChar": 40
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "401b2dd2_f7104446",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "nit: prefer to use `and_then` (example in previous CL).\n\nAlso there is a compiler warning like this:\n```\nwarning: cannot borrow `*self` as mutable because it is also borrowed as immutable\n   --\u003e system/gd/rust/linux/stack/src/bluetooth_gatt.rs:254:27\n    |\n253 |         match self.connections.iter().find(|conn| conn.conn_id \u003d\u003d conn_id) {\n    |               ----------------------- immutable borrow occurs here\n254 |             Some(conn) \u003d\u003e self.get_mut_by_server_id(conn.server_id),\n    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^--------------^\n    |                           |                         |\n    |                           |                         immutable borrow later used here\n    |                           mutable borrow occurs here\n```\n\nOne way to fix the warning is by not borrowing `conn` since we eventually just need the server_id and we can clone server_id instead of borrowing since cloning a primitive type is cheap:\n```\n        self.connections\n            .iter()\n            .find_map(|conn| (conn.conn_id \u003d\u003d conn_id).then(|| conn.server_id.clone()))\n            .and_then(move |server_id| self.get_mut_by_server_id(server_id))\n```",
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f30b84e_a519205e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "nit: combine `find` and `map` into `find_map`",
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d2ebcda_703e9fd6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3331,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "Looks like the `?` pattern is also applicable here that can eliminate repetitive Option guards:\n```\n        (|| {\n            let address \u003d self.server_context_map.get_address_from_conn_id(conn_id)?;\n            let server \u003d self.server_context_map.get_mut_by_conn_id(conn_id)?;\n\n            if server.is_congested {\n                ...\n                return None;\n            }\n...\n            Some(())\n        })();\n\n```",
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1914b7e_b10a8427",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3348,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "Since this doesn\u0027t actually return an `Option`, imperative style is better than functional in this case:\n```\n            if let Some(cb) \u003d self.server_context_map.get_callback_from_callback_id(cbid) {\n                cb.on_notification_sent(address.to_string(), status);\n            }\n```",
+      "range": {
+        "startLine": 3343,
+        "startChar": 0,
+        "endLine": 3348,
+        "endChar": 18
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af2e2acd_d543f29c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3363,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "Is your intention to move vector contents out of one vector to another? If so, use drain:\n```\nlet congestion_queue: Vec\u003c_\u003e \u003d server.congestion_queue.drain(..).collect();\n```",
+      "range": {
+        "startLine": 3359,
+        "startChar": 0,
+        "endLine": 3363,
+        "endChar": 19
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a4e68d6_f4278ee3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3372,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T02:25:22Z",
+      "side": 1,
+      "message": "imperative style with `if let Some` seems more suitable here, as we don\u0027t actually need the return `Some(())`.",
+      "range": {
+        "startLine": 3365,
+        "startChar": 0,
+        "endLine": 3372,
+        "endChar": 18
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
