@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2174ffe2_6e9d0163",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-26T18:04:59Z",
+      "side": 1,
+      "message": "It\u0027s just a suggestion, but what do you think about defining these constants in the DistanceMeasurementMethod class instead?",
+      "revId": "8f04c347cbe5bf256ebae3c95a59806d0614f3c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
