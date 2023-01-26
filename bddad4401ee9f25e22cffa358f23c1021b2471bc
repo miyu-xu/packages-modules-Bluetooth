@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b4832c4_7635db34",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3337,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-26T01:51:56Z",
+      "side": 1,
+      "message": "so we set authenticated and encrypted to be true here to create a socket, but in creation, socket does not know whether it can meet those criteria or not.\nIf criteria not met, it will throw io exception in `connect()` method",
+      "parentUuid": "e5332932_fd4eb84f",
+      "range": {
+        "startLine": 3337,
+        "startChar": 22,
+        "endLine": 3337,
+        "endChar": 69
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02517310_a2d52cc3",
         "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
         "patchSetId": 1
@@ -285,6 +309,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba7dfd35_22aad7bb",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-26T01:51:56Z",
+      "side": 1,
+      "message": "Yes, that\u0027s what I guess. If getRemoteDevice is null, then getAddress may have exception. Although I think it is unlikely, but good to check if it is null?",
+      "parentUuid": "ed7e0caf_b561de9f",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 64
+      },
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70880663_8fc6fbae",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 1
@@ -296,6 +344,24 @@
       "writtenOn": "2023-01-25T19:29:50Z",
       "side": 1,
       "message": "Is this TODO accurate?",
+      "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d90bb84_aabe4a49",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-26T01:51:56Z",
+      "side": 1,
+      "message": "Yes, we are targeting to add more exception details with @aritrasen@google.com\u0027s project. doc: go/l2cap-coc-exception",
+      "parentUuid": "70880663_8fc6fbae",
       "revId": "bddad4401ee9f25e22cffa358f23c1021b2471bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
