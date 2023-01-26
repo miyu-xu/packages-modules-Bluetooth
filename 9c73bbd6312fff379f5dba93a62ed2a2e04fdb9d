@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f6c3976_2400a6af",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T01:56:09Z",
+      "side": 1,
+      "message": "nit: these params are actually used, so remove the underscores.",
+      "range": {
+        "startLine": 781,
+        "startChar": 8,
+        "endLine": 781,
+        "endChar": 13
+      },
+      "revId": "9c73bbd6312fff379f5dba93a62ed2a2e04fdb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81c72fda_b9f82011",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T01:56:09Z",
+      "side": 1,
+      "message": "nit: can we break this line? like:\n```\n        print_info!(\n            \"GATT characteristic read request for \\\n                    addr \u003d {}, trans_id \u003d {}, offset \u003d {}, is_long \u003d {}, handle \u003d {}\",\n            addr,\n            trans_id,\n            offset,\n            is_long,\n            handle\n        );\n```",
+      "revId": "9c73bbd6312fff379f5dba93a62ed2a2e04fdb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc1fd2f5_2e369a8b",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T01:56:09Z",
+      "side": 1,
+      "message": "nit: also no need for underscores, the macro already suppresses unused warnings.",
+      "range": {
+        "startLine": 1460,
+        "startChar": 8,
+        "endLine": 1460,
+        "endChar": 13
+      },
+      "revId": "9c73bbd6312fff379f5dba93a62ed2a2e04fdb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3382ccb_7a76fa45",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T01:56:09Z",
+      "side": 1,
+      "message": "For this common `None \u003d\u003e None` case, a shortcut is to use `and_then`:\n```\n        self.connections\n            .iter()\n            .find(|conn| conn.conn_id \u003d\u003d conn_id)\n            .and_then(|conn| self.get_by_server_id(conn.server_id))\n```",
+      "revId": "9c73bbd6312fff379f5dba93a62ed2a2e04fdb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15f64d6f_102d54b3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T01:56:09Z",
+      "side": 1,
+      "message": "nit: `find` and `map` can be combined into `find_map`:\n```\nself.requests.iter().find_map(|request| (request.id \u003d\u003d request_id).then(|| request.handle))\n```",
+      "revId": "9c73bbd6312fff379f5dba93a62ed2a2e04fdb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151c151d_574d3230",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2378,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T01:56:09Z",
+      "side": 1,
+      "message": "I wish Rust\u0027s `?` could be used to return bool. But we can also use anonymous function that returns Option so that we can use the convenience of `?`, like:\n```\n        (|| {\n            let conn_id \u003d self.server_context_map.get_conn_id_from_address(server_id, \u0026addr)?;\n            let handle \u003d self.server_context_map.get_request_handle_from_id(request_id)?;\n            let len \u003d value.len() as u16;\n            let data: [u8; 600] \u003d value.try_into().ok()?;\n...\n            Some(())\n        })()\n        .is_some()\n```",
+      "range": {
+        "startLine": 2375,
+        "startChar": 0,
+        "endLine": 2378,
+        "endChar": 10
+      },
+      "revId": "9c73bbd6312fff379f5dba93a62ed2a2e04fdb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa1f17f1_487fd3fa",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3176,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-26T01:56:09Z",
+      "side": 1,
+      "message": "nit: Prefer `if let Some` for these statements.",
+      "range": {
+        "startLine": 3175,
+        "startChar": 0,
+        "endLine": 3176,
+        "endChar": 27
+      },
+      "revId": "9c73bbd6312fff379f5dba93a62ed2a2e04fdb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
