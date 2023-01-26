@@ -34,6 +34,24 @@
       "parentUuid": "b76b9362_187d1bd1",
       "revId": "f8eb4c620795e6423465f326296215882ae4ae09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd27081_95e3eac3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-26T23:31:26Z",
+      "side": 1,
+      "message": "Test are coming in follow-up CL.\nI rebased the change on top of master as it was conflicting with [AVRCP dynamic version](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2326515)",
+      "parentUuid": "046f11a9_29e8ff0e",
+      "revId": "f8eb4c620795e6423465f326296215882ae4ae09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
