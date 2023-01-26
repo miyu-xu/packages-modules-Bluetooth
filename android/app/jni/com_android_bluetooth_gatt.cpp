@@ -1461,8 +1461,8 @@ static void gattClientConnectNative(JNIEnv* env, jobject object, jint clientif,
                                     jint initiating_phys) {
   if (!sGattIf) return;
 
-  sGattIf->client->connect(clientif, str2addr(env, address), isDirect,
-                           transport, opportunistic, initiating_phys);
+  sGattIf->client->connect(clientif, str2addr(env, address), addressType,
+                           isDirect, transport, opportunistic, initiating_phys);
 }
 
 static void gattClientDisconnectNative(JNIEnv* env, jobject object,
