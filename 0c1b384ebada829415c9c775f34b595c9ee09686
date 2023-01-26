@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2086d3f1_80b71088",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-26T05:20:49Z",
+      "side": 1,
+      "message": "Test failures due to b/265860892 (for pts-bot) and flakiness in unrelated areas of presubmit-avd.",
+      "revId": "0c1b384ebada829415c9c775f34b595c9ee09686",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
