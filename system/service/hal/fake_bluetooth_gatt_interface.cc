@@ -45,8 +45,8 @@ bt_status_t FakeUnregisterClient(int client_if) {
 }
 
 bt_status_t FakeConnect(int client_if, const RawAddress& bd_addr,
-                        bool is_direct, int transport, bool opportunistic,
-                        int phy) {
+                        uint8_t addr_type, bool is_direct, int transport,
+                        bool opportunistic, int phy) {
   if (g_client_handler)
     return g_client_handler->Connect(client_if, bd_addr, is_direct, transport);
 
