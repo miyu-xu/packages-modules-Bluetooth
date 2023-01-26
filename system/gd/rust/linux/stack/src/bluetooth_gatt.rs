@@ -2091,6 +2091,7 @@ impl IBluetoothGatt for BluetoothGatt {
         self.gatt.as_ref().unwrap().lock().unwrap().client.connect(
             client_id,
             &address,
+            0,
             is_direct,
             transport.into(),
             opportunistic,
