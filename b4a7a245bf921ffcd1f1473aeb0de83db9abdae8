@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0c6c3ea_f28d46d4",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-26T21:25:13Z",
+      "side": 1,
+      "message": "nit: Prefer re-ordering IF filter_policy_ is rarely FILTER_ACCEPT_LIST_ONLY (why check a condition that is often true first?)\n```\nif (is_scannable \u0026\u0026 !is_scan_response \u0026\u0026\n    filter_policy_ !\u003d LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY) {\n    }\n```",
+      "revId": "b4a7a245bf921ffcd1f1473aeb0de83db9abdae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b03584c1_c0aca65f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-26T21:25:13Z",
+      "side": 1,
+      "message": "These look unused. Remove this change?",
+      "revId": "b4a7a245bf921ffcd1f1473aeb0de83db9abdae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ffc2649_dc191d49",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-26T21:25:13Z",
+      "side": 1,
+      "message": "nit: TODO(b/266752123) should be at the beginning of this comment...",
+      "revId": "b4a7a245bf921ffcd1f1473aeb0de83db9abdae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
