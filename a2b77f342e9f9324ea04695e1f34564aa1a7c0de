@@ -16,6 +16,29 @@
       "message": "Hi Etienne and Rahul,\nCan you help reviewing this API change ?",
       "revId": "a2b77f342e9f9324ea04695e1f34564aa1a7c0de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6914db9_56f06c10",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-26T23:59:18Z",
+      "side": 1,
+      "message": "Please add intDef for these constants, and update parameters and return values with `@YourIntDefName`",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 63
+      },
+      "revId": "a2b77f342e9f9324ea04695e1f34564aa1a7c0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
