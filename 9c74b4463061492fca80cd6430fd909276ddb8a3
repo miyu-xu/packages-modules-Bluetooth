@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d17d6a0_54840885",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6ae0f03_a64ce25c",
+      "range": {
+        "startLine": 838,
+        "startChar": 35,
+        "endLine": 838,
+        "endChar": 40
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f915ca69_4aa168c0",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-26T02:25:22Z",
       "side": 1,
       "message": "nit: no need underscores",
+      "range": {
+        "startLine": 1523,
+        "startChar": 35,
+        "endLine": 1523,
+        "endChar": 40
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95f23699_12ca9acb",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f915ca69_4aa168c0",
       "range": {
         "startLine": 1523,
         "startChar": 35,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41834cec_8634da15",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Ack. Makes sense. Thanks",
+      "parentUuid": "401b2dd2_f7104446",
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f30b84e_a519205e",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-01-26T02:25:22Z",
       "side": 1,
       "message": "nit: combine `find` and `map` into `find_map`",
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b156d1c_373b98e7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f30b84e_a519205e",
       "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc08aeb7_641259bd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3331,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d2ebcda_703e9fd6",
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1914b7e_b10a8427",
@@ -111,6 +213,30 @@
       "writtenOn": "2023-01-26T02:25:22Z",
       "side": 1,
       "message": "Since this doesn\u0027t actually return an `Option`, imperative style is better than functional in this case:\n```\n            if let Some(cb) \u003d self.server_context_map.get_callback_from_callback_id(cbid) {\n                cb.on_notification_sent(address.to_string(), status);\n            }\n```",
+      "range": {
+        "startLine": 3343,
+        "startChar": 0,
+        "endLine": 3348,
+        "endChar": 18
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a66900c8_cf66efc5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3348,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1914b7e_b10a8427",
       "range": {
         "startLine": 3343,
         "startChar": 0,
@@ -144,6 +270,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d704bf_6e377fd5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3363,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Yes the intention is the move the contents otherwise I\u0027ll get an error like this\n```\nfloss-9999: error[E0499]: cannot borrow `self.server_context_map` as mutable more than once at a time\nfloss-9999:     --\u003e system/gd/rust/linux/stack/src/bluetooth_gatt.rs:3302:35\nfloss-9999:      |\nfloss-9999: 3298 |         if let Some(mut server) \u003d self.server_context_map.get_mut_by_conn_id(conn_id) {\nfloss-9999:      |                                   --------------------------------------------------- first mutable borrow occurs here\nfloss-9999: ...\nfloss-9999: 3302 |                 if let Some(cb) \u003d self.server_context_map.get_callback_from_callback_id(cbid) {\nfloss-9999:      |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ second mutable borrow occurs here\nfloss-9999: 3303 |                     for callback in server.congestion_queue.drain(..) {\nfloss-9999:      |                                     --------------------------------- first borrow later used here\n```\nThanks",
+      "parentUuid": "af2e2acd_d543f29c",
+      "range": {
+        "startLine": 3359,
+        "startChar": 0,
+        "endLine": 3363,
+        "endChar": 19
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a4e68d6_f4278ee3",
@@ -157,6 +307,30 @@
       "writtenOn": "2023-01-26T02:25:22Z",
       "side": 1,
       "message": "imperative style with `if let Some` seems more suitable here, as we don\u0027t actually need the return `Some(())`.",
+      "range": {
+        "startLine": 3365,
+        "startChar": 0,
+        "endLine": 3372,
+        "endChar": 18
+      },
+      "revId": "9c74b4463061492fca80cd6430fd909276ddb8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe0b989_5ff06148",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3372,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-26T20:27:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a4e68d6_f4278ee3",
       "range": {
         "startLine": 3365,
         "startChar": 0,
