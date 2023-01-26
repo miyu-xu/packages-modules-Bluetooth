@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f80de3ca_5d21a99f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "Use \"{@link}\" instead of \"\u003cvar\u003e\"",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb3dcef_6fb4bcbc",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "Per go/android-api-guidelines#methods_2, we can omit the @return tag here. Also, make sure you represent Java values like \"true\" as \"{@code true}\" per go/android-api-guidelines#code-font. Also make sure you explicitly note that it\u0027ll return \"{@code false}\" if it\u0027s not a public broadcast",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a341bba1_35ca2bde",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "Please consider writing these after mSubgroups to maintain compatibility with older parcels",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad49539e_bc571820",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "I would recommend slightly rewording this because it is inconsistent with the language used in the getter. You talk about public broadcast being enabled here and in the getter, you say \"if the Broadcast Source is a public broadcast.\" I would consider something along the lines of \"Set whether this is a broadcast group for a public broadcast.\" and adjust all language below to be consistent with that.",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d78a1ead_9188a6d3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "nit: end the first sentence of the javadoc with a period for docs parsing",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17630044_b8fa788f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "Looks like these docs are identical to those of BluetoothLeBroadcastMetadata. I assume you meant to change these :)",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41ac9752_9a08e2aa",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "Does this mean whether this is a public broadcast? Enabled implies that there\u0027s a switch for this. It seems like a state of either being a public or non-public broadcast.",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a82e8a_4cd4bf91",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroupSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "nit: move constant to the line after the annotation",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c1f3d86_c36f8045",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroupSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "nit: please keep each annotation on its own line",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53a50456_e784f498",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroupSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:26:26Z",
+      "side": 1,
+      "message": "nit: Make sure we\u0027re consistent on where we put the nullability annotation for the return value",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
