@@ -43,6 +43,7 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
+import java.nio.ByteBuffer
 import java.time.Duration
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
@@ -590,6 +591,18 @@ class Host(
                   else -> DiscoverabilityMode.NOT_DISCOVERABLE
                 }
               dataTypesBuilder.setLeDiscoverabilityMode(mode)
+              var manufacturerData = ByteBuffer.allocate(32)
+              val manufacteurSpecificDatas = scanRecord.getManufacturerSpecificData()
+              for (i in 0..manufacteurSpecificDatas.size() - 1) {
+                val id = manufacteurSpecificDatas.keyAt(i)
+                manufacturerData
+                  .put(id.toByte())
+                  .put(id.shr(8).toByte())
+                  .put(manufacteurSpecificDatas.get(id))
+              }
+              dataTypesBuilder.setManufacturerSpecificData(
+                ByteString.copyFrom(manufacturerData.array())
+              )
               val primaryPhy =
                 when (result.getPrimaryPhy()) {
                   BluetoothDevice.PHY_LE_1M -> PrimaryPhy.PRIMARY_1M
