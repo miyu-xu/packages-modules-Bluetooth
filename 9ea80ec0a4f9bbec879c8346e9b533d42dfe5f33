@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8aa5ea_7bdf0a43",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:18:47Z",
+      "side": 1,
+      "message": "nit: \"because for\" --\u003e \"for\"",
+      "revId": "9ea80ec0a4f9bbec879c8346e9b533d42dfe5f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a43e107_2e669e91",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:18:47Z",
+      "side": 1,
+      "message": "nit: End the sentence after compatibility and start the rest as a new sentence",
+      "revId": "9ea80ec0a4f9bbec879c8346e9b533d42dfe5f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "882e2dde_c3c27b0e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:18:47Z",
+      "side": 1,
+      "message": "\"pairing\" --\u003e \"settings while pairing\"",
+      "revId": "9ea80ec0a4f9bbec879c8346e9b533d42dfe5f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492f9b78_f2d52117",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-26T22:18:47Z",
+      "side": 1,
+      "message": "nit: \"ASHA and CSIP both supported devices\" --\u003e \"devices supporting both ASHA and CSIP\"",
+      "revId": "9ea80ec0a4f9bbec879c8346e9b533d42dfe5f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
