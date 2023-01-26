@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f023b935_1e5a9bf9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1987910
+      },
+      "writtenOn": "2023-01-26T08:16:01Z",
+      "side": 1,
+      "message": "This change depends on https://googleplex-android-review.git.corp.google.com/c/platform/external/libchrome/+/21094423",
+      "revId": "bde0569162da0fe7ab2ff404b5f4a7f724296f9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
