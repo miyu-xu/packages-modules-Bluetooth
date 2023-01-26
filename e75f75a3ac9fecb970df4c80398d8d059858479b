@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f4d8e5d_5010ae73",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-26T19:08:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39a69bda_f94c422b",
+      "revId": "e75f75a3ac9fecb970df4c80398d8d059858479b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a15e9dc_1523104c",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "154b7451_e9d59efb",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-26T19:08:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a15e9dc_1523104c",
+      "revId": "e75f75a3ac9fecb970df4c80398d8d059858479b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03957315_69044a6e",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-01-26T14:29:39Z",
       "side": 1,
       "message": "Can you please be more specific in this description ?\nthere is no reference to ASHA/CSIS in this description or variable name, so anyone reading that in future will have to digg through related code to understand what is meant here.",
+      "range": {
+        "startLine": 359,
+        "startChar": 38,
+        "endLine": 359,
+        "endChar": 63
+      },
+      "revId": "e75f75a3ac9fecb970df4c80398d8d059858479b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "254a8b1e_9dd725a7",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-01-26T19:08:21Z",
+      "side": 1,
+      "message": "description added",
+      "parentUuid": "03957315_69044a6e",
       "range": {
         "startLine": 359,
         "startChar": 38,
