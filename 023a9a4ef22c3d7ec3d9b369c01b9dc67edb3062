@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e9ef981_c2c8af82",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1192,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04ad5606_2c1d7296",
+      "range": {
+        "startLine": 1192,
+        "startChar": 15,
+        "endLine": 1192,
+        "endChar": 25
+      },
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5121328_ebb643cf",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-25T00:11:44Z",
       "side": 1,
       "message": "Avoid \".\" at end of @return and @param documentation",
+      "range": {
+        "startLine": 1193,
+        "startChar": 70,
+        "endLine": 1193,
+        "endChar": 77
+      },
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f83a75b6_0eff828d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5121328_ebb643cf",
       "range": {
         "startLine": 1193,
         "startChar": 70,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "367873f7_5f4f66d1",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2809,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c71c72a_d35cf967",
+      "range": {
+        "startLine": 2807,
+        "startChar": 7,
+        "endLine": 2809,
+        "endChar": 35
+      },
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c3079c5_65b283c2",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-01-25T00:11:44Z",
       "side": 1,
       "message": "Please move this outside the try block",
+      "range": {
+        "startLine": 2822,
+        "startChar": 12,
+        "endLine": 2822,
+        "endChar": 43
+      },
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "702f861d_e8661b14",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2822,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c3079c5_65b283c2",
       "range": {
         "startLine": 2822,
         "startChar": 12,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c95cab9_9c6d1207",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "205a7bda_425b790e",
+      "range": {
+        "startLine": 111,
+        "startChar": 21,
+        "endLine": 119,
+        "endChar": 43
+      },
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a66f167_133157e8",
@@ -129,6 +249,24 @@
       "writtenOn": "2023-01-25T00:11:44Z",
       "side": 1,
       "message": "@DistanceMeasurementMethodId?",
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "899e7387_05891d91",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a66f167_133157e8",
       "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f0d0efd_e5533caf",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "414ea8d8_1578e501",
+      "range": {
+        "startLine": 60,
+        "startChar": 57,
+        "endLine": 60,
+        "endChar": 65
+      },
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb02d0c3_ef8192da",
@@ -169,6 +331,30 @@
       "writtenOn": "2023-01-25T00:11:44Z",
       "side": 1,
       "message": "Just \"Bluetooth\"",
+      "range": {
+        "startLine": 97,
+        "startChar": 36,
+        "endLine": 97,
+        "endChar": 53
+      },
+      "revId": "023a9a4ef22c3d7ec3d9b369c01b9dc67edb3062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c707b44_337b2716",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-01-26T07:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb02d0c3_ef8192da",
       "range": {
         "startLine": 97,
         "startChar": 36,
