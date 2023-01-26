@@ -21,6 +21,7 @@
 #include "service/adapter.h"
 #include "service/logging_helpers.h"
 #include "stack/include/bt_types.h"
+#include "types/ble_address_with_type.h"
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
@@ -60,7 +61,8 @@ bool LowEnergyClient::Connect(const std::string& address, bool is_direct) {
 
   bt_status_t status =
       hal::BluetoothGattInterface::Get()->GetClientHALInterface()->connect(
-          client_id_, bda, is_direct, BT_TRANSPORT_LE, false, kPhyLe1MbMask);
+          client_id_, bda, BLE_ADDR_PUBLIC, is_direct, BT_TRANSPORT_LE, false,
+          kPhyLe1MbMask);
   if (status != BT_STATUS_SUCCESS) {
     LOG(ERROR) << "HAL call to connect failed";
     return false;
