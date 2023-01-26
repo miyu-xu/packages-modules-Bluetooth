@@ -41,13 +41,14 @@ extern std::map<std::string, int> mock_function_count_map;
 
 void gatt_init(void) { mock_function_count_map[__func__]++; }
 bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
-                      tBT_TRANSPORT transport, int8_t initiating_phys) {
+                      tBLE_ADDR_TYPE addr_type, tBT_TRANSPORT transport,
+                      int8_t initiating_phys) {
   mock_function_count_map[__func__]++;
   return false;
 }
 bool gatt_connect(const RawAddress& rem_bda, tGATT_TCB* p_tcb,
-                  tBT_TRANSPORT transport, uint8_t initiating_phys,
-                  tGATT_IF gatt_if) {
+                  tBLE_ADDR_TYPE addr_type, tBT_TRANSPORT transport,
+                  uint8_t initiating_phys, tGATT_IF gatt_if) {
   mock_function_count_map[__func__]++;
   return false;
 }
