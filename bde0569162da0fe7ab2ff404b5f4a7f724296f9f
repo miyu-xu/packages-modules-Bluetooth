@@ -16,6 +16,23 @@
       "message": "This change depends on https://googleplex-android-review.git.corp.google.com/c/platform/external/libchrome/+/21094423",
       "revId": "bde0569162da0fe7ab2ff404b5f4a7f724296f9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6427ffcf_0c48fdd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-01-26T08:35:12Z",
+      "side": 1,
+      "message": "Please hold until https://android-review.git.corp.google.com/c/platform/external/libchrome/+/2399915 is submitted.",
+      "revId": "bde0569162da0fe7ab2ff404b5f4a7f724296f9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
