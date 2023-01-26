@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d70bc111_a59231bc",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-26T01:59:39Z",
+      "side": 1,
+      "message": "Good idea.  I added a lambda to do the equivalent.  It is still required to initialize properly any containers when re-used.",
+      "parentUuid": "4a352fc6_2ea33f92",
+      "range": {
+        "startLine": 340,
+        "startChar": 27,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "512438ead524cc4b8517cabcb67cd47279e47119",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a00ce66a_5bb93050",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08e8b33e_088cfda7",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-26T01:59:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a00ce66a_5bb93050",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 50
+      },
+      "revId": "512438ead524cc4b8517cabcb67cd47279e47119",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7af2c1c2_1aff4b81",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-25T17:53:18Z",
       "side": 1,
       "message": "why +1?",
+      "range": {
+        "startLine": 396,
+        "startChar": 37,
+        "endLine": 396,
+        "endChar": 41
+      },
+      "revId": "512438ead524cc4b8517cabcb67cd47279e47119",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b138910_9746d315",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-01-26T01:59:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7af2c1c2_1aff4b81",
       "range": {
         "startLine": 396,
         "startChar": 37,
