@@ -12,7 +12,9 @@ use bt_topshim::btif::{BtConnectionState, BtStatus, BtTransport};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::{gatt::LePhy, ProfileConnectionState};
 use btstack::bluetooth::{BluetoothDevice, IBluetooth, IBluetoothQA};
-use btstack::bluetooth_gatt::{GattWriteType, IBluetoothGatt, ScanSettings, ScanType};
+use btstack::bluetooth_gatt::{
+    GattWriteType, IBluetoothGatt, ScanFilterCondition, ScanFilterPattern, ScanSettings, ScanType,
+};
 use btstack::socket_manager::{IBluetoothSocketManager, SocketResult};
 use btstack::uuid::{Profile, UuidHelper, UuidWrapper};
 use manager_service::iface_bluetooth_manager::IBluetoothManager;
@@ -1069,18 +1071,28 @@ impl CommandHandler {
                     .parse::<u8>()
                     .or(Err("Failed parsing scanner id"))?;
 
+                let scan_filter = if scanner_id % 2 == 1 {
+                    Some(btstack::bluetooth_gatt::ScanFilter {
+                        rssi_high_threshold: 0xbf,
+                        rssi_low_threshold: 0xb0,
+                        rssi_low_timeout: 40,
+                        rssi_sampling_period: 0x05,
+                        condition: ScanFilterCondition::Patterns(vec![ScanFilterPattern {
+                            ad_type: 0x03,
+                            start_position: 0,
+                            content: vec![0x12, 0x18],
+                        }]),
+                    })
+                } else {
+                    None
+                };
+
                 self.lock_context().gatt_dbus.as_mut().unwrap().start_scan(
                     scanner_id,
                     // TODO(b/254870159): Construct real settings and filters depending on
                     // command line options.
                     ScanSettings { interval: 0, window: 0, scan_type: ScanType::Active },
-                    Some(btstack::bluetooth_gatt::ScanFilter {
-                        rssi_high_threshold: 0,
-                        rssi_low_threshold: 0,
-                        rssi_low_timeout: 0,
-                        rssi_sampling_period: 0,
-                        condition: btstack::bluetooth_gatt::ScanFilterCondition::Patterns(vec![]),
-                    }),
+                    scan_filter,
                 );
 
                 self.lock_context().active_scanner_ids.insert(scanner_id);
