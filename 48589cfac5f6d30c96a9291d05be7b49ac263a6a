@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "636c7ed9_3b4e7877",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-27T02:42:34Z",
+      "side": 1,
+      "message": "We don\u0027t have an IOP check that is LMP version only. Only addr-based and addr-plus-lmp.",
+      "parentUuid": "e8315ac2_6732a78b",
+      "revId": "48589cfac5f6d30c96a9291d05be7b49ac263a6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f39c97c5_cb2fddce",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-27T02:07:37Z",
       "side": 1,
       "message": "It should be robust caching flag.",
+      "revId": "48589cfac5f6d30c96a9291d05be7b49ac263a6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72dd6505_c8439403",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-27T02:42:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f39c97c5_cb2fddce",
       "revId": "48589cfac5f6d30c96a9291d05be7b49ac263a6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
