@@ -94,8 +94,8 @@ public class TbsGenericTest {
         doReturn(true).when(mTbsGatt).setBearerUriSchemesSupportedList(any());
         doReturn(true).when(mTbsGatt).setCallState(any());
         doReturn(true).when(mTbsGatt).setBearerListCurrentCalls(any());
-        doReturn(true).when(mTbsGatt).setInbandRingtoneFlag();
-        doReturn(true).when(mTbsGatt).clearInbandRingtoneFlag();
+        doReturn(true).when(mTbsGatt).setInbandRingtoneFlag(any());
+        doReturn(true).when(mTbsGatt).clearInbandRingtoneFlag(any());
         doReturn(true).when(mTbsGatt).setSilentModeFlag();
         doReturn(true).when(mTbsGatt).clearSilentModeFlag();
         doReturn(true).when(mTbsGatt).setTerminationReason(anyInt(), anyInt());
