@@ -67,6 +67,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.mcp.McpService;
 import com.android.bluetooth.tbs.TbsGatt;
+import com.android.bluetooth.tbs.TbsService;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -142,12 +143,13 @@ public class LeAudioService extends ProfileService {
     RemoteCallbackList<IBluetoothLeAudioCallback> mLeAudioCallbacks;
 
     private class LeAudioGroupDescriptor {
-        LeAudioGroupDescriptor() {
+        LeAudioGroupDescriptor(boolean isInbandRingtonEnabled) {
             mIsConnected = false;
             mIsActive = false;
             mDirection = AUDIO_DIRECTION_NONE;
             mCodecStatus = null;
             mLostLeadDeviceWhileStreaming = null;
+            mInbandRingtoneEnabled = isInbandRingtonEnabled;
         }
 
         public Boolean mIsConnected;
@@ -156,6 +158,7 @@ public class LeAudioService extends ProfileService {
         public BluetoothLeAudioCodecStatus mCodecStatus;
         /* This can be non empty only for the streaming time */
         BluetoothDevice mLostLeadDeviceWhileStreaming;
+        Boolean mInbandRingtoneEnabled;
     }
 
     private static class LeAudioDeviceDescriptor {
@@ -1473,6 +1476,44 @@ public class LeAudioService extends ProfileService {
         mHfpHandoverDevice = null;
     }
 
+    void updateInbandRingtoneForTheGroup(int groupId, LeAudioGroupDescriptor descriptor,
+                                            int availableContext) {
+        boolean isRingtoneAvailable =
+                        ((availableContext & BluetoothLeAudio.CONTEXT_TYPE_RINGTONE) != 0);
+        if (DBG) {
+            Log.d(TAG, "updateInbandRingtoneForTheGroup old: " + descriptor.mInbandRingtoneEnabled
+                            + " new: " + isRingtoneAvailable);
+        }
+
+        if (descriptor.mInbandRingtoneEnabled == isRingtoneAvailable) {
+            return;
+        }
+
+        /* If at least one device from the group removes the Ringtone from available context types,
+         * the inband ringtone will be removed
+         */
+        descriptor.mInbandRingtoneEnabled = isRingtoneAvailable;
+        TbsService tbsService = TbsService.getTbsService();
+        if (tbsService == null) {
+            Log.w(TAG, "updateInbandRingtoneForTheGroup, tbsService not available");
+            return;
+        }
+
+        for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> entry :
+                                                mDeviceDescriptors.entrySet()) {
+            if (entry.getValue().mGroupId == groupId) {
+                BluetoothDevice device = entry.getKey();
+                Log.i(TAG, "updateInbandRingtoneForTheGroup, setting inband ringtone for "
+                                        + device);
+                if (isRingtoneAvailable) {
+                    tbsService.setInbandRingtoneSupport(device);
+                } else {
+                    tbsService.clearInbandRingtoneSupport(device);
+                }
+            }
+        }
+    }
+
     // Suppressed since this is part of a local process
     @SuppressLint("AndroidFrameworkRequiresPermission")
     void messageFromNative(LeAudioStackEvent stackEvent) {
@@ -1621,6 +1662,7 @@ public class LeAudioService extends ProfileService {
                         }
                     }
                     descriptor.mDirection = direction;
+                    updateInbandRingtoneForTheGroup(groupId, descriptor, available_contexts);
                 } else {
                     Log.e(TAG, "no descriptors for group: " + groupId);
                 }
@@ -2075,8 +2117,16 @@ public class LeAudioService extends ProfileService {
      * @return true if inband ringtone is enabled, false otherwise
      */
     public boolean isInbandRingtoneEnabled(int groupId) {
-        /* TODO Take into account device available context type */
-        return mLeAudioInbandRingtoneSupportedByPlatform;
+        if (!mLeAudioInbandRingtoneSupportedByPlatform) {
+            return mLeAudioInbandRingtoneSupportedByPlatform;
+        }
+
+        LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
+        if (descriptor == null) {
+            return mLeAudioInbandRingtoneSupportedByPlatform;
+        }
+
+        return descriptor.mInbandRingtoneEnabled;
     }
 
     /**
@@ -2306,7 +2356,8 @@ public class LeAudioService extends ProfileService {
 
             LeAudioGroupDescriptor descriptor = mGroupDescriptors.get(groupId);
             if (descriptor == null) {
-                mGroupDescriptors.put(groupId, new LeAudioGroupDescriptor());
+                mGroupDescriptors.put(groupId,
+                        new LeAudioGroupDescriptor(mLeAudioInbandRingtoneSupportedByPlatform));
             }
             notifyGroupNodeAdded(device, groupId);
         }
@@ -3339,6 +3390,8 @@ public class LeAudioService extends ProfileService {
             ProfileService.println(sb, "    first device: " + getFirstDeviceFromGroup(groupId));
             ProfileService.println(sb, "    lost lead device: "
                     + descriptor.mLostLeadDeviceWhileStreaming);
+            ProfileService.println(sb, "    mInbandRingtoneEnabled: "
+                    + descriptor.mInbandRingtoneEnabled);
         }
     }
 }

@@ -170,6 +170,8 @@ public class TbsGattTest {
 
     private void verifySetValue(BluetoothGattCharacteristic characteristic, Object value,
             boolean shouldNotify) {
+        boolean notifyWithValue = false;
+
         if (characteristic.getUuid().equals(TbsGatt.UUID_BEARER_PROVIDER_NAME)) {
             boolean valueChanged = !characteristic.getStringValue(0).equals((String) value);
             if (valueChanged) {
@@ -202,14 +204,14 @@ public class TbsGattTest {
             Assert.assertEquals(valueString, characteristic.getStringValue(0));
 
         } else if (characteristic.getUuid().equals(TbsGatt.UUID_STATUS_FLAGS)) {
-
             Pair<Integer, Boolean> flagStatePair = (Pair<Integer, Boolean>) value;
+            notifyWithValue = true;
             switch (flagStatePair.first) {
                 case TbsGatt.STATUS_FLAG_INBAND_RINGTONE_ENABLED:
                     if (flagStatePair.second) {
-                        Assert.assertTrue(mTbsGatt.setInbandRingtoneFlag());
+                        Assert.assertTrue(mTbsGatt.setInbandRingtoneFlag(mCurrentDevice));
                     } else {
-                        Assert.assertTrue(mTbsGatt.clearInbandRingtoneFlag());
+                        Assert.assertTrue(mTbsGatt.clearInbandRingtoneFlag(mCurrentDevice));
                     }
                     break;
 
@@ -223,16 +225,6 @@ public class TbsGattTest {
 
                 default:
                     Assert.assertTrue(false);
-            }
-
-            if (flagStatePair.second) {
-                Assert.assertTrue(
-                        (characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0)
-                                & flagStatePair.first) != 0);
-            } else {
-                Assert.assertTrue(
-                        (characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0)
-                                & flagStatePair.first) == 0);
             }
 
         } else if (characteristic.getUuid().equals(TbsGatt.UUID_CALL_STATE)) {
@@ -289,11 +281,21 @@ public class TbsGattTest {
         }
 
         if (shouldNotify) {
-            verify(mMockGattServer).notifyCharacteristicChanged(eq(mCurrentDevice),
-                    eq(characteristic), eq(false));
+                if (notifyWithValue) {
+                        verify(mMockGattServer).notifyCharacteristicChanged(eq(mCurrentDevice),
+                                eq(characteristic), eq(false), any());
+                } else {
+                        verify(mMockGattServer).notifyCharacteristicChanged(eq(mCurrentDevice),
+                                eq(characteristic), eq(false));
+                }
         } else {
-            verify(mMockGattServer, times(0)).notifyCharacteristicChanged(any(), any(),
-                    anyBoolean());
+                if (notifyWithValue) {
+                        verify(mMockGattServer, times(0)).notifyCharacteristicChanged(any(), any(),
+                                anyBoolean(), any());
+                } else {
+                        verify(mMockGattServer, times(0)).notifyCharacteristicChanged(any(), any(),
+                                anyBoolean());
+                }
         }
 
         reset(mMockGattServer);
