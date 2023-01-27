@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8179d5ef_9c44f5c8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "nit: \"is changed.\" -\u003e \"has changed.\"",
+      "range": {
+        "startLine": 865,
+        "startChar": 62,
+        "endLine": 865,
+        "endChar": 64
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "692a6d9f_2c8e8186",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "nit: \"The\" -\u003e \"the\"",
+      "range": {
+        "startLine": 865,
+        "startChar": 7,
+        "endLine": 865,
+        "endChar": 8
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fbdc5d8_db216373",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "nit: \"passed\" -\u003e \"has been passed\"",
+      "range": {
+        "startLine": 866,
+        "startChar": 30,
+        "endLine": 866,
+        "endChar": 36
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cfaf40_acafbf95",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "Please add documentation about this flag, like a link that indicates how to use it if available",
+      "range": {
+        "startLine": 866,
+        "startChar": 14,
+        "endLine": 866,
+        "endChar": 29
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6c6308_358ca12c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "Optional, but maybe add documentation of what happens if the flag hasn\u0027t been passed",
+      "range": {
+        "startLine": 867,
+        "startChar": 42,
+        "endLine": 868,
+        "endChar": 56
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d735fce_0eb56f84",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "nit: \"TOSTRING\" -\u003e \"TO_STRING\"\nI would even rename it to `CHANGE_TO_STRING_REDACTED` for more clarity",
+      "range": {
+        "startLine": 872,
+        "startChar": 22,
+        "endLine": 872,
+        "endChar": 47
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13411d6c_d0eafcfd",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "This is not he case anymore, Maybe replace this by the new behaviour:\n```\nCurrently this returns the Bluetooth device address redacted with the first 4 bytes replaced with \"XX\", e.g. \"XX:XX:XX:XX:BB:CC\" if the bluetooth stack is started with log redaction enabled, and \"00:11:22:AA:BB:CC\" otherwise.)\n```\nThen add documentation about the old behaviour under that.",
+      "range": {
+        "startLine": 1440,
+        "startChar": 10,
+        "endLine": 1441,
+        "endChar": 27
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a791b582_3f838639",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "nit: \"readacted\" -\u003e \"redacted\"",
+      "range": {
+        "startLine": 1443,
+        "startChar": 36,
+        "endLine": 1443,
+        "endChar": 45
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a8acdc_3f6315bc",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "nit: \"repalced\" -\u003e \"replaced\"",
+      "range": {
+        "startLine": 1443,
+        "startChar": 69,
+        "endLine": 1443,
+        "endChar": 77
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827ed5c3_88cf88db",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1444,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-27T23:52:59Z",
+      "side": 1,
+      "message": "nit: \"bluetooth\" -\u003e \"Bluetooth\"",
+      "range": {
+        "startLine": 1444,
+        "startChar": 51,
+        "endLine": 1444,
+        "endChar": 60
+      },
+      "revId": "d5debfe6c513c0791cee9fc3222e50f9151412da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
