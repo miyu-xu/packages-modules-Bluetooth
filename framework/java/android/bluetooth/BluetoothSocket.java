@@ -441,6 +441,37 @@ public final class BluetoothSocket implements Closeable {
             }
             int channel = readInt(mSocketIS);
             if (channel <= 0) {
+                if (channel == 0) {
+                    int errCode = readInt(mSocketIS);
+                    /*switch(errCode) {
+                        case 1:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 2:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 3:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 4:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 5:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 6:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 7:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 8:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 9:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 10:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        case 11:
+                            throw new IOException("bt socket connect failed with code " + channel);
+                        default :
+                            throw new IOException("bt socket connect failed with code " + channel);
+                    }*/
+                    throw new IOException("bt socket connect failed with code " + errCode);
+
+                }
                 throw new IOException("bt socket connect failed");
             }
             mPort = channel;
