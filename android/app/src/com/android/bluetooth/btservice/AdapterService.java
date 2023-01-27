@@ -551,9 +551,10 @@ public class AdapterService extends Service {
 
         mBluetoothKeystoreService.initJni();
 
-        mBluetoothQualityReportNativeInterface = Objects.requireNonNull(
-                BluetoothQualityReportNativeInterface.getInstance(),
-                "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
+        mBluetoothQualityReportNativeInterface =
+                Objects.requireNonNull(
+                        BluetoothQualityReportNativeInterface.getInstance(),
+                        "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
         mBluetoothQualityReportNativeInterface.init();
 
         mSdpManager = SdpManager.init(this);

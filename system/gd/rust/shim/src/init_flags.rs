@@ -38,6 +38,7 @@ mod ffi {
         fn rust_event_loop_is_enabled() -> bool;
         fn sdp_serialization_is_enabled() -> bool;
         fn sdp_skip_rnr_if_known_is_enabled() -> bool;
+        fn send_bluetooth_quality_report_as_intent_is_enabled() -> bool;
         fn set_min_encryption_is_enabled() -> bool;
         fn subrating_is_enabled() -> bool;
         fn trigger_advertising_callbacks_on_first_resume_after_pause_is_enabled() -> bool;
