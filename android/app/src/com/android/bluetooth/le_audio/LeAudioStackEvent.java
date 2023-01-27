@@ -254,6 +254,8 @@ public class LeAudioStackEvent {
         switch (type) {
             case EVENT_TYPE_BROADCAST_CREATED:
                 return "{success:" + value + "}";
+            case EVENT_TYPE_NATIVE_INITIALIZED:
+                return "{inbandRingtoneSupported: " + value + "}";
             default:
                 return "<unused>";
         }
