@@ -86,3 +86,9 @@ TEST(InitFlagsTest, test_device_iot_config_logging_is_enabled) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::IsDeviceIotConfigLoggingEnabled());
 }
+
+TEST(InitFlagsTest, test_enable_send_bluetooth_quality_report_as_intent) {
+  const char* input[] = {"INIT_send_bluetooth_quality_report_as_intent=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsSendBluetoothQualityReportAsIntentEnabled());
+}
