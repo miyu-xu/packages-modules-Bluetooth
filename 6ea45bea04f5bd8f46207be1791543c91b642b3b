@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a7d4ab_0a52f0bf",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f80de3ca_5d21a99f",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfb3dcef_6fb4bcbc",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "811f383b_5f9641d3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cfb3dcef_6fb4bcbc",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a341bba1_35ca2bde",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-01-26T22:26:26Z",
       "side": 1,
       "message": "Please consider writing these after mSubgroups to maintain compatibility with older parcels",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b49f97f_a7be67ee",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a341bba1_35ca2bde",
       "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +140,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eaffd7d_a7c75ff9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d78a1ead_9188a6d3",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7191b1f_6a6c645c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad49539e_bc571820",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17630044_b8fa788f",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-01-26T22:26:26Z",
       "side": 1,
       "message": "Looks like these docs are identical to those of BluetoothLeBroadcastMetadata. I assume you meant to change these :)",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c2391c9_096c3c70",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": ":p will update",
+      "parentUuid": "17630044_b8fa788f",
       "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33293b9c_2fe5bd86",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "i think more accurate description could be whether this broadcast group is broadcasting the public broadcast announcement in this broadcast group. one broadcast group may or may not include public broadcast announcement. Will update this text accordingly.",
+      "parentUuid": "41ac9752_9a08e2aa",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3a82e8a_4cd4bf91",
@@ -133,6 +259,24 @@
       "writtenOn": "2023-01-26T22:26:26Z",
       "side": 1,
       "message": "nit: move constant to the line after the annotation",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aca788c4_9daa072e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroupSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b3a82e8a_4cd4bf91",
       "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +298,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f627a9c_14eaaf63",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroupSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3c1f3d86_c36f8045",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53a50456_e784f498",
@@ -167,6 +329,24 @@
       "writtenOn": "2023-01-26T22:26:26Z",
       "side": 1,
       "message": "nit: Make sure we\u0027re consistent on where we put the nullability annotation for the return value",
+      "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8dca117_215b1c79",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroupSettings.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-01-27T01:23:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "53a50456_e784f498",
       "revId": "6ea45bea04f5bd8f46207be1791543c91b642b3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
