@@ -16,6 +16,23 @@
       "message": "I believe that the failed presubmit tests are unrelated to this change.\nCould owners/reviewers help verify this and suggest if any change is\nrequired for the other lint warnings?\nThanks.",
       "revId": "e64e87dda5a6e9a4135d32e7ed76f384c9b89473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f7beb72_c8e3fc66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-27T19:35:46Z",
+      "side": 1,
+      "message": "I agree that the test failures are not caused by this CL.",
+      "revId": "e64e87dda5a6e9a4135d32e7ed76f384c9b89473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
