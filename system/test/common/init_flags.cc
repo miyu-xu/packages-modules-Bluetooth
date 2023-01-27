@@ -10,6 +10,8 @@ namespace common {
 
 bool InitFlags::logging_debug_enabled_for_all = false;
 bool InitFlags::leaudio_targeted_announcement_reconnection_mode = false;
+bool InitFlags::leaudio_inband_ringtone_support = true;
+
 std::unordered_map<std::string, bool>
     InitFlags::logging_debug_explicit_tag_settings = {};
 void InitFlags::Load(const char** flags) {}
