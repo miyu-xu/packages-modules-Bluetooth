@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7014563c_91a67817",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-01-27T00:30:44Z",
+      "side": 1,
+      "message": "define a constant for this?",
+      "range": {
+        "startLine": 278,
+        "startChar": 9,
+        "endLine": 278,
+        "endChar": 45
+      },
+      "revId": "7bea4db4ef8e1e7b6a5d2e11c99e7db944211bc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
