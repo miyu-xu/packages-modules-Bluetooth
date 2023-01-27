@@ -29,6 +29,7 @@
 
 #include "abstract_message_loop.h"
 #include "bta/include/bta_api.h"
+#include "btif/include/btif_api_counter_metric.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
@@ -81,6 +82,7 @@
 #define HAL_CBACK(P_CB, P_CBACK, ...)                              \
   do {                                                             \
     if ((P_CB) && (P_CB)->P_CBACK) {                               \
+      api_counter_metric_callback_inc(#P_CBACK);                   \
       BTIF_TRACE_API("%s: HAL %s->%s", __func__, #P_CB, #P_CBACK); \
       (P_CB)->P_CBACK(__VA_ARGS__);                                \
     } else {                                                       \

@@ -39,6 +39,7 @@
 
 #include "bt_types.h"
 #include "btcore/include/module.h"
+#include "btif/include/btif_api_counter_metric.h"
 #include "btif/include/btif_storage.h"
 #include "check.h"
 #include "device/include/interop_config.h"
@@ -251,6 +252,7 @@ void interop_database_add(const uint16_t feature, const RawAddress* addr,
   CHECK(addr);
   CHECK(length > 0);
   CHECK(length < sizeof(RawAddress));
+  api_counter_metric_entry_inc(__func__);
   interop_database_add_addr(feature, addr, length);
 }
 
@@ -258,6 +260,7 @@ void interop_database_clear() {
   LOG_DEBUG("interop_is_initialized: %d interop_list: %p",
             interop_is_initialized, interop_list);
 
+  api_counter_metric_entry_inc(__func__);
   if (interop_is_initialized && interop_list) {
     for (int feature = BEGINNING_OF_INTEROP_LIST;
          feature != END_OF_INTEROP_LIST; feature++) {

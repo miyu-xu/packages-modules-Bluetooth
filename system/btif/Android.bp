@@ -172,6 +172,7 @@ cc_library_static {
         "co/bta_dm_co.cc",
         "co/bta_gatts_co.cc",
         // BTIF implementation
+        "src/btif_api_counter_metric.cc",
         "src/btif_activity_attribution.cc",
         "src/btif_ble_advertiser.cc",
         "src/btif_ble_scanner.cc",
@@ -354,6 +355,8 @@ cc_test {
     include_dirs: btifCommonIncludes,
     srcs: [
         ":TestCommonLogMsg",
+        ":TestCommonMockFunctions",
+        ":TestMockBtifApiCounterMetric",
         "test/btif_rc_test.cc",
     ],
     header_libs: ["libbluetooth_headers"],
@@ -636,6 +639,7 @@ cc_test {
           ":TestMockUdrv",
           ":TestMockUtils",
           "test/btif_core_test.cc",
+          "test/btif_api_counter_metric_test.cc",
       ],
       generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",

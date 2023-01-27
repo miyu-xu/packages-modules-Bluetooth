@@ -284,6 +284,7 @@ init_flags!(
         set_min_encryption = true,
         subrating = true,
         trigger_advertising_callbacks_on_first_resume_after_pause = true,
+        api_counter_metric = true,
     }
     // dynamic flags can be updated at runtime and should be accessed directly
     // to check.

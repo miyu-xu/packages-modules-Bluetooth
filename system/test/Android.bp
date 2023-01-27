@@ -475,6 +475,13 @@ filegroup {
   ],
 }
 
+filegroup {
+  name: "TestMockBtifApiCounterMetric",
+  srcs: [
+    "mock/mock_btif_api_counter_metric.cc",
+  ],
+}
+
 cc_defaults {
     name: "mts_defaults",
     target: {

@@ -16,15 +16,17 @@
 
 #define LOG_TAG "hal_util"
 
+#include "btcore/include/hal_util.h"
+
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
-#include <hardware/bluetooth.h>
-
 #include <dlfcn.h>
 #include <errno.h>
+#include <hardware/bluetooth.h>
 #include <string.h>
 
-#include "btcore/include/hal_util.h"
+#include "btif/include/btif_api_counter_metric.h"
+#include "gd/common/init_flags.h"
 #include "osi/include/log.h"
 
 using base::StringPrintf;
@@ -33,6 +35,11 @@ extern bt_interface_t bluetoothInterface;
 
 int hal_util_load_bt_library(const bt_interface_t** interface) {
   *interface = &bluetoothInterface;
+
+  if (bluetooth::common::init_flags::api_counter_metric_is_enabled()) {
+    api_counter_metric_init();
+    api_counter_metric_enable();
+  }
 
   return 0;
 }

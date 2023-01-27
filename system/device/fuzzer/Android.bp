@@ -27,6 +27,8 @@ cc_fuzz {
     name: "btdevice_esco_fuzzer",
     defaults: ["fluoride_defaults"],
     srcs: [
+        ":TestCommonMockFunctions",
+        ":TestMockBtifApiCounterMetric",
         "btdevice_esco_fuzzer.cpp",
     ],
     shared_libs: [
