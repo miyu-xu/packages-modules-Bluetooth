@@ -92,3 +92,9 @@ TEST(InitFlagsTest, test_enable_snoop_logger_filtering) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::IsSnoopLoggerFilteringEnabled());
 }
+
+TEST(InitFlagsTest, test_enable_send_bluetooth_quality_report_as_intent) {
+  const char* input[] = {"INIT_send_bluetooth_quality_report_as_intent=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsSendBluetoothQualityReportAsIntentEnabled());
+}
