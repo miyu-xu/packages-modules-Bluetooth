@@ -60,6 +60,10 @@ class InitFlags final {
     return init_flags::leaudio_targeted_announcement_reconnection_mode_is_enabled();
   }
 
+  inline static bool IsInbandRingtoneSupported() {
+    return init_flags::leaudio_inband_ringtone_support_is_enabled();
+  }
+
   inline static int GetAdapterIndex() {
     return init_flags::get_hci_adapter();
   }

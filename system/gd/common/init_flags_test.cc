@@ -34,6 +34,12 @@ TEST(InitFlagsTest, test_leaudio_targeted_announcement_reconnection_mode) {
   ASSERT_TRUE(InitFlags::IsTargetedAnnouncementReconnectionMode());
 }
 
+TEST(InitFlagsTest, test_leaudio_inband_ringtone_support) {
+  const char* input[] = {"INIT_leaudio_inband_ringtone_support=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsInbandRingtoneSupported());
+}
+
 TEST(InitFlagsTest, test_enable_debug_logging_for_all) {
   const char* input[] = {"INIT_logging_debug_enabled_for_all=true", nullptr};
   InitFlags::Load(input);

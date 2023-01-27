@@ -271,6 +271,7 @@ init_flags!(
         hfp_dynamic_version = true,
         irk_rotation,
         leaudio_targeted_announcement_reconnection_mode,
+        leaudio_inband_ringtone_support = true,
         pass_phy_update_callback = true,
         periodic_advertising_adi = true,
         queue_l2cap_coc_while_encrypting = true,
