@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da166e3_6dd248d1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-01-27T19:55:17Z",
+      "side": 1,
+      "message": "And do we resume discovery when (dis)connected?",
+      "range": {
+        "startLine": 1816,
+        "startChar": 13,
+        "endLine": 1816,
+        "endChar": 29
+      },
+      "revId": "04ba436f3335241e6467c5b4e0c7d449af7b3c06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
