@@ -60,6 +60,10 @@ class InitFlags final {
     return init_flags::gd_hal_snoop_logger_filtering_is_enabled();
   }
 
+  inline static bool IsSendBluetoothQualityReportAsIntentEnabled() {
+    return init_flags::send_bluetooth_quality_report_as_intent_is_enabled();
+  }
+
   inline static bool IsTargetedAnnouncementReconnectionMode() {
     return init_flags::leaudio_targeted_announcement_reconnection_mode_is_enabled();
   }
