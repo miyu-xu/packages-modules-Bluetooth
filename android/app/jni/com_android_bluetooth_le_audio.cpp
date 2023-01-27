@@ -125,12 +125,13 @@ class LeAudioClientCallbacksImpl : public LeAudioClientCallbacks {
  public:
   ~LeAudioClientCallbacksImpl() = default;
 
-  void OnInitialized(void) override {
+  void OnInitialized(bool is_inband_ringtone_supported) override {
     LOG(INFO) << __func__;
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
     if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) return;
-    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onInitialized);
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onInitialized,
+                                 (jboolean)is_inband_ringtone_supported);
   }
 
   void OnConnectionState(ConnectionState state,
@@ -288,7 +289,7 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
   method_onAudioConf = env->GetMethodID(clazz, "onAudioConf", "(IIIII)V");
   method_onSinkAudioLocationAvailable =
       env->GetMethodID(clazz, "onSinkAudioLocationAvailable", "([BI)V");
-  method_onInitialized = env->GetMethodID(clazz, "onInitialized", "()V");
+  method_onInitialized = env->GetMethodID(clazz, "onInitialized", "(Z)V");
   method_onConnectionStateChanged =
       env->GetMethodID(clazz, "onConnectionStateChanged", "(I[B)V");
   method_onAudioLocalCodecCapabilities =

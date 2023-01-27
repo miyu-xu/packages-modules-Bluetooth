@@ -4750,7 +4750,8 @@ void LeAudioClient::Initialize(
   CodecManager::GetInstance()->Start(offloading_preference);
   ContentControlIdKeeper::GetInstance()->Start();
 
-  callbacks_->OnInitialized();
+  callbacks_->OnInitialized(
+      bluetooth::common::InitFlags::IsInbandRingtoneSupported());
 }
 
 void LeAudioClient::DebugDump(int fd) {
