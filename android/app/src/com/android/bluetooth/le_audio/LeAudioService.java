@@ -1663,6 +1663,7 @@ public class LeAudioService extends ProfileService {
             }
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_NATIVE_INITIALIZED) {
             mLeAudioNativeIsInitialized = true;
+            mLeAudioInbandRingtoneSupportedByPlatform = stackEvent.valueBool1;
             for (Map.Entry<ParcelUuid, Pair<Integer, Integer>> entry :
                     ContentControlIdKeeper.getUuidToCcidContextPairMap().entrySet()) {
                 ParcelUuid userUuid = entry.getKey();
