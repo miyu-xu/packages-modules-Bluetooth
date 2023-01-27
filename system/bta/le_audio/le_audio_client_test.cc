@@ -221,7 +221,7 @@ void LeAudioSinkAudioHalClient::DebugDump(int fd) {}
 class MockAudioHalClientCallbacks
     : public bluetooth::le_audio::LeAudioClientCallbacks {
  public:
-  MOCK_METHOD((void), OnInitialized, (), (override));
+  MOCK_METHOD((void), OnInitialized, (bool is_inband_ringtone_supported), (override));
   MOCK_METHOD((void), OnConnectionState,
               (ConnectionState state, const RawAddress& address), (override));
   MOCK_METHOD((void), OnGroupStatus, (int group_id, GroupStatus group_status),

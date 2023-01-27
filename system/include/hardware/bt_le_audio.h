@@ -84,7 +84,7 @@ class LeAudioClientCallbacks {
   virtual ~LeAudioClientCallbacks() = default;
 
   /* Callback to notify Java that stack is ready */
-  virtual void OnInitialized(void) = 0;
+  virtual void OnInitialized(bool is_inband_ringtone_supported) = 0;
 
   /** Callback for profile connection state change */
   virtual void OnConnectionState(ConnectionState state,
