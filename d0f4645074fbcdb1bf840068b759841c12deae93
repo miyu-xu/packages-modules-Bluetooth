@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e73e1eea_170b5def",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-01-28T00:06:27Z",
+      "side": 1,
+      "message": "A bit of context.\n\nWe (@charliebout@google.com and me) were trying to makes the `test_le_pairing` (1) test pass against Android.\n\nThe test:\n- the REF create an LE connection as central to the DUT.\n- the REF trigger SMP pairing.\n- both devices wait for the pairing to complete.\n\nWhat happen is when the REF (Bumble) trigger the pairing, it send a `SMP_PAIRING_REQUEST_COMMAND` to Android which is peripheral.\nAccording to the specification, it is the right behavior and Android should respond with a `SMP_PAIRING_REQUEST_RESPONSE`. But it actually it\u0027s not and the request end up here (2).\n\nApparently, when handling the `SMP_PAIRING_REQUEST_COMMAND` in `smp_proc_pair_cmd` (3), Android handle it as a `SMP_SECURITY_REQUEST_COMMAND` instead.\nThis change fix that behavior.\n\n\n(1): https://pandora.git.corp.google.com/avatar/+/9e73cad42cd91ef6b4d47fc6d3c576a813cc29d2/examples/example.py#249\n(2): https://source.corp.google.com/aosp-master/packages/modules/Bluetooth/system/stack/smp/smp_act.cc;l\u003d148;rcl\u003d650d7f3d548022726f9e4f761d3c3843d74f0b9c?q\u003dsmp_act.cc\u0026sq\u003dandroid\n(3): https://source.corp.google.com/aosp-master/packages/modules/Bluetooth/system/stack/smp/smp_act.cc;l\u003d525;rcl\u003d650d7f3d548022726f9e4f761d3c3843d74f0b9c?q\u003dsmp_act.cc\u0026sq\u003dandroid",
+      "revId": "d0f4645074fbcdb1bf840068b759841c12deae93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
