@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f214046_bb7d538e",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-01-28T02:08:43Z",
+      "side": 1,
+      "message": "nit: Could we add a TODO to add this kind of check inside the interop database ?",
+      "range": {
+        "startLine": 823,
+        "startChar": 10,
+        "endLine": 823,
+        "endChar": 31
+      },
+      "revId": "df2b4c533594f5524a858025bb2e1eb5040f8846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
