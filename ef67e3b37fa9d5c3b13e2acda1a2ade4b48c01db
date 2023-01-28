@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc0150fe_a6048540",
+        "filename": "framework/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-28T02:14:07Z",
+      "side": 1,
+      "message": "Where this is supposed to be used ? \nI notice there is something similar in [the service](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/Android.bp;l\u003d152;drc\u003deecaaa05b42ab3eb18f529f978d344ffb486e9a6) that is linked into the [apex](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/apex/Android.bp;l\u003d23;drc\u003dc935977bb382a5c570f5273b7404c3beb6537d89) Should it be added there as well ?\n\nI also noticed the [documentation](https://g3doc.corp.google.com/wireless/android/art/compat/g3doc/dev/compat-framework.md?cl\u003dhead#defining-changes-in-new-jars-or-apexes) is talking about \n`android.permission.LOG_COMPAT_CHANGE` and `android.permission.READ_COMPAT_CHANGE_CONFIG`\n\nBecause this code is in framework, I was wondering who should have these permissions ? Should the 3p app have it ?",
+      "range": {
+        "startLine": 127,
+        "startChar": 11,
+        "endLine": 127,
+        "endChar": 44
+      },
+      "revId": "ef67e3b37fa9d5c3b13e2acda1a2ade4b48c01db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
