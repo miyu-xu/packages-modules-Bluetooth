@@ -22,6 +22,30 @@
       },
       "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab32e897_27a93900",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-28T02:06:32Z",
+      "side": 1,
+      "message": "This is the only location that link the deviceconfiglistener and the managerService.\nCommenting this will prevent any init_flags but if we want we can also completely delete the handling of the inig_flags and the device config listener.\n\nFor now I wanted to keep the code almost identical and just intercept the restart action.",
+      "parentUuid": "80d8de7e_4530983f",
+      "range": {
+        "startLine": 339,
+        "startChar": 19,
+        "endLine": 342,
+        "endChar": 49
+      },
+      "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
