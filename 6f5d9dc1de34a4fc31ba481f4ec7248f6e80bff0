@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "947a314a_d57f0abd",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-28T22:59:35Z",
+      "side": 1,
+      "message": "enforcing headsetService to not be null doesn\u0027t pass the pts-bot. as there can be situation when we have a headsetclient but not a headsetService.\n\nShould we allow mHeadsetService to be null and then check for it before each call to updateInbandRinging ?",
+      "range": {
+        "startLine": 873,
+        "startChar": 41,
+        "endLine": 873,
+        "endChar": 55
+      },
+      "revId": "6f5d9dc1de34a4fc31ba481f4ec7248f6e80bff0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
