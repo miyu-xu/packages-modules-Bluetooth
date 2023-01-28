@@ -1021,11 +1021,35 @@ pub trait IBluetoothGattServerCallback: RPCProxy {
     /// When a notification or indication has been sent to a remote device.
     fn on_notification_sent(&self, _addr: String, _status: GattStatus);
 
+    /// When the MTU for a given connection changes
+    fn on_mtu_changed(&self, _addr: String, _mtu: i32);
+
     /// When there is a change of PHY.
     fn on_phy_update(&self, _addr: String, _tx_phy: LePhy, _rx_phy: LePhy, _status: GattStatus);
 
     /// The completion of IBluetoothGatt::server_read_phy.
     fn on_phy_read(&self, _addr: String, _tx_phy: LePhy, _rx_phy: LePhy, _status: GattStatus);
+
+    /// When the connection parameters for a given connection changes.
+    fn on_connection_updated(
+        &self,
+        _addr: String,
+        _interval: i32,
+        _latency: i32,
+        _timeout: i32,
+        _status: GattStatus,
+    );
+
+    /// When the subrate change event for a given connection is received.
+    fn on_subrate_change(
+        &self,
+        _addr: String,
+        _subrate_factor: i32,
+        _latency: i32,
+        _cont_num: i32,
+        _timeout: i32,
+        _status: GattStatus,
+    );
 }
 
 /// Interface for scanner callbacks to clients, passed to
@@ -3128,6 +3152,9 @@ pub(crate) trait BtifGattServerCallbacks {
     #[btif_callback(Congestion)]
     fn congestion_cb(&mut self, conn_id: i32, congested: bool);
 
+    #[btif_callback(MtuChanged)]
+    fn mtu_changed_cb(&mut self, conn_id: i32, mtu: i32);
+
     #[btif_callback(PhyUpdated)]
     fn phy_updated_cb(&mut self, conn_id: i32, tx_phy: u8, rx_phy: u8, status: GattStatus);
 
@@ -3138,6 +3165,27 @@ pub(crate) trait BtifGattServerCallbacks {
         addr: RawAddress,
         tx_phy: u8,
         rx_phy: u8,
+        status: GattStatus,
+    );
+
+    #[btif_callback(ConnUpdated)]
+    fn conn_updated_cb(
+        &mut self,
+        conn_id: i32,
+        interval: u16,
+        latency: u16,
+        timeout: u16,
+        status: GattStatus,
+    );
+
+    #[btif_callback(SubrateChanged)]
+    fn subrate_chg_cb(
+        &mut self,
+        conn_id: i32,
+        subrate_factor: u16,
+        latency: u16,
+        cont_num: u16,
+        timeout: u16,
         status: GattStatus,
     );
 }
@@ -3378,6 +3426,19 @@ impl BtifGattServerCallbacks for BluetoothGatt {
         }
     }
 
+    fn mtu_changed_cb(&mut self, conn_id: i32, mtu: i32) {
+        (|| {
+            let address = self.server_context_map.get_address_from_conn_id(conn_id)?;
+            let server = self.server_context_map.get_by_conn_id(conn_id)?;
+
+            if let Some(cb) = self.server_context_map.get_callback_from_callback_id(server.cbid) {
+                cb.on_mtu_changed(address, mtu);
+            }
+
+            Some(())
+        })();
+    }
+
     fn phy_updated_cb(&mut self, conn_id: i32, tx_phy: u8, rx_phy: u8, status: GattStatus) {
         (|| {
             let address = self.server_context_map.get_address_from_conn_id(conn_id)?;
@@ -3416,6 +3477,60 @@ impl BtifGattServerCallbacks for BluetoothGatt {
                 );
             }
         }
+    }
+
+    fn conn_updated_cb(
+        &mut self,
+        conn_id: i32,
+        interval: u16,
+        latency: u16,
+        timeout: u16,
+        status: GattStatus,
+    ) {
+        (|| {
+            let address = self.server_context_map.get_address_from_conn_id(conn_id)?;
+            let server = self.server_context_map.get_by_conn_id(conn_id)?;
+
+            if let Some(cb) = self.server_context_map.get_callback_from_callback_id(server.cbid) {
+                cb.on_connection_updated(
+                    address,
+                    interval as i32,
+                    latency as i32,
+                    timeout as i32,
+                    status,
+                );
+            }
+
+            Some(())
+        })();
+    }
+
+    fn subrate_chg_cb(
+        &mut self,
+        conn_id: i32,
+        subrate_factor: u16,
+        latency: u16,
+        cont_num: u16,
+        timeout: u16,
+        status: GattStatus,
+    ) {
+        (|| {
+            let address = self.server_context_map.get_address_from_conn_id(conn_id)?;
+            let server = self.server_context_map.get_by_conn_id(conn_id)?;
+
+            if let Some(cb) = self.server_context_map.get_callback_from_callback_id(server.cbid) {
+                cb.on_subrate_change(
+                    address,
+                    subrate_factor as i32,
+                    latency as i32,
+                    cont_num as i32,
+                    timeout as i32,
+                    status,
+                );
+            }
+
+            Some(())
+        })();
     }
 }
 
