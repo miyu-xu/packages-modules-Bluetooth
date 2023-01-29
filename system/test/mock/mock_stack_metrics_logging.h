@@ -102,14 +102,14 @@ extern struct log_link_layer_connection_event log_link_layer_connection_event;
 struct log_smp_pairing_event {
   std::function<void(const RawAddress& address, uint16_t smp_cmd,
                      android::bluetooth::DirectionEnum direction,
-                     uint16_t smp_fail_reason)>
+                     uint16_t smp_fail_reason, uint8_t io_capability)>
       body{[](const RawAddress& address, uint16_t smp_cmd,
               android::bluetooth::DirectionEnum direction,
-              uint16_t smp_fail_reason) {}};
+              uint16_t smp_fail_reason, uint8_t io_capability) {}};
   void operator()(const RawAddress& address, uint16_t smp_cmd,
                   android::bluetooth::DirectionEnum direction,
-                  uint16_t smp_fail_reason) {
-    body(address, smp_cmd, direction, smp_fail_reason);
+                  uint16_t smp_fail_reason, uint8_t io_capability) {
+    body(address, smp_cmd, direction, smp_fail_reason, uint8_t io_capability);
   };
 };
 extern struct log_smp_pairing_event log_smp_pairing_event;
