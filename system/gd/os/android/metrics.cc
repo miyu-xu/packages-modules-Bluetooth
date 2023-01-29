@@ -236,13 +236,21 @@ void LogMetricReadTxPowerLevelResult(
 }
 
 void LogMetricSmpPairingEvent(
-    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {
+    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason, uint8_t io_capability) {
   int metric_id = 0;
   if (!address.IsEmpty()) {
     metric_id = MetricIdManager::GetInstance().AllocateId(address);
   }
-  int ret =
-      stats_write(BLUETOOTH_SMP_PAIRING_EVENT_REPORTED, byteField, smp_cmd, direction, smp_fail_reason, metric_id);
+  
+  // adding a separate IO Capability field 
+  int ret = 0;
+  if (io_capability != 0) {
+      ret = stats_write(BLUETOOTH_SMP_PAIRING_EVENT_REPORTED, byteField, smp_cmd, direction, smp_fail_reason, metric_id, io_capability);    
+  }
+  else {
+      ret = stats_write(BLUETOOTH_SMP_PAIRING_EVENT_REPORTED, byteField, smp_cmd, direction, smp_fail_reason, metric_id);
+  }
+
   if (ret < 0) {
     LOG_WARN(
         "Failed for %s, smp_cmd %s, direction %d, smp_fail_reason %s, error %d",
