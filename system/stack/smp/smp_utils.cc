@@ -321,6 +321,8 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
     LOG(WARNING) << __func__ << ": buffer is too small, size is " << buf_len;
     return;
   }
+  // log the event to get the pairing command
+  SMP_TRACE_EVENT("%d", *p_buf);
   uint8_t raw_cmd;
   STREAM_TO_UINT8(raw_cmd, p_buf);
   buf_len--;
@@ -328,14 +330,19 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
   if (raw_cmd == SMP_OPCODE_PAIRING_FAILED && buf_len >= 1) {
     STREAM_TO_UINT8(failure_reason, p_buf);
   }
+  uint8_t io_capability = 0;
+  if (raw_cmd == SMP_OPCODE_PAIRING_REQUEST && buf_len >= 1) {
+    STREAM_TO_UINT8(io_capability, p_buf);
+  }
   uint16_t metric_cmd =
       is_over_br ? SMP_METRIC_COMMAND_BR_FLAG : SMP_METRIC_COMMAND_LE_FLAG;
   metric_cmd |= static_cast<uint16_t>(raw_cmd);
   android::bluetooth::DirectionEnum direction =
       is_outgoing ? android::bluetooth::DirectionEnum::DIRECTION_OUTGOING
                   : android::bluetooth::DirectionEnum::DIRECTION_INCOMING;
+
   log_smp_pairing_event(bd_addr, metric_cmd, direction,
-                        static_cast<uint16_t>(failure_reason));
+                        static_cast<uint16_t>(failure_reason), io_capability);
 }
 
 /*******************************************************************************
@@ -354,10 +361,11 @@ bool smp_send_msg_to_L2CAP(const RawAddress& rem_bda, BT_HDR* p_toL2CAP) {
   }
 
   SMP_TRACE_EVENT("%s", __func__);
+  SMP_TRACE_EVENT("%d", *p_toL2CAP);
 
   smp_log_metrics(rem_bda, true /* outgoing */,
                   p_toL2CAP->data + p_toL2CAP->offset, p_toL2CAP->len,
-                  smp_cb.smp_over_br /* is_over_br */);
+                  smp_cb.smp_over_br /* is_over_br */, 0);
 
   l2cap_ret = L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_toL2CAP);
   if (l2cap_ret == L2CAP_DW_FAILED) {

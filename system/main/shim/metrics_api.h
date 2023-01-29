@@ -136,7 +136,7 @@ void LogMetricReadTxPowerLevelResult(const RawAddress& address, uint16_t handle,
  */
 void LogMetricSmpPairingEvent(const RawAddress& address, uint16_t smp_cmd,
                               android::bluetooth::DirectionEnum direction,
-                              uint16_t smp_fail_reason);
+                              uint16_t smp_fail_reason, uint8_t io_capability);
 
 /**
  * Logs there is an event related Bluetooth classic pairing
