@@ -236,7 +236,7 @@ void LogMetricReadTxPowerLevelResult(
 }
 
 void LogMetricSmpPairingEvent(
-    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {
+    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason, uint8_t io_capability) {
   int metric_id = 0;
   if (!address.IsEmpty()) {
     metric_id = MetricIdManager::GetInstance().AllocateId(address);
