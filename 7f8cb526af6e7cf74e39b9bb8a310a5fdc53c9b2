@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70db60e1_9bcf5ce2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-30T20:20:54Z",
+      "side": 1,
+      "message": "nit: no need underscores.",
+      "range": {
+        "startLine": 1025,
+        "startChar": 28,
+        "endLine": 1025,
+        "endChar": 33
+      },
+      "revId": "7f8cb526af6e7cf74e39b9bb8a310a5fdc53c9b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8242b06f_57349324",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2486,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-30T20:20:54Z",
+      "side": 1,
+      "message": "conn_id is not used?",
+      "range": {
+        "startLine": 2486,
+        "startChar": 16,
+        "endLine": 2486,
+        "endChar": 23
+      },
+      "revId": "7f8cb526af6e7cf74e39b9bb8a310a5fdc53c9b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ced13e8_a14c21a9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3384,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-30T20:20:54Z",
+      "side": 1,
+      "message": "There is a compiler warning about double borrowing `self.server_context_map`. How about simply clone the cbid so we don\u0027t need to borrow:\n```\nlet server_cbid \u003d self.server_context_map.get_by_conn_id(conn_id)?.cbid;\n```",
+      "revId": "7f8cb526af6e7cf74e39b9bb8a310a5fdc53c9b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
