@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a407e72_a050c09b",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-30T15:11:55Z",
+      "side": 1,
+      "message": "This patch is very rough, I guess it\u0027s good enough for some basic sanity testing and evaluating if particular set of parameters work.\n\nFor future I want to suggest some changes:\nJust being capable of LE Audio doesn\u0027t mean any devices are connected or would ever be.\n\nIf you could have event that LE Audio device is in use/not in use, and decide the CE_LEN based on that, you could limit the scope of potential issues. Having LE Audio capable phones might be common in few years. Having both LE Audio and ASHA device at same time will be a very rare case.",
+      "range": {
+        "startLine": 323,
+        "startChar": 12,
+        "endLine": 323,
+        "endChar": 38
+      },
+      "revId": "e566e5d4e1c9a1a36173da3881adff9947bd8274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
