@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b4fa04e_905f2892",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-30T21:20:32Z",
+      "side": 1,
+      "message": "You already have such functions in BluetoothUuid.java, I think it could be worth re-using them\nhttps://source.corp.google.com/h/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothUuid.java;l\u003d546?q\u003dBluetoothUUID\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%20branch:master",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 0
+      },
+      "revId": "f8432a19053e41dc1c72c03f8386510fa8c41065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
