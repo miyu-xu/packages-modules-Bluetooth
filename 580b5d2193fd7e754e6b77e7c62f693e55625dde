@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19e656c2_2a334793",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-30T16:22:39Z",
+      "side": 1,
+      "message": "Hi @eruffieux@google.com, @rahulsabnis@google.com - could you please review the API for me? Thank you!",
+      "revId": "580b5d2193fd7e754e6b77e7c62f693e55625dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
