@@ -22,6 +22,30 @@
       },
       "revId": "df2b4c533594f5524a858025bb2e1eb5040f8846",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f78fc6e_c3b93f16",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-30T18:37:03Z",
+      "side": 1,
+      "message": "Filed b/267190972 to track",
+      "parentUuid": "6f214046_bb7d538e",
+      "range": {
+        "startLine": 823,
+        "startChar": 10,
+        "endLine": 823,
+        "endChar": 31
+      },
+      "revId": "df2b4c533594f5524a858025bb2e1eb5040f8846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
