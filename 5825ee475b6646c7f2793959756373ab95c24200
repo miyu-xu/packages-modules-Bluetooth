@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6e16cdc_dfe90c68",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T19:45:44Z",
+      "side": 1,
+      "message": "Because you are now using a `@QualityReportId` I am not sure you need to list all the return id.\n@eruffieux@google.com can you confirm ?",
+      "range": {
+        "startLine": 283,
+        "startChar": 7,
+        "endLine": 285,
+        "endChar": 80
+      },
+      "revId": "5825ee475b6646c7f2793959756373ab95c24200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e8e4576_a50069e8",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T19:45:44Z",
+      "side": 1,
+      "message": "Why only encapsulating this field in the try catch ?\nOr maybe, as we know the length of the buffer, can we check the remaining length before reading from the buffer instead of a try-catch ?\n\nLet me know what you think of this",
+      "range": {
+        "startLine": 1380,
+        "startChar": 12,
+        "endLine": 1387,
+        "endChar": 13
+      },
+      "revId": "5825ee475b6646c7f2793959756373ab95c24200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
