@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7590d78b_061ff428",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1272,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-30T19:42:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84aba7af_37a92229",
+      "range": {
+        "startLine": 1272,
+        "startChar": 5,
+        "endLine": 1272,
+        "endChar": 7
+      },
+      "revId": "5b7e1a3385b76b4ac9acb563a966d6836bd6581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b50664f6_9a7ced55",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-30T17:55:49Z",
       "side": 1,
       "message": "Could you please add a CTS test for this API?",
+      "range": {
+        "startLine": 1280,
+        "startChar": 19,
+        "endLine": 1280,
+        "endChar": 42
+      },
+      "revId": "5b7e1a3385b76b4ac9acb563a966d6836bd6581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce68d9b9_257c91dd",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-30T19:42:59Z",
+      "side": 1,
+      "message": "yes will work on it",
+      "parentUuid": "b50664f6_9a7ced55",
       "range": {
         "startLine": 1280,
         "startChar": 19,
