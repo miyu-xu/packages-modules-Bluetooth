@@ -22,6 +22,30 @@
       },
       "revId": "6be107ec9a1b43728bfad734bfba924798c486aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2ba407_a955894f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-01-30T22:00:28Z",
+      "side": 1,
+      "message": "If the remote device is not already connected, we attempt LE connection with it. During this connection attempt, all subsequent service search requests are queued. If those service search requests were triggered by new pairing, those newly paired devices become vulnerable to removal if they get disconnected while the search search is queued.\nIf we are not already connected over LE, and there is no indication that the remote device is actually connectable over LE at the moment, we should not be starting a blocking procedure (service search over LE) for it.",
+      "parentUuid": "7abe17a5_f6f56cf3",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 73
+      },
+      "revId": "6be107ec9a1b43728bfad734bfba924798c486aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
