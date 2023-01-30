@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e76bfec3_33e649ec",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-30T22:14:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f705e86f_dcab29bc",
+      "range": {
+        "startLine": 1036,
+        "startChar": 8,
+        "endLine": 1036,
+        "endChar": 13
+      },
+      "revId": "1a57ce9091357a4e5d25c5042c41949c5def76b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a00c87a8_3e05a784",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-01-30T20:24:33Z",
       "side": 1,
       "message": "compiler warning about double borrow. Just clone the `server.cbid`:\n```\nlet server_cbid \u003d self.server_context_map.get_by_conn_id(conn_id)?.cbid; \n```\n\nAlso more occurrences below",
+      "revId": "1a57ce9091357a4e5d25c5042c41949c5def76b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0e7255d_217b0c4d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3432,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-01-30T22:14:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a00c87a8_3e05a784",
       "revId": "1a57ce9091357a4e5d25c5042c41949c5def76b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
