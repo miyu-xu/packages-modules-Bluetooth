@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "660050ae_30811e87",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:59:15Z",
+      "side": 1,
+      "message": "nit: Use \"{@code true}\" and \"{@code false}\" so the Java values are highlighted in generated docs.",
+      "revId": "ddf61c47caad15c2ef172a351c2b81b88406d9ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9621a3a7_6f5fb58b",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:59:15Z",
+      "side": 1,
+      "message": "Don\u0027t need this annotation as it\u0027s a new API. That annotation was added to old APIs to indicate that if apps target a platform version before our new permissions were added, we require the older permissions :)",
+      "revId": "ddf61c47caad15c2ef172a351c2b81b88406d9ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "963785e3_cf195b2e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:59:15Z",
+      "side": 1,
+      "message": "Super nit: Maybe we should rename this to \"isInbandRingingEnabled\" to have symmetry with the HFP method (BluetoothHeadset#isInbandRingingEnabled)",
+      "revId": "ddf61c47caad15c2ef172a351c2b81b88406d9ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
