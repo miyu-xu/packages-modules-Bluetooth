@@ -45,6 +45,54 @@
       },
       "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7151b811_900bcb89",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-30T14:49:57Z",
+      "side": 1,
+      "message": "yes. But this is done if following patch, as flag definition has been moved to init flags.",
+      "parentUuid": "fa85458c_2eca58d4",
+      "range": {
+        "startLine": 59,
+        "startChar": 63,
+        "endLine": 59,
+        "endChar": 71
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e793a86_21d353b0",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-30T14:49:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5860261_06385b64",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 73
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
