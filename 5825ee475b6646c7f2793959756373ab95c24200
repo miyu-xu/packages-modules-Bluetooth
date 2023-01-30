@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d79f96eb_d52b0c8f",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 15
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T21:46:00Z",
+      "side": 1,
+      "message": "This one doesn\u0027t have a `getxxStr()` is it on purpose ?",
+      "range": {
+        "startLine": 1124,
+        "startChar": 51,
+        "endLine": 1124,
+        "endChar": 62
+      },
+      "revId": "5825ee475b6646c7f2793959756373ab95c24200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6e16cdc_dfe90c68",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 15
