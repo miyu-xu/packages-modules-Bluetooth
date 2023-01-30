@@ -22,6 +22,7 @@
 #include "gd/hci/le_advertising_manager.h"
 #include "gd/hci/le_scanning_manager.h"
 #include "gd/hci/msft.h"
+#include "gd/hci/remote_name_request.h"
 #include "gd/hci/vendor_specific_event_manager.h"
 #include "gd/metrics/counter_metrics.h"
 #include "gd/neighbor/connectability.h"
@@ -94,6 +95,12 @@ neighbor::PageModule* GetPage() {
   return Stack::GetInstance()
       ->GetStackManager()
       ->GetInstance<neighbor::PageModule>();
+}
+
+hci::RemoteNameRequestModule* GetRemoteNameRequest() {
+  return Stack::GetInstance()
+      ->GetStackManager()
+      ->GetInstance<hci::RemoteNameRequestModule>();
 }
 
 hci::LeScanningManager* GetScanning() {

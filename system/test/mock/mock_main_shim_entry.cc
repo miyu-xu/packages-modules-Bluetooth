@@ -74,6 +74,7 @@ security::SecurityModule* GetSecurityModule() { return nullptr; }
 storage::StorageModule* GetStorage() { return nullptr; }
 metrics::CounterMetrics* GetCounterMetrics() { return nullptr; }
 hci::MsftExtensionManager* GetMsftExtensionManager() { return nullptr; }
+hci::RemoteNameRequestModule* GetRemoteNameRequest() { return nullptr; }
 
 }  // namespace shim
 }  // namespace bluetooth
