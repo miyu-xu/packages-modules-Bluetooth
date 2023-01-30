@@ -1,0 +1,327 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42feed77_d9af4ce8",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "I would consider throwing an Exception if distance measurement isn\u0027t supported as that\u0027s considered developer error (they didn\u0027t call isDistanceMeasurementSupported)",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664cff93_14f80d7b",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "All System APIs should require BLUETOOTH_CONNECT and BLUETOOTH_PRIVILEGED permissions. This can be enforced when you make the service call for isDistanceMeasurementSupported. Make sure we apply this to all System APIs that involve new binder calls.",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e24857a9_035deb7e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "nit: Put this in an @throws tag",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6863acd7_29e9b8ca",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "I would consider throwing an exception here because this is a developer error.",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c9e980_233904b0",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "If we get a RemoteException, we should rethrow it. If we get a TimeoutException, we shouldn\u0027t throw an exception as that\u0027s not the fault of the caller. See BluetoothAdapter#getScanMode for an example.",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac70d7f_ae285d50",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Annotate the param with the IntDef annotation as well",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa55a1a6_44a047bb",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "nit: Add docs for the Builder too",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "303e926c_62279184",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Just clarify here that it\u0027s \"{@code true} if azimuth angle...\" and apply that to the other setter too",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b4d2e2_0721f636",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Do we think this might ever change? If yes, let\u0027s change the value to be a private method call so we can update the value in the future without triggering an API change (go/android-api-guidelines#constants-min-max). If not, this is fine.",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cca87d0_8147aea6",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Document @throws for the exceptions",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0975be7_439486ce",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Is there no maximum allowed duration?",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a78ec05_00825e8e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Use @link to link to the website",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6355d9cf_1510f82b",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Add @FloatRange for these",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f04784fb_f403530c",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "For any required params, make them params to the Builder constructor",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b4f931_bc2e4aff",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "typo: measurement",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "140b4347_ac9cc927",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Note that Callback#onStopped will be invoked if this succeeds.",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e24eec8_006d3a86",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "We should aim to return an int here with a status code to give the caller actionable feedback if this fails.",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d97470_a62ee5d0",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Same feedback about TimeoutException \u0026 RemoteException",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ff2c83_cb7a53c8",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-01-30T23:39:13Z",
+      "side": 1,
+      "message": "Please consider using the BluetoothStatusCodes constants as they limit duplication",
+      "revId": "70cced89e8f1c42308648105b6c6d17bde8f29e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
