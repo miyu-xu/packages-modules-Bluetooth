@@ -16,6 +16,24 @@
       "message": "Maybe you could consider adding callback from Native to Java which would contain configuration information. This would avoid reading same configuration in Native and Java.\n\nCould be as follow up patch.",
       "revId": "521a1a703832262c1d5ed9b0b06e3510ebf119b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd4f2be4_bc611ed4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-01-30T18:27:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "694c3d34_ada42f37",
+      "revId": "521a1a703832262c1d5ed9b0b06e3510ebf119b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
