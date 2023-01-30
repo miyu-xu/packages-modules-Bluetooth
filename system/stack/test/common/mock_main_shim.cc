@@ -53,6 +53,10 @@ bool bluetooth::shim::is_gd_link_policy_enabled() {
   mock_function_count_map[__func__]++;
   return false;
 }
+bool bluetooth::shim::is_gd_remote_name_request_enabled() {
+  mock_function_count_map[__func__]++;
+  return true;
+}
 future_t* GeneralShutDown() {
   mock_function_count_map[__func__]++;
   return nullptr;
