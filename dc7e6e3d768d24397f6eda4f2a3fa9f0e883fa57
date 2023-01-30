@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "802eb4a8_1f479ac0",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T16:27:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b09b8320_793588b6",
+      "range": {
+        "startLine": 443,
+        "startChar": 26,
+        "endLine": 443,
+        "endChar": 68
+      },
+      "revId": "dc7e6e3d768d24397f6eda4f2a3fa9f0e883fa57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "834debf8_53a93c1b",
