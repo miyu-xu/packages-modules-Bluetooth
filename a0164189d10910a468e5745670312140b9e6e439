@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b406c92_e15f7a05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T17:32:35Z",
+      "side": 1,
+      "message": "I will fix net_test_stack_sdp test failure. \nOutput:\nld.lld: error: undefined symbol: interop_database_add_addr(unsigned short, RawAddress const*, unsigned int)\n\u003e\u003e\u003e referenced by sdp_server.cc:1261 (packages/modules/Bluetooth/system/stack/sdp/sdp_server.cc:1261)\n\u003e\u003e\u003e               out/soong/.intermediates/packages/modules/Bluetooth/system/stack/net_test_stack_sdp/linux_glibc_x86/obj/packages/modules/Bluetooth/system/stack/sdp/sdp_server.o:(update_pce_entry_to_interop_database(RawAddress))\n\nld.lld: error: undefined symbol: btif_storage_is_pce_version_102(RawAddress const\u0026)\n\u003e\u003e\u003e referenced by sdp_server.cc:1192 (packages/modules/Bluetooth/system/stack/sdp/sdp_server.cc:1192)\n\u003e\u003e\u003e               out/soong/.intermediates/packages/modules/Bluetooth/system/stack/net_test_stack_sdp/linux_glibc_x86/obj/packages/modules/Bluetooth/system/stack/sdp/sdp_server.o:(sdp_upgrade_pse_record(tSDP_RECORD const*, RawAddress))\n\u003e\u003e\u003e referenced by sdp_server.cc:1091 (packages/modules/Bluetooth/system/stack/sdp/sdp_server.cc:1091)\n\u003e\u003e\u003e               out/soong/.intermediates/packages/modules/Bluetooth/system/stack/net_test_stack_sdp/linux_glibc_x86/obj/packages/modules/Bluetooth/system/stack/sdp/sdp_server.o:(sdp_pbap_pse_dynamic_attributes_len_update(tCONN_CB*, tSDP_ATTR_SEQ*, tSDP_UUID_SEQ*))\nclang-16: error: linker command failed with exit code 1 (use -v to see invocation)",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "revId": "a0164189d10910a468e5745670312140b9e6e439",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
