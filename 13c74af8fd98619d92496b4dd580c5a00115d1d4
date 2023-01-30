@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91142d37_4ea2a077",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2202,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-30T17:39:01Z",
+      "side": 1,
+      "message": "if data_path_state \u003d\u003d CIS_PENDING it means, CIS create has been already sent. \nIs this intentional?",
+      "range": {
+        "startLine": 2202,
+        "startChar": 34,
+        "endLine": 2202,
+        "endChar": 75
+      },
+      "revId": "13c74af8fd98619d92496b4dd580c5a00115d1d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
