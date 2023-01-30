@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df737c3b_b7e437a8",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:02:56Z",
+      "side": 1,
+      "message": "Is the import needed ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "4ab132c6d457b3947c04e241d1d5c69788eb2db8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8995e6ed_f13b0177",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2242,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:02:56Z",
+      "side": 1,
+      "message": "I am not sure about it, but do we want to put this behind the flag ?",
+      "range": {
+        "startLine": 2236,
+        "startChar": 2,
+        "endLine": 2242,
+        "endChar": 3
+      },
+      "revId": "4ab132c6d457b3947c04e241d1d5c69788eb2db8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be2c03c9_3b94d2e1",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:02:56Z",
+      "side": 1,
+      "message": "Can you move this modification to the previous CL in the relation chain ? (it is not a flag related change but more fixing the build of previous CL)",
+      "range": {
+        "startLine": 547,
+        "startChar": 34,
+        "endLine": 547,
+        "endChar": 37
+      },
+      "revId": "4ab132c6d457b3947c04e241d1d5c69788eb2db8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0929970_9d40a108",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:02:56Z",
+      "side": 1,
+      "message": "We no longer need this since we move the flag to native",
+      "range": {
+        "startLine": 280,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 24
+      },
+      "revId": "4ab132c6d457b3947c04e241d1d5c69788eb2db8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
