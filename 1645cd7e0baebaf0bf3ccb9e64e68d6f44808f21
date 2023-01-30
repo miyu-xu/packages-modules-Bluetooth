@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4797fb53_40e25f6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-30T20:55:04Z",
+      "side": 1,
+      "message": "LGTM with conditions:\n- Replace docker/podman with `container`\n- Update README",
+      "revId": "1645cd7e0baebaf0bf3ccb9e64e68d6f44808f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1c0ae7_b3b9c2b0",
+        "filename": "floss/build/build-in-podman.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-30T20:55:04Z",
+      "side": 1,
+      "message": "Rename file to `build-in-container.py`",
+      "revId": "1645cd7e0baebaf0bf3ccb9e64e68d6f44808f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80d14882_75efb26e",
+        "filename": "floss/build/build-in-podman.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-30T20:55:04Z",
+      "side": 1,
+      "message": "self.container_binary",
+      "revId": "1645cd7e0baebaf0bf3ccb9e64e68d6f44808f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef07f318_095cd6ce",
+        "filename": "floss/build/podman-build-image.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-30T20:55:04Z",
+      "side": 1,
+      "message": "Rename file `container-build-image.py`",
+      "revId": "1645cd7e0baebaf0bf3ccb9e64e68d6f44808f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdb3a919_b5ba6a6a",
+        "filename": "floss/build/podman-build-image.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-30T20:55:04Z",
+      "side": 1,
+      "message": "replace `Docker` with `Container` in all instances",
+      "revId": "1645cd7e0baebaf0bf3ccb9e64e68d6f44808f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
