@@ -1864,7 +1864,7 @@ public class GattService extends ProfileService {
                 continue;
             }
 
-            BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
+            BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteLeDevice(address, addressType);
 
             ScanSettings settings = client.settings;
             byte[] scanRecordData;
