@@ -94,6 +94,30 @@
       },
       "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be727e3_34f46dfb",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-01-30T21:19:03Z",
+      "side": 1,
+      "message": "Just here I mean - whatever you are commenting out when the bug captures the context.",
+      "parentUuid": "6ca4d033_fd43e2b0",
+      "range": {
+        "startLine": 339,
+        "startChar": 19,
+        "endLine": 342,
+        "endChar": 49
+      },
+      "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
