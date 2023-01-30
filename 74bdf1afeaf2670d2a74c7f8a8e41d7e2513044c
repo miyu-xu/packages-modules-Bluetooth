@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf791538_ef9b6488",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-30T17:55:49Z",
+      "side": 1,
+      "message": "If you don\u0027t add a system property or a sysprop anymore you don\u0027t need to declare anything in the SePolicy",
+      "parentUuid": "7b511c59_5d743588",
+      "range": {
+        "startLine": 91,
+        "startChar": 21,
+        "endLine": 91,
+        "endChar": 71
+      },
+      "revId": "74bdf1afeaf2670d2a74c7f8a8e41d7e2513044c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c37d347a_74e379eb",
