@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37210945_eb149bb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-01-30T21:14:48Z",
+      "side": 1,
+      "message": "Notes:\n- Rename of `BluetoothAvrcpPlayerSettings` to `BluetoothAvrcpControllerPlayerSettings` as this was the controller version (and is hidden)\n- APIs are defined in `BluetoothA2dp` as BluetoothAvrcp does not extend BluetoothProfile, this matches the volume API",
+      "revId": "59210e87f9b2dc103fe7b935fbe50072555bda12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
