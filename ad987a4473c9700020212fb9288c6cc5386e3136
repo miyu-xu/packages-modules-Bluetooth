@@ -46,6 +46,30 @@
       },
       "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d250ee3_2fad1fa9",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-01-30T18:17:38Z",
+      "side": 1,
+      "message": "Why dont we remove the logic instead of commenting out - just leave the TODO so that folks have context on the empty method.",
+      "parentUuid": "ab32e897_27a93900",
+      "range": {
+        "startLine": 339,
+        "startChar": 19,
+        "endLine": 342,
+        "endChar": 49
+      },
+      "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
