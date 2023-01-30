@@ -1446,6 +1446,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a89d65ed_e4597ceb",
+        "filename": "system/stack/sdp/sdp_db.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T18:10:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee80b5c9_c6aa07e6",
+      "range": {
+        "startLine": 3,
+        "startChar": 46,
+        "endLine": 3,
+        "endChar": 66
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d76f94cd_13037e31",
