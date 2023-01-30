@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aebbc4f_2ed67d20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-01-30T23:58:02Z",
+      "side": 1,
+      "message": "This is not a recent change. I see that we are using \"getRemoteLeDevice\" only in a few places which \"getRemoteDevice\" is used almost everywhere else. Was everything inadvertently working because every BluetoothDevice which should have a random address is created with no address type.\nIt is not very obvious if the resulting BluetoothDevice object is compared anywhere with BluetoothDevice objects created with the same address but without the address type. It may be better if we make similar changes for all LE related code.",
+      "revId": "b25b4c60e108b2b4daa4679c197db3d7b7b606b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
