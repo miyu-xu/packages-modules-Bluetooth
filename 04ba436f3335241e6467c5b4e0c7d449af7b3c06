@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4577dd_8c6edc61",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1393,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-30T18:24:04Z",
+      "side": 1,
+      "message": "isn\u0027t this already short-circuited below the topshim layer? I believe you have a purpose to also short-circuit it here too?",
+      "revId": "04ba436f3335241e6467c5b4e0c7d449af7b3c06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9da166e3_6dd248d1",
