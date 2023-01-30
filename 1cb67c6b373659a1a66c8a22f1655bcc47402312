@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a88fe6_3f72fc9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "will add test later, for now, Manually End to End tested with init flag value: true \u0026 false",
+      "parentUuid": "099a7211_a1780a51",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf453929_fa9c385e",
@@ -101,6 +125,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "can you add an extra blank line between comment and `CREATE_RETRY_TIME`",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 7
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02e6f1b_72c1e660",
+        "filename": "android/app/src/com/android/bluetooth/ObexServerSockets.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b19c8fd_0ca00569",
       "range": {
         "startLine": 98,
         "startChar": 0,
@@ -416,6 +464,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe0fdce_1bb9ef45",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e02686f_862a2f3d",
+      "range": {
+        "startLine": 210,
+        "startChar": 41,
+        "endLine": 210,
+        "endChar": 61
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95d4b1d3_e850cc8d",
@@ -570,6 +642,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "It\u0027s hard to look at the difference between the two assignement\nCan we create a temporary variable for this:\n```\nint repository \u003d SDP_PBAP_SUPPORTED_REPOSITORIES;\nif (isSimSupported) {\n  Log.d(TAG ,\"creating PBAP 1.1 record with sim support\");\n} else {\n  Log.d(TAG ,\"creating PBAP 1.1 record without sim support\");\n  repository \u003d SDP_PBAP_LEGACY_SUPPORTED_REPOSITORIES\n}\nmSdphandle \u003d create(...,repository ,...);\n```",
+      "range": {
+        "startLine": 398,
+        "startChar": 3,
+        "endLine": 402,
+        "endChar": 52
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "039ab647_13ef8523",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "It seems that, PBAP SIM related change were disabled https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2087804 . i have remove SIM related code for now, we will revisit it later.",
+      "parentUuid": "77115274_0b30ed19",
       "range": {
         "startLine": 398,
         "startChar": 3,
@@ -1050,6 +1146,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d3f095_4c2c841a",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36925070_835b1d2b",
+      "range": {
+        "startLine": 509,
+        "startChar": 8,
+        "endLine": 509,
+        "endChar": 28
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1adeb345_f0443d39",
@@ -1251,6 +1371,30 @@
       "writtenOn": "2022-12-13T21:54:41Z",
       "side": 1,
       "message": "Add extra line above",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 6
+      },
+      "revId": "1cb67c6b373659a1a66c8a22f1655bcc47402312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa29a08_c2250d05",
+        "filename": "system/bta/sdp/bta_sdp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f818971_1c938cf4",
       "range": {
         "startLine": 36,
         "startChar": 0,

@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0756aa3_51d391d7",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e94b4f19_17649139",
+      "range": {
+        "startLine": 422,
+        "startChar": 32,
+        "endLine": 422,
+        "endChar": 51
+      },
+      "revId": "8eda798c03bc9b2631ec69bfd5bf81822e445453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0778f69c_5ed6c966",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-22T21:37:04Z",
       "side": 1,
       "message": "this should be space not tabs",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 1
+      },
+      "revId": "8eda798c03bc9b2631ec69bfd5bf81822e445453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "576f14a6_74956668",
+        "filename": "system/gd/common/init_flags.fbs",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0778f69c_5ed6c966",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb984713_6e1beff3",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb1e4acb_43071453",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 2
+      },
+      "revId": "8eda798c03bc9b2631ec69bfd5bf81822e445453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "618061f9_a14bff5f",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "268ac596_3559efc6",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "618061f9_a14bff5f",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 2
+      },
+      "revId": "8eda798c03bc9b2631ec69bfd5bf81822e445453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1838d6b_fe3f2080",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-01-22T21:37:04Z",
       "side": 1,
       "message": "typo: `version` ?",
+      "range": {
+        "startLine": 913,
+        "startChar": 32,
+        "endLine": 913,
+        "endChar": 39
+      },
+      "revId": "8eda798c03bc9b2631ec69bfd5bf81822e445453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c9573a_e67ee431",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-01-30T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1838d6b_fe3f2080",
       "range": {
         "startLine": 913,
         "startChar": 32,
