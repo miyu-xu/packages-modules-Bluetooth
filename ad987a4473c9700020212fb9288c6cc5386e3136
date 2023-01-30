@@ -70,6 +70,30 @@
       },
       "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca4d033_fd43e2b0",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T18:43:11Z",
+      "side": 1,
+      "message": "I can remove it sure, but what do you mean by \"removing the logic\" ? Do you mean just deleting the code inside `onInitFlagsChanged` or removing the full logic around the restart ?\nThe full logic consist in:\n* The [BluetoothDeviceConfigListener](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/java/com/android/server/bluetooth/BluetoothDeviceConfigListener.java;l\u003d36?q\u003ddeviceConfigListener%20%20f:bluetooth) file\n* The case handling in the \"state machine\" switch [here](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/java/com/android/server/bluetooth/BluetoothManagerService.java;l\u003d2549-2578)",
+      "parentUuid": "3d250ee3_2fad1fa9",
+      "range": {
+        "startLine": 339,
+        "startChar": 19,
+        "endLine": 342,
+        "endChar": 49
+      },
+      "revId": "ad987a4473c9700020212fb9288c6cc5386e3136",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
