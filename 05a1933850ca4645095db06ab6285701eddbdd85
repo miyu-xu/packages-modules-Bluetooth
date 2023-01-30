@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eddf60d6_c261a16b",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3368,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-30T21:06:00Z",
+      "side": 1,
+      "message": "Since you\u0027re including the status, can we just print it once outside the if?\n\n\"Encryption success\" -\u003e \"Encryption Status\"\n\neverything else just works.",
+      "revId": "05a1933850ca4645095db06ab6285701eddbdd85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
