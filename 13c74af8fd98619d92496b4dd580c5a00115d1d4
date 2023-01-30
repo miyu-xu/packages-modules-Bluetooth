@@ -22,6 +22,29 @@
       },
       "revId": "13c74af8fd98619d92496b4dd580c5a00115d1d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37599983_30db5f0b",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3109,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-30T17:45:07Z",
+      "side": 1,
+      "message": "maybe we should check if lastDevice ASEs are in streaming state?\nOposite to what is in line 3073-\u003e3080",
+      "range": {
+        "startLine": 3107,
+        "startChar": 2,
+        "endLine": 3109,
+        "endChar": 32
+      },
+      "revId": "13c74af8fd98619d92496b4dd580c5a00115d1d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
