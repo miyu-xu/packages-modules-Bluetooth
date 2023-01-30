@@ -52,6 +52,24 @@
       "parentUuid": "341a1407_2d8dd51b",
       "revId": "70d7bc65bf889b86ff54f28f581726985c763776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f08608_5a3cf3ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:28:25Z",
+      "side": 1,
+      "message": "Crash is happening in native and is not related to an issue in pts-bot",
+      "parentUuid": "80827f2e_d01dc7cc",
+      "revId": "70d7bc65bf889b86ff54f28f581726985c763776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b22745_6c4ba6e5",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:28:25Z",
+      "side": 1,
+      "message": "The test failure shows that we may want to return at the start of this method if the flag is not enabled. Or maybe we can be even better and check that we are in filtering mode ? (since the filtering mode is not always enabled and the feature flag is disabling it too)",
+      "revId": "86212680c142ade37f2b2693630919ab652ac672",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe8f1cf_a5f821de",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:28:25Z",
+      "side": 1,
+      "message": "Can this be null too ? (cf comment below)",
+      "range": {
+        "startLine": 1800,
+        "startChar": 46,
+        "endLine": 1800,
+        "endChar": 51
+      },
+      "revId": "86212680c142ade37f2b2693630919ab652ac672",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b85b87_c0baecf9",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1824,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-30T22:28:25Z",
+      "side": 1,
+      "message": "It looks like p_lcb can be null and this will crash.\nCf this stack trace:\n```\n01-30 19:03:36.922 23095 23095 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\n01-30 19:03:36.922 23095 23095 F DEBUG   : Build fingerprint: \u0027generic/aosp_cf_x86_64_phone/vsoc_x86_64:UpsideDownCake/AOSP.MASTER.b23d5b3f/P48744778:userdebug/test-keys\u0027\n01-30 19:03:36.922 23095 23095 F DEBUG   : Revision: \u00270\u0027\n01-30 19:03:36.922 23095 23095 F DEBUG   : ABI: \u0027x86_64\u0027\n01-30 19:03:36.922 23095 23095 F DEBUG   : Timestamp: 2023-01-30 19:03:36.740310144+0000\n01-30 19:03:36.922 23095 23095 F DEBUG   : Process uptime: 0s\n01-30 19:03:36.922 23095 23095 F DEBUG   : Cmdline: com.android.bluetooth\n01-30 19:03:36.922 23095 23095 F DEBUG   : pid: 22977, tid: 23025, name: bt_main_thread  \u003e\u003e\u003e com.android.bluetooth \u003c\u003c\u003c\n01-30 19:03:36.922 23095 23095 F DEBUG   : uid: 1002\n01-30 19:03:36.922 23095 23095 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0000000000000012\n01-30 19:03:36.922 23095 23095 F DEBUG   : Cause: null pointer dereference\n01-30 19:03:36.922 23095 23095 F DEBUG   :     rax 0000000000000000  rbx 0000753163181e00  rcx 0000000000000000  rdx 0000000000000047\n01-30 19:03:36.922 23095 23095 F DEBUG   :     r8  0000000000000007  r9  8080808080808080  r10 0000753162579bed  r11 0000753163197bb8\n01-30 19:03:36.922 23095 23095 F DEBUG   :     r12 0000000000000047  r13 0000000000000000  r14 0000000000000000  r15 0000000000000047\n01-30 19:03:36.923 23095 23095 F DEBUG   :     rdi 00007532c3660d10  rsi 000075316319e1e0\n01-30 19:03:36.923 23095 23095 F DEBUG   :     rbp 00007532c3660d10  rsp 00007531608b4490  rip 0000753162a0e6c3\n01-30 19:03:36.923 23095 23095 F DEBUG   : backtrace:\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #00 pc 00000000007276c3  /apex/com.android.btservices/lib64/libbluetooth_jni.so (L2CA_SetMediaStreamChannel(unsigned short, bool)+435) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #01 pc 000000000046fe27  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bta_av_str_closed(tBTA_AV_SCB*, tBTA_AV_DATA*)+247) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #02 pc 000000000046bf8b  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bta_av_ssm_execute(tBTA_AV_SCB*, unsigned short, tBTA_AV_DATA*)+1995) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #03 pc 000000000046663a  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bta_av_hdl_event(BT_HDR_RIGID*)+490) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #04 pc 0000000000469703  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bta_sys_event(BT_HDR_RIGID*)+115) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #05 pc 0000000000d78f58  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*)+216) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #06 pc 0000000000d78019  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::MessageLoop::RunTask(base::PendingTask*)+201) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #07 pc 0000000000d785e9  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::MessageLoop::DoWork()+601) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #08 pc 0000000000d7b36e  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::MessagePumpDefault::Run(base::MessagePump::Delegate*)+62) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #09 pc 0000000000da21d3  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::RunLoop::Run()+51) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #10 pc 00000000007c47a1  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bluetooth::common::MessageLoopThread::Run(std::__1::promise\u003cvoid\u003e)+385) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #11 pc 00000000007c419b  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bluetooth::common::MessageLoopThread::RunThread(bluetooth::common::MessageLoopThread*, std::__1::promise\u003cvoid\u003e)+43) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #12 pc 00000000007c4d23  /apex/com.android.btservices/lib64/libbluetooth_jni.so (void* std::__1::__thread_proxy\u003cstd::__1::tuple\u003cstd::__1::unique_ptr\u003cstd::__1::__thread_struct, std::__1::default_delete\u003cstd::__1::__thread_struct\u003e \u003e, void (*)(bluetooth::common::MessageLoopThread*, std::__1::promise\u003cvoid\u003e), bluetooth::common::MessageLoopThread*, std::__1::promise\u003cvoid\u003e \u003e \u003e(void*)+83) (BuildId: 0d3f57b290c6f970d31296a71076e682)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #13 pc 00000000000cad5d  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+61) (BuildId: 8c90b76fe5dcc4949669aba26b1cb468)\n01-30 19:03:36.923 23095 23095 F DEBUG   :       #14 pc 0000000000060cf7  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+55) (BuildId: 8c90b76fe5dcc4949669aba26b1cb468)\n```",
+      "range": {
+        "startLine": 1824,
+        "startChar": 46,
+        "endLine": 1824,
+        "endChar": 51
+      },
+      "revId": "86212680c142ade37f2b2693630919ab652ac672",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
