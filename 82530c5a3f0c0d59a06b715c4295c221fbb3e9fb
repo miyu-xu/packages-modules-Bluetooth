@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "967a6da6_160bdfdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-30T20:02:49Z",
+      "side": 1,
+      "message": "This does not build with Floss which still uses the old libchrome. Should we add `#if BASE_VER`s like http://go/csasp/+/master:packages/modules/Bluetooth/system/include/abstract_message_loop.h",
+      "revId": "82530c5a3f0c0d59a06b715c4295c221fbb3e9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
