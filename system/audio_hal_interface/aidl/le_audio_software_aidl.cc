@@ -109,8 +109,6 @@ void LeAudioTransport::StopRequest() {
   }
 }
 
-void LeAudioTransport::SetLowLatency(bool is_low_latency) {}
-
 bool LeAudioTransport::GetPresentationPosition(uint64_t* remote_delay_report_ns,
                                                uint64_t* total_bytes_processed,
                                                timespec* data_position) {
@@ -265,10 +263,6 @@ BluetoothAudioCtrlAck LeAudioSinkTransport::SuspendRequest() {
 
 void LeAudioSinkTransport::StopRequest() { transport_->StopRequest(); }
 
-void LeAudioSinkTransport::SetLowLatency(bool is_low_latency) {
-  transport_->SetLowLatency(is_low_latency);
-}
-
 bool LeAudioSinkTransport::GetPresentationPosition(
     uint64_t* remote_delay_report_ns, uint64_t* total_bytes_read,
     timespec* data_position) {
@@ -354,10 +348,6 @@ BluetoothAudioCtrlAck LeAudioSourceTransport::SuspendRequest() {
 }
 
 void LeAudioSourceTransport::StopRequest() { transport_->StopRequest(); }
-
-void LeAudioSourceTransport::SetLowLatency(bool is_low_latency) {
-  transport_->SetLowLatency(is_low_latency);
-}
 
 bool LeAudioSourceTransport::GetPresentationPosition(
     uint64_t* remote_delay_report_ns, uint64_t* total_bytes_written,

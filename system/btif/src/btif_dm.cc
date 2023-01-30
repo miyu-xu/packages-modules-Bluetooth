@@ -2796,13 +2796,11 @@ void btif_dm_load_local_oob(void) {
 }
 
 static bool waiting_on_oob_advertiser_start = false;
-static std::unique_ptr<uint8_t> oob_advertiser_id_;
+static uint8_t oob_advertiser_id = 0;
 static void stop_oob_advertiser() {
-  // For chasing an advertising bug b/237023051
-  LOG_DEBUG("oob_advertiser_id: %s", oob_advertiser_id_.get());
   auto advertiser = get_ble_advertiser_instance();
-  advertiser->Unregister(*oob_advertiser_id_);
-  oob_advertiser_id_ = nullptr;
+  advertiser->Unregister(oob_advertiser_id);
+  oob_advertiser_id = 0;
 }
 
 /*******************************************************************************
@@ -2823,9 +2821,7 @@ void btif_dm_generate_local_oob_data(tBT_TRANSPORT transport) {
     // the state machine lifecycle.  Rather, lets create the data, then start
     // advertising then request the address.
     if (!waiting_on_oob_advertiser_start) {
-      // For chasing an advertising bug b/237023051
-      LOG_DEBUG("oob_advertiser_id: %s", oob_advertiser_id_.get());
-      if (oob_advertiser_id_ != nullptr) {
+      if (oob_advertiser_id != 0) {
         stop_oob_advertiser();
       }
       waiting_on_oob_advertiser_start = true;
@@ -2856,7 +2852,7 @@ static void start_advertising_callback(uint8_t id, tBT_TRANSPORT transport,
         transport, false, c, r, RawAddress{}, 0x00);
     SMP_ClearLocScOobData();
     waiting_on_oob_advertiser_start = false;
-    oob_advertiser_id_ = nullptr;
+    oob_advertiser_id = 0;
     return;
   }
   LOG_DEBUG("OOB advertiser with id %hhd", id);
@@ -2872,7 +2868,7 @@ static void timeout_cb(uint8_t id, tBTM_STATUS status) {
   advertiser->Unregister(id);
   SMP_ClearLocScOobData();
   waiting_on_oob_advertiser_start = false;
-  oob_advertiser_id_ = nullptr;
+  oob_advertiser_id = 0;
 }
 
 // Step Two: CallBack from Step One, advertise and get address
@@ -2885,12 +2881,11 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
         transport, false, c, r, RawAddress{}, 0x00);
     SMP_ClearLocScOobData();
     waiting_on_oob_advertiser_start = false;
-    oob_advertiser_id_ = nullptr;
+    oob_advertiser_id = 0;
     return;
   }
 
-  oob_advertiser_id_ = std::make_unique<uint8_t>(id);
-  LOG_ERROR("oob_advertiser_id: %s", oob_advertiser_id_.get());
+  oob_advertiser_id = id;
 
   auto advertiser = get_ble_advertiser_instance();
   AdvertiseParameters parameters{};
@@ -2911,7 +2906,7 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
   advertiser->StartAdvertising(
       id,
       base::Bind(&start_advertising_callback, id, transport, is_valid, c, r),
-      parameters, advertisement, scan_data, 120 /* timeout_s */,
+      parameters, advertisement, scan_data, 3600 /* timeout_s */,
       base::Bind(&timeout_cb, id));
 }
 
@@ -3161,7 +3156,6 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     bond_state_changed(status, bd_addr, BT_BOND_STATE_BONDING);
   }
   bond_state_changed(status, bd_addr, state);
-  // TODO(240451061): Calling `stop_oob_advertiser();` gets command disallowed...
 }
 
 void btif_dm_load_ble_local_keys(void) {
