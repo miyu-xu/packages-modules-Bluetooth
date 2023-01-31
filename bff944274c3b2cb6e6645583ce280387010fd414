@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad457abf_4d3ae4ae",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-01-31T00:25:31Z",
+      "side": 0,
+      "message": "So we don\u0027t have these commands any more or we just don\u0027t process them here any more",
+      "revId": "bff944274c3b2cb6e6645583ce280387010fd414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
