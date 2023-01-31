@@ -7,3 +7,6 @@
 edition = "2021"
 use_small_heuristics = "Max"
 newline_style = "Unix"
+wrap_comments = true
+imports_granularity = "Crate"
+# DO NOT SUBMIT - changes only needed for stack above us
