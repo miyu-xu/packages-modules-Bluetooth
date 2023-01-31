@@ -18,14 +18,23 @@ mod ffi;
 
 use std::{rc::Rc, thread};
 
+use cxx::UniquePtr;
 #[cfg(not(test))]
 pub use ffi::CxxUuid;
 
-use crate::{gatt::ffi::AttTransportImpl, GlobalModuleRegistry};
+use crate::{
+    gatt::ffi::{AttTransportImpl, GattCallbacksImpl},
+    GlobalModuleRegistry,
+};
 
-fn init() {
+use self::ffi::GattServerCallbacks;
+
+fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>) {
     thread::spawn(move || {
-        GlobalModuleRegistry::start(Rc::new(AttTransportImpl()));
+        GlobalModuleRegistry::start(
+            Rc::new(GattCallbacksImpl(gatt_server_callbacks)),
+            Rc::new(AttTransportImpl()),
+        );
     });
 }
 
