@@ -253,6 +253,7 @@ init_flags!(
     flags: {
         always_use_private_gatt_for_debugging,
         asynchronously_start_l2cap_coc = true,
+        bta_ag_incoming_call_sco_open,
         btaa_hci = true,
         bta_dm_clear_conn_id_on_client_close = true,
         btm_dm_flush_discovery_queue_on_search_cancel,

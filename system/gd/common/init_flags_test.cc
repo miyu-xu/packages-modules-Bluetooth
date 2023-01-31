@@ -98,3 +98,9 @@ TEST(InitFlagsTest, test_enable_bluetooth_quality_report_callback) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::IsBluetoothQualityReportCallbackEnabled());
 }
+
+TEST(InitFlagsTest, test_bta_ag_incoming_call_sco_open_is_enabled) {
+  const char* input[] = {"INIT_bta_ag_incoming_call_sco_open=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsBtaAgIncomingCallScoOpenEnabled());
+}
