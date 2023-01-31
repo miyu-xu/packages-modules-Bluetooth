@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f624bdda_6248d136",
+        "filename": "tools/rootcanal/model/setup/test_model.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-31T23:00:42Z",
+      "side": 1,
+      "message": "PhyLayer ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 11,
+        "endLine": 109,
+        "endChar": 20
+      },
+      "revId": "406d0a7af5e9cd5680f5eb1872dd60f99fe65b89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
