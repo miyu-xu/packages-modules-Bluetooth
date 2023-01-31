@@ -69,6 +69,24 @@
       "parentUuid": "967a6da6_160bdfdb",
       "revId": "82530c5a3f0c0d59a06b715c4295c221fbb3e9fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e212e76_983302d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-31T19:30:11Z",
+      "side": 1,
+      "message": "Sorry for the confusion. We also have Linux build as android presubmit which still uses the old libchrome. I guess it\u0027s okay to hardcode it this way but we need to update the Linux build as well. CC-ing abps@ for more thoughts.",
+      "parentUuid": "29064055_da397826",
+      "revId": "82530c5a3f0c0d59a06b715c4295c221fbb3e9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
