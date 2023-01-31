@@ -133,10 +133,11 @@ void LogMetricReadTxPowerLevelResult(const RawAddress& address, uint16_t handle,
  * @param smp_cmd SMP command code associated with this event
  * @param direction direction of this SMP command
  * @param smp_fail_reason SMP pairing failure reason code from SMP spec
+ * @param io_capability SMP tracking the IO Capability for the Pairing Exchange
  */
 void LogMetricSmpPairingEvent(const RawAddress& address, uint16_t smp_cmd,
                               android::bluetooth::DirectionEnum direction,
-                              uint16_t smp_fail_reason);
+                              uint16_t smp_fail_reason, uint8_t io_capability);
 
 /**
  * Logs there is an event related Bluetooth classic pairing
