@@ -440,8 +440,12 @@ public final class BluetoothSocket implements Closeable {
                 mSocketOS = mSocket.getOutputStream();
             }
             int channel = readInt(mSocketIS);
-            if (channel <= 0) {
+            if (channel < 0) {
                 throw new IOException("bt socket connect failed");
+            }
+            if (channel == 0) {
+                int errCode = readInt(mSocketIS);
+                throw new IOException("bt socket connect failed with code " + errCode);
             }
             mPort = channel;
             waitSocketSignal(mSocketIS);
