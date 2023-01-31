@@ -95,8 +95,8 @@ void LogMetricSdpAttribute(
     size_t attribute_size,
     const char* attribute_value) {}
 
-void LogMetricSmpPairingEvent(
-    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {}
+voidLogMetricSmpPairingEvent(
+    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason, uint8_t io_capability) {}
 
 void LogMetricA2dpPlaybackEvent(const Address& address, int playback_state, int audio_coding_mode) {}
 
