@@ -46,6 +46,30 @@
       },
       "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe118d5_ac384bf6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1995,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-01-31T06:39:38Z",
+      "side": 1,
+      "message": "When connecting to multiple HS or AG, the later joined devices may not toggle inbang ringing state and never receive `+BSIR` command, making the state undefined. That\u0027s why we didn\u0027t check this.",
+      "parentUuid": "3d051451_1a479156",
+      "range": {
+        "startLine": 1995,
+        "startChar": 16,
+        "endLine": 1995,
+        "endChar": 44
+      },
+      "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
