@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "682df0ef_666ee60b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-01-31T18:40:31Z",
+      "side": 1,
+      "message": "Please check line length in comments - I assume we follow the same standards in Rust as in other languages?\n\nAlso recommend reading go/avoidwe, and consider taking a pass at comments for clarity.",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8a06780_f9c3e735",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-01-31T18:40:31Z",
+      "side": 1,
+      "message": "nit: Can we remove files where there is no functional or readability improving changes? e.g. this one where there is just a new line",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bdbc74e3_f30733a7",
         "filename": "system/gd/rust/common/build.rs",
         "patchSetId": 8
@@ -32,6 +66,29 @@
       "side": 1,
       "message": "I put all the basic boilerplate in this CL - stuff like simple shared types and build system changes - so I think it belongs here?",
       "parentUuid": "bdbc74e3_f30733a7",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3655dc17_87bd9188",
+        "filename": "system/rust/src/gatt/ids.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-01-31T18:40:31Z",
+      "side": 1,
+      "message": "nit: Can we add a bug to this todo for tracking? Or is there some reason not to add here?\n\nIt really helps tracking leftover TODOs if there is a bug associated with them (even if addressed immediately in another CL in the chain).",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 7
+      },
       "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
