@@ -4,8 +4,8 @@ use crate::{
     core::{get_128_be_uuid_bytes, CxxUuid},
     gatt::ids::AttHandle,
     packets::{
-        AttAttributeDataChild, AttErrorCode, AttHandleBuilder, AttHandleView, ParseError,
-        Uuid128Builder, Uuid128View, Uuid16Builder, Uuid16View, UuidBuilder, UuidView,
+        AttAttributeDataChild, AttAttributeDataView, AttErrorCode, AttHandleBuilder, AttHandleView,
+        ParseError, Uuid128Builder, Uuid128View, Uuid16Builder, Uuid16View, UuidBuilder, UuidView,
     },
 };
 
@@ -161,6 +161,11 @@ pub trait AttDatabase {
         &self,
         handle: AttHandle,
     ) -> Result<AttAttributeDataChild, AttErrorCode>;
+    async fn write_attribute(
+        &self,
+        handle: AttHandle,
+        data: AttAttributeDataView<'_>,
+    ) -> Result<(), AttErrorCode>;
     fn list_attributes(&self) -> Vec<AttAttribute>;
 
     fn get_attribute(&self, handle: AttHandle) -> Option<AttAttribute> {
