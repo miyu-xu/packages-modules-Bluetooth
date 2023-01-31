@@ -69,6 +69,29 @@
       "parentUuid": "16ebbf74_fb83296e",
       "revId": "27509e4b8c4fdc3960235b8eb75b3c61a4fde201",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30045e56_eca1629d",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-01-31T17:11:59Z",
+      "side": 1,
+      "message": "Why 10 seconds?  If the remote takes 10 seconds to respond to a name request, we probably don\u0027t want to connect.",
+      "range": {
+        "startLine": 285,
+        "startChar": 38,
+        "endLine": 285,
+        "endChar": 40
+      },
+      "revId": "27509e4b8c4fdc3960235b8eb75b3c61a4fde201",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
