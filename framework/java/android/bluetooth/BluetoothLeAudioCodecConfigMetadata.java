@@ -16,6 +16,7 @@
 
 package android.bluetooth;
 
+import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SystemApi;
@@ -23,6 +24,8 @@ import android.bluetooth.BluetoothUtils.TypeValueEntry;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,13 +40,133 @@ import java.util.Objects;
  */
 @SystemApi
 public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
+    private static final int SAMPLING_FREQUENCY_TYPE = 0x01;
+    private static final int FRAME_DURATION_TYPE = 0x02;
     private static final int AUDIO_CHANNEL_LOCATION_TYPE = 0x03;
+    private static final int OCTETS_PER_FRAME_TYPE = 0x04;
 
     private final long mAudioLocation;
+    private final @ConfigSamplingFrequency int mSamplingFrequency;
+    private final @ConfigFrameDuration int mFrameDuration;
+    private final int mOctetsPerFrame;
     private final byte[] mRawMetadata;
 
-    private BluetoothLeAudioCodecConfigMetadata(long audioLocation, byte[] rawMetadata) {
+    /**
+     * Audio codec sampling frequency.
+     * Defined in the Bluetooth Assigned Numbers, Generic Audio,
+     * Sampling_Frequencies table
+     * Note: For broadcast, only part of it is being used.
+     *
+     * @hide
+     */
+    @IntDef(prefix = "CONFIG_SAMPLING_FREQUENCY_",
+            value = {CONFIG_SAMPLING_FREQUENCY_NONE, CONFIG_SAMPLING_FREQUENCY_8000,
+                    CONFIG_SAMPLING_FREQUENCY_16000, CONFIG_SAMPLING_FREQUENCY_24000,
+                    CONFIG_SAMPLING_FREQUENCY_32000, CONFIG_SAMPLING_FREQUENCY_44100,
+                    CONFIG_SAMPLING_FREQUENCY_48000})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ConfigSamplingFrequency {}
+
+    /**
+     * Codec sampling frequency 0 Hz. Default value used for codec sampling frequency.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_SAMPLING_FREQUENCY_NONE = 0;
+
+    /**
+     * Codec Config sampling frequency 8000 Hz.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_SAMPLING_FREQUENCY_8000 = 0x01;
+
+    /**
+     * Codec Config sampling frequency 16000 Hz.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_SAMPLING_FREQUENCY_16000 = 0x03;
+
+    /**
+     * Codec Config sampling frequency 24000 Hz.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_SAMPLING_FREQUENCY_24000 = 0x05;
+
+    /**
+     * Codec Config sampling frequency 32000 Hz.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_SAMPLING_FREQUENCY_32000 = 0x06;
+
+    /**
+     * Codec Config sampling frequency 44100 Hz.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_SAMPLING_FREQUENCY_44100 = 0x07;
+
+    /**
+     * Codec Config sampling frequency 48000 Hz.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_SAMPLING_FREQUENCY_48000 = 0x08;
+
+    /**
+     * Audio codec config frame duration.
+     * Defined in the Bluetooth Assigned Numbers, Generic Audio,
+     * Frame_Durations table
+     *
+     * @hide
+     */
+    @IntDef(prefix = "CONFIG_FRAME_DURATION_",
+            value = {CONFIG_FRAME_DURATION_INVALID,
+                    CONFIG_FRAME_DURATION_7500, CONFIG_FRAME_DURATION_10000})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ConfigFrameDuration {}
+
+    /**
+     * Codec Config frame duration invalid default value.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_FRAME_DURATION_INVALID = -1;
+
+    /**
+     * Codec Config frame duration 7500 us.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_FRAME_DURATION_7500 = 0x00;
+
+    /**
+     * Codec Config frame duration 10000 us.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int CONFIG_FRAME_DURATION_10000 = 0x01;
+
+    private BluetoothLeAudioCodecConfigMetadata(long audioLocation,
+            @ConfigSamplingFrequency int samplingFrequency, @ConfigFrameDuration int frameDuration,
+            int octetsPerFrame, byte[] rawMetadata) {
         mAudioLocation = audioLocation;
+        mSamplingFrequency = samplingFrequency;
+        mFrameDuration = frameDuration;
+        mOctetsPerFrame = octetsPerFrame;
         mRawMetadata = rawMetadata;
     }
 
@@ -52,14 +175,18 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
         if (o != null && o instanceof BluetoothLeAudioCodecConfigMetadata) {
             final BluetoothLeAudioCodecConfigMetadata oth = (BluetoothLeAudioCodecConfigMetadata) o;
             return mAudioLocation == oth.getAudioLocation()
-                && Arrays.equals(mRawMetadata, oth.getRawMetadata());
+                    && mSamplingFrequency == oth.getSamplingFrequency()
+                    && mFrameDuration == oth.getFrameDuration()
+                    && mOctetsPerFrame == oth.getOctetsPerFrame()
+                    && Arrays.equals(mRawMetadata, oth.getRawMetadata());
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mAudioLocation, Arrays.hashCode(mRawMetadata));
+        return Objects.hash(mAudioLocation, mSamplingFrequency, mFrameDuration,
+                mOctetsPerFrame, Arrays.hashCode(mRawMetadata));
     }
 
     /**
@@ -72,6 +199,45 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
     @SystemApi
     public long getAudioLocation() {
         return mAudioLocation;
+    }
+
+    /**
+     * Get the audio sampling frequency information as defined in the Generic Audio section of
+     * Bluetooth Assigned numbers.
+     *
+     * @return configured sampling frequency from meta data,
+     * CONFIG_SAMPLING_FREQUENCY_NONE if this metadata does not exist
+     * @hide
+     */
+    @SystemApi
+    public @ConfigSamplingFrequency int getSamplingFrequency() {
+        return mSamplingFrequency;
+    }
+
+    /**
+     * Get the audio frame duration information as defined in the Generic Audio section of
+     * Bluetooth Assigned numbers.
+     *
+     * @return configured frame duration from meta data,
+     * CONFIG_FRAME_DURATION_INVALID if this metadata does not exist
+     * @hide
+     */
+    @SystemApi
+    public @ConfigFrameDuration int getFrameDuration() {
+        return mFrameDuration;
+    }
+
+    /**
+     * Get the audio octets per frame information as defined in the Generic Audio section of
+     * Bluetooth Assigned numbers.
+     *
+     * @return configured octets per frame from meta data
+     * 0 if this metadata does not exist
+     * @hide
+     */
+    @SystemApi
+    public int getOctetsPerFrame() {
+        return mOctetsPerFrame;
     }
 
     /**
@@ -111,6 +277,9 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
         } else {
             out.writeInt(-1);
         }
+        out.writeInt(mSamplingFrequency);
+        out.writeInt(mFrameDuration);
+        out.writeInt(mOctetsPerFrame);
     }
 
     /**
@@ -131,7 +300,11 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
             } else {
                 rawMetadata = new byte[0];
             }
-            return new BluetoothLeAudioCodecConfigMetadata(audioLocation, rawMetadata);
+            @ConfigSamplingFrequency int samplingFrequency = in.readInt();
+            @ConfigFrameDuration int frameDuration = in.readInt();
+            int octetsPerFrame = in.readInt();
+            return new BluetoothLeAudioCodecConfigMetadata(audioLocation, samplingFrequency,
+                    frameDuration, octetsPerFrame, rawMetadata);
         }
 
         public @NonNull BluetoothLeAudioCodecConfigMetadata[] newArray(int size) {
@@ -165,15 +338,31 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
                     + rawBytes.length);
         }
         long audioLocation = 0;
+        @ConfigSamplingFrequency int samplingFrequency = CONFIG_SAMPLING_FREQUENCY_NONE;
+        @ConfigFrameDuration int frameDuration = CONFIG_FRAME_DURATION_INVALID;
+        int octetsPerFrame = 0;
         for (TypeValueEntry entry : entries) {
             if (entry.getType() == AUDIO_CHANNEL_LOCATION_TYPE) {
                 byte[] bytes = entry.getValue();
                 // Get unsigned uint32_t to long
                 audioLocation = ((bytes[0] & 0xFF) <<  0) | ((bytes[1] & 0xFF) <<  8)
                         | ((bytes[2] & 0xFF) << 16) | ((long) (bytes[3] & 0xFF) << 24);
+            } else if (entry.getType() == SAMPLING_FREQUENCY_TYPE) {
+                byte[] bytes = entry.getValue();
+                // Get one byte for sampling frequency
+                samplingFrequency = (int) (bytes[0] & 0xFF);
+            } else if (entry.getType() == FRAME_DURATION_TYPE) {
+                byte[] bytes = entry.getValue();
+                // Get one byte for frame duration
+                frameDuration = (int) (bytes[0] & 0xFF);
+            } else if (entry.getType() == OCTETS_PER_FRAME_TYPE) {
+                byte[] bytes = entry.getValue();
+                // Get two bytes for octets per frame to int
+                octetsPerFrame = ((bytes[0] & 0xFF) <<  0) | ((int) (bytes[1] & 0xFF) <<  8);
             }
         }
-        return new BluetoothLeAudioCodecConfigMetadata(audioLocation, rawBytes);
+        return new BluetoothLeAudioCodecConfigMetadata(audioLocation, samplingFrequency,
+                frameDuration, octetsPerFrame, rawBytes);
     }
 
     /**
@@ -183,6 +372,9 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
     @SystemApi
     public static final class Builder {
         private long mAudioLocation = 0;
+        private @ConfigSamplingFrequency int mSamplingFrequency = CONFIG_SAMPLING_FREQUENCY_NONE;
+        private @ConfigFrameDuration int mFrameDuration = CONFIG_FRAME_DURATION_INVALID;
+        private int mOctetsPerFrame = 0;
         private byte[] mRawMetadata = null;
 
         /**
@@ -201,6 +393,9 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
         @SystemApi
         public Builder(@NonNull BluetoothLeAudioCodecConfigMetadata original) {
             mAudioLocation = original.getAudioLocation();
+            mSamplingFrequency = original.getSamplingFrequency();
+            mFrameDuration = original.getFrameDuration();
+            mOctetsPerFrame = original.getOctetsPerFrame();
             mRawMetadata = original.getRawMetadata();
         }
 
@@ -213,8 +408,54 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
          * @hide
          */
         @SystemApi
-        public @NonNull Builder setAudioLocation(long audioLocation) {
+        @NonNull
+        public Builder setAudioLocation(long audioLocation) {
             mAudioLocation = audioLocation;
+            return this;
+        }
+
+        /**
+         * Set the audio sampling frequency information as defined in the Generic Audio section of
+         * Bluetooth Assigned numbers.
+         *
+         * @param samplingFrequency configured sampling frequency in meta data
+         * @return this builder
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        public Builder setSamplingFrequency(@ConfigSamplingFrequency int samplingFrequency) {
+            mSamplingFrequency = samplingFrequency;
+            return this;
+        }
+
+        /**
+         * Set the audio frame duration information as defined in the Generic Audio section of
+         * Bluetooth Assigned numbers.
+         *
+         * @param frameDuration configured frame duration in meta data
+         * @return this builder
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        public Builder setFrameDuration(@ConfigFrameDuration int frameDuration) {
+            mFrameDuration = frameDuration;
+            return this;
+        }
+
+        /**
+         * Set the audio octets per frame information as defined in the Generic Audio section of
+         * Bluetooth Assigned numbers.
+         *
+         * @param octetsPerFrame configured octets per frame in meta data
+         * @return this builder
+         * @hide
+         */
+        @SystemApi
+        @NonNull
+        public Builder setOctetsPerFrame(int octetsPerFrame) {
+            mOctetsPerFrame = octetsPerFrame;
             return this;
         }
 
@@ -236,16 +477,36 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
                             + " passed to Builder's copy constructor");
                 }
             }
-            if (mAudioLocation != 0) {
+            if (mSamplingFrequency != CONFIG_SAMPLING_FREQUENCY_NONE) {
+                entries.removeIf(entry -> entry.getType() == SAMPLING_FREQUENCY_TYPE);
+                entries.add(new TypeValueEntry(SAMPLING_FREQUENCY_TYPE,
+                        ByteBuffer.allocate(1)
+                        .put((byte) (mSamplingFrequency & 0xFF)).array()));
+            }
+            if (mFrameDuration != CONFIG_FRAME_DURATION_INVALID) {
+                entries.removeIf(entry -> entry.getType() == FRAME_DURATION_TYPE);
+                entries.add(new TypeValueEntry(FRAME_DURATION_TYPE,
+                        ByteBuffer.allocate(1)
+                        .put((byte) (mFrameDuration & 0xFF)).array()));
+            }
+            if (mAudioLocation != -1) {
                 entries.removeIf(entry -> entry.getType() == AUDIO_CHANNEL_LOCATION_TYPE);
                 entries.add(new TypeValueEntry(AUDIO_CHANNEL_LOCATION_TYPE,
-                        ByteBuffer.allocate(Long.BYTES).putLong(mAudioLocation).array()));
+                        ByteBuffer.allocate(4)
+                        .putInt((int) (mAudioLocation & 0xFFFFFFFF)).array()));
+            }
+            if (mOctetsPerFrame != 0) {
+                entries.removeIf(entry -> entry.getType() == OCTETS_PER_FRAME_TYPE);
+                entries.add(new TypeValueEntry(OCTETS_PER_FRAME_TYPE,
+                        ByteBuffer.allocate(2)
+                        .putShort((short) (mOctetsPerFrame & 0xFFFF)).array()));
             }
             byte[] rawBytes = BluetoothUtils.serializeTypeValue(entries);
             if (rawBytes == null) {
                 throw new IllegalArgumentException("Failed to serialize entries to bytes");
             }
-            return new BluetoothLeAudioCodecConfigMetadata(mAudioLocation, rawBytes);
+            return new BluetoothLeAudioCodecConfigMetadata(mAudioLocation, mSamplingFrequency,
+            mFrameDuration, mOctetsPerFrame, rawBytes);
         }
     }
 }
