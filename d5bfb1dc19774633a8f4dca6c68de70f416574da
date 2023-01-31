@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e306ca3c_50dcd70d",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-31T22:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c380a14_751da34c",
+      "range": {
+        "startLine": 118,
+        "startChar": 6,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "620bba52_0af337a0",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1823ae23_c8fa7ef2",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-31T22:04:14Z",
+      "side": 1,
+      "message": "You still need two constants but I\u0027ve renamed them to be clearer.",
+      "parentUuid": "620bba52_0af337a0",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78b5ba44_0027af34",
         "filename": "floss/hcidoc/src/parser.rs",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2023-01-31T10:09:21Z",
       "side": 1,
       "message": "unused?\nThis is removed in the later CL.",
+      "range": {
+        "startLine": 296,
+        "startChar": 10,
+        "endLine": 296,
+        "endChar": 36
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cc1e949_c17d7976",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-31T22:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78b5ba44_0027af34",
       "range": {
         "startLine": 296,
         "startChar": 10,
