@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdbc74e3_f30733a7",
+        "filename": "system/gd/rust/common/build.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T06:56:07Z",
+      "side": 1,
+      "message": "Should this, and next file modified, be a small, separate patch that\u0027s unrelated to GATT ?",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5344b0ad_5ed45140",
         "filename": "system/rust/src/gatt/server/att_database.rs",
         "patchSetId": 8
@@ -19,6 +36,76 @@
         "startChar": 11,
         "endLine": 23,
         "endChar": 18
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "274cdf58_ceee954e",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T06:56:07Z",
+      "side": 1,
+      "message": "After quick search, turns out we already have a UUID definition in\nsystem/gd/rust/linux/stack/src/uuid.rs\n\nCan this be reused ?",
+      "parentUuid": "5344b0ad_5ed45140",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54cea2c_ea50c05b",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T06:56:07Z",
+      "side": 1,
+      "message": "etc etc ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "018cd2a5_1b2485cc",
+        "filename": "system/rust/src/utils.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T06:56:07Z",
+      "side": 1,
+      "message": "There are couple of such empty files.\n\nWhat\u0027s the purpose in that ? Can\u0027t they be added in patches that actually introduces code here ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 0
       },
       "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
