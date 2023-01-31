@@ -22,6 +22,30 @@
       },
       "revId": "db96e475129431c0e6c8c6296efa67bbd11869a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77065342_93b079ad",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-01-31T14:35:16Z",
+      "side": 1,
+      "message": "Root cause of this issue was triggered by forget device call.\n\nThere were races with handling connection state of device and it\u0027s bond state.\n\nState machine creates intents with connection state. Hard quit of state machine may lead to break handling of connection state broadcasting. Quit allows state machine to finish what it\u0027s currently doing. In case of races this is important to let state machine handle what it is currently doing then e.g. remove this state machine by calling unbond.\n\nMost important change is when state machine is removed. Change to quit on service stop was done just in advance. I don\u0027t think that this may lead to issue, rather in opposite - hard quit from state machine may lead to issues.\n\nA2DP is much simpler in case of handling multiple native/other thread messages than LE Audio.",
+      "parentUuid": "9d40a0de_5b340ab5",
+      "range": {
+        "startLine": 344,
+        "startChar": 16,
+        "endLine": 344,
+        "endChar": 26
+      },
+      "revId": "db96e475129431c0e6c8c6296efa67bbd11869a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
