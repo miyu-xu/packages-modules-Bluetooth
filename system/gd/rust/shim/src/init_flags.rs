@@ -6,6 +6,7 @@ mod ffi {
 
         fn always_use_private_gatt_for_debugging_is_enabled() -> bool;
         fn asynchronously_start_l2cap_coc_is_enabled() -> bool;
+        fn bta_ag_incoming_call_sco_open_is_enabled() -> bool;
         fn btaa_hci_is_enabled() -> bool;
         fn bta_dm_clear_conn_id_on_client_close_is_enabled() -> bool;
         fn gd_hal_snoop_logger_filtering_is_enabled() -> bool;

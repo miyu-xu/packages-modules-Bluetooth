@@ -92,3 +92,9 @@ TEST(InitFlagsTest, test_enable_snoop_logger_filtering) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::IsSnoopLoggerFilteringEnabled());
 }
+
+TEST(InitFlagsTest, test_bta_ag_incoming_call_sco_open_is_enabled) {
+  const char* input[] = {"INIT_bta_ag_incoming_call_sco_open=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsBtaAgIncomingCallScoOpenEnabled());
+}

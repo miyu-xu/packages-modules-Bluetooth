@@ -1384,14 +1384,18 @@ static void bta_ag_hsp_result(tBTA_AG_SCB* p_scb,
           (p_scb->features & BTA_AG_FEAT_NOSCO)) {
         bta_ag_send_ring(p_scb, tBTA_AG_DATA::kEmpty);
       } else {
-        /* else open sco, send ring after sco opened */
-        /* HSPv1.2: AG shall not send RING if using in-band ring tone. */
-        if (p_scb->peer_version >= HSP_VERSION_1_2) {
-          p_scb->post_sco = BTA_AG_POST_SCO_NONE;
+        if (bluetooth::common::InitFlags::IsBtaAgIncomingCallScoOpenEnabled()) {
+          /* else open sco, send ring after sco opened */
+          /* HSPv1.2: AG shall not send RING if using in-band ring tone. */
+          if (p_scb->peer_version >= HSP_VERSION_1_2) {
+            p_scb->post_sco = BTA_AG_POST_SCO_NONE;
+          } else {
+            p_scb->post_sco = BTA_AG_POST_SCO_RING;
+          }
+          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
         } else {
-          p_scb->post_sco = BTA_AG_POST_SCO_RING;
+          LOG_INFO("SCO Open on incoming call is disabled");
         }
-        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
       }
       break;
 
@@ -1494,8 +1498,13 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
           bta_ag_send_ring(p_scb, tBTA_AG_DATA::kEmpty);
         } else {
           /* else open sco, send ring after sco opened */
-          p_scb->post_sco = BTA_AG_POST_SCO_RING;
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (bluetooth::common::InitFlags::
+                  IsBtaAgIncomingCallScoOpenEnabled()) {
+            p_scb->post_sco = BTA_AG_POST_SCO_RING;
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          } else {
+            LOG_INFO("SCO Open on incoming call is disabled");
+          }
         }
       }
       break;
