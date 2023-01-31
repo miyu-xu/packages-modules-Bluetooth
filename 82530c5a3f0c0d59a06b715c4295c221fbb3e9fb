@@ -16,6 +16,24 @@
       "message": "This does not build with Floss which still uses the old libchrome. Should we add `#if BASE_VER`s like http://go/csasp/+/master:packages/modules/Bluetooth/system/include/abstract_message_loop.h",
       "revId": "82530c5a3f0c0d59a06b715c4295c221fbb3e9fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6f3d733_8c98ba4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-01-31T00:30:32Z",
+      "side": 1,
+      "message": "Hi, I thought android floss is using android libchrome, which we have patched in aosp/2399915. I suspect the presubmit builds are failing because it is not using ToT (the failed build logs all have a line that says `Buildbot Version: androidbuild_buildbot_20230123.00_RC00` but aosp/2399915 was submitted Jan 27).\nOr is floss actually using yet another copy of libchrome?\nWe didn\u0027t use BASE_VER because the change is quite big.",
+      "parentUuid": "967a6da6_160bdfdb",
+      "revId": "82530c5a3f0c0d59a06b715c4295c221fbb3e9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
