@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5344b0ad_5ed45140",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T06:35:17Z",
+      "side": 1,
+      "message": "How is AttUuid different from any other UUID ?\n\nUUID should be a generic type, not specific to any layer or profile.",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
