@@ -86,3 +86,9 @@ TEST(InitFlagsTest, test_device_iot_config_logging_is_enabled) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::IsDeviceIotConfigLoggingEnabled());
 }
+
+TEST(InitFlagsTest, test_bta_ag_incoming_call_sco_open_is_enabled) {
+  const char* input[] = {"INIT_bta_ag_incoming_call_sco_open=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsBtaAgIncomingCallScoOpenEnabled());
+}
