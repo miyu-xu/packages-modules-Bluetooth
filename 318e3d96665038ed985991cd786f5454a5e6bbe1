@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7f0df13_1b55c715",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-01-31T21:34:16Z",
+      "side": 1,
+      "message": "I manually re-ran the test that failed in presubmit and it passed. See b/258863499#comment6 for more details. Besides, the only change that occurred between patchset 6 and 8 was in README.md file and it didn\u0027t involve code and would have no impact on the test itself.",
+      "revId": "318e3d96665038ed985991cd786f5454a5e6bbe1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
