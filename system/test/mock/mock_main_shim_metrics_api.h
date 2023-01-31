@@ -180,11 +180,11 @@ struct LogMetricSmpPairingEvent {
                      uint16_t smp_fail_reason)>
       body{[](const RawAddress& raw_address, uint16_t smp_cmd,
               android::bluetooth::DirectionEnum direction,
-              uint16_t smp_fail_reason) {}};
+              uint16_t smp_fail_reason, uint8_t io_capability) {}};
   void operator()(const RawAddress& raw_address, uint16_t smp_cmd,
                   android::bluetooth::DirectionEnum direction,
-                  uint16_t smp_fail_reason) {
-    body(raw_address, smp_cmd, direction, smp_fail_reason);
+                  uint16_t smp_fail_reason, uint8_t io_capability) {
+    body(raw_address, smp_cmd, direction, smp_fail_reason, io_capability);
   };
 };
 extern struct LogMetricSmpPairingEvent LogMetricSmpPairingEvent;
