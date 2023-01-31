@@ -29,9 +29,7 @@ intvalue = @{ digit+ }
 hexvalue = @{ ("0x"|"0X") ~ hexdigit+ }
 integer = @{ hexvalue | intvalue }
 string = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
-size_modifier = @{
-    ("+"|"-"|"*"|"/") ~ (digit|"+"|"-"|"*"|"/")+
-}
+size_modifier = @{ "+" ~ intvalue }
 
 endianness_declaration = { "little_endian_packets" | "big_endian_packets" }
 
@@ -310,8 +308,8 @@ fn parse_field(node: Node<'_>, context: &Context) -> Result<ast::Field, String> 
             ast::Field::Checksum { loc, field_id }
         }
         Rule::padding_field => {
-            let width = parse_integer(&mut children)?;
-            ast::Field::Padding { loc, width }
+            let size = parse_integer(&mut children)?;
+            ast::Field::Padding { loc, size }
         }
         Rule::size_field => {
             let field_id = match children.next() {
