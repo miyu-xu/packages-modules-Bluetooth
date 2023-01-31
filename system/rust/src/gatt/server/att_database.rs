@@ -1,6 +1,7 @@
 use async_trait::async_trait;
 
 use crate::{
+    core::{get_128_be_uuid_bytes, CxxUuid},
     gatt::ids::AttHandle,
     packets::{
         AttAttributeDataChild, AttErrorCode, AttHandleBuilder, AttHandleView, ParseError,
@@ -125,6 +126,14 @@ impl TryFrom<Uuid> for Uuid16Builder {
 impl From<Uuid> for Uuid128Builder {
     fn from(value: Uuid) -> Self {
         Uuid128Builder { data: value.0.into_iter().collect() }
+    }
+}
+
+impl From<&CxxUuid> for Uuid {
+    fn from(uuid: &CxxUuid) -> Self {
+        let mut bytes = get_128_be_uuid_bytes(uuid).to_owned();
+        bytes.reverse();
+        Self(bytes)
     }
 }
 
