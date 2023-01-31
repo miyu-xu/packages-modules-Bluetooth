@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d40a0de_5b340ab5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T14:20:59Z",
+      "side": 1,
+      "message": "This code changes how we stop the service.\nBug is about device being forgot from settings.\n\nHow is this code being executed on device forget ?\nHow does A2DP profile deal with that ?",
+      "range": {
+        "startLine": 344,
+        "startChar": 16,
+        "endLine": 344,
+        "endChar": 26
+      },
+      "revId": "db96e475129431c0e6c8c6296efa67bbd11869a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
