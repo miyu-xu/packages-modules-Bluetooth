@@ -16,6 +16,24 @@
       "message": "Crash detected in presubmit for aosp/2275888 with [this test run](https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI15700010128049495\u0026testResultId\u003dTR68528482538362546\u0026tab\u003dartifacts)\n\nThe crash is on HFP/HF/ACS/BV-12-I\n\nFYI: I do not know why HFP/HF test is doing a2dp_sink callback",
       "revId": "7677974596f3a9cb318e45a8adaa95032a3e9a73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a3f439f_fa06462b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-31T21:48:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "67fb43cf_e5f74351",
+      "revId": "7677974596f3a9cb318e45a8adaa95032a3e9a73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
