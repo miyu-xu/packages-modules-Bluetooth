@@ -22,6 +22,30 @@
       },
       "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d051451_1a479156",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1995,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-31T01:11:24Z",
+      "side": 1,
+      "message": "@joshwu@google.com, Can you have a look at this CL compare to the original wear os CL ? (ag/20169234)",
+      "parentUuid": "e8f600e4_1476b9f9",
+      "range": {
+        "startLine": 1995,
+        "startChar": 16,
+        "endLine": 1995,
+        "endChar": 44
+      },
+      "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
