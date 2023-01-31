@@ -638,7 +638,7 @@ jobject prepareLeAudioCodecConfigMetadataObject(
   jobject obj = env->NewObject(
       android_bluetooth_BluetoothLeAudioCodecConfigMetadata.clazz,
       android_bluetooth_BluetoothLeAudioCodecConfigMetadata.constructor,
-      audio_location, raw_metadata.get());
+      audio_location, 0, -1, 0, raw_metadata.get());
 
   return obj;
 }
@@ -874,7 +874,7 @@ jobject prepareBluetoothLeBroadcastMetadataObject(
       broadcast_metadata.broadcast_code ? true : false, false, nullptr,
       broadcast_metadata.broadcast_code ? code.get() : nullptr,
       (jint)broadcast_metadata.basic_audio_announcement.presentation_delay,
-      subgroup_list_obj.get());
+      (jint)0, nullptr, subgroup_list_obj.get());
 }
 
 class LeAudioBroadcasterCallbacksImpl : public LeAudioBroadcasterCallbacks {
@@ -961,7 +961,7 @@ static void BroadcasterClassInitNative(JNIEnv* env, jclass clazz) {
       env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfigMetadata");
   android_bluetooth_BluetoothLeAudioCodecConfigMetadata.constructor =
       env->GetMethodID(jniBluetoothLeAudioCodecConfigMetadataClass, "<init>",
-                       "(J[B)V");
+                       "(JIII[B)V");
 
   jclass jniBluetoothLeAudioContentMetadataClass =
       env->FindClass("android/bluetooth/BluetoothLeAudioContentMetadata");
@@ -990,10 +990,11 @@ static void BroadcasterClassInitNative(JNIEnv* env, jclass clazz) {
 
   jclass jniBluetoothLeBroadcastMetadataClass =
       env->FindClass("android/bluetooth/BluetoothLeBroadcastMetadata");
-  android_bluetooth_BluetoothLeBroadcastMetadata.constructor =
-      env->GetMethodID(jniBluetoothLeBroadcastMetadataClass, "<init>",
-                       "(ILandroid/bluetooth/BluetoothDevice;IIIZZLjava/lang/"
-                       "String;[BILjava/util/List;)V");
+  android_bluetooth_BluetoothLeBroadcastMetadata.constructor = env->GetMethodID(
+      jniBluetoothLeBroadcastMetadataClass, "<init>",
+      "(ILandroid/bluetooth/BluetoothDevice;IIIZZLjava/lang/String;"
+      "[BIILandroid/bluetooth/BluetoothLeAudioContentMetadata;"
+      "Ljava/util/List;)V");
 }
 
 static void BroadcasterInitNative(JNIEnv* env, jobject object) {
