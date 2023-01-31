@@ -70,6 +70,30 @@
       },
       "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae672dda_ab15e62d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1995,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-31T16:40:21Z",
+      "side": 1,
+      "message": "To be sure I understand your comment. Are you saying I shouldn\u0027t check on `mInbandRingingRuntimeDisable` or are you also saying I shouldn\u0027t update `mInbandRingingRuntimeDisable` like in the original CL\n\nBecause without updating `mInbandRingingRuntimeDisable`, it will always be false.\nIs it intended ?\n\nAnd this is used in [isInbandRingingEnabled](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetService.java;l\u003d1927;drc\u003d56e615aed03d4c09c8e1f9269343e9365ef4ee2a)",
+      "parentUuid": "cfe118d5_ac384bf6",
+      "range": {
+        "startLine": 1995,
+        "startChar": 16,
+        "endLine": 1995,
+        "endChar": 44
+      },
+      "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
