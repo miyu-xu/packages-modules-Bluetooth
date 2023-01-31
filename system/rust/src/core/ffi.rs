@@ -12,12 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+use cxx::type_id;
+
 use crate::core::init;
 pub use inner::*;
+
+unsafe impl cxx::ExternType for RawAddress {
+    type Id = type_id!("bluetooth::hci::rust_shim::RawAddress");
+    type Kind = cxx::kind::Trivial;
+}
 
 #[allow(dead_code, missing_docs)]
 #[cxx::bridge]
 mod inner {
+    #[namespace = "bluetooth"]
+    extern "C++" {
+        include!("bluetooth/uuid.h");
+        #[cxx_name = "Uuid"]
+        type CxxUuid;
+    }
+
+    #[namespace = "bluetooth::hci::rust_shim"]
+    unsafe extern "C++" {
+        include!("src/core/hci_shim.h");
+        type RawAddress = super::super::RawAddress;
+
+        fn get_128_be_uuid_bytes(uuid: &CxxUuid) -> &[u8];
+    }
+
     #[namespace = "bluetooth::rust_shim"]
     extern "Rust" {
         fn init();
