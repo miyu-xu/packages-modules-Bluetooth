@@ -46,6 +46,30 @@
       },
       "revId": "a0164189d10910a468e5745670312140b9e6e439",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14a1c732_92c3945b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-31T23:30:30Z",
+      "side": 1,
+      "message": "There is some merge conflict and I will need to cherry-pick internally.\nMeantime I uploaded a patchset to fix the following tests:\nnet_test_bta\nbluetooth_hh_test\nnet_test_btif_stack\nbluetoothbd_test",
+      "parentUuid": "0f43e1d0_a0801053",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "revId": "a0164189d10910a468e5745670312140b9e6e439",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
