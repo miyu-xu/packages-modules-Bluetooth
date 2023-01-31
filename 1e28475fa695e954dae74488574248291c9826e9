@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e69207c_3e62c0cd",
+        "filename": "floss/build/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-31T00:24:02Z",
+      "side": 1,
+      "message": "What are those packages? Test this before adding:\n```\nsudo apt-get install docker\n```",
+      "revId": "1e28475fa695e954dae74488574248291c9826e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
