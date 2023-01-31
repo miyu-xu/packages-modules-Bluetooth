@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43f840ad_9b82e636",
+        "filename": "system/gd/rust/common/build.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T17:46:12Z",
+      "side": 1,
+      "message": "I put all the basic boilerplate in this CL - stuff like simple shared types and build system changes - so I think it belongs here?",
+      "parentUuid": "bdbc74e3_f30733a7",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5344b0ad_5ed45140",
         "filename": "system/rust/src/gatt/server/att_database.rs",
         "patchSetId": 8
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf8d4763_4f2eb374",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T17:46:12Z",
+      "side": 1,
+      "message": "That seems to be part of topshim, and there\u0027s no way to depend on just that without pulling in the rest of topshim + its dependencies too. It also looks like that doesn\u0027t actually define Uuid itself, but rather just re-exports a Uuid from C++ - this isn\u0027t what we want, since then we can\u0027t handle the Uuid except from behind a reference.\n\nWill rename this type though as you suggest.",
+      "parentUuid": "274cdf58_ceee954e",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b54cea2c_ea50c05b",
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c6a92a_a1e76d7a",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T17:46:12Z",
+      "side": 1,
+      "message": "Will fill in a future CL (since we need to support profile-specific error codes). There\u0027s a TODO elsewhere in the code tracking this, and I\u0027ve replaced with a TODO here as well",
+      "parentUuid": "b54cea2c_ea50c05b",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "018cd2a5_1b2485cc",
@@ -101,6 +167,30 @@
       "writtenOn": "2023-01-31T06:56:07Z",
       "side": 1,
       "message": "There are couple of such empty files.\n\nWhat\u0027s the purpose in that ? Can\u0027t they be added in patches that actually introduces code here ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 0
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58b3a94e_c461d042",
+        "filename": "system/rust/src/utils.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T17:46:12Z",
+      "side": 1,
+      "message": "The way Rust modules work, each non-leaf module needs a file like this declaring what children it has. This file will never have any contents, except for enumerating the child modules within src/utils/*.rs.",
+      "parentUuid": "018cd2a5_1b2485cc",
       "range": {
         "startLine": 1,
         "startChar": 0,
