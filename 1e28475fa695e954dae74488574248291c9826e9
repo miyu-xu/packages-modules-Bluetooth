@@ -16,6 +16,40 @@
       "message": "What are those packages? Test this before adding:\n```\nsudo apt-get install docker\n```",
       "revId": "1e28475fa695e954dae74488574248291c9826e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "065a2123_9ea38101",
+        "filename": "floss/build/build-in-container.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-31T00:24:44Z",
+      "side": 1,
+      "message": "Containerfile should remain `Dockerfile`",
+      "revId": "1e28475fa695e954dae74488574248291c9826e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e72b99f8_9487bb79",
+        "filename": "floss/build/container-build-image.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-01-31T00:24:44Z",
+      "side": 1,
+      "message": "Keep as `Dockerfile`",
+      "revId": "1e28475fa695e954dae74488574248291c9826e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
