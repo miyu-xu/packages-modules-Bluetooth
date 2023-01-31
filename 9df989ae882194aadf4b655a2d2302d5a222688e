@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a36e4cfe_95df60bb",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "So this is ATT or GATT layer ?\nOr there is no separation between them ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 56,
+        "endLine": 2,
+        "endChar": 32
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4037bc37_3fc88af5",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "ATT or GATT ?\nOr you don\u0027t make a distinction ?",
+      "range": {
+        "startLine": 62,
+        "startChar": 20,
+        "endLine": 62,
+        "endChar": 55
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9939c1e8_665dde10",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "I don\u0027t see any timer started ? What about link dropping timeout after 30s ?",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 63,
+        "endChar": 89
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0dd754c_13739d55",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "Is that what spec says we should do ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 32,
+        "endLine": 71,
+        "endChar": 111
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31e3ce4b_6eea41e4",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "You are not allowed to use this error code, i.e. for ATT_READ_REQ",
+      "range": {
+        "startLine": 75,
+        "startChar": 62,
+        "endLine": 75,
+        "endChar": 76
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d818476_ea8a42f3",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "you can have multiple GATT transactions if you use EATT.\nI think you should have some separation between ATT and GATT layer.\n\nJust one transaction per ATT channel",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 97
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4813ac6d_d0a97687",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "You are not allowed to use this error code, i.e. for ATT_READ_REQ",
+      "range": {
+        "startLine": 90,
+        "startChar": 46,
+        "endLine": 90,
+        "endChar": 60
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4019a340_92eb9414",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "I don\u0027t think that\u0027s what spec says you should do if you get second transaction on same ATT channel.",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 18
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56634eaa_7a6787e6",
+        "filename": "system/rust/src/gatt/server/transactions/read_request.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T07:39:24Z",
+      "side": 1,
+      "message": "We used to see this indentation style a lot in old stack code. Would this be more readable, less indentation ? :\n\n```\nif let Some(attr) !\u003d db.get_attribute(handle) {\n  HANDLE_ERROR;\n  return;\n}\n\nif (!attr.permissions.readable) {\n HANDLE_ERROR;\n return;\n}\n\nHANDLE_SUCCESS;\n```",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 5
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
