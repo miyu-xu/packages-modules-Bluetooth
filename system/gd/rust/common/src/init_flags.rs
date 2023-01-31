@@ -252,6 +252,7 @@ init_flags!(
     // LINT.IfChange
     flags: {
         asynchronously_start_l2cap_coc = true,
+        bta_ag_incoming_call_sco_open,
         btaa_hci = true,
         btm_dm_flush_discovery_queue_on_search_cancel,
         device_iot_config_logging,
