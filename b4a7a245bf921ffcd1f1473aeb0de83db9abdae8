@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faeaca8b_1115e456",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-31T21:19:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0c6c3ea_f28d46d4",
+      "revId": "b4a7a245bf921ffcd1f1473aeb0de83db9abdae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b03584c1_c0aca65f",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "825a9dce_35d48ae9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-31T21:19:49Z",
+      "side": 1,
+      "message": "Oops this belongs to the next change. Moved.",
+      "parentUuid": "b03584c1_c0aca65f",
+      "revId": "b4a7a245bf921ffcd1f1473aeb0de83db9abdae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ffc2649_dc191d49",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-01-26T21:25:13Z",
       "side": 1,
       "message": "nit: TODO(b/266752123) should be at the beginning of this comment...",
+      "revId": "b4a7a245bf921ffcd1f1473aeb0de83db9abdae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e4c4c0_d6b9d34c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-01-31T21:19:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ffc2649_dc191d49",
       "revId": "b4a7a245bf921ffcd1f1473aeb0de83db9abdae8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
