@@ -12,7 +12,10 @@ use anyhow::{bail, Result};
 use async_trait::async_trait;
 
 use crate::{
-    gatt::ids::AttHandle,
+    gatt::{
+        callbacks::GattDatastore,
+        ids::{AttHandle, ConnectionId},
+    },
     packets::{
         AttAttributeDataChild, AttCharacteristicDeclarationValueBuilder,
         AttCharacteristicPropertiesBuilder, AttErrorCode, AttServiceDeclarationValueBuilder,
@@ -56,8 +59,8 @@ pub struct GattCharacteristicWithHandle {
 
 /// The GattDatabase implements AttDatabase, and converts attribute reads/writes
 /// into GATT operations to be sent to the upper layers
-#[derive(Default)]
-pub struct GattDatabase {
+pub struct GattDatabase<T: ?Sized> {
+    datastore: Rc<T>,
     static_data: RefCell<GattDatabaseStaticData>,
 }
 
@@ -68,10 +71,10 @@ struct GattDatabaseStaticData {
     fixed_attribute_values: HashMap<AttHandle, AttAttributeDataChild>,
 }
 
-impl GattDatabase {
-    /// Constructor
-    pub fn new() -> Self {
-        Default::default()
+impl<T: GattDatastore + ?Sized> GattDatabase<T> {
+    /// Constructor, wrapping a GattDatastore
+    pub fn new(datastore: Rc<T>) -> Self {
+        Self { datastore, static_data: Default::default() }
     }
 
     /// Add a service with pre-allocated handles (for co-existence with C++)
@@ -205,19 +208,24 @@ impl GattDatabase {
         Ok(())
     }
 
-    /// Generate an impl AttDatabase from a backing GattDatabase
-    pub fn get_att_database(self: &Rc<Self>) -> AttDatabaseImpl {
-        AttDatabaseImpl { gatt_db: self.clone() }
+    /// Generate an impl AttDatabase from a backing GattDatabase, associated
+    /// with a given connection.
+    pub fn get_att_database(self: &Rc<Self>, conn_id: ConnectionId) -> AttDatabaseImpl<T> {
+        AttDatabaseImpl { gatt_db: self.clone(), conn_id }
     }
 }
 
 /// An implementation of AttDatabase wrapping an underlying GattDatabase
-pub struct AttDatabaseImpl {
-    gatt_db: Rc<GattDatabase>,
+pub struct AttDatabaseImpl<T: ?Sized> {
+    gatt_db: Rc<GattDatabase<T>>,
+    conn_id: ConnectionId,
 }
 
 #[async_trait(?Send)]
-impl AttDatabase for AttDatabaseImpl {
+impl<T> AttDatabase for AttDatabaseImpl<T>
+where
+    T: GattDatastore + ?Sized,
+{
     async fn read_attribute(
         &self,
         handle: AttHandle,
@@ -229,8 +237,7 @@ impl AttDatabase for AttDatabaseImpl {
             }
         }
 
-        // TODO(aryarahul): read value from upper layers
-        Err(AttErrorCode::INVALID_HANDLE)
+        self.gatt_db.datastore.read_characteristic(self.conn_id, handle).await
     }
 
     fn list_attributes(&self) -> Vec<AttAttribute> {
@@ -240,6 +247,8 @@ impl AttDatabase for AttDatabaseImpl {
 
 #[cfg(test)]
 mod test {
+    use crate::gatt::mocks::mock_datastore::MockDatastore;
+
     use super::*;
 
     const SERVICE_HANDLE: AttHandle = AttHandle(1);
@@ -251,8 +260,9 @@ mod test {
 
     #[test]
     fn test_read_empty_db() {
-        let gatt_db = Rc::new(GattDatabase::new());
-        let att_db = gatt_db.get_att_database();
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
 
         let resp = tokio_test::block_on(att_db.read_attribute(AttHandle(1)));
 
@@ -261,7 +271,8 @@ mod test {
 
     #[test]
     fn test_single_service() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
                 handle: SERVICE_HANDLE,
@@ -269,7 +280,7 @@ mod test {
                 characteristics: vec![],
             })
             .unwrap();
-        let att_db = gatt_db.get_att_database();
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
 
         let attrs = att_db.list_attributes();
         let service_value = tokio_test::block_on(att_db.read_attribute(SERVICE_HANDLE));
@@ -293,7 +304,8 @@ mod test {
     #[test]
     fn test_service_removal() {
         // arrange three services, each with a single characteristic
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
 
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
@@ -328,7 +340,7 @@ mod test {
                 }],
             })
             .unwrap();
-        let att_db = gatt_db.get_att_database();
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
         assert_eq!(att_db.list_attributes().len(), 9);
 
         // act: remove the middle service
@@ -359,7 +371,8 @@ mod test {
 
     #[test]
     fn test_single_characteristic() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
                 handle: SERVICE_HANDLE,
@@ -371,7 +384,7 @@ mod test {
                 }],
             })
             .unwrap();
-        let att_db = gatt_db.get_att_database();
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
 
         let attrs = att_db.list_attributes();
         let characteristic_decl =
@@ -423,7 +436,8 @@ mod test {
 
     #[test]
     fn test_handle_clash() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
 
         let result = gatt_db.add_service_with_handles(GattServiceWithHandle {
             handle: SERVICE_HANDLE,
@@ -440,7 +454,8 @@ mod test {
 
     #[test]
     fn test_handle_clash_with_existing() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
 
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
