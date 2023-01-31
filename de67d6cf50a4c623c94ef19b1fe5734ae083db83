@@ -22,6 +22,30 @@
       },
       "revId": "de67d6cf50a4c623c94ef19b1fe5734ae083db83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "878caf7b_f3927f67",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "Sorry, I pushed a little early. Renamed now.",
+      "parentUuid": "8ce3e920_8eed40e5",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "de67d6cf50a4c623c94ef19b1fe5734ae083db83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

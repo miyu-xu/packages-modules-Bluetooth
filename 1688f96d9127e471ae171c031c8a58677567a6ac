@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0be772c_d9488655",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "I\u0027m running the autoformatter, but I guess (unlike in C++/Java) rustfmt doesn\u0027t wrap comments. Fixed.",
+      "parentUuid": "682df0ef_666ee60b",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8a06780_f9c3e735",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-31T18:40:31Z",
       "side": 1,
       "message": "nit: Can we remove files where there is no functional or readability improving changes? e.g. this one where there is just a new line",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a12d199_30038d19",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8a06780_f9c3e735",
       "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -90,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a75f0c64_8c163b3e",
+        "filename": "system/gd/rust/common/build.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "OK, I will make this split (will resolve once done)",
+      "parentUuid": "9ce535ae_1e7e87c8",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3655dc17_87bd9188",
         "filename": "system/rust/src/gatt/ids.rs",
         "patchSetId": 8
@@ -101,6 +155,30 @@
       "writtenOn": "2023-01-31T18:40:31Z",
       "side": 1,
       "message": "nit: Can we add a bug to this todo for tracking? Or is there some reason not to add here?\n\nIt really helps tracking leftover TODOs if there is a bug associated with them (even if addressed immediately in another CL in the chain).",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 7
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9363cc7_485e17db",
+        "filename": "system/rust/src/gatt/ids.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "In this particular case, thinking about it a bit more, I don\u0027t think it\u0027s feasible, so I\u0027ll remove it.\n\nMore generally, I\u0027m using go/todo to watch for TODOs in this stack. Do you think it\u0027s OK to do TODO(aryarahul) instead of a bug number? Otherwise I\u0027ll end up filing a lot of content-free bugs that will immediately be closed, since the relevant context is all in the code.",
+      "parentUuid": "3655dc17_87bd9188",
       "range": {
         "startLine": 3,
         "startChar": 3,
@@ -208,6 +286,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "029764a4_4b3d9a2b",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "Sure, will move into the \"core\" crate (where RawAddress already lives).\n\nDue to messy merge conflicts, I would prefer to do this later in the stack? Filed b/267341136 to track.",
+      "parentUuid": "7d9340c7_4a0f526b",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b54cea2c_ea50c05b",
         "filename": "system/rust/src/packets.pdl",
         "patchSetId": 8
@@ -279,6 +381,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "133db4bd_824441ea",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "We need to support profile-specific error codes so we can build packets. http://b/267339120 tracks PDL support for enum \"ranges\", but I can\u0027t add them here since they aren\u0027t yet implemented.",
+      "parentUuid": "f466ed67_7b1f18d5",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f57083e0_dc1f1622",
         "filename": "system/rust/src/packets.pdl",
         "patchSetId": 8
@@ -290,6 +416,30 @@
       "writtenOn": "2023-01-31T19:36:04Z",
       "side": 1,
       "message": "So separate uuid in pdl and separate in rust ?\nWill we have casting hell like in C++ ?",
+      "range": {
+        "startLine": 60,
+        "startChar": 7,
+        "endLine": 60,
+        "endChar": 11
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35840f5c_a7fd30e0",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-01-31T21:31:31Z",
+      "side": 1,
+      "message": "The PDL UUIDs are to be used only right at the point of parsing and serializing. You can see that there are Into\u003c\u003e implementations to the regular Uuid type. So the idea is that the Uuid type will be used everywhere, the PDL UUID types should never be used explicitly, and when reading UUIDs out of packets the .into() method will automatically convert into these UUID types. PDL UUIDs are pretty useless (e.g. they don\u0027t support equality/hashing), and converting them into regular Uuids is fallible, so I don\u0027t think they will be inadvertently used when a regular Uuid is needed.\n\nThe idea is that PDL UUIDs represent a serialized UUID within a packet so e.g. a 16-bit and 128-bit UUID will be different, PDL UUIDs just hold raw bytes. Whereas Uuids internally are a \"logical\" UUID (like the UUID type in C++) that doesn\u0027t care about the serialized implementation.",
+      "parentUuid": "f57083e0_dc1f1622",
       "range": {
         "startLine": 60,
         "startChar": 7,
