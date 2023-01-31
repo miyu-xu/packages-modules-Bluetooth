@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597478c9_4d12318e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-01-31T21:49:34Z",
+      "side": 1,
+      "message": "Hi,\n\nCan we have a +2 stamp on this please ?",
+      "revId": "55d7f4bb255b9611f53a4fed15ab2ff9ecbac2d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
