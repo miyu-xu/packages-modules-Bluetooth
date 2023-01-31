@@ -321,6 +321,7 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
     LOG(WARNING) << __func__ << ": buffer is too small, size is " << buf_len;
     return;
   }
+
   uint8_t raw_cmd;
   STREAM_TO_UINT8(raw_cmd, p_buf);
   buf_len--;
@@ -328,14 +329,25 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
   if (raw_cmd == SMP_OPCODE_PAIRING_FAILED && buf_len >= 1) {
     STREAM_TO_UINT8(failure_reason, p_buf);
   }
+  uint8_t io_capability = 0;
+  // track the IO Capability based on the direction
+  if (raw_cmd == SMP_OPCODE_PAIRING_REQ && is_outgoing && buf_len >= 1) {
+    STREAM_TO_UINT8(io_capability, p_buf);
+  }
+
+  if (raw_cmd == SMP_OPCODE_PAIRING_RSP && !is_outgoing && buf_len >= 1) {
+    STREAM_TO_UINT8(io_capability, p_buf);
+  }
+
   uint16_t metric_cmd =
       is_over_br ? SMP_METRIC_COMMAND_BR_FLAG : SMP_METRIC_COMMAND_LE_FLAG;
   metric_cmd |= static_cast<uint16_t>(raw_cmd);
   android::bluetooth::DirectionEnum direction =
       is_outgoing ? android::bluetooth::DirectionEnum::DIRECTION_OUTGOING
                   : android::bluetooth::DirectionEnum::DIRECTION_INCOMING;
+
   log_smp_pairing_event(bd_addr, metric_cmd, direction,
-                        static_cast<uint16_t>(failure_reason));
+                        static_cast<uint16_t>(failure_reason), io_capability);
 }
 
 /*******************************************************************************
@@ -999,7 +1011,7 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
       metric_status |= SMP_METRIC_STATUS_INTERNAL_FLAG;
     }
     log_smp_pairing_event(p_cb->pairing_bda, metric_cmd, direction,
-                          metric_status);
+                          metric_status, /* empty IO Capability */ 0);
   }
 
   if (p_cb->status == SMP_SUCCESS && p_cb->smp_over_br) {

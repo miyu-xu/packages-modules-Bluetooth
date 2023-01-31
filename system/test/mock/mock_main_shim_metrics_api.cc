@@ -129,10 +129,10 @@ void bluetooth::shim::LogMetricReadTxPowerLevelResult(
 }
 void bluetooth::shim::LogMetricSmpPairingEvent(
     const RawAddress& raw_address, uint16_t smp_cmd,
-    android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {
+    android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason, uint8_t io_capability) {
   mock_function_count_map[__func__]++;
   test::mock::main_shim_metrics_api::LogMetricSmpPairingEvent(
-      raw_address, smp_cmd, direction, smp_fail_reason);
+      raw_address, smp_cmd, direction, smp_fail_reason, io_capability);
 }
 void bluetooth::shim::LogMetricClassicPairingEvent(
     const RawAddress& raw_address, uint16_t handle, uint32_t hci_cmd,
