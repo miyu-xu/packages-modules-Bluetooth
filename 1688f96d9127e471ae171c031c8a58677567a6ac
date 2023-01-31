@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce535ae_1e7e87c8",
+        "filename": "system/gd/rust/common/build.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T19:36:04Z",
+      "side": 1,
+      "message": "If someone looks up the blame to find why changes were made, it might be clearer to have smaller patch.",
+      "parentUuid": "43f840ad_9b82e636",
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3655dc17_87bd9188",
@@ -166,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d9340c7_4a0f526b",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T19:36:04Z",
+      "side": 1,
+      "message": "Can we then have separate library that will have common types, that would be shared here and in topshim ?\n\nWe used to have different types per each layer/module. It was terrible experience, we shouldn\u0027t repeat this problem in Rust.",
+      "parentUuid": "bf8d4763_4f2eb374",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b54cea2c_ea50c05b",
         "filename": "system/rust/src/packets.pdl",
         "patchSetId": 8
@@ -213,6 +255,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f466ed67_7b1f18d5",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T19:36:04Z",
+      "side": 1,
+      "message": "Why define all AttOpcodes above then ?\nOnly error codes up to 0x0E are standard.",
+      "parentUuid": "12c6a92a_a1e76d7a",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f57083e0_dc1f1622",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T19:36:04Z",
+      "side": 1,
+      "message": "So separate uuid in pdl and separate in rust ?\nWill we have casting hell like in C++ ?",
+      "range": {
+        "startLine": 60,
+        "startChar": 7,
+        "endLine": 60,
+        "endChar": 11
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "018cd2a5_1b2485cc",
         "filename": "system/rust/src/utils.rs",
         "patchSetId": 8
@@ -248,6 +337,30 @@
       "side": 1,
       "message": "The way Rust modules work, each non-leaf module needs a file like this declaring what children it has. This file will never have any contents, except for enumerating the child modules within src/utils/*.rs.",
       "parentUuid": "018cd2a5_1b2485cc",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 0
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11f52bad_332b6399",
+        "filename": "system/rust/src/utils.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-01-31T19:36:04Z",
+      "side": 1,
+      "message": "Thanks for clarification!",
+      "parentUuid": "58b3a94e_c461d042",
       "range": {
         "startLine": 1,
         "startChar": 0,
