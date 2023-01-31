@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdfb5d5e_153bc9cd",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:11Z",
+      "side": 1,
+      "message": "should we check header.version \u003d\u003d 1 here?",
+      "revId": "3a29013d2abb3ec73661c28e8f7e40f2211c71eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a477c335_129645a9",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:11Z",
+      "side": 1,
+      "message": "`size` and `length` are synonymous, making it error prone.\nMaybe use `original_length` and `included_length`?\n\nhttps://fte.com/webhelpii/bpa600/Content/Technical_Information/BT_Snoop_File_Format.htm#:~:text\u003dBTSnoop%20File%20Format\u0026text\u003dThe%20BTSnoop%20file%20format%20is,as%20documented%20in%20RFC%201761.",
+      "range": {
+        "startLine": 90,
+        "startChar": 8,
+        "endLine": 90,
+        "endChar": 12
+      },
+      "revId": "3a29013d2abb3ec73661c28e8f7e40f2211c71eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b286f7_30278878",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:11Z",
+      "side": 1,
+      "message": "Is it really an error? Isn\u0027t this just EOF?",
+      "revId": "3a29013d2abb3ec73661c28e8f7e40f2211c71eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5adc7ef6_f58f6947",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:11Z",
+      "side": 1,
+      "message": "It hardly matters since in our case it\u0027s always `size \u003d\u003d length`, but the size of available data is `length` and not `size`.",
+      "range": {
+        "startLine": 170,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 29
+      },
+      "revId": "3a29013d2abb3ec73661c28e8f7e40f2211c71eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b81b49a_335dc4bd",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:11Z",
+      "side": 1,
+      "message": "get_log_type",
+      "range": {
+        "startLine": 222,
+        "startChar": 40,
+        "endLine": 222,
+        "endChar": 48
+      },
+      "revId": "3a29013d2abb3ec73661c28e8f7e40f2211c71eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aeed90f_98f58c4d",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:11Z",
+      "side": 1,
+      "message": "I feel this is difficult to read, not sure whether it\u0027s normal for rust code to be structured like this.\n\nCan we use this?\n```\nif self.get_log_type().is_none() {\n  return None;\n}\n```",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 0
+      },
+      "revId": "3a29013d2abb3ec73661c28e8f7e40f2211c71eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
