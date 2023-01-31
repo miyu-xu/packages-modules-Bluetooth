@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e49a7fd_d88a4ec0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-31T08:58:21Z",
+      "side": 1,
+      "message": "Lets add more inside. e.g. Handling SCO creation is in the upper layers - for Android it is HeadsetService in Java.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 7
+      },
+      "revId": "3f6c0f0b82d7960b0049cbb65c5b984af2c3b66a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54d1ca85_3d8dfb65",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1501,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-01-31T08:58:21Z",
+      "side": 1,
+      "message": "I think this should be also inside the IF.",
+      "revId": "3f6c0f0b82d7960b0049cbb65c5b984af2c3b66a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
