@@ -8,6 +8,9 @@ use crate::{
     },
 };
 
+pub const PRIMARY_SERVICE_DECLARATION_UUID: Uuid = Uuid::new([0x00, 0x28, 0x00, 0x00]);
+pub const CHARACTERISTIC_UUID: Uuid = Uuid::new([0x03, 0x28, 0x00, 0x00]);
+
 impl From<AttHandleView<'_>> for AttHandle {
     fn from(value: AttHandleView) -> Self {
         AttHandle(value.get_handle() as u16)
@@ -125,7 +128,7 @@ impl From<Uuid> for Uuid128Builder {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AttAttribute {
     pub handle: AttHandle,
     pub uuid: Uuid,
@@ -134,7 +137,7 @@ pub struct AttAttribute {
 
 /// The attribute properties supported by the current GATT server implementation
 /// Unimplemented properties will default to false.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AttPermissions {
     /// Whether an attribute is readable
     pub readable: bool,
