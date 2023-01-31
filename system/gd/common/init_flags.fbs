@@ -13,6 +13,7 @@ table InitFlagsData {
     gd_controller_enabled:bool (privacy:"Any");
 
     asynchronously_start_l2cap_coc_is_enabled:bool (privacy:"Any");
+    bta_ag_incoming_call_sco_open_is_enabled:bool (privacy:"Any");
     btaa_hci_is_enabled:bool (privacy:"Any");
     btm_dm_flush_discovery_queue_on_search_cancel_is_enabled:bool (privacy:"Any");
     device_iot_config_logging_is_enabled:bool (privacy:"Any");
