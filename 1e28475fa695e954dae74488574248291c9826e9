@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "911c7176_34377523",
+        "filename": "floss/build/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-01-31T01:09:31Z",
+      "side": 1,
+      "message": "I followed the installation instructions in https://docs.docker.com/desktop/install/linux-install/, which has numerous steps. I find that repeating the instruction steps in this doc would be redundant.\n\nI also a reference to rootless mode.\n\nI tested the installation of Docker and the rootless setup. I can build Floss successfully following this setup.",
+      "parentUuid": "1e69207c_3e62c0cd",
+      "revId": "1e28475fa695e954dae74488574248291c9826e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "065a2123_9ea38101",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "660a8a93_aeb0421c",
+        "filename": "floss/build/build-in-container.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-01-31T01:09:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "065a2123_9ea38101",
+      "revId": "1e28475fa695e954dae74488574248291c9826e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e72b99f8_9487bb79",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-01-31T00:24:44Z",
       "side": 1,
       "message": "Keep as `Dockerfile`",
+      "revId": "1e28475fa695e954dae74488574248291c9826e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd0008cd_7a938dd0",
+        "filename": "floss/build/container-build-image.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-01-31T01:09:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e72b99f8_9487bb79",
       "revId": "1e28475fa695e954dae74488574248291c9826e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
