@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c380a14_751da34c",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:21Z",
+      "side": 1,
+      "message": "This is the number of seconds from the year 1970 to the year 2000",
+      "range": {
+        "startLine": 118,
+        "startChar": 6,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "620bba52_0af337a0",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:21Z",
+      "side": 1,
+      "message": "This is the number of usecs from year 0 to year 2000.\n\nBasically using the above two magics, we convert the timestamp from unix timestamp (starts on the year 1970) to btsnoop timestamp (starts on the year 0).\n\nMaybe we can simplify some calculation by keeping the number of usecs like this:\n`USEC_YEAR_0_TO_1970 \u003d LINUX_SNOOP_TS_BASE_MAGIC - 1000000 * LINUX_SNOOP_TS_SEC_MAGIC`\nAnd avoid the term magic entirely.",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78b5ba44_0027af34",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-01-31T10:09:21Z",
+      "side": 1,
+      "message": "unused?\nThis is removed in the later CL.",
+      "range": {
+        "startLine": 296,
+        "startChar": 10,
+        "endLine": 296,
+        "endChar": 36
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
