@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7806c7_a5924b9c",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-01-31T22:36:06Z",
+      "side": 1,
+      "message": "Any specific reason for changing this ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "54f7a6811222c6f4e31cbfa72e77a8629fdd96ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
