@@ -273,6 +273,8 @@ init_flags!(
         leaudio_targeted_announcement_reconnection_mode,
         pass_phy_update_callback = true,
         periodic_advertising_adi = true,
+        private_gatt,
+        always_use_private_gatt_for_debugging,
         queue_l2cap_coc_while_encrypting = true,
         redact_log = true,
         sdp_serialization = true,
