@@ -18,10 +18,16 @@ mod ffi;
 
 use std::{fmt::Debug, rc::Rc, thread};
 
+use cxx::UniquePtr;
 #[cfg(not(test))]
 pub use ffi::CxxUuid;
 
-use crate::{gatt::ffi::AttTransportImpl, GlobalModuleRegistry};
+use crate::{
+    gatt::ffi::{AttTransportImpl, GattCallbacksImpl},
+    GlobalModuleRegistry,
+};
+
+use self::ffi::GattServerCallbacks;
 
 /// A 6-byte MAC address corresponding to a Bluetooth device
 ///
@@ -35,9 +41,12 @@ impl Debug for RawAddress {
     }
 }
 
-fn init() {
+fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>) {
     thread::spawn(move || {
-        GlobalModuleRegistry::start(Rc::new(AttTransportImpl()));
+        GlobalModuleRegistry::start(
+            Rc::new(GattCallbacksImpl(gatt_server_callbacks)),
+            Rc::new(AttTransportImpl()),
+        );
     });
 }
 
