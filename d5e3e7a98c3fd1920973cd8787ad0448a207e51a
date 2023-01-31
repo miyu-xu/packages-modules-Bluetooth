@@ -94,6 +94,30 @@
       },
       "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fc65419_374f4bb9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1995,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-01-31T16:42:11Z",
+      "side": 1,
+      "message": "To add to my previous comment, removing the check and only settings the value let us send the `+BSIR` multiples times to some devices.\nI don\u0027t know how the remote device will react, but the test will already complain about too many call. (but this can be updated, just checking)",
+      "parentUuid": "ae672dda_ab15e62d",
+      "range": {
+        "startLine": 1995,
+        "startChar": 16,
+        "endLine": 1995,
+        "endChar": 44
+      },
+      "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
