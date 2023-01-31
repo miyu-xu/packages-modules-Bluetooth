@@ -443,6 +443,10 @@ public final class BluetoothSocket implements Closeable {
             if (channel <= 0) {
                 throw new IOException("bt socket connect failed");
             }
+            if (channel == 254) {
+                int errCode = (int) mSocketIS.read();
+                throw new IOException("bt socket connect failed with code " + errCode);
+            }
             mPort = channel;
             waitSocketSignal(mSocketIS);
             synchronized (this) {
