@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20eed61c_b1046553",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-01T18:40:16Z",
+      "side": 1,
+      "message": "Removed here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2398883",
+      "parentUuid": "b1eecc5a_6e7ae1a7",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e00ab46_3d7c3d46",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 22
@@ -49,6 +67,24 @@
       "writtenOn": "2023-02-01T16:59:11Z",
       "side": 1,
       "message": "...then we\u0027ll crash on this line when we unconditionally dereference it.",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20474a9b_56a83a1f",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-01T18:40:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0e00ab46_3d7c3d46",
       "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -70,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "401fd08b_245ad0dc",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2475,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-01T18:40:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08c08295_19788044",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb541ac7_9ab3db98",
@@ -83,6 +137,24 @@
       "writtenOn": "2023-02-01T16:59:11Z",
       "side": 1,
       "message": "...before getting to this line.",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75d7436a_8099307c",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2482,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-01T18:40:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb541ac7_9ab3db98",
       "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
