@@ -1,5 +1,74 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e8719d2_89fadca2",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-02-01T16:59:11Z",
+      "side": 1,
+      "message": "Do we think `p_scb` could be nullptr here?  Because if so...",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e00ab46_3d7c3d46",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-02-01T16:59:11Z",
+      "side": 1,
+      "message": "...then we\u0027ll crash on this line when we unconditionally dereference it.",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c08295_19788044",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2475,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-02-01T16:59:11Z",
+      "side": 1,
+      "message": "Similar question here, although here we\u0027re even deferencing before the nullptr check, so we\u0027ll crash...",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb541ac7_9ab3db98",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2482,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-02-01T16:59:11Z",
+      "side": 1,
+      "message": "...before getting to this line.",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
