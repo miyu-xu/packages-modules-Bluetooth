@@ -28,6 +28,9 @@ pub struct Scope<'d> {
 
     // Collection of Packet, Struct, and Group scope declarations.
     pub scopes: HashMap<&'d Decl, PacketScope<'d>>,
+
+    // Children for the Decl with the given id.
+    pub children: HashMap<String, Vec<&'d Decl>>,
 }
 
 /// Gather information about a Packet, Struct, or Group declaration.
@@ -40,7 +43,7 @@ pub struct PacketScope<'d> {
     pub sizes: HashMap<String, &'d Field>,
 
     // Payload or body field.
-    payload: Option<&'d Field>,
+    pub payload: Option<&'d Field>,
 
     // Typedef, scalar, array fields.
     pub named: HashMap<String, &'d Field>,
@@ -53,7 +56,7 @@ pub struct PacketScope<'d> {
     // where Group fields have been substituted by their body.
     // Constrained Scalar or Typedef Group fields are substituted by a Fixed
     // field.
-    fields: Vec<&'d Field>,
+    pub fields: Vec<&'d Field>,
 
     // Constraint declarations gathered from Group inlining.
     constraints: HashMap<String, &'d Constraint>,
@@ -348,6 +351,21 @@ impl<'d> PacketScope<'d> {
             preceding_field = Some(field);
         }
         preceding_field
+    }
+
+    /// Lookup a field by name. This will also find the special
+    /// `_payload_` and `_body_` fields.
+    pub fn get_packet_field(&self, id: &str) -> Option<&Field> {
+        self.named.get(id).copied().or(match id {
+            "_payload_" | "_body_" => self.payload,
+            _ => None,
+        })
+    }
+
+    /// Find the size field corresponding to the payload or body
+    /// field of this packet.
+    pub fn get_payload_size_field(&self) -> Option<&Field> {
+        self.sizes.get("_payload_").or_else(|| self.sizes.get("_body_")).copied()
     }
 
     /// Cleanup scope after processing all fields.
@@ -1210,7 +1228,8 @@ impl Decl {
 
 impl File {
     fn scope<'d>(&'d self, result: &mut LintDiagnostics) -> Scope<'d> {
-        let mut scope = Scope { typedef: HashMap::new(), scopes: HashMap::new() };
+        let mut scope =
+            Scope { typedef: HashMap::new(), scopes: HashMap::new(), children: HashMap::new() };
 
         // Gather top-level declarations.
         // Validate the top-level scopes (Group, Packet, Typedef).
@@ -1224,6 +1243,23 @@ impl File {
             }
             if let Some(lscope) = decl.scope(result) {
                 scope.scopes.insert(decl, lscope);
+            }
+
+            if let Decl::Packet { id, fields, parent_id, .. }
+            | Decl::Struct { id, fields, parent_id, .. } = decl
+            {
+                // Handle packets with a payload field (but without any child packets).
+                for field in fields {
+                    if let Field::Payload { .. } | Field::Body { .. } = field {
+                        scope.children.entry(id.to_string()).or_default();
+                        break;
+                    }
+                }
+
+                // Handle child packets.
+                if let Some(parent_id) = parent_id {
+                    scope.children.entry(parent_id.to_string()).or_default().push(decl);
+                }
             }
         }
 

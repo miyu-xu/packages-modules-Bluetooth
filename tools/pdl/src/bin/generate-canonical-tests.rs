@@ -157,6 +157,9 @@ fn main() {
             "Packet_Count_Field",
             "Packet_FixedScalar_Field",
             "Packet_FixedEnum_Field",
+            "Packet_Payload_Field_VariableSize",
+            "Packet_Payload_Field_UnknownSize",
+            "Packet_Payload_Field_UnknownSize_Terminal",
         ],
         &module_name,
     );

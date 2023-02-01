@@ -23,7 +23,7 @@ pub struct SourceLocation {
     pub column: usize,
 }
 
-#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, Serialize)]
+#[derive(Default, Copy, Clone, PartialEq, Eq, Serialize)]
 pub struct SourceRange {
     pub file: FileId,
     pub start: SourceLocation,
@@ -197,6 +197,12 @@ impl fmt::Display for SourceRange {
                 self.start.line, self.start.column, self.end.line, self.end.column
             )
         }
+    }
+}
+
+impl fmt::Debug for SourceRange {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("SourceRange").finish_non_exhaustive()
     }
 }
 
