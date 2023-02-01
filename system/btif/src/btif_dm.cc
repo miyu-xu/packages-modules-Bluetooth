@@ -1309,6 +1309,13 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
       if (!check_eir_remote_name(p_search_data, bdname.name, &remote_name_len))
         check_cached_remote_name(p_search_data, bdname.name, &remote_name_len);
 
+      // default to be not as a ASHA follower
+      bool is_ASHA_follower = false;
+      BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                                 BT_PROPERTY_REMOTE_IS_ASHA_FOLLOWER,
+                                 sizeof(bool), &is_ASHA_follower);
+      num_properties++;
+
       /* Check EIR for services */
       if (p_search_data->inq_res.p_eir) {
         BTM_GetEirUuidList(p_search_data->inq_res.p_eir,
