@@ -1381,6 +1381,53 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
                                    &(p_search_data->inq_res.include_rsi));
         num_properties++;
 
+<<<<<<< PATCH SET (ec24ce add implementation for detecting REMOTE_IS_ASHA_FOLLOWER)
+        // default to be not as a ASHA follower
+        bool is_ASHA_follower = false;
+        BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                                   BT_PROPERTY_REMOTE_IS_ASHA_FOLLOWER,
+                                   sizeof(bool), &is_ASHA_follower);
+        num_properties++;
+
+        if (p_search_data->inq_res.p_eir) {
+          // based on ASHA advertising service data to decide whether it is
+          // hidden
+          tBTA_DM_INQ_RES inq_res = p_search_data->inq_res;
+          const uint8_t* p_service_data = inq_res.p_eir;
+          uint8_t service_data_len = 0;
+          while ((p_service_data = AdvertiseDataParser::GetFieldByType(
+                      p_service_data + service_data_len,
+                      inq_res.eir_len - (p_service_data - inq_res.p_eir) -
+                          service_data_len,
+                      BTM_BLE_AD_TYPE_SERVICE_DATA_TYPE, &service_data_len))) {
+            uint16_t uuid;
+            const uint8_t* p_uuid = p_service_data;
+            STREAM_TO_UINT16(uuid, p_uuid);
+
+            if (uuid == 0xfdf0 /* ASHA service*/) {
+              LOG_INFO("ASHA found in %s", ADDRESS_TO_LOGGABLE_CSTR(bdaddr));
+
+              // ASHA advertisement service data length should be at least 8
+              if (service_data_len < 8) {
+                LOG_WARN("ASHA device service_data_len too short");
+              } else {
+                // Get ASHA capability byte and retrieve 2nd bit value
+                is_ASHA_follower = (p_service_data[3] & 0x04) != 0;
+                LOG_INFO("is_ASHA_follower_device: %d", is_ASHA_follower);
+                if (is_ASHA_follower) {
+                  BTIF_STORAGE_FILL_PROPERTY(
+                      &properties[num_properties],
+                      BT_PROPERTY_REMOTE_IS_ASHA_FOLLOWER, sizeof(bool),
+                      &is_ASHA_follower);
+                }
+              }
+              break;
+            }
+          }
+        }
+
+=======
+>>>>>>> BASE      (80150f Merge "Reduce excessive l2cap traffic logging")
         // Floss expects that EIR uuids are immediately reported when the
         // device is found and doesn't wait for the pairing intent.
         //
