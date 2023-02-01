@@ -93,6 +93,102 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c698037d_cbe04924",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-01T17:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98e028ae_b74729db",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "981238e2_246620ee",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-01T17:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "586a91cb_8aeb713c",
+      "range": {
+        "startLine": 647,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f6ac88_2853770a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-01T17:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c88181ed_0c8b2bf3",
+      "range": {
+        "startLine": 625,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6216c009_c33f6f43",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-01T17:18:27Z",
+      "side": 1,
+      "message": "will run it locally here but\nm RUN_ERROR_PRONE\u003dtrue MyModule\nMyModule means here \"android.bluetooth\"?\nAnd it needs to run with target device physically connected \nSorry for trivial question I am running this first time.",
+      "parentUuid": "518e7e49_e4eb05e3",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72b4c757_456560f7",
@@ -112,6 +208,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5b80312_6630ea7c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-01T17:18:27Z",
+      "side": 1,
+      "message": "Trying to align like A2DP:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothCodecConfig.java\n\nFor codec specific fields for extra vendor/codec related stuffs to extended features OR further versions of codec.",
+      "parentUuid": "72b4c757_456560f7",
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78d3e85a_3b03a29b",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
         "patchSetId": 17
@@ -123,6 +237,24 @@
       "writtenOn": "2023-01-31T05:17:57Z",
       "side": 1,
       "message": "Please add the CTS test for all the new added APIs.",
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b7085fc_a86abeda",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-01T17:18:27Z",
+      "side": 1,
+      "message": "CTS gerrit: https://android-review.googlesource.com/c/platform/cts/+/2393392",
+      "parentUuid": "78d3e85a_3b03a29b",
       "revId": "119985b536c6a340570b8bb55fe830440917895d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
