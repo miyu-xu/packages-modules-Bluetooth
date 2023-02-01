@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1eecc5a_6e7ae1a7",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-01T18:19:58Z",
+      "side": 1,
+      "message": "You are right, if p_scb is null we crashed before as it is dereference earlier in the method",
+      "parentUuid": "4e8719d2_89fadca2",
+      "revId": "bf2a0b20897fdf0bbec3d89d8747dca265594f3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e00ab46_3d7c3d46",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 22
