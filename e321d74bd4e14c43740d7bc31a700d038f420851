@@ -22,6 +22,30 @@
       },
       "revId": "e321d74bd4e14c43740d7bc31a700d038f420851",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a28eb34_5760a59c",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-01T23:45:01Z",
+      "side": 1,
+      "message": "Fixed.\n\nI ran `cargo fmt` with wrap_comments\u003dTrue, and clangfmt is also happy. Note that the maximum line length in rustfmt is 100, not 80.\n\nSadly code within macros is not properly handled, so I\u0027ve tried to fix everything I see manually.",
+      "parentUuid": "997a2c76_716a4397",
+      "range": {
+        "startLine": 69,
+        "startChar": 33,
+        "endLine": 69,
+        "endChar": 36
+      },
+      "revId": "e321d74bd4e14c43740d7bc31a700d038f420851",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
