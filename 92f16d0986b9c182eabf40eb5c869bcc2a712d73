@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0dd6da31_be8151b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-01T22:33:23Z",
+      "side": 1,
+      "message": "There are no feature bits for those, so I took the default approach of stating we support everything.\nWell for advertising I am lying a bit since we do have the supported states but this config is complicated to use.",
+      "parentUuid": "2733bebc_2ca1957f",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67f1e4fd_1db77d15",
         "filename": "tools/rootcanal/model/controller/controller_properties.cc",
         "patchSetId": 10
