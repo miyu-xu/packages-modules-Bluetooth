@@ -45,10 +45,21 @@
 
 uint8_t btm_ble_read_sec_key_size(const RawAddress& bd_addr);
 
+using namespace bluetooth::legacy::stack::sdp;
+
 using base::StringPrintf;
 using bluetooth::Uuid;
 using bluetooth::eatt::EattExtension;
 using bluetooth::eatt::EattChannel;
+
+bool SDP_AddServiceClassIdList(uint32_t handle, uint16_t num_services,
+                               uint16_t* p_service_uuids);
+bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
+                      uint32_t attr_len, uint8_t* p_val);
+bool SDP_AddProtocolList(uint32_t handle, uint16_t num_elem,
+                         tSDP_PROTOCOL_ELEM* p_elem_list);
+bool SDP_AddUuidSequence(uint32_t handle, uint16_t attr_id, uint16_t num_uuids,
+                         uint16_t* p_uuids);
 
 /* check if [x, y] and [a, b] have overlapping range */
 #define GATT_VALIDATE_HANDLE_RANGE(x, y, a, b) ((y) >= (a) && (x) <= (b))
@@ -880,7 +891,7 @@ uint32_t gatt_add_sdp_record(const Uuid& uuid, uint16_t start_hdl,
   VLOG(1) << __func__
           << StringPrintf(" s_hdl=0x%x  s_hdl=0x%x", start_hdl, end_hdl);
 
-  uint32_t sdp_handle = SDP_CreateRecord();
+  uint32_t sdp_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
   if (sdp_handle == 0) return 0;
 
   switch (uuid.GetShortestRepresentationSize()) {
