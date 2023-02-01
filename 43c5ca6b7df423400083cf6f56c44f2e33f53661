@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b33e4035_8379e1db",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothQualityReport.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-01T19:13:43Z",
+      "side": 1,
+      "message": "You should lock on callbacks_mutex here to prevent concurrent modification of mCallbacksObj\n```\nstd::shared_lock\u003cstd::shared_timed_mutex\u003e lock(callbacks_mutex);\n```",
+      "revId": "43c5ca6b7df423400083cf6f56c44f2e33f53661",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63576740_b3a98fff",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 16
