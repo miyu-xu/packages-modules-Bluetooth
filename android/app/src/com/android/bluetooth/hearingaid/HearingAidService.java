@@ -18,6 +18,8 @@ package com.android.bluetooth.hearingaid;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
+import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
+
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHearingAid;
@@ -578,6 +580,59 @@ public class HearingAidService extends ProfileService {
 
     int getCapabilities(BluetoothDevice device) {
         return mDeviceCapabilitiesMap.getOrDefault(device, -1);
+    }
+
+    @Override
+    public void getAshaCapability(
+            BluetoothDevice device, AttributionSource source, SynchronousResultReceiver receiver) {
+        try {
+            receiver.send(getAshaCapability(device, source));
+        } catch (RuntimeException e) {
+            receiver.propagateException(e);
+        }
+    }
+
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    private int getAshaCapability(BluetoothDevice device, AttributionSource attributionSource) {
+        AdapterService service = mAdapterService;
+        if (service == null
+                || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getAshaCapability")
+                || !Utils.checkScanPermissionForDataDelivery(service, attributionSource, TAG)) {
+            return BluetoothDevice.ERROR;
+        }
+
+        return service.getAshaCapability(device);
+    }
+
+    @Override
+    public void getAshaTruncatedHiSyncId(
+            BluetoothDevice device, AttributionSource source, SynchronousResultReceiver receiver) {
+        try {
+            receiver.send(getAshaTruncatedHiSyncId(device, source));
+        } catch (RuntimeException e) {
+            receiver.propagateException(e);
+        }
+    }
+
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    private int getAshaTruncatedHiSyncId(
+            BluetoothDevice device, AttributionSource attributionSource) {
+        AdapterService service = mAdapterService;
+        if (service == null
+                || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getAshaTruncatedHiSyncId")
+                || !Utils.checkScanPermissionForDataDelivery(service, attributionSource, TAG)) {
+            return BluetoothDevice.ERROR;
+        }
+
+        return service.getAshaTruncatedHiSyncId(device);
     }
 
     /**

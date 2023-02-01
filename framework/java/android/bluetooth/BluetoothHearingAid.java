@@ -27,6 +27,7 @@ import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
+import android.bluetooth.annotations.RequiresBluetoothScanPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
 import android.compat.annotation.UnsupportedAppUsage;
@@ -722,6 +723,101 @@ public final class BluetoothHearingAid implements BluetoothProfile {
             }
         }
         return defaultValue;
+    }
+
+    /**
+     * Check whether the device has ASHA Service Data .
+     *
+     * @param device discovered Bluetooth device
+     * @return ASHA device's capability
+     * @hide
+     */
+    @SystemApi
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothScanPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public boolean hasAshaServiceData(@NonNull BluetoothDevice device) {
+        return getAshaCapability(device) != 0;
+    }
+
+    /**
+     * Contains ASHA device's capability if return value is none-zero.
+     *
+     * @param device discovered Bluetooth device
+     * @return ASHA device's capability
+     * @hide
+     */
+    @SystemApi
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothScanPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public int getAshaCapability(@NonNull BluetoothDevice device) {
+        if (DBG) {
+            log("getAshaCapability()");
+        }
+        final IBluetoothHearingAid service = getService();
+        if (service == null || !isEnabled() || isValidDevice(device)) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) {
+                log(Log.getStackTraceString(new Throwable()));
+            }
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.getAshaCapability(this, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(0);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        // BT is not enabled, we cannot be connected.
+        return BluetoothDevice.ERROR;
+    }
+
+    /**
+     * Contains ASHA device's truncated HiSyncID if {@link #hasAshaServiceData} is true.
+     *
+     * @param device discovered Bluetooth device
+     * @return truncated HiSyncID
+     * @hide
+     */
+    @SystemApi
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothScanPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public int getAshaTruncatedHiSyncId(@NonNull BluetoothDevice device) {
+        if (DBG) {
+            log("getAshaTruncatedHiSyncId()");
+        }
+        final IBluetoothHearingAid service = getService();
+        if (service == null || !isEnabled() || isValidDevice(device)) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) {
+                log(Log.getStackTraceString(new Throwable()));
+            }
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.getAshaTruncatedHiSyncId(this, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(-1);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        // BT is not enabled, we cannot be connected.
+        return BluetoothDevice.ERROR;
     }
 
     /**

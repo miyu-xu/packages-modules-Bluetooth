@@ -359,6 +359,27 @@ typedef enum {
   BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER,
 
   /**
+   * Description - True if Remote is an ASHA follower device of a set.
+   * Access mode - GET.
+   * Data Type - bool.
+   */
+  BT_PROPERTY_REMOTE_IS_ASHA_FOLLOWER,
+
+  /**
+   * Description - ASHA capability.
+   * Access mode - GET.
+   * Data Type - uint16_t.
+   */
+  BT_PROPERTY_REMOTE_ASHA_CAPABILITY,
+
+  /**
+   * Description - ASHA truncated HiSyncID.
+   * Access mode - GET.
+   * Data Type - uint32_t.
+   */
+  BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID,
+
+  /**
    * Description - Appearance as specified in Assigned Numbers.
    * Access mode - GET.
    * Data Type - uint16_t.
