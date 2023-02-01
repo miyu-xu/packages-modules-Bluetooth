@@ -207,6 +207,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7da0d2e6_41159908",
+        "filename": "system/rust/src/gatt/ids.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-01T18:23:43Z",
+      "side": 1,
+      "message": "In most cases it\u0027s best to link TODOs to a tracking bug so context is not lost, but in this case I think it is fine to to TODO(ldap) given your reasoning above. \n\n+1 to remove if there isn\u0027t known task to work on (if unknown is best to track in a bug to investigate and link to the relevant code from there). \n\nThere\u0027s a lot of good guidance in the various style guides and go/comments on this. \n\nResolving.",
+      "parentUuid": "e9363cc7_485e17db",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 7
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5344b0ad_5ed45140",
