@@ -1302,6 +1302,8 @@ pub struct BluetoothGatt {
     reliable_queue: HashSet<String>,
     scanner_callbacks: Callbacks<dyn IScannerCallback + Send>,
     scanners: Arc<Mutex<ScannersMap>>,
+    scan_suspend_mode: SuspendMode,
+    paused_scanner_ids: Vec<u8>,
     advertisers: Advertisers,
 
     adv_mon_add_cb_sender: CallbackSender<(u8, u8)>,
@@ -1332,6 +1334,8 @@ impl BluetoothGatt {
             reliable_queue: HashSet::new(),
             scanner_callbacks: Callbacks::new(tx.clone(), Message::ScannerCallbackDisconnected),
             scanners: scanners.clone(),
+            scan_suspend_mode: SuspendMode::Normal,
+            paused_scanner_ids: Vec::new(),
             small_rng: SmallRng::from_entropy(),
             advertisers: Advertisers::new(tx.clone()),
             adv_mon_add_cb_sender: async_helper_msft_adv_monitor_add.get_callback_sender(),
@@ -1452,14 +1456,74 @@ impl BluetoothGatt {
         self.scanner_callbacks.remove_callback(callback_id)
     }
 
+    /// Set the suspend mode.
+    pub fn set_scan_suspend_mode(&mut self, suspend_mode: SuspendMode) {
+        if suspend_mode != self.scan_suspend_mode {
+            self.scan_suspend_mode = suspend_mode;
+
+            // Notify current suspend mode to all active callbacks.
+            self.scanner_callbacks.for_all_callbacks(|callback| {
+                callback.on_suspend_mode_change(self.scan_suspend_mode.clone());
+            });
+        }
+    }
+
     /// Enters suspend mode for LE Scan.
     ///
     /// This "pauses" all operations managed by this module to prepare for system suspend. A
     /// callback is triggered to let clients know that this module is in suspend mode and some
     /// subsequent API calls will be blocked in this mode.
-    pub fn scan_enter_suspend(&mut self) {
-        // TODO(b/224603540): Implement
-        log::error!("TODO - scan_enter_suspend");
+    pub fn scan_enter_suspend(&mut self) -> BtStatus {
+        if self.get_scan_suspend_mode() != SuspendMode::Normal {
+            return BtStatus::Busy;
+        }
+        self.set_scan_suspend_mode(SuspendMode::Suspending);
+
+        // Collect the scanners that will be paused so that they can be re-enabled at resume.
+        let paused_scanner_ids = self
+            .scanners
+            .lock()
+            .unwrap()
+            .iter()
+            .filter_map(|(_uuid, scanner)| {
+                if let (true, Some(scanner_id)) = (scanner.is_active, scanner.scanner_id) {
+                    Some(scanner_id)
+                } else {
+                    None
+                }
+            })
+            .collect();
+
+        // Note that it is required to remove all advertising monitors before
+        // suspension. Here below is a quote from the kernel patch about why
+        // this is required --
+        //   "UPSTREAM: Bluetooth: Fix Advertisement Monitor Suspend/Resume"
+        //   by mmandlik@google.com (author)
+        //   During system suspend, advertisement monitoring is disabled by setting
+        //   the HCI_VS_MSFT_LE_Set_Advertisement_Filter_Enable to False. This
+        //   disables the monitoring during suspend, however, if the controller is
+        //   monitoring a device, it sends HCI_VS_MSFT_LE_Monitor_Device_Event to
+        //   indicate that the monitoring has been stopped for that particular
+        //   device. This event may occur after suspend depending on the
+        //   low_threshold_timeout and peer device advertisement frequency, which
+        //   causes early wake up.
+        //
+        //   Right way to disable the monitoring for suspend is by removing all the
+        //   monitors before suspend and re-monitor after resume to ensure no events
+        //   are received during suspend. This patch fixes this suspend/resume issue.
+        //
+        // The stop_scan() below will remove and disable the monitors individually.
+        for &scanner_id in &paused_scanner_ids {
+            self.stop_scan(scanner_id);
+            if let Some(scanner) =
+                Self::find_scanner_by_id(&mut self.scanners.lock().unwrap(), scanner_id)
+            {
+                scanner.is_suspended = true;
+            }
+        }
+        self.paused_scanner_ids = paused_scanner_ids;
+        self.set_scan_suspend_mode(SuspendMode::Suspended);
+        return BtStatus::Success;
     }
 
     /// Exits suspend mode for LE Scan.
@@ -1467,9 +1531,28 @@ impl BluetoothGatt {
     /// To be called after system resume/wake up. This "unpauses" the operations that were "paused"
     /// due to suspend. A callback is triggered to let clients when this module has exited suspend
     /// mode.
-    pub fn scan_exit_suspend(&mut self) {
-        // TODO(b/224603540): Implement
-        log::error!("TODO - scan_exit_suspend");
+    pub fn scan_exit_suspend(&mut self) -> BtStatus {
+        if self.get_scan_suspend_mode() != SuspendMode::Suspended {
+            return BtStatus::Busy;
+        }
+        self.set_scan_suspend_mode(SuspendMode::Resuming);
+
+        // The start_scan() below will add and reenable the monitors individually.
+        for scanner_id in self.paused_scanner_ids.clone() {
+            // Provide a placeholder ScanSettings and set filter to None as
+            // the scanner has already had the filter data before suspend.
+            self.start_scan(scanner_id, ScanSettings::default(), None);
+
+            if let Some(scanner) =
+                Self::find_scanner_by_id(&mut self.scanners.clone().lock().unwrap(), scanner_id)
+            {
+                scanner.is_suspended = false;
+            } else {
+                log::warn!("Scanner {} not found", scanner_id);
+            }
+        }
+        self.set_scan_suspend_mode(SuspendMode::Normal);
+        return BtStatus::Success;
     }
 
     fn find_scanner_by_id<'a>(
@@ -1578,11 +1661,20 @@ struct ScannerInfo {
     filter: Option<ScanFilter>,
     // Adv monitor handle, if exists.
     monitor_handle: Option<u8>,
+    // Used by start_scan() to determine if it is called because of system resuming.
+    is_suspended: bool,
 }
 
 impl ScannerInfo {
     fn new(callback_id: u32) -> Self {
-        Self { callback_id, scanner_id: None, is_active: false, filter: None, monitor_handle: None }
+        Self {
+            callback_id,
+            scanner_id: None,
+            is_active: false,
+            filter: None,
+            monitor_handle: None,
+            is_suspended: false,
+        }
     }
 }
 
@@ -1667,15 +1759,29 @@ impl IBluetoothGatt for BluetoothGatt {
         _settings: ScanSettings,
         filter: Option<ScanFilter>,
     ) -> BtStatus {
+        let scan_suspend_mode = self.get_scan_suspend_mode();
+        if scan_suspend_mode != SuspendMode::Normal && scan_suspend_mode != SuspendMode::Resuming {
+            return BtStatus::Busy;
+        }
+
         // Multiplexing scanners happens at this layer. The implementations of start_scan
         // and stop_scan maintains the state of all registered scanners and based on the states
         // update the scanning and/or filter states of libbluetooth.
+        let mut filter_mut = filter.clone();
         {
             let mut scanners_lock = self.scanners.lock().unwrap();
 
             if let Some(scanner) = Self::find_scanner_by_id(&mut scanners_lock, scanner_id) {
                 scanner.is_active = true;
-                scanner.filter = filter.clone();
+                if scanner.is_suspended {
+                    // If a scanner resumes from a suspended state, the
+                    // scanner.filter has already had the filter data.
+                    filter_mut = scanner.filter.clone();
+                } else {
+                    // This is a normal scanning operation.
+                    // The caller has to provide the valid filter data.
+                    scanner.filter = filter_mut.clone();
+                }
             } else {
                 log::warn!("Scanner {} not found", scanner_id);
                 return BtStatus::Fail;
@@ -1704,7 +1810,7 @@ impl IBluetoothGatt for BluetoothGatt {
 
             // Add and enable the monitor filter only when the MSFT extension is supported.
             if is_msft_supported {
-                if let Some(filter) = filter {
+                if let Some(filter) = filter_mut {
                     let monitor_handle =
                         match gatt_async.msft_adv_monitor_add((&filter).into()).await {
                             Ok((handle, 0)) => handle,
@@ -1744,6 +1850,12 @@ impl IBluetoothGatt for BluetoothGatt {
     }
 
     fn stop_scan(&mut self, scanner_id: u8) -> BtStatus {
+        let scan_suspend_mode = self.get_scan_suspend_mode();
+        if scan_suspend_mode != SuspendMode::Normal && scan_suspend_mode != SuspendMode::Suspending
+        {
+            return BtStatus::Busy;
+        }
+
         let monitor_handle = {
             let mut scanners_lock = self.scanners.lock().unwrap();
 
@@ -1795,8 +1907,7 @@ impl IBluetoothGatt for BluetoothGatt {
     }
 
     fn get_scan_suspend_mode(&self) -> SuspendMode {
-        // TODO(b/224603540): Implement.
-        return SuspendMode::Normal;
+        self.scan_suspend_mode.clone()
     }
 
     // Advertising
