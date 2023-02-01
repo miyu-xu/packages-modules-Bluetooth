@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04645ee8_33195675",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2202,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-02-01T11:55:06Z",
+      "side": 1,
+      "message": "Should be \u003c CIS_PENDING. thanks.",
+      "parentUuid": "91142d37_4ea2a077",
+      "range": {
+        "startLine": 2202,
+        "startChar": 34,
+        "endLine": 2202,
+        "endChar": 75
+      },
+      "revId": "13c74af8fd98619d92496b4dd580c5a00115d1d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37599983_30db5f0b",
