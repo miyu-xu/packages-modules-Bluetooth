@@ -373,10 +373,13 @@ package android.bluetooth {
   }
 
   public final class BluetoothHearingAid implements android.bluetooth.BluetoothProfile {
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getAshaCapability(@NonNull android.bluetooth.BluetoothDevice);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getAshaTruncatedHiSyncId(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getDeviceMode(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getDeviceSide(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public long getHiSyncId(@NonNull android.bluetooth.BluetoothDevice);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean hasAshaServiceData(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice, int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void setVolume(int);
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public static final String ACTION_ACTIVE_DEVICE_CHANGED = "android.bluetooth.hearingaid.profile.action.ACTIVE_DEVICE_CHANGED";

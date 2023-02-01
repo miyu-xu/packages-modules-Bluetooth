@@ -1381,6 +1381,20 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
                                    &(p_search_data->inq_res.include_rsi));
         num_properties++;
 
+        // a non-zero value contains ASHA capability information
+        uint16_t ASHA_capability = 0;
+        BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                                   BT_PROPERTY_REMOTE_ASHA_CAPABILITY,
+                                   sizeof(uint16_t), &ASHA_capability);
+        num_properties++;
+
+        // contains ASHA truncated HiSyncID if ASHA_capability is non-zero
+        uint32_t ASHA_truncated_HiSyncID = 0;
+        BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                                   BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID,
+                                   sizeof(uint32_t), &ASHA_truncated_HiSyncID);
+        num_properties++;
+
         // Floss expects that EIR uuids are immediately reported when the
         // device is found and doesn't wait for the pairing intent.
         //
