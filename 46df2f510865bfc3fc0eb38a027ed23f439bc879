@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb9b31c0_6df1a95d",
+        "filename": "system/gd/hci/acl_manager/assembler.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T23:32:56Z",
+      "side": 1,
+      "message": "Can you set it to zero here:\n\nremaining_sdu_continuation_packet_size \u003d 0;",
+      "range": {
+        "startLine": 127,
+        "startChar": 6,
+        "endLine": 127,
+        "endChar": 7
+      },
+      "revId": "46df2f510865bfc3fc0eb38a027ed23f439bc879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
