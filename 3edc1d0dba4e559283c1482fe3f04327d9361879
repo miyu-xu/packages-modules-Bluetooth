@@ -22,6 +22,30 @@
       },
       "revId": "3edc1d0dba4e559283c1482fe3f04327d9361879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a6aa66b_65e29325",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-01T19:13:11Z",
+      "side": 1,
+      "message": "At the moment, yes. When I add support for commands, this will need to be changed. But at the moment commands are not on the list of supported opcodes.",
+      "parentUuid": "4eeef67a_8a86266e",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 88
+      },
+      "revId": "3edc1d0dba4e559283c1482fe3f04327d9361879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
