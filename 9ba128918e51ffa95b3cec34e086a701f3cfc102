@@ -22,6 +22,30 @@
       },
       "revId": "9ba128918e51ffa95b3cec34e086a701f3cfc102",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2b9d230_1a3ac834",
+        "filename": "android/pandora/server/src/com/android/pandora/GattServerManager.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-01T01:45:23Z",
+      "side": 0,
+      "message": "It was originally a clean revert - will change this if I can confirm that this fixes the failure.",
+      "parentUuid": "f9031038_2dd4e2a3",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 51
+      },
+      "revId": "9ba128918e51ffa95b3cec34e086a701f3cfc102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
