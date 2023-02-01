@@ -335,6 +335,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fc00f88_a1336b72",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-01T17:32:40Z",
+      "side": 1,
+      "message": "To spare some searching, @rlukasz@google.com can we have your expert opinion on this one ?",
+      "parentUuid": "4be2d237_500f9344",
+      "range": {
+        "startLine": 71,
+        "startChar": 32,
+        "endLine": 71,
+        "endChar": 111
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31e3ce4b_6eea41e4",
         "filename": "system/rust/src/gatt/server/server_connection.rs",
         "patchSetId": 1
