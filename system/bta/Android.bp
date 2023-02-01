@@ -331,6 +331,7 @@ cc_test {
     ],
     srcs: [
         ":TestCommonLogMsg",
+        ":TestMockStackSdp",
         "test/bta_hf_client_add_record_test.cc",
     ],
     header_libs: ["libbluetooth_headers"],
