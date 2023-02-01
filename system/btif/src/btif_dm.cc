@@ -1381,6 +1381,13 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
                                    &(p_search_data->inq_res.include_rsi));
         num_properties++;
 
+        // default to be not as a ASHA follower
+        bool is_ASHA_follower = false;
+        BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                                   BT_PROPERTY_REMOTE_IS_ASHA_FOLLOWER,
+                                   sizeof(bool), &is_ASHA_follower);
+        num_properties++;
+
         // Floss expects that EIR uuids are immediately reported when the
         // device is found and doesn't wait for the pairing intent.
         //
