@@ -32,6 +32,7 @@
 #include "osi/include/osi.h"  // PTR_TO_UINT
 #include "stack/include/bt_types.h"
 #include "stack/include/sdp_api.h"
+#include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdpint.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
@@ -1053,7 +1054,7 @@ uint8_t SDP_SetTraceLevel(uint8_t new_level) {
 
 namespace {
 bluetooth::legacy::stack::sdp::tSdpApi api_ = {
-    .discovery =
+    .service =
         {
             .SDP_InitDiscoveryDb = ::SDP_InitDiscoveryDb,
             .SDP_CancelServiceSearch = ::SDP_CancelServiceSearch,
@@ -1065,17 +1066,20 @@ bluetooth::legacy::stack::sdp::tSdpApi api_ = {
         },
     .db =
         {
-            .SDP_FindAttributeInRec = ::SDP_FindAttributeInRec,
             .SDP_FindServiceInDb = ::SDP_FindServiceInDb,
             .SDP_FindServiceUUIDInDb = ::SDP_FindServiceUUIDInDb,
+            .SDP_FindServiceInDb_128bit = ::SDP_FindServiceInDb_128bit,
+        },
+    .record =
+        {
+            .SDP_FindAttributeInRec = ::SDP_FindAttributeInRec,
             .SDP_FindServiceUUIDInRec_128bit =
                 ::SDP_FindServiceUUIDInRec_128bit,
-            .SDP_FindServiceInDb_128bit = ::SDP_FindServiceInDb_128bit,
             .SDP_FindProtocolListElemInRec = ::SDP_FindProtocolListElemInRec,
             .SDP_FindProfileVersionInRec = ::SDP_FindProfileVersionInRec,
             .SDP_FindServiceUUIDInRec = ::SDP_FindServiceUUIDInRec,
         },
-    .local =
+    .handle =
         {
             .SDP_CreateRecord = ::SDP_CreateRecord,
             .SDP_DeleteRecord = ::SDP_DeleteRecord,
@@ -1096,7 +1100,6 @@ bluetooth::legacy::stack::sdp::tSdpApi api_ = {
             .SDP_GetNumDiRecords = ::SDP_GetNumDiRecords,
             .SDP_GetDiRecord = ::SDP_GetDiRecord,
         },
-    .SDP_SetTraceLevel = ::SDP_SetTraceLevel,
 };
 }  // namespace
 

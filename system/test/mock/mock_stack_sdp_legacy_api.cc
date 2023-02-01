@@ -60,7 +60,7 @@ bluetooth::legacy::stack::sdp::tSdpApi api_ = {
         },
 };
 
-}
+}  // namespace stack_sdp_legacy
 }  // namespace mock
 }  // namespace test
 
