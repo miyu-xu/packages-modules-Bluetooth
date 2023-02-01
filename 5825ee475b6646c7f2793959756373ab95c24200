@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93d904be_1d0d5a42",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-01T18:25:31Z",
+      "side": 1,
+      "message": "@rahulsabnis@google.com Can you unblock this comment while Etienne is ooo ?",
+      "parentUuid": "b6e16cdc_dfe90c68",
+      "range": {
+        "startLine": 283,
+        "startChar": 7,
+        "endLine": 285,
+        "endChar": 80
+      },
+      "revId": "5825ee475b6646c7f2793959756373ab95c24200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e8e4576_a50069e8",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 15
