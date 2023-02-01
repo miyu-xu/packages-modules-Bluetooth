@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8583a4_bfd2278f",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-01T19:08:27Z",
+      "side": 1,
+      "message": "It looks like this is not used yet here? Why the include?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "8febdd0892dcdb4d464daf890ed3d3b93ebe6eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

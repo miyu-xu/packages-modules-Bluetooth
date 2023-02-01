@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "997a2c76_716a4397",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-01T19:08:27Z",
+      "side": 1,
+      "message": "nit: typo\n\nside-nit: also please check line length throughout this CL.",
+      "range": {
+        "startLine": 69,
+        "startChar": 33,
+        "endLine": 69,
+        "endChar": 36
+      },
+      "revId": "e321d74bd4e14c43740d7bc31a700d038f420851",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
