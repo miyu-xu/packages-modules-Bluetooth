@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eeef67a_8a86266e",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-01T13:26:09Z",
+      "side": 1,
+      "message": "What about non-transactional ATT operations ? Looks like your code would treat them as transactions too.",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 88
+      },
+      "revId": "3edc1d0dba4e559283c1482fe3f04327d9361879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

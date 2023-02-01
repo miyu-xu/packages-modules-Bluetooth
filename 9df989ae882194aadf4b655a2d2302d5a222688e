@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e5f2bb7_2b4f2c2b",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-01T13:26:09Z",
+      "side": 1,
+      "message": "ATT timer is when you don\u0027t receive response to ATT request for 30 seconds. It is different than L2CAP timeout, which is dropping unused link\n\nATT is the proper layer to add the timer:\n```\nA transaction not completed within 30 seconds shall time out. Such a\ntransaction shall be considered to have failed and the local higher layers shall\nbe informed of this failure. No more Attribute protocol requests, commands,\nindications or notifications shall be sent to the target device on this ATT bearer.\nTo send another Attribute protocol PDU, a new ATT bearer must be established\nbetween these devices. The existing ATT bearer may need to be terminated\nbefore the new ATT bearer is established.\nIf the ATT bearer is terminated during a transaction, then the transaction shall\nbe considered to be closed, and any values that were being modified on the\nserver will be in an undetermined state.\n```",
+      "parentUuid": "bc98689e_cb412493",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 63,
+        "endChar": 89
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0dd754c_13739d55",
         "filename": "system/rust/src/gatt/server/server_connection.rs",
         "patchSetId": 1
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "This corresponds to an internal error in the stack. As per spec:\n\u003e If a server cannot process a request because an error was encountered during the processing of this request, then the server shall respond with the ATT_ERROR_RSP PDU with the Error Code parameter set to Unlikely Error (0x0E), with the Attribute Handle In Error set to 0x0000.",
       "parentUuid": "b0dd754c_13739d55",
+      "range": {
+        "startLine": 71,
+        "startChar": 32,
+        "endLine": 71,
+        "endChar": 111
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a244a9e6_d5adb4de",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-01T13:26:09Z",
+      "side": 1,
+      "message": "I was looking at Version 5.3 | Vol 3, Part F Table 3.44: Attribute request and response summary\n\n\"Each method indicates the method that should be sent as a\nsuccessful response, and whether an ATT_ERROR_RSP PDU can be sent in\nresponse instead. If an ATT_ERROR_RSP PDU can be sent, then Table 3.44\nalso indicates the error codes that are valid within this ATT_ERROR_RSP PDU\nfor the given method.\"",
+      "parentUuid": "1c821a59_a9765397",
       "range": {
         "startLine": 71,
         "startChar": 32,
