@@ -316,6 +316,8 @@ final class RemoteDevices {
         private boolean mIsBondingInitiatedLocally;
         private int mBatteryLevel = BluetoothDevice.BATTERY_LEVEL_UNKNOWN;
         private boolean mIsCoordinatedSetMember;
+        private int mASHACapability;
+        private int mASHATruncatedHiSyncID;
         @VisibleForTesting int mBondState;
         @VisibleForTesting int mDeviceType;
         @VisibleForTesting ParcelUuid[] mUuids;
@@ -634,6 +636,36 @@ final class RemoteDevices {
             }
         }
 
+        /**
+         * @return the mASHACapability
+         */
+        int getASHACapability() {
+            synchronized (mObject) {
+                return mASHACapability;
+            }
+        }
+
+        void setASHACapability(int ashaCapability) {
+            synchronized (mObject) {
+                this.mASHACapability = ashaCapability;
+            }
+        }
+
+        /**
+         * @return the mASHATruncatedHiSyncID
+         */
+        int getASHATruncatedHiSyncID() {
+            synchronized (mObject) {
+                return mASHATruncatedHiSyncID;
+            }
+        }
+
+        void setASHATruncatedHiSyncID(int ashaTruncatedHiSyncID) {
+            synchronized (mObject) {
+                this.mASHATruncatedHiSyncID = ashaTruncatedHiSyncID;
+            }
+        }
+
         public void setHfAudioPolicyForRemoteAg(BluetoothAudioPolicy policies) {
             mAudioPolicy = policies;
         }
@@ -880,6 +912,12 @@ final class RemoteDevices {
                         case AbstractionLayer.BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER:
                             deviceProperties.setIsCoordinatedSetMember(val[0] != 0);
                             break;
+                        case AbstractionLayer.BT_PROPERTY_REMOTE_ASHA_CAPABILITY:
+                            deviceProperties.setASHACapability(val[0]);
+                            break;
+                        case AbstractionLayer.EXTRA_ASHA_TRUNCATED_HISYNCID:
+                            deviceProperties.setASHATruncatedHiSyncID(val[0]);
+                            break;
                     }
                 }
             }
@@ -911,6 +949,10 @@ final class RemoteDevices {
         intent.putExtra(BluetoothDevice.EXTRA_NAME, deviceProp.getName());
         intent.putExtra(BluetoothDevice.EXTRA_IS_COORDINATED_SET_MEMBER,
                 deviceProp.isCoordinatedSetMember());
+        intent.putExtra(BluetoothDevice.EXTRA_ASHA_CAPABILITY,
+                deviceProp.getASHACapability());
+        intent.putExtra(BluetoothDevice.EXTRA_ASHA_TRUNCATED_HISYNCID,
+                deviceProp.getASHATruncatedHiSyncID());
 
         final ArrayList<DiscoveringPackage> packages = mAdapterService.getDiscoveringPackages();
         synchronized (packages) {

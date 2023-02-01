@@ -223,6 +223,8 @@ package android.bluetooth {
     field public static final String DEVICE_TYPE_WATCH = "Watch";
     field public static final String EXTRA_ACCESS_REQUEST_TYPE = "android.bluetooth.device.extra.ACCESS_REQUEST_TYPE";
     field public static final String EXTRA_ALWAYS_ALLOWED = "android.bluetooth.device.extra.ALWAYS_ALLOWED";
+    field public static final String EXTRA_ASHA_CAPABILITY = "android.bluetooth.device.extra.ASHA_CAPABILITY";
+    field public static final String EXTRA_ASHA_TRUNCATED_HISYNCID = "android.bluetooth.device.extra.ASHA_TRUNCATED_HISYNCID";
     field public static final String EXTRA_BATTERY_LEVEL = "android.bluetooth.device.extra.BATTERY_LEVEL";
     field public static final String EXTRA_CONNECTION_ACCESS_RESULT = "android.bluetooth.device.extra.CONNECTION_ACCESS_RESULT";
     field public static final String EXTRA_LOW_LATENCY_BUFFER_SIZE = "android.bluetooth.device.extra.LOW_LATENCY_BUFFER_SIZE";

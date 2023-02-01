@@ -323,6 +323,28 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.extra.IS_COORDINATED_SET_MEMBER";
 
     /**
+     * Used as an int extra field in {@link #ACTION_FOUND} intents.
+     * Contains ASHA device's capability information if its value is non-zero.
+     *
+     * @hide
+     */
+    @SuppressLint("ActionValue")
+    @SystemApi
+    public static final String EXTRA_ASHA_CAPABILITY =
+            "android.bluetooth.device.extra.ASHA_CAPABILITY";
+
+    /**
+     * Used as an int extra field in {@link #ACTION_FOUND} intents.
+     * Contains ASHA device's truncated HiSyncID if {@link #EXTRA_ASHA_CAPABILITY} is non-zero.
+     *
+     * @hide
+     */
+    @SuppressLint("ActionValue")
+    @SystemApi
+    public static final String EXTRA_ASHA_TRUNCATED_HISYNCID =
+            "android.bluetooth.device.extra.ASHA_TRUNCATED_HISYNCID";
+
+    /**
      * Used as a Parcelable {@link BluetoothClass} extra field in {@link
      * #ACTION_FOUND} and {@link #ACTION_CLASS_CHANGED} intents.
      */
