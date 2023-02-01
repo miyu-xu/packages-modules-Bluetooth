@@ -1093,7 +1093,7 @@ static uint16_t sdp_pbap_pse_dynamic_attributes_len_update(
       is_device_in_allowlist_for_pbap(p_ccb->device_address, false);
   bool is_pbap_102_allowlisted =
       is_device_in_allowlist_for_pbap(p_ccb->device_address, true);
-  bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
+  bool running_pts = true;//osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
 
   SDP_TRACE_DEBUG(
       "remote BD Addr : %s is_pbap_102_supported = %d "
@@ -1194,7 +1194,7 @@ static const tSDP_RECORD* sdp_upgrade_pse_record(const tSDP_RECORD* p_rec,
       is_device_in_allowlist_for_pbap(remote_address, false);
   bool is_pbap_102_allowlisted =
       is_device_in_allowlist_for_pbap(remote_address, true);
-  bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
+  bool running_pts = true;//osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
 
   SDP_TRACE_DEBUG(
       "%s remote BD Addr : %s is_pbap_102_supported : %d "
