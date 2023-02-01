@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ab9985d_46228a41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-01T22:18:49Z",
+      "side": 1,
+      "message": "Which feature bits are you referring to?",
+      "parentUuid": "91b5ed83_78ea15c1",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67f1e4fd_1db77d15",
         "filename": "tools/rootcanal/model/controller/controller_properties.cc",
         "patchSetId": 10
@@ -60,6 +78,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aec04633_c1261780",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-01T22:18:49Z",
+      "side": 1,
+      "message": "Keeping only the first half of the condition since it\u0027s `or`ed: `Transmit Power in advertisements`",
+      "parentUuid": "c63042e4_addf16f6",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f403b84f_6c61e429",
         "filename": "tools/rootcanal/model/controller/controller_properties.cc",
         "patchSetId": 10
@@ -83,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "831a9b06_06ce9b3f",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-01T22:18:49Z",
+      "side": 1,
+      "message": "The formatter apparently was overzealous.\nc23 and c24 document event requirements, I left them just in case we want to add an implicit supported event mask (its easier than adding them in one by one later).",
+      "parentUuid": "f403b84f_6c61e429",
+      "range": {
+        "startLine": 846,
+        "startChar": 2,
+        "endLine": 851,
+        "endChar": 63
+      },
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0abc11f_04dcbd30",
         "filename": "tools/rootcanal/model/controller/controller_properties.cc",
         "patchSetId": 10
@@ -94,6 +154,24 @@
       "writtenOn": "2023-02-01T22:10:57Z",
       "side": 1,
       "message": "CHANNEL_CLASSIFICATION ?",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7bc3778_3cdecb7a",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-01T22:18:49Z",
+      "side": 1,
+      "message": "Keeping only the first half of the condition since it\u0027s `or`ed: `Mandatory if the LE Controller supports Central role`",
+      "parentUuid": "d0abc11f_04dcbd30",
       "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
