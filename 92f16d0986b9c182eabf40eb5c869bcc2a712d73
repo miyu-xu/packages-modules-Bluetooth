@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b5ed83_78ea15c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T22:10:57Z",
+      "side": 1,
+      "message": "Before I go farther, are there some feature bits that we\u0027re assuming will never change, so we don\u0027t need to check them?",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f1e4fd_1db77d15",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T22:10:57Z",
+      "side": 1,
+      "message": "? \nSupportsLLFeature(LLFeaturesBits::LE_2M_PHY) ||\nSupportsLLFeature(LLFeaturesBits::LE_CODED_PHY)",
+      "range": {
+        "startLine": 797,
+        "startChar": 62,
+        "endLine": 797,
+        "endChar": 72
+      },
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c63042e4_addf16f6",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T22:10:57Z",
+      "side": 1,
+      "message": "LE_POWER_CONTROL_REQUEST",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f403b84f_6c61e429",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T22:10:57Z",
+      "side": 1,
+      "message": "Can we split this into 3 comments?  Do we not need c23 and c24?",
+      "range": {
+        "startLine": 846,
+        "startChar": 2,
+        "endLine": 851,
+        "endChar": 63
+      },
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0abc11f_04dcbd30",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T22:10:57Z",
+      "side": 1,
+      "message": "CHANNEL_CLASSIFICATION ?",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
