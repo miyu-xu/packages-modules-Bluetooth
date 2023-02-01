@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2733bebc_2ca1957f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T22:30:19Z",
+      "side": 1,
+      "message": "Will we ever want to have a controller that only supports one role?  Doesn\u0027t support advertising?  I just wasn\u0027t sure which things could be removed.",
+      "parentUuid": "6ab9985d_46228a41",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67f1e4fd_1db77d15",
         "filename": "tools/rootcanal/model/controller/controller_properties.cc",
         "patchSetId": 10
@@ -131,6 +149,30 @@
       "side": 1,
       "message": "The formatter apparently was overzealous.\nc23 and c24 document event requirements, I left them just in case we want to add an implicit supported event mask (its easier than adding them in one by one later).",
       "parentUuid": "f403b84f_6c61e429",
+      "range": {
+        "startLine": 846,
+        "startChar": 2,
+        "endLine": 851,
+        "endChar": 63
+      },
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f536f57e_4cd4dfe2",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-01T22:30:19Z",
+      "side": 1,
+      "message": "Hopefully blank lines will help them stay separated.",
+      "parentUuid": "831a9b06_06ce9b3f",
       "range": {
         "startLine": 846,
         "startChar": 2,
