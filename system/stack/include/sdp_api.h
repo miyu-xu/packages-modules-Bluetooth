@@ -24,6 +24,7 @@
 
 #include "bt_target.h"
 #include "stack/include/sdpdefs.h"
+#include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdp_discovery_db.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
