@@ -22,6 +22,30 @@
       },
       "revId": "2b5e25f6bb9f22212233b7144c28376ed848b6ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "653c3091_af7566d7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-01T16:53:46Z",
+      "side": 1,
+      "message": "The intent behind this updateBroadcast change is to make API ready to update the whole BIG, e.g. multi contentMeta at the same time, and keep aligned with the startBroadcast change. Later we can introduce some logics in the internal service, e.g. whether we\u0027d support changing the num of subgroups in updateBroadcast. In current design, only one subgroup is supported anyways, but we\u0027d like to make the API expandable first.",
+      "parentUuid": "2a4a63cd_ab87df98",
+      "range": {
+        "startLine": 666,
+        "startChar": 16,
+        "endLine": 667,
+        "endChar": 85
+      },
+      "revId": "2b5e25f6bb9f22212233b7144c28376ed848b6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
