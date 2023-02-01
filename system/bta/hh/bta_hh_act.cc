@@ -40,7 +40,10 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/hiddefs.h"
 #include "stack/include/hidh_api.h"
+#include "stack/include/sdp_api.h"
 #include "types/raw_address.h"
+
+using namespace bluetooth::legacy::stack::sdp;
 
 /*****************************************************************************
  *  Constants
@@ -271,9 +274,11 @@ static void bta_hh_di_sdp_cback(tSDP_RESULT result) {
   if (((result == SDP_SUCCESS) || (result == SDP_NO_RECS_MATCH)) &&
       (p_cb != NULL)) {
     if (result == SDP_SUCCESS &&
-        SDP_GetNumDiRecords(bta_hh_cb.p_disc_db) != 0) {
+        get_legacy_stack_sdp_api()->device_id.SDP_GetNumDiRecords(
+            bta_hh_cb.p_disc_db) != 0) {
       /* always update information with primary DI record */
-      if (SDP_GetDiRecord(1, &di_rec, bta_hh_cb.p_disc_db) == SDP_SUCCESS) {
+      if (get_legacy_stack_sdp_api()->device_id.SDP_GetDiRecord(
+              1, &di_rec, bta_hh_cb.p_disc_db) == SDP_SUCCESS) {
         bta_hh_update_di_info(p_cb, di_rec.rec.vendor, di_rec.rec.product,
                               di_rec.rec.version, 0, 0);
       }
@@ -356,9 +361,9 @@ void bta_hh_start_sdp(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
         (tSDP_DISCOVERY_DB*)osi_malloc(p_bta_hh_cfg->sdp_db_size);
     bta_hh_cb.p_cur = p_cb;
     /* do DI discovery first */
-    if (SDP_DiDiscover(p_data->api_conn.bd_addr, bta_hh_cb.p_disc_db,
-                       p_bta_hh_cfg->sdp_db_size,
-                       bta_hh_di_sdp_cback) != SDP_SUCCESS) {
+    if (get_legacy_stack_sdp_api()->device_id.SDP_DiDiscover(
+            p_data->api_conn.bd_addr, bta_hh_cb.p_disc_db,
+            p_bta_hh_cfg->sdp_db_size, bta_hh_di_sdp_cback) != SDP_SUCCESS) {
       APPL_TRACE_DEBUG("%s:  SDP_DiDiscover failed: Status 0x%2X", __func__,
                        status);
       status = BTA_HH_ERR_SDP;

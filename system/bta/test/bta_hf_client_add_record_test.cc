@@ -26,28 +26,6 @@
 
 static uint16_t gVersion;
 
-bool SDP_AddProtocolList(uint32_t handle, uint16_t num_elem,
-                         tSDP_PROTOCOL_ELEM* p_elem_list) {
-  return false;
-}
-bool SDP_AddServiceClassIdList(uint32_t handle, uint16_t num_services,
-                               uint16_t* p_service_uuids) {
-  return false;
-}
-bool SDP_AddProfileDescriptorList(uint32_t handle, uint16_t profile_uuid,
-                                  uint16_t version) {
-  gVersion = version;
-  return false;
-}
-bool SDP_AddAttribute(uint32_t handle, uint16_t attr_id, uint8_t attr_type,
-                      uint32_t attr_len, uint8_t* p_val) {
-  return false;
-}
-bool SDP_AddUuidSequence(uint32_t handle, uint16_t attr_id, uint16_t num_uuids,
-                         uint16_t* p_uuids) {
-  return false;
-}
-
 class BtaHfClientAddRecordTest : public ::testing::Test {
  protected:
   void SetUp() override {
