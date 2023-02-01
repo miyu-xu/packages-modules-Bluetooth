@@ -194,6 +194,7 @@ cc_test {
     srcs: [
         ":TestMockBtif",
         ":TestMockStackBtm",
+        ":TestMockStackSdp",
         ":TestCommonLogMsg",
         ":TestCommonMockFunctions",
         "test/bta_dip_test.cc",
