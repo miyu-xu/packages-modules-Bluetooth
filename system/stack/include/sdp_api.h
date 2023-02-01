@@ -23,7 +23,8 @@
 #include <cstdint>
 
 #include "bt_target.h"
-#include "sdpdefs.h"
+#include "stack/include/sdpdefs.h"
+#include "stack/sdp/sdp_discovery_db.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -126,50 +127,6 @@ typedef union {
   tSDP_DR_DATA data;
 } tSDP_DATA;
 
-/* Define a structure to hold the discovered service information. */
-typedef struct {
-  union {
-    uint8_t u8;                         /* 8-bit integer            */
-    uint16_t u16;                       /* 16-bit integer           */
-    uint32_t u32;                       /* 32-bit integer           */
-    struct t_sdp_disc_attr* p_sub_attr; /* Addr of first sub-attr (list)*/
-    uint8_t array[];                    /* Variable length field    */
-                                        /* flexible array member    */
-                                        /* requiring backing store  */
-                                        /* from SDP DB    */
-  } v;
-
-} tSDP_DISC_ATVAL;
-
-typedef struct t_sdp_disc_attr {
-  struct t_sdp_disc_attr* p_next_attr; /* Addr of next linked attr     */
-  uint16_t attr_id;                    /* Attribute ID                 */
-  uint16_t attr_len_type;              /* Length and type fields       */
-  tSDP_DISC_ATVAL attr_value;          /* Variable length entry data   */
-} tSDP_DISC_ATTR;
-
-typedef struct t_sdp_disc_rec {
-  tSDP_DISC_ATTR* p_first_attr;      /* First attribute of record    */
-  struct t_sdp_disc_rec* p_next_rec; /* Addr of next linked record   */
-  uint32_t time_read;                /* The time the record was read */
-  RawAddress remote_bd_addr;         /* Remote BD address            */
-} tSDP_DISC_REC;
-
-typedef struct {
-  uint32_t mem_size;          /* Memory size of the DB        */
-  uint32_t mem_free;          /* Memory still available       */
-  tSDP_DISC_REC* p_first_rec; /* Addr of first record in DB   */
-  uint16_t num_uuid_filters;  /* Number of UUIds to filter    */
-  bluetooth::Uuid uuid_filters[SDP_MAX_UUID_FILTERS]; /* UUIDs to filter */
-  uint16_t num_attr_filters; /* Number of attribute filters  */
-  uint16_t attr_filters[SDP_MAX_ATTR_FILTERS]; /* Attributes to filter */
-  uint8_t* p_free_mem; /* Pointer to free memory       */
-  uint8_t*
-      raw_data; /* Received record from server. allocated/released by client  */
-  uint32_t raw_size; /* size of raw_data */
-  uint32_t raw_used; /* length of raw_data used */
-} tSDP_DISCOVERY_DB;
-
 /* This structure is used to add protocol lists and find protocol elements */
 typedef struct {
   uint16_t protocol_uuid;
@@ -202,6 +159,7 @@ typedef struct t_sdp_di_get_record {
   tSDP_DI_RECORD rec;
 } tSDP_DI_GET_RECORD;
 
+#if 0
 /* API into the SDP layer for service discovery. */
 
 /*******************************************************************************
@@ -612,18 +570,6 @@ uint16_t SDP_GetDiRecord(uint8_t getRecordIndex,
 
 /*******************************************************************************
  *
- * Function         SDP_SetTraceLevel
- *
- * Description      This function sets the trace level for SDP. If called with
- *                  a value of 0xFF, it simply reads the current trace level.
- *
- * Returns          the new (current) trace level
- *
- ******************************************************************************/
-uint8_t SDP_SetTraceLevel(uint8_t new_level);
-
-/*******************************************************************************
- *
  * Function         SDP_FindServiceUUIDInRec
  *
  * Description      Read the service UUID within a record,
@@ -637,6 +583,20 @@ uint8_t SDP_SetTraceLevel(uint8_t new_level);
  ******************************************************************************/
 bool SDP_FindServiceUUIDInRec(const tSDP_DISC_REC* p_rec,
                               bluetooth::Uuid* p_uuid);
+
+#endif
+
+/*******************************************************************************
+ *
+ * Function         SDP_SetTraceLevel
+ *
+ * Description      This function sets the trace level for SDP. If called with
+ *                  a value of 0xFF, it simply reads the current trace level.
+ *
+ * Returns          the new (current) trace level
+ *
+ ******************************************************************************/
+uint8_t SDP_SetTraceLevel(uint8_t new_level);
 
 namespace bluetooth {
 namespace legacy {
