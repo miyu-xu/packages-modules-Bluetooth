@@ -88,10 +88,10 @@ void log_link_layer_connection_event(
 }
 void log_smp_pairing_event(const RawAddress& address, uint16_t smp_cmd,
                            android::bluetooth::DirectionEnum direction,
-                           uint16_t smp_fail_reason, uint8_t io_capability) {
+                           uint16_t smp_fail_reason, uint8_t io_capability, bool is_oob) {
   mock_function_count_map[__func__]++;
   test::mock::stack_metrics_logging::log_smp_pairing_event(
-      address, smp_cmd, direction, smp_fail_reason, io_capability);
+      address, smp_cmd, direction, smp_fail_reason, io_capability, is_oob);
 }
 void log_sdp_attribute(const RawAddress& address, uint16_t protocol_uuid,
                        uint16_t attribute_id, size_t attribute_size,
