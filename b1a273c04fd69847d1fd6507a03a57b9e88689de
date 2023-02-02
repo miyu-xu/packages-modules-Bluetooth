@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121b3f5b_95038f2b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 1,
+      "message": "Can the commit message / description more specific?\n\nThe scope of this CL seems not only LE audio routing work, but also change the behaviors of classic BT audio routings.",
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b249b415_0318193c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 1,
+      "message": "Remaining things to read: LeAudioService + test codes",
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab676b8_b1cfe7fd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 1,
+      "message": "How about adding some logs (here and setCallProfileActive) to track the bug cases?\nIf some internal states go wrong, we can trace it.",
+      "range": {
+        "startLine": 696,
+        "startChar": 21,
+        "endLine": 696,
+        "endChar": 42
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78626ad7_e8b2ed0b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 1,
+      "message": "Why do HA/LEAudio use DatabaseManager while A2dp uses its own method `getFallbackDevice()` method?",
+      "range": {
+        "startLine": 726,
+        "startChar": 24,
+        "endLine": 729,
+        "endChar": 25
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9166c434_24e27211",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 1,
+      "message": "Let\u0027s just return `false` when device is null.\n\nAlso, would there be cleaner way to prevent using nested if statements?",
+      "range": {
+        "startLine": 1144,
+        "startChar": 8,
+        "endLine": 1145,
+        "endChar": 30
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ebb4ae5_32c42da5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 1,
+      "message": "Between wired headset and hearing aid, which has more priority?\n\nWhen wired headset is connected, and then hearing aid is connected, where should the media/call sound go to?",
+      "range": {
+        "startLine": 1238,
+        "startChar": 8,
+        "endLine": 1239,
+        "endChar": 62
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ad4e225_6ba796b5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 1,
+      "message": "Let\u0027s choose between \u003cUpdated and Changed\u003e. `Updated` seems more proper?",
+      "range": {
+        "startLine": 1063,
+        "startChar": 25,
+        "endLine": 1063,
+        "endChar": 79
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

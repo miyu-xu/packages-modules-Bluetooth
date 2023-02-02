@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d51a087b_80f010f4",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 0,
+      "message": "Is it okay to remove this broadcast `BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED`?",
+      "range": {
+        "startLine": 780,
+        "startChar": 8,
+        "endLine": 780,
+        "endChar": 22
+      },
+      "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6209b65b_7ecb1acd",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-02T14:21:17Z",
+      "side": 0,
+      "message": "What was the purpose of this code, and why is this removed now?",
+      "range": {
+        "startLine": 941,
+        "startChar": 12,
+        "endLine": 946,
+        "endChar": 13
+      },
+      "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
