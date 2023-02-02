@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85f12ac5_492e4674",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3215,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:33:49Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/gd/hci/controller.cc needs to do something similar.  I think it\u0027s easier to maintain the way it is done there.",
+      "revId": "aaae2b61c08ff7160ba8adf11f2a7691f0f032a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
