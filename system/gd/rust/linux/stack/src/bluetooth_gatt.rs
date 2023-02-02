@@ -2484,7 +2484,13 @@ impl IBluetoothGatt for BluetoothGatt {
             let conn_id = self.server_context_map.get_conn_id_from_address(server_id, &addr)?;
             let handle = self.server_context_map.get_request_handle_from_id(request_id)?;
             let len = value.len() as u16;
-            let data: [u8; 600] = value.try_into().ok()?;
+
+            let mut padded_value: [u8; 600] = [0; 600];
+            let start = offset as usize;
+            let end = len as usize;
+            for i in start..end {
+                padded_value[i] = value[i - start];
+            }
 
             self.gatt.as_ref().unwrap().lock().unwrap().server.send_response(
                 conn_id,
@@ -2492,7 +2498,7 @@ impl IBluetoothGatt for BluetoothGatt {
                 status as i32,
                 &BtGattResponse {
                     attr_value: BtGattValue {
-                        value: data,
+                        value: padded_value,
                         handle: handle as u16,
                         offset: offset as u16,
                         len: len,
