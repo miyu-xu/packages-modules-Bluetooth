@@ -188,6 +188,20 @@ struct LogMetricSmpPairingEvent {
   };
 };
 extern struct LogMetricSmpPairingEvent LogMetricSmpPairingEvent;
+// Name: LogMetricLEACLConnectionEvent
+// Params: const RawAddress& raw_address, bool is_ended,
+// uint16_t cmd_status
+// void
+struct LogMetricLEACLConnectionEvent {
+  std::function<void(const RawAddress& raw_address, bool is_ended,
+                     uint16_t cmd_status)>
+      body{[](const RawAddress& raw_address, bool is_ended,
+              uint16_t cmd_status) {}};
+  void operator()(const RawAddress& raw_address, bool is_ended,
+                     uint16_t cmd_status) {
+    body(raw_address, is_ended, cmd_status);
+  };
+}
 // Name: LogMetricClassicPairingEvent
 // Params: const RawAddress& raw_address, uint16_t handle, uint32_t hci_cmd,
 // uint16_t hci_event, uint16_t cmd_status, uint16_t reason_code, int64_t

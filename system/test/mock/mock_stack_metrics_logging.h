@@ -21,6 +21,8 @@
  *  mockcify.pl ver 0.2
  */
 
+#include <cstdint>
+#include <functional>
 #include <map>
 #include <string>
 
@@ -113,6 +115,20 @@ struct log_smp_pairing_event {
   };
 };
 extern struct log_smp_pairing_event log_smp_pairing_event;
+// Name: log_le_acl_connection_event
+// Params: const RawAddress& address, bool is_ended,
+// uint16_t cmd_status Returns:
+// void
+struct log_le_acl_connection_event {
+  std::function<void(const RawAddress& address, bool is_ended,
+                     uint16_t cmd_status)>
+      body{[](const RawAddress& address, bool is_ended, uint16_t cmd_status) {}};
+  void operator()(const RawAddress& address, bool is_ended,
+                  uint16_t cmd_status) {
+    body(address, is_ended, cmd_status);
+  };
+};
+extern struct log_le_acl_connection_event log_le_acl_connection_event;
 // Name: log_sdp_attribute
 // Params: const RawAddress& address, uint16_t protocol_uuid, uint16_t
 // attribute_id, size_t attribute_size, const char* attribute_value Returns:
