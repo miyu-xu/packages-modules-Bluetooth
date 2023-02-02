@@ -267,6 +267,8 @@ class AsyncManager::AsyncFdWatcher {
 
 // Async task manager implementation
 class AsyncManager::AsyncTaskManager {
+ private:
+  AsyncManager *async_manager_;
  public:
   AsyncUserId GetNextUserId() { return lastUserId_++; }
 
@@ -303,7 +305,7 @@ class AsyncManager::AsyncTaskManager {
     return true;
   }
 
-  AsyncTaskManager() = default;
+  AsyncTaskManager(AsyncManager *async_manager) : async_manager_(async_manager) {};
   AsyncTaskManager(const AsyncTaskManager&) = delete;
   AsyncTaskManager& operator=(const AsyncTaskManager&) = delete;
 
@@ -476,7 +478,7 @@ class AsyncManager::AsyncTaskManager {
       }
       if (run_it) {
         const std::lock_guard<std::mutex> lock(task_p->in_callback);
-        callback();
+        async_manager_->Synchronize(callback);
       }
       {
         std::unique_lock<std::mutex> guard(internal_mutex_);
@@ -514,7 +516,7 @@ class AsyncManager::AsyncTaskManager {
 // Async Manager Implementation:
 AsyncManager::AsyncManager()
     : fdWatcher_p_(new AsyncFdWatcher()),
-      taskManager_p_(new AsyncTaskManager()) {}
+      taskManager_p_(new AsyncTaskManager(this)) {}
 
 AsyncManager::~AsyncManager() {
   // Make sure the threads are stopped before destroying the object.
