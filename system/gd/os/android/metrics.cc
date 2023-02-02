@@ -437,15 +437,23 @@ void LogMetricBluetoothLocalSupportedFeatures(uint32_t page_num, uint64_t featur
 }
 
 void LogMetricLEACLConnectionEvent(const Address& address, bool is_ended, uint16_t cmd_status) {
+  LOG_DEBUG("Here is the logging address: %s\n", ADDRESS_TO_LOGGABLE_CSTR(address));
   int metric_id = 0;
   if (!address.IsEmpty()) {
     metric_id = MetricIdManager::GetInstance().AllocateId(address);
   }
 
   int ret =
-      stats_write(BLUETOOTH_LE_ACL_CONNECTION_EVENT, address, metric_id, is_ended, cmd_status);
+      stats_write(BLUETOOTH_LE_ACL_CONNECTION_EVENT, byteField, metric_id, is_ended, cmd_status);
+
   if (ret < 0) {
-    LOG_WARN("Failed for BluetoothLEACLConnectionEvent", address, metric_id, is_ended, cmd_status);
+    LOG_WARN(
+        "Failed for LogMetricBluetoothLEACLConnectionEvent address %s, metric id: %d, is ended %d, cmd "
+        "status %d",
+        ADDRESS_TO_LOGGABLE_CSTR(address),
+        metric_id,
+        is_ended,
+        cmd_status);
   }
 }
 

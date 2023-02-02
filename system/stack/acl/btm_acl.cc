@@ -63,6 +63,7 @@
 #include "stack/btm/security_device_record.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/include/acl_api.h"
+#include "stack/include/stack_metrics_logging.h"
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_api.h"
@@ -422,6 +423,7 @@ void btm_acl_created(const RawAddress& bda, uint16_t hci_handle,
   }
 
   if (transport == BT_TRANSPORT_LE) {
+    log_le_acl_connection_event(bda, true, static_cast<uint16_t>(0x00));
     btm_ble_refresh_local_resolvable_private_addr(
         bda, btm_cb.ble_ctr_cb.addr_mgnt_cb.private_addr);
   }
@@ -2797,6 +2799,8 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr) {
   gatt_find_in_device_record(bd_addr, &address_with_type);
   LOG_DEBUG("Creating le direct connection to:%s",
             ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
+  LOG_DEBUG("New statement here to verify if we are printing stuff");
+  log_le_acl_connection_event(bd_addr, false, static_cast<uint16_t>(0x00));
 
   if (address_with_type.type == BLE_ADDR_ANONYMOUS) {
     LOG_WARN(

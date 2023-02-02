@@ -50,6 +50,7 @@ void log_smp_pairing_event(const RawAddress& address, uint16_t smp_cmd,
 }
 
 void log_le_acl_connection_event(const RawAddress& address, bool is_ended, uint16_t cmd_status) {
+  LOG_DEBUG("Logging here - for the LE-ACL Connection Event");
   bluetooth::shim::LogMetricLEACLConnectionEvent(address, is_ended, cmd_status);
 }
 

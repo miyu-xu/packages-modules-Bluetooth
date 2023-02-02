@@ -1293,6 +1293,7 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
     LOG_DEBUG("Starting direct connect gatt_if=%u address=%s", gatt_if,
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     ret = gatt_act_connect(p_reg, bd_addr, transport, initiating_phys);
+
   } else {
     LOG_DEBUG("Starting background connect gatt_if=%u address=%s", gatt_if,
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));

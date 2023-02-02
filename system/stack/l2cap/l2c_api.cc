@@ -1273,6 +1273,7 @@ bool L2CA_ConnectFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
   if (p_lcb != NULL) {
     // Fixed channels are mandatory on LE transports so ignore the received
     // channel mask and use the locally cached LE channel mask.
+    LOG_DEBUG("BT_DE: Fixed Channel LCB Exists");
 
     if (transport == BT_TRANSPORT_LE)
       peer_channel_mask = l2cb.l2c_ble_fixed_chnls_mask;
