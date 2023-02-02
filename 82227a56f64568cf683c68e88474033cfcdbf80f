@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec4c705_6427bb6c",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T01:12:26Z",
+      "side": 1,
+      "message": "no \u0027_\u0027",
+      "range": {
+        "startLine": 918,
+        "startChar": 71,
+        "endLine": 918,
+        "endChar": 72
+      },
+      "revId": "82227a56f64568cf683c68e88474033cfcdbf80f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
