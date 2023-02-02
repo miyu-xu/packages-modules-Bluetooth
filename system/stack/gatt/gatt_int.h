@@ -270,14 +270,6 @@ inline std::string gatt_channel_state_text(const tGATT_CH_STATE& state) {
 #define GATT_TMAS_START_HANDLE 130
 #define GATT_APP_START_HANDLE 134
 
-#ifndef GATT_DEFAULT_START_HANDLE
-#define GATT_DEFAULT_START_HANDLE GATT_GATT_START_HANDLE
-#endif
-
-#ifndef GATT_LAST_HANDLE
-#define GATT_LAST_HANDLE 0xFFFF
-#endif
-
 typedef struct hdl_cfg {
   uint16_t gatt_start_hdl;
   uint16_t gap_start_hdl;
