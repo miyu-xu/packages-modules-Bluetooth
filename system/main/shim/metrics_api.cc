@@ -98,8 +98,9 @@ void LogMetricSmpPairingEvent(const RawAddress& raw_address, uint16_t smp_cmd,
                                           smp_fail_reason);
 }
 
-void LogMetricLEACLConnectionEvent(const RawAddress& address, bool is_ended, uint16_t cmd_status) {
+void LogMetricLEACLConnectionEvent(const RawAddress& raw_address, bool is_ended, uint16_t cmd_status) {
   Address address = bluetooth::ToGdAddress(raw_address);
+  LOG_DEBUG("LE ACL Connection Event: %s, %d, %d\n", address, is_ended, cmd_status);
   bluetooth::os::LogMetricLEACLConnectionEvent(address, is_ended, cmd_status);
 }
 
