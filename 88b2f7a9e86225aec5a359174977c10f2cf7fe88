@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e59dfb_1be6c57e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-02T19:59:19Z",
+      "side": 1,
+      "message": "Thanks for uploading this change.\nI really hope we will be able to clean the code in this file in the upcoming month",
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e62b5297_e4e4e937",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-02T19:59:19Z",
+      "side": 1,
+      "message": "can you fix the code format ? The line is too long",
+      "range": {
+        "startLine": 401,
+        "startChar": 15,
+        "endLine": 401,
+        "endChar": 17
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f66304_b0bb6afa",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-02T19:59:19Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 406,
+        "startChar": 35,
+        "endLine": 406,
+        "endChar": 42
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63425af_b3699eab",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-02T19:59:19Z",
+      "side": 1,
+      "message": "Can you add `    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)`\non this method too ? Even if it\u0027s a private, I prefer to keep the annotation on both method for futur reader",
+      "range": {
+        "startLine": 427,
+        "startChar": 17,
+        "endLine": 427,
+        "endChar": 42
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f582ce4_33ca8441",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-02T19:59:19Z",
+      "side": 1,
+      "message": "I am curious why `mEnableExternal` is not sufficient ?",
+      "range": {
+        "startLine": 477,
+        "startChar": 42,
+        "endLine": 477,
+        "endChar": 78
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
