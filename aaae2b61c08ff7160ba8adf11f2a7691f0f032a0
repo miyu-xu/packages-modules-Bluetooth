@@ -34,6 +34,24 @@
       "parentUuid": "85f12ac5_492e4674",
       "revId": "aaae2b61c08ff7160ba8adf11f2a7691f0f032a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac230e3_e40eb017",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3215,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T22:54:50Z",
+      "side": 1,
+      "message": "Discussed in person.",
+      "parentUuid": "1ceb85a0_6d74515f",
+      "revId": "aaae2b61c08ff7160ba8adf11f2a7691f0f032a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
