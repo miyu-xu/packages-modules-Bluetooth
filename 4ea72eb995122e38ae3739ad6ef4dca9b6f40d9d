@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31c9e55b_8a07f350",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-02T23:41:22Z",
+      "side": 1,
+      "message": "Note that the C++ changes are untested at the moment, but will be tested as part of the E2E plan at go/private-gatt-in-platform-details.\n\nMost nontrivial logic is therefore placed within Rust.",
+      "revId": "4ea72eb995122e38ae3739ad6ef4dca9b6f40d9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
