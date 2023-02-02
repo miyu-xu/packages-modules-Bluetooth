@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff013449_b1560cb4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2488,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-02T18:36:17Z",
+      "side": 1,
+      "message": "nit: More Rust idiomatic and avoids intermediary mutables:\n```\n            let data: [u8; 600] \u003d value\n                .iter()\n                .chain(std::iter::repeat(\u00260))\n                .take(600)\n                .cloned()\n                .collect::\u003cVec\u003cu8\u003e\u003e()\n                .try_into()\n                .ok()?;\n```",
+      "revId": "878d8b43a4c3d0e21770f4b731cb8058f676a689",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
