@@ -154,6 +154,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a12cf58_155d281b",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:29:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aec04633_c1261780",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f403b84f_6c61e429",
@@ -256,6 +274,24 @@
       "side": 1,
       "message": "Keeping only the first half of the condition since it\u0027s `or`ed: `Mandatory if the LE Controller supports Central role`",
       "parentUuid": "d0abc11f_04dcbd30",
+      "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7864d0eb_c9e1783e",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:29:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7bc3778_3cdecb7a",
       "revId": "92f16d0986b9c182eabf40eb5c869bcc2a712d73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

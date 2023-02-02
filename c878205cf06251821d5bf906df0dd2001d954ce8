@@ -16,6 +16,109 @@
       "message": "I validate more advancements on this platform",
       "revId": "c878205cf06251821d5bf906df0dd2001d954ce8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36ae0371_063f171a",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:29:49Z",
+      "side": 1,
+      "message": "nit: formatting looks off.",
+      "range": {
+        "startLine": 1076,
+        "startChar": 1,
+        "endLine": 1077,
+        "endChar": 46
+      },
+      "revId": "c878205cf06251821d5bf906df0dd2001d954ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46a51eac_028505ae",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:29:49Z",
+      "side": 1,
+      "message": "remove (already on line 1403)",
+      "range": {
+        "startLine": 1410,
+        "startChar": 1,
+        "endLine": 1410,
+        "endChar": 76
+      },
+      "revId": "c878205cf06251821d5bf906df0dd2001d954ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e766e5_120bed70",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1457,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:29:49Z",
+      "side": 1,
+      "message": "check_command_(LE_SET_ADVERTISING_PARAMETERS, excluded, c97);",
+      "revId": "c878205cf06251821d5bf906df0dd2001d954ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb3efe83_9ac84417",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1475,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:29:49Z",
+      "side": 1,
+      "message": "check_command_(LE_SET_EXTENDED_ADVERTISING_ENABLE, excluded, c17);",
+      "revId": "c878205cf06251821d5bf906df0dd2001d954ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "006ab579_49099468",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-02T21:29:49Z",
+      "side": 1,
+      "message": "already on line 1559",
+      "range": {
+        "startLine": 1570,
+        "startChar": 0,
+        "endLine": 1570,
+        "endChar": 59
+      },
+      "revId": "c878205cf06251821d5bf906df0dd2001d954ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
