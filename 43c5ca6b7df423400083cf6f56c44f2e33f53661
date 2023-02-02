@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d363fc3_4cf48153",
+        "filename": "android/app/jni/com_android_bluetooth_BluetoothQualityReport.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-02T09:53:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b33e4035_8379e1db",
+      "revId": "43c5ca6b7df423400083cf6f56c44f2e33f53661",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63576740_b3a98fff",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-02-01T18:25:31Z",
       "side": 1,
       "message": "I still don\u0027t understand why there is a condition for theses but not for all others field.\nWhy are they optional ? Can\u0027t we put them all mandatory ? (I may be saying something completely wrong)",
+      "range": {
+        "startLine": 1378,
+        "startChar": 16,
+        "endLine": 1378,
+        "endChar": 57
+      },
+      "revId": "43c5ca6b7df423400083cf6f56c44f2e33f53661",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f9aff21_a8e98e33",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1378,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-02T09:53:12Z",
+      "side": 1,
+      "message": "https://b.corp.google.com/issues/259448922#comment24\nI will be remove it",
+      "parentUuid": "63576740_b3a98fff",
       "range": {
         "startLine": 1378,
         "startChar": 16,
