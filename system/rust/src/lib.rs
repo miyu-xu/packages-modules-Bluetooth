@@ -24,4 +24,6 @@ mod do_not_use {
     use bt_shim::*;
 }
 
+pub mod gatt;
 pub mod packets;
+pub mod utils;
