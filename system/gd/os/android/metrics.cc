@@ -443,9 +443,16 @@ void LogMetricLEACLConnectionEvent(const Address& address, bool is_ended, uint16
   }
 
   int ret =
-      stats_write(BLUETOOTH_LE_ACL_CONNECTION_EVENT, address, metric_id, is_ended, cmd_status);
+      stats_write(BLUETOOTH_LE_ACL_CONNECTION_EVENT, byteField, metric_id, is_ended, cmd_status);
+
   if (ret < 0) {
-    LOG_WARN("Failed for BluetoothLEACLConnectionEvent", address, metric_id, is_ended, cmd_status);
+    LOG_WARN(
+        "Failed for LogMetricBluetoothLEACLConnectionEvent address %s, metric id: %d, is ended %d, cmd "
+        "status %d",
+        ADDRESS_TO_LOGGABLE_CSTR(address),
+        metric_id,
+        is_ended,
+        cmd_status);
   }
 }
 

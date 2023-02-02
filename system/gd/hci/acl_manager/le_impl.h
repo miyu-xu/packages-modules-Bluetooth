@@ -37,6 +37,7 @@
 #include "hci/hci_packets.h"
 #include "hci/le_address_manager.h"
 #include "os/alarm.h"
+#include "os/metrics.h"
 #include "os/handler.h"
 #include "os/system_properties.h"
 #include "packet/packet_view.h"
@@ -335,6 +336,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
     auto address = connection_complete.GetPeerAddress();
+    os::LogMetricLEACLConnectionEvent(address, false, static_cast<uint16_t>(status));
     auto peer_address_type = connection_complete.GetPeerAddressType();
     auto role = connection_complete.GetRole();
     AddressWithType remote_address(address, peer_address_type);
@@ -1010,6 +1012,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     if (add_to_connect_list) {
       add_device_to_connect_list(address_with_type);
       if (is_direct) {
+        os::LogMetricLEACLConnectionEvent(address_with_type.GetAddress(), true, static_cast<uint16_t>(0x00));
         direct_connections_.insert(address_with_type);
         if (create_connection_timeout_alarms_.find(address_with_type) == create_connection_timeout_alarms_.end()) {
           create_connection_timeout_alarms_.emplace(
@@ -1066,6 +1069,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   void on_create_connection_timeout(AddressWithType address_with_type) {
     LOG_INFO("on_create_connection_timeout, address: %s",
              ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
+    os::LogMetricLEACLConnectionEvent(address_with_type.GetAddress(), false, static_cast<uint16_t>(ErrorCode::CONNECTION_ACCEPT_TIMEOUT));
     if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
       create_connection_timeout_alarms_.erase(address_with_type);
