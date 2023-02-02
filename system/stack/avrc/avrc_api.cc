@@ -205,12 +205,12 @@ void avrc_start_cmd_timer(uint8_t handle, uint8_t label, uint8_t msg_mask) {
   param->handle = handle;
   param->label = label;
   param->msg_mask = msg_mask;
-
-  AVRC_TRACE_DEBUG("AVRC: starting timer (handle=0x%02x, label=0x%02x)", handle,
+  if (avrc_cb.ccb_int[handle].tle != NULL) {
+    AVRC_TRACE_DEBUG("AVRC: starting timer (handle=0x%02x, label=0x%02x)", handle,
                    label);
-
-  alarm_set_on_mloop(avrc_cb.ccb_int[handle].tle, AVRC_CMD_TOUT_MS,
+    alarm_set_on_mloop(avrc_cb.ccb_int[handle].tle, AVRC_CMD_TOUT_MS,
                      avrc_process_timeout, param);
+  }
 }
 
 /******************************************************************************
@@ -1176,6 +1176,9 @@ uint16_t AVRC_MsgReq(uint8_t handle, uint8_t label, uint8_t ctype,
   if (p_pkt->event == AVRC_OP_VENDOR) {
     if (is_new_avrcp) {
       p_start = (uint8_t*)(p_pkt + 1) + p_pkt->offset + AVRC_VENDOR_HDR_SIZE;
+      if (cr == AVCT_CMD) {
+        msg_mask |= AVRC_MSG_MASK_IS_VENDOR_CMD;
+      }
     } else {
       /* add AVRCP Vendor Dependent headers */
       p_start = ((uint8_t*)(p_pkt + 1) + p_pkt->offset);
@@ -1297,7 +1300,12 @@ uint16_t AVRC_MsgReq(uint8_t handle, uint8_t label, uint8_t ctype,
     p_pkt->layer_specific = (label << 8) | (p_pkt->layer_specific & 0xFF);
 
     /* Enqueue the command */
-    fixed_queue_enqueue(avrc_cb.ccb_int[handle].cmd_q, p_pkt);
+    if (avrc_cb.ccb_int[handle].cmd_q == NULL) {
+      AVRC_TRACE_ERROR("%s cmd_q empty queue", __func__);
+      return AVRC_FAIL;
+    }
+    else
+      fixed_queue_enqueue(avrc_cb.ccb_int[handle].cmd_q, p_pkt);
     return AVRC_SUCCESS;
   }
 
