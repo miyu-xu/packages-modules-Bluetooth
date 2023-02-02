@@ -383,6 +383,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8469edb4_67a2e8ab",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-02T09:13:31Z",
+      "side": 1,
+      "message": "If server cannot process the request, no matter what request, then Unlikely Error can be used.\n\nIn 3.44 we assume that server could process the request  - so it is bit further in the processing stage.\n\nHowever, I don\u0027t know which state of the process is in this code.",
+      "parentUuid": "3fc00f88_a1336b72",
+      "range": {
+        "startLine": 71,
+        "startChar": 32,
+        "endLine": 71,
+        "endChar": 111
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31e3ce4b_6eea41e4",
         "filename": "system/rust/src/gatt/server/server_connection.rs",
         "patchSetId": 1
