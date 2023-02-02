@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "520e5d72_0a879b39",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-02T01:28:41Z",
+      "side": 1,
+      "message": "Does this mean to indicate that write without response will not be supported? Or is it just outside the scope of this CL?",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 56
+      },
+      "revId": "812b83d1e7b734532267179c07c912aa72bad1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
