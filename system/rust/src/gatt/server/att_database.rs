@@ -1,6 +1,7 @@
 use async_trait::async_trait;
 
 use crate::{
+    core::{get_128_be_uuid_bytes, CxxUuid},
     gatt::ids::AttHandle,
     packets::{
         AttAttributeDataChild, AttErrorCode, AttHandleBuilder, AttHandleView, ParseError,
@@ -25,7 +26,7 @@ impl From<AttHandle> for AttHandleBuilder {
 
 /// A UUID (See Core Spec 5.3 Vol 1E 2.9.1. Basic Types)
 #[derive(PartialEq, Eq, Clone, Copy, Debug)]
-pub struct Uuid([u8; 16]);
+pub struct Uuid(pub [u8; 16]);
 
 impl Uuid {
     /// Constructor, from a 4-byte UUID.
@@ -128,6 +129,14 @@ impl From<Uuid> for Uuid128Builder {
     }
 }
 
+impl From<&CxxUuid> for Uuid {
+    fn from(uuid: &CxxUuid) -> Self {
+        let mut bytes = get_128_be_uuid_bytes(uuid).to_owned();
+        bytes.reverse();
+        Self(bytes)
+    }
+}
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AttAttribute {
     pub handle: AttHandle,
@@ -161,7 +170,7 @@ pub trait AttDatabase {
 
 #[cfg(test)]
 mod test {
-    use crate::utils::packet::build_view_or_crash;
+    use crate::{gatt::ffi::CxxUuid, utils::packet::build_view_or_crash};
 
     use super::*;
 
@@ -249,5 +258,15 @@ mod test {
         let data = build_view_or_crash(UuidBuilder { data: vec![1, 2, 3, 4].into() });
         let uuid = Uuid::try_from(data.view()).unwrap();
         assert_eq!(uuid, Uuid::new([1, 2, 3, 4]));
+    }
+
+    #[test]
+    fn test_uuid_from_cxx() {
+        let expected = Uuid::new([1, 2, 3, 4]);
+        let cxx_uuid = CxxUuid::new_mocked(expected);
+
+        let actual = Uuid::from(cxx_uuid.as_ref());
+
+        assert_eq!(expected, actual);
     }
 }
