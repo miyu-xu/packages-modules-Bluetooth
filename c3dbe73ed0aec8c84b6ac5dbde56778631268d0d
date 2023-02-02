@@ -34,6 +34,24 @@
       "parentUuid": "cfff0e98_c6ccb3e8",
       "revId": "c3dbe73ed0aec8c84b6ac5dbde56778631268d0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31c3e32d_9b6c76dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-02-02T21:47:59Z",
+      "side": 1,
+      "message": "Hi,\n\nAck for the `time.sleep(2)`\n\nCould you please add the corresponding bug numbers into the commit message with the following format:\n\n```\nBug: 266611263\nBug: 259737525\n```\n\nThanks a lot !",
+      "parentUuid": "3718b931_6dcc7837",
+      "revId": "c3dbe73ed0aec8c84b6ac5dbde56778631268d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
