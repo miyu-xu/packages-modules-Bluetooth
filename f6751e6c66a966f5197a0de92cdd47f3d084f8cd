@@ -16,6 +16,24 @@
       "message": "Rahul, question for this and other CLs in this chain:\n\nWhat is your plan to test the logic being submitted here?\n\nI don\u0027t think compiling is sufficient for the logical changes. Is there a QA plan somewhere? What about unit tests?",
       "revId": "f6751e6c66a966f5197a0de92cdd47f3d084f8cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9072249e_e6bdde7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-02T20:44:21Z",
+      "side": 1,
+      "message": "Unit and integration tests are included later in the stack as functionality is added. pts-bot:GATT tests are used to verify no regressions. E2E test plan, to be implemented using Avatar, is part of the design doc go/private-gatt-in-platform-details\n\nFor this CL in particular, I don\u0027t see much that can be unit tested, since we are just declaring structs, not adding functionality. (PDL tests were added in a previous CL)\n\nIf you would like, I can add unit tests for the Uuid data structure, but it is more thoroughly tested later in the stack (as part of the integration tests).",
+      "parentUuid": "678d1a08_52580c0b",
+      "revId": "f6751e6c66a966f5197a0de92cdd47f3d084f8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
