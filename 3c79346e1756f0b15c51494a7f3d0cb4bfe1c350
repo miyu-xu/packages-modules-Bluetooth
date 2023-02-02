@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8cda6b6_b89e9c53",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1888800
+      },
+      "writtenOn": "2023-02-02T20:45:29Z",
+      "side": 1,
+      "message": "Let\u0027s avoid calling this anonymized since Bloom filters do not provide any anonymity guarantees, they just compress data and may provide some plausible deniability.\n\"Hashed\" or \"Sanitized\" might be more accurate.",
+      "range": {
+        "startLine": 699,
+        "startChar": 40,
+        "endLine": 699,
+        "endChar": 72
+      },
+      "revId": "3c79346e1756f0b15c51494a7f3d0cb4bfe1c350",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
