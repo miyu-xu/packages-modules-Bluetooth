@@ -15,6 +15,7 @@
  */
 
 #include "main/shim/metrics_api.h"
+#include <memory>
 #include "gd/hci/address.h"
 #include "gd/metrics/counter_metrics.h"
 #include "gd/os/metrics.h"
@@ -95,6 +96,19 @@ void LogMetricSmpPairingEvent(const RawAddress& raw_address, uint16_t smp_cmd,
   Address address = bluetooth::ToGdAddress(raw_address);
   bluetooth::os::LogMetricSmpPairingEvent(address, smp_cmd, direction,
                                           smp_fail_reason);
+}
+
+void LogMetricSmpPairingEvent(const RawAddress& raw_address, uint16_t smp_cmd,
+                              android::bluetooth::DirectionEnum direction,
+                              uint16_t smp_fail_reason) {
+  Address address = bluetooth::ToGdAddress(raw_address);
+  bluetooth::os::LogMetricSmpPairingEvent(address, smp_cmd, direction,
+                                          smp_fail_reason);
+}
+
+void LogMetricLEACLConnectionEvent(const RawAddress& address, bool is_ended, uint16_t cmd_status) {
+  Address address = bluetooth::ToGdAddress(raw_address);
+  bluetooth::os::LogMetricLEACLConnectionEvent(address, is_ended, cmd_status);
 }
 
 void LogMetricClassicPairingEvent(const RawAddress& raw_address,

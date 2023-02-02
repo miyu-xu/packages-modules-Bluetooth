@@ -172,6 +172,18 @@ void LogMetricSmpPairingEvent(
     uint16_t smp_fail_reason);
 
 /**
+ * Logs the LE-ACL Connection Event
+ *
+ * @param address address of the associated device
+ * @param is_ended start or end of connection
+ * @param cmd_status Status of the transaction
+ */
+void LogMetricLEACLConnectionEvent(
+    const hci::Address& address,
+    bool is_ended,
+    uint16_t cmd_status);
+
+/**
  * Logs there is an event related Bluetooth classic pairing
  *
  * @param address address of associated device

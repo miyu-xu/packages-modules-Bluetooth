@@ -49,6 +49,11 @@ void log_smp_pairing_event(const RawAddress& address, uint16_t smp_cmd,
                                             smp_fail_reason);
 }
 
+void log_le_acl_connection_event(const RawAddress& address, bool is_ended, uint16_t cmd_status) {
+  bluetooth::shim::LogMetricLEACLConnectionEvent(address, is_ended, cmd_status);
+}
+
+
 void log_sdp_attribute(const RawAddress& address, uint16_t protocol_uuid,
                        uint16_t attribute_id, size_t attribute_size,
                        const char* attribute_value) {
