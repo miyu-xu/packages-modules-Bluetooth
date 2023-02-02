@@ -137,6 +137,17 @@ void LogMetricReadTxPowerLevelResult(const RawAddress& address, uint16_t handle,
 void LogMetricSmpPairingEvent(const RawAddress& address, uint16_t smp_cmd,
                               android::bluetooth::DirectionEnum direction,
                               uint16_t smp_fail_reason);
+/**
+ * Logs the LE-ACL Connection Event
+ *
+ * @param address address of the associated device
+ * @param is_ended start or end of connection
+ * @param cmd_status Status of the transaction
+ */
+void LogMetricLEACLConnectionEvent(
+    const RawAddress& address,
+    bool is_ended,
+    uint16_t cmd_status);
 
 /**
  * Logs there is an event related Bluetooth classic pairing
