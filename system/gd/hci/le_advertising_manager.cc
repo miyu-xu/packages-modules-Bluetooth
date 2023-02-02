@@ -103,7 +103,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       advertising_api_type_ = AdvertisingApiType::EXTENDED;
     } else if (controller_->IsSupported(hci::OpCode::LE_MULTI_ADVT)) {
       advertising_api_type_ = AdvertisingApiType::ANDROID_HCI;
-      num_instances_ = controller_->GetVendorCapabilities().max_advt_instances_;
+      num_instances_ = controller_->GetVendorCapabilities().max_advt_instances;
       // number of LE_MULTI_ADVT start from 1
       num_instances_ += 1;
     } else {

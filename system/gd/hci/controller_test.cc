@@ -440,28 +440,28 @@ TEST_F(ControllerTest, is_supported_test) {
 }
 
 TEST_F(Controller055Test, feature_spec_version_055_test) {
-  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported_, 55);
+  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported, 55);
   ASSERT_TRUE(controller_->IsSupported(OpCode::LE_MULTI_ADVT));
   ASSERT_FALSE(controller_->IsSupported(OpCode::CONTROLLER_DEBUG_INFO));
   ASSERT_FALSE(controller_->IsSupported(OpCode::CONTROLLER_A2DP_OPCODE));
 }
 
 TEST_F(Controller095Test, feature_spec_version_095_test) {
-  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported_, 95);
+  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported, 95);
   ASSERT_TRUE(controller_->IsSupported(OpCode::LE_MULTI_ADVT));
   ASSERT_FALSE(controller_->IsSupported(OpCode::CONTROLLER_DEBUG_INFO));
   ASSERT_FALSE(controller_->IsSupported(OpCode::CONTROLLER_A2DP_OPCODE));
 }
 
 TEST_F(Controller096Test, feature_spec_version_096_test) {
-  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported_, 96);
+  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported, 96);
   ASSERT_TRUE(controller_->IsSupported(OpCode::LE_MULTI_ADVT));
   ASSERT_FALSE(controller_->IsSupported(OpCode::CONTROLLER_DEBUG_INFO));
   ASSERT_FALSE(controller_->IsSupported(OpCode::CONTROLLER_A2DP_OPCODE));
 }
 
 TEST_F(ControllerTest, feature_spec_version_098_test) {
-  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported_, 98);
+  ASSERT_EQ(controller_->GetVendorCapabilities().version_supported, 98);
   ASSERT_TRUE(controller_->IsSupported(OpCode::LE_MULTI_ADVT));
   ASSERT_FALSE(controller_->IsSupported(OpCode::CONTROLLER_DEBUG_INFO));
   ASSERT_TRUE(controller_->IsSupported(OpCode::CONTROLLER_A2DP_OPCODE));

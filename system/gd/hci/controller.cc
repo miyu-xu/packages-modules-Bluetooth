@@ -185,7 +185,7 @@ struct Controller::impl {
           LeGetVendorCapabilitiesBuilder::Create(),
           handler->BindOnceOn(this, &Controller::impl::le_get_vendor_capabilities_handler));
     } else {
-      vendor_capabilities_.is_supported_ = 0x00;
+      vendor_capabilities_.is_supported = 0x00;
     }
 
     // We only need to synchronize the last read. Make BD_ADDR to be the last one.
@@ -456,38 +456,38 @@ struct Controller::impl {
   void le_get_vendor_capabilities_handler(CommandCompleteView view) {
     auto complete_view = LeGetVendorCapabilitiesCompleteView::Create(view);
 
-    vendor_capabilities_.is_supported_ = 0x00;
-    vendor_capabilities_.max_advt_instances_ = 0x00;
-    vendor_capabilities_.offloaded_resolution_of_private_address_ = 0x00;
-    vendor_capabilities_.total_scan_results_storage_ = 0x00;
-    vendor_capabilities_.max_irk_list_sz_ = 0x00;
-    vendor_capabilities_.filtering_support_ = 0x00;
-    vendor_capabilities_.max_filter_ = 0x00;
-    vendor_capabilities_.activity_energy_info_support_ = 0x00;
-    vendor_capabilities_.version_supported_ = 0x00;
-    vendor_capabilities_.version_supported_ = 0x00;
-    vendor_capabilities_.total_num_of_advt_tracked_ = 0x00;
-    vendor_capabilities_.extended_scan_support_ = 0x00;
-    vendor_capabilities_.debug_logging_supported_ = 0x00;
-    vendor_capabilities_.le_address_generation_offloading_support_ = 0x00;
-    vendor_capabilities_.a2dp_source_offload_capability_mask_ = 0x00;
-    vendor_capabilities_.bluetooth_quality_report_support_ = 0x00;
+    vendor_capabilities_.is_supported = 0x00;
+    vendor_capabilities_.max_advt_instances = 0x00;
+    vendor_capabilities_.offloaded_resolution_of_private_address = 0x00;
+    vendor_capabilities_.total_scan_results_storage = 0x00;
+    vendor_capabilities_.max_irk_list_sz = 0x00;
+    vendor_capabilities_.filtering_support = 0x00;
+    vendor_capabilities_.max_filter = 0x00;
+    vendor_capabilities_.activity_energy_info_support = 0x00;
+    vendor_capabilities_.version_supported = 0x00;
+    vendor_capabilities_.version_supported = 0x00;
+    vendor_capabilities_.total_num_of_advt_tracked = 0x00;
+    vendor_capabilities_.extended_scan_support = 0x00;
+    vendor_capabilities_.debug_logging_supported = 0x00;
+    vendor_capabilities_.le_address_generation_offloading_support = 0x00;
+    vendor_capabilities_.a2dp_source_offload_capability_mask = 0x00;
+    vendor_capabilities_.bluetooth_quality_report_support = 0x00;
 
     if (complete_view.IsValid()) {
-      vendor_capabilities_.is_supported_ = 0x01;
+      vendor_capabilities_.is_supported = 0x01;
 
       // v0.55
       BaseVendorCapabilities base_vendor_capabilities = complete_view.GetBaseVendorCapabilities();
-      vendor_capabilities_.max_advt_instances_ = base_vendor_capabilities.max_advt_instances_;
-      vendor_capabilities_.offloaded_resolution_of_private_address_ =
+      vendor_capabilities_.max_advt_instances = base_vendor_capabilities.max_advt_instances_;
+      vendor_capabilities_.offloaded_resolution_of_private_address =
           base_vendor_capabilities.offloaded_resolution_of_private_address_;
-      vendor_capabilities_.total_scan_results_storage_ = base_vendor_capabilities.total_scan_results_storage_;
-      vendor_capabilities_.max_irk_list_sz_ = base_vendor_capabilities.max_irk_list_sz_;
-      vendor_capabilities_.filtering_support_ = base_vendor_capabilities.filtering_support_;
-      vendor_capabilities_.max_filter_ = base_vendor_capabilities.max_filter_;
-      vendor_capabilities_.activity_energy_info_support_ = base_vendor_capabilities.activity_energy_info_support_;
+      vendor_capabilities_.total_scan_results_storage = base_vendor_capabilities.total_scan_results_storage_;
+      vendor_capabilities_.max_irk_list_sz = base_vendor_capabilities.max_irk_list_sz_;
+      vendor_capabilities_.filtering_support = base_vendor_capabilities.filtering_support_;
+      vendor_capabilities_.max_filter = base_vendor_capabilities.max_filter_;
+      vendor_capabilities_.activity_energy_info_support = base_vendor_capabilities.activity_energy_info_support_;
       if (complete_view.GetPayload().size() == 0) {
-        vendor_capabilities_.version_supported_ = 55;
+        vendor_capabilities_.version_supported = 55;
         return;
       }
 
@@ -497,11 +497,11 @@ struct Controller::impl {
         LOG_ERROR("invalid data for hci requirements v0.95");
         return;
       }
-      vendor_capabilities_.version_supported_ = v95.GetVersionSupported();
-      vendor_capabilities_.total_num_of_advt_tracked_ = v95.GetTotalNumOfAdvtTracked();
-      vendor_capabilities_.extended_scan_support_ = v95.GetExtendedScanSupport();
-      vendor_capabilities_.debug_logging_supported_ = v95.GetDebugLoggingSupported();
-      if (vendor_capabilities_.version_supported_ <= 95 || complete_view.GetPayload().size() == 0) {
+      vendor_capabilities_.version_supported = v95.GetVersionSupported();
+      vendor_capabilities_.total_num_of_advt_tracked = v95.GetTotalNumOfAdvtTracked();
+      vendor_capabilities_.extended_scan_support = v95.GetExtendedScanSupport();
+      vendor_capabilities_.debug_logging_supported = v95.GetDebugLoggingSupported();
+      if (vendor_capabilities_.version_supported <= 95 || complete_view.GetPayload().size() == 0) {
         return;
       }
 
@@ -511,8 +511,8 @@ struct Controller::impl {
         LOG_ERROR("invalid data for hci requirements v0.96");
         return;
       }
-      vendor_capabilities_.le_address_generation_offloading_support_ = v96.GetLeAddressGenerationOffloadingSupport();
-      if (vendor_capabilities_.version_supported_ <= 96 || complete_view.GetPayload().size() == 0) {
+      vendor_capabilities_.le_address_generation_offloading_support = v96.GetLeAddressGenerationOffloadingSupport();
+      if (vendor_capabilities_.version_supported <= 96 || complete_view.GetPayload().size() == 0) {
         return;
       }
 
@@ -522,8 +522,8 @@ struct Controller::impl {
         LOG_ERROR("invalid data for hci requirements v0.98");
         return;
       }
-      vendor_capabilities_.a2dp_source_offload_capability_mask_ = v98.GetA2dpSourceOffloadCapabilityMask();
-      vendor_capabilities_.bluetooth_quality_report_support_ = v98.GetBluetoothQualityReportSupport();
+      vendor_capabilities_.a2dp_source_offload_capability_mask = v98.GetA2dpSourceOffloadCapabilityMask();
+      vendor_capabilities_.bluetooth_quality_report_support = v98.GetBluetoothQualityReportSupport();
     }
   }
 
@@ -901,23 +901,23 @@ struct Controller::impl {
 
       // vendor specific
       case OpCode::LE_GET_VENDOR_CAPABILITIES:
-        return vendor_capabilities_.is_supported_ == 0x01;
+        return vendor_capabilities_.is_supported == 0x01;
       case OpCode::LE_MULTI_ADVT:
-        return vendor_capabilities_.max_advt_instances_ != 0x00;
+        return vendor_capabilities_.max_advt_instances != 0x00;
       case OpCode::LE_BATCH_SCAN:
-        return vendor_capabilities_.total_scan_results_storage_ != 0x00;
+        return vendor_capabilities_.total_scan_results_storage != 0x00;
       case OpCode::LE_ADV_FILTER:
-        return vendor_capabilities_.filtering_support_ == 0x01;
+        return vendor_capabilities_.filtering_support == 0x01;
       case OpCode::LE_ENERGY_INFO:
-        return vendor_capabilities_.activity_energy_info_support_ == 0x01;
+        return vendor_capabilities_.activity_energy_info_support == 0x01;
       case OpCode::LE_EXTENDED_SCAN_PARAMS:
-        return vendor_capabilities_.extended_scan_support_ == 0x01;
+        return vendor_capabilities_.extended_scan_support == 0x01;
       case OpCode::CONTROLLER_DEBUG_INFO:
-        return vendor_capabilities_.debug_logging_supported_ == 0x01;
+        return vendor_capabilities_.debug_logging_supported == 0x01;
       case OpCode::CONTROLLER_A2DP_OPCODE:
-        return vendor_capabilities_.a2dp_source_offload_capability_mask_ != 0x00;
+        return vendor_capabilities_.a2dp_source_offload_capability_mask != 0x00;
       case OpCode::CONTROLLER_BQR:
-        return vendor_capabilities_.bluetooth_quality_report_support_ == 0x01;
+        return vendor_capabilities_.bluetooth_quality_report_support == 0x01;
       // Before MSFT extension is fully supported, return false for the following MSFT_OPCODE_XXXX for now.
       case OpCode::MSFT_OPCODE_INTEL:
         return false;
@@ -1235,7 +1235,7 @@ uint8_t Controller::GetLeNumberOfSupportedAdverisingSets() const {
   return impl_->le_number_supported_advertising_sets_;
 }
 
-VendorCapabilities Controller::GetVendorCapabilities() const {
+Controller::VendorCapabilities Controller::GetVendorCapabilities() const {
   return impl_->vendor_capabilities_;
 }
 
@@ -1302,21 +1302,21 @@ void Controller::impl::Dump(
   auto local_supported_commands_data = fb_builder->CreateVectorOfStructs(local_supported_commands_vector);
 
   auto vendor_capabilities_data = VendorCapabilitiesData(
-      vendor_capabilities_.is_supported_,
-      vendor_capabilities_.max_advt_instances_,
-      vendor_capabilities_.offloaded_resolution_of_private_address_,
-      vendor_capabilities_.total_scan_results_storage_,
-      vendor_capabilities_.max_irk_list_sz_,
-      vendor_capabilities_.filtering_support_,
-      vendor_capabilities_.max_filter_,
-      vendor_capabilities_.activity_energy_info_support_,
-      vendor_capabilities_.version_supported_,
-      vendor_capabilities_.total_num_of_advt_tracked_,
-      vendor_capabilities_.extended_scan_support_,
-      vendor_capabilities_.debug_logging_supported_,
-      vendor_capabilities_.le_address_generation_offloading_support_,
-      vendor_capabilities_.a2dp_source_offload_capability_mask_,
-      vendor_capabilities_.bluetooth_quality_report_support_);
+      vendor_capabilities_.is_supported,
+      vendor_capabilities_.max_advt_instances,
+      vendor_capabilities_.offloaded_resolution_of_private_address,
+      vendor_capabilities_.total_scan_results_storage,
+      vendor_capabilities_.max_irk_list_sz,
+      vendor_capabilities_.filtering_support,
+      vendor_capabilities_.max_filter,
+      vendor_capabilities_.activity_energy_info_support,
+      vendor_capabilities_.version_supported,
+      vendor_capabilities_.total_num_of_advt_tracked,
+      vendor_capabilities_.extended_scan_support,
+      vendor_capabilities_.debug_logging_supported,
+      vendor_capabilities_.le_address_generation_offloading_support,
+      vendor_capabilities_.a2dp_source_offload_capability_mask,
+      vendor_capabilities_.bluetooth_quality_report_support);
 
   auto extended_lmp_features_vector = fb_builder->CreateVector(extended_lmp_features_array_);
 

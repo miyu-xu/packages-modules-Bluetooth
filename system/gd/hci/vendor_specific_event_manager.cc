@@ -57,20 +57,20 @@ struct VendorSpecificEventManager::impl {
   bool check_event_supported(VseSubeventCode event) {
     switch (event) {
       case (VseSubeventCode::BLE_THRESHOLD): {
-        if (vendor_capabilities_.total_scan_results_storage_ > 0) {
+        if (vendor_capabilities_.total_scan_results_storage > 0) {
           return true;
         }
       } break;
       case (VseSubeventCode::BLE_TRACKING): {
-        if (vendor_capabilities_.total_num_of_advt_tracked_ > 0) {
+        if (vendor_capabilities_.total_num_of_advt_tracked > 0) {
           return true;
         }
       } break;
       case (VseSubeventCode::DEBUG_INFO): {
-        return vendor_capabilities_.debug_logging_supported_;
+        return vendor_capabilities_.debug_logging_supported;
       } break;
       case (VseSubeventCode::BQR_EVENT): {
-        return vendor_capabilities_.bluetooth_quality_report_support_;
+        return vendor_capabilities_.bluetooth_quality_report_support;
       } break;
       default:
         LOG_WARN("Unhandled event %s", VseSubeventCodeText(event).c_str());
