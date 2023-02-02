@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e98bacd9_cb092cff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-02-02T13:25:58Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nWe have done changes to fix the flakiness in AVRCP and also ran PRE-SUBMIT for couple of times and observed that all the AVRCP test cases are passed.\n\nKindly review and let us know your comments.\n\nThanks,\nDhananjaya",
+      "revId": "844dc8963cdbc5dbec4c12d44977e18c27eb8abb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
