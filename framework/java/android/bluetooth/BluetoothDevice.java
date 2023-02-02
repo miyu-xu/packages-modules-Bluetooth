@@ -1373,7 +1373,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     @UnsupportedAppUsage
     /*package*/ BluetoothDevice(String address) {
-        this(address, ADDRESS_TYPE_PUBLIC);
+        this(address, ADDRESS_TYPE_RANDOM);
     }
 
     /**
