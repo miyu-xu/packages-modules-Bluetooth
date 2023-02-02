@@ -98,6 +98,8 @@ void LogMetricSdpAttribute(
 void LogMetricSmpPairingEvent(
     const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {}
 
+void LogMetricLEACLConnectionEvent(const Address& address, bool is_ended, uint16_t cmd_status) {}
+
 void LogMetricA2dpPlaybackEvent(const Address& address, int playback_state, int audio_coding_mode) {}
 
 void LogMetricBluetoothHalCrashReason(
