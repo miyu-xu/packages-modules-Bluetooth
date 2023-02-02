@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65375014_a8782572",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-02T23:24:50Z",
+      "side": 1,
+      "message": "maybe rename the sysprop \"start_handle_for_srvc_change\" or something? Same for the other one",
+      "revId": "b5007d7ae1301d7fa440303bce2bb06b3e91e1a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
