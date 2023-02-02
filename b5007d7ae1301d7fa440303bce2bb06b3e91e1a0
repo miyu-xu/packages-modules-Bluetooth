@@ -16,6 +16,24 @@
       "message": "maybe rename the sysprop \"start_handle_for_srvc_change\" or something? Same for the other one",
       "revId": "b5007d7ae1301d7fa440303bce2bb06b3e91e1a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4870e369_cb1b9114",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-02T23:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65375014_a8782572",
+      "revId": "b5007d7ae1301d7fa440303bce2bb06b3e91e1a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
