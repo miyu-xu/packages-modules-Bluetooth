@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15db4d40_29b41225",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3741,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-02T19:33:12Z",
+      "side": 1,
+      "message": "Make sure we also check for BLUETOOTH_PRIVILEGED in all of these binder calls :)",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "071762d6_cca5dd3c",
+        "filename": "framework/java/android/bluetooth/BluetoothStatusCodes.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-02T19:33:12Z",
+      "side": 1,
+      "message": "Could we reuse ERROR_DEVICE_NOT_CONNECTED for this?",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5eab581_acf84450",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-02T19:33:12Z",
+      "side": 1,
+      "message": "Please add an @IntRange for the param now that we have a valid range",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dc90814_34eb5e8a",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-02T19:33:12Z",
+      "side": 1,
+      "message": "Please use the method here instead of the constant",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
