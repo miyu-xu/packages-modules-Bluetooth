@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d738f0d_96f1752b",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:19:38Z",
+      "side": 1,
+      "message": "nit: `pub type: Uuid`",
+      "range": {
+        "startLine": 131,
+        "startChar": 3,
+        "endLine": 131,
+        "endChar": 19
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da25fa4d_c9ad7f01",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:19:38Z",
+      "side": 1,
+      "message": "Returning attributes ordered by handle will be a requirement for implementing the ATT transactions. That needs to be documented here",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 51
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01fe190d_645740ae",
         "filename": "system/rust/src/gatt/server/server_connection.rs",
         "patchSetId": 12
