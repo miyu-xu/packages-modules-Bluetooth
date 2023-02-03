@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f27917_2e969654",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-02-03T07:59:20Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nUpdated json file and resubmitted.\n\nRequest you to provide your inputs.\n\nRegards,\nFahad",
+      "revId": "baa6bbf2dba65b0c86cc1519d2bbd31725b80fce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
