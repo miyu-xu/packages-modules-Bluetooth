@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3433bf5d_67676519",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-03T19:31:26Z",
+      "side": 1,
+      "message": "this is from rebase, not my change :p",
+      "revId": "746a8fcdc71de9de4f7fc1f2919a99f0a50d605f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

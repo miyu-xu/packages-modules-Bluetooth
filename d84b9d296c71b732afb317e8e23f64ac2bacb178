@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a404dc19_7bb1d516",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-03T19:31:26Z",
+      "side": 1,
+      "message": "yea, I used to consider that as well. my understanding is AudioCodecConfig is using bitmap and more for source audio capability config, while the value here is matching a different assigned num map for assistant/sink meta data audio config. Considering those values are originally coming from Spec(e.g. assigned num, 6.12.5.1) and there they maintained separate tables, i think maybe it\u0027s better to have a separate definition here as well to avoid confusion and the extra conversion. also i think value should be good for this subgroup level metadata, and bitmap is more for BIG group level.\ndoes this make sense?",
+      "parentUuid": "0bdbd9b5_035d55c2",
+      "range": {
+        "startLine": 76,
+        "startChar": 28,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03c5aa6f_b30db194",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-03T15:13:16Z",
       "side": 1,
       "message": "same with frame duration. We have it already in BluetoothLeAudioCodecConfig.java",
+      "range": {
+        "startLine": 133,
+        "startChar": 22,
+        "endLine": 133,
+        "endChar": 44
+      },
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef80e68_e330eb04",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-03T19:31:26Z",
+      "side": 1,
+      "message": "explained above",
+      "parentUuid": "03c5aa6f_b30db194",
       "range": {
         "startLine": 133,
         "startChar": 22,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "685a7345_bfe4c95f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-03T19:31:26Z",
+      "side": 1,
+      "message": "will update to remove those.",
+      "parentUuid": "563f28ce_00bb04a2",
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5dd0ae4a_70ef0eee",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ddd82d9_97792d5b",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-03T19:31:26Z",
+      "side": 1,
+      "message": "good point, will add.",
+      "parentUuid": "5dd0ae4a_70ef0eee",
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36249cb5_a277998f",
@@ -94,6 +178,24 @@
       "writtenOn": "2023-02-03T00:55:22Z",
       "side": 1,
       "message": "Use {@code null} as it\u0027s a java value",
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f2a0554_267b987f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-03T19:31:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "36249cb5_a277998f",
       "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
