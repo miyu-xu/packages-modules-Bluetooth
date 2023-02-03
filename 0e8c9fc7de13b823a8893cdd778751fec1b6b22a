@@ -141,6 +141,54 @@
       },
       "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c3620e0_60257569",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-03T19:59:18Z",
+      "side": 1,
+      "message": "why init flag is not sufficient?",
+      "parentUuid": "534a4ec3_2cd7efcd",
+      "range": {
+        "startLine": 59,
+        "startChar": 63,
+        "endLine": 59,
+        "endChar": 71
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7abb8fc_7a086116",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-03T19:59:18Z",
+      "side": 1,
+      "message": "Jack this is patches 1 - and we have 9th now",
+      "parentUuid": "af560990_f919bfde",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 73
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -16,6 +16,24 @@
       "message": "Should this be in the inband_prop topic? If not, please remove it from the topic so that we can merge the APIs first",
       "revId": "4c2c43e01cae91ac2245e7416ee7a27932655a9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18504e2e_66be1d25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-03T19:59:18Z",
+      "side": 1,
+      "message": "if not in the topic, TBS is unsync with the platform setting.",
+      "parentUuid": "1bf6f219_700d1bd8",
+      "revId": "4c2c43e01cae91ac2245e7416ee7a27932655a9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
