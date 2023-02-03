@@ -16,6 +16,24 @@
       "message": "I think this would be easier to do once the emulator team removes their dependency on RootCanal.  Erwin, do we have a timeline for that?",
       "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c482eb2_85d78806",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T18:12:04Z",
+      "side": 1,
+      "message": "netsim is currently using the libbt-rootcanal build from the emulator, the issue remains the same",
+      "parentUuid": "41a4454e_274f473c",
+      "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
