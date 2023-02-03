@@ -33,6 +33,24 @@
       "message": "Hi owners, this is the last CL in a large-scale-change to the entire ChromeOS code base. What is needed to get this landed?",
       "revId": "67c5995d4760841726e42a32852556b8d644f148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03d222cb_8bd8fb27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-03T01:25:29Z",
+      "side": 1,
+      "message": "For some reason, the rebase isn\u0027t picking up aosp/2399915 hence everything is failing here. Are you able to get this passing locally? You may need to rebase and reupload this CL.\n\nFor Floss (the ChromeOS and Linux build), we will uprev our dpkg for Floss and uprev the container that builds Floss in pre-submit (once you get to that point, I can +1 bypass presubmit on this job). We can coordinate once we get to that point.",
+      "parentUuid": "6886cae5_fbb70bba",
+      "revId": "67c5995d4760841726e42a32852556b8d644f148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
