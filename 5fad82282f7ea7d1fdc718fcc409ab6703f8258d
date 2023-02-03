@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21c5e0d2_2438bb70",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-03T21:43:49Z",
+      "side": 1,
+      "message": "Is the groupId planned to be used when you resolve the TODO? What\u0027s the timeline for that?",
+      "revId": "5fad82282f7ea7d1fdc718fcc409ab6703f8258d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
