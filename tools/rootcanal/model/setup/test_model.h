@@ -110,6 +110,11 @@ class TestModel {
   std::map<PhyDevice::Identifier, std::shared_ptr<PhyDevice>> phy_devices_;
   std::string list_string_;
 
+  // Sorted list of unused device identifiers, and next device id when no unused
+  // identifier is available.
+  std::list<PhyDevice::Identifier> unused_device_ids_;
+  PhyDevice::Identifier next_device_id_{0};
+
   // Prefix used to generate public device addresses for hosts
   // connecting over TCP.
   std::array<uint8_t, 5> bluetooth_address_prefix_;
