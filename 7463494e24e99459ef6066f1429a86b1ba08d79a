@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c5715eb_2a9ca8c3",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "You mean `pub r#type: Uuid` ? 🙃",
+      "parentUuid": "4d738f0d_96f1752b",
+      "range": {
+        "startLine": 131,
+        "startChar": 3,
+        "endLine": 131,
+        "endChar": 19
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da25fa4d_c9ad7f01",
         "filename": "system/rust/src/gatt/server/att_database.rs",
         "patchSetId": 12
@@ -49,6 +73,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8143ba45_1fda0c93",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: `find`",
+      "range": {
+        "startLine": 154,
+        "startChar": 7,
+        "endLine": 154,
+        "endChar": 10
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01fe190d_645740ae",
         "filename": "system/rust/src/gatt/server/server_connection.rs",
         "patchSetId": 12
@@ -60,6 +107,276 @@
       "writtenOn": "2023-02-03T19:09:40Z",
       "side": 1,
       "message": "server_bearer?",
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14af96f0_d7d4d5fa",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: Cell",
+      "range": {
+        "startLine": 33,
+        "startChar": 20,
+        "endLine": 33,
+        "endChar": 27
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2600c47_8c7905c3",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: use new/constructor",
+      "range": {
+        "startLine": 48,
+        "startChar": 17,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5409079d_e0afd043",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "Could we disconnect the peer ?",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 96
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdadeaf2_49cc7417",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: \u0026self",
+      "range": {
+        "startLine": 99,
+        "startChar": 27,
+        "endLine": 99,
+        "endChar": 36
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dfa2dd2_b5be0c27",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "Could you check that `rx` is empty after the asserts",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 83
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29e7b635_7ef93bf7",
+        "filename": "system/rust/src/gatt/server/test/test_att_db.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: BTreeMap to not need the sort ?",
+      "range": {
+        "startLine": 14,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 23
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "761cdbee_b768eeaa",
+        "filename": "system/rust/src/gatt/server/transactions/read_request.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "Add a comment about this magic value",
+      "range": {
+        "startLine": 36,
+        "startChar": 81,
+        "endLine": 36,
+        "endChar": 85
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79af6d27_74451391",
+        "filename": "system/rust/src/gatt/server/transactions/read_request.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: `.view` ?",
+      "range": {
+        "startLine": 83,
+        "startChar": 49,
+        "endLine": 83,
+        "endChar": 60
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75906459_3e842b31",
+        "filename": "system/rust/src/gatt/server/transactions/read_request.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: `Box::new([4, 5])` or `[4, 5].into()`",
+      "range": {
+        "startLine": 96,
+        "startChar": 69,
+        "endLine": 96,
+        "endChar": 86
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63cdaf5_b56cdf0a",
+        "filename": "system/rust/src/gatt/server/utils.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "nit: Put that in the `server` mod instead of creating a utils file ? Or just create a `truncate` file ?\n\n`utils` doesn\u0027t convey any meaning",
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "910644d1_dcedffa8",
+        "filename": "system/rust/src/gatt/server/utils.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "Put the comment that you put in the test here.",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecbf7d4a_b4cba7a7",
+        "filename": "system/rust/src/utils.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:01:24Z",
+      "side": 1,
+      "message": "I don\u0027t think you need a `utils` mod here, you should put the inner modules into the parent directly.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 58
+      },
       "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
