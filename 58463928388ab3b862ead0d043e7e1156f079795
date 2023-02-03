@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a43c6255_1bda2971",
+        "filename": "system/stack/include/sdp_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T22:40:34Z",
+      "side": 1,
+      "message": "Can we include this in the legacy API?",
+      "range": {
+        "startLine": 635,
+        "startChar": 5,
+        "endLine": 635,
+        "endChar": 29
+      },
+      "revId": "58463928388ab3b862ead0d043e7e1156f079795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d35b6f4_b7b4be55",
+        "filename": "system/stack/include/sdp_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T22:40:34Z",
+      "side": 1,
+      "message": "nit: Could we fix the comment formatting?",
+      "range": {
+        "startLine": 652,
+        "startChar": 4,
+        "endLine": 652,
+        "endChar": 7
+      },
+      "revId": "58463928388ab3b862ead0d043e7e1156f079795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ea5c60_a4607264",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T22:40:34Z",
+      "side": 1,
+      "message": "nit: Since it\u0027s in the namespace, I think we can simplify this name.\n\ntSdpApi?",
+      "range": {
+        "startLine": 1055,
+        "startChar": 32,
+        "endLine": 1055,
+        "endChar": 43
+      },
+      "revId": "58463928388ab3b862ead0d043e7e1156f079795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
