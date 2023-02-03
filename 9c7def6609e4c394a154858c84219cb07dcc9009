@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3536d14_021a1847",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 986,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-03T14:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9c581da_754de5bf",
+      "revId": "9c7def6609e4c394a154858c84219cb07dcc9009",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06415f10_e193912d",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-02-01T18:26:20Z",
       "side": 1,
       "message": "This can also be a return early style:\n```\n        let mut fd \u003d match socket.fd {\n            Some(fd) \u003d\u003e fd,\n            None \u003d\u003e {\n                print_error!(\"\");\n                return;\n            }\n        };\n```",
+      "revId": "9c7def6609e4c394a154858c84219cb07dcc9009",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e4db7d_fb44ad45",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-03T14:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06415f10_e193912d",
       "revId": "9c7def6609e4c394a154858c84219cb07dcc9009",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6e0659_567498dd",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-03T14:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c06ed55_803f242e",
+      "revId": "9c7def6609e4c394a154858c84219cb07dcc9009",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a62114fb_d63a03b2",
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1b1fdce_7a5e7470",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-03T14:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a62114fb_d63a03b2",
+      "revId": "9c7def6609e4c394a154858c84219cb07dcc9009",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6aa5299b_ebb42848",
@@ -99,6 +171,30 @@
       "writtenOn": "2023-02-01T18:26:20Z",
       "side": 1,
       "message": "nit: how about `let data \u003d buf[..sz].to_vec();` ?",
+      "range": {
+        "startLine": 1004,
+        "startChar": 0,
+        "endLine": 1005,
+        "endChar": 46
+      },
+      "revId": "9c7def6609e4c394a154858c84219cb07dcc9009",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a63d86e_2b3aaf35",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-03T14:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aa5299b_ebb42848",
       "range": {
         "startLine": 1004,
         "startChar": 0,
